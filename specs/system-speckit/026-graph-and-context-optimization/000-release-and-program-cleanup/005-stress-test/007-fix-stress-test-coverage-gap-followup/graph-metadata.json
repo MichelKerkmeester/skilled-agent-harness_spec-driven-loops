@@ -16,7 +16,6 @@
       "close stress gaps",
       "007-fix-stress-test-coverage-gap-followup plan",
       "007-fix-stress-test-coverage-gap-followup tasks",
-      "007-fix-stress-test-coverage-gap-followup checklist",
       "007-fix-stress-test-coverage-gap-followup summary",
       "stress gap remediation summary"
     ],
@@ -29,10 +28,10 @@
       "gaps",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "gap",
-      "packet"
+      "packet",
+      "audit"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -165,48 +157,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Ten",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Coverage Graph",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Python Bench Wrapper",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 042's audit produced a 54-row coverage matrix and classified 10 features as P0 stress gaps — features with concurrency, lease, capacity, or perf-budget surfaces that have no direct stress coverage today",
     "created_at": "2026-04-30T18:46:30Z",
-    "last_save_at": "2026-07-17T17:19:12.855Z",
+    "last_save_at": "2026-08-30T15:39:28.685Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78033534e6a2e6d283aaa061509527708f83d356bb31bdd05181aee666e30d7b",
+    "source_fingerprint": "sha256:0fb39023dd1ae066749590334034dc6063d51fd533258a52bfccdc3503b6889e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "83848444c00d9aaaa66f3b5f6cef6f420f68c46e6db7efc7a3b03ee42c6e8847",
       "plan.md": "e3f6a2da059b4220462b9930ec74f0d50d1c9bad492148b39b7d6b7f049ffa80",
       "tasks.md": "275c786cbd9e27df37eb6ed6c306df88b2dd6571cd2ba37a8de56c98daaf4285",
-      "checklist.md": "2021db06567f8ff631b1df39dbe8460e87ce7731fb963a7596bd7b516a3d495f",
       "implementation-summary.md": "9f59633e9151aa2d2781d42b79eb41d0994031aaf498de3182c33e9f5b912abc"
     },
     "last_active_child_id": null,

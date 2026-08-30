@@ -38,20 +38,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-goal.js",
       "spec.md",
-      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -59,9 +51,9 @@
         "source": "derived"
       },
       {
-        "name": "mk-goal-lifecycle.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -74,12 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -189,11 +175,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The dual-model review confirmed one real runtime defect and a broad documentation-drift cluster",
     "created_at": "2026-07-04T08:06:24.170Z",
-    "last_save_at": "2026-07-16T16:32:46.072Z",
+    "last_save_at": "2026-08-30T15:39:25.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:da47fb95cc1a3938f78e67d69402bcd91e597e4656eab9866501dc1b929b4a32",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "951cd6974e467323cc994d253edc674301b41b3bc6c8832a661fb41af88cb7b0",
       "plan.md": "7c5fbacc85945b12a4ed785d699333c5cc4d48649395e4a408c9344591e9c869",

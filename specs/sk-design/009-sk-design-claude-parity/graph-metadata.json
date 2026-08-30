@@ -159,7 +159,7 @@
     ],
     "causal_summary": "The research packet found that `sk-design` already has the right OpenCode-native backbone: one advisor-routable hub, five public modes, registry-driven routing, a shared reference base, and a measured `design-md-generator` extraction backend",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-08-28T22:11:54.519Z",
+    "last_save_at": "2026-08-30T15:39:12.101Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,6 +167,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:e2e7abb2cdfd63fc447e165d0703a018109cba0556a8ff4cdfda927c6853d3e9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "de9fea7c8cb48c99257bdd1c64cb0cd7eead17590b6e74a7daa58d9c80e2cef3",
       "research/research.md": "0b50019e09c5bde22c201c14169d226333f1daddab37d740957bb92753975a3b"

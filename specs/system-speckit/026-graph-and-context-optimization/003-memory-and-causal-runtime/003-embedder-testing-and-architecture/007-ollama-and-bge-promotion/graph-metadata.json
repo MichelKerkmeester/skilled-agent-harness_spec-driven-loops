@@ -98,13 +98,14 @@
     ],
     "causal_summary": "Phase parent. 4 sub-phases: (001) investigate what each retrieval system actually indexes, (002) add Ollama adapter to CocoIndex via LiteLLM, (003) 3-run-confirm + promote bge-code-v1 as the CocoIndex default, (004) survey newer text embedders released after May 2026 — only bench if a clearly stronger candidate emerges (mk-spec-memory bake-off already shipped jina-embeddings-v3 + rescue per ADR-012). Outcome: clear embedder routing + Ollama support + validated defaults across CocoIndex and mk-spec-memory.",
     "created_at": "2026-05-18T16:52:17.347Z",
-    "last_save_at": "2026-08-29T15:22:15.491Z",
+    "last_save_at": "2026-08-30T15:39:31.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:3e06d006b8936d0781e2233006cd23f42bff0158b357649301030a1abefa30ee",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d62cac502dd0836d03fe8315d9478c1d6a1dff099487e76ab63eee5299c7e01d"
     },

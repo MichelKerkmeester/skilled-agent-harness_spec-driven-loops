@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The detached CLI fan-out path had: (1) review init bindings missing from CLI prompts, (2) unrecoverable salvage yielding false-fulfilled lineages, (3) mixed-salvage failures treated as fatal instead of retryable, (4) prompt-only write isolation via unconditional `--dangerously-skip-permissions`, (5) a playbook regression that did not exercise the documented exit-0/no-artifact path, (6) registry-only merge silently skipping leaf-only lineages, and (7) lag-ceiling observability events normalizing to `unknown`",
     "created_at": "2026-06-30T13:35:53.863Z",
-    "last_save_at": "2026-07-16T16:32:24.488Z",
+    "last_save_at": "2026-08-30T15:39:25.158Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:85749324d4d0544842f93b9722d1d696e99c7521b88498ab920635beda55cfc6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9bfc2bc053c6ef7f4c7a011bd765007bf681558c9602793f0d33f580e7220795",
       "plan.md": "a737b6c56e63d5264ff839fed47ec93e63007f357fb03d48e1c7e2a82c946378",

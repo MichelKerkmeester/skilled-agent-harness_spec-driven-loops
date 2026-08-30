@@ -19,8 +19,6 @@
       "agents cleanup plan",
       "028 release cleanup agents tasks",
       "agents cleanup tasks",
-      "028 release cleanup agents checklist",
-      "agents cleanup checklist",
       "007-agents implementation summary",
       "028 release cleanup 007-agents"
     ],
@@ -34,9 +32,9 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
       "007-agents",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +166,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Discovery",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Fixed The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The every agent definition in .opencode plus .claude and .codex runtime mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-11T18:40:35.751Z",
+    "last_save_at": "2026-08-30T15:39:34.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:763de46879f2c5581e688a5c6c8778b17efcf37f1eecddf9579ff280c546e135",
+    "source_fingerprint": "sha256:a3a4dafd8cee7635bc966303a7565822c58e3325eeb3fecf50a4af9d0854acb7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "68784480462021eb8f527547e2d77b74271a8e88d54962826e8b681967950240",
       "plan.md": "8e6804b6e4c1f4c79467f0e65fefee00c6ed267b9e54e0b866957b0f5d7515da",
       "tasks.md": "d4162a5eba550001e024eb37c18ed4456c54c16d93973119ef7b530b63d642f0",
-      "checklist.md": "5820771f0cfc874a332edcb59fe30e9ba51a6ef2d46fabe390f357a7be68d8c6",
       "implementation-summary.md": "edc26502cd1864930a27fe1ecbf42a0bf39977c6fb1ae57258d0918b9e01c19a"
     },
     "last_active_child_id": null,

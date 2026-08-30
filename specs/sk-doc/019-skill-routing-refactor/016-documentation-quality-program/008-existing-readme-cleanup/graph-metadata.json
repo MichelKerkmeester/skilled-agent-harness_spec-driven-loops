@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `auditreadmes.py` fleet sweep flagged 70 template-invalid READMEs, 177 broken references and 68 missing-OVERVIEW findings across the repo's 593 READMEs",
     "created_at": "2026-07-22T15:15:44.494Z",
-    "last_save_at": "2026-08-30T08:04:18.623Z",
+    "last_save_at": "2026-08-30T15:39:15.549Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c480c4e85912154c49b2a826c83f8e9ec159e01be9d0ccaf77be36d870585fd9",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "299cef6602bd17260e9854e742f3d6c6fe0d3a207eaf156ecf30e0cf9dfe4c4b",
       "plan.md": "13e2fe4dbe542afc4d42fa0271c04aa6b8c2d648f11239bb1cdd0e95f47a1949",

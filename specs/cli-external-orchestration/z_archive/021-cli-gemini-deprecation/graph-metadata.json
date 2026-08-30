@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/021-cli-gemini-deprecation",
-  "spec_folder": "cli-external-orchestration/021-cli-gemini-deprecation",
+  "packet_id": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation",
+  "spec_folder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation",
   "parent_id": null,
   "children_ids": [
     "cli-external-orchestration/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
     "cli-external-orchestration/021-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
     "cli-external-orchestration/021-cli-gemini-deprecation/003-cli-gemini-full-purge",
-    "cli-external-orchestration/021-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication"
+    "cli-external-orchestration/021-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication",
+    "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
+    "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+    "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/003-cli-gemini-full-purge",
+    "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication"
   ],
   "manual": {
     "depends_on": [],
@@ -85,17 +89,18 @@
     ],
     "causal_summary": "The project no longer supports a Gemini surface, yet active tooling still depends on one in two places: the checked-in project runtime directory and skill, and the command-layer YAMLs that still carry Gemini executor branches and references",
     "created_at": "2026-06-08T16:11:50.603Z",
-    "last_save_at": "2026-07-14T19:26:15.436Z",
+    "last_save_at": "2026-08-30T15:39:08.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d8457e1527862165563337a9bd1bbda3b4813c567cddd40760f023d85134f4b8",
+    "source_fingerprint": "sha256:c51b3acee2132dc30c5cdb29b445d97b2e03f6b146dd0f96ab9f68839a5aa080",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed54b86bb15d100bd20f0a4835b7f99d0a9a7bbe6baacf6bc9add6124018b590"
+      "spec.md": "e0735d0abf784d8a529ae520a66e670876b241ca5a5b0eac5f099cbfd9ea8b8f"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
     "last_active_at": null
   }
 }

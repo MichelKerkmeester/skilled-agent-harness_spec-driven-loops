@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Six sk-doc packets wrap their templates in a redundant single subfolder whose name just repeats the packet domain — e.g",
     "created_at": "2026-06-05T12:47:32.525Z",
-    "last_save_at": "2026-08-28T15:59:18.222Z",
+    "last_save_at": "2026-08-30T15:39:13.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:08b53cd3f82256d3228f151cab6243fa9d0f04b109cd12633d5ab2ef8a97a537",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a20986d2b04d73fce419338dafb1d67e8a3d2e9a382ab1d25368990c8df7e556",
       "plan.md": "749f8a11be9dbaa97fd014f9325e29c2f5ddcad970be4cda7668cde57d62fed5",

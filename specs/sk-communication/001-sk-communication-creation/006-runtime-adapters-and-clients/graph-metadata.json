@@ -18,11 +18,11 @@
       "implementation plan",
       "tasks",
       "implementation",
-      "verification checklist",
-      "quality gate",
       "architecture decision",
       "use client-owned presentation whenever native interception is not explicitly safe",
-      "implementation status"
+      "implementation status",
+      "current state",
+      "phase 006 handover"
     ],
     "key_topics": [
       "runtime-adapters-and-clients",
@@ -36,7 +36,7 @@
       "phase",
       "plan",
       "tasks",
-      "verification"
+      "architecture"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -190,32 +183,37 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Integrate",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries",
     "created_at": "2026-08-11T10:04:31Z",
-    "last_save_at": "2026-08-29T14:54:10.635Z",
+    "last_save_at": "2026-08-30T15:39:11.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:9de9d196e6bc41acb3f31429197d28fb5644706ee8893be499a9112503e55320",
+    "source_fingerprint": "sha256:62413b41d640a7e51d89b5162b057e31647e84e4f24b1819eca3d09317906a72",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0037187b6e15174c4ad957e7fe86d4186350afd56771646bd17c83909bb95649",
       "plan.md": "9702a181c0a72d95b057bf9c1d9ee70ec5d5fc8190576f65f6d98d0b137da6cd",
       "tasks.md": "313f678ad0a9a57579becbc46f9c2a8fc40e788a460267049677939ee51f3fc5",
-      "checklist.md": "f4f070729da9ee31fae81a29ed3180f40ae51343b0fe651e793163a4d502b08d",
       "decision-record.md": "ef4bd1bff60b154c4869ea6fb16242a42e242d3041a28409ff072f90989a2c7e",
       "implementation-summary.md": "c369915f12392d7f13618aa576be79c80cf55969b2103ed1e811ed802184ed66",
       "handover.md": "8ba31b9b2a7c83f42234ec959df83dfd59ed7e133a2564b27ba15152f344b55e"

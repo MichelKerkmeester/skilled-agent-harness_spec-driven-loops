@@ -41,23 +41,33 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      "mcp_server/handlers/causal-graph.ts",
-      "mcp_server/tests/launcher-ipc-bridge.vitest.ts",
-      "research/measurement-backlog.md",
       "handover.md",
+      "research/measurement-backlog.md",
       "research/experiments/fanout-diversity/analysis.md",
       "research/research-angles.md",
-      ".opencode/changelog/system-spec-kit/v3.5.0.0.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/changelog/system-spec-kit/v3.5.0.0.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,27 +83,15 @@
         "source": "derived"
       },
       {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/causal-graph.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-ipc-bridge.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/launcher-ipc-bridge.vitest.ts",
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
         "name": "measurement-backlog.md",
         "kind": "doc",
         "path": "research/measurement-backlog.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -112,18 +110,6 @@
         "name": "v3.5.0.0.md",
         "kind": "doc",
         "path": ".opencode/changelog/system-spec-kit/v3.5.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -197,11 +183,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measurement Experiments",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 026 graph-and-context-optimization program closed without a retrospective, and a deep review suggested it shipped mechanisms while deferring the measurements that prove them optimal",
     "created_at": "2026-06-06T06:03:36.642Z",
-    "last_save_at": "2026-07-17T17:19:15.374Z",
+    "last_save_at": "2026-08-30T15:39:29.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +211,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:6c3f7c0a52c7e186dcb5833c16fff7db1efc6063ec89be3afd07e9e8b3c9fde7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a680b01592699988a3db1d22eff195b498ea0581e5773937f7a40da74853df0c",
       "plan.md": "dfa1261c7d0a836f3c7973560694b44339455d6fa3ba677f87d1d6cafa625d28",

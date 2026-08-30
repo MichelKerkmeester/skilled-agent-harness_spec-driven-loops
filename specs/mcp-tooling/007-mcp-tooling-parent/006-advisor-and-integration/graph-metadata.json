@@ -41,20 +41,17 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/spec.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/plan.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/006-advisor-and-integration/tasks.md",
       ".opencode/skills/mcp-tooling/graph-metadata.json",
-      ".opencode/skills/README.md",
       ".opencode/skills/mcp-code-mode/graph-metadata.json",
       ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-      "implementation-summary.md",
-      ".claude/mcp.json",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      ".claude/mcp.json"
     ],
     "entities": [
       {
@@ -76,39 +73,21 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_mcp_install.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "mcp.json",
+        "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".claude/mcp.json",
+        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
@@ -200,26 +179,43 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phases 004-005 the content lives under the hub, but the advisor still sees three graph identities and every external referrer still points at the old flat skill-folder paths",
     "created_at": "2026-07-09T20:18:25Z",
-    "last_save_at": "2026-07-16T14:35:55.266Z",
+    "last_save_at": "2026-08-30T15:39:09.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9972ef9f6463d27a386e34b19bf87097bd086ed42f6e09dec15edae70e731c59",
+    "source_fingerprint": "sha256:f6906cbfa462f0df41525933dd70c2ba169b4a137958e03c8427fc68e1ff8ede",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "84226826c6a65d56fd892fdf6afe42828241d7c1b00ec7225a960d360823e354",
       "plan.md": "60e20a0c7428cf631eb699bd6bd9acce3fdd5c7625699a6d3de9b679f0066566",
       "tasks.md": "355ff90f4d4fade1e5732912421353ee687f2d1d2bee373f0edd9a868916a6b4",
-      "checklist.md": "2b6c67d0d625f56ee3a14e8e9ceef0403553ca73f889aff7cbb675d8706f1972",
       "implementation-summary.md": "2b3917281c2a4afadcbb4a1623dd5327774e40f659d240f4a7520e75b9dca061"
     },
     "last_active_child_id": null,

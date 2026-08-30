@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Both packets warn that broad kill commands can either miss detached helpers or terminate legitimate warm services",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-08-29T15:22:16.076Z",
+    "last_save_at": "2026-08-30T15:39:31.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e5ad51a44f708fb24b276e84ecaf10693db7de4665e7149ba3ff93b6503d3cd0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8f8554392abc1e1e440ff9328253978bde21d3106644f4d87bf8a2422b2a100a",
       "plan.md": "535b33f644956024a4587892d0ce9e28e3689c70ac42cb42b649321b8b5f2585",

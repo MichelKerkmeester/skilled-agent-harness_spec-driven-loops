@@ -42,7 +42,7 @@
       "historical"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -92,13 +92,14 @@
     ],
     "causal_summary": "The Multi-AI Council write protocol spans multiple historical phases: council deliberations need a stable output structure, persistence machinery, deferral handling, write authority, and main-agent enforcement so council runs can produce durable `ai-council/` artifacts rather than chat-only reports",
     "created_at": "2026-07-08T05:55:51.548Z",
-    "last_save_at": "2026-07-16T16:31:42.688Z",
+    "last_save_at": "2026-08-30T15:39:24.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:faeb70a9f07524d0cbc3dadb19cb17a9ee7d43e55f82e0de644e63adfcc9377e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c353aa4e3ad5057ef89eda92df00716fd37cfe20b66eb6703417c2957fa90eff"
     },

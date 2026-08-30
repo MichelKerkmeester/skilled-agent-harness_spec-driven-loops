@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The mcp-chrome-devtools README is a tabular reference card with a table of contents and no problem-first entry point",
     "created_at": "2026-06-07T12:35:00Z",
-    "last_save_at": "2026-08-28T15:59:22.194Z",
+    "last_save_at": "2026-08-30T15:39:14.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6baf35e2d124b3ec947c327fed3a84451fc83228b5c789a98d789a3a0c06f628",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71d6907ea3ba5a6bc8fcb164333f7ea56369f0345c9a33a393e7048335bdb831",
       "plan.md": "d0d67e5e650e10c24e111ebc64671f62475965e9bb20d17cf5e9b10346608a6a",

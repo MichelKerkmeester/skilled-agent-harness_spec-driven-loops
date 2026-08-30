@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The user asked whether the external repo `gytis-ivaskevicius/peck` contains any teachings that could",
     "created_at": "2026-06-02T08:38:07Z",
-    "last_save_at": "2026-08-30T08:34:18.121Z",
+    "last_save_at": "2026-08-30T15:39:33.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6c35c94b853be4e898e9ac8ae2d7afd9aaf922316be3c35b38ede66497bba2ff",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint": "sha256:e893b16d903bdab4cfa8fbdc31bdc08fd9fdb651cababf93c792ed16dac127a8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7f4b274ab2c26db096a2c7a4b6a73f7ad28d4f8b902caa5f7136de594f5cb4ef",
-      "plan.md": "c152f752eb2568419cf613339056f695601739cae8363d1b3e9845205725022a",
-      "tasks.md": "c6b22d5d87c54ef5e2c4f61bcf0286c055093996a84bbf20eb6d662d246dd9d5",
+      "plan.md": "2e07855cd04ac886be153611dc78fff20a6367cb46b14749e97b48e758e55e4d",
+      "tasks.md": "e6e35a1d699e5aac6632a8f75b67545490338f46a34e8c7d037cca59cfa3914a",
       "implementation-summary.md": "4a18b1dda6adde913dd445dbea1d9eb64e06995add141a1369ba28c757086011",
       "research/research.md": "89156db06c7bcb38503bc81c65d197d16b801adbb77fd0a1ad8f5be733264160"
     },

@@ -42,20 +42,38 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -80,24 +98,6 @@
         "name": "deep-review-reducer-schema.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`sk-deep-review` still described review mode with mixed `deep-review-` and `deep-research-` artifact names, partial lifecycle semantics, and uneven runtime-mirror coverage even after Phase 1 established the lineage and reducer model",
     "created_at": "2026-04-12T09:02:50.184Z",
-    "last_save_at": "2026-07-16T16:31:51.446Z",
+    "last_save_at": "2026-08-30T15:39:24.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0cc4d6ae5d552feeedffc91d5eaf6a607d22f76e4e056de3599a6aabb3475775",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "58ee74fb8470e701a249f18e9336fe25955858054e973b30804cd2cfc9eae161",
       "plan.md": "cc05a1692298705bf0003b1c955a1deda919d84da58e4c28bcb7c7c7c5494a55",

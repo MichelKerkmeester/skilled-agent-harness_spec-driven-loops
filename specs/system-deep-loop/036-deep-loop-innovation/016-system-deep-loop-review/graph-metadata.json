@@ -19,10 +19,7 @@
       "review research expansion plan",
       "system-deep-loop review tasks",
       "deep-loop audit tasks",
-      "review research expansion tasks",
-      "system-deep-loop review checklist",
-      "deep-loop audit checklist",
-      "review research verification"
+      "review research expansion tasks"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -44,13 +41,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "review/review-report.md",
-      "research/lineages/glm/research.md",
-      "research/lineages/glm/deep-research-state.jsonl",
-      "review/deep-review-config.json",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     ],
     "entities": [
@@ -73,12 +66,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -94,18 +81,6 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/lineages/glm/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-config.json",
-        "kind": "config",
-        "path": "review/deep-review-config.json",
         "source": "derived"
       },
       {
@@ -197,27 +172,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Research Expansion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Reconciliation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 014 review was scoped narrowly to the gateway-alignment surface and surfaced ten real findings; the 015 remediation just landed a P0 fix plus five P1s across the runtime, prompt-packs, SKILLs, YAMLs, and the guard",
     "created_at": "2026-08-26T03:00:56.608Z",
-    "last_save_at": "2026-08-29T15:22:08.478Z",
+    "last_save_at": "2026-08-30T15:39:22.299Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6178bdca92123c6cd92af79ee792b5c3ea615bab45a1e51a828c34ee8e2963d0",
+    "source_fingerprint": "sha256:816a2e1efbd1b2ef35891a1da9f7ee89a018b3be190214567d98532c0a2c5fbf",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b94f4934d2a7d279e33f47bc62cf8ad2ee1d054dd6eabc28dcaf064288a9f574",
       "plan.md": "88ffb03d2c8cae04819551c5b3ff979dfb147eb765e57d9a5558918f141f58f3",
       "tasks.md": "5d8bbf51861075014ad772d2bb89087a4c5d1f5b6269028a114678a7f30dc8fd",
-      "checklist.md": "24a963a1386d19b653b5945c652a4608edf3e70b3eff310b41a5133f571273b7",
       "implementation-summary.md": "d1a36fdb1d6d6de56daa2de37eb5d564050bcb0edd69f8c1bf8136f420f8605f",
       "research/research.md": "49f198ea81202a3b9f94d9433badaf0bb8cf41833ac7962a83046a3aac420f71"
     },

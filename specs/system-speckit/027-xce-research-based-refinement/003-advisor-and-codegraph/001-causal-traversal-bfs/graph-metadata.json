@@ -36,48 +36,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "mcp_server/lib/graph/bfs-traversal.ts",
-      "mcp_server/lib/search/causal-boost.ts",
-      "mcp_server/lib/storage/memo.ts",
-      "mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts",
-      "mcp_server/lib/storage/canonical-fingerprint.ts",
-      "lib/graph/bfs-traversal.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "lib/graph/bfs-traversal.ts"
     ],
     "entities": [
-      {
-        "name": "bfs-traversal.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/graph/bfs-traversal.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-boost.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/causal-boost.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memo.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/memo.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-traversal-bfs-equivalence.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "canonical-fingerprint.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/canonical-fingerprint.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -100,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "bfs-traversal.ts",
+        "kind": "code",
+        "path": "lib/graph/bfs-traversal.ts",
         "source": "derived"
       },
       {
@@ -191,11 +162,35 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Shipped",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Call Site Cutover",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tests Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The only two WITH RECURSIVE consumers in the memory backend are read paths with measurable inefficiencies",
     "created_at": "2026-06-10T17:48:32Z",
-    "last_save_at": "2026-07-17T17:19:41.990Z",
+    "last_save_at": "2026-08-30T15:39:33.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:cf0ec24fda5ec27a7be91c67b8af2812aa2b07f2713ac8db89f10083aa1adf5d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0838682072f58a926ad6c99cdd053a6f85269d2a6b611e29a99940a600604782",
       "plan.md": "70f11a50c8306aec360a260dbe1f2ac9d9851b6d0954b326e6d94dfb8b7f02f2",

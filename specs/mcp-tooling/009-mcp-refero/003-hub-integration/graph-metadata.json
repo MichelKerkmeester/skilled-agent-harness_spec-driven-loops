@@ -39,20 +39,18 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/spec.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/plan.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/tasks.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/checklist.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/spec.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/plan.md",
+      ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/tasks.md",
       ".opencode/skills/mcp-tooling/mode-registry.json",
       ".opencode/skills/mcp-tooling/hub-router.json",
-      ".opencode/skills/mcp-tooling/SKILL.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/SKILL.md"
     ],
     "entities": [
       {
@@ -74,9 +72,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/003-hub-integration/checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -95,12 +93,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,26 +190,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase 002 the `mcp-refero` packet exists but is invisible: the hub's mode registry, router signals, parent SKILL.md, and graph identity all describe a three-mode hub, so no route can reach the new transport and the advisor's skill graph carries no refero awareness",
     "created_at": "2026-07-16T09:39:29Z",
-    "last_save_at": "2026-07-16T12:00:35.278Z",
+    "last_save_at": "2026-08-30T15:39:09.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b19c8a1e2b2cd21f41885d1895b31c22575f9664ca302f8c8ce766b3af2d28b",
+    "source_fingerprint": "sha256:bf1e9eaadd9e4e21a330c824014c1fecc8f59688e922018ee4c339c4a3d00d2a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "493761b834b42184dee5d15d7f42be12a51fb9df9424ca25baef89c46246dc30",
       "plan.md": "1c8ed43ddf15871682cccd705f464b812dc0a1ab3bf6e9f695f6ce1755f8f76d",
       "tasks.md": "4eb4975987026406db62437012adf0f8167c9a94aa5f45b7d333ce03a4bdc285",
-      "checklist.md": "347be17875eda3e045958e10cb55376286f7393d8103010c0a22c55667b7ba60",
       "implementation-summary.md": "35e122d81d3324140552eb13123de2d18d3bce38a4ea4938f6cd5cedbf49b76f"
     },
     "last_active_child_id": null,

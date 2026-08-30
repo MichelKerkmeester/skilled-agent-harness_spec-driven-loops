@@ -22,7 +22,7 @@
       "plan",
       "tasks",
       "upgrade",
-      "verification"
+      "decision"
     ],
     "key_topics": [
       "feature",
@@ -35,7 +35,7 @@
       "plan",
       "tasks",
       "upgrade",
-      "verification",
+      "decision",
       "system-spec-kit"
     ],
     "importance_tier": "important",
@@ -44,9 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "database/context-index.sqlite"
     ],
     "entities": [
       {
@@ -68,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -83,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": "database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -182,37 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Total Items",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Agent Parallel Dispatch Architecture",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit has undergone a major template architecture upgrade to CORE+ADDENDUM v2.0",
     "created_at": "2026-04-12T09:02:53.547Z",
-    "last_save_at": "2026-07-10T06:22:51.798Z",
+    "last_save_at": "2026-08-30T15:39:37.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0be9e4f5e6581d9f1cd93895a38be63b8479d678221bff60e2b80bc3b9b4ea7",
+    "source_fingerprint": "sha256:7f2a4245797ab215b8048b2ac2ba4e27affbeca2cc5c63bda8748395d407ff84",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ccbb5a3d6ceb1098a7d3faac0038d2bb2472b09489ad55d6872589d5fafdd1b7",
       "plan.md": "59a6241f5a5338ea0671821ab9f59586c93dc94645ad01899a32c0d0ce380ebd",
       "tasks.md": "57964ae38aadf7b13c23afce76ef468cd34b73f5ff90b23889ccb8c674ede630",
-      "checklist.md": "b700d561781873fec1ce3446f94f36c9864b0a3e15f85803c381973a0b98ca39",
       "decision-record.md": "fe8317558ad5010090e914f1c8271d1e23cc916085b057b96763598650cce364",
       "implementation-summary.md": "7f60ac7e8efc4ab9201cabdd397967262c8ac124e0277952ec82b7586829cf76"
     },

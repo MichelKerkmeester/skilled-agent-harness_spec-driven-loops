@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "lib/graph/temporal-edges.ts",
@@ -69,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,27 +189,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is build-side only and unwired on the read path",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-08-29T15:22:21.374Z",
+    "last_save_at": "2026-08-30T15:39:34.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cce8ba5064f18e6c5c3116631b87c7cfdf03ae7a05e318a5ced5ff33cf57fbf2",
+    "source_fingerprint": "sha256:0a238f189e0540b2803228cad6606b3ad190a5990c70bc69475921208d2d9b7e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c049a70425d6ad0af7402e228e0450a69f1d957f147f71ee9dc55ec12d8e992",
       "plan.md": "c01a91232ee00e4c623c08c666abbed5cbe0c6c9b9f59bfeb247b3693192a3e5",
       "tasks.md": "2664c7509b876a4dd942340e59905ff52e7456d84f5054c6a8cd83baf45a913b",
-      "checklist.md": "c614c5210f01e418cc69c414ff1c64146b10e0564cbd50a642d993d6ec7b846c",
       "decision-record.md": "cf28145956a3ddf13e765a2ac9ebaea5e0e29492023982cccc934ea76946c86b",
       "implementation-summary.md": "315e5f6abd6beb03091e81f6b2b5514333fcea77f7b39fe4fdec7f81f6516346"
     },

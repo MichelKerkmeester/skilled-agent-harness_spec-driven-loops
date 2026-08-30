@@ -20,9 +20,9 @@
       "injection bloat audit plan",
       "sk-code alignment tasks",
       "readme freshness tasks",
-      "sk-code alignment checklist",
-      "readme freshness checklist",
-      "sk-code alignment summary"
+      "sk-code alignment summary",
+      "readme freshness summary",
+      "injection bloat audit result"
     ],
     "key_topics": [
       "sk-code",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,26 +188,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The injection-bloat shadow program (packet 002, phases 001-007) landed roughly sixteen changed code files across the `system-skill-advisor` runtime, the `system-spec-kit` Gate-3 hook adapters, and the OpenCode plugins",
     "created_at": "2026-08-07T14:02:15.127Z",
-    "last_save_at": "2026-08-29T13:09:59.237Z",
+    "last_save_at": "2026-08-30T15:39:08.960Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41f8606f0cda711f69d5b75b3d64b9cd0d844b9e9a776d0d65c9832d37d2ff92",
+    "source_fingerprint": "sha256:cf49e9dfeec3517e62e8a714ded1e8cee3bbf38c6be65ce4eac0f5854badfd91",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6d89e7515ff788ec532c90b1e72b8a0ea8b516ac958267e0dadc52baf1919fd",
       "plan.md": "e6a2eee4e2d407aef58dcf464051d9dcee3cc146acf379d2bad938a99e2d0849",
       "tasks.md": "47d6abd6a528ca7d61884b5148dba5be362f093df4489ee3651b2a7bf329130d",
-      "checklist.md": "378b492efd1c6580c78b1795cc1e1c68bf55ce62636e9e32e204d7fe916a1178",
       "implementation-summary.md": "ebd4593c8aaad38777e6c23a9f3e1e9fdb56ee394e77ec882057dbd6361276de"
     },
     "last_active_child_id": null,

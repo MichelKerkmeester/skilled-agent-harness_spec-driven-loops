@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/024-glm-5-2-support/001-model-registration",
-  "spec_folder": "cli-external-orchestration/024-glm-5-2-support/001-model-registration",
-  "parent_id": "cli-external-orchestration/024-glm-5-2-support",
+  "packet_id": "cli-external-orchestration/z_archive/024-glm-5-2-support/001-model-registration",
+  "spec_folder": "cli-external-orchestration/z_archive/024-glm-5-2-support/001-model-registration",
+  "parent_id": "cli-external-orchestration/z_archive/024-glm-5-2-support",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "GLM-5.2 (served through the Z.AI GLM Coding Plan, surfaced in opencode as \"Z.AI Coding Plan (api)\") is available to the operator but is not registered anywhere in the small-model surfaces, so it cannot be dispatched or routed by name",
     "created_at": "2026-06-28T10:15:17.145Z",
-    "last_save_at": "2026-07-14T19:26:18.180Z",
+    "last_save_at": "2026-08-30T15:39:08.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ae943e1924b472c189af09994dd9376c0936208c81e5762380ae0a8693820c4",
+    "source_fingerprint": "sha256:d9ddfe1c1d2db5c2c6993e016a02c41b32bb37e5545c5719bd2a9afc9e29129f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "381f2c88f01e9ffc0b57cb8107c484c09731da8b7ba6e32389792672ad487178",
-      "plan.md": "08555d3dbd74d78ef1be364b68c3156258d294e1804db49ddefd0017680f9c4c",
-      "tasks.md": "84d19790f382c77ca16465cc5d8c0c1f51001171efe3545f48f4a0d6803910e1",
-      "implementation-summary.md": "ef054a2de822d0842a78a75af968bbad54e7a316136f853dd40432c274eac9f3"
+      "spec.md": "63caa12748fd7634ab18ef7a303666438b839a5e49046a28f56a6ec1e3b010f8",
+      "plan.md": "ec569d135515b0144d6007cf1c47e8d399751cff7853256c6dd95495d76bd784",
+      "tasks.md": "4e7203119f7fdc1b71b359e32b9fcc67f18b03b402e97f0f48f2f287fd8ba0d3",
+      "implementation-summary.md": "a39283a981146367134ed7a62255dcc0a2150021a566c949becdbb404cf84da7"
     },
     "last_active_child_id": null,
     "last_active_at": null

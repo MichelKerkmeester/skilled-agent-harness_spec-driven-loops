@@ -37,21 +37,15 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -64,6 +58,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -171,7 +171,7 @@
     ],
     "causal_summary": "Correct the dead create-skill authority paths, bring the skill-root metadata contract doc in line with the deliberate H-required-to-optional reversal the implementation already made, and label or exclude the tracked scratch artifact.",
     "created_at": "2026-07-30T08:10:27.710Z",
-    "last_save_at": "2026-07-30T11:33:31.202Z",
+    "last_save_at": "2026-08-30T15:39:15.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,6 +181,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f98f822dfe570bfc60a1c99ce03344cda5147b94638acfa6bb5cf70d70cfa8ac",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "51bdbe706840e7e9fc8134a39cbd89b27d697c7528261700f39fa0e7a3a46990",
       "plan.md": "2115b0b17e720eb947cf8e6d75ad8010dceae9b102004c0fba341a6fc59637ad",

@@ -24,8 +24,8 @@
       "code review playbook implementation",
       "sk-code-review playbook tasks",
       "093/001 tasks",
-      "sk-code-review playbook checklist",
-      "093/001 checklist"
+      "sk-code-review playbook summary",
+      "093/001 implementation summary"
     ],
     "key_topics": [
       "sk-code-review",
@@ -44,20 +44,18 @@
     "importance_tier": "high",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/agents/review.md",
-      ".opencode/agents/deep-review.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/agents/review.md",
+      ".opencode/agents/deep-review.md"
     ],
     "entities": [
       {
-        "name": "manual_testing_playbook.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -73,9 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -88,18 +86,6 @@
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -197,26 +183,37 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "sk-code-review DQI",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-code-review is the findings-first review baseline used by `@review`, `@deep-review`, and `/speckit:deep-review`",
     "created_at": "2026-05-18T07:49:27.225Z",
-    "last_save_at": "2026-07-09T10:02:44.350Z",
+    "last_save_at": "2026-08-30T15:39:11.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd904cbf9c862e6bb62da7a4d4a5a047d23107c8e9dc42dced42ff7f5a464cdb",
+    "source_fingerprint": "sha256:0566cd29a4051a9cf18d73a81b59267af7da7f24a70f073b4d3431053c152622",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "188bf707c42ccb1a57b206869064b7c517bfe384e0df0c52ef0eed15eec81686",
       "plan.md": "c4654e0993dffbf3525280941463dfd9444f42af3328786c40b0fabef584ee39",
       "tasks.md": "ded79f6ee4b0bef4afaff0acc1fef1a37ac8e54059ce1dec3601e01559f36e2a",
-      "checklist.md": "f63805589d18eb3421bf49ba55392b66bf803120a2b90cb7fd3a0803ae74f2bc",
       "implementation-summary.md": "319b3c50e72e2200dc5c34b7d367b0ee876ba9453537ac321fc2c32623941b67"
     },
     "last_active_child_id": null,

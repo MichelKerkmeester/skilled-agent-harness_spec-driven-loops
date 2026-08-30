@@ -41,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md",
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,28 +185,33 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `mcp-coco-index` skill had a broad runtime and documentation surface but no `featurecatalog/` inventory",
     "created_at": "2026-05-18T08:15:53.138Z",
-    "last_save_at": "2026-08-29T15:22:10.280Z",
+    "last_save_at": "2026-08-30T15:39:28.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:acce950fad352cab127d3fb3eb956ee016dd471ca8836707d710b974b637184c",
+    "source_fingerprint": "sha256:5414d5773c74545bcf5e93cf2e1a4bebecfb0973e8088423d726b19636f9bfe5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "33db4b36a5f05180627fb43dd850c126df27353b8f7ff7f3710718a314b5b152",
       "plan.md": "60902cac33b2a6a28301a60f8e89911797a31bbf07066808be32af1a8711cee7",
       "tasks.md": "1f65eaeaf9c11ece9f3e0ce6396c603705d811942fa7c0d61e2f447d83f9635e",
-      "checklist.md": "ad2621c43b1d44977b3e07cdae6616d701181dc4c4a1a3b20686bea454450c1e",
       "decision-record.md": "11e0e0d6030045216f4d36ef47076113ae23f9002dd032d7eba93afd3591f22c",
       "implementation-summary.md": "1e2da3ae82d995444aeaaeaf6d62cb1e9063beb6b9f5415a3ddd16b12c8a34dc",
       "resource-map.md": "896fa218cf5e1f8024712d96d5e6f3e1d2f2641f04e349d5a8540c5b2027788d"

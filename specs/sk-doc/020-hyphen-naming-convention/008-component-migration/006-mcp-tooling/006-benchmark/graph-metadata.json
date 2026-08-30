@@ -165,7 +165,7 @@
     ],
     "causal_summary": "The mcp-tooling benchmark boundary is reserved for fixtures, profiles, and storage guides, but the current worktree contains only benchmark/.gitkeep and no snake_case benchmark artifact. This phase establishes the evidence-backed census rule, renames any discovered in-scope artifact paths, and repairs benchmark references without inventing files.",
     "created_at": "2026-07-14T15:17:45Z",
-    "last_save_at": "2026-08-30T07:19:38.724Z",
+    "last_save_at": "2026-08-30T15:39:16.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,7 +174,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:7a6a674dcd9bd2ab6022970ccd05d4e0689b8ecb9262f68e767e588832ad0193",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3fcc30ef40a844607b79f010fc7b7568723d708f9bd46661fdaed61a2148f1a1",
       "plan.md": "70f1b19d0f6611655f0654ce882a12bf56180928ab167e5d45b4d5131d005949",

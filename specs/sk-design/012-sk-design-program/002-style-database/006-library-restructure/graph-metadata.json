@@ -20,9 +20,9 @@
       "styles library restructure tasks",
       "g1 g2 g3 module bundle relocation tasks",
       "checkpoint a checkpoint b manifest projector tasks",
-      "styles library restructure checklist",
-      "g1 g2 g3 byte parity verification checklist",
-      "database git-ignored manifest v2 projector checklist"
+      "styles library restructure summary",
+      "g1 g2 g3 shipped byte parity summary",
+      "database git-ignored restructure summary"
     ],
     "key_topics": [
       "styles",
@@ -39,14 +39,13 @@
       "mjs"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
+      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md",
       "database/README.md"
     ],
     "entities": [
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,26 +186,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `.opencode/skills/sk-design/styles/` root mixes three unrelated lifecycles under one flat, underscore-prefixed layout: 1,290 committed style bundles (7,740 files across six-file units), importable engine and database source, extraction tooling, two committed manifests, and documentation — a confirmed 7,800 tracked files with 60 non-bundle backend files",
     "created_at": "2026-07-21T11:27:45.852Z",
-    "last_save_at": "2026-07-22T16:57:31.800Z",
+    "last_save_at": "2026-08-30T15:39:12.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60abaca4cdcfbb1fc7be45e4944231f4e0163909e8cb095f2d0f8aafdf77ce47",
+    "source_fingerprint": "sha256:d3d70bf9fcbd95e999f3145064e54e65a4e7feed22d228086ff820b10d45b813",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a10e4813034c3a871b692f72f108a9cf9337464b1b5b31ab20f1a3d45f1c8702",
       "plan.md": "9f6ccf084ab3a69eebf8f8835b157619cc06a5de41f2c6bd6cfd5e23d314b04d",
       "tasks.md": "89daf5da457b7a1e43586bce85cad31e517ca3c88e35910547a4c8323cdbefeb",
-      "checklist.md": "4f4866b9521d78e9c6dfa5d848afa376ab6c16924ad1ee73f128139a02302163",
       "implementation-summary.md": "e7702a009f885774b1a9cad9af1c7b019e3a4515c636803c2b2731171a84701c"
     },
     "last_active_child_id": null,

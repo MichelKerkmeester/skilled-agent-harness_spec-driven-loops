@@ -38,33 +38,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts",
-      ".opencode/skills/system-code-graph/mcp_server/tests/lib/security-hardening.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
-        "source": "derived"
-      },
-      {
-        "name": "feature-flag-reference-docs.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/feature-flag-reference-docs.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "security-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-code-graph/mcp_server/tests/lib/security-hardening.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,11 +169,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The first real central verification of the 013 program surfaced ~38 failing tests/docs that predate 013/014/015 (confirmed via file provenance + origin/main ancestry)",
     "created_at": "2026-06-05T06:23:26.207Z",
-    "last_save_at": "2026-07-17T17:19:15.369Z",
+    "last_save_at": "2026-08-30T15:39:29.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:57a418a87a200d86e61beb8693e84823f0a993659bed805dd61a867336f7c7ef",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d704ca0b3771444202f2f47da4a1ac43607a3858d968b0d43af6c1f18291fb1a",
       "plan.md": "75c221ba9bbfee891b2420c0eb66d03d4ffb1608c9c582e269b83311aa3ba37a",

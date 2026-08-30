@@ -41,27 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark/review/review-report.md",
-      ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
-      "review/review-report.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark/review/review-report.md",
+      "review/review-report.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark/review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "interface-command-contract.test.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/shared/scripts/interface-command-contract.test.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/012-sk-design-program/003-interface-commands/005-interface-command-benchmark/review/review-report.md",
         "source": "derived"
       },
       {
@@ -197,7 +190,7 @@
     ],
     "causal_summary": "Hybrid benchmark of the five /interface:* design commands: a deterministic structure/conformance axis (contract test + per-command scorecard) plus a live output-quality axis running /interface:design on one shared brief across three executors — cli-opencode deepseek-v4-pro, cli-opencode mimo-v2.5-pro, and cli-codex gpt-5.6-luna high. Scores presentation-contract fidelity + design quality.",
     "created_at": "2026-07-22T07:00:17.185Z",
-    "last_save_at": "2026-07-22T16:57:30.392Z",
+    "last_save_at": "2026-08-30T15:39:12.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4ecda97d5855602809278c647b7758d96dbf70e70ab90a2b279d3e63ed04bb39",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "91f61a40682cd5f7380377a21171be285378fb87b7000a41392185d5e0341582",
       "plan.md": "f0db4b5c11c530fafdfd987cdb9cdd3a70a4ac215961fd66df4286f78ff83093",

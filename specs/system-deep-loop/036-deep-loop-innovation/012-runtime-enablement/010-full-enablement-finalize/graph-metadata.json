@@ -17,7 +17,6 @@
       "full enablement finalize plan",
       "authority finalize plan",
       "full enablement finalize tasks",
-      "full enablement finalize checklist",
       "full enablement finalize summary",
       "authority finalize executed",
       "whole-system gate literal pass"
@@ -31,10 +30,10 @@
       "contract",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "executed",
-      "whole-system"
+      "whole-system",
+      "gate"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/verify-authority.cjs"
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -181,36 +173,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "assert-on-disk",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
     "created_at": "2026-08-23T17:06:54.597Z",
-    "last_save_at": "2026-08-29T13:09:56.766Z",
+    "last_save_at": "2026-08-30T15:39:22.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29031c35a755c733b45ba30bc855b1e4c9e28053f77c1833ec65b238e10791f6",
+    "source_fingerprint": "sha256:2edfa7fb6bc929b4cf629cae260e78cef55ea70c2d8fbe048ae59e25a8a68fd2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "67392ceb0141568d3bd434560a66c1a3efbcab4f1dbccfa6f3c01332a5b42e02",
       "plan.md": "343a7afbbc50a495fb53498f42dcc2673033c79d3356b5a84ab6402b5b377de9",
       "tasks.md": "29ac93d2722c7f805bb73b577a9a1e0eeb0e222040028130ed0faf87daee3d8d",
-      "checklist.md": "a961b6ff54ba5c68919407cfa2d2bcea3a598d03fd831292dab283d548ba301a",
       "implementation-summary.md": "b668bef9d76b38be915135fa269085bc83dc5073fa7d53264bb26e4d0d1b59f6"
     },
     "last_active_child_id": null,

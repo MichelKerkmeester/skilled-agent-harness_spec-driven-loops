@@ -30,19 +30,47 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-doc/README.md",
       ".opencode/skills/sk-doc/graph-metadata.json",
-      "resource-map.md",
-      "spec.md",
-      "plan.md",
-      ".opencode/commands/README.txt",
-      ".opencode/commands/create/README.txt",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      ".opencode/commands/README.txt"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -62,45 +90,9 @@
         "source": "derived"
       },
       {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -186,27 +178,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc keeps creation guides in references specific, but the requested structure moves those guides to the root references folder",
     "created_at": "2026-05-10T10:33:22Z",
-    "last_save_at": "2026-07-09T10:02:44.942Z",
+    "last_save_at": "2026-08-30T15:39:18.378Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:fa2d9552a30f379cec5c6421c46cec068564ab4dc38596844483f7c70a95515e",
+    "source_fingerprint": "sha256:cdca01c6065ba94da2f9e73f9d43baa26f94690643b27ee1d6d1b3281b8437f6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3cac40831ee9dc36631ad47906163733ad65bdaed2a09989fc149ce9f72f108a",
       "plan.md": "c0c366853dccf765ace227621e997ecdf10e3c4a1664b05b347b47b40864cd30",
       "tasks.md": "c48eec7553de38f1e9534f2b0dbd374f1b12fe6cbae2b660fb745c639a56ec00",
-      "checklist.md": "4f7ead19a587fb5c43371f96ac789b3b25d1078c92757a6e13af2bfbcf3b6602",
       "implementation-summary.md": "8f8b715bc69f359037b79676e3d5c793c91860c1f88c0845ec4bc499a758ec36",
       "resource-map.md": "148f28dc1ad3c07f3c121c0e388f8ee4bb961639e78a8d6467b166981a28b3e5"
     },

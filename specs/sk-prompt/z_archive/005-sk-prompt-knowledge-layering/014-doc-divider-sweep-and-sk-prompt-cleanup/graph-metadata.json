@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
-  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
-  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "packet_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+  "spec_folder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+  "parent_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,19 +40,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-prompt/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,6 +69,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The sk-doc template requires a standalone `---` thematic break before every H2 section except the",
     "created_at": "2026-07-15T08:09:51.434Z",
-    "last_save_at": "2026-07-15T10:52:32.274Z",
+    "last_save_at": "2026-08-30T15:39:19.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:984340ee7dff31ac42c76238d69806bbda9bd3235514ddf3b298d78b4a4f3a90",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "30ba602c5060fe595bdb5d9e908cc6ac6e3d552a7ec6c18efffeb3cc0567523c",
       "plan.md": "916305c183a85f2c4d66342806cb68e0af87b3e64bb500d145ca40a8640a4e89",

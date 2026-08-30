@@ -19,10 +19,9 @@
       "tasks",
       "readme",
       "033",
-      "verification",
-      "checklist",
-      "readme rewrite",
-      "implementation"
+      "implementation",
+      "summary",
+      "readme rewrite"
     ],
     "key_topics": [
       "skill",
@@ -32,11 +31,11 @@
       "overhaul",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "implementation",
+      "summary",
       "readmes",
-      "vary"
+      "vary",
+      "quality"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/commands/README.txt",
       ".opencode/commands/create/README.txt",
@@ -72,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,26 +191,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Skill READMEs and command READMEs vary in quality, structure and voice",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-08-29T15:22:01.246Z",
+    "last_save_at": "2026-08-30T15:39:14.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df4f8423641ce35172118661332d03b116bff9b7acd3d56a568be167c9ded437",
+    "source_fingerprint": "sha256:1dbda323f070d2af27381056749b80864f1a3c95f0f0fb21c45de04f3bdd9258",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5df976e47e7c3fa1845df08a590555e3fecfdc96a209104b131697508d9d0a7",
       "plan.md": "f1ff7de77f78b426b7c87315413516c3b5e15011dc2118eaf7fcbd9b4a08f663",
       "tasks.md": "5086f48ae11720666f713b7e6024db4d92ae4e4bb282a6ffd8cc7acb1d69ebff",
-      "checklist.md": "672752fade1a58fbdbfe06cb47ecb28ea4513ddb0710ccbba8ec00fecfff3946",
       "implementation-summary.md": "d32fc8faa36e4cc8e306e4b44f2fce12791ce8c8373f825857ad5a5a632d3a46"
     },
     "last_active_child_id": null,

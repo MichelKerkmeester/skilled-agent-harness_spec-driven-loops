@@ -20,9 +20,9 @@
       "contract schemas tasks",
       "canonical json hashing tasks",
       "schema validation harness tasks",
-      "contract schema verification",
-      "router hashing harness",
-      "stage zero contract baseline"
+      "contract schemas implementation summary",
+      "router v1 hash baseline",
+      "stage zero schema closure"
     ],
     "key_topics": [
       "router",
@@ -41,13 +41,13 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "lib/canonical.cjs",
       "fixtures/build-fixtures.cjs",
       "harness/validate-contracts.cjs",
-      "checklist.md",
-      "tasks.md",
-      "plan.md",
-      "spec.md",
       "schemas/compiled-policy.v1.schema.json",
       "schemas/route-decision.v1.schema.json",
       "schemas/route-request.v1.schema.json",
@@ -55,11 +55,33 @@
       "schemas/uncertainty-budget.v1.schema.json",
       "schemas/route-proof.v1.schema.json",
       "fixtures/compiled-policy.multimode.json",
-      "fixtures/compiled-policy.n1.json",
-      "implementation-summary.md",
-      "fixtures/canonical-vectors.json"
+      "fixtures/compiled-policy.n1.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "canonical.cjs",
         "kind": "file",
@@ -76,30 +98,6 @@
         "name": "validate-contracts.cjs",
         "kind": "file",
         "path": "harness/validate-contracts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -151,18 +149,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "canonical-vectors.json",
-        "kind": "config",
-        "path": "fixtures/canonical-vectors.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,26 +189,37 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Canonical Family",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The unified router refactor is not a router rewrite — it is a shadow compiler plus additive semantic gates whose entire safety model rests on content-addressed identity: a request pins one `effectivePolicyHash`, replay recompiles to byte-identical policy bodies, and rollback swaps to a byte-identical prior manifest [synthesis §1, §9]",
     "created_at": "2026-07-18T13:13:16.347Z",
-    "last_save_at": "2026-07-24T12:11:57.621Z",
+    "last_save_at": "2026-08-30T15:39:14.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b33d2c2892ccbe842de4bcb98c4520037effe9004137ae82d55ceecb83fdd3ac",
+    "source_fingerprint": "sha256:12bc0eb92c1cc7f05a87bfbf8717e3acb9be85afc3cfcb9b099e84d34b89ff0f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "38d71a979712e847dd0768519d79e8838eecbff2bfb7b4b266217f233e2de9e7",
       "plan.md": "49796b4e90bbf5bd5485ffd26860b7e0cb3665319b69b68d26ba8b3259287b77",
       "tasks.md": "1ae76832903f80744e7ecce21032d9338ba612d1f81bc55f691d44135c93441e",
-      "checklist.md": "d048af254b0d3ef929b97be514bd70c63cf2ea1b67f6c98e1de1ede0215ae3e1",
       "implementation-summary.md": "1e1017456b0c0a88c5fba680ca3458def9a47b915c4c2fe62ac4c3f4c2f003f2"
     },
     "last_active_child_id": null,

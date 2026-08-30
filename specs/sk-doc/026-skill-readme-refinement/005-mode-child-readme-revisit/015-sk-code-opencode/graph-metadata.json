@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The sk-code-opencode mode README at `.opencode/skills/sk-code/sk-code-opencode/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:44.426Z",
-    "last_save_at": "2026-08-30T07:20:28.071Z",
+    "last_save_at": "2026-08-30T15:39:17.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ec370f3f12c4321683593cf73f8c147691b4dba500fd9dd554d7ff08f17f780c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1ec4c5498a2cbc734455da509a998739b1ae3cb78085243963e367380bdd352e",
       "plan.md": "3a1288bd0dcdc89863bcb76e9b08bd30f9c936684203da6bb0b20d6b86f3c30c",

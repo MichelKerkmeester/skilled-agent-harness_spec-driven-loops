@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -27,24 +26,18 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/handlers/memory-context.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/handlers/memory-crud-list.ts",
-      "mcp_server/lib/session/session-manager.ts",
-      "mcp_server/api/search.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -52,36 +45,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-list.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-crud-list.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-manager.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/session/session-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search.ts",
-        "kind": "code",
-        "path": "mcp_server/api/search.ts",
         "source": "derived"
       },
       {
@@ -94,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,27 +148,62 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The Retrieval",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Retrieval has evolved significantly",
     "created_at": "2026-04-12T09:02:50.244Z",
-    "last_save_at": "2026-07-10T06:24:38.103Z",
+    "last_save_at": "2026-08-30T15:39:38.275Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27f52e240d339581408b51643f7e4bc0a6a9b364de8b5c642ceda1436ed0d0b4",
+    "source_fingerprint": "sha256:5415ce4994cd96f79f20965d70d1182017fb73ec4520768c291e815c65fb81dd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "568b0b03b8a762ff1ff34f5b2ebd01ed2a237030624618600c26f6bd77b6c9f9",
-      "plan.md": "517701efa6f6ea44c3f016245162ef050006195f0036d85a49f9b65ab4a51c44",
-      "tasks.md": "4abd135e6a52d015246ffe7d042d18c5e8c9abce0b9d1cccf5f163686b3f88ad",
-      "checklist.md": "9d59dfad9c8924ffebe9e65234fbb2cec8366402c5efe3e3a25b737c8316b567",
-      "implementation-summary.md": "b8251f1bdcd125671ee1970ce548010ee0f9f33fc483743be12ab3436a13fada"
+      "spec.md": "f4e865a6fb41a6e1ac46772cee193785a568a232b64cfe64c029946c9a744440",
+      "plan.md": "317544cfd2146f08f0ce1f4c2fb202977eb08f3ae49ca828676edb5596db23b9",
+      "tasks.md": "93a8c56be08fc576564dd0768543feda9c81e3ddb671504d8f9da62b40441253",
+      "implementation-summary.md": "6f948cd99db936834a01cf4f92e960ea77679b22cf737639f502a25288b625e5"
     },
     "last_active_child_id": null,
     "last_active_at": null

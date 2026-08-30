@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and the complete validation and test baseline all hold on the same candidate commit. This phase defines that gate and records exact pass measurements; it does not repair failures or perform the migration.",
     "created_at": "2026-07-14T15:22:42Z",
-    "last_save_at": "2026-08-30T07:20:11.247Z",
+    "last_save_at": "2026-08-30T15:39:17.200Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +203,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:d8d5e9546e995a6ee8ef07db3a7ae82cbca9abbbb0ae8438c89844614ad1c54c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cdb60769ea1be4511b577657a4d635da3bf699aacdc2e106042dcf9506e7617f",
       "plan.md": "3c9e5f117c8d9f0976505875361ad1c6c02321003512bf604d13087ac3bf6fb2",

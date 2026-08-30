@@ -28,7 +28,7 @@
       "legacy hub refresh tasks",
       "owner harness prior manifest",
       "seven hub freshness proof",
-      "legacy hub refresh checklist"
+      "legacy hub refresh summary"
     ],
     "key_topics": [
       "legacy",
@@ -50,7 +50,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/harness/build-artifacts.cjs"
     ],
@@ -71,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,36 +181,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation State",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The class-H hubs `system-deep-loop` and `cli-external-orchestration` are serving routing through the legacy path with stale compiled manifests; `sk-prompt`, originally in this set, has since been refreshed to `compiled`/`fresh`",
     "created_at": "2026-08-16T00:00:00Z",
-    "last_save_at": "2026-08-29T15:22:02.932Z",
+    "last_save_at": "2026-08-30T15:39:15.459Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b3b68aeb2256c4a5461d480cc158a92af20869c266a0b8a540ff30e675be9f2",
+    "source_fingerprint": "sha256:b525900c0d8f0c02af52fd26fd067a4b4797bf58d920095670ef9a8f475908ff",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "edb20a9a01f63d9e242283c894864e5f0b333c1eb00bf182d368130a641838cb",
       "plan.md": "1f82500df3000eb1594a30d30d697bcb60bd2458fc9fad0aea8f69b40222d1c3",
       "tasks.md": "438f0922fd83aea4d8f018b3dcd78e262ccfb8260d4a13832e33c5f0b78b7273",
-      "checklist.md": "776ecad77ffa8f96f0b8dd0971dc3e4732249af8a83aa7df81f86da79d1c8978",
       "implementation-summary.md": "e9b6c47912a8ca6510a3d08af2d3d5fddedea1f9c676d68a64a1128468af2aaa"
     },
     "last_active_child_id": null,

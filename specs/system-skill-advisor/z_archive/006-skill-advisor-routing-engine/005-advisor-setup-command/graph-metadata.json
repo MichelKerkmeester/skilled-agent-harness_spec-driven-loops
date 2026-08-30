@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command",
-  "spec_folder": "system-skill-advisor/006-skill-advisor-routing-engine/005-advisor-setup-command",
-  "parent_id": "system-skill-advisor/006-skill-advisor-routing-engine",
+  "packet_id": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/005-advisor-setup-command",
+  "spec_folder": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/005-advisor-setup-command",
+  "parent_id": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -22,9 +22,9 @@
       "/doctor:skill-advisor plan",
       "skill advisor setup command tasks",
       "005-advisor-setup-command tasks",
-      "skill advisor setup command checklist",
-      "005-advisor-setup-command checklist",
-      "skill advisor setup command implementation"
+      "skill advisor setup command implementation",
+      "/doctor:skill-advisor implementation",
+      "005-advisor-setup-command implementation summary"
     ],
     "key_topics": [
       "skill",
@@ -37,8 +37,8 @@
       "005-advisor-setup-command",
       "plan",
       "tasks",
-      "checklist",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -46,12 +46,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/install_guides/SET-UP - Skill Advisor.md",
-      "checklist.md",
+      "implementation-summary.md",
       "review/review-report.md",
       "review/resource-map.md",
-      "review/runner.sh",
-      "implementation-summary.md"
+      "review/runner.sh"
     ],
     "entities": [
       {
@@ -73,15 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "SET-UP - Skill Advisor.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - Skill Advisor.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -94,12 +86,6 @@
         "name": "runner.sh",
         "kind": "script",
         "path": "review/runner.sh",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -187,36 +173,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built You",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor scoring system (explicit lane TOKENBOOSTS, PHRASEBOOSTS, lexical CATEGORYHINTS, graph-metadata.json derived triggers/keywords) is manually maintained with no guided setup workflow",
     "created_at": "2026-04-25T14:30:00Z",
-    "last_save_at": "2026-07-15T11:59:23.153Z",
+    "last_save_at": "2026-08-30T15:39:26.758Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba668ca03726beb4e7f1d27b8bbe5483b34b63927d7a9153e1488f4c6296b65f",
+    "source_fingerprint": "sha256:2656b1588c37553600892914a2c1a36e0dbd8d687cbfaa27c72dae642f37a654",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d771f25f1309f0a653d98caa5697a04afbfb5055a1b6241a1ce1faa7a705a6c1",
       "plan.md": "0f7f07555bbccb91c4972ed7f156040cdd6d9068d5bd26399d9b6a4b2d42285a",
       "tasks.md": "9b686a883c10dd570280a897922339f2da4f5d77545a5011bb7c5e442cdd54ec",
-      "checklist.md": "4244c64b52b2ae22f5db12597c95995d46284a54d8fb51595fb4b9780d8ee07d",
       "implementation-summary.md": "f4c4dafd322160402d05164ece3abf1a52a2e4e54874174155fdf95542f25375"
     },
     "last_active_child_id": null,

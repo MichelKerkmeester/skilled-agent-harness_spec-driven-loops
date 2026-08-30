@@ -37,25 +37,13 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/memory/save.md",
-      ".opencode/commands/memory/search.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      ".opencode/commands/memory/save.md",
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -72,6 +60,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "Rename the unified memory dashboard command from /memory to /memory:check and update all references across the codebase.",
     "created_at": "2026-04-12T09:02:53.510Z",
-    "last_save_at": "2026-07-10T06:24:42.501Z",
+    "last_save_at": "2026-08-30T15:39:36.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,6 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:2a1fa8d43b920ae8871505f76f372e5488e706358ebff381228a3c27f4b75fcc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0dc3e5267571494f506eb4a3a239dc1889472f6e06a3594c18764d6c5472e906",
       "plan.md": "052289cb71056057502dcebe9cad86eb9e23f8a40ce20a11e18e321e889ef7a9",

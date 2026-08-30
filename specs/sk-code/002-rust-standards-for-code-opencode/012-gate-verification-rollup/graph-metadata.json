@@ -36,15 +36,21 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -57,12 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -176,7 +176,7 @@
     ],
     "causal_summary": "WS2 (007-011) split 33 oversized reference/asset docs into 104 parts and rewired the router contract",
     "created_at": "2026-07-11T18:03:16.099Z",
-    "last_save_at": "2026-07-11T22:18:57.896Z",
+    "last_save_at": "2026-08-30T15:39:11.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -186,6 +186,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d292aa8d65ba53e83e3ef1894555b3bba3ae6de81276c7c13cf4b24400319262",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d224fde963b9f0627a8a9834cee49e8a25c6f37334af47b483e1afcdc0414235",
       "plan.md": "747ba77feda1e36cfb49bb1ae89283cb1e1d92f157cd03f80b7b1334d86b5292",

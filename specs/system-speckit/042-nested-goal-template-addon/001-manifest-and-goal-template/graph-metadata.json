@@ -15,6 +15,10 @@
       "goal template",
       "lazy add-on goal",
       "goal.md.tmpl",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "goal template shipped"
     ],
     "key_topics": [
@@ -25,11 +29,11 @@
       "lazy",
       "add-on",
       "tmpl",
-      "shipped",
-      "document",
-      "anywhere",
-      "documentation-level",
-      "contract"
+      "packet",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -37,6 +41,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
       "templates/addons/goal.md.tmpl",
@@ -61,6 +67,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -176,32 +194,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "There is no goal document anywhere in the documentation-level contract",
     "created_at": "2026-08-29T18:09:17Z",
-    "last_save_at": "2026-08-30T04:18:11.702Z",
+    "last_save_at": "2026-08-30T15:39:36.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4359a96c00b81edac5c51afa6538d4f80c1eda7423b33c052fd69ef4122d3776",
+    "source_fingerprint": "sha256:80d03688186d3d680fde2e73d5131c0bf1a1dfed4514c8960ff3ca85ce7e5147",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d05a843dda452d9d015baecbafe8c0a69227baad4a433ee06ba433fc4fcbebca",
       "plan.md": "1508c69af88d885d4f1033f41a1a5ebc95fab41634c1e5f4e6f3166db0cc3697",

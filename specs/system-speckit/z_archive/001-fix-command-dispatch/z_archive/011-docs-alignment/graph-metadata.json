@@ -174,7 +174,7 @@
     ],
     "causal_summary": "[YOURVALUEHERE: One-sentence outcome statement describing what this achieves",
     "created_at": "2026-04-12T09:02:53.510Z",
-    "last_save_at": "2026-07-10T06:21:11.294Z",
+    "last_save_at": "2026-08-30T15:39:36.934Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -183,6 +183,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:55aca0bea4cf0b6d7e905f5b3c735bf3f8cea1114f718661106e6d074c3f90e1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f54db5327a8dbf772a3bafbfa640888019eba8dceac61796d3863ff1e6f14be0",
       "plan.md": "12b67f0798b6c1953171f0d5eca85d5895f6d696d56b2b7b4356ff0442404501",

@@ -42,10 +42,9 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "checklist.md",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -55,9 +54,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -175,43 +168,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Not Started",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "What Was Built All",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The evaluation-and-measurement category covers 16 scenarios that verify the correctness of the retrieval evaluation framework — including the eval DB schema, metric computation, ablation studies, shadow scoring, and ground truth tooling",
     "created_at": "2026-04-12T09:02:50.296Z",
-    "last_save_at": "2026-07-10T06:24:46.244Z",
+    "last_save_at": "2026-08-30T15:39:39.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:678c68d27b756d83d1fc67daa050dbfbb0a9fb9bc2ff6c075abbc4f06e3716b0",
+    "source_fingerprint": "sha256:abd0f52aa26dec6ca4fec52171445ceacd4c225ed4280b55a93d6bb5d3959add",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f708132712da3a4de4adadd546731b85939fe86badaded95c4452abe2936dc78",
-      "plan.md": "87a9aee978d550b672a173a651f596fa32be76ae18cc31b8559836917735f7b0",
-      "tasks.md": "47a813434e3fa1eccca99de8b21659cecc6c7aa0174c702b1da44cb011e03fce",
-      "checklist.md": "e6c628246edd4782dd763deb260510f1ee850dbecf63c189aad31ea6011384ee",
-      "implementation-summary.md": "757e78c299a90944f54f79a18426edce4ead709fedb788ada6bf77e868bb154e"
+      "spec.md": "154b837b6147afe35dcf3030e2b7ca3f96fe7fc6f27e443a23e05fb233a1e5e8",
+      "plan.md": "93bf3d5ef1f04ba121c6876ac04cbce6ced91304268877c5d44d267cce50d84a",
+      "tasks.md": "af3116083d33414d604383950d12e3aeef7c0246e645ec26683d095277ef8aba",
+      "implementation-summary.md": "b9fc99fd5c58ec2daf27b62b2d1a9f0a816447d2082fade24810e022a0c17658"
     },
     "last_active_child_id": null,
     "last_active_at": null

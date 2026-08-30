@@ -194,7 +194,7 @@
     ],
     "causal_summary": "005/REQ-010 captured 344 new edges in 15 minutes — 100% `supersedes`, 0% `caused`/`supports`",
     "created_at": "2026-04-27T07:56:25.231Z",
-    "last_save_at": "2026-08-29T15:22:11.729Z",
+    "last_save_at": "2026-08-30T15:39:28.376Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0ee78e926ea0c28e825277e3fafdb47e815a23b50c95d7b68bf62a40881f0fb7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89203d86b1e760df340fd948808a8bfcf3b40243a5e79f850ddacbe418be65e5",
       "plan.md": "e3c7a0317c21502d5b413dbbeb624b552a2c5c4a27af41daa7607a80e769466e",

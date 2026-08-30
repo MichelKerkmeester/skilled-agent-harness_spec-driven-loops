@@ -21,8 +21,8 @@
       "mobbin discovery tasks",
       "mobbin fixture tasks",
       "mobbin live verification tasks",
-      "verification",
-      "checklist"
+      "mobbin discovery summary",
+      "mobbin fixture summary"
     ],
     "key_topics": [
       "mobbin",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json",
       ".opencode/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md",
@@ -60,7 +59,8 @@
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/flows/flows.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/screens/screens.md",
       ".opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/apps/apps.md",
-      ".opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/elements/elements.md"
+      ".opencode/skills/mcp-tooling/mcp-mobbin/feature-catalog/elements/elements.md",
+      ".opencode/skills/mcp-tooling/mcp-mobbin/examples/README.md"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -206,26 +200,31 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The whole packet was built on the official one-public-tool record: `searchscreens` only, `searchflows` explicitly listed as a tool that must never be invented, the `deep` search question preserved as an unresolved conflict, and the callable name marked INFERRED",
     "created_at": "2026-07-16T12:58:35Z",
-    "last_save_at": "2026-08-29T14:54:09.918Z",
+    "last_save_at": "2026-08-30T15:39:10.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb9b8cf6563cf8d0d01eac901bca5cc5ccdb12fd1572c89c364acf7cc7c891f3",
+    "source_fingerprint": "sha256:09688c32cb9dadfa1da629153e0a384594be54617d43db5280b6e46243caf712",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d7995533c13f91fdfbc4430c5da32ba415b9da1ebdb216d2134973c33c686107",
       "plan.md": "35482064b894731ad91c6ee8b427bb2c3fa2fc10a329d474288d57795b31bf87",
       "tasks.md": "1c23f59dd2cc41934ca4cd4c9679fdc70afa5ebd22c330130007f8c31cc6102c",
-      "checklist.md": "501290ffbd8d0f7065c021753435944af2962e13ea807f84b5aa7e6a3abb171d",
       "implementation-summary.md": "f136706e4c35ab2122e44874069a38bce22f99f65eeb584184d83ff7b0a6d36b"
     },
     "last_active_child_id": null,

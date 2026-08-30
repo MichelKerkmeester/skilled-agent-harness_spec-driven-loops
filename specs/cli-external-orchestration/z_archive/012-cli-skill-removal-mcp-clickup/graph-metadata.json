@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/012-cli-skill-removal-mcp-clickup",
-  "spec_folder": "cli-external-orchestration/012-cli-skill-removal-mcp-clickup",
+  "packet_id": "cli-external-orchestration/z_archive/012-cli-skill-removal-mcp-clickup",
+  "spec_folder": "cli-external-orchestration/z_archive/012-cli-skill-removal-mcp-clickup",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -18,8 +18,6 @@
       "053 plan",
       "tasks mcp-clickup removal",
       "053 tasks",
-      "checklist mcp-clickup removal",
-      "053 checklist",
       "053 implementation summary",
       "mcp-clickup removed"
     ],
@@ -31,56 +29,22 @@
       "plan",
       "removal",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "removed",
-      "decommissioned"
+      "decommissioned",
+      "feature"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/mcp-code-mode/graph-metadata.json",
-      ".opencode/skills/README.md",
-      ".opencode/install_guides/README.md",
-      ".opencode/install_guides/SET-UP - AGENTS.md",
-      "implementation-summary.md",
-      "checklist.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-code-mode/graph-metadata.json"
     ],
     "entities": [
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/mcp-code-mode/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SET-UP - AGENTS.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -97,6 +61,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-code-mode/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -194,27 +170,44 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `mcp-clickup` skill is being decommissioned",
     "created_at": "2026-04-30T08:00:00Z",
-    "last_save_at": "2026-07-14T19:26:20.728Z",
+    "last_save_at": "2026-08-30T15:39:08.402Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b67776e6b5153933acf8ec6bd541e62ac6b648e62211037dabdccd9481b95308",
+    "source_fingerprint": "sha256:17b73eb5104ad0be320b64ffad9b6c5899c8ee099f19aec5ac44e5d7a692052a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8026dac2aef8464dc534e7afe684633909a96cbc611ddf750fc7c76480882d59",
-      "plan.md": "1dddd6b708b8215dd6ea5bc80d51595fd4f39080a8bf784dc00fd110c59c960e",
-      "tasks.md": "36c6674727ea5462b93c82a4f87a61a807f19976c50ddacb7d3e29612addeb31",
-      "checklist.md": "2a62864c8bed4a9c92ff5f07aa4285186b4ef4d7b90f95f8fbd273cb711c2094",
-      "implementation-summary.md": "f77ef610234370f076dff95c77d7a4b1223fa1c304b552741a5d432d08ac56aa"
+      "spec.md": "bf15d3cb8c4570b97cfa007818592fe0b8edb0a35b88d15a8180d548dc2a8614",
+      "plan.md": "49d0bbea4398b4007c3a12b5799976cfbb0bf45098a7d1b4d4198c08554384d8",
+      "tasks.md": "2e5c1f3be67903fc234b37d052909b2cae5c237c1bf552168cca1c111609fedf",
+      "implementation-summary.md": "fa5a02d7fb34a698de1aff8ee3cc4bd8c64931f1ecce8ecbfe765ff26be1bc29"
     },
     "last_active_child_id": null,
     "last_active_at": null

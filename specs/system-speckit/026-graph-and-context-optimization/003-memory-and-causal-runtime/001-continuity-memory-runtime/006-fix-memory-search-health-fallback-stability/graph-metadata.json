@@ -50,7 +50,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       ".opencode/commands/memory/search.md",
@@ -77,12 +76,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -204,27 +197,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 audited `/memory:search` against the indexed-continuity runtime and catalogued 17 defects spanning retrieval, output rendering, and the causal-graph subcommand",
     "created_at": "2026-05-08T21:00:00Z",
-    "last_save_at": "2026-08-29T14:54:18.591Z",
+    "last_save_at": "2026-08-30T15:39:29.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:fb77b0ce058b895111f5d396bef53004d6979d623fb8fd624961c5626955b2ac",
+    "source_fingerprint": "sha256:b536faf8a48ade0096e060de34402e42f2ed776d6e1eb10d1ff9113cb26967f1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cf66ec7e7b1948b86ce1596a06dc76fc238cb980f897c2359e35d81f91d38622",
       "plan.md": "2de7ba4fcb4c64d059001ee8ddafc83e7c5cdbc85202cf42bc014f09c572c3b1",
       "tasks.md": "72f0920fe368a5c8d1c94a06dcf4036ecabc3082650efd51ebfa4b75bee043c5",
-      "checklist.md": "938b3a2918078d7408aadeadb8c26e6498ce144836506346d0aa34fdc66e111c",
       "implementation-summary.md": "d282f0ebd542afcde157590e0867236576757662c4edd09c83688a649e6b7748",
       "resource-map.md": "3847e6c6e9236f8e410d28fd0e9860b6ef57ce78a8de6ed36d7bf32a4b5223d6"
     },

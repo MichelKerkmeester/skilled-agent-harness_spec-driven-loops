@@ -27,8 +27,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "cli hub rename closeout",
-      "stale dist validation blocker"
+      "verification blocker decision",
+      "stale dist closeout"
     ],
     "key_topics": [
       "feature",
@@ -40,21 +40,26 @@
       "implementation",
       "plan",
       "tasks",
-      "cli",
-      "hub",
-      "rename"
+      "verification",
+      "blocker",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -68,12 +73,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -83,12 +82,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -188,37 +181,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Hub Rename Closeout",
+        "name": "Treat Environment Failures",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Do Not Convert Blocked Gates Into Passes",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Targeted rename and routing checks pass, but broader suites cannot all execute because compiled artifacts are stale and unrelated graph keys are absent",
     "created_at": "2026-07-13T03:34:32Z",
-    "last_save_at": "2026-07-14T19:26:23.463Z",
+    "last_save_at": "2026-08-30T15:39:07.238Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed5ebbe60fb25a647e655847db7ba441d853e5eacf511b0b2e9c00513f0afef5",
+    "source_fingerprint": "sha256:24d57be3606d78b507f0a9160f4605807dfed4b29e776ef9d7fe7333f5731dc6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19d4aefca90746a1cf3a1aa5683c439e1c8259fe2bd4d0461198851c6a7fb80b",
       "plan.md": "c248dd74d3beae185d9107645ea714045829c2619ec9357add3bead9f4a2d92e",
       "tasks.md": "9182217e402dc84a00a87cd78fc334610e900c7bc96e5b05abbfef711c660043",
-      "checklist.md": "269c9ae418a82604f1f7a2c3bf85bf3f4270f6de3b09ec771d9e10336e3bbdc1",
       "decision-record.md": "9d77548d0317e931e8f567c0675a700f3301ce379625fb31c0628b3140176ae2",
       "implementation-summary.md": "59f200b24159469cadc708b704aa74dda698c272e38104dc62c4bd2d2771e225"
     },

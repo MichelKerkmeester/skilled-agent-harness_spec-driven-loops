@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary",
       "memory quality & indexing"
     ],
@@ -30,31 +29,24 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "catalog"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "scripts/core/title-builder.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/core/title-builder.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "title-builder.ts",
-        "kind": "code",
-        "path": "scripts/core/title-builder.ts",
         "source": "derived"
       },
       {
@@ -70,15 +62,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "title-builder.ts",
+        "kind": "code",
+        "path": "scripts/core/title-builder.ts",
         "source": "derived"
       },
       {
@@ -166,49 +158,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Audit Results",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Memory Quality and Indexing has evolved significantly",
     "created_at": "2026-04-12T09:02:50.251Z",
-    "last_save_at": "2026-07-10T06:22:38.645Z",
+    "last_save_at": "2026-08-30T15:39:38.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbd91a3857d4a6a6178d9441f33db4bfb54dcefaeb02df4c85f6ededfc310e02",
+    "source_fingerprint": "sha256:b18c709d64245c67a7d56e176daaa0459d71119f62d9d951533d3826ab499769",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "324fa3b99fcf3ca99f38b96d5d27c1641260abe8414a810d33e127a0aff7852a",
-      "plan.md": "d3de2cdb616c49783035cb289edfaedf4d9e1689306477f655e03c521190b488",
-      "tasks.md": "dca56004e86618cc2f1824a760f545f97ae41b03a8511742d9f6786b42cde950",
-      "checklist.md": "5e7a2be740b1d1a08ec2c0aeec1f22360028365538b216775630074417af89ee",
-      "implementation-summary.md": "c67bbf3d88ea088af519388660131b43779ac85fcb1b0677a28ff1bb6840d4b9"
+      "spec.md": "ea24d3e08919af78f2a300c7ba6c1ae8c8c3c8acd3e8aa1d4ecbc69eda3e7ea7",
+      "plan.md": "f998816301c7bf9ba06151e446502cd28a9715de0e82ea914837ca8dba463a01",
+      "tasks.md": "e47c0551e371d93dfc86a5babeba4f25f81206d95c754d71a797b0878f3293c9",
+      "implementation-summary.md": "3a24d6608a64e0f232aeeea61830f555e34968d627d8a0787456e7789597d308"
     },
     "last_active_child_id": null,
     "last_active_at": null

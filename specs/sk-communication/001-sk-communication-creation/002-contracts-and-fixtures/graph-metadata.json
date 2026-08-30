@@ -18,11 +18,11 @@
       "implementation plan",
       "tasks",
       "implementation",
-      "verification checklist",
-      "quality gate",
       "architecture decision",
       "use a self-contained fixture-first contract package with immutable originals",
-      "implementation status"
+      "implementation status",
+      "current state",
+      "portable cli projection handover"
     ],
     "key_topics": [
       "contracts-and-fixtures",
@@ -35,8 +35,8 @@
       "phase",
       "plan",
       "tasks",
-      "verification",
-      "checklist"
+      "architecture",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,28 +186,33 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Define the versioned contracts and golden fixtures that every core, provider, and runtime adapter must share",
     "created_at": "2026-08-11T10:04:28Z",
-    "last_save_at": "2026-08-28T19:09:00.837Z",
+    "last_save_at": "2026-08-30T15:39:11.674Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1ba4348679d53a5838c836991b5ae35c1330c22b38889f672dc3cbaac711f702",
+    "source_fingerprint": "sha256:4639115e136a106219f58008593b43d04b555dbbe65bc02e2a0129ec04be3b35",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ab9939d0ec739137a84add61686b9afd0b85da950d0d1c612969aafe990a5c3",
       "plan.md": "fd4788ee146a5930dbc9044beea6b178d519bdc8ee968815a7a2631ad14d3969",
       "tasks.md": "97e41a1dff39870f5934a7bcb2aa1bd9430fd1e9b489778790e63a523921c145",
-      "checklist.md": "9306bebfee5f20baee9c53501b9c73b68d23714f4fc63f89c65dd65db35473ed",
       "decision-record.md": "3f0bf0ef3484919cf27787cd76850ffb5537bb7e23f59201dd45df59f1ad7160",
       "implementation-summary.md": "182a51caf772acd1f99cdba144788081ca9eacf6a40917e881128666b83eabe3",
       "handover.md": "765162dca921984d453b1627d61e8ad201f709c6569d203f06cf78e418d4a3d4"

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The shared standalone README template at `sk-create-skill/assets/skill/skill-readme-template.md` predates the mcp-obsidian pilot",
     "created_at": "2026-08-04T12:30:48.167Z",
-    "last_save_at": "2026-08-30T07:20:16.081Z",
+    "last_save_at": "2026-08-30T15:39:17.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3483ee21e4c8de32662debaf437dcf9237858bea36f971c645ed4baf88208089",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0c206152eeb8e706d86f354c73dac0f4dcb6e35c926afe2693a91ff4f7917170",
       "plan.md": "c9ac8bcf030089fb82c5279589c60a343d6eb0ef8c7bff59a6a81efd694eda48",

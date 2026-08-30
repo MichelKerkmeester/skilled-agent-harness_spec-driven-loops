@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Add a launcher bridge so secondary MCP launcher instances can attach to the primary daemon over an IPC socket instead of exiting with LEASE_HELD_BY.",
     "created_at": "2026-05-19T05:54:24.166Z",
-    "last_save_at": "2026-08-29T14:54:18.979Z",
+    "last_save_at": "2026-08-30T15:39:30.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6ebf463617b782dc06d1e493a63d587d6a8c88924afdaf5c1de00c1148332517",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0fde2a10bfd944c4333fd3de52d8aa3df998a22d1db444ce625faa75a54aebc9",
       "plan.md": "07621c3c895a9cd681188ea557f07be360760689972dda0fe3da135c70ee12a9",

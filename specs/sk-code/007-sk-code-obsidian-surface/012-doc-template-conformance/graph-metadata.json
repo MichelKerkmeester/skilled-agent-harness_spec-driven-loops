@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase 011 closed the packet's first ten phases with a live gate re-run, but named two phases still",
     "created_at": "2026-08-28T18:17:41Z",
-    "last_save_at": "2026-08-29T14:54:11.805Z",
+    "last_save_at": "2026-08-30T15:39:11.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c034feb895b9166bb067cb9c0aad3b770f7f2f619cbf8ae5ef4a25b2c8bda343",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32536a7db75c4cba2a065a16ef17553d927ab7c7972afef885f1d6f83f51e02c",
       "plan.md": "1cf1349ada68cbd52a69983af5ba84f0aa1f8e00676f5df4d83991afe49ba3eb",

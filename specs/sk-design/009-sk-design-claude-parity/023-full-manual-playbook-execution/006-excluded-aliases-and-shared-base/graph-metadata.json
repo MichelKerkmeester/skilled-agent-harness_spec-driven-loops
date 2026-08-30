@@ -18,11 +18,10 @@
       "excluded aliases shared base dispatch plan",
       "tasks",
       "wave 006 tasks",
-      "verification",
-      "checklist",
-      "wave 006 checklist",
       "implementation",
-      "summary"
+      "summary",
+      "wave 006 implementation summary",
+      "excluded aliases shared base summary"
     ],
     "key_topics": [
       "wave",
@@ -44,12 +43,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/spec.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/plan.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/checklist.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/dispatch-log.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/implementation-summary.md"
     ],
@@ -70,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/checklist.md",
         "source": "derived"
       },
       {
@@ -163,30 +154,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -197,26 +164,43 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Executed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Read",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design `manualtestingplaybook` has never been exercised end-to-end against the real `cli-opencode` orchestrator for two specific behavioral guarantees: that `harden` and `polish` are excluded from `audit` transform-verb aliasing (`TV-005`), and that the four non-md-generator design modes correctly use `backendKind: reference-base` while the shared reference base itself is never invoked as a user-facing workflow (`SR-002`, `SR-003`)",
     "created_at": "2026-07-07T15:07:59.169Z",
-    "last_save_at": "2026-08-29T15:21:59.869Z",
+    "last_save_at": "2026-08-30T15:39:12.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e339b0178413deb8a3593f5349d195296ec9f415f02d424ca5ca75d1a4ec5432",
+    "source_fingerprint": "sha256:878fc6be920f3cf3a2618294997a663b658c8d76c7d07fc8c7c82a368b16b5fc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "34b1da7a874834c48c75e149fdd8a1f572eb5016edd814986b5e45f2ebb0a806",
       "plan.md": "c14889b1713c6d863e80a45f41ff093678ebbd43c1fc28a1b3f0491bd46fe617",
       "tasks.md": "9d9dcd0d684287da202255b69db0237b3411e616e7e097b13eed295e8d4d32d7",
-      "checklist.md": "5425e8dc8acc2ccd4ad355ac15b044e29e39610b13d36fccea92deae44196c97",
       "implementation-summary.md": "e38bb50b5eccafc506e77d0708dea4778c80ea0b9ad8ba223284f91010008e05"
     },
     "last_active_child_id": null,

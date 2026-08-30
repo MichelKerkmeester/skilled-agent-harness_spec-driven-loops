@@ -19,8 +19,6 @@
       "policy plan module",
       "measurement and receipts tasks",
       "shadow planner task list",
-      "measurement and receipts checklist",
-      "shadow planner verification",
       "measurement and receipts summary",
       "shadow planner implementation evidence"
     ],
@@ -44,14 +42,12 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
       ".opencode/specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/research.md",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
       ".opencode/skills/system-skill-advisor/mcp-server/tests/policy-plan.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/policy-plan-serializer-parity.vitest.ts",
-      "mcp-server/package.json"
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/policy-plan-serializer-parity.vitest.ts"
     ],
     "entities": [
       {
@@ -70,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -106,12 +96,6 @@
         "name": "policy-plan-serializer-parity.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/policy-plan-serializer-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp-server/package.json",
         "source": "derived"
       },
       {
@@ -197,26 +181,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "No canonical, cross-runtime identity exists for the always-on directive, route, Gate, and Pi-dispatch blocks that `render.ts` and its six runtime adapters emit, and nothing records whether a block was actually delivered versus merely rendered",
     "created_at": "2026-08-06T10:59:21.547Z",
-    "last_save_at": "2026-08-29T14:54:14.004Z",
+    "last_save_at": "2026-08-30T15:39:08.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41a7a0e1d0eff8efb85e93408de541d31e13026c85833cc70e8e8a38a289fa0b",
+    "source_fingerprint": "sha256:a1a14c3557d7e3fd8a9ab7caa4f353701d46d08b54c9abc38bdbda2cc2f63d0f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f396b9013906b90ce3e574d4a7582c31511d4fe607ba0ca1a31733f1c3491bed",
       "plan.md": "89fbd725fa132a5deef27bd974f8280c672a8cae382d74de84f57a56dcf66c58",
       "tasks.md": "33ab58171fcba69999bba5244ded27968589e9ed0580dcb60b9b262b8dd09a2e",
-      "checklist.md": "25b44f40d1a1aa6d6c2429e9287781b7fb82fae1131c8af0e6af54a4b8203e9b",
       "implementation-summary.md": "9b71e1c5237e2727fba893eb11486b0453d6262b32290f79c91e3c232279233c"
     },
     "last_active_child_id": null,

@@ -182,7 +182,7 @@
     ],
     "causal_summary": "P1 — breadcrumb suppression is a deliberate rule, not a data gap",
     "created_at": "2026-07-09T06:20:00.567Z",
-    "last_save_at": "2026-08-29T15:22:24.243Z",
+    "last_save_at": "2026-08-30T15:39:36.325Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,6 +192,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:79611d23277f0ff1e6fbbc7a7b8b8ee35b571967a75c0779d8da38b3d4b3366b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "af35381d612b103afd9f144bf83e3624186498fdc809f2f51df23f93b42063d7",
       "plan.md": "6b8e103ba43a8ba212bfad33f5580b9f05797099e2f7c039d9f773351c5dbe9f",

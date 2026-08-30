@@ -29,8 +29,8 @@
       "durable launcher trace plan",
       "persistent launcher log tasks",
       "launcher log rotation tasks",
-      "persistent launcher log checklist",
-      "launcher log verification"
+      "persistent launcher log done",
+      "launcher durable log summary"
     ],
     "key_topics": [
       "persistent",
@@ -49,27 +49,12 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      "mcp_server/tests/launcher-persistent-log.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-persistent-log.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/launcher-persistent-log.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -86,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,26 +180,43 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The launcher's `log()` writes only to `process.stderr`",
     "created_at": "2026-06-07T16:30:00Z",
-    "last_save_at": "2026-07-17T17:19:34.947Z",
+    "last_save_at": "2026-08-30T15:39:32.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee7e3d1c8a5c32450b7d8947d22ef3bef859b9edb37b677a47ecc4356320d459",
+    "source_fingerprint": "sha256:429f4d2e35d510b94a3ad4c235324dbc013e56464de6974522bb8cc7bebbc59e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ec4ec6cd4eda10504585e9ea164002578bed4818c7f62b83fada315da2ebe16",
       "plan.md": "23b757769d3ef628a3b1eeefb6641da797ee0f09f2d1e87e9bda0593aadee531",
       "tasks.md": "4f7b697062a614bdc502c629b9321e9b6d3e61dcf4d80da7921786095eb1f894",
-      "checklist.md": "71ebdf43203feb74b57cb0b51d83d573bd97f55fb20532a3a23fcb40a7f87ee0",
       "implementation-summary.md": "f040c3d77dc4f308415514036ecf1725614bdd5e96403e8441c6540e68614c6f"
     },
     "last_active_child_id": null,

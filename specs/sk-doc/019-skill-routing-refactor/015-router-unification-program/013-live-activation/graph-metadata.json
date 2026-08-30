@@ -19,10 +19,9 @@
       "P4a P4b staging",
       "live activation tasks",
       "hub activation task list",
-      "live activation checklist",
-      "hub activation QA gate",
       "live activation implementation summary",
-      "seven hubs activated design-faithful"
+      "seven hubs activated design-faithful",
+      "P4b cutover gate"
     ],
     "key_topics": [
       "unified",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "lib/activate-hub.cjs"
     ],
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,48 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Files Delivered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "How It Was Delivered Per",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The compiled router contract is shadow-complete but never bound",
     "created_at": "2026-07-19T12:15:36.154Z",
-    "last_save_at": "2026-08-29T13:10:18.124Z",
+    "last_save_at": "2026-08-30T15:39:15.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27bbfb149db6c4bbdbe1b2b26653e62d58f8520c7230c60329008f2be0d10257",
+    "source_fingerprint": "sha256:a816dcd28a99602206314d0bd56e5a239884bfe7f0b4e80529c4aa2f059fca0a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ed073ce062cc13bad2905b549baa1781da6d0aa061b78e38280f0ae4f6f44a0b",
       "plan.md": "8652d749958462b5b2a35bd20812bd995f35acd48e057371304074a1b0ffcd40",
       "tasks.md": "d25106babaa0dc9fd24e7b554e452d20ec42da8ae6fa62734e7f3a6df3da8898",
-      "checklist.md": "f67aa0f6e9d3ded4275c84353dc0d686d57b777bbc1e8bfbbf2a0aa69574b328",
       "implementation-summary.md": "81fd2105f9590e74f96ef4341702e7d176029a90587652eedf79786f3253df6f"
     },
     "last_active_child_id": null,

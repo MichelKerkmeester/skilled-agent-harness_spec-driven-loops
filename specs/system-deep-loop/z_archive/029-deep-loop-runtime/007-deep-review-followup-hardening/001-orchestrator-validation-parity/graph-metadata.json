@@ -16,7 +16,6 @@
       "file exists started work exemption",
       "orchestrator parity plan",
       "orchestrator parity tasks",
-      "orchestrator parity checklist",
       "orchestrator parity decisions",
       "decision record",
       "orchestrator validation parity implementation",
@@ -38,67 +37,20 @@
       "exemption"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
-      "implementation-summary.md",
-      "checklist.md",
-      "tasks.md",
-      "validation/evidence-marker-lint.ts",
-      "scripts/evals/generate-known-item-ground-truth.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/validation-orchestrator-bridge.vitest.ts",
-      "decision-record.md",
-      "plan.md",
       "spec.md",
-      "scripts/dist/validation/evidence-marker-lint.js"
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scripts/evals/generate-known-item-ground-truth.cjs"
     ],
     "entities": [
       {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence-marker-lint.ts",
-        "kind": "code",
-        "path": "validation/evidence-marker-lint.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-known-item-ground-truth.cjs",
-        "kind": "file",
-        "path": "scripts/evals/generate-known-item-ground-truth.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validation-orchestrator-bridge.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/validation-orchestrator-bridge.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -108,15 +60,27 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence-marker-lint.js",
-        "kind": "code",
-        "path": "scripts/dist/validation/evidence-marker-lint.js",
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-known-item-ground-truth.cjs",
+        "kind": "file",
+        "path": "scripts/evals/generate-known-item-ground-truth.cjs",
         "source": "derived"
       },
       {
@@ -196,27 +160,56 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Parity In The Native Path",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`runRegistryShellRules` filters the validator registry with `rule.strictonly !== true` unconditionally (`orchestrator.ts:269` at time of writing), so strict-only shell rules such as `CONTINUITYFRESHNESS` and `EVIDENCEMARKERLINT` never execute through the default Node path even under `--strict` — while the legacy shell path runs them",
     "created_at": "2026-07-02T15:14:06.540Z",
-    "last_save_at": "2026-07-16T16:32:57.295Z",
+    "last_save_at": "2026-08-30T15:39:26.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4efe201765b1668f138fba9d050d93191409cd741af3c278195178e3d027217d",
+    "source_fingerprint": "sha256:b4d07f3385749ca821f3dc3daafad8528fcd23eba45d1d17934393414c568729",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e4b33200a2c4629678e92a4227ee20f95225b4de63e561656e0fcb9a46add41",
       "plan.md": "0b2fa42a96a7abe0c90eebcf1b142001c33445408ca52eb41ff37be0359fd547",
       "tasks.md": "3cd90d3573f6ae98defee6fa43ce2513c9eb8cb7491d954afa2572236af4a261",
-      "checklist.md": "b274a8d5b6ba2de34c99078e9ecd24699e6d96ffbc2bbbb67824c2cd139f62ed",
       "decision-record.md": "a63b14f5fab8371886e9edfe7219bcbbd05f6f7fbea5b419bd57fc9c7c3bc90c",
       "implementation-summary.md": "5e29b8f81fc22f131e28421f1ff27ce7d598f3fb40fb5aa034b019a38390e586"
     },

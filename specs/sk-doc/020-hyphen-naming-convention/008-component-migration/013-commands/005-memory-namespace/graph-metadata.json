@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The `.opencode/commands/memory/assets/` tree contains `learnpresentation.txt`, `managepresentation.txt`, `savepresentation.txt`, and `searchpresentation.txt`",
     "created_at": "2026-07-14T15:18:34Z",
-    "last_save_at": "2026-08-30T07:20:02.714Z",
+    "last_save_at": "2026-08-30T15:39:17.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:59d57295582abbc613c33f42c18de2689993115a595729c9dba56ef43f90f25f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b7c9e511b98f8b9c2b5cbd3b68256e5da89b80ac6dd57c505e59401782b8ef6b",
       "plan.md": "0948bff85213ec1243515708b563d427b3ec2b9d914ce78b75c9322f00dce87d",

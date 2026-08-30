@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handover.md",
       ".opencode/skills/sk-doc/feature-catalog/feature-catalog.md",
@@ -52,10 +51,6 @@
       ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs",
       ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs",
       ".opencode/skills/sk-doc/mode-registry.json",
-      "evidence/sk-doc-route-gold.json",
-      "evidence/compiled-routing-parity.json",
-      "evidence/root-metadata.json",
-      "evidence/leaf-manifest-freshness.json",
       ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js"
     ],
     "entities": [
@@ -75,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -123,30 +112,6 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "sk-doc-route-gold.json",
-        "kind": "config",
-        "path": "evidence/sk-doc-route-gold.json",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-routing-parity.json",
-        "kind": "config",
-        "path": "evidence/compiled-routing-parity.json",
-        "source": "derived"
-      },
-      {
-        "name": "root-metadata.json",
-        "kind": "config",
-        "path": "evidence/root-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-manifest-freshness.json",
-        "kind": "config",
-        "path": "evidence/leaf-manifest-freshness.json",
         "source": "derived"
       },
       {
@@ -202,27 +167,56 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Source",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The live sk-doc feature catalog still publishes pre-rename workflow keys, while closeout documents disagree about the current route-gold and generated-metadata acceptance state",
     "created_at": "2026-07-29T12:41:32Z",
-    "last_save_at": "2026-08-29T15:22:03.092Z",
+    "last_save_at": "2026-08-30T15:39:15.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:70357e1e8fbd80edcfe62161241a11505119b9b1455afb478d0875651a4aab1d",
+    "source_fingerprint": "sha256:60b442816be3160e99fc9d3f0d2a0947b1aeda05c775f7df482adc6dc6a3da26",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6340ff097f9da91fab5444d3a26b88cf9e238a09b4c12d35aad8c0662a8111aa",
       "plan.md": "afbb5ba2945ecb80609002e649e2c98062c9b771ced22a7e83ea20a97c55a3f5",
       "tasks.md": "4a07fe1bd4b53285e9e6365470c622eaf86abca8074ae9b239f5b2d71efc6337",
-      "checklist.md": "68980bd56575d7406ca815dcc19737e27ebb746230d909b722a6d20a374d8e6b",
       "implementation-summary.md": "1eb6077c2208b4497c69772ca5278cc8db8e745b0e5851be87412acbf0bb4323",
       "handover.md": "1e1b4a22ef3a31b4460c38bbeb7ebc2bf7a0e2ed1e898dfde1368b301d4da8b3"
     },

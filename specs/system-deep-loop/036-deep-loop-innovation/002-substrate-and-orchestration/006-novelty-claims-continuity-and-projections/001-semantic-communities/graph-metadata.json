@@ -18,11 +18,10 @@
       "concept-level novelty implementation",
       "semantic communities tasks",
       "concept-level novelty tasks",
-      "semantic communities checklist",
-      "concept-level novelty checklist",
       "semantic communities architecture",
       "semantic projection decision",
-      "semantic communities implementation"
+      "semantic communities implementation",
+      "semantic communities verification"
     ],
     "key_topics": [
       "semantic",
@@ -34,9 +33,9 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
       "architecture",
-      "projection"
+      "projection",
+      "decision"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/index.ts",
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,27 +186,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deterministic semantic-community projection over claim nodes so paraphrases resolve to one concept while legacy graph novelty remains authoritative.",
     "created_at": "2026-07-16T03:43:51.399Z",
-    "last_save_at": "2026-08-29T14:54:11.006Z",
+    "last_save_at": "2026-08-30T15:39:20.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e8eaad3c55bb8f0a3bfbb5c4fadbd388ef93434ee4713f5b3f4b142a1102c3e",
+    "source_fingerprint": "sha256:4adfbb2d854ad5ee5a760f39173c897f0564fe30f3701bf1563601016b516f47",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b24e18e3a825982060a3976d7cf7fd2e072ec0db3b968ba2d493543f71dbf02",
       "plan.md": "928168e5a7f61179f38d9f5a79ee2b3dca0c9c76480dc1c1b2951c29f0f0f8aa",
       "tasks.md": "d1d29631c7c50101eaa612f407bb2ca103a40992e9f7599b4381fed9cd6d976a",
-      "checklist.md": "85e2608219f52fded748fc77d4f9b6783f2e76e7021bd8ac1647c5ed5744c2f4",
       "decision-record.md": "5193ce30a5f44cced1159340db05af578b2c3be8b7f244c0d276ba6ee236dc3f",
       "implementation-summary.md": "6a8616237ea895f4e4bf75462cad4ba0d8b654b7397d09af340be319cb80b87a"
     },

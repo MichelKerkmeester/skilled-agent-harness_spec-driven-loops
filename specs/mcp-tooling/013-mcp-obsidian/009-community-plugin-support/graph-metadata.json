@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "references/flat-financing.md",
       "references/obsidian-tables.md",
       "references/obsidian42-brat.md",
@@ -48,13 +52,33 @@
       "assets/beancount-example.beancount",
       "assets/table-example.table.md",
       "assets/brat-data-entry.example.json",
-      "assets/workflows.md",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      "assets/workflows.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "flat-financing.md",
         "kind": "doc",
@@ -101,30 +125,6 @@
         "name": "workflows.md",
         "kind": "doc",
         "path": "assets/workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The `mcp-obsidian` mode operates a vault at the file layer (read/write/search markdown and data files via CLI/MCP), but it has no knowledge of how specific community plugins encode their data",
     "created_at": "2026-08-02T07:14:34Z",
-    "last_save_at": "2026-08-28T16:28:16.433Z",
+    "last_save_at": "2026-08-30T15:39:10.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:26e351a2a6927a43bd7b8df053af22f3e465ede49e987e98ae00b02df4e542e5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "81df5d33812879665b5e8ba1c6f71beac2ab9d249c3a7d70e2bc84a1ce6f94c2",
       "plan.md": "20c5154afa09110f70397c3a3a604f12b6142e7f444814029cbe2a76b007609a",

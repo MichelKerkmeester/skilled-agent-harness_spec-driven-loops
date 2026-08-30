@@ -3,7 +3,6 @@
   "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
   "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
   "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -22,8 +21,8 @@
       "probe deepProbe reap plan",
       "boot integrity retention probe tasks",
       "deepProbe reap retention durability tasks",
-      "boot integrity retention probe checklist",
-      "deepProbe reap retention durability verification"
+      "boot integrity check summary",
+      "retention durability summary"
     ],
     "key_topics": [
       "boot",
@@ -40,12 +39,11 @@
       "probe"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/bin/lib/launcher-ipc-bridge.cjs"
     ],
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -165,24 +157,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -193,26 +167,49 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three gaps remained after packet 010 made the at-rest WAL durable",
     "created_at": "2026-05-29T13:49:32.618Z",
-    "last_save_at": "2026-08-29T15:22:18.060Z",
+    "last_save_at": "2026-08-30T15:39:32.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d99f395b9bd8575754efd3be366d5b90ccad31a0c69f536fd6e1ea5abb5ebbaa",
+    "source_fingerprint": "sha256:020d36f810772eb801ee64774dac8715e92b7a46ddb8880b1cd45b9404077308",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c51479df648af133ce52b99a032133f68aff5c46a1cf22f6bb5f9627ed53906",
       "plan.md": "b7559dd6d9c50ede0a7b0e3aa726ff12148179feda6ae92f98b40dd293f654d1",
       "tasks.md": "0293dfb9a70b261747681c9f88273d4ef65f7f4e788db3b02c40d0630742fd01",
-      "checklist.md": "e1683667fe980cae3eecb12c7188a38d09a1e5a679821e0be4bdaa19bb2963d4",
       "implementation-summary.md": "e4c304752d2187895501b84b64b2442d86178a80a4a18ead63649292d3c481ca"
     },
     "last_active_child_id": null,

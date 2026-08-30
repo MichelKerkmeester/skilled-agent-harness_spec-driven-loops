@@ -16,7 +16,6 @@
       "028 packet closeout",
       "diagram validation plan",
       "diagram validation tasks",
-      "diagram validation checklist",
       "diagram validation summary"
     ],
     "key_topics": [
@@ -29,9 +28,9 @@
       "closeout",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "five"
+      "five",
+      "phases"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -39,11 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      ".opencode/package.json",
-      ".opencode/skills/sk-doc/mode-registry.json",
-      ".opencode/commands/create/diagram.md"
+      ".opencode/package.json"
     ],
     "entities": [
       {
@@ -65,12 +61,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -80,18 +70,6 @@
         "name": "package.json",
         "kind": "config",
         "path": ".opencode/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "diagram.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/diagram.md",
         "source": "derived"
       },
       {
@@ -189,26 +167,43 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Five phases have each been spot-verified individually, but the packet as a whole — and the spec-folder tree describing it — has never been run through the authoritative strict gates together",
     "created_at": "2026-08-12T05:53:36.000Z",
-    "last_save_at": "2026-08-29T15:22:04.492Z",
+    "last_save_at": "2026-08-30T15:39:17.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31a47e3e1afd6d735964128a925ee4ffe4ebd11ab5837952b3ebcf95189dbc1a",
+    "source_fingerprint": "sha256:cb6d5d662e1200e375b93d40af033a4ef5252e18c4104663fa162a13f32f1505",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3cb7977814c225f4f6808dae8925083719428a18dea4cba141e7027e3209cd0d",
       "plan.md": "a9a1988aa2fc1583957d004728fc6a9e2a7766f1d4d8c85b905ec2910e40150f",
       "tasks.md": "3fc8ef7e18cc5ea157f023f9df927d688290d0054cad626ffd61001ecc40f872",
-      "checklist.md": "ff76e9a9d7aaac7d8fa68f908ded1b938d1fb9dd6462e57d8d04a70da594d4a6",
       "implementation-summary.md": "5ec697f6118f18016eb0943186476953e05939325ca97205fa2aaf0701347fe6"
     },
     "last_active_child_id": null,

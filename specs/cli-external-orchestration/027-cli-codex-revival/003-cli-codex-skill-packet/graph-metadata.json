@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Runtime support alone does not provide a safe user-facing Codex route",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-07-14T19:26:17.135Z",
+    "last_save_at": "2026-08-30T15:39:07.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:82bee9942eb4804c86503298257ec4dce83b9dac061bc56b4d89cd413875b4a6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "412f5f411a7b223737a61fa7f39a309792a488fe082562de8e096da3de100176",
       "plan.md": "97d87237c5b3a6f1474886391bc02a02052046f002f7dd985779151a4d44ea0d",

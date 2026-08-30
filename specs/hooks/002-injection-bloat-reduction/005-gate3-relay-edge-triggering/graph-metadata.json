@@ -20,9 +20,8 @@
       "gate matrix negative controls",
       "gate 3 relay tasks",
       "edge-triggered gate delivery tasks",
-      "gate 3 relay checklist",
-      "edge-triggered gate delivery verification",
-      "gate 3 relay implementation summary"
+      "gate 3 relay implementation summary",
+      "edge-triggered gate delivery implemented"
     ],
     "key_topics": [
       "gate",
@@ -44,12 +43,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
       ".opencode/specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/research/research.md",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
-      ".opencode/specs/hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering/checklist.md",
       ".opencode/specs/hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering/implementation-summary.md"
     ],
     "entities": [
@@ -69,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering/checklist.md",
         "source": "derived"
       },
       {
@@ -192,30 +183,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Gate-3 relay (`GATE3QUESTION` in `spec-gate-core.mjs`) re-delivers the identical question on every mutation-positive turn while gate state remains open, even when nothing about the task, scope, or answer state has changed since the last ask",
     "created_at": "2026-08-06T11:02:30.631Z",
-    "last_save_at": "2026-08-29T14:54:13.983Z",
+    "last_save_at": "2026-08-30T15:39:08.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b316ca8dfb9b3b0c3195899bdc5d82b5175466b05ee22bae7f49a484acd6b38e",
+    "source_fingerprint": "sha256:e83de7603523d4030e12e9c98d4fc75290077cbe009a7ff01f54d348bc2d9cb8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d97975d0ed8b4676ba64c6dcd8dbea76fd0ea68dc3f1844b9e63139e4797870b",
       "plan.md": "793bbaba79cecc7b6c89b3194602a09cadbdb635c512ca7d74b897454b7e7477",
       "tasks.md": "c722e256bf716a58f381abe695890779031e4fe933b0838d421f06ca5c818e69",
-      "checklist.md": "e7853edfc5b4a8dc76844b23543f14008bb91ee31e9a71ce2a4f6b792279174f",
       "implementation-summary.md": "d95952b95e5262d5c26031722a46b140e82f15ca806b4257f18d5a85c70bd2d2"
     },
     "last_active_child_id": null,

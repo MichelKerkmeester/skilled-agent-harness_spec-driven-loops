@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery — but every review so far was scoped to shipped diffs",
     "created_at": "2026-06-12T04:40:47.948Z",
-    "last_save_at": "2026-08-29T15:22:20.952Z",
+    "last_save_at": "2026-08-30T15:39:34.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:d75f3183995bc548049061e07dea1ad0a8f46721e1181656306f3cf2a2fe1f38",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61397f792c730502888871f6dcf5d8f464b8b01cf2e9dd995f6ca7aa5d6bbd3c",
       "plan.md": "095a12ae676197bfe51c37b5f358bdc68eff465ca28e249a13de8d1181656280",

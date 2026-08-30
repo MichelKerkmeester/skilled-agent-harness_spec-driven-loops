@@ -22,6 +22,9 @@
       "hallmark adoption",
       "brand-first lane",
       "hallmark evidence envelopes",
+      "hallmark goal",
+      "hallmark objective and status",
+      "hallmark adoption progress",
       "hallmark handover",
       "hallmark design system remaining work",
       "finish hallmark deep-alignment"
@@ -37,13 +40,14 @@
       "lane",
       "evidence",
       "envelopes",
-      "handover",
-      "remaining"
+      "goal",
+      "objective"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "goal.md",
       "handover.md"
     ],
     "entities": [
@@ -51,6 +55,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -96,6 +106,42 @@
         "source": "derived"
       },
       {
+        "name": "Register Lane",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Objective & origin",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Decisions (operator, this program)",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. Build status — five lanes (all shipped to v4)",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. Quality pass over the build",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. Current status",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Handover Summary The",
         "kind": "proper_noun",
         "path": "handover.md",
@@ -134,14 +180,16 @@
     ],
     "causal_summary": "The hallmark design system needed adopting into sk-design in a controlled way — surgical fixes first, then evidence envelopes, authored cards, brand-first authoring, and measured composition retrieval — rather than a single large change",
     "created_at": "2026-07-22T16:38:23.466Z",
-    "last_save_at": "2026-08-28T22:14:49.215Z",
+    "last_save_at": "2026-08-30T15:39:12.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1f2ad777a002a9d3bf2ccfbc29731403f567f17e62c317e2c4f566876b8ac776",
+    "source_fingerprint": "sha256:44bd94c7c25e66b70d55540858554512d0ec6a60735640ef65102539a2a7e1e9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fced7b9b0bb16d50b101a4cd8d0a620e0977528702df0b258ad730b65393a378",
       "handover.md": "31c65cad23ba404b464919eba25fdeb79b12891cbec8e46f8a5ab18da9bc48e6"

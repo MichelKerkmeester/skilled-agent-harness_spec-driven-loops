@@ -22,7 +22,7 @@
       "tasks",
       "implementation",
       "mk-communication-projection plugin tasks",
-      "verification checklist"
+      "architecture decision"
     ],
     "key_topics": [
       "opencode-native-plugin",
@@ -44,9 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/dist/index.js",
       "tests/README.md",
       ".opencode/plugins/README.md"
     ],
@@ -70,12 +70,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -85,6 +79,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/dist/index.js",
         "source": "derived"
       },
       {
@@ -184,37 +184,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Alternatives Considered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "OpenCode is the only supported runtime with a native output-transform hook, but no runtime yet consumes the projection core, so the enablement flag gates nothing end-to-end",
     "created_at": "2026-08-14T05:28:35.233Z",
-    "last_save_at": "2026-08-29T15:21:58.124Z",
+    "last_save_at": "2026-08-30T15:39:11.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c54b1de95b72dff1f206e38266544559d22dbcde78b1c5351cbc8d8952df76b",
+    "source_fingerprint": "sha256:6059fc6e8e6bb820673c3862693b88eda4803bfe3186cc53a9f3bb1cf223b7ad",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "70c793f519a0bbec96e42cc5e6338578ce54cce80f15e4898e604da6b9ada162",
       "plan.md": "b6b8f462bc86a88a0d871a1fa72d1bcbfce9cf9feb3b94648fcf6a8b0b0058d6",
       "tasks.md": "74cbdd5e94f8fa1008e69dbe9bf5467369f72b2c2353954e71fefdd7f52f3439",
-      "checklist.md": "302a47c9aae182d1c188a2ccc39a3c81e9f72237156e98da821d860004768952",
       "decision-record.md": "1dbd61a94ab72d216df741e37aa8bd99ec4554dad738667535237ef42ee821a7",
       "implementation-summary.md": "3677c56e22436daa8fc8afd71d1ad3ada69e27697ffe0d32fea334b21d8dad5d"
     },

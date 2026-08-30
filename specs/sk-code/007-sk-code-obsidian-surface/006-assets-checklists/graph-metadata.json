@@ -173,7 +173,7 @@
     ],
     "causal_summary": "`sk-code-obsidian/SKILL.md` §4 already advertises on-demand checklists (`assets/.md`), and",
     "created_at": "2026-08-28T18:17:38Z",
-    "last_save_at": "2026-08-29T15:21:57.625Z",
+    "last_save_at": "2026-08-30T15:39:11.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,11 +182,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3650573dc43c170b382238a7684181b1318b48bee4b5ca6e54b0ce5a96594ada",
+    "source_fingerprint": "sha256:91dde605e35f14bfa7709890ae766b673e86b04820cf4e393a84b6d8af623a3f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "efbbae8fe4d260e4291dd510c892cea43a9026fa4b5c53a55f939dc46c50b5b2",
-      "plan.md": "43a33ff3cade9fea6c35db07ccd552ac333c8faaa43fbfb1a8b8dcd23fa8e3a6",
-      "tasks.md": "695fc104bcbaee45f37bd5ff73fd02480a69971ed7649dc500520307f3e270e1",
+      "spec.md": "de3d9eb5245d9689c17c6a41afb118a2eae6294755ce51e79e4b104a8e5f28fd",
+      "plan.md": "4e92b05585e30a9a0200af4156be06782c412024ecabd266a6d876b9d57db708",
+      "tasks.md": "ea06a899a9fe00da9bbc74019f4c5586eb9eb880993aecd4478dbf22caab33ee",
       "implementation-summary.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "last_active_child_id": null,

@@ -16,7 +16,6 @@
       "vendored fork drift check",
       "maintainability and provenance plan",
       "maintainability and provenance tasks",
-      "maintainability and provenance checklist",
       "maintainability provenance implementation",
       "vendored fork provenance check",
       "deep-pi benchmark packaging"
@@ -33,7 +32,7 @@
       "check",
       "plan",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/scripts/check-vendored-fork-provenance.mjs",
       ".opencode/scripts/run-local-deep-pi-boundary.mjs",
@@ -69,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,26 +188,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "10",
     "created_at": "2026-08-08T07:01:48.414Z",
-    "last_save_at": "2026-08-29T15:21:52.735Z",
+    "last_save_at": "2026-08-30T15:39:09.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20bc6672fe897b4fbed38459416dc4c50e10ccdfe7736770ff374609da0cff40",
+    "source_fingerprint": "sha256:7a0d750f608c56f0bb2e9fdc50d99a16832fecf041ef94b1a403ddab3445ef28",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92b5dbb1b7a2f5293a1307b3c192b5ea93d19835ad10be9b0ac589ee5eb233bd",
       "plan.md": "e4fa9fae21eec27a5ce648b71c23e6f1a022ee7dd49d29a0a069b9e909d7f67d",
       "tasks.md": "a1f6cdaadf5353d613eb8b6efe3f62caccd7c08c46581b77a791777a47e201e8",
-      "checklist.md": "37532b63b89b5da66e3268367f655897e8a73a34540e4b819f47ac4fde9bf345",
       "implementation-summary.md": "c2e9b5c79e1661ab3f84f105a685b62963f41511373f28e1045d3a3531d8287b"
     },
     "last_active_child_id": null,

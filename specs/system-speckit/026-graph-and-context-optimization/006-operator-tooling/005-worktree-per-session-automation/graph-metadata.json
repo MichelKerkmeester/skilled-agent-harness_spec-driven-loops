@@ -48,6 +48,7 @@
       ".opencode/bin/worktree-guard.sh",
       ".opencode/bin/README.md",
       ".opencode/skills/sk-git/SKILL.md",
+      ".claude/settings.local.json",
       "shared/config.ts"
     ],
     "entities": [
@@ -115,6 +116,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Multiple AI sessions (Claude Code, OpenCode, Codex, Devin, Gemini) all operate in the same working tree on `main`, with shared, gitignored MCP databases guarded only by single-writer leases",
     "created_at": "2026-05-30T14:07:30.760Z",
-    "last_save_at": "2026-08-29T14:54:17.164Z",
+    "last_save_at": "2026-08-30T15:39:32.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2e7f62d2640229c3fb1c429ff51542de2805ba3b18e863a9b59fe33f243fd563",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "653228a46345eb177a391f18d02c54cea4f77c99b3eae3f4597c336b6588f357",
       "plan.md": "39ddf177203fe0cd03f8c929571da43c617bd678536b482550f88c4aed60486f",

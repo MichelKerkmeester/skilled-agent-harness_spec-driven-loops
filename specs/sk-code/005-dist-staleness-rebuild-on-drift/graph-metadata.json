@@ -39,26 +39,14 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs"
     ],
     "entities": [
-      {
-        "name": "check-dist-staleness.sh",
-        "kind": "script",
-        "path": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -81,6 +69,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Make the dist-staleness guard self-heal a stale checked-out build at session start instead of only printing a warning that persists across sessions.",
     "created_at": "2026-08-09T05:30:35.439Z",
-    "last_save_at": "2026-08-09T05:41:05.729Z",
+    "last_save_at": "2026-08-30T15:39:11.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:64a0b059579d71a748132d83015495f3a6299cd6ee3abc3332334e6bce34be4f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5c0c871fd3dd9fc63888f5836eeb5e120d519e31ac8103c79f58683cb3ab3433",
       "plan.md": "f3dae7bd3cfdd5c0e130b9c1b533057410963399fbccc5a09d959b65c6be265b",

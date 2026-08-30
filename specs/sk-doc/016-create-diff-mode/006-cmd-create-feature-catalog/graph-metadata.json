@@ -19,10 +19,10 @@
       "/create:feature-catalog plan",
       "feature catalog command tasks",
       "/create:feature-catalog tasks",
-      "feature catalog command checklist",
-      "/create:feature-catalog checklist",
       "feature catalog command adr",
-      "/create:feature-catalog decision record"
+      "/create:feature-catalog decision record",
+      "feature catalog command implementation summary",
+      "/create:feature-catalog summary"
     ],
     "key_topics": [
       "feature",
@@ -34,9 +34,9 @@
       "template",
       "plan",
       "tasks",
-      "checklist",
       "adr",
-      "decision"
+      "decision",
+      "record"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/commands/create/feature-catalog.md",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,27 +188,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repo has a shipped feature-catalog contract and `sk-doc` now teaches that contract through dedicated templates and creation references, but there is no dedicated create command that can scaffold it consistently",
     "created_at": "2026-04-12T09:02:50.173Z",
-    "last_save_at": "2026-08-29T15:22:00.826Z",
+    "last_save_at": "2026-08-30T15:39:14.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:883802ef4ed750555affc0ebfb5602b401863ca2547b953e4df4d368589cf404",
+    "source_fingerprint": "sha256:cb67dc5d8b9c634ae2c3fdca0298f9ee36bd264758b6f78d065675ee7c57a287",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5bbde163be099e89f1c980daf1bc506a09d054e4a7b4e1115456fa5cf05911a7",
       "plan.md": "751abb0fb5460d716bd1afaa5ff7af5fd53350c13395e058a4af0a4c8bbe57a3",
       "tasks.md": "f15c8c3eae557350e6d4f38ea061fc0493d9a38ffca9f085baef941917177681",
-      "checklist.md": "80a3f7118d9e52a3883eb2e81adb45942a8fb79579851cac65f1942df85c02ba",
       "decision-record.md": "021fcda148ff278038053101a10513e46e0a21e7834f5371d813907d0ea6a09a",
       "implementation-summary.md": "b898a486e9d4611df14c395eb406dace0a4a95379e00eb11f99e0b9c4d27ba03"
     },

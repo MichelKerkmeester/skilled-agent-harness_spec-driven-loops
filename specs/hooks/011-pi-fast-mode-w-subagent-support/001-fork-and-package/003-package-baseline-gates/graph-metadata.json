@@ -190,7 +190,7 @@
     ],
     "causal_summary": "A correct source tree is not enough for Pi to load or discover the extension",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-30T07:18:54.237Z",
+    "last_save_at": "2026-08-30T15:39:09.632Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,7 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:75b25f452333be310b144bb65a7d73c508dc4e6bc6ef4652671dbad178980d44",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cb39d5b42f54419cb46b45f705d9edf30e07dfa19c6d0ca61f6fcd593ce3d8c8",
       "plan.md": "020aa4cd339f1f796d37e0c92524bc9adf9e4bfec43e5fc615bb3a09e9968b56",

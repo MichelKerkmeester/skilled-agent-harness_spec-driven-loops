@@ -3,7 +3,6 @@
   "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
   "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
   "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,12 +39,11 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "lib/embedders/embedding-reconcile.ts",
       "tests/embedding-reconcile.vitest.ts",
@@ -73,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,26 +192,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The one-time backlog repair — vector-present rows whose `embeddingstatus` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` — was executed via hand-written guarded SQL (\"emergency fallback\" in 004 `research/research.md` §7-§8)",
     "created_at": "2026-05-27T08:49:42.820Z",
-    "last_save_at": "2026-08-29T15:22:16.563Z",
+    "last_save_at": "2026-08-30T15:39:31.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9589ddbc565b43902c66ccbdb7bc1d636f83cfd5a9ca70862e9057f2357a69e",
+    "source_fingerprint": "sha256:750141754a7640fc708c46471da6712a7b58558424c1a318b1ae9898971b5ef4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8125899962345684cb1cf64296ec76c481746cb9f79bd2bc5d8d6b0b1ee9b11f",
       "plan.md": "3015f390af48f8430bc8298259f4fb317f257358d5842d58c920e30a6256b4e2",
       "tasks.md": "050839083f4c28d3144084138b8403284fc1327b0f2bf7c59833dbbc14726815",
-      "checklist.md": "2051212a0a07ad557c4dca6370042be14706a27ec8d597ed714f171bd0f5b820",
       "implementation-summary.md": "ee0083d544eafc267279e6c0ac8176455c48374844d6bc42246feace849dbe47"
     },
     "last_active_child_id": null,

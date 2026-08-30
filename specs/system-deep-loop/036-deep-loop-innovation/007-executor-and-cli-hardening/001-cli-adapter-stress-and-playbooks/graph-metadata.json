@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/stress-test/findings.template.md",
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,27 +184,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The adapter family has a wide failure surface that is not safely covered by one green unit suite",
     "created_at": "2026-08-07T07:50:32Z",
-    "last_save_at": "2026-08-29T15:22:07.652Z",
+    "last_save_at": "2026-08-30T15:39:21.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9758ba4e0efc91b94ab1c979b90dd5c2590e9709aea07dbeedf285acbc3b5518",
+    "source_fingerprint": "sha256:d9d3a379a6a0403e3fdf612d5621fdf49c1e88490877a6d768c9e164c611d4ce",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f6b8df4f7e0cb10d6f4481ab9ca71b50d6def8a94b9680c161b6251eeb4de380",
       "plan.md": "01c6b55a9d8efcc68faef28509641ba5a416d32b04e3377b8c1a82c67ec6afa0",
       "tasks.md": "738dd3cb35184775f0b79fd89fdb9d67f19d1c787e0a1899eb33540f2f31f1b5",
-      "checklist.md": "062a05d78d1a2bf7bf031d6cefa60c415070f5a919b423687aa4d345a94b9ff2",
       "decision-record.md": "9205b61886b5b5094faea0fc919b16ed1981fc7f0093ca6053f06e3cd6d18abd",
       "implementation-summary.md": "71a5b212c40d7bb08fe018c4d5c85456c0a0f76bf69d585272f01820b634f7d3"
     },

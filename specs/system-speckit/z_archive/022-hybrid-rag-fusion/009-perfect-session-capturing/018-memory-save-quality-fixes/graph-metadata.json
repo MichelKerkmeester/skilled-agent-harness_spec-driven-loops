@@ -18,8 +18,6 @@
       "generate-context remediation",
       "memory save quality tasks",
       "root cause remediation tasks",
-      "memory save quality checklist",
-      "verification evidence",
       "memory save quality summary",
       "implementation summary"
     ],
@@ -33,14 +31,17 @@
       "generate-context",
       "remediation",
       "tasks",
-      "checklist",
-      "verification",
-      "evidence"
+      "summary",
+      "implementation",
+      "sprint"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "shared/trigger-extractor.ts",
       ".opencode/skills/system-spec-kit/scripts/extractors/decision-extractor.ts",
       ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
@@ -53,19 +54,34 @@
       ".opencode/skills/system-spec-kit/scripts/tests/semantic-signal-golden.vitest.ts",
       ".opencode/skills/system-spec-kit/shared/dist/trigger-extractor.js",
       "shared/dist/trigger-extractor.js",
-      "plan.md",
       "scripts/extractors/decision-extractor.ts",
       "scripts/extractors/collect-session-data.ts",
       "scripts/extractors/session-extractor.ts",
-      "scripts/extractors/implementation-guide-extractor.ts",
-      "scripts/utils/input-normalizer.ts",
-      "scripts/core/tree-thinning.ts"
+      "scripts/extractors/implementation-guide-extractor.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -129,12 +145,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -193,39 +203,26 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Why It Changed",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After the Sprint 1 pipeline hardening landed, a `/memory:save` run still produced a memory file that scored 88/100 while carrying 10 structural quality issues",
     "created_at": "2026-04-12T09:02:50.281Z",
-    "last_save_at": "2026-07-10T06:21:48.496Z",
+    "last_save_at": "2026-08-30T15:39:38.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44da6619c12eb0e8e17a148c73c71d91b53e8f14cacccc2417cded19389ecdbe",
+    "source_fingerprint": "sha256:6160ed8ff4b166d071302a2d67b341e1a95e6db826d8ca8870393fe021be0fd0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a62b9cae23a3e31ff053ae2597f4ac131aaa48963b70f9647920ba3d25e056c1",
-      "plan.md": "93409bcdeca814b02a4701de62ec41e6c4f409fd7162e2309b1d8710407d332d",
-      "tasks.md": "970ca7c1888822e26880d3eb03a03374c2455830c19ca21f887fac752678c621",
-      "checklist.md": "31d4360cf44e413711cd3a6dc093efa307068b446bd8bfcb50c8b8de490c313a",
-      "implementation-summary.md": "6a8da0a16197ba184e6deb25c1bd8cd7804f26ec52670b7fd5f617397c8e80bf"
+      "spec.md": "ac869c7d7f0749d5770e67d626851573f850156e53adf5b957370fb9fcd3a9e6",
+      "plan.md": "4d95b3173e2d08acb62142f1d9e46f664e87534e7b6334bd17fa46f93cea79ea",
+      "tasks.md": "defb52f36d3cf3f08201b2665dff0867a6fefd11c9c1c270b08c389401efa066",
+      "implementation-summary.md": "4c3f211b5985b041079ae4932fdd53c50e394bf666373a091a162305272834ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

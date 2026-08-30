@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "CLAUDE.md",
       ".opencode/skills/sk-prompt/graph-metadata.json",
       ".github/workflows/prompt-card-sync.yml",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,25 +187,30 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phases 004 and 005 move the skill content, rewrite the scorer, and dissolve the two identities, a set of documentation, advisor, and constitutional referrers can still name the old flat `cli-opencode/` and `cli-claude-code/` paths",
     "created_at": "2026-07-09T18:58:28Z",
-    "last_save_at": "2026-08-29T14:56:27.704Z",
+    "last_save_at": "2026-08-30T15:39:07.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:27b89d2f95052586e680dbdabbb57dcec3c302325ea5e375a43d08d886411483",
+    "source_fingerprint": "sha256:7caaeac53437b1844c9d2f1db525f819f8a842a38988a687e6bfb49fc7e4339d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4e1f83e033abb18cb9d14c515d6f1a61662c2fc9f03a6b739d64302a2987d1aa",
       "plan.md": "81450b4b2cc978231237b3de5e894dce69530dec7405034f9bd179d184b72b21",
-      "tasks.md": "25d7dc2d02d9e272b432cbaa5a2f3925272c44dd228dfa2c6ba9be607178166d",
-      "checklist.md": "b90aa6a8fd98694030f6b1d9aa18b7d17a4f65f2bb1cda1ad531c5db24ce9f8f"
+      "tasks.md": "25d7dc2d02d9e272b432cbaa5a2f3925272c44dd228dfa2c6ba9be607178166d"
     },
     "last_active_child_id": null,
     "last_active_at": null

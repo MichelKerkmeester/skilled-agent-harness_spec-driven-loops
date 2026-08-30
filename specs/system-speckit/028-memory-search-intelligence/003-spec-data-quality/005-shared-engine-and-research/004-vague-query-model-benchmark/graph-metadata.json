@@ -19,10 +19,10 @@
       "benchmark driver parser",
       "search behavior harness",
       "model dispatch matrix",
-      "benchmark verification",
       "model search recommendation",
       "evidence-gap cap dead",
-      "memory search verdict bug research"
+      "memory search verdict bug research",
+      "029 findings root cause"
     ],
     "key_topics": [
       "vague",
@@ -41,18 +41,47 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scripts/benchmark-config.json",
-      "scripts/run-benchmark.mjs",
-      "scripts/extract-metrics.mjs",
-      "results/metrics.json",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "research/research.md"
+      "implementation-summary.md",
+      "research/research.md",
+      "scripts/benchmark-config.json",
+      "scripts/run-benchmark.mjs",
+      "scripts/extract-metrics.mjs",
+      "results/metrics.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
       {
         "name": "benchmark-config.json",
         "kind": "config",
@@ -75,42 +104,6 @@
         "name": "metrics.json",
         "kind": "config",
         "path": "results/metrics.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -196,27 +189,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "four",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A pilot run showed that four different LLMs drive the `/memory:search` command very differently on the same vague query",
     "created_at": "2026-06-27T17:15:40.361Z",
-    "last_save_at": "2026-07-17T17:19:52.211Z",
+    "last_save_at": "2026-08-30T15:39:35.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d5c2717ac307f9d8ee2b55f86424cf8990b19cea506605c6973673d364428813",
+    "source_fingerprint": "sha256:307c0b11ba312e4d56cac619a6ed2c7a5eb241b1c0bf60ea347e3575332d939f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3fbc8c2d6010cd84f87ddce5e06cb563e0c825864409632d5f945ead9bc82a9d",
       "plan.md": "3aca8f1f7a8438e1c842537700df1c8b92e2b55b9b58bf578155f4d7a40322c2",
       "tasks.md": "32777beec1edd0a38eabfe192a6d0dc3e0fefa66a0abdf7b5af659514540f195",
-      "checklist.md": "cbcfe5d5cd6cd0356f0dea6460668a27758e2b898eeab6e9158784ddaf7aa856",
       "implementation-summary.md": "d2e8039d319e411f7327d3400e7fcdbb8541688cd56f407d910d9ee6ae1add01",
       "research/research.md": "5eee90d97e3982ea01911403698ead6d9891307765966b33401388594a1dddd7"
     },

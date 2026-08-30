@@ -3,7 +3,6 @@
   "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/001-append-gateway-and-projection",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -19,8 +18,6 @@
       "legacy projection plan",
       "append gateway tasks",
       "reader contract tasks",
-      "append gateway checklist",
-      "reader contract verification",
       "append gateway implementation summary",
       "gateway build result"
     ],
@@ -36,23 +33,21 @@
       "tasks",
       "reader",
       "contract",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/cutover-binding/resolve-cutover-binding.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-ledger-writer.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-engine.ts",
       "scratch/suite-baseline-and-delta.md",
       "scratch/unroutable-mode.md",
-      ".opencode/package.json",
-      "scratch/envelope-refusal-nc.md"
+      ".opencode/package.json"
     ],
     "entities": [
       {
@@ -71,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -119,12 +108,6 @@
         "name": "package.json",
         "kind": "config",
         "path": ".opencode/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "envelope-refusal-nc.md",
-        "kind": "doc",
-        "path": "scratch/envelope-refusal-nc.md",
         "source": "derived"
       },
       {
@@ -198,26 +181,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The authority selector is defined as \"the one route decision a mode adapter would consult at its canonical",
     "created_at": "2026-08-19T06:57:07.715Z",
-    "last_save_at": "2026-08-29T13:09:56.765Z",
+    "last_save_at": "2026-08-30T15:39:22.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94a4d451d4b2ecadf8fefb7dccb52f40dbdfbb3f6708ce2588a4a629d891e6cc",
+    "source_fingerprint": "sha256:a67213c14164be4a4389ac4681d2db6e9eaf40a18c4222ba702e9e3faab8dc53",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f86512e47845337641e3561c4ae46b26ed6ec61a617c51b14b464b3832170bb4",
       "plan.md": "264a726d33d330621ef45f754af5b0e64d307faba44090e79349d041705e5992",
       "tasks.md": "8d73457ac11c03648c3d06846d08b354d263feb48563bd35e159529b29b7b617",
-      "checklist.md": "5e5948274a62bcc418128ab02099e32ac7afb620d53f38457d06870fbb99dbbb",
       "implementation-summary.md": "7f1001fcbf33bcfe7a80e95fdf1bcba4670422710332607d5515f0e48a2e4937"
     },
     "last_active_child_id": null,

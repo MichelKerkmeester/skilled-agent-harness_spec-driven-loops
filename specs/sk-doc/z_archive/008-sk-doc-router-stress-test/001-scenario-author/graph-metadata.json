@@ -37,19 +37,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,15 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -187,11 +180,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc has a smart router with 11 distinct intents but NO test playbook to verify router behavior across model interpretations",
     "created_at": "2026-05-05T10:27:19Z",
-    "last_save_at": "2026-07-09T10:02:44.911Z",
+    "last_save_at": "2026-08-30T15:39:18.329Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -201,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:375cbfa56de2c0b97adbdd1a88dcb5dc43546b82138bfdf23a16a37534920ecb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4a1879991a12c20773c4f3522632b592698cf891d6c55fef9f37082e17b70eb3",
       "plan.md": "7ace970922a4b3501c16e67e36b84d7e85621b35bd921a8d60c905ac5a69a928",

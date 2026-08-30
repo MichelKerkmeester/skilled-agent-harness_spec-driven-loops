@@ -42,28 +42,16 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
-      "scratch/test-embeddinggemma.mjs",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/test-embeddinggemma.mjs"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "test-embeddinggemma.mjs",
-        "kind": "file",
-        "path": "scratch/test-embeddinggemma.mjs",
         "source": "derived"
       },
       {
@@ -76,6 +64,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-embeddinggemma.mjs",
+        "kind": "file",
+        "path": "scratch/test-embeddinggemma.mjs",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "HF cache was empty (48KB) post-reboot",
     "created_at": "2026-05-12T16:27:48Z",
-    "last_save_at": "2026-07-17T17:19:17.882Z",
+    "last_save_at": "2026-08-30T15:39:29.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:104376502380418ac81733e22d8a46cf6cbb9c28d4730743b57d3e12b1f2a14d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d5195c83cc2b19c294f352092439ee32c4ea3d9459802fc8c26827efa8ac5ce4",
       "plan.md": "ce77ec71529a9943c78f80bdfa9a2b4ee1a6f5e0040fba811d5a68d27b64a7d3",

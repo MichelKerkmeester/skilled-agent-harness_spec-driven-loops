@@ -43,8 +43,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -172,43 +165,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Remaining Items",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Need Separate Fix",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "id: 018-comprehensive-bug-fix",
     "created_at": "2026-04-12T09:02:53.522Z",
-    "last_save_at": "2026-07-10T06:23:41.927Z",
+    "last_save_at": "2026-08-30T15:39:37.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:7a25aba17c5e9cc72151b15efb29240c50135a50c7def81f3747ddd00746d4e0",
+    "source_fingerprint": "sha256:3247c2df90fe33df547354d38e151bef7ebea937f6a9c84fec8b372737fd25e0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dcc1d24316b0ab013a1ccb00e36ba1588169741d88cf3d17ebc0213271895852",
       "plan.md": "fe52d992898385c68e5543b5bd6a60eed3c8053977235a4f49731911c20696f3",
-      "tasks.md": "b4213aa3107ee1b69386e5275d4d536558d009f85bd2c5c24fb1f2ccafc0225d",
-      "checklist.md": "7e8b4b48b1a91b9a19fc4b7bb4355874daeec4f1871542e9a0db0b0a8c92ec21"
+      "tasks.md": "b4213aa3107ee1b69386e5275d4d536558d009f85bd2c5c24fb1f2ccafc0225d"
     },
     "last_active_child_id": null,
     "last_active_at": null

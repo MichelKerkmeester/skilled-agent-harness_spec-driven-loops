@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1215-1218`) returns `status: 'complete'` whenever `implementation-summary.md` exists and `checklist.md` does not, regardless of whether the doc is a real completed summary or an unfilled Level-1 scaffold",
     "created_at": "2026-07-02T03:22:45Z",
-    "last_save_at": "2026-08-29T15:22:23.745Z",
+    "last_save_at": "2026-08-30T15:39:36.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9b1079c9d0e923182978a58ee4a2c1fb986d5a09815d899d78aa76bf8458873d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca4ba46964aba9ca9186b6ab1c60f58d4a162aa16d3762e899ee0e1ff9f5149e",
       "plan.md": "47c86e8b9e8d5e9111eff07903461444bfa729d1f688a183bba05ea667cb2d74",

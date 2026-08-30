@@ -3,7 +3,6 @@
   "packet_id": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile",
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -36,12 +35,11 @@
       "manifest"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/.gitignore",
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,37 +176,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Checked completion items across the 013 migration program cite evidence that cannot be reproduced",
     "created_at": "2026-07-30T19:43:41.044Z",
-    "last_save_at": "2026-08-29T15:22:07.237Z",
+    "last_save_at": "2026-08-30T15:39:21.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:943d93866ee496b814487f9f6f3e81144d768490ed67d1d6a918184d80cf4953",
+    "source_fingerprint": "sha256:3e6889d1de05b0c5bb6461256dced27a3a90fadba287a9d693a76e54982748b5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "81039272af872dcecbfe4a2371e0c6f4b8b39b89777de91c99ff44874092d35c",
       "plan.md": "2e452af4cf5d776bcb529a37e232b402567dbfbf152e61b36dd64bf3ca68994a",
       "tasks.md": "87b2ed184d2ecd76f9671a8f520785ce86ecc324a680f0a71ed7b5b5b8cd79ba",
-      "checklist.md": "0eac9e6246783d6f93f0454ef93bc103075d635bd0437ddcc14fdd1edda44f2e",
       "decision-record.md": "90d0ff65da22c3bf8a6455dd37fef8a3d59b7ad83bca8884b0f9605b9e2b8256",
       "implementation-summary.md": "527a5d5d052fafcc9fc339f8ab00e6cc8f1b21e80b6799a2d76c72c64632ea6f"
     },

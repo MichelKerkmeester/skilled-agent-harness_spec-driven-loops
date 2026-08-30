@@ -22,7 +22,7 @@
       "plan",
       "migration",
       "tasks",
-      "verification"
+      "opencode"
     ],
     "key_topics": [
       "memory",
@@ -35,7 +35,7 @@
       "plan",
       "migration",
       "tasks",
-      "verification",
+      "opencode",
       "semantic"
     ],
     "importance_tier": "important",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "research/research.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Plugin Memory Database Access",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Document",
+        "kind": "proper_noun",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The semantic memory plugin fails to load memories into the AI context dashboard, showing \"Loaded 0 memories for dashboard\" despite 66+ memories existing in the database",
     "created_at": "2026-04-12T09:02:53.520Z",
-    "last_save_at": "2026-07-10T06:23:17.781Z",
+    "last_save_at": "2026-08-30T15:39:37.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2c32e9cd5a0dddd6b45636ec30654a938edd125188ae7ebbcf9a88b387b212c1",
+    "source_fingerprint": "sha256:d5f9745b6be62cea755ac3381466ddd9c4e257498e114e7052f8c1fd7e1475a5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ff57c2a74ed5ffecb94aff8c5c2e5b09cb4adcda35dce39efee6911e66428d1e",
       "plan.md": "e197cd4bae90d9c1ae1872ad2c0b416a7ebf45f6ed80c5cafc5371fcbc1d9bf9",
       "tasks.md": "b35010c770c6a53e5901a0dc9b0181487c4b4cc55a94adad864a392cf0ff497d",
-      "checklist.md": "e9cf24e999606f76eb590a99972e626ee2d4ccd2d47cad44aa4481c810118e03",
       "research/research.md": "d200533c36a85925c9aa46595c7a80e6378d255064aa0c6bc30903792883fdaf"
     },
     "last_active_child_id": null,

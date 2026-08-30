@@ -17,6 +17,10 @@
       "hub integration plan",
       "mode registry entry design",
       "hub integration tasks",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
       "mcp-magicpath hub routing shipped",
       "code-mode-cli backend"
     ],
@@ -40,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mode-registry.json",
       ".opencode/skills/mcp-tooling/hub-router.json",
@@ -68,6 +73,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -189,26 +200,22 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A packet nothing routes to is a document, not a capability",
     "created_at": "2026-08-29T11:35:16.848Z",
-    "last_save_at": "2026-08-29T17:24:31.578Z",
+    "last_save_at": "2026-08-30T15:39:10.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b75d1f823443faff92d30f16cc814a03476b7bf2c99ff21d43a744c921cdea9",
+    "source_fingerprint": "sha256:99de5ad6334334676e0c5221ad2b931bdce3b92a146e818f61e7208de18be1d6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "290d25928f086429410cb83f1a9d83b3dd0be0c678bd42a16f3a7ed0e7cf7af1",
       "plan.md": "a0414a04186438dbb9ecff36eb4040dd65663138f431d6d354633e3bf07daebe",

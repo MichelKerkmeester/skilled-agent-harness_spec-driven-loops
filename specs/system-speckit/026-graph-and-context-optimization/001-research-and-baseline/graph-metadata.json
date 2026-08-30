@@ -53,6 +53,7 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "resource-map.md",
       "002-codesight/description.json",
       "003-contextador/CONTEXT.md",
       "001-claude-optimization-settings/spec.md",
@@ -60,14 +61,19 @@
       "003-contextador/spec.md",
       "004-graphify/spec.md",
       "005-claudest/spec.md",
-      "006-research-memory-redundancy/spec.md",
-      "resource-map.md"
+      "006-research-memory-redundancy/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -80,12 +86,6 @@
         "name": "CONTEXT.md",
         "kind": "doc",
         "path": "003-contextador/CONTEXT.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -163,7 +163,7 @@
     ],
     "causal_summary": "The parent folder held the authoritative research deliverables for the graph-and-context optimization program, but it had no root Level 3 packet tying those deliverables into a formal requirements set, decision record, execution plan, or verification contract",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-08-28T22:55:36.719Z",
+    "last_save_at": "2026-08-30T15:39:29.105Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,6 +171,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:6586bc094810ab78d04430177fb02b1fc1beb63ae372a83f1dab8b351ce33167",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11740d1beb290f516a0f723ccf8feb6093a93ecb6a48b0389d3002c5592ec4d8",
       "resource-map.md": "47db0e290105977a356fe1e4bc3ef1a53b537baa1298cab07a55af2c41af52fc"

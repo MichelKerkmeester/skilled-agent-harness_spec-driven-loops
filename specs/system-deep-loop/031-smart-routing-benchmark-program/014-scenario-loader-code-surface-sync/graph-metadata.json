@@ -20,9 +20,9 @@
       "scenario loader code surface tasks",
       "code surface path parse tasks",
       "load playbook code prefix tasks",
-      "scenario loader code surface checklist",
-      "code surface path parse checklist",
-      "load playbook code prefix verification"
+      "scenario loader code surface summary",
+      "code surface path parse summary",
+      "load playbook code prefix summary"
     ],
     "key_topics": [
       "scenario",
@@ -44,12 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/spec.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/plan.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/tasks.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/checklist.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/implementation-summary.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/description.json",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/graph-metadata.json"
@@ -71,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes",
     "created_at": "2026-07-05T18:53:23.765Z",
-    "last_save_at": "2026-08-29T15:22:06.408Z",
+    "last_save_at": "2026-08-30T15:39:20.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57cdd4a23b709ddcc849976c4f0344961c0725e0b828a5278eb1ed24db4d6fd4",
+    "source_fingerprint": "sha256:ac6b31380553b0a8ff751c6b660e2ebe66641a7662c76f7ca0f806d960204022",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e2ec948a4218de71b33466ad4297efe7eb04e836ae3364def2b19d90096ef6c9",
       "plan.md": "434e8e710f0498ac492828e4bdc8fde3453bcca1cf711c1b872773d101b7479f",
       "tasks.md": "589566d66c9476cfaf62bac3242d9bf25b4e9d25e5b5d62031df4026879b5a7b",
-      "checklist.md": "a812cba14d5c8487051c142741e0b025fc4f654d5191aa8c687ba2b87401d833",
       "implementation-summary.md": "b254590715d1b653d6bb3c21e04debf2f1654cef0554f4b8afd8600e178c56d5"
     },
     "last_active_child_id": null,

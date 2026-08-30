@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Arc 008 was scoped around deduplication — ship one shared cross-encoder sidecar so both spec-memory and cocoindex stop bundling independent Qwen instances",
     "created_at": "2026-05-23T11:55:15.616Z",
-    "last_save_at": "2026-07-17T17:19:26.764Z",
+    "last_save_at": "2026-08-30T15:39:31.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8c4b810912cc9d3a217d3479e41076ee216054b1d3dcfdb2d64e7e53df229f7a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d46f066e06bca90b2f550898f80c3d35d640a710f16db589deb783453f86919",
       "plan.md": "184e03384bd1ea30704b9cd32e9330b34367cd506e708be4e9776d1c2c86243f",

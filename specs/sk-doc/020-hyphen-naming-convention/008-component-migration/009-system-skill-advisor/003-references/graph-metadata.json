@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The references tree contains 15 Markdown files with snakecase names across config/, decisions/, graph/, hooks/,",
     "created_at": "2026-07-14T15:18:08Z",
-    "last_save_at": "2026-08-30T07:19:49.426Z",
+    "last_save_at": "2026-08-30T15:39:16.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,7 +196,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:cfda09ad4e4aca713b9685181bf79a45ebda8124a8b720793932d99611ba5eb5",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0ee1bd2453794bd15985831beb6b9bb14aa6550f884b26c161458be249b0e226",
       "plan.md": "193f628618cfcf4a2047fb67973066b1a8af07173753feff499104f1e82d5f08",

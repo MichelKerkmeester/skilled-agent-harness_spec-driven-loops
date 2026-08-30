@@ -178,7 +178,7 @@
     ],
     "causal_summary": "`sk-code-obsidian/` exists only as a `.gitkeep`",
     "created_at": "2026-08-28T18:17:37Z",
-    "last_save_at": "2026-08-29T15:21:57.173Z",
+    "last_save_at": "2026-08-30T15:39:11.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,11 +187,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:562d7895dc045c2180791469618052cc477bee103061e1b50842f5effa98bb94",
+    "source_fingerprint": "sha256:a6e564f610ae8a86fb36d0d16e6655e0d0c574dceef7c9f42464d03ed14ee547",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ffedbd3e7340403366c54d5060873f86c3fcc44d427d443bc46a6bafe392b5cc",
-      "plan.md": "84ca24560ab20a6ec764e3d58b190c49bb5a06a10d3ef25f6be39c044ac06c43",
-      "tasks.md": "76a9e2d51bffbffbfe943919ccd171a37cee11696ec7d1b9672e21ac22793793",
+      "spec.md": "de3b313e534d72c9834024ca84b7ea1353dee4509d326b46a93e4f909f227945",
+      "plan.md": "8455bb1d41a7fa9a3832de9a270408bbb141970656ad54ae7b63992ec900afd6",
+      "tasks.md": "836e8d51f438360ffe70bfd40291b041043973d0adef6ea3abc31a879b0503b9",
       "implementation-summary.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "last_active_child_id": null,

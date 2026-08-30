@@ -34,7 +34,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research.md",
       "luna-raw-findings.txt"
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -167,43 +160,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Check",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built Two",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SR-004",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Take sk-design to PASS by loading exactly the resources each scenario expects, moving no other scenario",
     "created_at": "2026-07-29T06:29:16.120Z",
-    "last_save_at": "2026-08-29T13:10:18.702Z",
+    "last_save_at": "2026-08-30T15:39:15.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:6c2f9b5e8dd089fde19df0966f73c33dc0cad95f0b065e2adfde497eecee2f20",
+    "source_fingerprint": "sha256:986e890c06e4963b657fb8956d39978741f80369df86b1c97623a04b64f966d1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6afac738abd6ffcbeeddef0b12a0be70416ffe17184a931c2874a414be20c852",
       "plan.md": "c0bd733b279c02660ac6908021859d3b9484684ba015312a1dbe9c1d27a8746e",
       "tasks.md": "fc7b9c14628bff65365ad9d30849f10af7993a73dbfa1a0f0744aed591a92e35",
-      "checklist.md": "9a93c6a15c6f843f0169e02df6fd4de37d74e9b7266818d77a4af98c9da7f73a",
       "implementation-summary.md": "747beb6c0f0930daac3b50451b7d61f570b2289aaeaba145cbb65b7bc6f07ee0",
       "research.md": "cdf7e1751117cab460f6d09d46c632c5096772332d644335f5db59ec15a48ea9"
     },

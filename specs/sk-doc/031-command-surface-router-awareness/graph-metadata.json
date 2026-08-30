@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/031-command-surface-router-awareness",
+  "spec_folder": "sk-doc/031-command-surface-router-awareness",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command surface router awareness remediation",
+      "root router fleet gate remediation",
+      "router md ci doctor doc gaps",
+      "router awareness remediation plan",
+      "ci fleet gate hardening plan",
+      "router md remediation phases",
+      "router awareness remediation tasks",
+      "router md remediation task list"
+    ],
+    "key_topics": [
+      "command",
+      "surface",
+      "router",
+      "awareness",
+      "remediation",
+      "root",
+      "fleet",
+      "gate",
+      "doctor",
+      "doc",
+      "gaps",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/lineages/dsflashgo/research.md",
+      ".github/workflows/routing-registry-drift.yml",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/doctor/assets/doctor-parent-skill.yaml",
+      ".codex/agents/markdown.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
+        "source": "derived"
+      },
+      {
+        "name": "ci-skill-root-metadata.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-parent-skill.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-parent-skill.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.toml",
+        "kind": "file",
+        "path": ".codex/agents/markdown.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Root",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Awareness Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remediation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an RRC",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root `ROUTER.md` parent-skill standard is functionally live: all seven class-H hubs carry a conformant `routerstate: active` root `ROUTER.md`, the create-skill commands scaffold it, and `initskill.py` writes it",
+    "created_at": "2026-08-30T15:39:18.108Z",
+    "last_save_at": "2026-08-30T15:39:18.108Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:52e019097b6ea5166bf8a5f3ed27b1a2516a387ca13b65345a8a3a2d64cee584",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "72de287fd38905816c7c45ca303274f4c70e19c66c5cdbccaea0ac92356d906d",
+      "plan.md": "ec8a931cc6dbe578206d747f4e9a8c9ab8004dc441b0a3c6bf8ada2b614491d0",
+      "tasks.md": "31d2fc2d454001882b3a61b1b150db1e5bb100a385ee1122a5ca8f6ab4663365"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

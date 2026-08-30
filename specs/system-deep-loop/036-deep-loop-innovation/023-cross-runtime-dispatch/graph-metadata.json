@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/commands/deep/review.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
@@ -61,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,26 +181,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every deep/ command (`review`, `research`, `ai-council`, `alignment`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `command-benchmark`) and `prompt/improve` opened with a Phase-0 dispatch-context gate",
     "created_at": "2026-08-27T05:27:55.303Z",
-    "last_save_at": "2026-08-29T14:54:11.441Z",
+    "last_save_at": "2026-08-30T15:39:22.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd83ad3a4c958c9aaa1a3c77d592228627a5ba5b55a5385115513762babfe764",
+    "source_fingerprint": "sha256:c9bddb1beabd77030b3508bd65b978f8ea6562a47eacdd54e1f49a52317a33a0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6279398c270dd3817293f7df2ceaad152f2a6251117431cee5e44fe481610abe",
       "plan.md": "353f9e2831d284be7f9233c5d71417ed08fc36f41f06c55a159d7089dab2610e",
       "tasks.md": "59565372d8577f4182bf598d7c4608d87baecb7c1e8135f7aaac61aae525a6ce",
-      "checklist.md": "f17cf36b52eb02d53c2472caec1d75122c16f4576e4a4f612886d843f75678b3",
       "implementation-summary.md": "b96f4c5322b4698bc41963e6920bcdfb357e425d61873c7919090827bdcefaa6"
     },
     "last_active_child_id": null,

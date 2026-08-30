@@ -39,33 +39,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
-      ".opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md",
-      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md"
     ],
     "entities": [
-      {
-        "name": "feature-flags.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
-        "source": "derived"
-      },
-      {
-        "name": "benchmark-status.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -79,15 +60,27 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "feature-flags.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-status.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/benchmark-status.md",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Four false-now surfaces could mislead readers about current packet 028 behavior: a stale retention flag suffix, an earlier Track-C proposed-only snapshot, a soft-delete recall-filter contradiction, and a stale envelope-fidelity default comment",
     "created_at": "2026-07-05T08:50:45.332Z",
-    "last_save_at": "2026-07-17T17:19:55.050Z",
+    "last_save_at": "2026-08-30T15:39:36.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:33be892b9f9f036b635117c568ac3625f11ec5f0d8a8ec53f727f09627d5c0e6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbfaf0f56811a81f9e17b9139fc27b5c3cdf490bc3506ae369eebe9f538564e7",
       "plan.md": "92490add602f9b38c90f723a9fb2d4bd0f05e18e23ea1371d2377cc04de71115",

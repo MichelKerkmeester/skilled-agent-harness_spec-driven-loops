@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `system-deep-loop` runtime (CLIs, fan-out executors, ledger/gateway/cutover logic) had no code-targeted deep-review since the 036 innovation packet's implementation phases landed",
     "created_at": "2026-08-13T05:43:08.924Z",
-    "last_save_at": "2026-08-29T15:22:08.003Z",
+    "last_save_at": "2026-08-30T15:39:22.042Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:16ce1a34697011b2bd74ff7fc4b8a4c4259a6dd29b7db23f3eb7ebc517a8ca4c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d266e24d337dc8704ed59ac37193b0055365164ee96557b87072a73afa3042d",
       "plan.md": "49bef585f9244874986c1b09d256e624a5190fa320febcd45ec033b8aa7403de",

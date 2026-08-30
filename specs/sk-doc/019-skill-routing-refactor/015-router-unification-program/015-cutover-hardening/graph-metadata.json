@@ -17,7 +17,6 @@
       "serving flip lock recovery",
       "cutover hardening plan",
       "cutover hardening tasks",
-      "cutover hardening checklist",
       "cutover hardening implementation summary",
       "frozen scorer contract module"
     ],
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -61,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -172,42 +164,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "How It Was Delivered All",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "See Verification",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A 10-iteration `/deep:review` of the P4b compiled-routing cutover (the runtime engine `014-runtime-engine`, the activation layer `013-live-activation`, and the regression harness added in the same review cycle) returned CONDITIONAL: 0 P0, 7 P1, 2 P2",
     "created_at": "2026-07-20T05:26:38.974Z",
-    "last_save_at": "2026-08-29T13:10:18.123Z",
+    "last_save_at": "2026-08-30T15:39:15.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca1a8ef3df16e4628a958957c0c4ecd7bb157df7fed13b119a2a87b06e4dec98",
+    "source_fingerprint": "sha256:1df9cbda7836a5e42ae6a3d6108c128fc9730d9362fd9d5a44f8c28d84d7ecda",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "323c6f287052c67972bfad8a356dc098e07369c9bed0b63447b54a3b70ee6a26",
       "plan.md": "40105389f2f7ce45efb4ea1e4e117aab720e573b534ab61a7d7437648b0bcb84",
       "tasks.md": "8cade41e423c99876f6ee655487d78a7334819e0b2b73ea97229c1bfc9843801",
-      "checklist.md": "003ef5a41a02e837790656d88cf781607332443c88fa4084755dcced0dfc4360",
       "implementation-summary.md": "8c58f6bdebadfc9e949631f12db4e56713f7712b7ed1862964ca1c1633792564"
     },
     "last_active_child_id": null,

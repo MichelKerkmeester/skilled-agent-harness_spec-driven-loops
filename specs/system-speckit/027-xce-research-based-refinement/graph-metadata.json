@@ -171,7 +171,7 @@
     ],
     "causal_summary": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback, skill-advisor and code-graph hardening, shared CLI/infrastructure layers, and verify-first remediation",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-08-29T15:22:18.580Z",
+    "last_save_at": "2026-08-30T15:39:32.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [
@@ -179,6 +179,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:42daa9e28fcf10f212a804fb3854279239d3fc3dbc5aad1aa8165ae64435fba5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d058ac78baa490e078bdd52d6241bcab7dbc35b3e87ea985554106417f7d84ef",
       "research/research.md": "6f9625aba20de941da54e21e48ef99bd1d07dbf74cfeb52746d2e1ca3d91002f"

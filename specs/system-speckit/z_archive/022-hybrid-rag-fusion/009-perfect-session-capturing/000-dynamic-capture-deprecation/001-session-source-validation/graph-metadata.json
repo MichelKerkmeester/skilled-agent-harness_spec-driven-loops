@@ -21,8 +21,8 @@
       "session",
       "plan",
       "tasks",
-      "rid",
-      "checklist"
+      "implementation",
+      "summary"
     ],
     "key_topics": [
       "hybrid",
@@ -33,8 +33,8 @@
       "session",
       "plan",
       "tasks",
-      "rid",
-      "checklist",
+      "implementation",
+      "summary",
       "transcript",
       "selection"
     ],
@@ -42,22 +42,39 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/loaders/data-loader.ts",
       "scripts/memory/validate-memory-quality.ts",
       "scripts/extractors/quality-scorer.ts",
       "scripts/core/quality-scorer.ts",
       "scripts/core/workflow.ts",
-      "scripts/extractors/collect-session-data.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "scripts/extractors/collect-session-data.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -88,30 +105,6 @@
         "name": "collect-session-data.ts",
         "kind": "code",
         "path": "scripts/extractors/collect-session-data.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,27 +190,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Transcript selection uses filesystem `mtime` as a proxy for \"current session.\" Any touch on an older transcript makes it outrank the active session",
     "created_at": "2026-04-12T09:02:50.264Z",
-    "last_save_at": "2026-07-10T06:24:45.432Z",
+    "last_save_at": "2026-08-30T15:39:38.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a8cf9a49421edf699cc939151218e44ef9a55aec446ee44c3d88c0f911e1689",
+    "source_fingerprint": "sha256:34192aa914d8eed5f32381040ba5016d99e5eccfb21b5a92bcfedbbeb59b88a4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6946502dcfc27d6c34fea80e8648623a1af91a85eda5d9f4ea86fb7203712e0",
-      "plan.md": "2db19c20820a9d21d8c54a5a9c4178a933b7563e069ebb2feca23072208d9a37",
-      "tasks.md": "ba3a31e9e9a66a6ead3330ce9f0b05c3630090d17855a685e761844d23a92f9a",
-      "checklist.md": "ef2aeb99a010b625dfcee64750479fa5d20875f2254197389e5039d40e01423e",
-      "implementation-summary.md": "42082639825a5dba355613b13a7d86e7461cfbbdac1a518e411b6823bb12d79f"
+      "spec.md": "339e024ca6b333784f5fe4c2fad38c65e239f7eae69f0855b6f53c2b8ae36a07",
+      "plan.md": "16f44bd48be019e07681cb6e5b4271c0516cab7a95959f7ea4f920d3c4795fff",
+      "tasks.md": "5fb19f58a6d20d7ec74bb5663b28a34d750250fc4c799dd6680a2e516eb47f09",
+      "implementation-summary.md": "fecf12d3c451c9a71daa4326dce3afe2f91ebe9787bb3a58c31ae4f9b468bdb7"
     },
     "last_active_child_id": null,
     "last_active_at": null

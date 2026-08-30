@@ -36,33 +36,12 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-command/SKILL.md",
-      ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
-      ".opencode/skills/sk-doc/create-command/assets/command_template.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-command/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "command_router_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "command_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-command/assets/command_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +167,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Define a versioned, machine-readable command contract as the single source of behavioral truth for the six command families. Populate topology, input and gate owner, execution targets, mode matrix, owned assets, loader requirements, presentation ownership with typed exceptions, destructive policy, timeout bounds, and runtime invocation aliases; align both templates and the skill to consume it; and resolve the required-input contradiction and stale template references.",
     "created_at": "2026-07-16T07:51:58.533Z",
-    "last_save_at": "2026-07-16T16:34:19.900Z",
+    "last_save_at": "2026-08-30T15:39:20.329Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:093dd0a665f0b6470a1f9f2074ae85752766d5b2c24778b9e80ccea7c084bf77",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8bd2bd96c2518fd819b000daef977faa518d4b12bd53b02024cb06b19212f7da",
       "plan.md": "dfe58b8dd7bf940c1f124a16fc532e90892af52f7ba6ea762afdd7a9d630a9d1",

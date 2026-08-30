@@ -18,8 +18,6 @@
       "drop deepseek api pro terra plan",
       "opencode-go default deepseek flash plan",
       "tasks",
-      "verification",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -37,12 +35,11 @@
       "default"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -70,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +188,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The operator retired three dispatch targets:",
     "created_at": "2026-08-29T10:34:45.843Z",
-    "last_save_at": "2026-08-29T14:54:25.457Z",
+    "last_save_at": "2026-08-30T15:39:08.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86722595742d660fe49e15043000a087b11e6ce4aa0885cf060c6500296dd626",
+    "source_fingerprint": "sha256:b56e44d4c4355c876cf16a0620c1ccedf7505f2c72b266962adfcbb5c7473651",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a8161cd9fefbde1d24d999b82065cb011b72fb38223b4a3228b72279bd5a1cf2",
       "plan.md": "22dda96a566505fb452d7fe062ee5ae634a2f0c82cef6abe9cf1260c174faa54",
       "tasks.md": "366aba175f7e6a5e9cad4d3892f4a8cf2ee36360cbe76d6872a723e66b3406f8",
-      "checklist.md": "caf032ae78e3194372e139d9f13002389234d377c298e178cc553edba8bb8765",
       "implementation-summary.md": "9ea7ef070f939784396472d64d4e8e3fbfbc652e0e2901ddb543fe6557212c38"
     },
     "last_active_child_id": null,

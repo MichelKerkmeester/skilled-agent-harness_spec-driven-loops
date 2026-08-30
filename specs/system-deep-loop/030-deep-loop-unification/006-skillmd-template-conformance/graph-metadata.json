@@ -16,7 +16,6 @@
       "sk-doc create-skill compliance sweep",
       "deep loop skillmd conformance plan",
       "deep loop skillmd conformance tasks",
-      "deep loop skillmd conformance checklist",
       "deep loop skillmd conformance implementation summary",
       "system-deep-loop skill audit complete"
     ],
@@ -37,22 +36,43 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md",
-      ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/profile-resolve.cjs",
-      "spec.md",
-      "implementation-summary.md",
-      "checklist.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/profile-resolve.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -66,51 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "skill_md_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill_md_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent_skill_hub_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md",
-        "source": "derived"
-      },
-      {
         "name": "profile-resolve.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/lib/profile-resolve.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -196,26 +174,43 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Following the deep-loop-workflows + deep-loop-runtime merge into `system-deep-loop` (phases 001-005 of this parent packet), no pass had specifically verified that every SKILL.md under the new `system-deep-loop` tree (the hub itself, plus its 4 workflow packets — `deep-research`, `deep-review`, `deep-improvement`, `deep-ai-council`) actually conforms to the canonical templates defined in `sk-doc`'s `create-skill` module (`skillmdtemplate.md` for leaf/packet skills, `parentskillhubtemplate.md` for the two-axis hub)",
     "created_at": "2026-07-08T16:18:08.385Z",
-    "last_save_at": "2026-07-16T16:33:08.558Z",
+    "last_save_at": "2026-08-30T15:39:19.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:246400271f8294188c3658f859aca7d3470399dc78ea06422b51d30f470dab96",
+    "source_fingerprint": "sha256:435691db465e6c6b4b53812426c442cf70a4e1c8d6e391045a8c7c4c349c7344",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0bd1b2be7bee7f04da169fdd119a44c0f5268f797950d9746278c7eb9e7db14f",
       "plan.md": "dc9eb7b30a27786f8dd7b3506845256b6c9831f9ad134361070dc63f2bc3f118",
       "tasks.md": "21967997aaaab77248100de547f26f0a04762fcc3a31a4bbc053567c3a41c2a6",
-      "checklist.md": "0b594b9543a36250125591b1dc913cedf24601ed9ad2fc82ba9df6877bc8d958",
       "implementation-summary.md": "a0ef926654c6b3d0c0e5f0151ae92fec810a428f92008c064a1fa85c68726729"
     },
     "last_active_child_id": null,

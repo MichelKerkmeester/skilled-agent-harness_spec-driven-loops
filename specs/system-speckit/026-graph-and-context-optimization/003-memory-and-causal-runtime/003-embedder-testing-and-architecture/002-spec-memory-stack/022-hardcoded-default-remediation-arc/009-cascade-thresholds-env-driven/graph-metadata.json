@@ -27,7 +27,6 @@
       "022/009 cascade env vars",
       "022/009 plan",
       "022/009 tasks",
-      "022/009 checklist",
       "022/009 shipped"
     ],
     "key_topics": [
@@ -36,13 +35,13 @@
       "vars",
       "plan",
       "tasks",
-      "checklist",
       "shipped",
       "inline",
       "cascade-probe",
       "timing",
       "constants",
-      "auto-select"
+      "auto-select",
+      "now"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -50,7 +49,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts"
     ],
@@ -71,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +190,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "3 inline cascade-probe timing constants in auto-select.ts (DEFAULT_TIMEOUT_MS=2500, DEFAULT_LOCK_STALE_MS=30000, DEFAULT_SLEEP_MS=25) now accept env-var overrides via SPECKIT_CASCADE_PROBE_TIMEOUT_MS / _LOCK_STALE_MS / _SLEEP_MS. Closes 1 P1 multi-site finding.",
     "created_at": "2026-05-23T17:55:00.000000Z",
-    "last_save_at": "2026-08-29T13:10:01.067Z",
+    "last_save_at": "2026-08-30T15:39:30.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f70e669f2d9cb4713b1387b7d50739fe7c36c76e4237f0650d227fd11f3d379",
+    "source_fingerprint": "sha256:fd92ce6a1e8fbcb8e5a1f9b0a4c70823118d2c3716f2fdcc21eaec3c99bf41e8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "280014e435b1fea42ade08ebfd591966edd71dde90da5180d332a8ff47ec4dd7",
       "plan.md": "9a9fc007ac8b723e302ae928d1ab7b7b0b23cc5b943f0277a70f8f48868f40a5",
       "tasks.md": "392bc7ce4ac9325fc7657ecf672458bb0ec57f95988012833117a8b1f0429287",
-      "checklist.md": "8abf6f6ed153b3ae0672d0878433d9cdce331c8fe0fc6811cca9b6f222fb1079",
       "implementation-summary.md": "d1c92ac28cb8ff924f6da2039873fd6ac2740bdc5ceca212b9b5b64088b695d7"
     },
     "last_active_child_id": null,

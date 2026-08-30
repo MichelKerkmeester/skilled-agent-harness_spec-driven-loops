@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`HfLocalProvider` (TS, transformers.js-backed) and `cocoindexcode/shared.py` both hardcode prefix conventions for ONE model family (Nomic)",
     "created_at": "2026-05-12T16:27:47Z",
-    "last_save_at": "2026-08-29T15:22:13.876Z",
+    "last_save_at": "2026-08-30T15:39:29.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2f492ed90c2eba1701f02e4f1c069263855119e426d2c8252595e686e1e7c52f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4093745f02b05f632c4aa5d87f3660fab880339b154c5faa87525be44debd44b",
       "plan.md": "28e14ab63e72309dbff60793bb9956c782a13c60fd2a80ba5e3cf75906658634",

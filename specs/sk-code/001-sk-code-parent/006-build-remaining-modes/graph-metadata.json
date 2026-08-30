@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/code-quality/SKILL.md",
-      ".opencode/skills/sk-code/code-quality/README.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-quality/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-quality/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -192,11 +178,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The hub is routing-only and the surface detection lives in `shared/`, but the four non-review mode packets were still 57-line placeholders",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:44.133Z",
+    "last_save_at": "2026-08-30T15:39:10.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:25b9e369c10df0e29b6366841998b4dcd6be1bfe706f9424082ca72b52984285",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c5d098f278d2d176683470b299eaaa7cce4cb6067d394acd361edebc4e5449e",
       "plan.md": "6e367c977fa7110347714d73c24ea925bffd1e36a1ca47f7e2147115cafa4e5a",

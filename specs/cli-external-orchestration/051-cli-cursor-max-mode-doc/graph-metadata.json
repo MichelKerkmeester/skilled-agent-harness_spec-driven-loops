@@ -162,7 +162,7 @@
     ],
     "causal_summary": "A request to define \"Composer 2.5 Max Mode\" in the cli-cursor model roster surfaced a documentation gap",
     "created_at": "2026-08-19T19:18:37.096Z",
-    "last_save_at": "2026-08-29T14:54:25.029Z",
+    "last_save_at": "2026-08-30T15:39:08.194Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -172,6 +172,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6df106b67fa6227e24201eaaa6a784e6aadb784e10aa25ff90a561df8d388eb8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ce931349c1e8424c1d59fb95798bc01994587c38d06c23ca6a6acd61430112c",
       "plan.md": "6a6a6ee5a227a005846d9ed16949383c73350986a91cd68ea74d4b9aad85a066",

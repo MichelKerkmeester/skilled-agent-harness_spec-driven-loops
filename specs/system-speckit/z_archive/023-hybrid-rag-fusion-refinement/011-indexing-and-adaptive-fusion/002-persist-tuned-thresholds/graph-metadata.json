@@ -42,30 +42,15 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/tests/adaptive-ranking.vitest.ts",
-      "mcp_server/lib/cognitive/adaptive-ranking.ts",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/adaptive-ranking.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cognitive/adaptive-ranking.ts",
         "source": "derived"
       },
       {
@@ -84,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,27 +172,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`tuneAdaptiveThresholdsAfterEvaluation()` in `adaptive-ranking.ts` stores adjusted thresholds (`maxAdaptiveDelta`, `signalWeights`, `minSignalsForPromotion`) in a `WeakMap` keyed by the DB object",
     "created_at": "2026-04-12T09:02:50.330Z",
-    "last_save_at": "2026-07-10T06:22:49.768Z",
+    "last_save_at": "2026-08-30T15:39:39.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1b94b1e68c539212b2ba4b2b192de058ce5db658ae834af44a636bc30e25e97",
+    "source_fingerprint": "sha256:f2edd82b2806a58c1ec3a48844d2150e3d0f109157a7b5a0070628a18eff46d3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eedfe23945a3468b47c9700d16bb3cae544188a16accc99cc54b6beacc4b130b",
-      "plan.md": "47cf2e9bcc8fea981606eba793b82a7c6968e10b4195dd5ae97752a17a4024f8",
-      "tasks.md": "0dd6eb8f1b8db9ce9e47a0a7ded5228733593ad29c772dd1c16305cb19674c56",
-      "checklist.md": "cfb7490d77dd68bee178985d33612ed1131e2568f63ea8039b5fe41dee984fbf",
-      "implementation-summary.md": "eff95fa71fccb85f0f14fd0551d174013dff1950356e54cc8cde3db5da7805d0"
+      "spec.md": "46d0a230407292164aa3374cf215846471b937064706f0af7308b8048ba47426",
+      "plan.md": "70d6c172740442400ff12dfd9652d5df09e89a57e20e0d8aa5c2744b498399af",
+      "tasks.md": "5e6d390f0a03e8c03d16aa7466f9c528a08de0ba3a1a265d6a426d7b0b3cbc9b",
+      "implementation-summary.md": "805a101c87018cd0fed687b6a03f31d7b73110fd171d4af22d5b5b8a2a3bb779"
     },
     "last_active_child_id": null,
     "last_active_at": null

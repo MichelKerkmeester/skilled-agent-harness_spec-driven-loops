@@ -97,13 +97,14 @@
     ],
     "causal_summary": "The fable governor per-turn hook re-states a compact disposition capsule every turn, but AGENTS.md now embeds richer governor and proof-over-appearance logic",
     "created_at": "2026-08-04T08:24:58Z",
-    "last_save_at": "2026-08-11T06:43:21.162Z",
+    "last_save_at": "2026-08-30T15:39:09.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:ebfa99d808053f502bf6485639c1ec2bafc6d82b364df97da9d79422b9c7f363",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "21e671c0eb5ec03607e735981cf332a28d657a0d28a7691b4015c07175be2fbc"
     },

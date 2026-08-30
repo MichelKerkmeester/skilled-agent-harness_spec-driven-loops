@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/006-sk-prompt-models-rename/008-graph-symmetry-cleanup",
-  "spec_folder": "sk-prompt/006-sk-prompt-models-rename/008-graph-symmetry-cleanup",
-  "parent_id": "sk-prompt/006-sk-prompt-models-rename",
+  "packet_id": "sk-prompt/z_archive/006-sk-prompt-models-rename/008-graph-symmetry-cleanup",
+  "spec_folder": "sk-prompt/z_archive/006-sk-prompt-models-rename/008-graph-symmetry-cleanup",
+  "parent_id": "sk-prompt/z_archive/006-sk-prompt-models-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -37,19 +37,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/graph-metadata.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/graph-metadata.json"
     ],
     "entities": [
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -72,6 +66,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`skillgraphcompiler --export-json` fails on 5 symmetry errors: `mcp-figma` and `mcp-open-design` declare `dependson sk-design` and `sibling sk-design`, but `sk-design` lacks the reciprocal `prerequisitefor` + `sibling` edges; and `sk-design` declares `sibling sk-code-review` without the reciprocal",
     "created_at": "2026-06-28T15:46:01.946Z",
-    "last_save_at": "2026-07-15T10:52:34.132Z",
+    "last_save_at": "2026-08-30T15:39:19.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c31607add81f7ca600075bb743f20c398d0809aa16bbebf67c031ac903e5e5f9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7702a1885041cf787ed11aa70a80ee2740c941f1567ba40c4cd275f0970a4d38",
       "plan.md": "941da1cd4e8802717a1a236a1529ca9d6f6503a9f7f4711cea58418a68df3b44",

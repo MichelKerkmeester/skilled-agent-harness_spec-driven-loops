@@ -18,11 +18,10 @@
       "deep-loop focus selection plan",
       "next-focus semantics tasks",
       "deep-loop focus selection tasks",
-      "next-focus semantics checklist",
-      "deep-loop focus selection checklist",
       "next-focus architecture",
       "next-focus selector decision",
-      "next-focus implementation"
+      "next-focus implementation",
+      "next-focus verification"
     ],
     "key_topics": [
       "next-focus",
@@ -36,7 +35,7 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist"
+      "architecture"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts",
@@ -70,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,27 +189,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from ledger-derived novelty signals, then record the selected region and complete decision basis for replay.",
     "created_at": "2026-07-16T03:43:52.164Z",
-    "last_save_at": "2026-08-29T13:09:51.352Z",
+    "last_save_at": "2026-08-30T15:39:20.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a06d74e9ea47a470f720fdef4c060565295ba730adf6e810aac083d9a774071d",
+    "source_fingerprint": "sha256:1d5efaf6110a31f05ca478731fce9f484eafec283727f4fb1a02d291e1492664",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f8f4593edfaba80b0b2f36f368b3c7832f95d5e4254d09ceb93c9067ba6e0bb",
       "plan.md": "c0914a7bac87fee9639c3e082c42c858e7b24d9956be9aa798da3fdfede1a13c",
       "tasks.md": "725bb3ef4d76e87d32257bd019200fa91d029c103dd33bfda818f819cce1b998",
-      "checklist.md": "9e55721c574a811b88734cd611dbbedeaa19d40142920874a82dd57fdc50cb23",
       "decision-record.md": "d78d1a8b30c59aaa03dd8e7e88a1af53bca7734f4d9114dabea4ca8a5f7cf79a",
       "implementation-summary.md": "a313999771f79e37f190d1b9c0cbb57a857aab2bf7f693dce1d5e883f0fedaa0"
     },

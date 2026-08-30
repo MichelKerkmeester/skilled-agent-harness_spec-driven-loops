@@ -43,11 +43,14 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
+      "implementation-summary.md",
+      "commit-standards.md",
+      "derivation-heuristics.md",
+      "hand-sample-validation.md",
       "evidence/sample-20.txt",
       "evidence/sample-packet-id.txt",
       "evidence/sample-coauthor.txt",
       "evidence/sample-merges.txt",
-      "implementation-summary.md",
       ".opencode/skills/sk-git/SKILL.md"
     ],
     "entities": [
@@ -76,6 +79,30 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-standards.md",
+        "kind": "doc",
+        "path": "commit-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "derivation-heuristics.md",
+        "kind": "doc",
+        "path": "derivation-heuristics.md",
+        "source": "derived"
+      },
+      {
+        "name": "hand-sample-validation.md",
+        "kind": "doc",
+        "path": "hand-sample-validation.md",
+        "source": "derived"
+      },
+      {
         "name": "sample-20.txt",
         "kind": "file",
         "path": "evidence/sample-20.txt",
@@ -97,12 +124,6 @@
         "name": "sample-merges.txt",
         "kind": "file",
         "path": "evidence/sample-merges.txt",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -176,29 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "brief",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "date",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repo has standards on paper but no decisions locked in for the cases that actually matter for a retroactive rewrite",
     "created_at": "2026-07-15T04:22:52.593Z",
-    "last_save_at": "2026-07-15T04:22:52.593Z",
+    "last_save_at": "2026-08-30T15:39:18.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +212,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1bbd9cfc4676d434fadabb4446a65eab5a7160d833861c6f39b3fa4bb531aa9b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a0ab1259497eaf4baf9b5bfa9e9e98cb5df99bb74486971accf8f53a1bcec47",
       "plan.md": "4de40175975a5c93132029f139085a7996278898b427215eb41495b12609d1b9",

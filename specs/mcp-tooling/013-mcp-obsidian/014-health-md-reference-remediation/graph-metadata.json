@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The health-md deep research (phase 012, `research/lineages/codex/research.md`, 6 iterations, all questions answered) found the mode's health-md reference set partly accurate but not safe to use unchanged: quick-start examples use the wrong `health-md` fence and invented keys (`type: chart`, `dateRange`), the framing is Apple-only (Android export profiles exist), and the validation path misses the plugin's deterministic bundled mock-data fallback",
     "created_at": "2026-08-03T14:17:59.502Z",
-    "last_save_at": "2026-08-04T12:16:10.098Z",
+    "last_save_at": "2026-08-30T15:39:10.172Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:dec67e9f5213f0f0efb3072978bffb2159b1578670ecd17195800485fa93898a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b4ddd5a014678ab7cccb97863710af943f570e40e860606a796635a061ca2076",
       "plan.md": "22215f7c2d624f6e6d9def78c430f7ef9e8999d947227fb3094ee7a1202b066b",

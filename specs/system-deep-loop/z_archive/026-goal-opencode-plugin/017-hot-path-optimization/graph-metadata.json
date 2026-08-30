@@ -37,34 +37,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-      ".opencode/plugins/tests/mk-goal-state.test.cjs",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
+      "implementation-summary.md",
       "scratch/hot-path-benchmark.mjs"
     ],
     "entities": [
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-lifecycle.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-state.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,15 +57,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,11 +169,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The passive injection path runs on every single chat message: `appendGoalBrief` (mk-goal.js:1581-1596) does a disk read plus a full `JSON.parse` plus a complete `normalizeStoredGoal` pass with no cache, and that normalize pass unconditionally re-runs `buildEnhancedGoalPrompt()` — including a 7-regex CLEAR-scoring pass — inside `normalizeGoalPromptFields` (mk-goal.js:348-357) even when the stored prompt fields are already valid",
     "created_at": "2026-07-03T07:30:48Z",
-    "last_save_at": "2026-07-16T16:32:48.002Z",
+    "last_save_at": "2026-08-30T15:39:25.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5a1f60f240065d347b8b3773d05cf76cf1913dd9c1ccb16dc9aed8a3e0226421",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d69428aa1f57b84169d7cb1cabb94e410d13b0c3b263fc65975355ae943cf3f6",
       "plan.md": "be33f0f8d7592eaea9815dcfb0971ebfe6ff5df8db210be29738610778ae1095",

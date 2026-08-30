@@ -188,7 +188,7 @@
     ],
     "causal_summary": "A single model call failure in the judge path propagates contaminated or null output into convergence and coverage scoring; there is no neutral fallback card or quarantine boundary",
     "created_at": "2026-06-28T14:02:03Z",
-    "last_save_at": "2026-07-16T16:32:01.238Z",
+    "last_save_at": "2026-08-30T15:39:24.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:afd66979589b83621b5079848842438941a0a97fd002d98d8c060a623ef941e7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dfd0df063be33550e028f79e37ab63339c12c6da6cde84d5ca3efb6cbdbd2e3b",
       "plan.md": "5d954ff54a3eaaabd3fd104040042ea93b37f24dea6cb82d18f8ccb381b03b79",

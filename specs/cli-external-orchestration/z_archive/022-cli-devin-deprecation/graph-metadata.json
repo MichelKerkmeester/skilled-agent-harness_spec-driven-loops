@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/022-cli-devin-deprecation",
-  "spec_folder": "cli-external-orchestration/022-cli-devin-deprecation",
+  "packet_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation",
+  "spec_folder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation",
   "parent_id": null,
   "children_ids": [
     "cli-external-orchestration/022-cli-devin-deprecation/001-canonical-rehome-and-ci-gate",
@@ -9,7 +9,13 @@
     "cli-external-orchestration/022-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
     "cli-external-orchestration/022-cli-devin-deprecation/004-docs-agents-governance-removal",
     "cli-external-orchestration/022-cli-devin-deprecation/005-historical-record-reference-sweep",
-    "cli-external-orchestration/022-cli-devin-deprecation/006-delete-skill-directory-and-verify"
+    "cli-external-orchestration/022-cli-devin-deprecation/006-delete-skill-directory-and-verify",
+    "cli-external-orchestration/z_archive/022-cli-devin-deprecation/001-canonical-rehome-and-ci-gate",
+    "cli-external-orchestration/z_archive/022-cli-devin-deprecation/002-runtime-code-and-executor-removal",
+    "cli-external-orchestration/z_archive/022-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
+    "cli-external-orchestration/z_archive/022-cli-devin-deprecation/004-docs-agents-governance-removal",
+    "cli-external-orchestration/z_archive/022-cli-devin-deprecation/005-historical-record-reference-sweep",
+    "cli-external-orchestration/z_archive/022-cli-devin-deprecation/006-delete-skill-directory-and-verify"
   ],
   "manual": {
     "depends_on": [],
@@ -38,11 +44,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "context/context-report.md",
-      "context/context-report.json",
-      "spec.md"
+      ".devin/hooks.v1.json",
+      "context/context-report.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "context-report.md",
         "kind": "doc",
@@ -50,15 +63,15 @@
         "source": "derived"
       },
       {
-        "name": "context-report.json",
+        "name": "hooks.v1.json",
         "kind": "config",
-        "path": "context/context-report.json",
+        "path": ".devin/hooks.v1.json",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "context-report.json",
+        "kind": "config",
+        "path": "context/context-report.json",
         "source": "derived"
       },
       {
@@ -100,17 +113,18 @@
     ],
     "causal_summary": "The `.opencode/skills/cli-devin` skill (and the broader Devin surface — the cli-devin executor plus the Devin IDE-runtime hooks) is being retired",
     "created_at": "2026-06-08T16:10:27Z",
-    "last_save_at": "2026-07-14T19:26:13.498Z",
+    "last_save_at": "2026-08-30T15:39:08.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c522e7f8be2cdb1e3224341a30f2af5367ed73119a27f6d83bcbea0702406ae9",
+    "source_fingerprint": "sha256:8087de9199178eae3f5fe4faeaa3cdc8086dacd77dc400973d12b85b87937af0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "44b2226eaf244c2a5814aaeca2a00c0aa24ebc2604b69a259061120b214bf356"
+      "spec.md": "213e49184ff47ca0ba61cfaf5008a0da0924fcc21992a0edd28fbb89ea144339"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/001-canonical-rehome-and-ci-gate",
     "last_active_at": null
   }
 }

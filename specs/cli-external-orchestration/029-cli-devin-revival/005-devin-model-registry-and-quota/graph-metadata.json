@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The 2026-06-08 deprecation deleted the `swe-1.6` model entirely from `model-profiles.json` (it was cli-devin-exclusive; no `cli-opencode` alternative existed) and stripped `cli-devin` executor rows from 3 sibling models",
     "created_at": "2026-07-23T19:51:59.010Z",
-    "last_save_at": "2026-08-30T07:18:49.191Z",
+    "last_save_at": "2026-08-30T15:39:07.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:14078be3eeab1b4ec53ce3eb94a76ec0218625bf24a7d633273bec1a56714ea2",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bbaa1452e709c575247825981ec277f5bb5c210fea72abf64392482cdd209c80",
       "plan.md": "43d66a97d09f7a8daeafa1ded3e06806db4d3b537f89849888c6ac0b6683f514",

@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The sk-doc scripts tree contains snake_case markdown fixture filenames and Python script names that must be treated differently. This phase renames only the non-Python filesystem names, updates their sourcing/import/registry references, and records the Python exemption explicitly.",
     "created_at": "2026-07-14T15:17:25Z",
-    "last_save_at": "2026-08-30T07:19:24.765Z",
+    "last_save_at": "2026-08-30T15:39:16.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:81792369df17aee2823dcad2a76bc728aa1682d264c03ed91097f5ac986204ee",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "99f70d9cab8a27ddb2cdfc84e11f7d212b3a6ec453dcae3949257707ce1122f7",
       "plan.md": "23f78cdb14b36e503f7f09c5a0d96d748ecb9555c5fa42535ff5cd59f05f2b82",

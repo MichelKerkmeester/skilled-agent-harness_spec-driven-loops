@@ -22,9 +22,8 @@
       "deep-skill schemas plan",
       "deep-skill doc evolution tasks",
       "008 phase 1 tasks",
-      "deep-skill doc evolution checklist",
-      "008 phase 1 checklist",
-      "deep-skill doc evolution implementation summary"
+      "deep-skill doc evolution implementation summary",
+      "008 phase 1 summary"
     ],
     "key_topics": [
       "deep-skill",
@@ -43,34 +42,16 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "schemas/audit-finding.schema.json",
-      "schemas/validation-report.schema.json",
-      "schemas/changelog-entry.schema.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "resource-map.yaml",
+      "schemas/audit-finding.schema.json",
+      "schemas/validation-report.schema.json",
+      "schemas/changelog-entry.schema.json"
     ],
     "entities": [
-      {
-        "name": "audit-finding.schema.json",
-        "kind": "config",
-        "path": "schemas/audit-finding.schema.json",
-        "source": "derived"
-      },
-      {
-        "name": "validation-report.schema.json",
-        "kind": "config",
-        "path": "schemas/validation-report.schema.json",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-entry.schema.json",
-        "kind": "config",
-        "path": "schemas/changelog-entry.schema.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -90,15 +71,33 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.yaml",
+        "kind": "config",
+        "path": "resource-map.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "audit-finding.schema.json",
+        "kind": "config",
+        "path": "schemas/audit-finding.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.schema.json",
+        "kind": "config",
+        "path": "schemas/validation-report.schema.json",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-entry.schema.json",
+        "kind": "config",
+        "path": "schemas/changelog-entry.schema.json",
         "source": "derived"
       },
       {
@@ -200,22 +199,21 @@
     ],
     "causal_summary": "The 008 cluster improves documentation across five mature deep- skills, but a sibling cluster (`000-release-cleanup`) already shipped uneven per-skill cleanup",
     "created_at": "2026-05-25T14:26:45.200Z",
-    "last_save_at": "2026-07-09T10:02:48.849Z",
+    "last_save_at": "2026-08-30T15:39:23.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84348278150e3c7263de683a62aed15140c357d8857c74e11c3ed85c35cf1326",
+    "source_fingerprint": "sha256:a964059cf6f0e65bb4524356351b2223c76c167bdfa29f6d925c459b91462a4f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1221215d2cf076d0a29b593695ffcc9a887e552014bcc6e1a6e6809d16ff4bba",
       "plan.md": "3b87137d0abe7a95e3ba92d15de8be321ef159153fc491b33e57926c3fb5c843",
       "tasks.md": "9d60a50c23356a5cc547fd64a4990e4df6df2ce9765d97213522d456d57b14bd",
-      "checklist.md": "b24713b6e395bdc3338d84edce738821d733111917b8c2a541e258f05ed968ba",
       "implementation-summary.md": "bbb5910d8adc338726e54b48a0f631e068738bbf08bc47805d0e59a68935776c"
     },
     "last_active_child_id": null,

@@ -19,10 +19,9 @@
       "fatal advisory split fanout",
       "write containment tasks",
       "preserve untracked task list",
-      "write containment checklist",
-      "preserve untracked verification",
       "write containment fix shipped",
-      "preserve untracked implementation summary"
+      "preserve untracked implementation summary",
+      "fatal advisory split delivered"
     ],
     "key_topics": [
       "write",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,36 +176,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop codex write-containment guard (`write-containment.ts`) confines a `cli-codex` leaf's writes to its artifact directory by diffing the git working tree after each dispatch: any out-of-scope path that is dirty after the dispatch but was not in the pre-dispatch baseline is treated as a leaf violation, reverted, and used to fail the iteration fail-closed",
     "created_at": "2026-08-06T07:57:25.961Z",
-    "last_save_at": "2026-08-29T14:54:10.999Z",
+    "last_save_at": "2026-08-30T15:39:21.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:81f0ac74a476445316ce2df8db43aac4f9eca1ad35cdfd0b01609bc99cad8d0c",
+    "source_fingerprint": "sha256:131d3989b7342b02c131d3fe0f68c208072513430552f4338c4933e23c4024d1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "823fb3a0bf399de0727fa74a822affb4e647c2aee2dfc634f499f9dfb6e82567",
       "plan.md": "2cba656a7f25684198d38a3296b92e10bd8cf609068f9028b894b82df2dc9bdc",
       "tasks.md": "fd2f64715a295f1f4cd3ac462e5c6d939de667764be4391a91976d9bab2b6a67",
-      "checklist.md": "88f557d0b03fd9ce4459e6b1dc7f07e75b0e3a05e57cfc93e543cf9bc7045bb1",
       "implementation-summary.md": "7a85005237770a432d033bf267b2a2a000ec0f85e930a1c792211b711a58c492"
     },
     "last_active_child_id": null,

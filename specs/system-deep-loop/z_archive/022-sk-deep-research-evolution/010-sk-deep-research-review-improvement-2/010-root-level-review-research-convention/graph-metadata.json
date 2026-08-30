@@ -43,16 +43,15 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
       ".opencode/agents/deep-review.md",
       ".opencode/agents/deep-research.md",
       ".claude/agents/deep-review.md",
       ".claude/agents/deep-research.md",
       ".codex/agents/deep-review.toml",
-      ".codex/agents/deep-research.toml",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      ".codex/agents/deep-research.toml"
     ],
     "entities": [
       {
@@ -65,6 +64,18 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -95,24 +106,6 @@
         "name": "deep-research.toml",
         "kind": "file",
         "path": ".codex/agents/deep-research.toml",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,30 +187,35 @@
         "source": "derived"
       },
       {
-        "name": "all",
-        "kind": "key_phrase",
-        "path": "checklist.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "When running `/speckit:deep-review` or `/speckit:deep-research` on a child phase inside a parent spec tree, both skills create their output folders (`review/`, `research/`) inside the child phase folder",
     "created_at": "2026-04-18T07:39:57.335Z",
-    "last_save_at": "2026-07-16T16:31:45.523Z",
+    "last_save_at": "2026-08-30T15:39:24.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1db14e8d9e03cd5e9ac369a621fd414860260a133b8d46da254772f8b0665c87",
+    "source_fingerprint": "sha256:c33bc36b70f90c1e3fbfd98477b2a20076ceebe6e93c1e934594aa82bc18f990",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3383a259673cda3ddcd87aae42b38d7df9bbb1da5fb6fe6add0fff99e23948ae",
       "plan.md": "695cd50736550ca9c4a7dda3a3810760a52ff297ec3db6ad07e86210d136b60a",
       "tasks.md": "70e4f83a8762c8bfe01fdbbd14a4ca2e339cb86eebb3fa744885af0fd7bf854e",
-      "checklist.md": "c765df0a8b091ceb06570444a442121756236c132ad43e3bb2c302b66962f9c4",
       "implementation-summary.md": "6423f58053a0f101b8b636bb03347401f93d9d3521ded0c7262b600bf6c96dac"
     },
     "last_active_child_id": null,

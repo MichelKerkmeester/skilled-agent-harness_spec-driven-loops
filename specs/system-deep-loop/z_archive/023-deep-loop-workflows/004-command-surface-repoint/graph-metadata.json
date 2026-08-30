@@ -18,7 +18,6 @@
       "command-surface-repoint",
       "deep loop merge implementation plan",
       "deep loop merge tasks",
-      "deep loop merge verification checklist",
       "deep-loop-workflows phase 004 summary",
       "command surface repoint shipped",
       "deep command yaml skill path rewrite done"
@@ -40,17 +39,16 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "checklist.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -63,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -186,30 +178,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Seven /deep: commands plus roughly twelve YAML assets reference the five old skill paths and skill: keys (the heaviest YAML carry dozens of path occurrences each)",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-07-16T16:31:55.954Z",
+    "last_save_at": "2026-08-30T15:39:24.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbeb0532f83ef1c2a4f43146dbd8f56cbbe3b446165b4925e0c630788809ae3c",
+    "source_fingerprint": "sha256:9cdf9b3e8bed3c203a28534a6f543b75fff7879f22bdbe7af68d3c93b7001547",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "af61ca38c8c21c0f650c6822b9462d1f397e3eb8df14a51aacac5d85928757aa",
       "plan.md": "e6ca596f341edf6a64b5522ae1968db047d9fa95120609620df5e140e98ef5b2",
       "tasks.md": "314583d148003902bb800549909d1d42ecec8680607fb4e443955f1506e4cb05",
-      "checklist.md": "19280e1aff7db756e1313a0ce50d02baadf3a85db7a4830e1afd5f521e07807e",
       "implementation-summary.md": "e0be44dc5b1d878cb8777f2be0cc7dc3802152416f19f44b3110132d42c8aa2c"
     },
     "last_active_child_id": null,

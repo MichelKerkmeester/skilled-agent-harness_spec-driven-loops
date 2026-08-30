@@ -18,8 +18,6 @@
       "durable fan-in failure plan",
       "partial-failure policy tasks",
       "durable fan-in failure tasks",
-      "partial-failure policy checklist",
-      "durable fan-in failure checklist",
       "partial-failure policy implementation",
       "durable fan-in verdict evidence",
       "degraded fanout result implementation"
@@ -44,14 +42,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/partial-failure-policy.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/policy.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/types.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/evaluator.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/ledger-events.ts"
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     ],
     "entities": [
       {
@@ -73,12 +66,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -94,30 +81,6 @@
         "name": "fanout-run.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "policy.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/policy.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "evaluator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/evaluator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ledger-events.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/ledger-events.ts",
         "source": "derived"
       },
       {
@@ -197,26 +160,55 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "counts",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Durable",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Define the typed failure taxonomy, deterministic tolerance thresholds, degraded-result contract, and ledger verdict that decide whether durable fan-in proceeds or aborts after leaf failures.",
     "created_at": "2026-07-16T03:43:50.882Z",
-    "last_save_at": "2026-08-29T13:09:50.130Z",
+    "last_save_at": "2026-08-30T15:39:20.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2dbed8da42db045e9b64bcf173eaa15d1a90579c532cff3c2b23620b8b580e79",
+    "source_fingerprint": "sha256:d2dce557582a5b30ba3eac9f4f09f74fd2cfd27c9e37ecd16499762528db25aa",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f59d406a0e7d3accea06c67df4c0e2fd527fe5040e0cc0d36235c7f5d3286d38",
       "plan.md": "e14df6c10c03c5aa95aafc45b82b6120fc28a6e584386b9321c8a82ef34b8499",
       "tasks.md": "7c174a4a1d1d353c38e4b360180ce88b9bde69e3c1e215be329c07f37cf671ab",
-      "checklist.md": "98628fdd08f3d680db12e2cdfc46b6075e68244f3bb5aceb263e80f3ef3e233e",
       "implementation-summary.md": "24a297f9996b0581dfc9c4fd1034dd1d645cc20cd133b3f4e99ab67f538c2313"
     },
     "last_active_child_id": null,

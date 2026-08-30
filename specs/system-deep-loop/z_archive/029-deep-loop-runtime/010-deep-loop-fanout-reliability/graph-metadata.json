@@ -41,27 +41,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
-      ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
-      "core/config.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "core/config.ts"
     ],
     "entities": [
-      {
-        "name": "code-graph-tools.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
-        "source": "derived"
-      },
-      {
-        "name": "config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
         "source": "derived"
       },
       {
@@ -193,11 +185,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop fan-out runner reported failed and timed-out CLI lineages as successes (the worker returned a result object instead of throwing, so the pool counted every completed worker as fulfilled and the process exited 0)",
     "created_at": "2026-06-04T20:45:40Z",
-    "last_save_at": "2026-07-16T16:33:02.060Z",
+    "last_save_at": "2026-08-30T15:39:26.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ef5b6013fd018163b989d4eea139ddd5b3f9727e14ade01908715433a0a6d831",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a7b557dba1097a0594943cfc52708b9d009763e7986c5f1c3ad0a62c2ae1a4f5",
       "plan.md": "df07bd136ad18f13839893e0ad6971a9f72e2ba9d73366fb48b58c3bc9960902",

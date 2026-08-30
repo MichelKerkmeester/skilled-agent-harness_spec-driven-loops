@@ -46,7 +46,6 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh",
       ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
       ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
@@ -56,11 +55,10 @@
       ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
       ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
       ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-      ".opencode/skills/system-spec-kit/templates/addons/checklist.md.tmpl",
       "templates/spec-kit-docs.json",
       "scripts/spec/create.sh",
       "scripts/spec/validate.sh",
-      "scripts/rules/check-anchors.sh"
+      "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap"
     ],
     "entities": [
       {
@@ -91,12 +89,6 @@
         "name": "tasks.md.tmpl",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "check-anchors.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh",
         "source": "derived"
       },
       {
@@ -154,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/templates/addons/checklist.md.tmpl",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +192,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Versioned",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`tasks.md` and `checklist.md` are two separately required documents whose completion signals overlap: research confirmed task rows duplicate checklist item intent, and `deriveStatus` ranks `implementation-summary > checklist > tasks`, so whenever `checklist.md` exists its checkboxes are counted and the `tasks.md` checkboxes are ignored",
     "created_at": "2026-08-26T05:33:56Z",
-    "last_save_at": "2026-08-29T14:54:19.773Z",
+    "last_save_at": "2026-08-30T15:39:36.549Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +218,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b0ae43281b84cdb1d2396c6a8ed51adce2cbeb0f689fa66d969760e98301d19c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b648bb68d7f41140bf0b4895ccc480fe6e63778ba80a853d35554960c04e6cb2",
       "plan.md": "4d0ed5bd22ac4ffd7219a40e7d623cc6138a4bb0b8ea4670fdc8bbf67a60f034",

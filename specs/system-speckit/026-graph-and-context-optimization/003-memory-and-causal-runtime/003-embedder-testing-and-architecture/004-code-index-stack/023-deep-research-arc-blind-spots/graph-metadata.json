@@ -56,6 +56,8 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "research/research.md",
       "001-request-budget-hardening/spec.md",
       "002-retrieval-observability/spec.md",
       "003-upstream-rebase-spike/spec.md",
@@ -63,9 +65,7 @@
       "005-doctor-model-swap-ux/spec.md",
       "006-prompt-license-registry/spec.md",
       "007-fixture-calibration/spec.md",
-      "008-vec0-migration-fix-deferred/spec.md",
-      "spec.md",
-      "research/research.md"
+      "008-vec0-migration-fix-deferred/spec.md"
     ],
     "entities": [
       {
@@ -155,7 +155,7 @@
     ],
     "causal_summary": "Phase parent for the 8-packet follow-on arc that closes deep-research findings across mcp-coco-index retrieval hardening, observability, calibration, metadata, registry, doctor UX, and upstream drift.",
     "created_at": "2026-05-20T09:11:27Z",
-    "last_save_at": "2026-08-28T23:00:51.194Z",
+    "last_save_at": "2026-08-30T15:39:30.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,6 +163,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:1deb8c120dcce02adab97569a66dd2837336999726759c973f25e5540bf16500",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3969b264cd76caf31a377a8ad553e1dddb47b9c9da18cf90fdcf6180429e4cf8",
       "research/research.md": "8da1df0ca47c9d86d51372c12d97a0969a83a8a7e0eaed9a01cea6d40e15589c"

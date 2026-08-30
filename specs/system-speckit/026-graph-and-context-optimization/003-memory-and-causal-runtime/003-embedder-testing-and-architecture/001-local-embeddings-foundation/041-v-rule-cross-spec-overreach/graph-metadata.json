@@ -21,8 +21,6 @@
       "V8 overreach plan",
       "040 tasks",
       "V8 overreach tasks",
-      "040 checklist",
-      "V8 overreach checklist",
       "040 implementation summary",
       "V8 overreach implementation summary"
     ],
@@ -46,12 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts",
-      "scripts/lib/validate-memory-quality.ts",
-      "scripts/tests/validate-memory-quality-v8-overreach.vitest.ts"
+      "scripts/lib/validate-memory-quality.ts"
     ],
     "entities": [
       {
@@ -70,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +187,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "full",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The memory quality validator rejects ADR-like content with `V-rule hard block: V8 (cross-spec-contamination)`",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-08-29T15:22:14.698Z",
+    "last_save_at": "2026-08-30T15:39:29.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ee49c7719035ead12e33f91a1fba19e6d7d72993ca167d30f90800a69bd4388",
+    "source_fingerprint": "sha256:ad647c74b7518ab1249f77755e36668bca455e69333c1c91730305da65d45ae2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0ffb6188492a5aac419a63a389b09554a98da96e0920f179dd13a127a4f3b532",
       "plan.md": "cda8af7db8231f9cbb08236ff688b5fac9ff29e2da44da458f0bb2472946d7ba",
       "tasks.md": "0585be8f493297f998628dae98882833df070226af28ec9b189c195033155b66",
-      "checklist.md": "1bd73d5557c56d37956cb9abe722d5b44d2d333daf5f7f514065be4a125c0fa0",
       "implementation-summary.md": "053a1da03874223128589c1816243e0e6850750eac0687d8ca63a33a8ee553f9"
     },
     "last_active_child_id": null,

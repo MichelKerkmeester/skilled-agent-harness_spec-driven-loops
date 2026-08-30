@@ -19,7 +19,6 @@
       "133 phase 001 plan",
       "sk-doc contract de-numbering plan",
       "133 phase 001 tasks",
-      "133 phase 001 checklist",
       "133 phase 001 implementation summary",
       "sk-doc de-numbering complete"
     ],
@@ -43,10 +42,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
       ".opencode/commands/create/feature-catalog.md",
-      ".opencode/skills/sk-doc/scripts/validate_document.py",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/scripts/validate_document.py"
     ],
     "entities": [
       {
@@ -68,9 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -83,12 +81,6 @@
         "name": "validate_document.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -188,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc creation standards and templates mandate a globally-sequential numeric prefix on per-feature snippet filenames (`NNN-feature-name.md`)",
     "created_at": "2026-06-06T06:46:12.384Z",
-    "last_save_at": "2026-07-09T10:02:44.975Z",
+    "last_save_at": "2026-08-30T15:39:18.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c2240332e9e926692cafacd40d923e638af01f4e23512a30197ff72c6091274",
+    "source_fingerprint": "sha256:5af545cb5f946b969902dd97adafb036b4bdc013353806dc4b37f6782736e99d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd2fff8ab422cb88a1f33c868951a8fe95c9ff67ac37b101d27a57bac14a2c07",
       "plan.md": "2fc593a719d4842d45239db1a96b675aa060772174514d345cd54687233f1038",
       "tasks.md": "16ad5fb222ecbcf7818d1b5ee337619dec99008fd96263dd0ac28a873f2f5587",
-      "checklist.md": "98584545c2f0e85e9a95bc5e891972cd374d43649f853aa051d72993609ecb08",
       "implementation-summary.md": "b062a227d29e0d9b6ac7e25564a507b56cd10042230c9827353ef63a7f0d7d34"
     },
     "last_active_child_id": null,

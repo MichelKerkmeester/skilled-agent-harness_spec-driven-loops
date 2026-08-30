@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/shared/assets/changelog-template.md"
     ],
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,26 +176,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:14.301Z",
-    "last_save_at": "2026-08-29T13:09:58.048Z",
+    "last_save_at": "2026-08-30T15:39:13.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7b1c29aca1b9d8e241eeb23d70e25694763c2a8724dfff20b902e9d3b60e805",
+    "source_fingerprint": "sha256:0a8812b8a4d83455c48cacc10cdd567effd2946970731f681ade8656fd2f0f95",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "089840b052f24fd73975f89d23e3b1184bd6593b886e54f9a9ec2318570839ca",
       "plan.md": "1aac09fcc56a90b2c45780ddaf132c8200823872eeb5491a745570e199230e99",
       "tasks.md": "fea28c0d5c81a4b0fc4878ba3cfdfbbf64cdedc03747c957ab1145c03f3e8667",
-      "checklist.md": "3926e45109dbbdde0239dcb304ae8eaf0e60f413441705913f5308102c02f87f",
       "implementation-summary.md": "702c441fbe2978590f26ac84d9a31f6db01104a2759ed5e348ae366b9c651fa7"
     },
     "last_active_child_id": null,

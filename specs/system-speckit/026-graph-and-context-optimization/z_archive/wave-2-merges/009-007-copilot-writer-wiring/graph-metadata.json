@@ -41,18 +41,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".claude/settings.local.json"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +64,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Restored Shape Packet",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Route Copilot's userPromptSubmitted and sessionStart hooks to the system-spec-kit Copilot writers by replacing the 'bash: true' no-ops in .claude/settings.local.json with the actual writer commands. Bypasses the Superset-wrapper clobber of .github/hooks/superset-notify.json and makes the $HOME/.copilot/copilot-instructions.md Refreshed: timestamp advance per-prompt under Copilot.",
     "created_at": "2026-04-22T16:05:25.902Z",
-    "last_save_at": "2026-07-17T17:19:36.225Z",
+    "last_save_at": "2026-08-30T15:39:32.688Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:00f7dce44c33c10786674689095a5a4a232bf4ae7f5722c3c6d1dda57a9570e5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa447f6a2d5a33fab92c81392892c1fec8f8f71cab662789420eee6e4e602334",
       "plan.md": "16878e0d4c9096f1df8dd21649fa9a6e25b2a154c60c3584ad6614779c0b44f3",

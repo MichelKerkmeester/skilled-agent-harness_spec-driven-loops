@@ -34,7 +34,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".claude/settings.json",
       ".codex/hooks.json"
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -179,30 +172,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Encoded rules do nothing until something evaluates them against a real command",
     "created_at": "2026-07-27T18:47:26Z",
-    "last_save_at": "2026-08-29T15:22:05.276Z",
+    "last_save_at": "2026-08-30T15:39:18.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42df24c0d47936146505dff5b38b808f5bae341316fdfc96093dd3e7323f2095",
+    "source_fingerprint": "sha256:149eb7aa26a2dcb8540a5b06150fe37a8c8b7f6046d2fbc9760d2f9dedf3d2d3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "76ea9660894f4592df05e26d8d09f3dd1b04f51ef213dd03c73bfcddc3a96803",
       "plan.md": "d292929b926d677a89f03c8539db0639114fd7246bb311c826d326c80ab39f56",
       "tasks.md": "28dd4d2d38677bfa7f61698a59cfd5fb8bc04dbd8eba9b1ba914f4c012a9d008",
-      "checklist.md": "e80a33b08cbfc73eb2d6f4c6db3828eeb960cdfac6bb23b55c5f5beea2278280",
       "implementation-summary.md": "63b77b967a97d4e2ecccb1a5766d26307531d493307f4c71236c84e32d5b3891"
     },
     "last_active_child_id": null,

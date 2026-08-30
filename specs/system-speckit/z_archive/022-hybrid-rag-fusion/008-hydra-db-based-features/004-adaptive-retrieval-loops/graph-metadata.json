@@ -19,10 +19,10 @@
       "adaptive plan",
       "phase 4 tasks",
       "adaptive tasks",
-      "phase 4 checklist",
-      "adaptive checklist",
       "phase 4 adr",
-      "adaptive adr"
+      "adaptive adr",
+      "phase 4 summary",
+      "adaptive summary"
     ],
     "key_topics": [
       "phase",
@@ -35,96 +35,24 @@
       "ranking",
       "plan",
       "tasks",
-      "checklist",
-      "adr"
+      "adr",
+      "summary"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/lib/cognitive/adaptive-ranking.ts",
-      "mcp_server/lib/storage/access-tracker.ts",
-      "mcp_server/handlers/checkpoints.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/lib/telemetry/retrieval-telemetry.ts",
-      "mcp_server/lib/cognitive/rollout-policy.ts",
-      "mcp_server/lib/search/learned-feedback.ts",
-      "tests/adaptive-ranking.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/access-tracker.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/telemetry/retrieval-telemetry.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/adaptive-ranking.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cognitive/adaptive-ranking.ts",
-        "source": "derived"
-      },
-      {
-        "name": "access-tracker.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/access-tracker.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval-telemetry.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/telemetry/retrieval-telemetry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "rollout-policy.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cognitive/rollout-policy.ts",
-        "source": "derived"
-      },
-      {
-        "name": "learned-feedback.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/learned-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.vitest.ts",
-        "kind": "test",
-        "path": "tests/adaptive-ranking.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "job-queue.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
-        "source": "derived"
-      },
-      {
-        "name": "MANUAL_TESTING_PLAYBOOK.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {
@@ -140,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -155,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "adaptive-ranking.vitest.ts",
+        "kind": "test",
+        "path": "tests/adaptive-ranking.vitest.ts",
         "source": "derived"
       },
       {
@@ -204,29 +132,88 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Policy Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shadow Evaluation Implementation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollout Readiness",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coordination Checkpoints",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current retrieval system can collect useful signals, but it does not turn them into disciplined improvement loops",
     "created_at": "2026-04-12T09:02:50.261Z",
-    "last_save_at": "2026-07-10T06:22:17.459Z",
+    "last_save_at": "2026-08-30T15:39:38.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e809047e0278310183d09e2064768d5f618c2d7496e46948355ab76ae1b5284",
+    "source_fingerprint": "sha256:6a091fa3387d11c92694a4053be4b87553344af8da2cbb7e56ed351e68d703d8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf10c4fe352ccb0f520496e87a7e797598f679b6aec03a01cdafa99aa07fefed",
-      "plan.md": "42d61a9d3f6303d9b6af9b279535aa872533a47818d0e0bc7ea6145694fefce6",
-      "tasks.md": "10227f9b7e8f3231791f1cde3ea8f136ebcb6bd26c5121c2499abdaa556ae596",
-      "checklist.md": "ba9528c74ea7835f985ebadeb652e2e25776152ab2646d9551b78a5e02bb2738",
-      "decision-record.md": "13d3cfca0c5e0fd2c200b93eca706b2dfca547cb7636d329f348ee47685b6fd6",
-      "implementation-summary.md": "8703549dce53e202d96f52d9296373773ceb5da66785126c9dccea7efdfdda50"
+      "spec.md": "196e2a137ceac1a7b608a60861562cde7b4cb12ce05f5480ac53da6430be7fea",
+      "plan.md": "a9352170e82829075c43c6656e26664652de7d30a14e4426a91b581e40b87f6b",
+      "tasks.md": "8c34485835fdaebccdee802f2089f8f959d7cee22a4dfdf7dae2b4cb621411ab",
+      "decision-record.md": "7331c137f3d17b35c642146f0ea328db8cab2c6c8fd0460d565747457a3f25d9",
+      "implementation-summary.md": "b7c52657260f168cf5665cc6ea3ef217f1e4d23c83a73a102e79637237c4e348"
     },
     "last_active_child_id": null,
     "last_active_at": null

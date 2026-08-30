@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/008-cli-opencode-creation",
-  "spec_folder": "cli-external-orchestration/008-cli-opencode-creation",
+  "packet_id": "cli-external-orchestration/z_archive/008-cli-opencode-creation",
+  "spec_folder": "cli-external-orchestration/z_archive/008-cli-opencode-creation",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -21,10 +21,10 @@
       "047-cli-opencode-creation plan",
       "cli-opencode skill tasks",
       "047-cli-opencode-creation tasks",
-      "cli-opencode skill checklist",
-      "047-cli-opencode-creation checklist",
       "cli-opencode decision record",
-      "047-cli-opencode-creation decisions"
+      "047-cli-opencode-creation decisions",
+      "self-invocation guard opencode",
+      "cli-opencode skill implementation"
     ],
     "key_topics": [
       "cli-opencode",
@@ -37,8 +37,8 @@
       "run",
       "plan",
       "tasks",
-      "checklist",
-      "decision"
+      "decision",
+      "record"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -46,27 +46,21 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      ".opencode/skills/README.md",
-      ".opencode/commands/create/changelog.md",
-      ".opencode/specs/cli-external-orchestration/008-cli-opencode-creation/spec.md",
-      ".opencode/specs/cli-external-orchestration/008-cli-opencode-creation/plan.md",
-      ".opencode/specs/cli-external-orchestration/008-cli-opencode-creation/checklist.md",
-      ".opencode/specs/cli-external-orchestration/008-cli-opencode-creation/decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/create/changelog.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/008-cli-opencode-creation/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/008-cli-opencode-creation/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -76,33 +70,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/008-cli-opencode-creation/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/008-cli-opencode-creation/decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/changelog.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/changelog.md",
         "source": "derived"
       },
       {
@@ -196,33 +178,44 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Architecture Decision Records",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Invocation Guard Detection Signal",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The framework already ships four cli- orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`) that let any AI assistant delegate work to an external AI binary",
     "created_at": "2026-04-26T05:00:00Z",
-    "last_save_at": "2026-07-14T19:26:20.593Z",
+    "last_save_at": "2026-08-30T15:39:08.349Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a43fa46fea5961fb9ad696622068f049d41dc503d25823ef2dc7c350b2c4f54",
+    "source_fingerprint": "sha256:e1dad515a57b5db057d5747c95336b93c45f5b5a741e3bdf579b80b0cfbecf2f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39c899f10cf02ba3d62c300ee36832bc9caf0b636145ca4d6baddc5928a415b3",
-      "plan.md": "ba9f8a73b6c16f18f1bcf3d7bc106f43ccc490e20b03a00874c3b6524771ca3f",
-      "tasks.md": "2c4758a178d5f3e4dc8cc9843b95ac811a0049b3cc8f9ae12f3a4bd865d22c36",
-      "checklist.md": "9b572523ad82b9752b9cd99d99e38199519adf1700fce6f69eeafb12f44d6104",
+      "spec.md": "350f66c9d75f6b4f0cf715bd4d1b76f43815c5607a65c83134fa34f139deca10",
+      "plan.md": "872e1525ea2528e12c8215ea310821b512744f973669487b36ab1ed0aa27ff3c",
+      "tasks.md": "860a71b5dce4006602a52a55401a889b6298f8f982596950f0f14114143119cb",
       "decision-record.md": "cfc29dd8cbde3eecf9201725682dc10790c72c8e716594af5068c83c0fdc3d0c",
-      "implementation-summary.md": "fdf7d0005636e559ff283c60450b8e7fd566fddde765d7f064cd03ba7e716430"
+      "implementation-summary.md": "3816be6960488ff50dfd3eb76e6f001236955a06c5d2b9809706e07359f5d81c"
     },
     "last_active_child_id": null,
     "last_active_at": null

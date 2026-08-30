@@ -35,14 +35,20 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       "evidence/skill-docs-audit.csv",
-      "evidence/audit-summary.md",
-      "spec.md",
-      "implementation-summary.md"
+      "evidence/audit-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -56,6 +62,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "skill-docs-audit.csv",
         "kind": "file",
         "path": "evidence/skill-docs-audit.csv",
@@ -65,18 +77,6 @@
         "name": "audit-summary.md",
         "kind": "doc",
         "path": "evidence/audit-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Sweep all skill SKILL.md / README.md / references/ / assets/ for stale embedder defaults + outdated architecture claims",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-07-17T17:19:24.867Z",
+    "last_save_at": "2026-08-30T15:39:30.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:47b89e8ce60780dc3dedf9fe661cb5926f0476b806855be74b99c9a091413f2f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1bc31cfa6479e9703a01cf0c17f0abf7d3dc3b9682830ed26285ed1e2e81ab50",
       "plan.md": "870ec34d2ea6f6a6417f31403fdeeec24819954378ddff79b7d6d4262a8c3a4a",

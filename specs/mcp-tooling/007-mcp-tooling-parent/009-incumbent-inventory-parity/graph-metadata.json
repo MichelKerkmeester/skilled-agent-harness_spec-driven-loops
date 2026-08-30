@@ -22,7 +22,7 @@
       "incumbent inventory parity tasks",
       "tasks",
       "feature catalog tasks",
-      "incumbent inventory parity checklist"
+      "incumbent inventory parity summary"
     ],
     "key_topics": [
       "incumbent",
@@ -41,43 +41,43 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/feature_catalog/feature_catalog.md",
-      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/assets/utcp_chrome_devtools_manuals.md",
-      ".opencode/skills/mcp-tooling/mcp-click-up/INSTALL_GUIDE.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-figma/examples/README.md",
-      "feature_catalog/feature_catalog.md",
       ".opencode/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/bdg-cli/README.md",
       ".opencode/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/chrome-devtools-mcp/README.md",
       ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-chrome-devtools/changelog/v1.0.10.0.md",
-      ".opencode/skills/mcp-tooling/mcp-click-up/references/install_guide.md",
       ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-click-up/changelog/v1.0.1.0.md",
       ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
-      ".opencode/skills/mcp-tooling/mcp-figma/changelog/v1.0.1.0.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-figma/changelog/v1.0.1.0.md"
     ],
     "entities": [
       {
-        "name": "feature_catalog.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/feature_catalog/feature_catalog.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "utcp_chrome_devtools_manuals.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/assets/utcp_chrome_devtools_manuals.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "INSTALL_GUIDE.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-click-up/INSTALL_GUIDE.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -102,36 +102,6 @@
         "name": "v1.0.1.0.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-click-up/changelog/v1.0.1.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -205,26 +175,49 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The three incumbent mcp-tooling modes carried uneven inventories",
     "created_at": "2026-07-16T12:58:36Z",
-    "last_save_at": "2026-07-16T13:24:25.058Z",
+    "last_save_at": "2026-08-30T15:39:09.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5f3aa0525c9cca6fb01ab5fa5917d9fe8fc736ee8c69e8c6b0636c2e0118bdb",
+    "source_fingerprint": "sha256:050318749de8e0e51566bf0e0424dfc31f4d04f6ec801380f2daf606a620a10c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bb49c2f10f6ad6b8a7d9fc286297af8436c0be8bcdd39d727bf589e4531644d5",
       "plan.md": "37f2baacf010b509f086d0ade4d9841049d3d92ff311aa9902e8b1238b05f25b",
       "tasks.md": "446add68914086c8cce0a8d3657c1042819a8841d641de3ce04ccba35e95d193",
-      "checklist.md": "dd9ab77c44ee56ecc156f0fcd9f525b61c0ed2d9906f5ffb14306af4d4c621e8",
       "implementation-summary.md": "9e30a31372919dcb643aea3f6f9a00399014b18065055d227b644d3210ab1983"
     },
     "last_active_child_id": null,

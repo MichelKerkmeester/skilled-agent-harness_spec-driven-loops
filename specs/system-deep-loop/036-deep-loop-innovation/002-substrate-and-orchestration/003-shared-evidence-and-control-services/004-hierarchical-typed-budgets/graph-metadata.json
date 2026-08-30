@@ -18,8 +18,6 @@
       "deep-loop budget reservation plan",
       "hierarchical typed budgets tasks",
       "deep-loop budget authority tasks",
-      "hierarchical typed budgets checklist",
-      "deep-loop budget verifier",
       "hierarchical typed budgets implementation",
       "typed budget verification evidence"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/council/cost-guards.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -68,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,26 +186,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan token, cost, iteration, and wall-time budgets that nest from program to iteration, reserve atomically, settle against ledgered spend, and fail closed before dispatch when any governing scope is exhausted.",
     "created_at": "2026-07-16T03:43:47.182Z",
-    "last_save_at": "2026-08-29T13:09:50.760Z",
+    "last_save_at": "2026-08-30T15:39:20.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e32a3c9f75b1de84fae99f93351410497c5fb8115639589be0bf3e4f7fe54da4",
+    "source_fingerprint": "sha256:efd0b97b0e69e1b8dc165823f1e6e65e8d1adbf3148b0d6350adaf25a3ab788a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a4fd93762546e7179a442bab2904449b06874a0b6ab02e7a21e43ec173da097",
       "plan.md": "8d120319d8b7bda4404168dfc352b288361e4cde84450f9eb265d8bd96b004e1",
       "tasks.md": "64623e4c99a56f4da9433a2268a02ea04d06263c90c5c065780dfa4de3d8a329",
-      "checklist.md": "9b35b152b0767dd7f638cbf17e98ea24d216edabfc9d5e5a8822ca1a71b04db4",
       "implementation-summary.md": "cae4f077933532bedefcfc2102d4647aca703fdab3892d138572e9b7ad8163fb"
     },
     "last_active_child_id": null,

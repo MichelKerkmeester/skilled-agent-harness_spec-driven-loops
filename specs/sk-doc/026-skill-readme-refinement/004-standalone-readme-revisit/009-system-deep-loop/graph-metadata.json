@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The system-deep-loop skill README still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:38.067Z",
-    "last_save_at": "2026-08-30T07:20:21.176Z",
+    "last_save_at": "2026-08-30T15:39:17.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:abbe8fb9535bcba773937aac5a0432e4550b39dc5cdeaa7fc9d9b54ed40d3600",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cb02455139e1e9a07be0579f2dd4c4ea4ac819d44b441131bdb0164be681f577",
       "plan.md": "7a2fc3bd7fbb163a00eea0ae2a750e75b49a6682332a47f4a41742f6981e8032",

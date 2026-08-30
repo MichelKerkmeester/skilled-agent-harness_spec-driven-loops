@@ -41,20 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "review/review-report.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "review/review-report.md",
       "review/deep-review-strategy.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 010 graduation follow-ups passed a cli test run and were reported graduate-ready, but the tests never exercised the real failure modes",
     "created_at": "2026-06-24T10:25:14.122Z",
-    "last_save_at": "2026-07-17T17:19:54.733Z",
+    "last_save_at": "2026-08-30T15:39:36.187Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e329b78cfc3f3ddd4187bb372c8410e0441dcac727a02a0de41eb2f7657da518",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d1cbe6bf1b818ac12a4cd1a92fcf958a8a3d9487fb87496ee8884ed2814eca10",
       "plan.md": "7d48e7898ac9c4ae709062d0c13671728d3141e206f625a45a9bf4023ecb6aa2",

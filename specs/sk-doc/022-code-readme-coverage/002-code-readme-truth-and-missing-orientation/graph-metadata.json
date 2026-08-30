@@ -21,10 +21,9 @@
       "readme missing orientation plan",
       "code readme truth tasks",
       "readme missing orientation tasks",
-      "code readme truth checklist",
-      "readme missing orientation checklist",
       "code readme truth implementation",
-      "readme gate receipts"
+      "readme gate receipts",
+      "missing orientation implementation"
     ],
     "key_topics": [
       "readme",
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
       ".opencode/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
@@ -79,12 +77,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -206,26 +198,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "These are the only findings in the program with real operator cost",
     "created_at": "2026-07-30T18:58:50.819Z",
-    "last_save_at": "2026-08-29T15:22:03.575Z",
+    "last_save_at": "2026-08-30T15:39:17.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96c89e7988e867600cb05f8a46570ea0954b0d79ff18bb969684ae2c46fac484",
+    "source_fingerprint": "sha256:fba437843bd0fd07448b1de0ba7a81ebdb58e2b48b5284e1161ad78b08c4d8a7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7eda66dda27bac369fcf3994cc6b2fa6d91d227b208b2c91228253f3822ad691",
       "plan.md": "b0976586f49245d266dc0c0206a8d4d73376c8c949393fdc67cd598c07476e6b",
       "tasks.md": "fe9782dee970f6a094c1e3b77502b63748fd2c58252a4e40b6e58ca5e69430ac",
-      "checklist.md": "1c689b85e0fa69310e0dec13d73038cd854ea4df9459eb3f2fd52f4a92688f1c",
       "implementation-summary.md": "cffc89de18f48335db2385f6e343ca72c5f5c009f9555c04cf2a05ae1515648b"
     },
     "last_active_child_id": null,

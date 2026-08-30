@@ -19,8 +19,6 @@
       "feature catalog sweep plan",
       "testing doc alignment tasks",
       "feature catalog sweep tasks",
-      "testing doc alignment checklist",
-      "feature catalog sweep checklist",
       "testing doc alignment summary",
       "feature catalog sweep result"
     ],
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/README.md",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/README.md",
@@ -68,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -185,36 +176,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Each",
+        "name": "What Was Built Two",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The injection-bloat changes (delivery confirmation now requires an observed receipt with `lifecycleEpoch >= 1`, Gate-3 delivery observers fire strictly post-emission, and the shadow-delivery state machine keeps every candidate flag off) may have left manual-testing-playbook snippets and feature-catalog entries repo-wide describing or exercising the older behavior",
     "created_at": "2026-08-07T16:28:47.746Z",
-    "last_save_at": "2026-08-29T13:09:59.235Z",
+    "last_save_at": "2026-08-30T15:39:08.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03bcbaf11e6d97c773788d38157bcaec97b0d4e2818160c349ff724e770c3131",
+    "source_fingerprint": "sha256:4de7ed6c2743d04dd1d4885310358d2e6a39ab979d0df77f21334bee85bcf677",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a6593c88fb50342e5d84e5d4c7b25ac676cfd0b8540bbd6f58b9b239f107d1c4",
       "plan.md": "eddc06e17ff8de5246479722cb9b164404e037d9b155350d0d8a8e16077cf556",
       "tasks.md": "6a67d520990de9aaf6c5e4be40c366e6a6d68477a5cc692ba7cca7a7eb7cbac7",
-      "checklist.md": "d7abf7d013716acc8caddb94e8fd0dd637d0e055772a02823af310086a08efa8",
       "implementation-summary.md": "52ae6753f096b2ac0aaa92eaa6d24bbcc69cf5c81dc261f32880bddeb9c1ea2f"
     },
     "last_active_child_id": null,

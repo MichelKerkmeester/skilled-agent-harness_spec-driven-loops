@@ -19,7 +19,6 @@
       "daemon hardening docs aligned",
       "daemon reliability doc alignment plan",
       "daemon reliability doc alignment tasks",
-      "daemon reliability doc alignment checklist",
       "daemon reliability doc alignment done",
       "018-022 docs aligned"
     ],
@@ -40,47 +39,14 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      "mcp_server/README.md",
-      "database/README.md",
-      "mcp_server/ENV_REFERENCE.md",
-      "feature_catalog/feature_catalog.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
-      "mcp_server/database/README.md",
-      "scripts/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "database/README.md",
+      "scripts/README.md"
     ],
     "entities": [
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "mcp_server/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -100,15 +66,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "database/README.md",
         "source": "derived"
       },
       {
@@ -200,26 +166,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five daemon-reliability features (018 persistent log, 019 reap hardening, 020 code-index reconnecting proxy, 021 orphan-sweep activation, 022 RC-2 re-election) shipped as code + spec packets, but a gpt-5.5 doc-alignment audit plus a grep pre-scan confirmed they were absent from every operator-facing surface: 0 of 8 new env flags in ENVREFERENCE, no featurecatalog entries, no playbook scenarios, and no README/SKILL mentions",
     "created_at": "2026-06-07T18:10:00Z",
-    "last_save_at": "2026-07-17T17:19:35.282Z",
+    "last_save_at": "2026-08-30T15:39:32.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9a30f4492d35c9ecf65d29d325ee808c5666f68d37de520fc795e940afac4f7b",
+    "source_fingerprint": "sha256:99c2988f57fe5a8023a996e9204d33f587b5f2138422b0d540abe411df13d211",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b799c38e8099951663f49d5d817bd44573fee08502acb73454d571624ac69e1",
       "plan.md": "df7b5275fb87aff3cca7b7341895200e44c9addd2de141969512a35eb34598a0",
       "tasks.md": "7d10c54c4fef2ab309104dd5f77cdea46d2110ce5e86afacc4069ff0d93a1abc",
-      "checklist.md": "dac769599385dbc114adaf14fad4a9b28e6042d313ce49b302b373976f00bc05",
       "implementation-summary.md": "524c6f775c72769971379151b702c02d152c99313f1a1092ac66cb8f29aacf43"
     },
     "last_active_child_id": null,

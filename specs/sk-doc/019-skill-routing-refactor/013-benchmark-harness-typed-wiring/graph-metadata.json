@@ -22,7 +22,7 @@
       "single classifier collapse tasks",
       "unified taxonomy task list",
       "sealed holdout task sequence",
-      "benchmark harness typed wiring checklist"
+      "benchmark harness typed wiring decision record"
     ],
     "key_topics": [
       "benchmark",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
@@ -52,8 +51,6 @@
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       ".opencode/skills/sk-doc/hub-router.json",
       ".opencode/skills/sk-doc/leaf-aliases.json",
@@ -78,12 +75,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -126,18 +117,6 @@
         "name": "score-skill-benchmark.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate-playbook-topology.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-resource-contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
         "source": "derived"
       },
       {
@@ -205,26 +184,43 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Classifier Collapse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shared skill-benchmark harness and the sk-doc surface router cannot currently prove that the typed routing contract works, and in the real dispatch path it does not",
     "created_at": "2026-07-16T14:14:43.463Z",
-    "last_save_at": "2026-07-24T11:03:16.805Z",
+    "last_save_at": "2026-08-30T15:39:14.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:cd346d7fd7baebb0df64e88dba693aca674a920def0fb3cac9f6f8d707495457",
+    "source_fingerprint": "sha256:dd981e6874a3450052eb661649564f800a9b90197144dd4d206c3aa93057731b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a04141c8e47668860b3ad9ebd50367f22bef0cb780e0b90a662121117919f4f",
       "plan.md": "f919cc5a6d3b0b219579c49df16271cfe29b7b8f499ac9af4cf5665b4c54e840",
       "tasks.md": "c1d78d82c0f1ef52f4c1c0346766ce7f76bacf1b902c81f56daf5c439155d668",
-      "checklist.md": "e4ec396f866b2b529ceae5774a742f977994db69c87dc4bf77ad5b41455fd459",
       "decision-record.md": "69cf2d53f93d254cd580e2fd646b8c0c30d07d09634d0e1d55ec499303f13494"
     },
     "last_active_child_id": null,

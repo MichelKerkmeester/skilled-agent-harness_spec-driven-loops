@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Remediation of the two code/config gaps the 005-deep-agent-improvement phase-5 deep-research loop surfaced and escalated: align the dynamic-profile benchmark threshold (75 -> 80) and fix the run-benchmark default profilesDir (target-profiles -> benchmark-profiles).",
     "created_at": "2026-05-24T04:32:12.188Z",
-    "last_save_at": "2026-07-09T10:02:48.575Z",
+    "last_save_at": "2026-08-30T15:39:22.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a6d7d2b09c8a3c65357b204bb00c5c6534ece653cf6c70c604969269a51fe522",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4b97ce064a2ee2ea98a881c19b1ef50e631f56dd5d1962ff3b4e4ca5dc456847",
       "plan.md": "022ccb3ecfe54021b40ca02d7e62ff4c0318226c14ffb38a37ab85a91d08122b",

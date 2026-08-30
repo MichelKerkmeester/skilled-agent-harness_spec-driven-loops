@@ -19,10 +19,10 @@
       "implementation plan",
       "baseline ownership",
       "tasks",
-      "verification",
-      "checklist",
       "decision record",
-      "rollback"
+      "rollback",
+      "threshold authority",
+      "implementation summary"
     ],
     "key_topics": [
       "baseline",
@@ -33,10 +33,10 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
-      "record"
+      "record",
+      "rollback",
+      "threshold"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/SKILL.md",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,27 +188,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Acceptance Thresholds",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design parity refactor must not begin while existing or uncommitted `sk-design` changes have unclear ownership",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:21:58.985Z",
+    "last_save_at": "2026-08-30T15:39:12.111Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d60ea6670b099449d31a7164671c16bb1c213940dda4fda1ed855d34c1d71725",
+    "source_fingerprint": "sha256:436b32a94d3330f72be87bb00d2c20d90ff779e20b9e112e02288c5b81d1c1ab",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b4d4a3a661b20b45509f0ebd9a1aeff559d40642398dc71666fcdcc22f05d1a",
       "plan.md": "4d4a5d57f6dcd616e294210a55cf7237f491bb69c70e12de7345c3fd653aa3be",
       "tasks.md": "b942a492e3cdb28de140a9b65b880d7da986d74791bec32343e1d5db9d1b3c95",
-      "checklist.md": "be9df52a9e50044c4d88f5906c97bd8e4b6ba3dc867162d94adc493318ee7d23",
       "decision-record.md": "ca15f63a1a9bd3758bb2e884e12cf969f002ae2d56349bd3cb7bee02be27a3d6",
       "implementation-summary.md": "22d8a9374ccc9b31f7ff50ab12f2f59bbf92cd1f0732f9b230791d26237ceff1"
     },

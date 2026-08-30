@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,37 +166,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context Introduces",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Introduces the final-boundary Pi approval extension, containment, shared redaction, and evidence-gated remote mutation",
     "created_at": "2026-08-10T18:28:42Z",
-    "last_save_at": "2026-08-10T18:46:14.253Z",
+    "last_save_at": "2026-08-30T15:39:07.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97b4c6fba99e92175e3b2dcb53bb254694ac9e06b36a7a38c1e6085c7f7c2e67",
+    "source_fingerprint": "sha256:b8055c1a374974eb5be7b6fe0d3a47cf30ca0629cde02e543c85305210422d6c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c605ac1dafbf10b6b998fa932d92d39303aba75d0f2472cb92aa271d662f84e",
+      "spec.md": "a039bb36b50e71f0e26d69efc9b4d82c16014e571d42394729fe3aecbdb4ff6f",
       "plan.md": "2691d1c1037573981c0338388df1d2a6105739aadf44cb513bfb9d9b5169a537",
-      "tasks.md": "daae64ca267709eff59c18588ac92ac0308e529da46018441a34483a599b8d03",
-      "checklist.md": "14e70e530c7f38b0389d08878ad889762866ca35a46c32c21442b422ef26e17d",
+      "tasks.md": "c381af91db7338faf1f18ea2dfa4d7f32e25aaecf8096244ee6277cd0b88704b",
       "decision-record.md": "06a0c08fc4f858604e618f8713f39b788f23c67461f850bf6496b546a1f446f7",
       "implementation-summary.md": "2575a58e2483e3658a721adce237354d2b2927e970d4c9bdd149d1e286a0b452"
     },

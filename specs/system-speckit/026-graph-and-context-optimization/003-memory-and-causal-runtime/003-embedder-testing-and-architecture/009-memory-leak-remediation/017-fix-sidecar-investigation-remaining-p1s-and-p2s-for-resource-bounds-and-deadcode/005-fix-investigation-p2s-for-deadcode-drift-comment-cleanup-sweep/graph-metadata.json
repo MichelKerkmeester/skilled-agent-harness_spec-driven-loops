@@ -17,8 +17,6 @@
       "embedder p2 cleanup plan",
       "arc 010 003 005 tasks",
       "embedder p2 cleanup tasks",
-      "arc 010 003 005 checklist",
-      "68 p2 cleanup checklist",
       "arc 010 003 005 decisions",
       "p2 cleanup adr",
       "arc 010 003 005 summary",
@@ -31,24 +29,22 @@
       "sweep",
       "plan",
       "tasks",
-      "checklist",
       "decisions",
       "adr",
       "summary",
       "implementation",
-      "recorded"
+      "recorded",
+      "findings"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "node_modules/vitest/vitest.mjs",
-      "scratch/.gitkeep"
+      "node_modules/vitest/vitest.mjs"
     ],
     "entities": [
       {
@@ -70,12 +66,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -91,12 +81,6 @@
         "name": "vitest.mjs",
         "kind": "file",
         "path": "node_modules/vitest/vitest.mjs",
-        "source": "derived"
-      },
-      {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": "scratch/.gitkeep",
         "source": "derived"
       },
       {
@@ -194,27 +178,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delete Only Proven",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Arc 010/001 recorded 68 P2 cleanup findings across embedder module surfaces",
     "created_at": "2026-05-23T06:55:12Z",
-    "last_save_at": "2026-08-29T15:22:16.110Z",
+    "last_save_at": "2026-08-30T15:39:31.398Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f568980e25d443c4a4b0ec11d0b0ddc33338bb5e19a48ce8edd54273dacc835",
+    "source_fingerprint": "sha256:16ceff0831f4fced81d8377c872da752aa7517884193ecad427c6e8cbaa7bb28",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f94d689ba81f8328a9e62b6641ffd457e17d6e868f99c86e6d74e180fa567a3d",
       "plan.md": "d3a9084a606b68a688b4ce447cc04e31663f8212ad59c8d7bde8e489a14cedec",
       "tasks.md": "5503e646a89a8b90bad67539ee76ae291f542632869a86265479c9ffca3c99b1",
-      "checklist.md": "4f8acd2dba43b62a85ca65485700229505188b79bffb43c5f0404efd3a76ab20",
       "decision-record.md": "ed4d8e98407e476b2d3f3c9add4bb9f152afb6844e913e02c5004832e756dcfd",
       "implementation-summary.md": "08c0bb3654e20d535f5528084a3d77275ce1592b2b598198e98f52782766800a"
     },

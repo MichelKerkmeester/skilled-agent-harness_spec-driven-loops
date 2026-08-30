@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The rerank sidecar reaper implementation exists in the app and launchers, but the shell launcher still needs to forward the approved reaper controls through its explicit env allowlist",
     "created_at": "2026-05-23T07:59:05Z",
-    "last_save_at": "2026-08-30T08:07:28.763Z",
+    "last_save_at": "2026-08-30T15:39:31.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:460df3c9c9c45e45183fee416f54368125bd638dc05e614046f32907f975f388",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c09af15985bf5fa20b11eb42f868b440c200e24df6ad1e6c99c42944e05498c6",
       "plan.md": "8129ccfaf385feaac49761cfc54172488d6a0a48a7d3d7af4e9891c27180d4b7",

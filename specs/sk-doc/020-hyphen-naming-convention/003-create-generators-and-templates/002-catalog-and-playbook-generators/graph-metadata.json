@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The feature-catalog and manual-testing-playbook generators still describe and emit underscore roots, categories, and artifact files. They must emit kebab-case output only after phase 002's bounded consumer tolerance can resolve the new names without a silent readme downgrade.",
     "created_at": "2026-07-14T15:16:45Z",
-    "last_save_at": "2026-08-30T08:04:19.587Z",
+    "last_save_at": "2026-08-30T15:39:16.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c84b88f539400eebc315d1a3ca2cc1e428e0bd338fb553fce424b53717643888",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6703735a63ebd6fa60d98f0658d5b2d4c57bb0e77d606c75cbf4f972cafbc3c3",
       "plan.md": "21c503318d940e800bfcfe226fb41acb903ed6a59b7895e0d26e10cef85bb0d6",

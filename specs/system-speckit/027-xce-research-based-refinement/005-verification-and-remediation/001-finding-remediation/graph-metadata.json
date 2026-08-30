@@ -118,13 +118,14 @@
     ],
     "causal_summary": "The 120-seat epic deep-review sweep adjudicated only its 41 strongest finding clusters (23 confirmed and fixed)",
     "created_at": "2026-06-11T19:10:00Z",
-    "last_save_at": "2026-08-29T15:22:20.556Z",
+    "last_save_at": "2026-08-30T15:39:34.222Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:cad722bb2161bbd036c9a59b59c9076dca9f65d31ac05b58ee878e5023e6c194",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "017048d09fd8c2b2cca87c48b06ee200128990f0ab66e90b561a9d5ac5100932"
     },

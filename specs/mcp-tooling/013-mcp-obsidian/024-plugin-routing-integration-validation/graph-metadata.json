@@ -34,9 +34,8 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "tasks.md",
-      "checklist.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -47,21 +46,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -161,48 +154,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "How It Was Delivered Router",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
     "created_at": "2026-08-04T06:00:18.002Z",
-    "last_save_at": "2026-08-04T12:05:08.550Z",
+    "last_save_at": "2026-08-30T15:39:10.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6eee182a8110a2646db3bfaefbe41e7350ea0280fab7162e940705ef107f0c81",
+    "source_fingerprint": "sha256:6d8fd5d7622725235bd53166931a092509e796e3908bd68208c9b66d89a4b4e8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90864bcb96b3f115b25e9020ccfc35a75b0d30f04d170651dc490661fde54ff0",
       "plan.md": "8612e0a748ed29051ad17d1ad25e90efdf9aae8542b6a2dfdab321901857dcbe",
       "tasks.md": "cfa820dae5ece48f9345b0b36bab0d16745e73320f41051009d79dda29c936df",
-      "checklist.md": "b53bd88f40989d3f8e443cb3499eddc0a30480c50753d4f76c851c64b7bbcab0",
       "implementation-summary.md": "269d0470e548a2959333dca32cb999369db600ac9eced1e1152cea236be1a761"
     },
     "last_active_child_id": null,

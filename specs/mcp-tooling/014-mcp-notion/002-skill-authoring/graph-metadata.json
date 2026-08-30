@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After Phase 1, the research verdict exists but nothing tells an agent how to reach Notion: which backend to use (headless stdio vs interactive OAuth), which of the 24 tools serves which operation, where the 5 direct-API gaps are, or how the API 2.0 data-source model differs from a plain database id",
     "created_at": "2026-08-21T15:00:45.750Z",
-    "last_save_at": "2026-08-29T15:21:54.487Z",
+    "last_save_at": "2026-08-30T15:39:10.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d064c5233a7849fc4a2e9820095524c7f64cceae5ee17243c4e76ce465f59c98",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ded9527fa690fc6732af0f476fafe225aaf03f35e5c66319fe6baed36077176",
       "plan.md": "f95e6c1f08fc330713c325c20ecbdba264c58c506a6c3901711702138a62c2e3",

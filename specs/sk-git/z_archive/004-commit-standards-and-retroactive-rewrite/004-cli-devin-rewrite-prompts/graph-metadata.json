@@ -192,7 +192,7 @@
     ],
     "causal_summary": "A 2,795-commit retroactive rewrite is too large for a single cli-devin dispatch",
     "created_at": "2026-07-15T04:22:53.290Z",
-    "last_save_at": "2026-07-15T04:22:53.290Z",
+    "last_save_at": "2026-08-30T15:39:18.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3dfc82f5a92a1df85a9c186f44ef8615f882bd8c2a19dde486eafcf6e8210b40",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55cbfc5a6203f69c0d68b6860d6ac5b7da51c9ae78ec916a7c5ee4545dc1353d",
       "plan.md": "2e6af07a94c2fd652cfc9014aa2319ae03ef1f73784c4284bc719bdf4929e2f9",

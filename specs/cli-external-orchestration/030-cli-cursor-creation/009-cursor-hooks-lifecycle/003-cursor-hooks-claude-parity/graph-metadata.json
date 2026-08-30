@@ -17,7 +17,6 @@
       ".cursor/hooks.json Claude parity expansion",
       "cli-cursor hooks Claude parity plan",
       "cli-cursor hooks Claude parity tasks",
-      "cli-cursor hooks Claude parity checklist",
       "cli-cursor hooks Claude parity implementation",
       "cursor postToolUse task-dispatch-guard live-fire"
     ],
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".cursor/hooks.json",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/shared.ts",
@@ -75,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,26 +194,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 010 registered exactly the 4 adapters ADR-001 originally scoped (`sessionStart`/`sessionEnd`/`preToolUse`/`beforeSubmitPrompt`), deliberately excluding everything else pending further review",
     "created_at": "2026-07-24T14:11:06.037Z",
-    "last_save_at": "2026-08-29T15:21:50.947Z",
+    "last_save_at": "2026-08-30T15:39:07.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:623e109fd0b1ad562e92e494da68dd7d3f6dbb085f52ce9890a0417c50acf0c2",
+    "source_fingerprint": "sha256:1a109ffc349f49efbc4cd6d2fcab06689f58a57f8e9ac7aae09844e9f3fa73d1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e20896fecd00c4d96a836020b062a602fe37b1ebf354a2dea38bf0499690681d",
       "plan.md": "e7ec1024c80d6a1798c8a01b9fec296032a8435b49b8c7735e08de4af26b2d3e",
       "tasks.md": "ea4277353d861b3b8dbef8deb69ca4dab2a58e789bbf3eaa50a0423f0c7e00ad",
-      "checklist.md": "c00a88dafbaa7d84afec3bee6885c14e468a74fba8f3d1b4de45b8035d00b3aa",
       "implementation-summary.md": "10215536aa2174bf20fdd2cd576820f22e7ae5bbdee25dd6a15de3e9467a09b6"
     },
     "last_active_child_id": null,

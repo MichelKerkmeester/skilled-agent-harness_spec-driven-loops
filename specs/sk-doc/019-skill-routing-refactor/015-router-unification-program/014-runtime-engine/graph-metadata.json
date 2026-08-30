@@ -19,10 +19,9 @@
       "P4b cutover plan",
       "runtime engine tasks",
       "P4b cutover task list",
-      "runtime engine checklist",
-      "P4b cutover QA gate",
       "runtime engine implementation summary",
-      "compiled-route resolver flip built"
+      "compiled-route resolver flip built",
+      "seven-hub compiled cutover complete"
     ],
     "key_topics": [
       "unified",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "lib/compiled-route.cjs",
       "lib/resolve.cjs",
@@ -68,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -179,42 +171,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Files Delivered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "After P4a, each hub's compiled generation is bound as `selectedPolicy` but nothing consumes it: there is no code that reads the manifest at route time, no gate that decides when the compiled decision is authoritative, and no operated switch to move a hub from legacy to compiled serving",
     "created_at": "2026-07-19T14:22:34.516Z",
-    "last_save_at": "2026-08-29T13:10:18.130Z",
+    "last_save_at": "2026-08-30T15:39:15.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c1ef3a1f80c94201b2ab3f2ec050e0ffb59c6c5c1e407a0930ee767b4188b159",
+    "source_fingerprint": "sha256:a65dd04e0a99620adc667aa8b48765b37dac9c0b38547c6bf9385724bf8d2bdd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fd15faf6acdbb663dfe6cee132ff3d8d3534fce37c0a10e0f0b7dda0b4343a38",
       "plan.md": "c4f7469a9f5bc321cbf04776275b3c3cecb3575a421ffd6a01e40332a15d770e",
       "tasks.md": "2e993c83e014c8b0521ff5d0d4edf67669c99e1424550c7ddfc4887da3485bde",
-      "checklist.md": "442bbe1432679eec24c7b13a1a7785bd0316f6bb614a232b4ec05a6ea878d042",
       "implementation-summary.md": "ab552f5952d1f715f83f00a6a8cd0c9e8c18b8e6b73451ff310d90c4a58a1605"
     },
     "last_active_child_id": null,

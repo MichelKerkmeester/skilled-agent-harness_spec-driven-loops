@@ -19,8 +19,6 @@
       "communication projection architecture",
       "portable CLI research tasks",
       "communication rewrite research status",
-      "portable CLI research checklist",
-      "7 plus 3 research verification",
       "portable CLI research summary",
       "improved communication current state"
     ],
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,30 +178,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Research Phase Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The reference proves that whole-message rewriting, user-question context, a narrow copy-editing prompt, low sampling, and fail-open display can make assistant output noticeably easier to read",
     "created_at": "2026-08-11T06:21:48Z",
-    "last_save_at": "2026-08-28T22:00:10.426Z",
+    "last_save_at": "2026-08-30T15:39:07.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:252c4a2dedcd4e10e2bc21f59ca8a3c24a5497ac3d61b1dcb2bda62f96c2a44f",
+    "source_fingerprint": "sha256:1a87dc201703b5a0e848cf0f3ad84b91dc6565dffa146cc118d77854984b85a3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "972cef6f5c651fe6e02a5101d8ce3847a7e03f47aa461990ef15b0d53f17eb5f",
       "plan.md": "0c0f0d13606131f559601cbbebed469992f9125ac99ea4bb2767ef471398be66",
       "tasks.md": "a8fd142c58b124739f5ccb6eedbda6bea219ca8950b78643d0934f9e302ead1c",
-      "checklist.md": "e3de6b4101ca809b5588a7bff8894f3d10a12d4a2ebe4d4fa4a49dba774729df",
       "implementation-summary.md": "e01cef9c01876b128181cb42b167edfa12dd86cb008c3e073c714ef038472ef9"
     },
     "last_active_child_id": null,

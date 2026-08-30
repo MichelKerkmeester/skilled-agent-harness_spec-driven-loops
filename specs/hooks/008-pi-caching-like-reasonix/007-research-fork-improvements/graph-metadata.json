@@ -17,7 +17,6 @@
       "fork improvement research plan",
       "deep-pi pi-cache-optimizer improvement research",
       "fork improvement research tasks",
-      "fork improvement research checklist",
       "fork improvement research summary"
     ],
     "key_topics": [
@@ -29,10 +28,10 @@
       "research",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "packet",
-      "shipped"
+      "shipped",
+      "two"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "specs/descriptions.json"
@@ -62,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -185,31 +177,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 008 shipped two working forks — `pi-cache-optimizer` (003, DeepSeek-guarded) and `deep-pi` (006, hardened DeepSeek-direct telemetry) — both verified live and benchmarked",
     "created_at": "2026-08-08T04:59:50.930Z",
-    "last_save_at": "2026-08-29T15:21:52.389Z",
+    "last_save_at": "2026-08-30T15:39:09.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:51f753fa62704fa283ac00c7ad6eb2a071aead5e5dc037dd377aac9b4e6da0fa",
+    "source_fingerprint": "sha256:9f0dd7b88ac298e077ac9042d33a8a6703abfb0837436722660b088d541b3725",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eae8ca8da7128e0974be8571e42c06f0f2120603af8868600443436dd1815def",
       "plan.md": "ecf8c00c1dbde7e959717266fb01ea6f3cd6520446b13c7a5342bfe76908227f",
       "tasks.md": "9e8329b5b2406df7e3f48640be795ddd5d8e5e736337c99b68769c24943ebc2d",
-      "checklist.md": "244553a422353e8f3ebfe5d2c0a5e0ad4935f6efefe0eed338f76ceb0a363bf8",
       "implementation-summary.md": "598353c11f35cc06e688eef6b7e07f698eede3531c7baf1b063c9e8db8315626",
       "research/research.md": "44ecdc956d1ce01bc017ea0cd6034b3f548351d25f779695c02693ed2463cb12"
     },

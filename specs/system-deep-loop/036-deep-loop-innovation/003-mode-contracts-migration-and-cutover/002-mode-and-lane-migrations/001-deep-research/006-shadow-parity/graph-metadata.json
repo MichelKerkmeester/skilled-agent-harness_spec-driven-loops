@@ -21,8 +21,8 @@
       "Deep Research shadow parity tasks",
       "deep-research event parity tasks",
       "mode 010 phase 009 tasks",
-      "Deep Research shadow parity checklist",
-      "deep-research parity gate"
+      "Deep Research legacy resume oracle",
+      "resume parity non-vacuity"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,49 +163,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Resume Oracle",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Receipt Certificate Trust",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Independent Legacy Resume Oracle",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compare Modeled Legacy Resume Semantics",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Implemented Deep Research shadow parity over the typed event-ledger substrate, with independent legacy and ledger executors, strict event and projection comparison, reproducible receipts, and a fail-closed successor gate input. The legacy path remains authoritative.",
     "created_at": "2026-07-16T03:43:31.690Z",
-    "last_save_at": "2026-08-29T13:09:53.827Z",
+    "last_save_at": "2026-08-30T15:39:20.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2b1316add410e3cbfe3c87254d0e32d7e4cc75d1400e4178f14878d971976b3",
+    "source_fingerprint": "sha256:d96628fd69bb1a5a16c0616731a5f7b17f83ebb2dad354a3edbcd201f892f859",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3628ff8c9b42d6e524c90e88c340484b2f908e99fb7f24a912459759912cf9da",
       "plan.md": "c1e670101da249dd6ce404869f7be6c47ab3c99c9660d301a698809ca2c47640",
       "tasks.md": "9b18db4d703698d7c690336244d70c9b29fcc8e1bfd494445b39397c1cd864a6",
-      "checklist.md": "4b41f6d4af50833d02499ffbab949488344b6844e88a79e0dc22b95c3eaf5d04",
       "decision-record.md": "b1b97ddfb2c887bc7c175730c7d19275eedd6f9febdde09026c72c45d31543ea",
       "implementation-summary.md": "9aa5ad353567a4343694c29af30a4efc1e12b1f6001c16ff5afba479b60a4bfb"
     },

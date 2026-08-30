@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,30 +171,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus three subdirectories — `build-cards/` (`motion-fill-in-cards.md`), `procedure-cards/` (`motion-procedure-card-inventory.md`), and `restraint-gate-and-choreography/` (`choreography-and-reduced-motion.md`, `motion-restraint-gate.md`) — none of which was in the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:13.941Z",
-    "last_save_at": "2026-08-29T13:09:58.051Z",
+    "last_save_at": "2026-08-30T15:39:13.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29530b4d291d65994fa5bbd958a4e1ca9d789f78f3927f6e9009e176c71a30e1",
+    "source_fingerprint": "sha256:8838c911b3d589b94a441ce34efe16b36fba14838bb98d3f7f1dfa57da9d1a3b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "77ea5260ed8116b3ac75c2a5fa734ab9b5ba23a898687a96fce8d58bd8acb46b",
       "plan.md": "14e517d95c0c7b67562941bd82fc045036f2e95a2fd58f7c774251c63fd15b08",
       "tasks.md": "7120844942df326b6045b9aa354419c3536e009f17d36fe78c91cbe44980c7c9",
-      "checklist.md": "fc7b4eb5212ff16af9ba2cc29b50d832da366758b4457459bd9104426d6f2094",
       "implementation-summary.md": "b31d900a4b8eab7c6bd2bffa3a2b225a4badda5378bc257d6496c0667b3a148a"
     },
     "last_active_child_id": null,

@@ -67,17 +67,21 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
       ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
-      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-      ".opencode/commands/deep/alignment.md",
-      "002-architecture-decision/decision-record.md",
-      "spec.md"
+      "002-architecture-decision/decision-record.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -106,18 +110,6 @@
         "name": "reduce-state.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "alignment.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/alignment.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -159,13 +151,14 @@
     ],
     "causal_summary": "This repository defines conformance standards for its own artifacts — `sk-doc`'s document templates and DQI validators, `sk-git`'s commit and branch-naming rules, `sk-design`'s DESIGN.md and token structure, `sk-code`'s per-surface implementation patterns — but nothing checks a given artifact against the named standard it claims to follow, with reality-drift verification, in a repeatable loop",
     "created_at": "2026-07-11T06:09:13.466Z",
-    "last_save_at": "2026-07-16T16:33:21.896Z",
+    "last_save_at": "2026-08-30T15:39:20.045Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:0414083a5e3b182fe24e3eb1d8b56bd80d4c9e5cad2fd12c13ae607eea28488c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7345241c9ffe9a576d54fd26bfe0f6db7f75e6db4122bc6922465d0ed5121e39"
     },

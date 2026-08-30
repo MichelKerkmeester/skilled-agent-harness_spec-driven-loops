@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The system-code-graph runtime is rooted at mcpserver/, with pluginbridges/ and stresstest/ as ordinary direct",
     "created_at": "2026-07-14T15:18:13Z",
-    "last_save_at": "2026-08-30T08:04:32.512Z",
+    "last_save_at": "2026-08-30T15:39:16.864Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:099bf39e868756f4bfdaf76c71574fe999fa657e95b5841a9e440bc26e679748",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "197a47acd7def016763fbadd693cc91c246a93de5599a7fa808b848e7a3639cb",
       "plan.md": "4ccef9f19f271169c665a07f73257177106772690252c63274b75bfb32b3b1a9",

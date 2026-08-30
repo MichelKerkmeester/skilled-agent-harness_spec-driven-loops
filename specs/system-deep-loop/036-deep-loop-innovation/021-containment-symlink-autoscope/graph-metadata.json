@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet 020 fixed the tsx-loader crash and added a `DEEPLOOPREPOROOT` override, but left the containment half of the operator's catch-22 unconfirmed",
     "created_at": "2026-08-26T16:09:53.781Z",
-    "last_save_at": "2026-08-30T07:16:24.277Z",
+    "last_save_at": "2026-08-30T15:39:22.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1ca032a9a61960bc7096a721e2db54fb92f0f840da6874d231833e497ad6813c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a9e6c46524ab6bf65cbc6aeefa7c08efcfe8f73b833ea10ea0c57f83260f863",
       "plan.md": "00f44ba5ff2f781e19bf16a694f98e551c901d596a3247fec92486d9408ba67f",

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit: `sk-prompt` (132/130) and 7 commands clustered at 112-122 chars (target 110)",
     "created_at": "2026-05-06T17:04:32.499Z",
-    "last_save_at": "2026-08-29T14:54:20.201Z",
+    "last_save_at": "2026-08-30T15:39:14.254Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:cc5e8e1a94abc0b920ee149739ae89f851914257005f69e0b009edd3e88479b2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ef87c2d913c34af225865780ae45485c2885cfe9b10e8d7a5f832aca68842797",
       "plan.md": "08208c31fb2012f0fb3546551b4ed6301dbe3f584cb26afc398636e51611c035",

@@ -19,8 +19,6 @@
       "ledger v2 identity pid plan",
       "arc 010 005 001 tasks",
       "ledger v2 identity pid tasks",
-      "arc 010 005 001 checklist",
-      "ledger v2 identity pid checklist",
       "arc 010 005 001 decision record",
       "ledger v2 identity pid adr",
       "arc 010 005 001 summary",
@@ -35,35 +33,21 @@
       "helpers",
       "plan",
       "tasks",
-      "checklist",
       "decision",
       "record",
-      "adr"
+      "adr",
+      "summary"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "scratch/.gitkeep",
+      "tasks.md",
       "decision-record.md",
-      "tasks.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,9 +61,9 @@
         "source": "derived"
       },
       {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": "scratch/.gitkeep",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -89,9 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,27 +179,38 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "all ADR-002",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The rerank sidecar ledger currently records sidecar rows without process-owner identities",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-17T17:19:28.666Z",
+    "last_save_at": "2026-08-30T15:39:31.422Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4fb941591122f8487affedd3f5cbda0cb39cc3e00bf1ac1cb3acb02b1fb0d79",
+    "source_fingerprint": "sha256:4a266ca4b6f6464a660f7d522673269316cb86d89e404665d0f0046dbdd62a25",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90aaae20152f5d0302cc29b4195de9947aadfe5e59c24371b92f83507b4a0ca5",
       "plan.md": "e9d7baeb341489cc82124c62543b10b20011f23c350843e65ef6d3635e06bd4d",
       "tasks.md": "fac161547c74ac078fd363dd35aa01e847bcfb8db923c6599addac147737d634",
-      "checklist.md": "1d89f790de3156511a6e512e371bbec9e492462e0da98d200814056617bde092",
       "decision-record.md": "f5cfd075095eb5f676c552bf25b519ea8e4652790b0aa2064d2c4615e20c3154",
       "implementation-summary.md": "e75dfab2e32468a4811ab514d5c9d1f2bfcb6aaf10f212b57ab6c565d2edf299"
     },

@@ -85,17 +85,18 @@
     ],
     "causal_summary": "Two live-infra issues degrade the spec-memory subsystem",
     "created_at": "2026-05-30T08:17:54.064Z",
-    "last_save_at": "2026-07-17T17:19:34.303Z",
+    "last_save_at": "2026-08-30T15:39:32.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:e19ad9a7306a9ca6e7683aed8d4065fc44a668ade280ef8c68b847534c3b3bc6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a575f0f31c8ff622b14e85faff3c5dcc5ea7c8d366fec72a06320f5e6a5949de"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing",
     "last_active_at": null
   }
 }

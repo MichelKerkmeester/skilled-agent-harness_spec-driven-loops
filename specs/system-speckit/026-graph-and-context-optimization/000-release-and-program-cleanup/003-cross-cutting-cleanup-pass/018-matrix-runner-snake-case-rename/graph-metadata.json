@@ -41,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "rename-log.md",
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,27 +184,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The CLI matrix runner folder used kebab-case while adjacent MCP server support directories use snakecase",
     "created_at": "2026-05-18T08:15:53.134Z",
-    "last_save_at": "2026-08-29T15:22:10.259Z",
+    "last_save_at": "2026-08-30T15:39:28.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:b41157dce284e9a2f5fe229bfa50628632fff258c22947be33aebda24a3f0bd3",
+    "source_fingerprint": "sha256:d9f533dcb9d1ab02c6a489b361c8e576ee9eff38b81b8f9328ac84866df38511",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ef335af581485e5d1713a1b7712c4d075ac52330c98da1d5ede15bfffc82e8ca",
       "plan.md": "ec509ccc852e1e245404c23ca6984036e632e7b88b40adb9ca7b919d453b04bc",
       "tasks.md": "33add72102e00e3c36b3e33357ffbcd6907ce224cf8c7c922b34904a8dc6c75f",
-      "checklist.md": "cf76f471372723739f4f82d6042e4e93f523fda20d1a76c5eca41534e5fd6227",
       "implementation-summary.md": "e1358178b6fe142c1ccfe33bdde8856d8531abe1e15e5fa732f99a3ddcbcd963",
       "resource-map.md": "5e4835b3e34ec784e0a99a8bde56ff5cc6a789496429cb547534901aab98c03d"
     },

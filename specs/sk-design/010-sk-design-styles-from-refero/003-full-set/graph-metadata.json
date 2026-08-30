@@ -44,9 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/sk-design/styles/README.md",
-      ".opencode/skills/sk-design/styles/_manifest.json",
-      ".opencode/skills/sk-design/styles/cursor/cursor-canonical.json",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,24 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/styles/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "_manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/styles/_manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "cursor-canonical.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/styles/cursor/cursor-canonical.json",
         "source": "derived"
       },
       {
@@ -193,11 +172,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The pilot proved the harness on 50 styles and recorded GO",
     "created_at": "2026-07-18T10:25:46.940Z",
-    "last_save_at": "2026-07-18T10:25:46.940Z",
+    "last_save_at": "2026-08-30T15:39:12.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:873a51625680e7b00e5650baffe6384fd71923ca469711889db69e43e1512af2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a8a6b57bede463db0318cd61b6bb9d410dd7f8f0f58b208380081c902d13b19",
       "plan.md": "f8a536086d0add94a19b7b9a71e6fce2e5aaf351f123407a4c182690f49dd4de",

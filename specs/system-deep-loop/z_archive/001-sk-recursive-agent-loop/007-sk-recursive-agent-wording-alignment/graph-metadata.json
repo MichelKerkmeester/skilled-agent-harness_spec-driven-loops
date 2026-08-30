@@ -18,8 +18,6 @@
       "recursive agent wording alignment plan",
       "041 phase 007 tasks",
       "recursive agent wording alignment tasks",
-      "041 phase 007 checklist",
-      "recursive agent wording alignment checklist",
       "041 phase 007 implementation summary",
       "recursive agent wording alignment summary"
     ],
@@ -32,32 +30,25 @@
       "pass",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "agent-improver"
+      "agent-improver",
+      "program"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/specs/descriptions.json",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/descriptions.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -73,15 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -181,36 +172,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "What Was Built Phase",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "After phase `006`, the agent-improver program was structurally aligned, but several current surfaces still had awkward phrasing, inconsistent terminology, or minor wording bugs across the source skill package, runtime mirrors, wrapper prompts, and parent packet docs",
     "created_at": "2026-04-12T09:02:50.188Z",
-    "last_save_at": "2026-07-09T10:02:48.326Z",
+    "last_save_at": "2026-08-30T15:39:22.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb041397515245c3cce34e43aefcb2437a45a9ffdc35b3e93ec40c90b9af0704",
+    "source_fingerprint": "sha256:1c3f5d12a75a18ef16faaa168d916ccde63d2801e724690e9085202ef07572ec",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae700b4249a5c72d3358078257e464f7c7d3b30debced575660281e0aa6c7b91",
       "plan.md": "ff51225cc2482cecf28858cc37c522ff7ab9b17450d04e8dc8684f1796633c9a",
-      "tasks.md": "465028c165d01bc626c787919895f501c6fd7f446e51a6ccfdc78f09b779e2a5",
-      "checklist.md": "37ed3ee22fe433ee33fe0bc76f5067b51782c5e0aa56e07ce9125a7fd25714ea",
+      "tasks.md": "38d1b946aa468d5ea3a5f527379a87a8c7d4ec022f9b2adf1d56f1a53b3bd5ae",
       "implementation-summary.md": "d4218fa49bad4a1bbcd96ca546ecfbe4741bf5dcd2a89f3becb1b0793c35add6"
     },
     "last_active_child_id": null,

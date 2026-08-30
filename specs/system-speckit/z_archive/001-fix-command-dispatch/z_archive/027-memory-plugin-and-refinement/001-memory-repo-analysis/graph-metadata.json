@@ -42,10 +42,9 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
       "plan.md",
+      "tasks.md",
+      "decision-record.md",
       "research/research.md",
       "handover.md"
     ],
@@ -57,27 +56,21 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -193,30 +186,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Architecture Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Analyze our semantic memory system architecture, compare with roampal-core's innovative features (outcome-based learning, Knowledge Graphs, hook integration), and produce prioritized recommendations for system improvements",
     "created_at": "2026-04-12T09:02:53.518Z",
-    "last_save_at": "2026-07-10T06:22:43.292Z",
+    "last_save_at": "2026-08-30T15:39:37.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:b1f74f876396ea2d34e66ddfc5cb26033edc404a997254fbfec0e27780dce8e8",
+    "source_fingerprint": "sha256:03a4a4936e840f6d50f85e6bc99b74952b08f9203e576e9c3e972d9936bcd1e3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd96366e3d902f6b275ede722dca4b019e485ccfa18865329c218aea8259fd9a",
       "plan.md": "118995e1cf6deb5dfdc2dbf1d5a47a733cbda9c0b0a679828002eff962567eff",
-      "tasks.md": "513135d47d1ec989647f116e9eeda8f7c33898eadfaa54852b4f955bb297801f",
-      "checklist.md": "1818f4f7370b13680d8b1ee5f1352d24189a95c5dc94eff469cbbfb11e9f58c8",
-      "decision-record.md": "68a49709bfcb7c9252cc105b654be92104d27eb24c40bce8d379815a578b3d35",
-      "research/research.md": "59ad13c6efbcfca99c7425bfc1ec515d834ee1348b4226aa3b16831a9f3e5a8d",
+      "tasks.md": "aa6c6307e8b9e8a7a1c24c682b360586439063522917278257174da0daad29f5",
+      "decision-record.md": "f44429aa9a27463334875082614f6c193a60f555be5896227fe11df40c000937",
+      "research/research.md": "65b60221cedf0b871a80eaa05a024e5d4e498993596153bb5655d94fe0e5af69",
       "handover.md": "510248b01da049fc9ef5374b39f1f58310e37efbf749c81878b260ca97546178"
     },
     "last_active_child_id": null,

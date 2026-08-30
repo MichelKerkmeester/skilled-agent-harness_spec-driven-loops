@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved — 5 fixed, 1 refuted-then-hardened; CLI vitest green.",
     "created_at": "2026-07-10T06:23:17.683Z",
-    "last_save_at": "2026-08-29T15:22:20.950Z",
+    "last_save_at": "2026-08-30T15:39:34.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e9efeb6d26e1d7161b2ae278dcea90fa938809a9e0f07d7619b0623e7d118997",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c152dee9b141b29cb414cb22ffc6e08382ed10b4b6f6b48178b89459ea7c1522",
       "plan.md": "6c367461704d79c78766d037078d50fd61b0a615eeddbcad5989822d0aea1348",

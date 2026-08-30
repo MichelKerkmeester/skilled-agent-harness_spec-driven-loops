@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The remediation fixed several state-safety, fan-out, and goal-plugin defects, each backed by a regression test, but the manual-testing playbooks carried only \"does this feature match the docs\" scenarios",
     "created_at": "2026-06-29T10:43:19Z",
-    "last_save_at": "2026-07-16T16:32:23.668Z",
+    "last_save_at": "2026-08-30T15:39:25.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5a8483e949b53976956af9a91a87a527fa3706cb3ac2604c49ffd6302003ff9c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3b5fecc09c201c44c6271f1a079ae99f579f3a02c9221a9ed7422c03e6c8a900",
       "plan.md": "d098b6f4c2a9d979e7b331a174ceae91cb8c29fa47c4c55be56bbeec37c9e2e1",

@@ -165,7 +165,7 @@
     ],
     "causal_summary": "The scorer is the backend's strongest pure-compute rewrite candidate, but even this path crosses native boundaries",
     "created_at": "2026-07-11T06:42:40.921Z",
-    "last_save_at": "2026-08-14T07:50:01.458Z",
+    "last_save_at": "2026-08-30T15:39:26.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,6 +174,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:4a87b965645b2172c6d9ea3c2588d3f2a080775d363e2d308a1d148fdd3d57d0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0e94dc50733cf76650c05f11042377e7495b38b432f465a387a5cfd71779951",
       "plan.md": "2902f0b9a8f32fe12d92e168362b65e588a6eaf701fab21a77796894a7a0a229",

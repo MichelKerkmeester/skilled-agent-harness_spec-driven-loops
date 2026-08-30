@@ -18,7 +18,6 @@
       "rerank-firing baseline",
       "bge-code-v1 supersession plan",
       "bge-code-v1 supersession tasks",
-      "bge-code-v1 supersession checklist",
       "bge-code-v1 supersession ADR",
       "016/007/003 decision record",
       "bge-code-v1 confirmation superseded",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "pre-confirmation-margin-analysis.md"
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,27 +185,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Scope changed 2026-05-18 evening. Original plan: corrected single-run or later 018 bge-code-v1-only confirmation. Replaced with: full 4-candidate re-baseline against the corrected pipeline (pipx editable + harness CCC-pinned + rerank actually firing per 016/005/005 hygiene fix). The May 18 morning 11/18 = 61.1% baseline was invalidated — that bench ran with the reranker module missing from pipx. Re-run all 4 candidates (jina-code, gemma, nomic-CodeRankEmbed, bge-code-v1) end-to-end; produce new ranking; promote (or hold) based on rigorous comparison.",
     "created_at": "2026-05-18T16:52:17.343Z",
-    "last_save_at": "2026-08-29T13:10:00.516Z",
+    "last_save_at": "2026-08-30T15:39:31.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a0d15dc44db1394f413130174199c79722b511539d9228446281f2f4cc2bee3",
+    "source_fingerprint": "sha256:623f61c3e889e13614c2cb6a8e872d17b9044f30de8f31c5624873b2cab2b123",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5edf034c4f015ade29985271e22c32b4db3922a76fde0f3507abb92000a869fa",
       "plan.md": "b17b689691781d5423bcd1004ac30c43424e96f1e5afa80ddb80ae1f58c9389a",
       "tasks.md": "2d6ca1ef2a816a0bf780370b0ac4ba3b572b19742b050ceaa593bb52c6f1c24a",
-      "checklist.md": "7427a7f8ad9b1b4cbbcf4356edb29a4b09b56c8a5688482615a4368f316bb3eb",
       "decision-record.md": "dd18f48077b364c72815ba2551beaef649ccf6cfb47a0afa57668ba56cd9a46b",
       "implementation-summary.md": "904357d93af1d902c3c31b2a36ec9a913f6b04c898d633e49a716e010c6ef933"
     },

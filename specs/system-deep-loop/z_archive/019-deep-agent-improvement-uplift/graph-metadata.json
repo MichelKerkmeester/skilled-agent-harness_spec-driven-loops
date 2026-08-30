@@ -203,7 +203,7 @@
     ],
     "causal_summary": "deep-agent-improvement evaluates candidate agent mutations across 5 dimensions × multiple mutation types per dimension",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-07-16T16:31:37.590Z",
+    "last_save_at": "2026-08-30T15:39:24.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:569d94103f88a35a3582050aea2f99f19e9678e3192b5f57ebf31f32b83c4498",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "949035c7fc1d3d838332263b3eb0219cf7f689ccc91c75544e251be5f545d378",
       "plan.md": "bf33bccdd0986a62c76de590f3d874f93fd8e768becdf2b64d625a3c2cb15e57",

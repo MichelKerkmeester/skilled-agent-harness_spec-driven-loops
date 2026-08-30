@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 021's backfill only promotes two structural signals (spec-document chains + lineage predecessor links) into typed edges",
     "created_at": "2026-06-04T13:30:00Z",
-    "last_save_at": "2026-08-30T08:04:47.971Z",
+    "last_save_at": "2026-08-30T15:39:31.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:946915da5094bd9258fb0dcc10890aa04af6cc044c8415d47fe3f676ac32c63c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4cf4930c5a96c2c46eb87e5a9b51809e95d8bb20d4630f9ea1972d35f9c4584",
       "plan.md": "a6b2ae96f956ca01d9d375ce92af361500c59569840038bef05eaef5cf41f0fd",

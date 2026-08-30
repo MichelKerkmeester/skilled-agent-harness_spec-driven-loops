@@ -41,13 +41,17 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "plan.md",
-      "tasks.md",
       "spec.md",
-      "checklist.md",
-      "mcp_server/README.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -58,24 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "mcp_server/README.md",
         "source": "derived"
       },
       {
@@ -179,37 +165,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Validation Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Skill Consolidation Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Enable users to update the SpecKit functionality by updating a single skill folder, eliminating the need to manage two separate directories (`.opencode/speckit/` and `.opencode/skills/workflows-spec-kit/`)",
     "created_at": "2026-04-12T09:02:53.508Z",
-    "last_save_at": "2026-07-10T06:22:02.638Z",
+    "last_save_at": "2026-08-30T15:39:36.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:19e5909881ee0b4efeb4bde16dedc4e1075b2ec51163b718cdb0f2feac52aaed",
+    "source_fingerprint": "sha256:1d95fd8b483c1ff5c9334e5d93cb15e39c6341c64255f4d5c8992e3c607abb27",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ac4aeadcaa29feaef4520dd80aef78118b645864fdf1fe5498003154c4175ba4",
       "plan.md": "ee701a440fa08359ab8792d973144f4739c2fa910c00f54d0476e641a0b59239",
-      "tasks.md": "78835a63e62d3eea77bd4bc6c30fc8e831ff3e7f0b627d760f24f2794687f9ce",
-      "checklist.md": "79fcaf7ec7fb4334123a605ad86e6666a44678f62bf0b9088ace8a68c1b099fb"
+      "tasks.md": "78835a63e62d3eea77bd4bc6c30fc8e831ff3e7f0b627d760f24f2794687f9ce"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/002-sk-improve-prompt-rename/006-advisor-and-validate",
-  "spec_folder": "sk-prompt/002-sk-improve-prompt-rename/006-advisor-and-validate",
-  "parent_id": "sk-prompt/002-sk-improve-prompt-rename",
+  "packet_id": "sk-prompt/z_archive/002-sk-improve-prompt-rename/006-advisor-and-validate",
+  "spec_folder": "sk-prompt/z_archive/002-sk-improve-prompt-rename/006-advisor-and-validate",
+  "parent_id": "sk-prompt/z_archive/002-sk-improve-prompt-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The rename is complete only if advisor state, skill graph indexes, prompt-routing probes, strict spec validation, and active-scope grep all agree on `sk-prompt`",
     "created_at": "2026-05-06T10:22:43Z",
-    "last_save_at": "2026-07-15T08:09:44.231Z",
+    "last_save_at": "2026-08-30T15:39:19.047Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ea53635d51432fb154b9ca6cde5d2c5e066c6e5966754b0419d0409c52d8a9de",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cb084ea02d40d99667e02fdd443a8f79f936cde99224a2b38770f9d7556d524b",
       "plan.md": "57f3a4ce13317a33d869657734a7da18516de05d824071bb7d3d11cb0c2b745c",

@@ -16,7 +16,6 @@
       "when-to-use concrete scenarios sk-code",
       "020 plan sk-code content quality remediation",
       "020 tasks sk-code content quality remediation",
-      "020 checklist sk-code content quality",
       "020 summary sk-code content quality remediation"
     ],
     "key_topics": [
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -158,54 +150,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "What Was Built Content",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Generic When",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "How It Was Delivered Applied",
         "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Fix the pre-existing content-quality issues in sk-code code-webflow references surfaced by the 019 xHigh verification review — issues outside 019's structural template-alignment scope: a self-contradicting session-cookie security example, a script.src loader that injects an unvalidated URL without an origin allowlist or SRI, and ~19 references whose When-to-Use is generic boilerplate rather than concrete scenarios.",
     "created_at": "2026-07-13T05:21:31.962Z",
-    "last_save_at": "2026-08-29T13:09:57.434Z",
+    "last_save_at": "2026-08-30T15:39:11.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3228d235235d73e9c651bebf6d098286c0f76186e4b966b593d4315d9c7e392e",
+    "source_fingerprint": "sha256:5ebde6c8852cfa2b1a927f3509ff749762bf6d76eb51e855b0dc60828e286b42",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "28a26bf7de2000d6854e2ffaf37895f46f73242487a420b9cabadbe2e607addc",
       "plan.md": "e30059138218d8141da40a7868519595950e1bd59e74ade8f5e2dba83fd68bfb",
       "tasks.md": "8d0b71a1abcf59b610c85970857fa4eca031efeef58b27a1e56a198dfb7685d1",
-      "checklist.md": "74a146591da9b1bd74c5e240ce64c613dd5957dd3deaf524a2bb933090433dbb",
       "implementation-summary.md": "0f12a5492fe2a9cc080c6a5a1b66df1265d9cb16af0db17754cb060f335726a2"
     },
     "last_active_child_id": null,

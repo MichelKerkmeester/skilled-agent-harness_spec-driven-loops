@@ -56,6 +56,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md",
       "001-deep-improvement-rollback-hash-guard/implementation-summary.md",
       "002-deep-improvement-promotion-safety/implementation-summary.md",
       "003-model-benchmark-reducer-ledger/implementation-summary.md",
@@ -63,33 +68,15 @@
       "005-tighten-playbook-pass-criteria/implementation-summary.md",
       "006-p2-test-adequacy-and-source-only-audit/implementation-summary.md",
       "007-fan-out-hardening/implementation-summary.md",
-      "tasks.md",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
       "001-deep-improvement-rollback-hash-guard/tasks.md",
       "002-deep-improvement-promotion-safety/tasks.md",
       "003-model-benchmark-reducer-ledger/tasks.md",
       "004-adversarial-playbook-scenarios/tasks.md",
       "005-tighten-playbook-pass-criteria/tasks.md",
       "006-p2-test-adequacy-and-source-only-audit/tasks.md",
-      "007-fan-out-hardening/tasks.md",
-      ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
-      "handover.md"
+      "007-fan-out-hardening/tasks.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -103,9 +90,15 @@
         "source": "derived"
       },
       {
-        "name": "deep_model-benchmark_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -221,11 +214,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deferred deep-review findings and MiMo-campaign recommendations identified gaps in rollback hash-guard integrity, promotion safety, benchmark ledger accuracy, adversarial playbook coverage, playbook pass-criteria rigor, and P2 test-adequacy/source-only auditing across the loop-system surfaces",
     "created_at": "2026-06-29T10:43:16Z",
-    "last_save_at": "2026-07-16T16:32:24.038Z",
+    "last_save_at": "2026-08-30T15:39:25.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -236,6 +235,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:8699b71ef607fbfbc3bb2ca71f226994db70daab7f6f0cd53c8a63a4bac087f5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7112efa1168dd6a2559c588731ce435990f63aaecefd733d4eb12501dc653e0e",
       "plan.md": "d66f0f22b4a5ddb2dfd9c89a42ad4e7423863f224b345c6ae94bd2b26406cc3c",
@@ -243,7 +243,7 @@
       "implementation-summary.md": "b43dee0445dc4fd3dd659202fa82bdea38edce888d78b87caf48bc61de58f011",
       "handover.md": "383b923b54f7ce0f7dcad6e573e670a7a0fedcd2b5fa1df37d62a4ddc31c58f8"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/024-deep-loop-improved/008-loop-systems-remediation/006-p2-test-adequacy-and-source-only-audit",
     "last_active_at": null
   }
 }

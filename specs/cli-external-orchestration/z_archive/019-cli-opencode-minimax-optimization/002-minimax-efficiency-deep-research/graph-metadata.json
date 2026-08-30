@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
-  "spec_folder": "cli-external-orchestration/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
-  "parent_id": "cli-external-orchestration/019-cli-opencode-minimax-optimization",
+  "packet_id": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
+  "spec_folder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
+  "parent_id": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,22 +41,16 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "research/research.md",
-      "research/resource-map.md",
       "spec.md",
       "plan.md",
-      "research/iterations/iteration-001.md",
-      "research/deltas/iter-001.jsonl",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "research/iterations/iteration-001.md",
+      "research/deltas/iter-001.jsonl"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,18 +64,6 @@
         "source": "derived"
       },
       {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "iter-001.jsonl",
-        "kind": "file",
-        "path": "research/deltas/iter-001.jsonl",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -91,6 +73,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After phase 001 wires the `minimax` provider, we still have no guidance for using MiniMax 2.7 efficiently through cli-opencode: no context-budget tuple, no output-verification recipe, no prompt-quality / `--variant` mapping, no routing heuristics vs the other small models",
     "created_at": "2026-05-28T08:38:27Z",
-    "last_save_at": "2026-07-14T19:26:24.351Z",
+    "last_save_at": "2026-08-30T15:39:08.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4adafb7a38d8b2f440418049a96b03cc1cbdc1fa9021943591a3a1ca8c7746f8",
+    "source_fingerprint": "sha256:78370433d224fdfb8577c674737a038c607ceb0e0898299fbe973b2d2cc8b608",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da9b8af0ba261709b26f218d527f6c8674e221e970d77c9214f2d848bd9e62af",
-      "plan.md": "64d230497a77c1dafc4d6da84c87ed0cd14428efa73253bab86c28e1eec18381",
-      "tasks.md": "3215a2a73a5a80563b7b0d9a9e38786f18e69e675b51f282c8ffe28d47a3fa23",
-      "implementation-summary.md": "65949e929ca80a68460046b5a337777e9ddf3e313d9197877bed83945259db31",
+      "spec.md": "23489fb5de993a0233d6298ad689f267be46d6244d5a3a4f8ee79cd4d8c558b6",
+      "plan.md": "425dcd5a7b4b7b36dbb6058b6d08dbc0da3006377e452de210445653f50324e4",
+      "tasks.md": "a316b10dfc9868c49883d19004ed6d3870753c5d10e1d7d298833ffd6b86f3ca",
+      "implementation-summary.md": "900977a86a5eefc63ffb39bfa2c81b8fddb17f2a4e73c5fa21abda926fb0e797",
       "research/research.md": "d93a4fbe0bf9107aa07f575e6fff7557c84167f43155304b04ff8767c009cc31"
     },
     "last_active_child_id": null,

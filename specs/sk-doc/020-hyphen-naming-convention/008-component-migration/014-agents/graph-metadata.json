@@ -96,14 +96,14 @@
     ],
     "causal_summary": "The 020 program needs a bounded documentation map for the agents surface. This parent groups one verify-only child per agent definition and a final rollup gate so every runtime agent directory is checked against the kebab-case filesystem policy.",
     "created_at": "2026-07-14T15:17:05Z",
-    "last_save_at": "2026-08-30T07:20:05.058Z",
+    "last_save_at": "2026-08-30T15:39:17.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:7451a097dcea4de2b40a6ad5de7b90d741f10780b6ace510fdba433e457ecb90",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2403f95a0170d237e476dfa04f652bd69c0a5da5b665372569c9ffaabdd9dc09"
     },

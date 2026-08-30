@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
-  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
-  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "packet_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
+  "spec_folder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
+  "parent_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`sk-prompt-models` was a thin router with no per-model prompt-craft content",
     "created_at": "2026-06-05T12:47:32.510Z",
-    "last_save_at": "2026-07-15T10:52:30.480Z",
+    "last_save_at": "2026-08-30T15:39:19.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:97725e57db3d9fe2dbe0a2177dda1ec5f7a553ceea3ef8134d0b942bc95b19ae",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ec851e948564f5a1b037dda185f028298e7859837bc72127b9bfcefad99eece",
       "plan.md": "d0c207a9648a38e27c60fe0771d2e33a3dc4997d7d782836c6635a1ff62cea8a",

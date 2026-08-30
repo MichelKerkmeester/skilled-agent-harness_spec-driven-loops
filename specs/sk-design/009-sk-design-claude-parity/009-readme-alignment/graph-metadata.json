@@ -26,8 +26,6 @@
       "procedure card readme gap",
       "implementation plan",
       "tasks",
-      "verification",
-      "checklist",
       "phase 009 implementation summary",
       "readme alignment complete",
       "sk-design readme alignment evidence"
@@ -52,7 +50,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/README.md",
       ".opencode/skills/sk-design/SKILL.md"
@@ -74,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,36 +182,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Verified Phase",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`sk-design`'s hub `README.md` and its five mode-packet `README.md` files describe a snapshot of the skill that predates Phases 002-005",
     "created_at": "2026-07-06T04:34:29.707Z",
-    "last_save_at": "2026-08-29T15:21:59.014Z",
+    "last_save_at": "2026-08-30T15:39:12.197Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:654f026ebef12e491b5e7e2dc590fdcc3a85b07f63359ab5d20aa3dfb1fec277",
+    "source_fingerprint": "sha256:2e00bffaf38f496ec983eb4947bf167196f1b9b729e433bfec4dbf01b9db48ae",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f13415cd83c5fc92c0339b20792ac70bf7142ecc97c5aafa92090f9a94b76bde",
       "plan.md": "a198277fb3f26070aa1214632d506668cdb43ace9fc3e4e0736a1e5b65b46d11",
       "tasks.md": "9a6d1b5d21d392221ad3dac8ab61a6467a65974ca0f9f0eddbbd4c5b781e8a0a",
-      "checklist.md": "27aee81ea1cbb7f9bc6c276302a7c127eda0b1ce68b1b6804c45b7c152d3355b",
       "implementation-summary.md": "c1c1a86b043d5e27ab827881d49997120c0f0ca21556dc35e46b860319841a5a"
     },
     "last_active_child_id": null,

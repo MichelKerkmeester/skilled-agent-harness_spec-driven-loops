@@ -37,7 +37,8 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/plugins/README.md",
-      "opencode.json"
+      "opencode.json",
+      ".opencode/plugins/sk-vision.js"
     ],
     "entities": [
       {
@@ -74,6 +75,12 @@
         "name": "opencode.json",
         "kind": "config",
         "path": "opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
         "source": "derived"
       },
       {
@@ -177,17 +184,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Operators will not find the plugin without an inventory row, and a plugin array in opencode.json would fight this repo's discovery path",
     "created_at": "2026-08-16T07:22:47Z",
-    "last_save_at": "2026-08-29T14:56:27.700Z",
+    "last_save_at": "2026-08-30T15:39:19.516Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1cc72d970db717ef1bc0679a5ea8f943719fff35debe97954a975245ba040524",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a7347928d34277ca5b9f877778b238d27dab9f5cefcaa2300e87dd527cb428f6",
       "plan.md": "69309c23a53abf928e07fd218bfd8b174fb07c93d52307540de0b72f0574a71e",

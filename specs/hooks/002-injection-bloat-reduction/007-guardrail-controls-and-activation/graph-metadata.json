@@ -20,9 +20,8 @@
       "activation matrix rollback plan",
       "guardrail activation gate tasks",
       "behavioral negative control tasks",
-      "guardrail activation gate checklist",
-      "behavioral negative control verification",
-      "guardrail activation gate implementation summary"
+      "guardrail activation gate implementation summary",
+      "behavioral negative control verification"
     ],
     "key_topics": [
       "guardrail",
@@ -41,33 +40,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
-      ".opencode/specs/hooks/001-per-prompt-injection-audit/research/research.md",
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
     ],
     "entities": [
-      {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,6 +63,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
         "source": "derived"
       },
       {
@@ -171,48 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built This",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "How It Was Delivered The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "None of candidates 002-006 (OpenCode route bounding, transform dedup, full-first/route-only-repeats, Gate suppression, Pi compaction) can safely activate on byte savings alone",
     "created_at": "2026-08-06T11:10:46.674Z",
-    "last_save_at": "2026-08-07T15:04:55.344Z",
+    "last_save_at": "2026-08-30T15:39:08.953Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b24b7df8884a6ac44a39427a2faaab7cca8c34e93aad77a8513572da19caa18",
+    "source_fingerprint": "sha256:3423ee07462986dfe6206a791c0d0da63719f6bdafb5259c4b5932547c813ddc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "07b0a63314796af98e0886c6a4320c47fd6ad709d507341755c38f4431ecf5e1",
       "plan.md": "cc5964b54feada3afa6dae14401ea5812950515ab7465d4c37b89e07dab7a1ec",
       "tasks.md": "e794e674c76226d77f42082faf3c48439d15661e65c40c675acf7bee8eee1648",
-      "checklist.md": "7a0102111ca0cfed35e7ffbc9ee306748ac6b265336155b4211fcbc5f14f55f4",
       "implementation-summary.md": "c89d6d99a59843f744001b0eb251da248c6033fb910ebf12a8f68cacd879d029"
     },
     "last_active_child_id": null,

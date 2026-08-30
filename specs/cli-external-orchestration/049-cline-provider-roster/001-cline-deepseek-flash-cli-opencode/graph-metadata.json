@@ -196,7 +196,7 @@
     ],
     "causal_summary": "opencode has the Cline provider authenticated (registered as `cline-pass`, not `cline`), exposing `cline-pass/cline-pass/deepseek-v4-flash`",
     "created_at": "2026-08-18T08:28:10Z",
-    "last_save_at": "2026-08-29T14:54:26.724Z",
+    "last_save_at": "2026-08-30T15:39:08.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:415125aed4c63df779cf44ecc949d170f3a437e5828e0deb36fe95498a07bd81",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "637387027c0965760433fa135425d7e9459cdb607cbefc267c798042a4109ff5",
       "plan.md": "443be3079d078533f2c27f06beb1cc64579f3518ff26d8d5df9349431e69a181",

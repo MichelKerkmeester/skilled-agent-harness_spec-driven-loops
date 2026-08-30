@@ -35,12 +35,18 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -51,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Catalog of vetted code-embedder candidates with metadata for new-user selection",
     "created_at": "2026-05-18T08:18:02.785Z",
-    "last_save_at": "2026-07-17T17:19:22.956Z",
+    "last_save_at": "2026-08-30T15:39:30.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:416c5aaad5a17415fcb2bb231b86a95ee1b09ba05defed99993a64bb11040a1c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f66cd78cacda8394cad219e37b15085d51c3361a1713e1928e9506aa2dd621d",
       "plan.md": "18dca97e027d5203d94a74b420e15fa2c1399ac8b075c38e2a8809390500ae44",

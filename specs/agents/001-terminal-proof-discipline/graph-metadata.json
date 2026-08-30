@@ -24,8 +24,8 @@
       "directive capsule plan",
       "terminal proof tasks",
       "directive capsule tasks",
-      "terminal proof checklist",
-      "directive capsule verification"
+      "terminal proof decisions",
+      "governor hook finding"
     ],
     "key_topics": [
       "terminal",
@@ -47,13 +47,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
-      ".opencode/plugins/mk-skill-advisor.js",
-      "dist/hooks/claude/user-prompt-submit.js",
-      ".pi/extensions/prompt-advisor.ts"
+      "dist/hooks/claude/user-prompt-submit.js"
     ],
     "entities": [
       {
@@ -75,12 +72,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -99,21 +90,9 @@
         "source": "derived"
       },
       {
-        "name": "mk-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-skill-advisor.js",
-        "source": "derived"
-      },
-      {
         "name": "user-prompt-submit.js",
         "kind": "code",
         "path": "dist/hooks/claude/user-prompt-submit.js",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-advisor.ts",
-        "kind": "code",
-        "path": ".pi/extensions/prompt-advisor.ts",
         "source": "derived"
       },
       {
@@ -199,27 +178,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A terminal-engineer benchmark prompt encodes a verification protocol that AGENTS.md did not express: encode every requirement as an objective pass-or-fail command, watch the check fail before fixing, fix the root cause once, and close with a clean re-run plus a stray-file sweep",
     "created_at": "2026-08-05T00:00:00Z",
-    "last_save_at": "2026-08-04T05:48:00.300Z",
+    "last_save_at": "2026-08-30T15:39:06.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70fdd883d8a8114dabdc8c42449f5aed704da6a65054fe1ef76a12b6cbe74411",
+    "source_fingerprint": "sha256:a1e464f0b1498c2864c70101a53a72b81e2085985fe85aba4ef0b6696968da8d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e5a4741e133458fe695dee6edd66c4c084d15380a8b321d4f16df3fb7855f11f",
       "plan.md": "1154cb6dcfa4e9fd48a289d55de78207c31b348a2e5bac8b05dbe8c15bc5c10d",
       "tasks.md": "06aca0db6256df2f0f2c38c825e7a774bb31066cf364690086d28aa78d1d9fca",
-      "checklist.md": "fedd90cfad7c79b53f8657451b3f263393bb48ae050b067fcb274c36e8f724cb",
       "decision-record.md": "c7f44ddaa7f0c40a9f1c2919b7f3af933b373617e0eb1ccc7c28afc7c9ee1c5a",
       "implementation-summary.md": "09e1ce8126c891be0f6415ca835be3e6c74dfff4cab57998ae27f52f70156174"
     },

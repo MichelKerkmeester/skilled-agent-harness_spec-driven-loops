@@ -175,7 +175,7 @@
     ],
     "causal_summary": "The merged `cli-external` hub serves two modes that were previously independent skills, and its delegation routing now flows through a rewritten scorer",
     "created_at": "2026-07-09T18:58:29Z",
-    "last_save_at": "2026-08-28T21:56:50.218Z",
+    "last_save_at": "2026-08-30T15:39:07.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,6 +184,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:75df97aca8092d7208856569d10be13777a523629fdeb66e224bc4c0a9db6adb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "56259fbe2a48e57019c3464e6d5fb5ae3ae5daff9c949128f64159981e4ca2b5",
       "plan.md": "0fa6571a09431916bfee8b628ef2c9ad859f7efea753e3e19795753ab1f69c5b",

@@ -19,7 +19,6 @@
       "scouted bugfix batch 1 plan",
       "verify-first deep-dive fix workflow",
       "scouted bugfix batch 1 tasks",
-      "scouted bugfix batch 1 checklist",
       "scouted bugfix batch 1 summary",
       "verify-first batch fix shipped",
       "5 confirmed defects 10 files"
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/bin/worktree-reaper.sh"
     ],
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,36 +174,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A broad scout of the codebase surfaced a backlog of latent code and security defects that no single review had triaged",
     "created_at": "2026-06-03T05:32:00Z",
-    "last_save_at": "2026-08-29T14:54:17.616Z",
+    "last_save_at": "2026-08-30T15:39:28.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c569bb1c99033ad58e635c487cc6cdef720ff67b40f7d78e96f7e4c288f73a4",
+    "source_fingerprint": "sha256:f1b6edd68b59825c3a6abaf5a06d0317f3db0383c65e4120a6a689ca9dfa6c20",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ddd0c3c02a55792d22f7c40f1a128c44bdeec67f4d3da88600befb4bd05406c7",
       "plan.md": "afee158e2f098458bc33c55cb3eb288a46069eeec2a8be98be5b991801fc884a",
       "tasks.md": "7217c2084ff3c7999ee08c85c0d07396c47b0ab0156567187b27379d38685b98",
-      "checklist.md": "d0e4a8e18c37b1f25bfe43104ebdca7e775d7f3f2a9badadc66be5ad861461d1",
       "implementation-summary.md": "f6a0bd54c41eda35244b8ef8ef9ed3a7611379c5c9c26c6a726f1b57b0881804"
     },
     "last_active_child_id": null,

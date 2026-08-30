@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Independent child phases can pass while a cross-boundary snakecase filesystem name, stale reference, missing exemption",
     "created_at": "2026-07-14T15:17:12Z",
-    "last_save_at": "2026-08-30T07:19:19.533Z",
+    "last_save_at": "2026-08-30T15:39:16.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,7 +196,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:3786eaf8d0c193e904c9eb124827430c862483d6d750633871ed5a31675406fb",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "450b1b79fe9a3bef66b4bdd8d059fadcac16ee9277fd79ade768790409c6cce8",
       "plan.md": "6abaf1dba352acb4aa1b0caa364761f50d12d71e6c67f783f6b428776509d652",

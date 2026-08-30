@@ -20,9 +20,9 @@
       "001-parent-hub-canon tasks",
       "per-file conformance tasks",
       "LUNA update Sonnet verify",
-      "001-parent-hub-canon checklist",
-      "conformance verification gates",
-      "per-file validator gate"
+      "001-parent-hub-canon implementation summary",
+      "conformance batch status",
+      "shipped and verified"
     ],
     "key_topics": [
       "001-parent-hub-canon",
@@ -41,30 +41,23 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/cli-external-orchestration/SKILL.md",
       ".opencode/skills/mcp-tooling/SKILL.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-prompt/SKILL.md",
-      ".opencode/skills/system-deep-loop/SKILL.md",
-      "tasks.md",
-      "plan.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-deep-loop/SKILL.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -74,21 +67,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
         "source": "derived"
       },
       {
@@ -188,36 +181,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Bring the 7 parent hub SKILL.md files in this batch into full conformance with the parent-hub canon; each file is updated by a fresh GPT-5.6 LUNA MAX agent and independently verified by a fresh Sonnet-5 xhigh agent, then must pass its validator.",
     "created_at": "2026-07-14T04:25:49.673Z",
-    "last_save_at": "2026-07-17T14:37:07.196Z",
+    "last_save_at": "2026-08-30T15:39:13.883Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38c68d299a2fb3b061a352ac3e1df89a6c147dccfbd087d9452c0271d3955ba7",
+    "source_fingerprint": "sha256:03a970e032b1643ed223cf7dd838037dfec879f63e800a8edb6464026e255ad9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cf5d37c9175891e0607daacb36037a684d4c894108ac1cb0e4dfeb7ccbbe0d07",
       "plan.md": "796088024d8fb3601b6c5659756bd4e228099431056b17ab7e654c8570dac959",
       "tasks.md": "6c4d9379dc57e780063eba916d2fca9c35be4c17af73c7c0dd0e8300e4606685",
-      "checklist.md": "c7964e51763928b398c77450e3dfe00b64ac2de62b52663fb5d9da4c76a78ced",
       "implementation-summary.md": "4a31fd140d647b451fb2bfcda3ad4d488267381ef472b206316f34962c08fc04"
     },
     "last_active_child_id": null,

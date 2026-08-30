@@ -42,7 +42,9 @@
       "002-rebrand-identifiers/spec.md",
       "003-build-and-tests/spec.md",
       "004-gpu-smoke/spec.md",
-      ".pi/extensions/sk-vision.ts"
+      ".opencode/plugins/sk-vision.js",
+      ".pi/extensions/sk-vision.ts",
+      ".opencode/skills/sk-vision/vision-runtime/dist/plugin.js"
     ],
     "entities": [
       {
@@ -52,9 +54,21 @@
         "source": "derived"
       },
       {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
+        "source": "derived"
+      },
+      {
         "name": "sk-vision.ts",
         "kind": "code",
         "path": ".pi/extensions/sk-vision.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/dist/plugin.js",
         "source": "derived"
       },
       {
@@ -96,13 +110,14 @@
     ],
     "causal_summary": "The skill root has no importable JSON-RPC core",
     "created_at": "2026-08-15T16:28:28.616Z",
-    "last_save_at": "2026-08-29T15:22:05.973Z",
+    "last_save_at": "2026-08-30T15:39:19.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:0cafb1a118965c6c6de8e8a57e4fedc072c78a31a6d800747d2771fde59ae278",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "faf636c41d032b16264f8d1d4b76cc001b0f41749aafd923e04c5f00e6872d1c"
     },

@@ -43,8 +43,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "sk-prompt-models reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 12 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:37Z",
-    "last_save_at": "2026-07-17T17:19:38.491Z",
+    "last_save_at": "2026-08-30T15:39:33.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:231a74e8e6c65fcd366cf9206bccfe9bcb1bf44826189b24bf87f907868356ce",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c21a74f2d017107c6a4e8cd458400b8f9d27d49e796dcb64e797d5b367776614",
       "plan.md": "ac59a8e1271b8d697aaff2a382bf9b5300d26a2e7a7ee5e1aec7ac38ba3c2ba9",

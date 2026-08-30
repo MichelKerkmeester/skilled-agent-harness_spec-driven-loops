@@ -210,7 +210,7 @@
     ],
     "causal_summary": "system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous",
     "created_at": "2026-07-17T04:07:04.548Z",
-    "last_save_at": "2026-08-29T15:22:01.731Z",
+    "last_save_at": "2026-08-30T15:39:14.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:ed02741ab8a8c26e1f03af12745a21e7173a89f06c3c35aa02b953af7851a0de",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0223f1f0da0ea769f9a054c875a21237519833fe3ba298f0e386d3097ec913a9",
       "plan.md": "ad2f5e841e3460e761b8ec266bab69576812eb8ea8633d541a1b141e6c1a4fb7",

@@ -39,11 +39,17 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "001-fairness-audit/evidence/playbook-fairness-audit.csv",
-      "002-tool-coverage-audit/evidence/tool-coverage-audit.csv",
-      "spec.md"
+      "002-tool-coverage-audit/evidence/tool-coverage-audit.csv"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "playbook-fairness-audit.csv",
         "kind": "file",
@@ -54,12 +60,6 @@
         "name": "tool-coverage-audit.csv",
         "kind": "file",
         "path": "002-tool-coverage-audit/evidence/tool-coverage-audit.csv",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -101,17 +101,18 @@
     ],
     "causal_summary": "Phase parent for auditing manual_testing_playbook fairness, mapping mk-spec-memory MCP tool coverage, and authoring deterministic scenarios for uncovered or stale surfaces.",
     "created_at": "2026-05-17T12:59:58Z",
-    "last_save_at": "2026-07-17T17:19:24.533Z",
+    "last_save_at": "2026-08-30T15:39:30.772Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:8742de2801ca0c30cb5682c69a13ff646e992bb0d59c17ae1794914be9a5df57",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0277d96d95f6534db13267b78f26588810236a46e3612e40ac825e577cd8ee99"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit/003-scenario-expansion",
     "last_active_at": null
   }
 }

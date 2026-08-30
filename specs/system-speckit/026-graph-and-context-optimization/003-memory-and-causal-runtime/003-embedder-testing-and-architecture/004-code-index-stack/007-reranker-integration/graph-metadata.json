@@ -38,20 +38,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,12 +58,6 @@
         "source": "derived"
       },
       {
-        "name": "stage3-rerank.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -80,6 +67,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Opt-in GTE cross-encoder reranker integration for CocoIndex hybrid retrieval.",
     "created_at": "2026-05-18T05:13:45.663Z",
-    "last_save_at": "2026-07-17T17:19:23.272Z",
+    "last_save_at": "2026-08-30T15:39:30.542Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +203,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:57b7d890947fb1de473b9d4dcc27544ad834698dfd66ba284a6ed1ff1de0efc6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50546d14b4b21091f0679a6b889982f4b9f9fe77db3db553bd3db89cbcfe68e1",
       "plan.md": "ca7b75843147976e06ea7f53d8c8f36f991e51afec6576d8985e8b3a24d01158",

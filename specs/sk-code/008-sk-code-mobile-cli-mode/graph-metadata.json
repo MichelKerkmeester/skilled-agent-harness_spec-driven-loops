@@ -89,13 +89,14 @@
     ],
     "causal_summary": "Code work on `apps/pi-remote-web/` detects a generic frontend surface and does not auto-load this",
     "created_at": "2026-08-17T05:11:33.008Z",
-    "last_save_at": "2026-08-29T15:21:57.650Z",
+    "last_save_at": "2026-08-30T15:39:11.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:ff30ceaa6fe2f3cac4d9a9e57f9c8b65ef381f7897b9fc98cc704cc40e27a398",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b23275d6ccba3b21dfb03dbf32a283452c623e1d5c792c84e9d64c394b743a7c"
     },

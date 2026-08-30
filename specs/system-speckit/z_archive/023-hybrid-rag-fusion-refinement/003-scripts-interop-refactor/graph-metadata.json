@@ -39,24 +39,41 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/core/workflow.ts",
       "scripts/package.json",
       "scripts/lib/validate-memory-quality.ts",
       "shared/parsing/memory-sufficiency.ts",
-      "mcp_server/handlers/save/markdown-evidence-builder.ts",
       "scripts/memory/generate-context.ts",
       "scripts/tests/test-integration.vitest.ts",
       "scripts/tests/test-scripts-modules.js",
-      "scripts/tests/test-export-contracts.js",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "scripts/tests/test-export-contracts.js"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -84,12 +101,6 @@
         "source": "derived"
       },
       {
-        "name": "markdown-evidence-builder.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/save/markdown-evidence-builder.ts",
-        "source": "derived"
-      },
-      {
         "name": "generate-context.ts",
         "kind": "code",
         "path": "scripts/memory/generate-context.ts",
@@ -111,24 +122,6 @@
         "name": "test-export-contracts.js",
         "kind": "code",
         "path": "scripts/tests/test-export-contracts.js",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`@spec-kit/scripts` is intentionally pinned to CommonJS (`\"type\": \"commonjs\"`) and owns 20 files that consume `@spec-kit/shared` and `@spec-kit/mcp-server`",
     "created_at": "2026-04-12T09:02:50.318Z",
-    "last_save_at": "2026-07-10T06:22:49.795Z",
+    "last_save_at": "2026-08-30T15:39:39.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a74e17bd0f87bad1d9457eebdf35a2afbcd6207968cf406be0868a7e92ff3ce7",
+    "source_fingerprint": "sha256:d626dca22450b90e70c1838f480e0fb49c37c2a5c766e1cf94fc73e8f9b30881",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64bd3747c871dc13fd51a4caa7b3e6e03c62e6815381c9f65c68afcfa40095f8",
-      "plan.md": "dbbd2de3afa2538fcdb933cc82e9295e2750e52730cef0625beb6c8de4da1ff2",
-      "tasks.md": "b47604f6f88e48c38ad1d7b0440f703cc304acc4a5636109588049852609bbb5",
-      "implementation-summary.md": "9eb93651f980e6a7d68f35f96a558ba1e80712c21f7a08ded2c9daf06cad5792"
+      "spec.md": "13b41ae0fd6fcb87be6317fa4c462fa8d25b6d63c3250a303d3404a7b934ab51",
+      "plan.md": "05d9c02ee10d42ad29ab4b45f1616d777afe5fdf74c0ede99b796edb1f472bd3",
+      "tasks.md": "a7fb653e082dc667ad41cea500df5eec6d1dff0d87015c4dddfd228c8807617d",
+      "implementation-summary.md": "d34c51738288915871e4659d9e9103addb86cd4ca7d272e8cb23f8acfc10097d"
     },
     "last_active_child_id": null,
     "last_active_at": null

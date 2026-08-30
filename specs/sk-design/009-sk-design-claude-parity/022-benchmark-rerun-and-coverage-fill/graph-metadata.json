@@ -19,10 +19,10 @@
       "coverage audit workflow plan",
       "tasks",
       "phase 022 tasks",
-      "verification",
-      "checklist",
-      "phase 022 checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "phase 022 implementation summary",
+      "benchmark rerun coverage fill summary"
     ],
     "key_topics": [
       "benchmark",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/README.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,48 +163,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built Two",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Located",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 021 rewrote `design-command-surface-check.mjs` and fixed the remaining 020 deep-research findings, but the Lane C skill-benchmark had not been re-run since before that work, so there was no fresh evidence it didn't regress anything",
     "created_at": "2026-07-07T13:00:00.167Z",
-    "last_save_at": "2026-08-29T15:21:59.454Z",
+    "last_save_at": "2026-08-30T15:39:12.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4e00b001ef54e1f2d6e7e29147d060bbd39608145127fcf2829aa2a4336ffde",
+    "source_fingerprint": "sha256:12897027b1646f444ea3c4705f8a7b9a5fd3774c800e47c8c336ef7013371698",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa5ca2b46a0d3179534459647c5ac6e9394f2b68d6bdf75ba7db917589ab9e12",
       "plan.md": "c2f66903439ee73acc9b49c197ccc8b4349db5484f2e01984c15a26b5e454efb",
       "tasks.md": "df04e02615551c1ff355b9ebb2b903fab63f90e1b2a2637205250f592d299fc7",
-      "checklist.md": "50b795d921ea292e548080ce838add8a999afcae58f3593f2c4f41d9c983a4e3",
       "implementation-summary.md": "fa72e8031570f144a6e82e6d69f3116d1ac41d026a837ec926223274b55a345a"
     },
     "last_active_child_id": null,

@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Speckit Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:43.264Z",
+    "last_save_at": "2026-08-30T15:39:33.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,6 +189,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:cf11320420f1398af19c99e2f9f4b67d6e409d584974b5e5fe887293aa0dd2e2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "157ecf388bd525fbda358af703212a3ed8f29bc88d755bb3ef276b81900fb486",
       "plan.md": "05ffd787147b96c98ba1383a56bb2f99babd7c516cc4e98086c06d9eb0a7973b",

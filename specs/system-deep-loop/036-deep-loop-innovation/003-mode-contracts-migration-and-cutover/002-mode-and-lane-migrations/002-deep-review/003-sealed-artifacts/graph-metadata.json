@@ -18,11 +18,11 @@
       "deep-review seal-on-write plan",
       "deep review sealed artifacts tasks",
       "deep-review verified read tasks",
-      "deep review sealed artifacts checklist",
-      "deep-review tamper-evident artifact checklist",
       "deep review material reference integrity",
       "deep-review store-backed material digest",
-      "deep review fabricated reference rejection"
+      "deep review fabricated reference rejection",
+      "deep review sealed artifacts implementation",
+      "deep-review artifact bindings"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-artifact-set.ts",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,43 +171,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Backed Deep Review Material References",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verify Referenced Material Against Actually Sealed Store Content",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Scope",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Review mode binding for immutable, content-addressed reference artifacts across scope, per-dimension passes, convergence, review-report synthesis, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:32.713Z",
-    "last_save_at": "2026-08-29T13:09:52.979Z",
+    "last_save_at": "2026-08-30T15:39:21.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e2b2017fd5964efca2fb1cfae3c89ed161122bd6e64ddd43b25e9c4fc96d676",
+    "source_fingerprint": "sha256:01b6769d9f3f8d90c73236ab1bff85ed7719c0361c256d74eabb457f08baa91d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1dfe008db68a899a2cb9d6ef76defa20f85f5f8bb72c27f8d157619d27612a3a",
       "plan.md": "75a6dae6140523b64c1c0485a103d37ed3ee2ed354dac261d5efbfbc155dba7f",
       "tasks.md": "1dffaf132db06c4aa67981351c7e62e293390bfeb785892b51ddb7f67868ea15",
-      "checklist.md": "435ef36f24862207f2b58c9ec0d262aefe52fe32037ca6d0ad9a82f0051abbaa",
       "decision-record.md": "a1041083eb96ad492fd8dc82a20ccb9be306605fc5aea3d1e7622856ebf265db",
       "implementation-summary.md": "4a11b9259186339063abac04b82201c6c8efcec390535106de7e9903ec026901"
     },

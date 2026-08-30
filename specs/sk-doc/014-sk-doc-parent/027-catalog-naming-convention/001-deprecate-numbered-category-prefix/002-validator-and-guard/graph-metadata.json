@@ -34,7 +34,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -155,54 +148,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "How It Was Delivered Replaced",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "File Organization",
+        "name": "Key Decisions Per",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 of the numbered-prefix deprecation. Re-base the sk-doc catalog/playbook leaf classifier in validate_document.py (both copies) from the number-anchored `^\\\\d{2}--` parent test to a structural test — the file sits in a SUBfolder of feature_catalog/ (resp. manual_testing_playbook/), so both the numbered NN--slug form and the de-numbered slug form validate during the transition while the root index file stays excluded.",
     "created_at": "2026-07-10T18:51:12.779Z",
-    "last_save_at": "2026-08-29T13:10:17.498Z",
+    "last_save_at": "2026-08-30T15:39:13.787Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5e4fbefe08331f720811501daac53e2741326200fafc661e6cd96475dc9702f",
+    "source_fingerprint": "sha256:342bff83ab7715ca74edcfb7620be03e6d573f94d750356e452c614f882fe329",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c5b40ba5510e609d6adfd748451c2961611a2ff851e7614b09ed01ec91949e5f",
       "plan.md": "820c418f546c7e0cce176807586c801c1dc495cb34834d5aa698e774f7c7a2be",
       "tasks.md": "83d1af126e347dcd977cc59cbd76c8ff12166e24bdb90ce3cb30849ab4843008",
-      "checklist.md": "9bb8ecf70513f3643be5fa45004db209d993a7b462264fefb17c4cb9217fe390",
       "implementation-summary.md": "4ff641cfb03c46f02df663930064f6d4c62b3a3cf840fac7dba6582fb21532a8"
     },
     "last_active_child_id": null,

@@ -111,13 +111,14 @@
     ],
     "causal_summary": "Skill reference and asset frontmatter has drifted into three incompatible practices: 103 of 369 docs under `.opencode/skills//references/` and `.opencode/skills//assets/` carry a detailed memory-style block (`triggerphrases`, `importancetier`, `contextType`), roughly 255 carry `title` + `description` only, and 11 carry no frontmatter at all",
     "created_at": "2026-06-11T05:47:09Z",
-    "last_save_at": "2026-08-29T15:22:18.615Z",
+    "last_save_at": "2026-08-30T15:39:32.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:14b0c177cbf6cd64cf1bf9fb27530c9ad89974c7f956bc3b41db40aa5a6b2026",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54d50e88f574e2216ce16228aa0b8bfd20a04ec1f9a27532f562deca3caad0de"
     },

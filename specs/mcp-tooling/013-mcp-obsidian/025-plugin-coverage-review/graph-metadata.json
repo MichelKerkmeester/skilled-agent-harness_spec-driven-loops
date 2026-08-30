@@ -28,18 +28,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -56,6 +50,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -163,7 +163,7 @@
     ],
     "causal_summary": "Verify that every community plugin/theme supported by the `mcp-obsidian` skill is properly and completely covered across all documentation surfaces, remediate the gaps, and headlessly test every plugin playbook scenario",
     "created_at": "2026-08-05T19:56:29.576Z",
-    "last_save_at": "2026-08-28T22:06:47.853Z",
+    "last_save_at": "2026-08-30T15:39:10.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -173,6 +173,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6f7f009845e233f41006be6cddc84ebc1c56cbb2f456f691fafe0fb094da5b96",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6d66aeb00960fade592f35cb44f58989f62e96493e2b18fb7dca028139b96a99",
       "plan.md": "b0536f0ca4e7b6e2df4bf45c0e70ea2ad5ad1366cc069cdaf4403356b882b316",

@@ -38,20 +38,43 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md",
       "research/resource-map.md",
       "research/iterations/iteration-001.md",
       "research/deep-research-config.json",
       "research/deep-research-strategy.md",
       "research/iterations/iteration-026.md",
-      "research/iterations/iteration-046.md",
-      "spec.md",
-      "plan.md",
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      "tasks.md",
-      "implementation-summary.md"
+      "research/iterations/iteration-046.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -86,36 +109,6 @@
         "name": "iteration-046.md",
         "kind": "doc",
         "path": "research/iterations/iteration-046.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Our loop systems had unquantified gaps in resilience, convergence quality, observability, safety, and interconnection",
     "created_at": "2026-06-28T14:30:35.956Z",
-    "last_save_at": "2026-07-16T16:32:07.693Z",
+    "last_save_at": "2026-08-30T15:39:24.684Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +209,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:830d70823760f0f731090ff6aeac3ba46a75811f499abc955e706138756607a6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b4e639dfce842b155e6ee4eba95db43780da79cbee95756dffad3ed4304493e1",
       "plan.md": "30d20afa1eab0f04806d1496f64f789209aabc1216539445caef54079c0f8684",

@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
   "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup",
   "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,9 +20,9 @@
       "fleet cleanup tasks",
       "per-skill deletion checklist",
       "dual-read retirement tasks",
-      "fleet cleanup readiness checklist",
-      "committed manifest binding verification",
-      "shadow rollout cleanup block"
+      "fleet cleanup committed readiness",
+      "cleanup blocked shadow rollout",
+      "activation manifest evidence binding"
     ],
     "key_topics": [
       "fleet",
@@ -40,17 +39,13 @@
       "aliases"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "compiled/final-manifest.json",
-      "lib/fleet-cleanup.cjs",
-      "harness/validate-cleanup.cjs",
-      "fixtures/deletion-cases.v1.json"
+      "compiled/final-manifest.json"
     ],
     "entities": [
       {
@@ -72,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -87,24 +76,6 @@
         "name": "final-manifest.json",
         "kind": "config",
         "path": "compiled/final-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "fleet-cleanup.cjs",
-        "kind": "file",
-        "path": "lib/fleet-cleanup.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate-cleanup.cjs",
-        "kind": "file",
-        "path": "harness/validate-cleanup.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deletion-cases.v1.json",
-        "kind": "config",
-        "path": "fixtures/deletion-cases.v1.json",
         "source": "derived"
       },
       {
@@ -180,42 +151,59 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "Fleet Legacy",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "Read Cleanup",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "After Stage 6 (destination rollout) each hub serves from the compiled typed contract, but the legacy dual-read path is still present and still resolving legacy inputs in parallel (§9, Stage 2 \"Dual-read\": every legacy input resolves through a declared mode/alias; unmapped fails closed)",
     "created_at": "2026-07-18T13:13:20.991Z",
-    "last_save_at": "2026-08-29T15:22:02.476Z",
+    "last_save_at": "2026-08-30T15:39:15.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7b6c31af83dcd8caa96df7a8933ca201a992e5c817a5c27c978a3c89045a424",
+    "source_fingerprint": "sha256:04303f4dda6627ef8673ba4ba4059a609990f1c9c30cd77702957304ee6f5790",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a6315421393ebb6b833d5e772ded81bc11d5a38cba4039dbc7b22826120b46f7",
       "plan.md": "a013c36f7817480a64acd52a2d5a60e44479b297ddef077d39d4dc3750bcf58d",
       "tasks.md": "2a856eced13961099912b06c936f5e4e3f58bf53681e68f405b834acdc671714",
-      "checklist.md": "437da6b26b19016291605a586df5a268c6ff14058ffc35d77abe31adfa7a8b42",
       "implementation-summary.md": "0c6d4bd11ffe61c501c2ded6ba8d3952451184f712a3946d1d064081723f4529"
     },
     "last_active_child_id": null,

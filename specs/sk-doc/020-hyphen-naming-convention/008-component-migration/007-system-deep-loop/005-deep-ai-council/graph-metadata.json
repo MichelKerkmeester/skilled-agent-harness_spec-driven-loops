@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deep-ai-council packet contains 12 underscore-bearing directory families and 89 underscore-bearing files, including paired feature-catalog and manual-playbook trees, council graph material, and assets. This phase renames those in-scope paths to kebab-case and repairs their references while preserving council artifacts, state contracts, and tool-mandated names.",
     "created_at": "2026-07-14T15:17:51Z",
-    "last_save_at": "2026-08-30T07:19:41.447Z",
+    "last_save_at": "2026-08-30T15:39:16.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:172444e7740454a1e34840c594f53c1923f6302dd9b9100bb93abb865cb266d4",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f40ec2055f5561884aef363221be496924a0cc72652eca1c525d5f0ae3e99bf7",
       "plan.md": "1b95b2b9e61d73fda2d7c5a50c5b3c803d81111ae457ec450bc0dd3c323e085c",

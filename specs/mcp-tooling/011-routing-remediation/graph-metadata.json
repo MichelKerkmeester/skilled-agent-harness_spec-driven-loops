@@ -39,12 +39,11 @@
       "phases"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
@@ -60,7 +59,8 @@
       ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
       ".opencode/skills/mcp-tooling/graph-metadata.json",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs"
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -206,28 +200,33 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The phase-007 deep review (`.opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md`) issued a FAIL, release-blocking verdict on the mcp-tooling hub routing surface",
     "created_at": "2026-07-16T16:50:35Z",
-    "last_save_at": "2026-08-29T14:54:09.930Z",
+    "last_save_at": "2026-08-30T15:39:10.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:666c9c53449f8d4a7967a528df6e67dedbed11306c9b6f12a0dcf4b10b1938c4",
+    "source_fingerprint": "sha256:90b087126f7bab6eb73f5404ecd439278ee8aed6c487287c021edd2c3badfbd4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d0227008d01e780b2243cb8b1fe3c86ae81922a32de607a9a43fbca55d83167f",
       "plan.md": "5459aa56e2a1d35a7d7e09c9ff5161b8d1c826229cb2ac93b69326c0a675dfe1",
       "tasks.md": "521a4ece0d9299be3ee43264931fb13257e5c91275db993ea2989c1b69e4ee89",
-      "checklist.md": "18d9db615e8a5805f790c27b07cb2c0455c1f152908be21f10e78174183954e3",
       "decision-record.md": "78a5b8aa91d57a004d6f160aa0c1f954290654639b00110e66dd10da7353b5c2",
       "implementation-summary.md": "c74ac64f8065f5851f30bb029553c73835083296579b68f869663726f1d145eb",
       "research/research.md": "37553967cbf2d1055e925cbdaab944a29d0af99021e68ae04d2ed87c575be9a0"

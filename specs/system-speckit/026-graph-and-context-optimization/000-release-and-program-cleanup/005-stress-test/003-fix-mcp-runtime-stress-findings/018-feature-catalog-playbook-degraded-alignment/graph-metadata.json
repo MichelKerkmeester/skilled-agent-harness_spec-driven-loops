@@ -23,8 +23,8 @@
       "018 plan",
       "catalog playbook degraded tasks",
       "018 tasks",
-      "catalog playbook degraded checklist",
-      "018 checklist"
+      "catalog playbook degraded summary",
+      "018 implementation summary"
     ],
     "key_topics": [
       "018-feature-catalog-playbook-degraded-alignment",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +182,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Packet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Three operator-facing documentation surfaces drifted from the shipped runtime contract in ways that mislead readers reproducing degraded-state scenarios:",
     "created_at": "2026-04-27T22:45:00.000Z",
-    "last_save_at": "2026-07-17T17:19:12.261Z",
+    "last_save_at": "2026-08-30T15:39:28.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0ff90cf8a49138af975692e8bccd54a0ef8d2471e302fae9960b84fc88b4f17",
+    "source_fingerprint": "sha256:5c5076aa9a8b73056442883e7a28d48df0ca11415191e09827dfa86dec345382",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "64129bd99ae683a7ba8648cd83ac9ecb2fa55c3da4c02bd47b5594d0aac3c850",
       "plan.md": "ba715e7cd2da7e9d82981f0b6551d5c8eb30863fb43312512e60cc9277988753",
       "tasks.md": "02c3417482039a950fe0471b0c418f46feb13588fb9c601425f8d4f91ccba3d0",
-      "checklist.md": "8119685dd7fa7ac1b71037c3dbbc890df6989e486ce004a4d9647e1f65eff8bd",
       "implementation-summary.md": "7c84bd228a2cf3235dece71e0a0d391f483a35fb96ea2274660538000867cbb6"
     },
     "last_active_child_id": null,

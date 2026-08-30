@@ -22,7 +22,7 @@
       "015 migration playbook tasks",
       "notion-migration.md tasks",
       "migration-inventory.md tasks",
-      "015 migration playbook checklist"
+      "015 migration playbook summary"
     ],
     "key_topics": [
       "migration",
@@ -34,7 +34,7 @@
       "migration-inventory",
       "plan",
       "tasks",
-      "checklist",
+      "summary",
       "research",
       "verdict"
     ],
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
       ".opencode/skills/mcp-tooling/mcp-notion/references/migration-inventory.md",
@@ -71,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +191,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 001 research verdict decided the flawless-migration method, but nothing in `mcp-obsidian` or `mcp-notion` carries it",
     "created_at": "2026-08-21T21:51:45.157Z",
-    "last_save_at": "2026-08-29T15:21:54.528Z",
+    "last_save_at": "2026-08-30T15:39:10.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47188ba766716c0adefb69feb19873095873ffb84c5345d5d791d5725a2fedce",
+    "source_fingerprint": "sha256:e25c485581d4cbbe120ccc5cfee70b80f1beae15614531b26bb7dae421ab352a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d625506551b632e0979bdf65fb5cb114d3117594670a3e44a9086bb70fdb5135",
       "plan.md": "5a27faf38b31d3c070f5c77940da4734d5a50ada9065fa211213ee7cfbcc3c3d",
       "tasks.md": "c59575587aa38cac63e7df92fe8c17b7ef0c01df903c26de0c9d413713d036d5",
-      "checklist.md": "d38a2984690e9ba968661109c3d65fe764d32a76fb264597a19078f8aa088e48",
       "implementation-summary.md": "7fc3668cdec26f2554ec7fd5185dafedd9d7b15a0fce892dff01feaeac0d6c49"
     },
     "last_active_child_id": null,

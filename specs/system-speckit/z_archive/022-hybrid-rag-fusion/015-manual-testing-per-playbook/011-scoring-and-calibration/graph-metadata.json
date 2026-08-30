@@ -21,8 +21,8 @@
       "phase 011 tasks",
       "scoring calibration tasks",
       "scoring and calibration task tracker",
-      "phase 011 checklist",
-      "scoring calibration verification checklist"
+      "phase 011 implementation summary",
+      "scoring calibration execution summary"
     ],
     "key_topics": [
       "manual",
@@ -36,27 +36,43 @@
       "tasks",
       "task",
       "tracker",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "shared/index.ts",
       "lib/eval/shadow-scoring.ts",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
       "lib/feedback/shadow-scoring.ts",
-      "lib/search/search-flags.ts",
-      "plan.md",
-      "mcp_server/package.json"
+      "lib/search/search-flags.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -72,39 +88,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "search-flags.ts",
         "kind": "code",
         "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
         "source": "derived"
       },
       {
@@ -196,27 +182,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Shadow Feedback Holdout",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fusion Policy Shadow",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Manual test scenarios for scoring-and-calibration need structured per-phase documentation instead of a single playbook table buried inside the hybrid RAG fusion packet",
     "created_at": "2026-04-12T09:02:50.297Z",
-    "last_save_at": "2026-07-10T06:24:40.658Z",
+    "last_save_at": "2026-08-30T15:39:39.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfbf54e0b6158f355eea2ece7504bd3d46f050a3bdbc3cc6aef110bc3a427593",
+    "source_fingerprint": "sha256:a4881360282a544f12066c0b9c2caf4d99381298cf127f44926f75807998607e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cca3ba7b6ecedb984fd9cef0fd7d9eea585d4c7e92cd652d85f0312703ee4c4d",
-      "plan.md": "c3e82fccd474d88a3efbb4c27f358e411911fe0e99829af58d496a4bfa7b4c0b",
-      "tasks.md": "862ba94584311c0f234405486c6f64092098d7fa72ed0aea1e11d5f16b7eef79",
-      "checklist.md": "4aecd38728f2b9d30491a05de56a7a4be076e0701df3eef5ec517fbaaf5cf5aa",
-      "implementation-summary.md": "4eb4b55d326080538193832f85c5f2e8d18650e5e2d84f45eea95cb0d4aaf169"
+      "spec.md": "9947ca8f724547da4a9f66ac5fd8aac742c45576e7efd075860fdb1135e12369",
+      "plan.md": "e473fa81248f8623cfce01aef4f6d181f6edf31a147245658ef7e9e1d5b66f27",
+      "tasks.md": "11981b71e93bfd522eb5628b4d18b9d1a34370daccab632abcfd2727366209b5",
+      "implementation-summary.md": "4c6b55c0da68d212f039b6bc977a0592869dcbdf6c108ff08879fbb98d05486f"
     },
     "last_active_child_id": null,
     "last_active_at": null

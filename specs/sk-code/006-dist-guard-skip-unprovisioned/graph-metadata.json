@@ -39,19 +39,13 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs"
     ],
     "entities": [
-      {
-        "name": "dist-freshness.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,6 +68,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Teach the dist-staleness checker to report a package as unprovisioned (skip) instead of stale when it is not buildable in this checkout, so bare worktrees stop warning about work the guard cannot do.",
     "created_at": "2026-08-09T06:16:27.735Z",
-    "last_save_at": "2026-08-09T06:16:27.735Z",
+    "last_save_at": "2026-08-30T15:39:11.187Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:88d10c7b3ac51375cd872759ceaf142d8a43afcf6dba950d6b4ed16f94264870",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "83c381a386234fe7b26599551d61fffd7349c2cd0b6cbfa1d69f48786117f704",
       "plan.md": "4192539ac48ce2e4ec7857d06c0bf4e8147df06bfce2d9d6e5f6e83be73949f6",

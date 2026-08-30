@@ -33,8 +33,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -50,15 +50,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Independent GLM survivor audit, full four-hub gate reproduction, link set-diff against the frozen baseline, and packet documentation.",
     "created_at": "2026-07-28T05:34:11.900Z",
-    "last_save_at": "2026-08-28T15:53:21.448Z",
+    "last_save_at": "2026-08-30T15:39:15.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7c2a038e5126f0e8a0230406378332533dbea4331403cc8b8b61b09ba4fe46d0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8176fff37c2c34b9c772538aab09b0359f04502bffbd175e1ce17dc3bb4a557b",
       "plan.md": "0c9e49d78aae604079dcd5f2a3c6da38fd68b7e07a787301321201fb7a046870",

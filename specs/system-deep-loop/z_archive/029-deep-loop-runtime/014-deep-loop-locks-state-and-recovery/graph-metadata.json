@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The broad audit found advisory locks without PID/TTL/heartbeat metadata, inconsistent deep-review locking, and JSONL state recovery gaps",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-07-16T16:32:59.927Z",
+    "last_save_at": "2026-08-30T15:39:26.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3b2e416d7e93b7c5b22d3086af5fccd1db4edf956b6055bdc74d4e6d2bec1a12",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "623300fa5972d27457f3bd23d73e425309c6eb6ed57421eb271980ac578350d3",
       "plan.md": "0b3819cf96898a710afb23d02796995f874b2097fa625cdf44a201ce16aff4c5",

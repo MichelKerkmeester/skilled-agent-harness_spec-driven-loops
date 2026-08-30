@@ -189,7 +189,7 @@
     ],
     "causal_summary": "A review of the shipped packet found four contract defects:",
     "created_at": "2026-08-20T20:00:33.153Z",
-    "last_save_at": "2026-08-29T14:54:10.273Z",
+    "last_save_at": "2026-08-30T15:39:12.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f7308300aae89ee5bd0e0d89863dac22c2eee9f1e0c66729c6adafae7fbf8d1d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d05064aeb9debf040bfee07763a07abdf404222904e9f3a683669760224b5e3f",
       "plan.md": "9188a8454dbfd5b1636db662a882b2db83faf18dc913b039930af4317bc4bb2e",

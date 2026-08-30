@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The in-memory BM25 path fetched only the caller-requested number of lexical hits before resolving `specFolder` scope and deprecated-tier exclusions",
     "created_at": "2026-06-11T06:25:40Z",
-    "last_save_at": "2026-08-28T16:00:06.189Z",
+    "last_save_at": "2026-08-30T15:39:33.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4e03245feaabb8a07ce9e10b15b074c02fef4ae4aede3d121168332d1ef947c3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "af21ad2ef9f0ec19a674adfc1d33342809a4f4934a8ec692a3896835975446a2",
       "plan.md": "98876c36776768aefc59e3c5218fbf1005bdb83845c4bcd287230e2679d33723",

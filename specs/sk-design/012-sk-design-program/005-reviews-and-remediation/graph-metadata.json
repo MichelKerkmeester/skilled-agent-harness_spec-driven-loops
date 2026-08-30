@@ -37,7 +37,7 @@
       "interface-command"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -87,17 +87,18 @@
     ],
     "causal_summary": "The shipped style-database and interface-command work needed independent review before it could be trusted — and the findings needed remediation, not just recording",
     "created_at": "2026-07-22T16:38:23.175Z",
-    "last_save_at": "2026-07-22T16:57:33.629Z",
+    "last_save_at": "2026-08-30T15:39:12.898Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:77be6cff529e178030323bf3933af1a56d0d2bc443c067539e58257298b0d52c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d5ca303ef1291d9999bd0f5cb437e10293a3461fa42a2c792322fd39ee6b4a6"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-design/012-sk-design-program/005-reviews-and-remediation/002-session-shipped-work-review",
     "last_active_at": null
   }
 }

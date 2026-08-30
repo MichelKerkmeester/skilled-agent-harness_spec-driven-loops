@@ -36,7 +36,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "scripts/check-agent-gateway.sh",
@@ -59,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,27 +179,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `012-runtime-enablement` work made the typed event ledger authoritative for all eight deep-loop modes and turned each `-state.jsonl` into a pure projection of the ledger",
     "created_at": "2026-08-25T07:11:26.953Z",
-    "last_save_at": "2026-08-29T15:22:08.443Z",
+    "last_save_at": "2026-08-30T15:39:22.270Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34b85e1ed184be1060212fe9a70d2d70641c3a798828a3b2dc60686ec4971958",
+    "source_fingerprint": "sha256:5958c7747970f49a78e26be93b002dafbdd5fc656241839b8022983a33c67039",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd84afd1fae1705d9db71607f41af5e6b6199cce6e0d1642d3228bc72900e581",
       "plan.md": "61f53c5a596bdb943f7c34fd7a3b4db95d50044431a7d823f74bea7b4654871a",
       "tasks.md": "62697dd3e2e65d2364f7aba2a7a4a0d3fdc23213df22e5a516f25f957f3135a2",
-      "checklist.md": "3c5965fe088fe1d481efd23ebb9fbfb2da727395da70a832735cb200334212f8",
       "decision-record.md": "07d7e81ba022d45d363a855e146f7c4e16de2899879d14a987436c840a02dc8c",
       "implementation-summary.md": "aff9135a24a503b549f4fd0ad6035a13fcf152fe946a8ec25b026a56ac5c2f5a"
     },

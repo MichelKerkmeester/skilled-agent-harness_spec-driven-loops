@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude Code, and Codex scenarios. This phase renames those playbook filesystem names, updates active references, and preserves scenario IDs, frontmatter fields, and test meaning.",
     "created_at": "2026-07-14T15:17:38Z",
-    "last_save_at": "2026-08-30T08:04:26.227Z",
+    "last_save_at": "2026-08-30T15:39:16.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:b88a70f1c65a14db4260d661a0c85ae392f82b6bf57e053b310562e671d37d00",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55fd0a3e8c26d7021921bb0101e07c381fbb1a909b6a7744448fba3f7867785d",
       "plan.md": "a59a9008feb0a9717dab31fa92826d6145f7483eea3c612d7ad5ebdd06fe2f2a",

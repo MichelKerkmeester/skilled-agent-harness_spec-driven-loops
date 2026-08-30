@@ -19,10 +19,10 @@
       "deep research resource map fanout",
       "fanout synthesis tasks",
       "lineage aggregation implementation",
-      "fanout synthesis verification",
-      "lineage aggregation checklist",
       "lineage artifact synthesis decision",
-      "fanout registry projection"
+      "fanout registry projection",
+      "fanout synthesis implementation summary",
+      "lineage aggregation delivery"
     ],
     "key_topics": [
       "fanout",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
@@ -60,7 +59,8 @@
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts"
+      ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "run-now-yaml-control.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,23 +210,22 @@
     ],
     "causal_summary": "Fan-out writes iterations and deltas under `research/lineages/<label>/`, while synthesis reads `research/iterations/`, `research/deltas/`, and `research/findings-registry.json`",
     "created_at": "2026-07-25T07:41:55Z",
-    "last_save_at": "2026-08-29T14:54:11.000Z",
+    "last_save_at": "2026-08-30T15:39:20.712Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2619c2d892d9e2b8907883dc4c886d52acfe58d3d0d0d7e4a02606ad68bae2a1",
+    "source_fingerprint": "sha256:6c545dfe37f047483b6236ecf472490d7ebe5ca7970c0cfa66bffb87ca92c45b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d35754f5b86eafc9b8f0d8f81e80fdf056e3eb196be7937cc195420cc8ff147",
       "plan.md": "858b6fdf68beb837e41566851245ee8950cb85a38093d87fb3be374270424abf",
       "tasks.md": "70ff1058cb6c284756176c4a1d31704261f033dadce0e788cdf97b0181591ced",
-      "checklist.md": "29fc5c72de36c3445e656c2b6dae5ba1fa670a1d8c89da2e4276768966b31f72",
       "decision-record.md": "f93f4894bc892a17d36b83ff2b82121bc5541ccddd1f0b3476e39952da7906f0",
       "implementation-summary.md": "28b25d8eaa422c5d4d3466bd48f3eae6a384e3deee3dbd6b9af0b1ff1c5fa4a6"
     },

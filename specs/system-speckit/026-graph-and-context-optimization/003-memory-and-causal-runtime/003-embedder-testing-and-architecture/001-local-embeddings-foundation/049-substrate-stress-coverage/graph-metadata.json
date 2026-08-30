@@ -18,8 +18,6 @@
       "vitest substrate gate plan",
       "049 substrate stress tasks",
       "substrate stress checklist",
-      "049 substrate stress checklist",
-      "vitest substrate gate verification",
       "049 implementation summary",
       "substrate stress implementation summary"
     ],
@@ -31,22 +29,27 @@
       "plan",
       "tasks",
       "checklist",
-      "verification",
       "implementation",
       "summary",
       "canonical",
-      "suite"
+      "suite",
+      "mcpserver"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -57,18 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -174,42 +165,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Evidence Dir",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The canonical Vitest stress suite in `mcpserver/stresstest/` is provider-agnostic by design",
     "created_at": "2026-05-14T21:40:55.576Z",
-    "last_save_at": "2026-08-28T15:59:37.941Z",
+    "last_save_at": "2026-08-30T15:39:30.033Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39c2bc5e384805c92beda6691030e1686204648503912973afc7436be77311cd",
+    "source_fingerprint": "sha256:e1a7bbca541b5977144d1b60e737fa473759c0a0db05a0251a9c0a92ee80ed86",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "721d38bb7dfa0e5a74ab9a9f5986eea5c5981affb8321c039e1eaed194384e06",
       "plan.md": "6c194405c48fc2b506b091b0f6a8d94fc81910389d8927928117eaa18f2f69b8",
       "tasks.md": "ee73f908d3a4269f1fe6b8e23898fb7ed911db2157ad41716205a4a33ae2a5d2",
-      "checklist.md": "5f6ce39b67e1049c6e17f79f9ce8c52e6b0f518e4af3255988981ce880b05f5d",
       "implementation-summary.md": "820a5f4d11afde2272a12ef7d4aa6da6e8d1da1319a5f0bc2c615a0c874bc5fe"
     },
     "last_active_child_id": null,

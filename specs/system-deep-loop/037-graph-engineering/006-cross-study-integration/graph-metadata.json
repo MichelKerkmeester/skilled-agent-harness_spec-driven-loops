@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Studies 1–5 each produced a 20-iteration synthesis, but each stands alone",
     "created_at": "2026-08-14T06:01:27.366Z",
-    "last_save_at": "2026-08-29T15:22:08.891Z",
+    "last_save_at": "2026-08-30T15:39:22.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:d4cce84a5f3939bc3beadf49a7d833dc1b46e39dc20846739ef4474fb1f47aa7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0dca46576481861987f61b67d61b469fd4063363d70c93a278fd8cb99a14e9b5",
       "plan.md": "4eb2cb4d1fa887ac04cfb99f62eb5124f7bf5816e6618dbc49418eca661ee0f6",

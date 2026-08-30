@@ -35,12 +35,18 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -51,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Author canonical doc covering mk-spec-memory + CocoIndex embedder architecture, out-of-box for any embedder + first-install + swap mechanism",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-07-17T17:19:24.849Z",
+    "last_save_at": "2026-08-30T15:39:30.844Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f5830cab406ea16d2f90a720a658aafb33431791f93fad93c45f1381fdae68a5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a66f2d5040b67c3c93f369efaed4232afe6b0c3b9c8201593c8c23a85c202312",
       "plan.md": "ec6986336e8b95acc5bf69e9d1fe3dfa22a6c6d44fb9ef9d73a40d00f478d6ba",

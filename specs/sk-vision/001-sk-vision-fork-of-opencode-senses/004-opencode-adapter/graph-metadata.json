@@ -38,6 +38,7 @@
       "spec.md",
       "001-plugin-reexport/spec.md",
       "002-readme-and-proof/spec.md",
+      ".opencode/plugins/sk-vision.js",
       ".opencode/plugins/README.md"
     ],
     "entities": [
@@ -45,6 +46,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
         "source": "derived"
       },
       {
@@ -92,13 +99,14 @@
     ],
     "causal_summary": "OpenCode discovers plugins as real files under `.opencode/plugins/`",
     "created_at": "2026-08-15T16:31:07.271Z",
-    "last_save_at": "2026-08-29T15:22:06.036Z",
+    "last_save_at": "2026-08-30T15:39:19.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:45f25e5d383ab43886f38d59b0b6b9475f083c3047b0520660231699603ce288",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0f089d6d7baedacbe161d9c81ca101a367ad1eedd208bd19074377ccb8289a60"
     },

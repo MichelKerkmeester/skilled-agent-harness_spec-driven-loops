@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-release/003-deep-research-synthesis",
+  "spec_folder": "system-speckit/000-release/003-deep-research-synthesis",
+  "parent_id": "system-speckit/000-release",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase",
+      "003",
+      "deep",
+      "research",
+      "synthesis",
+      "spec",
+      "changelog",
+      "per",
+      "folder",
+      "detail"
+    ],
+    "key_topics": [
+      "phase",
+      "deep",
+      "research",
+      "synthesis",
+      "spec",
+      "changelog",
+      "per",
+      "folder",
+      "detail",
+      "cross-cutting",
+      "per-packet",
+      "spine"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      ".cursor/hooks.json",
+      ".codex/config.toml",
+      ".opencode/hooks/hook-flags.env",
+      ".opencode/hooks/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env",
+        "kind": "file",
+        "path": ".opencode/hooks/hook-flags.env",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run config",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate before touching runtime",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prerequisites",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Terminal Discipline",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Four Laws",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "State Verification",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Communication Quality",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Rules",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Cross-cutting synthesis the per-packet spine can't produce: the through-line of the skill-model",
+    "created_at": "2026-08-30T15:39:27.532Z",
+    "last_save_at": "2026-08-30T15:39:27.532Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:c1caa14897ba7cd3503c31782549d72e389364744a8ce141b7b7e275661a5a5e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "31853e385f4fc6b202db5d66dbfc1be8dfb342e1aa2cd91ee92aefe08f237967",
+      "research/research.md": "b0b67bc2f70a51169b6761e5e8a91341882b5bed21518a4a32edab53726d610c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

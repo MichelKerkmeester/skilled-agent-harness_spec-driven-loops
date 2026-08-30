@@ -31,22 +31,15 @@
       "directions"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "deep-research-reducer.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,12 +53,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -75,6 +62,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
         "source": "derived"
       },
       {
@@ -162,48 +155,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Packet",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 119 identified three P2 hygiene gaps: duplicate ruled-out directions could accumulate, workflow YAML script references lacked a direct existence check, and the deep-research skill allowed-tools list needed post-118 pruning verification",
     "created_at": "2026-05-23T03:56:52.844Z",
-    "last_save_at": "2026-07-09T10:02:48.796Z",
+    "last_save_at": "2026-08-30T15:39:23.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb3c61f619109257c75430e004d4ab60a4fb64f4022232ee7e201f94f9d46548",
+    "source_fingerprint": "sha256:9f374549f84cbbf933c09ab82a9320137804addc633eb86ac0ad5ed33402d7a0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0f87c8225395200e2a5202591f6fa8626358d8bdbf403a8a3af57633797c7fc9",
       "plan.md": "2ba46a14c881dd9d521716d5bf4d47b6fc0eb48e5401f9d1be53b071d6eb6792",
       "tasks.md": "778e2dd71f3b5ebd70333cef1260a72390e2a5ace959e9537f61410d46f0dd94",
-      "checklist.md": "8b7f20a3446672442d970785fb102336b38447ce2e6450febaeff045971ec7af",
       "implementation-summary.md": "cc2a4a38ca7b236ac21a267be2160c7171c7914e2338c2f3e012f0049aa0fcf2"
     },
     "last_active_child_id": null,

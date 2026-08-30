@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The `code-opencode/SKILL.md` surface router does not detect Rust files or route a RUST intent, so even with the Rust docs authored (phase 002) nothing selects them",
     "created_at": "2026-07-11T08:51:44.204Z",
-    "last_save_at": "2026-08-28T22:09:16.559Z",
+    "last_save_at": "2026-08-30T15:39:11.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:97d21e5eacecdc8bfdac8aaf221e4807151e044cfe5972311f32f537d8acde8c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8a4ee76832f7ce8d85dbbc22303e22658f4f59e1d7fcf3433dd529dd3813121d",
       "plan.md": "a101ddd18b7bca06d47df38492365272fcc719630bc93b149ccf322c29de15be",

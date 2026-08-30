@@ -18,8 +18,6 @@
       "message identity resolver plan",
       "transform dedup tasks",
       "message identity resolver task list",
-      "transform dedup checklist",
-      "message identity resolver verification",
       "OpenCode transform dedup implementation",
       "message identity resolver"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/plugins/lib/opencode-message-identity.js",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts"
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,30 +179,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "OpenCode's `mk-skill-advisor.js` and `mk-spec-memory.js` each register an independent `experimental.chat.system.transform` handler that can append to `output.system` for the same user message, with no shared coordination proving whether a policy/advisor block was already delivered for that exact message",
     "created_at": "2026-08-06T11:07:41.298Z",
-    "last_save_at": "2026-08-29T15:21:51.904Z",
+    "last_save_at": "2026-08-30T15:39:08.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b34048d148fbb55b79008c2b6560788697ad8ab6687d873c8c377dc2b18403ee",
+    "source_fingerprint": "sha256:1c86fa30506dde5696490868864ba5acc99a5a3432a2baa15d6fb6d626ca3a47",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "490d5c0af0996c2da6f4e4591de043156a2f5e3959bc6133ee7e6eb0746be8a9",
       "plan.md": "add6ca99393c23886564924aad7c4e26c2d6b8414e3f928301ab646d4920767f",
       "tasks.md": "e54de428897cc291917be44f6366e600f450662670dc8802ec9cee7105a0f625",
-      "checklist.md": "0e872ef02e125b9f4cbabdde31d2114652ef5ef504415d4bc878d3770eb8a6b9",
       "implementation-summary.md": "ab9f3cef4f5ae6fdd3731a315ec9d5690c863719b4912f5da87dc6837c8bf65a"
     },
     "last_active_child_id": null,

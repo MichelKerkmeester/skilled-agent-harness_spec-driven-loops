@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The deep command routers own presentation instructions inline with routing and workflow-reference instructions",
     "created_at": "2026-06-11T00:00:00Z",
-    "last_save_at": "2026-08-29T14:54:20.176Z",
+    "last_save_at": "2026-08-30T15:39:34.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b4fb31cdf3a3bd0a4f5fd7ef3585875069a39d93a042fc8006d1aa7da681d165",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11b41a22e144e4e078682ef1fd26f8510e1a3a73d49ee7b30b5250df1338fb53",
       "plan.md": "d4a967ec6134b5d541fe43286c6297509df58e41e46bb1d679de9183f73d1211",

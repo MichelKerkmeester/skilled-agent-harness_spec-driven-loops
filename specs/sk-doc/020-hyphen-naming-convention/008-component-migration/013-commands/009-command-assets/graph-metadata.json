@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The commands surface stores workflow, presentation, legacy, compiled, fixture, and reference-like files under several namespace asset directories",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-08-30T07:20:04.232Z",
+    "last_save_at": "2026-08-30T15:39:17.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:c60254a24602f0b67cf8477d493f7c0ff36dc0aad54439e142b7ee722a110546",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "336314bd8040affae7414ba6232c2c68627671dba5c2d13fcd60b1473f397e1c",
       "plan.md": "eacd001ab7da8224be57f7e3f08ac2cce68cd92a888a94c24af5c3596b462cc3",

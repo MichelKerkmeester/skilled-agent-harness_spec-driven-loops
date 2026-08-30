@@ -3,7 +3,6 @@
   "packet_id": "sk-design/014-template-conformance/007-hub-root/005-benchmark",
   "spec_folder": "sk-design/014-template-conformance/007-hub-root/005-benchmark",
   "parent_id": "sk-design/014-template-conformance/007-hub-root",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -16,7 +15,6 @@
       "template conformance audit",
       "plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -28,18 +26,17 @@
       "audit",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "opencode"
+      "opencode",
+      "skills"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,42 +161,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Scaffold Planned",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Audit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/sk-design/benchmark/` has not been audited against `.opencode/skills/sk-doc/create-skill/references/shared/overview.md directory rules (no authored benchmark/ template; these are frozen dated-run-record directories)`",
     "created_at": "2026-07-27T14:59:54.938Z",
-    "last_save_at": "2026-08-29T14:54:12.597Z",
+    "last_save_at": "2026-08-30T15:39:13.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1dbe32522012aa3caa63c421568ee6ad705c579690dceab3dc8a0236e163140",
+    "source_fingerprint": "sha256:bc602a8e6f0a59fa9e4656bc7b044da262a0de279f041527101a9c0b3e956169",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "899fbb52b7dd64e17ec468c23713c25ba3e50501ed19b4f33e2b581d01758904",
       "plan.md": "40ce3711fdde504524c4a22ef4376e2c7686c0167833dc79e2a15af81b2c1167",
       "tasks.md": "2eb02a500b3b89a3350476ad09c69c599db8860574e67d3d97b6b0eb69d82ad6",
-      "checklist.md": "db2dd02bc03cf84078fec5d6337c0a8ba09f9f4dc9d52a49b91da11b3c6d53e8",
       "implementation-summary.md": "ee15b6c5de436937785cd34966f69d3e14e27baf9b738224a251fde58a884848"
     },
     "last_active_child_id": null,

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Operator directive: remove voyage/cohere as reranker providers. Their auto-resolution from API-key presence (VOYAGE_API_KEY / COHERE_API_KEY) created a silent re-routing footgun — setting those keys for embedding purposes would also activate cloud reranking. The only supported reranker is now the local sidecar (Qwen3-Reranker-0.6B).",
     "created_at": "2026-05-23T21:00:00.000000Z",
-    "last_save_at": "2026-08-29T14:54:18.589Z",
+    "last_save_at": "2026-08-30T15:39:30.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c324576bf1ca3e8faa11c2e38a1a54912bfbb151576e1fbf8c528d4613a1157f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a9c15d8aefda64d63d32614a5983c8223147705bda9506c392f81bbb30671e2",
       "plan.md": "e1771a8e559517d5ef8bf32ffc1ddf67d2c17e81bdda97db0ff0b9cca498527a",

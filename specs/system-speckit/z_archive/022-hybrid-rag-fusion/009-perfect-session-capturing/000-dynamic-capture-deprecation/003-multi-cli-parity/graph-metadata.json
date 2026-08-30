@@ -20,9 +20,9 @@
       "multi-cli regression coverage",
       "phase 016 tasks",
       "multi-cli parity tasks",
-      "phase 016 checklist",
-      "multi-cli parity verification",
-      "phase 016 summary"
+      "phase 016 summary",
+      "multi-cli parity summary",
+      "022"
     ],
     "key_topics": [
       "multi-cli",
@@ -42,6 +42,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
       ".opencode/skills/system-spec-kit/scripts/tests/phase-classification.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/content-filter-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
@@ -52,21 +56,40 @@
       "scripts/lib/simulation-factory.ts",
       "scripts/extractors/decision-extractor.ts",
       "scripts/tests/task-enrichment.vitest.ts",
-      "tasks.md",
-      "implementation-summary.md",
-      "plan.md",
-      "checklist.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/tests/test-extractors-loaders.js",
       "tests/task-enrichment.vitest.ts",
-      "scripts/loaders/data-loader.ts",
-      "research/research.md"
+      "scripts/loaders/data-loader.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -130,30 +153,6 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -169,12 +168,6 @@
         "name": "data-loader.ts",
         "kind": "code",
         "path": "scripts/loaders/data-loader.ts",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -206,28 +199,33 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 016 had already landed its runtime behavior in the live code, but the phase folder still claimed completion without direct parity-specific proof",
     "created_at": "2026-04-12T09:02:50.266Z",
-    "last_save_at": "2026-07-10T06:21:46.442Z",
+    "last_save_at": "2026-08-30T15:39:38.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fb5a6cc9affbb9b84977b3fc0b4296a66db504571bdf67f00228f0b9db655844",
+    "source_fingerprint": "sha256:f06653210f25b68d1a08d23daa5ef2ebe378137a88280328167f8638f9a49d6a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "236cdccf0a3996716911b4638b9d9655f65421eede78411f89d45d53f7cc70d8",
-      "plan.md": "cb8b71eee19d8281fe6d91652f99a4c3179a5f73a8c38d55bc6399c1992f6827",
-      "tasks.md": "f6f85935fe07b58bc5bd24b4c4a19ef014b36e9877b0db402e838f07a7354747",
-      "checklist.md": "1e54d21781e787e255228e6b55980ab0f83bff9242a8411552f3493879400352",
-      "implementation-summary.md": "9939a0e177227b85461f828574a555af37329d252065e54597976cb62c207bf1",
+      "spec.md": "8f991f768ce0869db003b9c70cd48e1957c866fb61fa3ab8a828261b01ece609",
+      "plan.md": "6eb35416f99e852562f8f9e40f84ee101223b3a95bbb00077c85edc635e90da3",
+      "tasks.md": "1f399c975fa01d45e9b654770e5c05d3061065ba6a7408191f655f8c7c5a88be",
+      "implementation-summary.md": "8fe5f5c5be8792133d84634382d7bcbc2d26fe18913db3403ad6c9288852665d",
       "research/research.md": "842a943d939210f06779ed7d65afafaf75492e15f995700332cc7780fb3e86f2"
     },
     "last_active_child_id": null,

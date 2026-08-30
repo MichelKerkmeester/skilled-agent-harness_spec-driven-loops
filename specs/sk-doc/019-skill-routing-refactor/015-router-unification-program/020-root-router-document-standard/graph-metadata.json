@@ -97,13 +97,14 @@
     ],
     "causal_summary": "Six class-H parent skills still keep their second-stage leaf router at `shared/references/smart-routing.md`, while the mcp-tooling pilot already uses a root `ROUTER.md`",
     "created_at": "2026-08-15T12:47:39Z",
-    "last_save_at": "2026-08-16T08:57:06.360Z",
+    "last_save_at": "2026-08-30T15:39:15.376Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:09606bbccb808b4e10833e694f1edfd78a9a54803fb97c236e18a7f14c0c018c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c54894f40b4e7769be484a3838c185b71aaa5394b2547dcf7897200c1e9da4b5"
     },

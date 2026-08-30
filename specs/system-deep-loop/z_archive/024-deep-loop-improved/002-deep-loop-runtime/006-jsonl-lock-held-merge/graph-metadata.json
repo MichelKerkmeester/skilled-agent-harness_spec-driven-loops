@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Concurrent fan-out writers and salvage callers append to the same JSONL file without a read-back-under-lock step; when multiple processes race on the same file, some records are written twice and others are lost depending on who wins the append race",
     "created_at": "2026-06-28T14:01:55Z",
-    "last_save_at": "2026-07-16T16:32:02.390Z",
+    "last_save_at": "2026-08-30T15:39:24.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d40bd420a64cd58ed8a667512f587858331e1f2046341e5cdd23e5d45fc96374",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fb2f6340b686ed37e2d4ff1504e0b386aefb11e0f6f9da9c4a80552fa208eaff",
       "plan.md": "9d176211e4ce7da8fbdbc9d7f0d393b17783d74546c4e9186b198ef2a707611f",

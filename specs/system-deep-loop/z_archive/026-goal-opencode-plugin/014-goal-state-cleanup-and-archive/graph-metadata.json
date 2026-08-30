@@ -39,32 +39,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-lifecycle.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -81,6 +61,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,11 +176,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/.goal-state/.json` files are created per session (`goalPathForSession`) but never removed by the plugin's own lifecycle handling",
     "created_at": "2026-07-01T12:44:45Z",
-    "last_save_at": "2026-07-16T16:32:49.133Z",
+    "last_save_at": "2026-08-30T15:39:25.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1baa38876a33bb3fecbc0823c10cd1f0af88161c424068d99f29d39e9063ddd5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "31dee31c0ae82d93ec065e6a56ee6730415be2bbfde795ad2cc7cf74479bde7f",
       "plan.md": "01855d55f7ebdb5802de14cb26a89bf6261cf78107a3bbcc072da390227a0794",

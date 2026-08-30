@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The rerank sidecar launcher still had two P1 process-boundary risks: F15 owner-token publication could leave a partially written or race-observed token, and F49 spawned the sidecar with blanket parent environment inheritance",
     "created_at": "2026-05-23T06:45:25Z",
-    "last_save_at": "2026-08-30T08:40:32.677Z",
+    "last_save_at": "2026-08-30T15:39:31.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2b24ad2ccaf1f48bafdc11ceeaa683d6e785ad5a7d8f36c78d0d47c83bf680ef",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2ed7543f6199fbc30877631cdb377825d720cdf710be4311dde8734db0251df4",
       "plan.md": "5dbe8bdf5f341c85f275f35513db0b8248f7c674ea34ff3251326293a91a3f92",

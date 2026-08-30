@@ -35,20 +35,17 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-skill/README.md",
-      ".opencode/skills/sk-doc/create-readme/README.md",
-      ".opencode/skills/sk-git/README.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/sk-git/README.md"
     ],
     "entities": [
       {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/README.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -64,21 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-git/README.md",
         "source": "derived"
       },
       {
@@ -188,26 +179,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc owns the skill-readme-template, a nine-section narrative model in the same human voice the repo root README uses",
     "created_at": "2026-07-22T12:50:05.876Z",
-    "last_save_at": "2026-07-24T10:55:17.336Z",
+    "last_save_at": "2026-08-30T15:39:15.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5c3901f5553a6d5f4206b6d17a266bc2f4b1fca632a11ef18b42f08d1893dcc",
+    "source_fingerprint": "sha256:35b495259a004cd2337f4b05eee93eb7c8347124f5a98d3cb71e886f8475f4da",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba2a79b8bb8fd95afdb72eafbaf843e218dc552c9017fa72eb22ca352292cecd",
       "plan.md": "2c4e9bececca6bacdc6a0d53a015981bf0ff0c1688524810fcecb1dcbb8bd5c2",
       "tasks.md": "15e295ed2c33bc6eaff029c945cc8ef0ca1d944e0ede1e0580697eb1ac13934b",
-      "checklist.md": "12ce832fa4e7992df84a5d763e0e689e325877a113c3d75c1f92ec4be366fc0b",
       "implementation-summary.md": "01960d0f6540e6020459626be3b9ecac9d3f0b42ea6160b0adb20c6b90948c1a"
     },
     "last_active_child_id": null,

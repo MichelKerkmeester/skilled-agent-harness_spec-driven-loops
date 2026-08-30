@@ -38,7 +38,7 @@
       "order"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -88,17 +88,18 @@
     ],
     "causal_summary": "Phase parent that activates the compiled unified-router contract on the parent hubs one at a time, in increasing blast-radius order: sk-code (evidence composition), then system-deep-loop (shared packet/backend projections), then mcp-tooling (external effects + cross-hub judgment). Each hub is a fenced-CAS canary gated on route-gold staying green, advisor identity matching-or-ignored, document parity, and a proven rollback drill. The shared scorer is never touched; rollback swaps to the byte-identical prior manifest and cannot undo a committed external effect.",
     "created_at": "2026-07-18T13:13:20.416Z",
-    "last_save_at": "2026-07-24T12:11:56.905Z",
+    "last_save_at": "2026-08-30T15:39:15.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:905594827d43aae3c21225f02febd863d57b461babac1b296cb782452277a578",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5545a1d0dd9ee9ffd4431620095dcbe67398262927edc19f785775ceaea8911c"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop",
     "last_active_at": null
   }
 }

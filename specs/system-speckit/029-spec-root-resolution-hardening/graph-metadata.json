@@ -61,8 +61,7 @@
       ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
       ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
       ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
-      ".claude/settings.json",
-      ".github/workflows/strict-pass-freshness-sweep.yml"
+      ".claude/settings.json"
     ],
     "entities": [
       {
@@ -150,12 +149,6 @@
         "source": "derived"
       },
       {
-        "name": "strict-pass-freshness-sweep.yml",
-        "kind": "config",
-        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,11 +201,17 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Claude Stop",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no single contract",
     "created_at": "2026-07-17T09:30:14.185Z",
-    "last_save_at": "2026-08-29T15:22:24.214Z",
+    "last_save_at": "2026-08-30T15:39:36.338Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +219,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:ab238eefdeeec2e28d576d95333dbfa0971e13b9dbdc8517f0e4278bc1e70498",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aba1c5e39051a4056aff74391348c2654ea86245a39711878a86c4ad52e9b92f",
       "research/research.md": "ce4ec60c4a62ebeabe361cf62e2b51a3f0eda955dc7bd8863269098d065f6c1d"

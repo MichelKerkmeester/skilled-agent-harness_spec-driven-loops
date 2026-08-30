@@ -33,8 +33,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -50,15 +50,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Move design-interface, design-md-generator and design-mcp-open-design to their sk-design-* names, holding the pre-existing BLOCKED-BY-ROUTE-GOLD 91 verdict constant rather than fixing it.",
     "created_at": "2026-07-28T05:34:10.180Z",
-    "last_save_at": "2026-07-29T09:11:08.822Z",
+    "last_save_at": "2026-08-30T15:39:15.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9cb6ded8dcf3ad5055b8b65891b0e64218c917513840ab527b18a8927ce81cf5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "732b9a829192a283770d39d44183366a8de735f537a0f86ecd320933fd9f6b63",
       "plan.md": "874ef9d9cefc8166a85d96723729da5c54ea1d106c712bd9b4543e86bdc31246",

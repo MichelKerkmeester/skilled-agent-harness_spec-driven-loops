@@ -16,7 +16,6 @@
       "sk-design bug sweep",
       "sk-design comprehensive review plan",
       "sk-design comprehensive review tasks",
-      "sk-design comprehensive review checklist",
       "sk-design comprehensive review implementation summary"
     ],
     "key_topics": [
@@ -28,10 +27,10 @@
       "sweep",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "009-sk-design-claude-parity"
+      "009-sk-design-claude-parity",
+      "packet"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/SKILL.md",
       ".opencode/specs/descriptions.json",
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,26 +183,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `009-sk-design-claude-parity` packet built sk-design to Claude-parity and was closed complete on 2026-07-06, with its own 10-iteration review covering only the spec-folder documentation of packet 009 itself (`009/review/`, status complete, 8 P1 findings recommending a `010-...-remediation` follow-up)",
     "created_at": "2026-07-09T05:17:37.332Z",
-    "last_save_at": "2026-08-29T14:54:13.513Z",
+    "last_save_at": "2026-08-30T15:39:12.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2233c794b62b484d1c869a8695a6b2f9ccf73b878f637d2764ac6980595a7ed",
+    "source_fingerprint": "sha256:d0d997dc258d2dd8ed3aea61571f6c9124d433209099e4c81e00a35cf4e0cd55",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "556635141af1c764b0a167d40930f5b28bd4f49fb31326201f01b23999255f49",
       "plan.md": "8e7cad9fbcdf1fd91f37a201ee1b0486d02dfcb449608cff075a0811fd5c33d3",
       "tasks.md": "c2d9e210f4f6e1028056ddefb213f3bf8da781b8b807569b611a4635cc4b63ac",
-      "checklist.md": "a02d1cb58ee62718e30f4d3b27848abb8f27a6d3d88734bc1e97b9c15d6ca8df",
       "implementation-summary.md": "d55136322db458ee6b0ad4f0f18eb8e3eded11a630f4e9d1e5bc0fc1f0d51c29"
     },
     "last_active_child_id": null,

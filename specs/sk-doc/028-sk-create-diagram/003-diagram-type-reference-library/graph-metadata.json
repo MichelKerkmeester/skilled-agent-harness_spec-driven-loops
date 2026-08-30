@@ -16,7 +16,6 @@
       "diagram example assets",
       "diagram type library plan",
       "diagram type library tasks",
-      "diagram type library checklist",
       "diagram type library summary"
     ],
     "key_topics": [
@@ -29,9 +28,9 @@
       "assets",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "skill"
+      "skill",
+      "actual"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
     ],
@@ -60,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,26 +179,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill's actual value — 27 distinct diagram types, each with its own layout conventions, anti-patterns, and complexity budget — has not been ported yet",
     "created_at": "2026-08-12T06:20:00.000Z",
-    "last_save_at": "2026-08-29T15:22:04.451Z",
+    "last_save_at": "2026-08-30T15:39:17.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03612d2615bad040c4499b86bf7abf61fa8c8fde7198ec40da322cfa9cc9a848",
+    "source_fingerprint": "sha256:d275ee27af148f33c2c144954505378feadfc7d4845c52fd1bfa92860a2be205",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9cdc1b8dd99441e75fe82a68edf1003498489c18109bcde464501a3fb552ca13",
       "plan.md": "6822af4bc25b7d2ccc8f17469fc0a4e760b79fde3d61d780344d0a1bc6852d64",
       "tasks.md": "21092ce8f046481e491ebab627a6ea6abb05583a18fa0e41252f61c59f57ed07",
-      "checklist.md": "0732389f3b7334560f1c7d3fd454e5f764985c463970f021b653507c16cc27fd",
       "implementation-summary.md": "a9135a5611919ea0701a77bb440b2d01233afa202fafa81e4a0b809aadc0bc42"
     },
     "last_active_child_id": null,

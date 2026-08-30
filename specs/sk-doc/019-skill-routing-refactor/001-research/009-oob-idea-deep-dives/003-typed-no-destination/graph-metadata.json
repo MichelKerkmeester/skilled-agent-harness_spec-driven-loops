@@ -80,13 +80,14 @@
     ],
     "causal_summary": "The current zero-signal state can collapse genuine no-work, no-match, dependency failure, degradation, handoff, and clarification needs into one bare `null` or a guessed default",
     "created_at": "2026-07-18T04:39:05.144Z",
-    "last_save_at": "2026-07-24T10:52:34.020Z",
+    "last_save_at": "2026-08-30T15:39:14.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:ef3ea91a00331c160f76edbd1be74bcdad05f20dfc7963da6b94610aa926f311",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3ee8a8fea6f0938c395d106c9bab60b698567712e43e360de2ce5a31b3e971bb"
     },

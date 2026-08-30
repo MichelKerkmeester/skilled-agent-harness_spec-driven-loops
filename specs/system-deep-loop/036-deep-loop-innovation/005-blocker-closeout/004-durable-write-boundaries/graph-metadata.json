@@ -41,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
@@ -57,7 +56,8 @@
       ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts",
       "scratch/chk-120-rollback-rehearsal.md",
       "scratch/t015-verification-evidence.md",
-      "scratch/chk-110-aggregate-delta.md"
+      "scratch/chk-110-aggregate-delta.md",
+      "specs/descriptions.json"
     ],
     "entities": [
       {
@@ -76,12 +76,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -181,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,24 +207,23 @@
     ],
     "causal_summary": "(Resolved — historical problem statement.) The defects below describe the pre-fix state that this packet closed; they are retained for provenance",
     "created_at": "2026-07-31T01:25:20.017Z",
-    "last_save_at": "2026-08-29T15:22:07.250Z",
+    "last_save_at": "2026-08-30T15:39:21.645Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:4f6224d0dfbf50a45dc1afb39b8e43cc653dafd06110297794217288a80fbdb6",
+    "source_fingerprint": "sha256:bbb17e0db5848569f88e99bb1018c908b225d48ee8686f6f7ee63233e0e8c61b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cafaddc540e78e29593c987003b54ce62a1c3183cc2f88cc48f22d33388e21f7",
       "plan.md": "1e66c89dc94dec605d18e207fb8c67d47fd6d3d90449e15ea0f19789682ce7d5",
       "tasks.md": "de9a5ed315bdb8c31cb56f259be428a578675e6de2507201d9e1af89f2368f6c",
-      "checklist.md": "a1ea28183f7b73c8a64e4218733db8b23aeaf68cfa81b22b1a8bf00cdbb7ca6e",
       "decision-record.md": "4a3f267522520f46a690a420402a3158ec15a662194e3a23bd5044c70482fbe6",
       "implementation-summary.md": "d7274620ad58dfba974820123c3c34bd55757c45f90de678b92542280929c0fa",
       "handover.md": "02901e6d6e4fc1c76d519c6d213a06140dcadc90bdb2944514753f9e95c992b0"

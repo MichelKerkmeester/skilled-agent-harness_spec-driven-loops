@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The deep-ai-council README at `.opencode/skills/system-deep-loop/deep-ai-council/README.md` predates the full pilot standard",
     "created_at": "2026-08-04T08:34:51.974Z",
-    "last_save_at": "2026-08-30T07:20:35.731Z",
+    "last_save_at": "2026-08-30T15:39:17.870Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f8691fb57ec28a272f49b34a1cef839520e4921aa071d697e576578985a32e07",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50ab9f6a62b05a196ac96ba491643403b78e74ba768b06036c975b7c2c37640a",
       "plan.md": "b73a6045bc94886b84f47443ad03ec19455583f598487672a5c7054345575f70",

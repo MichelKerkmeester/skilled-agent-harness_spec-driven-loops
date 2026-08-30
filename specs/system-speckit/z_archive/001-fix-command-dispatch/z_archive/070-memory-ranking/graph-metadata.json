@@ -20,9 +20,9 @@
       "plan",
       "implementation",
       "tasks",
-      "checklist",
       "decision",
-      "record"
+      "record",
+      "decision record"
     ],
     "key_topics": [
       "spec",
@@ -33,36 +33,23 @@
       "plan",
       "implementation",
       "tasks",
-      "checklist",
       "decision",
       "record",
-      "dashboard"
+      "dashboard",
+      "displays"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/commands/memory/search.md",
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -82,12 +69,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -97,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -194,28 +187,33 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The memory dashboard displays \\\"top folders\\\" ranked purely by memory file count. This creates several issues",
     "created_at": "2026-04-12T09:02:53.543Z",
-    "last_save_at": "2026-07-10T06:24:49.229Z",
+    "last_save_at": "2026-08-30T15:39:37.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8219ff7920b0d49a4115698900a11210e0bc825e295bdf0831e1c866dff50f4e",
+    "source_fingerprint": "sha256:ccd5fd3b8355dffc6efa334d1658577fe58ad812131de691ca4c38edf552e64b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9b4e3dd33637a0969e0c3a86344bda5ee7b98b6008f01d9fa5dfc1850ad492ce",
       "plan.md": "8efc27620c049b38570b44e7f98452e134b36602beb78ff870dd13ba19348893",
       "tasks.md": "1e65c4619ab894dd1599dcc106c99761c4056edc92b8345e053e6cfacb80a04d",
-      "checklist.md": "a16f918c4e04b1cfcec63277e4f1ef535cfbd28eda37a17937e64e74163577c1",
       "decision-record.md": "18e2c8df980f05a22ec60b3ab63d37ba699a6f68f1cef488c9d52d236cdb4666",
       "implementation-summary.md": "1c2ac603108be313d2a0bf485bf8ef1187611eef56f1c9f72dfd0b181915741a",
       "research/research.md": "2b365de70d5ea4a84c6152755179f3f2106535b8fd8ea33aa45ba3a0803a6032"

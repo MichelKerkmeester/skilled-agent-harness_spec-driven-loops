@@ -43,8 +43,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -154,61 +147,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pre-Implementation",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Implement sparse-first graph policy, intent-aware typed traversal, graph refresh on write, deterministic save-time enrichment, graph signal calibration, and communities as secondary layer.",
     "created_at": "2026-04-12T09:02:50.235Z",
-    "last_save_at": "2026-07-10T06:23:24.001Z",
+    "last_save_at": "2026-08-30T15:39:38.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:749b6e3d7fd5956fc2303bf2f866efa7903e2e754ce2779e32154ed511298161",
+    "source_fingerprint": "sha256:24f295ce01afd45bcddce009dfbdcd26a0cedab15a0f74d4dbe8715daf93ed49",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa68ef4d422788e84cc19a444e953ed22d42fd166dd55e36b7d72eb2a2d2090c",
-      "plan.md": "e7524dbd7bf371150b1799aece306e45b375da4e9d6ee4d256e83b4c60cb01db",
-      "tasks.md": "a1d5480dd232306756bc256b1b033dadc3caa9087296398c8dcb2f3158ec2c54",
-      "checklist.md": "e7c93e9cc99b82a63959c17e3fc9ff239938f97ff52489333b53fd680ae4fc17"
+      "spec.md": "b5e169dc2d5a7f0c1e7e83278058a309c9f156e769359a72961085b7cf380aa5",
+      "plan.md": "77bcbaeb98bb32f41a2f6b5931671294f841d19141f33e21e19f8b572642d6a8",
+      "tasks.md": "e94c3551b25d84cbdaee0c6ac62ac838c42908e8f9a280a72b02929cdef97682"
     },
     "last_active_child_id": null,
     "last_active_at": null

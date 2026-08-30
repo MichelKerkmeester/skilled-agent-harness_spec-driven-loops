@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/006-mcp-skill-install-doctor-standardization",
-  "spec_folder": "mcp-tooling/006-mcp-skill-install-doctor-standardization",
+  "packet_id": "mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization",
+  "spec_folder": "mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -39,36 +39,16 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-      "scripts/doctor.sh",
-      ".opencode/commands/doctor/mcp.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/doctor.sh",
+      ".opencode/commands/doctor/mcp.md"
     ],
     "entities": [
-      {
-        "name": "doctor_mcp_install.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,15 +68,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
         "source": "derived"
       },
       {
@@ -194,27 +180,38 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five mcp- skills had drifted out of a shared shape",
     "created_at": "2026-06-15T05:45:12Z",
-    "last_save_at": "2026-07-15T07:48:14.756Z",
+    "last_save_at": "2026-08-30T15:39:10.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7cff480ce2f75bcbcbbff68da888c6f192cb82f95a76518bee7deba3a7f77d84",
+    "source_fingerprint": "sha256:59b84816614ff9ce9b42e2ac912a6518e095b64faa7591e291549742efeeee4a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d6f67266b138985d8f0b5aa8cd8f42b85d528848ad6eecb171c93474d05449fa",
-      "plan.md": "f9e0f72c6cbb53f9f6c1ad9cc0c81f4dc506dd72afd643ff8532701018253120",
-      "tasks.md": "2435697bd8c331b88d7a98d930d165bdb3a7acd0a9ade9974634583ce45f2a62",
-      "checklist.md": "3e1c6b14a8d47a39c433faf1fd7f04e40768e1a053324104d4047f47ca436cc8",
-      "implementation-summary.md": "379cc824c5ab22b55cf5c3dbc3ac54443ce0d84ea1d16c87741bf89ec945cf3e"
+      "spec.md": "4c819df7ff685a7dd4e5d8cb2fe04620f1b40c700763482e76634cd8447846db",
+      "plan.md": "0fd4bd9d996351104ca4dd6ef6f2f1e0d42159ef471f79847ed04e41d05e7499",
+      "tasks.md": "c1630a1f8284b7fcc562db21d5d1462e501758710548323392960d00ff957089",
+      "implementation-summary.md": "3aedb8d3803fcf25193a1834fb91a3c12f4ba540a0d0ad7e043910cf71e23406"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The mcp-tooling hub owns routing metadata and shared navigation for three independent packets, but its root-level path ownership is not explicitly separated from the component and playbook phases. This phase classifies root/shared filesystem names, preserves exact tool contracts, and closes the hub's path references.",
     "created_at": "2026-07-14T15:17:41Z",
-    "last_save_at": "2026-08-30T07:19:36.846Z",
+    "last_save_at": "2026-08-30T15:39:16.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:5346090a8295bc5fa27611892dde782cf34b1318ee943e60846cf5edd938124d",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b6bed9c78d705e99f24762083ec373052e674fd7643b273700326a9c52c5daf0",
       "plan.md": "3949f6c0eae0625f9cdd7833304ee4fbde9a0a9510299923acc10e11f72bd9ee",

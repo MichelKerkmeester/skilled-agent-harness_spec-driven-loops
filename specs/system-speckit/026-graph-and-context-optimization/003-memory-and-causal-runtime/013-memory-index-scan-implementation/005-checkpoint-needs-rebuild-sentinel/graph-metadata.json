@@ -20,11 +20,10 @@
       "checkpoint-v2 rebuild marker",
       "shared derived rebuild helper",
       "checkpoint sentinel tasks",
-      "checkpoint sentinel checklist",
-      "sentinel verification",
       "sentinel decision record",
       "fail restore vs sentinel",
-      "checkpoint sentinel implementation summary"
+      "checkpoint sentinel implementation summary",
+      "sentinel shipped state"
     ],
     "key_topics": [
       "checkpoint",
@@ -43,61 +42,17 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "mcp_server/lib/storage/checkpoints.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/handlers/memory-index.ts",
-      "mcp_server/lib/search/vector-index-store.ts",
-      "mcp_server/tests/checkpoints-v2-restore.vitest.ts",
-      "mcp_server/tests/checkpoint-needs-rebuild-sentinel.vitest.ts",
-      "mcp_server/tests/handler-memory-index-needs-rebuild.vitest.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints-v2-restore.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/checkpoints-v2-restore.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoint-needs-rebuild-sentinel.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/checkpoint-needs-rebuild-sentinel.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-index-needs-rebuild.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/handler-memory-index-needs-rebuild.vitest.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -113,21 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -201,27 +144,74 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After a checkpoint-v2 restore, `runPostRestoreRebuilds()` (`mcpserver/lib/storage/checkpoints.ts`, approx lines 1701-1772) rebuilds derived artifacts (FTS, communities, derived graph) best-effort and catches failures; `restoreCheckpointV2()` (approx lines 2456-2464) calls it after the DB swap and reopen",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-07-17T17:19:31.194Z",
+    "last_save_at": "2026-08-30T15:39:31.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1160fa1a0dba7e3ea01f93beedd5b82094a5daeafc64be4467fef790403e2098",
+    "source_fingerprint": "sha256:a6b110188b6e1f0acd874fece795da3bb761d9cd506f161e4ae93433f7a57593",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1cd4721ef4c75bed810cc8f4b70105434ac596aef8d895c82e30030e9805b83e",
       "plan.md": "9da1b51efeefb6f64f107f6f524f3ea3d297850c25416d345594e67c82c24b0e",
       "tasks.md": "bd418ab6baf048801d7818fc96cfaf944bf19447fd515aa01467ed5ffeeafcd1",
-      "checklist.md": "393abc8e1652197741c07225b6d93542caf081e969cb1862fec83296011dccb5",
       "decision-record.md": "da0f8c08e20165d529e554b06d7b0f52c6540651c5f98c9c76cdd38c7080fb51",
       "implementation-summary.md": "773fbd4099d6354ce55d3e9f853e0720f5fec3a5efd3db9da45f8197b01d81ca"
     },

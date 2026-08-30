@@ -18,8 +18,6 @@
       "plugin TUI overlay fix plan",
       "mk-dist-freshness-guard tasks",
       "plugin TUI overlay fix tasks",
-      "mk-dist-freshness-guard checklist",
-      "plugin TUI overlay fix verification",
       "mk-dist-freshness-guard TUI overlay fix",
       "opencode plugin no stdout stderr rule"
     ],
@@ -40,36 +38,18 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-dist-freshness-guard.js",
-      ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
-      ".opencode/plugins/README.md",
-      ".opencode/bin/README.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/mk-skill-advisor.js",
-      ".opencode/plugins/mk-spec-memory.js",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/plugins/README.md",
+      ".opencode/bin/README.md"
     ],
     "entities": [
       {
-        "name": "mk-dist-freshness-guard.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-dist-freshness-guard.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-dist-freshness-guard.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-dist-freshness-guard.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/plugins/README.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -85,39 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-skill-advisor.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-spec-memory.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
         "source": "derived"
       },
       {
@@ -197,26 +153,61 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Rechannel",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Regression Coverage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Durable Rule",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `.opencode/plugins/mk-dist-freshness-guard.js` plugin emitted stale-dist warnings with `console.warn` and `console.error` during `tool.execute.before` for risky `opencode run` / `validate.sh` commands and once per session during `session.created`",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:44.155Z",
+    "last_save_at": "2026-08-30T15:39:10.827Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:349ee3bd814cddf557d3c7e95ce433268bf09dbc81d53d6314745fd6a509eaca",
+    "source_fingerprint": "sha256:d35ffcb38f91a608fa488b05ce6c93a2db7a3adb218c860399ab577b1645dff9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71e3666ad0820d928c97e0afc07f9ebd0d38f15cbf4db6d00a7df9591cbd6bca",
       "plan.md": "7e164f123b665036a01fb266efa7b157b466a9d66287635377d611252f961846",
       "tasks.md": "8e16610cc70fa81362f6769436f6e6b8c6c9a3ee5b25de6115ad867d807f1377",
-      "checklist.md": "d5ec2d520c45848f28477dac9669238d94d5cf4255b0f81a829e6d4faf28e89e",
       "implementation-summary.md": "02210770537a00134f0424e178cb8714aaf2f7b00f26a834e9bf9ee8c3e5cff9"
     },
     "last_active_child_id": null,

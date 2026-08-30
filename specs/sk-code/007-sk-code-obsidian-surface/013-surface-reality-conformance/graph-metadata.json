@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase 010 renamed 235 files across the plugin tree to enforce kebab-case, and every plugin-side gate",
     "created_at": "2026-08-28T18:17:41Z",
-    "last_save_at": "2026-08-29T14:54:11.805Z",
+    "last_save_at": "2026-08-30T15:39:11.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ba9bf7ef3ceb2e1d17176a65f9d074883c29e3e99871f451828eeaee8ec0fdba",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "471ac8a40e2206347fbee13902e4234c8cd31e6ed34cd6c2d0debd07597b98d1",
       "plan.md": "ea923874a33afc18a0416b66390613f8b651372206ad7a097cdae77943053606",

@@ -19,7 +19,6 @@
       "live scoring fix plan",
       "asset recall fold plan",
       "live scoring fix tasks",
-      "live scoring fix checklist",
       "live scoring fix summary",
       "asset fold intent drop results"
     ],
@@ -43,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/live-asset-recall.vitest.ts"
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The parent program's live (Mode-B) scores under-represented real routing quality",
     "created_at": "2026-05-16T09:42:34Z",
-    "last_save_at": "2026-08-29T14:54:10.995Z",
+    "last_save_at": "2026-08-30T15:39:19.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:746cba310c9ab618b364c36e71dcd0e71a567ccf5daae7d6ce00e9063fe24d93",
+    "source_fingerprint": "sha256:4f8530e20f2ae66af88811a9b1a1e5740267d61a19a2c6cb78864c736a32444c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "611a8e706f7ccc51781c9d33791cd014c40f159f849908fe1f8c1c16221dcf98",
       "plan.md": "84b58e79dc0c86ec46b3c8f9e842fe64012bc4b0c624b10e8d635e56f046dd05",
       "tasks.md": "7dff12376ce157d15ef43e69d52250e6aaaf556f24253d06bd5954fbdca0f0a7",
-      "checklist.md": "eb94ee6565108ce72417c4f5915cb5f28c4c15917262573fa506dc19fe9346aa",
       "implementation-summary.md": "7570aee791b11271de1ef2a6081982004f3bdbb7b23bea053dc9cd58dae22311"
     },
     "last_active_child_id": null,

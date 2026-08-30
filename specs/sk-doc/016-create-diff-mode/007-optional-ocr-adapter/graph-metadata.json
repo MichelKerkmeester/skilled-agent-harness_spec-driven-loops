@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Scanned documents contain no reliable text layer, but OCR is expensive, error-prone, language-dependent, and easy to misrepresent",
     "created_at": "2026-07-15T09:47:26.152Z",
-    "last_save_at": "2026-07-17T13:38:34.691Z",
+    "last_save_at": "2026-08-30T15:39:14.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:cd09a7d24db89f3638c48b2d780c94e8f3024d233a50d24185a2fe803c6fa8f7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8cf33cfbe0c2c0a90b232f4d9c4cc27f9d9c5c09cca1cbd071dab535171c312",
       "plan.md": "d20f9011363e8669878cbc5a24e52d096296ddd2023b11036754579db5d7669b",

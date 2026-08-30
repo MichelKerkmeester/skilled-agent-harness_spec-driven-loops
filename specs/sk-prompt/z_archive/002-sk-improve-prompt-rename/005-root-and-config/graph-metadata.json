@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/002-sk-improve-prompt-rename/005-root-and-config",
-  "spec_folder": "sk-prompt/002-sk-improve-prompt-rename/005-root-and-config",
-  "parent_id": "sk-prompt/002-sk-improve-prompt-rename",
+  "packet_id": "sk-prompt/z_archive/002-sk-improve-prompt-rename/005-root-and-config",
+  "spec_folder": "sk-prompt/z_archive/002-sk-improve-prompt-rename/005-root-and-config",
+  "parent_id": "sk-prompt/z_archive/002-sk-improve-prompt-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,9 +44,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/install_guides/SET-UP - AGENTS.md",
-      ".opencode/install_guides/README.md",
-      ".opencode/skills/README.md",
       ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
       ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
       ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md",
@@ -75,18 +72,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SET-UP - AGENTS.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/README.md",
         "source": "derived"
       },
       {
@@ -196,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After code and runtime consumers are renamed, user-facing docs and active config surfaces may still advertise `sk-improve-prompt`",
     "created_at": "2026-05-06T10:22:42Z",
-    "last_save_at": "2026-07-15T08:09:43.919Z",
+    "last_save_at": "2026-08-30T15:39:19.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:49c5f4f2005b791c51c1e50cad7677b62636c1412badd16793ef929662c5cfb5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9dacf6c71be2409315c8c55b6466e19140bd7d6253992616fcce71986af0c2a",
       "plan.md": "7b97b57a952deff65a8eec843c88b51e3c0f7199cc3fee1f5f17c8665acfb97b",

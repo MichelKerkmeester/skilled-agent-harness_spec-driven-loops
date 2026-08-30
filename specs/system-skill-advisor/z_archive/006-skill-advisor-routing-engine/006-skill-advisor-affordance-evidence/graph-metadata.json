@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence",
-  "spec_folder": "system-skill-advisor/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence",
-  "parent_id": "system-skill-advisor/006-skill-advisor-routing-engine",
+  "packet_id": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence",
+  "spec_folder": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence",
+  "parent_id": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,8 +21,8 @@
       "012/004 tasks",
       "affordance evidence tasks",
       "skill advisor affordance tasks",
-      "012/004 checklist",
-      "affordance evidence checklist"
+      "012/004 implementation summary",
+      "skill advisor affordance implementation"
     ],
     "key_topics": [
       "affordance",
@@ -35,8 +35,8 @@
       "normalizer",
       "plan",
       "tasks",
-      "checklist",
-      "compiler"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,9 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "mcp_server/package.json",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".claude/settings.local.json"
     ],
     "entities": [
       {
@@ -68,21 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -182,36 +175,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Skill Advisor",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Skill Advisor's compiler whitelist is intentionally limited to `skill`, `agent`, `script`, `config`, and `reference`",
     "created_at": "2026-04-25T10:48:08.547Z",
-    "last_save_at": "2026-07-15T11:59:23.311Z",
+    "last_save_at": "2026-08-30T15:39:26.765Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aaa820632443a70f541cbf57e37edb9083ee494f012f2fd68420b564294b1243",
+    "source_fingerprint": "sha256:2624e55f8b78b4bfa46b6cf234aa5358a5f03cdf031077dd08c314df8bd5aa8b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca7fa1fe1d0d511c50db242bd41cbc3842a58b984cf1950f86c122b398ec9118",
       "plan.md": "ed827013ef840b67171ea802e3ccaddd1ef6fb3f43535929c6383d34811c4763",
       "tasks.md": "106924666fb713d1fcf69fb4c6bdbdb330e7cecca64a1d74fdb1b21a02bcd602",
-      "checklist.md": "cbc8d90639f039ae8525dd22bcaa197a5c7a115f409755e710819752f7af936a",
       "implementation-summary.md": "f876c7edd9b6431c6ba6336d7c2ea9742a1ca872ab6bc68fd3635a4c89a03326"
     },
     "last_active_child_id": null,

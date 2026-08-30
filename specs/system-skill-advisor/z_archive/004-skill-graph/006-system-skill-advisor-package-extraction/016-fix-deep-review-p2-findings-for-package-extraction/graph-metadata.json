@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction",
-  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction",
-  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction",
+  "spec_folder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/016-fix-deep-review-p2-findings-for-package-extraction",
+  "parent_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -20,8 +20,6 @@
       "p2 remediation plan",
       "013/009/016 tasks",
       "p2 remediation tasks",
-      "013/009/016 checklist",
-      "p2 remediation verification",
       "013/009/016 implementation",
       "p2 remediation 015 summary"
     ],
@@ -31,13 +29,13 @@
       "cleanup",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
       "implementation",
       "summary",
       "deep",
       "review",
-      "passed"
+      "passed",
+      "systemskilladvisor",
+      "mkskilladvisor"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -45,17 +43,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/skill-label-sanitizer.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts",
+      "implementation-summary.md",
       ".claude/mcp.json",
       ".codex/config.toml",
-      "lib/utils/skill-label-sanitizer.ts",
-      "implementation-summary.md"
+      "lib/utils/skill-label-sanitizer.ts"
     ],
     "entities": [
       {
@@ -77,45 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "skill-label-sanitizer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/skill-label-sanitizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-status.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts",
-        "source": "derived"
-      },
-      {
-        "name": "projection.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph-db.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
-        "source": "derived"
-      },
-      {
-        "name": "rename-invariants.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -131,9 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "skill-label-sanitizer.ts",
+        "kind": "code",
+        "path": "lib/utils/skill-label-sanitizer.ts",
         "source": "derived"
       },
       {
@@ -201,26 +156,61 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Findings",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 015 deep review passed the `systemskilladvisor` to `mkskilladvisor` rename but left nine P2 advisories: stale parent graph metadata, an env-var discoverability gap, build freshness evidence, three missing rename-invariant tests, and one stale advisor README validation path",
     "created_at": "2026-05-19T15:11:02.193Z",
-    "last_save_at": "2026-07-15T11:59:17.144Z",
+    "last_save_at": "2026-08-30T15:39:26.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eabe57f385d02c24b4d190a10a2d03ba2bf29aa391c1aeb31dc9714a96a5a3d7",
+    "source_fingerprint": "sha256:5866ebc1fb26aefc7108ee1a5578cd509f73ac058a4e1e6831d8e9f080548075",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "787cdc88f7132f8a37ee55e58ad12b0e658618f3f9cd1708e690d55e2c894d74",
       "plan.md": "f71bce7cc1677e5a7119948c64a4f9bae8c2e493caaa1f09a776a0bfefb4c53d",
       "tasks.md": "9cb1266bb6e7510dc786997603933eb192569fd02991a0c10cffaa8ccf28775c",
-      "checklist.md": "882c5f1d4cc1344a5133f28704d27c22e550362da527b8b85e7e9699c2f6f145",
       "implementation-summary.md": "a33c53270d3f48c5c8c2cea6de80e93277168e4fd5f22a283bb59c5e786b002c"
     },
     "last_active_child_id": null,

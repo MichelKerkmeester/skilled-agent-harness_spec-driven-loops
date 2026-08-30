@@ -3,7 +3,6 @@
   "packet_id": "system-deep-loop/032-deep-alignment-mode/002-architecture-decision",
   "spec_folder": "system-deep-loop/032-deep-alignment-mode/002-architecture-decision",
   "parent_id": "system-deep-loop/032-deep-alignment-mode",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,12 +39,11 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/spec.md",
@@ -54,7 +52,6 @@
       ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/plan.md",
       ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/tasks.md",
-      ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/checklist.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
     ],
@@ -75,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/002-architecture-decision/checklist.md",
         "source": "derived"
       },
       {
@@ -202,27 +193,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The frozen design brief locks five architecture-level decision clusters for `deep-alignment` and names five open questions it explicitly defers rather than resolves",
     "created_at": "2026-07-11T13:21:32.188Z",
-    "last_save_at": "2026-08-29T15:22:06.470Z",
+    "last_save_at": "2026-08-30T15:39:20.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18b93f6b85692652c082028ee50054005002a8807a613b82296e80181713610a",
+    "source_fingerprint": "sha256:b53da75a69bd7966139b330e4cd9970e9a14cf5ee2395c79bbcfae6e50b0d7ba",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "389f622bb725741cf5b912b736ab96c35c5d75209ff3088da8afe09f83821a1f",
       "plan.md": "24181147fd2824135085b1e584157daf2d555666f232fd82be8d3561964e1774",
       "tasks.md": "659ab980ea9a55429e0bc7bb3b80236c4bc7ee1c3c239aca4b98291c4705191a",
-      "checklist.md": "506f9db393714a995aa342eea59c987446896a0181623c3a57c0b5e653961c3d",
       "decision-record.md": "981db123ffb1b94a7ad81b3f89abba5e2935cfb0d7cc83400c25bb61bf809be8",
       "implementation-summary.md": "8008e7ba7e5635fe2c38e07e75c4c07810ddb2a862f90840029c3222fe806caf"
     },

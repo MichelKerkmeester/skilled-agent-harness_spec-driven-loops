@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The `/goal:goal-opencode` command's file moved into a `commands/goal/` subfolder during an earlier rename, but four references across the repo still point at the retired flat path or form, and one test resolves a path that no longer exists so it fails",
     "created_at": "2026-07-28T17:26:48.730Z",
-    "last_save_at": "2026-08-29T15:21:51.912Z",
+    "last_save_at": "2026-08-30T15:39:09.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c9c127dab127d0ae42937354ed23638fe887e3cb84e4e2bc85ef8bb365a39889",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ecf6d38599f83311dd2aed841b39e03b14b0b05b81e6a594b7aa92354db423e7",
       "plan.md": "dbcd37eb28c7188908f1a1c12711de5d3c7640a2b3b8e5009230088e3671f835",

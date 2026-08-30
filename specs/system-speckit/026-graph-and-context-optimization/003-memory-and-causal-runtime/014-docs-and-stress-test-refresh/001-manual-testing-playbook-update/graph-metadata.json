@@ -23,8 +23,8 @@
       "manual testing playbook refresh tasks",
       "EX-037 EX-042 authoring tasks",
       "checkpoint enrichment frontproxy skgit scenario tasks",
-      "manual testing playbook refresh checklist",
-      "EX-037 EX-042 verification gates"
+      "manual testing playbook refresh decisions",
+      "additive EX scenarios vs restructure"
     ],
     "key_topics": [
       "manual",
@@ -43,26 +43,47 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "lib/storage/checkpoints.ts",
       "lib/search/vector-index-schema.ts",
       ".opencode/bin/lib/launcher-session-proxy.cjs",
-      "decision-record.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "spec.md",
       "handlers/save/enrichment-state.ts",
       "handlers/memory-index.ts",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/skills/sk-git/SKILL.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-git/SKILL.md"
     ],
     "entities": [
       {
-        "name": "manual_testing_playbook.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -84,36 +105,6 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "enrichment-state.ts",
         "kind": "code",
         "path": "handlers/save/enrichment-state.ts",
@@ -126,21 +117,9 @@
         "source": "derived"
       },
       {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,27 +181,44 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Scenario Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The manual testing playbook (`manualtestingplaybook/manualtestingplaybook.md` plus its `NN--category/` feature files) is the operator-facing validation directory for the Spec Kit Memory MCP server",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-07-17T17:19:31.197Z",
+    "last_save_at": "2026-08-30T15:39:31.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a68b8004abd2749e2c7971522db69c73c48693b7ebbde1016163eaf40cc2b450",
+    "source_fingerprint": "sha256:9be3078d37de7121d969b3c7eefeb03d0bcdf2f87eb8a2ec4deafea2f9b89ef1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0d8d5cbdae74b0a173130330a5d7ddc9446a5a7fc17eeca4d827b65bca97e2f",
       "plan.md": "99c60d1c74ee44341f0040f773338a089e7384038e4c17f96aceb4d6766197a2",
       "tasks.md": "b571cd99df7915d22fcf4657caf91298bafb691a37a16bc06ff23f48611aa820",
-      "checklist.md": "6755e22ba5f372ea9392ef67217aa3777560f4c1d32740564e7479f06d4e4a89",
       "decision-record.md": "90f85c9095acb6f8c992de9c09684c09bf81fb6881bc84170c17209b7879ac7e",
       "implementation-summary.md": "1b03101482ceabbd34e305f9339ec898d8148d18200862c5e940ea1ba853d97c"
     },

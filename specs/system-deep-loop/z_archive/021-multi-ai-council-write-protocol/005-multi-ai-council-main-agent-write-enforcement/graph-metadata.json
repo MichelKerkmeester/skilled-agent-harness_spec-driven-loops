@@ -43,7 +43,7 @@
       "council main agent enforcement plan",
       "100 tasks",
       "council main agent enforcement tasks",
-      "100 checklist"
+      "100 implementation summary"
     ],
     "key_topics": [
       "multi-ai-council",
@@ -62,33 +62,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "plan.md",
-      "mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
-      "mcp_server/tests/multi-ai-council-permission-scope.vitest.ts",
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-runtime-parity.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-permission-scope.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/multi-ai-council-permission-scope.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -96,15 +75,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -204,36 +183,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Blocker Requirements",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Five",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Iron Law",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Direct Edit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "When the Multi-AI Council is invoked directly as a main agent in opencode (a Depth 0 user-initiated dispatch with no orchestrator wrapper), the council frequently completes its deliberation and returns a chat-form Multi-AI Council Report without writing any `ai-council/` artifacts to the spec folder",
     "created_at": "2026-05-19T13:51:38.813Z",
-    "last_save_at": "2026-07-16T16:31:41.596Z",
+    "last_save_at": "2026-08-30T15:39:24.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d27afd5d4c5eebde547b2957fb111bcef380541a933cfd4b6e62aa68a802cbbb",
+    "source_fingerprint": "sha256:f7264cb0b45f35796bb329c9c1733f9eb9fde7cbf75f1ae079abccdee004c3d4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "879f95d55e51937fb67fd5b0d3d9036a85cfb94faf61e50f634b9184dcda84ea",
       "plan.md": "7469ff9dae06d67f20fd9f14567608a26847b95488c5b5f4584401fb2ec02a30",
       "tasks.md": "3ce3518dde2012a940f90b881d01d63e399b0df369ca1394e33f33affb600b87",
-      "checklist.md": "71615ee00cc37ac4d4a6224b3f2e5ce3bf93ef32bc74895735d2e03b59fd5f96",
       "implementation-summary.md": "762c452b6a530d4e002018f2cc2189dc157f8958c91254be883223f67dc14c1a"
     },
     "last_active_child_id": null,

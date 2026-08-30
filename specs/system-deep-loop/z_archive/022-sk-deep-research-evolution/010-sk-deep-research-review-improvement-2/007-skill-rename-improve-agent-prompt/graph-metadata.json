@@ -18,7 +18,6 @@
       "rename closeout",
       "skill rename plan",
       "skill rename tasks",
-      "skill rename checklist",
       "skill rename decision record",
       "improve-agent",
       "skill rename implementation summary"
@@ -31,11 +30,11 @@
       "closeout",
       "plan",
       "tasks",
-      "checklist",
       "decision",
       "record",
       "improve-agent",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -43,9 +42,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -67,21 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -187,31 +179,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Slug Boundaries",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The two improver skills were renamed from `sk-agent-improver` and `sk-prompt-improver` to `sk-improve-agent` and `sk-improve-prompt`, but the closeout docs still carried stale metadata, old runtime-agent references, and missing template markers",
     "created_at": "2026-04-12T09:02:50.196Z",
-    "last_save_at": "2026-07-16T16:31:43.971Z",
+    "last_save_at": "2026-08-30T15:39:24.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d4542e920104a308682d0c506afd9f81bb094c19f1c88b739778ba04aa3e82f",
+    "source_fingerprint": "sha256:4172326982d4caaeac96442a821a64e0d357e80735b70e53dbe40f8dfe2a76ea",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eec0f555c46a647355f5437ba213beb673f983b57c5723a114bedf892fe14f2d",
       "plan.md": "075907a1dbac8b16be8e20e4096bb5bd8262560a0fba4e7a9ff686a24ad284c8",
       "tasks.md": "01614ee95424392a2be118adee13be3d8b1764e62bc94f2ca3e1555a1f47bf4f",
-      "checklist.md": "3fd89ee933f342a5d0e5161ad257eac716d2219ba1d38bbff34cde6bde1e513c",
       "decision-record.md": "1a967a9a2f6c69e68c20cb99071e05c138643eabdfc6c9e28b10610f2b076282",
       "implementation-summary.md": "3465e2580c20983cb538b5e9e4d9a83a7a40f37436d4936fbd7db36909a51a35"
     },

@@ -35,16 +35,39 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-code/mode-registry.json",
-      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "parent-skill-check.cjs",
         "kind": "file",
@@ -61,36 +84,6 @@
         "name": "leaf-manifest.json",
         "kind": "config",
         "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -178,36 +171,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The closeout deferred five follow-ups",
     "created_at": "2026-07-22T16:53:39.311Z",
-    "last_save_at": "2026-07-24T10:55:17.351Z",
+    "last_save_at": "2026-08-30T15:39:15.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cec067327dc4a2f6892a2c828546307ef1eb6e87edcb73477c42ab972efc24e6",
+    "source_fingerprint": "sha256:74a928592b9c6a54adf21ae5f2cce49bd34c4e44e9e9ff2e0e4aa9d8b9ce5694",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2a9f3b1e7f579ed2b58227b97b4042309fb04ce81b23108a143aed0995d1764",
       "plan.md": "87377f5944163ad027c0fa582a4c384eab2d6e5234f28218a6e545cd1f7b4fbc",
       "tasks.md": "a153acea449e8b4ec917b2486c12bea924973343882724b4956941c88d28d196",
-      "checklist.md": "3f07717a0af20656d9682599912585d2b9ed8c82af580e60ca481f72c73d8192",
       "implementation-summary.md": "57289156e37e6cfafe3817d8f201580a121a077bcf834d7504730430f1763e7f"
     },
     "last_active_child_id": null,

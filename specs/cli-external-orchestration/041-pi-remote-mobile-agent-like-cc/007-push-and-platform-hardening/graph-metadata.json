@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -167,43 +160,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context Adds",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Alternatives Considered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Adds privacy-minimized Web Push hints and hardens installation, lifecycle, revocation, and stale-state behavior across supported mobile platforms",
     "created_at": "2026-08-10T18:28:42Z",
-    "last_save_at": "2026-08-10T18:49:12.819Z",
+    "last_save_at": "2026-08-30T15:39:07.927Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7ed0e879f0872316e0a177b97878dcdae0ae4a73877c68b0cd2d5a7bacf1f11",
+    "source_fingerprint": "sha256:174a0f07d09f6bc94a06883b90c00aaec52a1a338b880d7a3a8866cc6786f903",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0765acf565c6831d85679cce3e5280d5452e33e523c88178f1d89c4aad9e4cec",
+      "spec.md": "fae69d04309e253ec8c27c17e1a62dafb234efaeab2ed20d06261b12e91225c8",
       "plan.md": "1a641bc2aed973b27b0552631b466c21b1075a776bf495e670ca3a2f15d127b9",
-      "tasks.md": "bf71cab8656ffc86733188d79c8a7b79c198a05ad4de766aeba9e3ad7b63a747",
-      "checklist.md": "8194d89dc893f1988ce2be13afec7ffe11e6167b0283d7b9943f149af85f9bd8",
+      "tasks.md": "b467cf780912368b259990d0fcaf49600cf7f47fa883c6b9894e752b2d5c845a",
       "decision-record.md": "c92dd81288dbfdaccecacdb1ff256da3e89e34f22263de6af7c7402d26d0c5bc",
       "implementation-summary.md": "9bff854eb2a9b46c08443608e31f085af2e972c14e8aa79e51eb6b5fdec60d24"
     },

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The system-spec-kit README is a 1084-line reference manual with functional headers, no AT A GLANCE table, a stale version footer and pervasive house-voice violations (double-hyphen separators, Oxford-comma lists, prose semicolons)",
     "created_at": "2026-06-07T17:55:00Z",
-    "last_save_at": "2026-08-29T14:54:20.658Z",
+    "last_save_at": "2026-08-30T15:39:14.494Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f78b6741bea65aa1e55fc7bcb7e7555ba0b0fe2ced718b76d52b2ed99ea3cc0e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "205492dbad7814bbe0eb38ade40e1df32cb0f5ce09512621cf7bbe96bf991d06",
       "plan.md": "fa00c93437fb979c0d99b2b8a9cdbd1c75df7717b5bfea93d1ed467bde1826fa",

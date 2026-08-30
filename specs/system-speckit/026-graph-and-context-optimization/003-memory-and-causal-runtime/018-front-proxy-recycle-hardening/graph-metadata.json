@@ -36,49 +36,15 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/bin/lib/launcher-session-proxy.cjs",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/tests/launcher-session-proxy.vitest.ts",
-      "lib/runtime/memory-runtime-guard.ts",
-      "tests/launcher-session-proxy.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "lib/runtime/memory-runtime-guard.ts",
+      "tests/launcher-session-proxy.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "launcher-session-proxy.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-session-proxy.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/launcher-session-proxy.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-runtime-guard.ts",
-        "kind": "code",
-        "path": "lib/runtime/memory-runtime-guard.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -101,6 +67,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "memory-runtime-guard.ts",
+        "kind": "code",
+        "path": "lib/runtime/memory-runtime-guard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.vitest.ts",
+        "kind": "test",
+        "path": "tests/launcher-session-proxy.vitest.ts",
         "source": "derived"
       },
       {
@@ -192,11 +176,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A 2026-06-04 incident left `mk-spec-memory` stuck at `connecting…` in new sessions after an operator externally SIGTERM-killed the daemon child during a from-source DB rebuild",
     "created_at": "2026-06-04T09:30:00Z",
-    "last_save_at": "2026-07-17T17:19:31.516Z",
+    "last_save_at": "2026-08-30T15:39:31.930Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2e169076040fd516fa2adbfa96123b21bfbfbfe1b258294d5b9729cd7f7ddd21",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f8ac70fd6e704b43628b22fb0cc697a9731d46ccce0172554b9135765d17ee88",
       "plan.md": "68faf76da6c0fc2c4f9bfccb5ed65b23a420bc3b08653392c4924e505eeea426",

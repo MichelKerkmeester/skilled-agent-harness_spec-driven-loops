@@ -34,29 +34,22 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "plan.md",
-      "implementation-summary.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -66,9 +59,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -168,42 +161,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Consolidated Discovery",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The self-healing system ships in three layers (`011-automatic-drift-self-healing/spec.md` section 3), and its own",
     "created_at": "2026-07-09T20:28:41.704Z",
-    "last_save_at": "2026-08-28T16:00:16.163Z",
+    "last_save_at": "2026-08-30T15:39:35.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97a199750199db8c32763e975d32d9633f65eaff879a2c8e817d73b6f516590f",
+    "source_fingerprint": "sha256:eb8c5adb7f58d7c1037487f84b883156d01645e88b03fe7aafb047d20e11d2c7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "940108ae653b74b02ac49abbae78f71da2b9f27c8b162884a0dfdfa0ec4db2d1",
       "plan.md": "dd63640a0fd51edc845610efd6ffb5e23fa9c26cd81435bd1d8876e5129524ac",
       "tasks.md": "6d59dfaf2428e50140988c23e941a89b59c3b66144dc026f1985cde7c610c6ba",
-      "checklist.md": "ae36f8abecca4ea8e5f1f1ce3ab8ddaa5acd98d49a1050aea8ae2414a1ddf5b0",
       "implementation-summary.md": "b3b1059a1ef9ab25fdbb19e8d915723a8aa6f387d0adc6d42c909bc8e7ad468e"
     },
     "last_active_child_id": null,

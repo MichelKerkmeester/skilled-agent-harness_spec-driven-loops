@@ -20,9 +20,9 @@
       "phase 19 tasks",
       "benchmark promotion tasks",
       "parent rollup tasks",
-      "phase 19 checklist",
-      "benchmark promotion checklist",
-      "parent rollup verification"
+      "phase 19 implementation summary",
+      "benchmarks promotion summary",
+      "parent rollup summary"
     ],
     "key_topics": [
       "phase",
@@ -35,8 +35,8 @@
       "plan",
       "parent-skill-check",
       "tasks",
-      "checklist",
-      "verification"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -44,11 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
-      ".opencode/specs/sk-code/017-sk-code-parent/spec.md"
+      ".opencode/specs/sk-code/001-sk-code-parent/graph-metadata.json",
+      ".opencode/specs/sk-code/001-sk-code-parent/spec.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -90,7 +83,7 @@
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
+        "path": ".opencode/specs/sk-code/001-sk-code-parent/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -194,26 +187,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Optional Catalogs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 124 parent-hub program is only complete after all three hub families have fresh, comparable Lane-C benchmark baselines, parent-skill-check migration checks 5-9 can be promoted from warning posture to failure posture, and the parent phase rollup metadata reflects phases 010-019 instead of the stale 001-009 child list",
     "created_at": "2026-07-05T05:46:27.012Z",
-    "last_save_at": "2026-08-29T15:21:56.175Z",
+    "last_save_at": "2026-08-30T15:39:10.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec202ece305d352f7abbe6a237f1ee2b3366636eda13e05cb2ebdf31b041a931",
+    "source_fingerprint": "sha256:972905329f4c21b178e5b752df6ba0d71f902b4d420fcbaff67e67a9d81fa0d7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "81ff6ca58b4b785c1b01829d5c8cb7effbbd3e3371f18e58c3fa53e5bebaf865",
       "plan.md": "94138014e6090145bddcc07bb82e1c6bc6d020943e959626b6fcf75bab13ab91",
       "tasks.md": "09aee92b315a6a99b8d46f4d9402ac8135752d42cf9eb5c3423388646dc4f611",
-      "checklist.md": "29f7f16cd77946d33097776ba51afd46b58676a04637b23c2799bd3389952fe5",
       "implementation-summary.md": "c44d74daf11c114f42135ec03f22d300c6f93cb34c15aa53d2a72b70522c6cd0"
     },
     "last_active_child_id": null,

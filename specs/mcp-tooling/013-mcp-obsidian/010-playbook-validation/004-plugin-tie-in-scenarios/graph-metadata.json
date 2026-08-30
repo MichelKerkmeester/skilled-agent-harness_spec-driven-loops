@@ -41,18 +41,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Execute the 3 plugin tie-in scenarios (OBS-011 beancount, OBS-012 tables, OBS-013 brat) at the file layer in the test vault and record pass/fail. Executor: deepseek-v4-flash via cli-opencode.",
     "created_at": "2026-08-03T04:10:02.368Z",
-    "last_save_at": "2026-08-28T22:06:18.965Z",
+    "last_save_at": "2026-08-30T15:39:10.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9c7475a436ec3cda28def0a7dcb4f4c6b5b0b42aba16bb49f3dd8f64afa804ac",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "26541544ceacb8cb9760d490254019a340a87e1e7dd639dad1df089391ce267b",
       "plan.md": "4dc217001a876ec112f3f61089f0f75a13036564b2fb285d7209ad145bffce08",

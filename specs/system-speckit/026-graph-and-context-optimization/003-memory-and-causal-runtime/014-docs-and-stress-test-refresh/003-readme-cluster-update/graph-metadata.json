@@ -23,8 +23,8 @@
       "readme schema v30 front-proxy doc plan",
       "readme cluster update tasks",
       "003 readme cluster update tasks",
-      "readme cluster update checklist",
-      "003 readme cluster update checklist"
+      "readme cluster update decisions",
+      "003 readme cluster update ADR"
     ],
     "key_topics": [
       "readme",
@@ -43,37 +43,52 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "lib/search/vector-index-schema.ts",
       "lib/storage/checkpoints.ts",
       "handlers/memory-crud-health.ts",
-      ".opencode/bin/lib/launcher-session-proxy.cjs",
-      "mcp_server/README.md",
-      "mcp_server/ENV_REFERENCE.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "mcp_server/lib/search/vector-index-schema.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/lib/storage/checkpoints.ts",
-      "mcp_server/handlers/memory-crud-health.ts",
-      "implementation-summary.md",
-      "spec.md"
+      ".opencode/bin/lib/launcher-session-proxy.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
         "source": "derived"
       },
       {
@@ -98,48 +113,6 @@
         "name": "launcher-session-proxy.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -207,27 +180,44 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory System",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit README cluster lags the shipped runtime",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-07-17T17:19:31.188Z",
+    "last_save_at": "2026-08-30T15:39:31.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5eb903cf71a3cd35802a8cd711f5c530d50803c58dbd696846e06c285c8b6068",
+    "source_fingerprint": "sha256:148fd284a9145691db5eb50b7e4db7134489f7836b5705054caac017690cf8a4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "280fb3fe3617f85bb17e1a2ca865287442464cb910547e0621310e191ecfbe8e",
       "plan.md": "2e7cef5832d692881f6acdc73867fc8a4277c781dc8ba7e32313d41491b65ccd",
       "tasks.md": "bae79394ad369e63e69024c271b5ab45dc6852ab9df8254c81815a3e43cbb481",
-      "checklist.md": "d362560b89aa9ce701c83d8dee2e9c17024924a6d7ad32e82d2f07e6d016bea1",
       "decision-record.md": "3103fef3f6206c296b5dd9455696b56c8f8764604965dc83bb7ef6c016b6ea4a",
       "implementation-summary.md": "c9371881d36b217df40b8eef3a2577e01d6b6a2dcafb03adbb4783f0c2e5622d"
     },

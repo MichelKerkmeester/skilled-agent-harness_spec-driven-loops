@@ -41,19 +41,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,9 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -163,31 +156,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Pi",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mutation Verdict The",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +182,21 @@
     ],
     "causal_summary": "Pi exposes a `turnend` event that delivers the ending assistant message, but in-repo the event handler only reads that message and injects context with `display: false`; no handler ever mutates the rendered bubble",
     "created_at": "2026-08-14T05:41:31.435Z",
-    "last_save_at": "2026-08-14T08:40:23.301Z",
+    "last_save_at": "2026-08-30T15:39:11.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a75a5117214b69cfd564267e18866f77294b64c7087b7e37a63ee68e8d720c27",
+    "source_fingerprint": "sha256:490a4819965c6698ae2357222373859292ec02c296c5cafbfc8337c30330fa19",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "27a56c6998ef8897daf74291b266bdc83b3c32d5eef476f85d9ef6d8fb28227c",
       "plan.md": "03d2f34d1ff26ca130e1116c7e07d034c1186ca6c037e3b78eb9e257c555a4be",
       "tasks.md": "eebc46bdbfad58f7b83864d0004c69ba00079dc299833b395534396443636a2c",
-      "checklist.md": "e132bb0883783f6af429ed9bcf71148013b2db148c07affc4dec157c193c6878",
       "implementation-summary.md": "33e45d7fed71ce1300e82420ed930dccbea2738621a8b3adf1ac7c0a7aab074f"
     },
     "last_active_child_id": null,

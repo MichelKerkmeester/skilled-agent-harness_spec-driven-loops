@@ -22,7 +22,7 @@
       "026 changelog tasks",
       "changelog backfill tasks",
       "tasks core",
-      "026 changelog verification"
+      "026 changelog decisions"
     ],
     "key_topics": [
       "changelog",
@@ -39,17 +39,16 @@
       "core"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       "references/stage-b-enrichment-contract.md",
       "references/verification-gate.md",
-      "references/recon-coverage-matrix.md",
-      "implementation-summary.md"
+      "references/recon-coverage-matrix.md"
     ],
     "entities": [
       {
@@ -71,15 +70,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -98,12 +97,6 @@
         "name": "recon-coverage-matrix.md",
         "kind": "doc",
         "path": "references/recon-coverage-matrix.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,31 +184,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Spec 026 shipped hundreds of phases across 8 tracks over months of work, but the packet-local changelog history is roughly 16 percent complete (103 of about 553 shipped phases)",
     "created_at": "2026-05-31T19:00:00.000Z",
-    "last_save_at": "2026-08-28T15:59:28.879Z",
+    "last_save_at": "2026-08-30T15:39:28.857Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:531ea48e1586da055dc8bf3ef6f2553a3bf94457ea676d77dc2cb545437edf25",
+    "source_fingerprint": "sha256:6f8cdb4cfd21f31c65f4bd29b311e040062a61ad6bf7c38082da8a4660bc19d2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "27ae31a9e3b2c0bbd69fae22369e800a9d4ce04fe30b009db23c1c04b021e396",
       "plan.md": "61850d19174cbd38b93bdefe84cf1508a4c3e794e33d21b50967a86a59f29319",
       "tasks.md": "efc318393365c01cf58d0cc28f900531c69bc5e9f799deb3f0c2798c513a572f",
-      "checklist.md": "c5be2b4cc2434f9d2d76101c58352c7186ccb44d0a4790f61767f517ceb8f837",
       "decision-record.md": "a1c1c1b592c62163188f47693c06ce526836500dc0c42f357c3070a3197f8033",
       "implementation-summary.md": "efa02f50fa81977278e6dc9efe9361e4db8718ac1c73737f61b5429e01c4271e"
     },

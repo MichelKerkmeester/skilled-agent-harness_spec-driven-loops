@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Studies 1 (agent-swarms) and 2 (graphene-main) produced the graph-based deep-loop design and its executable contracts, but neither deeply studied the GOVERNANCE plane — admission, organization policy, approvals, and audit",
     "created_at": "2026-08-13T23:26:39.806Z",
-    "last_save_at": "2026-08-29T15:22:08.879Z",
+    "last_save_at": "2026-08-30T15:39:22.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:e59e230e9e456a05c36a879b54b6f79d3b0cf640a99ab06cfe899ab1c1b21b5e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4e433122cc01182b621cbdc00941645f9bcafad56eb4c355b8de1b227a0a7d64",
       "plan.md": "be10ccd8ac08d09ea8abec33fbc40f5a2e963cb7d9b9dd5bc3a874633afa63a4",

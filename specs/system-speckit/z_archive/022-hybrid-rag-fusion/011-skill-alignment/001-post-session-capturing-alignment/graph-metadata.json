@@ -18,8 +18,6 @@
       "post session capturing alignment plan",
       "011 child 001 tasks",
       "post session capturing alignment tasks",
-      "011 child 001 checklist",
-      "post session capturing alignment verification",
       "011 child 001 summary",
       "post session capturing alignment summary"
     ],
@@ -34,8 +32,8 @@
       "docs",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "summary",
+      "several"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,31 +177,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Several completed packets under `009-perfect-session-capturing` introduced documentation drift in `system-spec-kit` guidance that had not yet been folded into the skill, references, and tool-surface summaries",
     "created_at": "2026-04-12T09:02:50.285Z",
-    "last_save_at": "2026-07-10T06:21:58.727Z",
+    "last_save_at": "2026-08-30T15:39:38.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:976600dc5703e781c15a828a0b9b00957914cf7fd8bd22f600026ea2e7528cb2",
+    "source_fingerprint": "sha256:1c736cee2587d96b6e5924c1b026753108beb22153e3d87c117fb1718c9366fc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "384351b098d362d5b41faece2922dc91d080285d3363e66b221625775a04e6a8",
-      "plan.md": "fbac1bd148aaf7c30b10b317d262c30199c9eb72e75af63c6309f811d54a8307",
-      "tasks.md": "74e792d33ade6380165feba6a82ad9af5566a7e1489db3cfff99529f01adcc65",
-      "checklist.md": "6e4bcef899bb3cea74173d6de204ee4cc63b3f3cfd04d3ccd017eceba3381e71",
-      "implementation-summary.md": "4760185270f8dd6bb8a22b1b408e78bb011d38e1af36f435e4a1edcdc8dbd05f"
+      "spec.md": "13bcd009ccc2fd9380669ec88b7e457778796b586b820cc868406983df0bc2e8",
+      "plan.md": "dab5aaf6ce4fad69c5ef1fdc8a156b83c4984941f298a8563cb07df3f2755671",
+      "tasks.md": "aec36c20c9532b99c87d95c4f9d856445177a6eaf0c59d1b0974a5ab56db1642",
+      "implementation-summary.md": "e44b3e9dbdaf32ffeb9c2ac38f72228af0fc28626a41ec7ffc18f7efd2f88238"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -36,26 +36,13 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-deep-loop-guard.js",
-      ".opencode/agents/orchestrate.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      ".opencode/agents/orchestrate.md"
     ],
     "entities": [
-      {
-        "name": "mk-deep-loop-guard.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-deep-loop-guard.js",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.md",
-        "kind": "doc",
-        "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,15 +56,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "orchestrate.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
@@ -191,7 +184,7 @@
     ],
     "causal_summary": "`cli-opencode/SKILL.md` now correctly documents that `orchestrate` may perform exactly one bounded hand-off dispatch to a command-owned loop executor (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`), but never re-implement the loop itself",
     "created_at": "2026-07-01T17:22:22.549Z",
-    "last_save_at": "2026-07-16T16:32:30.177Z",
+    "last_save_at": "2026-08-30T15:39:25.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +194,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:22c8741d93834a7344cf30c9cb26d1fadcfdc3bd95763b4121f527311be904c1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "095b29d2da25fbbf9f5c97a52a38af2e7357cacf92ce43bc410c27d2ad2e16c6",
       "plan.md": "b7857dbd527b0e76a390c99553292350422bb00e4cfb51ceb74b06a60fda524a",

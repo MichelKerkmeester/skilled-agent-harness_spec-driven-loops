@@ -20,9 +20,9 @@
       "cli agent protocol",
       "outsourced agent tasks",
       "memory handback tasks",
-      "outsourced agent checklist",
-      "memory handback checklist",
-      "outsourced agent summary"
+      "outsourced agent summary",
+      "memory handback summary",
+      "runtime memory inputs"
     ],
     "key_topics": [
       "outsourced",
@@ -42,28 +42,44 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/tests/outsourced-agent-handback-docs.vitest.ts",
       "scripts/loaders/data-loader.ts",
       "scripts/utils/input-normalizer.ts",
       "scripts/extractors/session-extractor.ts",
       "scripts/tests/runtime-memory-inputs.vitest.ts",
-      ".opencode/skills/cli-claude-code/SKILL.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts",
       ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
       ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -97,39 +113,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-claude-code/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -203,27 +189,38 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "redact-and-scrub",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When an external CLI (Codex, Copilot, Gemini, Claude Code) completes delegated work and returns session context, the data must flow through 010's `generate-context.js` pipeline to produce a memory file",
     "created_at": "2026-04-12T09:02:50.265Z",
-    "last_save_at": "2026-07-10T06:23:35.988Z",
+    "last_save_at": "2026-08-30T15:39:38.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d31ba3574242c077afd941489bdc79df91cdc5948973ad7cd3d9fba788d71d22",
+    "source_fingerprint": "sha256:c822ca9f981afff02d85c1ee48414b89f287bcbb5681e55e5c9fb8b1182b82c0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b8f7013fb150aebd4bfbf929df6bd81c8096f8866423be21d0cc38651d3c61d",
-      "plan.md": "5b00e0ea6cf7cff1db104ac72a0e84db1d4f5205763985ef2a5f9743b4899c2d",
-      "tasks.md": "902ae17902281427234059bdf96728a0486ad992234fea993f17bffe7301d556",
-      "checklist.md": "ec4e82771a98ab289fc9bc61a7473390d07afec2664efb434dbe58c0075ec8d9",
-      "implementation-summary.md": "d182fb4d1ec5b52d7314e338a5069ed4664926fbad4c29881318235fb07c4f3a"
+      "spec.md": "83c83a416fe7b394d6e093c2ba9439d471b47871eaa50c69b97742f3966555d5",
+      "plan.md": "a4b79221f0a75c0341a44ba86810f61e05a858f0edb04ec84e463f6ae15a3dbb",
+      "tasks.md": "3a4c893ef250c9a8344411a466565032ef5c1164bd0af7061cf52d0d25fb5958",
+      "implementation-summary.md": "75ecfc09081dc5920b4b6fd97b67ca0d6313a10be4f05628bf5030d5b275306d"
     },
     "last_active_child_id": null,
     "last_active_at": null

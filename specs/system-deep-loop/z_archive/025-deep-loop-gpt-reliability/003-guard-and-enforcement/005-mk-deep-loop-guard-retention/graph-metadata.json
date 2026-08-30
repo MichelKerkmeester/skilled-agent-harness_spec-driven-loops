@@ -36,67 +36,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-deep-loop-guard.js",
-      ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/plugins/README.md",
-      ".opencode/plugins/mk-goal.js",
-      "implementation-summary.md",
-      "feature_catalog/feature_catalog.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/README.md"
     ],
     "entities": [
-      {
-        "name": "mk-deep-loop-guard.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-deep-loop-guard.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-deep-loop-guard.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-deep-loop-guard.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/plugins/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -113,6 +59,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
         "source": "derived"
       },
       {
@@ -192,11 +150,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Works",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`mk-deep-loop-guard.js` persists a per-session JSON state file (`recordLoopDispatch`/`writeLoopStateAtomic`) and appends to `guard-warnings.log` on every warning, but registers only a `tool.execute.before` hook -- no lifecycle event handler exists to ever clear, archive, or age out either",
     "created_at": "2026-07-04T17:52:16.734Z",
-    "last_save_at": "2026-07-16T16:32:31.331Z",
+    "last_save_at": "2026-08-30T15:39:25.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6eee4e5db7a9b8857dd9ccfae1420f74186d9641a2ebab154148254059fcc9a6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5fbe5f601c08899ee5f9e8c2de9a4d955e296de47496aae9d89806580ff2287f",
       "plan.md": "4c4b6c4102419af8e13a30c79175a09ba920e7e6b3b1b7daba234f1b0d2014c8",

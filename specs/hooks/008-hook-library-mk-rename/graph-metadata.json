@@ -24,8 +24,8 @@
       "daemon rename plan",
       "hook rename tasks",
       "mk rename checklist tasks",
-      "hook rename checklist",
-      "mk rename verification"
+      "hook rename decisions",
+      "mk rename adr"
     ],
     "key_topics": [
       "hook",
@@ -39,7 +39,7 @@
       "phases",
       "tasks",
       "checklist",
-      "verification"
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,7 +47,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/hooks/shared/hook-flags.cjs",
@@ -78,12 +77,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -205,27 +198,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every runtime hook entry point is named `mk-<concern>` (e.g",
     "created_at": "2026-08-20T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:21:51.928Z",
+    "last_save_at": "2026-08-30T15:39:09.275Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eaa5e42a937703db76f33023021bb09a3d2878a34cd21b8a8d3f93cd0ce65a7b",
+    "source_fingerprint": "sha256:2933baeaafcea098b4346795797c62174f3e717143ef9100da2a0e4806618636",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ce5b55d0736e441def3e3c739b01ed0ad65ed7917cea9b9565bf1fc3429d672",
       "plan.md": "5433760b08e3d984943a6faf22dc51981b88b8803d3701d8afc24090ea9d32a5",
       "tasks.md": "0f2284c1aeec29044423eca7c707ef389ae35738d8a1d75e7b92de9f69d14959",
-      "checklist.md": "4317d93c14ddb30a0ff53a749cc00593ca7bd8de1de676fc372c5a2599b31f67",
       "decision-record.md": "4f5f19c0f722e44fd4cbce25334dcfb12e29c563bcf7df6765976853772577eb",
       "implementation-summary.md": "54b50442d94918b17c0a9eb3b40cfbcb63e6c02aca29a648723d3e7859b38e47"
     },

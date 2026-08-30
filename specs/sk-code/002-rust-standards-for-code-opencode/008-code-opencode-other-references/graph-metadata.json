@@ -33,15 +33,21 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -54,12 +60,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Nine `code-opencode` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and the shared tier codeorganization (722) + universalpatterns (561)",
     "created_at": "2026-07-11T16:48:24.944Z",
-    "last_save_at": "2026-07-11T16:48:24.944Z",
+    "last_save_at": "2026-08-30T15:39:11.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:eeced343400f21636127e957fa1c7fceef9a3f74be4da2d74508923c7c9ebb66",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7df7fd241c52e1069abad7ad7be5267e3c21345bc474260b6f288c27d62511f3",
       "plan.md": "7907cde541e10fff2e4b1d2afa9389c58de620ee9dfd131f395b154150246707",

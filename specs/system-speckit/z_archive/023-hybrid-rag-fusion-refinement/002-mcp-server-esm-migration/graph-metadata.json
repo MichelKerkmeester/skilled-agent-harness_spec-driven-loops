@@ -39,19 +39,16 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/package.json",
-      "mcp_server/tsconfig.json",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "dist/context-server.js",
-      "mcp_server/context-server.ts",
       "lib/cognitive/tier-classifier.ts",
       "lib/errors/core.ts",
       "lib/scoring/composite-scoring.ts",
       "lib/ops/file-watcher.ts",
       "handlers/v-rule-bridge.ts",
-      "handlers/index.ts",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "handlers/index.ts"
     ],
     "entities": [
       {
@@ -61,27 +58,27 @@
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "tsconfig.json",
-        "kind": "config",
-        "path": "mcp_server/tsconfig.json",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "context-server.js",
         "kind": "code",
         "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
         "source": "derived"
       },
       {
@@ -118,24 +115,6 @@
         "name": "index.ts",
         "kind": "code",
         "path": "handlers/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`@spec-kit/mcp-server` has no `\"type\": \"module\"` in its `package.json`, inherits the root CommonJS compiler baseline, uses 839 relative import/export statements with only 3 `.js`-suffixed (all external SDK), and has 16 non-test files using CommonJS-only globals (`dirname`, `filename`, `createRequire`, `require()`)",
     "created_at": "2026-04-12T09:02:50.317Z",
-    "last_save_at": "2026-07-10T06:22:57.454Z",
+    "last_save_at": "2026-08-30T15:39:39.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a4944d60c9278158079e709c5e4d14806a3016965005a8e6a2959d2b21b5162",
+    "source_fingerprint": "sha256:e3791875db84f98bf02328918c466ed4054a97fd7604d701e9266cda41cbce66",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d84788dd21f73cb68bf350fd771495f5fe6b8143732d8f62012ed9075e5a66c6",
-      "plan.md": "0fe1c8d02ee4952e26a671ee92f0a3af222aab974fd199a85898923b083cc9b5",
-      "tasks.md": "510b71c9069d709b7c0ce359571fca741268d3db2a581a54849cd3f85cb0a2e0",
-      "implementation-summary.md": "c469ca256f963fec6e6e90b2508b03f3981f9e40415069d16995828983ee23b5"
+      "spec.md": "e9fb281fdbeb80860a2a152ce5b381f3dba1de2b00c0df29629decf507db009e",
+      "plan.md": "1fd02c7d79c6b62533b8035805f218bc13f78b9946df395409eb3e4d8011a493",
+      "tasks.md": "639d22bafc7bfbedcff03e17f8c6e192da61c3af89c75d5a5daf06130d2597dc",
+      "implementation-summary.md": "63d3c5d3ff97e5b9ee1a2a12bf4623a476a01c0ebaab7dde30b96012ff293946"
     },
     "last_active_child_id": null,
     "last_active_at": null

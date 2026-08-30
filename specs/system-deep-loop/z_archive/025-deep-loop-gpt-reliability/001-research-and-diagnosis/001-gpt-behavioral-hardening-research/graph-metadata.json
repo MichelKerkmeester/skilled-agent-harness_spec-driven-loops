@@ -39,19 +39,14 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      "research-prompt.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,6 +69,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-prompt.md",
+        "kind": "doc",
+        "path": "research-prompt.md",
         "source": "derived"
       },
       {
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Final Consolidated Synthesis",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 002-004 landed and were independently re-verified as code-complete",
     "created_at": "2026-07-01T05:45:00.000Z",
-    "last_save_at": "2026-07-16T16:32:29.866Z",
+    "last_save_at": "2026-08-30T15:39:25.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +205,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:a840ee9d895039556456bff6f7dee0e6960ba7dc43eadbff6b8b64c06c9ef162",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c156e0cd51112f2d2c1ea8205d2f7db45a9e458c1ea64e2e5576692fa8abdcc7",
       "plan.md": "7635806f422dd01aa26101c6564d0a7f25613e86544641f5790efa705e2509e8",

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The `mcp-obsidian` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for obsidian prompts (its hub keywords/intentsignals lack obsidian vocabulary), and the in-hub router has no `mcp-obsidian` mode entry, tie-break, or router signals — so even if the hub is chosen, the mode cannot be picked",
     "created_at": "2026-08-02T05:50:30Z",
-    "last_save_at": "2026-08-29T15:21:54.045Z",
+    "last_save_at": "2026-08-30T15:39:10.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:da397bbc004e04370653684808ead94144c2d0cca924d223f369f2b3ab1d2a98",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bfc36bd41facf2e672eed9ff06e6392b3a81552a3eb45f97300322d5a5d67caa",
       "plan.md": "1d03730274f017c929c9f114ce2370172c411eb1a773bdcd35fdcfe10baf5f47",

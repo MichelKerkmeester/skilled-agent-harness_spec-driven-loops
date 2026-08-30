@@ -19,10 +19,9 @@
       "prebuild clean removal plan",
       "non-destructive mcp build tasks",
       "prebuild clean removal tasks",
-      "non-destructive mcp build checklist",
-      "rebuild safety verification",
       "non-destructive mcp build summary",
-      "rebuild no longer crashes daemon"
+      "rebuild no longer crashes daemon",
+      "prebuild clean removed incremental"
     ],
     "key_topics": [
       "non-destructive",
@@ -39,12 +38,11 @@
       "incremental"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "dist/tsconfig.tsbuildinfo"
     ],
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,26 +184,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build` repopulates it over several seconds",
     "created_at": "2026-05-28T18:15:02Z",
-    "last_save_at": "2026-08-29T15:22:17.539Z",
+    "last_save_at": "2026-08-30T15:39:32.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:90e02478babb3dd2bd1c64c911411e2ed64862b1039691d18ee02312c79b83e0",
+    "source_fingerprint": "sha256:489f0ac3e715158f1010d38be6925fac29ed2b65a86a76abf041d7d57ccf12f9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "310227de473e193e843b9e2ab6dd8ba1a621d9f7d86a6f55c72687f22e67c6b4",
       "plan.md": "46792c185a60970506aff55653ead8061aae0a1144e6e1af3adc6a10bb3eabad",
       "tasks.md": "b579b35ca4b7d8c503200fe7d6e766f42903ee7e688abe99e6e0eece695decd5",
-      "checklist.md": "39ad0e653638a0b41ca6128fcd3e9d785bf23a8c9f8dbc9f0e39ed6863afe279",
       "implementation-summary.md": "336c79b9a97534b0050c4a20a670ab3da52afb846d91767101e48bb56277ee57"
     },
     "last_active_child_id": null,

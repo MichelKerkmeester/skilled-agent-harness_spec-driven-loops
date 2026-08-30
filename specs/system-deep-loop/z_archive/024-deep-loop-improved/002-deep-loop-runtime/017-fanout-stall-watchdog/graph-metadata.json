@@ -188,7 +188,7 @@
     ],
     "causal_summary": "A hung lineage blocks all queued work until the child timeout expires; no mechanism exists to detect a stall and free the slot sooner than the hard child timeout",
     "created_at": "2026-06-28T14:02:04Z",
-    "last_save_at": "2026-07-16T16:31:56.550Z",
+    "last_save_at": "2026-08-30T15:39:24.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:21e95446c34be35c86ddda6110413d27860e5618bba5728eec0cc319a52a3221",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3325e5cdd6cafc9dca953139b62d5d23da3c6177c9bc45d1d7fdf61da4c5f8cd",
       "plan.md": "499d5c14ae7d7f9ac6c65c75cf6ca38be8e14dd23a592099fcd76d7e4904122c",

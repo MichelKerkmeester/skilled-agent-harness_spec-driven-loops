@@ -38,8 +38,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -55,15 +55,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Propagate skill-advisor's EPERM handling in leaseHeldFromFile to mk-spec-memory and mk-code-index launchers. Closes the -32000 MCP reconnect failure where process.kill(pid, 0) returns EPERM in the Claude/Codex sandbox and the two launchers crash because they only handle ESRCH.",
     "created_at": "2026-05-18T20:00:10.250Z",
-    "last_save_at": "2026-08-28T15:59:46.150Z",
+    "last_save_at": "2026-08-30T15:39:30.966Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2f5a4dc168c917e96b5e4aa43f61cfdac1158875920bccafcac25f94f72b9b5f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "82d59d4bc3148d4431238511047cc651bc019ed61bf22937a2858adb94659356",
       "plan.md": "eca147581ef863a66d4d3766208bce8c94cad34805ea95d2f4d75b270b74dbd0",

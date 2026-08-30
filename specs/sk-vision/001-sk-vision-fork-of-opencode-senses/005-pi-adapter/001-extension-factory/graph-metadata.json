@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Pi has no owner-tree factory, so a later symlink would have nothing legal to load",
     "created_at": "2026-08-16T07:22:48Z",
-    "last_save_at": "2026-08-29T15:22:06.048Z",
+    "last_save_at": "2026-08-30T15:39:19.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:193a0aa8cc69ae925c453ba78500676e95d23c0dca120994b8d19e995192a129",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f9dca0a11332e7165a1fa3117ede9aa4925b091df34c609f39175ce589ae5985",
       "plan.md": "3eed61a7a8930c1b9a5692581524655573f61ffede0ae04a2ffaabda1ab7adaf",

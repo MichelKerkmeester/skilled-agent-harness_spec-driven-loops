@@ -23,8 +23,8 @@
       "graphify research tasks",
       "004-graphify task list",
       "graphify deep-research tasks",
-      "graphify checklist",
-      "graphify verification"
+      "graphify decision record",
+      "graphify adr"
     ],
     "key_topics": [
       "graphify",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
@@ -69,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,37 +179,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Architecture Decision Records",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Public already has Code Graph MCP for structural code queries (442.9K nodes, 225.4K edges), CocoIndex for semantic retrieval, Spec Kit Memory for persistent context, and hook-based context injection patterns",
     "created_at": "2026-04-12T09:02:53.448Z",
-    "last_save_at": "2026-08-29T15:22:13.054Z",
+    "last_save_at": "2026-08-30T15:39:29.151Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae33478c5074fae486168ed2030359681308d6baed9c5466bbcb1e050482659c",
+    "source_fingerprint": "sha256:dde80ee3dc4fa808730a0842e6bbdb8a99b70fbc1d9c2999ba91fa83330522a4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "938ec0ebedeba96d88eaa4fbfb67359273d10aef3439bd2df4adbe387422f0cb",
       "plan.md": "eec91cbc100d5f930e21b30275ea4d83322ab0c0173bc7cbde8c14679fd96933",
       "tasks.md": "ab34f08e53e5dfb1ac5d622bf6aa01a2c8fd6d961795d7ebe0d4815c0645d208",
-      "checklist.md": "51a0b1067725d7bfe836eb59e0704c1e011fd329fb045e36e4a0047068946e33",
       "decision-record.md": "bad6e491b1bdc685524aa81320fcce57bcec7afb8c25ebe66d6641732b3d5e22",
       "implementation-summary.md": "b3db8ee842899ccf67d559eb0e698cd3a58e8d2be87377a9352cb21a518cb746"
     },

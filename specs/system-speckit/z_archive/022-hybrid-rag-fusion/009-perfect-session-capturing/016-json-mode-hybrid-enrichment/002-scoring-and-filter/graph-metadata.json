@@ -42,6 +42,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "extractors/quality-scorer.ts",
       "scripts/extractors/quality-scorer.ts",
       "scripts/core/workflow.ts",
@@ -51,18 +55,37 @@
       "scripts/core/post-save-review.ts",
       "scripts/tests/quality-scorer-calibration.vitest.ts",
       "core/quality-scorer.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "core/workflow.ts",
-      "implementation-summary.md"
+      "core/workflow.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -105,36 +128,6 @@
         "name": "quality-scorer-calibration.vitest.ts",
         "kind": "test",
         "path": "scripts/tests/quality-scorer-calibration.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,29 +195,34 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Existing Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The extractors quality scorer (extractors/quality-scorer.ts:113-205) assigns bonuses of +0.05 for message count, +0.05 for tool usage, and +0.10 for decisions present — a maximum of +0.20",
     "created_at": "2026-04-12T09:02:50.278Z",
-    "last_save_at": "2026-07-10T06:22:41.164Z",
+    "last_save_at": "2026-08-30T15:39:38.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e5b0f5830c3bb9471285d3928b744b3435e9edb1b953198e32ef9cb446034dd",
+    "source_fingerprint": "sha256:02b883f2a4d45a98ef8047e92960e6120cd0f6be847de13ffa0f29308db3164c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7d01075978108c2f5f3b1eb706eefd11a15fef3ac7b742a8373127c491b1c668",
-      "plan.md": "11061a861d2095a0bfc4035552cca231ebc513b173588ed23b6690d34f54ad76",
-      "tasks.md": "a54e7aaa3231d3a0ad78c146c39f7d50bb806945b41d701cc018a86569b091ce",
-      "checklist.md": "9a79334fac8baae7e77dd00b2fe33a3a32e824b96d4a2c65502115fa4b8e2b38",
-      "decision-record.md": "bfa8236694637b201e74bf127f79ea61825f267dd6f48592a1a8fc25dbe53b48",
-      "implementation-summary.md": "a061171016afefc0e3ceb51f0c7f3db417eb60f87e0c1998fe6cc4b7fee0c8eb"
+      "spec.md": "76e1f886c93942ced5ce97b7f9ef26ccc0c981d48ba7e0c39a60c41109ca8c7c",
+      "plan.md": "9b40c2a5c8404aacdeb49817e74df301eba9e653dbe82bd4670db45a4f241588",
+      "tasks.md": "1664292129f6b2b403975819d1ffccac7769b073ee2cf6e197824aabc7eccea0",
+      "decision-record.md": "06569dcf12938eaf42bb8577ff3af8f1ed35b18839527a5f6664a7c58f13a328",
+      "implementation-summary.md": "bb07dc76176148bce541f601f2044724d74a0a5027443655dc0b289d9e45df69"
     },
     "last_active_child_id": null,
     "last_active_at": null

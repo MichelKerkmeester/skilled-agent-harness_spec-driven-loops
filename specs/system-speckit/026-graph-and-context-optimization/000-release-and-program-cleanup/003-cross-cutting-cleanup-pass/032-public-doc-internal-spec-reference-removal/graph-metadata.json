@@ -17,7 +17,6 @@
       "external user docs",
       "doc cleanup",
       "tasks",
-      "verification",
       "implementation summary"
     ],
     "key_topics": [
@@ -32,7 +31,7 @@
       "user",
       "doc",
       "tasks",
-      "verification"
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "README.md",
       ".opencode/plugins/README.md"
@@ -62,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -167,48 +159,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Public",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Public Documentation Cleanup The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Public-facing docs, commands, setup guides, skill references, assets, feature catalogs, and manual testing playbooks contained direct links to this repository's internal spec packet folders",
     "created_at": "2026-05-18T09:12:49Z",
-    "last_save_at": "2026-08-29T14:56:24.606Z",
+    "last_save_at": "2026-08-30T15:39:28.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96e7abf09b79663e2c4e474e0561e35d2bd88d76790d5f4e056a15586ff98c4a",
+    "source_fingerprint": "sha256:b90a48e46a6b07325168166776f8a07ce9a8851fa1a2ccda34b1fbc079f8b916",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7677104c4365acad6741e1997405513c9a92ea445491a18249a79535109a6615",
       "plan.md": "016b3683e69d64736f2bef0f824d0dcf52ec2b865c56f5607346a534e73e873f",
       "tasks.md": "97167885d43b40a5f158a0283eb8f5adfa07d128b3f1c860fc808604aabde15c",
-      "checklist.md": "b2977eaf09825669e281dccd2ac13e361cb11bbeba2b37fcac727c87a83252b2",
       "implementation-summary.md": "7084cb882ab87954e0b8b4580ab340c3d942fe1b016378108549ec4509806d81"
     },
     "last_active_child_id": null,

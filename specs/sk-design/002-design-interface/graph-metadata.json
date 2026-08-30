@@ -43,8 +43,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -166,43 +159,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped interface mode defines the overall direction for distinctive UI, including visual voice, information architecture, component direction, interface-level composition, motion posture, critique, and writing",
     "created_at": "2026-07-16T09:10:47.132Z",
-    "last_save_at": "2026-08-28T22:11:41.389Z",
+    "last_save_at": "2026-08-30T15:39:12.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f9360d2be459bb96344e852abb2881358bfd79d9f426bf422e7b87728fc1bcae",
+    "source_fingerprint": "sha256:b5549a7503f66de868c659b10f72fdab8acad7438d0fc030921708cec38f967a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9230d9f6f96ccc258fabb6adf9c1cfd79b43ed9ee980c33f8c6645ec7f5df336",
       "plan.md": "64192f63813f398223b43c4ebc525ced58291bd8a18172e8581f5618203b2da8",
-      "tasks.md": "364fa0a9d4af395687194ecfb2d4be4fc603875abe6f85cd0e1dd795f58a873f",
-      "checklist.md": "5d8f9c846e9f4e10bb5b6ea70a3611795aaae2d571b6710c046551f3bf3cda75"
+      "tasks.md": "364fa0a9d4af395687194ecfb2d4be4fc603875abe6f85cd0e1dd795f58a873f"
     },
     "last_active_child_id": null,
     "last_active_at": null

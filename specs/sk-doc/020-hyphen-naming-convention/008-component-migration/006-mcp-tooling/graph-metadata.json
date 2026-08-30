@@ -103,14 +103,14 @@
     ],
     "causal_summary": "The mcp-tooling surface contains snake_case directory and file names across its hub-level support material, three component packets, manual-testing playbooks, and benchmark boundary. This phased packet defines the independent rename and reference-rewrite scopes needed to make that surface kebab-clean while preserving tool-mandated names, Python exemptions, and component behavior.",
     "created_at": "2026-07-14T15:16:59Z",
-    "last_save_at": "2026-08-30T07:19:36.482Z",
+    "last_save_at": "2026-08-30T15:39:16.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:189130aecf570cafa493cfd116898ff4c2706d1b111d8bebe3eed38cc964f802",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "17617fa958283ee0d3a94944a46ecabb72b10f64e28dbd11105f899f85fe322e"
     },

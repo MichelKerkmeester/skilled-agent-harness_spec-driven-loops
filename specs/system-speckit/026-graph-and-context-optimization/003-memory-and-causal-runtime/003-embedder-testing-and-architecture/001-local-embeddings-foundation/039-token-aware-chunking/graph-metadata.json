@@ -41,19 +41,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "shared/chunking.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "shared/chunking.ts"
     ],
     "entities": [
-      {
-        "name": "chunking.ts",
-        "kind": "code",
-        "path": "shared/chunking.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "chunking.ts",
+        "kind": "code",
+        "path": "shared/chunking.ts",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`LlamaCppProvider` currently caps input by characters before passing text to `LlamaEmbeddingContext.getEmbeddingFor`",
     "created_at": "2026-05-14T14:21:37Z",
-    "last_save_at": "2026-07-17T17:19:20.113Z",
+    "last_save_at": "2026-08-30T15:39:29.953Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:44e625c74b929054fcd7ce7d0f1ed407fe59acf98d45ae8a898b038000d76a4b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b140ac9d5f54a969c17cadd13035d7c63f45695a1c7d259cac34bcf52f9b696b",
       "plan.md": "5fb0eac74909c7e227d0ba3e61d4f77a39f72e8956071bb479df4a9035cdfd72",

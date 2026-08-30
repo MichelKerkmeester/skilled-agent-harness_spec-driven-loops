@@ -17,9 +17,7 @@
       "projection quality",
       "implementation plan",
       "tasks",
-      "implementation",
-      "verification checklist",
-      "quality gate"
+      "implementation"
     ],
     "key_topics": [
       "no-op-rejection",
@@ -32,16 +30,15 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist"
+      "validator",
+      "short-circuits"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,49 +154,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The validator short-circuits when `restored.text === sourceText`, accepting the echo without running structure or semantic stages",
     "created_at": "2026-08-13T04:05:03.668Z",
-    "last_save_at": "2026-08-13T00:00:00.000Z",
+    "last_save_at": "2026-08-30T15:39:11.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:e5ee9b53acc4f4fbf67d28f2037b47e0b43958e137628201c8799e58813ffad7",
+    "source_fingerprint": "sha256:60c6b525c79b20c820b206dcfd29bfcc9c5da3296e1b9edbbb9149d012578800",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aadf70487087784e18ed3b0ec6dd680eefcc97747eab7cfc8916de00f4f70d72",
       "plan.md": "291c86396601f3d58a2839197ab9b931fa583ea4f824ae2439d56d111adbfaf0",
-      "tasks.md": "9930e8507dc21005b5ba3d64cee4862edde25d7ae89756ac5f22506218377bdd",
-      "checklist.md": "033a0dd3c30b594124bb67d17d145af26acc4fb9895ce4c763215fe2fcd70229"
+      "tasks.md": "9930e8507dc21005b5ba3d64cee4862edde25d7ae89756ac5f22506218377bdd"
     },
     "last_active_child_id": null,
     "last_active_at": null

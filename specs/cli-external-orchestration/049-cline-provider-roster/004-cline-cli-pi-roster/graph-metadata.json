@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 3 made `cline-pass/deepseek-v4-flash` a live pi provider, but the cli-pi skill's provider roster (`references/providers-and-models.md`) still listed only the six prior providers",
     "created_at": "2026-08-18T13:41:52Z",
-    "last_save_at": "2026-08-29T14:54:26.310Z",
+    "last_save_at": "2026-08-30T15:39:08.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0022e2c348751f574c34ce741ae2121dfa1e3420dd38815dd27611f81cad2377",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4c42c6706b21f30de093ffa6d20ddbe15a715195541a267e8d5cb66eb61c714",
       "plan.md": "52fd6e327b1828a9ccc3c5a001a9977cc84a7b9ece8138faa45a6994b0dc84d9",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs",
-  "spec_folder": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs",
-  "parent_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor",
+  "packet_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs",
+  "spec_folder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs",
+  "parent_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Audit-confirmed P0 bugs in system-skill-advisor docs: broken ADR-001 path (missing `004-skill-graph/` segment), broken hook reference link in README/INSTALLGUIDE, wrong build-command path in ARCHITECTURE §8, and 9 nested READMEs with stale audit-packet rows",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-07-15T11:59:25.670Z",
+    "last_save_at": "2026-08-30T15:39:26.924Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8ff6d0a543a73fb7b85847f5bf76bb23587735156b7467b0ad4b9fcfa0a0cc47",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fcf019ca6e744103a466b637476ec5bddc48a2bd6b18438680142fd163191203",
       "plan.md": "2370d25a50d2ab9201d500aac833d75187670a700ff9d1539fc11de29a892910",

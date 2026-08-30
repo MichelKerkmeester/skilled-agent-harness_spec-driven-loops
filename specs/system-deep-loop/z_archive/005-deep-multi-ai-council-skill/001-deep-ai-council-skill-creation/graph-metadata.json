@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Council planning is a specialized multi-agent workflow, but its references, persistence scripts, and routing language currently live under `system-spec-kit`",
     "created_at": "2026-05-10T06:35:39Z",
-    "last_save_at": "2026-07-09T10:02:48.444Z",
+    "last_save_at": "2026-08-30T15:39:22.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3bc409124e331901058a3f5b4bc190a4b88a535ddf1f65b484c51cbf12b825a6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be3197766cbb146b2b7d3be0e0a30ed3c98a7180233c435e52063fd08f1fdad5",
       "plan.md": "85efbe0c8fe76cc8a3f9e49e2a41b80ed9d620ccf556586a6aceb6cfc3993fe2",

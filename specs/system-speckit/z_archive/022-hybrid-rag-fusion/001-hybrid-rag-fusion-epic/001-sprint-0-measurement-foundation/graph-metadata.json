@@ -21,8 +21,8 @@
       "sprint 0 tasks",
       "measurement foundation tasks",
       "eval infrastructure tasks",
-      "sprint 0 checklist",
-      "measurement foundation checklist"
+      "001-sprint-0-measurement-foundation implementation summary",
+      "001-sprint-0-measurement-foundation delivery record"
     ],
     "key_topics": [
       "sprint",
@@ -33,10 +33,10 @@
       "infrastructure",
       "plan",
       "tasks",
-      "checklist",
-      "channel",
-      "completely",
-      "broken"
+      "001-sprint-0-measurement-foundation",
+      "implementation",
+      "summary",
+      "delivery"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,43 +168,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Narrative",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The graph channel is completely broken — 0% hit rate in production due to `mem:${edgeId}` string IDs being compared against numeric memory IDs",
     "created_at": "2026-04-12T09:02:50.225Z",
-    "last_save_at": "2026-07-10T06:23:54.479Z",
+    "last_save_at": "2026-08-30T15:39:38.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6900270d5fdb5b4de79dabdfe1b56241cfa6d53b24266e49689b5a43c6d21503",
+    "source_fingerprint": "sha256:7f20049c8d14ab67272ef6f3bcc75413adc8d58fe87db4bef6ae566ed7a771d6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3576e419e3cfa6adcc39adb4fc5f733cb4359c30e3a20aa848ea6336fc588aa1",
-      "plan.md": "71df706b11c0515bc9d0417c1ef9001e58a10832fe0b876821e558c47f18238e",
-      "tasks.md": "222f513cab5f7accaa83f09a66b03170a34de9671ba4adda31bfd8fe6460bfa1",
-      "checklist.md": "0df02e0bee815403fbbe73fe36603272355213165e3c70421d1dccf610abc74d",
-      "implementation-summary.md": "44556fc82b4ca0e07a7682ed4876b7373c86fc67753d73ac8b6301f8bf18027d"
+      "spec.md": "fd7dfc06171750b815525b086f45ed310e6b324e7f47446cfec6d2404ccf39aa",
+      "plan.md": "396248f13e4b2ba4927cc601de850be7143a96fa317f8a43eead443cbcf0c2e8",
+      "tasks.md": "cac0c876db6a96d2ca1986b5948c862822e7d5dc84b2d5c9b69608d266508d39",
+      "implementation-summary.md": "37f12df92879496409aa238b6b77ada799d4ed2e31eab93a57ef4d47b9344bce"
     },
     "last_active_child_id": null,
     "last_active_at": null

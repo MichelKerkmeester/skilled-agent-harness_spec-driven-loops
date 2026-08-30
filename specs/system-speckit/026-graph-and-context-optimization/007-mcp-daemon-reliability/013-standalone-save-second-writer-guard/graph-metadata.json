@@ -3,7 +3,6 @@
   "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
   "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard",
   "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -22,8 +21,8 @@
       "memory_index_scan operator contract",
       "standalone save second writer tasks",
       "Step 11.5 daemon guard tasks",
-      "standalone save second writer checklist",
-      "Step 11.5 daemon guard verification"
+      "standalone save second writer summary",
+      "Step 11.5 daemon guard summary"
     ],
     "key_topics": [
       "standalone",
@@ -40,12 +39,11 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/core/daemon-detect.ts",
       ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
@@ -73,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,26 +192,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`generate-context.js` Step 11.5 unconditionally imported `@spec-kit/mcp-server/api/indexing`, called `initializeIndexingRuntime()`, and then ran `reindexSpecDocs()`",
     "created_at": "2026-05-29T14:01:10.035Z",
-    "last_save_at": "2026-08-29T15:22:18.060Z",
+    "last_save_at": "2026-08-30T15:39:32.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30818f712ba179740f9a3c0ba5cadcd371f806d8b92786c1c78125d220a1f67a",
+    "source_fingerprint": "sha256:68da09c3273a954b00896156a313177ac14c51e2d8a190adc344002b634b9f32",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9926940d9e66d35fec841897b7ac8e08d5c3d10f1cfb7d9f4a4c5b094ed5b443",
       "plan.md": "344c9c38568b22e8728ffa84bdfe00b24f0827d2c3c8591235b4abaa8e184d13",
       "tasks.md": "bba09ba385f655caa19758d22b1a8de2ea5d5652f8af83aef38fc5f84110058a",
-      "checklist.md": "514443a9cc0c8a04c238c7a2fe5bf3b9656dab7de3abe8cd5a8a17ea410c737b",
       "implementation-summary.md": "331a5690773b87bc7bce75666249da92a8d66af4d2284cca0e45b5b86b16fd67"
     },
     "last_active_child_id": null,

@@ -36,61 +36,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "shared/embeddings/providers/hf-local.ts",
-      ".opencode/bin/hf-model-server.cjs",
-      "mcp_server/lib/embedders/execution-router.ts",
-      "shared/types.ts",
-      "mcp_server/ENV_REFERENCE.md",
-      "mcp_server/lib/embedders/reindex.ts",
-      "mcp_server/lib/cache/embedding-cache.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "shared/embeddings/providers/hf-local.ts",
+      ".opencode/bin/hf-model-server.cjs",
+      "shared/types.ts"
     ],
     "entities": [
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/hf-local.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hf-model-server.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/hf-model-server.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "execution-router.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/embedders/execution-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "shared/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "reindex.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/embedders/reindex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-cache.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cache/embedding-cache.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -113,6 +67,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
         "source": "derived"
       },
       {
@@ -192,11 +164,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "lazy",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The perf items are guesses without instrumentation",
     "created_at": "2026-05-29T11:22:57.383Z",
-    "last_save_at": "2026-07-17T17:19:30.572Z",
+    "last_save_at": "2026-08-30T15:39:31.675Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bbafb068850c0853635414f3b9d547bfbb70aa2de090f28fb38897c3bf43a022",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1a14579b9e120ae6eede1e3ede8729649edfbf59aee934809345a6bdcb691db",
       "plan.md": "8a9888085bb7627f98e0e4a794069657312d8c650d11017a39bde02f032d5a00",

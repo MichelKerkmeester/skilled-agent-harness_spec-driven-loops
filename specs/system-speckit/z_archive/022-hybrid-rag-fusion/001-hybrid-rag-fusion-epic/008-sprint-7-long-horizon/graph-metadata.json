@@ -22,7 +22,7 @@
       "sprint 7 tasks",
       "long horizon tasks",
       "r5 evaluation tasks",
-      "sprint 7 checklist"
+      "008-sprint-7-long-horizon implementation summary"
     ],
     "key_topics": [
       "sprint",
@@ -35,24 +35,15 @@
       "evaluation",
       "plan",
       "tasks",
-      "checklist",
-      "only"
+      "008-sprint-7-long-horizon",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/lib/search/memory-summaries.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/lib/parsing/memory-parser.ts",
-      "mcp_server/lib/search/entity-linker.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/lib/telemetry/retrieval-telemetry.ts",
-      "mcp_server/lib/eval/ablation-framework.ts",
-      "mcp_server/lib/search/vector-index.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,54 +51,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-summaries.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/memory-summaries.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-parser.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/parsing/memory-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "entity-linker.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/entity-linker.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval-telemetry.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/telemetry/retrieval-telemetry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ablation-framework.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/eval/ablation-framework.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index.ts",
         "source": "derived"
       },
       {
@@ -120,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,27 +136,80 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Sprint",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Completion Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Notes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Memory summaries are only valuable at scale (>5K memories) — implementing them prematurely adds overhead without benefit",
     "created_at": "2026-04-12T09:02:50.230Z",
-    "last_save_at": "2026-07-10T06:23:14.685Z",
+    "last_save_at": "2026-08-30T15:39:38.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66eb2b79e7f70c62537524ca432c920345e6bb3c0bffa2a1e76ac9e89c87efe2",
+    "source_fingerprint": "sha256:101a3d9c9e90c9b31ca563f788668186ba99d241d827647d892a6d6702fa3a38",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b50ae5020583bc54b37b921a59372e3657808d80ed00be8a71159b6e26c2232",
-      "plan.md": "1530e4d134778f2c86afe3d5a5d4951ed9ba022180ad6d7181919164db34ade9",
-      "tasks.md": "fe34e05620e0fee2920d13cc7443958c97c9733ab46429a2c689df23a5bce509",
-      "checklist.md": "dd71997847c2c6cd68c9c8aae7e94943b42c195deb879c5c3ea0f746e2ff5d62",
-      "implementation-summary.md": "9c8a15e1fa77dab63c189391517d17b555f8eebbbe9010cf5e216e512f14c770"
+      "spec.md": "fbfdb892a0bba9fa1b913e763016913419b839ead9317aeb1640e343274ae664",
+      "plan.md": "151423c7b05b8498315b2c5056fb3b2eae845364952246f85d05ffdf6ac1f82e",
+      "tasks.md": "6aa894d746897af00dab4722a5d4817593b03d94f485f72748c2b3a2ec05ab8c",
+      "implementation-summary.md": "683d89e6bf70cbf75afb9f9d0d4d2c9871067b5e4bb5c6a12b8cddf6df5b9e55"
     },
     "last_active_child_id": null,
     "last_active_at": null

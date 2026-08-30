@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After Phases 3 and 4 the CLI and MCP surfaces exist, but nothing tells an agent or human when to use the CLI versus the MCP, how to install the mode, or how to reach its references",
     "created_at": "2026-08-02T05:50:29Z",
-    "last_save_at": "2026-08-29T15:21:54.004Z",
+    "last_save_at": "2026-08-30T15:39:10.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5aee06ecb8a513fab9246408674fb5732b7a969b94e24017f4a98b70dc53235d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "26cdd65ed7bd3017b5658b59ac8a6dbceb7ef3e825d7af83110850d8a31f4597",
       "plan.md": "c0e440b0e097870a0b4b2d33fe6912dc658efdd735a8236bb48939dc98fb57f3",

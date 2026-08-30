@@ -20,9 +20,9 @@
       "catalog playbook coverage audit tasks",
       "028 coverage audit task list",
       "read-only audit iterations tasks",
-      "catalog playbook coverage audit checklist",
-      "028 coverage audit verification",
-      "read-only audit QA"
+      "catalog playbook coverage audit summary",
+      "028 coverage audit complete",
+      "code-graph skill-advisor coverage result"
     ],
     "key_topics": [
       "catalog",
@@ -41,21 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/specs/system-speckit/028-memory-search-intelligence/before-vs-after.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/specs/system-speckit/028-memory-search-intelligence/before-vs-after.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,21 +68,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
         "name": "before-vs-after.md",
         "kind": "doc",
         "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/before-vs-after.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -189,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 028 shipped many features into three daemon-backed system skills (system-spec-kit, system-code-graph and system-skill-advisor), but the release-cleanup that aligned feature catalogs and testing playbooks only ever touched system-spec-kit, and even there it ran edits-only",
     "created_at": "2026-06-22T04:40:16.647Z",
-    "last_save_at": "2026-07-17T17:19:46.782Z",
+    "last_save_at": "2026-08-30T15:39:34.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:aa805de19c57fda7c4acb5b52d9d339f847f9a9acceac3c34442fc2438359a19",
+    "source_fingerprint": "sha256:3ac5cfb11770ef52bf88358e1b63bedc81a58b42039700e058f6b92c02e24179",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "65ce1981574a03618803413e2456db919ea1d64776c7d33f969c50dc47dcadcc",
       "plan.md": "b525f203a9f1704c180c220e69d297a5d7a09860658a36abfa7b0ef4d9666f0a",
       "tasks.md": "6cee5a922202dbd5ff992b658a26a996a70c8c582aa43911ec24816e78809c16",
-      "checklist.md": "36ba3697800d16c61d4b936943880d434a3f2c7c12b2e746b5f737dfeed3a820",
       "implementation-summary.md": "e4d29e49a442875c1a9f63c388daebd6fc1f9aa420f72cce08ce217b2981186b",
       "research/research.md": "f9eba98974b84a17052aa34270ec362de58e16b6d7f9d8291a11e51118ae0788"
     },

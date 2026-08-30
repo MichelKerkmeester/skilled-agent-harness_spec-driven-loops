@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The cli-pi README at `.opencode/skills/cli-external-orchestration/cli-pi/README.md` still carries the older tabular reference-card style and predates the pilot standard set by the mcp-obsidian README",
     "created_at": "2026-08-04T08:34:40.852Z",
-    "last_save_at": "2026-08-30T07:20:24.590Z",
+    "last_save_at": "2026-08-30T15:39:17.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c15941ebbed23b6cfd8aea1b7cb8b793f399a045377a093212ffba590657a8c0",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b946715bfb73a9e97bdcccecfbd01e9aefdad08e9e9cc5c76f727b9be7ba21f",
       "plan.md": "193718daa9cd81dd61a69cb330ffb10295d9ac5787a3605e402f1978481946a5",

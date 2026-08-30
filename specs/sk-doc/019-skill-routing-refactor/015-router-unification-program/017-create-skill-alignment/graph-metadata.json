@@ -18,8 +18,6 @@
       "parent hub manifest onboarding plan",
       "create-skill compiled routing tasks",
       "parent hub onboarding tasks",
-      "create-skill compiled routing checklist",
-      "parent hub readiness QA gate",
       "create-skill compiled routing implementation summary",
       "parent hub onboarding current status"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py"
     ],
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -181,36 +172,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delivered Files",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The original gap was that new parent hubs could not express a deliberate compiled state",
     "created_at": "2026-07-20T17:46:53.250Z",
-    "last_save_at": "2026-08-29T13:10:18.118Z",
+    "last_save_at": "2026-08-30T15:39:15.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34a0ad7c17d61a73600081442a5c395df889641e38a5adbb768c693f6d7df189",
+    "source_fingerprint": "sha256:b832d460dd72142fbc3cef53c5762247629a4e3d931d11cd195a3ab144a9e2e4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "732808c810e575b2fff8db50691381e9a563dbf3f3ed3e0de4774607532d3192",
       "plan.md": "d3ea1f3fd251093d3ac342a1b48ea99f9d88e2af36d67d23fb3ee25fe1a2b1b9",
       "tasks.md": "cb1cbb7dedbf011ebda3dc3b1a809091db9028aadf52884e0187149884c57dac",
-      "checklist.md": "0bad29b9a71c9d44703625f47200d7e176034c205a85e899183dc189285907fd",
       "implementation-summary.md": "ddc8762c3267f4ad230dfb37b325ec5d35f28c0051e79240ad255553fce20f18"
     },
     "last_active_child_id": null,

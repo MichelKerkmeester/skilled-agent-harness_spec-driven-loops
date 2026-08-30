@@ -19,7 +19,6 @@
       "executePipeline flag toggle harness",
       "embed once reuse ranking",
       "off vs on divergence harness",
-      "benchmark verification",
       "deterministic ranking verdict"
     ],
     "key_topics": [
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/deterministic-ranking-benchmark.mjs",
       "results/metrics.json",
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,26 +184,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Fix 5 flag `SPECKITDETERMINISTICRANKING` ships default-off",
     "created_at": "2026-06-27T17:15:43.899Z",
-    "last_save_at": "2026-08-29T15:22:23.228Z",
+    "last_save_at": "2026-08-30T15:39:35.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da037927dce06a17c4f22da02b51a5608dfe19d584b3c45f205a896eb23084a8",
+    "source_fingerprint": "sha256:da87eb54ae8695248cf7d32cb80043a48b72ab89ce982b7c60a13b92f9257c7c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ff4ba8c842c8a1a47dff40163e0b0aacb370825c3a6d7ac2fccfc5be147bd61",
       "plan.md": "f61515c2f4d96d10bd55fb57dc05f08229b45b9a458731eb001d2721b1be9b57",
       "tasks.md": "d299c3f9f1f67633eb0c5f71006341554b5a9f991ef6d80b7822da4953a90bd9",
-      "checklist.md": "d48e594648414dbf2ef41b8f2f55373959ac7780c132eac940da6375da9513eb",
       "implementation-summary.md": "bc4c362affd0fe7f44ff519554be518f6b7586fbc2c21a1dd1457f703ed44f98"
     },
     "last_active_child_id": null,

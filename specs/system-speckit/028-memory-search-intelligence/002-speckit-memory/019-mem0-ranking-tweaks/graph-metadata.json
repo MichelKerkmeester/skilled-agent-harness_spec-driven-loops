@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "shared/algorithms/rrf-fusion.ts",
       "lib/search/sqlite-fts.ts",
@@ -74,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,26 +194,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 028 campaign's external-memory-systems child (`007-memory-systems`, 22 iterations across Mem0 / Graphiti / Letta / Cognee) surfaced a bundle of cheap ranking and extraction improvements for the Spec-Kit Memory MCP, mostly mined from Mem0 scoring/extraction plus two Cognee extraction-config wins",
     "created_at": "2026-06-19T05:40:37.448Z",
-    "last_save_at": "2026-08-29T15:22:21.842Z",
+    "last_save_at": "2026-08-30T15:39:35.059Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb35269f30f66dc2fcbbff671e0e1ff9ed8f7b67ea758cd80f3f9fd3fba4e1d8",
+    "source_fingerprint": "sha256:7af2fd9d68fb604e412bb55053f71f70d848efeb350274b8856ef5e39f18e6fc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "38989205e72fe131cfa3a15dd1e3514fc519a4c8d6b6344d7e7ae3e9c0401d73",
       "plan.md": "c794fe96e2ca2b2f5fbd8572009525c61d15dfeec7eb8854d5f35cacae4a3322",
       "tasks.md": "ec4c8dda7102e97ae488ae6bd21d07c32549121dd270cd6dd182c5c7358df75c",
-      "checklist.md": "483cd99ce4c69a32f7b9ed597ef81a8cc78dee0c05da9721710eaa4e1c00dde9",
       "implementation-summary.md": "89d0a0ac5bf9a763ec34e803ca8afc1d7efeefdaaff37f6a3053522dc295caa4"
     },
     "last_active_child_id": null,

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The final integrated checks now prove that native Pi management, scoped persistence, adapter injection, legacy cutover, registrations, and operator documentation use the same session-isolated contract",
     "created_at": "2026-08-10T11:33:32Z",
-    "last_save_at": "2026-08-29T15:21:53.168Z",
+    "last_save_at": "2026-08-30T15:39:09.571Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:ff5bc21b873ae354b976b5ee6e5cabbd0cfadd44c80e881183f402211893fbce",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b7fa16d24991fb182048242b7c83e2bc279f19e682cb2ecac116505d4406698c",
       "plan.md": "ad221e0bb29829fda174bfd9ca96a62a870da15572e022600697e647b3ca10df",

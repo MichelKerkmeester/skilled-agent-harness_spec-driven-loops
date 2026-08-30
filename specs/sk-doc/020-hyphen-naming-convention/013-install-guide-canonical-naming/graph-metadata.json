@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Normalize every skill install-guide document filename to the single canonical form INSTALL-GUIDE.md (uppercase + hyphen), resolving three inconsistent casings (INSTALL_GUIDE, install-guide, install_guide). The doc-type identifier install_guide is a code contract and stays; the classifier gains additive hyphen-stem recognition so renamed files still type as install_guide rather than silently downgrading to readme.",
     "created_at": "2026-07-17T16:40:25.363Z",
-    "last_save_at": "2026-08-30T07:20:12.908Z",
+    "last_save_at": "2026-08-30T15:39:17.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d8f8f89129aebceca62948810cebf9370b82035dcc1608121e5c6ce944886b5d",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f930ffcf0228305d8de52b53e4f41742f892d5fb6a80cb2b1932f29969fbc21d",
       "plan.md": "ccca4d9a8b6fba53aa38a05661ad9f6cf2ed24726bc43d5812d795f7ca821aea",

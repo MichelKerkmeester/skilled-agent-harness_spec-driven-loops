@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "lib/feedback/feedback-ledger.ts",
@@ -75,12 +74,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,27 +195,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
     "created_at": "2026-06-19T05:40:37.447Z",
-    "last_save_at": "2026-08-29T15:22:21.390Z",
+    "last_save_at": "2026-08-30T15:39:35.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b42fb1f4a306020039ab0c973a65c9b2c9c98dcda7ba0b87df2c2ed7854309b",
+    "source_fingerprint": "sha256:929d9fc7b5fd8c7192a0fbb693c404ee285653890937cdb4b333c2b68b9ecd47",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "60e468c76dc3bb7df010abab7e69902d8f092d87ea0576545f39d24aa9ce7e8c",
       "plan.md": "a3284aa1c13abf028bdb5534a183b29ec1c5a6fa5671794d6575c3cb13bd75b8",
       "tasks.md": "10c78e5884bde42b930ea35c3fd7a85c58c88a6993bc906104ba291cab727701",
-      "checklist.md": "8c37709b28fda99c305c2e1ae2be4ce673d6ffbb32363a8a9600031b51489218",
       "decision-record.md": "4c278c4150a17133d165441ffc3c612105dc826e52c27e3f71e33796563cd2c9",
       "implementation-summary.md": "fda36632a2b38a175d460ad50d7d56345c3ab609e17cb58c14d59573f5be984e"
     },

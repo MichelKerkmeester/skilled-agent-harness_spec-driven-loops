@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,30 +171,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`manual-testing-playbook/` is the largest folder in `design-motion`: a root `manual-testing-playbook.md` plus 7 subdirectories (`advanced-craft/`, `decision/`, `micro-interactions/`, `presence/`, `procedure-card-contract/`, `reduced-motion/`, `strategy/`) holding 13 further files, 14 total",
     "created_at": "2026-07-27T14:53:14.129Z",
-    "last_save_at": "2026-08-29T13:09:58.042Z",
+    "last_save_at": "2026-08-30T15:39:13.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a04f930fb8d5b9d5751fb1f67aa2f8994799719ebc770c0098bb017396f8a27b",
+    "source_fingerprint": "sha256:60ae4c755b7d03574ca2089fe203e94affb43a469492732d7e5e843a932cd605",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2318392f54432dd011c8ab3659b1c6a515a5d22731029fdeb85a6edb8ad84100",
       "plan.md": "86c96c0b6bc3ee8fcd69815460950c9c2d40653399546da5a340e9972e74a57c",
       "tasks.md": "16f18945edd9e744154458b4e024cf635c5119410532879c50502c05fddf547c",
-      "checklist.md": "857c56b532ae7340386a7bd8dcca2ee71f405dace158feeab925588fe84953b3",
       "implementation-summary.md": "e11f48d0431612d7a195052578a16a987d8f1c3262ffd7bd2d058edcaff0d746"
     },
     "last_active_child_id": null,

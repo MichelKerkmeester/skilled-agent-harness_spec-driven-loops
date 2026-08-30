@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The doctor asset tree contains route targets such as `doctormcpdebug.yaml`, `doctormcpinstall.yaml`, `doctorskillgraphfreshness.yaml`, and `doctorupdatepresentation.txt`",
     "created_at": "2026-07-14T15:18:33Z",
-    "last_save_at": "2026-08-30T07:20:02.281Z",
+    "last_save_at": "2026-08-30T15:39:17.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:b8eaefc42246eea1bb8eb54ecf33f4fb1d76bed826d2a3f102cc4f017e8f6c1c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e54e0087019a8ac7ff8787fe27da046380f38a4f0f511f11f8509ee2dfb9c30",
       "plan.md": "8f4db3ab09b2e6c6c042ff602ef2d6f840c6fea6bb45bf53506cb4ddc437cb98",

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Tier-2 gpt-5.6-luna skill-benchmark scored sk-doc at 20/100 with roughly 19% exact-resource recall",
     "created_at": "2026-07-16T07:29:53.884Z",
-    "last_save_at": "2026-08-29T15:22:01.533Z",
+    "last_save_at": "2026-08-30T15:39:14.646Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:4258d3c28326c758223db1f564236b9862fcf17c3ceb6e22c10cd149d99e3be0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2071f55315bfb483b8cef0ad4fa8d9a562a16907f908a1fad758662862dfa22a",
       "plan.md": "2e3f23276758e001d707fbe44d5d219327271f95d236718cf6921c9a434ce9b9",

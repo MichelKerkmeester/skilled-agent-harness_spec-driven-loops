@@ -37,15 +37,21 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "evidence/cocoindex-embedder-comparison.jsonl",
-      "evidence/cocoindex-embedder-comparison.csv",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "evidence/cocoindex-embedder-comparison.jsonl",
+      "evidence/cocoindex-embedder-comparison.csv"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -59,6 +65,18 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "cocoindex-embedder-comparison.jsonl",
         "kind": "file",
         "path": "evidence/cocoindex-embedder-comparison.jsonl",
@@ -68,24 +86,6 @@
         "name": "cocoindex-embedder-comparison.csv",
         "kind": "file",
         "path": "evidence/cocoindex-embedder-comparison.csv",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Run gemma vs CodeRankEmbed (and optional jina-code, bge-code) on 018/002 fixture + author ADR-001 ratifying CocoIndex production embedder",
     "created_at": "2026-05-18T08:18:02.785Z",
-    "last_save_at": "2026-07-17T17:19:22.954Z",
+    "last_save_at": "2026-08-30T15:39:30.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:324a836c472cd897ffcc58844dd59130b196848b6ace4043ead09f43211e7950",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d0d89a320b6c61032555f2767d850a24b67e8acd14106a4ee9b0f37c47348d1",
       "plan.md": "c3d03f8362196d64d12a14647e559be799dedc1c92239390cf7e9dbb8280a9d1",

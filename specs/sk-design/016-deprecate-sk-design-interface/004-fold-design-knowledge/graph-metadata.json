@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 004 distills a condensed general design-knowledge layer (Brand-vs-Product register, anti-slop principles, cognitive and numeric design laws, design-token vocabulary, and a design-principles digest) from the soon-to-be-deleted sk-design hub into references/design-knowledge/ of the standalone md-generator, and repoints the 3 dangling ../shared/* links to the local copies.",
     "created_at": "2026-08-19T06:07:45.237Z",
-    "last_save_at": "2026-08-19T11:43:38.416Z",
+    "last_save_at": "2026-08-30T15:39:13.506Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3c1262311d1fb864249754c77528677f4b8b224b0aaa5ac04ce93ae78f80b33e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c98e5790da662e31df5cd4a71d7b6d19f82a0beeaa247a85561a9593a2e6fd24",
       "plan.md": "0dddb36703c434447af77609756d3ece78007d8e6fa2e6eb0f5847fbd9245bd2",

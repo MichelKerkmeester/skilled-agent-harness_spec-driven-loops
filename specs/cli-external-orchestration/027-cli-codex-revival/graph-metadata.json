@@ -49,13 +49,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "001-codex-contract-pin/spec.md",
       "002-deep-loop-executor-support/spec.md",
       "003-cli-codex-skill-packet/spec.md",
       "004-codex-hook-adapter-layer/spec.md",
       "005-codex-agent-toml-sync/spec.md",
-      "006-docs-and-closeout/spec.md",
-      "spec.md"
+      "006-docs-and-closeout/spec.md"
     ],
     "entities": [
       {
@@ -103,13 +103,14 @@
     ],
     "causal_summary": "Codex CLI 0.144.1 now provides stable native hooks, multi-agent support, and a supported non-interactive executor, reversing the operational assumptions behind packet 122",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-07-14T19:26:15.977Z",
+    "last_save_at": "2026-08-30T15:39:07.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:8b3314195932668350df5cf1e2d56ce8115e42271afe15902a28953474cabea2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "46859bd2a9ea3b981e5e38b8902862361ea795bd8320f893f02bb0679a486bfd"
     },

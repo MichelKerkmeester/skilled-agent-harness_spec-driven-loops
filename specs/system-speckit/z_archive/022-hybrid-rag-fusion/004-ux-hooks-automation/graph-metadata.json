@@ -42,115 +42,31 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      "tools/types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts",
-      "checklist.md",
-      "dist/context-server.js",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "tools/types.ts",
+      "dist/context-server.js",
       "hooks/mutation-feedback.ts",
       "hooks/response-hints.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts"
+      "tests/embeddings.vitest.ts",
+      "tests/hooks-ux-feedback.vitest.ts",
+      "tests/stdio-logging-safety.vitest.ts",
+      "tests/context-server.vitest.ts",
+      "tests/handler-checkpoints.vitest.ts",
+      "tests/mcp-input-validation.vitest.ts",
+      "tests/memory-crud-extended.vitest.ts",
+      "tests/memory-save-ux-regressions.vitest.ts",
+      "tests/tool-input-schema.vitest.ts",
+      "handlers/memory-crud-health.ts",
+      "handlers/mutation-hooks.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-feedback.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "response-hints.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-surface.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "tools/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hooks-ux-feedback.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/hooks-ux-feedback.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -166,9 +82,105 @@
         "source": "derived"
       },
       {
-        "name": "memory-crud-update.ts",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
+        "path": "tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-feedback.ts",
+        "kind": "code",
+        "path": "hooks/mutation-feedback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "response-hints.ts",
+        "kind": "code",
+        "path": "hooks/response-hints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.vitest.ts",
+        "kind": "test",
+        "path": "tests/embeddings.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hooks-ux-feedback.vitest.ts",
+        "kind": "test",
+        "path": "tests/hooks-ux-feedback.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stdio-logging-safety.vitest.ts",
+        "kind": "test",
+        "path": "tests/stdio-logging-safety.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-checkpoints.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-checkpoints.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-input-validation.vitest.ts",
+        "kind": "test",
+        "path": "tests/mcp-input-validation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-extended.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-crud-extended.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save-ux-regressions.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-save-ux-regressions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schema.vitest.ts",
+        "kind": "test",
+        "path": "tests/tool-input-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-hooks.ts",
+        "kind": "code",
+        "path": "handlers/mutation-hooks.ts",
         "source": "derived"
       },
       {
@@ -194,40 +206,27 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Ship",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Mutation handlers had inconsistent post-mutation follow-up behavior and uneven UX hint output across save/update/delete paths",
     "created_at": "2026-04-12T09:02:50.239Z",
-    "last_save_at": "2026-07-10T06:21:46.949Z",
+    "last_save_at": "2026-08-30T15:39:38.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e0713eba7602e66a4d619cb9f41fa5165c6b9615d37e4382c070bb6537ca5583",
+    "source_fingerprint": "sha256:198029b2ee251cd899861b78bf9543a5f6368ea3671b668209e40ebba5914bf6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a1fec6c341d422b288d2214dfd0420fd1b441bbdbe46c830371da3cff06f2f60",
-      "plan.md": "bbabf8af079a60ab7794523c2b0323670d60a306191c819e3bc11c60d71cb803",
-      "tasks.md": "3044931f460144cca685d0c9ce9cbf67b570e575f80cab2a6a04b6f500317eba",
-      "checklist.md": "4ec79e962e3efc1675a2cd69213e85782b514cb8c7efcf8d31c562724053557b",
-      "implementation-summary.md": "0bcbb57774b4ef73b90a9cd1ac61f76dcef979b391356eba0414646ddcd93cad",
+      "spec.md": "37a10539177b9c1186c4d3ab934a242e88bbccbf592a11f42d47e2b32f5e519f",
+      "plan.md": "8f4283360f42e7c0d62c5e2b7f99ca3c750778f4feb9f31be4b569bc5bd9d700",
+      "tasks.md": "dc6019e42fc5ecfd346c1d468a59fe6c072bbd103a8a6daaa86b40c4259b2f7e",
+      "implementation-summary.md": "7cd23205c73cbf4997e3c90b3499e5c7cbc23e0fdda171b5902d25bdc9717740",
       "research/research.md": "d300847320da9872cb8d669238ddb7e0ecb867682932e320a6cc0fad9f9f15b2"
     },
     "last_active_child_id": null,

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Installing the fork beside another extension that registers `/fast` and `--fast` creates load-order ambiguity",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-30T07:18:56.459Z",
+    "last_save_at": "2026-08-30T15:39:09.678Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,7 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:76f3e633bd609e6fb50fe157f7ede2bd2bc7388a17a488dc83b088257df6a782",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3ec5712ec66ca309e740eabff1f4403d41b526cbe0a2093cb215300463124d97",
       "plan.md": "5468d336cef0a04270a94218bcf0e132dd95e02ebf485b2ca37f0fcf11324ff4",

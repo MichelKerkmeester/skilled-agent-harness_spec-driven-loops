@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`refreshLoopLock` exists in `loop-lock.ts` but no caller invokes it while dispatch is running; a loop that is slow but alive will let its advisory lock expire on the configured TTL",
     "created_at": "2026-06-28T14:01:56Z",
-    "last_save_at": "2026-07-16T16:31:57.452Z",
+    "last_save_at": "2026-08-30T15:39:24.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b90176491f6ce18c93b409dcd71c0bd8be7fba8809646439407d98d62a6d883c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8636598ce0bee49b3ed29ab5c1a08d0104f9155e928b31c8b25713b3bfc7f548",
       "plan.md": "97d7bccc278abb10724f6e35199656236b71b3f7fa8e210e6724a24c364f24d6",

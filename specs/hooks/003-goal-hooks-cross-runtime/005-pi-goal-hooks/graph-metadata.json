@@ -18,7 +18,6 @@
       "pi goal extension plan",
       "pi goal symlink plan",
       "pi goal extension tasks",
-      "pi goal extension checklist",
       "pi goal extension summary"
     ],
     "key_topics": [
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/hooks/goal/pi/goal-context.ts",
       ".pi/extensions/goal-context.ts",
@@ -69,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,26 +188,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The runtime-neutral goal core (phase 001) and the capability-probe matrix (phase 002) give cli-pi sessions everything needed to carry an operator-set goal across turns, but nothing in `.pi/extensions/` currently reads or renders it",
     "created_at": "2026-07-28T17:25:58.782Z",
-    "last_save_at": "2026-08-29T14:54:15.320Z",
+    "last_save_at": "2026-08-30T15:39:09.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42fd338f162a533f4f4095f9581ab015d2f5744bbabd6f9a8fa2358665bb0d7e",
+    "source_fingerprint": "sha256:883a58b0e9057f19b1ca2fdd66959a41c7a41872d26e46a66095658d5507063e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "28e877424afb0a5d4fbe3743af04179f100717e559c0d4c1383d8c28202d1ec1",
       "plan.md": "fed8fbc4280b1b697531a0dac33e8f656971598d73314d8a79349715427460a8",
       "tasks.md": "cfa1891bd6ee3969857957e46203b0dfae6c7760e2f378e974ca6c8ef869a222",
-      "checklist.md": "97c210f47fadb230f44e0c726a60ad0f1532bccf7057cb609b729f545c30e798",
       "implementation-summary.md": "ab21b270cfdaa34f3ce42b3e7a3a6dbb96b722b9667fbfdfef95e9ace2328745"
     },
     "last_active_child_id": null,

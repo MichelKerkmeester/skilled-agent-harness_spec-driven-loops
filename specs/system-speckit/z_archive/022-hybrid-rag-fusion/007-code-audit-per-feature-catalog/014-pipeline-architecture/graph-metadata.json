@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -28,46 +27,26 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "catalog"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/api/providers.ts",
-      "lib/providers/embeddings.ts",
-      "lib/providers/retry-manager.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "lib/providers/embeddings.ts",
+      "lib/providers/retry-manager.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "providers.ts",
-        "kind": "code",
-        "path": "mcp_server/api/providers.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": "lib/providers/embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retry-manager.ts",
-        "kind": "code",
-        "path": "lib/providers/retry-manager.ts",
         "source": "derived"
       },
       {
@@ -83,15 +62,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": "lib/providers/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "lib/providers/retry-manager.ts",
         "source": "derived"
       },
       {
@@ -179,37 +164,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Pipeline Architecture has evolved significantly",
     "created_at": "2026-04-12T09:02:50.252Z",
-    "last_save_at": "2026-07-10T06:22:04.721Z",
+    "last_save_at": "2026-08-30T15:39:38.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73c8cee8f9022139d9f05a067b00e45647584eaf873066e0ba1d72fcb38f21e2",
+    "source_fingerprint": "sha256:d279902e3ab905a953bd56fd35d71f1774d5e67b5ec41c384652778cb7787fbc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a50e20435e7128844c47ad56b57c7dd14bfddbafb5fa5f301d48ec3dd77728d3",
-      "plan.md": "89e42cccdb9773a6977723952e3efea3031155fe29d6a4c557fc4141597fbd8f",
-      "tasks.md": "f9d715b5c05e9ba729aa7b738d7ab8e7be7be7b218b008ba328e3a11b3dc5f8f",
-      "checklist.md": "869540b9bc2412c18c89651bdbcf302f2bafcfc69bf450e954d488dc4bad555a",
-      "implementation-summary.md": "d15a30d0cb71170336734d231b13d9ccae77a95f01f4139c24033230ecb3f799"
+      "spec.md": "e9d75c41197be5b450d78e497bb873486118b0dc1724b5364812720012b5fe88",
+      "plan.md": "12704e625da14257479d90bbedadd7ac56ff748f6979fac3987ea8a1c0265fef",
+      "tasks.md": "3c6b0013c8d3722183a5b7b3468e83d28e29ae19b382376e9b95f2a9e94cdb82",
+      "implementation-summary.md": "b9d6eff056a2f297b7e8948c27fddee20a92d620ac9f35dd4921c0c4439503b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

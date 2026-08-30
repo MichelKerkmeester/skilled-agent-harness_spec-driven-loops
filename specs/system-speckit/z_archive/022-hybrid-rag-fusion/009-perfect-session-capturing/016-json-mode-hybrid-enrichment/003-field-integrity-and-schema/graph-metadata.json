@@ -42,31 +42,18 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
+      ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "input-normalizer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate-memory-quality.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
         "source": "derived"
       },
       {
@@ -82,12 +69,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -97,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "input-normalizer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate-memory-quality.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
         "source": "derived"
       },
       {
@@ -184,39 +177,44 @@
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Unknown Fields",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The `generate-context.js` pipeline has a split code path in `input-normalizer.ts` (lines 414-530): a fast path triggered by `userPrompts`, `observations`, or `recentContext`, and a slow path for all other inputs",
     "created_at": "2026-04-12T09:02:50.278Z",
-    "last_save_at": "2026-07-10T06:23:45.723Z",
+    "last_save_at": "2026-08-30T15:39:38.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9864cdf1fb674bbd067b6bb5abf4a3a2764f98d1fee6bfcc40ceb188106ebc27",
+    "source_fingerprint": "sha256:f771d5f14db8704469b47392cbac1fefa624105ade6d1a1a8506dd0d69191a6e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "82140e78f00f6dbfbf1c4976f3cfb1bcd90155229d29e20983e6f9a9d5e0f8fd",
-      "plan.md": "7813a83feb643a7c317c96b5415f83ccf37a7d90563ff008233ef9212347e92e",
-      "tasks.md": "916fcd607fe95ea8436a69f96290081272af3cde46b8905389ea32d233ac6d39",
-      "checklist.md": "20b71cf0ac4ac23386c709517ef4111434d55b66d49b2f4360d9360dc06c5892",
-      "decision-record.md": "836570d5eed653829b6106dc66b124fbd98b7db700beb44f9cce75eb4fd2736c",
-      "implementation-summary.md": "3bad2d5bca8f4fce94ea0df21dcca2d9144015d20212abb871330d7cb33660a3"
+      "spec.md": "a88a6da050a8e1065f68bdb6adc904f54636e03bf96cd7fa4d67cd31b20eb92c",
+      "plan.md": "9bd9ea1249a2fd3f22919902cd6f2eb276a38cb6de07ee32c447822be7b771bc",
+      "tasks.md": "ba54da5b239f2d2d15ff2b2dc0380521b1d9c56243253e2507068638768d9862",
+      "decision-record.md": "6a226fd713e18254d6cbc593a9c0c50cd31c93596acf6058432eaa379b47e8f0",
+      "implementation-summary.md": "e969566d0caf1b55471fd0c82edfeed5e6c3ab65282e56c885889f3d6b915206"
     },
     "last_active_child_id": null,
     "last_active_at": null

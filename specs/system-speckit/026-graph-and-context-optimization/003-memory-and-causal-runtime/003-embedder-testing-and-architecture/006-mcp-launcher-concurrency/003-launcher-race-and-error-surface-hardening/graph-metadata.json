@@ -21,8 +21,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "checklist 008/008",
-      "lease hardening checklist"
+      "008/008 implementation",
+      "lease hardening shipped"
     ],
     "key_topics": [
       "lease",
@@ -41,63 +41,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts",
-      ".opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "lease.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph-db.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-lease.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -117,9 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,26 +148,67 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 006 + 007 packets shipped working lease enforcement, but reviewers identified 9 P1 correctness gaps clustered in three themes: (1) race-window correctness — code-graph and spec-memory launchers can both pass the lease check then race the write, the SIGTERM handler in spec-memory clears the lease 5s after signal regardless of whether the child has exited, and env-var parsing accepts `'no'`/`'off'`/`'FALSE'`/empty as \"enabled\"; (2) error-surface correctness — `isLeaseHeld()` re-throws EPERM (different uid → guard bypass), `busytimeout=5000` is set AFTER `journalmode=WAL` (the WAL switch race",
     "created_at": "2026-05-18T06:19:31Z",
-    "last_save_at": "2026-07-17T17:19:25.517Z",
+    "last_save_at": "2026-08-30T15:39:30.927Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14b6ad4edb82856f86c2a8489ed4b55f6156deee51b7749b33bcbd868b6d8a4b",
+    "source_fingerprint": "sha256:ad415f4fe738a1ab9cc04457b0bb58d9c24511a246ddbcb9cd0409779d67594a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53b44c9011329f30e846c717b94edffd911d1438ecc0a027678841978b0f9242",
       "plan.md": "066e9a0e4dc3e1b0847cb460fdd99b1b6ebb9b564df31086e0f91037397f86d0",
       "tasks.md": "1c4d5fb6f0bb3380aaca9ea1131216b7c2c31fd440ced9c66a81b634ad3cd492",
-      "checklist.md": "b0064408e3d105b1630e3e07c54f4a3d407770d9a2e4d7eab2f2381805d67a12",
       "implementation-summary.md": "26325faa23f32f9ce8ac5f7c6e47353ad72a8486e4b4c112da30d0f9bd9dcce6"
     },
     "last_active_child_id": null,

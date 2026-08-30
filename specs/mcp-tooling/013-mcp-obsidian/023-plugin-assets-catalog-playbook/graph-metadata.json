@@ -34,9 +34,8 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "tasks.md",
       "plan.md",
-      "checklist.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -47,21 +46,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -173,36 +166,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Eleven",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The mode now ships six more community artifacts (five plugins and the Minimal theme) whose file layers are not yet documented, cataloged, or routed",
     "created_at": "2026-08-04T06:00:17.679Z",
-    "last_save_at": "2026-08-04T12:05:07.984Z",
+    "last_save_at": "2026-08-30T15:39:10.235Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f027e2e1da701002e1c309397241726df63f377721d63b70afb82e07bddbccbe",
+    "source_fingerprint": "sha256:84a3503e357c8332d484050fc9524dc6b42f2a2649a1eeeeb80157ad00ef0c1a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "87c97f470197ff05a401acd4462ae829ca141d2a0c70eee2db00c6e802852073",
       "plan.md": "1e76add8e484fa67235dad45d9f6a540a8b20fc0b2a3fe779560219eaba687f9",
       "tasks.md": "20d6beaedd9138d077e6ec05afe335cea26803a0941b25a4cfad1b9c014d3551",
-      "checklist.md": "7e81b3e3e810aba67a22b5331def6fc016eb76ca3a0bc32f61770ed57422d3dc",
       "implementation-summary.md": "897d8e54fa20dbf9a078e3271e5002abea705abafd29dfd3155b07cae38c8561"
     },
     "last_active_child_id": null,

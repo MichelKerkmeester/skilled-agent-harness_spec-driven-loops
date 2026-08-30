@@ -42,28 +42,16 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/specs/cli-external-orchestration/026-cli-external-parent/description.json",
-      ".opencode/specs/cli-external-orchestration/026-cli-external-parent/graph-metadata.json",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      ".opencode/specs/cli-external-orchestration/026-cli-external-parent/description.json",
+      ".opencode/specs/cli-external-orchestration/026-cli-external-parent/graph-metadata.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -76,6 +64,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/cli-external-orchestration/026-cli-external-parent/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The cli-external parent-hub merge is not provably done until it clears the same strict enforcement bar the canonical parent hubs clear, AND until the fail-open PreToolUse dispatch hook is proven to still fire from its new path",
     "created_at": "2026-07-09T18:58:29Z",
-    "last_save_at": "2026-07-14T19:26:23.069Z",
+    "last_save_at": "2026-08-30T15:39:07.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:2fb574358bf1ddf16185e4b9de65452aecfe2646618ec8755036e52e2f5bea04",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e34410e3807d25d28476819c190ff53cb0c37e1500100f6a18d9a52d99cb96cb",
       "plan.md": "5dcc7d725495813f4eac22f8e2c0aa8cd3a422eab78dc373767baabf03bb75e4",

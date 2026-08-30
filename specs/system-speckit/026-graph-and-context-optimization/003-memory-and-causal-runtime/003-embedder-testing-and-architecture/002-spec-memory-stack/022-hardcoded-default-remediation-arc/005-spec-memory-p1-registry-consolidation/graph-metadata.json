@@ -18,7 +18,6 @@
       "getRerankerFallback",
       "022/005 plan",
       "022/005 tasks",
-      "022/005 checklist",
       "022/005 shipped"
     ],
     "key_topics": [
@@ -27,13 +26,13 @@
       "getrerankerfallback",
       "plan",
       "tasks",
-      "checklist",
       "shipped",
       "cli-opencode",
       "deepseek-v4-pro",
       "variant",
       "high",
-      "dispatched"
+      "dispatched",
+      "extended"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts",
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,26 +184,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched: extended registry.ts with RerankerProvider type + RERANKER_CANONICAL frozen object + getRerankerFallback helper; consolidated providers/voyage.ts + providers/openai.ts + auto-select.ts + cross-encoder.ts to import from registry. Closes 7 P1 cleanup findings.",
     "created_at": "2026-05-23T18:10:00.000000Z",
-    "last_save_at": "2026-08-29T13:10:00.518Z",
+    "last_save_at": "2026-08-30T15:39:30.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a34d978fb96e1b36e4173ad03b5820cd7717f5474be290bf6c03341035aef74",
+    "source_fingerprint": "sha256:baee9fbf0fd8b483be0ae49e84131ffc7ac68c36a2d87789006cc04b36d313fc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "58c9ba39dfb105eac024879b94c27b4acf94dc869fc2d87db526061a18482664",
       "plan.md": "92872a263c3e82237b34a00bf4ec7190d4c22b1bc9a21bc50081f2d927540e83",
       "tasks.md": "cfb0a555e4ac03fb9abe4a63d134bf49be6af9e108e020ff1bf513ad8f039c1a",
-      "checklist.md": "b622aa65132898004f6681e97b45a475ecf87d9dce3e2c74c1316fe5c45098cc",
       "implementation-summary.md": "67c21e7fefde81daf2100e40cb3d25a3fbcf884fd40494f2bfe94823875d48ec"
     },
     "last_active_child_id": null,

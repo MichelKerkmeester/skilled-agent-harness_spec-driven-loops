@@ -19,8 +19,6 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "summary",
       "consolidation"
     ],
@@ -32,16 +30,19 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "summary",
       "consolidation",
-      "canonical"
+      "canonical",
+      "typing",
+      "partial"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/types/session-types.ts",
       "scripts/extractors/conversation-extractor.ts",
       "scripts/extractors/decision-extractor.ts",
@@ -54,17 +55,31 @@
       "scripts/extractors/session-extractor.ts",
       "scripts/extractors/collect-session-data.ts",
       "scripts/core/workflow.ts",
-      "tests/spec-affinity.vitest.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "tests/spec-affinity.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -140,30 +155,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specificat",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,27 +195,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Type Consolidation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Canonical typing is partial and inverted",
     "created_at": "2026-04-12T09:02:50.269Z",
-    "last_save_at": "2026-07-10T06:22:05.629Z",
+    "last_save_at": "2026-08-30T15:39:38.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:72f4d878b94ae1b6809176a675d051c3e44533272b67d1f48af25f9308c9fe0d",
+    "source_fingerprint": "sha256:10f924cb1b1756bd906b44f64b566a2dd80ebbae10de4b79d16babebf4eb6e3a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b5768f6f6f85f7bda37aa6a9b9e67cdc179e6973faf03eb59eef0bb589e7d8f",
-      "plan.md": "20bbc4e6e11e2089d6fef7dc7d1862dcaa5379a73c8248ed64bb2fd18b6a2bf3",
-      "tasks.md": "70083f1e9d85f7546495427e76c2c16b47fdb13447afb1efdd0f64fedd3a8547",
-      "checklist.md": "71e8a03d87c0e7ebd2e83250783f6aa2b07ca7aadf3ff9639c9fd8ac499c2906",
-      "implementation-summary.md": "1537a77cfe1e4e61fd2a07f7e360ba52a7decbc3d72f42c09a2b863bdd3c5b4f"
+      "spec.md": "fc918f503bcd80e56fb6adcb04a1441dc4323353efa6f54eefdb7f1ce977923b",
+      "plan.md": "a97629882408d3243c720bf5ccbabbe086d8a2479132c98c5bbe406b41bc413c",
+      "tasks.md": "8fa67ea76b863e3e6757aaa70a1e341f919f8cd64cf5bbc9a1d531025b40b75d",
+      "implementation-summary.md": "7d7691333350833ad55134c219a87edde7cd2fdb4819db7cbc4bd68e58b23d15"
     },
     "last_active_child_id": null,
     "last_active_at": null

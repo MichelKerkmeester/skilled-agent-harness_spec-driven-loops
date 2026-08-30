@@ -55,6 +55,7 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "handover.md",
       "001-research/synthesis-v1.md",
       "001-research/review-v1.md",
@@ -65,6 +66,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -128,6 +135,30 @@
         "source": "derived"
       },
       {
+        "name": "GPT-5.6 LUNA HIGH",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. The destination",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. What the research changed (read this before building)",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. The plan (children 002-011 under this packet)",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "cli-codex",
         "kind": "key_phrase",
         "path": "handover.md",
@@ -160,15 +191,16 @@
     ],
     "causal_summary": "Phase parent for the program that makes the shipped-but-inert compiled skill-router perfectly integrated, enabled by default (as the phased P4 outcome that 012 settled), and verified through automated tests + benchmarks + manual-testing playbook scenarios (GPT-5.6 LUNA HIGH as the routed test subject), with all routing code aligned to sk-code:code-opencode and every MD authored via the correct sk-doc mode template.",
     "created_at": "2026-07-20T21:22:58.451Z",
-    "last_save_at": "2026-08-30T08:04:11.080Z",
+    "last_save_at": "2026-08-30T15:39:15.190Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:bc22833bc2a3ec4175af8cfed02e0029d65b726c7e72cb025e8b92d5cde28d06",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint": "sha256:9baa128dfba2fab7d253ad35eee431022fc4730b3f3cd77b4a76f8845d562829",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55ed6c36d9cdcfdddd6fef5837a4270c7eca7d68524212b511a7e84f5005b5e6",
       "handover.md": "627288dc89ba96493a98d0c50e01a6416c61633dea9c49ee2dcd6a443796d6a8"

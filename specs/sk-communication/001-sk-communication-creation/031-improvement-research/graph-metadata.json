@@ -21,8 +21,8 @@
       "sk-communication assessment",
       "research tasks",
       "5 iteration research loop",
-      "research verification checklist",
-      "communication improvement quality gate"
+      "Phase 031 research completion",
+      "Phase 030 grounded research"
     ],
     "key_topics": [
       "communication",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "research/resource-map.md",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,31 +184,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Produce a grounded and ranked recommendation set that identifies what to improve next, why each improvement matters, and the rough effort required",
     "created_at": "2026-08-15T05:31:15.872Z",
-    "last_save_at": "2026-08-29T15:21:58.513Z",
+    "last_save_at": "2026-08-30T15:39:11.909Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2f3ccdb117e81113d44e72dfe7b36b26f1d6082f183fb5ad3713a90235e80ece",
+    "source_fingerprint": "sha256:b3018cdc393cd07e432efa1110d27e7faf535f0229e7a5f1bafb0a40a091cc06",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "117bbf95116ebe58e74bdb9056b884549c11fb9ac160e076059f02ce4fb6532e",
       "plan.md": "7eee39e4767db938014ec551480b06fe0b84d377d3f2ab1108328cae2c3b5958",
       "tasks.md": "5d2c5df6ac53000fd7976c181ddca3e188189b84df486af31c1096b8328a7e8d",
-      "checklist.md": "b2673077bb05f6cfeba7dbee32c60403a58127123e9e760280a92c830e6d6347",
       "implementation-summary.md": "1ae2175c0ff79a2919279e0e9cf92b5894b658ef71c4a4f46e4d34ab6c7dd883",
       "research/research.md": "1a2e6e8d78f42a18b62a2458636c1f045a8865752e4623aee01c2437d18a6e07"
     },

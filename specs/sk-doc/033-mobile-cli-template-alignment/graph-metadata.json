@@ -41,16 +41,16 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
-      "plan.md",
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "tasks.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -60,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `sk-code-mobile-cli` packet no longer conforms to the templates and contracts that `sk-doc` owns",
     "created_at": "2026-08-28T05:55:28.397Z",
-    "last_save_at": "2026-08-28T05:57:57.579Z",
+    "last_save_at": "2026-08-30T15:39:18.124Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b596ef433e284c8d57dcceccc5273cb5381a8cec4f51248aa8683cbbd82805a4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d9bd97f3edc34101cee22713f0bf60d353e715e8e8e992cdef3d835bca39dfa",
       "plan.md": "a2765d545d02c6ad3a9501c0ab8cd1d8f3af0d02f3e50be2aad41573463aeb04",

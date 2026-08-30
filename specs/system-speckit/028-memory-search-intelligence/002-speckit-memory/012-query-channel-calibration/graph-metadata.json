@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "core/db-state.ts",
       "hooks/claude/session-stop.ts",
@@ -45,8 +44,7 @@
       "lib/validation/orchestrator.ts",
       "scripts/migrations/rebuild-memory-index-archived-check.mjs",
       "tests/query-channel-calibration.vitest.ts",
-      "tests/flag-ceiling.vitest.ts",
-      "lib/search/README.md"
+      "tests/flag-ceiling.vitest.ts"
     ],
     "entities": [
       {
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -119,12 +111,6 @@
         "name": "flag-ceiling.vitest.ts",
         "kind": "test",
         "path": "tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "lib/search/README.md",
         "source": "derived"
       },
       {
@@ -192,26 +178,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`classifyQueryComplexity` routes any query of `<=3` whitespace terms to the `simple` tier (`query-classifier.ts:228`), and `DEFAULTROUTINGCONFIG.simple` maps that tier to `['vector', 'fts']` only — graph and degree are excluded (`query-router.ts:114-118`)",
     "created_at": "2026-07-09T06:16:37.869Z",
-    "last_save_at": "2026-08-29T15:22:21.384Z",
+    "last_save_at": "2026-08-30T15:39:34.955Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82abca3c90914a1ceece233be27c5ab989d49d956aa249eefbf7d61031f49821",
+    "source_fingerprint": "sha256:5795ae2ccf4aa9c2ccba86524897aa20e06f471ad4272e774601b1d710f04f2c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f3847bb310a54abb9abd7a94549eb3e29daa2facb2bfbafc49d3105b5f2acaaa",
       "plan.md": "ea0d332f556abafc73809b0d125c774183648d3d2e0fbf6ae6bce05f6f6439c8",
       "tasks.md": "742cecd71d1976ac2cc6aa2a0b8427a67bec682ede6ead47d2e9350e404e7392",
-      "checklist.md": "6946158f6022bdb9b95beedc03287400a4c2706d01942a610fd7ef5602defeee",
       "implementation-summary.md": "6038564a8aec717d24b9c8adee6d029e3cba71186e5ae91c0a4df170ed0c4a84"
     },
     "last_active_child_id": null,

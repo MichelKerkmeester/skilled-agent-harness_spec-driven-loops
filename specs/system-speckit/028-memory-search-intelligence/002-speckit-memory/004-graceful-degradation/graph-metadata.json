@@ -44,11 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
-      "mcp_server/lib/search/pipeline/types.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/tests/stage1-embedder-degrade.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,30 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "stage1-candidate-gen.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage1-embedder-degrade.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/stage1-embedder-degrade.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +166,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built An",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When the embedder is unavailable and `generateQueryEmbedding` returns a null/empty embedding, Memory recall throws instead of degrading to lexical",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-07-12T13:24:49.423Z",
+    "last_save_at": "2026-08-30T15:39:34.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:75fd61b4339716ed522c04d9716d6abde0ff4ba7047d9fbcc70672b3c65569b6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a4ddae67b7780f7ea910a6b4f049adb86e0eb2423202801a02dd09f9c5890c58",
       "plan.md": "26fe00f49674c08f3db80fb88815aa199a4eee567919f5d860b1da192abb7d17",

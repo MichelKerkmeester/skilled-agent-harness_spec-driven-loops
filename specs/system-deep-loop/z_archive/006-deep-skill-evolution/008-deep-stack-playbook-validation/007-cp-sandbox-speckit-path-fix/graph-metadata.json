@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`.opencode/commands/speckit` was renamed to `.opencode/commands/speckit`, but two CP-stress `setup-cp-sandbox.sh` scripts still reference the old `speckit` path: deep-review `07/setup-cp-sandbox.sh` (lines 61 `requirepath` + 73 `copydir`) and deep-research `07/setup-cp-sandbox.sh` (line 74 `copydir`)",
     "created_at": "2026-05-27T20:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:48.896Z",
+    "last_save_at": "2026-08-30T15:39:23.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:088fbc427c615d58b16c60829da80054265ab2aff48ea28d7838c4234fd8405d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a090001ebd8aec9a3b65d73b544f78350565259c05afe668d80b996870f4d4bf",
       "plan.md": "0b09b9d40a7c6617fac6b01465e4c1621e2887d0a82e2a0b48cd46ff1622bd06",

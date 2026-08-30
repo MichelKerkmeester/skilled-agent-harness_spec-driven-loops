@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The legacy singleton may contain a real objective but has no trustworthy owner",
     "created_at": "2026-08-10T11:33:31Z",
-    "last_save_at": "2026-08-29T15:21:53.162Z",
+    "last_save_at": "2026-08-30T15:39:09.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:88e96e82c5a49f6d15ef82ceabc21e5bc455579e17826523c6543ef05dbf46c3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "459d2732320810f4f79c3958aeea6a6df6c99ce9547dae06a66b306bf31f5c92",
       "plan.md": "28c59fbfea97591c11cd9ff01e7be7138848dbf6bdde7d630ebee383624b4059",

@@ -22,7 +22,7 @@
       "008 search quality plan",
       "F-011-C1 tasks",
       "008 search quality tasks",
-      "F-011-C1 checklist"
+      "008 search quality summary"
     ],
     "key_topics": [
       "f-011-c1",
@@ -41,62 +41,14 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
-      "mcp_server/stress_test/search-quality/metrics.ts",
-      "mcp_server/lib/search/pipeline/stage2-fusion.ts",
-      "mcp_server/stress_test/search-quality/ndcg-mrr.vitest.ts",
-      "tests/stage3-rerank-regression.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "tests/stage3-rerank-regression.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
-      {
-        "name": "metrics.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ndcg-mrr.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/stress_test/search-quality/ndcg-mrr.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage3-rerank-regression.vitest.ts",
-        "kind": "test",
-        "path": "tests/stage3-rerank-regression.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -113,6 +65,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank-regression.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage3-rerank-regression.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -198,26 +168,49 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding IDs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Five tuning findings sit in the search subsystem",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-07-17T17:19:13.484Z",
+    "last_save_at": "2026-08-30T15:39:28.804Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9c501790c85b0ecf1c7485b1ebcf7b9cba69c69c4025f3026ce4b697854415d7",
+    "source_fingerprint": "sha256:24b935cc064bc82fe6d567f16ff1d5c768eafd3ae031780a6de5e71bf9445896",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f69f678e3779dc9bfa4618d8b366afa04796ff164bfad80399b719c8b0b185b8",
       "plan.md": "a4ab61286dc3e4ab91dbb84b2675d4e4faab3d63c9ab81efa61da281f5048624",
       "tasks.md": "15c1ee5dd952424cc4db0edf9f418c6cef3aba2dd174beb250e6d2a41a82023b",
-      "checklist.md": "d4df5c9feb9bce4466265868a58845440e255546e729664bc5f09d9ed175cf89",
       "implementation-summary.md": "55b42b55d8581bebb4331723d210d18aaf939bc42dfe729ff0cf59772063e7d7"
     },
     "last_active_child_id": null,

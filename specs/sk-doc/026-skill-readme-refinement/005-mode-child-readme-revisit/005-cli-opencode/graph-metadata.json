@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The cli-opencode mode README at `.opencode/skills/cli-external-orchestration/cli-opencode/README.md` still carries the older tabular reference-card style with an aspect table and feature-list sections",
     "created_at": "2026-08-04T08:34:40.499Z",
-    "last_save_at": "2026-08-30T07:20:24.209Z",
+    "last_save_at": "2026-08-30T15:39:17.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:990a7b53190b19c0352b72be283acf8440703997804253d331976693c53bdc16",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbf5ba13df04430b1a90233446c9aa936b2b42cd55903a6accf1e2e15ef31924",
       "plan.md": "0e97d020da36746dca95640bc79d19e23d39ac69eb84374f4c3f2f6bcd918bf4",

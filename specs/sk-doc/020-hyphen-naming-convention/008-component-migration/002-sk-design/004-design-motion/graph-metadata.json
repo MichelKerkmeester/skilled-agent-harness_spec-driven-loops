@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The design-motion mode uses underscore-bearing asset, procedure, and reference names that are cited by its routing contract and operational guidance.",
     "created_at": "2026-07-14T15:17:16Z",
-    "last_save_at": "2026-08-30T07:19:21.187Z",
+    "last_save_at": "2026-08-30T15:39:16.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,7 +181,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:84a983bfffa6bf00875c244a2852c93418c8cb63d646125fe03477d3e122283a",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2038d8614d880536f2145614edfe78584bab72ee4ad2167a7db8a8a657cbf94",
       "plan.md": "4e414d03edde83d025b449c1b3a8b379d248cb7068815bb5144ed9e32b301d62",

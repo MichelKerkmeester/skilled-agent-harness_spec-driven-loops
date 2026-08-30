@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`create.sh --phase --phase-parent <existing-packet> --phase-names <name> ...` rebinds `FEATUREDIR` to the existing parent (`create.sh:1046-1062`) but still calls the parent description generator with the append request's own feature description (`create.sh:1310-1317`)",
     "created_at": "2026-07-02T15:04:28.155Z",
-    "last_save_at": "2026-08-29T14:54:16.291Z",
+    "last_save_at": "2026-08-30T15:39:36.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c62797d9768e9224f92dfe556d290cd0607eee8621a6c5fc3cfffeacc075a9f2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "68974381e621547a76abd44d800bec1a4554ebc8133442d01735f2cc8fbca14c",
       "plan.md": "7f4fce06f8b650c885f58d8fbb0edfc21a802b8df6075e796502bfdf6ce3a01d",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/004-sk-prompt-small-model-optimization/007-sk-ai-small-model-rename",
-  "spec_folder": "sk-prompt/004-sk-prompt-small-model-optimization/007-sk-ai-small-model-rename",
-  "parent_id": "sk-prompt/004-sk-prompt-small-model-optimization",
+  "packet_id": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/007-sk-ai-small-model-rename",
+  "spec_folder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/007-sk-ai-small-model-rename",
+  "parent_id": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -22,7 +22,7 @@
       "rename tasks",
       "sk-prompt-small-model tasks",
       "skill rename task breakdown",
-      "rename verification"
+      "sk-prompt-small-model rename complete"
     ],
     "key_topics": [
       "rename",
@@ -41,47 +41,16 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/spec.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
-      "checklist.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "README.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
     ],
     "entities": [
-      {
-        "name": "skill-graph.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_graph_compiler.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -98,6 +67,36 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": "CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -199,22 +198,21 @@
     ],
     "causal_summary": "The sentinel skill `sk-small-model` was shipped by Phase 002 (foundation-routing) on 2026-05-18 and has been live ever since with `enhances` edges to `cli-devin` + `cli-opencode`",
     "created_at": "2026-07-15T10:52:29.438Z",
-    "last_save_at": "2026-07-15T10:52:29.438Z",
+    "last_save_at": "2026-08-30T15:39:19.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:662c8d8622203e37fe60c582e13ccae2e5acf4f54d6c03bfe2818673d444ecc6",
+    "source_fingerprint": "sha256:2cc62caad82e1276aa0bc6f3eefcb7a69474bbed3d81df4926a0c3123df65c68",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5537a734643e44b4a50639b686d9016ce468f18300b27bb5296b372c1144bc20",
       "plan.md": "1f611ee0935e0b009e174d55d97883a4c7acd39d7c8b498c3dc6625c6821ad2c",
       "tasks.md": "c9a1921e8c3ced34a6405fea6cf36c41ee9cc0b688081793f991e927fce0118f",
-      "checklist.md": "5501f65615fc2b202ecf03e8ea460d16109cb6d37828e98677aff4c55fb6375f",
       "implementation-summary.md": "52cd98524efddd89d3bbcc9fa70bb191758aec5841f06b2580e0a3baa8f5a762"
     },
     "last_active_child_id": null,

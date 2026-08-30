@@ -22,9 +22,9 @@
       "run mcp direct plan",
       "045 tasks",
       "shared daemon runner tasks",
-      "045 checklist",
-      "shared daemon runner verification",
-      "045 implementation summary"
+      "045 implementation summary",
+      "shared daemon suite runner summary",
+      "run mcp direct results"
     ],
     "key_topics": [
       "shared",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "dist/context-server.js"
     ],
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,36 +177,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 043 proved that one `codex exec` child per scenario is the wrong architecture for this suite",
     "created_at": "2026-05-14T17:20:00Z",
-    "last_save_at": "2026-08-29T15:22:14.702Z",
+    "last_save_at": "2026-08-30T15:39:30.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ca97b8984ec840c396227a31c03689dbcea2c584100e0e052b84a84811e87d9",
+    "source_fingerprint": "sha256:290ae1f7cd822948657e5af730c998624fac5c53ea0b5bf7099284f05aa1cbf8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eff3abc646882e6a7d2a77db4c96c85e57aa350da074b9c6a7d2a00d3a321689",
       "plan.md": "03d540c2c178e54dd785740b6b6877e7e3e7dad02af4f251a5ae48f8b0ddf7a9",
       "tasks.md": "64bf9c5b904cd8edd9895b81949e3f9dca3438910daa4a782c4fd78d13e0c213",
-      "checklist.md": "26ec7fdcee191232833e9a0635ccd62a849ceef6db3b49593c54ada16f1bab0a",
       "implementation-summary.md": "5eda34183b27a1a42773cd86a809dc30f580ce586428f3ba91e396c96e7b87a3"
     },
     "last_active_child_id": null,

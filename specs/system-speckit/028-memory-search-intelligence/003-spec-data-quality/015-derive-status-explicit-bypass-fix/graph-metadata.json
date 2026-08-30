@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1185-1195`) reads any doc's own explicit `status:` frontmatter field or `spec.md`'s METADATA table status, ranked `implementation-summary.md` > `checklist.md` > `tasks.md` > `plan.md` > `spec.md`, and returns that value immediately when present — including `complete` — before the phase-010 completion-evidence fallback (`:1215-1239`) ever runs",
     "created_at": "2026-07-02T15:04:28.309Z",
-    "last_save_at": "2026-08-29T15:22:23.745Z",
+    "last_save_at": "2026-08-30T15:39:36.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:888da8fe4273e3692b739443a7dcb981613046f76dbf131ce6a11d7acd192e89",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "308936b358ae464fec0d1deccb7f0795bae839b67e5e2a84837fd9847ec62253",
       "plan.md": "d43be3d1aaa5aa79f1bed1c3083f8510fbe8410e0a979ad36bbc4f85397e1d27",

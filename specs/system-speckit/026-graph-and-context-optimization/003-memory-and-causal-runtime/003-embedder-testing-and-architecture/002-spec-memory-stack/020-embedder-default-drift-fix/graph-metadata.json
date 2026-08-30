@@ -21,7 +21,6 @@
       "ADR-013 ADR-014 implementation cleanup",
       "020 plan registry-derived helper",
       "020 tasks helper + refactors",
-      "020 checklist verification",
       "020 adr architectural shape",
       "020 shipped summary"
     ],
@@ -45,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
@@ -80,12 +78,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -207,27 +199,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "ADR-013/014 migrated the canonical spec-memory embedder to nomic-ai/nomic-embed-text-v1.5 but 5 hardcoded TS defaults survived (4 BAAI + 1 jina). When the resolution chain fell through to those stale strings the runtime loaded a model not in the registry — triggering circuit-breaker flapping, 1978 failed records, 786 null-embedding errors, 754 stuck pending. This packet adds getCanonicalFallback(provider) in registry.ts as the single source of truth, refactors all 5 sites, and locks the contract with 23 invariant assertions in registry.test.ts.",
     "created_at": "2026-05-23T11:24:22.644243Z",
-    "last_save_at": "2026-08-29T13:10:00.504Z",
+    "last_save_at": "2026-08-30T15:39:30.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4fd6bb84c39b47ea9fa0dcce4728fa644de44385ce4aa76a2563154360ff620",
+    "source_fingerprint": "sha256:d178eb3eb32a55385f3289e08d0b34e6a64f85d0de84d8b4074f7b0723bba8c9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d70bd5e24d8d38170da5593571cb435e4197079aa2fedb7db1e8b0b2314c729b",
       "plan.md": "854d464c22aabc07b19db6e06bb0e450c1b4ec90bdfe0518823db2c5540201ba",
       "tasks.md": "acbec482bacce0f3058fbce4b83cbe85ca4626c126a35e5324be3c45d9d7b7d3",
-      "checklist.md": "ad1bcf1e5e437b42ab951b8d30df6a90099c220f035b45ad9387bab856e30cc2",
       "decision-record.md": "f90049f586d259ceac92a48d09ba3bd8287d6de2643820bd3de47d1ec276f236",
       "implementation-summary.md": "42265b1cc21dad1a407f9ab63dc3f5cb069d4fa7a0c33a9bb2493eafe44c7b2b"
     },

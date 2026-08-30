@@ -18,7 +18,6 @@
       "deep-review backlog doc gaps",
       "doc cluster remediation plan",
       "doc cluster remediation tasks",
-      "doc cluster remediation checklist",
       "doc cluster remediation summary"
     ],
     "key_topics": [
@@ -32,18 +31,16 @@
       "gaps",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "summary",
+      "003-deep-review"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "feature_catalog/feature_catalog.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -65,21 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
         "source": "derived"
       },
       {
@@ -185,30 +170,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Six",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The `003-deep-review` phase-5 loop deferred a set of documentation gaps",
     "created_at": "2026-05-23T18:52:00.000Z",
-    "last_save_at": "2026-07-08T13:43:47.996Z",
+    "last_save_at": "2026-08-30T15:39:22.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ec8d6bc9381b396582eb93340413d96abfdaa7e3b9eb0cf875413caf35b6650",
+    "source_fingerprint": "sha256:e630b575abb76af55e7ee8bedecafd42c5a5655d8ad3c8040b043a6c64fe9019",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7ea5c964070360504865a5d67aa23cde11b67e47b351acee182a4c5bbcfc93e7",
       "plan.md": "bf89ac62dca0405468208e41940529acc37c4e20c11d4b137bbbee6e92d151aa",
       "tasks.md": "7abfe0284df6a47143dddea5f640643cb266cbaad49de224a1bd0e2419f50340",
-      "checklist.md": "d41be0e5050b8db40be1e01c0e7028087d071478ee18a4c16742bdfb070d9688",
       "implementation-summary.md": "7039b54400cd21c7b189d702e66d6e0564a922d5cf9a9239ac9aa20e2add47af"
     },
     "last_active_child_id": null,

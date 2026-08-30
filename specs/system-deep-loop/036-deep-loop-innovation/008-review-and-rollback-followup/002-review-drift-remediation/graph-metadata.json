@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The `001-runtime-code-review` deep-review's traceability protocols found parent-level documentation/metadata drift in `036-deep-loop-innovation`: `graph-metadata.json.childrenids` stopped at `005-trustworthy-state-records` (missing six on-disk children, 051-056); the `spec.md` PHASE DOCUMENTATION MAP still described a \"17-phase program (001-017)\" and had per-phase statuses that no longer matched the children's own `graph-metadata.json.derived.status`; ten planned-phase children (`004`, `006`-`014`) still carried legacy `system-deep-loop/065-deep-loop-innovation/...` child-alias duplicates in",
     "created_at": "2026-08-13T06:44:37.262Z",
-    "last_save_at": "2026-08-18T11:07:46.139Z",
+    "last_save_at": "2026-08-30T15:39:22.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:10f595d64fe0f03bb8b1cd9da52149eb524571eeef2dcba5ab77ec1e4c49d9f6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f76d0a6009e161516cd48db247de0229c2433980a1bb5904cd65275859deb4e4",
       "plan.md": "dbea2ec95ddb07992ffd164f62a94b5380818c51688e816f46c2e7e5329e9cdf",

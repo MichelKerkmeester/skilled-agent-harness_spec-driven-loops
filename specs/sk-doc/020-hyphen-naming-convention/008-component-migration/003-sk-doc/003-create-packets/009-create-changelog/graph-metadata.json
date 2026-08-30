@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-changelog packet contains snake_case reference filenames for topology edge cases, version bump rules, and worked examples. This phase renames those non-exempt resources to kebab-case and updates packet-local links without changing release/version fields or changelog filenames.",
     "created_at": "2026-07-14T15:22:39Z",
-    "last_save_at": "2026-08-30T07:19:28.035Z",
+    "last_save_at": "2026-08-30T15:39:16.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:9b180eee6e415eb0e4924420ce91141bebec61935289c1bf566d8bee58c8b59f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1288fcedceb845bbb7753c638a28b67ec794fd4389fbbefbe5b58840a7381406",
       "plan.md": "dd30e22e33d825eaa6485439a26b519a490252c864be6bf8e5ab030fa3a8830c",

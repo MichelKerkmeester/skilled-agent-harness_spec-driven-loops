@@ -18,7 +18,6 @@
       "merged-hub-and-mode-packets",
       "deep loop merge implementation plan",
       "deep loop merge tasks",
-      "deep loop merge verification checklist",
       "deep-loop-workflows phase 003 summary",
       "merged hub mode packets built",
       "five mode packets verbatim"
@@ -40,13 +39,18 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -57,18 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -186,30 +178,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Stage",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The five persona skills must become one skill without flattening their five distinct convergence contracts (coverage-saturation, dual-layer newInfoRatio, P0-gated verdict, two-of-three council, config-driven plateau)",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-07-16T16:31:54.944Z",
+    "last_save_at": "2026-08-30T15:39:24.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7116c07f62e5f7a57a97afe97aeb35c0180268c7b25b3800fa56cef0b513f22",
+    "source_fingerprint": "sha256:c35c740069a2eadc7eb8b6e5e9e60d9ccc7d5ab208277e86f03a8d9ebd482d70",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "82ec76c4c84d06de2b43a3f1e82a3af301468e36f36cb5b13cd92388f8efc422",
       "plan.md": "b8401d8ce4fe6e4e2a69285b99c7c840f70f05117d59b6e8e571db95c29ff528",
       "tasks.md": "5c08e539bd62f66896d1480b9d1d2f4a2657c48898f7291e76331d95fb13674b",
-      "checklist.md": "d4cdef5e19dc964e5f1573718059514027df2840c7c77b81a516b1a2769db054",
       "implementation-summary.md": "a6735834778f77c16b5a751b87b7962fa82e7b3ddc11491c01f9adba4affb7d9"
     },
     "last_active_child_id": null,

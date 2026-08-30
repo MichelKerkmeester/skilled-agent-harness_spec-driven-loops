@@ -35,26 +35,14 @@
     "importance_tier": "medium",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/research.md",
-      ".opencode/commands/deep/review.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/research.md",
+      ".opencode/commands/deep/review.md"
     ],
     "entities": [
-      {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/review.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -71,6 +59,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
         "source": "derived"
       },
       {
@@ -178,7 +178,7 @@
     ],
     "causal_summary": "`fanout-run.cjs:846` hardcodes `const convergenceThreshold = options.convergenceThreshold ?? 0.1;` as the fallback when no explicit value is supplied to a CLI-executor fan-out lineage, while `deepresearchconfig.json`'s own documented default is `0.05` — confirmed distinct from (though related to) the separate \"the flag doesn't propagate at all\" bug already fixed in child 001's dispatch",
     "created_at": "2026-07-01T07:26:03.619Z",
-    "last_save_at": "2026-07-16T16:32:12.473Z",
+    "last_save_at": "2026-08-30T15:39:25.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,6 +188,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:aee1b283b9cb8bc27caabe45902e85e95aae0bf0c7109921c786c36536e3dee7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a38e7807377d4c00a6020efb3709e7316677e9f27c2c3dd9d82d7b951f57a1a3",
       "plan.md": "e5d24d298f11617c41b82b64c2aaf663fdc7c105875e1d28376c114b5219a7f1",

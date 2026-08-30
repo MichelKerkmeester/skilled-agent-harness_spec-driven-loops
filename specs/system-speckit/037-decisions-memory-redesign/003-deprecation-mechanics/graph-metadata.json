@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The constitutional DB tier is decorative but not inert: `includeConstitutional` defaults true, so ADR-shaped `memorysearch` calls still pull constitutional files, and the indexer keeps scanning `constitutional/`",
     "created_at": "2026-08-26T05:34:12Z",
-    "last_save_at": "2026-08-29T14:54:19.786Z",
+    "last_save_at": "2026-08-30T15:39:36.659Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:aef3bc3f16d6b77feaa453d9f2ee27bbab0a63968d497b6b903d41692713eec5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b35537cbe80ba001a5e9b3df4ef54590297b6c18f44362bf02de027b6debee31",
       "plan.md": "43f49e5e0da6a30c741dd63f2525f43d84674d3d3f9b269f4f6fc5479d5d5324",

@@ -44,11 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "tests/launcher-maintenance-guard.vitest.ts",
-      "tests/memory-search-quality-filter.vitest.ts",
-      "tests/maintenance-marker.vitest.ts"
+      "tests/launcher-maintenance-guard.vitest.ts"
     ],
     "entities": [
       {
@@ -70,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -85,18 +76,6 @@
         "name": "launcher-maintenance-guard.vitest.ts",
         "kind": "test",
         "path": "tests/launcher-maintenance-guard.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search-quality-filter.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-search-quality-filter.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "maintenance-marker.vitest.ts",
-        "kind": "test",
-        "path": "tests/maintenance-marker.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,30 +169,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Two Wave",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This sub-phase closes two always-on correctness residuals surfaced by the 008 retrieval-evaluation campaign",
     "created_at": "2026-06-19T05:52:29.577Z",
-    "last_save_at": "2026-08-29T15:22:22.299Z",
+    "last_save_at": "2026-08-30T15:39:35.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b248c3d613eff51d097d944a499c93b3397042274f013a87af3140c6f1f4b083",
+    "source_fingerprint": "sha256:ae024753df692f6d3324a49e543e606ef27f2a73ede2304960be30bc9edf2ead",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cb984aa14b81549e4c1a1b4ae480f67cf5c184739506cdc6eb9a1fe83a0c3abd",
       "plan.md": "3cf50437cd964f6df1e4da4e68441febc685c6c844e6bd5c107d5e1524623b21",
       "tasks.md": "417bcf6dc73089c9325470c72949cd0231469d712f17fa8f8b583195ce1b1349",
-      "checklist.md": "f3ecd5bdc37a0630e66cbcb7496c23c9f4677beb5e66be68ee808f5ebcc3d3c1",
       "implementation-summary.md": "c0641777cada02ae0be8fdad00c2f70d2f8d100bd5cece5e87557a2f40259853"
     },
     "last_active_child_id": null,

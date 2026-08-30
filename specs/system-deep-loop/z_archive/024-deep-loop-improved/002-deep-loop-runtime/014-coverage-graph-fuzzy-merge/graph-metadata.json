@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Near-duplicate findings (same concept, slightly different wording) accumulate as separate nodes; without a consolidation layer the graph over-counts coverage and under-reports actual convergence",
     "created_at": "2026-06-28T14:02:02Z",
-    "last_save_at": "2026-07-16T16:31:58.200Z",
+    "last_save_at": "2026-08-30T15:39:24.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1a0c00ce0c86b8eccfeadebe645ebbf1fa7ac052770e8cfb8f65fe3dca19ac94",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35a4c24f8eae800246925df81f128392ced2fff6f00fa864f90dca0991277954",
       "plan.md": "1a2d141a5bc6ea1a779b2e7cd3cbbc30e8a3c9f01b931c94ed18f0cab5ebed01",

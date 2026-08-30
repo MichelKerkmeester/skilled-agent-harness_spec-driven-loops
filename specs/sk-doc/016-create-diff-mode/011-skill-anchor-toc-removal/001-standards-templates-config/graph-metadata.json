@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The sk-doc standards, doc templates, and `templaterules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR` markers as recommended",
     "created_at": "2026-05-26T09:40:16.335Z",
-    "last_save_at": "2026-08-29T15:22:01.258Z",
+    "last_save_at": "2026-08-30T15:39:14.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:94e92a21a5f67da47b3d586088951b5ce03926a5ae3aab294acef40163ac0884",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89d73db5a881b53a85b2ba256cdb74b968e4713e709971e591b9461c167f9519",
       "plan.md": "985a209eeb681bbe093567933b414f20eb9e92739d7efb90cd50df3eec73b737",

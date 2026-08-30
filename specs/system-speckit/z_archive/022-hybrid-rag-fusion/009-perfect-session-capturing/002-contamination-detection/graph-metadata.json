@@ -19,10 +19,9 @@
       "plan",
       "tasks",
       "conta",
-      "verifica",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "detection"
     ],
     "key_topics": [
       "feature",
@@ -32,31 +31,48 @@
       "plan",
       "tasks",
       "conta",
-      "verifica",
-      "checklist",
       "implementation",
       "summary",
-      "three"
+      "detection",
+      "three",
+      "guard"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/memory/validate-memory-quality.ts",
       "scripts/lib/content-filter.ts",
       "scripts/extractors/contamination-filter.ts",
       "scripts/core/workflow.ts",
-      "scripts/tests/task-enrichment.vitest.ts",
-      "plan.md",
-      "implementation-summary.md",
-      "tasks.md",
-      "checklist.md"
+      "scripts/tests/task-enrichment.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -87,30 +103,6 @@
         "name": "task-enrichment.vitest.ts",
         "kind": "test",
         "path": "scripts/tests/task-enrichment.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,27 +188,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "audit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three guard layers exist for contamination detection (lexical scrubber, prompt-quality pipeline, post-render V8/V9), but they run on different payloads and have significant blind spots",
     "created_at": "2026-04-12T09:02:50.268Z",
-    "last_save_at": "2026-07-10T06:24:14.704Z",
+    "last_save_at": "2026-08-30T15:39:38.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa8fdbba88396c0e07b43a607f046127c00ed13df1036318bd368cfa637cd8b6",
+    "source_fingerprint": "sha256:ed37eb4d8eb99d3d5507ebd07b7e8b3e6927cdc6f17f5dd4e0d1291033904b7d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45cc0e2f635dd639d11fd918a9ba83ea5b37e1c9483d9b194504eb1ad70e675e",
-      "plan.md": "263e6bc3ad265929df09be9e85b6cf6371a4aaab217a04e2ed74a10654ff9177",
-      "tasks.md": "d59319182cb7683f1e97a57b40fbb47fe3faa7ab65db30cd273f032fd48b62f2",
-      "checklist.md": "12bc33cfa35fec0aa32011dbdcffd3c399dd99eb69fd6fd454066b1f768a783d",
-      "implementation-summary.md": "19c86ebc4ee60dbca5630b056d92562ec802f3722ac34bee9a4f780154356f17"
+      "spec.md": "a57e8ea3fea8b02239e276fc9427b853bddc8f7bbb440897b351e1beabecd7bf",
+      "plan.md": "d61b9a5dcdde6fd1b9c61bdcfac92e677314aeffec23b93309b340aa98d9421a",
+      "tasks.md": "f18c1375990e692177cd42f6fd483031dcd4af4fef5136d79f4d11182827a21f",
+      "implementation-summary.md": "2480656678158691c6a6eb4d10ba67acd01c2916de7201e85ed27d61630c1263"
     },
     "last_active_child_id": null,
     "last_active_at": null

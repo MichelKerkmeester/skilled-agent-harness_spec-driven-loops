@@ -18,11 +18,11 @@
       "four design mode implementation",
       "sk-design consolidation tasks",
       "design subworkflow migration",
-      "sk-design consolidation verification",
-      "four mode checklist",
       "sk-design consolidation decisions",
       "design command subworkflow architecture",
-      "sk-design consolidation summary"
+      "sk-design consolidation summary",
+      "four design mode implementation evidence",
+      "sk-design consolidation handover"
     ],
     "key_topics": [
       "sk-design",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
@@ -73,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,29 +193,34 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Foundations and audit were registered as peer hub modes despite being interface-domain workflows",
     "created_at": "2026-07-26T09:12:46.542Z",
-    "last_save_at": "2026-08-29T15:22:00.347Z",
+    "last_save_at": "2026-08-30T15:39:12.937Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:96a59168e903d81b25ee9d84800166d7f0a04457617babec7203a781aacb5154",
+    "source_fingerprint": "sha256:79db32749daf194acb840e7e846fe79243880ffe20129a01ad005e63cb3fffdc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7f09a984bfb3dfa9a0480d4150482c20cfab33d355bb539a1f0d669daeeea33a",
       "plan.md": "ca97b19f6628f2b9c21871a055f8be7a47ee0ec26cc79b59572402ccd9a5feec",
       "tasks.md": "42b0e33a76af8003dbe50fb34f31f70cd3ecc3082b31ecd035b262a995125aae",
-      "checklist.md": "a002046d2bafefc3740109df8e28cc4a75a5a3ebde35c3d820caa13eb26c7d03",
       "decision-record.md": "856e63422b21c36e780cd931e821915626ca9a2d339bf34fb3c54c706de68946",
       "implementation-summary.md": "175e697f1f00dcb3854ad6c4a407e9625fdee842c280c7f1cbf3ebb4763de11f",
       "research/research.md": "b8439b2a153b8377161b1776675b52a327e6544bd3b33955479ac07ffd74e127",

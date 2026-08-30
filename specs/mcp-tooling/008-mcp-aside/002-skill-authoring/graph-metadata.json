@@ -41,17 +41,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/spec.md",
       ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/plan.md",
       ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/tasks.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/checklist.md",
-      "checklist.md",
-      "tasks.md",
-      "spec.md",
-      "plan.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md"
     ],
     "entities": [
       {
@@ -73,9 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/002-skill-authoring/checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -88,12 +86,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-aside-devtools/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,26 +189,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-tooling hub has no mode packet for the Aside browser: there is no `SKILL.md` doctrine for when to reach for Aside CLI versus the Aside MCP fallback, no install guide, no routing-recall scenarios, and no backend documentation",
     "created_at": "2026-07-16T09:39:15Z",
-    "last_save_at": "2026-07-17T06:03:55.931Z",
+    "last_save_at": "2026-08-30T15:39:09.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f17f645f94cdd6e66f5be3e39ef085445779d94baf1e0f6afb12e57e4bb1000c",
+    "source_fingerprint": "sha256:51f066b79a90105b339da96d8076d6bdf3f36e8190770916b75e94312f28642b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7355d8d465786f212666314385ed52981b0aefe5af9fe20a80da5852640b14a7",
       "plan.md": "baadf44a8b3fc87c2a6d3fd270140226113e9333cb64efecfd1486f01a4ce066",
       "tasks.md": "7d6e82012b96b970fa4eedf9920440875d3662d053bf170febb3d94f67e08d8a",
-      "checklist.md": "c90801822f0b1508cb6cc8864beb6b14d5384870c435f8edd0b7c31ad8981ad8",
       "implementation-summary.md": "1f815005b9884ed0d060b014b702ef73f542704fc885669fa36b18712235e20e"
     },
     "last_active_child_id": null,

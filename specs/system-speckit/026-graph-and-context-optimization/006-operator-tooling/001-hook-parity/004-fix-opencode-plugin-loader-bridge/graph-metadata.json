@@ -24,7 +24,7 @@
       "opencode plugin loader plan",
       "026/009/007 tasks",
       "opencode plugin loader tasks",
-      "026/009/007 checklist"
+      "026/009/007 adr"
     ],
     "key_topics": [
       "opencode",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "tests/opencode-plugins-folder-purity.vitest.ts",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,27 +190,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "How Delivered",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode 1.3.17 fails to start the TUI in any directory whose `.opencode/plugins/` resolves through the symlink at `/Users/michelkerkmeester/MEGA/Development/CodeEnvironment/Public/.opencode/plugins/`",
     "created_at": "2026-04-22T13:32:00.000Z",
-    "last_save_at": "2026-08-29T15:22:17.537Z",
+    "last_save_at": "2026-08-30T15:39:32.090Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05e1558c21318cdf6933eb027875ce5248dbaaf664a4ae17bc8f3bbd17fa19e6",
+    "source_fingerprint": "sha256:5d84f9f366e074d1fc2af67c2952606d6c0f11f3e45fe6bfe67057b7a1ab7c6d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eb99a857f8999326a617a02809714905ae37eedc10c18b3e50f05ee3ce73dce4",
       "plan.md": "0c33bb47a58772f4a14531bc9d1f1de74e39449ec901a383ea8902fc4e4c9ad3",
       "tasks.md": "ceb8b154f73ec26924a72aa5d0c44e70831c8a932e56c2552dcd4d75f02374e6",
-      "checklist.md": "bafa687a44f419f26d865ebcc10f951c821b850ef4bdc0bf787956c2fdb23964",
       "decision-record.md": "38aed41d45a0ed6396b618800de0dcb985a7de583bc572f3da9a60283bc5aa61",
       "implementation-summary.md": "639e7e8e61d31ed597cd9628a8a8502e0c48809c9c56ad645a7485bdf604e419"
     },

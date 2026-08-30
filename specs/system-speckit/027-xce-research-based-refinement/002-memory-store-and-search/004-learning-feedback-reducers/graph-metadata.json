@@ -107,13 +107,14 @@
     ],
     "causal_summary": "Phase-parent control packet for post-012 learning feedback reducers: shared aggregation foundation, session-trace causal reducer, learned retention reducer, and env/tests integration closeout.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-08-29T15:22:19.593Z",
+    "last_save_at": "2026-08-30T15:39:33.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:72ae50b59d9c91a06f629d29506ce1401251bbb77eb93b19c144ccafd4cff541",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba7809d3f645dd37d258c9533635ce22fcece189fef6caf38d1ccdbfe98b9ff9"
     },

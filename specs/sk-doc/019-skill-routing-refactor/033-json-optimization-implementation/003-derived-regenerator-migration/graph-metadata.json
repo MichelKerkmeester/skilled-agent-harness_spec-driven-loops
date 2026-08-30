@@ -17,7 +17,6 @@
       "derived regenerator migration plan",
       "skill root freshness gate plan",
       "derived regenerator migration tasks",
-      "derived regenerator migration checklist",
       "derived regenerator migration outcome"
     ],
     "key_topics": [
@@ -32,7 +31,7 @@
       "fleet",
       "plan",
       "tasks",
-      "checklist"
+      "outcome"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/dist/memory/generate-context.js",
       "mcp-server/package.json",
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +167,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Outcome",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Blast Radius",
         "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Build a skill-root analog to the spec-folder backfill-graph-metadata regenerator: derive key_files/source_docs/entities/trigger_phrases/key_topics from each skill's corpus while preserving authored causal_summary and the TS lifecycle/redirect capabilities per the phase-001 canonical-schema decision; migrate all 11 existing skill roots to that shape; add a derived-freshness CI gate.",
     "created_at": "2026-07-29T08:00:08.862Z",
-    "last_save_at": "2026-08-29T15:22:03.089Z",
+    "last_save_at": "2026-08-30T15:39:15.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8372b8afba7c59c908f82bbc9668727ae364215d877f49dfb5fd36864e583800",
+    "source_fingerprint": "sha256:098dc0f55641024d8a98e6aa53002b14403777e4cbab56be52da8d1815038876",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "84220ff423c2d8803da041161910244303a723fd46c65aca4f0cb5bcb9a21f50",
       "plan.md": "1bdfaadaf0df7408f4943f04ac3fce459b075d1fbf863cf57ab7cbd0b0594ac8",
       "tasks.md": "57bede173e5fda5b462f2ec982f7e6151b50742c06a4cf6d10468e4749388b5c",
-      "checklist.md": "8237e5c9aa606818d76bd3d7253f0ce1568b9601e19255adc421dd08c82ac70c",
       "implementation-summary.md": "ee903bf8cbc64985ee75bdc0dd88903b921181fa3c66cef63bac1ecfdcbde84d"
     },
     "last_active_child_id": null,

@@ -20,9 +20,9 @@
       "agent improvement certificates and receipts tasks",
       "agent-improvement evidence tasks",
       "offline verifier tasks",
-      "agent improvement certificates and receipts checklist",
-      "agent-improvement verifier gate",
-      "certificate replay verification"
+      "agent improvement certificates implementation",
+      "agent-improvement receipt issuer",
+      "agent improvement offline certificate verification"
     ],
     "key_topics": [
       "agent",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -157,30 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Deep Review",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -191,26 +160,37 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Provide a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-007 primitives, preserves deep-improvement-common evaluator/canary/promotion identities, and can be re-verified offline before the mode gate accepts shadow parity",
     "created_at": "2026-07-16T03:43:38.290Z",
-    "last_save_at": "2026-08-29T09:58:13.883Z",
+    "last_save_at": "2026-08-30T15:39:21.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d7fcb768ba8d2d8326a082bf44e04d00e05f20e92325d92e4d98567555f1730",
+    "source_fingerprint": "sha256:3dec90c24e4154d6b9790d2994004c825683119664d463fcaf058ad87725b607",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "801a1edc77377f85bf818865f30969bfda3abac5efb0976a172ca8f8f1631922",
       "plan.md": "70dcf3f4aa8b1e0ffc92852fc5f4c0099e6025f1db39983666d829e306e178e2",
       "tasks.md": "12393899b1054c7f86036fa03efed6cb70213a9a355766e35969a28edc303a7f",
-      "checklist.md": "2752e558c3d9f33dc1bec753eeb0f790998b8801ffbd679d24e0d6be8f97ef59",
       "implementation-summary.md": "da1f415af7be21ac116ddc40f59b95b1f487f2f16b83bd501f0d7f72109f89e2"
     },
     "last_active_child_id": null,

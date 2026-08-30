@@ -42,26 +42,18 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "scripts/README.md",
-      "tests/README.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/specs/sk-design/014-template-conformance/spec.md",
-      ".opencode/skills/sk-design/benchmark/reports/baseline/README.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/README.md",
+      "tests/README.md",
+      ".opencode/specs/sk-design/014-template-conformance/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -77,15 +69,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -185,36 +177,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Pct",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Four small, unrelated structural irregularities surfaced during the hub-wide template audit that don't belong to any single mode's own conformance child: a vestigial empty test-result stub sitting where a real dependency install would go, four loose runtime `.mjs` modules at a packet root when every sibling mode keeps equivalent code in a domain-named subdirectory, a benchmark run-category directory missing the index file its siblings all have, and two structural absences (`procedures/` in one mode, `scripts/` in another) that are legitimate rather than gaps",
     "created_at": "2026-07-27T14:48:40.147Z",
-    "last_save_at": "2026-07-27T18:41:59.386Z",
+    "last_save_at": "2026-08-30T15:39:13.378Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6797650c97b3a268106216f1ec50f56fd57e0e0dd6c036888d173922d4326539",
+    "source_fingerprint": "sha256:cfbc7d9c4c772dfc0251b1fb3bc5645344751c820322399006cb4fccae322fb9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2e55dd2abe1ed988bba9c12167eb7f7a579081d842ddb5553a0ddb768f6e38cb",
       "plan.md": "234098817c98d52f106450b210ae7ff22cd59332153e308cc183352eadb5cd36",
       "tasks.md": "be3aa589e6742d8c9d34b37983cd275c624d64e7a55e3573faf44f7638c23af7",
-      "checklist.md": "4dd11fa38e8d6eee65da25868f62e818a55693373d38bcab68433fa090b10500",
       "implementation-summary.md": "f83790872f4487d08736bf3f66bc64bf66cad6630073afcfcd9c0b408276d616"
     },
     "last_active_child_id": null,

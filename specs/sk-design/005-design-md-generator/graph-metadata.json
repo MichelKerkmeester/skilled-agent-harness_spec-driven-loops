@@ -44,11 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/specs/sk-design/005-design-md-generator/spec.md",
       ".opencode/specs/sk-design/005-design-md-generator/plan.md",
-      ".opencode/specs/sk-design/005-design-md-generator/tasks.md",
-      ".opencode/specs/sk-design/005-design-md-generator/checklist.md"
+      ".opencode/specs/sk-design/005-design-md-generator/tasks.md"
     ],
     "entities": [
       {
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-design/005-design-md-generator/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/005-design-md-generator/checklist.md",
         "source": "derived"
       },
       {
@@ -170,49 +162,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Level",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Design references generated from a live site need to preserve measured CSS values and clearly separate observed facts from interpretation",
     "created_at": "2026-07-16T09:27:32.433Z",
-    "last_save_at": "2026-08-29T14:54:13.509Z",
+    "last_save_at": "2026-08-30T15:39:12.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f30c016f5e14dd002e90e70e06eb08b5448b79c1c2a7d5905ab3a4f4bccddec1",
+    "source_fingerprint": "sha256:2aa3da1636bc0329c6958c1756ddf0bc6d87b66b6f3751b5c9fc469f7d2c19c9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e65394161614f6410fc54b179ad4e6a2fa732b796317a75b2b1f19c4e607d17a",
       "plan.md": "4e37e412bf1eddfb7b8077452636c0fc37447712c1b97cc7a2aacb2bf085eeb2",
-      "tasks.md": "ceda0ca16eb21d4c13c387ad0f448b31537d6e7ea17e1ea5a92dbf741a18a505",
-      "checklist.md": "67fbe515abcab1ea7b3eec22bd46e5526adeba71bdea6c22d741229f5bd2534a"
+      "tasks.md": "ceda0ca16eb21d4c13c387ad0f448b31537d6e7ea17e1ea5a92dbf741a18a505"
     },
     "last_active_child_id": null,
     "last_active_at": null

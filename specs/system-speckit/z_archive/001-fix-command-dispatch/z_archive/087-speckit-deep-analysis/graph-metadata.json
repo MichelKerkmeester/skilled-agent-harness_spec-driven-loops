@@ -22,7 +22,7 @@
       "plan",
       "tasks",
       "deep",
-      "verification"
+      "decision"
     ],
     "key_topics": [
       "feature",
@@ -35,69 +35,28 @@
       "plan",
       "tasks",
       "deep",
-      "verification",
+      "decision",
       "opus"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/commands/memory/save.md",
-      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
-      ".opencode/skills/system-spec-kit/scripts/scripts-registry.json",
-      ".opencode/skills/system-spec-kit/README.md",
-      "decision-record.md",
-      "mcp_server/INSTALL_GUIDE.md",
-      "constitutional/gate-enforcement.md",
-      "scripts/scripts-registry.json",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/commands/memory/save.md",
+      ".opencode/skills/system-spec-kit/scripts/scripts-registry.json",
+      ".opencode/skills/system-spec-kit/README.md",
+      "scripts/scripts-registry.json"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "gate-enforcement.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
-        "source": "derived"
-      },
-      {
-        "name": "scripts-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/scripts-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -113,9 +72,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -125,9 +84,27 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "scripts-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/scripts-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -201,27 +178,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Bug Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "6 Opus agents analyzed the system-spec-kit ecosystem and found: (1) a SQL CHECK constraint that silently rejects valid `CREATELINKED` PE decisions, losing conflict tracking data; (2) the speckit.md agent references 2 non-existent MCP tools and uses a completely wrong 5-layer architecture instead of the actual 7-layer one; (3) SKILL.md references \"AGENTS.md\" (renamed to AGENTS.md) 5 times, causing incorrect cross-references for any agent loading the skill",
     "created_at": "2026-04-12T09:02:53.558Z",
-    "last_save_at": "2026-07-10T06:23:51.092Z",
+    "last_save_at": "2026-08-30T15:39:37.623Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4f03ce87a841dfb0eb73270f3d1fb9b8e66ff69075b7e3c0d00307728e51dc1",
+    "source_fingerprint": "sha256:9d55e9c4bc13983ffe57c4f3d3d2f8db5bd8f2b5b315f03e9910a5984f2caef0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "446c2369f24916624b606a3fc387b0e6970e6a18825bb92ff5ba4910f0388996",
       "plan.md": "dbf049904242a1e98fddef4725dd17bdfe1f1c58825f6a06ac9a90af4ff6b80c",
       "tasks.md": "80ac860517a75b0607b1026fca899a817ea334fcb4ae1c99e39c1c476ce6ac53",
-      "checklist.md": "d53a509dc2f449b1c21cd4b65b75d1af3a33fd74bdc125899971325deaea0de2",
       "decision-record.md": "e90685542aed93cc952b3f7837662cf3aecfd506c47c4783d75993541f6847eb",
       "implementation-summary.md": "208b5b5ce8afe7dea9afd7bca8522124d7e89e86502abcd2834ed5686ebd5628"
     },

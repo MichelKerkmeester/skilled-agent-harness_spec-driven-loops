@@ -87,13 +87,14 @@
     ],
     "causal_summary": "The sk-design hub root itself (8 identity/registry files, plus benchmark/, changelog/, feature-catalog/, manual-testing-playbook/, and styles/) has never been audited as a unit against the parent-skill-hub template family",
     "created_at": "2026-07-27T14:59:56.036Z",
-    "last_save_at": "2026-08-29T14:54:12.589Z",
+    "last_save_at": "2026-08-30T15:39:13.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:eed7d365662952fdd7eff738487e0be404f9f69dad7638fef312b5b7fbadf778",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c2738134ecc564fa771a37953d2985377f239a511cc7a80abdd3b2b627aadc2b"
     },

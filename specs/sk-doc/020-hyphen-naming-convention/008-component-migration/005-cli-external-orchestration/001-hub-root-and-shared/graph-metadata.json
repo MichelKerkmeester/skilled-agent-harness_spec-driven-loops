@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary. This phase records ownership and renames only hub/shared-owned authored names without crossing delegated playbook or benchmark scope.",
     "created_at": "2026-07-14T15:17:35Z",
-    "last_save_at": "2026-08-30T08:04:25.114Z",
+    "last_save_at": "2026-08-30T15:39:16.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:87b6133891577eaf8e6b739e22b1e78a6213e5b59c7dbc2fe4f15998a6b67f2c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d4b844aba7a8fe7d317aa24cb1d91f6186ff168f9a99b6442dcfc29ee0c25b5",
       "plan.md": "d1be2326cd711569f9d33ab6dda4cac6762f236f0a0e9643b0eb5b18691831af",

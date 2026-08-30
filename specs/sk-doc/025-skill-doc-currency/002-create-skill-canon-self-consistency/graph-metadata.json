@@ -22,7 +22,7 @@
       "canon consistency tasks",
       "authority proof task",
       "scaffold rehearsal task",
-      "canon consistency checklist"
+      "workflow section required or advisory"
     ],
     "key_topics": [
       "skill",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
@@ -74,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,27 +194,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A canon that contradicts itself cannot be enforced, and this one contradicts itself in the most consequential place",
     "created_at": "2026-07-30T19:29:16.753Z",
-    "last_save_at": "2026-08-29T15:22:03.994Z",
+    "last_save_at": "2026-08-30T15:39:17.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cff63cd156cee25518fc90c563d808d7e9782ea2209c99eb40fef7f706a5d332",
+    "source_fingerprint": "sha256:f6413370df87e760c0d1e4c9f4c5266226211a6cdcc9d325785986136641eec6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "609373a704cd3998ac066b7b3493e9abba7fe8a442aa713603c0c91a93c3775b",
       "plan.md": "b19862ff491e5acd7b758ad24778167dd61551afde13e0c0c7958c31b6e2360d",
       "tasks.md": "ddb0d3c21a55cbbfed986dccd0feb6f15c57702cdfcd2c1023e6783f15d3e920",
-      "checklist.md": "dbf1671a27866a84aab53391b188d222d7407438d21ea1fdecfb50f4950d7b7f",
       "decision-record.md": "3e101aee69d74a62f980f86f1592af764b89432b9ab5c8b310c9eee00eb90ba8",
       "implementation-summary.md": "f455aa53eba3d8a7661aecefa9c1d42c70769aa4043562d7749bd6815030fc99"
     },

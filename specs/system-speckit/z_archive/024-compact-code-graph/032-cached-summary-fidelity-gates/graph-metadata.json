@@ -17,8 +17,6 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
       "record",
       "summary"
@@ -33,20 +31,16 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
-      "decision"
+      "decision",
+      "record",
+      "research"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -55,24 +49,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hook-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-bootstrap.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
         "source": "derived"
       },
       {
@@ -85,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,29 +164,52 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Beyond Local Maxima",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The research kept cached startup value only under fidelity and freshness gates",
     "created_at": "2026-04-12T09:02:53.440Z",
-    "last_save_at": "2026-07-10T06:22:45.015Z",
+    "last_save_at": "2026-08-30T15:39:39.823Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5fa25cd2c1753a00c612b8e32125e621d5ef81466f40d839d4e9bb13901bdaa",
+    "source_fingerprint": "sha256:e324d3f81656a6e7cf0ea61e149f52bd6efd86c636ce7aed91bcc276dc9d2aed",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b5281c6bc4c6482970e8771b89010c77407d852d0d1874ab1ff4d568444e9332",
-      "plan.md": "6c33100477680cb84ed2834645caeccf6cbc3c83c1f714dd3124c6a58a342ada",
-      "tasks.md": "4bb2b16554546ca0bd53853b9c3782a35cf2e49b6f538354cd8f7a958153cc8b",
-      "checklist.md": "78b61317d6ff93bb456b7c2ba6d5601e8feb634c1f97bd6fe71a4237eec5d6d3",
-      "decision-record.md": "7287a2c39ab0fe1c71bf81b6377450bc9795f098e9caa148fca5cf56fca77662",
-      "implementation-summary.md": "4b1823d62697f8461483f219e80a610c24830ac89355ee33820ef45d2899fc0a"
+      "spec.md": "a5bbc36c08f406b09ce7c9ccd225085c591658b072a258ff1dd98f43835a9f87",
+      "plan.md": "d6061e8a77c8ac4436ece8cfdb218f8ee3cbc32d8dfd42500ba60bd12e928a5f",
+      "tasks.md": "99023abde13e5b2b5249cb08fad0d3910c952052812b58176dba5237d6e3ae3a",
+      "decision-record.md": "bc6076dfbb1180a05eeb74fa5d289de507e4a6a3700ccdf170d3f9638af3ac7b",
+      "implementation-summary.md": "69088882029f23f4e4e60f995b3c9259d27b13ca87e5ad8128055b37fd29085f"
     },
     "last_active_child_id": null,
     "last_active_at": null

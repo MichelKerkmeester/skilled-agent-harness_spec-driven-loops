@@ -70,9 +70,7 @@
       ".opencode/agents/orchestrate.md",
       ".claude/agents/README.txt",
       ".claude/settings.json",
-      ".claude/settings.local.json",
-      ".claude/CLAUDE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
+      ".claude/settings.local.json"
     ],
     "entities": [
       {
@@ -127,18 +125,6 @@
         "name": "settings.local.json",
         "kind": "config",
         "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "CLAUDE.md",
-        "kind": "doc",
-        "path": ".claude/CLAUDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-index.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -210,7 +196,7 @@
     ],
     "causal_summary": "The two deep- skills currently use a `sk-` prefix (`sk-deep-review`, `sk-deep-research`) inherited from when all skills carried it",
     "created_at": "2026-05-05T18:00:00Z",
-    "last_save_at": "2026-07-16T16:31:35.360Z",
+    "last_save_at": "2026-08-30T15:39:24.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,11 +204,12 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:d0f4f1b94cb055fc6780d64bf0641084bc53f9a4e2ec6db1a702ae788712546e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a67742cdca4876b3d8eb40c5b49b98aaed029515f4e931c9c2825addadbf4418",
       "resource-map.md": "2a5589fb77ba98922443dd504190acb60753dbb82cc24512d219d05c172dfd9a"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/015-sk-deep-rename/002-skill-folder-rename",
     "last_active_at": null
   }
 }

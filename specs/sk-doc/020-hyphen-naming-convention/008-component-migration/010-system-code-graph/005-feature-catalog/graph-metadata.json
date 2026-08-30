@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The code-graph feature catalog currently uses the snakecase root featurecatalog, eight snakecase category",
     "created_at": "2026-07-14T15:18:16Z",
-    "last_save_at": "2026-08-30T07:19:53.360Z",
+    "last_save_at": "2026-08-30T15:39:16.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:baa01f2b9f8d3d7503603d8734fd1a3c517ab55e461c2f0023f21df31e0c5487",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "041d64f5d8100f8fa445664990e8c36b10a6e745d710a93d817d6107f49e7431",
       "plan.md": "2a8d0b229214006aa950bbd37498e9fddddb276a1e44d3f117779686ad3af595",

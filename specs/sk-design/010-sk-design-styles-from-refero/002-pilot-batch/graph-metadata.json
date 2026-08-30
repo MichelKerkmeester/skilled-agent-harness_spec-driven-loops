@@ -20,9 +20,9 @@
       "refero pilot tasks",
       "styles pilot tasks",
       "go no-go tasks",
-      "refero pilot checklist",
-      "styles pilot gates",
-      "go no-go verification"
+      "refero pilot summary",
+      "styles pilot status",
+      "go no-go result"
     ],
     "key_topics": [
       "refero",
@@ -34,9 +34,9 @@
       "no-go",
       "plan",
       "tasks",
-      "checklist",
-      "gates",
-      "verification"
+      "summary",
+      "status",
+      "result"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,11 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/sk-design/styles/README.md",
-      ".opencode/skills/sk-design/styles/_manifest.json",
-      ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
-      "implementation-summary.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,33 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/styles/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "_manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/styles/_manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "extract-refero.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,26 +166,49 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The harness is proven on three styles, but a decision to extract all 1,290 needs evidence at a representative scale: does the output hold across varied styles, how long does it take, and what does the storage footprint look like?",
     "created_at": "2026-07-18T06:30:48.677Z",
-    "last_save_at": "2026-07-18T10:25:47.246Z",
+    "last_save_at": "2026-08-30T15:39:12.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0df9562df1db9be460390f06399ab8c8001fbbc0b1d56d73fe45ea30554787a5",
+    "source_fingerprint": "sha256:b59a0cab71efcf1179e298c8475f044f9db66b135248b554b671b0b383080980",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6db45e284e2853c37f9097054e8187b625b068a521e36f09d324af9973dd8fd1",
       "plan.md": "fa3c868360bbd0798c4d2061f05fa30241f31a23bb62cc05a78417538a12c3ed",
       "tasks.md": "c7d5501bad571a152941f144f7b0cc7ff7acf8c83ff5ad15711fb44977015ba7",
-      "checklist.md": "76b564eebdb369fbdb634bce2a0f3af27de3be050a08067e5b277032d5bb4ee7",
       "implementation-summary.md": "506c4cde35133dc33533cd154eb16f543aa73f3f48aafe1df70c6481487e2815"
     },
     "last_active_child_id": null,

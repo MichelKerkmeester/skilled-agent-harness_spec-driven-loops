@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/017-cli-devin-effectiveness-improvements",
-  "spec_folder": "cli-external-orchestration/017-cli-devin-effectiveness-improvements",
+  "packet_id": "cli-external-orchestration/z_archive/017-cli-devin-effectiveness-improvements",
+  "spec_folder": "cli-external-orchestration/z_archive/017-cli-devin-effectiveness-improvements",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -40,19 +40,13 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "research/retrospective.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/retrospective.md"
     ],
     "entities": [
-      {
-        "name": "retrospective.md",
-        "kind": "doc",
-        "path": "research/retrospective.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,6 +69,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrospective.md",
+        "kind": "doc",
+        "path": "research/retrospective.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 40-iter cli-devin SWE-1.6 run for packet 999 surfaced clear improvement targets:",
     "created_at": "2026-05-16T05:50:00Z",
-    "last_save_at": "2026-07-14T19:26:18.308Z",
+    "last_save_at": "2026-08-30T15:39:08.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5ed3ddec78bb782b23f9f65e3835470d67e8789262b61f1e3d7b987aeab4a55",
+    "source_fingerprint": "sha256:565859efa235c5517bcd2fe616e9e94f8e7821353ec347619f116c4fc6a5c155",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f4704dcd6f58a8ec3fc53c72e41b3f966bf934efd471e3506e4bfc47be85b29",
-      "plan.md": "e96d0909d9c4f5aa4db1194efe060eb562e36d7fc05c14c6d5e13ced8ac2ab38",
-      "tasks.md": "5986a2ed98e6f1cc4776939c16cc67b3044d7fe96312e86c6d91531456f1c760",
-      "implementation-summary.md": "11fde56e13fa6614dd883a566d3e4a310164323119aa61399bccfbae48271c89"
+      "spec.md": "0748100207c525dac23a72fdf86edf154f4ee473620fd246cce57254b7c023a3",
+      "plan.md": "9a3d6102f3dc94fca955c5e18139132e7dc58bad7f3854f834fd8526e4b37db7",
+      "tasks.md": "833ae4e30815bb766cde9ee987239b5a8cf9c936188704cf1aded6ed8f0ab790",
+      "implementation-summary.md": "e31d8093c50c619f86edd306189af491aa6915aa00a6815f31924867b1210d30"
     },
     "last_active_child_id": null,
     "last_active_at": null

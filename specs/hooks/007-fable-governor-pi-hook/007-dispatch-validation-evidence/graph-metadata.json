@@ -21,8 +21,8 @@
       "dispatch evidence tasks",
       "Pi factory evidence",
       "Vitest baseline tasks",
-      "dispatch evidence checklist",
-      "Pi tool_call verification"
+      "dispatch evidence summary",
+      "Pi tool_call evidence status"
     ],
     "key_topics": [
       "dispatch",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
       ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,30 +184,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The packet currently mixes pure predicate assertions, shared matcher tests, registered Pi behavior, and live startup into one evidence story",
     "created_at": "2026-08-04T17:57:54Z",
-    "last_save_at": "2026-08-29T14:54:14.496Z",
+    "last_save_at": "2026-08-30T15:39:09.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a514aeeb6acf0fc75ab85bfe7035e6e042e7880c6edd4a53f203e82cc41acbea",
+    "source_fingerprint": "sha256:bf91da74548798f6d133b01b6b2ea5b49a1149d556007aa60d9ca45015790b3f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ce0d4808313fe7a973f6010777a6867224f1633778dccb02bcaa5c027830770",
-      "plan.md": "08b378bc34d9e9f9f9bbdd2f9fba412fe460f838b6896f693453cf509407bb88",
-      "tasks.md": "78589d0fe093aec729ed1bb12fe346bd653354ec35fa238714ec122e612420cd",
-      "checklist.md": "cb458b09674af86b207ed736e69a246a81ab4026b59d769ff749eb234c02fd7c",
+      "plan.md": "d7b8be874bc211416e19f4ac91f0e6d485e6d202069baeea8ce0aa1f0400b095",
+      "tasks.md": "87178944bb1d4aed4a329229df69011e44903abf6f7134cdb2ce00b6b6de5c36",
       "implementation-summary.md": "9589af57f34895b2d150ce07575cb6e246e0c896d597dc17f95b2689233bf2ee"
     },
     "last_active_child_id": null,

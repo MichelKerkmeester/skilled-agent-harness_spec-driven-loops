@@ -30,7 +30,7 @@
       "goal hook playbook tasks",
       "template",
       "tasks core",
-      "goal hook validation checklist"
+      "goal hook validation summary"
     ],
     "key_topics": [
       "goal",
@@ -52,7 +52,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/pi-injection-excerpt.txt",
       ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/devin-injection-excerpt.txt",
@@ -82,12 +81,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,36 +192,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Packet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet `003-goal-hooks-cross-runtime` shipped the runtime-neutral session-goal hook for Devin, Cursor, and Pi (plus the OpenCode plugin symlink mirror), but it closed without any manual-testing-playbook coverage for the hook and without live evidence that the hook's injected `[activegoal]` block actually reaches the model turn in each runtime",
     "created_at": "2026-07-29T09:41:34.533Z",
-    "last_save_at": "2026-08-29T14:54:15.301Z",
+    "last_save_at": "2026-08-30T15:39:09.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:464442f6516600a5e193380dc09fe76902fed2a663213024f9f2d08ee746e69e",
+    "source_fingerprint": "sha256:e88529ea0547a425ab09a5f858d38d9fb7781bfb75f7793512739616226703e2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "defc5f0e4bdac3e4125b781787977ca00a1c71bed826e9c7cc4942162daad69f",
       "plan.md": "86af6caad46b39399e6fae3afde19a200da8f48cddbe1c60109036221e6ea9b8",
       "tasks.md": "0f916a5584b96273554ca50e20eadb5e5b00d230c67627a9cb6e4a41e77e2c2e",
-      "checklist.md": "2a34a490a6ac0ff019e76cf81f0403ef04538d13bed30845bee5562a11c6f26e",
       "implementation-summary.md": "e67ea0c1dc0c8609fc9ccc1df942104769b8f46e757dd85d2e5f2f2b68cc0b00"
     },
     "last_active_child_id": null,

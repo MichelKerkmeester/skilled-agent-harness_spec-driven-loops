@@ -22,7 +22,7 @@
       "non-converging flags",
       "deep loop market research tasks",
       "45 iteration task breakdown",
-      "deep loop market research checklist"
+      "deep loop market research decisions"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
@@ -74,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,28 +194,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Eliminated Alternatives",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`system-deep-loop` improvements are currently sourced only from local incident experience; the repo has no systematic map of what the wider ecosystem has learned about running agentic/iterative loops (termination policy, evaluator loops, reflection, durable state, fan-out determinism, novelty-driven broadening, budget control, observability)",
     "created_at": "2026-07-15T19:00:45.940Z",
-    "last_save_at": "2026-08-29T15:22:06.474Z",
+    "last_save_at": "2026-08-30T15:39:20.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:756d6d51d8657af675c23980864c029a6cc2462a968bef643ba89208fa2a3e2e",
+    "source_fingerprint": "sha256:9952c80bdec3ff899ef052a9e8c9e20218ae43af44e7e6eb0c2a428c41ce1fd2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b45e54e5a63069f757bde225bbbd847a9f582270dacf945b890f94912c2c567",
       "plan.md": "b406eea4ee01d7c87cf5704969026d25b6f50a82f32a25b9f6d2ae43614f3448",
       "tasks.md": "d192d7abd04b981cc6c522883f19eb852e1ee3b629cc24170a88e68ddb499f09",
-      "checklist.md": "772a35db3efa78a4a1f7b46152c69113860dbde082183bafe0e626116b228792",
       "decision-record.md": "61adae755833ec2b863167674dc7b6fe826506721f64081393ba094434a373c1",
       "implementation-summary.md": "246db97431d3807f0cdf0bfa49d49345b8d79afb505e6ef6127be7463549cc7b",
       "research/research.md": "86b0e4a7a6702053149a4c06a3f607102edc58cb364d6493be5350bb10f14016"

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Give the two sk-code SURFACE playbooks the coverage breadth of the sk-doc corpus without leaving the operator-scenario contract they already passed.",
     "created_at": "2026-08-29T10:24:54.000Z",
-    "last_save_at": "2026-08-29T15:21:58.089Z",
+    "last_save_at": "2026-08-30T15:39:18.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bd107e38577d9431c29dbc89e5a56666248c3ac5729e6949393d73220983ddc9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1e5a7b1e507516ee1b52512dda42b77b879e493affb31ffe7fad13032151e29",
       "plan.md": "13ae574ac2153dc4bb772c62747c41686c53b45a945a7e5de0d61d3ce7df6a84",

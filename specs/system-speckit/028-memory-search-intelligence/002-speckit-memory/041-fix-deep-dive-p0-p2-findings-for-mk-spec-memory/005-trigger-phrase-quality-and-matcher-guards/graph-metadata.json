@@ -41,74 +41,14 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
-      "mcp_server/lib/parsing/trigger-matcher.ts",
-      "mcp_server/handlers/memory-triggers.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "mcp_server/lib/parsing/memory-parser.ts",
-      "mcp_server/lib/search/trigger-embedding-backfill.ts",
-      "mcp_server/scripts/migrations/regenerate-legacy-trigger-phrases.mjs",
-      "mcp_server/scripts/migrations/dedup-constitutional-trigger-rows.mjs",
-      "handlers/quality-loop.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handlers/quality-loop.ts"
     ],
     "entities": [
-      {
-        "name": "trigger-matcher.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-triggers.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-embedding-backfill.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/trigger-embedding-backfill.ts",
-        "source": "derived"
-      },
-      {
-        "name": "regenerate-legacy-trigger-phrases.mjs",
-        "kind": "file",
-        "path": "mcp_server/scripts/migrations/regenerate-legacy-trigger-phrases.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "dedup-constitutional-trigger-rows.mjs",
-        "kind": "file",
-        "path": "mcp_server/scripts/migrations/dedup-constitutional-trigger-rows.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "quality-loop.ts",
-        "kind": "code",
-        "path": "handlers/quality-loop.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -128,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -143,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-loop.ts",
+        "kind": "code",
+        "path": "handlers/quality-loop.ts",
         "source": "derived"
       },
       {
@@ -204,27 +144,74 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Save",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "readCanonicalSpecDocContent",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The trigger-phrase corpus is dominated by junk: 45% of 165,979 phrase occurrences are single words (\"feature\" x2,072, \"specification\" x2,034, \"system-spec-kit\" x1,922, even \"zarchive\" x848), and a live resume-style prompt returned 5/5 zarchive hits via single-word matches at weight 0.8 (deep-dive report §1; findings ledger L4)",
     "created_at": "2026-07-03T09:44:20Z",
-    "last_save_at": "2026-07-11T18:40:36.024Z",
+    "last_save_at": "2026-08-30T15:39:35.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25d93a6caa95a9bdb2645297e7aedd62a80f3081afe1b55fe13c57b87619e037",
+    "source_fingerprint": "sha256:e904718cb6ce92547fe5262923b9bde8fbc13863e79d322f1e0b0206af57675e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0ff43c79f9f80cdd484518219e00e483b1b571356a13dddcce449de49e8b0297",
       "plan.md": "1c93eadeda1a0780db7e952cf4dcd832465653d2efdc5ffe927a2f535ea4eea0",
       "tasks.md": "e0536dc8154f858702ed3fd9195dc73a5fb9fa44fb5b9fad8b9e1480a32623bb",
-      "checklist.md": "113d3fc5346609139d0ec7b3914f273e2593c938b431b0268ccd762ea3332486",
       "decision-record.md": "166962f99f7878dbdfdc802dd3f2589f003e945d29da3a41aadea6952987da48",
       "implementation-summary.md": "4e5f93ddb8eaf853ac29e8ac843d218a4baa82b8bd49c88c113254d8c060b69d"
     },

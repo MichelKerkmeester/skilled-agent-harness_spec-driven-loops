@@ -18,11 +18,10 @@
       "rerank sidecar alignment plan",
       "021 002 tasks",
       "rerank sidecar alignment tasks",
-      "021 002 checklist",
-      "rerank sidecar alignment checklist",
       "021 002 ADR",
       "rerank sidecar alignment ADR",
-      "021 002 implementation summary"
+      "021 002 implementation summary",
+      "rerank sidecar alignment implementation summary"
     ],
     "key_topics": [
       "rerank",
@@ -35,8 +34,8 @@
       "tsdoc",
       "plan",
       "tasks",
-      "checklist",
-      "adr"
+      "adr",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,49 +162,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Decision Align",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Alternatives Considered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Compatibility Contract Runtime",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Two sidecar files have documented sk-code drift",
     "created_at": "2026-05-23T11:55:36.907Z",
-    "last_save_at": "2026-08-29T13:10:02.105Z",
+    "last_save_at": "2026-08-30T15:39:31.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d09820de5d88ee4fccf957148e3a97973b51f99daa3eb38a6a6b2dd77b90051b",
+    "source_fingerprint": "sha256:d6a39650bd63b7d74c8bc6277ba11527d8c675eac57c5975c6a1419ee3ad4a56",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4237870afdf666adf203a115e2fe857e4f8c69ef5ab4ca53f260af9c600dcf79",
       "plan.md": "4abc5d50db5bcee765e1c5ab3dea82f788ef4b3ae351f94837f99bffd158fa3f",
       "tasks.md": "f30b7133df723805c3dd1748299404ce6ef7dbc2e19829bedc69ec33012ff81c",
-      "checklist.md": "05d5f4b603600e2cc3ef104e3edfcc667efb9d80de58e2eed610adad402a85e3",
       "decision-record.md": "01e36e7000fdb61cafc1c7fae2a6ba4abdf052c4c97ac94bfe8cdde63a055c64",
       "implementation-summary.md": "98167ae1088b4df45d02f236937c122cb936f51a30ec0b09062cd0a98b27ef3c"
     },

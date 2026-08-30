@@ -49,7 +49,7 @@
       "bm25"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -99,17 +99,18 @@
     ],
     "causal_summary": "The advisor's cross-session reconnect hardening, test-suite repair, spec-folder-leak fix, and 5 shared-feature-adoption items (observability, provenance guard, packed BM25 lexical lane, BFS consolidation, feedback calibration) needed one home",
     "created_at": "2026-07-07T11:51:52.950Z",
-    "last_save_at": "2026-07-16T16:06:02.149Z",
+    "last_save_at": "2026-08-30T15:39:27.213Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:588a15b2a2c65b740901def45e038cf9e8488606f9adc62c6e9a6e7102ed3574",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a1f7dafb20dd45de7ea4538f08b224f9bec703206c424d5c5937173939967dff"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/008-advisor-feedback-calibration",
     "last_active_at": null
   }
 }

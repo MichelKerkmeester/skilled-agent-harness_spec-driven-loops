@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Dispatched and non-interactive pi sessions could not reach the cline-pass models",
     "created_at": "2026-08-25T05:01:45.637Z",
-    "last_save_at": "2026-08-29T14:54:26.726Z",
+    "last_save_at": "2026-08-30T15:39:08.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:dd0edd8ed087d538e55d9a82ac37200617315c3028ccbb255092f7fe572520b1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9ba1fd38b37b599e6c5d9711c74dd0960559b849e66b6a997955ff1a315141f2",
       "plan.md": "57bb1e531307181a63657b43b1e4f2d930a6258965e2ccd1474f17646e83e298",

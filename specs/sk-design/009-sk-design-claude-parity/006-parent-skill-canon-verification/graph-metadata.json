@@ -27,10 +27,10 @@
       "sk-doc canon gap",
       "implementation plan",
       "tasks",
-      "verification",
-      "checklist",
       "procedures pattern decision",
-      "sk-design-local convention"
+      "sk-design-local convention",
+      "companion file policy formalization",
+      "three hubs extension matrix"
     ],
     "key_topics": [
       "parent-skill",
@@ -52,7 +52,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/SKILL.md"
@@ -74,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,24 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -201,27 +176,50 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Context Phase",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Hubs Extension Matrix",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001-005 refactored `sk-design` toward Claude Design-like manager behavior while preserving the OpenCode-native parent-hub shape: one advisor identity, registry-driven routing, five public modes",
     "created_at": "2026-07-06T04:36:21.215Z",
-    "last_save_at": "2026-08-29T15:21:58.989Z",
+    "last_save_at": "2026-08-30T15:39:12.165Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4415d960cc994e67384cef2d8fbc1e194e27c991e8e688271be32af3c06e29d",
+    "source_fingerprint": "sha256:d2946290fd7947de8b9139e3e612dca413a608c24031493d72e301f480179e42",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1ef1042f02bbdacca5c79310d551f00ca98c8637be1635a6b83c8b78faeed852",
       "plan.md": "58f61e8e52cfe4c51bb1982b4879db83d7de21dbc55e7b2864951821c271002f",
       "tasks.md": "1e6b8de6495715398a0712fe83015d8d2bee697fc09e5f4dd5397f7d66b263fc",
-      "checklist.md": "1b272a438694b0dc3bb26129fb321a80b2e65b7d971871953d6ff4fba6d12480",
       "decision-record.md": "072166ce28d01dd7e2a215c7d7c719dfdde755a9249c7399b75edaf3e0e951fb",
       "implementation-summary.md": "943eb6d11944b6c98051fc7f02bafdbab81232d81e352967ff998ef4bd749a90"
     },

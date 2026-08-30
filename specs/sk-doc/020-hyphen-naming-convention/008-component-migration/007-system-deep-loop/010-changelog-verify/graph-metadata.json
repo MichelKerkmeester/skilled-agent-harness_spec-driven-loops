@@ -162,7 +162,7 @@
     ],
     "causal_summary": "The system-deep-loop subtree needs release evidence that names the complete rename set, exemption boundary, reference repair, and version bump. This verification-only phase checks the root changelog and declared version surfaces against phases 001-009 and performs no filesystem rename or unrelated history rewrite.",
     "created_at": "2026-07-14T15:17:56Z",
-    "last_save_at": "2026-08-30T07:19:43.079Z",
+    "last_save_at": "2026-08-30T15:39:16.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,7 +171,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:a1aeb40e5464ae89f9d15efbf8daec0263845b10d7ea3d654e6fcbb9f8f4a1b9",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d61a83ef71f1bf829bb18dbe4e0cedd5f1ae4d7ab38d3081f17012a3257aa00",
       "plan.md": "234a1593a38fd749d41c5621991f40d2fa949f0702e6f22cda02beb95dbe201e",

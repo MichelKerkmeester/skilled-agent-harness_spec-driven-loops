@@ -19,8 +19,6 @@
       "runtime agent directory",
       "six runtime surfaces",
       "runtime enum",
-      "verification",
-      "checklist",
       "runtime enumeration audit"
     ],
     "key_topics": [
@@ -43,13 +41,13 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "AGENTS.md",
       "CLAUDE.md",
       "README.md",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/advisor-runtime-values.ts",
       ".opencode/commands/scripts/validate-command-references.cjs",
+      "Barter/ai-speckit/coder/AGENTS.md",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/metrics.ts",
       ".opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts",
       ".opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli-manifest.ts",
@@ -78,12 +76,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -205,26 +197,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The root framework doc (`AGENTS.md`) and its mirrors still enumerate three supported runtimes — Claude Code, Codex CLI, OpenCode — while the repo actively ships six runtime surfaces: `.opencode/`, `.claude/`, `.codex/`, `.cursor/`, `.pi/`, and `.devin/`",
     "created_at": "2026-08-04T06:25:07Z",
-    "last_save_at": "2026-08-29T14:56:22.927Z",
+    "last_save_at": "2026-08-30T15:39:06.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f1aeb7f32660145321eb9747a5015f4a8f05a45f20eda5512ebadba9a2668c7",
+    "source_fingerprint": "sha256:664b8064fc7d110517b178b8c90360204c270c911da4691f7a03e30f4b2244f1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0988a70b90cb80e2d819e881c17a637224bb9eecdf5cfaec76870a5732bf605",
       "plan.md": "2a28b9a0e5db896841a25c8002a49bf9e544b9dbf8de78d443ce2a257d463493",
       "tasks.md": "a2780d22f43daf36b4d18bb044b7de0de745a35c48eb985c257e6f8a19e623fa",
-      "checklist.md": "c157b4ff59cadd63807fac1aa31b979faa5c44246a4ed82724e163d526cf2eec",
       "implementation-summary.md": "f0e21109f9207939705f366395988197b8f2307fee3e1901ac61f2e2782ae56b"
     },
     "last_active_child_id": null,

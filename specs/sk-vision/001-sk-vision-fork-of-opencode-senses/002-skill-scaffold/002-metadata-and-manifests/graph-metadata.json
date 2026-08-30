@@ -192,7 +192,7 @@
     ],
     "causal_summary": "SKILL.md alone is not a legal Class S skill root",
     "created_at": "2026-08-16T07:22:41Z",
-    "last_save_at": "2026-08-29T14:54:23.633Z",
+    "last_save_at": "2026-08-30T15:39:19.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:cbd090664706f6010470c7f9ce6176cf460aeabdf73baf03c3b229a23a324b04",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13d04f2637def13d1e20876257108f5f9d761128d32deb0d9ffa3c070ce3bc0b",
       "plan.md": "a291e0c4b5e94c943fe02af279bfb55dc5df4011f9ae1cfa52e08de3e766f87b",

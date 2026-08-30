@@ -18,7 +18,6 @@
       "framework-docs-sweep",
       "deep loop merge implementation plan",
       "deep loop merge tasks",
-      "deep loop merge verification checklist",
       "deep-loop-workflows phase 008 summary",
       "framework docs sweep five to two",
       "deep-loop-runtime readme rewrite done"
@@ -40,37 +39,14 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/README.md",
-      "constitutional/deep-skill-workflow-required.md",
-      "checklist.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-skill-workflow-required.md",
-        "kind": "doc",
-        "path": "constitutional/deep-skill-workflow-required.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -90,21 +66,21 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "quick_reference.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -196,26 +172,43 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "modes",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cross-repo documentation is written around a five-skill model: the root README enumerates five loop skills (including a brittle slash-enumeration and per-skill README links that will 404), .opencode/skills/README.md counts \"23 skills\" and \"deep- (6)\", CLAUDE.md and AGENTS.md are hand-mirrored at identical line numbers, the deep-loop-runtime README is built around a five-consumer model, and constitutional/deep-skill-workflow-required.md enumerates all five names",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-07-16T16:31:52.207Z",
+    "last_save_at": "2026-08-30T15:39:24.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af08ce54a827cb82c584af27134e1f5430b0b057b785ef83d132d0e91743d365",
+    "source_fingerprint": "sha256:077ad7415bafd9e085d4f5465ae41e8276fb9e4894bcd749f16a8deca9d6eb38",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1e3ad377731b9d7b4097793bc6b3c8cf2fc5040c3fe224595641d28e9f7a4f70",
       "plan.md": "c47a5aa72e9a18544555896c6fd9bd5fe41a5df3901da9f172ce3cbf6120f2ad",
       "tasks.md": "48a9bde95f7be11151fde5c1af9af0f90fb3059385c3fbaa039806b87392a163",
-      "checklist.md": "3cbe0d913b806979e84579184214e4b3d181279c05d600d86eb7a3a79607b5f5",
       "implementation-summary.md": "b77c2bf3b31c10e0bafa2a43c4a9e8afb182994c58df29d5c2f8380d6ed6d35c"
     },
     "last_active_child_id": null,

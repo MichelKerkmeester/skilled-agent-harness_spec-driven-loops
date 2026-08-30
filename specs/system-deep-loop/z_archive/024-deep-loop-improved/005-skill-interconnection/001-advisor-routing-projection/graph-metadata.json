@@ -38,54 +38,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-      ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "routing-registry-drift-guard.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "aliases.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-recommend.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-recommend.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +151,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "spec-grounded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "projection",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Auto",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When a new deep-loop mode is added to `mode-registry.json`, the advisor's alias tables in `aliases.ts` require a manual edit; the drift-guard test compares file content rather than a freshness hash, so it cannot detect stale aliases at build time",
     "created_at": "2026-06-28T20:06:50.952Z",
-    "last_save_at": "2026-07-16T16:32:26.119Z",
+    "last_save_at": "2026-08-30T15:39:25.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:89c695cacb5470a4964c16c358785f6cefd61a98cc9fc41b230a4d5d4159c627",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a2f24cd15cfa66592f70cc3c4553220920d083c7923b86854b95335f9095c00",
       "plan.md": "fa5b87a5cc52897af12dd63c9db2da82d072f6b5630646b357e09aff9a8c2274",

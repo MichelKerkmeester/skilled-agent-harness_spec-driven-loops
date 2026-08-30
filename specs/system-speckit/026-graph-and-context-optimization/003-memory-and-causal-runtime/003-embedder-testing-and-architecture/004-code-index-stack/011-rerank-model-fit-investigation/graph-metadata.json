@@ -42,28 +42,16 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "research.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -76,6 +64,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Investigate whether BAAI/bge-reranker-v2-m3 is the right cross-encoder for code-retrieval queries on a 4-mirror codebase. The May 18 evening instrumented bench surfaced a structural failure mode: the reranker demotes implementations below tests/refs on paraphrase-heavy queries (lexical-cue density rewarded over semantic role).",
     "created_at": "2026-05-18T19:21:19.316Z",
-    "last_save_at": "2026-07-17T17:19:23.279Z",
+    "last_save_at": "2026-08-30T15:39:30.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "research.md"
     ],
     "source_fingerprint": "sha256:57c0d78a2087ff8e6d12e117d05e2cd426b211cacac16833a34a21d676820773",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bfe2d4d21c6b61cde1f9a9449629305d8a9b0baf612bd4fa7cc4b34b6ac56451",
       "plan.md": "22b6f479f589b17ec2f93cc5fb0fe36f58f4aa7b931ac120f54ef3add8dacf44",

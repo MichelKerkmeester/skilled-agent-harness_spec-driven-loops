@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/010-cli-opencode-providers",
-  "spec_folder": "cli-external-orchestration/010-cli-opencode-providers",
+  "packet_id": "cli-external-orchestration/z_archive/010-cli-opencode-providers",
+  "spec_folder": "cli-external-orchestration/z_archive/010-cli-opencode-providers",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,18 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The cli-opencode skill currently treats `github-copilot` as the default provider with `gpt-5.4` and `claude-sonnet-4.6` surfaced by name across SKILL.md, README.md, references, prompt templates, and the manual testing playbook",
     "created_at": "2026-04-29T10:45:14Z",
-    "last_save_at": "2026-07-14T19:26:17.272Z",
+    "last_save_at": "2026-08-30T15:39:08.382Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:570c4aff6ee948a967d31b3ea02b8ad00f5dd960e58b31a10dc2083232437618",
+    "source_fingerprint": "sha256:27c6ae453d9840a5afe41868a9f29d29f2279db7a2ea52731f9c5cb9cd9ed48b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ce1a36e6ec0a95c7baaa196df2a543af18cb1e02dcb54a4161b12160773d0e87",
+      "spec.md": "1529b703e967204d628637bcf1d00916bbab8f91ce9b4a6825d269a91ab8454a",
       "plan.md": "b0bdef2e029bad79ef61257bcbdfcb02603d4466cd5cd9e2314dc6bf8699026a",
       "tasks.md": "0f1fb70a796304f584235ba90df1775bdb93f2fe999e83fd1dad23810238d166",
-      "implementation-summary.md": "49d98d6cb89887c546475970980d349d1390839e93ee491e89af0dced0d29b2e"
+      "implementation-summary.md": "1971861df7d8f1378d9ed6a7e103e2189160aa1e15e7468d4953de99efd34866"
     },
     "last_active_child_id": null,
     "last_active_at": null

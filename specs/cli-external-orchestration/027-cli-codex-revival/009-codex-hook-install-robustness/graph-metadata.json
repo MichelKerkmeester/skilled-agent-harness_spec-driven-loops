@@ -16,7 +16,6 @@
       "codex hook dormancy",
       "Codex hook install robustness plan",
       "Codex hook install robustness tasks",
-      "Codex hook install robustness checklist",
       "Codex install robustness decisions",
       "codex installer ADR",
       "convergent installer decision",
@@ -33,25 +32,53 @@
       "dormancy",
       "plan",
       "tasks",
-      "checklist",
       "decisions",
-      "adr"
+      "adr",
+      "convergent"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/install-codex-hooks.mjs",
-      ".codex/hooks.json",
-      ".claude/settings.json",
-      ".opencode/plugins/mk-codex-hooks-watchdog.js",
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/bin/install-codex-hooks.mjs",
+      ".codex/hooks.json",
+      ".claude/settings.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "install-codex-hooks.mjs",
         "kind": "file",
@@ -68,48 +95,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "mk-codex-hooks-watchdog.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-codex-hooks-watchdog.js",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,27 +180,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three AI runtimes share one repo and must enforce identical guardrails: Claude Code via repo-local `.claude/settings.json` hooks, OpenCode via repo-local `.opencode/plugins/`, and Codex CLI 0.144.x via user-global `~/.codex/hooks.json` only (Codex has no repo-local hook file)",
     "created_at": "2026-07-14T17:14:22.206Z",
-    "last_save_at": "2026-07-14T19:26:16.499Z",
+    "last_save_at": "2026-08-30T15:39:07.200Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e04dbe351c09ddf82014b48d610806ba5bfdf597c66fd2150bab79fc370da37",
+    "source_fingerprint": "sha256:18a6ef619f3e53a07aa794f89c8e713109d860df8cbaa7cef31a9738de1baf10",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc71a3024272553b1395cdf54dfb647dd29947d44404165d3e6118af79a63147",
       "plan.md": "276faa37552851ed610b0dd867eb0295e089df71ba11ded7da1bb6323fb6d02a",
       "tasks.md": "94881caae336cefc2e17452c19faa348b5e0d4856fe4df514fa396099b5c7c0e",
-      "checklist.md": "6d7c67cb223ab850765766c7385a9d01a17855485eb6f95efd62e6769d89f6c3",
       "decision-record.md": "8509a0faa9428d5e0eee7d352d23b741770e695d74b706e877822aba74eab488",
       "implementation-summary.md": "78368ff03c1379ae4d1dadd5ec52072ca91f8a9148d8d770e23d71e8ff69ebdd"
     },

@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary",
       "bug fixes & data integrity"
     ],
@@ -30,9 +29,9 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "catalog"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -147,24 +139,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -185,23 +159,22 @@
     ],
     "causal_summary": "The feature catalog for Bug Fixes and Data Integrity has evolved significantly",
     "created_at": "2026-04-12T09:02:50.249Z",
-    "last_save_at": "2026-07-10T06:22:30.068Z",
+    "last_save_at": "2026-08-30T15:39:38.333Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8737665c223258dc60403be00c986aa0d0a73b80405347b3acc543500a8681d",
+    "source_fingerprint": "sha256:48b0603f07a9c301bbcbd3cb23926a728ef35ad6c8fea4378339981bd635142b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d39e107348781e9cb2120b7149aaa7a6f2aa79b09398a87c571107f5a0e33c6a",
-      "plan.md": "e7c545878b768d3d19562767d3916fb98e26dac7d958001b79268431f3c1655a",
-      "tasks.md": "992e0734f4361468ab0017ebc58ec093fa732189940044c996cfd2428c7767d6",
-      "checklist.md": "92650d040685e3c15f79b01f62e4394f36d933084044e1b2d5ee124937ea8c73",
-      "implementation-summary.md": "0326e66159e6202ca8ff1a7b6238dbd83c5201bcf0a429b9158aecf7a7dccc0c"
+      "spec.md": "c4d570248eca4240d9535af03add38808064d4c62d6e00900284bd27f6a9115e",
+      "plan.md": "31f29c65ac1fcfc720a487f941751e33ca62816c1e9ef205a3ff75f5f78e64be",
+      "tasks.md": "8c7f39886329db30474281e7b09f9c8d0501c4f3c1f16ab35372d7032850e507",
+      "implementation-summary.md": "5ac598ea2ac440b8c7649314bee7ae2b7eb10f1ce2cc9ecec5cd79e74984f1d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -17,8 +17,6 @@
       "de-claude lifecycle scripts",
       "runtime-agnostic lifecycle plan",
       "runtime-agnostic lifecycle tasks",
-      "runtime-agnostic lifecycle checklist",
-      "session-cleanup verification",
       "runtime-agnostic lifecycle summary"
     ],
     "key_topics": [
@@ -36,17 +34,17 @@
       "gap"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/scripts/orphan-mcp-sweeper.sh",
       ".opencode/scripts/session-cleanup.sh",
       ".opencode/scripts/git-hooks/post-commit",
       ".opencode/scripts/claude-session-cleanup.sh",
+      ".claude/settings.local.json",
       ".opencode/plugins/session-cleanup.js",
       ".opencode/scripts/README.md",
       ".claude/settings.json"
@@ -68,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -104,6 +96,12 @@
         "name": "claude-session-cleanup.sh",
         "kind": "script",
         "path": ".opencode/scripts/claude-session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -199,22 +197,21 @@
     ],
     "causal_summary": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only",
     "created_at": "2026-05-30T10:12:02.933Z",
-    "last_save_at": "2026-08-29T14:56:24.609Z",
+    "last_save_at": "2026-08-30T15:39:32.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43ef27c3558bc84e72774dc471e4e01a470744e8f0780e2f3b7aa8777fb82d65",
+    "source_fingerprint": "sha256:85d55fc6e60aadcca9ae4c42e608e1a8741c8692d7a2c3370a7202facc0e7aec",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4e11a44fda99f0d687ef7669accf832d19cb8051136a02b75b15c71e37e27aa",
       "plan.md": "99dda2cc5a11d520f5ffaea909df51920e56155fe8a19692bbb26308b7183781",
       "tasks.md": "b44a0173515e0d7e631a2ecfe8eb37dd86faa7fca3f3f212b681362727562831",
-      "checklist.md": "92e07c0552b25173dcc19929c44286367c61576875c645b628d4f261a476b1df",
       "implementation-summary.md": "236f2b79d2c7944de8dc84bcf5554e7a0eec37cbc5f53a92640f1756d8133955"
     },
     "last_active_child_id": null,

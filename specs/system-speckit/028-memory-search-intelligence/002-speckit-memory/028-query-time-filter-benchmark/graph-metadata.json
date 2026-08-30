@@ -34,15 +34,38 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "scripts/query-time-filter-latency-benchmark.mjs",
-      "results/query-time-filter-latency.json",
-      "implementation-summary.md",
-      "plan.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      "scripts/query-time-filter-latency-benchmark.mjs",
+      "results/query-time-filter-latency.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "query-time-filter-latency-benchmark.mjs",
         "kind": "file",
@@ -53,36 +76,6 @@
         "name": "query-time-filter-latency.json",
         "kind": "config",
         "path": "results/query-time-filter-latency.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,30 +175,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Four narrow, evidence-backed gaps remain open around an otherwise-complete, already-tested feature:",
     "created_at": "2026-07-09T20:30:03.148Z",
-    "last_save_at": "2026-08-28T16:30:17.373Z",
+    "last_save_at": "2026-08-30T15:39:35.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8311fabf8ac5bf39bc3d87bad5064de620f99cd181846c8130092d110a27f68",
+    "source_fingerprint": "sha256:d190c414677adbceda1774417ee66e07e648e86dcb7b026413cfab1f4e99f14f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b7f2ca8161dadc709c996411f9d035474cea7bb8185bf9190206fcbb44348020",
       "plan.md": "0e31dfa08c2fee06af8b08a23c0928f46dfc3a04bf6ee9d4c9dedcdd5f59c63a",
       "tasks.md": "624b286d37f96279450bc0f2d55f397306df04505ea0f7e54b90938ab09cd4e7",
-      "checklist.md": "5c70590ba4f8534ac34d50fb5da1df4d15d341fc927f5c98fa13ea849e6f2e56",
       "implementation-summary.md": "4a384a8c46a8b18778ac7d4437bf5bca4dfe76383469f7f3474a86bffce09c74"
     },
     "last_active_child_id": null,

@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Sub-phase under 062-deep-loop-command-flow-stress-tests. Apply 060/004 methodology.",
     "created_at": "2026-05-18T07:49:27.114Z",
-    "last_save_at": "2026-07-09T10:02:48.428Z",
+    "last_save_at": "2026-08-30T15:39:22.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:75b217849116704defbbf1d00cc44b945cacad31afd855c60d2b2b6d0b4fb805",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4bad5cf24084eee5cca35f1e0f14e8740158dca8b0efe88d4dc91b0d748ab76",
       "plan.md": "0c520bed40785a4afdd2796887ee5aa96098804d1f1765dcc0061206447060ce",

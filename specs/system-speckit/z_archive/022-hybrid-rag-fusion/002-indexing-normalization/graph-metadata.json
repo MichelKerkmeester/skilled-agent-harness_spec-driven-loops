@@ -40,11 +40,13 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
       ".opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts",
       ".opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts",
@@ -52,13 +54,11 @@
       ".opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts",
-      "plan.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "tasks.md",
-      "checklist.md"
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "tests/handler-memory-index.vitest.ts",
+      "scripts/spec/validate.sh",
+      "scripts/utils/input-normalizer.ts",
+      "scripts/types/session-types.ts"
     ],
     "entities": [
       {
@@ -68,33 +68,45 @@
         "source": "derived"
       },
       {
-        "name": "memory-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "importance-tiers.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts",
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
         "name": "backfill-frontmatter.js",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js",
-        "source": "derived"
-      },
-      {
-        "name": "memory-parser.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-parser.vitest.ts",
         "source": "derived"
       },
       {
@@ -140,45 +152,21 @@
         "source": "derived"
       },
       {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "source": "derived"
+      },
+      {
         "name": "handler-memory-index.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts",
+        "path": "tests/handler-memory-index.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "importance-tiers.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/importance-tiers.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -204,33 +192,44 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Tier Normalization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The index scan currently collects files from both `specs/` and `.opencode/specs/` roots",
     "created_at": "2026-04-12T09:02:50.237Z",
-    "last_save_at": "2026-07-10T06:22:19.481Z",
+    "last_save_at": "2026-08-30T15:39:38.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f73bb4a32bd028bbf58f0f9483bd4ded974e1a9f4feab9a985462b792186f5f6",
+    "source_fingerprint": "sha256:b423dbdeb2d3cd5af765368fdc77bdb935f9252f13ad4dd37cb6512ebb32ad18",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "260f71f29caecd51ca91772f2ee70263a53c9ea9e2a944263ff477086f323e56",
-      "plan.md": "9c97e674f2147930732a263783eacec611bdf69689c6ee11121032829851412f",
-      "tasks.md": "f6939ffd7e7c84956732654bd1675f9e527d84196855bea4bea518bd75883902",
-      "checklist.md": "95ac20e290f0bb4747dec5ee2fd922c6dd150a99993767cd492b31a5547111cd",
-      "decision-record.md": "95c5fea5e3a52409b18de08fd1743b83ba44cddf8f13a394f76d7e8547b84c6a",
-      "implementation-summary.md": "7b16dafb29f19c3f56f74c59ef37f3e2ae66118cf1268845f7308000c00c0ebe",
+      "spec.md": "54699e178b338f0a0ff68df564265399c3d584f4c0dd7a2af924d4029c8ba9b6",
+      "plan.md": "feafe3ad0e25a7faa2959a78c964e16cee09b626662705f26a1cf048d89fc554",
+      "tasks.md": "55cfdc8ce632e570df52c59681660073c05f2f9b8911c86ed372f2311594b4da",
+      "decision-record.md": "6519c09c05ec4dd01d7778866ce769817d9287d7061ca93df51d2a920d9fff25",
+      "implementation-summary.md": "fd3fa2612a5ae4c8d9ccb9baeb8054d448bceaabb7851d85e58e9b1c714ed055",
       "research/research.md": "9916bd6a09b634d22b907be20f12feb0a1e5d1a76852041090f6502d8b3c2a21",
-      "handover.md": "b47602ae8b52888389d95595544992463a313a3ada3c33990fee279acbd11d78"
+      "handover.md": "77050f4970f9609549ae59d87fa87a346fc84a2a077d55d20952d7e0c41db3f2"
     },
     "last_active_child_id": null,
     "last_active_at": null

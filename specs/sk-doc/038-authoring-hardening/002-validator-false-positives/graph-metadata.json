@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The playbook validator scanned raw markdown for links without excluding fenced code, so ordinary bracket-index call syntax in a code sample was reported as a missing path, and three remediation agents contorted correct source to satisfy the regex before the root cause was fixed.",
     "created_at": "2026-08-29T11:34:45.436Z",
-    "last_save_at": "2026-08-29T14:54:12.200Z",
+    "last_save_at": "2026-08-30T15:39:18.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b99e6d222e4e8c7bd9c30745314afd8623ca33da57155ddbca63252025d36340",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c02672d28ea4ea5f3fd61e3e1b39e7776d264a861d81a9f5f0db1d6d8d7aacf3",
       "plan.md": "f891bc170067da40d891ca1f8a20ca983aafc2113b866b28f41e986229d2ca2e",

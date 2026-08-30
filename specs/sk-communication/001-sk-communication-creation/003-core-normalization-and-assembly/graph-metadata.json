@@ -18,11 +18,11 @@
       "implementation plan",
       "tasks",
       "implementation",
-      "verification checklist",
-      "quality gate",
       "architecture decision",
       "use a generation-keyed state machine with explicit ordering domains",
-      "implementation status"
+      "implementation status",
+      "current state",
+      "phase 003 handover"
     ],
     "key_topics": [
       "core-normalization-and-assembly",
@@ -36,7 +36,7 @@
       "phase",
       "plan",
       "tasks",
-      "verification"
+      "architecture"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,10 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "handover.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -69,27 +68,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -183,38 +176,43 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Passed Phase",
+        "name": "Context Build",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Build the runtime-neutral core that normalizes events, assembles one deterministic message, and selects the bounded conversational context that made the reference effective without changing canonical state",
     "created_at": "2026-08-11T10:04:29Z",
-    "last_save_at": "2026-08-28T19:09:01.054Z",
+    "last_save_at": "2026-08-30T15:39:11.684Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:fc7a685fb2e78e4faf0ae20e524ccc1e37e7f033d6de6aba110143010a7494a8",
+    "source_fingerprint": "sha256:04bc99a4d0554ecd8a93d13a9b3342ab94aec8438a0e5ea03955c0bd7f32c789",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "78f1bbbc449acfc10034fbd7072d9f10455d40ce4e01eefa861913fe0df1e985",
       "plan.md": "84fe979d44dd287d99984404d6be587c59791805c3252c9bb4f895b91bd3a11e",
       "tasks.md": "1bcde3d427e1c91755fa7d875d6150341f6b8c83bdbcecd8c573068a955dc236",
-      "checklist.md": "9634f69982fd67873d5578a6681322a96ca6f8c2f9f4f51a17bc8278f47ae5f1",
       "decision-record.md": "ca1aa964d888d5d3db995e52776e06c134bfd5c8ceb8c0879476200498e17b0e",
       "implementation-summary.md": "84330b5f335b33b622bb31f5ab53b584acb1b6998bf1a9418ccf2d0937386b9a",
       "handover.md": "6e2c1af592214d15fff404145eb173ad934da2a3526d4e893a47f60fed7f6611"

@@ -20,9 +20,9 @@
       "plan",
       "tasks",
       "024",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "implementation summary"
     ],
     "key_topics": [
       "phase",
@@ -32,29 +32,46 @@
       "spec",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "addresses",
-      "concrete"
+      "concrete",
+      "context-preservation"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "tests/cross-runtime-fallback.vitest.ts",
-      "tests/runtime-routing.vitest.ts",
-      "tests/runtime-detection.vitest.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/cross-runtime-fallback.vitest.ts",
+      "tests/runtime-routing.vitest.ts",
+      "tests/runtime-detection.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -73,30 +90,6 @@
         "name": "runtime-detection.vitest.ts",
         "kind": "test",
         "path": "tests/runtime-detection.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,30 +183,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.344Z",
-    "last_save_at": "2026-07-10T06:23:33.721Z",
+    "last_save_at": "2026-08-30T15:39:39.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c4567ada97ec60beaefb216d9a06a35493b75f3de0e1ea00494d71f60b0854c",
+    "source_fingerprint": "sha256:e8163fb7fff069a126a37f5b1bb77f8b5acba05d426fe62de6aa8aaf9621f739",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fc6db09d91aa0a196780defd012288c2acea0d881dc601d6f53b8d00a6b5fbd9",
-      "plan.md": "82494ea19f1dd5bc21cfd5d51fd28a03504ef84d71a85f995ae587644b738c1b",
-      "tasks.md": "b8716c57a5b5c7248a8f301481b4e03095a8b70b3d5ca7e5908ba2cc6a226eaa",
-      "checklist.md": "77d3ce2db6a0adabccaec35f58ea9735ee9efb56b4f3f35f6810ecf85e2cad78",
+      "spec.md": "0d47ecb1d0bcb0390dabf75b2f1da268786178b7d374bfabb21e674b1f3f3dc1",
+      "plan.md": "329781107a1e2966a25c7db773c2d2cd00ecc9783174400cd356fa994a243598",
+      "tasks.md": "908c55b4e460c87d0ed1ec0af614dafbaff36fdd86edbd314be614ab43cd77cf",
       "implementation-summary.md": "71bdc8c4f0c6a8f820acdb1dc1dec46f7e91371b8f4958215846e311a48d198c"
     },
     "last_active_child_id": null,

@@ -20,8 +20,6 @@
       "6th mode implementation plan",
       "cli-pi skill tasks",
       "cli-pi mode task breakdown",
-      "cli-pi skill checklist",
-      "cli-pi mode verification",
       "cli-pi skill packet results"
     ],
     "key_topics": [
@@ -39,12 +37,11 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/settings.json",
       ".pi/mcp.json"
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,26 +184,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-pi` does not exist anywhere in this repo yet",
     "created_at": "2026-07-27T06:48:17.507Z",
-    "last_save_at": "2026-08-29T15:21:50.967Z",
+    "last_save_at": "2026-08-30T15:39:07.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec151026780c6a05eff42dea0775bd2026a89658bba6713d9919cc34ee4885e4",
+    "source_fingerprint": "sha256:e6cef992e2b89fdc7a58db9ef47c08313ee702b2ff8998542c2147259c3735ea",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "81f53fcd4ff6917c30767ef752f456d91815666f56bd0bac74ef95ada2881725",
       "plan.md": "40546270476d081e811189e5d77a81e7a6a5e0cb3f6d68d6e9d0030d11ba3c9a",
       "tasks.md": "7174e4a4514d33465d7171e9adf5c264fe38c5c8e38a6e94cccf02f1ca9d3fbb",
-      "checklist.md": "cffb6d640a2499622cc3662988a99c4126a142b52fef88b013988c1a251e6895",
       "implementation-summary.md": "d430e23136c683c95f0b02a5a8a615d50fe83ce6c2355e9fa437cd7b39b7c0b6"
     },
     "last_active_child_id": null,

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Code Mode has no path to the GitKraken MCP server: `.utcpconfig.json` has no `gitkraken` entry, so `calltoolchain` cannot reach it regardless of what sk-git documents",
     "created_at": "2026-07-15T04:22:49.852Z",
-    "last_save_at": "2026-08-29T14:56:27.932Z",
+    "last_save_at": "2026-08-30T15:39:18.540Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a1b1233fa788ec66ef48e1786e537a492ee4e0ada3557d056f707b37adad33ff",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0b5c3a9dec3c214815a4446a8f517543bbcca131d107eae3825539a560113711",
       "plan.md": "bacaaf9388e40907433b4e2198b3c95fa352b5f4cf7a387ddc2522523b89430a",

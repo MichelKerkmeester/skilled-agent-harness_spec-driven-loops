@@ -17,7 +17,6 @@
       "whole system gate plan",
       "frozen sha gate plan",
       "whole system gate tasks",
-      "whole system gate checklist",
       "whole system gate summary",
       "gate verdict fail",
       "enablement receipt"
@@ -33,8 +32,8 @@
       "receipt",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "summary",
+      "verdict"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -42,16 +41,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/005-whole-system-gate/scratch/run-gate.mjs",
       "scratch/receipt.md",
-      "scratch/receipt.json",
-      "scratch/baseline-raw.txt",
-      "scratch/candidate-raw.txt",
-      "scratch/fanout-real-run.md",
-      "scratch/authority-check-never-ran.md",
-      "scratch/run-gate.mjs"
+      "scratch/receipt.json"
     ],
     "entities": [
       {
@@ -70,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -100,30 +87,6 @@
         "name": "receipt.json",
         "kind": "config",
         "path": "scratch/receipt.json",
-        "source": "derived"
-      },
-      {
-        "name": "baseline-raw.txt",
-        "kind": "file",
-        "path": "scratch/baseline-raw.txt",
-        "source": "derived"
-      },
-      {
-        "name": "candidate-raw.txt",
-        "kind": "file",
-        "path": "scratch/candidate-raw.txt",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-real-run.md",
-        "kind": "doc",
-        "path": "scratch/fanout-real-run.md",
-        "source": "derived"
-      },
-      {
-        "name": "authority-check-never-ran.md",
-        "kind": "doc",
-        "path": "scratch/authority-check-never-ran.md",
         "source": "derived"
       },
       {
@@ -197,26 +160,55 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "status",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "none",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Each preceding phase verified its own surface",
     "created_at": "2026-08-19T06:57:08.364Z",
-    "last_save_at": "2026-08-29T13:09:56.650Z",
+    "last_save_at": "2026-08-30T15:39:22.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11f3f621ddbec1d8349fcbaac659509d5cd02bab8343254bde73384322e233be",
+    "source_fingerprint": "sha256:229b44f68b17a690f7e13e7c8e2b0a336a69295559a1dbc44f3d3fe8394ecc28",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dc6c0a4d0aeb7238b9916db2d57cbe43262af6f025416ff8afaa532fed3ca5be",
       "plan.md": "3c52b3ae745c7648119fb2a16c775945b6896b2cf7935e7b9ec6605b73b847a3",
       "tasks.md": "38aad202922b90c31650ef1256b1a832a7af2bebce73f0347eb7833a98ad0f65",
-      "checklist.md": "f365ec060089b0ae8c9f15c4cd64905f69587272a074b099e47a200455f1b1c0",
       "implementation-summary.md": "182c638703c51bdc9ed403b2331156fa975d6030f92c58e459229b8fec97c4a2"
     },
     "last_active_child_id": null,

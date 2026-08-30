@@ -160,7 +160,7 @@
     ],
     "causal_summary": "The mcp-figma component contains snake_case catalog and manual-testing directories, asset and reference filenames, an uppercase underscored install guide, and a leading-underscore shared shell helper. This phase renames those filesystem paths to safe kebab-compatible targets and updates references without changing Figma transport behavior or shell identifiers.",
     "created_at": "2026-07-14T15:17:43Z",
-    "last_save_at": "2026-08-30T07:19:37.946Z",
+    "last_save_at": "2026-08-30T15:39:16.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -169,7 +169,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:ada0ea2867c5a518399d92cac4b2b59980b88482563cf8e321c5e9fdbc5316cb",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d35aed7c1878de0c253732ef72008b6ef092a32836eab559111a7711c42e9f32",
       "plan.md": "1888b4f74e85d924bad63a464b41acc8f313cd2548c917e8e15161684f32f83c",

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The system-skill-advisor README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T16:45:00Z",
-    "last_save_at": "2026-08-29T14:54:20.656Z",
+    "last_save_at": "2026-08-30T15:39:14.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:37b45a421f730a01db3561a6cccf6ea8df5e09f0fe940f3712933daa4a11716a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa40731edb52416e24705467cbb794ea02f121f854037f560c30245c18148749",
       "plan.md": "fe92af1cc49a24272c1525f4c8843ac40b4561c836d58358c324e5bd9ad952de",

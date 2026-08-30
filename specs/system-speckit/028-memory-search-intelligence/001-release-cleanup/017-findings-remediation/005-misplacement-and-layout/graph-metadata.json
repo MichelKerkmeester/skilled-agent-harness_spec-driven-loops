@@ -42,21 +42,15 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Files sit where their owning subsystem's documented layout says they should not: test directories contradicting an assets-only contract, a personal macOS keyboard config in a public repository, committed scripts embedding one workstation's absolute paths, and live SQLite state under two spellings of the same directory name",
     "created_at": "2026-07-27T08:41:11Z",
-    "last_save_at": "2026-07-27T14:35:33.282Z",
+    "last_save_at": "2026-08-30T15:39:34.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a84e139c02eef30c9392679ed235b98ce346cc059db7323eb07db8f5a6fc58da",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a2de3d8d555b64613c8488cab7d773103e3a876fd71079782bcf7886d1d7feb3",
       "plan.md": "36a472c6d340c6c8ca1fb0e6a8e52e7b2a1841c78a630b35611f8087d065fbe9",

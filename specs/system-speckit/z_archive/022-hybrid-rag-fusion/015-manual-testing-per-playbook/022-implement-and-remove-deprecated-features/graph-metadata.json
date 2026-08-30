@@ -19,8 +19,6 @@
       "deprecated features plan",
       "phase 022 tasks",
       "deprecated features tasks",
-      "phase 022 checklist",
-      "deprecated features checklist",
       "phase 022 implementation summary",
       "deprecated features summary"
     ],
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,31 +178,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The implement-and-remove-deprecated-features phase (catalog phase 022) targets 6 features: 3 deprecated modules to wire into production (graph calibration, temporal contiguity, consumption logger) and 3 dead modules to remove entirely (channel attribution, fusion shadow V2, full-context ceiling eval)",
     "created_at": "2026-04-12T09:02:50.307Z",
-    "last_save_at": "2026-07-10T06:23:01.612Z",
+    "last_save_at": "2026-08-30T15:39:39.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f041eca70524d79e6d4184d3a4d39d212a05cfc739e5f0f87e0b02514472d7d",
+    "source_fingerprint": "sha256:ff6c0c17987016e9fce5631285c09be7ca4be40736328c42d850f3ecc30c0ba0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7a77131c16e3a00872b3d1eb640f1aea77027008af3940ef246cc091af9c8ca3",
-      "plan.md": "83353abef7154ff11a257bf9000fa48fdb250b5ddba263d89d51dd7bbbb7959c",
-      "tasks.md": "f3af49ead1d88b81e5be569e57e18bb1e7f53271523977c146148d5873a39067",
-      "checklist.md": "ebdcaa02aff1af5e3d74980dccd75054b3d22db6a7d254e5beecc02e00b53f62",
-      "implementation-summary.md": "f7471ba8280db9c61e9f04e25c71282802c5499552eb24987e462fe0f8df8593"
+      "spec.md": "28f6349c0d5b0a98bdc4632be1f15fcb605f7e6c3a626934af7a98367745b0c2",
+      "plan.md": "2825b76b141dc6161e698aa81c7b35dde33794cf0d8a97ae3d739c643fb1e125",
+      "tasks.md": "f19cb67f19ed62fc1068d1ef9b7e51adc5fce25aba624e978f4eb4fe56a2ab1c",
+      "implementation-summary.md": "b6f5b1d240500fa8f0af3237ff6b4168901220ff2c1b0b084af368d84211b715"
     },
     "last_active_child_id": null,
     "last_active_at": null

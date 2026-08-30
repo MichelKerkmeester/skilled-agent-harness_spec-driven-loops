@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Five of the fourteen manuals registered in this repository's Code Mode configuration never reached the server",
     "created_at": "2026-08-29T14:20:42.193Z",
-    "last_save_at": "2026-08-29T14:56:04.296Z",
+    "last_save_at": "2026-08-30T15:39:10.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5a182a182eb81b959b20480cce885eef1f5850a690025d10b82f4b76bfaddfd1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "465fb32e99676e800d1a51bd97b5d3b4954b0ac320d04561e54255e5c04de228",
       "plan.md": "dc59a7842600b3c01600692746eefcd728278d360b8bb3a8b467198337e1f5db",

@@ -22,7 +22,7 @@
       "tail append harness plan",
       "tail append harness tasks",
       "prod path byte identity check",
-      "tail append verification"
+      "multihop tail appends rewire"
     ],
     "key_topics": [
       "multihop",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/multihop-tail-appends-benchmark.mjs",
       "results/metrics.json",
@@ -71,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +191,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two finished search features ship dark behind default-off flags with no measured verdict",
     "created_at": "2026-06-24T04:55:43.757Z",
-    "last_save_at": "2026-08-29T15:22:23.747Z",
+    "last_save_at": "2026-08-30T15:39:36.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aecd8af77d5363c4321c8edb1af6e1ec72a4bb31861a4f9214be442333910918",
+    "source_fingerprint": "sha256:d784bb1c9ff1f93c6ac19ee4a690e1b36cebd5b4e89da1df34ce0b77faf4a2c9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a7fa5ae00c017048a197679b5c8c4834607e072d324a5a15c52ba5247073a150",
       "plan.md": "3b34732990c20a81ce04a0ab49c8e1832519fc0c20a5a53c77cbffd76df2adb8",
       "tasks.md": "7c236bb3ae52f092b8b100add37a710b22eb31107dbcc9659bb286bb1542be85",
-      "checklist.md": "9a77286bfa146377205c6d95a9111aa3dd1ac8aca787450524c7c03c1d6b5276",
       "implementation-summary.md": "702948f4532e85f46a06841d6a60faf8324067fa35359eea120c685ad6a14776"
     },
     "last_active_child_id": null,

@@ -21,8 +21,8 @@
       "shared mode interfaces tasks",
       "deep-loop mode contract tasks",
       "phase 012 interface fixture tasks",
-      "shared mode interfaces checklist",
-      "deep-loop mode contract verification"
+      "shared mode interfaces implementation",
+      "mode contract conformance evidence"
     ],
     "key_topics": [
       "shared",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/mode-contracts/index.ts"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,36 +175,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Freeze the typed contract that every phase-013 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence services, and resume path before any per-mode migration begins.",
     "created_at": "2026-07-16T03:43:53.994Z",
-    "last_save_at": "2026-08-29T13:09:52.642Z",
+    "last_save_at": "2026-08-30T15:39:20.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30ddf8d91e228ce76dc91372fea308aeaae179b2fcaac9a52a195e8e640cfead",
+    "source_fingerprint": "sha256:f3c7ec97dfe4badac06dc3b6fbc6b577689820ebf726b718cac30023fe62ad00",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "667cd6fae1d7d3dea1064a5346a83b11939ed13fc3de9421b90f12b0e0f5c516",
       "plan.md": "5313cf2bfe3350d86592a8bfb9ff1d206584136e03bdff208518b685b6668c69",
       "tasks.md": "113af94378bfade4a0238ad4c7c0fbb5f8593685b4f47a8cd4b7252607c164bf",
-      "checklist.md": "49ec36ab7990ec6f1d79eb455db2fd1c9c382d4c4d614b8c0f1a2beb6ee9710e",
       "implementation-summary.md": "48f3e41d1063f13c8d5ad2ce442caf1a3ff293d0a7bda7ec5d00661b9da7132e"
     },
     "last_active_child_id": null,

@@ -36,15 +36,21 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -57,12 +63,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "`code-quality/assets/codequalitychecklist.md` (542 lines) is the last oversized reference/asset in the hygiene scope",
     "created_at": "2026-07-11T17:50:12.246Z",
-    "last_save_at": "2026-07-11T22:11:46.550Z",
+    "last_save_at": "2026-08-30T15:39:11.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2faca3421586b41e4dac28118b1050dc79e1542d08d4c537e9aecc1bc85c3802",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c95b03225dcf07f51463bd415f0d5f1afd1491c988b0f7931a2556306a294ae4",
       "plan.md": "ad404d503d0456d1487b9aa22d27b10417250e89b91764e1d3be56808515ad6d",

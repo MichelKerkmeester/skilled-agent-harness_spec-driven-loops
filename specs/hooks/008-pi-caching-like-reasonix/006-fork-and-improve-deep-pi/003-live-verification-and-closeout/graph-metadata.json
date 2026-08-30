@@ -15,7 +15,6 @@
       "deep-pi closeout",
       "deep-pi live verification plan",
       "deep-pi live verification tasks",
-      "deep-pi closeout checklist",
       "deep-pi closeout status"
     ],
     "key_topics": [
@@ -25,12 +24,12 @@
       "closeout",
       "plan",
       "tasks",
-      "checklist",
       "status",
       "unit",
       "tests",
       "prove",
-      "work"
+      "work",
+      "against"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/settings.json"
     ],
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,42 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Unit tests prove fixes #1 and #2 work against synthetic inputs in isolation",
     "created_at": "2026-08-07T16:34:29Z",
-    "last_save_at": "2026-08-29T15:21:52.340Z",
+    "last_save_at": "2026-08-30T15:39:09.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af0fbe9046108422435cb39111b9a0e70efa600a3725e09cfe5b36ef11ee9158",
+    "source_fingerprint": "sha256:0f831e5e89d8da3f725a0b2133d7e4ac8c80e4508c24d296f8ad2edbcfab3417",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f2a6f746dbe58b90f094c84a668c27d5b2f29f10839f1b6648d9cbc6ca289694",
       "plan.md": "4fc4727e7306e70ddd681cd27a4cecdd5aa0e952470e9f47a8a5a8adf933ecc9",
       "tasks.md": "649d60dca6120b725029005f6ed07e30e91e41fd151119e52278fff6ea88eaa7",
-      "checklist.md": "667af2a052ed62001db2bbc849db17bb0e2d41a92d1d64607d4173d77dbcb120",
       "implementation-summary.md": "f3d94ae3d060d9102ad6ace0d58269201efb1fb564ec6d0703d87b2ea6f2fd22"
     },
     "last_active_child_id": null,

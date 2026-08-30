@@ -19,10 +19,10 @@
       "deep-research transition receipt plan",
       "deep research certificates and receipts tasks",
       "deep-research run certificate tasks",
-      "deep research certificates and receipts checklist",
-      "deep-research offline verifier checklist",
       "deep research prior receipt digest",
-      "deep research receipt chain durability"
+      "deep research receipt chain durability",
+      "shared receipt evidence digest",
+      "deep research projection ledger equality"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,49 +163,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Deep Research Certificate Trust Boundaries",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Keep Prior",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Link Verification Inside",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Signed Evidence Digest",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Research mode certificate and receipt binding over the typed event-ledger substrate: one per-run certificate, per-transition receipts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff, versioned replay-fingerprint inputs, and an independent offline verifier.",
     "created_at": "2026-07-16T03:43:31.211Z",
-    "last_save_at": "2026-08-29T09:57:59.579Z",
+    "last_save_at": "2026-08-30T15:39:20.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:989f71da14623ea7d1afaa0d69db513e823b26132f9241eb8da3bbb9ea2bb26b",
+    "source_fingerprint": "sha256:979db93b726c18f44f35accc4c4f445e88ea244e3b17638434fd06d1151002d0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0e8d56c8a75dd7db0b0381e1e515d4a5cc2e291a80348b5ed0964edacbf6e90f",
       "plan.md": "a3c1d5bc73d000cdb417be126366af0ab86e82b00c205213f830f4e16299dec0",
       "tasks.md": "13876d569a99f523f30e8113f476337de003eaf02a78c50b9ba2619364859571",
-      "checklist.md": "9ac24718292b02aaeaee263af8a4d27cbfe11afe7d0f68e93724b9e9ebe5a500",
       "decision-record.md": "888fc3c4dc16103d71cb5745aaefa704ca996f3183a0af3b0708f8d07cebb9ec",
       "implementation-summary.md": "f8a9f700b5bcc5f530cfea6e64326c21640e769bb5fe8b5a3bdf36d45f131b2d"
     },

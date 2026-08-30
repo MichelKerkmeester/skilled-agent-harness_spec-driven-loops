@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
@@ -76,12 +75,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -203,28 +196,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`checkpointcreate` takes a full rollback snapshot before risky migrations by serializing the entire database with one `JSON.stringify(snapshot)` call (`lib/storage/checkpoints.ts:1604`)",
     "created_at": "2026-06-01T16:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:17.084Z",
+    "last_save_at": "2026-08-30T15:39:31.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:8c174f85e2fbc7c600747d7603a596b983841964434b9655dd46b184962fc845",
+    "source_fingerprint": "sha256:e659a764f26c1d43a0dadba75345f6bc1979021d014f74634ae8e7416e6fa527",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5f0220fbfaac563e75b7378c3605eff5b1fc57488aabf63c6c0c80d64a142c4",
       "plan.md": "50ab3d72dcce07df35de12dc54d5c038e10e94678c23564c41e64911e014223c",
       "tasks.md": "d7b0f87254087c4f5a2593b8497f3e87361921a9f0f4d5b78c9176510da0c354",
-      "checklist.md": "80fd1cd945f7c4883f4815b0d271e78fa7007366356d2f15c58c6ce0f4f7931c",
       "decision-record.md": "6013ec9a8154a9881c014b7e7c6a8d8206bd4a04722ebf8607058f0b4a183135",
       "implementation-summary.md": "d67a32e18f79823efeb4c9584964e635029c4eb0e4211d9daa90344cac0b9af1",
       "handover.md": "b0f9cbce24a23c2dd7b37bd75d43dc8f20dafa28fb37e03a0fd3fa2d291dcf69"

@@ -39,9 +39,9 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
+      "plan.md",
       "tasks.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -51,9 +51,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -63,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "With one workflow packet left, the hub shape is pure overhead: four authored routing files, a stage-two router document and a nested packet directory all describe a dispatch decision with a single possible answer",
     "created_at": "2026-08-28T08:49:38Z",
-    "last_save_at": "2026-08-28T09:56:46.970Z",
+    "last_save_at": "2026-08-30T15:39:18.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ec18b8c5556bc1b67c6e44fa2a652d9192ed092824e3413425c09d5707f1e277",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89cc3f18285261cc557f7083c2a5352466e24cf07618b5ee46332cb7e573b381",
       "plan.md": "912555a06740c84b07dd3c4a78ebafe45766357e1c1948b937ab02709c90fa52",

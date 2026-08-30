@@ -41,41 +41,16 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md",
-      "handlers/save/README.md",
-      "lib/search/search-flags.ts",
-      "handlers/save/post-insert.ts",
-      "handlers/memory-save.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handlers/save/README.md",
+      "lib/search/search-flags.ts",
+      "handlers/save/post-insert.ts",
+      "handlers/memory-save.ts"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-insert.ts",
-        "kind": "code",
-        "path": "handlers/save/post-insert.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -98,6 +73,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "handlers/save/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-insert.ts",
+        "kind": "code",
+        "path": "handlers/save/post-insert.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -199,7 +198,7 @@
     ],
     "causal_summary": "`handlers/save/README.md` predates packet 017's shipped behavior",
     "created_at": "2026-06-04T10:50:21.307Z",
-    "last_save_at": "2026-07-17T17:19:31.827Z",
+    "last_save_at": "2026-08-30T15:39:31.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a4fec93c950fe7b39c17e05662f4331216f132e2a9d6959272d239dbeae05f6a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3fb7025028b9782fb01467f9af17b4a46059c9a7648b55961bc8ccb2d03fa2e6",
       "plan.md": "a7c18bd813b0082e47d72d26da1df13a6781e655c8159ae006b949420c0b9f8d",

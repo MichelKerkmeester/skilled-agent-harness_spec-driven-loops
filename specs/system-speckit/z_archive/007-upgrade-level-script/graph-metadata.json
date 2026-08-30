@@ -188,7 +188,7 @@
     ],
     "causal_summary": "This archived folder captures work that added or refined a spec folder level upgrade script",
     "created_at": "2026-04-12T09:02:53.564Z",
-    "last_save_at": "2026-07-10T06:24:48.401Z",
+    "last_save_at": "2026-08-30T15:39:37.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2958a4747eb4fd95bcc72d9abaf42438b2de00adbc53401543d4c80bcc6172d3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae47d8a881543ee0b4ff18db3f27802129925bfc499b09a2b2ef99b176cdc785",
       "plan.md": "4d715655a3451c1ff4846c83c05a0b503d38d8acf10cbb2391b318c9a1a81ad6",

@@ -41,19 +41,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "review/deep-review-config.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/deep-review-config.json"
     ],
     "entities": [
-      {
-        "name": "deep-review-config.json",
-        "kind": "config",
-        "path": "review/deep-review-config.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": "review/deep-review-config.json",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The two-lane program (008-013) was reviewed once by cli-codex gpt-5.5 in packet 014 (CONDITIONAL: 1 P0 + a P1 cluster) and all findings were remediated in packet 015",
     "created_at": "2026-05-29T13:38:55Z",
-    "last_save_at": "2026-07-09T10:02:49.014Z",
+    "last_save_at": "2026-08-30T15:39:23.761Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1afd8ef45ba67a05b95bbe71d2e43142de517154a5c3b3f717c2d135052be598",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b6d1df17fc3698765ade514895dbbbc64d15a8d10d6933f29345e76174e0be3",
       "plan.md": "3973cee2ece5c9496ac56f2d1307e74bedb0e40b8bc1abbd26896245e9f6cc2c",

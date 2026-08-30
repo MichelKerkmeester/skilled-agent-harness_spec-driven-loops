@@ -39,7 +39,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".devin/hooks.v1.json"
+      ".devin/hooks.v1.json",
+      ".devin/config.local.json"
     ],
     "entities": [
       {
@@ -70,6 +71,12 @@
         "name": "hooks.v1.json",
         "kind": "config",
         "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.local.json",
+        "kind": "config",
+        "path": ".devin/config.local.json",
         "source": "derived"
       },
       {
@@ -179,17 +186,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The archived `016`/`017`/`018` cli-devin packets and the `022` deprecation were all authored against the Devin CLI as it existed 2026-05/06",
     "created_at": "2026-07-23T19:51:58.474Z",
-    "last_save_at": "2026-08-30T07:18:47.795Z",
+    "last_save_at": "2026-08-30T15:39:07.266Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b7891fee44f27111b0efd29cc3f6d108776452a528967a76bb7a5b7019f1e591",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba03dc5ec8c2697d1c199f5b87612629ed663e6eb54e3a953fa140600d66d9c4",
       "plan.md": "eac8598fc649afa9dcbb5768b132f80466459a1e44cb55d5e7edb3aef93c9aee",

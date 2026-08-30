@@ -16,7 +16,6 @@
       "mcp-route-guard cursor fix",
       "cursor mcp wiring plan",
       "cursor mcp wiring tasks",
-      "cursor mcp wiring checklist",
       "cursor mcp wiring implementation",
       "mcp-route-guard dead wire fix"
     ],
@@ -31,43 +30,21 @@
       "wiring",
       "plan",
       "tasks",
-      "checklist",
-      "implementation"
+      "implementation",
+      "dead"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".cursor/mcp.json",
-      ".cursor/hooks.json",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
-      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-      ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".cursor/mcp.json",
+      ".cursor/hooks.json",
+      ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md"
     ],
     "entities": [
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".cursor/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-route-guard.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,33 +64,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
         "name": "feature-catalog.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-route-guard.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-code-mode/runtime/lib/mcp-route-guard.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,26 +164,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 011 recorded a blocker: \"no MCP server is configured for Cursor CLI on this machine… fabricating one was out of scope (would need credentials not present here),\" and on that basis deliberately left `mcp-route-guard.mjs` built-but-unwired",
     "created_at": "2026-07-24T18:01:53.772Z",
-    "last_save_at": "2026-07-27T03:48:31.609Z",
+    "last_save_at": "2026-08-30T15:39:07.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16b6413a87ed0c4906b09ebcf807de418b035afbde2b4b27d9e035798ecfb15d",
+    "source_fingerprint": "sha256:90af3b77c0e8b96cd8b72f793463c52b24c0edca953adcccbf0b970d3bac9b9c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "899edee7bd30da725da019e7b3078f77b63e0fe2c9e503eccbaa778901afcc3e",
       "plan.md": "58e86d64229add89475d37b92b4a0a75ee825aa98aa6d1ee8c5c94b2345e2232",
       "tasks.md": "95ed187bdd375b4e77bdce57a09b6b30e506ab7dd4055e292e6f0a679383ccc5",
-      "checklist.md": "9739918ab568b70e329a4067b720f23de96f1b301adb0d267a106320a8825c63",
       "implementation-summary.md": "fd4c44b4b46daeef7fb2999060128b1686cca691420276cb7b415c71b588cc74"
     },
     "last_active_child_id": null,

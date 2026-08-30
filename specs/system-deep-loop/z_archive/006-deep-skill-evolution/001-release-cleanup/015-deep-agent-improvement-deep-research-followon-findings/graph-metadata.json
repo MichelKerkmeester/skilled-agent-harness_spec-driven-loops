@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Closes the remaining follow-ons from the 005-deep-agent-improvement deep-research loop: correct the SKILL.md trajectory description (a 005 reword was wrong), clean vestigial target-profiles config + add the missing vitest config, strip cli-devin recipe fields the strict parser rejects, and sweep 2 evergreen citations in sibling deep-* skills.",
     "created_at": "2026-05-24T04:54:39.168Z",
-    "last_save_at": "2026-07-09T10:02:48.578Z",
+    "last_save_at": "2026-08-30T15:39:22.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:05b0dad91c8c0ce0f559dd77256fb9b9d8c33904a79762d50d95dc229d106bac",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "99d2ac43dbca1390aefec8b1ec74bbcffe8548ee8fba02faf2f3b03a9c727a87",
       "plan.md": "0fc3feb5bf6492e778f0fa92eb52f7e305f4140df9de5f73492d5af1aad74ce8",

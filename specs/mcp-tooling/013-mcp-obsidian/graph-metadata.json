@@ -26,7 +26,10 @@
     "mcp-tooling/013-mcp-obsidian/021-plugin-installation-batch",
     "mcp-tooling/013-mcp-obsidian/022-plugin-skill-support-references",
     "mcp-tooling/013-mcp-obsidian/023-plugin-assets-catalog-playbook",
-    "mcp-tooling/013-mcp-obsidian/024-plugin-routing-integration-validation"
+    "mcp-tooling/013-mcp-obsidian/024-plugin-routing-integration-validation",
+    "mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review",
+    "mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance",
+    "mcp-tooling/013-mcp-obsidian/030-audit-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -60,18 +63,36 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "goal.md",
+      "handover.md",
       ".opencode/skills/mcp-tooling/mode-registry.json",
       ".opencode/skills/mcp-tooling/hub-router.json",
       ".opencode/skills/mcp-tooling/description.json",
       ".opencode/skills/mcp-tooling/graph-metadata.json",
       ".opencode/skills/mcp-tooling/leaf-manifest.json",
       ".opencode/skills/mcp-tooling/SKILL.md",
-      ".opencode/skills/mcp-tooling/shared/references/smart-routing.md",
-      ".pi/extensions/spec-gate-classify.ts",
-      "spec.md",
-      "handover.md"
+      ".pi/extensions/spec-gate-classify.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
       {
         "name": "mode-registry.json",
         "kind": "config",
@@ -109,27 +130,9 @@
         "source": "derived"
       },
       {
-        "name": "smart-routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/shared/references/smart-routing.md",
-        "source": "derived"
-      },
-      {
         "name": "spec-gate-classify.ts",
         "kind": "code",
         "path": ".pi/extensions/spec-gate-classify.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -169,6 +172,42 @@
         "source": "derived"
       },
       {
+        "name": "Goal Prompt",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Then Phase",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "GPT-5.6 SOL HIGH FAST",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "high",
+        "kind": "quoted",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "fast",
+        "kind": "quoted",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "Session Handover",
         "kind": "proper_noun",
         "path": "handover.md",
@@ -179,42 +218,20 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
-      },
-      {
-        "name": "From Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "To Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Completed",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handover Time",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "We can drive ClickUp from both a terminal CLI and an MCP tool (the `mcp-click-up` mode of the `mcp-tooling` hub)",
     "created_at": "2026-08-02T05:50:25Z",
-    "last_save_at": "2026-08-04T12:12:43.719Z",
+    "last_save_at": "2026-08-30T15:39:10.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:971af089e6d740b5467c0ba2adf96bcea2239951350679cc345ba4808dc8a9a5",
+    "source_fingerprint": "sha256:a8ad5ad16f887cebae390f88e8a18cd777c4f985fceddbcbc6308001db2c1523",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cfcb16e3e42a7eba6bbb7084732f87901aecf8bb982d7f8072983113460a351c",
       "handover.md": "468617e6f7407ded26a6f4205c6ae6d0d2a77b1eeb5786d4b71f0cd5a85274a3"

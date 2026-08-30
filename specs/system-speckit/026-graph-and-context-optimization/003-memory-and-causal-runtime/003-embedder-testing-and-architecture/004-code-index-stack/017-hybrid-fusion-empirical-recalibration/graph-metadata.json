@@ -24,7 +24,7 @@
       "016/004/017 tasks",
       "RRF sweep tasks",
       "hybrid fusion tasks",
-      "016/004/017 checklist"
+      "016/004/017 summary"
     ],
     "key_topics": [
       "hybrid",
@@ -37,25 +37,24 @@
       "fusion",
       "plan",
       "tasks",
-      "checklist",
+      "summary",
       "re-grounds"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "evidence/sweep-results.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "evidence/phase2-comparison-017-recalibrated.md",
-      "spec.md"
+      "evidence/sweep-results.md",
+      "evidence/phase2-comparison-017-recalibrated.md"
     ],
     "entities": [
       {
-        "name": "sweep-results.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "evidence/sweep-results.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -71,27 +70,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "phase2-comparison-017-recalibrated.md",
+        "name": "sweep-results.md",
         "kind": "doc",
-        "path": "evidence/phase2-comparison-017-recalibrated.md",
+        "path": "evidence/sweep-results.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "phase2-comparison-017-recalibrated.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "evidence/phase2-comparison-017-recalibrated.md",
         "source": "derived"
       },
       {
@@ -195,26 +188,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Re-grounds CocoIndex's hybrid (dense + FTS5) RRF fusion parameters (k, vec_weight, fts_weight) on EMPIRICAL evidence from the post-013/014/015/016 corrected pipeline instead of inherited defaults. Sweeps the small parameter grid against the 18-probe corrected fixture under bge-code-v1, picks the best-on-fixture config, freezes it as the new default, and documents the tradeoff (recall, precision, latency) per config. Embedder-agnostic, reranker-agnostic, future-proof: the grid+harness can be re-run any time the corpus, embedder, or reranker changes.",
     "created_at": "2026-05-19T14:26:30.924Z",
-    "last_save_at": "2026-07-17T17:19:23.591Z",
+    "last_save_at": "2026-08-30T15:39:30.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0431244eec0f73d2b76a8f660d65c3024deb802f50b27c46d2479207d9aa05d5",
+    "source_fingerprint": "sha256:8d33c1ba99e5bf021ae1c44b90bcfdc140229bc05c6b5fa961a99d19fce37f70",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ac6bbbb9299660f5ac4d1d046dd7544ccad82fe589ff830738cfad4662840e2f",
       "plan.md": "1459d670abb6036662187ee4ac3a077dc749997fc51b07a12253ef3870d6eb28",
       "tasks.md": "e9bec18019710dcee604a94eded29b6fad43fbe21ba180042b17d02c4d1bf4fc",
-      "checklist.md": "557fecd6c5e497a3eba6edd62bc44251ca94e2fbbab308c4b713e797a0d04441",
       "implementation-summary.md": "72527cac21de58eef279388cc43c36be1428cfcb7711f818222a586f260a2c8d"
     },
     "last_active_child_id": null,

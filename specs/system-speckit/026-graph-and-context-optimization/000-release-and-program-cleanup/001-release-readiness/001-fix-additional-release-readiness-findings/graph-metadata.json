@@ -38,10 +38,9 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -51,27 +50,21 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -177,36 +170,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Closed Tier",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Complete",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Tier 2 deep-review program reviewed 5 packets (D-H)",
     "created_at": "2026-04-28T18:35:00.000Z",
-    "last_save_at": "2026-07-17T17:19:07.662Z",
+    "last_save_at": "2026-08-30T15:39:27.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8bae9ca633b3e2d4ad7bc3240d4a3b75da04d73186c59221f1ca8673c6d39717",
+    "source_fingerprint": "sha256:c94b771b92da71f14fdbc577bde4aff323e595c1d0bb42a53157a2587d0aaa51",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7b66f6ad2e8400fa79499c43e9b8b986917d70a242f9314a5400b2c0047ca90",
       "plan.md": "7ba876d28994b59dc6c11d6de0067c10c3265833a252d5fd5bacf03585ee6f99",
       "tasks.md": "039a97f78afbc41764e904676eef26cdb6103dfec7b88520abfcd5027786877d",
-      "checklist.md": "9882cba465afa8eb0306728a246dab20e51960f3a2839de9013845ab07a405d0",
       "implementation-summary.md": "c677f59c010b3bf79e6b65e95314ec60b5ff8aa058c8e1d04fce5808f2a441d4"
     },
     "last_active_child_id": null,

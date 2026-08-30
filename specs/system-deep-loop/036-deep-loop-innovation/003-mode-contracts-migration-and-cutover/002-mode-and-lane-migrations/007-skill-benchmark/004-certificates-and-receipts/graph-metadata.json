@@ -20,9 +20,9 @@
       "Skill Benchmark certificates and receipts tasks",
       "skill effect certificate tasks",
       "skill benchmark receipt tasks",
-      "Skill Benchmark certificates and receipts checklist",
-      "skill effect certificate verification",
-      "skill benchmark offline replay gate"
+      "skill benchmark certificates implementation",
+      "skill-benchmark receipt issuer",
+      "skill benchmark offline certificate verification"
     ],
     "key_topics": [
       "skill",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,31 +156,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +182,21 @@
     ],
     "causal_summary": "Plan the Skill Benchmark certificates and receipts over the deep-improvement-common backbone: attest paired skill scenarios, scoring evidence, replay inputs, validity domains, and transition outcomes while leaving shared services single-sourced and independently verifiable offline.",
     "created_at": "2026-07-16T03:43:41.856Z",
-    "last_save_at": "2026-08-29T13:09:54.376Z",
+    "last_save_at": "2026-08-30T15:39:21.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96fed5bf25943dc55463a6b859fb50fe2c9df3909791797926ce9f3b41ccffbf",
+    "source_fingerprint": "sha256:2a91c4c88e4daed43703463aae53367767cc7fe25bcf089b6809cbdf18fea04a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "225c7221e43953bae56d7ef45d9092f90dca81e07ee23858606749face777da6",
       "plan.md": "1cb07e3734abcc3888122cf3b4a319cb2ddf713383b82973751989c64527c7cc",
       "tasks.md": "407d935e8722d8ac15d3571d95a3ada8885124c5e42238c2f3efcd8ce0db59fc",
-      "checklist.md": "12f914ab5c6ee0acb283d9f7eee0cf6e27c2227fd1640cc9d4afd9b42bb0e003",
       "implementation-summary.md": "d92fe3cd7b58c50dab55660ea4c3204bb65e359c49e9c93dc45e1af226d6f084"
     },
     "last_active_child_id": null,

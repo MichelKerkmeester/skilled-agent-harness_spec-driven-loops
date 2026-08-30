@@ -172,7 +172,7 @@
     ],
     "causal_summary": "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 020 exemption boundary. It performs no new rename or reference migration.",
     "created_at": "2026-07-14T15:17:34Z",
-    "last_save_at": "2026-08-30T07:19:32.615Z",
+    "last_save_at": "2026-08-30T15:39:16.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,7 +181,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:f380e783bcd531ebce9a739b88bc3b71e5e7a621e49157594c17380c0feaa5a0",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "268d1974ae14058e0b6c78f1996cee7bae0bd9261df27526ad8d22aa3c45a9a0",
       "plan.md": "73892ca3c3f1d245e9034e38ba1abebf961370be5307636dfa621da3abc48e87",

@@ -19,7 +19,6 @@
       "hook relocation plan",
       "injection contract move",
       "hook relocation tasks",
-      "hook relocation checklist",
       "hook relocation decision",
       "hook relocation summary",
       "resume hook relocation"
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/hooks/README.md",
@@ -60,7 +58,8 @@
       ".pi/extensions/README.md",
       ".opencode/hooks/dispatch/README.md",
       ".opencode/hooks/goal/README.md",
-      ".opencode/hooks/mcp-route-guard/README.md"
+      ".opencode/hooks/mcp-route-guard/README.md",
+      ".opencode/hooks/post-edit-quality/README.md"
     ],
     "entities": [
       {
@@ -79,12 +78,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -206,27 +199,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The folder `.opencode/skills/system-spec-kit/references/hooks/` holds four documents that describe hooks, not the spec-kit itself: the injection visibility contract, the goal plugin operator contract, and two skill-advisor hook adapter contracts",
     "created_at": "2026-08-04T05:57:43.886Z",
-    "last_save_at": "2026-08-06T07:43:01.967Z",
+    "last_save_at": "2026-08-30T15:39:08.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29f692e64cf35e1353fe967ff87d9bc9cc1b6948625f2040c870207b9a0bdf7a",
+    "source_fingerprint": "sha256:8592ad21ff9b22545821da1c427a2d644628773a0b7cca983e9158037cb872cf",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "982f2260005d31a507004f1b027e0859c1e2956f4682dd93a0b5a412c4d6f818",
       "plan.md": "f012428b24cf78ece36cf01168b55da5a37b7715fd2200f134fde2c08c4ab3d5",
       "tasks.md": "46d35d416235af73d0936e6e34cdc6d5a66236bc86c494a938ec56668f557135",
-      "checklist.md": "9f95286423bdf0cefc92199bce817f28ea71a112b7e9635629fc6bbfd39704fb",
       "decision-record.md": "8100d7c731a889e3e8f4fa2281252a9df144228267ad0589a14bbdb7d16645c5",
       "implementation-summary.md": "842b88004ea21d7ac8962ac8dbaa2642a1e0dbb4a9b53f1622b82706758ac159"
     },

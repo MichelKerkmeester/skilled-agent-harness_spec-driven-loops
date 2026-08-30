@@ -20,9 +20,9 @@
       "motion prose relocation plan",
       "skill word cap relief tasks",
       "design-interface SKILL.md trim tasks",
-      "skill word cap relief checklist",
-      "design-interface SKILL.md verification",
-      "skill word cap relief summary"
+      "skill word cap relief summary",
+      "design-interface SKILL.md word count result",
+      "motion sequence relocation outcome"
     ],
     "key_topics": [
       "skill",
@@ -41,40 +41,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/design-interface/SKILL.md",
-      ".opencode/skills/sk-design/design-interface/references/motion/animation-decision-framework.md",
-      "checklist.md",
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       ".opencode/specs/sk-design/014-template-conformance/spec.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      "spec.md"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "animation-decision-framework.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/references/motion/animation-decision-framework.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -90,21 +68,15 @@
         "source": "derived"
       },
       {
-        "name": "package_skill.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -196,26 +168,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Smart Routing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Pct",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`design-interface/SKILL.md` measured 4,991 words against the 5,000-word hard cap enforced by `packageskill.py` (`MAXSKILLMDWORDS`) — nine words of headroom",
     "created_at": "2026-07-27T18:44:01.993Z",
-    "last_save_at": "2026-07-27T18:46:10.794Z",
+    "last_save_at": "2026-08-30T15:39:13.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a28861ef752b2b025f57799f2dcba0c80d75ec3769bee556d66c27d64b705bc9",
+    "source_fingerprint": "sha256:095ebef1a22a258c360a73933c9576db9843e05255dc6036545e7bf8fc476c40",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37c0b275e701f697d917f2dd2026c93b4c56edc03e50d9ab1ed271d20b8bb225",
       "plan.md": "75f25e716691929694ae775e030a019e44f6c7720049be84b9b4b92f3bc4dfd0",
       "tasks.md": "840b622ccfa1a9a03e2c2c16dbaa0499e07c56ba01feadfddd9a2f9829307021",
-      "checklist.md": "39fecbe2cab2258da5cadf35604438c7b5d51e603d7518c3e300038e43aa7abf",
       "implementation-summary.md": "a1e0e0f3873f78005dc4edd530448ec166179163fb6d80360b687ee85cd63136"
     },
     "last_active_child_id": null,

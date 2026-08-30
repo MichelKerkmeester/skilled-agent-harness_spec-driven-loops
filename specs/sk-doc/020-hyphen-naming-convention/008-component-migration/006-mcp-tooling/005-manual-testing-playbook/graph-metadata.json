@@ -153,7 +153,7 @@
     ],
     "causal_summary": "The mcp-tooling hub-level manual-testing-playbook tree uses an underscored root, category directory, index file, and seven scenario filenames. This phase renames only that hub-level tree to kebab-case and updates its navigation references, leaving the three component-local playbooks to their own phases.",
     "created_at": "2026-07-14T15:17:44Z",
-    "last_save_at": "2026-08-30T07:19:38.330Z",
+    "last_save_at": "2026-08-30T15:39:16.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -162,7 +162,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:82f4c901a1848f8a544309510a3452352bc831e70eae5dfca0a65f71b0cb2e16",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0c1b371a977e20fc1e8649b0cf19ded97d7d8a6da1a358b66fa2320c725194a2",
       "plan.md": "3e608255d1149b67c9250c67a0e7dd97376e4bb126237e8286d058c3dfe67680",

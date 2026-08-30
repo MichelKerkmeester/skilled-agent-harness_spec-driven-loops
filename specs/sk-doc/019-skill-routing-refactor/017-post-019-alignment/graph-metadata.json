@@ -18,8 +18,6 @@
       "alignment audit plan",
       "post-019 alignment tasks",
       "alignment audit tasks",
-      "post-019 alignment checklist",
-      "alignment verification",
       "post-019 alignment summary",
       "alignment audit result"
     ],
@@ -32,38 +30,29 @@
       "findings",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
       "summary",
-      "result"
+      "result",
+      "defines",
+      "bounded"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/reducer-fail-closed.test.cjs",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "alignment/alignment-report.md",
       "alignment/deep-alignment-state.jsonl",
       "alignment/deep-alignment-config.json",
       "alignment/iterations/iteration-001.md",
-      "alignment/deep-alignment-findings-registry.json",
-      "spec.md"
+      "alignment/deep-alignment-findings-registry.json"
     ],
     "entities": [
       {
-        "name": "reduce-alignment-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reducer-fail-closed.test.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/reducer-fail-closed.test.cjs",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -76,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -118,12 +101,6 @@
         "name": "deep-alignment-findings-registry.json",
         "kind": "config",
         "path": "alignment/deep-alignment-findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -197,26 +174,43 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Reconcile Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Defines the bounded post-019 conformance audit and its fail-closed evidence contract.",
     "created_at": "2026-07-25T07:41:40.361Z",
-    "last_save_at": "2026-07-25T07:49:55.913Z",
+    "last_save_at": "2026-08-30T15:39:15.616Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc1d5f78c53941d55f57d3d57038342b1ed42fc2b77bf1255426479089a337a4",
+    "source_fingerprint": "sha256:3010d542dcd56b4396d0854c7164100e656e32301f6c9bb892ca2b48c901ad38",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a5ab5d0716fbed3415968dc98db55f23177d37beddfe18aff46c785d9c31311",
       "plan.md": "6bc4f3f9f9f45eeb0abdcb96eeafb866b6a105ac02b3b64effd68d635a4bf075",
       "tasks.md": "0cf3a787ef516a7e5ba741afd863d604ac6526167554a13bfff5114ece1eacfe",
-      "checklist.md": "8a37df6f4d01b2067a4d6b96cebf57961a0d299e921855b2083b0e2a93c5f4cd",
       "implementation-summary.md": "121094b14a98b7846cb8996c3c264e38046e3bf7139ca598c53612c89c419420"
     },
     "last_active_child_id": null,

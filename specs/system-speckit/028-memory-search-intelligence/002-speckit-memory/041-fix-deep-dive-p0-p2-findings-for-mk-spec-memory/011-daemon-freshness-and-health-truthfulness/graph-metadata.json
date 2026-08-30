@@ -18,7 +18,6 @@
       "cli fallback skipped",
       "finalize-dist hash cache",
       "daemon freshness tasks",
-      "daemon freshness checklist",
       "daemon freshness deadlock fixed",
       "dist freshness cache prime",
       "health content_text exclusion audit",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
       ".opencode/bin/spec-memory.cjs",
@@ -52,8 +50,7 @@
       "scripts/tests/test-dist-freshness.sh",
       ".opencode/bin/skill-advisor.cjs",
       "scripts/spec/validate.sh",
-      "scripts/validation/continuity-freshness.ts",
-      "tests/dist-freshness.vitest.ts"
+      "scripts/validation/continuity-freshness.ts"
     ],
     "entities": [
       {
@@ -72,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -120,12 +111,6 @@
         "name": "continuity-freshness.ts",
         "kind": "code",
         "path": "scripts/validation/continuity-freshness.ts",
-        "source": "derived"
-      },
-      {
-        "name": "dist-freshness.vitest.ts",
-        "kind": "test",
-        "path": "tests/dist-freshness.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,26 +184,37 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The entire memory surface was down at session start on 2026-07-03 and the loss was silent: a dist-freshness bootstrap deadlock that `npm run build` (exit 0) cannot clear blocked the CLI shim (live-reproduced twice, deep-dive Chain C), the stale condition was misclassified as retryable exit 75 while hooks fail open, and the daemon's context-server had been crash-looping with SIGBUS earlier that morning (launcher log 05:52-06:07)",
     "created_at": "2026-07-03T09:44:25Z",
-    "last_save_at": "2026-08-29T15:22:22.714Z",
+    "last_save_at": "2026-08-30T15:39:35.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3662935704e379be289107846ac5ab3ffe14f0c5ae3d03f53b4a01e694a38eb0",
+    "source_fingerprint": "sha256:6d4c53d2291d7ddba65ed9e9c312918a3686ed5a91d90635ccb7737385fb1c90",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "05c0354ec1132de95a99b6be734985915313632fc779a5ef1f35ff5a6d6ccd7b",
       "plan.md": "bf1263c140e3dc90e6b6f1c1098a36fd6fbc9a62e16db97c411fce2e38864cea",
       "tasks.md": "cd8acc12c600806207c53722d8d7492550e31a546d74ba8abc2a40b61bf7eddd",
-      "checklist.md": "b792beacf5b20f174f5d9a7837daf6ce0d92b8a10ef5fcda164a13dc511d348c",
       "implementation-summary.md": "f0ac96f92388b80cdc62e333950c305f95f870e35046bd69163bcf510ebe8ad0"
     },
     "last_active_child_id": null,

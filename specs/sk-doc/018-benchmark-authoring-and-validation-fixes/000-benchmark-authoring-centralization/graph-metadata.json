@@ -16,7 +16,6 @@
       "skill-benchmark model-benchmark templates",
       "018 plan benchmark authoring and validation fixes",
       "018 tasks benchmark authoring and validation fixes",
-      "018 checklist benchmark authoring and validation fixes",
       "018 decision record benchmark authoring and validation fixes",
       "018 summary benchmark authoring and validation fixes"
     ],
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -61,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,37 +170,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Make sk-doc/create-benchmark the single home for benchmark-DOCUMENT templates and authoring standards across all repo benchmark families. Author skill-benchmark storage/README templates and model-benchmark fixture/profile templates plus the Lane A guide, add a complete family-disambiguation table (Lane A marked code-owned), and rewire deep-improvement consumer docs to point at create-benchmark for authoring while run/scoring logic stays in the deep-loop lanes. The Lane C report .md stays renderer-owned.",
     "created_at": "2026-07-20T08:56:30.457Z",
-    "last_save_at": "2026-08-29T13:10:02.823Z",
+    "last_save_at": "2026-08-30T15:39:14.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:957035572de68b9fc9c95a1a18f0fe5f3a4cddc51fb612a20d719a1d1e7b0007",
+    "source_fingerprint": "sha256:22a1b2022ca4b2b974eb78b572de6968d26a2b7c67b8fb5b7a3319f4f6887286",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "04c18627bf34e65af7813b5400cf1ad8f9954e4b022892d4e78d2d5c3d3d20e6",
       "plan.md": "353a2745e27c57d767a0747f5e91863cacb7f101e0e76f3c1ddaa22bfd8bd0b9",
       "tasks.md": "a906041072bb2099f9b2c0e8744233c2b48ccf336de758550c4f06074276be21",
-      "checklist.md": "9c91e595fda8070e0cb0d9b2cc176dc9748f213414a85c2b37eb8e62473e2921",
       "decision-record.md": "87eab7cfad2a18cf1d1316cfa6e0b5093bb1e75301fbe75ce6018e67b11b30da",
       "implementation-summary.md": "9a0bb5c835a9d49fd7a46123b1ae1700720a88b0dd439e1fac3b51322bc24c0f"
     },

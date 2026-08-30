@@ -43,12 +43,12 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       "evidence/runlog-with-hybrid-rerank.txt",
       "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.csv",
       "evidence/cocoindex-embedder-comparison-with-hybrid-rerank.jsonl",
       "evidence/run-extended-bake-off.sh",
-      "evidence/cocoindex-embedder-comparison-extended.csv",
-      "implementation-summary.md"
+      "evidence/cocoindex-embedder-comparison-extended.csv"
     ],
     "entities": [
       {
@@ -67,6 +67,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -97,12 +103,6 @@
         "name": "cocoindex-embedder-comparison-extended.csv",
         "kind": "file",
         "path": "evidence/cocoindex-embedder-comparison-extended.csv",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Re-run 018/003 benchmark harness against 2 additional candidates: nomic-CodeRankEmbed (previously failed) + stella_en_400M_v5 (newly registered). Measure hit-rate + p95 latency on the same 18-pair fixture.",
     "created_at": "2026-05-18T05:13:47.028Z",
-    "last_save_at": "2026-08-28T16:28:23.416Z",
+    "last_save_at": "2026-08-30T15:39:30.522Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:829603d601bb3679fb78aeb21a34e5f91e54889e57a76395a995ee23f78fea44",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "edadc318813ef2b5aba562153faf4fe94f78294b5dd8007c8bcaefb608a9895a",
       "plan.md": "8d2529c9a73124f7d57f2f00076cc46ebd83c99c2cc08252e44554cced44f093",

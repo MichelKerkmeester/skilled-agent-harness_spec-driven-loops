@@ -35,7 +35,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/plugins/sk-vision.js",
+      ".opencode/skills/sk-vision/vision-runtime/dist/plugin.js"
     ],
     "entities": [
       {
@@ -60,6 +62,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/dist/plugin.js",
         "source": "derived"
       },
       {
@@ -169,23 +183,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode will not load the skill factory until a real file exists under .opencode/plugins/",
     "created_at": "2026-08-16T07:22:46Z",
-    "last_save_at": "2026-08-16T08:22:59.389Z",
+    "last_save_at": "2026-08-30T15:39:19.508Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3e90ccb77f981e60d8dd9dccbf9a68de97e7efa8f6cddf6e0b4257ccf8238f97",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ce87d2bdf6236448c358b2c5d2d2ccbd2b6482606b92ac399624e4241a7348be",
       "plan.md": "be853243cc88f173f8b5ec3b6d9355a22afc96ded070a6df609a9771d2f13bc9",

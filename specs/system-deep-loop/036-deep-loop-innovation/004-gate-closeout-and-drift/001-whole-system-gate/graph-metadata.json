@@ -20,9 +20,7 @@
       "exact-SHA acceptance gate plan",
       "whole-system gate tasks",
       "deep-loop phase 016 tasks",
-      "exact-SHA gate tasks",
-      "whole-system gate checklist",
-      "deep-loop phase 016 checklist"
+      "exact-SHA gate tasks"
     ],
     "key_topics": [
       "whole-system",
@@ -43,7 +41,6 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md"
     ],
     "entities": [
@@ -57,12 +54,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -160,55 +151,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the final whole-system acceptance gate for the 006 recommendations-implementation program: freeze an exact candidate SHA, run every mode and cross-system parity gate, exercise mixed-version replay and crash recovery, test counterfactual adjudication and degeneration health, obtain a blocking SOL review, and recursively strict-validate the complete packet before closeout.",
     "created_at": "2026-07-16T03:44:01.219Z",
-    "last_save_at": "2026-08-18T04:54:11.817Z",
+    "last_save_at": "2026-08-30T15:39:21.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:c86d9b8e1c6297470e4cb34903fb9c0da5dc5b2ea600d03d9d66afc3e27849a8",
+    "source_fingerprint": "sha256:fddddc190ed3946edc62ce7f3c2ed1a5de132a452ed283a415b98bdab4dadf74",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6450af7059cc1a5faf3ec4685a0def5b6f4f40952dd47115580e2397c929cd35",
       "plan.md": "cffdf504a712d67ec53776ff2c282f8f40777791045e4a962e5cdf32df2625b2",
-      "tasks.md": "7982c7bf9ca44b333cf9b4625b8fd70b48b384a891e503bef41794710dbe5f08",
-      "checklist.md": "e2ff9bc2ccc825ab17c789c8b672cc55be68c449c2e530f03f15ace8c2099052"
+      "tasks.md": "7982c7bf9ca44b333cf9b4625b8fd70b48b384a891e503bef41794710dbe5f08"
     },
     "last_active_child_id": null,
     "last_active_at": null

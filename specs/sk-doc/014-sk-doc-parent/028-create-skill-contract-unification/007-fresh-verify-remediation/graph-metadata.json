@@ -20,9 +20,9 @@
       "fresh verify remediation tasks",
       "per-defect remediation rows",
       "surgical LUNA re-verify",
-      "fresh verify remediation checklist",
-      "remediation verification gates",
-      "re-verify defect resolution"
+      "fresh verify remediation summary",
+      "11 fleet defects remediated",
+      "surface validator shipped"
     ],
     "key_topics": [
       "fresh",
@@ -41,28 +41,17 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/code-webflow/SKILL.md",
-      ".opencode/skills/system-skill-advisor/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-      ".opencode/skills/sk-code/code-quality/SKILL.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-webflow/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "package_skill.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -78,21 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/SKILL.md",
         "source": "derived"
       },
       {
@@ -186,36 +169,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A fresh Sonnet-5 xhigh review of all 46 SKILL.md surfaced 11 pre-existing content defects (none from the prior conformance sweep); this phase remediates them and closes the packetKind:surface validator gap, each fix re-verified by a fresh Sonnet-5 xhigh agent.",
     "created_at": "2026-07-14T07:00:03.277Z",
-    "last_save_at": "2026-07-17T14:37:09.166Z",
+    "last_save_at": "2026-08-30T15:39:13.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c1b1d279dcc609c6f875354a8f4341a09c6cbb3c2eec571c4927a284cad132a",
+    "source_fingerprint": "sha256:306e7c90435e03e3c9aae55fe907917c077e4e35b85f64b1265e7ec0e07eac25",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "96089a6f4b58d6e67b62c3cf58035df040a3974aacbb49714a3eed127bf890d7",
       "plan.md": "59560377daf46e8a7c6f6bd268ecab1bc5e50fe6226e888a10d3822abe46ed7b",
       "tasks.md": "cc69c5bf9a639a31d729035816207691ca6dca5209fa7725155af7758a0d6306",
-      "checklist.md": "d1b5bf767c44a8e3c1bb13057c2dd734caa7ab63356407fa6535e0c9ed988bbe",
       "implementation-summary.md": "453cd933bbd3992ea5b71621706651621c37015b2e66babc8780bb5e223bd35d"
     },
     "last_active_child_id": null,

@@ -40,63 +40,17 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
-      "mcp_server/handlers/memory-save.ts",
-      "mcp_server/handlers/memory-index.ts",
-      "mcp_server/lib/search/vector-index-store.ts",
-      "mcp_server/lib/session/session-manager.ts",
-      "scripts/memory/generate-context.ts",
-      "scripts/core/workflow.ts",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "scripts/memory/generate-context.ts",
+      "scripts/core/workflow.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-manager.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/session/session-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
         "source": "derived"
       },
       {
@@ -109,6 +63,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
         "source": "derived"
       },
       {
@@ -194,11 +166,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The parent review packet mandates that standards docs outside 023 remain deferred until the runtime verification matrix passes",
     "created_at": "2026-04-12T09:02:50.318Z",
-    "last_save_at": "2026-07-10T06:23:41.047Z",
+    "last_save_at": "2026-08-30T15:39:39.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28116ebf247896675db65f1b2202bb8c3a69057a855bfb02955275f9e5e131ee",
+    "source_fingerprint": "sha256:ae8028393658ad21b5762079d419a2829de54895c047617d1a8b82d46d2ab484",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "266f2a37c6b9c3dbf5feaf4bca00002a6c9d650fe05e0d6d48774af77fb3e5a1",
-      "plan.md": "71f54c61508c5fbbe527a564346f3a97934ac69673d39e4fe3dcc2e3de276114",
-      "tasks.md": "4baf8074a87ddc0f8a3caee2b10feed6142957951f43541b0dd6a50da3db1353",
-      "implementation-summary.md": "ca8a815e3d25534fd72d8f1d52a19cc2e46f67b43101a77a5b18b3295d787797"
+      "spec.md": "4c95cfe0956468bb0fb813a7256fa31154434437a975fd0f3ec9c918a3c5050e",
+      "plan.md": "ba0d763402edfbef5c134901b4f48e0ab3a1e91573a7a1e5606551ef928e3ccb",
+      "tasks.md": "72dfd0a411f5a4c0d05a3429d60bf6aee848c2c96ef5d85d78958b3855e7665a",
+      "implementation-summary.md": "d57fd01004078515d979627d4ee1d8f6c84a5a6ccea6c849cd7f466e62a44f90"
     },
     "last_active_child_id": null,
     "last_active_at": null

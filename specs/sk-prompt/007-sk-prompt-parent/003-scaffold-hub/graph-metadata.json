@@ -40,100 +40,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt/mode-registry.json",
-      ".opencode/skills/sk-prompt/hub-router.json",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-prompt/description.json",
-      ".opencode/skills/sk-prompt/SKILL.md",
-      ".opencode/skills/sk-prompt/graph-metadata.json",
       "spec.md",
-      ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md",
-      ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_registry_template.json",
-      ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json",
-      ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_description_template.json",
-      ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_graph_metadata_template.json",
-      ".github/workflows/prompt-card-sync.yml",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/sk-prompt/graph-metadata.json",
+      ".github/workflows/prompt-card-sync.yml"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent_skill_hub_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent_skill_registry_template.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_registry_template.json",
-        "source": "derived"
-      },
-      {
-        "name": "parent_skill_hub_router_template.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_router_template.json",
-        "source": "derived"
-      },
-      {
-        "name": "parent_skill_description_template.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_description_template.json",
-        "source": "derived"
-      },
-      {
-        "name": "parent_skill_graph_metadata_template.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_graph_metadata_template.json",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-card-sync.yml",
-        "kind": "config",
-        "path": ".github/workflows/prompt-card-sync.yml",
         "source": "derived"
       },
       {
@@ -152,6 +72,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
         "source": "derived"
       },
       {
@@ -201,11 +145,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Workflow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exactly",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "No parent-hub skeleton exists yet for the approved `sk-prompt` merge",
     "created_at": "2026-07-09T13:34:34Z",
-    "last_save_at": "2026-07-15T10:52:35.118Z",
+    "last_save_at": "2026-08-30T15:39:18.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a3a899705cb64abaee8e8c0613b783aebcafb88cf8e038e2297df91d3accd5f0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "774115657f72009a0c346006208a3159584c256c6cf4b5308eb8611586bb5f9d",
       "plan.md": "942a87e417430cc566c756888f9bdbf2ac584d647a9890bce48d0fdb8f3325ad",

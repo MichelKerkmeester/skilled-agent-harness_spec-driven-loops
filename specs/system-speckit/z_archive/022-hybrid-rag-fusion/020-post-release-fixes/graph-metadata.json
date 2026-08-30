@@ -42,40 +42,17 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "review/review-report.md",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
       "plan.md",
-      "mcp_server/scripts/map-ground-truth-ids.ts",
-      "mcp_server/tests/modularization.vitest.ts",
       "tasks.md",
-      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "decision-record.md"
+      "review/review-report.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "map-ground-truth-ids.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/map-ground-truth-ids.ts",
-        "source": "derived"
-      },
-      {
-        "name": "modularization.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
         "source": "derived"
       },
       {
@@ -91,9 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -103,9 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "review-report.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -197,29 +174,46 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Docs Truth",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The canonical review now says the packet is blocked by four distinct remediation lanes:",
     "created_at": "2026-04-12T09:02:50.310Z",
-    "last_save_at": "2026-07-10T06:23:00.132Z",
+    "last_save_at": "2026-08-30T15:39:39.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa1e08dc4ba853e17d63c830e329bf76fac977893e04529de09dcd8c53138738",
+    "source_fingerprint": "sha256:ab4aaf6eda659b4b7bb25a6f11e9711fddd318a11ed15ce02f0f333971e13c71",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1cc8e001921c8ef55cbe6667c7bcd87f895e2d698088d789e37c4211a9163d5a",
-      "plan.md": "d1012c3cd183cb5b4ae6118d560c920a0f14aabdce5d594c10ef6926c1d4eed9",
-      "tasks.md": "3ef3a9c616db7240dfa7348aa70afe9f0cb4c09c0454f4b456714f987b4b185e",
-      "checklist.md": "70ab67ecdee2912e5fa846bd13d9ccb5bbb1e74dcee1b43726884fa4ff6c346f",
-      "decision-record.md": "64dbc483b09b607ca24abf678ce078213a5b1b1ad7445c5592805c8aca2273b1",
-      "implementation-summary.md": "ef94817239a319b670439b5140aad6b82d262cb8f1cae94d53c000f023335814"
+      "spec.md": "7e8f7eebb5b94ced062d7b828a4b242c3c223ca2d05d69d32aae72f7cd724e58",
+      "plan.md": "7a5f0e02220d23f4ad37ee82ff555af7c8a28a3cba02943f3322e9f9fdda267e",
+      "tasks.md": "cf343369f98683d3e78b89f8800877efde7c08247c360e6b895f7e89609d4f9b",
+      "decision-record.md": "82d0504b05f7aa76da963ef48b77ed4056f58c9019932e5d32dd43d3b50821f9",
+      "implementation-summary.md": "f1abd1df236e0ded5a76787de9ea851c342fb609bfe104ab24d8fd38309fc166"
     },
     "last_active_child_id": null,
     "last_active_at": null

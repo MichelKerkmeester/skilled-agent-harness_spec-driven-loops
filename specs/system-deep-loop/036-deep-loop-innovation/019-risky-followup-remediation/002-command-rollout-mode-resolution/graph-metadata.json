@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
       ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
@@ -61,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,30 +177,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The compiled command contracts for `deep/review`, `deep/research`, and `deep/ai-council` are stale — their source digest no longer matches the compiled artifact (`STALESOURCEDIGEST`), so `check-contract-drift` fails",
     "created_at": "2026-08-26T11:00:43.034Z",
-    "last_save_at": "2026-08-29T15:22:08.474Z",
+    "last_save_at": "2026-08-30T15:39:22.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9955f9c508f8fc4616eb99848dd61105a84884b83e36ed0a55d7815b12a694be",
+    "source_fingerprint": "sha256:9b6dcd92a6545bd0cbcad7dba4320d9749cb7ea64cb575eeefb1a378247f8e86",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a212e57ba6e4ba987a6709fa3ffc44f11fdcb5d9390f59cf17785c6ae6d2c34",
       "plan.md": "0125bb7f1ac480c8784f947aaf910f298796c5b5b0321539c57153930efa7d67",
       "tasks.md": "b0854cba509f9c5ea70b5a7171425ac700bb8682bbbbd78a1ceef1c2dfba4b76",
-      "checklist.md": "96556fe0aa60e699fe77b1c50af651fd6d55ce9b53fc510a97034ce8032c270d",
       "implementation-summary.md": "fedb50a0a6d874e6a61bff0f230fde20882acef6c7ffe9f23a3bb374956d3fa9"
     },
     "last_active_child_id": null,

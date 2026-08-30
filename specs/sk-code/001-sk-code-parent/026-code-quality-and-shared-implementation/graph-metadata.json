@@ -20,9 +20,9 @@
       "code-quality shared implementation tasks",
       "sk-code code-quality implementation tasks",
       "code-quality shared assets implementation tasks",
-      "code-quality shared implementation checklist",
-      "sk-code code-quality implementation checklist",
-      "code-quality shared assets implementation verification"
+      "code-quality shared implementation summary",
+      "sk-code code-quality implementation summary",
+      "code-quality shared assets upgrade summary"
     ],
     "key_topics": [
       "sk-code",
@@ -33,10 +33,10 @@
       "upgrade",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
+      "summary",
       "sibling",
-      "research"
+      "research",
+      "packet"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/hooks/README.md",
       ".opencode/agents/code.md",
@@ -52,7 +51,7 @@
       ".opencode/skills/sk-code/mode-registry.json",
       ".opencode/skills/sk-code/hub-router.json",
       ".opencode/skills/sk-code/graph-metadata.json",
-      ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
+      ".opencode/specs/sk-code/001-sk-code-parent/graph-metadata.json",
       "shared/README.md"
     ],
     "entities": [
@@ -72,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,26 +192,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sibling research packet `025-code-quality-and-shared-research` ran ten capped-converged deep-research iterations and produced a ranked, owner-bounded backlog of five upgrade proposals for the `sk-code/code-quality` sub-skill and `sk-code/shared` assets",
     "created_at": "2026-07-07T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:21:56.619Z",
+    "last_save_at": "2026-08-30T15:39:10.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bef6ada238ae4797dbfc437ac68a4168987c2a5481a1cbaa30ff9d42a3c2bd40",
+    "source_fingerprint": "sha256:94e0e125a54962afa9f6ecfd62d394b7f098fd966c9d43f095e4d0c21a9dc25f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0ca4b7569f90828dcadd7e43581fcb2c33c0920a511a1a82adeb087d2fb569f2",
       "plan.md": "c43a675d11ab6452c6ce70f769e98cdaf6b2a15a2f1718d1b382612d5f1cf08d",
       "tasks.md": "0b47b4da0efe6ab1e042ab7149fd7d1c8a62a2fa62d1e8d0fe5f1afd20e34bc1",
-      "checklist.md": "6f2ee46e5bd619b07b4e312f445cbd8ac245875bd686e599f72a890129d36193",
       "implementation-summary.md": "6e740939cbc1501b065dcb4597891603dbf230da6c654e3a4592cded8493c118"
     },
     "last_active_child_id": null,

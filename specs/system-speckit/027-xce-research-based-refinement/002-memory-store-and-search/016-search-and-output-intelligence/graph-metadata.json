@@ -212,7 +212,7 @@
     ],
     "causal_summary": "After 015 fixed the dominant RRF-vs-cosine miscalibration, on-topic searches still under-report: generic 2–3 word queries read `weak`/`donotcite` despite mixed-but-relevant matches, a strong top hit is dragged down by a weaker tail, token-budget truncation hides results (5→1), and weak models render non-comparable output fields (`confidence` vs `similarity`) across surfaces",
     "created_at": "2026-06-17T19:57:25.100Z",
-    "last_save_at": "2026-08-29T14:54:20.183Z",
+    "last_save_at": "2026-08-30T15:39:33.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:347966e5bd3f173a79730247b7b441a7a388bd3bedae3c79b13ed94ca89c9a19",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4f0e06fe7321ea3d762c3203191fa30c13c4c6b264fe41a0decd0fecad43f9f3",
       "plan.md": "84081d1a7533f59d95efaeb04fa827b92d42ad3754a2c4788da2825dd9b85456",

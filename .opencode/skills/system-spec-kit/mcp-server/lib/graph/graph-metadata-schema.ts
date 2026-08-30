@@ -80,6 +80,8 @@ export const graphMetadataDerivedSchema = z.object({
   // invalidates every stored digest at once - through no fault of the packets. Recording
   // the generation lets a strict read tell "these docs changed" apart from "the document
   // set changed underneath this packet", and only the former is drift.
+  // Optional on its own, but mandatory beside a fingerprint - enforced below,
+  // because a digest that names no document set cannot be compared to anything.
   source_fingerprint_docset: z.number().int().positive().optional(),
   // Freshness key for the drift gate: sha256 of each present source doc keyed by its
   // packet-relative path. Optional so legacy files and a flag-off derive omit it cleanly;

@@ -22,7 +22,7 @@
       "corpus reindex tasks gate zero",
       "embedding coverage guard tasks",
       "reindex reconcile breakdown",
-      "corpus reindex checklist gate zero"
+      "corpus reindex implementation summary"
     ],
     "key_topics": [
       "corpus",
@@ -44,12 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
       "lib/eval/ablation-framework.ts",
-      "lib/eval/data/ground-truth.json",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json",
-      "implementation-summary.md"
+      "lib/eval/data/ground-truth.json"
     ],
     "entities": [
       {
@@ -71,9 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -86,12 +83,6 @@
         "name": "ground-truth.json",
         "kind": "config",
         "path": "lib/eval/data/ground-truth.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -173,48 +164,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "How It Was Delivered The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded",
     "created_at": "2026-06-19T05:40:37.442Z",
-    "last_save_at": "2026-07-17T17:19:47.403Z",
+    "last_save_at": "2026-08-30T15:39:34.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ede069ea4369543de922df04868a2b53f9a81d17a020dc1453d9e6e9b438532",
+    "source_fingerprint": "sha256:47f638987408c99f578cd8d356ade69261dbf763128367b4c6ea3b92bb6364c2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5c2d90e0451d9f58ac3ab992fc01f9198b86e91a49475e6425389b41b2744760",
       "plan.md": "03c72c7acf311608d4771128d50b9837b517514ed157d56f3be5d881a5775cfd",
       "tasks.md": "0f5c19c2f1292c9f57a8e78dc51d4e365f3fe7ebd80372106b8d14b7a6b01a57",
-      "checklist.md": "d1769b1d5cff055321d763cc10169f85778bb0b9554849d1701cba3cb9db00b9",
       "implementation-summary.md": "615893af3ff926307736eb5b17df582436fa1a10d57b687eba8e004787df88e9"
     },
     "last_active_child_id": null,

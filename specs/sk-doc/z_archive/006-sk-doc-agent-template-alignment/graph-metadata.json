@@ -37,26 +37,14 @@
     "importance_tier": "high",
     "status": "planned",
     "key_files": [
-      ".opencode/agents/context.md",
-      ".opencode/agents/deep-review.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/agents/context.md",
+      ".opencode/agents/deep-review.md"
     ],
     "entities": [
-      {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".opencode/agents/context.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -79,6 +67,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Clean up agent files (063a) AND align the template to current production reality (063b)",
     "created_at": "2026-05-18T07:49:27.115Z",
-    "last_save_at": "2026-07-15T14:02:13.958Z",
+    "last_save_at": "2026-08-30T15:39:18.277Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:75ca41687346bb6d68471c1e9c7d2994818a66f71b70caac2663ea169b2bed38",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4be69e5987988391509911987fc45f7d4af0c6a4de5cf91346020c9a661dd66",
       "plan.md": "3209fe82fd4b0bba5c9bc372611dfc03a9bc013ee8d87e2620d992c9ee75f8d0",

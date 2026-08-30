@@ -47,13 +47,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
       ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
       "scripts/spec/upgrade-level.sh",
       "templates/spec-kit-docs.json",
       "mcp-server/lib/graph/graph-metadata-parser.ts",
       "mcp-server/lib/validation/generated-metadata-integrity.ts",
-      "scripts/rules/check-evidence.sh",
       "scripts/tests/fingerprint-docset-generation.sh",
       "mcp-server/lib/resume/resume-ladder.ts",
       "mcp-server/scripts/repair-graph-metadata.mjs",
@@ -97,12 +95,6 @@
         "name": "spec-kit-docs.json",
         "kind": "config",
         "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
-        "source": "derived"
-      },
-      {
-        "name": "check-evidence.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
         "source": "derived"
       },
       {
@@ -206,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The merge that unified tasks and checklist recorded `Delete/retire` against `templates/addons/checklist.md.tmpl` and then kept it, along with its three worked examples",
     "created_at": "2026-08-30T04:40:40Z",
-    "last_save_at": "2026-08-30T08:55:26.701Z",
+    "last_save_at": "2026-08-30T15:39:36.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

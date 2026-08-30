@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Unit calls to a parser cannot prove that the actual child process receives the parent's environment or that a child toggle remains local to its copied environment",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-30T07:18:55.495Z",
+    "last_save_at": "2026-08-30T15:39:09.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7acf339f018d6360594cc4bd869805042f88441d1527d73b1c96e9b4b7687c05",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c8ef200cdc93996230860ce9ed2100f96bdcc7e38a6ef7165c8c782c3ff6827a",
       "plan.md": "2d733cf2d36a4822cc26e345c71d3afa6322ae332139a89a23f6e4f24de16af9",

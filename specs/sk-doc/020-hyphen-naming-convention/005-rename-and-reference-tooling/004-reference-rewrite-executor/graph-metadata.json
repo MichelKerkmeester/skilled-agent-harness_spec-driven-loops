@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The checker only records reference sites read-only and the engine only moves files, so nothing deterministically rewrites in-file references to renamed paths. This phase defines a compare-and-swap-protected static reference-rewrite executor that consumes the disposition ledger and semantic map, verifies each site's preimage blob before writing, and regenerates rather than force-applies a rewrite plan whose base moved.",
     "created_at": "2026-07-15T09:35:26.640Z",
-    "last_save_at": "2026-08-30T08:04:22.164Z",
+    "last_save_at": "2026-08-30T15:39:16.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:460ec719b40d68a88bea2d1807682482932b4b3a7c49b3b5c0fda243ad1a8efd",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "efa0da94de1f73e38bc7e85d665f66461911a9075b89a8a5ae973789bcfdd97e",
       "plan.md": "7d5a22892cbd1a06a37ce15449765d9ab8c2febeb158517d826d1b56c565f030",

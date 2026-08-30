@@ -20,11 +20,10 @@
       "027 phase 004 schema backfill plan",
       "trigger embedding backfill plan",
       "027 phase 004 schema backfill tasks",
-      "schema backfill verification",
-      "trigger embedding checklist",
-      "memory_trigger_embeddings validation",
       "implementation",
-      "summary"
+      "summary",
+      "template",
+      "impl summary core"
     ],
     "key_topics": [
       "phase",
@@ -36,9 +35,9 @@
       "resumable",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
-      "validation"
+      "implementation",
+      "summary",
+      "template"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -46,16 +45,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "mcp_server/lib/search/vector-index-schema.ts",
-      "mcp_server/lib/cache/embedding-cache.ts",
-      "mcp_server/handlers/memory-index.ts",
-      "mcp_server/lib/search/trigger-embedding-backfill.ts",
-      "mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
-      "mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts",
-      "mcp_server/tests/trigger-embedding-backfill.vitest.ts",
-      "mcp_server/handlers/save/embedding-pipeline.ts",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -80,60 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-cache.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cache/embedding-cache.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-embedding-backfill.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/trigger-embedding-backfill.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema-compatibility.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema-migration-refinements.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-embedding-backfill.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/trigger-embedding-backfill.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-pipeline.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/save/embedding-pipeline.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,26 +137,79 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "existing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "profile",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The semantic trigger stage needs cached trigger-phrase embeddings to run, but the trigger hot path has a tight latency budget (`trigger-matcher.ts:132-160`) and must never call an embedding provider inline",
     "created_at": "2026-06-06T13:35:44Z",
-    "last_save_at": "2026-07-17T17:19:39.770Z",
+    "last_save_at": "2026-08-30T15:39:33.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afa360eb3a1cb60b8c00fe127a15b5a94f0493ed9cc191d8b25ee032e0595abf",
+    "source_fingerprint": "sha256:bceacc2713af32e059c9aae253a288a6dc891b5879d4680f2f2c76b680c9a542",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2bf8aa5e3ee17c1bf3dcccf5b7bf9e16aa59c3723ecf6997f82893cef37e1e36",
       "plan.md": "ac3594add30c3fdad5d40bfcefc30f63928f29d6a8976cf2fcfc40f7c41153bf",
       "tasks.md": "b0cb42869a4ed5ff8fde6ab3321af34933621b2c592f5adca5872203ebdf57da",
-      "checklist.md": "bac6160942c42188cdf77c10e866741b09a6ab3f1906897da7ebd73e353a9890",
       "implementation-summary.md": "b57b3a81952817bba28bfce001fcc9f288f066a1a4a5b9fdf4c050e99579f728"
     },
     "last_active_child_id": null,

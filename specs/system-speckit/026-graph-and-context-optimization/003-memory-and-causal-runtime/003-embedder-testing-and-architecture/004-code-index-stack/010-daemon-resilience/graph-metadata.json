@@ -43,30 +43,17 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
-      "research/research.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -82,9 +69,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -194,27 +187,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-coco-index daemon (`ccc run-daemon`) has multiple interacting bugs across five surfaces",
     "created_at": "2026-05-07T07:38:00Z",
-    "last_save_at": "2026-08-28T15:59:42.385Z",
+    "last_save_at": "2026-08-30T15:39:30.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fe2d7f198ccab374c19b294d283b2a9578d96701b115338d8a7d7001f5266f23",
+    "source_fingerprint": "sha256:4fdedc24ac78ade1353296ceab2954b2eb6e546e1968e2c2e5b4b28961555a53",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b0dd7cbac878f1a8562c53579df903ff35402a6c47cfee094d17b63ab749759",
       "plan.md": "4177c0f46daac02261d3baaa02d88e023525aeb6825c2db84db7603933b31940",
       "tasks.md": "75222e590a41351253d0988458e49dac9013d6bcb1f33d418cb5d5d9c8cfa28c",
-      "checklist.md": "85d3797e561dbc158f7e6b63b1be0c72703da8b81385d5367a862424a5e5cc6f",
       "implementation-summary.md": "2ef447b34095264af4068d8a33f6ae465df953c4182172ebc9e7b3621803d192",
       "research/research.md": "a9ca7b7426df923a4fecf40df68547f19152f9acba2bf0f8f80fd2e4e25e77d5"
     },

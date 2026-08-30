@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/memory/verify-index-identity.ts",
       "handlers/memory-save.ts",
@@ -61,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,26 +181,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Targeted Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mk-spec-memory search backend (`memoryindex` + `vec768`) has drifted from the current on-disk spec corpus, primarily as a side effect of the July 2026 `system-spec-kit` → `system-speckit` re-nest, which moved and renamed thousands of spec folders without reconciling their old index rows",
     "created_at": "2026-07-09T06:17:43.016Z",
-    "last_save_at": "2026-08-29T15:22:21.379Z",
+    "last_save_at": "2026-08-30T15:39:34.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:caa62a22722301747067f13b85b501a49e04a7a6f03328d4a9cb9ba2b44f901a",
+    "source_fingerprint": "sha256:7bab87ebe537023ef17ba91ace7a517b8bfe0ecb72a3a337ee7c287cb21e8b54",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "df8828c1223016b661ff5b7e4c2d4210742500f1e19052b2b3f80f6e9d128728",
       "plan.md": "bfd6a8bd5a2c053273bef79e105f015a1d53c4708e84a8e90906aaf5bf8a9517",
       "tasks.md": "bc1f67871a6aa279a341ffbe5fd5113420b0e8d410e3fabc926d4bc0f02d8628",
-      "checklist.md": "171bc045bb6d2414c002f32ee2c9ecdf8429c69d6306fa9f5c3775e2c795c705",
       "implementation-summary.md": "51d2fe7b1795ff826f91d9514c5ee56b7fc49af474a55239e770e703cd74a306"
     },
     "last_active_child_id": null,

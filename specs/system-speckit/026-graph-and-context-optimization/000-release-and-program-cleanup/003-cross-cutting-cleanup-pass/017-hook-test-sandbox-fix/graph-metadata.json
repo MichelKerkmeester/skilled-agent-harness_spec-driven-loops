@@ -39,21 +39,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
     "entities": [
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,31 +173,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The prior runtime hook matrix ran live runtime CLIs from inside a sandboxed",
     "created_at": "2026-04-29T21:45:00.000Z",
-    "last_save_at": "2026-07-17T17:19:09.809Z",
+    "last_save_at": "2026-08-30T15:39:28.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:2777283728d9cae7e5b1e4ed55f8693eda91a69cf8b616394c3ffd5106c1d33f",
+    "source_fingerprint": "sha256:9fe12d6b5eed254de1b5e59541587582bcba0500b92209bfd0d5f7a385b2246c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e29bd7ce4a23565ca1a887e04aaa80ecfec2213b52d78d6404d8d51a1308208f",
       "plan.md": "159aeb9b744dd1a433e0fb1ea57406b239a85d5b3541be8c760ddfd2c6cb46fb",
       "tasks.md": "2d172e8fd132e0baeadeb298aef354f146a6fa66079b284572b4f7649772a8a7",
-      "checklist.md": "89eb03e79702784976827e5abf014f81b1cb72c5482e92ca9a4c11b61be2721f",
       "implementation-summary.md": "229bdda14e9c16d97387e9b843cca037f37354a5f6df0adeec7ff2c2fcb94cbf",
       "resource-map.md": "d3f428bbfdd189095938931ec9a9084468acadc04c77789d640935c14dd174a2"
     },

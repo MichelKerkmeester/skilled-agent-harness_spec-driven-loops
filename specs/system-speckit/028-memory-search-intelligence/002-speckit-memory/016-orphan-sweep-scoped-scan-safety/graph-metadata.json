@@ -41,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handlers/memory-index.ts",
       "lib/config/spec-doc-paths.ts",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,19 +171,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -198,22 +185,21 @@
     ],
     "causal_summary": "F2 (headline finding, confirmed by reproduction) -- scoped scan (drift-marker consumption) bypasses every",
     "created_at": "2026-07-09T15:13:29.637Z",
-    "last_save_at": "2026-08-29T15:22:21.420Z",
+    "last_save_at": "2026-08-30T15:39:35.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88b8627a329dd5285dffc08f88d7d16513a086a2583e7eb6e971161fae7ee17b",
+    "source_fingerprint": "sha256:0ce3c678284fa28942f63d058d828cc091b0a0cda1784677cbc2cd40249dcf19",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c764326c886996ea28c5f95f65f17351de3cdab37cf9d07d58ff7bd35511696",
       "plan.md": "eafd780db9d79843046aa61ca2ed639c55134a8da4964ed03e9601bf7e17ac3e",
       "tasks.md": "25999670ce05cfd8bda2417aa7edbf980fd8d34fc9f668cd56e469950fef2f64",
-      "checklist.md": "00dcd26ce62044c46f6c095896c25ca356a8ac3fa0a7ac94f1f93b70ae5e2b50",
       "implementation-summary.md": "d34763ecd7f3687de0901b8b6f180bc4926fe73fb8049a6ab002725d793815fe"
     },
     "last_active_child_id": null,

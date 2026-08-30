@@ -21,8 +21,8 @@
       "token budget trim selection",
       "append-exempt tasks",
       "density probe tasks",
-      "append-exempt checklist",
-      "density probe checklist"
+      "append-exempt implementation summary",
+      "density probe implementation summary"
     ],
     "key_topics": [
       "append-exempt",
@@ -41,76 +41,17 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/true-citation-emitter.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      "mcp_server/formatters/search-results.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/lib/feedback/true-citation-emitter.ts",
-      "mcp_server/handlers/memory-crud-health.ts",
-      "mcp_server/tests/append-exempt-serializer.vitest.ts",
-      "mcp_server/tests/true-citation-emitter.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "lib/search/deterministic-multihop.ts",
       "lib/search/lane-champion-backfill.ts",
       "formatters/search-results.ts",
       "lib/feedback/true-citation-emitter.ts",
-      "handlers/memory-crud-health.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "handlers/memory-crud-health.ts"
     ],
     "entities": [
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "true-citation-emitter.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/true-citation-emitter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "append-exempt-serializer.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/append-exempt-serializer.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "true-citation-emitter.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/true-citation-emitter.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deterministic-multihop.ts",
-        "kind": "code",
-        "path": "lib/search/deterministic-multihop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lane-champion-backfill.ts",
-        "kind": "code",
-        "path": "lib/search/lane-champion-backfill.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -130,15 +71,39 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic-multihop.ts",
+        "kind": "code",
+        "path": "lib/search/deterministic-multihop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lane-champion-backfill.ts",
+        "kind": "code",
+        "path": "lib/search/lane-champion-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "true-citation-emitter.ts",
+        "kind": "code",
+        "path": "lib/feedback/true-citation-emitter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
@@ -206,26 +171,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 009 dark-flag validation found two production-readiness gaps in the search layer",
     "created_at": "2026-06-24T08:04:02.092Z",
-    "last_save_at": "2026-07-17T17:19:54.711Z",
+    "last_save_at": "2026-08-30T15:39:36.179Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a223ac29359210310454ce26063bd920fffb35bf1d3c4e14be3482bf72056d10",
+    "source_fingerprint": "sha256:97a70798f58a34507d20813c5d78c945d53cf5da536a4e3b975ed532bf0f58bd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ee38e9e888caa99581d144864d775303fa9794c65af949b154cd18b43e1cf8b",
       "plan.md": "7fc5a1949cf7db82b663820f7ce4f88c183fe446a663618357f537a3730f5c1d",
       "tasks.md": "aedd251d02d7932e85abd3dd139678a54086a6084346e50249ff31281c5b13ee",
-      "checklist.md": "2d35f6b49d430cb0326ad375f284067b8a3048fb2e5cdb9dee5c0f62aea21aab",
       "implementation-summary.md": "fe3c7b497027c2c71470193be33a618ab50d78cbf21141e00ac63f44d65d25d9"
     },
     "last_active_child_id": null,

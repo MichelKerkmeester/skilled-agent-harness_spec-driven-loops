@@ -17,8 +17,6 @@
       "phase 010",
       "implementation plan",
       "tasks",
-      "verification",
-      "checklist",
       "phase 010 implementation summary",
       "feature catalog completeness summary",
       "sk-design catalog remediation evidence",
@@ -36,7 +34,7 @@
       "implementation",
       "plan",
       "tasks",
-      "verification"
+      "summary"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/sk-design/SKILL.md"
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Only one of the six `sk-design` packages — `design-md-generator` — has a `featurecatalog/` package (`design-md-generator/featurecatalog/featurecatalog.md`, 7 categories)",
     "created_at": "2026-07-06T04:35:22.460Z",
-    "last_save_at": "2026-08-29T15:21:59.062Z",
+    "last_save_at": "2026-08-30T15:39:12.208Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:299af75f71930a1aa07a180b8493c328dfdb4528f677e472c588a9b620b92ab9",
+    "source_fingerprint": "sha256:3af006f24b1fbb52043d82490c4546d6e7eade480e08a7f9af993c62f1ddf8c6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f8873f4884f6c605a74486e2a1190728ef9257d5675de0ea08bc2790c0f6f65",
       "plan.md": "417e19aed8ac9268a5322d49e6176f15241dfca2a9c60ec88ae3156609291581",
       "tasks.md": "bf3cc38803cdb5c1d650d0592f51cb0b5df3202ef6a845d63ca1649ce6ac6f18",
-      "checklist.md": "1710fc668021a823d61d0a8756ad56641daf3deadf20abd58357b3599b74c675",
       "implementation-summary.md": "344f2220438250a748c4ed0839e3c99ddc15fb0e9fc8b22c8ec5b37e9cce0a35"
     },
     "last_active_child_id": null,

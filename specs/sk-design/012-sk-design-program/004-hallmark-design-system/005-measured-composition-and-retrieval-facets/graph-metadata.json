@@ -32,34 +32,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/styles/lib/database/schema.mjs",
-      ".opencode/skills/sk-design/styles/lib/database/indexer.mjs",
-      ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "schema.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/lib/database/schema.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "indexer.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/lib/database/indexer.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,36 +147,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Composition Record",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The shipped style database can query text, generic facets, token axes, capabilities, and vectors, but it cannot describe or query the measured page shape already present in each style's canonical record, token axes, and `DESIGN.md` headings",
     "created_at": "2026-07-22T19:16:29.110Z",
-    "last_save_at": "2026-07-23T07:04:12.734Z",
+    "last_save_at": "2026-08-30T15:39:12.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca13dde3b47d9e2ae9eb08d767b32075bb665926aa93a7d8ea66fb9ae48e8649",
+    "source_fingerprint": "sha256:3df6a6456e186f4f87208b78c56fcb472a37790a331af37d77b5f59c58114e0d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b6959d73a642fbf62a39b852eacd4a8b30d88b376c191b320092439b8e2535ac",
       "plan.md": "60e2fada89e29305f87ae8ba250b8f932f4c0f86e7e8f59a18a8387c67f5f2d5",
       "tasks.md": "b15e1df3b221efed39d125e9baec906c9a22e21444cc1e5accaa82aad0ffe906",
-      "checklist.md": "7b09bcd68448d45091b867d8d574c232916917dc6f5c078348a7a162799e2431",
       "implementation-summary.md": "75718282cdcdab9488f44985803c41c9594e6ab9e17cf2c21aa45fcb9bd49307"
     },
     "last_active_child_id": null,

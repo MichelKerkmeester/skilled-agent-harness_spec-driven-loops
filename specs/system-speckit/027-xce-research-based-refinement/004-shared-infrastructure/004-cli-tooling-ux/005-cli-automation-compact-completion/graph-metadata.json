@@ -36,33 +36,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "mcp_server/lib/storage/canonical-fingerprint.ts",
-      "scripts/deploy-mcp.sh",
-      "mcp_server/spec-memory-cli.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/deploy-mcp.sh"
     ],
     "entities": [
-      {
-        "name": "canonical-fingerprint.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/canonical-fingerprint.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deploy-mcp.sh",
-        "kind": "script",
-        "path": "scripts/deploy-mcp.sh",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory-cli.ts",
-        "kind": "code",
-        "path": "mcp_server/spec-memory-cli.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deploy-mcp.sh",
+        "kind": "script",
+        "path": "scripts/deploy-mcp.sh",
         "source": "derived"
       },
       {
@@ -188,11 +174,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `list-tools --format json` output includes the full `inputSchema` for every tool, so machine scripts must parse large payloads to get tool names: spec (`spec-memory-cli.ts:463-481`; the spec-memory JSON was over 75KB in the assessment run), code (`code-index-cli.ts:542-562`), advisor (`skill-advisor-cli.ts:705-725`)",
     "created_at": "2026-06-10T20:46:28.787Z",
-    "last_save_at": "2026-07-17T17:19:44.224Z",
+    "last_save_at": "2026-08-30T15:39:34.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9973db55de90e9ae5149a24077040db45d41bb84a0cd6900ed4299f653de58bd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3615cee92c4a12262e33d8a6ab11e487a00a353ed09daa069ebdb2e60ce0f60b",
       "plan.md": "f1f21eb261789c58cb8323eb8c06dbccbc0d8290ebb166317d03a6ff0a981429",

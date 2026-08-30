@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `/speckit:plan` Step-5 prerequisite helper (`check-prerequisites.sh`) derives the feature directory from the current git branch via `common.sh`, then hard-rejects any branch that does not match `^[0-9]{3}-`",
     "created_at": "2026-08-15T13:24:44.384Z",
-    "last_save_at": "2026-08-29T14:54:20.187Z",
+    "last_save_at": "2026-08-30T15:39:36.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d97ef6e87d927de648244740e95a4904a834041dcc2f26156ff77e88de46cd13",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7546eaf6845aef5644f50e90299d399822f9293e272d9fa2c32ed2e5dedf0125",
       "plan.md": "e29f786f53f536735e85e84ceaa4cf0ba1b7e9c2df7b494aabc7ea54e3ef321f",

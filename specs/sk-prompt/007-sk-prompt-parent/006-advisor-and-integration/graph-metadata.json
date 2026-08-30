@@ -43,19 +43,39 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt/README.md",
-      ".opencode/skills/README.md",
-      ".github/workflows/prompt-card-sync.yml",
-      ".opencode/install_guides/README.md",
-      ".opencode/install_guides/SET-UP - AGENTS.md",
       "spec.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-prompt/README.md",
+      ".github/workflows/prompt-card-sync.yml",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -69,45 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "SET-UP - AGENTS.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-prompt-quality-card-sync.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -199,11 +183,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "repo",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "documented",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phases 004 and 005 move the skill content and functional write targets, roughly 50 active documentation and prose referrers can still point at the old flat `.opencode/skills/sk-prompt-models/` identity",
     "created_at": "2026-05-21T06:22:25Z",
-    "last_save_at": "2026-07-15T10:52:35.594Z",
+    "last_save_at": "2026-08-30T15:39:18.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:21cd17069913aeb9ba5f52bbb16f17ef0a76e2a71e5c9704235dab255638ae62",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c9c79c39931d708969a58ae3e30f1f98f272206fbfb77523268723de15a436a7",
       "plan.md": "ecb9cb03fd0ce5ef8210d48c8708dd804a9cc3d281309132d01dc484d39932fd",

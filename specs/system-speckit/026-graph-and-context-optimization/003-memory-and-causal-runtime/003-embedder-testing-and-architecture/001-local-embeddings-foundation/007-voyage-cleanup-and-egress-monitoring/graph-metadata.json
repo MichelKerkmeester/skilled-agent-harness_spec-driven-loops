@@ -46,10 +46,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       "scratch/tcpdump-verify.sh",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      "shared/embeddings/factory.ts",
-      "implementation-summary.md"
+      "shared/embeddings/factory.ts"
     ],
     "entities": [
       {
@@ -71,6 +71,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "tcpdump-verify.sh",
         "kind": "script",
         "path": "scratch/tcpdump-verify.sh",
@@ -80,12 +86,6 @@
         "name": "factory.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After 003 purged `VOYAGEAPIKEY` from every shell-propagating source and 004 rebuilt the memory vec store under hf-local, three sqlite files at `.opencode/skills/system-spec-kit/mcpserver/database/` were stale: `context-indexvoyagevoyage-41024.sqlite` (318MB main + 32K shm + 4MB wal) and the older generic-name `context-index.sqlite` (141MB) from before filename-keying",
     "created_at": "2026-05-12T16:27:51Z",
-    "last_save_at": "2026-07-17T17:19:18.501Z",
+    "last_save_at": "2026-08-30T15:39:29.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T22:00:00Z",
     "source_docs": [
@@ -209,6 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f7d866b7e1d017f01468205e230d8d698bde09e946a7008eb5eaa0acf8612180",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "221fbdf0bac982fd0943556c3324c02e919f7ad6a55aeabc4e405aec0ff13d82",
       "plan.md": "de275f60e4f919f5502b1886512db84ebc29b22a1bb69c3efc828c05c005aa29",

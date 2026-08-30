@@ -24,7 +24,7 @@
       "contextador tasks",
       "deep research tasks",
       "phase 003 tasks",
-      "contextador checklist"
+      "contextador adr"
     ],
     "key_topics": [
       "contextador",
@@ -44,11 +44,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       "scratch/phase-research-prompt.md"
     ],
     "entities": [
@@ -56,12 +55,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -77,15 +70,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,31 +184,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Michel Kerkmeester",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`CodeEnvironment/Public` already operates CocoIndex, Code Graph MCP, and Spec Kit Memory",
     "created_at": "2026-04-12T09:02:53.447Z",
-    "last_save_at": "2026-07-17T17:19:15.680Z",
+    "last_save_at": "2026-08-30T15:39:29.139Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13731735a73c82fa3a09c093e04d6437f5c489856a108ccadd501fd33f0f0c0f",
+    "source_fingerprint": "sha256:38ea2646891e3ad98b3e789bd69a8cf8e2614efc731b0b9842077e3c5f608dac",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e36fa0c1f47747667a3a6af8b25f94748832fd30675edbb1664b770690a91e7",
       "plan.md": "d9c5bd9881d3713191fdfd7f027d0954dcac187e40fd3621cdae66cc3444374e",
       "tasks.md": "444d0369de14d5dd1044004b7d28e8b5e6925b491e28dc0b60570584897942c4",
-      "checklist.md": "c6387a4b31defdf3628e21f65631a6e6c0e5fe2f14548c5052eb809f96d8ba2a",
       "decision-record.md": "c0d51c5214b8226e336cf4f44d23848f271197dedc366213b12dbee332e676b9",
       "implementation-summary.md": "7181b141aa018f128ba342ae939feb486e4fcc9a312c8f761ff8296e88666e19"
     },

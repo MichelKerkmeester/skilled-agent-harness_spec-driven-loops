@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/003-cli-claude-code-creation",
-  "spec_folder": "cli-external-orchestration/003-cli-claude-code-creation",
+  "packet_id": "cli-external-orchestration/z_archive/003-cli-claude-code-creation",
+  "spec_folder": "cli-external-orchestration/z_archive/003-cli-claude-code-creation",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -16,7 +16,6 @@
       "cli-claude-code plan",
       "claude code skill plan",
       "cli-claude-code tasks",
-      "cli-claude-code checklist",
       "cli-claude-code summary"
     ],
     "key_topics": [
@@ -27,29 +26,21 @@
       "skill",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "exists",
       "external",
-      "assistants"
+      "assistants",
+      "gemini"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/README.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,12 +51,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,31 +168,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "No skill exists for external AI assistants (Gemini CLI, Codex CLI, Copilot, etc.) to delegate tasks to Claude Code CLI",
     "created_at": "2026-04-12T09:02:50.203Z",
-    "last_save_at": "2026-07-14T19:26:21.883Z",
+    "last_save_at": "2026-08-30T15:39:08.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e88f9e8925a11b84d3abd61325920c36b55ef1d6a60ce11b306a745b5410d7b",
+    "source_fingerprint": "sha256:57b6e6c3e6ae5bad044f47a45428269c4c51dee30c715dd408a394073152c1f5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5b161cc2c82c1bb482b3f112512fc03b007a633d9dec730507044e172b7c42dc",
       "plan.md": "8a8565448b511b92948a28cef1c8265cd7456f6fa8223a5c22df4e4a53de54e3",
       "tasks.md": "0109ab769a5148c8756e797cd124c349d55010533a3d8d090a4b86fb0ea9c07e",
-      "checklist.md": "08a7ee8460b7e1655e1d1ade4910fcab4c003c2cbc149d76dab0bea124c0b6cb",
-      "implementation-summary.md": "f7f4db5c2606f102a28e27e255c79864c3ea768323fcaeafb8dfa1b6b3bc4071"
+      "implementation-summary.md": "ccab37c60731cd4b17e63f535857eb1ca33aaa60af0b3be1ef658d4494330bd0"
     },
     "last_active_child_id": null,
     "last_active_at": null

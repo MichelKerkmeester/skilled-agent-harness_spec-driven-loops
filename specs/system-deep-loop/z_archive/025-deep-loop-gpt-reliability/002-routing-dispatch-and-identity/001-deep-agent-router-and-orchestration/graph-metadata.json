@@ -34,37 +34,25 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      ".opencode/agents/orchestrate.md",
-      "plan.md",
-      "research/research.md",
-      ".claude/agents/orchestrate.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md"
     ],
     "entities": [
       {
-        "name": "orchestrate.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/agents/orchestrate.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -77,6 +65,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "GPT-backed models running inside OpenCode do not properly invoke deep skills (deep-research, deep-review, deep-context, deep-ai-council)",
     "created_at": "2026-06-30T11:47:52.750Z",
-    "last_save_at": "2026-07-16T16:32:36.251Z",
+    "last_save_at": "2026-08-30T15:39:25.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:878565c196538c10f6b71daac82d63aa9dfac6dc51b2c27cc0fc61b0e06cb8fa",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "47e519fdae20795b7c80960a8ee4374f17541034c59b52a79997b11035bccf3c",
       "plan.md": "4d96b88a9f7f3b64e86676f7ae3e64daddd6b02ec194978e0282f64889efd3de",

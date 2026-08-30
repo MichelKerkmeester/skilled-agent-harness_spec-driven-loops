@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/023-kimi-k2-7-code-support/006-broad-scope-timeout-caveat",
-  "spec_folder": "cli-external-orchestration/023-kimi-k2-7-code-support/006-broad-scope-timeout-caveat",
-  "parent_id": "cli-external-orchestration/023-kimi-k2-7-code-support",
+  "packet_id": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/006-broad-scope-timeout-caveat",
+  "spec_folder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/006-broad-scope-timeout-caveat",
+  "parent_id": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,21 +42,15 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo dispatch at `--variant high`, `kimi-for-coding/k2p7` over-explores (many sequential file reads) and exceeds a 600s timeout WITHOUT emitting — and because opencode flushes only the final assistant message to stdout, the killed run yields 0 bytes (looks like a hang though the model was working)",
     "created_at": "2026-06-17T11:00:00Z",
-    "last_save_at": "2026-07-14T19:26:21.629Z",
+    "last_save_at": "2026-08-30T15:39:08.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d84d4bdb7ad0d1e8e7ccc2da87289f59ffbe549aef0ff5304e70af46e8eba12",
+    "source_fingerprint": "sha256:6b4eca8a6b602609d577b9219523df7b76b7613f3787f541b26e15288a4f9e57",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "572d537ff6d6fff43ff0c252d71d5ea771b2f52123730ad29a5ba21c76e7377f",
-      "plan.md": "e51bc4b7d60c1077d477d3a0e2213ffcc6b81cbd45f8f4b19c1d97990566b695",
-      "tasks.md": "70c4d85d0b669f237b063664bd2528a95eef5f3b54238b735afac4724c41bf78",
-      "implementation-summary.md": "c7ec37e3e443f150c7a844df308b948be24bff55bab54262e46254b70aa8b610"
+      "spec.md": "4935068afac00fd045a1648364fea6cee5dadd4b3e06965dc2cb6ad76ac31d48",
+      "plan.md": "21bb6c7fa72b16fcb82b6fda8c93a9b2f58f089efcd2404ccfa8631cc14d4bb0",
+      "tasks.md": "28be66ff1e95d89da14495a6f010a73bd82a0d0d36c2daa758450e98f1ad25d1",
+      "implementation-summary.md": "b43aa3e168d72ae2369a73a0ded20aedd8296aa9a9d72f7625890067417e9d8b"
     },
     "last_active_child_id": null,
     "last_active_at": null

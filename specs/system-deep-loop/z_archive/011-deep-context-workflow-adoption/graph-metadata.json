@@ -37,28 +37,14 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md",
-      "constitutional/deep-skill-workflow-required.md",
-      ".opencode/skills/system-spec-kit/constitutional/README.md",
       "spec.md",
       "plan.md",
-      "ai-council/council-report.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "AGENTS.md",
+      "ai-council/council-report.md"
     ],
     "entities": [
-      {
-        "name": "deep-skill-workflow-required.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/deep-skill-workflow-required.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -72,12 +58,6 @@
         "source": "derived"
       },
       {
-        "name": "council-report.md",
-        "kind": "doc",
-        "path": "ai-council/council-report.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -87,6 +67,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report.md",
+        "kind": "doc",
+        "path": "ai-council/council-report.md",
         "source": "derived"
       },
       {
@@ -190,11 +182,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Across packet 135 (24 phases of skill-README rewrites), the plan specified `/deep:start-context-loop:auto` with a `cli-opencode` executor pool for per-skill context gathering",
     "created_at": "2026-06-07T18:08:04.597Z",
-    "last_save_at": "2026-07-08T13:43:10.493Z",
+    "last_save_at": "2026-08-30T15:39:24.048Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:26e86f2c8fd351f9c7ff73e8b6a5e09bfb786a2a605bb1a237a1b50f94afb2ce",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a2f09d6748a6ca3c39e9fcd8f850367c1059a4b9a1f9a1dff0d36716554988d",
       "plan.md": "1d31697d2f553c647657dfec80bb3bfbccc7d67993a5622ab0928bc5d6da86f7",

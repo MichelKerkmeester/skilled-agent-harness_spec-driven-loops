@@ -42,25 +42,20 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/utils/template-structure.js",
-      "mcp_server/api/index.ts",
       "scripts/spec/check-completion.sh",
-      "checklist.md",
       "scripts/ops/runbook.sh",
       "scripts/spec/create.sh",
       "scripts/spec/validate.sh",
       "scripts/core/tree-thinning.ts",
       "scripts/evals/check-architecture-boundaries.ts",
       "scripts/spec/progressive-validate.sh",
-      "mcp_server/lib/ops/file-watcher.ts",
-      "mcp_server/cli.ts",
       "scripts/evals/check-source-dist-alignment.ts",
       "scripts/memory/generate-context.ts",
-      "scripts/core/workflow.ts",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "scripts/core/workflow.ts"
     ],
     "entities": [
       {
@@ -70,9 +65,21 @@
         "source": "derived"
       },
       {
-        "name": "template_compliance_contract.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -82,21 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "mcp_server/api/index.ts",
-        "source": "derived"
-      },
-      {
         "name": "check-completion.sh",
         "kind": "script",
         "path": "scripts/spec/check-completion.sh",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -136,18 +131,6 @@
         "source": "derived"
       },
       {
-        "name": "file-watcher.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/ops/file-watcher.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli.ts",
-        "kind": "code",
-        "path": "mcp_server/cli.ts",
-        "source": "derived"
-      },
-      {
         "name": "check-source-dist-alignment.ts",
         "kind": "code",
         "path": "scripts/evals/check-source-dist-alignment.ts",
@@ -163,24 +146,6 @@
         "name": "workflow.ts",
         "kind": "code",
         "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,27 +171,56 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Context Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Tooling and Scripts category spans validation rules, CLI entrypoints, migration utilities, watcher logic, and session-capture plumbing",
     "created_at": "2026-04-12T09:02:50.253Z",
-    "last_save_at": "2026-07-10T06:23:52.537Z",
+    "last_save_at": "2026-08-30T15:39:38.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:025a6df702813b5a22696ebcb49c25c2810187d63d4a1c930dba58e691ca409c",
+    "source_fingerprint": "sha256:b817b3238153a0800a33e0b1555a5b4b6f5db460144ecb580375fdf4587f1133",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "30939b03bb501762df145cd9beabfa8c1ac1977732b91121c0910d464a0dfbc5",
-      "plan.md": "2f5100075d56cc3d7cc49cf3890ddcd87d928cab5af99a8a54b4dc24c061d03f",
-      "tasks.md": "477dd7aa7fa9d4817324f9e0d0258f6be59ecbaddae4978106fbe7681af9248a",
-      "checklist.md": "1ade35fe5c4b5f2560484fa361c1db4d791052790c7bdd264a69f56e6b12af80",
-      "implementation-summary.md": "e872f0f5c1d99476c544e6874ee932d328225fb8b01422b229f191fa4e4ae98c"
+      "spec.md": "195cf99b6289b1eea0457e5ff1d2a148dbeb6b40d921aa70cde6b5deff12702b",
+      "plan.md": "b2e404e16f5170a6c6da0ef7e418a343e8aee288c93160c4c682194e038e53f5",
+      "tasks.md": "686a6c8fd3d329deb8f9aab8e3d0ef8f1a6ba31469b05a47964ba403e2fb4f44",
+      "implementation-summary.md": "387b950817d8858511de423379db1ec3119cdc5e01bc24907f009b42c823e04c"
     },
     "last_active_child_id": null,
     "last_active_at": null

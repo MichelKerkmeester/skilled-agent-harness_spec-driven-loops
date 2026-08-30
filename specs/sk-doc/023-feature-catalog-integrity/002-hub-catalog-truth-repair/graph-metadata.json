@@ -19,9 +19,7 @@
       "hub catalog truth repair implementation plan",
       "feature catalog integrity implementation plan",
       "hub catalog truth repair task list",
-      "feature catalog integrity task list",
-      "hub catalog truth repair verification checklist",
-      "feature catalog integrity verification checklist"
+      "feature catalog integrity task list"
     ],
     "key_topics": [
       "hub",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
       ".opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md"
     ],
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -179,37 +170,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Planned",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "These are the catalogs an agent reads to learn what a hub does, and their leaves are indexed in the `leaf-manifest.json`",
     "created_at": "2026-07-30T19:29:14.798Z",
-    "last_save_at": "2026-08-29T13:10:02.826Z",
+    "last_save_at": "2026-08-30T15:39:17.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f9fa090b7afea81f49b4cc7a7170ca09813e7d2b0ca2b77cc73f57d0212b7de4",
+    "source_fingerprint": "sha256:9ccccbdc50d7aa55dbd1f3931377c6ffa9a7cd97d859b5a3c997aaf17ce10b07",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b665519c7bc329a1ae7486a112decc3872ef2682d9b9bcef01013907fc40b8f5",
       "plan.md": "c9d1705a6d58fdfb31be8a812e75dc3ac3bad397e8826acfd8c9b19aa5c86f82",
-      "tasks.md": "5356936c952d1dfc89b482be8ed0c80ef0daab7a7221fa9c0b7f93820c5aecd3",
-      "checklist.md": "515a0d55f8a0c54a064f0769e438084fc8a1f870a7fd740175f7ec4802757140"
+      "tasks.md": "5356936c952d1dfc89b482be8ed0c80ef0daab7a7221fa9c0b7f93820c5aecd3"
     },
     "last_active_child_id": null,
     "last_active_at": null

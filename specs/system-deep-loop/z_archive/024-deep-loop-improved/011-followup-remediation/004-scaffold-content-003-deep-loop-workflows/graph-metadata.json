@@ -34,17 +34,17 @@
     "importance_tier": "medium",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh"
     ],
     "entities": [
       {
-        "name": "check-scaffold-never-touched.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-scaffold-never-touched.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-scaffold-never-touched.sh",
         "source": "derived"
       },
       {
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "12 leaf children under `.opencode/specs/system-deep-loop/024-deep-loop-improved/003-deep-loop-workflows/` (`001-anti-convergence-floor` through `012-push-wave-fanout`) each have a `plan.md` and `tasks.md` whose BODY content, not just frontmatter, is still unmodified scaffold-template placeholder prose (literal text like `[Component 1]: [Purpose]` and unchecked items literally reading `[Implement core feature 1]`)",
     "created_at": "2026-07-01T19:38:04.140Z",
-    "last_save_at": "2026-07-16T16:32:19.916Z",
+    "last_save_at": "2026-08-30T15:39:25.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c3a65c99cbedab20d129f87fdbde1f423fd54f8372996465086d32113257b9b9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "83104b9670a8b9823eadeb723c845ec40babd55363033a3701e35d621b7a5e55",
       "plan.md": "eb53c0e7b7b37ca021ee47087738b012ef8edbb0acf7bf47f9b1a213892e58ee",

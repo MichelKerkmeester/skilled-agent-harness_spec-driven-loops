@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The research has selected an architecture, but no reusable comparison engine exists",
     "created_at": "2026-07-15T09:48:15.439Z",
-    "last_save_at": "2026-07-17T13:38:32.003Z",
+    "last_save_at": "2026-08-30T15:39:14.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ffd32eb08ca0b44fe9c15d8ce9b58f90d831f759ff5e2d527d51611cd32f9ddd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35bbea85b7243a9a7b17aa22eeec5132d3d6dd9208ae5275496b69293e4b3fc8",
       "plan.md": "f851257ecd13e7743fd2651bd2eb95532b520b262adbe0ba786be020e7e4e67c",

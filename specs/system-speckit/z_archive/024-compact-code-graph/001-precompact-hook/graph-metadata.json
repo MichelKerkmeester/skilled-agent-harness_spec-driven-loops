@@ -22,7 +22,7 @@
       "hook",
       "tasks",
       "024",
-      "checklist"
+      "implementation"
     ],
     "key_topics": [
       "phase",
@@ -34,7 +34,7 @@
       "plan",
       "hook",
       "tasks",
-      "checklist",
+      "implementation",
       "addresses",
       "concrete"
     ],
@@ -42,57 +42,21 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/hooks/claude/compact-inject.ts",
-      "mcp_server/hooks/claude/session-prime.ts",
-      "mcp_server/hooks/claude/shared.ts",
-      "mcp_server/hooks/claude/hook-state.ts",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".claude/settings.local.json",
       "hooks/memory-surface.ts",
       "hooks/claude/compact-inject.ts",
       "hooks/claude/session-prime.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
       "hooks/claude/shared.ts",
-      "hooks/claude/hook-state.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "hooks/claude/hook-state.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "compact-inject.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/compact-inject.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shared.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/shared.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hook-state.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/hook-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-surface.ts",
-        "kind": "code",
-        "path": "hooks/memory-surface.ts",
         "source": "derived"
       },
       {
@@ -108,15 +72,45 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "memory-surface.ts",
+        "kind": "code",
+        "path": "hooks/memory-surface.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": "hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "hooks/claude/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.ts",
+        "kind": "code",
+        "path": "hooks/claude/hook-state.ts",
         "source": "derived"
       },
       {
@@ -206,22 +200,21 @@
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.343Z",
-    "last_save_at": "2026-07-10T06:24:42.569Z",
+    "last_save_at": "2026-08-30T15:39:39.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed704f8e2d5167f6257c6fb75be2d2c6d128e4442f9e16138dbd6492206a6125",
+    "source_fingerprint": "sha256:8a421bd72a78094b99e4bd0231d956788b0b8be959ade7671dc711d9dc78ca6b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f71d8161528e5c85d197958bb907f2d7b321c9772bc2594fe90e7907d87775e8",
-      "plan.md": "174a2db67d06c3a751413e7d7a7c3db7881dec6540c7c9daae17c3b4b5dcd16a",
-      "tasks.md": "df872b1c696429ea0ad06e87ecd619dabde9bb4840bfac3fd3b274301587da1e",
-      "checklist.md": "e363631d8970f33a13ccf3205ed4e91c459a53b53b2996f30ba3e564e526b0b2",
+      "spec.md": "c090ca1723a058a1ef39506739b4c8b796e70827cd3bd26f20913fb31646770a",
+      "plan.md": "c211064d348ff969f164ae0252b258171956c83b90fd3771927e350301544e8c",
+      "tasks.md": "715e6ad396142c4d2f60be10d50aa57094f0fbc13daf93180e2efcc3b735bed3",
       "implementation-summary.md": "1dca43d0f24aa5a6a8734a6013b5d00c8029fd037bcc1d47d46a4abdcfd1152c"
     },
     "last_active_child_id": null,

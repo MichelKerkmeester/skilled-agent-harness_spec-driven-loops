@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 005 deletes the sk-design judgment hub (.opencode/skills/sk-design/) and the /interface command namespace (.opencode/commands/interface/) after the extraction survivor is proven detached and green, honoring the extraction-before-deletion invariant.",
     "created_at": "2026-08-19T11:26:00.465Z",
-    "last_save_at": "2026-08-19T11:40:16.842Z",
+    "last_save_at": "2026-08-30T15:39:13.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3a4386470bc6fd6c0de84c5dd554ae5fc32b43c8cf40714993360ec598381217",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9cb2ed0250a0d1e36c722f7d6a7b274807b18901333e99e199e74a1b5bba0279",
       "plan.md": "6a40f76bfb2ddd4125df4e1b4d753dd04480964874fde188316e7dff722da5d4",

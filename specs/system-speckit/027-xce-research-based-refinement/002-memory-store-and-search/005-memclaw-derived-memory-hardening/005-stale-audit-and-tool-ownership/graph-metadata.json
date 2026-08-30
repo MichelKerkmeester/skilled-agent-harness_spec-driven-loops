@@ -41,70 +41,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "mcp_server/tests/fixtures/tool-ownership-map.json",
-      "mcp_server/lib/search/hybrid-search.ts",
-      "mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/commands/doctor/assets/doctor_memory.yaml",
-      "mcp_server/tool-schemas.ts",
-      "mcp_server/tests/stale-audit-tool-ownership.vitest.ts",
-      "mcp_server/tests/tool-ownership-lint-runner.mjs",
-      "references/config/hook_system.md",
-      "tests/stale-audit-tool-ownership.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/stale-audit-tool-ownership.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "tool-ownership-map.json",
-        "kind": "config",
-        "path": "mcp_server/tests/fixtures/tool-ownership-map.json",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_memory.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_memory.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stale-audit-tool-ownership.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/stale-audit-tool-ownership.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-ownership-lint-runner.mjs",
-        "kind": "file",
-        "path": "mcp_server/tests/tool-ownership-lint-runner.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "hook_system.md",
-        "kind": "doc",
-        "path": "references/config/hook_system.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -124,15 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "stale-audit-tool-ownership.vitest.ts",
+        "kind": "test",
+        "path": "tests/stale-audit-tool-ownership.vitest.ts",
         "source": "derived"
       },
       {
@@ -200,26 +143,73 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow At",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "MCP",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Default `memorysearch` hard-excludes some rows: it forces `includeArchived=false` and the FTS path filters `importancetier != 'deprecated'`, so a deprecated-but-still-relevant memory can be silently dropped from recall with no signal to the caller",
     "created_at": "2026-06-06T10:10:49Z",
-    "last_save_at": "2026-07-17T17:19:40.436Z",
+    "last_save_at": "2026-08-30T15:39:33.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26b5d5f55116ec4f3b0408baa237cf5b5f7786fbb677bb9d75ec5dcada0e3450",
+    "source_fingerprint": "sha256:b5eb03a8695154b4609c15ca3581126c80d3d7b81b0b92a2138301214d148f4d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ab18ab90be885f251fded396b8a83c8111ca6c07b560632da227f6b9c7430978",
       "plan.md": "70aa2ddbb2fd7450a8c3b9ffd3ced8c34480d6b2d215d2eb55f0e5242801d034",
       "tasks.md": "20f7759949e27e5145f10f737acfe3d5ef0aef8535c08f1e6250fd10db114687",
-      "checklist.md": "77c16f546cc6b9ab4bdc3b138842697e296913dd93535432edc8be18f15a3705",
       "implementation-summary.md": "34107f3de8498c51eae0aa3c1c51011b9af90a2d9492ed92306e6903a0638590"
     },
     "last_active_child_id": null,

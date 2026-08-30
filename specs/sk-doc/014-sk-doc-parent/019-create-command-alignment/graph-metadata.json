@@ -19,8 +19,6 @@
       "125 sk-doc phase 019 plan",
       "create command alignment tasks",
       "125 sk-doc phase 019 tasks",
-      "create command alignment checklist",
-      "125 sk-doc phase 019 checklist",
       "create command alignment summary",
       "125 sk-doc phase 019 summary"
     ],
@@ -33,10 +31,10 @@
       "coverage",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "two",
-      "gaps"
+      "gaps",
+      "surface"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/mode-registry.json",
       ".claude/agents/markdown.md",
@@ -70,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +188,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two gaps in the sk-doc `/create:` command surface: (1) three packets (`create-command`, `create-benchmark`, `create-flowchart`) had no bound command — their `mode-registry.json` `command` field was `null`; and (2) four commands drifted from their packet names (`sk-skill`, `sk-skill-parent`, `folderreadme`, `testing-playbook`) so the public ids no longer matched `/create:<packet>`",
     "created_at": "2026-07-07T12:40:40.991Z",
-    "last_save_at": "2026-08-29T14:54:23.176Z",
+    "last_save_at": "2026-08-30T15:39:13.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e9f7c6b5e7c629b3ece58e0e971a620c41ddf38b6b84e0c7be28118a2dd087c",
+    "source_fingerprint": "sha256:8a3d848f2131f70c3b5b7e3304a4e04d7220a6558609ec6bc3042e1a278fa098",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a87cd89600fd6ebd1b42ac3b4bdb50e93048c02e35b555a3d33f5a970064ccc",
       "plan.md": "9556650f764d730613499ca091bb4003d2a043673abf7a5dd89f0892a90c668d",
       "tasks.md": "125e8e9db8217901522be2ad8f95cc9f5da5ac5872ca7cbc3ad4306b5f9b677f",
-      "checklist.md": "b68152fee3804adcb32a604284873e965f26627c8f809d646f22751bac004bef",
       "implementation-summary.md": "2628f73decfda6abe5d5134edfbb14e3b0d4006e429eb669f6e05ab490743efc"
     },
     "last_active_child_id": null,

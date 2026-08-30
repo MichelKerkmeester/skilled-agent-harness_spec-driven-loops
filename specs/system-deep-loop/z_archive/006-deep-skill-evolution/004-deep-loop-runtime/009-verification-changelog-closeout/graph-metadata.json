@@ -23,8 +23,8 @@
       "deep-review v1.4.0.0 plan",
       "118/008 tasks",
       "118 closeout tasks",
-      "118/008 checklist",
-      "118 closeout checklist"
+      "118/008 implementation summary",
+      "118 closeout summary"
     ],
     "key_topics": [
       "closeout",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +182,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "After phases 001 through 007 land, the arc's code work is mechanically complete: the runtime skill exists, 13 lib files have moved, 4 .cjs scripts replace the MCP tool surface, YAML workflows + collateral point at scripts, tests are split, and the MCP server no longer ships deeploopgraph tools",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-07-09T10:02:48.761Z",
+    "last_save_at": "2026-08-30T15:39:23.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7dd9130b52433eaf3dc184417ab59efbab5a72741f40b70fd0e956cff2cf0b14",
+    "source_fingerprint": "sha256:731da8e00e8ef3818da4b026749aa335f0b5483af074fa1d4ecbe2e4857e7a4e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0c4910ca7310819052ea18f1feed8cba437ffed376b82c16a0fcd0e55e8b752",
       "plan.md": "de9c3af4797f7fefd89ae4dc49ac772e2b28ca7a46d6b14b5d1c30280c9b579c",
       "tasks.md": "048e97eb60e4cf5d17e06d5b1b761da671b545b4263e4cfea51a7fce1dfff8ed",
-      "checklist.md": "c0e5059b421903d87f796f5b20677bd00e5ed93b5f5e9843f5ad88d4453e7e29",
       "implementation-summary.md": "75f81724a559b61c3cc1ba9e813bb8459a93cd7411c99263d5a8f1e2f7309016"
     },
     "last_active_child_id": null,

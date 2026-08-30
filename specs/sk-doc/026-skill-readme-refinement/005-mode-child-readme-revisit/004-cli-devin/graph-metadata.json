@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The cli-devin mode README at `.opencode/skills/cli-external-orchestration/cli-devin/README.md` still carries the older tabular reference-card style with an aspect table and feature-list sections",
     "created_at": "2026-08-04T08:34:40.125Z",
-    "last_save_at": "2026-08-30T07:20:23.796Z",
+    "last_save_at": "2026-08-30T15:39:17.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:53d559a23d795b28248449aef8df2e3a9074b2442df31b92302efa59ab092874",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c508cb914994f7f56b8f9e6ddbe7eea403904826038669504a0f7a068e7ef126",
       "plan.md": "b49f7a0ae9c808a81c982983f992abf3c4e7ff7095d8754c64a7635c47fc2521",

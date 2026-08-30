@@ -21,8 +21,7 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist"
+      "implementation summary"
     ],
     "key_topics": [
       "communication",
@@ -35,8 +34,8 @@
       "reconciliation",
       "implementation",
       "tasks",
-      "verification",
-      "checklist"
+      "summary",
+      "guidance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -44,14 +43,12 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "AGENTS.md",
       ".codex/AGENTS.md",
       "specs/agents/003-communication-quality/spec.md",
       "specs/agents/003-communication-quality/plan.md",
       "specs/agents/003-communication-quality/tasks.md",
-      "specs/agents/003-communication-quality/checklist.md",
       "specs/agents/003-communication-quality/implementation-summary.md",
       "specs/agents/003-communication-quality/description.json",
       "specs/agents/003-communication-quality/graph-metadata.json"
@@ -73,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "specs/agents/003-communication-quality/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "specs/agents/003-communication-quality/checklist.md",
         "source": "derived"
       },
       {
@@ -196,30 +187,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Communication guidance in the root `AGENTS.md` is scattered and compressed across §1 (Two registers, Communication, Documentation & Honesty), §4, and §7, with no single home",
     "created_at": "2026-08-07T07:39:47.413Z",
-    "last_save_at": "2026-08-29T14:56:22.925Z",
+    "last_save_at": "2026-08-30T15:39:07.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3996a396a22ae7b327cd30adedd47c03cef5bc238cc5675c980c6a318c395a49",
+    "source_fingerprint": "sha256:0684118c1a5cbb1452a5f53392650f09eaf21fe7a6ff61eba645a54498e6d6e1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "88a4271a421ef9bbb0522079de8964497a4a97b900b7e4815372e95d09b052f8",
       "plan.md": "e53bdd6a55651b2d5ea5ed011c444bc9ef394f02eb479762ee07ae88a85e7378",
       "tasks.md": "019382114177176357bccaf95b5265d2244864c59da5df240a873dcc62d73d30",
-      "checklist.md": "347e878cb397c5b724e495d53a9170a0b47a17b6a95457d4a22556e5b43a92fc",
       "implementation-summary.md": "bd4c5f53fd9e0ba2437751fa7d88f26b97df4d8213fc6093840dfd9485c6c7e1"
     },
     "last_active_child_id": null,

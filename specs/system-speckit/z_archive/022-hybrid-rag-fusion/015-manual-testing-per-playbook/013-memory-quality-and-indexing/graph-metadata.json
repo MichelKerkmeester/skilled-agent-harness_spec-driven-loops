@@ -42,10 +42,9 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -55,27 +54,21 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -187,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The memory quality and indexing feature category is the largest single phase in the hybrid-RAG-fusion manual testing playbook, spanning 27 scenario files that expand to 34 exact IDs through sub-scenario decomposition (M-005 expands to M-005a/b/c, M-006 expands to M-006a/b/c, 155 expands to 155-F)",
     "created_at": "2026-04-12T09:02:50.300Z",
-    "last_save_at": "2026-07-10T06:24:50.036Z",
+    "last_save_at": "2026-08-30T15:39:39.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e50c3b8a2546068a6d1cf1b017d9bff099d9a0f4963ddbb96954cb913adc339e",
+    "source_fingerprint": "sha256:54210685ff1efe0e243866e0b7fab01397b15be337093c6ebd6346671929009e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "30d671c884894f0b5f46af1791a4bdd689a2cdd2eeb52c6062a0c247c15f2263",
-      "plan.md": "a2a143eafff01e5f71d4a93b98ec0fae4640f67a9dcd3c72e1eaf0d62402b313",
-      "tasks.md": "c79246abf4b24719eb932e6a0a651350baf94dc9c7e3de545967a279e4fc27c4",
-      "checklist.md": "dc28a1c0ab8aa75c016f76bc8e27edbc5c12f1a666fb4bbcdcd617e2bf6bfe04",
-      "implementation-summary.md": "fdf6bfb7899bea05d553b7721962221e9a18cd04a6555c4e54c958003466fac0"
+      "spec.md": "0f7f0851e5a1038d93a2c4cdd49a237fe2c6cd909380d5f75b6898f81f8b4697",
+      "plan.md": "7b9ab66471ad8d042a7fb305855487ebfe4aad8096f4bca4f2aa6e585a6c486c",
+      "tasks.md": "a653c66cc229f9ec83552e5f8847126371d2425e170637d59bf434acb01f2a83",
+      "implementation-summary.md": "f9b0e6ca69513e5b1ae39aad4303dabbdabb1cf4468055b31bc0e93e1b5cda3c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -21,8 +21,6 @@
       "deep-loop workflow yaml rewrite plan",
       "118 yaml tasks",
       "deep-loop yaml rewrite tasks",
-      "118 yaml checklist",
-      "deep-loop yaml verification",
       "118 yaml implementation summary",
       "deep-loop yaml rewrite summary"
     ],
@@ -46,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Rewrote",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The four `speckitdeep-{review,research}{auto,confirm}.yaml` workflow files invoke graph convergence and graph upsert via the `mcptool:` block targeting `mcpmkspecmemorydeeploopgraphconvergence` and `mcpmkspecmemorydeeploopgraphupsert`",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-07-09T10:02:48.741Z",
+    "last_save_at": "2026-08-30T15:39:23.295Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1acf724b4d3187a03195f61a75ad6431b459c0902c769a6221f55e493b524148",
+    "source_fingerprint": "sha256:15376f3235fdd344a877dc926b55d3c8a0d8ebc31a180534dddb6acb44a1347d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dd0b448d53e5c172b9d3731de05c53e7fef5a385094860ab234b6230611ed6b4",
       "plan.md": "29f85bacbbf9bc263afb2e0b48ec02a88db7721ecf723af994b03454e17e6e1b",
       "tasks.md": "332c37bdbc5b1ff1854fb8b69c6eeffc3cafc1494799d8c4362d6e61b9944a62",
-      "checklist.md": "be72ac4b3318ba94f53285a2a45c3d55da6ed82e3cc793b9d4326824ff0ef9f8",
       "implementation-summary.md": "45f409013747deecd54689b197d834f5476fbe533667c5309f9c5a378e4bf760"
     },
     "last_active_child_id": null,

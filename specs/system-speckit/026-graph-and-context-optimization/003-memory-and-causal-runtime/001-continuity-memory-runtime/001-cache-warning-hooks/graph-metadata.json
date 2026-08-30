@@ -24,7 +24,7 @@
       "tasks",
       "producer patch",
       "idempotency",
-      "verification"
+      "decision"
     ],
     "key_topics": [
       "cache",
@@ -46,13 +46,12 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research.md",
+      ".claude/settings.local.json",
       "tests/fixtures/hooks/session-stop-replay.jsonl",
-      "tests/hook-session-stop-replay.vitest.ts",
-      "tests/sqlite-fts.vitest.ts"
+      "tests/hook-session-stop-replay.vitest.ts"
     ],
     "entities": [
       {
@@ -74,12 +73,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -98,6 +91,12 @@
         "source": "derived"
       },
       {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
         "name": "session-stop-replay.jsonl",
         "kind": "file",
         "path": "tests/fixtures/hooks/session-stop-replay.jsonl",
@@ -107,12 +106,6 @@
         "name": "hook-session-stop-replay.vitest.ts",
         "kind": "test",
         "path": "tests/hook-session-stop-replay.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sqlite-fts.vitest.ts",
-        "kind": "test",
-        "path": "tests/sqlite-fts.vitest.ts",
         "source": "derived"
       },
       {
@@ -198,28 +191,33 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Replay Isolation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet `002` was originally framed as a six-phase cache-warning rollout with `SessionStart` estimator and `UserPromptSubmit` behavior",
     "created_at": "2026-04-12T09:02:53.453Z",
-    "last_save_at": "2026-08-29T15:22:13.475Z",
+    "last_save_at": "2026-08-30T15:39:29.405Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:66e7f371f6e250425ceb2ae26172e9552a673384fddb017d2abc1209f70dbea9",
+    "source_fingerprint": "sha256:95b1b7c492cbb34166687805ac3f86774173daec1e7932b2d4510ad3401537b1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2d58b9386d1ac115e862dcc55e90ddf8de97fde742b9c604fffabbffd94c5842",
       "plan.md": "3530168aa0f5bdff8581490d96470d02dde0790df54887464143b0defa67d045",
       "tasks.md": "91a21006788ea89e3cc6d1d39e6afc4e1689b4824ffe79adc6367f72b1e63ba2",
-      "checklist.md": "ecb2d5f458e48c93666af34b2b1407450892dabcd69f0b126df4db0dc6e9c686",
       "decision-record.md": "1fe7c122d651fac85fec8e5df5c05b16f3e9391e7974c46bbf46f8f53ae5bcd2",
       "implementation-summary.md": "213cbc2c8f4c9bd0e1fdadddb9fc314b0fecadc250299b29571db87f48ce0be5",
       "research.md": "ae49d0d5411642410574bdbbb441cc4f16c9d3b4aca762e9f91d6fc839bab4d6"

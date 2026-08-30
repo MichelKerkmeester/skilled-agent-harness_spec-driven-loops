@@ -17,7 +17,6 @@
       "sk-prompt alignment plan",
       "canonical persona section install plan",
       "sk-prompt alignment tasks",
-      "sk-prompt alignment checklist",
       "sk-prompt alignment implementation summary"
     ],
     "key_topics": [
@@ -32,18 +31,23 @@
       "plan",
       "install",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -54,18 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -147,24 +139,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -185,22 +159,21 @@
     ],
     "causal_summary": "The six mode `SKILL.md` persona rules added in P3 each reference a canonical \"Persona Injection\" section in `sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`, but that section did not yet exist — the references were forward-looking",
     "created_at": "2026-08-19T11:34:03.325Z",
-    "last_save_at": "2026-08-19T11:35:25.539Z",
+    "last_save_at": "2026-08-30T15:39:08.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d584d13f00671b42939e399758ddbbe95f7904fb6d3cb2f9fd899c118ce7480a",
+    "source_fingerprint": "sha256:f0262e84ae52363aafb214bfe26ddd11107f8b356b641622a2767c61a099df52",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1f085a78ed5bfa61d460f56fe36cf4a6cbf08ba355f12f07b9db68e54d86211f",
       "plan.md": "a6e172f35d2106fcd9da9e0af6bf740a6a40115b235da3675e6c8ea32e128f3d",
       "tasks.md": "bfe4195b4ef0b9980bab8801dab7d512a3425c3b7d45d03d327d87311323f8e1",
-      "checklist.md": "0bbfacab7867a95a98997ca496de59f46abb9bae8a6f702457a0037c8b2ea1a5",
       "implementation-summary.md": "9f5692a41bdf189881f249d7411a1087ffbf9befa9a8576cdb2f19217059f522"
     },
     "last_active_child_id": null,

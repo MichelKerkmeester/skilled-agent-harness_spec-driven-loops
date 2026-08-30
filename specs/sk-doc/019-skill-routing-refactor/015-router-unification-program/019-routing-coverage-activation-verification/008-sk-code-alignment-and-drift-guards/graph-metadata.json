@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
     "created_at": "2026-07-20T21:51:40.268Z",
-    "last_save_at": "2026-08-30T08:04:14.937Z",
+    "last_save_at": "2026-08-30T15:39:15.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:09465c9e5105bc21e8277aa2c1be9f9b217803df3dc63eff65473b950fcb92c5",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "15432f17085964845022d9c34065963e5c16c8b61974f63f641bf6bb6a92d016",
       "plan.md": "efac94677d71b3b24684a622ec5f8b79922e027f28c166a68c62b57ee88e04cf",

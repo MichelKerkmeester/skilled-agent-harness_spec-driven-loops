@@ -22,7 +22,7 @@
       "score scale battery plan",
       "verify first battery",
       "phase 007 tasks",
-      "phase 007 checklist"
+      "normalization headroom"
     ],
     "key_topics": [
       "ranking",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "lib/search/search-flags.ts",
@@ -60,7 +59,8 @@
       "lib/search/hyde.ts",
       "lib/search/graph-search-fn.ts",
       "lib/search/causal-boost.ts",
-      "lib/search/query-router.ts"
+      "lib/search/query-router.ts",
+      "lib/search/evidence-gap-detector.ts"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "evidence-gap-detector.ts",
+        "kind": "code",
+        "path": "lib/search/evidence-gap-detector.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,23 +210,22 @@
     ],
     "causal_summary": "The deep-dive report (../research/deep-dive-report.md, Chain D) shows a large fraction of the ranking stack is computed, recorded in telemetry as applied, and then discarded or bypassed before it can influence final order",
     "created_at": "2026-07-03T09:44:22Z",
-    "last_save_at": "2026-08-29T15:22:22.321Z",
+    "last_save_at": "2026-08-30T15:39:35.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b07b18182934e8aabc14f626864029f4a403567763dc7bda343cccd5f9f8397",
+    "source_fingerprint": "sha256:a53cf1aa1a622ff398e423a5b0f282d44375397ccd3fba378cbf531be26063c4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "23877e1d03a094718c1343abd26b230f0e393c68793635a5d4bd7c1a5f2d9b05",
       "plan.md": "4d0c9c6cce451a4114a233a7ac33a3d58b3ca76613f2d636e6d207200603682f",
       "tasks.md": "e5db46fea919990967716233ece7d4e0a6ae0a800b194edf4932e8ddcd85f117",
-      "checklist.md": "3e5ffcc3c7174b1bf2905b580bfbf4dbc9422b09b3d4cfebbea84db79f7be7fb",
       "decision-record.md": "61da00df9642190d6044ddda713200516d4b0ff8baeeca15be37276a23b1fc37",
       "implementation-summary.md": "6e0f61c90b5654ecc93826ee614749d8f706d42423fc089c328278c6cfd0cf15"
     },

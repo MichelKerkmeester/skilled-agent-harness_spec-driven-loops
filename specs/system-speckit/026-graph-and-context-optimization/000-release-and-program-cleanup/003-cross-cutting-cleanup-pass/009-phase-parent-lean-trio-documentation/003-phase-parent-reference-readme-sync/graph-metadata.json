@@ -20,7 +20,6 @@
       "phase parent doc sync plan",
       "references readme sync plan",
       "phase parent doc sync tasks",
-      "phase parent doc sync checklist",
       "phase parent doc sync shipped",
       "references readme lean trio shipped"
     ],
@@ -44,14 +43,12 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "templates/README.md",
       "scratch/regression-baseline-pre-003.txt",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/templates/README.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json"
     ],
     "entities": [
@@ -71,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -101,12 +92,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-phase-parent-content.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
         "source": "derived"
       },
       {
@@ -198,26 +183,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Output Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent Save Routing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001 and 002 shipped the lean-trio policy end-to-end: validator phase-parent branches across five rules, the new content-discipline validator, the generator pointer-write and bubble-up, the resume pointer-first redirect, the lean phase-parent template, and base documentation in CLAUDE.md, AGENTS.md, AGENTSBarter.md, AGENTSexamplefsenterprises.md, and the system-spec-kit `SKILL.md`",
     "created_at": "2026-04-27T13:30:00Z",
-    "last_save_at": "2026-08-29T15:22:10.251Z",
+    "last_save_at": "2026-08-30T15:39:27.916Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bfca9aa6980ac2a922507729a7c20401f77239e7210cb45cdb3f7eb8063857e3",
+    "source_fingerprint": "sha256:d4a24d0cd800903e10717ad9fef88670268795a06419d846507dbb3380f14f97",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0ef1c9d3c3f289386d4327d436e7e035f648864f72c69519cac8677edc35b075",
       "plan.md": "a2bdc77ed2d6f1b38d8b23912c20894a6b4460574a9b059b7f61e3230582970e",
       "tasks.md": "9e3545b7eea38adbae3d3a79223605ba918c4277d2e2dfb498042a4735ffd33c",
-      "checklist.md": "af017bd9348e7d95956e699ac4978f9dace3ae4f1a6c9511a0a239d3aec0610d",
       "implementation-summary.md": "f4f4a926a63cd51dcb0565443e23e3d02c53bb96f4a333be4f5d82339ba63b46"
     },
     "last_active_child_id": null,

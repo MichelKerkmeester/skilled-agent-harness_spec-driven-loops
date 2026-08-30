@@ -18,8 +18,6 @@
       "adaptive ranking e2e plan",
       "phase 5 tasks",
       "adaptive ranking e2e tasks",
-      "phase 5 checklist",
-      "adaptive ranking e2e verification",
       "phase 5 implementation summary",
       "adaptive ranking e2e summary"
     ],
@@ -34,21 +32,17 @@
       "coverage",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/tests/adaptive-ranking-e2e.vitest.ts",
-      "mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
-      "mcp_server/lib/cognitive/adaptive-ranking.ts",
-      "tests/adaptive-ranking-e2e.vitest.ts",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      "tests/adaptive-ranking-e2e.vitest.ts"
     ],
     "entities": [
       {
@@ -58,33 +52,9 @@
         "source": "derived"
       },
       {
-        "name": "adaptive-ranking-e2e.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/adaptive-ranking-e2e.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-evaluation-runtime.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cognitive/adaptive-ranking.ts",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -94,9 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "adaptive-ranking-e2e.vitest.ts",
+        "kind": "test",
+        "path": "tests/adaptive-ranking-e2e.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,27 +170,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The lifecycle suite existed, but the docs overstated what it covered",
     "created_at": "2026-04-12T09:02:50.334Z",
-    "last_save_at": "2026-07-10T06:22:26.665Z",
+    "last_save_at": "2026-08-30T15:39:39.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d990ecdcd3296cd8d37a21c6dd6a797eeba671a904bec1f70ee3f4938fd0938",
+    "source_fingerprint": "sha256:04b29e0b7dd5c16153cb625f2771160b4bcdf3c4c58c4262b372da01e479f32b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed10d2d2168c44a3e6abc353b7ca1bdcef01d2b92a473c57af54296e5a40c941",
-      "plan.md": "793f3da0e3f35d6289959be2c6ab6256270e6c776a03d48ff8670de16a9fb870",
-      "tasks.md": "87ed1636341ab4ea970c93b614cbfe84462bd63bebf73161181c556123d2a20b",
-      "checklist.md": "533bc2b0ae205a181a90cf5746810731c4922d43ac08706e03c5b466c9563263",
-      "implementation-summary.md": "cbc77a8ee2eae00e89bac5b6ca29154b68f20d4972d69a4cf375e8139d38d5aa"
+      "spec.md": "51319fd49bad1869c7b6eb506e5be89952956164a22dfd88fd8548bcc7f628d2",
+      "plan.md": "14da8aa6ff68a75fbb3d09d0b078a5853b7d5911aa537226e12814e07c337e8d",
+      "tasks.md": "b20d1b263e870546483b2c57596cc9a7423b0e35c3e1de2451d8fb7c1e442ace",
+      "implementation-summary.md": "b476c9316231dfc59681adba0a6a370ac23962de9e0f176cd128ad8069061e79"
     },
     "last_active_child_id": null,
     "last_active_at": null

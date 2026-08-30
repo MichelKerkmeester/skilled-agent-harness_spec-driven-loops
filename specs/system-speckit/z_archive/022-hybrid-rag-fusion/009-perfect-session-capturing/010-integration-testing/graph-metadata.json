@@ -20,9 +20,8 @@
       "plan",
       "tasks",
       "integrati",
-      "verification",
-      "checklist",
-      "summary"
+      "summary",
+      "testing"
     ],
     "key_topics": [
       "feature",
@@ -33,29 +32,46 @@
       "plan",
       "tasks",
       "integrati",
-      "verification",
-      "checklist",
       "summary",
-      "runtime"
+      "testing",
+      "runtime",
+      "gap"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "tests/fixtures/session-data-factory.ts",
       "scripts/tests/fixtures/session-data-factory.ts",
       "scripts/tests/test-integration.vitest.ts",
-      "scripts/tests/task-enrichment.vitest.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "scripts/tests/task-enrichment.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -74,30 +90,6 @@
         "name": "task-enrichment.vitest.ts",
         "kind": "test",
         "path": "scripts/tests/task-enrichment.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,31 +183,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The runtime gap is now closed: `workflow-e2e.vitest.ts` exercises the real save path with temp-repo isolation, real markdown writes, real `description.json` mutation, and real post-write indexing handoff behavior",
     "created_at": "2026-04-12T09:02:50.272Z",
-    "last_save_at": "2026-07-10T06:23:59.832Z",
+    "last_save_at": "2026-08-30T15:39:38.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63e35bc456272b203419c82ddfd876f180c462657009e527352d0e12bb7d3c91",
+    "source_fingerprint": "sha256:46eb37a4bc198081df0a29df9fc32fb82bab3447ad024e4c5daa824b01061ed5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "41650baf224220589fd7a1a6b6e2b13cdc8a329950facb8516b659cb9474bf9b",
-      "plan.md": "fc6a05c9093e53e314701eb74d9cd700475830a0caee7fe4f0d9e65c8bc3734b",
-      "tasks.md": "a23b6e53b38981f5a21466e4c0da47765e59556e277c6c9f65a76ed7f4aeea53",
-      "checklist.md": "bc9cb29e0ca1df1dde3b40de5c295563320f88acf16a950c6fcce78396dba55f",
-      "implementation-summary.md": "26f1d357790e62d1621cd9930a86e6d6426cc3a00c788cc820d2045674b0acd8"
+      "spec.md": "8379f71f60930fe4a0eacc9ab8af7cf3f59445f96eac7b73ed5871783006350f",
+      "plan.md": "4e041bbba962aa6508e820216b6b30747a1f548705cf25e41dd5c6f74552b2e8",
+      "tasks.md": "09f9ab4b2c59b90cde74277b5f9251f6deee95d1d1552724fea05ae91ba4d768",
+      "implementation-summary.md": "5d7b8ff682d839cf40f85d46b8dcecf42b247fdb16b4a8263d66f745a3b364ff"
     },
     "last_active_child_id": null,
     "last_active_at": null

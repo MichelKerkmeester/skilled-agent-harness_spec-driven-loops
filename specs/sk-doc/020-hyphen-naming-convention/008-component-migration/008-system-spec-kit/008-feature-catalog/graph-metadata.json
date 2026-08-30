@@ -161,7 +161,7 @@
     ],
     "causal_summary": "The skill’s feature_catalog tree contains 366 underscore-bearing filesystem names: the root, 17 candidate category directories, and 348 files. This phase renames the catalog root, categories, and content to kebab-case and updates catalog indexes, path-derived metadata, links, and consumers without changing frontmatter fields or code identifiers.",
     "created_at": "2026-07-14T15:18:03Z",
-    "last_save_at": "2026-08-30T07:19:46.528Z",
+    "last_save_at": "2026-08-30T15:39:16.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -170,7 +170,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:af8ab085b42dc78a7eb1d6d5c1b5885fd81d7fba5b654fea53e9b63d32dab6dc",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "39000238fcdad0aa814106c8e464498246c15028f13f6c253682ef667243494a",
       "plan.md": "c679295977fee7dddc3cb78933a44bed8a9f1a13de57bf152183fee937134399",

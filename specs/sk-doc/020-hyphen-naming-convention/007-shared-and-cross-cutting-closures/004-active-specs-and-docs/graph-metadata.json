@@ -154,7 +154,7 @@
     ],
     "causal_summary": "Active spec folders and authored documents can retain snake_case names and path references even though numeric phase folders are already structurally compliant. This child separates active authored docs from generated, frozen, and tool-mandated surfaces before applying the naming contract.",
     "created_at": "2026-07-14T15:16:53Z",
-    "last_save_at": "2026-08-30T07:19:15.756Z",
+    "last_save_at": "2026-08-30T15:39:16.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,7 +163,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:5ddbd52c2a89d918d82e939e05bcdc0cfade0418e6cefc08f90b6f59087f74e4",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c3414d2941959eee086a8f0309a3a036e0fcb0e76789710d3947215cc16eb32d",
       "plan.md": "c5dcd7c09e5d6819aa429bcf551fe598c86a71110b120bf62902cbd2f6b78877",

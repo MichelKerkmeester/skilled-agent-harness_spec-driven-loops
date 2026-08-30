@@ -42,21 +42,15 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Benchmark runs, fixtures and changelog files remain on disk after their successors shipped",
     "created_at": "2026-07-27T08:41:10Z",
-    "last_save_at": "2026-07-27T14:28:01.777Z",
+    "last_save_at": "2026-08-30T15:39:34.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:32f06942c82fbe08a769d730f5ef420f6dfab0b856c358dd8caa48525d651074",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be9a3e8c4037b52fc8f0c5463a98dffd5efb51fdd1497d831743d74cd96c14cd",
       "plan.md": "92568ed205c57fc789821923573ef0fed5d48ddee05359f1be8c25aea2f75933",

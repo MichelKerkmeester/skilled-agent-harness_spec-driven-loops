@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The compiled router is shipped but held inert",
     "created_at": "2026-07-20T21:51:24.395Z",
-    "last_save_at": "2026-08-30T08:04:12.079Z",
+    "last_save_at": "2026-08-30T15:39:15.211Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:30afad595064632eeee2aa4d0b6f4ed3cfc4b4ec5297e3cb1d7a534c9db48255",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "04da9a10082b559b02469c89149c97e9dce424f954097d62436c540c2a334b0c",
       "plan.md": "210877132a4912489dcfd61da32c7b8bfe4c44c9aa75dd0ca8a5b4c847697c3e",

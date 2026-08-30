@@ -16,7 +16,6 @@
       "sk-doc packet keyed resource discovery",
       "017 plan smart routing mechanism notes",
       "017 tasks smart routing mechanism notes",
-      "017 checklist smart routing mechanism notes",
       "017 summary smart routing mechanism notes"
     ],
     "key_topics": [
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,42 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "What Was Built An",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "How It Was Delivered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Request 2 of the create-skill alignment: give the sk-doc create-* packets whose SMART ROUTING mechanism is absent an explicit, honest routing note rather than a force-fit router. Packets with real keyed resource subdirs (references/<key>/) already carry the discover_markdown_resources/_guard_in_skill/UNKNOWN_FALLBACK mechanism; the 7 flat-resource packets get a documented N/A note modeled on create-readme's precedent (does not use keyed resource discovery + router-resilience rules).",
     "created_at": "2026-07-12T14:23:01.493Z",
-    "last_save_at": "2026-08-29T13:10:19.314Z",
+    "last_save_at": "2026-08-30T15:39:14.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ccbb4a4847902b04d223432fce38cd197779071fa6370d1b3140b03edce7578",
+    "source_fingerprint": "sha256:7ee75754e763653ee69f5c555691d4ac2f23933c1cba0a1cd146a27e3f27be15",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0682dbd105fd7619a7d1226cd7422acfef2bac04cc8a255eddd4ae814db0937b",
       "plan.md": "bfb56c2fd04f36fa80cdbafa1934679cb9de45a88683d6e813b7e00c32473dfd",
       "tasks.md": "78cbeef394041fe1afc8ee61332d5ca4fb21c0640a61cdcc849a90c8db8b0c1e",
-      "checklist.md": "b942aa8392aa5ddaf9b25b0d80e1d3038b9768120e4429cb130ccce0ca8a0f68",
       "implementation-summary.md": "37dcf985acd302ebae3854e206211cff1af8127989ff67cb9ca0cd75b16ad14c"
     },
     "last_active_child_id": null,

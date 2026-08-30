@@ -18,7 +18,6 @@
       "command metadata plan",
       "hub command surface plan",
       "command metadata tasks",
-      "command metadata checklist",
       "command metadata implementation summary"
     ],
     "key_topics": [
@@ -33,7 +32,7 @@
       "validation",
       "plan",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/README.md",
       "scripts/lib/README.md",
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +167,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "How It Was Delivered Consumer",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Only sk-design's two commands had machine-checked contracts: argument grammar, routing signals, and load choreography as validated data",
     "created_at": "2026-07-28T13:01:58.044Z",
-    "last_save_at": "2026-08-29T15:22:03.088Z",
+    "last_save_at": "2026-08-30T15:39:15.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:094c505d8f6324deb23dc30c81837b8b1ada6848b53084481e1bc02a70125125",
+    "source_fingerprint": "sha256:ee5014294395bdc296900a888b7ce6ce14e640ed51396e0be48a502a2e817351",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a91c94d55546de0104d32d307225930c9af04173aff0f23d2ae1db4eee4b7d51",
       "plan.md": "b826e8c6bf162e576ca10ef2a00bfa53cddd702e8054f1019e763158bf0e7e4e",
       "tasks.md": "d943d54ac63cb0a129c3c189fc49c9c5eae19d9a0164ba328da68eb51740f399",
-      "checklist.md": "918032189b9dd8f3fe325c3e171ae0738c01401a27e81a18aea6446c44d18441",
       "implementation-summary.md": "0cb3fa60b736b8e3447236294660494c9daa95b4028ee994395c4e0e05b987f7"
     },
     "last_active_child_id": null,

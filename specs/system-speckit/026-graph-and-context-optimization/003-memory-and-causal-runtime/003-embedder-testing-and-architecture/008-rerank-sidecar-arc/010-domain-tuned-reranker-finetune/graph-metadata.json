@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Four spec-memory rerank benchmarks have produced HOLD verdicts with distinct failure modes:",
     "created_at": "2026-05-23T11:55:15.624Z",
-    "last_save_at": "2026-07-17T17:19:26.759Z",
+    "last_save_at": "2026-08-30T15:39:31.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b7cd51d8b5c703c10e123037ca2499c90158e51eb8977e4054d5d77525af7b6a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8b5a4937265d58a052fb088f56e7e9f5c230a83cfe5a3640ebb1de3f992174d8",
       "plan.md": "a4e79554bed95206508ff491c890b457a48d2727055906da4c7ced06a2f74d71",

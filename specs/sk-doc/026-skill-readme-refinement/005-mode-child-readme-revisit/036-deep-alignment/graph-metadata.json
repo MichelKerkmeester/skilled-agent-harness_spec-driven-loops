@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The deep-alignment README at `.opencode/skills/system-deep-loop/deep-alignment/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:52.328Z",
-    "last_save_at": "2026-08-30T07:20:36.121Z",
+    "last_save_at": "2026-08-30T15:39:17.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:05c287f437a9a130b55fb686aae1e96d5d17db5d5b48334815b0c1c8343dbaac",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e14a7168286aad61b05f31f0f7872662acb6c2130efa99ed7c9ea7d6ca215451",
       "plan.md": "3c7ff3b9dd638aa0ba4bc44b51d7ce375900a5900d51d8adf46e34a67cd2d35a",

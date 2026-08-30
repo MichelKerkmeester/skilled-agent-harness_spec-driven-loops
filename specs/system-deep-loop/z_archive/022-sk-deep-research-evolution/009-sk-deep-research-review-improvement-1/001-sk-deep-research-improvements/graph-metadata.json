@@ -42,14 +42,14 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/agents/deep-research.md",
       ".claude/agents/deep-research.md",
       ".codex/agents/deep-research.toml",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md",
       ".opencode/package.json"
     ],
     "entities": [
@@ -57,6 +57,24 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -81,24 +99,6 @@
         "name": "deep-research-reducer.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`sk-deep-research` already uses packet files as the continuity boundary, but the workflow still drifted across runtime mirrors, lifecycle naming, and reducer ownership",
     "created_at": "2026-04-12T09:02:50.183Z",
-    "last_save_at": "2026-07-16T16:31:50.719Z",
+    "last_save_at": "2026-08-30T15:39:24.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:04fbf5d10bed35fefed09f190e76ae08907f156cc46b951268b644156f1168b2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "640811dfe7c8f613d1d140e273b765a368535adf74fd33c1f10eca57367976f8",
       "plan.md": "bc81eb21b5093af70cd520cde833a7b3634df420476eefc5b710da5fcb97531f",

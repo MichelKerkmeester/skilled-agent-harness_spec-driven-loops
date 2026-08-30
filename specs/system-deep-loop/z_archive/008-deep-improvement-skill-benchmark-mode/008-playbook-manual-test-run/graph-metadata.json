@@ -27,20 +27,20 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "handover.md",
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
     "entities": [
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -106,7 +106,7 @@
     ],
     "causal_summary": "008 — Deep-Improvement Playbook Manual Test Run",
     "created_at": "2026-07-08T06:29:36.646Z",
-    "last_save_at": "2026-07-09T10:02:49.067Z",
+    "last_save_at": "2026-08-30T15:39:23.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -114,6 +114,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:7e8becf33ad6a0a1d4ae927c0731f61076fa167d54646d8127423a360f159cf9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "214785e6e5bd1915416f49feab0f8dd82eb0ffad99029cf8b4f68f030abfcd05",
       "handover.md": "f0968227b3a16dfc22ffe61572465a51b6b84fa41b8ac212b253855c1dab9017"

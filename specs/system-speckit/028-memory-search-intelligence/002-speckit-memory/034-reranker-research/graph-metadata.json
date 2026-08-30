@@ -22,9 +22,9 @@
       "028 reranker conditional go method",
       "028 reranker research tasks",
       "028 reranker prototype tasks",
-      "028 reranker research checklist",
-      "028 reranker conditional go checklist",
-      "028 reranker research summary"
+      "028 reranker research summary",
+      "028 reranker conditional go outcome",
+      "028 reranker zero by construction real data"
     ],
     "key_topics": [
       "reranker",
@@ -46,9 +46,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "research.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research.md"
     ],
     "entities": [
       {
@@ -70,21 +69,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,37 +177,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The new-feature arc closed with a hard architectural finding",
     "created_at": "2026-06-21T00:00:00Z",
-    "last_save_at": "2026-08-28T16:00:16.477Z",
+    "last_save_at": "2026-08-30T15:39:35.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:abb984e6d2f066fd7bf824f7c09ee6fb0f40b4427bf37284ca5ad279092d03b6",
+    "source_fingerprint": "sha256:ffe08e7b392992f34823a04666dbd4ea23280f58e9a1df7ccc52112e669ca264",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8c724418681c303976a6ad743743fc6dfd45cbe0e46167d2393b9e9a6c101456",
       "plan.md": "ae627d340e247ef5fb133ce701ff706bd1b72ff045067dd3c5347bec0470b84d",
       "tasks.md": "217a9bc2249187725c0d0cb1d78ab7f6323a2a22fdda1350ed3498e5550de6ef",
-      "checklist.md": "afe67a1185005919892c7a18fc7676300d24dbb09180d993924b50bf62caa248",
       "implementation-summary.md": "7c2c02f550aa989c1bdfe590793422da4098c393944e68b5d0d451f87e3da59a",
       "research.md": "da2a9661059df8a5a5a439d9187884c0f484bc39cd4f82b9afb8f55363c03a95"
     },

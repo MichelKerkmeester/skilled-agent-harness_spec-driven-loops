@@ -44,12 +44,11 @@
       "review"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "tests/fixtures/memory-index-db.ts",
       ".opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts",
@@ -76,12 +75,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -203,26 +196,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Append Repair",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 005-memory-indexer-invariants deep review surfaced one release-blocker correctness gap (P1-001) and 13 advisory cleanup items (P2-001..P2-013)",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-08-29T15:22:09.753Z",
+    "last_save_at": "2026-08-30T15:39:27.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63584bff49a3d0687bd35c160765f7af237feac0f8ca7bceb0dbec0b6a364906",
+    "source_fingerprint": "sha256:a983f57117c8f0b58faea71def74e01f43dff8b8c45c3568f4d0674d70e296ba",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad6cc12e8dd810cbcec1581f427965a14a6bee1c819d03a42b6a71cb0bdac5a8",
       "plan.md": "0747050cb1c8cd05f60c63c65ab3e1444bbb07327f2214daf7769c9c220e9fdd",
       "tasks.md": "b8fa369f184ef3c47d573f8c1a21833e4a071991a5449c5731dc6ee878b56ce0",
-      "checklist.md": "b37120bba90d2849689c886300376a6a28f0ff40e0447ae261ac72f96f80d5b5",
       "implementation-summary.md": "59edd9ae62cb0503ac582dd905fe1a9543c5136f904501389b68f16d3ad0a478"
     },
     "last_active_child_id": null,

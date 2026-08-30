@@ -93,13 +93,14 @@
     ],
     "causal_summary": "`cli pi` ships its own model picker (`/models`) backed by pi's own provider roster",
     "created_at": "2026-08-17T09:56:22.539Z",
-    "last_save_at": "2026-08-29T14:54:25.438Z",
+    "last_save_at": "2026-08-30T15:39:08.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:82ff33ade9642e2bfc789cfd31bd71ab617a85510e5720f6abc03ca9f1c31d41",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f41e2fe924ed62af287e8f87d4adbd585a0b53095e829ca0590a2d5eb826920"
     },

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
-  "spec_folder": "system-skill-advisor/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
-  "parent_id": "system-skill-advisor/009-playbook-run-and-remediation",
+  "packet_id": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+  "spec_folder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/003-cli-hooks-and-plugin",
+  "parent_id": "system-skill-advisor/z_archive/009-playbook-run-and-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -18,8 +18,6 @@
       "028 phase 003 plan",
       "playbook cli hooks tasks",
       "028 phase 003 tasks",
-      "playbook cli hooks checklist",
-      "CL verdicts checklist",
       "playbook cli hooks summary",
       "CL results summary"
     ],
@@ -33,27 +31,20 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verdicts",
-      "summary"
+      "summary",
+      "results",
+      "hook"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".devin/hooks.v1.json"
     ],
     "entities": [
-      {
-        "name": "mk-skill-advisor-bridge.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,15 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
         "source": "derived"
       },
       {
@@ -181,36 +172,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Every",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The CLI hook scenarios validate the prompt-time advisor adapters for Claude, Gemini, Codex and Devin runtimes plus the OpenCode plugin bridge",
     "created_at": "2026-05-26T20:10:28.064Z",
-    "last_save_at": "2026-07-15T11:59:27.779Z",
+    "last_save_at": "2026-08-30T15:39:27.012Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a8a971742261386b280c63a398ee73930b886b9b728bd49488c4662bd0ae114",
+    "source_fingerprint": "sha256:b531a86966c9fb053ed0fb081d1b4ed062e1c47d99a48f4d22ca7c12a167d6f1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "36b1943bc9aa490bb33e6e1b4dbe28d1d761c2d4b8b7e36c4852ae214961b0b1",
       "plan.md": "2ba1218a0f5e52159dd3bbfce3b1e67a1b252129dc9ce66eeefc2c564db689ef",
       "tasks.md": "8a98dc11e4fc61b51f223ab8337b86c96e2ededc66ed8c8ead3ed8bb5c03038b",
-      "checklist.md": "01c89af8133e9ad10c88c930ba8cc80b881207cc2239fa109ca06a4398437242",
       "implementation-summary.md": "13b46f32b7b7e56d2e6f2ed58cdce869c6ecc6188bd63111c82be0dd37183441"
     },
     "last_active_child_id": null,

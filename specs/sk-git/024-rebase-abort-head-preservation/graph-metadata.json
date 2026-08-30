@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The live-sync reconcilers publish a session's commits onto the shared live branch",
     "created_at": "2026-08-20T08:29:54.549Z",
-    "last_save_at": "2026-08-29T14:54:26.730Z",
+    "last_save_at": "2026-08-30T15:39:18.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:75bbcb921eab27a539ac515ba098b08ad4875cd93e956fef4af18ded195da76c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "140b7edb76df85d29bbacf8085ab91c234b92630a4d5ffd71e66280c0038c9bd",
       "plan.md": "27592eec009ac4d758ccda8a8974176a034ef9048848e5fbfe97fd7577e7909d",

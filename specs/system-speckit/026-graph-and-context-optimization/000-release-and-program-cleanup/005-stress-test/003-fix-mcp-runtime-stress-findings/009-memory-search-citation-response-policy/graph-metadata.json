@@ -195,7 +195,7 @@
     ],
     "causal_summary": "006/I2 cli-opencode received `requestQuality:\"weak\"` plus `recovery.recommendedAction:\"askuser\"` with `suggestedQueries:[]`, yet still synthesized canonical-looking spec folder paths and file references that did not exist",
     "created_at": "2026-04-27T07:48:04.973Z",
-    "last_save_at": "2026-08-29T15:22:11.731Z",
+    "last_save_at": "2026-08-30T15:39:28.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7afe8f7f1773fbaf64ff236148966cca8af854cb7822f52b560f430124515a3b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7c54abac9234d7431f3a5cf87f19891102fa41d92b1e85b8779af5091eb99bb",
       "plan.md": "b0808706c979c6cfae53537bdc3b12907b7d151ed1be6d8e80a88a82c6531af9",

@@ -16,43 +16,35 @@
       "post",
       "speckit",
       "template",
-      "checklist",
-      "upgrade",
       "decision",
       "record",
       "decision record",
       "implementation",
-      "summary"
+      "summary",
+      "implementation summary"
     ],
     "key_topics": [
       "spec",
       "post",
       "speckit",
       "template",
-      "checklist",
-      "upgrade",
       "decision",
       "record",
       "implementation",
       "summary",
       "comprehensive",
-      "alignment"
+      "alignment",
+      "opencode",
+      "commands"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
-      "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,15 +52,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -105,30 +97,6 @@
         "name": "Documentation Level",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Must Complete",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Research Phase",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Section Structure",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Mandatory Gates",
-        "kind": "proper_noun",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,19 +150,18 @@
     ],
     "causal_summary": "Comprehensive alignment of 19 OpenCode commands with command_template.md standards following SpecKit v1.9.0 CORE + ADDENDUM v2.0 template architecture upgrade.",
     "created_at": "2026-04-12T09:02:53.547Z",
-    "last_save_at": "2026-07-10T06:22:20.935Z",
+    "last_save_at": "2026-08-30T15:39:37.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1b689341141e4c3ba90bb04d3acc51b00a432cb4c643eba0af02b570528fe703",
+    "source_fingerprint": "sha256:e27e82a5665f002c4d52dc010672e5c51146b6a41cefaeb24adf595d9a2f963d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ebd2dfced4e537ac2c53de33e9b973a003fffa085863e0fa15f4ce099fb84a37",
-      "checklist.md": "28944e5ce88f0330ec7bf5aea1489a0ccbb0165a24b971aee065283ab34131d1",
       "decision-record.md": "fe62ac4de07560e30a7444c5b082b91b4b4147209ed26dd5cc5a494d5670f188",
       "implementation-summary.md": "2119caebdf27b5369dfa9e8b580348cd1a76a571c111fde2c4d6fb4c4b704516"
     },

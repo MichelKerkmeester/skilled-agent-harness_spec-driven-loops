@@ -44,16 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh",
       "lib/description/description-schema.ts",
       "scripts/rules/check-spec-doc-integrity.sh",
-      "scripts/rules/check-evidence.sh",
-      "scripts/lib/check-priority-helper.sh",
-      "scripts/rules/check-template-headers.sh",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "tests/memory-parser-extended.vitest.ts"
     ],
@@ -77,12 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -95,27 +83,9 @@
         "source": "derived"
       },
       {
-        "name": "check-evidence.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-template-headers.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh",
-        "source": "derived"
-      },
-      {
         "name": "description-schema.ts",
         "kind": "code",
         "path": "lib/description/description-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-priority-helper.sh",
-        "kind": "script",
-        "path": "scripts/lib/check-priority-helper.sh",
         "source": "derived"
       },
       {
@@ -201,26 +171,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "realpath",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Thirteen validators and parsers across the advisor, memory, and spec-validation subsystems leak loose-typing, generic-parse, and false-positive bugs identified by packet 046's deep research:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-29T14:54:17.623Z",
+    "last_save_at": "2026-08-30T15:39:28.761Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba094b485d12b7c74f82ebf25520fd858defdd83031eb32828014bf2cb9bfee5",
+    "source_fingerprint": "sha256:9a78b54c9f28b9111d8bfc4d5e5d502c0ed8f16df2a0888d5bcf96c6c45d6f05",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "26b73e984be6192aeaedb70131413559b3c1be03a6f727fd5ce2b797586b327e",
       "plan.md": "1a9a22e8805265ac5735ad9f7498d0843c745cfc0faef6af2f6c5bb9dd1b9206",
       "tasks.md": "870eacc2e14b1eae50391d3b40f680fe44165499b9e821012220f57591fe0786",
-      "checklist.md": "c2f00eb33cc9124ef81e55cad9d993d5146b843f04c8b6ad4d02d482f00ff98c",
       "implementation-summary.md": "6ef0277cf2b4794742195a82bbefaa6228060995f20f56c40f8ffd173e5b6d3e"
     },
     "last_active_child_id": null,

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Rewrites every transient packet/arc/phase/spec-path citation in the runtime docs, code comments, feature catalogs, playbooks, and tests of deep-loop-runtime, deep-research, deep-review, deep-ai-council, and deep-agent-improvement to present-tense evergreen form. ADR names are kept as stable anchors; only the mutable packet/phase prefixes are dropped. Changelogs and machine-regenerated metadata are exempt.",
     "created_at": "2026-05-24T05:20:07.210Z",
-    "last_save_at": "2026-07-09T10:02:48.516Z",
+    "last_save_at": "2026-08-30T15:39:22.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bd708312932019198a2e30e9fe59477a65766e58a90d63301c21198174886d57",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7032c0ed1de1bf73681ed3398047ea81fe05f2aebf901b158064c42db72f650e",
       "plan.md": "543cb44f46f18687efbe0263ef51de45d5a82a99b9e34b2e88ca8a83d987f5f5",

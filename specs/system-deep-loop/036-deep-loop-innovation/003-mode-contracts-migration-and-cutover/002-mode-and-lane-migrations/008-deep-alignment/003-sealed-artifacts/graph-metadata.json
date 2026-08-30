@@ -21,8 +21,8 @@
       "deep alignment sealed artifacts tasks",
       "deep-alignment verified read tasks",
       "deep alignment authority capsule tasks",
-      "deep alignment sealed artifacts checklist",
-      "deep-alignment tamper-evident artifact checklist"
+      "deep alignment named dependency ownership",
+      "finding authority digest binding"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -164,55 +157,60 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Deep Alignment",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Ownership",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Named Artifact Claims",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Named Claims",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Verified Dependency Owners",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Alignment mode binding for immutable, content-addressed reference artifacts across authority resolution, lane discovery, verify-first findings, conformance convergence, alignment reports, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:43.383Z",
-    "last_save_at": "2026-08-29T09:58:01.660Z",
+    "last_save_at": "2026-08-30T15:39:21.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:311ffe93d4568d13da698d5228cdd58ccd20011b9f2b11d5811d30a6a8ae414a",
+    "source_fingerprint": "sha256:bb9586ced95d58c1012887396a11278ca646d6db403d143524da755258df940c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "027874acb4dcce80935156340a5d1c4663dab4a1f457469e38e4f251f372aec6",
       "plan.md": "86d98696430a3715546e0cd65c6a9b6964e213d7992143154ddd01b230b58655",
       "tasks.md": "5b08b5690ce838bf66e58b92c8422ba11e0691f017c17c95bef1cc1f3454d978",
-      "checklist.md": "77e011cdddf63e728c7fb4138b13c28dc47425c6477dfe034d586d585a472d19",
       "decision-record.md": "82962f9ceb971bdd105b7f19ce18e6482c9780b3761bee7376ceb8437956027e",
       "implementation-summary.md": "3b941b9caf30e09db91c7725fad32aa71412b90e3b273cb72b48f5905cc2e0d0"
     },

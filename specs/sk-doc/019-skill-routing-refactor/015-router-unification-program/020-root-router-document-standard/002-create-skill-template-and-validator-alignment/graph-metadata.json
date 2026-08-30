@@ -50,7 +50,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/agents/markdown.md"
@@ -72,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,43 +176,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Detailed Tooling Decisions",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Normative Decision Set",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The parent generator emits no second-stage router and its template still instructs authors to create `shared/references/smart-routing.md`",
     "created_at": "2026-08-15T13:00:00Z",
-    "last_save_at": "2026-08-29T15:22:02.622Z",
+    "last_save_at": "2026-08-30T15:39:15.403Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b90783e3eb4c20d831bcad349ff88eb40d7789441708f165229340e71496c4c1",
+    "source_fingerprint": "sha256:e37813cf18110932f046dc80ca9025e8c7d85761c427e51e0feb2f736a6b6dc0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e610c3fdbbc439e2ae10dd4263bc0240d0c19a1936e33d937bc61e2552b007ba",
       "plan.md": "dc0701a742df63f5ae3a9aeeefa24cc66f080208fbf59cf2ae7c3313f55598ce",
       "tasks.md": "9b848b3f3e042f22d40f28989eca83aed26f0283a878ad9732b8fc12ff5a274f",
-      "checklist.md": "869f1deb3ac0b9c905517b6e2553b5bf95dffdac9b6cdb55a0db16f0285a225b",
       "decision-record.md": "670cdf2380ddf52effd7092474963686ea2f1e8e0bf066726aa66ea428adcf91",
       "implementation-summary.md": "683d8e57cac9e5be166b3e002b9720bd30bb2ead81ab689d2089b8e09059f90a"
     },

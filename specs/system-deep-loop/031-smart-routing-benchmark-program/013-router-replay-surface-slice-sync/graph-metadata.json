@@ -20,9 +20,9 @@
       "router replay surface slice tasks",
       "surface slice sync tasks",
       "code surface router replay tasks",
-      "router replay surface slice checklist",
-      "surface slice sync checklist",
-      "code surface router replay verification"
+      "router replay surface slice summary",
+      "surface slice sync summary",
+      "code surface router replay summary"
     ],
     "key_topics": [
       "router-replay",
@@ -44,12 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/spec.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/plan.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/tasks.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/checklist.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/implementation-summary.md",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/description.json",
       ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/graph-metadata.json"
@@ -71,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync/checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Lane-C deterministic router-replay (`deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs`) slices a single-surface sk-code task down to only its detected surface's resources, so the benchmark can measure route-time loading discipline (the D3 efficiency dimension)",
     "created_at": "2026-07-05T18:13:11.174Z",
-    "last_save_at": "2026-08-29T15:22:06.092Z",
+    "last_save_at": "2026-08-30T15:39:19.996Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fcea68da918c2308425f9e223a4f58ce93ac7feae2e7259c66d30665afedea1",
+    "source_fingerprint": "sha256:c7d5c85699010e4ab9a70ea5679c822d583819ba464e1d894f6cfcb03b9333c4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89c27e9f0316fa6779ba3257959505f03553a51293fd09310b7ad8dfe638876f",
       "plan.md": "b4ba212f58ab2cc5814a29d1dc50f53096b65b38898e1f93c1cc730299cbcc7e",
       "tasks.md": "959029d1dcfb7fda6ee5ca3d2a253bfa47acec435c1745b8c38a90fd1b761b15",
-      "checklist.md": "2dc434febad65eebc407d4da402825861342db53b58a0bec6f8dbd7d915e7f0c",
       "implementation-summary.md": "c9ee10195384157a649bd8e5875edca72b3bf4b618f4932c99d564414257d167"
     },
     "last_active_child_id": null,

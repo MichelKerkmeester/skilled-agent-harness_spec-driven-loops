@@ -18,8 +18,6 @@
       "ollama encode path plan",
       "016/006 tasks",
       "ollama encode path tasks",
-      "016/006 checklist",
-      "ollama encode path checklist",
       "016/006 summary",
       "ollama encode path summary",
       "jina query encode fixed"
@@ -35,8 +33,8 @@
       "factory",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "summary",
+      "query"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts",
@@ -69,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,26 +187,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "5. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Wire the shared embeddings factory to Ollama-backed active embedders so query-time encoding matches the re-indexed vec_<dim> table.",
     "created_at": "2026-05-18T19:18:20.873Z",
-    "last_save_at": "2026-08-29T13:10:01.479Z",
+    "last_save_at": "2026-08-30T15:39:30.204Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d195c842da2d1bb0735c127554616e47f71308d7eda702ed42d9e21a2deceed3",
+    "source_fingerprint": "sha256:386e9eab42faa91c33942f4879f1daa89c4b44c7aa425a59d4c94382e916b631",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e94cddbcc965f22847dd434ca5b8b22ed7d8b74d9db4e413913e3e2232c5ea4",
       "plan.md": "2b02d2b91d2fa4ce572f5cebf0ae6cc79d5b52b25356721113d2ccfaf1fcd2ec",
       "tasks.md": "84e8b97818377fe17aea96a20777f56046a9caaacb0532b7f177c4e878355c75",
-      "checklist.md": "2a7d439c4ac5dae9c1f59994c1c59e329dac5a1dda2e3d87a407425ce487a2dd",
       "implementation-summary.md": "604a2be7953a0450675f2c844c6f5f45bf83f1f25607194f54e363ef7315a939"
     },
     "last_active_child_id": null,

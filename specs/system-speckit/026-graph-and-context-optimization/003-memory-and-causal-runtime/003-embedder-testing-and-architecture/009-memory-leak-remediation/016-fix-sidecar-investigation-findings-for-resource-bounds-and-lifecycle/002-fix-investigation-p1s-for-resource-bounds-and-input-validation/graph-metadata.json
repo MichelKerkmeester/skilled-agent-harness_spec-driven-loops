@@ -15,7 +15,6 @@
       "F48 F85 F86 F87 remediation",
       "arc 010 resource bounds plan",
       "arc 010 resource bounds tasks",
-      "arc 010 resource bounds checklist",
       "arc 010 p1 implementation summary"
     ],
     "key_topics": [
@@ -38,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/vitest.config.bin.ts"
     ],
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -164,48 +156,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Findings Closed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "How It Was Delivered All",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The registry's P1 resource-bound keyword selection contains F48, F85, F86, and F87",
     "created_at": "2026-05-23T03:50:22.751Z",
-    "last_save_at": "2026-07-17T17:19:28.025Z",
+    "last_save_at": "2026-08-30T15:39:31.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d80eeccc8e361894183f012206dd2c574ddb777104a5e9658cb16283ce90afe",
+    "source_fingerprint": "sha256:930232e65433b1b0cd44984a58ee15df5dda23dbc22df890bd9d7ef7a826e4a3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6b95ec2618e31d8fb7e06fbc6e24da0247b3aef70ea1dc2f609de9721b061de4",
       "plan.md": "4297c39b7eec996eda1803cadbad8a8d99333f089938f740a8f57a5dd82fa8f0",
       "tasks.md": "68dbf06c601ee06c73f1a08b25c3a72a1608f5e03353e579b5f324350a3b4855",
-      "checklist.md": "6a282379504d66005154a7d20331d7583e2cff829f1126a377881d683962019f",
       "implementation-summary.md": "26fdaf7f0a34afc68e563de67e4611a50fa9b28d8a5471d78f534ee31853ab73"
     },
     "last_active_child_id": null,

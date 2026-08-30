@@ -19,10 +19,7 @@
       "SPECKIT_SOFT_DELETE_TOMBSTONES default off",
       "tombstones edge promotion plan",
       "tombstone soft-delete idempotent deleted_at tasks",
-      "tombstones edge promotion phase tasks",
-      "tombstone idempotence checklist",
-      "skip-manual edge promotion acceptance",
-      "active purgeable partial index verification"
+      "tombstones edge promotion phase tasks"
     ],
     "key_topics": [
       "tombstone",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handlers/memory-crud-delete.ts",
       "handlers/memory-bulk-delete.ts",
@@ -52,8 +48,7 @@
       "lib/search/vector-index-schema.ts",
       "handlers/causal-graph.ts",
       "handlers/causal-links-processor.ts",
-      "lib/governance/memory-retention-sweep.ts",
-      "tests/causal-edges-write-safety.vitest.ts"
+      "lib/governance/memory-retention-sweep.ts"
     ],
     "entities": [
       {
@@ -72,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -126,12 +115,6 @@
         "name": "memory-retention-sweep.ts",
         "kind": "code",
         "path": "lib/governance/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges-write-safety.vitest.ts",
-        "kind": "test",
-        "path": "tests/causal-edges-write-safety.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,26 +182,37 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The review found the prior soft-delete premise was false: delete was a hard delete via `vectorIndex.deleteMemory`, not a soft-delete writer",
     "created_at": "2026-06-06T10:10:48Z",
-    "last_save_at": "2026-08-29T15:22:19.622Z",
+    "last_save_at": "2026-08-30T15:39:33.496Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51807c315799af0eac0558045dc84c07a2a3cc6caf708c5f6701763acca712b7",
+    "source_fingerprint": "sha256:b94325ec670e3d0a620af54ca9b81dec78a665182adafa9c0ef5ab777f308cf6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6fe589419f3665be658c88751e0add0e3cad27fc2ae5d0fd28afe11c21d03c1c",
       "plan.md": "ee4042fc56f20cb9e904774c35c8367a1b903831dcd012201a47698edcf93372",
       "tasks.md": "52887353ed703dcdb7aed029ec356adc1b133f4e181edbd5efa7327fc71e1704",
-      "checklist.md": "b0faf63902f1699e2097c50991468d7a1ac939c2ac61751d143da1e45228a564",
       "implementation-summary.md": "4979dcad04ef23cd05daa569b60a41ab8b0d806a2274f3cebdf87055bd27b63b"
     },
     "last_active_child_id": null,

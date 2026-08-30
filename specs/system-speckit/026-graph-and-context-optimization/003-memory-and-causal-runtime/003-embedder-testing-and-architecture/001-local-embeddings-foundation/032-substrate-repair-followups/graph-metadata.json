@@ -151,7 +151,7 @@
     ],
     "causal_summary": "Phase parent for the 5 approved follow-ups to 022-local-llm-legacy-remediation's substrate-repair work. Each child is a focused unit shipped via a fresh cli-codex gpt-5.5 high fast dispatch. Wave 1 (001/003/004) runs in parallel; Wave 2 (002/005) runs sequentially after Wave 1 lands.",
     "created_at": "2026-05-14T11:05:00Z",
-    "last_save_at": "2026-08-28T22:58:07.930Z",
+    "last_save_at": "2026-08-30T15:39:29.868Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-14T14:30:00Z",
     "source_docs": [
@@ -159,6 +159,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:c2fec1532982803bb3d7d455c6e5db40714e3454eb4f692862ad21b47864d360",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9fb05ae769baf996e5395eca819aeda1409cf5e57ea0a9985b1e34d6e82b8594",
       "handover.md": "5656491592c524764a6ac8f61eb38500eac72a296f2176cdd3cb8ccdff6fc6f3"

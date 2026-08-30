@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -57,12 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -180,30 +173,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A document can carry curated `answerablequestions` and `semanticintent` tags that name the queries it should win and the intent class it serves, but those tags are inert today",
     "created_at": "2026-06-27T17:15:36.837Z",
-    "last_save_at": "2026-08-29T00:37:18.377Z",
+    "last_save_at": "2026-08-30T15:39:35.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:927f96975a5975e39334bd22449d98fb9f02b4917495cab18f2110c3edb95f69",
+    "source_fingerprint": "sha256:a06230f2af59554c86e49c165b3e29cb1e487cbcd9e225bf1dd195f7990e7c16",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "76f3bcb394f4ca75fec907421bdf40cbff1d54015a0c52c5924854bc58c6644d",
       "plan.md": "6c931dcd7613ac4b28095fe0d8759e6a5a12f1292912277944c2c979ebb9a3e0",
       "tasks.md": "a483dbb7e2def733ac22e610fd12ef623703f697096079a0cfe0b8078ed9e029",
-      "checklist.md": "f5e79863d9391afc2895a4cf66ad491e271da7e0a2c15b852d459f039cc3f570",
       "implementation-summary.md": "3b8c22f0968f2e6cd44187896eef2c7cafa5e5e98c8f2fc95b08162e0e8e0cf9"
     },
     "last_active_child_id": null,

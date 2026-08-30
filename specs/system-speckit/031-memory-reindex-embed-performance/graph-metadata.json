@@ -20,9 +20,9 @@
       "memory reindex embed performance tasks",
       "scan write-back fix tasks",
       "persistQualityLoopContent gating tasks",
-      "memory reindex embed performance checklist",
-      "scan write-back fix verification",
-      "persistQualityLoopContent regression evidence"
+      "memory reindex embed performance implementation summary",
+      "scan write-back fix summary",
+      "persistQualityLoopContent gating summary"
     ],
     "key_topics": [
       "memory",
@@ -44,12 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "handover.md",
       ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md",
-      ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/checklist.md",
       ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/research.md",
       ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts",
       ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
@@ -60,7 +58,9 @@
       ".opencode/bin/lib/model-server-supervision.cjs",
       ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts",
-      ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md"
+      ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md",
+      "dist/handlers/memory-save.js",
+      "dist/context-server.js"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/checklist.md",
         "source": "derived"
       },
       {
@@ -160,6 +154,18 @@
         "source": "derived"
       },
       {
+        "name": "memory-save.js",
+        "kind": "code",
+        "path": "dist/handlers/memory-save.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
         "name": "Memory Reindex",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,34 +206,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Measure, then optimize the mk-spec-memory reindex/embed pipeline. Embedding runs on Ollama (nomic-embed-text, GPU/Metal) and is not the bottleneck; the slow tail is per-memory ingest + request serialization. Measurement-plane-first, gated + reversible, no Rust. Scaffolded with a handover for a fresh implementing session.",
     "created_at": "2026-07-22T14:55:36.697Z",
-    "last_save_at": "2026-08-29T15:22:24.678Z",
+    "last_save_at": "2026-08-30T15:39:36.387Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6dfa48e9ed2c477a91ec63bb436d68c1b91e6dc68f732673bc8f0dba0b7136cb",
+    "source_fingerprint": "sha256:85da380be86923b833c0de30a46a15d3c895ddafdbe20f80f5374de10c94e617",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e40310f22ca60b6b7a905592d60fcfb8cf49b8daf768d0b4e437015521504717",
       "plan.md": "2125042b5403c03f4721b1e128374118e59e1a6c0ab6d0fb8343a9b6270f0b4b",
       "tasks.md": "48667c7ceec9b8ea0aeff080fcb7d0f26a885b06128c379e3c53c61d6695d666",
-      "checklist.md": "99df6e6fde9a953a8c033b3895b997e9e866791813f88deea63229ee63e9ce9e",
       "implementation-summary.md": "7b85a300bdfc6079923a2ebfcac92d8f21468308a0155c1baadea54b07d15a5b",
       "research/research.md": "ffc469cae6ab7d0039a567437ee44bf9258ebf2c7a9b2dbfdac423c6465d2951",
       "handover.md": "035f6e8d3dd4f69208e5c564d625c97b755b2b6a6e2cd490cce1c7689b0ae4b5"

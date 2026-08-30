@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison artifacts.",
     "created_at": "2026-07-14T15:17:21Z",
-    "last_save_at": "2026-08-30T07:19:23.142Z",
+    "last_save_at": "2026-08-30T15:39:16.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:74fc801f3dad5bebfbbcd9c2587d9b81c8cc72da1d05fe55d268ff63bba2d33d",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0d9a15554246ad6cb1e52c4ab6fa7b5726289bb2668f0d3e3793ebe9eac3241",
       "plan.md": "d4183d4baac2bb22388aff7757580073c78c374e01e98e969a6f2479701fa3da",

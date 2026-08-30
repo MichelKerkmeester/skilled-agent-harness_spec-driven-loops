@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Make the gate block the thing it can fairly block: the packets a change",
     "created_at": "2026-08-30T06:31:14.942Z",
-    "last_save_at": "2026-08-30T06:31:14.942Z",
+    "last_save_at": "2026-08-30T15:39:36.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ea3720be6bfb91a8d2e18dc235957a825408e301165393f3cb832b075f5a8bfe",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7fb097c60df8aed3dff9aff872e391f3744edf3a2002dd6137035a1c0f075d1c",
       "plan.md": "678474813c142a04006647dc5ee513d9cef918327eb700659216e16f20b0c051",

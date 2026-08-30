@@ -21,8 +21,8 @@
       "design command decomposition research tasks",
       "interface design command split tasks",
       "sk-design command surface research tasks",
-      "design command decomposition research checklist",
-      "interface design command split checklist"
+      "design command decomposition research implementation summary",
+      "interface design command split summary"
     ],
     "key_topics": [
       "design",
@@ -39,44 +39,17 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/design-interface/SKILL.md",
-      "research/lineages/glm/research.md",
-      "research/lineages/composer/research.md",
-      ".opencode/skills/sk-design/mode-registry.json",
-      "tasks.md",
-      "checklist.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
+      "research/lineages/glm/research.md",
+      "research/lineages/composer/research.md",
       ".opencode/specs/sk-design/014-template-conformance/spec.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,6 +60,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -196,26 +175,43 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/interface:design` is now one of only two public sk-design commands (with `/interface:design-reference`), after a consolidation that took the hub from 6 modes / 5 commands to 2 workflow modes + 1 transport / 2 commands",
     "created_at": "2026-07-27T17:50:43.207Z",
-    "last_save_at": "2026-07-27T18:31:01.151Z",
+    "last_save_at": "2026-08-30T15:39:13.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ec45cf5127a932d19322a5a9a5793a7763baaf8f98ec6cafd3f20daf2b75ade",
+    "source_fingerprint": "sha256:71446bb8454a6a9ac62360d9195c1aa14637a754596e11aafe570706cb4f7fc5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5780d9449bf4f7bf27739fc9009a61f83b6b122795765c99934d96fb8281fc91",
       "plan.md": "6625bb129c5fc2943720f1691ffc201a580c00501e526a59dc927b4b74942847",
       "tasks.md": "085bbfc5251561ec15bf167d1054f0fd67401fa7943f5e6358678d54363c3382",
-      "checklist.md": "25b982558d1ec27082de03784558928a965a545147bf5b1917f7b21e50a760f6",
       "implementation-summary.md": "85bc3b48e9ed720bd828b12e0c370157c5e75da45c253aeb51c7f12040cadfd1"
     },
     "last_active_child_id": null,

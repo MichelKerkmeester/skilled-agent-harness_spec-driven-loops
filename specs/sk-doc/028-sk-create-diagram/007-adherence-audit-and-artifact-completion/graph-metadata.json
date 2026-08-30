@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
   "spec_folder": "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
   "parent_id": "sk-doc/028-sk-create-diagram",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -17,7 +16,6 @@
       "sk-create-skill template verification",
       "diagram adherence audit plan",
       "diagram adherence audit tasks",
-      "diagram adherence audit checklist",
       "diagram audit decision record",
       "diagram adherence audit summary"
     ],
@@ -33,15 +31,14 @@
       "verification",
       "plan",
       "tasks",
-      "checklist"
+      "decision"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,27 +185,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 ran `validateskillpackage.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-opencode`'s language standards",
     "created_at": "2026-08-12T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:04.777Z",
+    "last_save_at": "2026-08-30T15:39:18.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdb088d94e840447c2f8147ca989bfbed45e124180e75194c4a9489e3739dd09",
+    "source_fingerprint": "sha256:8405a5a8f6f4ad1d92740fc174e811818abd07f054f85ccb0c38216d8d6411e4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c5a4fed850c2f75b23108f8e86ce3132c77febfc5cc319780f8d66fae9071cb6",
       "plan.md": "d25ab2ed13cdd9e453e7fe7eee0d3313b47c949af21af099d4c3448121106691",
       "tasks.md": "e02f9cb31d0185f26745ef576b206bce42d627f969e518884b3ed081443a6eb2",
-      "checklist.md": "7435ba815cd7393cc0e4d544278abc24818fbdcee601f54ce19c8c631bd2b59b",
       "decision-record.md": "32882acbacab083bbfbe26c87e2f866b60cda1fd88a61df72cea4bac6a7b475f",
       "implementation-summary.md": "af4f5958debb7d7fb903d7a6720b6a88e6c1bfeaa2af106a0b48ba6d8b5d4424"
     },

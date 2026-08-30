@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Replace the hardcoded embeddinggemma-300m default with a smart precedence-chain auto-selection at bootstrap. Probe environment in order — Voyage API key → OpenAI API key → Ollama daemon+jina-v3 → hf-local — and persist the choice to vec_metadata. Purge all llama-cpp / embeddinggemma in-process loader code (Metal GGUF, node-llama-cpp deps, the 750 MB legacy DB), replacing the legacy fallback path. Ollama becomes the always-available local fallback when cloud APIs aren't configured.",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-08-30T08:04:45.286Z",
+    "last_save_at": "2026-08-30T15:39:30.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:34f51a1336d319999bd052be44c38bdab80d23d6eefe3839c7c8e47f0475aab8",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7921220c5073573ed7d53135cb4b44d6bd14f4ce49220de32aa0df46ccb14667",
       "plan.md": "980b0c98a5feceb07c16535ad03ae2e9e0f6afecf4d097545ff5122f3b988bb7",

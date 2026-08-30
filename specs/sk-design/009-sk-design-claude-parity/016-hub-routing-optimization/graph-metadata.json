@@ -18,11 +18,10 @@
       "hub routing optimization plan",
       "tasks",
       "phase 016 tasks",
-      "verification",
-      "checklist",
-      "phase 016 checklist",
       "implementation",
-      "summary"
+      "summary",
+      "phase 016 implementation summary",
+      "hub routing optimization summary"
     ],
     "key_topics": [
       "hub",
@@ -35,41 +34,25 @@
       "sk-doc",
       "plan",
       "tasks",
-      "verification",
-      "checklist"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/command-metadata.json",
-      ".opencode/skills/sk-doc/mode-registry.json",
-      ".opencode/skills/sk-doc/hub-router.json",
-      ".opencode/skills/sk-code/hub-router.json",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-code/hub-router.json"
     ],
     "entities": [
       {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "command-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/command-metadata.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -85,21 +68,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
         "source": "derived"
       },
       {
@@ -197,26 +180,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code` and `sk-doc` (the other two parent hubs in this repo) both carry two structural conventions in their `mode-registry.json`/`hub-router.json` that `sk-design`'s equivalents lack: (1) a per-mode `\"command\"` field recording the bound slash command, documented in `advisorRoutingContract`; (2) a `\"hub-identity\"` vocabulary class wired into every mode's `routerSignals.classes` array",
     "created_at": "2026-07-06T19:50:05.020Z",
-    "last_save_at": "2026-07-09T10:02:44.533Z",
+    "last_save_at": "2026-08-30T15:39:12.267Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e0f1af402486aff3c12aa08f1431aa819acb732b2f595d7d6b1cfe7bcbed874",
+    "source_fingerprint": "sha256:f01ea2376fae69fefcdb8f88f0c575ec66e022f110e52988b096abe0ec4c5ad9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "208be12dccc441432f3a08ea58ef1cda4e8f761c26b4eedeeff04d8645610b41",
       "plan.md": "c33bd30c1bde4eded0b19c0e441c2f2b766d2877079f683fec409170df6c2b5d",
       "tasks.md": "c15e61a07dbf050901f2827672241677df27e20ca1f14c58375da0e3e5b33776",
-      "checklist.md": "9bde1b2b92cd9650a0f73c04e5f7c52e511b9efb18ee36dc24ab6a32e6d64e51",
       "implementation-summary.md": "4574b89faf145c277c9fd3755c0ef96094d62d58310a19ed1b8f971a422dd8f3"
     },
     "last_active_child_id": null,

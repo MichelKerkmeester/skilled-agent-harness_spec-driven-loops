@@ -36,8 +36,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -53,15 +53,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "45 raw cell logs from Phase 2 contain CLI-specific output formats (codex stdout with token line, copilot Tokens summary block, opencode JSONL stream)",
     "created_at": "2026-05-05T10:27:21Z",
-    "last_save_at": "2026-07-09T10:02:44.916Z",
+    "last_save_at": "2026-08-30T15:39:18.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T15:55:00Z",
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a7f5f8f491faaa00bc747e003b9112b0f65f44bdcd9d838a0b02fab7d5959f59",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd87462d2ad64c3de251b919707830a14f6b28ac695709fb3700576c71b2fab6",
       "plan.md": "60a6729a9dfeb11c86b32f816167a8dfe32f595f099c4b29602366cb00d997d8",

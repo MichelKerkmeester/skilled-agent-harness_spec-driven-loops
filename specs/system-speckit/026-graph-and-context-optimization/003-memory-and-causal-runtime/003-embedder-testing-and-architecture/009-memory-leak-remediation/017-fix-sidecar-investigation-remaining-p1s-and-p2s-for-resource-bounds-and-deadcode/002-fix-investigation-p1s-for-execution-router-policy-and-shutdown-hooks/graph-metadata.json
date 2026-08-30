@@ -19,8 +19,6 @@
       "execution-router p1 policy shutdown fallback plan",
       "arc 010 003 002 tasks",
       "execution-router p1 task ledger",
-      "arc 010 003 002 checklist",
-      "execution-router p1 checklist",
       "arc 010 003 002 decisions",
       "execution-router p1 adr",
       "arc 010 003 002 implementation summary",
@@ -43,47 +41,13 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.testables.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/execution-router.vitest.ts",
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "decision-record.md",
-      "tasks.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "execution-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "execution-router.testables.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.testables.ts",
-        "source": "derived"
-      },
-      {
-        "name": "execution-router.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/execution-router.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -97,15 +61,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,31 +163,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shutdown Hook Fixes",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Router Seam",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Move",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Level Dimension Fallback",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`execution-router.ts` has 7 P1 findings from arc 010/001 deep-research",
     "created_at": "2026-05-23T06:21:18Z",
-    "last_save_at": "2026-07-17T17:19:28.344Z",
+    "last_save_at": "2026-08-30T15:39:31.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9141ff0ac270119c79a7608930a1736fa5e17cdfad7d67d066a30fbd5a15d7e7",
+    "source_fingerprint": "sha256:4c4572d6e5b3061d4cf8f4c337e4cde56a3f37da19f0a8b12280076d84d0751c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c57ab5da4ae960ae88ec2ef1f0fb62bf384944ac1bb7f5244de564364540bf98",
       "plan.md": "8c400600b8f9e72daec51c16cccf9571ccc45d7572233ea05bbeacbfa11d2f5b",
       "tasks.md": "de1dc51d6535f70598c5420b01044d7e216732a2cfb7ecb18c9c006e74668445",
-      "checklist.md": "2d5a2fad5f194708ae7ced99a1b4aca8b4022c95af3d403e3cbda68c42c03207",
       "decision-record.md": "27b6f744bced7463e9a57d31a475a25a8ebb1b63ec728ce251c1bb54d1225550",
       "implementation-summary.md": "d4df30c5bdee6b44b42d30274a0a4aa43e400f4e82e92354ee57043f88417bdd"
     },

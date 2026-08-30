@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/015-cli-opencode-stdin-fix",
-  "spec_folder": "cli-external-orchestration/015-cli-opencode-stdin-fix",
+  "packet_id": "cli-external-orchestration/z_archive/015-cli-opencode-stdin-fix",
+  "spec_folder": "cli-external-orchestration/z_archive/015-cli-opencode-stdin-fix",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -40,72 +40,38 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/spec.md",
-      "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/plan.md",
-      "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/tasks.md",
-      "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/checklist.md",
-      "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/description.json",
-      "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/graph-metadata.json",
-      "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/implementation-summary.md",
-      "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/resource-map.md",
-      "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/changelog.md",
       "resource-map.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/graph-metadata.json",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "resource-map.md",
         "kind": "doc",
-        "path": "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog.md",
-        "kind": "doc",
-        "path": "specs/cli-external-orchestration/015-cli-opencode-stdin-fix/changelog.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -197,27 +163,50 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "P0 — Validation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks — 097 cli-opencode stdin-redirect fix",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "$(cat ...)",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`opencode run` is the entry point for cross-AI dispatch from Claude Code, Codex, Gemini, and shell automation",
     "created_at": "2026-05-08T13:30:00Z",
-    "last_save_at": "2026-07-14T19:26:19.355Z",
+    "last_save_at": "2026-08-30T15:39:08.432Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:af2dbf25fa73ce56451680f8cf4374a6fb19bf212ca972938af7995a38738219",
+    "source_fingerprint": "sha256:84acf110630c29e9a1714b75b473b951e2d2bf550f238a868fe511a9c61a8e53",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "980ea869e994ad3e14609557d2582ed7f971f95dc635f08001737c5209efeec5",
+      "spec.md": "57f8dafb9738dffb02053e30881fb140be5c7ae6b80cab91ad509972aec943d7",
       "plan.md": "ed45d26c2f2b3e3a746b4df9b5526853e7f50e6f6ba447a585158f44ae4e31cd",
       "tasks.md": "c07a5632b59827518853ebbc57f6d56e7eac07a3bcc1f8b7877a7577938c59c5",
-      "checklist.md": "5a3cb2f3dcc3d066b785df0cd1671aaaecd101aa097446ecaedbf07222377ef6",
       "implementation-summary.md": "52a7a1f9b98e90434fe8fc4ea579871aa57d38c325bc80bf49b0eb6ad0450890",
       "resource-map.md": "875257cc4638a7ba450cd766444b16799e271f896854b71809e0b2fc3af5d1fc"
     },

@@ -21,8 +21,8 @@
       "vectorIndex close ordering plan",
       "shutdown durability tasks",
       "forwarded signal shutdown tasks",
-      "shutdown durability checklist",
-      "forwarded signal shutdown verification"
+      "shutdown durability summary",
+      "SIGHUP SIGQUIT fatalShutdown summary"
     ],
     "key_topics": [
       "shutdown",
@@ -42,22 +42,15 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -73,9 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -175,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 008 made `closedb()` run `PRAGMA walcheckpoint(TRUNCATE)` on graceful close, but the daemon shutdown path still allowed two durability gaps",
     "created_at": "2026-05-29T13:03:59.425Z",
-    "last_save_at": "2026-08-28T15:59:54.035Z",
+    "last_save_at": "2026-08-30T15:39:32.360Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41ff35782ce395021878fe27572a06692e9071e2014b7e24286a4f43e3c13197",
+    "source_fingerprint": "sha256:2284941f11dff9611dc8d539a5e6cf467253f3a8e51f82ebbf853af3aabcc3ee",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92bb71cc2795ace6469c018e124c82fd4bce6c8594a17c226599031b5e09eb97",
       "plan.md": "51b5ccf4ae19f9fee4517b18c05e2dd1a96500ace12f2dbd6fce44b1936d2c16",
       "tasks.md": "c1eb65681997966b74931fc03b889d4bddec96c7ccf45d7b42fcba62a1f417c9",
-      "checklist.md": "0a54ea9987bba392155e33e0e227527e330fa8f8d70431c352eb5e5998659002",
       "implementation-summary.md": "09efb4f7fde02a7832ce7ce449c7113bf1e2ea949dadf29b0abb48693bd87b2a"
     },
     "last_active_child_id": null,

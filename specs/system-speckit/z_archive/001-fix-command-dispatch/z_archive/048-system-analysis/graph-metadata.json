@@ -22,7 +22,7 @@
       "task",
       "breakdown",
       "tasks",
-      "validation"
+      "decision"
     ],
     "key_topics": [
       "speckit",
@@ -35,7 +35,7 @@
       "task",
       "breakdown",
       "tasks",
-      "validation",
+      "decision",
       "comprehensive"
     ],
     "importance_tier": "important",
@@ -44,10 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json",
       ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
@@ -70,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -85,12 +77,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-weights.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/configs/search-weights.json",
         "source": "derived"
       },
       {
@@ -194,27 +180,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Summary",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A comprehensive audit of the SpecKit and Memory systems identified 16 verified bugs, 10 alignment issues, and 9 improvement opportunities (35 total tasks). While the systems are...",
     "created_at": "2026-04-12T09:02:53.531Z",
-    "last_save_at": "2026-07-10T06:22:43.988Z",
+    "last_save_at": "2026-08-30T15:39:37.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4014d75b80e47c9a9d94fdf747199a6fd80f239f60085f98f69fc534138777c5",
+    "source_fingerprint": "sha256:62045695a892160634c812e4a76d2ba378d889ba4e5cf3bba28ffef95e83465f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "29cb444d09de5555aa7ca988be2400e866393aa25d0a58d48cb175ffb436f88c",
       "plan.md": "88d09f03da1121fa93874b2c553d1c24731d8ff7c060abbe30e880b51a2434e6",
       "tasks.md": "ecdd129bfa67a612c097c471265b0b23f62bebe567b687c5248330d14453e46f",
-      "checklist.md": "a499b53b5eaf9cd01cfc0ff247a0b530761f833384b981d2d79292c1e543397f",
       "decision-record.md": "45725e66d53277b025b7460a2debbfe4dc6d98504bf54d36ee4d4017fc78618b",
       "implementation-summary.md": "44456e3ba0ef3826541451a160f4c23661529105ed0e3fdf148546c7224e05a7"
     },

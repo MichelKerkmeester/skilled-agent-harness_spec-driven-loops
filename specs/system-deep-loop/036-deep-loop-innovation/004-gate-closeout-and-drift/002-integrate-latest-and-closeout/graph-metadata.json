@@ -17,9 +17,7 @@
       "integrate latest and closeout implementation plan",
       "deep-loop phase 017 implementation plan",
       "integrate latest and closeout tasks",
-      "deep-loop phase 017 tasks",
-      "integrate latest and closeout checklist",
-      "deep-loop phase 017 checklist"
+      "deep-loop phase 017 tasks"
     ],
     "key_topics": [
       "integrate",
@@ -40,7 +38,6 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md"
     ],
     "entities": [
@@ -54,12 +51,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,49 +154,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 017 lands the system-deep-loop recommendations program on the moving mainline: integrate the latest origin in a clean worktree, re-census touched contracts, reopen phases whose inputs drifted, rerun the whole-system gate on the exact final SHA, and reconcile the parent packet's open items, changelogs, and generated metadata.",
     "created_at": "2026-07-16T03:44:01.465Z",
-    "last_save_at": "2026-08-18T04:50:13.956Z",
+    "last_save_at": "2026-08-30T15:39:21.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:bac42ee05a4f0e50bbbde9a638e982f232ed54cb65a1b5aa72375b3d871de8e5",
+    "source_fingerprint": "sha256:06ade148dc86d8681bb10a17226279a3925df24c8e61da6998048fcc14c9c521",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "34835be51cfc7d675f913bead12f727d8d24c0e463a18eaf7b0b0d17accf594b",
       "plan.md": "213536257a80961bf50c6f3416d01ab69351c0f6256b57c5ac5cc11583a8878f",
-      "tasks.md": "460702821bbc178c728744a2c7ae0955d96494ec9a5fc66fe9be08d59feff74b",
-      "checklist.md": "dd38ade767e3b2a20ca6d9ff77afa9cdabe2218f1ce9b7129df22fb8968ecf28"
+      "tasks.md": "460702821bbc178c728744a2c7ae0955d96494ec9a5fc66fe9be08d59feff74b"
     },
     "last_active_child_id": null,
     "last_active_at": null

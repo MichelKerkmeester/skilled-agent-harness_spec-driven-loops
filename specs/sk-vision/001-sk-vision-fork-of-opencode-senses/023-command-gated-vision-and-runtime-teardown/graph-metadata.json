@@ -19,10 +19,8 @@
       "sk-vision /vision teardown plan",
       "sk-vision command-gated tasks",
       "sk-vision /vision teardown tasks",
-      "verification",
-      "checklist",
-      "sk-vision command-gated",
-      "sk-vision teardown"
+      "sk-vision command-gated summary",
+      "sk-vision /vision teardown summary"
     ],
     "key_topics": [
       "sk-vision",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/spec.md",
       ".opencode/skills/sk-vision/vision-runtime/src/plugin.ts",
@@ -75,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,26 +193,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "In OpenCode, sk-vision is \"always on\" in two ways",
     "created_at": "2026-08-22T12:45:15.968Z",
-    "last_save_at": "2026-08-29T14:54:23.635Z",
+    "last_save_at": "2026-08-30T15:39:19.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2aa232b0075df7ea0abac64fe2611cc10816ce08ea3be4c5a433b55f4a1bc700",
+    "source_fingerprint": "sha256:7223284a93578d63783dd85fb3c582bf7c925644d5196b0aa544fc26f423d75b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d5347d9ee238a2d0f8caa409913b4c67427e08445bd4623d087de666d2a6d44",
       "plan.md": "4b0598657de19b8a41aee29c086628138f333c864bcae016e21702bdfd14384e",
       "tasks.md": "fa10cd1ab5182fe7d960e2b17f352813fe9b3346177a355458eb679740792e88",
-      "checklist.md": "9bd9542204a56c46e60899b83b11b75cd84a4f833798f32bd5ba683dc751da53",
       "implementation-summary.md": "6a33290bedb42b8dbb05fa2775a9d70ca66f56f72b2901fd0a174f03c214b82b"
     },
     "last_active_child_id": null,

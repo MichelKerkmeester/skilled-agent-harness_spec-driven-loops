@@ -22,9 +22,8 @@
       "028 research to hold method",
       "028 new feature build tasks",
       "028 track b tasks",
-      "028 new feature build checklist",
-      "028 track b checklist",
-      "028 new feature research build summary"
+      "028 new feature research build summary",
+      "028 eval-v2 kept three features held"
     ],
     "key_topics": [
       "new",
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,42 +169,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The flag-resolution reckoning deleted ten default-off switches, and each deletion taught something specific about why a lever fails to move live recall",
     "created_at": "2026-06-20T00:00:00Z",
-    "last_save_at": "2026-08-28T16:00:15.824Z",
+    "last_save_at": "2026-08-30T15:39:35.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d9f0ceb93226dcff99285e41118b89c0506fe8b17c4177cf14706a7d846b5af",
+    "source_fingerprint": "sha256:5cc5be6c8ff4f255ee539c002b6278b8e13b802d72edba4cb8c23136fda1f0df",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "afd73250f6b168fd886d5e2c612ff833016489d0d2ea3da450bba9f18c75ce15",
       "plan.md": "1b3d21506231890656453b9d5b5a27c129ee2e675164003399151c261b9899a5",
       "tasks.md": "b440a5e6c649db983655f95187a952e77be6f79696c71e742c6d065bf4a9b7ee",
-      "checklist.md": "d486ca21bc0e00e2b594004260ca66c53115baa25baf2c9bc1d40422e90f215e",
       "implementation-summary.md": "558ae73c6d3dbdc0cb688cbf107b587e9b346f741a985a093797db8aef04f9ec"
     },
     "last_active_child_id": null,

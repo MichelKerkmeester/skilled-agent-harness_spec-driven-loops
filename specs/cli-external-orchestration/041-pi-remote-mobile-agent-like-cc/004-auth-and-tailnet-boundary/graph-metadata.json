@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -167,43 +160,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Use Tailscale",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Context Adds",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Adds private HTTPS/WSS ingress, application authentication, default-deny authorization, revocation, and a read-only remote API",
     "created_at": "2026-08-10T18:28:40Z",
-    "last_save_at": "2026-08-10T18:46:14.227Z",
+    "last_save_at": "2026-08-30T15:39:07.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:350c0937d44b5c250926a138e9769bdc19edc0a934a99096b930d44408025146",
+    "source_fingerprint": "sha256:757006c5c530c1b864ae238b58aede5a0bda99854975bec3e0a6f32394e23d3f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85bef082e738ea3fa8383a4d767e96d197b1b32f86df12b93e8a82e61e233f46",
+      "spec.md": "3b02be6055348b74ae8b0ebca897beadf3cb715713b5f7e2667cdd2570c5ff4a",
       "plan.md": "efe4aaaf172c320d024f3108d2415e536449d170e2149d565b671179b41b1945",
-      "tasks.md": "91c151e6cfa7ba004d08b1e616ed751e2771107c00506e630174aa9a827ddf9a",
-      "checklist.md": "d62ddcdb1ea20ab8c4db38cf639b37acbe9dc456dd627c996b04fbd025b392fb",
+      "tasks.md": "1f9d192110a3098d7548465688345a3cf5b37ba5c791aa2b8df113b39efd6c13",
       "decision-record.md": "84b122f6329c3a3afc9146be217655fb16bd7f7c2ebe33e796bb996c7a77b331",
       "implementation-summary.md": "680aa33d9abd6b627fc8820c2b8d2ffd789d79fbf321b2afb8f4560c0ef2b7dd"
     },

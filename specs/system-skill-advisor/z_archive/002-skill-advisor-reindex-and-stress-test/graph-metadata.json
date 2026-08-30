@@ -33,9 +33,8 @@
       "skill advisor routing quality plan",
       "065 tasks",
       "skill advisor routing quality tasks",
-      "065 checklist",
-      "skill advisor routing quality checklist",
-      "065 resource map"
+      "065 resource map",
+      "skill advisor routing resources"
     ],
     "key_topics": [
       "skill",
@@ -57,9 +56,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "resource-map.md",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -81,21 +78,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
         "source": "derived"
       },
       {
@@ -201,33 +186,44 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Resource Map",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. Specs",
+        "kind": "heading",
+        "path": "resource-map.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase parent for completed skill-advisor reindex/stress-test baseline plus follow-on router calibration phases discovered by that campaign.",
     "created_at": "2026-05-18T07:49:27.122Z",
-    "last_save_at": "2026-07-16T16:05:58.452Z",
+    "last_save_at": "2026-08-30T15:39:26.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:4f0f6de4ea085bc8920786d81df6ced4edfc45df86e5d5efe96641c68744a04c",
+    "source_fingerprint": "sha256:9a0756d1f4977e850e2bbf974fbe7046f85226e9aa97c6b035100203efa24360",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fcb9b4c165808bd191ec84b64ddcfa533219cd468c7de1c2e842a1dd18c1dae2",
       "plan.md": "ec53414db62ea37d77c15b73b28d48de8faa1516cc7a3c5c48325d5d8a0016a9",
       "tasks.md": "6c476885ed2c1baf44838226dfc1048253b98135b2e095173d6a855bbb54d8bb",
-      "checklist.md": "909a5428e61e91ba285e51ea8f4c6bde6b3b0c357cca35033431d149c54ab628",
       "resource-map.md": "f6917c2845f00105260ff23266c5996764bff89f99ee7e1867dc8001956355a6"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing",
     "last_active_at": null
   }
 }

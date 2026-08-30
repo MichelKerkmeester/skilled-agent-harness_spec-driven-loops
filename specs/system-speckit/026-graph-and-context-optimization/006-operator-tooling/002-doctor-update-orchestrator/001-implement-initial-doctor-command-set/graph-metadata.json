@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
@@ -72,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,29 +192,34 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Range",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than `v3.4.1.0`) has 6+ databases that drift out of alignment with their codebase: `context-index.sqlite` (memory FTS+vector, 134M+362M), `code-graph.sqlite` (51M structural index), `skill-graph.sqlite` (148K), `deep-loop-graph.sqlite` (84K coverage graphs), `speckit-eval.db` (16M ablation results), and `causaledges` table (in context-index, lazy-init)",
     "created_at": "2026-05-09T12:15:31.296Z",
-    "last_save_at": "2026-08-29T15:22:17.542Z",
+    "last_save_at": "2026-08-30T15:39:32.116Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:c18c3bc9fb3d1727fb8a6fb61fbde3e63bce456179624a97b4a7fb645556622f",
+    "source_fingerprint": "sha256:6a9142ea552a6d280617c8011d253762b38e540d3460a289889268cb4fef4d9b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5db3649258ffeb1b31ba3736aa2ee4f8c680964c81dd2eaf790b9714c75e6b9",
       "plan.md": "243e5572208d890656456e12f56f0d2c91134cbda8dade3e87d1523d92ec01cf",
       "tasks.md": "ece741751ddaef7e617f57730196ebece695277595bed2c961f92566815535da",
-      "checklist.md": "684a4ecbd4103e73b4678bea5978cabc165c8ea73b1edda35af1d82eefe37629",
       "decision-record.md": "6f82482deb9762f09c616284dcc122d2b99b315264b96c67c527ba0686f0d6e4",
       "implementation-summary.md": "9e36cda6d3c8587f04215ea8b66b06d8e9b25944fc6ae93c62340d29a5ee1754",
       "handover.md": "69e3c7a0ec00ab2a1d138715184b782b9db480bf1830e569b083853d598252f7",

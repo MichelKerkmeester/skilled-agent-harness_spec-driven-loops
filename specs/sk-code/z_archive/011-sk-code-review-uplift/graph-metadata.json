@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Two waste vectors in sk-code-review:",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-07-09T10:02:44.357Z",
+    "last_save_at": "2026-08-30T15:39:11.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6ee37366518c08c26264844b03237a59143ed2b7f04bdec33a6cb36c65e02289",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "17a3b4e9dc4a51756c4010069ff531251e9ac4f7ce97a32ea24cd962efa3d6f5",
       "plan.md": "5d6bca90932efc5dea1c9ca27b32cfa517344b6f65c82cb5fc6d98ae9f484c0d",

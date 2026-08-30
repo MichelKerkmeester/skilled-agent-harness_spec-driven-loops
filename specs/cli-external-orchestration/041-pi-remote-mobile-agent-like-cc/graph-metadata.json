@@ -94,13 +94,14 @@
     ],
     "causal_summary": "Pi CLI exposes a persistent local RPC subprocess, not a secure mobile product",
     "created_at": "2026-08-10T17:46:19.156Z",
-    "last_save_at": "2026-08-10T18:46:14.446Z",
+    "last_save_at": "2026-08-30T15:39:07.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:7529af379ab8dd631a054725bc5b325b53df5f3561ebf08c49082e06b6568e08",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6de5cf5c27b06da52a0a9af7c1ff25b80dec77276394b5b4025a7dbe48d8db26"
     },

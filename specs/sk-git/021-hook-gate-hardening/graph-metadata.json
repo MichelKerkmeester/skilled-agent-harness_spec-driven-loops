@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/scripts/git-hooks/lib/mass-deletion-guard.sh",
       ".opencode/bin/git-sync.sh",
@@ -48,9 +47,7 @@
       ".codex/hooks.json",
       ".opencode/plugins/session-cleanup.js",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/session-start-advisories.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
-      ".opencode/package.json",
-      ".opencode/package-lock.json"
+      ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md"
     ],
     "entities": [
       {
@@ -69,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -144,18 +135,6 @@
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "package-lock.json",
-        "kind": "config",
-        "path": ".opencode/package-lock.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -196,26 +175,43 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Inventory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Work Item 1 addressed silent live-sync gate failures: the publisher discarded `git push` stderr, misreported policy rejections as races, and lacked a complete autosync-aware gate map",
     "created_at": "2026-08-15T13:50:44.038Z",
-    "last_save_at": "2026-08-29T15:22:05.601Z",
+    "last_save_at": "2026-08-30T15:39:18.688Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc4b30fba538dc365022cdc06cb9f838cdeb2a6ac95f0129f86020d50260dcd5",
+    "source_fingerprint": "sha256:3f8535f9f47cc556d67518cfffdbe84e2bf551c463cbebf9284710ebb260a435",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "21bb807e067909adf6e21c4e8ac4c4b63a3c88f73e4c3af4b1ba8df7f32a5861",
       "plan.md": "2966289cf8c3b2e79e64feca08095643f5972ea9c35e173c5090d183ad207de3",
       "tasks.md": "0210ccf98c0731931a10f25e5a5393a2986b5778c0b85157261a4dd7e3d07bb1",
-      "checklist.md": "3cb554cd1e1289606acd5af1f119784c802dac6c8fba1385e34a56e37dfcbf0b",
       "implementation-summary.md": "ee443d081c62dc104f1fd66c4843ffab30d8ba6254a67b57c6e36c739eb93292"
     },
     "last_active_child_id": null,

@@ -35,13 +35,19 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "evidence/swap-runbook.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "evidence/swap-runbook.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -55,21 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "swap-runbook.md",
-        "kind": "doc",
-        "path": "evidence/swap-runbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "swap-runbook.md",
+        "kind": "doc",
+        "path": "evidence/swap-runbook.md",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Swap CocoIndex default embedder from gemma to nomic-ai/jina-code + MPS auto-detect patch",
     "created_at": "2026-05-18T08:18:02.783Z",
-    "last_save_at": "2026-07-17T17:19:22.963Z",
+    "last_save_at": "2026-08-30T15:39:30.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:476d7c73a227bcab0d21f56cf63f0a70946d30a54bae95bd3e074862483f8c31",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6e79f4af34dbebbf10daa005f4836618fd2ff097eb459f60ea279177bffcac9",
       "plan.md": "f79d41fcb0b5789273fe75844c320d30f10cf6c7f9a0931752769f29e45e331d",

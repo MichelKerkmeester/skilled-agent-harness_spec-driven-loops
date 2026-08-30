@@ -21,8 +21,8 @@
       "drift census execution",
       "036 drift census tasks",
       "drift census task list",
-      "drift census checklist",
-      "036 revalidation verification"
+      "drift census summary",
+      "036 revalidation status"
     ],
     "key_topics": [
       "drift",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "handover.md"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -171,50 +164,55 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "How It Was Delivered The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Key Decisions",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Merged Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
     "created_at": "2026-07-19T12:13:37.963Z",
-    "last_save_at": "2026-08-29T13:09:48.920Z",
+    "last_save_at": "2026-08-30T15:39:21.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c82bf2900062e5ee2347a831e0077d2e8a15194e052de5a2436da2c5dfb7992c",
+    "source_fingerprint": "sha256:082905089f1fe9e210291062c398b77eb669bff2d37e62316c1b8a6ec0cd4945",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a9be1a25d5ec0f4b7c14fdaf4adec586dba4400760b45ff94c523b157b16d13",
       "plan.md": "594e88673ab215a297101370e2d209e2908a7d68afe329c85a13ac78ba5dcaf7",
       "tasks.md": "d75a96a79eb8e7f0fe7c921aef947053224182dbba93546cb6365051399b7c05",
-      "checklist.md": "a0286d37e0deb29591e08980cf5324f63a94409037e650c0604999a1e196147e",
       "implementation-summary.md": "dd8bc7d195272cbb71a43c7eafeab48a8e807a8052a63ff850123a6ee419b8ed",
       "research/research.md": "8073db4c48fe39ab285c07c591112032f6f95342b8e12641f8e5ac940cff0b1f",
       "handover.md": "0322215d0309ec1e62c4715f91dc86f2a409ca3886db9a64c0633c9700ea7e31"

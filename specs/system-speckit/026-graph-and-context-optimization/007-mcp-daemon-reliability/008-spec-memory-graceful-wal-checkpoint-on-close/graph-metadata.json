@@ -19,7 +19,6 @@
       "spec-memory checkpoint on close plan",
       "wal checkpoint shutdown plan",
       "spec-memory checkpoint on close tasks",
-      "spec-memory checkpoint on close checklist",
       "spec-memory checkpoint on close summary",
       "wal checkpoint shutdown implementation"
     ],
@@ -43,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "dist/lib/search/vector-index-store.js",
       "dist/lib/errors/core.js",
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,26 +185,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `mk-spec-memory` close path (`closedb` in `vector-index-store.ts`) closes `context-index.sqlite` without first checkpointing its WAL",
     "created_at": "2026-05-29T12:05:57.545Z",
-    "last_save_at": "2026-08-29T15:22:17.533Z",
+    "last_save_at": "2026-08-30T15:39:32.351Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f7e5a14598b9b8fe5a5fa79b04fda7a47f05987c0b0e1cdd8d72851e32498c9",
+    "source_fingerprint": "sha256:3331aea52e41069d72626338f4b24f2e5d72df152fe4d1db6f508b00019ce94b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c38ae26524ea6ebe1c2f5e7a21fc992e05e02be81b4013243826dc8309de3ae5",
       "plan.md": "c5e88ceeb55020040b94049373bc31a3c8df460499c1d575b6c9682cee1e4f0b",
       "tasks.md": "b6dfa0362491ed78399630590ca9432142ccf057125d880a0d5c5042e2fffbff",
-      "checklist.md": "47d5f2a0adca1f2be8fdb4f35c3f87e6bf08d0e3a7883d79677aadae79ebfe5b",
       "implementation-summary.md": "5a3c06e87d21c36a5c87b531124622f92bb867b60a45a17bc8d372d6b44d5859"
     },
     "last_active_child_id": null,

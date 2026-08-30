@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The `.opencode/commands/speckit/assets/` tree contains `speckitcompleteauto.yaml`, `speckitimplementpresentation.txt`, `speckitplanconfirm.yaml`, and `speckitresumepresentation.txt`",
     "created_at": "2026-07-14T15:18:36Z",
-    "last_save_at": "2026-08-30T07:20:03.445Z",
+    "last_save_at": "2026-08-30T15:39:17.068Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:027b71a34eadf8d41ca6b85b0e4d992ee5a09f18a2a6302a6678912473f568af",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "125aefeb294c15b7b5fc569584d51f229139793b2a850d3e927f278374a17fd2",
       "plan.md": "6c8d37219729256c46c9ac6a7c67661dd9d07bbe27dc8220eb2be279ca05141a",

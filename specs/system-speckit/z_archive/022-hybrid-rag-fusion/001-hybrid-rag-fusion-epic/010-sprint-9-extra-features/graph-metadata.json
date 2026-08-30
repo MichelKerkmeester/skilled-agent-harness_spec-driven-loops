@@ -18,8 +18,6 @@
       "010",
       "sprint",
       "tasks",
-      "verificatio",
-      "checklist",
       "010-sprint-9-extra-features implementation summary",
       "010-sprint-9-extra-features delivery record"
     ],
@@ -32,100 +30,37 @@
       "implementation",
       "plan",
       "tasks",
-      "verificatio",
-      "checklist",
       "010-sprint-9-extra-features",
-      "summary"
+      "summary",
+      "delivery",
+      "record"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "mcp_server/tool-schemas.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/formatters/search-results.ts",
-      "mcp_server/lib/search/hybrid-search.ts",
-      "mcp_server/lib/search/pipeline/types.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "mcp_server/lib/ops/job-queue.ts",
-      "mcp_server/lib/ops/file-watcher.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/handlers/index.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
       "formatters/search-results.ts",
       "lib/search/hybrid-search.ts",
       "lib/search/pipeline/types.ts",
       "handlers/memory-search.ts",
       "lib/ops/job-queue.ts",
-      "handlers/index.ts"
+      "handlers/index.ts",
+      "handlers/memory-save.ts",
+      "lib/ops/file-watcher.ts",
+      "tests/unit-rrf-fusion.vitest.ts",
+      "schemas/tool-input-schemas.ts",
+      "handlers/memory-ingest.ts",
+      "tests/review-fixes.vitest.ts",
+      "lib/search/search-flags.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "mcp_server/formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "job-queue.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/ops/job-queue.ts",
-        "source": "derived"
-      },
-      {
-        "name": "file-watcher.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/ops/file-watcher.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/index.ts",
         "source": "derived"
       },
       {
@@ -141,9 +76,87 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "job-queue.ts",
+        "kind": "code",
+        "path": "lib/ops/job-queue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "file-watcher.ts",
+        "kind": "code",
+        "path": "lib/ops/file-watcher.ts",
+        "source": "derived"
+      },
+      {
+        "name": "unit-rrf-fusion.vitest.ts",
+        "kind": "test",
+        "path": "tests/unit-rrf-fusion.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-ingest.ts",
+        "kind": "code",
+        "path": "handlers/memory-ingest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-fixes.vitest.ts",
+        "kind": "test",
+        "path": "tests/review-fixes.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -187,45 +200,26 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "New Dependencies",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP server's internal data structures are rich (6 score fields, causal graph, anchor metadata, pipeline traces) but the external API surface does not fully expose this richness",
     "created_at": "2026-04-12T09:02:50.232Z",
-    "last_save_at": "2026-07-10T06:23:19.248Z",
+    "last_save_at": "2026-08-30T15:39:38.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:062719c39814b29e4a1fc3ab948bf0e95afac6c41fe80281656c2ced60dc0695",
+    "source_fingerprint": "sha256:715e9f626bcc4e63dcb5d13a65483166fe6781ddcf97fe5622973068bca3d0b5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "82ced2bf59851fce44a798dd9b70c2f6d2a6e7b7b083f65ddc1b649ac97367ee",
-      "plan.md": "b23587b9091b7c6075d075c5c82f9f832fecca807a8e2f33c3393ed15aba321b",
-      "tasks.md": "c9a089a5ad41ec679485ceac04ddf08cc49bc02a3eb9f7031dcd4c6b300046f0",
-      "checklist.md": "870d380516ce5306062cee588904b70ba0c71001c26141cf3c98e2c3b788c96f",
-      "implementation-summary.md": "b76c5ef5e52d9cd1e3c95b64b03701aba53ba897c66aa7402dafa9e40d62f6cb"
+      "spec.md": "6c183ab2621533ad15174f1dcac0cf4930f5343f2a57f4360af5bc7fd2dbe6c9",
+      "plan.md": "125da544dca9aef1cbca98e9671e664afca77ff3102d35fd75a98b2bf970a842",
+      "tasks.md": "12678fee2853d85d9c5a90da5faaa32a31de921099f6de648d5a0ceabaea33cf",
+      "implementation-summary.md": "f87dca6e1c35cd2b494b6b1491ec0135d58a4c4c680ee4de46c98709fa7a285f"
     },
     "last_active_child_id": null,
     "last_active_at": null

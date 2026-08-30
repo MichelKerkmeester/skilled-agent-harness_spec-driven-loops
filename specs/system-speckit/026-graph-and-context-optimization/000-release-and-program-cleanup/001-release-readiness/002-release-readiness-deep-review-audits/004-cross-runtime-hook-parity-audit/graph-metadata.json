@@ -183,7 +183,7 @@
     ],
     "causal_summary": "The release-readiness program needs a runtime-by-runtime truth check for Spec Kit hook delivery",
     "created_at": "2026-04-29T20:30:00.000Z",
-    "last_save_at": "2026-08-30T08:23:30.156Z",
+    "last_save_at": "2026-08-30T15:39:27.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,7 +193,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b4ec121c1880113fab46035530f2e37b09f566029963fef01804f3a6bec66345",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aea2ec48404f9ed242579371c6015170937123e616a863c535064a6808699001",
       "plan.md": "fca422ca9f3659f76b6fb2bcb389a268f9f195babc4e108a988449b3415fb0f0",

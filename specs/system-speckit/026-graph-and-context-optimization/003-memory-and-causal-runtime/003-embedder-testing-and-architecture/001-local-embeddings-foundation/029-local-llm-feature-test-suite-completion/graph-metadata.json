@@ -38,15 +38,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/default-model-selection.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/prefix-system.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/profile-db-filename.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/offline-degradation.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/embedding-latency.bench.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/throughput.bench.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/cold-start.bench.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/README.md",
       "shared/embeddings/factory.ts",
       "shared/embeddings/profile.ts"
     ],
@@ -73,60 +64,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "default-model-selection.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/default-model-selection.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "prefix-system.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/prefix-system.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "health-reporting.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "profile-db-filename.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/profile-db-filename.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "offline-degradation.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/offline-degradation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-latency.bench.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/embedding-latency.bench.ts",
-        "source": "derived"
-      },
-      {
-        "name": "throughput.bench.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/throughput.bench.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cold-start.bench.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/performance/cold-start.bench.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/local-llm-features/README.md",
         "source": "derived"
       },
       {
@@ -194,11 +131,65 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 028 promised a comprehensive local-LLM feature suite, but the cleanup decision keeps 028 as historical/rescoped documentation and moves the missing implementation into this action packet",
     "created_at": "2026-05-23T11:55:15.369Z",
-    "last_save_at": "2026-07-17T17:19:19.449Z",
+    "last_save_at": "2026-08-30T15:39:29.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b36cf66ac7a3e605580a32e8aa6defcb46fdfc9a5e2eefc620f880095131bc93",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "265d2c0a23f6488eb07b0d8f3a641ff4a39b2d01fd5cd26e2925edf5f25c86df",
       "plan.md": "849bc98b571f64e60705d5d7c8db98cd6458933c4f018aa42d1ecf03f41cd85d",

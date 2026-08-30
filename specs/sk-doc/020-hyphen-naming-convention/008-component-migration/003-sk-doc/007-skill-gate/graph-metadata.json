@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The sk-doc component phases need one blocking rollup that aggregates their evidence and proves the whole naming surface is kebab-clean under the 020 exemption boundary. This phase adds no migration work; it verifies every sibling phase and the final subtree census.",
     "created_at": "2026-07-14T15:17:29Z",
-    "last_save_at": "2026-08-30T07:19:29.974Z",
+    "last_save_at": "2026-08-30T15:39:16.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:826bf88f3c4f1ea90f22741c0a9d60ae6ad1fc31c7a4639c4654bbf1020e3e07",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f8f5029e950708bc798fa4042f5aa6bb92077e25ce610d2243f80a28a06c25a7",
       "plan.md": "cb9c5ae19432f599ecf77e547a989ea47b6aead5381ae73c9536951d55223ecf",

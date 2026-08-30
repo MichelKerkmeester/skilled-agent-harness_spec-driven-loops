@@ -44,17 +44,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "lib/content-id.ts",
-      "formatters/search-results.ts",
       "decision-record.md",
       "implementation-summary.md",
-      "shared/algorithms/rrf-fusion.ts",
-      "mcp_server/lib/search/vector-index-queries.ts",
-      "mcp_server/lib/search/pipeline/stage2-fusion.ts",
-      "mcp_server/lib/content-id.ts",
-      "mcp_server/lib/response/envelope.ts",
-      "mcp_server/lib/storage/idempotency-receipts.ts"
+      "lib/content-id.ts",
+      "formatters/search-results.ts",
+      "shared/algorithms/rrf-fusion.ts"
     ],
     "entities": [
       {
@@ -76,9 +70,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -94,45 +94,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "rrf-fusion.ts",
         "kind": "code",
         "path": "shared/algorithms/rrf-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-queries.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-queries.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/stage2-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "envelope.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/response/envelope.ts",
-        "source": "derived"
-      },
-      {
-        "name": "idempotency-receipts.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/idempotency-receipts.ts",
         "source": "derived"
       },
       {
@@ -200,27 +164,56 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wave-0",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP fuses ranked signals and renders a result set the downstream agent loop caches against, but its ordering is not reproducible: the candidate-merge comparators sort score-only with non-content tie-breaks (input-order or clock-derived `updatedat`), the four ranked ANN `ORDER BY distance` queries have no tie-break so which rows survive the LIMIT into fusion is run-to-run unstable, and recall serialization is a bare `JSON.stringify` with no content-derived render-order stage (`research.md` Internal Baseline, `001` iter-3 Q5)",
     "created_at": "2026-06-19T05:40:47.071Z",
-    "last_save_at": "2026-07-12T13:24:49.095Z",
+    "last_save_at": "2026-08-30T15:39:34.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4c0e5ff927e723d74c438f9fad8670f274458b25c19ea433a38946ce0b569c5",
+    "source_fingerprint": "sha256:219b155c3ba750f031b2bf1bc192a4b34d30eae171db7b2ea99a6f949114394e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6839c48707ba91ba3e94173df25e04452535556b736333727075f21bf85d6335",
       "plan.md": "4a385023300140594f009e210a1c61d17d6b747041787ab77c26855eab51cddd",
       "tasks.md": "5f3b3979c69413abc74120b8b1639b3222a3442d57c3d82f1bc781c870c0f203",
-      "checklist.md": "22c4f7a81863d3603e67d9557d1948e90a28a93bb7155bdb05998636729ebc11",
       "decision-record.md": "1dfe1e8e20971dda7035025f3b77d6f8dcbc9397aa75f6c4cc445228d429d9c1",
       "implementation-summary.md": "6b3685a520758ea5a16d4f40074f75dc53cb4ffb7331397010078858186d975a"
     },

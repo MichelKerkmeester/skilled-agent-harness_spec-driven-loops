@@ -18,11 +18,11 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
       "record",
-      "summary"
+      "summary",
+      "remote branch policy research",
+      "pre-push hook investigation"
     ],
     "key_topics": [
       "remote",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research.md",
@@ -78,12 +77,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -205,28 +198,33 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Local branch/worktree creation in this repo is cheap and unrestricted by design (numbered worktrees, owner-first naming) — but every one of those branches can currently reach `origin` with an ordinary `git push`, with nothing asking whether it should",
     "created_at": "2026-07-17T15:57:59.140Z",
-    "last_save_at": "2026-08-29T14:56:27.938Z",
+    "last_save_at": "2026-08-30T15:39:18.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:70d69e88fc73494f16f5e91d9c87c7ead2294110c88fc02d18631e10c8e269db",
+    "source_fingerprint": "sha256:588755dcb06711d87e0fce3f485b6d62a2725b4090f4581c94a106a92562f818",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bb2b588b80104b822087c73903252b95bba215b7d12292189b2605b252279483",
       "plan.md": "bc0c23227b98729c0fc3026c26deac611373351fc093352f7438eb07c457ccc7",
       "tasks.md": "9f433135ecd4c683f33f28bb9ef77006b96833845a4ed18fff0306422aec366c",
-      "checklist.md": "5db6ddf8ce9a6001b19281ca50d69edde576f3c7d058a261cb0e99b6fba4c898",
       "decision-record.md": "d478d9d806c0b8927c8a6e7e215196732457a55706c1b4fa00400944ca194878",
       "implementation-summary.md": "1bf7b8e035d22f9b60aa3f0a7d864b8700d09ba1ea755ade12a5edeae1a0b258",
       "research.md": "4d76127fe574857e791ef6d3f382c49c2fa0167141c927f20a7af0059a7aee41"

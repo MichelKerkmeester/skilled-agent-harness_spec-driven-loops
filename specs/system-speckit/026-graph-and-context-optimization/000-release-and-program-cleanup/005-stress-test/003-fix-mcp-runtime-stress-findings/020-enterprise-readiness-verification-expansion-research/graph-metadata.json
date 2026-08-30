@@ -21,7 +21,6 @@
       "W3-W7 verification plan",
       "deep research plan",
       "W3-W7 verification tasks",
-      "W3-W7 verification checklist",
       "W3-W7 verification implementation summary"
     ],
     "key_topics": [
@@ -41,22 +40,24 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
       "implementation-summary.md",
       "research/deep-research-state.jsonl",
       "research/deep-research-strategy.md",
       "research/research-report.md",
       "lib/rag/trust-tree.ts",
       "lib/search/pipeline/stage3-rerank.ts",
-      "mcp_server/lib/rag/trust-tree.ts",
-      "mcp_server/lib/search/pipeline/stage3-rerank.ts",
-      "mcp_server/lib/query/query-plan.ts",
       "research/deep-research-config.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -67,18 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -115,12 +104,6 @@
         "name": "stage3-rerank.ts",
         "kind": "code",
         "path": "lib/search/pipeline/stage3-rerank.ts",
-        "source": "derived"
-      },
-      {
-        "name": "query-plan.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/query/query-plan.ts",
         "source": "derived"
       },
       {
@@ -200,26 +183,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases C–E delivered W3 (composed RAG trust tree), W4 (conditional rerank, now default-on), W5 (advisor shadow learned weights), W6 (CocoIndex adaptive overfetch, opt-in), W7 (degraded-readiness stress cells)",
     "created_at": "2026-04-29T06:00:00.000Z",
-    "last_save_at": "2026-07-17T17:19:12.247Z",
+    "last_save_at": "2026-08-30T15:39:28.507Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86fa822dbf649f65bbdaa734beb7db56e217ef33c4162140688c0ab642c586ba",
+    "source_fingerprint": "sha256:a85e6c7215b304282d18a0d4dba9a9cd18bf9bd27ee4b4d2ed5b367a1c6151f9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95a606c7d560bbf7ef7ddc1433c86cef34dfa383bc78a9f54cd1cfbd156c83d6",
       "plan.md": "218f132ebc8b935b8dc38a75d765722de9241fae1f9d8dd2847273402ac49e77",
       "tasks.md": "6a0119bc4b82ac05455eeddc3795500ca120b0f5df4d95c8a3acd038f7948f7a",
-      "checklist.md": "725cc37f35cfbb0ad9d16c580bb300fe9e84840a9d41e5912056b08c0bd231d0",
       "implementation-summary.md": "dc860e70d1027539c57b9fc7a936c55a4e9c6f9c3ec555d8c9c17d730b071f1b"
     },
     "last_active_child_id": null,

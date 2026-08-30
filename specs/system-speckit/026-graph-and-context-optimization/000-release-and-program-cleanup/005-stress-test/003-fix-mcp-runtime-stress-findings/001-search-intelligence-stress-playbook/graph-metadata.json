@@ -89,13 +89,14 @@
     ],
     "causal_summary": "The search-intelligence retrieval paths (hybrid search, trigger matching, ranking) need a repeatable stress playbook so regressions surface under load rather than in production",
     "created_at": "2026-04-26T14:50:00Z",
-    "last_save_at": "2026-08-28T22:52:58.092Z",
+    "last_save_at": "2026-08-30T15:39:28.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:c19cb0e62b416637809709d225c01548720c8d06e3606e12f7295eadc3f392c9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "48edacce8fbbc893b5b019ac81bc24d8c0f4ef1cc0745f30e35ab1e960cd1ee3"
     },

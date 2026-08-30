@@ -20,8 +20,6 @@
       "003",
       "constitutional",
       "tasks",
-      "verification",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -32,31 +30,48 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "summary",
       "current",
-      "command"
+      "command",
+      "lines",
+      "generic"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/commands/README.txt",
       ".opencode/commands/memory/learn.md",
       ".opencode/skills/system-spec-kit/scripts/tests/memory-learn-command-docs.vitest.ts",
       ".opencode/commands/memory/README.txt",
-      ".opencode/skills/system-spec-kit/README.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -81,30 +96,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,27 +187,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current `/memory:learn` command (620 lines) is a generic learning capture tool that classifies inputs into 5 types (pattern, mistake, insight, optimization, constraint) and saves them to spec folder `memory/` directories via `generate-context.js`",
     "created_at": "2026-04-12T09:02:50.238Z",
-    "last_save_at": "2026-07-10T06:24:08.344Z",
+    "last_save_at": "2026-08-30T15:39:38.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3c2dffa16e32395120fde18d8742280c33a27263e5d7c3d2fb1cdebc3ce4696",
+    "source_fingerprint": "sha256:49df5e2a05697516dcf1b5203c142c88affe07fb1a2a12bf9e334641975cab96",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68e7eeb34d95a619c688d34f157d84e0997a74e52e89f6abd8e187f5d6b87393",
-      "plan.md": "69b274272ac66c28ece663ee77c6b1046562dbe7be99d758c31a08e588b5c48b",
-      "tasks.md": "ea1d0f5bcfd580cbefcb71b964430a7e58bbf4e71d56c082b890577719b7e236",
-      "checklist.md": "ec210243daae28307eee9878a8a7c3cc6a8302553085cc14e0727ad1e79a6270",
-      "implementation-summary.md": "2e4dc7e8b193e8d903ad1be5af208b881ae4705dedf12f9b7617b42cc63cb747"
+      "spec.md": "6bc391944ca8d2e058d075ceb98d94c2aae2ae97be6a6f62fc64b13690c75450",
+      "plan.md": "00d2b9e9d4593198aa0ce8c2922bda7244d451bdcc064e2914ce7d7c3a1d2956",
+      "tasks.md": "69d66f5a62d8b1d424f1a2799ae283b583fffc2830ec8c36193b9717aa596e96",
+      "implementation-summary.md": "2fa0937766247fcb596feb70254508492140a67c5d37252b7b14691a1423f8bd"
     },
     "last_active_child_id": null,
     "last_active_at": null

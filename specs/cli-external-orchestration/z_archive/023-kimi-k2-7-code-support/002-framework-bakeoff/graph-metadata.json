@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff",
-  "spec_folder": "cli-external-orchestration/023-kimi-k2-7-code-support/002-framework-bakeoff",
-  "parent_id": "cli-external-orchestration/023-kimi-k2-7-code-support",
+  "packet_id": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/002-framework-bakeoff",
+  "spec_folder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/002-framework-bakeoff",
+  "parent_id": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`kimi-k2.7-code` was registered in Phase 001 with a reasoned-but-unverified prompt framework: `recommendedframeworks.primary` is `rcaf` and `status` is `default-unverified`, with every evidence field null",
     "created_at": "2026-06-15T09:21:01Z",
-    "last_save_at": "2026-07-14T19:26:20.988Z",
+    "last_save_at": "2026-08-30T15:39:08.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aa31a70156722347d23d2c1beeba1413eb08c4099af4a95f3d72b82f53e301f0",
+    "source_fingerprint": "sha256:8b374ec866949b9b3d6c4949dc666609fa8fc6a3fd5d22efc6366b3b7617f475",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2fd8b95b8ce31ef502e689952b4b9b6a5014759e9551ff3810a58a0bb47aefe7",
-      "plan.md": "9215e0bb701bb08b89c05a2ce56e70aa50825720561b63ce8652c6be500ea19f",
-      "tasks.md": "073f2d8be13d7fdeffe290b8d7630a00fe5cdce9344697c4e8287924773ca260",
-      "implementation-summary.md": "1010f2cb43a6672670557b5f37b8e937093ba6f530272dbc15a28a4617a12675"
+      "spec.md": "34e53ac0307c54e354b7dc952c61acab44529c692d19c7a2dd62178ab13163c8",
+      "plan.md": "ebeb99d4c35324fcefaaf167522e66e856a543620c992ce206391e749918dc1b",
+      "tasks.md": "bd9f0503590747efc13801e5564ab4822634e7353355951b844e7bfd288bd714",
+      "implementation-summary.md": "75b179d3ca5c145f36308f14e5cb5dffdc42abe544e09794434d039d0afb303b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 2 proved cli pi can reach Cline config-only, but pi still had no `cline-pass` provider — `/login` and the model picker omitted it, so DeepSeek V4 Flash via Cline was unusable from pi even though opencode dispatches it",
     "created_at": "2026-08-18T13:02:37Z",
-    "last_save_at": "2026-08-29T14:54:26.292Z",
+    "last_save_at": "2026-08-30T15:39:08.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4882536e1386139193b983a6d7d503db14439f355351253088fc2972ad7f5edb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f3ceadf708fc264af3651d659beae490950ef79f4c2efbbc6c23c64a09301b5",
       "plan.md": "c0f97da86296f0937907edd7d365000c7d0cd1b8526f526664750467c9119ac5",

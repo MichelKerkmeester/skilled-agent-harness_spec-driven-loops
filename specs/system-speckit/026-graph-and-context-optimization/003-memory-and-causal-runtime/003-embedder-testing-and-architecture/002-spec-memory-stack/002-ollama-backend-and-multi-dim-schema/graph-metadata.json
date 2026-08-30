@@ -35,21 +35,42 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "lib/embedders/adapters/ollama.ts",
       "lib/embedders/schema.ts",
       "lib/embedders/registry.ts",
       "lib/embedders/index.ts",
       "tests/embedder-ollama.vitest.ts",
-      "tests/embedder-schema.vitest.ts",
-      "mcp_server/lib/embedders/adapters/ollama.ts",
-      "mcp_server/lib/embedders/schema.ts",
-      "mcp_server/lib/search/vector-index-schema.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tests/embedder-schema.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "ollama.ts",
         "kind": "code",
@@ -84,36 +105,6 @@
         "name": "embedder-schema.vitest.ts",
         "kind": "test",
         "path": "tests/embedder-schema.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,11 +184,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 2 of 016. Implement Ollama HTTP-API adapter + lazy vec_<dim> table creation + active-embedder pointer. The two-layer swap mechanism.",
     "created_at": "2026-05-17T06:35:17.505Z",
-    "last_save_at": "2026-07-17T17:19:21.074Z",
+    "last_save_at": "2026-08-30T15:39:30.136Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:06eff853806c4f26f31e7add19ef501f295671b765eb0287b2d8d0cfda2bdb51",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "59d81d16f8bcec0e43903d4ee3802cc6a2d0f3b083800a5056c2f0cbadd2bc49",
       "plan.md": "598e93152dfdae38b3683a245ff4b213139b1e3e712845cc9c0be07daf05a7ed",

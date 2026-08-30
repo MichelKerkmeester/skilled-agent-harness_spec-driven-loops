@@ -33,8 +33,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -50,15 +50,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Sweep live surfaces outside the four hubs — runtime mirrors, agent definitions, commands, workflows, cli-orchestration docs, metadata — to the sk- names, leaving history untouched.",
     "created_at": "2026-07-28T05:34:11.431Z",
-    "last_save_at": "2026-07-29T09:11:11.394Z",
+    "last_save_at": "2026-08-30T15:39:15.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9cefee3ccb68d16c25dc188e3cc93f85c454bbfe5f26c445713b062bf222fa92",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3c04cc24fef9ec61816745304bba63358432761171e957e83edc4c5d72ba4f7b",
       "plan.md": "62b20cb823b63ebee9d329e369d3b74ed26e95c4bfd2894aa22efa66a9fad055",

@@ -18,8 +18,7 @@
       "agent",
       "plan",
       "tasks",
-      "phase",
-      "checklist"
+      "phase"
     ],
     "key_topics": [
       "spec",
@@ -29,19 +28,18 @@
       "plan",
       "tasks",
       "phase",
-      "checklist",
       "self-test",
       "found",
       "issues",
-      "system-deep-loop"
+      "system-deep-loop",
+      "001-sk-recursive-agent-loop"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -139,37 +131,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Hard Blockers",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Reducer Scripts",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 009 (self-test) found 5 issues",
     "created_at": "2026-04-13T04:55:07.906Z",
-    "last_save_at": "2026-07-09T10:02:48.346Z",
+    "last_save_at": "2026-08-30T15:39:22.566Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:7620cebc82575c1830267d024244e8f01fec1f43fe840276e2f6f07953d79c0c",
+    "source_fingerprint": "sha256:c48561141e5bb765d056518f015c4748dac2fad0fad369b09eaaefe80f2f83b6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1dade2e7dd0d964c76fa4a48505fd4b7c4b6f879cd03416bbd88bae93ac8e02e",
       "plan.md": "ab7f7856b0497ba9521a58da6c631995cc6b83af42580cfeb07d21ae2d26da7b",
-      "tasks.md": "16a64cdc0c37e1c601fb11bc4fc4c5327d81c69299a1943077dc942eb5515fe2",
-      "checklist.md": "f36c4819b6f404f98a97f5fccc0c2219b77be72e393dc06cd5226601c674292a"
+      "tasks.md": "16a64cdc0c37e1c601fb11bc4fc4c5327d81c69299a1943077dc942eb5515fe2"
     },
     "last_active_child_id": null,
     "last_active_at": null

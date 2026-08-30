@@ -35,16 +35,15 @@
       "test"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "scratch/independent-adversarial-verification.md",
       "implementation-summary.md",
-      "handover.md"
+      "handover.md",
+      "scratch/independent-adversarial-verification.md"
     ],
     "entities": [
       {
@@ -66,21 +65,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "independent-adversarial-verification.md",
-        "kind": "doc",
-        "path": "scratch/independent-adversarial-verification.md",
         "source": "derived"
       },
       {
@@ -93,6 +80,12 @@
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "independent-adversarial-verification.md",
+        "kind": "doc",
+        "path": "scratch/independent-adversarial-verification.md",
         "source": "derived"
       },
       {
@@ -190,28 +183,33 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
     "created_at": "2026-07-31T01:25:19.594Z",
-    "last_save_at": "2026-08-19T05:49:26.436Z",
+    "last_save_at": "2026-08-30T15:39:21.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:aafea1f8c8f175f4b5173aff325d8f0fe00ad41fa7adbbf92c203dcf3a480449",
+    "source_fingerprint": "sha256:789c80091b808e7ef7f4cc65149de0f817dbe94b01108a2eb2e51110fdb61349",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80eee5a939a12e8070f565650ba806ca0a1b97670c4ba66266bb9e8b10f8bcd4",
       "plan.md": "94057419be24abe2e98849e21410f2ff7f171fe6a2206447c817f6aba8ccf36d",
       "tasks.md": "2cdb3953bf02e99f5f0fc204b779940c9bc0e297d1d2e9ef0e855560c155b4f5",
-      "checklist.md": "f9eb651b65f314e5a2f2f6bbed77ee2cfa4f5cfa315bd486dd22290b06cea2b8",
       "decision-record.md": "5de85c7542278719126505ab9be14017e0dd7723c0d85a9d9aa7a4f193f622e1",
       "implementation-summary.md": "4c9a0777ed4561d06a5310fc015e6893675fad87e967f6e855d9fc8d3cf0a821",
       "handover.md": "684c0a54202ed3c1ca1f7146395e96c6ffbf7376fad5996545e81b9a65d47a25"

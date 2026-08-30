@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -57,12 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -180,30 +173,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The save-time LLM typed-relation backfill is scaffolded but unwired",
     "created_at": "2026-06-27T17:15:38.746Z",
-    "last_save_at": "2026-08-29T00:37:32.772Z",
+    "last_save_at": "2026-08-30T15:39:35.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d0d12b6fa1923c8571ef3a5f60215eca6fb9d9534c58ed9b53a18bfb94b6fa4",
+    "source_fingerprint": "sha256:6698e3df3cb0a2190a7000b643fa5c8ed92986d3ac75ed3517337b67d7851001",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3f627f574e2226829e7cbeee2a19ab8d9cffd7ff4410da4b5faf220b051ee11c",
       "plan.md": "4562b5b9ec3f0ba3c7dd0fe914ae9148d335cd5fc96b89b3a3f9100322eeb392",
       "tasks.md": "58595fcd302ac573aa86e1c706dcd2fd3978e399f4e7fd97b8bb52a5a3c1bb1c",
-      "checklist.md": "f26cc0b32067f4032bbad0b1786795e75973181a3849c8fe9bcffe3f7a643346",
       "implementation-summary.md": "13fae70f440f64d5bf730407a7fba495c209df65b5255f4eae45df85a9680745"
     },
     "last_active_child_id": null,

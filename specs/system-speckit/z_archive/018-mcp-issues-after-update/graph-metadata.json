@@ -18,8 +18,6 @@
       "plan",
       "archive normalization",
       "tasks",
-      "verification",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -31,10 +29,10 @@
       "plan",
       "normalization",
       "tasks",
-      "verification",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "archived",
+      "system-spec-kit"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -42,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -62,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,42 +164,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built This",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Archive Normalization You",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This archived system-spec-kit archive folder captures work related to MCP Issues After Update",
     "created_at": "2026-04-12T09:02:53.569Z",
-    "last_save_at": "2026-07-10T06:21:43.906Z",
+    "last_save_at": "2026-08-30T15:39:37.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18ed92410442c0438afd1be1c2f6321f0ecf0412fe860552fbf480ef4483a416",
+    "source_fingerprint": "sha256:99f18104b6b9371d3fb1fa9d15b0b955b7bda6c93ed3438743586d0712124ed5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dd3f6475b7d7267321c629fbe38a4b2999d1a61235ae20b0c15dd696983322a2",
       "plan.md": "215b7eb393768175aa10020e345d5bb70eb44b7038bb2675366177207e6fe57c",
       "tasks.md": "c7792c86f0d4b519076312937e047b47e0a97e0044e93a34675d6929ea62991b",
-      "checklist.md": "7bb0f9148f6b4b3f4363828e97ec4dd9032662842ff77a2da88bd3fd4edda31a",
       "implementation-summary.md": "8d064a4c645f4e6cc818ee381eca2b9ddaa9c6eccb1b0d8223513e4506507ca1"
     },
     "last_active_child_id": null,

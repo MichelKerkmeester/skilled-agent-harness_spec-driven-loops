@@ -38,18 +38,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,6 +54,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The sk-code canonical rule `codestyleguide.md` §4 \"No ephemeral-artifact pointers\" forbids code comments from embedding a spec folder/number, a packet/phase/task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), a feature-catalog entry, an ADR id, a review-finding id, or a ticket id",
     "created_at": "2026-05-29T19:34:18.681Z",
-    "last_save_at": "2026-08-28T15:59:51.408Z",
+    "last_save_at": "2026-08-30T15:39:31.692Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f0ce8ddf0aa1ea29405867df3b3427dd27927315e8d247c1785d85be6393d23d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4a97ae2ae2a742df57b9d50c9e12c4ae873a876142e306c0cd495208a184e233",
       "plan.md": "e5c711a1b17cceb476d6249737aaf718a8f44d3a94de6e2934ddcc5410314d91",

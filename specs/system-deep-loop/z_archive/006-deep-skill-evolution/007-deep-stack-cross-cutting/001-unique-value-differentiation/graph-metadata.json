@@ -21,7 +21,6 @@
       "deep skills plan",
       "differentiation analysis plan",
       "deep skills tasks",
-      "deep skills checklist",
       "deep skills adrs",
       "deep skills summary"
     ],
@@ -40,38 +39,29 @@
       "analysis"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
-      "research/deep-research-state.jsonl",
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "research/findings-registry.json",
+      "decision-record.md",
+      "implementation-summary.md",
       "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json",
       "research/iterations/iter-001.md",
       "research/iterations/iter-002.md",
       "research/iterations/iter-003.md",
       "research/iterations/iter-004.md",
       "research/iterations/iter-005.md",
       "research/iterations/iter-008.md",
-      "research/iterations/iter-009.md",
-      "implementation-summary.md",
-      "research/deep-research-config.json",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
-      "spec.md"
+      "research/iterations/iter-009.md"
     ],
     "entities": [
       {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -87,21 +77,33 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "findings-registry.json",
-        "kind": "config",
-        "path": "research/findings-registry.json",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
         "source": "derived"
       },
       {
@@ -147,30 +149,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-config.json",
-        "kind": "config",
-        "path": "research/deep-research-config.json",
-        "source": "derived"
-      },
-      {
-        "name": "routing-parity-deep-skills.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,28 +183,45 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. APPROACH",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "deep-review, deep-research, and the proposed deep-ai-council all rest on deep-loop-runtime and share iteration + saturation semantics",
     "created_at": "2026-05-23T06:00:00Z",
-    "last_save_at": "2026-07-08T13:44:02.239Z",
+    "last_save_at": "2026-08-30T15:39:23.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b120014918da97407345928dd971170e4c5bbe1c9293114c5ea5fc93e7d2279f",
+    "source_fingerprint": "sha256:ef47d80513fdf074bd5217b7acadb8824665bc944daad4ed012e11cf5842895f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "76994332b211f3c718a0f58ad67946991b4c1f49c09cb4fd88d68e53f8e810a9",
+      "spec.md": "1ec3ef4656eba6abee407ae340cb52ce4f947eb95bf9819d4dcffe635bb65a89",
       "plan.md": "348e4589e6928088267c20fa2d8947597dd8f465d72a29a5f67a8765d93a0707",
       "tasks.md": "53f63c3d97df05d600d805a3394d27e0c2a8874d77d7661df6671aeaba44cc12",
-      "checklist.md": "a524bc72692481d45668f097652f51772b583a33e00a5c113949e0e3979c8896",
       "decision-record.md": "cf0a773501f0927ea435c2a076a820eca2456f12f6df804402399714172dae40",
       "implementation-summary.md": "90c73c99145d18c7bfd35186d792948dde2efa24b9213c8e59afa8b1dc41932f",
       "research/research.md": "3761fe516e93bb1897a0e56121d0bae2ef9e7c72d16ac5a4fcfe79c35216e9ee"

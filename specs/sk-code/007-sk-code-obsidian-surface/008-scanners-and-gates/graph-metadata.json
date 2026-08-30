@@ -178,7 +178,7 @@
     ],
     "causal_summary": "`002-repo-convention-audit/audit.json` measured the plugin's target conventions as entirely",
     "created_at": "2026-08-28T18:17:39Z",
-    "last_save_at": "2026-08-29T15:21:57.631Z",
+    "last_save_at": "2026-08-30T15:39:11.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,11 +187,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1edeaba9a669a757ff659e304da6cc00a29e4a668aa6204fa29a318af5fe6fc6",
+    "source_fingerprint": "sha256:ea1e142221a6a8d5cd7dad775b5fb9c06286c11d8a64fe7ef6e515855cdfd246",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c48de4732b1bf4a929132a9a634fc6069921fbd79882e132e21f08555b10203",
-      "plan.md": "98b231469f102849a3d6747aa2f8bb07a6ed7e0224e3a457b5558654decc7de0",
-      "tasks.md": "d47df0a4e5c2e55c5b86b694ea9b2ba3b2f251ed7f67ee2d074a13116cc5860d",
+      "spec.md": "587ad1d48e0002536f1ef09f8ac89e84f6bef5b11383c1fbd4b41be2e5cddb9e",
+      "plan.md": "e6afda5f7b6a559e8f2418c91482feb4a5fc6c5cbf2635a1fc3d7233e07e304f",
+      "tasks.md": "f71fed669c4623b83a00613c8decb69c4b814f865f872c20466abbe934e469d0",
       "implementation-summary.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "last_active_child_id": null,

@@ -17,7 +17,6 @@
       "validate strict still failing",
       "evidence integrity implementation plan",
       "evidence integrity task breakdown",
-      "015-evidence-integrity-repair verification checklist",
       "evidence integrity repair summary"
     ],
     "key_topics": [
@@ -35,25 +34,18 @@
       "strict"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,9 +61,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -159,31 +151,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Each",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -191,22 +177,21 @@
     ],
     "causal_summary": "Rewrite the rubber-stamped rollout checklist with per-item evidence, re-open the three items that certify a regression as absent, reconcile the command-metadata phase's four contradictory status fields, and re-run the strict validation the program claimed as blocked.",
     "created_at": "2026-07-30T08:10:27.417Z",
-    "last_save_at": "2026-07-30T11:09:02.258Z",
+    "last_save_at": "2026-08-30T15:39:15.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fa3d6a9a29999a8e0ffe96c7b343fcef09ebea19d972c66e820020b13c4c4cf",
+    "source_fingerprint": "sha256:4e3cb36989a77a1310af7a02c674e200ff9f24dcc9966e88ee66f32f6d4a38f1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8277f10b5137b8e7fdfe9e43da0c4efc10c1cecece98583c5bda5d8e0f09cdd2",
       "plan.md": "ad02cf04885041accb1867d63ef83b0c55678ca8afb32926047b7a23231efdea",
       "tasks.md": "46c462ca37806503c748745e45bc8a8928fc7eb0653fe51256fd9bb3bda25a0e",
-      "checklist.md": "0fd839ab33fb2d9a1e42d5b1d7d1014909f87721d3dbe1294c0bcfa287c6b37f",
       "implementation-summary.md": "58fc27dbdd693e8d043de6050081e21f07d43c729e1d3e473987e2fc4e22bd28"
     },
     "last_active_child_id": null,

@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The sk-prompt hub and prompt-improve packet contain manual-testing-playbook roots, category directories, scenario files, and index references with underscore-separated names. This phase renames both playbook trees to kebab-case, updates active links, and proves scenario IDs and coverage remain unchanged while frozen changelog history stays untouched.",
     "created_at": "2026-07-14T15:17:32Z",
-    "last_save_at": "2026-08-30T07:19:31.573Z",
+    "last_save_at": "2026-08-30T15:39:16.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:a2704b4e3db1569c84d83fdbb28c0d57d60d5d880b8e165626379f5c460a20f7",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "36b60c719e34f33e47028bcc78549c347694d30745806bf3891c56099b8d61f0",
       "plan.md": "4f610999c987cd0b6bd0394393c447cdd12cf2843336726c36dbb4e50a6c59fc",

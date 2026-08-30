@@ -19,8 +19,7 @@
       "spec",
       "053",
       "implementation",
-      "plan",
-      "checklist"
+      "plan"
     ],
     "key_topics": [
       "feature",
@@ -31,16 +30,15 @@
       "spec",
       "implementation",
       "plan",
-      "checklist",
       "kit",
       "memory",
-      "workflow"
+      "workflow",
+      "involves"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "checklist.md",
       "plan.md"
     ],
     "entities": [
@@ -48,12 +46,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -121,47 +113,22 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Testing Checkli",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Testing Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Workflow Validation Items Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Validate",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Spec Kit Memory workflow involves multiple interconnected components (gates, memory tools, generate-context.js script)",
     "created_at": "2026-04-12T09:02:53.534Z",
-    "last_save_at": "2026-07-10T06:21:59.112Z",
+    "last_save_at": "2026-08-30T15:39:37.249Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "checklist.md"
+      "plan.md"
     ],
-    "source_fingerprint": "sha256:10d1be0b1413b9cfbb1965c785f2828587f5bb609f0e8b81ded6455e9bd3bc4b",
+    "source_fingerprint": "sha256:ed0d0786468aee02266e4f19e02dc069e1becce039b8e2c1bece5ac735bd88cc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd34d7fa23aa128bd5d1b7aebe730f79c7b5363b97585e078c79727169a286f7",
-      "plan.md": "06a3cc21c13210831f7f2a1cea30d15e42734e26dcf0b24c3a4f42b5328c6643",
-      "checklist.md": "6ac753e71db5ff9555c8820cc64892d89d08864005c68956d1373ba5b10c14cf"
+      "plan.md": "06a3cc21c13210831f7f2a1cea30d15e42734e26dcf0b24c3a4f42b5328c6643"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -18,8 +18,6 @@
       "gemini phase 004 plan",
       "gemini 3.7 flash high tasks",
       "gemini phase 004 tasks",
-      "gemini 3.7 flash high checklist",
-      "gemini phase 004 checklist",
       "gemini 3.7 flash high summary",
       "gemini phase 004 summary"
     ],
@@ -33,9 +31,9 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "live-available"
+      "live-available",
+      "external"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -71,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +189,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Gemini 3.7 Flash High is live-available on both external CLIs but neither enforced roster carries any Gemini id: cli-cursor's `CURSORSUPPORTEDMODELS` hard-rejects `gemini-3.7-flash-high`, and cli-devin's `DEVINSUPPORTEDMODELS` hard-rejects `gemini-3-7-flash-high`",
     "created_at": "2026-08-15T09:11:19.337Z",
-    "last_save_at": "2026-08-29T14:54:25.878Z",
+    "last_save_at": "2026-08-30T15:39:08.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1705c9c968932b1535e3bd6e51997445f2a2fce54f3038f741a869f18342f8ae",
+    "source_fingerprint": "sha256:dc4c008c198a1db57449cb0971e222c7c83b3b24e4427405b305c7509b99d6fa",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "108044ec1b737490555bd9024ffe12a3be4854b4c2ec1e78996a31d8afc4450c",
       "plan.md": "ce1f5c5adcce98601acf5db9f3615cc98dc2e441cbdc0087760870479d2ed7f7",
       "tasks.md": "3bc2b4b617f9adb22a1b8e84482f116f1696bd0e9a8ef42bfeaf1682157b9229",
-      "checklist.md": "4c54b9d301dc50822518745659e5e506c35702cfccf300e7fdc398f57a707cef",
       "implementation-summary.md": "576bcf65679eed689e2c7c6443a76596009548ae0edf072ee6e0b045a0a5e4bf"
     },
     "last_active_child_id": null,

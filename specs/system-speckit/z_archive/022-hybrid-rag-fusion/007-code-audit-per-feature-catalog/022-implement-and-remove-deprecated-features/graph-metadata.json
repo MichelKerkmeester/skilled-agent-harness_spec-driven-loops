@@ -44,16 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "shared/embeddings.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/lib/eval/shadow-scoring.ts",
-      "mcp_server/lib/scoring/composite-scoring.ts",
-      "mcp_server/lib/search/hybrid-search.ts",
-      "mcp_server/lib/search/graph-calibration.ts",
-      "mcp_server/lib/cognitive/temporal-contiguity.ts",
-      "mcp_server/lib/telemetry/consumption-logger.ts",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "shared/embeddings.ts"
     ],
     "entities": [
       {
@@ -75,63 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "embeddings.ts",
         "kind": "code",
         "path": "shared/embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-scoring.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/eval/shadow-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "composite-scoring.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/scoring/composite-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-calibration.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/graph-calibration.ts",
-        "source": "derived"
-      },
-      {
-        "name": "temporal-contiguity.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cognitive/temporal-contiguity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "consumption-logger.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/telemetry/consumption-logger.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,27 +143,74 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "valid",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The final audit phase identified a small set of deprecated-feature decisions that sat between documentation cleanup and runtime release readiness",
     "created_at": "2026-04-12T09:02:50.257Z",
-    "last_save_at": "2026-07-10T06:24:33.905Z",
+    "last_save_at": "2026-08-30T15:39:38.471Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47bab46fcad35e9b139d3252c3b5efb4169fd73acb8c0fc1bb376973f81c4ee0",
+    "source_fingerprint": "sha256:21d00990d5452a2b50654dfc5c11e9edf57402af46e9a3d62ae1ef30338a14bd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3bbad5c327357a01ae7e8d2f38a0c99844b4b63ed573a1dd4aacc09c646ababd",
-      "plan.md": "63703fc42b73877cf1bd03c4ef79f246897421f1d5a5cb32e2603784218db1da",
-      "tasks.md": "04c7564205516ea633f4e00cc9aba9c92ee23984f1d25798e6cc32f27b2023ad",
-      "checklist.md": "edc57dada630c786d8e45dc76e61909899dee604562ab952ee751e981534b6c6",
-      "implementation-summary.md": "8ebc044fa2b4e21a2bb57e543f22b5c728d8d3e0d2ac2c5fcd2d64a9f12dd007"
+      "spec.md": "cd373747f9b6e7c040c9db6cb9837ba1c1c1550b070ff1388cf6e956cf69560e",
+      "plan.md": "1b7c8ed06c2745c2774f7f9e3f3aaf181839504c87412dfe56d4f3641bfe62e5",
+      "tasks.md": "3be3be449afa3a8e0cda8dfcecadba5d983e9f6927db7e238a29d0419140e6fd",
+      "implementation-summary.md": "da3f3214a2a6879b0bb718c4760c001334982c57bfc23a52d0e0030a28a09d00"
     },
     "last_active_child_id": null,
     "last_active_at": null

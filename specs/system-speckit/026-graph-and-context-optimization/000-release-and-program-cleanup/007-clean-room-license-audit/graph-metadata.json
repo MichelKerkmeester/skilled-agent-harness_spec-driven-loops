@@ -36,14 +36,14 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".claude/settings.local.json"
     ],
     "entities": [
       {
@@ -65,12 +65,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -80,6 +74,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -179,37 +179,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "License Posture",
+        "name": "Context Phase",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "pt-02 §12 ranks license contamination from direct External Project reuse as a P0 risk",
     "created_at": "2026-04-25T10:48:06.447Z",
-    "last_save_at": "2026-08-29T13:09:59.843Z",
+    "last_save_at": "2026-08-30T15:39:28.832Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41659573fa90fc610faf6892080b7a431486de86821a0548b09247e5d6c498cd",
+    "source_fingerprint": "sha256:df280a343d87f4c625428f89ce8e5aedcb1d515a272f225cdf09d958d07a7b4a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ee1b3ea18db59b5b0d20de7fc0b78ca419118ddb6061b058c17199b64f6a454d",
       "plan.md": "97d50ee8f45d620ef3efa19bd2e6f23cf49c3722543bf697d19f53861734eb6d",
       "tasks.md": "bcbcaf2e83686ce2908efb1382081ca4bb6ce09b8ebb4f376e36dce057cb755c",
-      "checklist.md": "2dbf8980acef00c46df6af3088395a527625ada5638b139b1175ca009108fa31",
       "decision-record.md": "d21905c0ae2d8789a17d7857e45df829e44cca4a946a4aeb63808b6f19049b2f",
       "implementation-summary.md": "522fa94d8725285832ff3de95237273471f13746b4f52428e92e5bee831df140"
     },

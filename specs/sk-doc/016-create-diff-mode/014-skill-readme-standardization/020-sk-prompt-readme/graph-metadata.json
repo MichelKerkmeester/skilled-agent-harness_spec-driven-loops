@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The sk-prompt README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus mode-count drift (it claims eight modes in one place and lists nine in another because the `$deep`/`$d` and `$s` aliases live in the references but not in the SKILL.md mode table)",
     "created_at": "2026-06-07T14:57:42Z",
-    "last_save_at": "2026-08-29T14:54:20.658Z",
+    "last_save_at": "2026-08-30T15:39:14.471Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9c4ba2114d759c3999a2f8e8b54049a82bdcea0613ff682dfba59d543b1f6324",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92b7c76cd990a09430360977e85c97e5419246ef69ddb3280622a757d18196f6",
       "plan.md": "f2c64693c01bacb1320e11b4e362c6d4e806615a869533f41798f9fb39fab461",

@@ -34,7 +34,7 @@
       "unified"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -84,17 +84,18 @@
     ],
     "causal_summary": "Phase parent integrating Idea 5 (calibrated negotiation) into the unified router refactor as a first-class build — NOT deferred. Three children: build the sealed held-out routing corpus (the artifact whose absence made the synthesis park calibration), specify the rank-vs-calibrated route contract (rankScore/scoreMargin always, estimatedError only with a validated certificate), and build the selective-classification controller that auto-routes under a validated risk budget else clarifies/defers.",
     "created_at": "2026-07-18T13:13:19.110Z",
-    "last_save_at": "2026-07-24T12:11:58.839Z",
+    "last_save_at": "2026-08-30T15:39:14.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:35812b5de941773c5c3d86ddc9b70ab3ccbc622a90572389d1e71acd68a76751",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "333ce2946959a4c5c4ee8f1409dc4d721415fdbbe78d24e0e2cb7f3af6df2f8c"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/008-calibration/001-holdout-corpus",
     "last_active_at": null
   }
 }

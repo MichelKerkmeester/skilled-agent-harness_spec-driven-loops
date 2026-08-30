@@ -18,8 +18,6 @@
       "benchmark routing coverage plan",
       "create benchmark reorganization tasks",
       "benchmark routing coverage tasks",
-      "verify create benchmark reorganization",
-      "verify benchmark routing coverage",
       "create benchmark reorg summary",
       "benchmark family routing summary"
     ],
@@ -33,45 +31,31 @@
       "plan",
       "coverage",
       "tasks",
-      "verify",
       "reorg",
-      "summary"
+      "summary",
+      "create-benchmark"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
-      ".opencode/skills/sk-doc/mode-registry.json",
-      ".opencode/skills/sk-doc/hub-router.json",
-      "checklist.md",
+      "spec.md",
+      "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md",
-      "plan.md"
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -87,15 +71,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
         "source": "derived"
       },
       {
@@ -193,27 +177,38 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The create-benchmark packet keeps unrelated benchmark-family resources in flat `assets/` and `references/` directories",
     "created_at": "2026-07-13T04:08:05.115Z",
-    "last_save_at": "2026-07-20T09:07:18.207Z",
+    "last_save_at": "2026-08-30T15:39:14.540Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:562e96fb22a74f1256e8406ad07e100794093798fcf02160ff19b522a6695aa5",
+    "source_fingerprint": "sha256:5140006bda4af8869dbfc95e90b50053efbcf7bf9217b3264f10dd28ff0d5b67",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "10878a98d060f171b2b8e14a975bd9e5a0c10412cf11e7a113d7f87b49d19fae",
+      "spec.md": "f0a4d403664990566d146847f34a1fa155c578eed8dd975bd4618afa71128d4c",
       "plan.md": "4440210da90a1d3d04baff3e59ddd5a66c29ba4f3f124f38ce4ec86a6b4a9535",
       "tasks.md": "23aaee54196bea46afaa2a152746b83a4c2563b80fbf7b99c1187b2615cc2c95",
-      "checklist.md": "6e7536c4f8f7a41914c5f89a9a9ceaffb367b222ea7baede4668b3da5fe339af",
-      "implementation-summary.md": "785bc790034c7ad1ff4e0602b16b36aa2043fa289d51b0c19bb3f45c88a5ee29"
+      "implementation-summary.md": "7632fe7fce65406aa22f7ffa32be6b30ca36766ee3fa5701905c51991a2825c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -16,7 +16,6 @@
       "combined host composition test",
       "correctness floor plan",
       "correctness floor tasks",
-      "correctness floor checklist",
       "correctness floor implementation",
       "pi cache optimizer correctness",
       "deep-pi correctness floor"
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts",
       ".pi/extensions/deep-pi/extensions/deeppi.ts",
@@ -76,12 +74,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -203,26 +195,31 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implement Fork Improvements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Four P0 defects were found by 007's four-lineage research and re-confirmed against the live source while authoring this spec",
     "created_at": "2026-08-08T06:50:09.777Z",
-    "last_save_at": "2026-08-29T15:21:52.735Z",
+    "last_save_at": "2026-08-30T15:39:09.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:66af58bbe9a5e6e0035166d1d960090f0144c998da38b34e602ef46dea1a334d",
+    "source_fingerprint": "sha256:e382dd2884d430eb86bf7748c0d64227a80dcce228ea915e23662b198182c4c4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "62eff2da26272291e3bddaeb1063538e9060a4515bb16c3ad69d334e0cc3e75b",
       "plan.md": "3479f100d09f28d38f10496795a03afd4a388b48cf0a189036384c1bf9ef782d",
       "tasks.md": "09eaac7668b687e924a97f3704e25eb2866d2a421ca2719daa4d5340ba3027d8",
-      "checklist.md": "a70af82ccf2b482e5bc175446d8326b3c7b56876e1b8ee987362d912dd7ab6ba",
       "implementation-summary.md": "dc0f9fb39182981515840426980fca6e40dc0f4c4197401acaa3dac1c965e81f"
     },
     "last_active_child_id": null,

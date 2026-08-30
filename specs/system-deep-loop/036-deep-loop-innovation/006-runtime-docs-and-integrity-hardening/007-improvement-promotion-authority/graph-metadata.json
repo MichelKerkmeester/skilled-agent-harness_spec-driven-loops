@@ -40,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
@@ -73,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,28 +193,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
     "created_at": "2026-07-31T01:25:21.136Z",
-    "last_save_at": "2026-08-29T15:22:07.602Z",
+    "last_save_at": "2026-08-30T15:39:21.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:66c1d51ec38897f96b7f755465a98b49e61de7d25d60edb7e1aa9d5c201ff56b",
+    "source_fingerprint": "sha256:fe7a8e691040a6e847ec648ae44270158313fc604e7127f31c80438375fe35cb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8ab82992a5515af6ee0b1fff6f9accb92873ad65fca92928994fe05057d1ae45",
       "plan.md": "8c06d98745d84f98e2fb294224f3689ef82b052a182fce06aac6e2e65ee1a5cf",
       "tasks.md": "a887733be4754d5de4dc9ee0885fb7a3bbf01d6e7f432b237a77122ba3eb5bca",
-      "checklist.md": "413236eb813065280338ef21bdf65a4225370acd15003a42d5e641d4f00c8b8d",
       "decision-record.md": "30c29d558005a45efc6b872f1a167985bc5bb152e078123d9458d539acab9f21",
       "implementation-summary.md": "c7c0eed82d36d63fdde773e43bd517dd3120ee7df18b749fbd447b0170695ae3",
       "handover.md": "d81129d0799e0a916d92287f1e916417b74e7fee7501b655f1bab4d01e1aacba"

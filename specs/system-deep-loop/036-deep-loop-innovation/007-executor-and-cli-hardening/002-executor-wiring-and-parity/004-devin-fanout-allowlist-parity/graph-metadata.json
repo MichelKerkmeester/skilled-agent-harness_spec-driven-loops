@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,26 +188,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-devin catalog was curated to four families (GLM-5.2, SWE-1.7, Grok 4.5, DeepSeek V4 Pro) with default `swe`, but the deep-loop runtime's enforced allowlist (`DEVINSUPPORTEDMODELS` in `executor-config.ts`) predates that curation",
     "created_at": "2026-07-29T19:35:25Z",
-    "last_save_at": "2026-08-29T14:54:10.996Z",
+    "last_save_at": "2026-08-30T15:39:21.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89979f6ce5b3ca8b8b5e5591178293f77f3d914a9573d3777c4ba7713699800b",
+    "source_fingerprint": "sha256:50cd21ef946d7b9cd77f80841623eaf05841463ec7422d4112b1e3e318869cd9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "15a4d4d7a6a2236f389316c602e26bf509a1160aa04b7efdcc4bca95bfcb787f",
       "plan.md": "ec1eb71d7c68307b80e59d6cbf130c4acf710d2157f0cb19dbeb93f6e337f229",
       "tasks.md": "a7d2a2fa7180f4b182cacf19e1a8b28a367510b63d92cf41bb6e897929ed7175",
-      "checklist.md": "532d8a6e0b2b3c04145d991c7d354eb8ce05bff1a5b9346dd8e6f15b94634759",
       "implementation-summary.md": "4465f5a7cc3284423be9c519f10d733158ad5f15f6284ee74f56ddf57c15ccab"
     },
     "last_active_child_id": null,

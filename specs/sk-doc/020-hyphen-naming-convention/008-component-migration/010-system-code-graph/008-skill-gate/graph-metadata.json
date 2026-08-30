@@ -154,7 +154,7 @@
     ],
     "causal_summary": "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 020 exemption boundary without performing new migration work.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-08-30T07:19:54.471Z",
+    "last_save_at": "2026-08-30T15:39:16.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,7 +163,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:5f9897206c09a0f3a4ed424879e8b71bb6aba7aaaabaebad42b58c36630147ec",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "887ce03626ed8e72c753e5ba288d16b279c97d90f23957b3a691e77e402b3fee",
       "plan.md": "512c6f6404d930d23994167e7120c506928ca71cb2519a17de43158f745ac116",

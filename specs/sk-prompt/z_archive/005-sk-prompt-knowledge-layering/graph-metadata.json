@@ -62,7 +62,7 @@
       "poorly"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "research/research.md"
@@ -155,7 +155,7 @@
     ],
     "causal_summary": "Prompt-engineering knowledge across the skills system is duplicated, structurally inconsistent, and poorly connected",
     "created_at": "2026-06-02T18:04:09Z",
-    "last_save_at": "2026-07-16T15:57:12.236Z",
+    "last_save_at": "2026-08-30T15:39:19.195Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,11 +163,12 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:da7c0942356a393a2c1c98450882e9241f44b7e7546d44fcc7708f9cd226b9a6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3f65193d12f6e9fd1d12b4f8b967f21f64d502daa14b92d038c7f659d8855540",
       "research/research.md": "02849bc394500e94894669761f30036d89f02b8920606a07dbd10ef41a516cac"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
     "last_active_at": "2026-06-03T07:05:23.009Z"
   }
 }

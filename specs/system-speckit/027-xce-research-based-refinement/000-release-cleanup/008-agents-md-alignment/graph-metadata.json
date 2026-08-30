@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Reconcile root AGENTS.md governance so Four Laws and Gates stay byte-stable while completion-freshness, Logic-Sync, and constitutional-rule references stay coherent",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-08-28T15:59:59.919Z",
+    "last_save_at": "2026-08-30T15:39:32.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:13aa92c4431d340db6b780e6a284005e45dcf084ff26e8f975c87a6064f3f36f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad6578621c8ff92d3fe1d814d690bc3a77b3bc9be5bd7bb84f80ad65d6748cda",
       "plan.md": "8f42db52783af1931ef53d5df1ccefbe92e00923949a24831685c180b0557955",

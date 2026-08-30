@@ -195,7 +195,7 @@
     ],
     "causal_summary": "In pi's interactive model picker, the cline-pass DeepSeek V4 Flash (and Pro) effort could not be cycled past `high` — `xhigh` was unreachable — while opencode's official cline-pass support reaches `xhigh`",
     "created_at": "2026-08-22T11:36:23.896Z",
-    "last_save_at": "2026-08-29T14:54:26.296Z",
+    "last_save_at": "2026-08-30T15:39:08.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:61603138d6d9d8a210b9c348441894fb8368c475998050feda2373958cfac720",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a367c5b5591c663c6f07b7ee314837b36cb4e3f2afb040d2252c2605ff87f38",
       "plan.md": "8cc85ccbe0fff5f9e5e067aae66f89943b5aaaea4a04aa90c08b346ab502fcfa",

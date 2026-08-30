@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Without a fixed corpus + rubric + dispatch matrix, \"stress-test\" devolves into ad-hoc prompting — non-reproducible, partial, and impossible to compare across CLIs or over time",
     "created_at": "2026-04-26T14:55:00Z",
-    "last_save_at": "2026-07-17T17:19:11.357Z",
+    "last_save_at": "2026-08-30T15:39:28.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bd9a873ac3e7b3c4152e09c94ea9c14e9b169ac27cb42f8c84ebfdac17532b36",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0b144772a33ae937a086e012b4e2f4fbc7d78e09db20f9ae97bd52c467699b1",
       "plan.md": "54be2fa33b1bbe9f363a8535fc88c1cd8ef7270b07920c5c68f8294b7395ba8d",

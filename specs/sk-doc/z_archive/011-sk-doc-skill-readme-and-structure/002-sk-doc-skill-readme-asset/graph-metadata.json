@@ -30,27 +30,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/SKILL.md",
-      "resource-map.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      "resource-map.md",
+      ".opencode/skills/sk-doc/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -64,21 +51,27 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {
@@ -182,27 +175,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc has README templates and skill creation guidance, but lacks a dedicated skill README asset for skill packages",
     "created_at": "2026-05-10T10:33:23Z",
-    "last_save_at": "2026-07-09T10:02:44.945Z",
+    "last_save_at": "2026-08-30T15:39:18.384Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:1068fe95d56b66835fbd08ea331ad0f05b3f3cf553b5bad58a1db6829bb44afa",
+    "source_fingerprint": "sha256:9516cbc02c23e34ae87bf95593c4c787624dfed92f09dc532844e233e27448b1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5133b665649ea19aea4e0e401a4f092b2161ddb8dc1b84b20fafa2293484d8ed",
       "plan.md": "10d4687105c958a5b14bfa2a2c68ab6e476823ab14a99314680bb574785d8fb8",
       "tasks.md": "812b310d1eda8c1b94ae5bce7bbaa99c7963a2d4ff00b64fa1005309db1a45f3",
-      "checklist.md": "5009ff9ec6d548246d87574f78f927269f62dc55a82d00434fca34e49b3fd5bf",
       "implementation-summary.md": "412fc05297cc536e4495976a271489c897866636a4ea54c21717485964c67731",
       "resource-map.md": "291677fff68c045ee2ff586f6213844d688af564a5216c0feccb898fad1d7461"
     },

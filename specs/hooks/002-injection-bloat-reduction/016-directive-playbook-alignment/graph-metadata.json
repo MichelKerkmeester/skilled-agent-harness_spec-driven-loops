@@ -26,9 +26,9 @@
       "directive lifecycle dedup catalog plan",
       "directive lifecycle playbook alignment tasks",
       "directive lifecycle scenario tasks",
-      "directive lifecycle playbook alignment checklist",
-      "directive lifecycle scenario verification",
-      "directive lifecycle dedup catalog verification"
+      "directive lifecycle playbook alignment implementation",
+      "directive lifecycle scenario summary",
+      "directive lifecycle dedup catalog summary"
     ],
     "key_topics": [
       "directive",
@@ -41,8 +41,8 @@
       "catalog",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -50,7 +50,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
       ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
@@ -77,12 +76,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -204,26 +197,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Close the playbook/catalog coverage gap left by the live directive-lifecycle feature (013/014): add manual scenario 457 validating first-message full, repeat-turn route-only, boundary re-delivery, kill-switch revert, and fail-open per runtime (Pi/Claude/Cursor/Devin/Codex/OpenCode), register it in the root index, add the lifecycle-aware 119-C note, and publish the feature-catalog entry with both kill-switches — docs only.",
     "created_at": "2026-08-11T10:10:08.000Z",
-    "last_save_at": "2026-08-29T14:54:14.492Z",
+    "last_save_at": "2026-08-30T15:39:09.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eadbaaecf9ab91c2a53d947ea37622b55a70f5dfd2566edea52967d098486494",
+    "source_fingerprint": "sha256:d11b9468cd054a918e4ffd619ca37de5eaa2d4c849fc93ed139d0387aeba5403",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "996066feb378e4fc529b0141a0caabdded758679e3bac31f193e9ce2775d2aab",
       "plan.md": "bce1a684ce0b1f447a0817c7e2ede13f945ff206d581c1870f87bfc8c6e459a7",
       "tasks.md": "7bf344409c44bbb58884bbd26b6c097ade96e4f29e87cbffdca95084b863bc80",
-      "checklist.md": "75d8c2e295c7bb54782d4e91341fcc3230864b654d43324577669904e07dd34a",
       "implementation-summary.md": "e5d1468c7b4cf27d7b39d0385807662019e6f29c9b809f72e10e84ca9bda1080"
     },
     "last_active_child_id": null,

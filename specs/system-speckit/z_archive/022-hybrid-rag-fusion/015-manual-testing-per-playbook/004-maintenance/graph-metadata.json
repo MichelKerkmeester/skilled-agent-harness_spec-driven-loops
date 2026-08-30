@@ -42,14 +42,12 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handlers/memory-index.ts",
       "lib/storage/incremental-index.ts",
-      "tests/startup-checks.vitest.ts",
-      "plan.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md"
+      "tests/startup-checks.vitest.ts"
     ],
     "entities": [
       {
@@ -59,15 +57,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -92,18 +90,6 @@
         "name": "startup-checks.vitest.ts",
         "kind": "test",
         "path": "tests/startup-checks.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "MANUAL_TESTING_PLAYBOOK.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {
@@ -195,27 +181,38 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory_update",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 004 maintenance scenarios must be executed from scratch",
     "created_at": "2026-04-12T09:02:50.291Z",
-    "last_save_at": "2026-07-10T06:22:39.531Z",
+    "last_save_at": "2026-08-30T15:39:39.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:626bf6789ed621c1ef6de333b4c6a7dac99819dfc06f32532a54ec9cb7ae07a7",
+    "source_fingerprint": "sha256:597dd1223469823b98b0956a9efb9c1d37fb485d2c06540b21a7d66cba565e61",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "04e8d5d60d6b92d087c6c50bfd330e3b8302312bd846d097c18f354e53a92ea2",
-      "plan.md": "77a43a44048e3ff962fb980c6af6a76a69ba145a8e8c63d955079d86421d372d",
-      "tasks.md": "d80fc4a33e712c5de98538f9a3f962d804501e21ee037fd93b54a9d7718847e1",
-      "checklist.md": "197a2ee27f3827d949ff85d0267c69ff125a991778ddec2c8651f44ce92b9db1",
-      "implementation-summary.md": "24046eedc33f6cbe096313ff731cd7354ad5abf8e127446915fbfe69c5b59190"
+      "spec.md": "5494668496e35ae6a819422887403d9e00d4f585bc5e3ab12d7791e5da529928",
+      "plan.md": "1a083157053fbad08cfb7db9f8537f6da680aa132ec720c7af2dc38ee57069d8",
+      "tasks.md": "5347a2b17c2825a19dec8ab9c75925256fed88bc485547b7cbcecb86472ef5c3",
+      "implementation-summary.md": "5c98d0cdc20a4181f5d4c97da3835bc0a8eb5017e9959573c6daa878ede9984f"
     },
     "last_active_child_id": null,
     "last_active_at": null

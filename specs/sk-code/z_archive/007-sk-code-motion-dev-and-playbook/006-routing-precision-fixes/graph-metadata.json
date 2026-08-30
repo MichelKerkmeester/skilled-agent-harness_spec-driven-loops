@@ -24,7 +24,7 @@
       "phase 006 tasks",
       "routing precision tasks",
       "packet 069 finding remediation",
-      "phase 006 checklist"
+      "phase 006 implementation summary"
     ],
     "key_topics": [
       "phase",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-code/SKILL.md",
       "spot-recheck-results/RD-002-RECHECK-codex.yaml",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 proved the Motion.dev peer-reference architecture works on the majority path, but the matrix still returned CONDITIONAL because two critical routing classes failed",
     "created_at": "2026-05-05T13:30:00Z",
-    "last_save_at": "2026-07-09T10:02:44.320Z",
+    "last_save_at": "2026-08-30T15:39:11.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T13:30:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07ffc5c0a715bc993d770cd95c584d028b8546ed6666a9454ea6f6b108acdeda",
+    "source_fingerprint": "sha256:628a0bb307d0fc255463cfa338adbcc969c95c519fa53a873efefb964eab32fd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a8ee0137861fc9f5baf6f1a7c57d77409e6618944f85f54ca0ca439ea65f0d58",
       "plan.md": "e1b3cfa99d2057caf007b72db4125e8223a31349e50ab17cc96127c5d6bc4412",
       "tasks.md": "a23f7b4675bfe9f11834032c42f1a1679ec83e3c98fb43744dfb2329e83f77c5",
-      "checklist.md": "351ede487bb9bb39c79d43140113c7cf26e97f7bba3a51b34e6d8039f5ab5ba5",
       "implementation-summary.md": "14904f5c1a552eb59d8f883e5588ca128ee21b1e86540943ceb10f5c5d5a735b"
     },
     "last_active_child_id": null,

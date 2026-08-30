@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` produced a CONDITIONAL verdict because of two release-blocking P1s and 39 P2 polish items",
     "created_at": "2026-05-19T15:28:02.707Z",
-    "last_save_at": "2026-08-30T08:04:44.309Z",
+    "last_save_at": "2026-08-30T15:39:29.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0a9f2465e7341da819f8e9f103a0c23e67735f2288bfcc99271c56a3256b5338",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca9d4bc5cfc2a0d3d51a156a2484d6176b0cea22c80298a9503488ddab600188",
       "plan.md": "4d757b37bee283adb9b4abc0d96c034134d6237bd5a4ec2dc11fa6ca6ee0df01",

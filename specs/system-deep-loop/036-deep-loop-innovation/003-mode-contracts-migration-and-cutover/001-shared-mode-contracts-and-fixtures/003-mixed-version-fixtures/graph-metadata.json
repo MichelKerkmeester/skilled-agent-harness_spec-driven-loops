@@ -21,8 +21,8 @@
       "mixed-version fixtures tasks",
       "deep-loop version drift fixture tasks",
       "interrupted migration fixture tasks",
-      "mixed-version fixtures checklist",
-      "deep-loop version drift verification"
+      "mixed-version fixture evidence boundary",
+      "authored case digest guarantee"
     ],
     "key_topics": [
       "mixed-version",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,49 +163,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Version Fixture Evidence Boundaries",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Bind Resume Classification",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Verified Restart Evidence",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan a sealed fixture corpus that mixes old and new event and state versions within one deep-loop run, exercising upcasters, mode reducers, replay, and shadow parity across realistic version drift.",
     "created_at": "2026-07-16T03:43:54.525Z",
-    "last_save_at": "2026-08-29T09:57:51.044Z",
+    "last_save_at": "2026-08-30T15:39:20.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08079d5f2f2f3c5ceffcf3c3b3f50756cc2c898fb69787eaa5db152904fa4394",
+    "source_fingerprint": "sha256:78403f0959dffed5bed3f08e6477294ae730c845b4d5bd6a93fc265eaa4eec7b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6bdc85b3743288b73c43a8ea1879da0718f2e2c3a0299b44cd82db2e45a4f085",
       "plan.md": "e4575975dd07b825433347f1e13ad5a15067ad996554d331a9be82453465c118",
       "tasks.md": "28e3e08639035cb4084aa77f43d9f4993639428be1be6864dc86d1013965c86c",
-      "checklist.md": "ba801269312c82fa30a847dbe93072870461607f6cbee0cc9bc6f092f2da533c",
       "decision-record.md": "4a63d3bbba642b8d12b3869406919c178da328bf23490215f34e97dbeae5a787",
       "implementation-summary.md": "e1ce99f212fce109eec451b3bc55171b7be46a87df129163f9d949fcbfd2e6dc"
     },

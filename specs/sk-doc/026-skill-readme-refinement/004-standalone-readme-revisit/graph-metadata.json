@@ -109,14 +109,14 @@
     ],
     "causal_summary": "Phase parent: one child phase per standalone skill root, each revisiting that skill's README against the refined template from phase 001, purpose-first with HVR enforcement and a per-skill changelog entry.",
     "created_at": "2026-08-04T07:12:17.349Z",
-    "last_save_at": "2026-08-30T07:20:17.341Z",
+    "last_save_at": "2026-08-30T15:39:17.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:ba7841821d78cc04fce35ce5dfc8f81db17b1f84b763120cb2b0cae78bc12b0c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "789c9838e679cbea9906ce14641210053da2bc2769dd53a66e5cf1ba0e0620ea"
     },

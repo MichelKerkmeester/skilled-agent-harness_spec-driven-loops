@@ -21,8 +21,8 @@
       "sprint 2 tasks",
       "scoring calibration tasks",
       "embedding cache tasks",
-      "sprint 2 checklist",
-      "scoring calibration checklist"
+      "003-sprint-2-scoring-calibration implementation summary",
+      "003-sprint-2-scoring-calibration delivery record"
     ],
     "key_topics": [
       "sprint",
@@ -34,9 +34,9 @@
       "boost",
       "plan",
       "tasks",
-      "checklist",
-      "dual",
-      "systems"
+      "003-sprint-2-scoring-calibration",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,8 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "mcp_server/package.json",
       "implementation-summary.md"
     ],
     "entities": [
@@ -65,18 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
         "source": "derived"
       },
       {
@@ -182,37 +168,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Narrative",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The dual scoring systems have a ~15:1 magnitude mismatch — RRF fusion scores range ~[0, 0.07] while composite scores range ~[0, 1]",
     "created_at": "2026-04-12T09:02:50.226Z",
-    "last_save_at": "2026-07-10T06:23:08.638Z",
+    "last_save_at": "2026-08-30T15:39:38.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eea70d5b864981f13e462d88f7f30087c9f33c6ae01b7d364dd2eab4b4ac8655",
+    "source_fingerprint": "sha256:7b1e2daab44fda3341a214abdf82efda4ef3bd88cceb8fe2562723b8aa9a825d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d0854ba2f24bbd3cb19149dc2126fd4683b89be35b1b12aa17ab94349e9b90e2",
-      "plan.md": "827cec27ed319cf4283d691b6077d949ea524184ed736da96c4f5b73db03ac58",
-      "tasks.md": "beccfe4849d23e82009a28c8088018d433d08897e91b4d2aa8431d6829013497",
-      "checklist.md": "e786b7168f1befea749141c106e3b1235387886510af8565a329e8d5578da180",
-      "implementation-summary.md": "bacdfa1eda5a843cf7aec6d67220017c746c7e36bd4a08d745eb018f5ab3e41a"
+      "spec.md": "df46c10398c1b1a718e648f99349854164b584a0a3eb4ab31ef52243086d5fb1",
+      "plan.md": "1a9866ed9b25a9cffe233dd2ed95c383719142ea5d6fb3a71f35b04c6323ca84",
+      "tasks.md": "cea2883b0c9ec28a4ecc4e67bae27faa6ffa983adeb960b2fc15637954c5b8a0",
+      "implementation-summary.md": "02bc0f83ec4bbba2926fd5ebed79370c4d933c410f897682ebaf67dba628c8e0"
     },
     "last_active_child_id": null,
     "last_active_at": null

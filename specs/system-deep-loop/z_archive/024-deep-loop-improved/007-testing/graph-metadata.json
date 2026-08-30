@@ -90,17 +90,18 @@
     ],
     "causal_summary": "Tests for `loop-lock.ts`, `atomic-state.ts`, and `fanout-pool.cjs` share real `HOME`/`database/` paths and temp dirs, preventing parallel execution and risking real-data corruption",
     "created_at": "2026-06-29T05:08:46.500Z",
-    "last_save_at": "2026-07-16T16:32:26.902Z",
+    "last_save_at": "2026-08-30T15:39:25.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:72a12d0038fcb6a47b182fca735ca61f6bed4db9281d9be6cdcecc6d3d5b6524",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c0a6905dd6f08634bcacd8093b7d82cc1b9ce0172dcced17e885a8c83c9155ae"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/024-deep-loop-improved/007-testing/002-record-replay-cassette-harness",
     "last_active_at": null
   }
 }

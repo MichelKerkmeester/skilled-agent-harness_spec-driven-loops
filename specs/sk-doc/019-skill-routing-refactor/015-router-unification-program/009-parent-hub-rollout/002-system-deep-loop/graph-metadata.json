@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop",
   "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop",
   "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,9 +20,9 @@
       "system-deep-loop router activation tasks",
       "deep-loop no-collapse compile tasks",
       "stage-4 canary task list",
-      "system-deep-loop canary verification",
-      "deep-improvement no-collapse evidence",
-      "deep-loop rollback drill"
+      "system-deep-loop canary implementation summary",
+      "deep-loop no-collapse results",
+      "system-deep-loop stage-4 handoff"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -45,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "lib/registry-compiler.cjs",
       "lib/canary-router.cjs",
@@ -55,9 +53,7 @@
       "fixtures/canary-cases.v1.json",
       ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/skills/system-deep-loop/SKILL.md",
-      "compiled/projection-graph.json",
-      "compiled/policy.json",
-      "compiled/route-gold.typed.json"
+      "compiled/projection-graph.json"
     ],
     "entities": [
       {
@@ -76,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -145,18 +135,6 @@
         "source": "derived"
       },
       {
-        "name": "policy.json",
-        "kind": "config",
-        "path": "compiled/policy.json",
-        "source": "derived"
-      },
-      {
-        "name": "route-gold.typed.json",
-        "kind": "config",
-        "path": "compiled/route-gold.typed.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,26 +181,43 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Compile",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shadow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Under the pre-refactor model, a destination is addressed by `workflowMode` name or packet path",
     "created_at": "2026-07-18T13:13:19.824Z",
-    "last_save_at": "2026-08-29T15:22:02.206Z",
+    "last_save_at": "2026-08-30T15:39:15.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c88f12fa6a75ae59897f2b1678a3a164f6446d08a9af7b43f8705fd2a76dd7e",
+    "source_fingerprint": "sha256:9022b87708f4d885b71f9a9cacd6bfd0ca77377928de48453cd8e7227fcd8f1d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "72b628bc01d08bc3cd057dbdd69908c6f8c6e5a6146936ba0c4dd280dbc3f2bf",
       "plan.md": "eb2bdeca134872fac9c0f6347209ebc070c815ac9087d279359e18b348564d82",
       "tasks.md": "4b6eeee73f822b4709bac79d3ef03ffb88fefb456a367005553a98b30c98013d",
-      "checklist.md": "022c2cd3cec3444c5055254242d8b76f9999cc8e8872afbd28cce08af4f5dc1a",
       "implementation-summary.md": "e24a27c29313ce11729f2734b895d61c51c92331301e1a3f6d7298c26baf1914"
     },
     "last_active_child_id": null,

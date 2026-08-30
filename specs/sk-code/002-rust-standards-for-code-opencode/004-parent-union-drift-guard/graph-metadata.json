@@ -180,7 +180,7 @@
     ],
     "causal_summary": "The parent hub keeps a union projection of every child's routing map, enforced by a drift-guard vitest",
     "created_at": "2026-07-11T08:51:44.490Z",
-    "last_save_at": "2026-08-28T22:09:18.675Z",
+    "last_save_at": "2026-08-30T15:39:11.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,6 +190,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c37220f4d2f19b6bea840a34fda3567e972e24cf2fb1fcb0f27da23e3d855300",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "975c7ff78c8848dd4a7eca9b33d9eb270dbb686d2cdbcede086b8874415baca3",
       "plan.md": "12282493a006520964c6ca8334340fc9ab20d720699078629e91212bc8501d03",

@@ -24,7 +24,7 @@
       "cli-matrix buildCopilotPromptArg parity plan",
       "017 tasks",
       "cli-copilot dispatch test parity tasks",
-      "017 checklist"
+      "017 implementation summary"
     ],
     "key_topics": [
       "017-cli-copilot-dispatch-test-parity",
@@ -46,9 +46,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "mcp_server/vitest.config.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,21 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "mcp_server/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -184,36 +170,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Summary",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 011 deep-review report (`../011-research-post-stress-finding-followups/review/review-report.md`) §4 surfaced F-004 [P2]:",
     "created_at": "2026-04-27T18:30:00Z",
-    "last_save_at": "2026-07-17T17:19:12.255Z",
+    "last_save_at": "2026-08-30T15:39:28.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9be30213af05171c8e69c41301ed2f18e6777f9408cc7dd9cc13ea95a9fd08ed",
+    "source_fingerprint": "sha256:df6f1ff5e7898222b2e4e3a102123fa8624828000b62e27ae920f43da774b213",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a64db809d5f96c1be76ec400f043927a2be0c69b9f6bcfc83cf4963c90d4268e",
       "plan.md": "1ea905dff0dd54ea28b7ba51bb1f6aded3374d23fffed492e8d53df67e41e31a",
       "tasks.md": "d830c434ceb132beee970fbff92f87dfbea826460318a35623eda1dc28ec2235",
-      "checklist.md": "202fde772de5aef9ac5ba496a61322598d42495bc4be115f08ab6628c005d041",
       "implementation-summary.md": "5875248804e55b2fe3db5b3aaff3c1cf36dc7b6bbb9ef16dfa4baacc9df89f10"
     },
     "last_active_child_id": null,

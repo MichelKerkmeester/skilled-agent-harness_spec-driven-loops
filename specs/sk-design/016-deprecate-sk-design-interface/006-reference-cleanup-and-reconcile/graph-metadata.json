@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Phase 006 reconciles every live cross-skill contract that named the deleted sk-design hub — advisor graph identity + edges, command bridges, advisor/contract tests, and cross-skill docs — reframing the retired judgment capability as out-of-scope rather than falsely repointing it at the surviving extraction leaf, and records the documented-residual set left to main-side regeneration.",
     "created_at": "2026-08-19T11:26:00.779Z",
-    "last_save_at": "2026-08-29T14:54:13.021Z",
+    "last_save_at": "2026-08-30T15:39:13.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d671233d40f797389db06caf8d6e311f83564bcea32f49e3930d8284aeece302",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "238490b6da7bb6dabcb78cf1d3cc2e6ddfdc41b0827afea7f37077bc5b69350e",
       "plan.md": "09db8e44c799aad6e263fb31257866672aa6efaae519f27de25190da509753fd",

@@ -42,12 +42,11 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "lib/search/pipeline/stage2-fusion.ts",
-      "lib/cognitive/co-activation.ts",
-      "checklist.md",
+      "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "plan.md"
+      "lib/search/pipeline/stage2-fusion.ts",
+      "lib/cognitive/co-activation.ts"
     ],
     "entities": [
       {
@@ -57,21 +56,9 @@
         "source": "derived"
       },
       {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage2-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "co-activation.ts",
-        "kind": "code",
-        "path": "lib/cognitive/co-activation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -87,9 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "co-activation.ts",
+        "kind": "code",
+        "path": "lib/cognitive/co-activation.ts",
         "source": "derived"
       },
       {
@@ -165,18 +158,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -197,23 +178,22 @@
     ],
     "causal_summary": "The bug-fixes-and-data-integrity category covers 11 scenarios that verify correctness of data handling, deduplication, and transaction safety in the hybrid-rag-fusion memory system",
     "created_at": "2026-04-12T09:02:50.295Z",
-    "last_save_at": "2026-07-10T06:21:45.953Z",
+    "last_save_at": "2026-08-30T15:39:39.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:786e8c80e3e36ed0c639a0d07c0bdd36a1b0f9c9afb80c9ff1dccd20be291ae8",
+    "source_fingerprint": "sha256:7b1545bcefadeb89e76efa67b5aad50ccb5ca70f6794e5ec507e6e8e9cdfd0f0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c38da3a242f6e040bc45a4930a16dd077d9e03f6adbf477ba282e2f4d9af569d",
-      "plan.md": "02b05df99bdaeb0747aa26bb4112afceb9718a016391e5385d3d7e711feaae10",
-      "tasks.md": "f5ddbf566fae5102adf83acf834ec1417fbda98c957e2ca133b10d8ce4a3e9e5",
-      "checklist.md": "2709f39423372016a0431db32e689267ef45362ad45859d94c27b79eec5e87b8",
-      "implementation-summary.md": "7fbd68d15a1fdd7459e6ccb888a6a6d41abc065c6d6a3d97af3216fbb11152a4"
+      "spec.md": "225ccc1aa8718e0943f7979a8c4d4de0f2e87fd92e01806be44376e3c156957f",
+      "plan.md": "1a586f4e94ea081b542c2171e118dc6f795aeea2e1475c723d88ebac205fe8cb",
+      "tasks.md": "38138ed69e9217d529f414198c4df1dc55263affda887cc091789b72986b8ee0",
+      "implementation-summary.md": "96ce7f369b83f4e91b019ff884336c4ec1986971c5b2470b516380fa5e43c62c"
     },
     "last_active_child_id": null,
     "last_active_at": null

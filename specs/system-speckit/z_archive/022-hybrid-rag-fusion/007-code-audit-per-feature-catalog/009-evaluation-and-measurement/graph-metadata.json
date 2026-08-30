@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary",
       "evaluation & measurement"
     ],
@@ -29,39 +28,25 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "catalog"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/api/eval.ts",
-      "scripts/evals/run-ablation.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/evals/run-ablation.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "eval.ts",
-        "kind": "code",
-        "path": "mcp_server/api/eval.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run-ablation.ts",
-        "kind": "code",
-        "path": "scripts/evals/run-ablation.ts",
         "source": "derived"
       },
       {
@@ -77,15 +62,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-ablation.ts",
+        "kind": "code",
+        "path": "scripts/evals/run-ablation.ts",
         "source": "derived"
       },
       {
@@ -185,31 +170,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Evaluation and Measurement has evolved significantly",
     "created_at": "2026-04-12T09:02:50.249Z",
-    "last_save_at": "2026-07-10T06:23:24.957Z",
+    "last_save_at": "2026-08-30T15:39:38.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4dce5d8138699621f5f1df1d4aa7226da263504a9ea3d116c485fc376498f643",
+    "source_fingerprint": "sha256:935e6f6e6590cfc41b2b2c50f83bebbc0dab3fd713266df0989c6b9c3b85b432",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53314c134074242cfd5660921bd2701732f250947887723aa4af0c98483464dd",
-      "plan.md": "76c30da2bb27601bf8b448ef3b1cacbdfa196eb82b898a66e703eabe337bdf74",
-      "tasks.md": "7b66d61007da45c48f536562f1bc50f762373a48598b086489b34517bd7c163b",
-      "checklist.md": "ffe849b09fcb14e6b869245ee7944f56d0cc8ac1b81462795adb1549bf1eb2b2",
-      "implementation-summary.md": "6d8a9fdba528843e165d8928313cb31e775427e099ad5548feb1f7bfb3f35e9f"
+      "spec.md": "adfb94b4ba0506f95602385220913f30088bc1caa16b53481707d5e27617a483",
+      "plan.md": "eb7c9898d50884c52ed46c9ec5c3b8b8f571da2e6c22edaedeb8ed99a5555df0",
+      "tasks.md": "f3f2c54ef3a82aab3f680f26008468cd7d1e40c722523a4a1d16e56f07544b8b",
+      "implementation-summary.md": "6812ba0d36afd14d24d2352f1be7bb807ae6011b97b38ee6caffc66a25b494c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

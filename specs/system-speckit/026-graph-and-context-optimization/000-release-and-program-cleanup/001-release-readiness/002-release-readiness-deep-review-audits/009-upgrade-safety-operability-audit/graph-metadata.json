@@ -39,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "review-report.md",
       ".opencode/commands/doctor/scripts/mcp-doctor.sh"
@@ -61,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,30 +177,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Recent release-readiness work moved stress tests, added matrix runners, refreshed install docs, and extended database and hook surfaces",
     "created_at": "2026-05-18T08:15:52.983Z",
-    "last_save_at": "2026-08-29T15:22:09.749Z",
+    "last_save_at": "2026-08-30T15:39:27.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9bcd66bb31e57d727fe929f713b534b5ed3a902621593dbffeb1d9d72907c9a0",
+    "source_fingerprint": "sha256:6a33fa5212f2f487b27c091d334eb04410a4815b239d77348eeb1c0f096ee8cd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11cb4e3714fb832f882a77e1b4a6ad4e2fc3a2e68045afc28c2936603c540838",
       "plan.md": "5c452f55e38000bfe6809cc45587b283510c2ed01361621e041675dbe7216977",
       "tasks.md": "5dc09fad10eedf6b2d991ed54a79b4a5d8a4b7dcfe7e4ac539fde7c5c912c329",
-      "checklist.md": "876f54668370549df1430b61457e27a2e4433d3fc248ef577c509a3054a3055a",
       "implementation-summary.md": "28ddfa45463f86caa3c7c2399e3b03efb7f313da94527d589a124db37da97ebb"
     },
     "last_active_child_id": null,

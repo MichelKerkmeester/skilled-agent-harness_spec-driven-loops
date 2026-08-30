@@ -19,10 +19,10 @@
       "design command implementation plan",
       "tasks",
       "phase 015 tasks",
-      "verification",
-      "checklist",
-      "phase 015 checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "phase 015 implementation summary",
+      "design commands implementation summary"
     ],
     "key_topics": [
       "design",
@@ -36,58 +36,22 @@
       "confirm",
       "plan",
       "tasks",
-      "verification"
+      "summary"
     ],
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/commands/design/interface.md",
-      ".opencode/commands/design/foundations.md",
-      ".opencode/commands/design/motion.md",
-      ".opencode/commands/design/audit.md",
-      ".opencode/commands/design/md-generator.md",
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/commands/speckit/plan.md",
-      "spec.md"
+      "implementation-summary.md",
+      ".opencode/commands/speckit/plan.md"
     ],
     "entities": [
       {
-        "name": "interface.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/design/interface.md",
-        "source": "derived"
-      },
-      {
-        "name": "foundations.md",
-        "kind": "doc",
-        "path": ".opencode/commands/design/foundations.md",
-        "source": "derived"
-      },
-      {
-        "name": "motion.md",
-        "kind": "doc",
-        "path": ".opencode/commands/design/motion.md",
-        "source": "derived"
-      },
-      {
-        "name": "audit.md",
-        "kind": "doc",
-        "path": ".opencode/commands/design/audit.md",
-        "source": "derived"
-      },
-      {
-        "name": "md-generator.md",
-        "kind": "doc",
-        "path": ".opencode/commands/design/md-generator.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -103,15 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,26 +155,61 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Thin Routers Each",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Router Contract",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Owned Assets",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five `/design:` commands remain flat single-file commands with routing logic and presentation content (Ask-first wording, STATUS templates, handoff grammar) mixed together",
     "created_at": "2026-07-06T18:57:35.656Z",
-    "last_save_at": "2026-07-09T10:02:44.525Z",
+    "last_save_at": "2026-08-30T15:39:12.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd6689899a2aaa34fe8f446e9e7675069b9c3b43db112e7eab837f32d6f89ca6",
+    "source_fingerprint": "sha256:40fbba3c5dbd497b23b260e65d35781cda3b24082d8ecccc8c6896b3bf05967c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ea0ba9e917b2f7f1dac4ce9ac92d31608def1640f7fa0946b8abbbfbd3bd5187",
       "plan.md": "bdf17c68c03ce89ba62fe16d991c8557c36184637026ff762dd9cc0d3419310f",
       "tasks.md": "3413494a71a15a981fbd7a3fe1a8a965028e8706e916620cb3012f7fa7cb5386",
-      "checklist.md": "1ae94a567cd7604c62ba5cd18e58f2dfc02d93c81c28a11d798853b0eacd76e0",
       "implementation-summary.md": "65e03804e6e55ec9329ac72bbe8c3e11e695e3ac23521ea417f19035768a33c5"
     },
     "last_active_child_id": null,

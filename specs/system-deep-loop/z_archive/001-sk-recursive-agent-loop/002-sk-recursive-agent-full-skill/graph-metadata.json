@@ -20,9 +20,9 @@
       "phase 2 loop plan",
       "agent improvement full skill tasks",
       "benchmark harness tasks",
-      "agent improvement full skill checklist",
-      "benchmark harness verification",
-      "agent improvement full skill decisions"
+      "agent improvement full skill decisions",
+      "benchmark harness adr",
+      "agent improvement full skill summary"
     ],
     "key_topics": [
       "agent",
@@ -42,6 +42,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "review/parallel-review-summary.md",
       "improvement/benchmark-runs/handover/run-001.json",
       "improvement/benchmark-runs/handover/run-002.json",
@@ -51,19 +55,37 @@
       "improvement/score-context-prime-candidate-001.json",
       "improvement/agent-improvement-dashboard.md",
       "improvement/experiment-registry.json",
-      "improvement/mirror-drift-report.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "improvement/agent-improvement-state.jsonl"
+      "improvement/mirror-drift-report.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -121,42 +143,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent-improvement-state.jsonl",
-        "kind": "file",
-        "path": "improvement/agent-improvement-state.jsonl",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,27 +189,38 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Primary Runtime Surface",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Baseline Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current loop is real and safe, but it is still narrow",
     "created_at": "2026-04-12T09:02:50.186Z",
-    "last_save_at": "2026-07-08T13:43:20.755Z",
+    "last_save_at": "2026-08-30T15:39:22.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:54133ea3029cefdd9c382b992c65e3af0aa641392ff1ad750945184bfccfd880",
+    "source_fingerprint": "sha256:d4602613cb6a73ae9b328cb82a2a8928323fee7abc8df1a8446dc9dc22240800",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa17a8475257462de45b0f9407c5bd6792637a366f613eca4da52ba930f6047f",
       "plan.md": "3c39ecc93940094d4f275a0c47b13b1b42d929045970796f51444c75dc0d2a37",
       "tasks.md": "6a853bfab37c0f91a8c2af58c616509da4bb90ce893de6fbb1c52c49b2664af5",
-      "checklist.md": "f506bdef281c4136afc16957ed5909d0af38d8904dddb3b5880cfb135bcb0972",
       "decision-record.md": "c182ce0d795f526d6b62f91c504d9a088caa0373412c6662b349fda1155a8c90",
       "implementation-summary.md": "b77e37b505752b1ff8327e65f45618e3729b838e2d721d3e61757ca39e4a47df"
     },

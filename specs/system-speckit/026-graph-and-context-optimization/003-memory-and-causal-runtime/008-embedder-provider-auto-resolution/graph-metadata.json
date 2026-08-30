@@ -201,7 +201,7 @@
     ],
     "causal_summary": "With `EMBEDDINGSPROVIDER=auto` (the committed MCP-config default, documented as a local-first cascade `ollama → hf-local → openai → voyage`), the mk-spec-memory daemon silently resolves to `hf-local` — which is unhealthy on this host (no running backend) — instead of the active, working `ollama` embedder",
     "created_at": "2026-05-27T12:33:58.373Z",
-    "last_save_at": "2026-08-29T15:22:16.561Z",
+    "last_save_at": "2026-08-30T15:39:31.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:92afcd115518050381112df5b5dc38f557ca8f61c823532901a250b1c310a8a9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85ba3a2073d940dcc392d5c6bfe5c9e672970feb8b54d3d84b557ba0a08ab81e",
       "plan.md": "b7892fdedefc5e2dfe308c69d24c7b4222b3451255cd03732b31853ecde1bb71",

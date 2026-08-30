@@ -20,9 +20,8 @@
       "shadow evaluation plan",
       "real feedback labels tasks",
       "query-scoped replay tasks",
-      "real feedback labels checklist",
-      "phase 3 verification",
-      "phase 3 implementation summary"
+      "phase 3 implementation summary",
+      "real feedback labels summary"
     ],
     "key_topics": [
       "real",
@@ -36,20 +35,16 @@
       "replay",
       "shadow",
       "tasks",
-      "checklist"
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
-      "mcp_server/handlers/checkpoints.ts",
-      "mcp_server/tests/adaptive-ranking-e2e.vitest.ts",
-      "handlers/checkpoints.ts",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      "handlers/checkpoints.ts"
     ],
     "entities": [
       {
@@ -59,33 +54,9 @@
         "source": "derived"
       },
       {
-        "name": "shadow-evaluation-runtime.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking-e2e.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/adaptive-ranking-e2e.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -95,9 +66,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "handlers/checkpoints.ts",
         "source": "derived"
       },
       {
@@ -195,27 +172,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`buildReplayRanks()` originally derived replay relevance from the shadow proposal itself",
     "created_at": "2026-04-12T09:02:50.333Z",
-    "last_save_at": "2026-07-10T06:22:18.347Z",
+    "last_save_at": "2026-08-30T15:39:39.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f88fcffeb299f377bcdc7243433f5129cc3df775d3fbacbce0447e4cdb90568",
+    "source_fingerprint": "sha256:6067a126985956b29c448095ee644d06176f141715b75a33bd62aaa44b0df0d4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e4e5000bb40c3ab5bd5e4a9a3a42fb7905b92747d1c3f96fc4443dcc3dcabb44",
-      "plan.md": "2c3489c1c1436ec5656038b331fd7ca6086ed30a7c3a64dbd8b8aeeebd7f6ec4",
-      "tasks.md": "acee1b9d5af98ea462724bf5445f924a44d7d6ef38ee811fcdac9efc2ebbf0aa",
-      "checklist.md": "a7f2391040fe2cfd719a485dccc7c03cea000baa4f868d17e52fac2816a5efab",
-      "implementation-summary.md": "19ebca976f968f21586376fd28535ff6eb55efe608d3dcc91787b5b762c6b82a"
+      "spec.md": "5b7bfd1332016be057d6905eb00bf94664f28f21a57ea5d55fdbe859ebe400b4",
+      "plan.md": "43186259ea2e06e7ab59416d0f77691e5570acfab7032c7f9b9c2be16e58bc3f",
+      "tasks.md": "629f89718e635ef90e8888a8a8cbf4573a0adb4364260314d54d75eca247becf",
+      "implementation-summary.md": "703ee79e608a07bd3d5339e1251a1ff725b570124775781ad421f9d2392580f8"
     },
     "last_active_child_id": null,
     "last_active_at": null

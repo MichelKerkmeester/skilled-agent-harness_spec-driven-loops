@@ -16,7 +16,6 @@
       "cursor hook symlink gotcha",
       "cursor hooks discovery mirror plan",
       "cursor hooks discovery mirror tasks",
-      "cursor hooks discovery mirror checklist",
       "cursor hooks discovery mirror implementation",
       "cursor hook symlink gotcha finding"
     ],
@@ -31,40 +30,20 @@
       "gotcha",
       "plan",
       "tasks",
-      "checklist",
-      "implementation"
+      "implementation",
+      "finding"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-      ".cursor/hooks.json",
-      ".cursor/hooks/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".cursor/hooks.json",
+      ".cursor/hooks/README.md"
     ],
     "entities": [
-      {
-        "name": "hooks.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".cursor/hooks/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,15 +63,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".cursor/hooks/README.md",
         "source": "derived"
       },
       {
@@ -190,26 +175,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The operator asked for a `.cursor` hook folder \"with the name that's conventional according to official docs,\" with every hook this repo has symlinked into it",
     "created_at": "2026-07-24T17:40:29.498Z",
-    "last_save_at": "2026-07-27T03:52:16.349Z",
+    "last_save_at": "2026-08-30T15:39:07.538Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97ed706eafe0cd89dac4042d53f6d59b6c25b0b328b662cfc9fbef93451a660d",
+    "source_fingerprint": "sha256:670a5eccc2bb4d3fcfed8140779d0d2b145b8a72bea8ce0b3803999be6e9a480",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a1dc0f7b8e9922d8db98132fd3edcc30bb392dc0d9893f1f464c3ec3f08b456e",
       "plan.md": "9fc501a6d65364b754904c13ef763ef1cfcbec024ad72f642d69e5462db20197",
       "tasks.md": "55c02de3f1272d01d6c4dbc7384ee4786ec5df95b0f4cca0af5f6bbdeabbff7b",
-      "checklist.md": "70a7af5a263588a731c1c2ae29ca64fe7ddd5e1d605f9d965ac08ec0609830d0",
       "implementation-summary.md": "0232dd84611590d8f98ed7bba4d28ea7d7e36d1e0312c6f85405f48c6a8471d7"
     },
     "last_active_child_id": null,

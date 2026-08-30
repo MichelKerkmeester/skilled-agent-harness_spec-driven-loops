@@ -21,8 +21,6 @@
       "failed embedding cleanup plan",
       "036 tasks",
       "failed embedding cleanup tasks",
-      "036 checklist",
-      "failed embedding cleanup checklist",
       "036 implementation summary",
       "failed embedding cleanup summary"
     ],
@@ -37,25 +35,18 @@
       "historical",
       "plan",
       "tasks",
-      "checklist",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,9 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -177,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built Packet",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Baseline Command",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packets 037, 038, and 039 restored llama-cpp embedding-worker health and error behavior, but the active llama-cpp SQLite profile still contains historical rows that did not embed successfully before the worker was fixed",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-08-28T15:59:35.610Z",
+    "last_save_at": "2026-08-30T15:39:29.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e69d6f583b537d439f7ea00ad93a59c4ef853705739b9167ae2dc2552231ba13",
+    "source_fingerprint": "sha256:eb440b76a705d203317d0d6b0ea2efd3fedefcaeac6b568e8706542e3965e7ea",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "afc15eb13aa01f9d32d55d86c7557ac5dde9a21c8a2538c87bb9a8e2c9d9a756",
       "plan.md": "a8b7f909ac44fe346b12bb6299f06aab91568fbd87e3afd96e7888cfb5e15e7c",
       "tasks.md": "45a7de4be7cf220d6cf5fc76b30d840c14eb581c8655ad5c10c20efc50c08dcb",
-      "checklist.md": "25e2ca3c591353d64525ba5e91cf30c74350d558dc95d953375f38579ec74e73",
       "implementation-summary.md": "ae47a5ddee4b2f2434d5a3148565e3bcb6fb0faa2543d98788d351f84a9422b2"
     },
     "last_active_child_id": null,

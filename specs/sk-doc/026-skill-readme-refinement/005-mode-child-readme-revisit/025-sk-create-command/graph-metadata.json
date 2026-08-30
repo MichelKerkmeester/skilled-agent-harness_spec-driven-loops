@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The sk-create-command skill README still carries the older tabular reference-card style and predates the pilot standard set by the mcp-obsidian README",
     "created_at": "2026-08-04T08:34:48.121Z",
-    "last_save_at": "2026-08-30T07:20:31.806Z",
+    "last_save_at": "2026-08-30T15:39:17.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3b8b401db3db752af238c6faaef5d9836aa6335dcb72ed25a138cbfcc4dfdd08",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7a073c89397ed13c337834968dfd7d3d6f2cfbe241652e3174ad73e796b94eaa",
       "plan.md": "da7a16e0858ee7f1641f95af83c3b2ba5becbca9152a89bce761f0b460b473c1",

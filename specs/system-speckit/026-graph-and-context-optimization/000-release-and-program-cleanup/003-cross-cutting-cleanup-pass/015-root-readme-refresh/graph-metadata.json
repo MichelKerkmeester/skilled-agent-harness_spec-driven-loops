@@ -41,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "README.md",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,27 +187,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The root `README.md` described stale runtime counts and omitted several recently added MCP server capabilities",
     "created_at": "2026-04-29T18:48:57.000Z",
-    "last_save_at": "2026-08-29T14:56:24.622Z",
+    "last_save_at": "2026-08-30T15:39:27.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:2f656a1bc92e8642ae445693028cef5327a6e8e3b43bb921375023b70dc247f6",
+    "source_fingerprint": "sha256:229418229ef0912c2970bafacf500f8af4839111eb8418f1e61bb5c70e061a4c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75d4908a2101478c2bf48ac74210a7ce4186d458e48c85d737383655df4eae96",
       "plan.md": "2279559c9fa35fdf2c3a2869a7ef05e09940d378ab4218130a2341ec51a49723",
       "tasks.md": "74e502584fe2fc6ab1e5e22b05d0a40a0288ea26f31cda8707efee76c5e4e851",
-      "checklist.md": "999ceebd4ed091894ba104cc17c2d6ebc15b83e91d11e1b15113434df360f21b",
       "implementation-summary.md": "6943ea8b584dc9df29af030fd661f1dae4ec6b667f46805ae92a1d197ab43263",
       "resource-map.md": "764bc3b2637c1295ead20fc291be47f6b349f038d06d7ff449c3a9a321b79701"
     },

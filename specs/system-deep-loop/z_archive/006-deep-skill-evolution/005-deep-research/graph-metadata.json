@@ -42,9 +42,9 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "004-iteration-ordering-fix/spec.md",
-      "005-uncovered-questions/spec.md",
-      "spec.md"
+      "005-uncovered-questions/spec.md"
     ],
     "entities": [
       {
@@ -92,17 +92,18 @@
     ],
     "causal_summary": "This cluster groups 6 sub-phases that share a single thematic focus",
     "created_at": "2026-05-23T09:52:56.265976Z",
-    "last_save_at": "2026-07-08T13:43:40.858Z",
+    "last_save_at": "2026-08-30T15:39:23.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:03e3b94490a935a1648d960026e92244fff9c75f6626b2d118557269badd0c75",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c3d8120313eecc2ad0d6824c52b5ddff2108840a08207009bafab88af9d4adba"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/006-deep-skill-evolution/005-deep-research/006-hygiene-fix-pack",
     "last_active_at": null
   }
 }

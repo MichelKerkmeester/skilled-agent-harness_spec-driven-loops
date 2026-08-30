@@ -201,7 +201,7 @@
     ],
     "causal_summary": "`.opencode/skills/mcp-tooling/README.md` still carries the older tabular reference-card style: an AT A GLANCE table, a QUICK START block and a short VERIFICATION section describe the hub as a route map before any outcome",
     "created_at": "2026-08-04T08:34:35.776Z",
-    "last_save_at": "2026-08-30T07:20:18.647Z",
+    "last_save_at": "2026-08-30T15:39:17.478Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:583e36998e4d3e694ef79b08ee6bc9b3ca5f4f4d5721591386710158fe56a9f1",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54eabe56038111882c4eabe5027ba454e1b48cff3acb194bcc21626bf88000bd",
       "plan.md": "6eb533a0c749dbb94831cce96bcedd6d7235e8a13b8bcffb042f2aa2e20f1395",

@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The scripts tree is mostly already compliant, but its regression dataset is named",
     "created_at": "2026-07-14T15:18:07Z",
-    "last_save_at": "2026-08-30T07:19:49.075Z",
+    "last_save_at": "2026-08-30T15:39:16.822Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:44591c984148bd761172b899d9045e113bd54d67a89223feb45c78897f618508",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "367d0f16ac4fd4cf7192112c2efeaef8550cba30eece0b74d31aa6374b38e95e",
       "plan.md": "6d95792da6bbe9954d0aa2cdf5a0357416a638895c73a23de65b466a070aa0c6",

@@ -33,25 +33,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
     ],
     "entities": [
-      {
-        "name": "framework.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
-        "source": "derived"
-      },
-      {
-        "name": "scoping.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -68,6 +55,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
         "source": "derived"
       },
       {
@@ -181,7 +174,7 @@
     ],
     "causal_summary": "Publishes the two-axis scorecard and remediation backlog, reconciles all packet status metadata, and runs recursive strict validation so the benchmark ships as a coherent, evidence-backed packet.",
     "created_at": "2026-07-14T20:37:00.688Z",
-    "last_save_at": "2026-07-16T16:34:18.455Z",
+    "last_save_at": "2026-08-30T15:39:20.295Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,6 +183,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:bb46c04b845c6f0f83c15838d09013095ba135341fba01dbd36276eda08a8da8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fd3a240a51ae879091ad6fd80f3f94777d001e6c4f1e9d5a9b35b182d326fb38",
       "plan.md": "e623994e943ee0573c60e5db858b675892a467d3d8347afab7f6cda54f97bfff",

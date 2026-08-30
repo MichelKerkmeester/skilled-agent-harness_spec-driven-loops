@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced identical retrieval metrics to three sig figs:",
     "created_at": "2026-05-23T11:55:15.634Z",
-    "last_save_at": "2026-08-29T15:22:16.080Z",
+    "last_save_at": "2026-08-30T15:39:31.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c0aca939feafdb69ebc5f8586cc89dafdfe030467e01ea8c91a333b32a22d24d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dd649fcc0706658d192a1710accdbd92aab89ee9b5e58afbc04e199228ad609d",
       "plan.md": "73c0e2abfebe5d69b013cd83e7bb63786920a9bd12ac83160e1d8cbaf1cf38db",

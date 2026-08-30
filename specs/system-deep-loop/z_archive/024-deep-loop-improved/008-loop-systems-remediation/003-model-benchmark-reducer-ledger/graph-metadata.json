@@ -36,19 +36,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_model-benchmark_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_model-benchmark_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -62,15 +55,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -186,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Autonomous",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The autonomous model-benchmark workflow sends benchmark outputs to `.opencode/skills/sk-prompt-models/benchmarks/{runlabel}`, outside `{specfolder}/improvement`",
     "created_at": "2026-06-29T10:43:18Z",
-    "last_save_at": "2026-07-16T16:32:23.262Z",
+    "last_save_at": "2026-08-30T15:39:25.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:80ec0efe31846e8631d1e5510f22e06522f19dca477ab3f71ae58bb4666d3230",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "710ea889ba169aa6dfe251251794a5a809d4f4e1dad883b4e0065971313b0650",
       "plan.md": "c0e8ff1a869fd534ca26e28c00ed7acff93f0c3cf72cf2c39deb6a6ddfbd610c",

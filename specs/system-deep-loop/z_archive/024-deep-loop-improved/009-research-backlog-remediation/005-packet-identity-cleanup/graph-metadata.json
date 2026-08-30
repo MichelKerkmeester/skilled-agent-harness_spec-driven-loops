@@ -37,8 +37,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -54,15 +54,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -182,7 +182,7 @@
     ],
     "causal_summary": "The packet was migrated from `skilled-agent-orchestration/123-agent-loops-improved` to `system-deep-loop/024-deep-loop-improved` (with an intermediate/parallel name `156-agent-loops-improved` also in circulation per triggerphrases and the native lock file)",
     "created_at": "2026-07-01T07:22:02.812Z",
-    "last_save_at": "2026-07-16T16:32:09.897Z",
+    "last_save_at": "2026-08-30T15:39:25.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,6 +192,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:baae8a24db3ace4be26f34100504df426b465d8386afb892a9ab0424e9b15f94",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "26ce29e181ef93ad99e27cbf5bac4098a838ae26418412d9cb248e7fab6bc732",
       "plan.md": "3ee129ba771db034b6d3541b370f65ba8e9c28f19d271b038f192951bd882430",

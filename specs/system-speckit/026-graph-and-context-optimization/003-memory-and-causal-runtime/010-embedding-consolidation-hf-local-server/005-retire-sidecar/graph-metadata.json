@@ -36,57 +36,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "mcp_server/lib/embedders/execution-router.ts",
-      "mcp_server/lib/embedders/execution-router.testables.ts",
-      "mcp_server/handlers/memory-crud-health.ts",
-      "mcp_server/tests/embedders/execution-router.vitest.ts",
-      "mcp_server/tests/stdio-logging-safety.vitest.ts",
-      "mcp_server/lib/embedders/README.md",
-      "mcp_server/tests/embedders/README.md",
-      "handlers/memory-crud-health.ts",
-      "lib/embedders/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handlers/memory-crud-health.ts",
+      "lib/embedders/README.md"
     ],
     "entities": [
-      {
-        "name": "execution-router.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/embedders/execution-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "execution-router.testables.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/embedders/execution-router.testables.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "execution-router.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedders/execution-router.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stdio-logging-safety.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/stdio-logging-safety.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "mcp_server/lib/embedders/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -109,6 +66,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/embedders/README.md",
         "source": "derived"
       },
       {
@@ -194,11 +163,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one-release",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one-time",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Once hf-local is a client for a launcher-supervised model server, the sidecar branch becomes redundant lifecycle machinery",
     "created_at": "2026-05-29T05:06:24.645Z",
-    "last_save_at": "2026-07-17T17:19:30.268Z",
+    "last_save_at": "2026-08-30T15:39:31.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:65f51a94b0d3bc4170d1e3292d127c809d4906b4ad7713be46a001f2989246b6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7797e4b12896dcd244ade38461df2af23e76bde5867b4ffaf917633a2c91989c",
       "plan.md": "a981228893fe4d85b5ee47c3e9911453cfe363eee2664d0a3455d92d91ed9e13",

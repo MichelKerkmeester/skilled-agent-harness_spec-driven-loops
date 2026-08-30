@@ -18,8 +18,6 @@
       "deep improvement common services plan",
       "deep improvement certificates and receipts tasks",
       "deep improvement common service tasks",
-      "deep improvement certificates and receipts checklist",
-      "deep improvement common service verification",
       "deep improvement common certificate implementation",
       "deep improvement offline verifier implementation"
     ],
@@ -41,22 +39,15 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -72,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -174,42 +165,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Deep Improvement Common Certificates",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the shared Deep Improvement Common Services certificate and receipt contract over the typed event-ledger substrate: per-run certificates, per-transition receipts, replay fingerprints, independent offline verification, and the evaluator, canary, and promotion services reused by agent-improvement, model-benchmark, and skill-benchmark.",
     "created_at": "2026-07-16T03:43:36.562Z",
-    "last_save_at": "2026-08-18T11:07:19.286Z",
+    "last_save_at": "2026-08-30T15:39:21.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c47abe5846deba4606824b8f116035a5098037443c4803d2fb9150f04ae07481",
+    "source_fingerprint": "sha256:e67dc6df6eb077250593601a2d13b279b8bee294a39d27b2d96776dc0a97ff0a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c620e49a3f03de0c7af1b2a4eca16018aad39a8d0c15cb2f2c309fbef9c13aeb",
       "plan.md": "8c86ffff97a24dea3c0aa7f51ecb41737bb1e5f14999fc5ac06219ebcce52182",
       "tasks.md": "ad9d504acc8dc9f0faeb9f5638ff33046e6b7b8ec62da3a6d3d9b183c2c6d9bf",
-      "checklist.md": "60ebf199ac11ea146e6f2f1b697b067122c52d52f3d8d9ee967e5462bf9b694c",
       "implementation-summary.md": "d65544969a804e796324b66662485837b350f29921312048f6a200c68460ad55"
     },
     "last_active_child_id": null,

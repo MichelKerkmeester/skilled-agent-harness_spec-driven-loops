@@ -17,7 +17,6 @@
       "specs root migration design",
       "resolver registry inversion",
       "migration plan tasks",
-      "migration plan checklist",
       "migration plan decision record",
       "topology flip decision",
       "migration plan summary"
@@ -39,19 +38,17 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
-      "checklist.md",
-      "scratch/.gitkeep",
+      "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -67,21 +64,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": "scratch/.gitkeep",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -187,31 +172,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fresh Opus",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 001's research recommended inverting and reusing the existing `spec-root-` migration subsystem (`spec-root-registry.ts`, `spec-root-migration.ts`, `spec-root-migration-manifest.ts`, `spec-root-write-guard.ts`) rather than hand-patching literals",
     "created_at": "2026-08-06T13:15:01Z",
-    "last_save_at": "2026-08-08T10:04:10.635Z",
+    "last_save_at": "2026-08-30T15:39:36.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ea147dd6dc66a7fd4b72c97ae8c0787cbeca480087d06fb479c14b9281ef50d",
+    "source_fingerprint": "sha256:baed06dad09e47767efcadc53725364fdf1dc1ca6df0a061f1303922ebededcf",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2ea8a77fe5928ca18a3a7e984e99654a9673cb0de2893c99440f5b687f8e2d76",
       "plan.md": "c9e58ca545b54bb6ca4203c6d7c784f61a9f3a5bf439c6d9468542edd350fc1f",
       "tasks.md": "61dc88b0ace120da27fe2c9166ad89882c714d6d146a648a48730f19b46cff84",
-      "checklist.md": "a04a62572f3f6b3c540662a24edc60c41d7e7e59ff2636ac9e4a351718a94f53",
       "decision-record.md": "dacbeda02b6efc585ae46f9cc9a8765829a1eaa282173eb32ecbe73a7b9b2478",
       "implementation-summary.md": "c08a1627914ba6eec88c5dc5aba5e5e690b3fee61b9354b24edfefdf43052043"
     },

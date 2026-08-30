@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Phase 003 repairs the code paths broken by the 002 move, authors the standalone-root metadata (graph-metadata + leaf-manifest.config, generated leaf-manifest + leaf-aliases), and proves the skill functional (173/173 backend tests, styles engine resolves, Class-S contract passes).",
     "created_at": "2026-08-19T05:52:32.952Z",
-    "last_save_at": "2026-08-29T14:54:13.021Z",
+    "last_save_at": "2026-08-30T15:39:13.499Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8c91f5640ed1bfa57f5ee23a596fd430f68e8f5bc4b2bf561aa51e0ec1f840f8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "51c5886290c7b9840ba9d5a7d023bb3c122974be3a22ebf28f989edeef677408",
       "plan.md": "bb931966bad741f6a5e23e52b552c533e52a815f2281886bd5b2a4b97949f7cf",

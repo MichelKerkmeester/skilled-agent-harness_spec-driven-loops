@@ -3,7 +3,6 @@
   "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
   "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike",
   "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,9 +20,8 @@
       "cocoindex-code delta",
       "023F tasks",
       "upstream delta tasks",
-      "023F checklist",
-      "upstream verification",
-      "023F summary"
+      "023F summary",
+      "upstream rebase spike summary"
     ],
     "key_topics": [
       "023f",
@@ -34,26 +32,49 @@
       "plan",
       "delta",
       "tasks",
-      "checklist",
-      "verification",
       "summary",
-      "local"
+      "local",
+      "soft",
+      "fork"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/upstream-sweep.md",
       "research/delta-classification.md",
       "research/dimensions-knob-removal-impact.md",
       "research/rebase-plan.md",
-      "research/cross-packet-impact.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "research/cross-packet-impact.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "upstream-sweep.md",
         "kind": "doc",
@@ -82,36 +103,6 @@
         "name": "cross-packet-impact.md",
         "kind": "doc",
         "path": "research/cross-packet-impact.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -197,26 +188,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Add Svelte",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The local `cocoindex-code` soft fork reports `0.2.3+spec-kit-fork.0.2.0` while upstream `cocoindex-code` has reached `v0.2.33`",
     "created_at": "2026-05-19T20:22:26Z",
-    "last_save_at": "2026-08-28T23:00:58.090Z",
+    "last_save_at": "2026-08-30T15:39:30.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8920662ba4387688206bbbb7d2832115525d4a831a8a5892ceeaa855091911c",
+    "source_fingerprint": "sha256:c7cf65cf53d53fc7252562bedff99561c0365fe49c20a1a95b5465cc2f08a4d9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7088f9a81337c0841336f5f5e31ca33f760209d359a2548763e919a84eaf628",
       "plan.md": "8d1b7b4d24e529e17e2890b801d044884f0b59200f1b94c9e523e3619707c305",
       "tasks.md": "376967dc012b04d6baeb85576ebd7d9b152827f0386df95ccb27d41d0cf7398a",
-      "checklist.md": "f949f9a2a574af1d03c2baaf7147ee737eb421e3ac66ef108bd23e13b8790578",
       "implementation-summary.md": "c6331de88af2bb1ffc17ede884badb46221ef4d2b44c2317c3f9baa851c433b8"
     },
     "last_active_child_id": null,

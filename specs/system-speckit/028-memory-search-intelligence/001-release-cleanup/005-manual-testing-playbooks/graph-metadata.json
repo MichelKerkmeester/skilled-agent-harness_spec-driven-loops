@@ -19,8 +19,6 @@
       "manual-testing-playbooks cleanup plan",
       "028 release cleanup manual testing tasks",
       "manual-testing-playbooks cleanup tasks",
-      "028 release cleanup manual testing checklist",
-      "manual-testing-playbooks cleanup checklist",
       "005-manual-testing-playbooks implementation summary",
       "028 release cleanup 005-manual-testing-playbooks"
     ],
@@ -34,9 +32,9 @@
       "plan",
       "manual-testing-playbooks",
       "tasks",
-      "checklist",
       "005-manual-testing-playbooks",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,10 +42,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "mcp_server/stress_test/search-quality/corpus.ts",
-      "handlers/memory-context.ts",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handlers/memory-context.ts"
     ],
     "entities": [
       {
@@ -69,27 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "corpus.ts",
-        "kind": "code",
-        "path": "mcp_server/stress_test/search-quality/corpus.ts",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "memory-context.ts",
         "kind": "code",
         "path": "handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -189,30 +173,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The every manual testing playbook document across skills and repo-level packages needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-11T18:40:35.746Z",
+    "last_save_at": "2026-08-30T15:39:34.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17046d2ec9eeafa533b02aaacb109ee5fe8b3cf9150f15e886120dc8e97494a3",
+    "source_fingerprint": "sha256:0bba7a46c4ef4c649b4790a93f35e4e00d74865dcb3cc793f5d103834ab9bc2a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4613dd522c4c248c8ee028bd31bd6e86112ce6551d06710e41db1f7c39996f8",
       "plan.md": "6c66a8480f085f8f1391a515d4126508874b17535eb9d365aa62be999de5a081",
       "tasks.md": "03561d2c681dbe7a9ea51699b38f39626851361209e83ebbc95cca335282d3e0",
-      "checklist.md": "4a04b9e5621222dd926e8033ffaef4d6c5dea650986abb300eae82f54bb3f6de",
       "implementation-summary.md": "13b4f9e98c504be5216d54f97e86234886e099d0ecc5561ed43a1944f8946a01"
     },
     "last_active_child_id": null,

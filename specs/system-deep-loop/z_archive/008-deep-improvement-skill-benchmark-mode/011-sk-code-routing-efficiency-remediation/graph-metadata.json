@@ -18,7 +18,6 @@
       "sk-code remediation plan",
       "surface-slice research plan",
       "sk-code remediation tasks",
-      "sk-code remediation checklist",
       "sk-code remediation summary"
     ],
     "key_topics": [
@@ -32,54 +31,23 @@
       "plan",
       "research",
       "tasks",
-      "checklist",
-      "summary"
+      "summary",
+      "routes"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.md",
-      "research/research.md",
-      "research/iterations/iteration-001.md",
-      "research/deep-research-strategy.md",
-      "research/deep-research-state.jsonl",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-state.jsonl"
     ],
     "entities": [
-      {
-        "name": "skill-benchmark-report.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -99,15 +67,39 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
@@ -193,29 +185,34 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-code routes to the correct surface and resources, but over-loads: the live run read 2-4x the resources the scenario needed (D3 42), and the D4 ablation showed the broad load is net-negative on routine tasks (LS-001 skill-on 0.82 vs skill-off 0.95) while helping domain-pattern tasks (CS-001 skill-on 0.88 vs skill-off 0.78)",
     "created_at": "2026-06-01T18:29:41.530Z",
-    "last_save_at": "2026-07-08T13:43:14.786Z",
+    "last_save_at": "2026-08-30T15:39:23.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d7bd4444473eb150b4cfd3a7a6dc7f6734a1163d91a961d931e843140be4c96c",
+    "source_fingerprint": "sha256:56ad5e87d6b3da34737c3aa6bfd731cc7d5e33b6a1cee35f59bb5947fc9e14fc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "47cf4470fc9203cc7db26e1da694e0781d9d621e4e8f7927e8ffc7b137e73240",
-      "plan.md": "45ba5420054f8fa6f2e6904b32a0110a8db19ba4a69d35780910c854232eba82",
+      "spec.md": "a33125cfec7af9387890c2c179f80c32d2b61784783f956f579cae4d32d4db91",
+      "plan.md": "a7576f0150c1b766b67287e9afcea45f313cbeea312412709926108439994d5e",
       "tasks.md": "1716e8eaddd480dd1227a8da78c444f21d27b5f8daa1454e3ec522e4b51f18f0",
-      "checklist.md": "89d0223250e37d1d3b57407ba75b46c291838fc5457c9b990254d19a4cf09606",
       "implementation-summary.md": "559fde6283f3dfe36a76a988961be6aee067b90c909aa9dd47e2a3dd7dfc1867",
-      "research/research.md": "3692da960bf073435a6cbd1796491931f4a050514bc96ac62dc9b0adc8e6699d"
+      "research/research.md": "b2162827e36cef067d06ad6408a70af911e371bd42d9f12d9be862e131d63e46"
     },
     "last_active_child_id": null,
     "last_active_at": null

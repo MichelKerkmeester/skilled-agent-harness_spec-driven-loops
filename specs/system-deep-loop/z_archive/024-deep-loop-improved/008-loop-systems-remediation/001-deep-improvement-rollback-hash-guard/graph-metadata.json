@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`rollback-candidate.cjs` restored the pre-acceptance backup without checking whether the target being rolled back from still matched a stored accepted-state hash",
     "created_at": "2026-06-29T10:43:17Z",
-    "last_save_at": "2026-07-16T16:32:22.392Z",
+    "last_save_at": "2026-08-30T15:39:25.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:77827ee81e811a2ae6627d0dfeb7df952be9df85cf0259461c41a8bca80dcb9d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "098cda3f59442795a5afb9cc3ae411a2125da2bb11f9356c18c6416d02fdc05f",
       "plan.md": "75eee79d865887acdea42f9b5358715db702c2203724b45a7d90b65c99b1cf0c",

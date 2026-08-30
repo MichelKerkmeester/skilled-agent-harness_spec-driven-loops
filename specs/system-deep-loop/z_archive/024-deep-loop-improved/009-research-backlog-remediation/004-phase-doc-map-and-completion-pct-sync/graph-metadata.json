@@ -36,35 +36,17 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/sync-phase-map-status.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/sync-phase-map-status.vitest.ts",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/sync-phase-map-status.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/sync-phase-map-status.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-phase-map-status.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/sync-phase-map-status.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sync-phase-map-status.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/sync-phase-map-status.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -77,6 +59,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-phase-map-status.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/sync-phase-map-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sync-phase-map-status.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/sync-phase-map-status.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Every phase-parent 002-007 has a \"Phase Documentation Map\" table in its `spec.md` whose Status column still reads \"Draft\" for every child row, even though (a) the parent's own header METADATA claims Status=Complete/completionpct=100, and (b) every child's own `spec.md` independently claims Status=Complete with a matching, verified `implementation-summary.md`",
     "created_at": "2026-07-01T07:20:35.904Z",
-    "last_save_at": "2026-07-16T16:32:09.230Z",
+    "last_save_at": "2026-08-30T15:39:25.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f6e89a60003c0853754ec237c7ef2b20a4df9e042d2dd0252ecaecd7584b7972",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "97b2b574afc165e9d6b738d2685487f987d43969c67f950e0b9681974a0a2be0",
       "plan.md": "570e62f99bb996d7bc0a77922c0444c71c0dac3aaa4722553db53b5a8a8b6a50",

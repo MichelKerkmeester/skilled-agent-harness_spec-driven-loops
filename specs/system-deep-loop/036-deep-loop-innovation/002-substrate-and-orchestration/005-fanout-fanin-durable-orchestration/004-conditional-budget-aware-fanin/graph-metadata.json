@@ -18,8 +18,6 @@
       "dynamic fan-in implementation plan",
       "conditional budget-aware fan-in tasks",
       "dynamic fan-in tasks",
-      "conditional budget-aware fan-in checklist",
-      "dynamic fan-in verifier",
       "conditional fan-in implementation",
       "budget-aware fan-in evidence"
     ],
@@ -34,8 +32,8 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "verifier"
+      "evidence",
+      "replay-stable"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -162,31 +153,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Conditional",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,22 +179,21 @@
     ],
     "causal_summary": "Plan replay-stable conditional fan-in that awaits only enough durable results, stops on typed-budget floors or evidence sufficiency, disposes outstanding leaves safely, and records the exact reducer input decision.",
     "created_at": "2026-07-16T03:43:50.574Z",
-    "last_save_at": "2026-08-29T13:09:50.136Z",
+    "last_save_at": "2026-08-30T15:39:20.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db3b44b66944419c6b4fdafdf12c1ced76eac23857ab1e45168f50580b1d9991",
+    "source_fingerprint": "sha256:82f978434f2f71c28840c92e4f8b970f8e22d84b75ce43d878814d9532a3bc2e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95a454d49d5fc6ba6c890f76872a0c48891e5a0bbc3de0b3348ef0f1d4fe0880",
       "plan.md": "a3a543029db0bebbadf665802b86d863ca728c9d618588e6be0f72697f5a480b",
       "tasks.md": "9c07fdd3284b500bf3ae9ed0962980dab937e7d7cadd605b780f4608190cd3f4",
-      "checklist.md": "2788bc27f8498430dd598d9948e96bceaf76c2d66de455fbb755fc0f6603a9f9",
       "implementation-summary.md": "5eb14557d5c28d4997fdefd86a7e4a938d8d31aa4372277ef8c6051bbcd2dc46"
     },
     "last_active_child_id": null,

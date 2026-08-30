@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The advisor runtime is rooted at mcpserver/, and the current surface also contains the non-Python directories",
     "created_at": "2026-07-14T15:18:07Z",
-    "last_save_at": "2026-08-30T08:04:31.360Z",
+    "last_save_at": "2026-08-30T15:39:16.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:dc9fa948dfdfc3313161391d6044eadb351861ac9a665d157fe9b9e013342882",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ed6bf3f147232ec7983497ae29e692ff8b709c55a61423a81b8a4d8638d97432",
       "plan.md": "93645fa53c9a3a7f9f8b1a066643e0edc99c95e2fc4a396205d0013f11bccc03",

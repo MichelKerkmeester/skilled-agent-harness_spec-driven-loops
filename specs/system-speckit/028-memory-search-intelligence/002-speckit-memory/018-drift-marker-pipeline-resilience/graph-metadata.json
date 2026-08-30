@@ -20,9 +20,7 @@
       "memory drift marker path divergence plan",
       "drift marker pipeline resilience tasks",
       "stale lock breaking tasks",
-      "marker path resolution tasks",
-      "drift marker pipeline resilience checklist",
-      "stale lock breaking checklist"
+      "marker path resolution tasks"
     ],
     "key_topics": [
       "drift",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
       "core/config.ts"
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -165,24 +156,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -193,26 +166,31 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "F3 — Git-hook lock directory has no stale-lock recovery",
     "created_at": "2026-07-09T15:11:33.252Z",
-    "last_save_at": "2026-08-29T14:54:15.839Z",
+    "last_save_at": "2026-08-30T15:39:35.048Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf172d858af66b21a409897064053e0992149798530aabd2aae5e457eb5b0574",
+    "source_fingerprint": "sha256:5d65b03c21911bb58c751166915a88ec2541676b6a244e8fa4c1bed4e0ab61a6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "487d30cf30c24bf5ba7b851e4ed8e5c520c8b166eca2190aaf7ea380b57b3ac7",
       "plan.md": "934d78d7ca7bc61cc878635d22545933aa793b29416ee1344837078fbb4ba0d3",
       "tasks.md": "cd0c4b316396dd03b3dc1c45161ff9902ee3ac6856cb0dc89f01826523d36e8e",
-      "checklist.md": "fb6a65c5d467298017a46165586531e50102856e055d5db7eb6e890ee8fad815",
       "implementation-summary.md": "7010ad442081ed9384536c231813c04fbaf3a694297a5af055242531dbaa9704"
     },
     "last_active_child_id": null,

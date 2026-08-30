@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/retrieval-class-routing-benchmark.mjs",
       "results/metrics.json",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`SPECKITRETRIEVALCLASSROUTING` is built, default-off, and never measured against the real corpus on the production path",
     "created_at": "2026-06-24T04:58:22.472Z",
-    "last_save_at": "2026-08-29T15:22:23.753Z",
+    "last_save_at": "2026-08-30T15:39:36.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f3bcb704b9bceec2ef96930ca3503c2c70788fed0530a51c1aa5385a93e79b6",
+    "source_fingerprint": "sha256:750fcb4da53d0978396767df7065c2f9308912487ebc5f1bbf6d4e06e8f85b6f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1bbc1f6aa30d0fc5340427d9ffc626c9075fb28da237bba802f849e6827d985c",
       "plan.md": "2aad12c47e56abf895712c7f957313c861592f1d03efd37b16d31e9260a07a4d",
       "tasks.md": "b4af1609bde278d055b7e958f3f67f4359e8182b674ecb75fd91f9b0e7fd071d",
-      "checklist.md": "026e1c73ac3723e6a2e37c3e897b508d7b7b11ab28121571cbc5028180b70ed0",
       "implementation-summary.md": "b29339ec8f775bd6de54064c88273a3c123426b5224adf8ae494054d8e307494"
     },
     "last_active_child_id": null,

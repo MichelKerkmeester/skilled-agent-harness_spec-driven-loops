@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/leaf-manifest.json",
@@ -74,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,27 +194,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Derivation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every document that tells an agent which external executor exists and how to invoke it is wrong somewhere",
     "created_at": "2026-07-30T19:29:16.509Z",
-    "last_save_at": "2026-08-29T15:22:03.991Z",
+    "last_save_at": "2026-08-30T15:39:17.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f87ee146524b8166bd4cac4bafd99b1f4d9469fe374e5184433d5525f1383871",
+    "source_fingerprint": "sha256:853a2bb8847aa89ea8c52ef7a619009731209d67a10fe850940a99626d19a465",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "74d5aed276806c8d3c670ec326f46e72578e71acada585a5f4533ad18b56b148",
       "plan.md": "ce632f4606c6f00bc66219336a1da7b2880db30c1b87c8deeb64f28d1d26c8ab",
       "tasks.md": "2873c801483e273f44e89720ccd377221e6e30ffc5997297793fdc0f86562e01",
-      "checklist.md": "cb9c62654fd27a7140a653f9b5d5399f8f62145f60bfddc3b0e0fd76e6052b63",
       "decision-record.md": "b8f18c98b2f2cc9e7ff1d48282ba4ebe12dfb8a739467678ca2206e8b4a4f580",
       "implementation-summary.md": "29ea89026da8af6a4cbeb622b4164d3411a1da60463df3c0960442e6e623fa54"
     },

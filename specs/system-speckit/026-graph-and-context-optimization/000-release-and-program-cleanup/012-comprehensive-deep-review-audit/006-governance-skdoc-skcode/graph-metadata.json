@@ -88,13 +88,14 @@
     ],
     "causal_summary": "The constitutional rules govern spec-kit behavior, and sk-doc / sk-code define documentation and code standards",
     "created_at": "2026-06-04T18:53:35.321Z",
-    "last_save_at": "2026-08-29T15:22:12.678Z",
+    "last_save_at": "2026-08-30T15:39:28.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:3912b145903ad4cc059238a66eac1b4ae7c2150e6cbea7665e8cc2ea8497888a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "23011af2ecb4e7c151811117213f95f61489cdc315e1d360983ec35b11e4854a"
     },

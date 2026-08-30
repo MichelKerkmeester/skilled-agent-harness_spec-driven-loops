@@ -159,7 +159,7 @@
     ],
     "causal_summary": "|",
     "created_at": "2026-07-10T06:23:41.022Z",
-    "last_save_at": "2026-07-10T06:23:41.022Z",
+    "last_save_at": "2026-08-30T15:39:32.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -169,6 +169,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8d410256655191b96d5877bec2e21bcc2d80d652e0da598a9e0289ee825a0b90",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc7442e72fba95f1cea3f10add4ad5be086a4cf7b9ec493f1281f10fac307190",
       "plan.md": "a4a30ceb79eddf9ab776b660db93e6bf9da9abb65b6c08517c2df6642a1a5ad4",

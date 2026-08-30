@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The fold-in is functionally complete after phase 006, but two things are unverified: whether the advisor actually routes the three tools correctly through the single hub identity (especially the figma transport, whose routing carve-out was deferred here), and whether the full diff is free of correctness regressions",
     "created_at": "2026-07-09T20:18:25Z",
-    "last_save_at": "2026-08-29T14:54:09.898Z",
+    "last_save_at": "2026-08-30T15:39:09.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bcfe713b86c52652b38e0c56b93260a569d6bcd572526cad736414a6124025e8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "46b54c92b44df81164277d62eb0e52e1d67afe94d814819fd47ca2ae96b3d512",
       "plan.md": "8577a50ba868b4303948271da6533b36e63f1c46890fe9cbf2f9b59ba9984668",

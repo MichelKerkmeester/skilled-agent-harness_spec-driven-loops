@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The deep-research mode skill README at `.opencode/skills/system-deep-loop/deep-research/README.md` predates the mcp-obsidian pilot standard",
     "created_at": "2026-08-04T08:34:53.072Z",
-    "last_save_at": "2026-08-30T07:20:36.901Z",
+    "last_save_at": "2026-08-30T15:39:17.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d84220d768ac94f46b5a6e2982d752214236b38788480814dcb63e050cf11521",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f1ae7a9e94e092e657119596bce6f888dc53af18c88bdb84645305e6b75e6ff2",
       "plan.md": "5b3693f9e55cd0346890f89f02e7fefb2721ac0149dcb8fbceff28cb1fd27dac",

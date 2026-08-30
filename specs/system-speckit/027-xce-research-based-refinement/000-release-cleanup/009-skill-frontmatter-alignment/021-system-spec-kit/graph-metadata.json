@@ -43,8 +43,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "system-spec-kit reference/asset frontmatter is inconsistent with the repo-wide contract: 2 of 41 references and 0 of 4 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:39Z",
-    "last_save_at": "2026-07-17T17:19:38.496Z",
+    "last_save_at": "2026-08-30T15:39:33.137Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:659cc3a34629a973a1d6555cc2c5f1f466d83280b61d1d3b9715d69b8eadbfb8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19e2dd1537ab41069f847187071e2452818e827134e3f2f8b1ebe2611df07391",
       "plan.md": "ce265e88c59fcfebef1b438a0b78fc6a211a7055a746e195145b8e897a35bc07",

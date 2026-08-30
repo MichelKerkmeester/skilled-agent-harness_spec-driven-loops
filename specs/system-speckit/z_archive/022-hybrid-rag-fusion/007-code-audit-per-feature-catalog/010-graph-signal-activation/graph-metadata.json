@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -29,9 +28,9 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "catalog"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -158,31 +150,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -190,23 +176,22 @@
     ],
     "causal_summary": "The feature catalog for Graph Signal Activation has evolved significantly",
     "created_at": "2026-04-12T09:02:50.250Z",
-    "last_save_at": "2026-07-10T06:23:24.991Z",
+    "last_save_at": "2026-08-30T15:39:38.348Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4302f8f874e937082738ac0bd4750b8ce92c3ee1fcab87de4013b7cf84d5a2c7",
+    "source_fingerprint": "sha256:a5de5e5237f093cf35801a16a1134bde670fb7d02dccbdbf909be67f3cd0339f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea198acd3589d5e19b0b30419026544d1b9f006b8418b756adb91556fc2233d0",
-      "plan.md": "93c88f8fdd6acf8255c685972f54b3bdebc28a8f20e216f478273f2e5e04c20d",
-      "tasks.md": "4f35246eb6d17e656a6ae729e1b86fed0f771d62e5971e6ebf5a14d3b1dbf29d",
-      "checklist.md": "ef1f0434df44ce05629cd1da7cee9c02cc2d620df81cb0e916fa3d59e04b1a85",
-      "implementation-summary.md": "05c82c9fa6dcf6376a6a5c9051e61d807d4b8e6375ced8debe0495b6fe83cb93"
+      "spec.md": "8dbca38d4b8b3b615c7315f398dbade9053d8502ef68fd32ac5885d0822911c7",
+      "plan.md": "09ffe9ebc4c3d6870e4b87ed38364fb2bd115134d7e28e4b6551edf78d7783f6",
+      "tasks.md": "579e5b334ad6eae7d8accb3104945738b75e272a1ee3e141de42e1d40ae80d4d",
+      "implementation-summary.md": "bfbd6c05ccbaa0695d132ff4d0ae8f1dae8bcc95ed0c736df2c5252d7ef0e92d"
     },
     "last_active_child_id": null,
     "last_active_at": null

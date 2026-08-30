@@ -58,12 +58,12 @@
       "implementation plan",
       "roadmap phases 018 019",
       "tasks",
-      "verification",
-      "roadmap phases 000 018",
       "decision",
       "implementation",
       "summary",
-      "deep"
+      "deep",
+      "research",
+      "perfect"
     ],
     "key_topics": [
       "perfect",
@@ -77,22 +77,27 @@
       "roadmap",
       "phases",
       "tasks",
-      "verification"
+      "decision"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "000-dynamic-capture-deprecation/spec.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
-      "research/research.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "research/research.md",
+      "resource-map.md",
+      "000-dynamic-capture-deprecation/spec.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -106,24 +111,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -133,6 +120,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -236,35 +229,40 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Treat Runtime Truth As Canonical And Make The Parent Pack Audit",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The parent `009-perfect-session-capturing` pack had already been reconciled through phase `017`, but the recommendation follow-through after that audit needed both implementation work and spec-pack follow-through",
     "created_at": "2026-04-12T09:02:50.263Z",
-    "last_save_at": "2026-07-10T06:22:29.150Z",
+    "last_save_at": "2026-08-30T15:39:38.596Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:62d51f809d74b215fd4c4ae9d44b1dbb02f90499ca2449c71d71192dfad5390f",
+    "source_fingerprint": "sha256:31e70c8f44f512aed8bc59fde28084210a1b602d339467c3f71c75cf63892c6c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "67e6c2a39ca1c9e7010807cd42698e08eee2de5e6696cd391a5c009f1b05e0c8",
-      "plan.md": "2f17e8f44bffbd41c5fbc73915c1c46587aac3d5a53267982acc7e9d86cd658d",
-      "tasks.md": "f181099acc1f06e32be23f81da0c0a1e361a43b1eee92c69a7423947ca1044fb",
-      "checklist.md": "78be9807051bf7fa53ed021e28d85cdd5e2c33dc5ecbba8d0ca3ab4d5605843d",
-      "decision-record.md": "2e1757813312de072f18ed155b71e817d38b44370c34302334e0148a2cd45555",
-      "implementation-summary.md": "169aaaeecd8b24e4873f4871843478759b1d4cf7a1dcea1785382e174e74386c",
+      "spec.md": "1077a6e9fdb2a669416c9a114180ef46b3d2c41101b4b4180dc7bc9bbc293a20",
+      "plan.md": "98b58cf4255b48a3351047dcdf36f50d621509773dae89dbcba8d0a45594b933",
+      "tasks.md": "eab8da466caa7b95cd4cb3c7833984e6dc17f5c31b4a31b18087068f2265a58e",
+      "decision-record.md": "32d447b2b2c313c0929a1f020b6e2b21d85cf6bb781b08dffa2ce0572ea3612e",
+      "implementation-summary.md": "4ace026b426f0132e13eeed0754431ed921f4dfe4fc19749915952b231dcae64",
       "research/research.md": "170e4998f2a4202ff0bd9751d29777770793e4706b2f8795bdf328adda4fcd5d",
       "resource-map.md": "e3dc15e28ad7457ec36c3bc3a1f7991a2b2efb4550ae317cbee8f40de2b2026c"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/012-auto-detection-fixes",
     "last_active_at": null
   }
 }

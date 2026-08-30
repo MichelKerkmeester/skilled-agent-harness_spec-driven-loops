@@ -19,8 +19,6 @@
       "template folder plan",
       "sk-doc template tasks",
       "template folder tasks",
-      "sk-doc template checklist",
-      "template folder checklist",
       "sk-doc template summary",
       "template folder summary"
     ],
@@ -34,76 +32,22 @@
       "plan",
       "folder",
       "tasks",
-      "checklist",
       "summary",
-      "skill"
+      "skill",
+      "stores"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/commands/create/assets/create_skill_auto.yaml",
-      ".opencode/commands/create/assets/create_skill_confirm.yaml",
-      ".opencode/commands/create/assets/create_agent_auto.yaml",
-      ".opencode/commands/create/assets/create_agent_confirm.yaml",
-      ".opencode/commands/create/agent.md",
-      ".opencode/commands/create/README.txt",
-      ".opencode/skills/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/commands/create/agent.md",
+      ".opencode/commands/create/README.txt"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "create_skill_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_skill_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "create_skill_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_skill_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "create_agent_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_agent_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "create_agent_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_agent_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "agent.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/create/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -123,15 +67,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {
@@ -199,26 +155,61 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc skill stores all OpenCode component templates (skill, agent, command) in a single `assets/opencode/` directory",
     "created_at": "2026-04-12T09:02:50.207Z",
-    "last_save_at": "2026-07-09T10:02:44.869Z",
+    "last_save_at": "2026-08-30T15:39:18.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da70701d88255c7dc897249e7a284b1bcd7b8386d3b3d8082558adcda1672bd0",
+    "source_fingerprint": "sha256:736be7bd5ad2e9e0a3770cd916e5ba71a8d971988e5fb8595f2c11bfab474288",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d45025e42eaa84470e88876a4d45f7ceee96899fc795c05a2e29ca314ea8a4f",
       "plan.md": "0009880025895e11671fdac1ba47eb2a9999099782bbf34579b0c12d9113672a",
       "tasks.md": "9b5efc9ae5d179ce2422bc3cd23a2d46f7ffd8008f08c8bb830b9ea20cdfb8a8",
-      "checklist.md": "f8dcce874f6ba69a8d065d1427007805a51efa8f36bce9957f2a0e7a7533946a",
       "implementation-summary.md": "34cfdaa9b5de5822b8595327a05410019b4554283be77ff81d9570fea178f6f3"
     },
     "last_active_child_id": null,

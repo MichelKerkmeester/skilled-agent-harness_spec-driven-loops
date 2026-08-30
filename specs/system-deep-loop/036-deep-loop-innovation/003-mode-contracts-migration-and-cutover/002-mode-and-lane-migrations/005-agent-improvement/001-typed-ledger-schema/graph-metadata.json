@@ -21,8 +21,8 @@
       "agent improvement typed ledger schema tasks",
       "typed AgentIR event vocabulary tasks",
       "agent improvement causal experiment tasks",
-      "agent improvement typed ledger schema checklist",
-      "typed AgentIR event contract checklist"
+      "agent improvement typed ledger implementation",
+      "agent improvement 50 stem registry"
     ],
     "key_topics": [
       "agent",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-types.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-ledger-schema/agent-improvement-ledger-schema.ts",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,42 +171,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Agent Improvement Typed Ledger Schema",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The additive-dark Agent Improvement typed ledger extends the shared Deep Improvement Common Services schema with typed AgentIR, change-contract, mutation, causal-experiment, manifest, transfer, and behavioral-classification events.",
     "created_at": "2026-07-16T03:43:37.523Z",
-    "last_save_at": "2026-08-29T14:54:11.393Z",
+    "last_save_at": "2026-08-30T15:39:21.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9924d45396ff1311351d49d86f9bb26cd62bff4f38f9075a0f564546f72b8f8",
+    "source_fingerprint": "sha256:c03373a02bc50d532265e0ccfd25a88ef55c79bfcca0d09815e9bd9077c4f340",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "787e743d41deb1cc78841319a390e1ff2c77808292f0a75e030d8b360caca567",
       "plan.md": "a5a6d4b4cefb494b111dd81bd5f94d99e18e8e18d4e7742245da721fde3ce42b",
       "tasks.md": "93148545eaa6b9791a4b347194ba9a6131259d4b72a96129098ed5a97b896034",
-      "checklist.md": "6cb6e4114a26e0357d2942588d4dacbb9ac74074e6bb2a424d4919fb5f7ff6dd",
       "implementation-summary.md": "b421527fb4fe09fba037f7c21761d9415ee230c4e1fbe985857d1cd57aef4222"
     },
     "last_active_child_id": null,

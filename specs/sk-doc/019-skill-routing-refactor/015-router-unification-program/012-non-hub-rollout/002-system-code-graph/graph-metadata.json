@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
   "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
   "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,9 +20,9 @@
       "system code graph rollout tasks",
       "system code graph compiler tasks",
       "system code graph real green tasks",
-      "system code graph rollout checklist",
-      "system code graph real scorer verification",
-      "system code graph rollback evidence"
+      "system code graph rollout implementation",
+      "system code graph compiled artifacts",
+      "system code graph real green evidence"
     ],
     "key_topics": [
       "system",
@@ -42,17 +41,40 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "harness/validate.cjs",
       "parity/run-shadow.cjs",
       "harness/support.cjs",
-      "activation/run-drill.cjs",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "activation/run-drill.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "validate.cjs",
         "kind": "file",
@@ -75,36 +97,6 @@
         "name": "run-drill.cjs",
         "kind": "file",
         "path": "activation/run-drill.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -196,26 +188,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`system-code-graph` is a standalone skill with one inline `INTENTSIGNALS`/`RESOURCEMAP` router, one workflow mode, and no hub registry or sub-mode packets",
     "created_at": "2026-07-19T12:00:00.000Z",
-    "last_save_at": "2026-08-28T15:53:15.319Z",
+    "last_save_at": "2026-08-30T15:39:15.105Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:513f98c3c193eaccc7f30450b2fd2aded200a49fc61ced304340336695dcc1ea",
+    "source_fingerprint": "sha256:0b4783ebf345fa6989e0aac5e43bbbb3416843eb1c3bf46e38e31661f1c5fb82",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "904e67a7d1b8a1c1d34540422ef9cc4f49c4fcbf67b0c6fe8993da12c588bb21",
       "plan.md": "c5e820b1c246bcaee30963078a280846e1cbf23e33d9459feb48dc1823838610",
       "tasks.md": "80937da5f27a72be4cd9072b3854f0b9bf61fef734cb0288c9a039e74bacda3a",
-      "checklist.md": "d870a2dcd718616bbeb2286f7f9b4cb8aa8bca5006692b2a49215c927569bb72",
       "implementation-summary.md": "f0df4cd08522420dcbae8e5bdecfc59f67d0268b2e706df58a1675d28f628ac9"
     },
     "last_active_child_id": null,

@@ -34,8 +34,8 @@
       "tasks",
       "memory mcp",
       "roadmap",
-      "verification",
-      "checklist"
+      "decision",
+      "record"
     ],
     "key_topics": [
       "hydra",
@@ -52,22 +52,16 @@
       "tasks"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "decision-record.md",
-      "mcp_server/lib/governance/scope-governance.ts",
-      "mcp_server/lib/search/vector-index-mutations.ts",
-      "mcp_server/tests/memory-governance.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "implementation-summary.md",
+      "research/research.md",
       "resource-map.md",
-      "research/research.md"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -89,9 +83,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -101,45 +95,9 @@
         "source": "derived"
       },
       {
-        "name": "INSTALL_GUIDE.md",
+        "name": "research.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "MANUAL_TESTING_PLAYBOOK.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "scope-governance.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/governance/scope-governance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-mutations.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-mutations.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-governance.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/memory-governance.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -149,9 +107,9 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -213,35 +171,70 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Recorded March",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Closure Baseline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Normalization",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: 008-hydra-db-based-features",
     "created_at": "2026-04-12T09:02:50.258Z",
-    "last_save_at": "2026-07-10T06:22:23.647Z",
+    "last_save_at": "2026-08-30T15:39:38.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:a36aa2ff5330debef269a7274e8f4719ef0d25200b9828ce7208f09a60a12295",
+    "source_fingerprint": "sha256:4d5873c37f4240011b50b72336eca28c94e9c7e797a1ff9e5fa7b3f15a64d482",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b944efa2a06b1be6dbf1b8cf2a6d8c62771f9f244103cc6d8f7aae46840f1f67",
-      "plan.md": "409ef342a5b0e6095cc91122c424147a02718c5b88a850deb9062ab3eaf6ec01",
-      "tasks.md": "51650a0a3a485e6fa071b8b9b313bbb2dbfae3bc74750bcb9f46446a4d39feb3",
-      "checklist.md": "eebc912d39587270c3914bb0754183de527f32a2436a40922e9b005f62169502",
-      "decision-record.md": "5cebe686bf9172880cc597a3fed60eb8297d9378cf50973276a6bc2c3285c625",
-      "implementation-summary.md": "0ee2d44baa4011e95de0e27b6043b91a22aec26b6d757410beb3cd1df40e242a",
+      "spec.md": "1433095f8f7b2a57cbaa4763b234793b0bd4f38398fae54bc8d5e254848a009d",
+      "plan.md": "4c707fe4c80c4a4a576d13ba73d1e1aa2d3783bfa57e552e1c7a1e4171fcfe6d",
+      "tasks.md": "dc1d21289fd759987c8bd44a8886522724ea8eb5fc51da03f39d708a262e8506",
+      "decision-record.md": "0b50ff7a6866d8fb4e8aef964ca2a9f7ee4860aa18c91452e04495a914e805e5",
+      "implementation-summary.md": "9987d058cc95cf2e9c6211df9ffb6e0ad6f88b241eed2347c363af6283c2c76e",
       "research/research.md": "44848ea08dbd448317cc77cbfe9d5bbd7ba7bfc4d11069e7a6cdfec0ac513209",
       "resource-map.md": "02f6112e1c1d86aeb17d497479d84e7a6e9ea7ae38fd19c23245125b4de045aa"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/z_archive/022-hybrid-rag-fusion/008-hydra-db-based-features/003-unified-graph-retrieval",
     "last_active_at": null
   }
 }

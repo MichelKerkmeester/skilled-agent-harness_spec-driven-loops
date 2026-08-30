@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The `mcp-notion` package exists on disk but is invisible: the skill-advisor does not surface `mcp-tooling` for Notion prompts (its hub keywords/intentsignals lack Notion vocabulary), and the in-hub router has no `mcp-notion` mode entry, tie-break, or router signals — so even if the hub is chosen, the mode cannot be picked",
     "created_at": "2026-08-21T15:00:46.362Z",
-    "last_save_at": "2026-08-29T15:21:54.494Z",
+    "last_save_at": "2026-08-30T15:39:10.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1a3d12b291811dcddceae52fb78d3d7b78773c2ce83afc6ced64429f8aa8dbe0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9fc980292292148bbf9e31e8bf4ac1042e5b7df4a3d20d3edc943c1a16bc033",
       "plan.md": "4b04bee3573e5b6022e11233a3a2887702bd2b20735c5661ac6132114a61d8fe",

@@ -100,13 +100,14 @@
     ],
     "causal_summary": "The 027 program produced review and research evidence that had to become terminal, verified work queues rather than assumed-true claims",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-08-28T23:37:49.638Z",
+    "last_save_at": "2026-08-30T15:39:34.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:6bb27617cff0d126613ecf1194f51d34de3527c956e9348dc11d5459ea807bd1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c57e5af7d749264c5854c44a4fe4671ca989cff15501f9fc5cebe59c059214e"
     },

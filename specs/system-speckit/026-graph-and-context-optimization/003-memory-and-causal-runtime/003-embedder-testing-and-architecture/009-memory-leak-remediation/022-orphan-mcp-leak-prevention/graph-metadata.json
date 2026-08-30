@@ -21,8 +21,8 @@
       "launcher idle timeout implementation",
       "orphan mcp leak prevention tasks",
       "mcp cleanup task list",
-      "orphan mcp leak prevention checklist",
-      "mcp leak verification"
+      "orphan mcp leak prevention decision",
+      "mcp cleanup adr"
     ],
     "key_topics": [
       "orphan",
@@ -44,12 +44,12 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
       ".opencode/scripts/orphan-mcp-sweeper.sh",
       ".opencode/scripts/claude-session-cleanup.sh",
+      ".claude/settings.local.json",
       ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist",
       ".opencode/scripts/README.md"
     ],
@@ -70,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -106,6 +100,12 @@
         "name": "claude-session-cleanup.sh",
         "kind": "script",
         "path": ".opencode/scripts/claude-session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -201,24 +201,23 @@
     ],
     "causal_summary": "Manual cleanup on 2026-05-24 found repeated orphan MCP stacks under Codex.app and stale Claude Code launcher children",
     "created_at": "2026-05-24T06:58:36Z",
-    "last_save_at": "2026-08-29T14:54:19.396Z",
+    "last_save_at": "2026-08-30T15:39:31.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:318dc547c6ba6e8951433950455d5b646bace9ca09813c8dc7819b60f20aae9d",
+    "source_fingerprint": "sha256:1657bedcae090366b9a0a227e1d29112572d6033ca0fc113f691cc61192567d6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "34dfd9978535d4da994610bdccc1046a0637356eda7688c6a204b02c28d00d89",
       "plan.md": "bc90d442a5dec1a03b5525189c0425c018a89abadaa2b0d0a9838812e5032a8d",
       "tasks.md": "fe6d9865868e29e70a415a487239bf7a1c69454c640e1b14e28e19dd66e7d5a6",
-      "checklist.md": "f798396d620fa032e33c6ff402a5eb69ee4e39542dee22bb43b042663d263fc8",
       "decision-record.md": "a922fcc0ca5436f721ed064be553799f2f811030c9927d11df5c6a1fc9b41806",
       "implementation-summary.md": "6352ade5fc36bef9412571d7b9cd16f2e9c11d2ada85edcf768c30cb9b416d44",
       "handover.md": "fce99a3d7c10620b16dcad84ab521e6efa6667dff7f17b26972d4c98fac2945a"

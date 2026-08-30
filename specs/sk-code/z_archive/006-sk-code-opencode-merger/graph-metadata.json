@@ -21,9 +21,9 @@
       "resource map",
       "sk-code-opencode merger tasks",
       "single sk-code tasks",
-      "sk-code-opencode merger checklist",
-      "single sk-code verification",
-      "sk-code-opencode merger adr"
+      "sk-code-opencode merger adr",
+      "single sk-code decision",
+      "sk-code-opencode merger summary"
     ],
     "key_topics": [
       "sk-code-opencode",
@@ -37,45 +37,33 @@
       "resource",
       "map",
       "tasks",
-      "checklist"
+      "adr"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/resource-map.md",
       ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/spec.md",
       ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/plan.md",
       ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/tasks.md",
-      ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/checklist.md",
       ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/decision-record.md",
       ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/implementation-summary.md",
-      "resource-map.md",
-      "implementation-summary.md",
-      "checklist.md",
-      "plan.md",
-      "tasks.md",
-      "decision-record.md",
-      ".opencode/skills/README.md",
-      ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
       "scripts/tests/alignment-drift-fixture-preservation.vitest.ts",
-      "spec.md",
-      ".opencode/install_guides/README.md",
-      ".opencode/install_guides/SET-UP - AGENTS.md"
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/system-spec-kit/scripts/extractors/README.md",
+      ".opencode/skills/system-spec-kit/scripts/loaders/README.md",
+      ".opencode/skills/system-spec-kit/scripts/ops/README.md",
+      ".opencode/agents/code.md",
+      ".opencode/agents/review.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/resource-map.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -95,12 +83,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/decision-record.md",
@@ -113,15 +95,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": ".opencode/skills/README.md",
+        "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/resource-map.md",
         "source": "derived"
       },
       {
-        "name": "compliance.jsonl",
-        "kind": "file",
-        "path": ".opencode/skills/.smart-router-telemetry/compliance.jsonl",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -131,9 +113,21 @@
         "source": "derived"
       },
       {
-        "name": "SET-UP - AGENTS.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
         "source": "derived"
       },
       {
@@ -207,28 +201,33 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Before this implementation, `sk-code` advertised itself as an umbrella application-code router with Webflow, Go, and React/NextJS branches, while `sk-code-opencode` separately owned OpenCode system-code standards",
     "created_at": "2026-05-03T11:04:06Z",
-    "last_save_at": "2026-07-09T10:02:44.277Z",
+    "last_save_at": "2026-08-30T15:39:11.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:f884a0b13df56b6c0ed91a592db849e0f5f8ed3602c4b5711bb68d394a792e37",
+    "source_fingerprint": "sha256:4c5b8f1a032026b27a21178e051346fe0060556ae01d417881b6e63966f8c014",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7628b2e2332b64cae4cb82a1c20ab53e54e62e653c3bd9c0109e3195d0444dba",
       "plan.md": "882ad8733dbc10445b8835d41edffbefc1ffc61c8ab81d8494106d2eb6764a86",
       "tasks.md": "6ae39389f0c6f36820ed70a3b528ca032cb8ba5371ef8e693e2fb8331fd49118",
-      "checklist.md": "7ddc2b527987368a5ce0a9cbff0e1d96ac46f4f1cadf2c74ca7eafa2ae4b72c3",
       "decision-record.md": "6af6b6fd09e806fe2b4392bd976c0050b2fa4cbddc5f100c7d16808fdcc8e2d2",
       "implementation-summary.md": "96c8d07a5ab27ff37fc02650c4c076a29cec2b11e6c02c3a98a0b680cff856cc",
       "resource-map.md": "f8d7d5dd0211a93817350b267291a42d43b97bd7ef160634aaf26daf88f581c6"

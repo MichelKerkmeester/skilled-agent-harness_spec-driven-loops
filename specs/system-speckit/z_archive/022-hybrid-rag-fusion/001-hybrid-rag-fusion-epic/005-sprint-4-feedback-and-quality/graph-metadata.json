@@ -44,8 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "handlers/memory-search.ts",
       "implementation-summary.md"
     ],
     "entities": [
@@ -65,18 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "handlers/memory-search.ts",
         "source": "derived"
       },
       {
@@ -192,27 +178,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feedback And Quality",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Chunked memories are scored individually without aggregation — a memory with 5 matching chunks gets no advantage over one with 1 chunk, losing valuable signal",
     "created_at": "2026-04-12T09:02:50.228Z",
-    "last_save_at": "2026-07-10T06:22:08.359Z",
+    "last_save_at": "2026-08-30T15:39:38.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e3d79ebfbc07a62f9db05d31718fcf65deb24f93b73b3a6ea587d1e3f00d1ee",
+    "source_fingerprint": "sha256:0098023ef0fc66f411b8158f9577437343d5304d983a20e45bb4b1dba6e62375",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f30bf31e1288d533414449316eb18d43eaa6fdc93d7644366597ef6921f1dc88",
-      "plan.md": "4747926c3f9ca435f3314964539b226100451dbae93a51e2897539a1ff3c2874",
-      "tasks.md": "edc3a0a6b93ba51f336f6643ee031acb408953ebc7383eaa5eb1ac4be2bd73d6",
-      "checklist.md": "97c79e54b825acdb8c3bf5ef63407ece2c19c1da797c42fa863304ef4ee552b0",
-      "implementation-summary.md": "9de75a2a8f003f059001f49398d6bdf03a6e5453e13fd2d7c7f69962fef88ed8"
+      "spec.md": "0ccbd3b1cbbc59cb3c699a9b11320b99346da79dd8a738e1377885a528dee419",
+      "plan.md": "48c6e6c403ef484561c02a3b5cbf927503bb2acdb02ede22ecbc4fe309daa674",
+      "tasks.md": "8e6b2a8029bb1ede73c668a771f9b09bd51c63d8ec653505cbb37862de2d871d",
+      "implementation-summary.md": "a589a8692022b7b915b2fbc24a7b85b45e27fe0cd5b9fc60ab8454da53c1d5b9"
     },
     "last_active_child_id": null,
     "last_active_at": null

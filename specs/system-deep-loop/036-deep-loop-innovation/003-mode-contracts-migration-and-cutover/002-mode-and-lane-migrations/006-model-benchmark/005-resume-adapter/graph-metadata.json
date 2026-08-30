@@ -20,9 +20,9 @@
       "Model Benchmark resume adapter tasks",
       "sealed ledger resume tasks",
       "model benchmark re-entry task set",
-      "Model Benchmark resume adapter checklist",
-      "sealed ledger resume verification",
-      "model benchmark idempotent replay gate"
+      "Model Benchmark resume adapter implementation",
+      "model benchmark resume decision",
+      "model benchmark effect recovery"
     ],
     "key_topics": [
       "model",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,31 +156,31 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Resume Adapter",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +188,21 @@
     ],
     "causal_summary": "Plan the Model Benchmark resume adapter for the typed event-ledger substrate",
     "created_at": "2026-07-16T03:43:40.285Z",
-    "last_save_at": "2026-08-29T09:58:08.592Z",
+    "last_save_at": "2026-08-30T15:39:21.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7ce0b6d4980b72ba2e14c6b77de7c14b14796749dbb3ca886ae93fe499f2db1",
+    "source_fingerprint": "sha256:ff549ae7d3054b678c9af360c0b07219a6a12bd884ecfef1199c0ce17fc60745",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c799146468e8582ab00acfde033c6e2023a3e1d6c1aede0b353b60f42e9036f9",
       "plan.md": "b4cb6bd8c9be235aa1f83f1f36ce89bd90f96f4943e569fc43a856198370328c",
       "tasks.md": "7eb503339f5e973df86629ad97fc90673c6d69aa3b91f2d5c1a40d83d885a4e1",
-      "checklist.md": "42fd7741a7cd9e521c2e896577f26d18da2f19d350a94f1f3f78ccedcb218f4c",
       "implementation-summary.md": "dae84bea3872a658d71a356e3ff3d62144344befc191db608bc0a3a47347bafd"
     },
     "last_active_child_id": null,

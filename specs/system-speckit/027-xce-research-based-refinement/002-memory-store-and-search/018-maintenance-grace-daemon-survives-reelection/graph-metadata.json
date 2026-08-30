@@ -201,7 +201,7 @@
     ],
     "causal_summary": "After 018 made the background scan cooperative, a full reindex still could not complete",
     "created_at": "2026-06-17T12:47:01.644Z",
-    "last_save_at": "2026-08-29T14:54:20.173Z",
+    "last_save_at": "2026-08-30T15:39:33.700Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:54e7f5e930e12ab7a8d3cc59c00c2313f78f2a66c3f012bed8257b7c55a1cf90",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4e00e6998b5d9721f3fa89b494acb9f5358ab5a45a2979235dd93862c24211a7",
       "plan.md": "9438fbb769b9f64965b87d7aab74b979a964f64a624d78334ec7e5b12da1ec27",

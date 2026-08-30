@@ -44,7 +44,8 @@
       ".opencode/skills/sk-vision/vision-runtime/src/mcp/server.test.ts",
       "feature-catalog/feature-catalog.md",
       "manual-testing-playbook/manual-testing-playbook.md",
-      "hooks/README.md"
+      "hooks/README.md",
+      ".opencode/skills/sk-vision/vision-runtime/dist/mcp-server.js"
     ],
     "entities": [
       {
@@ -99,6 +100,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": "hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-server.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/dist/mcp-server.js",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The MCP server installed no lifecycle hardening",
     "created_at": "2026-08-18T12:53:26.010Z",
-    "last_save_at": "2026-08-29T14:54:25.020Z",
+    "last_save_at": "2026-08-30T15:39:19.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:13371ae966676042842b5db10a80109d11aadb375bc8860653ae180056f48b67",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c6c57720d3208823867965c6f0a109e1b4e9e1e549cf1a29d1b19f69bf68398",
       "plan.md": "003a1466c8f7433da985800acf4738b05e81fa33fec9605c83a9ffbb5bd133fa",

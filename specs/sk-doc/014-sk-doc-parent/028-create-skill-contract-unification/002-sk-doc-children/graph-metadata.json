@@ -20,9 +20,9 @@
       "002-sk-doc-children tasks",
       "per-file conformance tasks",
       "LUNA update Sonnet verify",
-      "002-sk-doc-children checklist",
-      "conformance verification gates",
-      "per-file validator gate"
+      "002-sk-doc-children implementation summary",
+      "conformance batch status",
+      "shipped and verified"
     ],
     "key_topics": [
       "002-sk-doc-children",
@@ -41,34 +41,16 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-agent/SKILL.md",
-      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
-      ".opencode/skills/sk-doc/create-changelog/SKILL.md",
-      ".opencode/skills/sk-doc/create-command/SKILL.md",
-      ".opencode/skills/sk-doc/create-diff/SKILL.md",
-      ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
-      ".opencode/skills/sk-doc/create-flowchart/SKILL.md",
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
-      ".opencode/skills/sk-doc/create-quality-control/SKILL.md",
-      ".opencode/skills/sk-doc/create-readme/SKILL.md",
-      ".opencode/skills/sk-doc/create-skill/SKILL.md",
-      "tasks.md",
-      "plan.md",
-      "checklist.md",
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-agent/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -78,15 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -192,36 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Each",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Bring the 11 skill SKILL.md files in this batch into full conformance with the create-skill contract; each file is updated by a fresh GPT-5.6 LUNA MAX agent and independently verified by a fresh Sonnet-5 xhigh agent, then must pass its validator.",
     "created_at": "2026-07-14T04:26:33.150Z",
-    "last_save_at": "2026-07-17T14:37:07.572Z",
+    "last_save_at": "2026-08-30T15:39:13.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc65a35e034cccca7402fc5fbbbc80f07a548617487f6bec9e0a2f55adf48dad",
+    "source_fingerprint": "sha256:efec6ae998cf410fe69273329677040d15b068db1867e7fe2ff6e1f998e3ef0e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ed18bc626e782ea9fd4a73bd1bd7ac3ef6dd0dba65a03efcb2d21b5337789dd2",
       "plan.md": "8b868caf3055c40a4c3c481a45b56f0285aa7030f0c4dc0806bd25b779fe8ff5",
       "tasks.md": "b512a72827407850749d8071a458568a2adeafcf7557b2cf95f90843fe9b4bf1",
-      "checklist.md": "f430f2878eda931a8af899f339368da1dedc65212fdd842d91d7913a4a7e14f3",
       "implementation-summary.md": "d076020b11c9e1e5ccabd17c3d73abe56bafbdb0a8f1f091d996fc62bd399d32"
     },
     "last_active_child_id": null,

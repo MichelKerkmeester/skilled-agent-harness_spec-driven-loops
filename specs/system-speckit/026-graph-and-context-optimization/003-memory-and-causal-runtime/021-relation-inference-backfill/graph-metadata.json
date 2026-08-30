@@ -18,9 +18,6 @@
       "memory_causal_stats backfill",
       "entity density cache invalidation causal",
       "spec document chain causal edges",
-      "relation backfill checklist",
-      "causal backfill verification",
-      "relation inference verification",
       "relation backfill decision",
       "causal backfill wiring choice",
       "deterministic inference signals",
@@ -46,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "tests/layer-definitions.vitest.ts",
@@ -75,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,27 +192,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After packet 019, `memorycausalstats.relationCoverage.backfillJob` honestly reports `implemented:false` / `command:null` because no command actually balances relation coverage — the prior `memoryhealth({autoRepair})` hint was a no-op",
     "created_at": "2026-06-04T12:30:00Z",
-    "last_save_at": "2026-08-29T15:22:17.082Z",
+    "last_save_at": "2026-08-30T15:39:31.956Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a650efc204352ca3fa715bffde239ac46a10e08975e510f5ea5101f0a27de90",
+    "source_fingerprint": "sha256:489d9ea0d2bdb3ea12e988763fbc90a1d54d768d6365afae33a544f296f1f686",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9d92b85558fd02e57ebb5bf7196e0bcd24fa5a1b0c7197752a545249820953a",
       "plan.md": "ed88bb4f30924bd5fb7ae468f085b5292709cb58823ed8c1d732ea3cee4f797e",
       "tasks.md": "207154b5c986878d57f58c58233856619979d3882b6d4fa57df65aed5b4a65c7",
-      "checklist.md": "8986883f1b5a251d8f12515a94cc790c4fb1994a5de8ed414423675c4e66b4de",
       "decision-record.md": "ff3ef7007233f7fa189131df60e07d59877324f2337fb1c1a3cd735476acda95",
       "implementation-summary.md": "91b76f99388bdd70d24f598d63ba3080347840d66a9dbf52906ac216f11940d1"
     },

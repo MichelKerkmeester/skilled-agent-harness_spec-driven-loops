@@ -21,7 +21,6 @@
       "scouted bugfix batch 2 plan",
       "verify-first partial-but-real fix workflow",
       "scouted bugfix batch 2 tasks",
-      "scouted bugfix batch 2 checklist",
       "scouted bugfix batch 2 summary",
       "verify-first partial-but-real batch fix shipped",
       "13 fixes 22 files"
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "core/config.ts"
     ],
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,36 +176,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 8-agent scout that fed batch 1 surfaced 20 high-risk deep-research targets; batch 1 fixed the top 5, leaving 15 latent code defects untriaged across chunking, the deep-loop runtime, embeddings, vector-index validation, skill-advisor, code-graph, and benchmark/runner tooling",
     "created_at": "2026-06-03T07:32:00Z",
-    "last_save_at": "2026-08-29T15:22:12.646Z",
+    "last_save_at": "2026-08-30T15:39:28.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57b93a741bc0b618808ee8804e26658ec3b61d15659ee56a3515d2cf7a69da26",
+    "source_fingerprint": "sha256:f180653aedb99f3d9bdc81b472ce6e7b02dee544d17907db7066b8fc31edff3f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6a75af52e5a470050467e0c053abcf68be8205a1f48e960826630051081a6757",
       "plan.md": "51a5cef29814082ea197dfd164bb243a5bd8e00689b24e184b8960f73927ecf0",
       "tasks.md": "8361fb5871cc899edc896547a3ffba30da34a5981d05c288bc60ab7516dd390c",
-      "checklist.md": "26b9f616d91a3fd7b9adbc8b8536dca7d1084cd6695899c3c698252a797dd735",
       "implementation-summary.md": "4c21f02a560eb94de60edebed291428771da8b89e09a0434734323a983877b92"
     },
     "last_active_child_id": null,

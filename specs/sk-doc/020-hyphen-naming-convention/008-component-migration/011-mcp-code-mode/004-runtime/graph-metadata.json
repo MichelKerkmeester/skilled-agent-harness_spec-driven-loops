@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The runtime tree must be checked independently because hook and library paths are executed by Node and referenced by manual scenarios. The current runtime names are already kebab-case, so this phase records a zero-candidate proof at the pinned baseline and closes any runtime path references if a later inventory reveals an eligible name.",
     "created_at": "2026-07-14T15:18:22Z",
-    "last_save_at": "2026-08-30T07:19:56.415Z",
+    "last_save_at": "2026-08-30T15:39:16.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:685c702a3d7f78e70f1745c2821baa9545ba6e6f4b79e5bdc651ff58e25d014a",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f40e727d1f5f201a6e41946ed3a10c58512224694cdd2541c671b54e6e5aa9ce",
       "plan.md": "99ad10ec92e642dd52e2fd4e8571425ab0db56b4c0fa4c0eb2be1037f6c34574",

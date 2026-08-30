@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The portable CLI communication-projection capability lived only as a package under `packages/cli-communication-projection/`, so the skill advisor could not surface it and an AI agent had no routed entry point to its invariants",
     "created_at": "2026-08-12T12:59:48.551Z",
-    "last_save_at": "2026-08-29T15:22:04.345Z",
+    "last_save_at": "2026-08-30T15:39:18.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:a44a58cf99ff1b81677171087f8ba9004e035bef8f5db856efec703fe0625f57",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "17f689fdea8b5008e18baa0ce1a9c589ea1ec8436e17e73d3fd09bcf6c5f758e",
       "plan.md": "21b12dcdec53a3261096321fe5cc863c37c9b564d7d60d6aae245635a5374784",

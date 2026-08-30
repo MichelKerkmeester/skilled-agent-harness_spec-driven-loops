@@ -105,14 +105,14 @@
     ],
     "causal_summary": "Unit tests cannot prove that the extension loader, settings transition, duplicate command registry, custom footer, RPC surface, and real child process work together",
     "created_at": "2026-08-16T07:07:48Z",
-    "last_save_at": "2026-08-30T07:18:55.817Z",
+    "last_save_at": "2026-08-30T15:39:09.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:669e39cf3eb9560bdc86a5ae4e0cf6aaeb0296af208ae6da13e96ab58f827e90",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50c125d9ca524b484e57cb5f5de02b7ce1d61f093e8e156ee46a9fd784b45283"
     },

@@ -95,13 +95,14 @@
     ],
     "causal_summary": "026 accumulated 17 flat top-level phases through repeated ad-hoc restructures",
     "created_at": "2026-05-26T16:51:06.296Z",
-    "last_save_at": "2026-07-17T17:19:37.252Z",
+    "last_save_at": "2026-08-30T15:39:32.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:2d26732dde4db49614776a74527c566062132039f6239497f3ad948ba4ae06d8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d533f43e74b8e48ea60197bbe38fc6c57ed7a761d199dc26a9cecd0789c5be60"
     },

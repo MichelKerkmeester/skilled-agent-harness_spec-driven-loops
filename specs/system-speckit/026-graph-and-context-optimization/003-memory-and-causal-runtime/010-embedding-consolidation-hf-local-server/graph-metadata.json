@@ -121,13 +121,14 @@
     ],
     "causal_summary": "The embedding stack exposes too many local model choices across separate registries, dimension maps, provider defaults, type strings, and docs",
     "created_at": "2026-05-29T05:06:24.626Z",
-    "last_save_at": "2026-08-29T15:22:16.596Z",
+    "last_save_at": "2026-08-30T15:39:31.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:48ba597b4862005574c1281bb11448fa9ee84a8340a9a27b926599270d1b0548",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d5e09cb7ab4f59f3226c67e5f79933449206e0e9bc0323c2f780bfa9378142c"
     },

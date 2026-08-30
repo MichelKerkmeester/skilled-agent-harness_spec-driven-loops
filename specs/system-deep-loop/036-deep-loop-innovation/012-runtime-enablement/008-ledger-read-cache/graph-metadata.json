@@ -19,8 +19,6 @@
       "read cache implementation plan",
       "ledger read cache tasks",
       "read cache tasks",
-      "ledger read cache checklist",
-      "read cache verification",
       "ledger read cache summary",
       "read cache planned"
     ],
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts",
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,36 +175,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Routing the live fan-out executor spawn through the shipped effect gateway (phase `007`) records a fail-closed intent",
     "created_at": "2026-08-22T04:10:32.128Z",
-    "last_save_at": "2026-08-29T13:09:56.767Z",
+    "last_save_at": "2026-08-30T15:39:22.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f56e06b2d6f424180690ab870bcc6f5c0f22176e12d91fe38d3a47091e247fe9",
+    "source_fingerprint": "sha256:a5b9614b48cac217310478119c828a56b472fa7930c4c4310d902e406c6de84d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "40ec0e920e577903239fedbeae7944307aae849e0853a310033c2a705a219194",
       "plan.md": "36057a12f39848210c22ac00d6da9ba15ffb02dbd2bc6b1de3c5bd18fe6292d1",
       "tasks.md": "c0e71b1c0c231a9d608125c22bac25c750f4e2a1bd116303a6125b698c89659d",
-      "checklist.md": "41cb2619581b520b7bf6e57d6d283d6161e4cab6701bde3d74e3bc429e7518d8",
       "implementation-summary.md": "def562e1e125804e5c41dcb031e749ab8c7df65af65fdf118e8b0fe8ae630aa3"
     },
     "last_active_child_id": null,

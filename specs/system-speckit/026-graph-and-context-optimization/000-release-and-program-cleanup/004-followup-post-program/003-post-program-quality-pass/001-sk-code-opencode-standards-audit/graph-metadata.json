@@ -40,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "audit-findings.md",
@@ -63,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -190,27 +183,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Audit Report",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code",
     "created_at": "2026-04-29T15:28:00.000Z",
-    "last_save_at": "2026-08-29T15:22:10.786Z",
+    "last_save_at": "2026-08-30T15:39:28.191Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:7e7ff8605ef1d4a503cf175352bec5b857e54d26bbdd44dcb9d77335bb4c68da",
+    "source_fingerprint": "sha256:54906e0602b18b0a3a0fbd08d8be6e0cf7d08ae8eb98e479bea4ba7ecffff4e9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "96d1b590499bd0e44012d10a7341fc6e47a9d2a0dfe541dd91621b0a3374117e",
       "plan.md": "3ef128931aa49d8685fc394600f801b64d4d7d244a144a00e553b4c519a9e283",
       "tasks.md": "a04242a87b7e288e67905a27b7462c9c88f5e7b801dd5bd4cd55253ccb44588d",
-      "checklist.md": "4b9e1b1017f1cc5586637ebc5f8292061c258b1f5b3c057330491a00393c053d",
       "implementation-summary.md": "5d7349733d7c15b448e7295cec353bbbc56c13533e9b0a1afe2acd28685be089",
       "resource-map.md": "95635d4a5c8b268a31f73c7f43d65f998a06c6f30733089be45bc31562e086a8"
     },

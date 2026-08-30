@@ -170,7 +170,7 @@
     ],
     "causal_summary": "Fixes across dispatch, locks, daemons, sidecars, code graph, CocoIndex, and memory runtime need one final regression story",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-08-29T15:22:16.083Z",
+    "last_save_at": "2026-08-30T15:39:31.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,6 +180,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c5dd53d4a9a8e4bbc3e2b1629b7acc16b5f1cca9ee64f7180b21ffe59cabd1ce",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "05e44372a9385dbae9b3a0b7bb5602b9c4b57f0a3eb42be0383fff91324acdf4",
       "plan.md": "9e2a595c1f891b554934041c4fc6c9152523f3361f2ea95dcb92bdced4f03644",

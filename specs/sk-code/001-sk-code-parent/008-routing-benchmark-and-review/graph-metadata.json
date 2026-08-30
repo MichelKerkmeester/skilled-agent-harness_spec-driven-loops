@@ -20,7 +20,6 @@
       "skill-benchmark re-layer plan",
       "sk-code routing benchmark tasks",
       "skill-benchmark re-layer tasks",
-      "sk-code routing benchmark checklist",
       "sk-code routing benchmark outcome",
       "sk-code family deep-review summary"
     ],
@@ -35,16 +34,15 @@
       "re-layer",
       "plan",
       "tasks",
-      "checklist",
-      "outcome"
+      "outcome",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-code/benchmark/README.md"
     ],
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,26 +184,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The restructured hub had never been benchmarked or reviewed as a family",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-08-29T13:09:57.438Z",
+    "last_save_at": "2026-08-30T15:39:10.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:407755afacd870f64e8bb6f13089cc6a58bf9794251839a0276a58c0ff89250a",
+    "source_fingerprint": "sha256:ccb863f1264489637992c79f330126fcb57fb249790d6ee31ccd7d22f17dcf30",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3dfdc1ecb8531d4bc7777c033e967c8481517fbaa624f632f48e3eba1a7c590e",
       "plan.md": "eef75d484c41e78230e3cbb99b8a02a57fa9d855266a6ec1db30597a0379422c",
       "tasks.md": "6e39ac8f70c1c3c3206ccb423e8f41ce23f1f20e82e20fdd585974091f2fc1d0",
-      "checklist.md": "321ef86b28b2b6cfeca7622ed1f84b3f87bf22d9a38330d229995439cb641633",
       "implementation-summary.md": "7635f96045c8a5ac9914527e322e7d9944e4f483d0dc5d53385a54251a1376d9"
     },
     "last_active_child_id": null,

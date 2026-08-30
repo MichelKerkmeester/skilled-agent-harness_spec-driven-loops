@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -27,11 +26,11 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,43 +162,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built All",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for UX Hooks has evolved significantly",
     "created_at": "2026-04-12T09:02:50.255Z",
-    "last_save_at": "2026-07-10T06:23:36.021Z",
+    "last_save_at": "2026-08-30T15:39:38.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ee83b10c8550ecdaf4c8659cd2a9013dc3050556686ae257b45fc1ae59fd510",
+    "source_fingerprint": "sha256:cb4a623ebcbfa0c65ebdf4c295a0d8ac70b7ab28fe30ff98bda028b38e627a24",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb117e956a6a41e8e70d92e0e6820f2222f84cf205e7e2ebdcae983d62e07c73",
-      "plan.md": "12591f14b4ef7253fbea01f547479aeefea3777e9bb12874b731a244575e688d",
-      "tasks.md": "4b95a8d7f663d938e6df5d49d154f6b976146a10126d6e7fb8cb1a0d41fef0f3",
-      "checklist.md": "afa32261aa799f65e0466d8fd97ab71c9925db56df96cd5bbc00c9106af58dcc",
-      "implementation-summary.md": "4629fd87f521e26b50cb8e666adc4c9c9a9f21298bf0fc97ffd5de508852033c"
+      "spec.md": "334eb95fad9ada0dab510675883f289001aec8f5aa57e5f992c1eac75ddf7768",
+      "plan.md": "5d324fb00d30bd6d49d4edc0f9019864f10a5b3deee1ee1fb0ccf109f2614d03",
+      "tasks.md": "a3aa5598778327d07ce050330da1b94e650ad075055210799a520d9705cd2eab",
+      "implementation-summary.md": "48b93c6639a91eff6a7e89109d12c50ab83cc79d1617bddbe08d7168d9a3ae15"
     },
     "last_active_child_id": null,
     "last_active_at": null

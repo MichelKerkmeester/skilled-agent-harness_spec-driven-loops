@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/022-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
-  "spec_folder": "cli-external-orchestration/022-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
-  "parent_id": "cli-external-orchestration/022-cli-devin-deprecation",
+  "packet_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
+  "spec_folder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
+  "parent_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -56,15 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "cli-devin had registry entries (sk-prompt-models model-profiles + SKILL.md + graph-metadata), skill-graph edges across 6 graph-metadata.json + 2 JSON exports, skill-advisor docs + the 'devin' runtime enum + Devin hooks (.devin/hooks.v1.json + hooks/devin/ sources), and the swe-1.6 model was cli-devin-exclusive",
     "created_at": "2026-06-08T16:10:29Z",
-    "last_save_at": "2026-07-14T19:26:13.325Z",
+    "last_save_at": "2026-08-30T15:39:08.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4b35407b6bdfea109c234a5e3b94d4cd1fd567bfe6691fd5d1da308ea1d725b",
+    "source_fingerprint": "sha256:daa37793b9ac958b11bd363760fcdcd4e8fefea0d2e847a11cec724378101a4a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5bd9d1b56380c4cbf7396bebd34505b7cc020089003506f7405ae33ef706be6e",
-      "plan.md": "702b61c531f2d887fbd693cbbe114d6c43ca4c1ed8c956ebe570236e4b4eb388",
-      "tasks.md": "a155f7863152e3b187cc2c82a897712752b57d5baacf967f8e3ff78c2c1b0b4c",
-      "implementation-summary.md": "1ff9af51fcb72ff2d8d740b8114393b8573bd011ee274533c9337e2a6caefb91"
+      "spec.md": "dc1220ca031d3ddc8dd492ad1ba413b10dd86ba02671e447011e923e7ffaf076",
+      "plan.md": "17641111987a5f06a78cfa8699dbea9765517075462b5b5be43acd02f9f63dba",
+      "tasks.md": "aa861322956b0103ca1fe75839ce706b64cf9da10aaf074c332d303defabdaa3",
+      "implementation-summary.md": "811ca5a02dade74e52815a256f84c12e64da238b1b4826848d5c55e1a14d17da"
     },
     "last_active_child_id": null,
     "last_active_at": null

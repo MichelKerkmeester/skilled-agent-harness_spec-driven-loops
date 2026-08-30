@@ -38,19 +38,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/agents/orchestrate.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/agents/orchestrate.md"
     ],
     "entities": [
-      {
-        "name": "orchestrate.md",
-        "kind": "doc",
-        "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,6 +67,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The primary deep-loop router agent was named `deep`",
     "created_at": "2026-07-03T19:59:02.276Z",
-    "last_save_at": "2026-07-16T16:33:02.805Z",
+    "last_save_at": "2026-08-30T15:39:19.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:811c25a25e63d791bfd82c48531b20cdacc32a1453b84c6346918db60d8ef7d5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f13a074facfcd0c627ed9955b215dfb1ab5547c3d07066c4477ba4cc802f10bd",
       "plan.md": "c81dbfb328f453e3cf8c5699d3b86a642ffb9dbfb870f8360cb0bbfd19a0efc3",

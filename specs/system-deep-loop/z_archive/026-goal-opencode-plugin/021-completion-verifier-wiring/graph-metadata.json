@@ -40,46 +40,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
-      ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-supervisor.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "goal_plugin.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -96,6 +62,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,11 +165,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Doc Sync",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "From the dossier (e-3.1, verbatim): `supervisorVerifier` is options-injectable only (`mk-goal.js:128`, `1197-1199`); OpenCode loads plugins without options, so production verdicts are permanently not-configured -> `notmet`; goals can NEVER auto-complete in production; autonomy ends only via caps",
     "created_at": "2026-07-03T07:30:51Z",
-    "last_save_at": "2026-07-16T16:32:49.908Z",
+    "last_save_at": "2026-08-30T15:39:25.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8026b9c8e9d70046682e6bb5fcc4771e156dcb02f760232b430ea01429135729",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d0bcae1547d0297153b70171c74a2fee8549d4a9b51c9558c2fe7307b913a265",
       "plan.md": "5f4a467b53ed16af013a757ef0dae5be28cd5d3b6ec91cc5c3a6dc2edfadb94f",

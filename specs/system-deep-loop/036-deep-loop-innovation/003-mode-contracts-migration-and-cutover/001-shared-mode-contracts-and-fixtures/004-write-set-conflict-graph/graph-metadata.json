@@ -21,8 +21,8 @@
       "write-set conflict graph tasks",
       "phase-013 scheduling tasks",
       "deep-loop write ownership tasks",
-      "write-set conflict graph checklist",
-      "phase-013 graph verification"
+      "write-set path case handling",
+      "unicode-normalized resource path"
     ],
     "key_topics": [
       "write-set",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,37 +175,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Filesystem Path Identity Handling",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Canonical",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption.",
     "created_at": "2026-07-16T03:43:54.781Z",
-    "last_save_at": "2026-08-29T13:09:52.032Z",
+    "last_save_at": "2026-08-30T15:39:20.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:827268bd332a9aef627ffb60a9f29ed9daa0667942fc25e8e4ed4db823befe47",
+    "source_fingerprint": "sha256:d09d18a1441f2c9f0bd1390d9b81828d2f2b718369b694feedd114cf8f469fcd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b8b379df800a9fdd82cffdc3d713e8985d6950504c89bec810ec272e9e55ac8c",
       "plan.md": "b1ce63ca2e19d6a00f9dd9418e5b9d1bb0085058414901b249e77b6e1a235326",
       "tasks.md": "ae09b54df028bd6b31cf31a9f7afcdd5b57533a479c3bd66f85632d253162c63",
-      "checklist.md": "0ae454be1c4a45642f980635d841b580d9298fe4c999d4d53fe6fee5a3e0d097",
       "decision-record.md": "11e66bd72da927fbaae82a889d4801a223cafcab5ac730ab3db34bde3674fd5b",
       "implementation-summary.md": "c384c1fcb44f40fc2fa2b790a5805e89d774ddc9555eda8d18b7854fc188fd54"
     },

@@ -18,7 +18,6 @@
       "apply deep review findings",
       "d4r remediation plan",
       "d4r remediation tasks",
-      "d4r remediation checklist",
       "d4r remediation summary"
     ],
     "key_topics": [
@@ -33,25 +32,18 @@
       "findings",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "proposals/REMEDIATION.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "proposals/REMEDIATION.md"
     ],
     "entities": [
-      {
-        "name": "REMEDIATION.md",
-        "kind": "doc",
-        "path": "proposals/REMEDIATION.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -71,15 +63,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "REMEDIATION.md",
+        "kind": "doc",
+        "path": "proposals/REMEDIATION.md",
         "source": "derived"
       },
       {
@@ -167,48 +159,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "How It Was Delivered Phase",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The D4-R task-outcome instrument and the v1.11.0.0 doc reconciliation shipped functional and suite-green, but a deep review found 8 should-fix and 20 advisory issues",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:49.092Z",
+    "last_save_at": "2026-08-30T15:39:23.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49197bd4b2b1303b5726d6394118acb6090d061e9e003a355a9a6c541606b85c",
+    "source_fingerprint": "sha256:6ec75d3b5a05b2a216ed1d44b2280371ff83b29d654e83e58c5f83f5bbc169d5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "180c0d67bc278fc8019d85b1aeb5b6e95a1a4d0bf1fe623a83015f803f41a060",
       "plan.md": "5d910697567ae304348a565f7fa96cc3d96f51d1d1da5617e1f78217e341d8f6",
       "tasks.md": "b11f0650b2540046deca2850f3ff3595d0eec5b0463da475cab5a4dc588e9580",
-      "checklist.md": "6d46fabc911745b8133205d4e69fcf57d01ba00a92558d0532a0a86b629c941d",
       "implementation-summary.md": "7e1a161580acf9b2347b82d32a1e12becac4d2b0ad515f939a36ece3f208492f"
     },
     "last_active_child_id": null,

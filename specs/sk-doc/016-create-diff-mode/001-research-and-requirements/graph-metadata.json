@@ -21,8 +21,8 @@
       "deep research document diff",
       "document diff research tasks",
       "document comparison research queue",
-      "document diff readiness checklist",
-      "document diff research verification"
+      "document diff decisions",
+      "document comparison architecture decision"
     ],
     "key_topics": [
       "document",
@@ -44,13 +44,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       "resource-map.md",
       "research/orchestration-summary.json",
-      "research/lineages/document-diff-1/iterations/iteration-010.md",
       ".opencode/commands/deep/research.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-deep-loop/SKILL.md",
@@ -60,7 +58,9 @@
       ".opencode/specs/sk-doc/016-create-diff-mode/spec.md",
       ".opencode/specs/sk-doc/016-create-diff-mode/description.json",
       ".opencode/specs/sk-doc/016-create-diff-mode/graph-metadata.json",
-      ".opencode/specs/sk-doc/016-create-diff-mode/001-research-and-requirements/spec.md"
+      ".opencode/specs/sk-doc/016-create-diff-mode/001-research-and-requirements/spec.md",
+      ".opencode/specs/sk-doc/016-create-diff-mode/001-research-and-requirements/plan.md",
+      ".opencode/specs/sk-doc/016-create-diff-mode/001-research-and-requirements/tasks.md"
     ],
     "entities": [
       {
@@ -72,19 +72,13 @@
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/specs/sk-doc/016-create-diff-mode/001-research-and-requirements/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "path": ".opencode/specs/sk-doc/016-create-diff-mode/001-research-and-requirements/tasks.md",
         "source": "derived"
       },
       {
@@ -115,12 +109,6 @@
         "name": "orchestration-summary.json",
         "kind": "config",
         "path": "research/orchestration-summary.json",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-010.md",
-        "kind": "doc",
-        "path": "research/lineages/document-diff-1/iterations/iteration-010.md",
         "source": "derived"
       },
       {
@@ -206,29 +194,40 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "People use AI to edit documents outside Git repositories and cannot reliably inspect the exact before-and-after change",
     "created_at": "2026-07-15T09:53:39.812Z",
-    "last_save_at": "2026-08-29T15:22:00.822Z",
+    "last_save_at": "2026-08-30T15:39:14.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:9e860042034ef10243a3fc5120a877251f613d51493a928e23a671ac7ab7dc22",
+    "source_fingerprint": "sha256:7e68116183d3c9268e380b01f9bd70ae160ac7c17c928cc5cfb65653f785011a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37185cf0ba2310fb343cabd613eceeba1eb1c73710a769d691d95733361a8e39",
       "plan.md": "495758b4da4e013718eeb44ee7a9880149511a61efb129a4e46e9ea58f901656",
       "tasks.md": "09524b1b659f8a886de13c60587d71eb78da779f4f62cf4de92cba7f9e9a1776",
-      "checklist.md": "bdc06c514f20de59262c2560d07fcca5b76eb201359a9032e643282f93a2ebe2",
       "decision-record.md": "0bfa76df71b3af09c71650279be3adcc1acf6b8124407ea9431ad9510a1281e2",
       "implementation-summary.md": "fc92454c2fc3eb7418604667c4bc405745d137c9db46a2ed34acd8b8ae55d913",
       "research/research.md": "47aad59cc69e4f8f65310f0381656dd851f5f7f192a5b252471c4e9ea909af98",

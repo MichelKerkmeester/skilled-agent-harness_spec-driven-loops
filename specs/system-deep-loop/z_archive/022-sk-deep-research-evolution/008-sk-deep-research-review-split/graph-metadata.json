@@ -21,8 +21,8 @@
       "036 tasks",
       "deep-review split tasks",
       "review mode split task list",
-      "036 checklist",
-      "deep-review split verification"
+      "036 implementation summary",
+      "deep-review split summary"
     ],
     "key_topics": [
       "deep",
@@ -43,9 +43,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -61,21 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -175,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built Repository",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`sk-deep-research` previously handled both investigation workflows and iterative review-mode auditing",
     "created_at": "2026-04-12T09:02:50.180Z",
-    "last_save_at": "2026-07-16T16:31:47.429Z",
+    "last_save_at": "2026-08-30T15:39:24.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7cd313c83cf08fce90f1dddff0d7be35a9fe7b2569ffe5fea7e6328ab190f68e",
+    "source_fingerprint": "sha256:a574a4029adbf9bf9afea25d0fa92f9642d023605936f749a584c4f086cb2133",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e997b2c0e7e13ac98009ecbad950ea1bf56d0251231f79f0e7ef515683234a60",
       "plan.md": "e78eda223b92274a9c7fc6e959a60ae5eac8a421f4c7589ea4312954fc3ac635",
       "tasks.md": "3ec371626b74b626b9cd20131bae5220217d2d9c9d97456ca4715ee68f32fd1e",
-      "checklist.md": "b3c55e79789e67b860b58686cd357a94c71dcc274e34f9e70a41ab98800eb7c0",
       "implementation-summary.md": "fd643f9f21fe0ce21309ab742d129a2f51331d2738ba357b11aef9ff46a5e0e6"
     },
     "last_active_child_id": null,

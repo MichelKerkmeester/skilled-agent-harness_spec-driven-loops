@@ -18,8 +18,6 @@
       "014 sk-doc phase 029 plan",
       "smart router retrofit tasks",
       "014 sk-doc phase 029 tasks",
-      "smart router retrofit checklist",
-      "014 sk-doc phase 029 checklist",
       "smart router retrofit summary",
       "014 sk-doc phase 029 summary"
     ],
@@ -35,47 +33,18 @@
       "routers",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
-      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
-      ".opencode/skills/sk-doc/create-flowchart/SKILL.md",
-      ".opencode/skills/sk-doc/create-agent/SKILL.md",
-      ".opencode/skills/sk-doc/create-changelog/SKILL.md",
-      ".opencode/skills/sk-doc/create-diff/SKILL.md",
-      ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
-      ".opencode/skills/sk-doc/create-quality-control/SKILL.md",
-      ".opencode/skills/sk-doc/create-readme/SKILL.md",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
-      {
-        "name": "package_skill.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -95,15 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
@@ -201,26 +170,43 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The nested `sk-doc` mode packets carried simplified prose smart-router sections (call-sequence text blocks or terse routing notes) instead of the canonical `def route…` pseudocode that `create-skill` defines in `assets/skill/skillsmartrouter.md` (runtime discovery + in-skill sandbox guard + multi-tier `UNKNOWNFALLBACK`)",
     "created_at": "2026-07-14T16:48:38.460Z",
-    "last_save_at": "2026-07-17T14:37:02.292Z",
+    "last_save_at": "2026-08-30T15:39:13.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:793e272f54d79df264f3600d0b0cf67e3fe5a84fc2493d94d46f9637cc562bdb",
+    "source_fingerprint": "sha256:272e7d1df880c8a0a6744d97fa9f84bd63654d753dc5b64631a7f02f39feedab",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6a1bc7376305ec3cb14042b9c370e6e35dcb6b158ca7df92ff05614035a850bf",
       "plan.md": "3f67c29f141e61e933ba7b5a59da349ebb172c0e6937ddb9b8e8a94793f8b230",
       "tasks.md": "05ea27c7c69439f392964491b199963369bab210ba70e87859904482d5e8d49b",
-      "checklist.md": "a63bf82acad7e82e2a75744296ff761b82b4639a61f2b29c9928e026ff0bf920",
       "implementation-summary.md": "c85392b1c00635b1f59d023086cea4859a369df7df1552ba692e752c855103ae"
     },
     "last_active_child_id": null,

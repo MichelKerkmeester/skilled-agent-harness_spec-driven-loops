@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-flowchart/README.md` still carries the older tabular reference-card style and predates the pilot standard set by the mcp-obsidian README and the refined template from phase 001",
     "created_at": "2026-08-04T08:34:49.243Z",
-    "last_save_at": "2026-08-30T07:20:32.898Z",
+    "last_save_at": "2026-08-30T15:39:17.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:082ace14e729ae6b9c51a40b78c98e99a672d5c09fdfe658493c380cfd0af57f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19df49bef6e7ebc1f2bd3a891db1b6a27b2462f7182b150b2b8c77135747659d",
       "plan.md": "0ec02117fe4b9c6ad4890fd6f6de1eeca5549e5ef5cc1936e5e6e91d8d9dca95",

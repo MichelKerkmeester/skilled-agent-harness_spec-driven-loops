@@ -42,29 +42,16 @@
     "status": "draft",
     "key_files": [
       "spec.md",
-      "shared/algorithms/rrf-fusion.ts",
-      "shared/ranking/learned-combiner.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "shared/algorithms/rrf-fusion.ts",
+      "shared/ranking/learned-combiner.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "rrf-fusion.ts",
-        "kind": "code",
-        "path": "shared/algorithms/rrf-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "learned-combiner.ts",
-        "kind": "code",
-        "path": "shared/ranking/learned-combiner.ts",
         "source": "derived"
       },
       {
@@ -80,9 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "learned-combiner.ts",
+        "kind": "code",
+        "path": "shared/ranking/learned-combiner.ts",
         "source": "derived"
       },
       {
@@ -180,37 +173,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The current fusion pipeline relies on flat heuristic constants: a fixed RRF K=60, a flat convergence bonus of +0.10, a static graph boost of 1.5x, and hard-coded Stage 2 signal weights",
     "created_at": "2026-04-12T09:02:50.234Z",
-    "last_save_at": "2026-07-10T06:24:47.687Z",
+    "last_save_at": "2026-08-30T15:39:38.124Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:875198b144aef2a8dafd116efdb6c3fe1ccc113b46ed139362fcbdf48cf2202f",
+    "source_fingerprint": "sha256:ce6dfd6143ceadf1b05e81c0bf824a3650e2cf91e69cbd1ae338e7faeaecb3ba",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a67c1014753bcb3575152414e3b839d03e300765433ffe22610cda5cd546b55",
-      "plan.md": "24a654de7fd4aadef3fc1b2f4d5266fb39ab38ec77701748b07cee416db8f749",
-      "tasks.md": "79ce359919933fc4896e4e966cb5ec84e8a491d1fb61646dfe7f8427e98ff580",
-      "checklist.md": "cd9684990bbf0b6aa1da95207770510e11b43e49b7cdee10e48ebd86f6b7a426"
+      "spec.md": "c9b394408f17cb7a4e3d5ccb6db7eb6cc0ab4f24ff630dd020d9901dace1abc7",
+      "plan.md": "2eef7db51683dab1d66505137fef19465ff18b2bf8ac749b6edba72e4acd9167",
+      "tasks.md": "da415fffe29bd05a7aea2ad14707b33a0fc2aae7815a1019883372b7a77378a1"
     },
     "last_active_child_id": null,
     "last_active_at": null

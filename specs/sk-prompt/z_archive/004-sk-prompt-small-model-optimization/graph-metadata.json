@@ -49,7 +49,7 @@
       "small-model"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -99,17 +99,18 @@
     ],
     "causal_summary": "Our cli- dispatch surface (`cli-devin` for SWE-1.6, `cli-opencode` for DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) and `sk-prompt`'s framework selection got measurably better through the 113 arc — RCAF default, medium pre-plan, standard bundle-gate, cross-model validation",
     "created_at": "2026-05-18T08:50:24.230Z",
-    "last_save_at": "2026-07-16T15:57:11.759Z",
+    "last_save_at": "2026-08-30T15:39:19.085Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:5cd0e025394ecdc9353874922ea1fc65d9c55558e7ee592f0919a6d0f864ea44",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a3fe81634dc694a39eb760d18e8a078a0d7aec747d7e2a1620a376f3b062ff8"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/008-sk-prompt-small-model-rename",
     "last_active_at": null
   }
 }

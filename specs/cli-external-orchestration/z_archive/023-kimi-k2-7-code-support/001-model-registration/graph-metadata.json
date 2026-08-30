@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/023-kimi-k2-7-code-support/001-model-registration",
-  "spec_folder": "cli-external-orchestration/023-kimi-k2-7-code-support/001-model-registration",
-  "parent_id": "cli-external-orchestration/023-kimi-k2-7-code-support",
+  "packet_id": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/001-model-registration",
+  "spec_folder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/001-model-registration",
+  "parent_id": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Kimi K2.7 Code (live slug `kimi-for-coding/k2p7`) is available on the dedicated \"Kimi For Coding\" coding-plan provider but is not registered anywhere in the small-model surfaces, so it cannot be dispatched or routed by name",
     "created_at": "2026-06-15T09:21:00Z",
-    "last_save_at": "2026-07-14T19:26:21.500Z",
+    "last_save_at": "2026-08-30T15:39:08.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:baff83ddc130530c9447587807a8de29bbcccf454557fcdb771988a110b7b90c",
+    "source_fingerprint": "sha256:03380068dac68fde6f3fd1beee77f324fde53e44142280f17e0d71794b159606",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80337f24268934d1de662ce14a07a0ad2f600b4efcdfd20908c53fd3d7429bfb",
-      "plan.md": "52e4cd447cb242c9e7e9c0c1ec639b325cf428c1b39e029f29178c5f32f59513",
-      "tasks.md": "5bcf5ac53af1230a207c4be7c3b300b9453c499fa99c1a8bdf344a0e4dc70c15",
-      "implementation-summary.md": "79a41683fb67972edcb222025cc6e41fef3747d0a013f074c5c6248fc2da482b"
+      "spec.md": "bf8ddfed9cef495e47038f88fbf4f5424a8f4bc22ac5affde10e1100d5fbd322",
+      "plan.md": "5d71973c09e973487b88830efd85f046cbd654c60b73ee7cce646e9313cf8621",
+      "tasks.md": "fcd0d7370c498af350fa59bd14e6e195bdaa4cf6ce7b8846137d56b1b5a99749",
+      "implementation-summary.md": "e2e2e5a251f13a19e601f9f870901b575bbfa10f5059c2a84b3ee6673733af3e"
     },
     "last_active_child_id": null,
     "last_active_at": null

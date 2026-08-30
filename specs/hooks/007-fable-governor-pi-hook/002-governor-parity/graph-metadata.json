@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The per-turn governor capsule is inconsistent across runtimes: canonical composition points carry hygiene + governor + proof-over-appearance (`render.ts:53-69,204-215`, `mk-skill-advisor.js:48-52`), but the OpenCode bridge's inline fallback omits the proof directive (`mk-skill-advisor-bridge.mjs:319-373`), and its fallback branch falls back to drift-prone inline code (`:376-379`)",
     "created_at": "2026-08-04T12:04:52Z",
-    "last_save_at": "2026-08-29T15:21:51.909Z",
+    "last_save_at": "2026-08-30T15:39:09.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:26187a8e92b023383f58be401cd44dcd9468cd94752cb53cda070c1dac87ded5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "467185c94774ba50c468cf1899993a9df3b4d6dd436a167fe7888ad277b1355e",
       "plan.md": "979570f4fa5389d73a805b814dee5d6005e8546c38d09fb6f8ea9b97f78832c3",

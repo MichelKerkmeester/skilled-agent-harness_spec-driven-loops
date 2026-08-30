@@ -20,9 +20,9 @@
       "deep ai council shadow parity tasks",
       "council ledger parity tasks",
       "phase 009 council shadow tasks",
-      "deep ai council shadow parity checklist",
-      "council projection parity gate",
-      "council shadow parity verifier"
+      "deep ai council shadow parity implementation",
+      "council parity receipt handoff",
+      "deep-ai-council comparator"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Implemented the dark shadow-parity harness for the Deep AI Council migration. The harness runs the typed event-ledger path beside the legacy council emitter against the same frozen execution, compares canonical behavior projections event-for-event, and blocks authority cutover on any unexplained mismatch.",
     "created_at": "2026-07-16T03:43:35.238Z",
-    "last_save_at": "2026-08-18T11:07:20.863Z",
+    "last_save_at": "2026-08-30T15:39:21.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd8fea403a7b9b9e1a3afdfcd61904363dec2a1341adaeacb410a33051f77c1a",
+    "source_fingerprint": "sha256:01575f5d1c352ffe1995a99bfce9709de72b8738a78fe6a216609855c05d1bf1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b3c9c0f91ef5cc2f5ad4e13fb77cb87b5369bf697bdd221215646da4093fab60",
       "plan.md": "1610f180b0b4e50fd10fdd07e468206c3bacfde2152908fbf62530aa2055a2f3",
       "tasks.md": "2e790f63f564da694af4b4aa3492e84bdbc2292461aeb8ac8d9559e7686e187e",
-      "checklist.md": "b4b4ebf361941f4cbde93315f6584c7242f5796d86469a5e53b3baf470e3f7b4",
       "implementation-summary.md": "f9d3b2ba9c1cc053de16f3f2fd86e77b775ebe08a4525a852afde086c2d50601"
     },
     "last_active_child_id": null,

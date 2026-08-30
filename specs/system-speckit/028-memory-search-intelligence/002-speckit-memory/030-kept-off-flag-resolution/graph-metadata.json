@@ -22,9 +22,8 @@
       "028 real world simulation flag gate",
       "028 flag resolution tasks",
       "028 flip or delete tasks",
-      "028 flag resolution checklist",
-      "028 flip or delete checklist",
-      "028 kept off flag resolution summary"
+      "028 kept off flag resolution summary",
+      "028 keep 5 delete 10 outcome"
     ],
     "key_topics": [
       "kept",
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,42 +169,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 028 build epoch shipped most of its new search and memory behavior behind default-off flags and closed with no flag flipped",
     "created_at": "2026-06-20T00:00:00Z",
-    "last_save_at": "2026-08-28T16:00:15.130Z",
+    "last_save_at": "2026-08-30T15:39:35.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ca15c89fbe6ec545e948e740be06375f8f8f402d0d84340dfb2eafd7fc6245d",
+    "source_fingerprint": "sha256:f4e979667df6479ead87d66af568d1a9ae3d96e9e449e4ce263e1f24b429875f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "21ad3d39a708a3ca2de6f06fb63d7e0b87d9c564cbbca68c6f98279d8d44be65",
       "plan.md": "a62fbcc463380c4b82a06971d34b056687968ba222b8f2530fead53afdc73ab0",
       "tasks.md": "5dbd6132d40cb7685134c11d5c2b083ad9876bf277332fc5ee434ce6dec38938",
-      "checklist.md": "a2a34cda8e5485ee77c734b9be5fa988949a7e49edb07aed35d5281c31c74a6b",
       "implementation-summary.md": "ec7b68c5bc623fa0999dc23ba4f1a9dfa03983a078f8d9dadfe3d7a85c690fe2"
     },
     "last_active_child_id": null,

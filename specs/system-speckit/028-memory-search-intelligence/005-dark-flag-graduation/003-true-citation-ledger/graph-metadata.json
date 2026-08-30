@@ -20,9 +20,9 @@
       "session scoped firing trigger ceiling",
       "bare integer reference hit rate",
       "citation ledger feasibility tasks",
-      "citation ledger verification",
       "citation ledger REFINE verdict",
-      "session id firing trigger refinement"
+      "session id firing trigger refinement",
+      "reference key content anchor refinement"
     ],
     "key_topics": [
       "true",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/citation-ledger-feasibility.mjs",
       "results/metrics.json",
@@ -71,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +191,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 028 packet ships the true-citation emitter dark behind a default-off flag",
     "created_at": "2026-06-24T04:52:32.182Z",
-    "last_save_at": "2026-08-29T15:22:23.756Z",
+    "last_save_at": "2026-08-30T15:39:36.146Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99fcb8b015c987f2d2f91a7c209a1547027c339b216d46adf5129b6aea282647",
+    "source_fingerprint": "sha256:601a6de10dd5f6da53385c644c6d3334c54b1885a820ddca5f479125249680b6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d162b7eb148bd98bf4b6a9b241dce776b88528682e01a8d8f74e8260e806427a",
       "plan.md": "31bcf883e2c79c63904f29d4794790b76e12f83a31740ce2b63c1df2253516f7",
       "tasks.md": "e0ad049f57c822d63970436b3820fb9927852b9e8dbd3ecef04be1856d1a15da",
-      "checklist.md": "8d2a436702fd63a95043b313535d820543da60910dbfc119fd887793554322c8",
       "implementation-summary.md": "7c8efde41d5577dcc19b54e495c6fdb18782037355645e749d950c27dac1280e"
     },
     "last_active_child_id": null,

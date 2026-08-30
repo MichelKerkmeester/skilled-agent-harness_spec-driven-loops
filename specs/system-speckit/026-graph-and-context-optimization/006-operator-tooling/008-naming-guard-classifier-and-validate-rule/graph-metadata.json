@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/lib/shell-common.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
@@ -69,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,30 +185,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Spec folders can be created at the wrong location with a slug that embeds an existing sibling packet number (the `028-026-program-research` shape, where a track-root slug starts with an existing phase-parent's 3-digit number), and nothing in the toolchain detects this",
     "created_at": "2026-06-06T08:49:08.130Z",
-    "last_save_at": "2026-08-29T14:54:17.169Z",
+    "last_save_at": "2026-08-30T15:39:32.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:763648e3cbfb73393be137f3d064dd4be593732c167a9863db0ed928ccf00302",
+    "source_fingerprint": "sha256:643c66cd6d958826466fde589feda2cbc9fa98c323390deb475e304a5361b45c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b4a3708cb94c277591e704d34f47eab25149fcb1892307d0458f94304f1fdbe5",
       "plan.md": "836b6194b1882323985854d5818f2165e6a3c5fbb77251dcbd04b194062abcf6",
       "tasks.md": "de2a51c47538f2b9e21118185ede9d8482e5a122af0511f653a40000fb89b782",
-      "checklist.md": "18165964ba16d21e0bbcf7656e2cbf7a15723733c45e42d4920f49f5c76d409c",
       "implementation-summary.md": "8cd7766572ed64606d108ccc7f51c759c6b1f8532a70cae8c66b3d98367ee0f0"
     },
     "last_active_child_id": null,

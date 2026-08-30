@@ -45,6 +45,7 @@
       ".opencode/skills/sk-vision/leaf-manifest.json",
       ".opencode/skills/sk-vision/leaf-aliases.json",
       ".opencode/skills/sk-vision/leaf-manifest.config.json",
+      ".opencode/plugins/sk-vision.js",
       ".pi/extensions/sk-vision.ts"
     ],
     "entities": [
@@ -100,6 +101,12 @@
         "name": "leaf-manifest.config.json",
         "kind": "config",
         "path": ".opencode/skills/sk-vision/leaf-manifest.config.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`SKILL.md` still says \"This file only reserves paths and advisor triggers\", \"The runtime and host adapters land in later children\", and \"Reserved package home (leave empty here)\" — every one of those statements is false now",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-29T14:54:24.585Z",
+    "last_save_at": "2026-08-30T15:39:19.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:15c7d15c3e4335e8ed5bc665502843f9a010295c133b1018642ea7723370466f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2b23c105fabf183f5f98cb97da618434e50e2d068d180ffffc4573c81e5ba698",
       "plan.md": "22730c24d2839544d36e8205fb3975874cf7e4e010daa82b7d5d1328bdb1ad83",

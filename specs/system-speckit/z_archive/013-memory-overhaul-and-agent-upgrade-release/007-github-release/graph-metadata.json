@@ -19,10 +19,10 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
-      "record"
+      "record",
+      "decision record",
+      "summary"
     ],
     "key_topics": [
       "task",
@@ -33,17 +33,16 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
-      "record"
+      "record",
+      "summary",
+      "specify"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md"
@@ -59,12 +58,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,27 +185,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Specify the GitHub tagged release for spec 130, following `PUBLICRELEASE.md` conventions",
     "created_at": "2026-05-26T19:43:14.244Z",
-    "last_save_at": "2026-07-10T06:24:52.137Z",
+    "last_save_at": "2026-08-30T15:39:37.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7600655329fc14d2aebe9ecaa857c0d7a4e8700fcd3007771cf796128e392ff5",
+    "source_fingerprint": "sha256:2a5ee3b0e175e19b257562e26630bcdec7c0fb7a3f87a76b949a24fbbe656527",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b474753e70f08c149a098bdad4c4ca44f01006634a9e305b6e639b85b81d556a",
+      "spec.md": "a1149c1fa0871749f2080d46e8e395c7ee2ce877bc22e67ab5b141ccb482a31b",
       "plan.md": "f7171c6fe2ed4481c894c711c607a634857b18acb944893750aa8028213adc5d",
       "tasks.md": "c6f8e41fcd101fa8d22889eecfb54ad096b5d0a8e34a49970c1e48905b4c148c",
-      "checklist.md": "3bf4af5660c9aca1a66446701b75cb857b158b9beb4278656c7c05a83d43e87f",
       "decision-record.md": "ce40223e27468e274785b0484351f42f49e8511ef478d16de33f63f6f33242b2",
       "implementation-summary.md": "ae38ab9c4ecf3870b17ad6048d3a51fb503af681534c5c43e338fcd364ed83b8"
     },

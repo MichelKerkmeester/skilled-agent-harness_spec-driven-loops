@@ -90,14 +90,14 @@
     ],
     "causal_summary": "The system-code-graph surface still exposes snakecase filesystem roots and content paths in its MCP package,",
     "created_at": "2026-07-14T15:17:02Z",
-    "last_save_at": "2026-08-30T07:19:51.530Z",
+    "last_save_at": "2026-08-30T15:39:16.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:4bae473832c7b807c508bfa6e9b33e1336b5120d3cf4055bc6c8601846af2999",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2ac62751004cd6e96cad6594319db038a626f81d9103166c93e3fc04f507a13f"
     },

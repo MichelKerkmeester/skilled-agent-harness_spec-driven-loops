@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/003-mcp-figma-transfer/001-barter-figma-agent",
-  "spec_folder": "mcp-tooling/003-mcp-figma-transfer/001-barter-figma-agent",
-  "parent_id": "mcp-tooling/003-mcp-figma-transfer",
+  "packet_id": "mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
+  "spec_folder": "mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
+  "parent_id": "mcp-tooling/z_archive/003-mcp-figma-transfer",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -19,10 +19,10 @@
       "phase 1 implementation",
       "barter figma tasks",
       "phase 1 tasks",
-      "phase 1 checklist",
-      "barter figma checklist",
       "phase 1 decisions",
-      "barter figma adr"
+      "barter figma adr",
+      "barter figma summary",
+      "067 phase 1 complete"
     ],
     "key_topics": [
       "barter-figma-agent",
@@ -34,25 +34,24 @@
       "plan",
       "implementation",
       "tasks",
-      "checklist",
       "decisions",
-      "adr"
+      "adr",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -68,15 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -176,45 +169,50 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Template Compliance Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Template",
+        "name": "Context Phase",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Keep",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Figma MCP capability lives as a developer-grade skill (`mcp-figma`) inside the Public skill repo",
     "created_at": "2026-05-05T07:49:57Z",
-    "last_save_at": "2026-07-15T07:48:13.175Z",
+    "last_save_at": "2026-08-30T15:39:10.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9926a82e1295a4e59a9ec6f29536bd3a37291c8160c3d2f34cd774aabd7218dc",
+    "source_fingerprint": "sha256:210abc24759c8d5bab17cf12edf6709c5e7656dcb5b00e56c56e379c37b39094",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "564ffed52599b89747707becfcf49c2f9a8228a373a29a99cdb9002810c685a0",
-      "plan.md": "d16ca07ff467b5d284492e840abd5d841f940f1713c07c6e6a60a228484c77f3",
-      "tasks.md": "0ecb066eeee1af504fd2ad312983350763e64666925d1774d98e45e818ff9942",
-      "checklist.md": "9995e8248df013df5d030a889e80e611a44d990a6a6b6cab1ce37c16da46d930",
+      "spec.md": "49bb82a710836d14cea4a6d64a58a4caab27cd39d8ffdba766a2b6620b5bceb6",
+      "plan.md": "c76e8a94bb9481c70a1b64d95fdb09b3d785380df52508ebd4e2f5f0691e8bd6",
+      "tasks.md": "de3b24230fdf7d1719fb4db4d54d574fc9cdb6a5d21771af0f25ab68b70849f8",
       "decision-record.md": "e30a39a912d0f48a4848c42d94c1f20981741ffcae06be0938926b88181d0ea1",
-      "implementation-summary.md": "d125db41eeab288472254707ce56143436b33014c691a1dee413d26dc161607e"
+      "implementation-summary.md": "150dff52bcada52d27229d628a8821fb6e918912506f0ef48ea7f26053256b11"
     },
     "last_active_child_id": null,
     "last_active_at": null

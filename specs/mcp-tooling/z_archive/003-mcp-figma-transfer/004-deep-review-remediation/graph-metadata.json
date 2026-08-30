@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/003-mcp-figma-transfer/004-deep-review-remediation",
-  "spec_folder": "mcp-tooling/003-mcp-figma-transfer/004-deep-review-remediation",
-  "parent_id": "mcp-tooling/003-mcp-figma-transfer",
+  "packet_id": "mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation",
+  "spec_folder": "mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation",
+  "parent_id": "mcp-tooling/z_archive/003-mcp-figma-transfer",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -33,25 +33,16 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/specs/mcp-tooling/003-mcp-figma-transfer/004-deep-review-remediation/job3-report.md",
-      ".opencode/skills/README.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "job3-report.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/003-mcp-figma-transfer/004-deep-review-remediation/job3-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -64,18 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -175,37 +154,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Phase",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "METADATA",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "WHAT WAS BUILT",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "HOW IT WAS DELIVERED",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "KEY DECISIONS",
+        "kind": "heading",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 067-mcp-figma-transfer packet shipped 7 commits across 3 repos with functional implementation work, but follow-up commits (`66e1e87`, `766206b`, `b03bf7563`, `bdb739d97`) introduced state changes that were not propagated into formal phase docs",
     "created_at": "2026-05-05T12:50:00Z",
-    "last_save_at": "2026-07-15T07:48:13.985Z",
+    "last_save_at": "2026-08-30T15:39:10.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ea4584593af1befe51c823937a0e508b33117bbed7ebc92bd6b6c6f2a6ba403",
+    "source_fingerprint": "sha256:593a339aff3b0db10d48d3ed69758c073cc07c90b811fd23673150705a3206f4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb7bc856ff90d9bb971cc2f5f27f7a31a274841a694f8a06d2763c1e07aa1c0f",
-      "plan.md": "a287d2b57f279b84cfcb6a24e17b48979b052d5603331136fec04c0f581eca46",
-      "tasks.md": "05a1a5d6f33c9570f80651b38bbbf74dcbdcc1cafdd62d601baee64713fa68ae",
-      "checklist.md": "42a94b38df83264dc314797b10c3337d666e00a42d6b4ad1298eb635ebffb823",
-      "implementation-summary.md": "657ac4b6b68aa5b54deabd95d93b058aa0ef31155007063a3bbf15623f8ca70f"
+      "spec.md": "d9d302ec5b743fba822015a7728de7997d08765fa18766e2523776b44bb7a821",
+      "plan.md": "3d1f3f41147756fb6ffadd5534d9f3c5f9d07e49fffca89375e0073c26360732",
+      "tasks.md": "82f2c089c4b6cd20bb16340e66790256aa1988318fef872227501b8961762e75",
+      "implementation-summary.md": "f52200dee3189a49889fce3dc5d1c24e42eb93640e7482b2b4a3c8c843c9eb68"
     },
     "last_active_child_id": null,
     "last_active_at": null

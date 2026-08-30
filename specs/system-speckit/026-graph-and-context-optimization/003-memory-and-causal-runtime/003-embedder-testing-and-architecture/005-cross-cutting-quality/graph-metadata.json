@@ -49,10 +49,10 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "001-playbook-quality-audit/spec.md",
       "002-deep-review-stack/spec.md",
-      "003-skill-docs-alignment/spec.md",
-      "spec.md"
+      "003-skill-docs-alignment/spec.md"
     ],
     "entities": [
       {
@@ -100,13 +100,14 @@
     ],
     "causal_summary": "Phase parent grouping the cross-cutting quality + verification + docs work that spans multiple 016 stacks. Three sub-phases: playbook quality audit, 20-iter deep-review of the 016-019 code stack, and skill-docs alignment sweep.",
     "created_at": "2026-05-18T08:06:49.047Z",
-    "last_save_at": "2026-08-28T23:01:12.559Z",
+    "last_save_at": "2026-08-30T15:39:30.764Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:17a0e7c7cf615d1a42bc6602922ff7192818b76f30616cbae45049225bfdf561",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "88498cf686f20f8e12690961d78ffbed338a9e48ba576cadc97f0b4d3d43dfcf"
     },

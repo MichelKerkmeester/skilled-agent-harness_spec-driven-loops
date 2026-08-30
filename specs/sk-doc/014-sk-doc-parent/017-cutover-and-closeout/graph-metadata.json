@@ -80,13 +80,14 @@
     ],
     "causal_summary": "Phase 017 of the sk-doc monolith to parent-hub conversion",
     "created_at": "2026-07-06T06:30:37.806Z",
-    "last_save_at": "2026-08-28T22:18:19.506Z",
+    "last_save_at": "2026-08-30T15:39:13.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:de9881a04c872466f5d43e4a3c283ac01201445cdf10f57b2b3a79380af857dc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d4113f0c04d1b7b879011aeedd8743424abc76fe9d736b9e0b3eee4adcf374e5"
     },

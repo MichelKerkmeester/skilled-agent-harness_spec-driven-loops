@@ -37,7 +37,6 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -52,12 +51,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -169,42 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Ran",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The remaining ~310 numbered snippet files live in twelve smaller skills (system-code-graph + 4 cli- + 5 sk- + 3 mcp-), most of which are playbook-only",
     "created_at": "2026-06-06T06:46:12.388Z",
-    "last_save_at": "2026-08-28T15:59:20.112Z",
+    "last_save_at": "2026-08-30T15:39:14.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:322b14fba24873dc670850f4ee74c1d46d5f569418ca249eca88ff1b5ecca914",
+    "source_fingerprint": "sha256:46c1de616de1e0b842405966fc050065731b1322d46e348bebffc5d4a9799aa7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0028d267ba9a85153547c3d875cf9fe5d7070814f47343f18f37299a1931b914",
       "plan.md": "01be9e241130b6b578717f8cb4ab8899106edc79cfc2341e424132ef52013dc6",
       "tasks.md": "4d926f7a8d579990694690fb6d20462a2982689d62b89b63de41e584a893c61b",
-      "checklist.md": "70292e28650d9e90284ee9e686b7af0749748ccba79901f33a5b810a36245004",
       "implementation-summary.md": "4d6b82fe2775297ec2b3c60e22a791222e8dcf727a9ed6a9cb79acba9fafe861"
     },
     "last_active_child_id": null,

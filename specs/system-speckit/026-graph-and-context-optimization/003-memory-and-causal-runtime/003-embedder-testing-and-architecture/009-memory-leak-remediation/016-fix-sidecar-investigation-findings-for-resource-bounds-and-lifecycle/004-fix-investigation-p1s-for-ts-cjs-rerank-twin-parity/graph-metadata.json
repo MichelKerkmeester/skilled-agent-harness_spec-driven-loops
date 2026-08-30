@@ -15,7 +15,6 @@
       "F1 F2 F3 F37 F38 F69 F70 F101 F102 remediation",
       "arc 010 parity plan",
       "arc 010 parity tasks",
-      "arc 010 parity checklist",
       "arc 010 parity decision record",
       "arc 010 parity implementation summary"
     ],
@@ -34,15 +33,13 @@
       "plan"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/types.ts",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -64,27 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -184,31 +169,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Decision Records",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Keep",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The registry's P1 `drift|python|cjs|parity` selection contains nine findings where TypeScript, CJS, and Python sidecar contracts disagree or their canonical source is unclear",
     "created_at": "2026-05-23T03:50:22.752Z",
-    "last_save_at": "2026-07-17T17:19:28.350Z",
+    "last_save_at": "2026-08-30T15:39:31.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ecbdc8df1e378e8639c64607c74b489de199610104f1413dd466d1a2d370c62",
+    "source_fingerprint": "sha256:1064e71b4a54adf6aefba6f72369af2032be3c67cf12556033a99438ac260b20",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "60d718c333038f501b5f50e00a256fb8fd56240fec4bb988d29114caa6278e74",
       "plan.md": "710011b9c5e0ab88cd3c478cbd0fdc52c0f97c4731e7640c9b750d319df9ee3a",
       "tasks.md": "f094eaa900dafeb58ee27ccd9d345c928101eb59009326699e80ca425fb81c52",
-      "checklist.md": "dc4df608e99fe634860790522a0412cd8a5881efe9a38d8b7540621c41df326a",
       "decision-record.md": "0785602d177fe352a081fe413b3ed87bfdbbe98b5fd45a440a2966c9cbf94424",
       "implementation-summary.md": "026e8051b9fe7efdbba550d128d7e02ffc21aeb1f8a7780db8722ed0cd9ef646"
     },

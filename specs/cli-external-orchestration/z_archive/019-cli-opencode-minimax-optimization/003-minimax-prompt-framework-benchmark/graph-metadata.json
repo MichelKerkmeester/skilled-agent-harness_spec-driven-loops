@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/019-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
-  "spec_folder": "cli-external-orchestration/019-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
-  "parent_id": "cli-external-orchestration/019-cli-opencode-minimax-optimization",
+  "packet_id": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
+  "spec_folder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
+  "parent_id": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "120/002's research recommended a prompt framework for MiniMax 2.7 by desk analysis only — it never ran the model, so the recommendation is unvalidated",
     "created_at": "2026-05-28T11:03:05Z",
-    "last_save_at": "2026-07-14T19:26:24.209Z",
+    "last_save_at": "2026-08-30T15:39:08.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c5373954b59df84820b1b6dafa4816c709053dd9e920aa6f76def783f57fc7cc",
+    "source_fingerprint": "sha256:340efa44c84f6cd6225238ac93528289cc2da21f01be9bca06f058908c8cbe30",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9c82c070c90c69b7fc840cec0082ad89c2b19a497d9f06e59784746c270f12d",
-      "plan.md": "e5dc919b1ad2ee70a2ffcbc668f707ddf497b0a6d9a9b0f8beb0810566b2450e",
-      "tasks.md": "c9c0413e832c651e537600f5c669a56c19eb39cff1bfce2f5a33b47f37c8194a",
-      "implementation-summary.md": "b3dfb48bfe832d0127552c2dee21c20c6133f69047d7ed1a83c0c6e4528c0247"
+      "spec.md": "c250996fc95030944549fbad81afd2b2e41bab7167adb929fba9ea97606ebe9a",
+      "plan.md": "0b5c25f6abdeba5e9274e0446a8050fbda01ccb6ec74d49e57d8e83023eee457",
+      "tasks.md": "ce78f87f173df9806bf9d8ece854767e6600a5d6884f8fae54cf07e2c1465bc8",
+      "implementation-summary.md": "fbff924860051c11c454f843477dbc03e36576b1d00ba95e17cdc2c1024a6fbd"
     },
     "last_active_child_id": null,
     "last_active_at": null

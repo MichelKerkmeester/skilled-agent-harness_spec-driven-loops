@@ -19,8 +19,6 @@
       "package relocation plan",
       "tasks",
       "package relocation tasks",
-      "verification checklist",
-      "quality gate",
       "implementation status",
       "current state"
     ],
@@ -36,7 +34,7 @@
       "implementation",
       "plan",
       "tasks",
-      "verification"
+      "status"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-communication/README.md"
     ],
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,36 +173,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Status",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system skills (for example, system-spec-kit) that bundle their code inside the skill directory",
     "created_at": "2026-08-13T17:02:13.812Z",
-    "last_save_at": "2026-08-29T15:21:58.094Z",
+    "last_save_at": "2026-08-30T15:39:11.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c37f9bf597006726ea242021cd5c603251764736474ff36788805b7ead983587",
+    "source_fingerprint": "sha256:4378f6c14a2f0c4d8b667208d0baa1e2012980a9dc02c8d3e7c74a163037c22f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f2ba2fb70148f2f26973a43475d7f9ee23beb35aeda3a343c606922c0172a033",
       "plan.md": "f6fd9e488715e6357e773b81ad7a68755c0fbc6ab29a4f309532a2c9ab2776a9",
       "tasks.md": "1571ccf660e30db5f561d4abdabff401f7585d4568b95345141aa98bde3671b5",
-      "checklist.md": "c42c2200e99423c94f72c03199d2984f0a9a41b896819903d50587544e58d9cf",
       "implementation-summary.md": "64c2e11b84917ec5322bfa943b5464d7fbf73d36f70e6172024827953f7c5736"
     },
     "last_active_child_id": null,

@@ -42,21 +42,15 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Several subsystems carry complexity their current usage does not justify: a multi-thousand-line resume and shadow-parity pair implementing a parallel transactional architecture, three launcher programs totalling thousands of lines with deliberately divergent supervision, three package-local implementations of the same shared payload, production modules guarded by a metrics provider that always disables emission, and an oversized pseudocode router for a handful of intents",
     "created_at": "2026-07-27T08:41:14Z",
-    "last_save_at": "2026-07-27T15:30:47.419Z",
+    "last_save_at": "2026-08-30T15:39:34.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9519cdf0f7cfb8047a160a803ac5219256c141ad13c8c0e19f909fa57f1e0ee7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6613a07089339205e9b13fd6843e1e2d4860af4c3789e87c5a48fb16998d6c7c",
       "plan.md": "d1fe6f28877fefac3121e7bbab6b337823e5047d2ea3a1f2535d6e63fd8faeb8",

@@ -20,9 +20,9 @@
       "deep-context command contract regeneration",
       "deep-context redirect tasks",
       "replacement context contract tasks",
-      "deep-context redirect checklist",
-      "replacement context verification",
-      "deep-context redirect decision"
+      "deep-context redirect decision",
+      "fail closed standalone context",
+      "deep-context redirect implementation summary"
     ],
     "key_topics": [
       "deep-context",
@@ -44,10 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/commands/deep/assets/compiled/manifest.jsonl",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/compiled/manifest.jsonl"
     ],
     "entities": [
       {
@@ -69,18 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "manifest.jsonl",
-        "kind": "file",
-        "path": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -90,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.jsonl",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/compiled/manifest.jsonl",
         "source": "derived"
       },
       {
@@ -189,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Fail Closed Before Discoverability Cleanup",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Standalone",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Standalone `deep-context` still has an executable asset chain: presentation text, auto YAML, confirm YAML, a compiled command contract, deep-context packet docs, and a dedicated agent",
     "created_at": "2026-07-04T14:32:35Z",
-    "last_save_at": "2026-07-16T16:32:55.475Z",
+    "last_save_at": "2026-08-30T15:39:25.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0b3aa4a0f677ce782c17835b597a30c1823420c0400c1b12e4ebcabcb8a083e",
+    "source_fingerprint": "sha256:4b9da8238e5f01ec1d933df871b7473c0feffde33ec436d357dbe83a711dde00",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ffb74f1a1f92f77eb7754523c58dd8a4c79348249a12f80a70550b14508efb1e",
       "plan.md": "ad9deda41ba82558347a3e6db3ba6bed61cc22fbe26a73e866976c8b59ffa374",
       "tasks.md": "f0fb80bbbfd26b4960430288f71d0aca07919738bf8e98abaf148997ab7fa74c",
-      "checklist.md": "69e963659a4ce33f602c1cc7948808685acbae05ba1ffac69db9182acd2e95c9",
       "decision-record.md": "56020881f0eb8241bd3b66b221c0824ab6477675d824b2029bbc358e41626ef4",
       "implementation-summary.md": "a0dada74100841f4dc64c89d5e6d175c5f8b8cc45523fa5754dcedb3d4787895"
     },

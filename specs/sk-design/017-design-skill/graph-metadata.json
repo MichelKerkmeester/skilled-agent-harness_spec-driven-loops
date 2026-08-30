@@ -84,13 +84,14 @@
     ],
     "causal_summary": "Root packet for the sk-design authoring skill and the surfaces that route to it, phased by delivery.",
     "created_at": "2026-08-28T03:53:46Z",
-    "last_save_at": "2026-08-28T12:06:33.219Z",
+    "last_save_at": "2026-08-30T15:39:13.535Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:7a4a6d0937744c3bbc4d4488678386ac124a948f8e2ec635ef6b25dbadf55aae",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7f3d9b24e8a9599cda140dc93d73b275020d3eea11be19edd402602723e26960"
     },

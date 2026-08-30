@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/002-sk-improve-prompt-rename/001-discovery-impact-map",
-  "spec_folder": "sk-prompt/002-sk-improve-prompt-rename/001-discovery-impact-map",
-  "parent_id": "sk-prompt/002-sk-improve-prompt-rename",
+  "packet_id": "sk-prompt/z_archive/002-sk-improve-prompt-rename/001-discovery-impact-map",
+  "spec_folder": "sk-prompt/z_archive/002-sk-improve-prompt-rename/001-discovery-impact-map",
+  "parent_id": "sk-prompt/z_archive/002-sk-improve-prompt-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -20,9 +20,8 @@
       "plan core",
       "082 phase 001 tasks",
       "sk-improve-prompt inventory tasks",
-      "082 phase 001 checklist",
-      "sk-improve-prompt inventory verification",
-      "082 phase 001 complete"
+      "082 phase 001 complete",
+      "sk-improve-prompt inventory summary"
     ],
     "key_topics": [
       "phase",
@@ -35,8 +34,8 @@
       "template",
       "core",
       "tasks",
-      "checklist",
-      "verification"
+      "complete",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -44,8 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -181,36 +173,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 082 renames `sk-improve-prompt` to `sk-prompt` across active repo surfaces",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-07-15T08:09:42.211Z",
+    "last_save_at": "2026-08-30T15:39:19.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db5b41be280e79fcdee0d4b2ab8df49a45dd058a83b4b6952f0e2bc5661dec48",
+    "source_fingerprint": "sha256:482fae78e4f2605c691fe4a58b344021b550fc22eb619f60ecbe1a06a023f397",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae3c7b605d572450fc4b597a60ec6e5ca6a459e983c6c4e54f2e25cda81071cc",
       "plan.md": "f48554c93419d20bcebc5e329274b014cd0a1835011cd6f795252106659e77e2",
       "tasks.md": "4d46738637838167f786ec2383ffbff5f8a1c8767e6eb24dffd89022e595e7c0",
-      "checklist.md": "eaf07b54135130e1414d9d7af01efbde35cf0ae6bae91ed2a1204d35d0e2f655",
       "implementation-summary.md": "f9ef90d47d5e502459cf38c92f92a71122a052b2bc1ddd8dbc70471598a8ddd2"
     },
     "last_active_child_id": null,

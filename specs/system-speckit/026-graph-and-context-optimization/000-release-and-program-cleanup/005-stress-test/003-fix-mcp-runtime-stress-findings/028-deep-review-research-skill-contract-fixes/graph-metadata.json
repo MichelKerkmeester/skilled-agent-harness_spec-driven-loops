@@ -39,36 +39,17 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
-      ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
-      "scripts/tests/review-research-paths.vitest.ts",
-      "shared/review-research-paths.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
+      "scripts/tests/review-research-paths.vitest.ts",
+      "shared/review-research-paths.cjs"
     ],
     "entities": [
-      {
-        "name": "review-research-paths.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "review-research-paths.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder_structure.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -97,6 +78,18 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two contract violations in the deep-review/deep-research skill output:",
     "created_at": "2026-04-29T09:50:00.000Z",
-    "last_save_at": "2026-07-17T17:19:12.555Z",
+    "last_save_at": "2026-08-30T15:39:28.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +208,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:9aa23a823fe73429f9bbba92bf5dbce5fa24aab0c9b16eac7def0c02e077d2bc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "321183c8c96dc527d42fbf8ad0240b2478b0f0a663ac0a6ab2e0296f38384cee",
       "plan.md": "09abc4f97b386c7236841d9f66de16acdf7f1f7cd163ba528c6be1b782279b02",

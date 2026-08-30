@@ -19,10 +19,10 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
-      "record"
+      "record",
+      "decision record",
+      "summary"
     ],
     "key_topics": [
       "task",
@@ -33,14 +33,19 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
-      "record"
+      "record",
+      "summary",
+      "configuration"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/agents/review.md",
       ".opencode/agents/context.md",
       ".opencode/agents/debug.md",
@@ -49,14 +54,39 @@
       ".claude/agents/context.md",
       ".claude/agents/debug.md",
       ".claude/agents/orchestrate.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      ".codex/config.toml"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "review.md",
         "kind": "doc",
@@ -82,39 +112,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -204,23 +204,22 @@
     ],
     "causal_summary": "Audit agent configuration files across all 3 platforms (OpenCode, Claude Code, Codex) to ensure handover model assignment (spec 016), review model-agnostic configuration (spec 015), Codex-native frontmatter format (spec 016), and AGENTS.md routing rules (spec 014) are correct and consistent",
     "created_at": "2026-05-26T19:43:14.239Z",
-    "last_save_at": "2026-07-10T06:22:25.584Z",
+    "last_save_at": "2026-08-30T15:39:37.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbec0d1a7e01588f6505ca05c41f81297f10eb8e7c9ddebc3d845245390955a6",
+    "source_fingerprint": "sha256:9822be7ba53451440e50daf65a535624ebeb0f53015d84b04f41498e3ffe2405",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "363c7f13ddb165cd39fbcadc7d6bd0f64517a43452094bc5c6526ae46b96a393",
+      "spec.md": "c4f1b8b0c21d06bb2c31dff4bda1214f20f41a077dafc7e0d0c53534c3b78a55",
       "plan.md": "a842080591afa59fc404efb0fac74993130709229bfbe7826147f8656b08918b",
       "tasks.md": "4eefaba9e8b74403fe02537cd72887fbb305e876b9afde758bab6bf9fa286f34",
-      "checklist.md": "f63cfbc6d5e2ecfa348747de23638b6ac74514b2e81d46fd564def77633faf84",
       "decision-record.md": "9fcc0e4e75de57753727d450b605c91d841e11ddee813ded7f60ba44b0c0a9a1",
       "implementation-summary.md": "05fe71020bd4cf0160d7ee661e06538679ebdcd2c262cc0c8f0edee72f555f9c"
     },

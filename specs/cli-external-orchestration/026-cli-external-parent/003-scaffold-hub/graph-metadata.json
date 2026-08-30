@@ -173,7 +173,7 @@
     ],
     "causal_summary": "No parent-hub skeleton exists yet for the approved `cli-external` merge",
     "created_at": "2026-07-09T18:58:26Z",
-    "last_save_at": "2026-07-14T19:26:22.264Z",
+    "last_save_at": "2026-08-30T15:39:07.074Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,6 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:e7c6c17f1361c2ff546cbef8a38cb360cfd5b07683732716e9a9951cefc3e63a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cdcbbfc665e60e42c4dafc50e836bf8ef62075a7529d33bc44f9e852205886b3",
       "plan.md": "6df0077c9f34455e1a15b131ee3dfcce8c11ab4e7acdb71a4b29c749b1ec2dbc",

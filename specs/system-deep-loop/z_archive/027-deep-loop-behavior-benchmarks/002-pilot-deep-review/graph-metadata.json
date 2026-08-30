@@ -17,8 +17,6 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "summary"
     ],
     "key_topics": [
@@ -33,7 +31,7 @@
       "implementation",
       "plan",
       "tasks",
-      "verification"
+      "summary"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -41,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -61,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -172,42 +163,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The framework needs proving against one real mode before its rubric and budgets are multiplied across five",
     "created_at": "2026-07-02T05:53:05.801Z",
-    "last_save_at": "2026-07-16T16:32:51.547Z",
+    "last_save_at": "2026-08-30T15:39:25.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c06b0de78abf909ab880e936773bb48be12ae309add98fc4856a35e3fd25f7c5",
+    "source_fingerprint": "sha256:6a5297d5fa46e3c699eed9298f769f5d0d40f2efe4d23652fec5ec2085329f23",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "04f32266cfd0756eb1e584ab969052329d4a0071cdc0901880ac991e1afd27b6",
       "plan.md": "96be174bbc9409f75a73602622542d0617f0c2633161f4eb2183320cd7adaab6",
       "tasks.md": "919a33c07033b4c627ebf850d4cac0773dc9e8b82a02c8e0e93dec3f6ede8ad1",
-      "checklist.md": "da9a1f3859bcc6f052f3a6112952fce44463b54c3dab7cf368e6f836f9ef89bb",
       "implementation-summary.md": "4c4e3ee8e02857f593d5c46b67ceff574eddf565ff377d5eac60d8e679967e68"
     },
     "last_active_child_id": null,

@@ -41,57 +41,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      "shared/embeddings/factory.ts",
-      "mcp_server/handlers/causal-graph.ts",
-      "feature_catalog/feature_catalog.md",
-      "mcp_server/tests/review-fixes.vitest.ts",
-      "manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      "shared/embeddings/factory.ts"
     ],
     "entities": [
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-fixes.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/causal-graph.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -114,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
         "source": "derived"
       },
       {
@@ -199,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Errors",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog and manual testing playbook contain 10 verified accuracy defects: universal coverage claims that contradict the measured 69% audit result, a stale tool count (36 vs canonical 37) in five README locations and one test assertion, a release-gate script threshold 4 files short of the real count, five broken scenario-to-catalog cross-links, a garbled scenario contract in scenario 232, stale implementation paths in the local-LLM category overview, a false \"cleanup complete\" claim about phase-label removal, a wrong verifier script path in scenario 234, stale scenario numbering",
     "created_at": "2026-06-04T20:45:44Z",
-    "last_save_at": "2026-07-17T17:19:15.058Z",
+    "last_save_at": "2026-08-30T15:39:29.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:be1353c53cc8ae191cb4ad69903cad5e0dd06a1ecca6deefc1be2d360b347096",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d2c3168a55ec396155efb96d50503f02840b5c244c3606ff02530c8e3d3294b",
       "plan.md": "fd5111ff0d3bb7914799c37b97fc652f517195f9ad90e2ab4f83d76b666f40db",

@@ -51,12 +51,12 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "001-concurrent-daemon-corruption-fix/spec.md",
       "002-cross-launcher-lease-propagation/spec.md",
       "003-launcher-race-and-error-surface-hardening/spec.md",
       "004-launcher-diagnostics-and-signal-coverage/spec.md",
-      "005-lease-correctness-and-arc-traceability/spec.md",
-      "spec.md"
+      "005-lease-correctness-and-arc-traceability/spec.md"
     ],
     "entities": [
       {
@@ -104,13 +104,14 @@
     ],
     "causal_summary": "Umbrella for the 12-child launcher concurrency arc that delivered single-writer lease enforcement at the launcher boundary across all 3 MCP launchers (skill-advisor, code-graph, spec-memory), plus the review-driven hardening that followed.",
     "created_at": "2026-05-18T08:15:00Z",
-    "last_save_at": "2026-08-28T23:01:37.481Z",
+    "last_save_at": "2026-08-30T15:39:30.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:fc2e454f981a0213233623c97e6a0620cb1a7e6d97b2501b34be01ac17de716b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8fc2b55858845071324aebce1cf4d5626e9610d4ca609800453deb746c3764ec"
     },

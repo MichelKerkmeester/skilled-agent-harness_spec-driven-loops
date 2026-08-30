@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/019-cli-opencode-minimax-optimization/001-minimax-provider-integration",
-  "spec_folder": "cli-external-orchestration/019-cli-opencode-minimax-optimization/001-minimax-provider-integration",
-  "parent_id": "cli-external-orchestration/019-cli-opencode-minimax-optimization",
+  "packet_id": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/001-minimax-provider-integration",
+  "spec_folder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/001-minimax-provider-integration",
+  "parent_id": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "cli-opencode supports only `opencode-go` and `deepseek` providers, and the shared small-model registry has no MiniMax entry",
     "created_at": "2026-05-28T08:38:26Z",
-    "last_save_at": "2026-07-14T19:26:24.476Z",
+    "last_save_at": "2026-08-30T15:39:08.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c08c717ff61701b47dec9b520b6f3038cdfd2c67f7fb5a32f6fbe72a75cdd0a",
+    "source_fingerprint": "sha256:0c8951b15fd2688da4d90a0894d19b14019e75219e4fab3ffd360797e7d3dfaa",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e321ee8d1eade79321c581bfd8c0de427c86b31dd6f26501090fcf24f4e27e26",
-      "plan.md": "b2ff5a162803683d2f2c9bd4cc1b4231a24ea0a8fefdfc484dc133c1bc53cdb1",
-      "tasks.md": "631e8322ed5ac965cea947d4c594c812a2b5e41f0b44d7006145453093e710d5",
-      "implementation-summary.md": "b45c1afae72dcf0a758a1bd15458b4e9b0247dcbf864c0d005117ab0fd39b492"
+      "spec.md": "8e5aa6f33d1df5584fb939f5a606234d8e2dbb2d515cbb17811e47209aac9cc3",
+      "plan.md": "66294a4f2d2ed3631353812a2082e801ec7d01a89c34ba89640832fb245b4150",
+      "tasks.md": "0a69f4a3f28c65c73cb4dccbf3a7f45cbc299f833455d3debcc5c7a4a7ac8320",
+      "implementation-summary.md": "b0bce9e07a4bedf7ba0032e9186c20939c80fbbfb08d13525020e8fb1953fcca"
     },
     "last_active_child_id": null,
     "last_active_at": null

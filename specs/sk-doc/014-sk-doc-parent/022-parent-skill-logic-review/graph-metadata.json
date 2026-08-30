@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The parent-hub (parent-skill) pattern — one advisor identity, a `mode-registry.json`, a `hub-router.json`, one `graph-metadata.json`, and nested mode/surface packets — is scaffolded by `create-skill` and implemented independently by four hubs (sk-doc, sk-code, sk-design, deep-loop-workflows) and consumed by the skill advisor",
     "created_at": "2026-07-07T15:48:20.922Z",
-    "last_save_at": "2026-07-17T14:37:01.635Z",
+    "last_save_at": "2026-08-30T15:39:13.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f94dd4eb7acba3e3e613cfadeb3f7ca791c201532740963c81b6ec1307eb946a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a111cf0a8ea8890278bffbff577ffeb98af47f7db305fb93dc9f7238fca148c1",
       "plan.md": "c7fa1754cf66947e2039a352ddfc8c8658d6dcf288704ab56d87c83107287c7d",

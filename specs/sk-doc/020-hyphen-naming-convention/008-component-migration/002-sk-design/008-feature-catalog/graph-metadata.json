@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The sk-design hub and mode packets use feature_catalog roots, category directories, and feature files with underscores, while catalog indexes link to manual playbook paths.",
     "created_at": "2026-07-14T15:17:19Z",
-    "last_save_at": "2026-08-30T07:19:22.518Z",
+    "last_save_at": "2026-08-30T15:39:16.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,7 +181,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:d1cc7553772ba51d62104dcdf00377e201259363242dbad32fc60456bc4579dd",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "abc2d345b8b4bc254cbae035cebb488261353d3afa23363ee4edafa41a372bdb",
       "plan.md": "2fe14d4d3d5c66380cc8470460055e94196031af38398e1feb8436a221c0e601",

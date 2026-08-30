@@ -35,12 +35,11 @@
       "constant"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
@@ -73,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,27 +193,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Answered Questions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` (143 lines) detects `.opencode/specs`",
     "created_at": "2026-07-09T20:28:44.767Z",
-    "last_save_at": "2026-08-29T14:54:15.828Z",
+    "last_save_at": "2026-08-30T15:39:35.204Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f04db95c5ac502d16ca5ef4013fac8a6c627d88d6323177699cc4b8f104d09f4",
+    "source_fingerprint": "sha256:f67fa539aebdd2e257f4e96c8f8b33aea7c5673c0935bce5bddf0c368f64128c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "49484fc8b62b4b97ea5f51f3866b3d5a81ee4aa79a6db8eb6d3fab9c7da84a39",
       "plan.md": "cafe26f54c50bba7f5ebcc96cf738d8923504563d34f4f994a148cd86a2b8932",
       "tasks.md": "48af9985bf16dca1c9d7fe77841fe1403d312181dc2b52ba2717ecc076556dbe",
-      "checklist.md": "fc29607687a19c938ddefd2ef635e1bb1579346423a954e667036bd72ddc7649",
       "decision-record.md": "2a85363cde575c9d2efed7b0dd5ac849d6a9ba40ee56b80b41fcae9094d05330",
       "implementation-summary.md": "bc5eba20e884eec78081958e0c39a356105c8a0c81030871e419cd4ddfb7a967"
     },

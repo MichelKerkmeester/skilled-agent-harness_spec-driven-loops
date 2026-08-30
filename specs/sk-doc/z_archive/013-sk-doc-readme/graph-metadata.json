@@ -35,19 +35,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,6 +64,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/README.md",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The sk-doc README is a tabular reference card with no problem-first entry point, and it is heavily count-stale: the version (1.6.0.0) disagrees with SKILL.md (1.5.0.0) and the newest changelog (1.7.0.0), it says six scripts when there are eight, thirteen references when there are fourteen, seven flowchart patterns when there are six files, and three skill templates when there are five",
     "created_at": "2026-06-07T14:25:14Z",
-    "last_save_at": "2026-07-09T10:02:44.979Z",
+    "last_save_at": "2026-08-30T15:39:18.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d48d5fe0e0674a2a22d5c2127c1fe119e8093d089169af128319aab43390cc50",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7cbb42ba7fe3224fefb6ae58e77d6b13deb5aa8d9fef1aa8db2a80691f7f5deb",
       "plan.md": "9046a98e00a3ff6239c32016290caa063e64bcc601ca07497a2d8e6e0ed3c6ed",

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm zero underscore-bearing reference paths remain and every active pointer resolves, adopting v4's kebab names as the baseline.",
     "created_at": "2026-07-14T15:18:26Z",
-    "last_save_at": "2026-08-30T07:19:58.365Z",
+    "last_save_at": "2026-08-30T15:39:16.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:300c3b6cac4d55e5eb125cd456c205383767f07aa9baef89a9a948be9d0e49ba",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2802645b3f5aa93b63cffbe4984a1f23b05153e0cd9524cf9411b7442b3938e",
       "plan.md": "b3dd836761ec2483c550788e3a94055da8fcca5cfc53f75ddc8f25808194f89e",

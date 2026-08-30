@@ -21,8 +21,8 @@
       "review packet implementation",
       "review folder tasks",
       "deep-review task breakdown",
-      "review folder verification",
-      "deep-review checklist"
+      "review folder adr",
+      "deep-review decision record"
     ],
     "key_topics": [
       "deep",
@@ -42,32 +42,19 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".opencode/agents/deep-review.md",
-      ".claude/agents/deep-review.md",
-      ".codex/agents/deep-review.toml",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-review.md",
+      ".codex/agents/deep-review.toml"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-review.toml",
         "source": "derived"
       },
       {
@@ -83,12 +70,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -98,6 +79,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
         "source": "derived"
       },
       {
@@ -195,27 +188,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Review mode is currently modeled as a `scratch/` workflow",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-07-16T16:31:48.920Z",
+    "last_save_at": "2026-08-30T15:39:24.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:458fc48ec00787d7e4de063c7197fb8328c79fdeb2db99a7bb29349c9895cd58",
+    "source_fingerprint": "sha256:425fd8404bbcdd543cda074d153aae43eaece0f3fbdfa5d2381ac9173bedd281",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0c1760abe283aed2ac3153381912b43d076151d5fe0b7161aa2cf1398bcac119",
       "plan.md": "aa68d71c5429cba83038ff0f87d98bbe6c411a5d5c14453627b8a7d160fe118b",
       "tasks.md": "8a2c79088dbb0555e23ccaf1231583fe48caee89812e95f05aaa2bc10968aa7e",
-      "checklist.md": "b8543c879451dbdc4fab25f51be413c926bf661c3a6933be2d380d6e0f0c2af8",
       "decision-record.md": "0949fc166a81ce05db6278280e98d0b5d37c3b3523df202ae613a1820b2dd88c",
       "implementation-summary.md": "589803b1057206df05cbad16833741ac5691fef7cd79dac2f106d679da942107"
     },

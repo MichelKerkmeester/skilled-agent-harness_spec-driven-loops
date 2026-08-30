@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phases 003-005 of the parent packet each need to build a per-runtime goal-hook adapter (devin, cursor, pi), but two of the three verify/continue mechanisms they would rely on are unproven: Devin's `Stop` hook schema visually mirrors Claude's `decision:\"block\"` continuation contract, but this has never been tested against Devin live; Pi's installed `types.d.ts` event surface has not been read to confirm a usable turn-end/agent-loop event exists at all",
     "created_at": "2026-07-28T17:24:44.734Z",
-    "last_save_at": "2026-08-29T15:21:51.905Z",
+    "last_save_at": "2026-08-30T15:39:09.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ce87c2cdc4de6a4ae768e97edf1add75ec18f9d2ef109807fa76f66e465e4985",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "20bcd4c86487d5ed103b5fedbe371c90f214bd553b593e5c50f0d0cb29b45567",
       "plan.md": "efdd4126d4cdf0eb300c50120d4adf9387032a10ca74db497f4247b1cffed15d",

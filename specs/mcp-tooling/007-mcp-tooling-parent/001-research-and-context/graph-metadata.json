@@ -41,17 +41,14 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/spec.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/plan.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/001-research-and-context/tasks.md",
-      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-      ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
       ".opencode/commands/doctor/scripts/mcp-doctor.sh",
-      ".claude/mcp.json",
-      ".opencode/skills/README.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      ".claude/mcp.json"
     ],
     "entities": [
       {
@@ -73,18 +70,6 @@
         "source": "derived"
       },
       {
-        "name": "doctor_mcp_install.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_mcp_debug.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
-        "source": "derived"
-      },
-      {
         "name": "mcp-doctor.sh",
         "kind": "script",
         "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
@@ -94,12 +79,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
@@ -197,11 +176,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 architecture decisions depend on current, re-verified facts about three live bridge skills and their referrers",
     "created_at": "2026-07-09T20:18:21Z",
-    "last_save_at": "2026-07-15T07:48:15.351Z",
+    "last_save_at": "2026-08-30T15:39:09.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +195,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:96aca1d17697d61ab4559cb178d64e0debac0cdf19daacbf3ef0a72d76133fc8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "14907663541d99bd761e49e0e21f22866d6bbcc7561289a34223ed8981136a9d",
       "plan.md": "0fe244e7fca55a23cc7b55c194a37fa475733c11e7e1ba5bd13c4a73f3c5b1ac",

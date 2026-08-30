@@ -21,8 +21,6 @@
       "V8 dominates relaxation plan",
       "047 tasks",
       "V8 dominates tasks",
-      "047 checklist",
-      "V8 dominates checklist",
       "047 implementation summary",
       "V8 dominates implementation summary"
     ],
@@ -46,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/lib/validate-memory-quality.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/validate-memory-quality-v8-overreach.vitest.ts"
@@ -68,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,30 +182,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 040 fixed V8 overreach for scattered foreign spec IDs, but V8 still has a separate dominance branch that fails when a single foreign spec ID appears repeatedly",
     "created_at": "2026-05-14T17:15:00Z",
-    "last_save_at": "2026-08-29T15:22:14.708Z",
+    "last_save_at": "2026-08-30T15:39:30.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5feab928f40ebc564f01410c99c12a5b5eb126b4a39bf0558bdccbaab70bfb3",
+    "source_fingerprint": "sha256:eb5da7cc3c506308b5615e228348cb048cf93f7212721460a2805f71aade6441",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9dd72d1b3f5b2a566906c01b4248a8eb2dd885a89dd1d1b06371f084a54b67ef",
       "plan.md": "6513dbaf1c1ad22f6878234c867d3886c1c78d25c9a3bf69d6d13c189b516911",
       "tasks.md": "d87654c717ba8d1c12da2c137174070e15b513d9ef05e80f5e62defafcbd09fa",
-      "checklist.md": "c8099699f01c0ff84d59c91b8fe748e051d13dbc274bc0940d368cdf0dac5709",
       "implementation-summary.md": "0155edbc4db58e4673d9891546f5af613ab821486e87165deb7204f4f5a67195"
     },
     "last_active_child_id": null,

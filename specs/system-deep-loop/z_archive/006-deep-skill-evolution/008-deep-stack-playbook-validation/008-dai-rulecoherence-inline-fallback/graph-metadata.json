@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase 005 surfaced one confirmed code bug and four stale-scenario expectations",
     "created_at": "2026-05-27T21:30:00.000Z",
-    "last_save_at": "2026-07-09T10:02:48.899Z",
+    "last_save_at": "2026-08-30T15:39:23.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1f722ff50d4aa7175750cf85a181b625845f9ce48f9c88d6ef114cd7d2d24559",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b2820094e8301e047895b0019c86e4baf7d9ab1582365c8374964234cec9088",
       "plan.md": "dfa060f6ac617430351b9abafec856f72b7038147b9507ac0c1259bd3331ccbb",

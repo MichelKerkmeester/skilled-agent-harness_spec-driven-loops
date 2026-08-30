@@ -16,7 +16,6 @@
       "deep-loop merge research fanout",
       "deep loop unification research plan",
       "deep loop unification research tasks",
-      "deep loop unification research checklist",
       "reference research implementation summary",
       "001 research complete"
     ],
@@ -32,41 +31,22 @@
       "fanout",
       "plan",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md",
       "research/deep-research-findings-registry.json",
       "research/resource-map.md",
       "research/fanout-attribution.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "shared/dist/gate-3-classifier.js",
-      "implementation-summary.md"
+      "shared/dist/gate-3-classifier.js"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-findings-registry.json",
-        "kind": "config",
-        "path": "research/deep-research-findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-attribution.md",
-        "kind": "doc",
-        "path": "research/fanout-attribution.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -86,21 +66,33 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-findings-registry.json",
+        "kind": "config",
+        "path": "research/deep-research-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
         "source": "derived"
       },
       {
         "name": "gate-3-classifier.js",
         "kind": "code",
         "path": "shared/dist/gate-3-classifier.js",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -188,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Three parallel sonnet-5 Plan agents already produced a concrete, file:line-grounded mechanical design for merging `deep-loop-workflows` + `deep-loop-runtime` into `system-deep-loop` (structural layout, reference migration, and the research-fanout invocation itself)",
     "created_at": "2026-07-08T04:36:15.360Z",
-    "last_save_at": "2026-07-16T16:33:09.749Z",
+    "last_save_at": "2026-08-30T15:39:19.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:9a43bbfbc64fe4118d5f1b84250019851b14c3d8596f2a69833631469e514268",
+    "source_fingerprint": "sha256:c92747a34231a5639ad1ecf0ec2b547b5379a126fe4d25dc220e16dadfccbf54",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7527022a523cc75a56b2ed3118f871759ab71260c3c76029c12b1682103c2094",
       "plan.md": "fadbed834a53d1b69833251fbb64d6936cac6356647ddb08aa5ca2d2eb8fe9ad",
       "tasks.md": "6f9756141cb2223097c1053ddafaa8710119707ddc43880b119896f4e6197a32",
-      "checklist.md": "8af8b98111933e6f909a7900c17a303e00a57a820195de5953b35ca68e3eeded",
       "implementation-summary.md": "b50eae8a46f2867d6519c3ffde09c03c035e2c6272c3ec5a57827296f1c57a56",
       "research/research.md": "d967a912157a22c351043fb99e2894968649cb0242486732043d979db00ed544"
     },

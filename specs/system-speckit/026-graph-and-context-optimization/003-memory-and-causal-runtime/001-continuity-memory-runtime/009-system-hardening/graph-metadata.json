@@ -24,7 +24,7 @@
       "019 research wave coordination",
       "019 tasks",
       "system hardening tasks",
-      "019 parent checklist"
+      "019 decision record"
     ],
     "key_topics": [
       "system",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "shared/unicode-normalization.ts",
@@ -74,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,27 +194,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 2026-04-18 consolidation that shipped `016-foundational-runtime`, `017-sk-deep-cli-runtime-execution`, and `018-cli-executor-remediation` closed the 026 train's core runtime and executor work",
     "created_at": "2026-04-18T16:46:13.781Z",
-    "last_save_at": "2026-08-29T15:22:13.860Z",
+    "last_save_at": "2026-08-30T15:39:29.499Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76c9584cfb0c7dc535814f1042ace9695c90c6af3004d597b463c77ffa9bbc1c",
+    "source_fingerprint": "sha256:67c15b36787e3c5acc01762d8bc04baa37dbfefa00baecddcb8e61f20c647105",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "87c024dcb8f0af5a481d096035404d35bcf103a512625a0826bc38240546df13",
       "plan.md": "86d81a09ab886326e8bc5dc37f6f08486a4fca9481e1de5f2cccc53dd00dbb83",
       "tasks.md": "6da30f9acad152fcab87ccc5e177a3cb294d2c5d3f724077977d8142ffc463ff",
-      "checklist.md": "6fc7a9fca16fa3325c031ebaec48c5cd07df0e20cbb066480bff5a0f11799e8d",
       "decision-record.md": "6c7b18d576494c54a9228a8481901d73bad451ed7de20d6d0f8b8d2cac8c8849",
       "implementation-summary.md": "17f62f85db8fffc6800eaaf3f90c0a652d0546df838b02ec84517a9c49ceb714"
     },

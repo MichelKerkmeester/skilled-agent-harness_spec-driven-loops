@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically.",
     "created_at": "2026-07-14T15:17:58Z",
-    "last_save_at": "2026-08-30T08:04:29.700Z",
+    "last_save_at": "2026-08-30T15:39:16.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,7 +200,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:4d64d35875cab4b1c1adf5a6fa76a5f408add00f304b3de0a17c92e960d249fc",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8ef6d67f7f59cd5691ee9e92a131f0058ac515b65d0923548d4f659e24e9cdc6",
       "plan.md": "a0c9bf3aba2dcac0a86fa2021bf6483ca1c1c3e2bf9e35f916ca397b65f61d9b",

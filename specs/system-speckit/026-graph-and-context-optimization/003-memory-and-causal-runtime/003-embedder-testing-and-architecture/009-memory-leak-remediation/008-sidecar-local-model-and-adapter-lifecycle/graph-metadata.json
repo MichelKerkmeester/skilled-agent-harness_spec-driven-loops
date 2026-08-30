@@ -174,7 +174,7 @@
     ],
     "causal_summary": "Both audits found detached sidecars and in-process adapter caches that can retain model/client state",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-08-28T15:59:49.489Z",
+    "last_save_at": "2026-08-30T15:39:31.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,6 +184,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:cf77e96a5b922b14d552df47fa4cf5c16d38f7542ae3614bf8eee12640ced2dd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5899f5e3c4a43862e833be0bc03b56fccd6e935d429422b6b2b67a71ab6b56e",
       "plan.md": "68dcf2dabea33c4885df884b37c72bc1fe313312a25f82d655a4ae53cbce183e",

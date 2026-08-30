@@ -44,7 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md",
       "AGENTS.md",
@@ -73,9 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -193,31 +193,31 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Every restraint rule this framework needs already exists somewhere, but not where it fires",
     "created_at": "2026-08-29T11:13:34.480Z",
-    "last_save_at": "2026-08-29T14:56:22.928Z",
+    "last_save_at": "2026-08-30T15:39:07.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fda610db4293f95905b69676db838ccb790f334c6f345d90f183e10bf76ef9bb",
+    "source_fingerprint": "sha256:c2ded3e13b376a5f43516f671c61e35fe14abcf90adcc38d33a116d06a1e990e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa867a52ec0e7c51b3bbd01677ab4851c8c719cc9f3005ed04cf0ea46edf5747",
       "plan.md": "3f4388ecba07793fb5643b8d20c0d27c5e1695f033a3b45162190e13802f55ac",
       "tasks.md": "b6b97e6cb9d6c1cad2afb96977ff7a33ae7373de82566bd5c918e30a27821395",
-      "checklist.md": "44cd1781bd719f8de68823377447334b13fc361529bdd76c992990b9251563b5",
       "decision-record.md": "92000912e82e14e15ab6b9ae9ba89c4e0d1ce04e55034d31dba7f4f1109d3b57",
       "implementation-summary.md": "404ce3ef988c7904753c589bebc16d423c8c043f1d9c79046dd218a37abbe6c8"
     },

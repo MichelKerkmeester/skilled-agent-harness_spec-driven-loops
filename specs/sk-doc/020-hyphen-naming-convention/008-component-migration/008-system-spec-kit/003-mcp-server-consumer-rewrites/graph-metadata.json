@@ -167,7 +167,7 @@
     ],
     "causal_summary": "Renaming the MCP package and its inner directories changes path-valued references across the skill, sibling skills, scripts, manifests, hooks, and documentation. This phase rewrites every consumer and import/config path without renaming exempt Python targets or changing the @spec-kit/mcp-server package identity.",
     "created_at": "2026-07-14T15:17:59Z",
-    "last_save_at": "2026-08-30T08:04:30.279Z",
+    "last_save_at": "2026-08-30T15:39:16.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,7 +176,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:fe358b18c710d36d310212ee7e7b041747d49554c384f0333653daf9293658d2",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e78ad2b9d8e7f6041ea424dde84368d6cb5ae1fa1024a23e134b8e2798210aa6",
       "plan.md": "db98f632225ab3313343863059f70a727d24ac86a6c0f7f48f1823092ebe1b3f",

@@ -24,7 +24,7 @@
       "070 phase 004 tasks",
       "runtime mirror rename tasks",
       "claude codex gemini tasks",
-      "070 phase 004 checklist"
+      "070 phase 004 summary"
     ],
     "key_topics": [
       "phase",
@@ -46,7 +46,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
+      "graph-metadata.json",
       ".claude/agents/deep-research.md",
       ".claude/agents/deep-review.md",
       ".claude/agents/orchestrate.md",
@@ -55,8 +56,7 @@
       ".codex/agents/orchestrate.toml",
       ".codex/config.toml",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".claude/agents/README.txt",
-      "implementation-summary.md"
+      ".claude/agents/README.txt"
     ],
     "entities": [
       {
@@ -78,9 +78,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
         "source": "derived"
       },
       {
@@ -135,12 +141,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".claude/agents/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,22 +206,21 @@
     ],
     "causal_summary": "Phase 001 found runtime mirror files in `.claude`, `.codex`, and `.gemini` that still reference the old deep-loop skill names",
     "created_at": "2026-05-05T16:20:37Z",
-    "last_save_at": "2026-07-16T16:31:32.691Z",
+    "last_save_at": "2026-08-30T15:39:24.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T16:20:37Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0abcc4c4fa31b76564411eb3b0d771d6b09c47e4145ac55c97770b39cc8d0af9",
+    "source_fingerprint": "sha256:fc7d99b0f83525b39135ce959a522f4702a2e82f66d7fee5a61a1f9845a4cef9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e6e818ce15cfd994214f7d2c2efaf6f888e9004c04218349b25c15618e49d2df",
       "plan.md": "85c63a739f1a9b628a1f478c6fc515a134734a8dd1c3308eff297bc38005cffa",
       "tasks.md": "2d10f00b7f7f3b4f5bdc45137e3bd808f55a161ee7e7683a1347d4e0cd7bd31e",
-      "checklist.md": "c8f8a8c78fdd5f568ffa895f80d0aad91cae3e4f9d62533645a9aec7307decd4",
       "implementation-summary.md": "e6fc5b3bcca63ae38ee1ab0599ed1ca61b7a3ca0ae6fd177305d477c5a2e26ad"
     },
     "last_active_child_id": null,

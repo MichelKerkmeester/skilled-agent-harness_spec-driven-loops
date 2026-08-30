@@ -21,8 +21,8 @@
       "frontmatter causal edges",
       "027 phase 005 tasks",
       "metadata edge promoter tasks",
-      "metadata edge promoter checklist",
-      "frontmatter promoter verification"
+      "metadata edge promoter implementation",
+      "frontmatter causal edges shipped"
     ],
     "key_topics": [
       "frontmatter",
@@ -44,11 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "lib/causal/frontmatter-promoter.ts",
-      "handlers/memory-index.ts",
-      "tests/secret-scrubber.vitest.ts"
+      "handlers/memory-index.ts"
     ],
     "entities": [
       {
@@ -70,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -91,12 +83,6 @@
         "name": "memory-index.ts",
         "kind": "code",
         "path": "handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "secret-scrubber.vitest.ts",
-        "kind": "test",
-        "path": "tests/secret-scrubber.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,26 +180,37 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Causal edges are currently created mostly through manual `memorycausallink` flows",
     "created_at": "2026-05-13T09:00:47Z",
-    "last_save_at": "2026-08-29T15:22:19.128Z",
+    "last_save_at": "2026-08-30T15:39:33.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47febc5b59d3ebd3a5385f1b1e9b2f478ff2c829652b20359794622704f0b69c",
+    "source_fingerprint": "sha256:0aef4d418ff6eebfddfbbef250c1254c8e6254199b04aef7e0a6db5d24623eeb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e6b3f44a6136e54df8e0fe91b187aa77e5c5220405f8c21ba0631ae075f297a3",
       "plan.md": "4e14516b883693d1bfcb4b298fcd8e946a95998f02e0ff972ffe66aa6bfdfa45",
       "tasks.md": "08a26b9cf8e49de1b6922ea8ea513df6ab12384c95a2bad9e2eb931d5b91bf7c",
-      "checklist.md": "c417ef4d6e820c6ef255c422f94a99d00b44969542989423764c4bba7e257629",
       "implementation-summary.md": "9d7dc24e9cfe3e815ad8b69100a57af46ced9ff677c743e044ae864977b01e01"
     },
     "last_active_child_id": null,

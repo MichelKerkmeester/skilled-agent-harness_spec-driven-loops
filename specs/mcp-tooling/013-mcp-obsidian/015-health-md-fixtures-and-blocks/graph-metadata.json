@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The deep research found the mode's example asset and quick-start blocks are not safe: the fixture (`healthmd-export.example.json`) was authored from starter guidance with fields that are not verified against the real `healthmd.healthdata` v7 export shape, and every render-block example uses the wrong `health-md` fence with invented keys",
     "created_at": "2026-08-03T14:17:59.804Z",
-    "last_save_at": "2026-08-04T12:16:44.499Z",
+    "last_save_at": "2026-08-30T15:39:10.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:32fd40c33cadc8db5773531bd686775450177186a63bf3e8b0d22e5651de02ba",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8729e5552e0f80c8813a40619f1b7de89f1edf55944f8b7a12aedcd954ace6d3",
       "plan.md": "bb9d4f65be529b0546f75fdbbb1c6f7edd18c55851ca17cf2708b0186a24ba5c",

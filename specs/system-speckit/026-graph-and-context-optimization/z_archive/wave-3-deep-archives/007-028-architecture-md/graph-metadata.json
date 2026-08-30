@@ -39,19 +39,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-code-graph/architecture.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "architecture.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/architecture.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The extracted `system-code-graph` skill has runtime and README documentation, but it lacks a dedicated `architecture.md` that mirrors the sibling `system-spec-kit` architecture pattern",
     "created_at": "2026-05-14T17:43:18Z",
-    "last_save_at": "2026-07-17T17:19:36.887Z",
+    "last_save_at": "2026-08-30T15:39:32.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9680533d1b5f578a4e399559f36933e76a7543eb07b05773113167eeba317277",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9843880c2a970dab777c615c10eac67c63731c407f802ce0e6fd06345a85ced3",
       "plan.md": "480e563a80c1928a5f87688ed501300648c1f864af911f89f051f1fb6636efd5",

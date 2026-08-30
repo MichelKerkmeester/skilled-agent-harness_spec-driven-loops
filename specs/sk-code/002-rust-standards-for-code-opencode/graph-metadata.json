@@ -97,13 +97,14 @@
     ],
     "causal_summary": "WS1: `sk-code`'s `code-opencode` surface encodes per-language standards as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio plus an `assets/checklists/<lang>checklist.md` and a `manualtestingplaybook/language-standards/` entry, wired into a machine-readable SMART ROUTING block whose `RESOURCEMAP` the parent hub mirrors under a drift guard",
     "created_at": "2026-07-11T07:13:21.076Z",
-    "last_save_at": "2026-08-28T22:09:09.988Z",
+    "last_save_at": "2026-08-30T15:39:11.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:f75f019dc07add62459ce6c01c2488e236e73034bd9289197b5800412df67274",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0677c5799d0e82d604f40878eb3c1415d5115913948bb9766edae6f79cf95970"
     },

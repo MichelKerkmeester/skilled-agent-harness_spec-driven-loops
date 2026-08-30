@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Create Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:43.262Z",
+    "last_save_at": "2026-08-30T15:39:34.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,6 +189,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:42611afdf35df515be4b67849bcecd467130bf8c8436dc378529a41badd56536",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f6904f6d1407d989d99457716bb0ca88059b009b5d6c5c50ea1ccb3c515d103",
       "plan.md": "e410a909252eb2ffd3424f3eb8210f82b6eae72cd0609d4972c041b5844f5699",

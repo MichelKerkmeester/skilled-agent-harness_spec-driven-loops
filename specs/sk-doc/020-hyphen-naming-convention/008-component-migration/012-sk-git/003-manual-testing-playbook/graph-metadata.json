@@ -193,7 +193,7 @@
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already renamed the sk-git manual-testing-playbook tree to kebab-case (committed on skilled/v4). This phase is now VERIFY-ONLY: confirm the seven category dirs and scenario files are kebab, the GIT-001..041 identities are intact, and every index/link resolves. Re-verify the entry count against v4's actual tree (v4 release evidence = 42 files / 8 dirs vs the 49-entry authoring map).",
     "created_at": "2026-07-14T15:18:28Z",
-    "last_save_at": "2026-08-30T07:19:59.180Z",
+    "last_save_at": "2026-08-30T15:39:16.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:c59808059922c1987dccd8aebf38823263b3c60d2d4cefa894c8b29a0981ac2f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "add6248ac78bc3dc7e88d31dfd44fe06493792601c3d469b514df15a932ff052",
       "plan.md": "40c6a6de35e2212f01f6f544582e779332ab5f5ee1927bcc2c87c0c73b237905",

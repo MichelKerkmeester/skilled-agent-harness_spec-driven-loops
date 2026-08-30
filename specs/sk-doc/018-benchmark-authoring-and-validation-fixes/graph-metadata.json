@@ -88,17 +88,18 @@
     ],
     "causal_summary": "Benchmark-document authoring standards and templates lived scattered inside the `system-deep-loop/deep-improvement/` lanes, duplicated per family, with no single home",
     "created_at": "2026-07-12T10:58:43.605Z",
-    "last_save_at": "2026-07-20T09:23:08.914Z",
+    "last_save_at": "2026-08-30T15:39:14.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:a92f20f26f7165454690eb932034fcf3128a8f8f087ca2ee09d9c43868f706b0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "82ba80b20e601f6c9dc14935fc859113b3a8d414330b599f3c83b0e37108a713"
+      "spec.md": "fe56e0eb75674d964e263499433ee36a475081b00eff170c9b2ee03bf9deac6d"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization",
     "last_active_at": null
   }
 }

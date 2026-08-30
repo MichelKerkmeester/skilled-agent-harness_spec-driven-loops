@@ -20,9 +20,6 @@
       "duplicate row on retried save",
       "pre-mutation replay wrapper plan",
       "memory save idempotency receipt tasks",
-      "memory save idempotency checklist",
-      "retry-safe replay verification",
-      "idempotency receipt acceptance items",
       "memory save idempotency receipt summary"
     ],
     "key_topics": [
@@ -45,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handlers/save/dedup.ts",
       "handlers/save/response-builder.ts",
@@ -74,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,26 +191,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`memorysave` and `memoryupdate` are retryable, but a retried save can create a duplicate row because there is no operation receipt to recognize and replay a prior result",
     "created_at": "2026-06-06T10:10:45Z",
-    "last_save_at": "2026-08-29T15:22:19.607Z",
+    "last_save_at": "2026-08-30T15:39:33.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e3e1eb70cc957288854a84e365593ff8e890d40170b8eec60fb5a62bcbb9f3b9",
+    "source_fingerprint": "sha256:9eb6f4bd0c432de2623d2956f0dd62bf558b0c3b2eaab4733c5f5086e7c9b293",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eca695f5c9ee70d80856c141ede30a909a6974ab8b9e7edc5fbe817e9311c600",
       "plan.md": "e78b0699d5eeac8829e1266e9d90a665be6e9f9b56614199d1068c6aeeb717d2",
       "tasks.md": "3b43225fe9028b39d50f9ba53d2f18ea470d787f5e2d59c4898233c3b4d98796",
-      "checklist.md": "b7f0305e37fde28b5a44c704d68009398b418e8dc0cad823b60ebe508b7e9c07",
       "implementation-summary.md": "bfcaba207adb1763396632aafa709b9fe045dd0e69455fe253ae25f8683c7f52"
     },
     "last_active_child_id": null,

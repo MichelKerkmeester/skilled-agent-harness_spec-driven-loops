@@ -167,7 +167,7 @@
     ],
     "causal_summary": "The code-webflow packet has snakecase names throughout its animation snippets, integration/pattern/template assets, manual-testing-playbook categories, and deep reference tree",
     "created_at": "2026-07-14T15:17:09Z",
-    "last_save_at": "2026-08-30T07:19:18.226Z",
+    "last_save_at": "2026-08-30T15:39:16.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,7 +176,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:ad70247013aada28f9b87b5eb1dbaaa64c1a4d74391b61ef8eb8d4ddd415611a",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "766443585bcd0d3f24d0f32b455cc57cfd09c3ef909c1318bfdc033cbd619b64",
       "plan.md": "2c8763c4be1cb8162bc3a0562a5ff5481468f508bf2450aaf49f7a4ba3b1fa7f",

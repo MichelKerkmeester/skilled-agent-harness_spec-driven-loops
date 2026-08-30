@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A background `memoryindexscan` ran the entire scan on the daemon's single event-loop thread",
     "created_at": "2026-06-17T12:03:13.967Z",
-    "last_save_at": "2026-08-29T15:22:20.056Z",
+    "last_save_at": "2026-08-30T15:39:33.692Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c19a0e23c3bd86d0b0f12af2f83ca1b63ec7a35d87acd4cd71f8576a22223ae6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54ca74ec8c87de81caef13119601d409acd341688c207f4ac61f397ffa2e82fe",
       "plan.md": "cf27594896347558fa19fc597f9b8ae72d0917653a03f4953c3a1ef566e24f09",

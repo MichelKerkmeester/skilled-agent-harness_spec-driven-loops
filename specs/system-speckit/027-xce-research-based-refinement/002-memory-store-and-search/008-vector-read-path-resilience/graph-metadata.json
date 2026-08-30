@@ -193,7 +193,7 @@
     ],
     "causal_summary": "A live defect class was observed on 2026-06-10: the active embedder shard context-vectorsollamanomic-embed-text-v1.5768.sqlite reported database disk image is malformed and vec768 was missing from context-index.sqlite - the provider cascade silently degraded vector search with no health surface, no quarantine, and no rebuild",
     "created_at": "2026-06-10T17:48:33Z",
-    "last_save_at": "2026-08-29T15:22:19.620Z",
+    "last_save_at": "2026-08-30T15:39:33.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bea3ca73f0f34eeb5a12e65bdd7c5caa53deb8b2ab5c0b770766a4cfcaeb96ed",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d45d2ae8e9b5edf72af23015e355999d7837fdee50a1e5c9e58376f646575b41",
       "plan.md": "e322107402b284207fe9d0b2fdb50e983dc06b80fd632c320a93604364eb39fd",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation",
-  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation",
-  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation",
+  "spec_folder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/014-manual-testing-playbook-validation",
+  "parent_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -21,8 +21,6 @@
       "advisor manual testing plan",
       "013/009/014 tasks",
       "advisor manual testing tasks",
-      "013/009/014 checklist",
-      "advisor manual testing verification",
       "014 manual testing results",
       "advisor playbook run"
     ],
@@ -36,9 +34,9 @@
       "run",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
-      "results"
+      "results",
+      "post-013",
+      "extraction"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -46,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,42 +168,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Manual Testing Results",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The post-013/009 Skill Advisor extraction needed end-to-end manual validation from the OpenCode runtime, not only package-level tests",
     "created_at": "2026-05-18T08:53:20.215Z",
-    "last_save_at": "2026-07-15T11:59:16.767Z",
+    "last_save_at": "2026-08-30T15:39:26.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:54e2ea7306f17577f15e4c8e5ecbc6daf4303a0bac3d7cb6725cd5c3fe18624a",
+    "source_fingerprint": "sha256:cd96a4aec0279b4ef740537506742c0e1156abe7e59e5babf5270c554c15691d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a2d981927e3837632ddbf6095ff1af46b9ce376bf092d3ae86b5ad8f4ef47ae",
       "plan.md": "45c4353d7e8f60e313a38a9021c98cc890bc5b3267828130898e28231ed579dc",
       "tasks.md": "6bf6aff4e85abc56ef7c95eb4a6a26660826dd980f5984496871cc52b30c9c4a",
-      "checklist.md": "c31776ebd33684b1baa767bda6b3cb645b1ffb9953c499da8062a4b17a3005fd",
       "implementation-summary.md": "340effb1b2bed96ae40f9276328b00d94beb181356db7d9d431ecb7e75bc1e23"
     },
     "last_active_child_id": null,

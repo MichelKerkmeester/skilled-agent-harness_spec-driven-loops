@@ -20,9 +20,9 @@
       "architecture remediation tasks",
       "wave 1 agents",
       "wave 3 synthesis",
-      "019 checklist",
-      "architecture remediation verification",
-      "wave 3 quality gates"
+      "019 decision record",
+      "architecture remediation adr",
+      "opus-b3 synthesis"
     ],
     "key_topics": [
       "architecture",
@@ -43,9 +43,9 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "decision-record.md",
       "tasks.md",
-      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "scratch/codex-1-core-pipeline.md",
       "scratch/opus-5-type-system.md",
       "scratch/wave3-priority-matrix.md",
@@ -60,7 +60,7 @@
       "scratch/opus-2-spec-alignment.md",
       "scratch/opus-3-architecture.md",
       "scratch/opus-4-git-diff.md",
-      "lib/semantic-summarizer.ts"
+      "utils/index.ts"
     ],
     "entities": [
       {
@@ -76,21 +76,21 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -178,9 +178,9 @@
         "source": "derived"
       },
       {
-        "name": "semantic-summarizer.ts",
+        "name": "index.ts",
         "kind": "code",
-        "path": "lib/semantic-summarizer.ts",
+        "path": "utils/index.ts",
         "source": "derived"
       },
       {
@@ -210,25 +210,24 @@
     ],
     "causal_summary": "The perfect-session-capturing subsystem has grown to 20 child phases (000-019), 96+ TypeScript source files, 44 MCP handlers, and multiple audit passes",
     "created_at": "2026-04-12T09:02:50.282Z",
-    "last_save_at": "2026-07-10T06:22:32.265Z",
+    "last_save_at": "2026-08-30T15:39:38.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9780df13b44ca3ee6da39a80cf4ca32648c6920958fb4b5e06d0864566637921",
+    "source_fingerprint": "sha256:0d52274a350b85e7295f566c7c87e5657cf10793b3c1771d5b16222afe630081",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d34540a0f1aa9ca5782fb2e77fd77f2b9e53ab232b341186d02d1694bfa2738",
-      "plan.md": "7cc3100556c5174be0b3e62644db1d14686c14cb267a40563455bf6b10bdf8da",
-      "tasks.md": "04e4f81e8a222a43ffcd8cb4c15945833df85f1727810c30b4bb9700133641eb",
-      "checklist.md": "22ce50941d213edf35b32fd7a22734faa74729e837e84e77f338f9c107651735",
-      "decision-record.md": "6dcb44f1b303d64064c690f21c90648ab2a9d3b192360ebc801e0bc69794a87f",
-      "implementation-summary.md": "6e6be7370b5ffc0e5b2f6073e9c58d20d884aafc08c3708361e9e20a434d0357"
+      "spec.md": "955adc627f8c4ac9b7a75172a7d42818402ebac33b620b33c3614f5e4f8255d1",
+      "plan.md": "cd8460cad8fb6343e3325724d0f19e14aa39a99a1a33f9e449496b85e6155419",
+      "tasks.md": "39dc9a5155855645bde70bbd0a0f743f9fd8591ed8e18e1d7382441ee952ab26",
+      "decision-record.md": "c9cff2ed8a5b021fd75dde391fef8bdbde8035564d3e0d0c818c109ab2b4bd09",
+      "implementation-summary.md": "a6824432db871530c2172ca73a23e0033dc647927824469b8019d71381fb8bd2"
     },
     "last_active_child_id": null,
     "last_active_at": null

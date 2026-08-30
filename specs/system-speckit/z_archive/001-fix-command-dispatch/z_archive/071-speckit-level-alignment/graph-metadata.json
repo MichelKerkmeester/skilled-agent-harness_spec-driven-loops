@@ -21,8 +21,8 @@
       "plan",
       "template",
       "tasks",
-      "implementation",
-      "checklist"
+      "decision",
+      "architecture"
     ],
     "key_topics": [
       "feature",
@@ -34,83 +34,22 @@
       "plan",
       "template",
       "tasks",
-      "implementation",
-      "checklist",
+      "decision",
+      "architecture",
       "scripts"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "references/templates/level_specifications.md",
-      "references/templates/template_guide.md",
-      "references/workflows/quick_reference.md",
-      "assets/template_mapping.md",
-      "references/validation/validation_rules.md",
-      "references/validation/phase_checklists.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
-      ".opencode/skills/system-spec-kit/references/templates/template_guide.md",
-      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
-      ".opencode/skills/system-spec-kit/assets/template_mapping.md",
-      ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
-      ".opencode/skills/system-spec-kit/references/validation/phase_checklists.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
-      {
-        "name": "level_specifications.md",
-        "kind": "doc",
-        "path": "references/templates/level_specifications.md",
-        "source": "derived"
-      },
-      {
-        "name": "template_guide.md",
-        "kind": "doc",
-        "path": "references/templates/template_guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": "references/workflows/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "template_mapping.md",
-        "kind": "doc",
-        "path": "assets/template_mapping.md",
-        "source": "derived"
-      },
-      {
-        "name": "validation_rules.md",
-        "kind": "doc",
-        "path": "references/validation/validation_rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase_checklists.md",
-        "kind": "doc",
-        "path": "references/validation/phase_checklists.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -130,12 +69,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -145,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -206,27 +151,68 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Verified Scope",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current State Analysis",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Template Alignment Implementation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Overview",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lib Modules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Script Updates",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changes Required",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Scripts (`create-spec-folder.sh`, `expand-template.js`) copy from root templates instead of level-specific folders",
     "created_at": "2026-04-12T09:02:53.544Z",
-    "last_save_at": "2026-07-10T06:22:10.794Z",
+    "last_save_at": "2026-08-30T15:39:37.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:332fb712584f7032b3403b8ee427b2e9f7e5bdd25df6260ea7bcff173011cbb2",
+    "source_fingerprint": "sha256:4fa76b7ee1d34483d598c40db73bdb582e0a294d129c6e160c427d03cbb8d49d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e98d4d7fdde459fa64ffb5c0fdb4b745297e88cd36b62188190aec8f8b0bf342",
       "plan.md": "e1b07d262013ed6d2c7fb119e4fccd8ee4eebdf28bb9ff3694e2a6a8f58fd387",
       "tasks.md": "140c12e773c7a7e0e46d8e95c7adf0b361b15c7118b1a2bb86acfa02432f6ec0",
-      "checklist.md": "ca5c40c1861d47c7f983ce4aac42183b88ebd1c5dfe09d7d41b8bc7a0fa1d3a2",
       "decision-record.md": "8564cfabb44144d4c640d41f5463f0729b76fe2e3bdff7efcb390776de8cbbad",
       "implementation-summary.md": "30d40629cc8ef5a7e4475478b3fbe5d8facbe692c9a94ceff7911e4cfbfc3dbe"
     },

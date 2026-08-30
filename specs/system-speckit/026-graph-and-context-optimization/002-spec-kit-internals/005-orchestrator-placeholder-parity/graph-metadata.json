@@ -21,8 +21,8 @@
       "check-placeholders mustache removal plan",
       "placeholder parity tasks",
       "validatePlaceholders tasks",
-      "placeholder parity checklist",
-      "validatePlaceholders verification"
+      "placeholder parity implementation",
+      "validatePlaceholders summary"
     ],
     "key_topics": [
       "orchestrator",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/rules/check-placeholders.sh",
       "dist/lib/validation/orchestrator.js",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,42 +171,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The canonical Node validator (`mcpserver/lib/validation/orchestrator.ts` `validatePlaceholders`) and the legacy shell rule (`scripts/rules/check-placeholders.sh`) disagree on spec-doc placeholder detection",
     "created_at": "2026-05-29T12:33:35Z",
-    "last_save_at": "2026-08-29T15:22:13.473Z",
+    "last_save_at": "2026-08-30T15:39:29.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47594b73cea7a0e9865f0f49b073b7316a5af1eb7a2db4f04e1a5daf4b6a2e41",
+    "source_fingerprint": "sha256:40f0d6b400dd7df27e71edc5f54ea9e6d56b80f2e20cf382b502f3a8e6c58812",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c71853db2ff9966c5f0240be194095dbbd08b0da2a163da0151ef214d085439",
       "plan.md": "15e64ea03d5753cc8fb2c187d6272c8bd2003130beabe7e96ba9b6d619b1ddcb",
       "tasks.md": "374c797335c88ac6b81bfd6b659505b839c5a43df1abd9195d6f6fba9dacce13",
-      "checklist.md": "4bcea928c7de0faec5998026dac9ce4056661fd6f32c32a38506ca9bce730afb",
       "implementation-summary.md": "6f2b6a8f5a2578888020e7d1fdd502ce9922b90c6e08027c3edf7c5833bcb8ac"
     },
     "last_active_child_id": null,

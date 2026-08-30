@@ -23,8 +23,8 @@
       "template wiring plan",
       "026/012 tasks",
       "resource map tasks",
-      "026/012 checklist",
-      "resource map checklist"
+      "026/012 implementation summary",
+      "resource map implementation"
     ],
     "key_topics": [
       "resource",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       ".opencode/skills/system-spec-kit/templates/README.md",
@@ -71,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,27 +191,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Reviewers, auditors, and successor phases have no quick way to answer \"what files did this packet touch\" without reading implementation-summary end-to-end or diffing git",
     "created_at": "2026-04-24T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:13.078Z",
+    "last_save_at": "2026-08-30T15:39:29.214Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:77d932e7d998244cad70aa540a1c44864da40634b6b172f034acec5407e0e2bc",
+    "source_fingerprint": "sha256:6eec56924f0da110ba31f15df7fc1c4df062a853caa3ea2283f5456fae5fc5fe",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eafebe5b6ba55b28435da8eb07e65ae007019466d971211857e199e06d3b0ff4",
       "plan.md": "1796d5c291e52794752cd619e4971a67363ede295218543906fef6ebd5393861",
       "tasks.md": "c553325caea7a55593a8d5d1dc046634d1e6a6e91e99e073e6562f8347ee32f3",
-      "checklist.md": "d69170bc441ea2ea2b50b6b9d3fabfe237a17d29492a5a282c96a810a114e239",
       "implementation-summary.md": "249506c9e77342bafd110b87a4f48e460dc63718d7d8af7535c83101dab5a8c9",
       "resource-map.md": "23369e1b8eec790228131f9b46943612c906397b413f50da2d12fc0388928ba8"
     },

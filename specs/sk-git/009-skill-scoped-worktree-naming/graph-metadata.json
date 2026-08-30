@@ -21,8 +21,8 @@
       "skill scoped worktree tasks",
       "owner first branch tasks",
       "sk-git cleanup tasks",
-      "skill scoped worktree checklist",
-      "owner first branch checklist"
+      "owner first branch decision",
+      "skill scoped worktree adr"
     ],
     "key_topics": [
       "skill",
@@ -44,16 +44,15 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/README.md",
       ".opencode/skills/sk-git/graph-metadata.json",
       ".opencode/skills/sk-git/changelog/v1.2.0.0.md",
       ".opencode/skills/sk-git/scripts/worktree-naming.sh",
       ".opencode/bin/worktree-session.sh",
-      ".opencode/bin/worktree-reaper.sh",
-      "implementation-summary.md"
+      ".opencode/bin/worktree-reaper.sh"
     ],
     "entities": [
       {
@@ -75,15 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -126,12 +125,6 @@
         "name": "worktree-reaper.sh",
         "kind": "script",
         "path": ".opencode/bin/worktree-reaper.sh",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,27 +192,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-git's numbered `wt/{NNNN}-{name}` branch namespace carries no owner, so a GitKraken tree of dozens of `wt/`, `work/`, `system-speckit/`, `wip/`, and `backup/` branches gives no signal of who owns what",
     "created_at": "2026-07-15T04:22:47.978Z",
-    "last_save_at": "2026-07-15T04:22:47.978Z",
+    "last_save_at": "2026-08-30T15:39:18.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0453fa3748f3f59d1f7ace44f2a2a24f999b4e1d9afa6f28a38f1e05496ec36",
+    "source_fingerprint": "sha256:709ed7da6a943513e249b1ab3ebdf5e36c2aad4b40872002ce14a61db61a5c8c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e93b9f8b04993098ad787d5c1e25f0f328a78c011b501c596b4e427812b963fa",
       "plan.md": "4cfb22db613d320b3919d3d657774407b02dbb2d7ecfd3376ad5a250507e8719",
       "tasks.md": "495b798cfdb44ead8e0ce402154b038b98998a0658365e7a02adb1331bcb8f92",
-      "checklist.md": "266b9c87bcb7fab31bbb4e780ed036cc22cdf61185d83eb951e7204db5a087dd",
       "decision-record.md": "553d7a814de58e60b6b7327e9016f34d629a595dcdfa57d6a3360bdf305ad80c",
       "implementation-summary.md": "711ca40d5b4dedb3ec3fc887eb69bd81ff54bb159291a574a9dffba1c4b3b491"
     },

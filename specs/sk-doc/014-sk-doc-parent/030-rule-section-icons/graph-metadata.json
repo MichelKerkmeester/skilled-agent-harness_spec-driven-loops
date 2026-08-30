@@ -38,19 +38,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,6 +67,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "SKILL.md rule sections carried an inconsistent icon convention: 13 files used `✅ ALWAYS / ❌ NEVER / ⚠️ ESCALATE IF` while the remaining rule sections were plain text",
     "created_at": "2026-07-14T17:23:02.116Z",
-    "last_save_at": "2026-07-17T14:37:02.604Z",
+    "last_save_at": "2026-08-30T15:39:13.949Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:24b3361fefd92ef1b7182a8203e8fa868c1915cd1caafe0022a05896a40f37eb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9fc40af2a7fd04da963d7a7392e3eb8a9ad4b5627f32b3591e9d05df75885633",
       "plan.md": "08c69b9e28f9850e0659357f4fdb079a36e6ce8fa67137027c98bac4c23e2855",

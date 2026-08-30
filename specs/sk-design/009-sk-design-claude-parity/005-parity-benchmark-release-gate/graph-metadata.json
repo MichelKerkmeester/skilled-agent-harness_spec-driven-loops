@@ -69,18 +69,16 @@
       "procedure"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md",
@@ -104,12 +102,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
         "source": "derived"
       },
       {
@@ -231,27 +223,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Architecture Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop judgment, accessibility, hierarchy, interaction quality, polish, or md-generator preservation",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:21:59.000Z",
+    "last_save_at": "2026-08-30T15:39:12.155Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b17f1bc9e14b080ef0a6651fa3dccefb6a3ea6280abde0bbeb3c5e075a0b58f",
+    "source_fingerprint": "sha256:bff9920d99dbc5d6acc3613d91851034b55cf3ab6b84b4ab675abd5feefa2df1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3acc9aa3fc19f3797225100efa4e69c020834f71a38ddfd947a7354f98a3527f",
       "plan.md": "4c2e521eaa2fd8625fc69d9bbeaccb6ec5594ef37e36d574f086ffe99df8ca0e",
       "tasks.md": "034d08cc45a552cd9dcf20df506501185cee8092dc973877bbd66cb772d25d65",
-      "checklist.md": "50b989b9a65e3185e8c763c3638c48c7b39de67860ae5b53351eaf72d9c1fd60",
       "decision-record.md": "f22c093313c06a750e18016c29634318faf8b84f8fa5b7c90c51b9160bffec3b",
       "implementation-summary.md": "e195a40bcdaa14f317d7db9039eb0be29182fbe43b9bf08534a3543d677635b5"
     },

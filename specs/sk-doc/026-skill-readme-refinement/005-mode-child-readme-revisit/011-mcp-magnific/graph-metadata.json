@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/mcp-tooling/mcp-magnific/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:43.015Z",
-    "last_save_at": "2026-08-30T07:20:26.528Z",
+    "last_save_at": "2026-08-30T15:39:17.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3bee8a655f354ae277bf0d98af082c09521303304f591a9991ef71b4b1b8dcf4",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cda843ca109b4c1f5d69ad49ec0ebda6b5d0bf3f2f71f98bf5650cd9336814d4",
       "plan.md": "d9c13570aaef553e49facb33d8a624e46be389bd92233fbfbdd2920e86381a6a",

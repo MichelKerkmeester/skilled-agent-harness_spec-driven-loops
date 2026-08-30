@@ -40,21 +40,15 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -67,6 +61,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -180,7 +180,7 @@
     ],
     "causal_summary": "The Rust upgrade is not \"done\" until every gate is green",
     "created_at": "2026-07-11T08:51:45.057Z",
-    "last_save_at": "2026-08-28T15:53:01.293Z",
+    "last_save_at": "2026-08-30T15:39:11.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,6 +190,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3a05f68db187d18f0caf79d962b4c676ac9f5fa5bd3f17b96f13488a74c8018d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "532ae33550ff2a6a1fa89be7febe3b041a6b318379dff6010d3b97c9c5aabf80",
       "plan.md": "52ec9cd0f689a809a2aa27cadb527dbecabe0e22607a19038b4e2c7acb5ff3ec",

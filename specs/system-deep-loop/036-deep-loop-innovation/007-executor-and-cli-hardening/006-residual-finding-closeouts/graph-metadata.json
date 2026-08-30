@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/sealed-reference-artifacts.vitest.ts",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three sibling phases under `036-deep-loop-innovation` landed their primary deliverables but each left one small, explicitly-documented residual open",
     "created_at": "2026-08-12T16:44:22.542Z",
-    "last_save_at": "2026-08-29T15:22:07.650Z",
+    "last_save_at": "2026-08-30T15:39:22.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0868579606bd93d895022049a3568bcc456edc4860e51bcd21f63b47c28146d",
+    "source_fingerprint": "sha256:b6a3d765933f2857345e2c1b402549222d214ba8099582d3bd6762a4cc1f109a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f9435f92a92a80990fc60aeba136caa424ddc6aec64317cf84684caa8e79b5a7",
       "plan.md": "7e51d38ce7aa5a99405c449258d0b14e736ef0d999ab65230d4c7ea6ad983169",
       "tasks.md": "11078800880afe50b4865535538c48730d4abc741e73f3cced0e4ecc8372dd19",
-      "checklist.md": "1a776e4b4542a2a09d9a43adfaac6f4d89ce53ca75282763034a3e84377f3a6c",
       "implementation-summary.md": "813d74d772be2361b515cc049fddd572a04b4b1e39dcb3bb9ae70b50aeb944be"
     },
     "last_active_child_id": null,

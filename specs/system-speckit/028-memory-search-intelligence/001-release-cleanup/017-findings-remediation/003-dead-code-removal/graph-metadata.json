@@ -42,21 +42,15 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Scripts, npm entries, dependencies, CLI subcommands and config references exist with no reachable caller or with targets that no longer exist",
     "created_at": "2026-07-27T08:41:09Z",
-    "last_save_at": "2026-07-27T14:24:44.379Z",
+    "last_save_at": "2026-08-30T15:39:34.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d21305ea4be1202fa925cb461acd65502756f91f4b7c9e79db6a16b4e4a42760",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f788594d04173258ecf3e22c97f75a113bae14b316c2e6ae17103e429b8cbff9",
       "plan.md": "a7442e21b6abe2b310a59619775bba9f2aaa05c33233c9f61b1c54d50908cf51",

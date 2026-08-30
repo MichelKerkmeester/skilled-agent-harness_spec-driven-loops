@@ -42,9 +42,7 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -56,21 +54,9 @@
         "source": "derived"
       },
       {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
         "source": "derived"
       },
       {
@@ -192,11 +178,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Verified",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The install guide (mcpserver/INSTALLGUIDE.md, ~930 lines) has a solid 5-phase gate structure but was written before the final dependency set stabilized",
     "created_at": "2026-04-12T09:02:50.308Z",
-    "last_save_at": "2026-07-10T06:23:02.820Z",
+    "last_save_at": "2026-08-30T15:39:39.295Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b9d73ff8a637de016b263d675d290586a3cf31be2915fb20f53072633025a93",
+    "source_fingerprint": "sha256:7e2c251bd199ff4337862c123448ccb08dd0f4608c6a8f26972f3936052ba5c7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "358bb3bd2e776e5f4870dce308820ee56de986d1f026e7aa53eb7f800db44941",
-      "plan.md": "fca6d834bae506dff19389224d4ecdb277e7e4a2b69ae0bb5ab62514e04441e9",
-      "tasks.md": "3697e826273b46908e19c3adc0a1a0ee19f1f7123a0a0ae8787c2278c165b5b3",
-      "implementation-summary.md": "aefaa575cc3938f837d5d215ee29c2c5f4807ca09563ba95743034df58eb0989"
+      "spec.md": "82e3c6bbd0a6d2899ab02915d086040eea06848bd444514aa426f50c194e94f3",
+      "plan.md": "96115841d5f785c4512f7565efa198efb73313172ced34de999de37915dcdbd3",
+      "tasks.md": "f244cfeec59eadcc970cddf94cfd21f2e8d964d875deee4f3dce4eda28ad6994",
+      "implementation-summary.md": "ca5c33015bf65209233434072a3eed31beb373e7be4ed2554c65e33394d2a68a"
     },
     "last_active_child_id": null,
     "last_active_at": null

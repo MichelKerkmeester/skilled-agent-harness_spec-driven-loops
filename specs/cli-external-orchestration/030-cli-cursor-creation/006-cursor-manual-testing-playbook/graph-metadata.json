@@ -16,7 +16,6 @@
       "cli-cursor playbook categories",
       "cursor manual testing playbook plan",
       "cursor manual testing playbook tasks",
-      "cursor manual testing playbook checklist",
       "cli-cursor playbook summary",
       "CU-NNN scenario implementation"
     ],
@@ -31,8 +30,8 @@
       "categories",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "summary",
+      "scenario"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,26 +185,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-codex` ships a split-document manual-testing-playbook (1 root + per-feature scenario files across categories) as its canonical, no-mocking, PASS/FAIL/SKIP validation mechanism — there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
     "created_at": "2026-07-24T04:52:26.644Z",
-    "last_save_at": "2026-08-29T15:21:50.948Z",
+    "last_save_at": "2026-08-30T15:39:07.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcb677847457fa0fed307a5e8c4c9b2ce57dd8d595123357c75d13b39fe19935",
+    "source_fingerprint": "sha256:070d82134b1d74d6cec48d59aaacdaaf73446117efe0e3def1c9d91f494341fb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4cd63b2ae1b5845999922dcac2403b7fbdf165142c77724248da75f6b024fa4c",
       "plan.md": "90f0e4df46c1a5f24ace2f3a16a4fadad180784c286509b4b014d29112f37047",
       "tasks.md": "f65bd5bbb71d23afe9d1f780815b6a9e54c79c76436152d1d05c0ba6b48c43fe",
-      "checklist.md": "1323762d9ebf0efeddaf510071643ae45c81f808a97dd10b819d0db5faf0bf24",
       "implementation-summary.md": "6f4bcd7019898650b2513b4cb6c14fceff565fcc872ba6598ceb33b83ca6a407"
     },
     "last_active_child_id": null,

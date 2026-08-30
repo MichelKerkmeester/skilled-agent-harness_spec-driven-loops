@@ -42,11 +42,9 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -56,33 +54,21 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "MANUAL_TESTING_PLAYBOOK.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -188,31 +174,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verdict Table",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 discovery scenarios must be executed from scratch",
     "created_at": "2026-04-12T09:02:50.290Z",
-    "last_save_at": "2026-07-10T06:24:45.549Z",
+    "last_save_at": "2026-08-30T15:39:39.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d09dc854f99be88f013580f379a15533d5f98740ed904a61e4f8998e62b347a8",
+    "source_fingerprint": "sha256:b80b10a284ed3f72587488870d04a85913772de65b22af3f2469dd817f9d11a9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c279642fc83090cae0da224dc9616e1a1e322d34469797b4d46be1073966a5ff",
-      "plan.md": "d0e50a767b4faf737eca7fedb5af8441c36677428b9c947f8d65b792d480d436",
-      "tasks.md": "8093989d3f98fdac985925382625597fbaa6c1a86be49a6d04cc3b973f8f9713",
-      "checklist.md": "f13d6c3240882fde02d096e654d390b77f06d513014f0e71162d52b1d73c718d",
-      "implementation-summary.md": "9cca3468c8b673680a1e5ec119d5449ae8c6c60675a5f836d080beea4c8bf48d"
+      "spec.md": "53dd7bb5168264c7ff05e3014404d4dceed86d13ffbd6a648d3c3a2cb7ef6cf8",
+      "plan.md": "399cb0be65b6b99bac6789c225cd2d9ca000301e9415b8bd5201411e7bf853d8",
+      "tasks.md": "1e8526cfe264d870fcc057fc433b28a0db661c03a2073d90cbdbcc56c70218a2",
+      "implementation-summary.md": "72e00323d88cc729f10682a249440b90c4603448a88b30a43ba156e456d3f3f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

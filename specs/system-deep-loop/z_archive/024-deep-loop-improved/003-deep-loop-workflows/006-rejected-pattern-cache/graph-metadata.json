@@ -35,19 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research loop has no memory of rejected ideas across iterations; a pattern that was explicitly surfaced and rejected can re-emerge in the very next iteration's next-focus candidates, wasting an iteration slot and polluting the convergence signal",
     "created_at": "2026-06-28T14:02:10Z",
-    "last_save_at": "2026-07-16T16:32:17.996Z",
+    "last_save_at": "2026-08-30T15:39:24.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4f521aab1f840cc8ebcdc8375275466b108e5ec6cd2fb78c1d31898b6f67a6d3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95b71fd6bd13ceff8b2c05ff32ed45355229ade23441cc3be25b08531798e4bb",
       "plan.md": "8f143479fe45c604112f9041d835c744444aa5bb73df614574cfb13c71eb18f4",

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/mcp-tooling/mcp-aside-devtools/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:41.334Z",
-    "last_save_at": "2026-08-30T07:20:24.964Z",
+    "last_save_at": "2026-08-30T15:39:17.654Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7c2de0a58cf768ccdeafc39cb20576242ea3c3c6b1f10b09468e1f0c978cfb8f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a733f48f36446dd18c1f01d00745bb695d53e7eeacff5ace0de190d3906e2488",
       "plan.md": "46634d3014f0bc0601695205182455fb09b4202ef37b9d5236ac9d9b61fe5b18",

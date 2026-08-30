@@ -17,7 +17,6 @@
       "do not re-pin the baseline",
       "regression diagnosis implementation plan",
       "regression diagnosis task breakdown",
-      "013-routing-regression-diagnosis verification checklist",
       "013-routing-regression-diagnosis decision record",
       "routing regression diagnosis summary"
     ],
@@ -36,17 +35,15 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "diagnosis-results.md",
-      "evidence/capture-before-fix.json",
-      "evidence/capture-after-fix.json"
+      "evidence/capture-before-fix.json"
     ],
     "entities": [
       {
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -95,12 +86,6 @@
         "name": "capture-before-fix.json",
         "kind": "config",
         "path": "evidence/capture-before-fix.json",
-        "source": "derived"
-      },
-      {
-        "name": "capture-after-fix.json",
-        "kind": "config",
-        "path": "evidence/capture-after-fix.json",
         "source": "derived"
       },
       {
@@ -192,27 +177,38 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Diagnose the reproduced -2 routing regression on holdout top-1, holdout top-3 and the delegation bucket, attribute it to a commit, and decide fix-versus-accept — before any re-pin, status flip, or metadata regeneration is allowed to run.",
     "created_at": "2026-07-30T08:10:27.110Z",
-    "last_save_at": "2026-08-29T15:22:03.105Z",
+    "last_save_at": "2026-08-30T15:39:15.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf8bdaf0e8b29f2c1f9c34375cc118d522f7759277cb08e93a7f99bdf5486da5",
+    "source_fingerprint": "sha256:73f8b41bef0d4c94aef9f8f6c3e374dcb7d5ad69898df83c226f1f5e9f1c8be0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "847f3aa6fc0876eee0f34ac570dea505a69eb2ead9ffc0b0cc58d2727a6d503e",
       "plan.md": "513f3ed56b8225b65c752aa0ebff434ff7349f580138f22929b43f3d51648054",
       "tasks.md": "bb6fa9cc17b8635becadc5b40595d922924945bc3eb9a7fd92c5bd3dd6d3cac6",
-      "checklist.md": "9478d668eb2831e92af18dbac1441f83303290a905eb8be800e8c34fbde6c4fe",
       "decision-record.md": "8d65142083eabde2b3efd9fb0c052748b169c6fee4ebad24f0b228f86d93fd89",
       "implementation-summary.md": "6fa77e28cae71243bfa7cc7b82e549fba6b100b9d1f929d7a2c8c9c17a32538a"
     },

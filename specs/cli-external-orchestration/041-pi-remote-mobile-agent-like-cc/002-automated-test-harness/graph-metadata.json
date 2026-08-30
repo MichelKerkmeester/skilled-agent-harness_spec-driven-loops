@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,37 +166,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context Builds",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Builds the recorded, live, integration, security, browser, and crash harness that proves the remote control plane fails closed",
     "created_at": "2026-08-10T18:28:39Z",
-    "last_save_at": "2026-08-10T18:49:12.492Z",
+    "last_save_at": "2026-08-30T15:39:07.887Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:432f649147dc112fcae89ff08707c87e7d0532a13db337c988658e72cbc9631f",
+    "source_fingerprint": "sha256:0c0ef1f690fd4f1491ad5f5c7bb7076d798d6319e5ce08cc92235ba5be1c255e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4f450a2f0af1f55ef2ca1a060e6805502aa2664d7ba32ef732110f22045db334",
+      "spec.md": "2450244d97b101f1488d08e10e0865f3b8fb6970e20beb02ae1487b76a2bf53a",
       "plan.md": "7e7d7e2a0949f1d0044709044046e3a2ff501a83e527b6aa9d00c69aab49b823",
-      "tasks.md": "c5e72a2062dc730132276e48b37374f02cd93758e65688c63f8feb6df997ed43",
-      "checklist.md": "5dcfd66708a24a78bd52062ebedc7ac7ecee6933dd8b743368e57ec7c2a55adf",
+      "tasks.md": "a537fc52fbc1254a603556b41b9d66182cd29ca204a7fc87b87e1d7f35302b79",
       "decision-record.md": "4db06636643e4c2f4a8ec40bc6f3cce9bc008323a676855b4d696ede174e10d3",
       "implementation-summary.md": "ee004cec64d44f6f417334f444b029a47b1c9ff41e63b000ea0ebc330adaa4dc"
     },

@@ -17,7 +17,6 @@
       "014",
       "plan",
       "tasks",
-      "checklist",
       "decision",
       "record",
       "decision record",
@@ -30,18 +29,22 @@
       "durability",
       "plan",
       "tasks",
-      "checklist",
       "decision",
       "record",
       "implementation",
       "summary",
       "phase",
-      "addresses"
+      "addresses",
+      "concrete"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "hooks/claude/hook-state.ts",
       "hooks/claude/session-prime.ts",
       "hooks/claude/session-stop.ts",
@@ -56,17 +59,37 @@
       "tests/dual-scope-hooks.vitest.ts",
       "tests/edge-cases.vitest.ts",
       "tests/envelope.vitest.ts",
-      "tests/hooks-ux-feedback.vitest.ts",
-      "handlers/memory-context.ts",
-      "hooks/index.ts",
-      "mcp_server/hooks/response-hints.ts",
-      "plan.md"
+      "tests/hooks-ux-feedback.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -160,24 +183,6 @@
         "source": "derived"
       },
       {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "hooks/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Hook Durability",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,34 +205,27 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Wire Claude",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-13T04:55:08.077Z",
-    "last_save_at": "2026-07-10T06:24:17.122Z",
+    "last_save_at": "2026-08-30T15:39:39.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:69967b64db1b2b067b1311225ecf2a1397161052a10ab0cd234ed5edf4b628dc",
+    "source_fingerprint": "sha256:49e5930f339fa454b7ceec4cd995bdffc6a90d74c478ab6bb2c4fdc0a8264170",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fcecb73367968db889ff2ec7fff0b99df1080d7ba4bc8e278da511c39f23da5a",
-      "plan.md": "ddbefbc1e431f48199341cf5da419e632dcec5fd1d322788253a5db0a5aae1a5",
-      "tasks.md": "29611581309d686694811656a0fc7bad4ab1718ef24f9760e296112ea19af6d4",
-      "checklist.md": "64ab31ef521578840fc0d0b4b862f367eadc12c1183d37d4518532c4e1cd50ce",
-      "decision-record.md": "b730e87f8fa52df195369582b8cc049dce98dbea6a2cc8671df4040c37517be9",
+      "spec.md": "12ce7d5ea86d685528dac75d3469ef648b0a3f62d3868dd1a97aea8f8d026bed",
+      "plan.md": "3f60f0b491530336045fbe5cf6d376b7a7218ad22a5724f4f23f94c4f7fd05b7",
+      "tasks.md": "3c14f0772b60d6a766d595f084b8bd9fcc3b6a63a485f1bdaf90d74439fed40e",
+      "decision-record.md": "c1deff01e63b1520ce39b4b3384531f1a9daa95bb5a7010ea7f088b0c310212e",
       "implementation-summary.md": "d7f8d66dc9d179e7b4a02002246b06851d74fa9287992ac9748cf86c506a345e"
     },
     "last_active_child_id": null,

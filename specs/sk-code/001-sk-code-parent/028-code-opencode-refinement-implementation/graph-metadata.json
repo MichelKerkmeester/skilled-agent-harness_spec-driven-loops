@@ -3,7 +3,6 @@
   "packet_id": "sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation",
   "spec_folder": "sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation",
   "parent_id": "sk-code/001-sk-code-parent",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,9 +20,9 @@
       "code-opencode refinement implementation tasks",
       "code-opencode implementation task ledger",
       "implement code-opencode backlog tasks",
-      "code-opencode refinement implementation checklist",
-      "code-opencode implementation verification",
-      "implement code-opencode backlog checklist"
+      "code-opencode refinement outcome",
+      "code-opencode implementation summary",
+      "028 code-opencode refinement shipped"
     ],
     "key_topics": [
       "implement",
@@ -37,15 +36,14 @@
       "tasks",
       "task",
       "ledger",
-      "checklist"
+      "outcome"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".claude/settings.json",
       "spec/create.sh",
@@ -68,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,26 +187,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "disk",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Execute the Fable-5-validated refinement backlog for the sk-code code-opencode surface sub-skill: 24 P1 + 21 P2 + 7 P3 documentation/asset fixes across ~14 files in 7 sequenced phases, plus the sk-code-owned C1 validator retirement. code-opencode is this repo's playbook for writing code in its own .opencode/ tree; the research proved it teaches patterns that fail to compile, fabricates removed hook infrastructure, and misses the verify-doctrine reality. This packet makes the docs describe reality; underlying-code bugs C2-C8 are handed off to owning surfaces, not implemented here.",
     "created_at": "2026-07-08T14:11:39.565Z",
-    "last_save_at": "2026-08-29T15:21:56.612Z",
+    "last_save_at": "2026-08-30T15:39:11.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae525d6f60cb18e14007cd1a567551d074fa241f4189158c99d507de1623e087",
+    "source_fingerprint": "sha256:1615c77b9abe61bddff133aa9e3b9f9974b131f8862d525c8d2c7662e5fbab01",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a5da4c573eecb48749d27b0b29e4b091215d49d68cd3130a6f7a9f61d7c6cbb",
       "plan.md": "4dd97778a64b084e40677570cbc246424325b2358adc341c2cab8bf52fe1be0c",
       "tasks.md": "01720fdcc2a1ffbb7a8bf1eeb3ad56e02f9e3709e2da7e769acd6cab7f63c9b4",
-      "checklist.md": "2b0af5d458b648e1cc96e9434b7060bedfd9955d9f37da1ac2db206aa62d4a5b",
       "implementation-summary.md": "305135b12c294533c299bf50924c89d52a8a24571059cb25bd9151941ab9dd83"
     },
     "last_active_child_id": null,

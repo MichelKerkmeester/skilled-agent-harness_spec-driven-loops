@@ -41,34 +41,15 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-git/README.md",
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/bin/worktree-session.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/bin/worktree-session.sh"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "worktree-session.sh",
-        "kind": "script",
-        "path": ".opencode/bin/worktree-session.sh",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,15 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
         "source": "derived"
       },
       {
@@ -172,25 +165,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -198,22 +191,21 @@
     ],
     "causal_summary": "sk-git's documented worktree convention is directory `.worktrees/{short-desc}` plus branch `type/{short-desc}` with no number and no single grouping namespace, so feature worktrees were created ad-hoc as siblings of the repo with inconsistent prefixes that neither group in the Git UI nor sort in any stable order",
     "created_at": "2026-07-15T04:22:54.513Z",
-    "last_save_at": "2026-07-15T04:22:54.513Z",
+    "last_save_at": "2026-08-30T15:39:18.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:91a39a4ca0162909f486aba16121e169e309f6756d6a5ce4bc752da04f762d73",
+    "source_fingerprint": "sha256:5326c3e999207f223e460bfe84a4bdfab5f8589e693edc21ce97912a26ed0b25",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6634187d43abe7014faee7e5942556a66fe93244b539b1eabec310ba1acb9e6a",
       "plan.md": "cb04cff5648aa407fcb19d8d53c2c70a1769b139498c1545bdbfbe0c08084dfb",
       "tasks.md": "f5f7012e946f68ef38c6c6a514ced07c83580c634c756538efa9b470417388b4",
-      "checklist.md": "f6a949bd365bc30e94d1ef9dd7a28f4e6461ed1d2bb2ce701603f7cdfc563054",
       "implementation-summary.md": "2e2aba1964bb570cd2d3a4f674b2d8ab55de0e718c58955c3b2da53bc6b18463"
     },
     "last_active_child_id": null,

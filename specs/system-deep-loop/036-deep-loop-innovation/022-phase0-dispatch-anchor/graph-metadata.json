@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts"
@@ -60,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -171,42 +164,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Ended",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep/ commands (`review`, `research`, `ai-council`, `alignment`) open with a Phase-0 dispatch-context gate whose block reads \"⛔ DIRECT INVOCATION REQUIRED — no review iteration executed\"",
     "created_at": "2026-08-27T03:18:13.515Z",
-    "last_save_at": "2026-08-29T14:54:11.390Z",
+    "last_save_at": "2026-08-30T15:39:22.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:233f677e856d1848238380dc8f334ddaaf427ce15bf24828e7195c812442a3c2",
+    "source_fingerprint": "sha256:8bcd6e1a9c3e84eccb0c2b0d5c567e6a5a236b087d27b00998f168077f9a2d5c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "704631de9d98ff90927f8ccca72c21609f34cac833f2c2b398a83cb524e375b1",
       "plan.md": "404a2cc4f5aa734608620312d5b44c9b3630253b0dc2e1f7789a6d870e9e98c9",
       "tasks.md": "1dd2e601292152927fc2162664fa01a7d75e8a575ab6404930de2d216f08fc9d",
-      "checklist.md": "4b0b3ee5833d464b5c8b3680854e3ecb16508cb58626d488dbb218924581d58c",
       "implementation-summary.md": "5bf334595c67c8bce9829fe6d3c9e0274aac43dff016ff237a902ada9f1d0a01"
     },
     "last_active_child_id": null,

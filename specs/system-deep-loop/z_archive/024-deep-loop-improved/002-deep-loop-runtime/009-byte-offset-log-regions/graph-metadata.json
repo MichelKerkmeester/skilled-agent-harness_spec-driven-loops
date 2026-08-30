@@ -35,19 +35,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Stamp",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Log analysis tools must scan and parse entire transcript files by markdown headers to locate a specific iteration's output; on long runs with many iterations this is slow and error-prone",
     "created_at": "2026-06-28T14:01:57Z",
-    "last_save_at": "2026-07-16T16:31:56.937Z",
+    "last_save_at": "2026-08-30T15:39:24.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4924bd3265a73551cab8b95f7bb8a733b0ad1ad65e750602472cbf31615e477c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53641a176704655633811f49bfa6ea8ea19eb048a4cdd5e7dac149beb65e2b78",
       "plan.md": "f29d21af49dd981603f0f87dfcaf9b272e2a8f664cad7f5865081d3567b471a0",

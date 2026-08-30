@@ -18,7 +18,6 @@
       "noise floor subtracted relevance gap",
       "gated relevance aware detector path",
       "embedder seam stage4 detector",
-      "evidence gap verification",
       "relevance aware gap verdict",
       "SPECKIT_RELEVANCE_AWARE_GAP graduation"
     ],
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/gap-relevance-rebenchmark.mjs",
       "results/metrics.json",
@@ -71,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +190,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 043 benchmark proved the Z-score evidence-gap detector measures peakedness, not relevance",
     "created_at": "2026-06-27T17:15:44.445Z",
-    "last_save_at": "2026-08-29T15:22:23.225Z",
+    "last_save_at": "2026-08-30T15:39:35.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c278846126ee72fd6d8f618465a7c3811959fedeb1fa2c716c3103f9677589f0",
+    "source_fingerprint": "sha256:46fb82d501ecb7a0cffddb874df82c7590d8eba42b8880ee3bc052e120a0f49f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1d3cbfafb5c6034fa47cfdd02355d54adbacf3753bafd0e248c6da5f29700a34",
       "plan.md": "478be6b0feee52fc0500eb3a16798e4e1f4a4c975bc342419ba3a596ec683705",
       "tasks.md": "08825bf44347247972a974e22e6940cfc981b6cbd584d72abfe66bc14062bc58",
-      "checklist.md": "d28bdce7542b1d0eb8a66171e0ddbafe4b2a17d4314ebd0e6a6ff1bdf8577da4",
       "implementation-summary.md": "56d6bd83372f26d71b3d09d9687893e69154880ab93e1f731f3f54811ba82a03"
     },
     "last_active_child_id": null,

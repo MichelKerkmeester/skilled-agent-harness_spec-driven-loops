@@ -41,58 +41,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts",
-      "mcp_server/handlers/mutation-hooks.ts",
-      "mcp_server/handlers/memory-crud-types.ts",
-      "mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts",
-      "mcp_server/tests/transaction-manager-recovery.vitest.ts",
-      "lib/search/entity-density.ts",
-      "lib/storage/transaction-manager.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "lib/search/entity-density.ts",
+      "lib/storage/transaction-manager.ts"
     ],
     "entities": [
-      {
-        "name": "mutation-hooks.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "entity-density-commit-hooks.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "transaction-manager-recovery.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "entity-density.ts",
-        "kind": "code",
-        "path": "lib/search/entity-density.ts",
-        "source": "derived"
-      },
-      {
-        "name": "transaction-manager.ts",
-        "kind": "code",
-        "path": "lib/storage/transaction-manager.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -115,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density.ts",
+        "kind": "code",
+        "path": "lib/search/entity-density.ts",
+        "source": "derived"
+      },
+      {
+        "name": "transaction-manager.ts",
+        "kind": "code",
+        "path": "lib/storage/transaction-manager.ts",
         "source": "derived"
       },
       {
@@ -200,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shared post-mutation hook (`runPostMutationHooks`) clears trigger, tool, constitutional, graph-signal, degree, and co-activation caches but never invalidates the entity-density cache, so after a `memoryupdate` renames a high-degree memory or rewrites its trigger phrases, graph-channel routing keeps matching stale tokens until the 60s TTL lapses",
     "created_at": "2026-06-04T20:45:42Z",
-    "last_save_at": "2026-07-17T17:19:15.059Z",
+    "last_save_at": "2026-08-30T15:39:29.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bb9cb71363fce6486e21332c3bd24e983fee2827f300c77534ffce3a032dc986",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2efe6d295f202fbdab6a4f4330054f7ffe4138ea157cf1d1008f9bf22060e2dc",
       "plan.md": "43b5b7a514134d490c4b20b23d8c3165f7574ac5e7641747fd5bd8e947541a4d",

@@ -42,13 +42,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      "scratch/research-brief.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/research-brief.md"
     ],
     "entities": [
       {
@@ -58,33 +55,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "research-brief.md",
-        "kind": "doc",
-        "path": "scratch/research-brief.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "FEATURE_CATALOG.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {
@@ -97,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-brief.md",
+        "kind": "doc",
+        "path": "scratch/research-brief.md",
         "source": "derived"
       },
       {
@@ -194,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Complete",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The MCP server README (mcpserver/README.md, ~1281 lines) was written incrementally as features were added across 16 phases of the 022-hybrid-rag-fusion epic",
     "created_at": "2026-04-12T09:02:50.308Z",
-    "last_save_at": "2026-07-10T06:22:08.966Z",
+    "last_save_at": "2026-08-30T15:39:39.287Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00f2f7fdf0c81386de93204e87c2b4118d189d9fbbf034ef2dec37d28f365564",
+    "source_fingerprint": "sha256:5f938343d3497b3acd9da1baddce197446006042e8a3809a013c3e2c1a13381d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a57a628454b27be0cae908bb7b58cf86c4bec694fd365594190c57e503d4e87b",
-      "plan.md": "dbe6f04e167bc2e4ee07c491dd88ccec9b36ea085847e4735143b22b2d45bb26",
-      "tasks.md": "ac706dd20a4e6d42128806073a7a3eb09b3144f6d502957140f040a9563d85ad",
-      "implementation-summary.md": "5119df8377705ec0c99500fc9b4ec45d53d168291eba49deb17c4cb9c0fb4ae2"
+      "spec.md": "13ac3118882ec3eb0906db2c5c29db7c2ab8a20d6351da6151f7e575de160c6a",
+      "plan.md": "bd5e624db095b075c854ff2ce853e2cee70b166643819eadb922af69ed2e7a7a",
+      "tasks.md": "d5c6f486f49640485788f27295b932ac1331c7d6a261b7c3456c93d7a9ef0f68",
+      "implementation-summary.md": "047f23743fbf0c5a5935cc99d19fee7bacf94b88c1ff57a490fcdadc2c61494c"
     },
     "last_active_child_id": null,
     "last_active_at": null

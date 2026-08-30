@@ -36,95 +36,20 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/deep/research.md",
-      ".opencode/commands/deep/review.md",
-      ".opencode/commands/deep/ai-council.md",
-      ".opencode/commands/deep/alignment.md",
-      ".opencode/skills/sk-doc/create-command/SKILL.md",
-      ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
-      ".opencode/skills/sk-doc/create-command/assets/command_template.md",
       "spec.md",
-      ".opencode/commands/deep/assets/compiled/deep_research.contract.md",
-      ".opencode/commands/deep/assets/compiled/deep_review.contract.md",
-      ".opencode/commands/deep/assets/compiled/deep_ai-council.contract.md",
-      ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
-      "decision-record.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/research.md",
+      ".opencode/commands/deep/review.md",
+      ".opencode/commands/deep/ai-council.md"
     ],
     "entities": [
-      {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/review.md",
-        "source": "derived"
-      },
-      {
-        "name": "ai-council.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/ai-council.md",
-        "source": "derived"
-      },
-      {
-        "name": "alignment.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/alignment.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-command/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "command_router_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-command/assets/command_router_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "command_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-command/assets/command_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research.contract.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/compiled/deep_research.contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_review.contract.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/compiled/deep_review.contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_ai-council.contract.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/compiled/deep_ai-council.contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_alignment.contract.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -140,15 +65,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/ai-council.md",
         "source": "derived"
       },
       {
@@ -198,27 +135,80 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Bring",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Self",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Documents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unit Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integration Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 064 already converted `skill-benchmark` to a yaml-backed triad and gave `alignment`/`ai-council` render-pipeline parity, but the family still ships in three different shapes",
     "created_at": "2026-07-13T19:00:49.829Z",
-    "last_save_at": "2026-07-16T16:33:07.313Z",
+    "last_save_at": "2026-08-30T15:39:19.922Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c105ce9615f7cd879b14342a9417502e13f0f632886c7a69124b42c3aab00074",
+    "source_fingerprint": "sha256:b049062a51e35f119f90c43760b13bbfd93624b2f7cf428ca83783512f6c77a9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d22b2048a28eae253054ff99cf0b95f0022c4b6e596c13672c1e5bf12cc3356e",
       "plan.md": "e981fc54a598ded35ce3adec69d17a0187a0d9450aa2e7aad1974f49b2f56ac5",
       "tasks.md": "33df976f05e8aefb0abd64e0c4719a62e6d75b36e6ad87b9efd88b97aa37adde",
-      "checklist.md": "8efd96802f4da28a7eccf75ca149972ca94a0f8e07b57db8f2e4f1cddfb397d3",
       "decision-record.md": "52c1c1d742751d4855caeda4c382e5313d92389588fffcd40a26bd80d3f6a793",
       "implementation-summary.md": "87fd5c1b7b82bc3d2d2d8a14443e650f137ecc877802ffc6cf80e1331555118d"
     },

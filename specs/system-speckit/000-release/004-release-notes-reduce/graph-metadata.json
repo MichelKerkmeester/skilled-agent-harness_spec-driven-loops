@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-release/004-release-notes-reduce",
+  "spec_folder": "system-speckit/000-release/004-release-notes-reduce",
+  "parent_id": "system-speckit/000-release",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase",
+      "004",
+      "reduce",
+      "release",
+      "notes",
+      "spec"
+    ],
+    "key_topics": [
+      "phase",
+      "reduce",
+      "release",
+      "notes",
+      "spec",
+      "assemble",
+      "shipped",
+      "public-facing",
+      "release-notes-v4",
+      "opus",
+      "session",
+      "system-speckit"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Notes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Assemble",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Capable",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inputs",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Assemble the shipped, public-facing release-notes-v4.0.0.0.md.",
+    "created_at": "2026-08-30T15:39:27.540Z",
+    "last_save_at": "2026-08-30T15:39:27.540Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d7ac45d108fd47a021ab74ab8a4f9e78c75689a00d85b606f6971910849be869",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ed33684b8bca69613face494172323696edb62923867f3bd25350442ce9fac84"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

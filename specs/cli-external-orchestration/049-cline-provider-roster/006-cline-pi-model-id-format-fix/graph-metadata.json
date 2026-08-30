@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phases 3 and 5 declared the cline-pass models in `.pi/models.json` with bare ids (`deepseek-v4-flash`, `deepseek-v4-pro`)",
     "created_at": "2026-08-18T17:42:19.098Z",
-    "last_save_at": "2026-08-29T14:54:26.292Z",
+    "last_save_at": "2026-08-30T15:39:08.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5843bfa3afe300a78deee08dd68112c45351809293a0bd36c2cd98a49228026d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0dfbf4e146fbebe741c14d7ea88b379a64467c3161f370617fb0783068241ea7",
       "plan.md": "4e204e73234d07720fd91e35db5016c53f049226e098a0a90cf16aceb8047740",

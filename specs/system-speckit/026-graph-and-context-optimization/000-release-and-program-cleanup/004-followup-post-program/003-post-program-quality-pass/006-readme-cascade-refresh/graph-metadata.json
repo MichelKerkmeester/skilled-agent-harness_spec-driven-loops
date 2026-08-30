@@ -20,7 +20,6 @@
       "parent skill README",
       "README cascade plan",
       "README cascade tasks",
-      "README cascade checklist",
       "037/006-readme-cascade-refresh resource map",
       "readme cascade refresh file ledger"
     ],
@@ -33,10 +32,10 @@
       "skill",
       "plan",
       "tasks",
-      "checklist",
       "006-readme-cascade-refresh",
       "resource",
-      "map"
+      "map",
+      "file"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "target-list.md",
@@ -69,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,27 +188,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 031-036 and 037/001-005 changed the current documentation surface: the MCP registry is now 54 tools, `matrixrunners/` and `stresstest/` are live folders, `advisorrebuild` is a public Skill Advisor tool, and the stress suites moved out of `tests/`",
     "created_at": "2026-04-29T16:19:08.000Z",
-    "last_save_at": "2026-08-29T15:22:11.250Z",
+    "last_save_at": "2026-08-30T15:39:28.242Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:0efe58a3038b2716505d1d641edd3a46f37b24d6c05da3bcabd3059713d1bd13",
+    "source_fingerprint": "sha256:9bc61d211a786275165a42416efd56b034c85c579605d941bc6086229b26b01b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1996dbbffe9891199dea241635077e083a40bbf875ca4cc21c75e59f5159f640",
       "plan.md": "41216018e345eaf90c2181fbc9270e795203305a563d670a59eab86ca2b010cf",
       "tasks.md": "7551aaa577b477435a721106b72dc46a46925cbcdea675e8e7fa5801d56e1621",
-      "checklist.md": "287e25c632d00b0a05112243f2d891e8dd29b00c9a58dabb3cf9990f3780c8f9",
       "implementation-summary.md": "79bcd6841279882a736fe871405cd846340709fa2a148ef9c3531bd981e6695f",
       "resource-map.md": "8db3c726278ce61979f6797f3b5dff70eaedbac6e09db2753b5551d9f7933ae7"
     },

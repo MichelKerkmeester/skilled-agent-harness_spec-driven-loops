@@ -18,7 +18,6 @@
       "agent-mirror-repoint",
       "deep loop merge implementation plan",
       "deep loop merge tasks",
-      "deep loop merge verification checklist",
       "deep-loop-workflows phase 005 summary",
       "agent mirror repoint shipped",
       "three-way agent parity done"
@@ -40,10 +39,10 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "checklist.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
+      "implementation-summary.md",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-research.md",
@@ -55,14 +54,13 @@
       ".codex/agents/deep-improvement.toml",
       ".opencode/agents/ai-council.md",
       ".claude/agents/ai-council.md",
-      ".codex/agents/ai-council.toml",
-      "implementation-summary.md"
+      ".codex/agents/ai-council.toml"
     ],
     "entities": [
       {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -78,9 +76,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -129,12 +127,6 @@
         "name": "ai-council.toml",
         "kind": "file",
         "path": ".codex/agents/ai-council.toml",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,26 +194,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Write Split Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5)",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-07-16T16:31:54.546Z",
+    "last_save_at": "2026-08-30T15:39:24.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8e861e3e744db9b398efb871c4240a8bf554a6b22524c21e228d5b917c8a2ad",
+    "source_fingerprint": "sha256:b15ce32734ef517e7ce3a6d107f040c53b98e1c10a2e70cdc0b64ac6fd32913f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "051df3c897a67452a64773232119f180280427c8caa895dc286e83f648943a98",
       "plan.md": "3a60905afb34021c01ecfbb89e986dda3b8c26e8e590b8ea3f6631e44b7d5fdf",
       "tasks.md": "e593bdcc574b50b336b6bc042abbeb6965a53440112e3c0ce2b725c587b72c7c",
-      "checklist.md": "80236a11899588ec941d3f310033c071ff0e7900273e6a11b0d830c5164241f4",
       "implementation-summary.md": "0abf9cd3853b06c9f0e2e96e8b94fe589fd706b81310909770c573a8e168389d"
     },
     "last_active_child_id": null,

@@ -17,7 +17,6 @@
       "advisor suite triage",
       "code-graph retirement drift plan",
       "code-graph retirement drift tasks",
-      "code-graph retirement drift checklist",
       "code-graph retirement drift summary"
     ],
     "key_topics": [
@@ -38,22 +37,15 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,9 +61,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -171,42 +163,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A concurrent refactor retired the code-graph skill (`5a2aab0d37b`, \"stop routing to the retired code-graph skill\", on origin)",
     "created_at": "2026-08-15T13:46:11.095Z",
-    "last_save_at": "2026-08-15T14:37:24.503Z",
+    "last_save_at": "2026-08-30T15:39:26.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1bae07c060843b2cd5ded28cad6c87071138677f8c213fc337c5bf9ce5d5195",
+    "source_fingerprint": "sha256:77d82716183ad001fee74061275052dbd61f2b66cf9941f5fc4fbdc379388cd9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "efdfd78ba30c8cad9990d96af402636cf7734e1176357e28bdf8d40e0415b668",
       "plan.md": "976f13981f451eac86009a825d2630a3f34640aaf264904d7c129ece5ad3a305",
       "tasks.md": "b381fd857123a01b033c155f53d3e26cef40d6ee816f1b379ab4ea0f41ee7408",
-      "checklist.md": "c21833c8b8ff01caffb0832d670afa287c723607067fb4afa0b96a393247ac91",
       "implementation-summary.md": "efb345e432dcbab2d8eb4e6936301ce10ca9b370aea3955ade50e0abc9cbf6cb"
     },
     "last_active_child_id": null,

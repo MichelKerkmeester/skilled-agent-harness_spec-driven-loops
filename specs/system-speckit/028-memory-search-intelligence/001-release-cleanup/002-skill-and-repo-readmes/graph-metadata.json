@@ -19,8 +19,6 @@
       "skill-and-repo-readmes cleanup plan",
       "028 release cleanup skill readmes tasks",
       "skill-and-repo-readmes cleanup tasks",
-      "028 release cleanup skill readmes checklist",
-      "skill-and-repo-readmes cleanup checklist",
       "002-skill-and-repo-readmes implementation summary",
       "028 release cleanup 002-skill-and-repo-readmes"
     ],
@@ -35,8 +33,8 @@
       "plan",
       "skill-and-repo-readmes",
       "tasks",
-      "checklist",
-      "002-skill-and-repo-readmes"
+      "002-skill-and-repo-readmes",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,9 +42,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
@@ -68,21 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -182,36 +173,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The every skill-level README plus repository and runtime top-level README surfaces needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-11T18:40:35.738Z",
+    "last_save_at": "2026-08-30T15:39:34.480Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61b60e39f98b9109225a5cd28ca0c9db03b8103ea0e5ce6ae723dfc206ced430",
+    "source_fingerprint": "sha256:807d8ccb32f9e2d21804709046e209bd46260d14596875db1d2f1ca52596b52a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "629d86fbe3aa37fffc04c1caa0feea92dcafe325068ef06e1dd3597083d57187",
       "plan.md": "2e2eeb09bed705f07367238c5ca1398bab3cb600789309c5f3233c36ce6412d5",
       "tasks.md": "2b832f48887a408e20cf1a23edf7f4c33ae53eedc4d40f2f6c328a5702c63635",
-      "checklist.md": "151855dacd1808803b4babfe302252743808f9aa6bb92bf1dedfba0772f303f6",
       "implementation-summary.md": "883bb3ca86b39b5546d150caf374c1313bb1413d9b02c628bcd4a3e3f3cbf3d4"
     },
     "last_active_child_id": null,

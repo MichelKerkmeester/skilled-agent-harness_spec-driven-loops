@@ -22,12 +22,12 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "summary",
       "implementation summary",
       "011",
-      "skill"
+      "skill",
+      "resource map",
+      "011-skill-alignment resource map"
     ],
     "key_topics": [
       "skill",
@@ -37,9 +37,9 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "summary",
+      "resource",
+      "map",
       "011-skill-alignment",
       "pack"
     ],
@@ -49,21 +49,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
+      "resource-map.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
-      ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
-      ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
-      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
-      ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
-      ".opencode/skills/system-spec-kit/assets/complexity_decision_matrix.md",
-      ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
-      ".opencode/skills/system-spec-kit/assets/template_mapping.md",
-      "mcp_server/tool-schemas.ts",
-      ".opencode/commands/memory/search.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      "resource-map.md"
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
       {
@@ -85,15 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -103,69 +92,9 @@
         "source": "derived"
       },
       {
-        "name": "save_workflow.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
-        "source": "derived"
-      },
-      {
-        "name": "embedding_resilience.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory_system.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "environment_variables.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
-        "source": "derived"
-      },
-      {
-        "name": "parallel_dispatch_config.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
-        "source": "derived"
-      },
-      {
-        "name": "complexity_decision_matrix.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/complexity_decision_matrix.md",
-        "source": "derived"
-      },
-      {
-        "name": "level_decision_matrix.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
-        "source": "derived"
-      },
-      {
-        "name": "template_mapping.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/template_mapping.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
         "name": "search.md",
         "kind": "doc",
         "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -209,31 +138,90 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pack Reconciliation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guide Closeout",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Closeout",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `011-skill-alignment` pack preserved an older story that no longer matched the repository",
     "created_at": "2026-04-12T09:02:50.284Z",
-    "last_save_at": "2026-07-10T06:23:46.604Z",
+    "last_save_at": "2026-08-30T15:39:38.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:1721ca6dd33fa0bd5b7422261e6a6504012084866ef88adf884f472d14ddcf33",
+    "source_fingerprint": "sha256:539007272b102ae5d1c13177caf2891141323a9be985ba3c1dcaa5f41c6bd401",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5236f64cc553f6c5f88d22d36a4517badbb331de37607fe39bbd65cc2b61a89a",
-      "plan.md": "f69b4a7b161d14c3856339f86d8971abb297e56a0a83e2946c819f399f2b435a",
-      "tasks.md": "5d6938b2b71a78bbfcadde6c41819bf758790834577b7c1f006c86c0beae4ce7",
-      "checklist.md": "c14bfafe18eaacf389a2c5946e9502a18df657291c7cdb82cfe4030bb233ac62",
-      "implementation-summary.md": "4938262034ccb137be29bbada0fba1170ffb9534bb57997e7d26563ca7d1020b",
+      "spec.md": "3f53c57eaafb9169ae814475bdb54d631e3bd2e93052b60817f51a9353487677",
+      "plan.md": "0d7a5f18be82b6cb4fa583300acd18ff59472a606d139ba0a359da2de3e020bc",
+      "tasks.md": "4f22b031733097fc0ebe5b3aaed1b57616dcd55e0b92fcc5ed6b0317410401bf",
+      "implementation-summary.md": "244d1c31df8dedc02c375e53e4e754846161c21b3d280c555d6241af04beac85",
       "resource-map.md": "2e396bde9bda9fb34c805aad73515d3708afbf09c5c3657d046c61aca87b02b3"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment/002-skill-review-post-022",
     "last_active_at": null
   }
 }

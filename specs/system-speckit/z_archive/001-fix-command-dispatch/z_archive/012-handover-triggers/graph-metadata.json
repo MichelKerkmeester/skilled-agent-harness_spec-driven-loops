@@ -41,13 +41,18 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
       ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -58,18 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -173,43 +166,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Validation Items Validation",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Verify",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Enable AI agents to automatically suggest handover.md or debug-delegation.md templates when users express intent for session transfer, work continuation, or parallel debugging through natural language keywords",
     "created_at": "2026-04-12T09:02:53.511Z",
-    "last_save_at": "2026-07-10T06:22:04.193Z",
+    "last_save_at": "2026-08-30T15:39:36.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:46735f42296b6385e4867c24206eb0387ac03edc4b620ec0fa570cc103d44915",
+    "source_fingerprint": "sha256:d01b31b2c5d8ed2efd3d7d1d070ce511fe4f39d599e74f7a30765ad494b82f2c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "28de7229e3ac6705e5502005d864a54f24b5bdd0bc8370d144ceffe6d0d0e81a",
       "plan.md": "a38a6b96224637457dd23c5edaccb619f786ad1d1c9f5112bd6d84ebf2e5433c",
-      "tasks.md": "4b10b58ee5495db85ee6b36a323bb5405d441cf92b25e87b2089516f09f44d40",
-      "checklist.md": "2f744ee02a5d2d92d33b986f5115d10618c837e90cd84c91401f29ff9b04273b"
+      "tasks.md": "4b10b58ee5495db85ee6b36a323bb5405d441cf92b25e87b2089516f09f44d40"
     },
     "last_active_child_id": null,
     "last_active_at": null

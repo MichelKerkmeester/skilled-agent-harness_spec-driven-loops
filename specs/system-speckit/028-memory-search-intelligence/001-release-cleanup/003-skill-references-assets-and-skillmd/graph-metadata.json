@@ -19,8 +19,6 @@
       "skill-references-assets-and-skillmd cleanup plan",
       "028 release cleanup skill references tasks",
       "skill-references-assets-and-skillmd cleanup tasks",
-      "028 release cleanup skill references checklist",
-      "skill-references-assets-and-skillmd cleanup checklist",
       "003-skill-references-assets-and-skillmd implementation summary",
       "028 release cleanup 003-skill-references-assets-and-skillmd"
     ],
@@ -35,8 +33,8 @@
       "plan",
       "skill-references-assets-and-skillmd",
       "tasks",
-      "checklist",
-      "003-skill-references-assets-and-skillmd"
+      "003-skill-references-assets-and-skillmd",
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +166,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Subset The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The every skill SKILL.md plus each skill's references and assets documentation needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-11T18:40:35.740Z",
+    "last_save_at": "2026-08-30T15:39:34.488Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:182f8ace334fc4dd4abeed3d29016c7f42a38e3147c21d0570c786cc0cc0e8a4",
+    "source_fingerprint": "sha256:288e76be0f466a1daff6d0768884f131cbf4a3882fd53e872ab53cefc8368cae",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c2aac6d5e81261d220f3064d46b055a49d3f7574b20820bd40695ad96d075421",
       "plan.md": "085e920d8c5c476ceb8e0e5466bf89bcc320f1be46bcd73fe5de274c714a5e7a",
       "tasks.md": "25eea7c7e7c85a296696ae8d7a43672f82eb4713da38178d03807653e76442df",
-      "checklist.md": "ae259de741abe1b296e94542b83d245551e11d595d616e67adc7f4746d361861",
       "implementation-summary.md": "4e59aa3556ed9a60fa3272f0b21635bcefeb75e67f6dffaf776198b67f8473b8"
     },
     "last_active_child_id": null,

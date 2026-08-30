@@ -20,9 +20,8 @@
       "025 implementation plan",
       "025 mcp hardening tasks",
       "runtime hardening tasks",
-      "025 mcp hardening checklist",
-      "runtime hardening verification",
-      "025 mcp hardening summary"
+      "025 mcp hardening summary",
+      "runtime hardening implementation"
     ],
     "key_topics": [
       "mcp",
@@ -42,78 +41,22 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "lib/utils/cleanup-helpers.ts",
-      "mcp_server/tests/db-dimension-integrity.vitest.ts",
-      "mcp_server/tests/lifecycle-shutdown.vitest.ts",
-      "mcp_server/tests/stage2b-enrichment-extended.vitest.ts",
-      "mcp_server/tests/error-sanitization.vitest.ts",
-      "mcp_server/lib/errors/core.ts",
-      "mcp_server/lib/utils/cleanup-helpers.ts",
-      "mcp_server/context-server.ts",
       ".opencode/specs/descriptions.json",
       "lib/errors/core.ts",
       "tests/db-dimension-integrity.vitest.ts",
       "tests/lifecycle-shutdown.vitest.ts",
       "tests/stage2b-enrichment-extended.vitest.ts",
-      "tests/error-sanitization.vitest.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "tests/error-sanitization.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "cleanup-helpers.ts",
-        "kind": "code",
-        "path": "lib/utils/cleanup-helpers.ts",
-        "source": "derived"
-      },
-      {
-        "name": "db-dimension-integrity.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/db-dimension-integrity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-shutdown.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/lifecycle-shutdown.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage2b-enrichment-extended.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/stage2b-enrichment-extended.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "error-sanitization.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/error-sanitization.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "core.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/errors/core.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -129,15 +72,51 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cleanup-helpers.ts",
+        "kind": "code",
+        "path": "lib/utils/cleanup-helpers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "core.ts",
+        "kind": "code",
+        "path": "lib/errors/core.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-dimension-integrity.vitest.ts",
+        "kind": "test",
+        "path": "tests/db-dimension-integrity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-shutdown.vitest.ts",
+        "kind": "test",
+        "path": "tests/lifecycle-shutdown.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2b-enrichment-extended.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage2b-enrichment-extended.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "error-sanitization.vitest.ts",
+        "kind": "test",
+        "path": "tests/error-sanitization.vitest.ts",
         "source": "derived"
       },
       {
@@ -205,27 +184,38 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `024-codex-memory-mcp-fix` packet documented six follow-on recommendations (T020-T025) for runtime hardening, but none were implemented",
     "created_at": "2026-04-12T09:02:50.314Z",
-    "last_save_at": "2026-07-10T06:21:43.976Z",
+    "last_save_at": "2026-08-30T15:39:39.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:177dd18f92c95a4e69f758013b8035241f70b2365cdcc76b28e29092407c910a",
+    "source_fingerprint": "sha256:9e402de6dffd3ea7a9bc01ea5ee12c9b0c8bd075e9574bf195e10f2361806191",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea2fa7f6ebeae1b8c9e02afe652f33f0975628d62f4cbccbdb0dfc615f33a34f",
-      "plan.md": "6ba92880326d18188e269355e0a732920cfe354837bdda2d28e2b45174e804cc",
-      "tasks.md": "8d980c4a3a8eaf60ab19029103925864a2ffbd9176a9d54c7b888a7fbf678fa8",
-      "checklist.md": "f1d0f507018cc24b920b860394178202497d1e8fd46f234757a1ebeaec0fe83f",
-      "implementation-summary.md": "7b020f5f057f70b48b644846a1a0f02d911e99433e3f4e17f36731d62c080aac"
+      "spec.md": "b46f4d79c5dcf3f708c739e06ea1702522ff7676ceab412e866301e0ebbcda2b",
+      "plan.md": "f24c9f0a5538718b3959748c3d9761e714e68f1d8365febdb8db2b48a920e1c0",
+      "tasks.md": "7c42f8df8dca4e6551073344823b5fc80710ec93d5165b5040e53b42081cfd47",
+      "implementation-summary.md": "30c55606d2e03d1fecf8902671f214d2d0ddee07fea8b38a5651f1a0f227f0eb"
     },
     "last_active_child_id": null,
     "last_active_at": null

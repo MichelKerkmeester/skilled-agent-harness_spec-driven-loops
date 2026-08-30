@@ -16,7 +16,6 @@
       "keyed discovery marker decision",
       "006 plan router marker gap analysis",
       "006 tasks router marker gap analysis",
-      "006 checklist router marker gap analysis",
       "006 summary router marker gap analysis"
     ],
     "key_topics": [
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,30 +174,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The create-skill conformance checker (`packageskill.py --check`) emits an advisory warning — `SMART ROUTING section missing smart-router marker(s): discovermarkdownresources, guardinskill, UNKNOWNFALLBACK` — on eight of the ten `create-` packets",
     "created_at": "2026-07-13T12:05:59.813Z",
-    "last_save_at": "2026-08-29T13:10:17.508Z",
+    "last_save_at": "2026-08-30T15:39:14.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b56c8f73dc27b85de0e7fe400f1c6d1411b3e929e46b0c5a527231cbc7c39462",
+    "source_fingerprint": "sha256:a573a5e334422a65e819f328ad047adda714cbe64ff89191550ba0bad5ce0b19",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95ea6fae489aa90033240523696eed175ff8e7f73758ecbaa2a66ae36c1ec89d",
       "plan.md": "ec91f6d5addee2c007e6993aae1775d3787d6fdc347ba49454f2c74ae19569b6",
       "tasks.md": "992280621f44328a78aea308938ac10c990eb497ad8420b5ff512e5afd46a5ff",
-      "checklist.md": "7c8dec10f71a5af0ceea9898a6b8e4fd7d69d778c1185c7dfa53a757e1a63591",
       "implementation-summary.md": "57acae96123b3b8e6ee55854d6b8d271cb34293ed74dc0c8966dcee812ed8e3b"
     },
     "last_active_child_id": null,

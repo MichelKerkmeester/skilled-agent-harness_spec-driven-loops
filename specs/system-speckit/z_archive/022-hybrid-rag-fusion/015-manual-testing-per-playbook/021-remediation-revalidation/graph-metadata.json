@@ -19,8 +19,6 @@
       "remediation revalidation plan",
       "phase 021 tasks",
       "remediation revalidation tasks",
-      "phase 021 checklist",
-      "remediation revalidation checklist",
       "phase 021 implementation summary",
       "remediation revalidation summary"
     ],
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,31 +178,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The code audit remediation and revalidation phase (catalog phase 021) synthesized findings from all 20 prior audit phases, identifying ~45 PARTIAL verdicts across 220+ features with 5 issue categories (source file list inflation, stale references, deprecated-as-active modules, flag default contradictions, and behavioral description mismatches)",
     "created_at": "2026-04-12T09:02:50.306Z",
-    "last_save_at": "2026-07-10T06:22:51.761Z",
+    "last_save_at": "2026-08-30T15:39:39.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd28cfff6c5192c77fc0193292770e526c57635fa11deef539c03921fc354e82",
+    "source_fingerprint": "sha256:05cabf70e55cbd55dffaeb929477bb67e2ad6841290e8e3a421c064236287e4f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01a0256571db2a2591b8205e79271bee19e24afa00def2f485ffa5ddab028af4",
-      "plan.md": "b20ee0e69dcbee41395b5adb9b81fe61b2e286c8676a2a466c9cff534066bf0a",
-      "tasks.md": "0c198c348e33da3152f0001a9cf14bd0cf38a4a2b0122e6a66f87aef9ee990ce",
-      "checklist.md": "681e9b32fe74feefcfefefc41ff371bcad29d0353ae253579c9149f8e4a61e03",
-      "implementation-summary.md": "8854088d83bdf03976f0cfca754b116555e4b9b98ecb386d657fa04ffa5e3e7c"
+      "spec.md": "19c6eb7e9285badda91aac7bef657cbd11b58d3bfe0af3d7737170b05ac76fa5",
+      "plan.md": "9a509dfff8a84086ce53d3c44df607b9c62b5f57d3ee7d5ec271e552985bfb98",
+      "tasks.md": "bd99a8cd862a4bea67a66db942ef62de0c7986f4d1ecfdcc98a10bf56eef0c4f",
+      "implementation-summary.md": "3677ea55d46213934a2e7f9a1a04e553a8de01aed491b91876a63829518a8ded"
     },
     "last_active_child_id": null,
     "last_active_at": null

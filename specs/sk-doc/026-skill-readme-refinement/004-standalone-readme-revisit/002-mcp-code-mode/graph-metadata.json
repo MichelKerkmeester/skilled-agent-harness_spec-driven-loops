@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The mcp-code-mode skill README still carries the older tabular reference-card style with an AT A GLANCE table as its spine",
     "created_at": "2026-08-04T08:34:35.394Z",
-    "last_save_at": "2026-08-30T07:20:18.267Z",
+    "last_save_at": "2026-08-30T15:39:17.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:62fb2d5e358948e7407bfe903e9cb0e6523c99b85ab589bc0cad0a9eef344974",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7e4c387730ab6332b08e87d90d603dffcd8ec116f96e78cadcae1c2c772db714",
       "plan.md": "2ddb7be66f1f41ef4763729d9c84792cd131edef333fbe597d826008dc75e54f",

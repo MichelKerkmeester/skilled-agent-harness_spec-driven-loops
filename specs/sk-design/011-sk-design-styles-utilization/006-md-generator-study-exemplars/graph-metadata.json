@@ -20,9 +20,9 @@
       "md generator study tasks",
       "STUDY exemplar tasks",
       "source-leak gate tasks",
-      "md generator study checklist",
-      "STUDY exemplar verification",
-      "source-leak gate checklist"
+      "md generator study summary",
+      "STUDY exemplar status",
+      "source-leak gate status"
     ],
     "key_topics": [
       "generator",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The `design-md-generator` mode writes DESIGN.md prose with no grounding in any real, shipped design system",
     "created_at": "2026-07-18T14:14:08.114Z",
-    "last_save_at": "2026-07-18T19:07:27.878Z",
+    "last_save_at": "2026-08-30T15:39:12.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76eaa9dd36be62c17d72d962599804451d462b16c9e397783b77301a76634afe",
+    "source_fingerprint": "sha256:30c5c6ed808331cc2102c0c56d41145c2c84d3cea1a65ace1be33d4ecdb051f4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "00d1f84a8376f13b57ef23b898800f276f53daf5208e40a30b5ab08056d34adf",
       "plan.md": "ba6ada6cde8155f676b8b700e69e09607af8188c47dd3e1b395e378262ea8454",
       "tasks.md": "433729a429daea189daf7a2cd7d327d4603b51ea2ece8a466945917c97d77ad9",
-      "checklist.md": "a91a1d23a790ef07cc8fa751c722ef68e1a0f84bb3d76fbf796a77ee7915ecf0",
       "implementation-summary.md": "4ea8199c50fdd80b7301eeeeeb0c35cbd531c3178a9a4909353902f50db3e25b"
     },
     "last_active_child_id": null,

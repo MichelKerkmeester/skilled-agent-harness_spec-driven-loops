@@ -21,8 +21,8 @@
       "006 implementation plan",
       "006 tasks",
       "benchmark consolidation tasks",
-      "006 checklist",
-      "benchmark consolidation checklist"
+      "006 implementation summary",
+      "benchmark consolidation summary"
     ],
     "key_topics": [
       "benchmark",
@@ -34,40 +34,20 @@
       "plan",
       "implementation",
       "tasks",
-      "checklist",
+      "summary",
       "mechanics",
       "mcp"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md",
-      ".opencode/skills/sk-doc/scripts/validate_document.py",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,9 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
         "source": "derived"
       },
       {
@@ -193,26 +179,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The benchmark format mechanics for MCP skill-local benchmark folders were split across two separate files in sk-doc (`references/benchmarks/FORMAT.md` and `references/benchmarksformat.md`) and mirrored to sibling MCP skills via relative symlinks",
     "created_at": "2026-05-19T07:48:10Z",
-    "last_save_at": "2026-07-17T17:19:25.211Z",
+    "last_save_at": "2026-08-30T15:39:30.872Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56bd09a16611d524fc82de051febc4c6ca51452cf8716e8afb7219d937da15cb",
+    "source_fingerprint": "sha256:6cb591ab7685ea601e658b5f83176d232e6b68554aac6ef31986c9b425442c96",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d62b554a48323dfa29285a077e09e3e05460281dbdb9f2d400916c7cabf0007f",
       "plan.md": "d88147a3fe6c804f930c04c654c7c95fca93393a900e3a289a4dccc849787830",
       "tasks.md": "b3f7463e613b4a478c51f681097072b25154789114023a547949276beecdb151",
-      "checklist.md": "3d6fa15401d3aeef1a1b0919360aeb52de1cd36c378fa7c5def03de51c370efe",
       "implementation-summary.md": "b79e1f71b80392fcee8624fa095f9044537ad09e557e37ce797fff900144637d"
     },
     "last_active_child_id": null,

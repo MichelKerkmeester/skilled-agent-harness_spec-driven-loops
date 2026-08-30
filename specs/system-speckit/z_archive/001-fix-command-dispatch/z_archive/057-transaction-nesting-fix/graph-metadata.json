@@ -17,9 +17,7 @@
       "transaction",
       "nesting",
       "057",
-      "plan",
-      "checklist",
-      "bug"
+      "plan"
     ],
     "key_topics": [
       "spec",
@@ -27,29 +25,21 @@
       "transaction",
       "nesting",
       "plan",
-      "checklist",
-      "bug",
       "mcp",
       "tool",
       "fails",
       "error",
-      "system-spec-kit"
+      "system-spec-kit",
+      "001-fix-command-dispatch",
+      "057-transaction-nesting-fix"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "mcp_server/INSTALL_GUIDE.md",
       "spec.md",
-      "plan.md",
-      "checklist.md"
+      "plan.md"
     ],
     "entities": [
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": "mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,12 +50,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -133,53 +117,22 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Transaction Nesting Fix",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit Memory",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Voyage",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pre-Implementation",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The memory_index_scan MCP tool fails with SQLite error",
     "created_at": "2026-04-12T09:02:53.536Z",
-    "last_save_at": "2026-07-10T06:23:58.772Z",
+    "last_save_at": "2026-08-30T15:39:37.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "checklist.md"
+      "plan.md"
     ],
-    "source_fingerprint": "sha256:06dfaf653e9d6e0c4a26259abb91c41237eab3d9bdafc11b302ea0ca8c980bbd",
+    "source_fingerprint": "sha256:7dbf2e33dc512a12c36e3029d0e1e4fe110fcc6445eee200f7f5349c8138573a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f75e27b68fb2c0879a64de6621a9c13c3c05497c73ff0d49a33fbfb4e0beefce",
-      "plan.md": "bd91d7a533154d3280525d3c453bd330da8b58c2698b623c5c60d21e58cce5c7",
-      "checklist.md": "f333c7438ce28875c3eef0c788457182824c13e5d3d51a08cc0c11ee4f3211a0"
+      "plan.md": "bd91d7a533154d3280525d3c453bd330da8b58c2698b623c5c60d21e58cce5c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

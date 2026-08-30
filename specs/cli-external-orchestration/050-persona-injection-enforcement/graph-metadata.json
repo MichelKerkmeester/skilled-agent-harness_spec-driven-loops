@@ -101,13 +101,14 @@
     ],
     "causal_summary": "When an orchestrator delegates work through an external CLI skill under `cli-external-orchestration` (cli-devin, cli-codex, cli-opencode, cli-cursor, cli-pi, cli-claude-code), it commonly sends only the task prompt to the dispatched model — without the target agent's persona/identity from the runtime agent directory (`.opencode/agents/.md`, `.claude/agents/.md`, etc.)",
     "created_at": "2026-08-19T06:31:08.040Z",
-    "last_save_at": "2026-08-29T14:54:25.028Z",
+    "last_save_at": "2026-08-30T15:39:08.146Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:a2b0142289ebe70affdc6818d795d07852858434243ff9fcba68ddac9e5aadb5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ddcae5cc59fb9186bfe7a585c6000503828c7df69f678da278ae9db30dffeff2"
     },

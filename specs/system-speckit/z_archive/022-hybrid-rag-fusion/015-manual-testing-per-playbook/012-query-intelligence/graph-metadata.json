@@ -42,14 +42,9 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "mcp_server/lib/search/hybrid-search.ts",
-      "mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
-      "mcp_server/lib/search/query-surrogates.ts",
-      "mcp_server/lib/search/surrogate-storage.ts",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -59,51 +54,21 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage1-candidate-gen.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
-        "source": "derived"
-      },
-      {
-        "name": "query-surrogates.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/query-surrogates.ts",
-        "source": "derived"
-      },
-      {
-        "name": "surrogate-storage.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/surrogate-storage.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -195,27 +160,56 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "exact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Method",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Manual query-intelligence scenarios for the Spec Kit Memory system live inside the central playbook and need a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.299Z",
-    "last_save_at": "2026-07-10T06:23:33.006Z",
+    "last_save_at": "2026-08-30T15:39:39.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13d3719601a6ac20489303194f1428178c5995794157f8bdcabd796fed70a911",
+    "source_fingerprint": "sha256:5cbdb399cb98da5c9bb4f1b53d51fc8065919e1eda0e7047f5178c6b92ecfc4b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "78af4be1607c8a87b447e69f836e6081abfdb8e6b52342fb9d260c754cfbb6d4",
-      "plan.md": "f6089140befa621dcefbdead701e931cd12fd76afb583a1ab51beb8a826e61b5",
-      "tasks.md": "310cf86ec68e40ff5414732a2ae254cdc264ecb1a335c82b30957b0737e4a1a7",
-      "checklist.md": "4d5a428f0fadb7bcec0ea642b558ea99aacea5e9bc3ae240d316656e35cb20d5",
-      "implementation-summary.md": "cbde9ab78511dc5a2230b6bfc4d4df07b0236ad351769b682b8926ad48a14f5d"
+      "spec.md": "9a91bbd592e7e7d51e04e7a4024b88ed69b5cd5ea5dc08dd35090fe16b7c8215",
+      "plan.md": "319d90f4e9435b9f94a1ac37ad63ee762085190057b62b30aba693a92f4f7cb8",
+      "tasks.md": "f6f7dc110a9b556de96c8bcb03f9392b3a8fc6e4c8cbe07a5fae170e28ce51f8",
+      "implementation-summary.md": "8821b5849fa01b455d5720a7924bf405afb4cf204df6f9b2af9ae5a3b0f3d505"
     },
     "last_active_child_id": null,
     "last_active_at": null

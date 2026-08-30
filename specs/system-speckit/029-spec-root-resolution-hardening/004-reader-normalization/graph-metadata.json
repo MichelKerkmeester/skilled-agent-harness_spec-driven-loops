@@ -165,7 +165,7 @@
     ],
     "causal_summary": "The shared scripts helper (`getSpecsDirectories`/`findActiveSpecsDir`) and the independent constructors (startup pending recovery, generic MCP discovery, resume/authored continuity, API indexing, spec affinity, memory-quality validation) resolve with mixed precedence",
     "created_at": "2026-07-17T11:01:02.723Z",
-    "last_save_at": "2026-08-29T15:22:24.219Z",
+    "last_save_at": "2026-08-30T15:39:36.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,6 +174,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:f79c9d1dff81fd937bf56dc86f5d11a3c5b91a98f62db7b7f768d70e84014505",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "01b292344e19aa3f3b2c6e645e91b0ef10eaea80388d58841817690d24bad808",
       "plan.md": "e2b13fbc0b96fe75a1862cf0cfe3df0a01af29e61e89063674fbf7c8b8092a13",

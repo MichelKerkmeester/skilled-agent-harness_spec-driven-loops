@@ -19,10 +19,7 @@
       "three-phase write split memory",
       "memory source_kind provenance tasks",
       "provenance audit phase tasks",
-      "provenance audit checklist",
-      "source_kind verification items",
-      "overwrite guard acceptance",
-      "mutation_ledger audit checklist"
+      "provenance audit phase summary"
     ],
     "key_topics": [
       "memory",
@@ -39,90 +36,20 @@
       "derivation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "constitutional/automated-writers-never-overwrite-manual.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
-      ".opencode/skills/system-spec-kit/constitutional/automated-writers-never-overwrite-manual.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "handlers/memory-save.ts",
       "handlers/mutation-hooks.ts",
       "lib/search/vector-index-schema.ts",
       "handlers/save/create-record.ts",
       "handlers/memory-crud-update.ts",
-      "lib/storage/mutation-ledger.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-update-constitutional-guard.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "lib/storage/mutation-ledger.ts"
     ],
     "entities": [
-      {
-        "name": "automated-writers-never-overwrite-manual.md",
-        "kind": "doc",
-        "path": "constitutional/automated-writers-never-overwrite-manual.md",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create-record.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-update.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-hooks.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-ledger.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-update-constitutional-guard.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-crud-update-constitutional-guard.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-ledger.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/mutation-ledger.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -142,9 +69,45 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-hooks.ts",
+        "kind": "code",
+        "path": "handlers/mutation-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "create-record.ts",
+        "kind": "code",
+        "path": "handlers/save/create-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-update.ts",
+        "kind": "code",
+        "path": "handlers/memory-crud-update.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-ledger.ts",
+        "kind": "code",
+        "path": "lib/storage/mutation-ledger.ts",
         "source": "derived"
       },
       {
@@ -206,26 +169,49 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Automated writers (enrichment, promoters, reducers) can overwrite human-authored and constitutional memory fields because the write path enforces no provenance-based protection",
     "created_at": "2026-06-06T10:10:44Z",
-    "last_save_at": "2026-07-17T17:19:40.428Z",
+    "last_save_at": "2026-08-30T15:39:33.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a3d18fdac4f49ee941b1209959c45ce6a2c833711f38f6515541f7c5e09c924",
+    "source_fingerprint": "sha256:20565be973047f77d1410b5cbc358ea1dd6347c8966c91e1ca8062d58fe9f1e0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2b702d9fc97cf8c2b28128d2497e1321a6222ef17eeeb0426b4173a8fd002d49",
       "plan.md": "b86f7e8e8f35ca90dae814d495833678881022f98bfb3050dac3d029e263ce7e",
       "tasks.md": "b1d89b2288e4f391f6e82db266e19d6a908f1d3847bcb239024fc2015c16a97c",
-      "checklist.md": "db554e2ccd07941d16c69cbfb19a7f91c66ea5839b39e18f89cf305cf65d9109",
       "implementation-summary.md": "19b2354d62e8aad3ee15895e92688f14a635e60e2e40ed94dc1fba2fb52bf784"
     },
     "last_active_child_id": null,

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "`.opencode/skills/sk-doc/shared/references/global/` adds a nesting level that carries no meaning beyond \"these are the generic, cross-packet references\" — a distinction `shared/references/` already makes on its own, since everything under `shared/` is by definition cross-packet",
     "created_at": "2026-06-05T12:47:32.524Z",
-    "last_save_at": "2026-08-28T15:58:16.160Z",
+    "last_save_at": "2026-08-30T15:39:13.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a5e9beb8b2cace443c1160827576f32c6b9441521d249097f35a64b11f45cfb8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6c6035b2a7379528f64264f46dc6e3e296095e4ea2345b0dfbc17497d876e82f",
       "plan.md": "db62d2b48f6f63d9d56e68d7eab2e7fb8ea90d0000d233184b0b32e5af4b30bf",

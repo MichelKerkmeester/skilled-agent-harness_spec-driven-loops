@@ -174,7 +174,7 @@
     ],
     "causal_summary": "The hub-level playbook is a routable evidence corpus with the root manualtestingplaybook/ and categories crossbrowserandperformancegates, crossstackrouting, designrestraint, languagesubdetection, motiondevandanimationregression, pluginsandhooks, routingdisambiguation, skilladvisorintegration, surfacedetection, and toolingandhooks",
     "created_at": "2026-07-14T15:17:10Z",
-    "last_save_at": "2026-08-30T07:19:18.554Z",
+    "last_save_at": "2026-08-30T15:39:16.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -183,7 +183,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:29bedcb1803e97251eef00cebecf153b5fb6bbcd2541a99bfb12cbc490c15ed6",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd48ee687dbea587cdb6fb0deece30b94d3588646a9db9cc6f913d5b232003df",
       "plan.md": "188e358369ede06156cf887e57d1455141f42c79db283df53078938319c7543c",

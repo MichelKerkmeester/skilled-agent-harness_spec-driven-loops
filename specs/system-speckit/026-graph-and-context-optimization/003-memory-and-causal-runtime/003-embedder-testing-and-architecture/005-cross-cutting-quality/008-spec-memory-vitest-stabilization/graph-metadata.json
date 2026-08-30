@@ -37,21 +37,44 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "lib/errors/recovery-hints.ts",
       "scripts/tests/workflow-invariance.vitest.ts",
       "tests/skill-graph-corruption-recovery.vitest.ts",
-      "scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
       "tests/shared-daemon-runner-helpers.vitest.ts",
       "tests/stage1-expansion.vitest.ts",
       "tests/runtime-routing.vitest.ts",
       "tests/launcher-lease.vitest.ts",
-      "lib/search/search-flags.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "lib/search/search-flags.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "recovery-hints.ts",
         "kind": "code",
@@ -68,12 +91,6 @@
         "name": "skill-graph-corruption-recovery.vitest.ts",
         "kind": "test",
         "path": "tests/skill-graph-corruption-recovery.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-upgrades-regression-floor.vitest.ts.test.ts",
-        "kind": "test",
-        "path": "scripts/tests/graph-upgrades-regression-floor.vitest.ts.test.ts",
         "source": "derived"
       },
       {
@@ -104,30 +121,6 @@
         "name": "search-flags.ts",
         "kind": "code",
         "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 016 deep-research dispatch (iters 1-9) flagged the vitest suite as red",
     "created_at": "2026-05-22T07:42:13.848Z",
-    "last_save_at": "2026-07-17T17:19:25.215Z",
+    "last_save_at": "2026-08-30T15:39:30.888Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c093f4eafc558d4a572cd180c3d4be1a032790630762c439cf40d398f580ef96",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "825e06d5d5578c9084d624d6bc6cd4c49cc5620be0f113dc7c315178b9144b02",
       "plan.md": "9ad0a7ff80aa79b83d245a70cd94c359c57c89f7af190e8627707d43418ddc2e",

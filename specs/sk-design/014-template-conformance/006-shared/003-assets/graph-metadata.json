@@ -15,7 +15,6 @@
       "template conformance audit",
       "plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -27,26 +26,24 @@
       "audit",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "opencode"
+      "opencode",
+      "skills"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "skill-asset-template.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -59,18 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -176,37 +161,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Scaffold Planned",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Audit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/assets/` has not been audited against `.opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md`",
     "created_at": "2026-07-27T14:59:52.023Z",
-    "last_save_at": "2026-07-27T16:17:28.059Z",
+    "last_save_at": "2026-08-30T15:39:13.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13e4f59ef60a2250fcdcc75a0d9a4bb18864fd16e35fa7babb424f6a9aba11ee",
+    "source_fingerprint": "sha256:9fc2fd06c62c7c8c8bae66266b8d7a92567c955111a9a0a4a5cfb5a88ffdb64d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "97617e2806b25a81b12b3ed8a1a4ad66bec99bb202d8c6fd2ad29cbf6f7141df",
       "plan.md": "fa655492afc5da071bea51c9343131ab43991f943d4bee943307e5aaf0f82ee1",
       "tasks.md": "1bca853c2c43eb7ff31eef1cb924b231da752bdf479da311dd59adf0528c2a45",
-      "checklist.md": "bd6f4d8eef17acbb366e471a12d2b35962b25efe0e1ee3d3375116b9003e3616",
-      "implementation-summary.md": "08aed2dfd29bc42124cb1ac1fc6033576b3ddf38a32e01ea0bd3c33de4397ee1"
+      "implementation-summary.md": "89cff20b1d80540dc18a7d49f131b9ec64e42b8e723a8ca304344c1f18064819"
     },
     "last_active_child_id": null,
     "last_active_at": null

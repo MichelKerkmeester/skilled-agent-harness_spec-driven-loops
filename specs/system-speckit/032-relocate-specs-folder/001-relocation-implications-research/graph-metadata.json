@@ -42,7 +42,6 @@
       "implementation-summary.md",
       "research/research.md",
       ".claude/SYNC.md",
-      ".github/workflows/strict-pass-freshness-sweep.yml",
       ".opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts",
       ".opencode/skills/system-spec-kit/scripts/core/spec-root-migration.ts",
       ".opencode/skills/system-spec-kit/scripts/core/spec-root-migration-manifest.ts",
@@ -92,12 +91,6 @@
         "name": "SYNC.md",
         "kind": "doc",
         "path": ".claude/SYNC.md",
-        "source": "derived"
-      },
-      {
-        "name": "strict-pass-freshness-sweep.yml",
-        "kind": "config",
-        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nobody has mapped what actually breaks if `.opencode/specs/` becomes a top-level `specs/` directory",
     "created_at": "2026-08-06T09:09:30Z",
-    "last_save_at": "2026-08-29T15:22:24.669Z",
+    "last_save_at": "2026-08-30T15:39:36.410Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +215,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:00258052455fefa804e11d03bd00c9970fa030c8593ebe73d9d896d8620928f3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b18b2ade2cc6473afdfee48f7f5f82172c98d8924aedb2244cc0f3ec5a7829cb",
       "plan.md": "f939eeb0d1a6a6ca523c8456d32be5a395c17867aed2bdaed755a32aedcec092",

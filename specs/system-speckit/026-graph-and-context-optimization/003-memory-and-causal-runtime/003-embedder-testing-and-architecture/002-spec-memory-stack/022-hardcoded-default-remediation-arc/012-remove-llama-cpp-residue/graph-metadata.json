@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Operator directive: remove all live references to llama-cpp. Runtime code was already purged in arc 016 phases 003/006/007; this packet sweeps the remaining narrative + doc/config residue (11 live files, ~26 line-level edits) so the codebase no longer mentions llama-cpp as a supported provider.",
     "created_at": "2026-05-23T20:00:00.000000Z",
-    "last_save_at": "2026-08-29T14:54:18.981Z",
+    "last_save_at": "2026-08-30T15:39:30.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:50fca76055c4747f4605a10c3885091bf2e2ca2c1ac5ade217b9fbe3ae63e869",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5520968c0163e9fcaa79e69c963f2c53568f3a842da7c02acdd7ad17615f0da",
       "plan.md": "32f9c7dfa95cebaa72d0563f3aee3e64406653cbff5822b66413cd7bd24858c9",

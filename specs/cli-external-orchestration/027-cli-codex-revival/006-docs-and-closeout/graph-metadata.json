@@ -39,25 +39,25 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/changelog/v1.2.0.0.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/changelog/v1.2.0.0.md",
       ".codex/hooks.json",
-      ".codex/config.toml",
-      "plan.md"
+      ".codex/config.toml"
     ],
     "entities": [
-      {
-        "name": "v1.2.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/changelog/v1.2.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -73,6 +73,12 @@
         "source": "derived"
       },
       {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
         "name": "hooks.json",
         "kind": "config",
         "path": ".codex/hooks.json",
@@ -82,12 +88,6 @@
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Runtime, skill, hooks, and agents can drift unless final active documentation and parity evidence describe the same supported contract",
     "created_at": "2026-07-13T05:38:00Z",
-    "last_save_at": "2026-07-14T19:26:16.101Z",
+    "last_save_at": "2026-08-30T15:39:07.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:18562ea79376b984e6af37c6733165a73eca0e1603c3212d62d2e9b545f8f8ec",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "87db98b9a1db3996b1f8c3e2b1f53224c538355ea2ac7bf2bb30ebdee92b7f2f",
       "plan.md": "9d975cf5218915441db77f5a340cd5295860bff77b935abc7f801cd2b7664513",

@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The sk-git component needs a blocking rollup gate that aggregates the five sibling phase contracts and proves its complete tracked filesystem surface is kebab-clean within the 020 exemption boundary. This phase adds no migration work.",
     "created_at": "2026-07-14T15:18:30Z",
-    "last_save_at": "2026-08-30T07:20:00.257Z",
+    "last_save_at": "2026-08-30T15:39:17.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,7 +181,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:abdf3333a10377940dcf9aa9cd1b12a7a8dfa0ffef635faefa8cb97f72071b2d",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4be12031314db344c84017da1cba3af8912168c8859ebbcdffc2da9cd91628db",
       "plan.md": "4b7089b1b045898d600153508425a9533baa0224afb6b0c1efbffc633897c72a",

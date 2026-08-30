@@ -22,7 +22,7 @@
       "plan",
       "tasks",
       "suite",
-      "checklist"
+      "summary"
     ],
     "key_topics": [
       "feature",
@@ -35,22 +35,45 @@
       "plan",
       "tasks",
       "suite",
-      "checklist",
+      "summary",
       "migration"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "scripts/tests/test-naming-migration.js",
-      "scripts/tests/test-export-contracts.js",
-      "scripts/tests/test-bug-regressions.js",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/tests/test-naming-migration.js",
+      "scripts/tests/test-export-contracts.js",
+      "scripts/tests/test-bug-regressions.js"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "test-naming-migration.js",
         "kind": "code",
@@ -67,36 +90,6 @@
         "name": "test-bug-regressions.js",
         "kind": "code",
         "path": "scripts/tests/test-bug-regressions.js",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,26 +187,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The naming convention migration (spec 090) renames identifiers across ~206 JS files, 9 skill docs, and touches shell/Python scripts",
     "created_at": "2026-04-12T09:02:53.561Z",
-    "last_save_at": "2026-07-10T06:22:15.062Z",
+    "last_save_at": "2026-08-30T15:39:37.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f5c47fa1984c36632d4ea116be5b7cd397eceeb1db1c992cc63fa4089adfb6b",
+    "source_fingerprint": "sha256:6835c37939d18f1b4776dbb7e36494166b3fd5422c13ab0b8259e6f8ff0ea2c7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "00196e95f82d1478f6cb9dbee62598276711537f48ca27440e7b100c10a370ec",
       "plan.md": "c17625259992c0bd8be1f26c1a63e491e365776f026e9eb7fdab370aabb3da82",
       "tasks.md": "aee014636b94c92cabed61b799d091a33b3205610dd0d702effe35cf20581aee",
-      "checklist.md": "4bb3bcfbb07557faa961759d527dd18e0aa78dbe6e1dc497f80e243075f813c6",
       "implementation-summary.md": "be2d930aa268be92eb320d9439e89bbc91cbefff3bbcfc0f7dc5cacea50cb85b"
     },
     "last_active_child_id": null,

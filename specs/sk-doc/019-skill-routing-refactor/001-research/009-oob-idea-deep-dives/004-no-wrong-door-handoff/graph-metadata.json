@@ -80,13 +80,14 @@
     ],
     "causal_summary": "One-shot routing has no bounded recovery path when an ambiguous request reaches the wrong mode",
     "created_at": "2026-07-18T04:39:05.270Z",
-    "last_save_at": "2026-07-24T10:52:33.761Z",
+    "last_save_at": "2026-08-30T15:39:14.749Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:901ff5d600a7a1ada0e914e4fcb8db14eff4ac28a61c5e2e6b3a0a802d32c48e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "245fb9ea5cbf6398f199f4ec978c24f71ae58450fccdf0f99cce6e7e3d2429be"
     },

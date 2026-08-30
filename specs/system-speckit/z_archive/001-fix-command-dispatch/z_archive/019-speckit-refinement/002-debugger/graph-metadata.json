@@ -18,8 +18,7 @@
       "002",
       "debugger",
       "implementation",
-      "plan",
-      "checklist"
+      "plan"
     ],
     "key_topics": [
       "debug",
@@ -29,18 +28,17 @@
       "debugger",
       "implementation",
       "plan",
-      "checklist",
       "debug-delegation",
       "template",
       "exists",
-      "speckit"
+      "speckit",
+      "underutilized"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "checklist.md"
+      "plan.md"
     ],
     "entities": [
       {
@@ -53,12 +51,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -126,59 +118,22 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Debug Delegation Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Must Complete",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Should Complete",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "HARD STOP",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "full",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "debug",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `debug-delegation.md` template exists in SpecKit but is underutilized",
     "created_at": "2026-04-12T09:02:53.514Z",
-    "last_save_at": "2026-07-10T06:22:11.125Z",
+    "last_save_at": "2026-08-30T15:39:36.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "checklist.md"
+      "plan.md"
     ],
-    "source_fingerprint": "sha256:b8349f1ac0b60a976755d86ae0f280a8737ddd29678c5426a6a18a9b7b5ca20e",
+    "source_fingerprint": "sha256:821d9026626270e9a3e38f63eadcee0d76ae6336aafc20a8ac5b590a3023be52",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b23bbf523c511d9d7c53cef8097e9fd4b42835cfcc5f1167547cd880c6d78e05",
-      "plan.md": "7cf6a06dad6117a8c86a48d7bbf7fc7277ae551d96bbfb9d2bc74d5bb0ec8d0a",
-      "checklist.md": "90c6816a85c6f6d443d928d8c0489db98b5777e5511960d572ce9481d504f507"
+      "plan.md": "7cf6a06dad6117a8c86a48d7bbf7fc7277ae551d96bbfb9d2bc74d5bb0ec8d0a"
     },
     "last_active_child_id": null,
     "last_active_at": null

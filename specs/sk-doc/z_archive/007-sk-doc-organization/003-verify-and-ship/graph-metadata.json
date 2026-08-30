@@ -38,25 +38,13 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/SKILL.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,6 +61,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phases 1 and 2 left the repo in a state where the reorg APPEARS complete but no fresh-context verification has confirmed it",
     "created_at": "2026-05-05T07:55:04Z",
-    "last_save_at": "2026-07-09T10:02:44.899Z",
+    "last_save_at": "2026-08-30T15:39:18.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7986c0e6a0dbfa5000efb065333c6de85c1718c9c537f7d64f48c1d324a65916",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f746b04f3e72dcb6fbca796215a5a14ceb38a2341a80b326c4a9ef2137da84e",
       "plan.md": "c322a720696900d8663b6bb702ecc99d060311b4f0a7fde06d3ecbef9b01be98",

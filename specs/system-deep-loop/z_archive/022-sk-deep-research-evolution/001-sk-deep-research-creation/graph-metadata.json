@@ -19,10 +19,10 @@
       "autoresearch plan",
       "deep research implementation",
       "autoresearch tasks",
-      "autoresearch checklist",
-      "verification",
       "autoresearch decisions",
-      "decision record"
+      "decision record",
+      "autoresearch summary",
+      "auto deep research"
     ],
     "key_topics": [
       "autoresearch",
@@ -35,24 +35,22 @@
       "plan",
       "implementation",
       "tasks",
-      "checklist",
-      "verification"
+      "decisions",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "checklist.md",
-      "decision-record.md",
-      ".claude/agents/deep-research.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
+      "research/research.md",
+      ".claude/agents/deep-research.md",
       "scratch/improvement-proposals.md",
       ".claude/agents/orchestrate.md",
-      ".opencode/skills/README.md",
       ".opencode/specs/descriptions.json",
-      "research/research.md",
       "research/deep-research-strategy.md",
       ".opencode/skills/sk-git/SKILL.md"
     ],
@@ -61,24 +59,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".claude/agents/deep-research.md",
         "source": "derived"
       },
       {
@@ -94,9 +74,27 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-research.md",
         "source": "derived"
       },
       {
@@ -112,21 +110,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
         "name": "descriptions.json",
         "kind": "config",
         "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -200,28 +186,39 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Basis",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current `/speckit:research` workflow is single-pass only",
     "created_at": "2026-04-12T09:02:50.172Z",
-    "last_save_at": "2026-07-16T16:31:50.373Z",
+    "last_save_at": "2026-08-30T15:39:24.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0a08efd6c617c5c079ee3d4aaf61a8c0ed89baac1bba372220a8d3d840e1f2c2",
+    "source_fingerprint": "sha256:7497e76a6ad78b7ecadae11ccf62b93263516549f82af712b68faa0d290f291b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a31cbdcba8ce8c3309a7afed1fc0dbf642124acf969b66237ffcb90a18e237e",
       "plan.md": "70424423be69790a216c45716654e577f823004d6a21a982fb8054c572b2bea0",
       "tasks.md": "29810c946a5d699bd10b3b941a9e44b09ad36a024c807ee6068bc1baf243cbd3",
-      "checklist.md": "71765017a99ac3f91dc5d7f787c9bd2d4bdda474768abcc4fc93606642104938",
       "decision-record.md": "c1669ee1d741fb5cc7201e95cf0d922afcd23c9ec37c0c552731e97676ff4d1c",
       "implementation-summary.md": "b740747efb3d0037e51677c90f499f10db3b7d251f7794f977649135cd974658",
       "research/research.md": "b3e5b161db34c6a06f95c959173a85cfa78386a7012952c6c27289139c04d2ec"

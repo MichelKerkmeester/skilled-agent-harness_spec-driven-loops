@@ -20,7 +20,6 @@
       "route-validate generalization",
       "workflow yaml schema gate",
       "per-surface gates tasks",
-      "per-surface gates checklist",
       "per-surface gates implementation"
     ],
     "key_topics": [
@@ -40,55 +39,15 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/commands/doctor/scripts/route-validate.py",
-      ".opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/scripts/route-validate.py",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts"
     ],
     "entities": [
-      {
-        "name": "route-validate.py",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/route-validate.py",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-rebuild.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "gate-3-classifier.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-policy.default.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -108,15 +67,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
         "source": "derived"
       },
       {
@@ -196,26 +167,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time",
     "created_at": "2026-06-27T17:15:35.223Z",
-    "last_save_at": "2026-07-17T17:19:50.956Z",
+    "last_save_at": "2026-08-30T15:39:35.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d779ecce5744fe928987b14ee867fdd7510f25b43b7cd9b2478fe607d7b04ff9",
+    "source_fingerprint": "sha256:3e3b7de7b157348026fca25da9b2cfb3b9191fa9f1b55af0bb7975b76670e1a5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "63f40d7c036ade1851cf8577118edcc8ec9b1bfb492c890f4a0c3f5bac036411",
       "plan.md": "e771c76493c33a702bfb4cf3d8252d88e7673f5a0dc75892b5066dc5aeb225af",
       "tasks.md": "ad03458b16ff8e06bb693a74e8983a6865783b415c6516a439d6d68a9c4242c1",
-      "checklist.md": "076231f06d6942971dd526266a46a299eb6b9419b6c3d7d15c7e8dada984ccbc",
       "implementation-summary.md": "746af1105fc018ab9c90150de51723dbe3614bd9c2f532451aa9be698e915f8b"
     },
     "last_active_child_id": null,

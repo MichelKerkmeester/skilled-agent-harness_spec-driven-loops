@@ -19,10 +19,10 @@
       "transform verb make it dispatch plan",
       "tasks",
       "phase 004 tasks",
-      "verification",
-      "checklist",
-      "phase 004 checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "phase 004 implementation summary",
+      "transform verb make it wave summary"
     ],
     "key_topics": [
       "wave",
@@ -44,12 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/spec.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/plan.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/checklist.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/dispatch-log.md"
     ],
@@ -70,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/checklist.md",
         "source": "derived"
       },
       {
@@ -175,48 +167,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built This",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Standard Level",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 023's parent scope assigned this child wave 5 of the 55 real constituent dispatches: all 4 variants of `TV-001` (`make it` transform-verb prompts that should route to `interface`) plus the first variant of `TV-002` (`should it be` transform-verb prompts that should route to `audit`)",
     "created_at": "2026-07-07T15:12:22.642Z",
-    "last_save_at": "2026-08-29T15:21:59.863Z",
+    "last_save_at": "2026-08-30T15:39:12.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de682565cac2bba19a3600b6f094b05be9c9a6acc74eb0b29302a8d205c59cb3",
+    "source_fingerprint": "sha256:0f6834c47753cff15bc607c97b9c53083b1ca0c31574020f1b7700c2b95024b2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1b91444d8be90162b337e9f08c47b795934ed4898cf939f5b0e9b74b248d02d",
       "plan.md": "1d4849674ac7eabb4fa3e1b497080c8eb2774d6c321ea6adce2283fc5d01bbc4",
       "tasks.md": "e6be72b14b2a90b4c6a7f7383f85267eece0dbe09fab1c4e23e6d2bd09a1a3f3",
-      "checklist.md": "97ed5a9aad9537c171930d93554c716d2388781f3e18a3f569099151bc5eaddd",
       "implementation-summary.md": "d9229bd13d9b5467e17be719f1ad7c56bb4a9c6f10827e0fe4b46641809bb7b8"
     },
     "last_active_child_id": null,

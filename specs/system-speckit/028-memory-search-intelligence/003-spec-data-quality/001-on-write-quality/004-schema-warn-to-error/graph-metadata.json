@@ -34,18 +34,41 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
       ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/specs/graph-metadata.json",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      ".opencode/specs/graph-metadata.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "check-description-shape.sh",
         "kind": "script",
@@ -74,36 +97,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/specs/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -189,26 +182,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The two structural JSON-shape rules ship at warn severity and never block, so a malformed `description.json` or `graph-metadata.json` reaches the corpus unchecked",
     "created_at": "2026-06-27T17:15:33.598Z",
-    "last_save_at": "2026-07-17T17:19:50.642Z",
+    "last_save_at": "2026-08-30T15:39:35.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06035a0bd8f0f2afe654aabce385ced34330f3a546e9bfe0a07a53df46f737f4",
+    "source_fingerprint": "sha256:c0eaa6482c2853eea67cb7200d386dbdc4c9ceb61707b5f56a4329fffde770c4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "38f87aed5405f285886c3ec743ebf7054a1c16cd89af0892fec8cbc42bcf78c7",
       "plan.md": "35842a041b0ed51ab9ca44af68071fd1525c2c56ed0b7b077f47f9bb63529aa4",
       "tasks.md": "d20b6a552ec788fd03ff90f8d10e942f72b69208f2cdb5622f3bcc0118233e40",
-      "checklist.md": "c8626a40a63c89e24f69250c953a0a9ba6eb6ab075f50d6baf827222bab1a6b5",
       "implementation-summary.md": "4b4a1dd9293d70ed7936d5f8a4d955dbeff75b8635a09e058df2ec9404438eb3"
     },
     "last_active_child_id": null,

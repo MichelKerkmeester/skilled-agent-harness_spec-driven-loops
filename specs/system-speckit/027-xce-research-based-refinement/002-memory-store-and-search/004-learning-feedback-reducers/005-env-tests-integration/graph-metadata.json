@@ -19,7 +19,6 @@
       "ENV_REFERENCE feedback flags",
       "009 env tests plan",
       "009 env tests tasks",
-      "009 env tests checklist",
       "009 env tests implementation summary"
     ],
     "key_topics": [
@@ -31,10 +30,10 @@
       "flags",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "level"
+      "level",
+      "closeout"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "tests/feedback-reducers-integration.vitest.ts"
     ],
@@ -63,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -156,24 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -194,22 +168,21 @@
     ],
     "causal_summary": "Level 2 closeout child for ENV_REFERENCE flags and integration tests across feedback reducer consumers.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-08-29T15:22:19.595Z",
+    "last_save_at": "2026-08-30T15:39:33.444Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19e134fafdb4c0f00c2ca8d5f88f016049543cfefb388f1e23f07c566b53a36c",
+    "source_fingerprint": "sha256:4428eba3147a9313cc15b4d207693adc706ae661f653540242f229b442eeb95a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7740806ef235f0d268ce19dbc4da57d3e31def8d74f3debe9c9006e873d70b40",
       "plan.md": "e9967e3277e16f8f32b50dc90eefc57e4a7bc614894e75891fcf320042db5cdc",
       "tasks.md": "eb82145a2c079f8822098277ec76cf8ca6ad0afd1c2ad240506a5586688b7a56",
-      "checklist.md": "2b315df2a9cc170a72439648e37e7b3713d75b0aa10057bb79b449483f46e7ba",
       "implementation-summary.md": "9f607580f775b5156cd5c4da5318a36306a77b0fb6a4da82be67e9b3f37c537a"
     },
     "last_active_child_id": null,

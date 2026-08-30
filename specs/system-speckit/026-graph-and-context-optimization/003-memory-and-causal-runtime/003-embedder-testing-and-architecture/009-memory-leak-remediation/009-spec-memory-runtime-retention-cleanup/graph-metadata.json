@@ -180,7 +180,7 @@
     ],
     "causal_summary": "The broad system-spec-kit audit found in-process retention risks inside memory scan, routing, search, ingest, retry, audit, and embedder paths",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-08-28T15:59:49.858Z",
+    "last_save_at": "2026-08-30T15:39:31.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,6 +190,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:82449f04fe43da316cb599a3b632fdf7687064b879f9aac7f0c2f6163f146478",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80948f11c38868332fab3fcb8fc7563625c15ff79905d1e5f8714b19c38e993a",
       "plan.md": "e015ee38063f8d8ef0b692c3710fddeaeab6e6c51fb1a9c80a809bb4c401a845",

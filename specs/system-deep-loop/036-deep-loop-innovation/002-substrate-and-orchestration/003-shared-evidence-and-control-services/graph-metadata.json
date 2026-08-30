@@ -110,13 +110,14 @@
     ],
     "causal_summary": "Plan the seven shared evidence and control services that make the transition-authorized ledger usable by the compatibility bridge and every deep-loop mode.",
     "created_at": "2026-07-16T03:43:58.919Z",
-    "last_save_at": "2026-08-29T15:22:06.805Z",
+    "last_save_at": "2026-08-30T15:39:20.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:fd267d5314e1a2234d724495c38b24666c69d34b18759a649e58b790f55f0148",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55fbbd85f62bf78817183525e691cc16a896cd7579f6784fdfe5c6db5f520481"
     },

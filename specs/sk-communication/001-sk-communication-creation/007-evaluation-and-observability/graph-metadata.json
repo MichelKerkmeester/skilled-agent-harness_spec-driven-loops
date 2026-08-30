@@ -18,11 +18,11 @@
       "implementation plan",
       "tasks",
       "implementation",
-      "verification checklist",
-      "quality gate",
       "architecture decision",
       "gate release with deterministic safety plus blind human non-inferiority",
-      "implementation status"
+      "implementation status",
+      "current state",
+      "phase 007 handover"
     ],
     "key_topics": [
       "evaluation-and-observability",
@@ -35,8 +35,8 @@
       "phase",
       "plan",
       "tasks",
-      "verification",
-      "checklist"
+      "architecture",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,11 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "handover.md",
       "implementation-summary.md",
-      "scratch/demo/DEMO-README.md"
+      "handover.md"
     ],
     "entities": [
       {
@@ -70,21 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -94,9 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "DEMO-README.md",
+        "name": "handover.md",
         "kind": "doc",
-        "path": "scratch/demo/DEMO-README.md",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -194,28 +180,39 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "rotating",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Measure whether output feels 1:1 with the reference while proving fidelity, latency, cost, privacy, and operational behavior",
     "created_at": "2026-08-11T10:04:32Z",
-    "last_save_at": "2026-08-28T19:09:01.715Z",
+    "last_save_at": "2026-08-30T15:39:11.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:100409742e36e833e3f6fbc21898ff8867315bb424eda1ed442cd4a76bfafd9a",
+    "source_fingerprint": "sha256:56e724936187a9bbfe7ef4431c09cc123bfa71c7e4f9e943c04866b79ddc48d2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a9e2a9b9f176b6f21e189041893b8df9a49a1c34a9faae69c6c7db5e4b41b5a9",
       "plan.md": "b949204b49f98e5e62cf8c62e62e9effd9c256b0ffdd38982a2005fac7de66e3",
       "tasks.md": "b6b968e8590a88da56d8b856f7fa954779406921b7d739d368777675e765e24e",
-      "checklist.md": "dda48f3d9735b08c12626d2058792802c6e46371fd7aa193056b7d7aa6f21820",
       "decision-record.md": "5af6b946402dbcd872037e16d3efec71ca46613fdd7906eb0404d1385e2f7967",
       "implementation-summary.md": "1a510f3c6a8d2be23d34a5a940f2a32a6842146f6f75a57e162ff990d909deff",
       "handover.md": "bf4fce2b363f6e4fcd75f6536386ec05d332840df9931f20ebef17a7073e7da3"

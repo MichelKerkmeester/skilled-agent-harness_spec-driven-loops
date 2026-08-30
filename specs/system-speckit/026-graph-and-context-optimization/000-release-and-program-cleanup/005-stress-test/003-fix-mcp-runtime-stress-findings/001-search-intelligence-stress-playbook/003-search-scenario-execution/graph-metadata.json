@@ -196,7 +196,7 @@
     ],
     "causal_summary": "001 ships the design (corpus + rubric + matrix); without an execution harness those artifacts produce no signal",
     "created_at": "2026-04-26T15:00:00Z",
-    "last_save_at": "2026-07-17T17:19:11.363Z",
+    "last_save_at": "2026-08-30T15:39:28.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5dff81bfe9405220462458b798fdfb64aaff5811b7bc6c288edd74985b9eec6e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "465b478d51d4898472cad1d8b84666c87bb33a9fa6d9f9f391b84cf614c46c5f",
       "plan.md": "9f2d871c182d77385ec11f44ff5ac22ebd8f1a7e6c075488efa9e13f0fd9a043",

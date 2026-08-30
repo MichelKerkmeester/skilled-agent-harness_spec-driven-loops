@@ -38,19 +38,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/SKILL.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      ".opencode/skills/sk-code/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -64,15 +58,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Lower-urgency ponytail-derived add-ons: a code_loc/over-engineering metric folded into the existing correctness-gated benchmark, a SK_CODE_REVIEW_DEPTH env alias for the existing ON_DEMAND tier, an implementer anti-stall rule, and optional startup/typing hooks. Each needs a decision or carries upkeep cost; ship after the core phases.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-07-09T10:02:44.408Z",
+    "last_save_at": "2026-08-30T15:39:11.605Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:40d38a09b2837b6bb73128880078191ef12cdaee9649982ebfdc6393e60267cc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1af2e1d2ac5200090ea20072a39f5e50c333a6a538a5b07e5a97257293f6657d",
       "plan.md": "ac6c31690e95d25a50df7bd9978386880ed8c873070c60d94835f2caacd320f4",

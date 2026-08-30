@@ -20,9 +20,9 @@
       "sk-git review remediation tasks",
       "git workspace safety tasks",
       "allocator hardening tasks",
-      "sk-git review remediation checklist",
-      "git workspace safety checklist",
-      "allocator hardening checklist"
+      "sk-git review remediation summary",
+      "git workspace safety closeout",
+      "allocator hardening closeout"
     ],
     "key_topics": [
       "sk-git",
@@ -44,12 +44,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-git/scripts/worktree-naming.sh",
       ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
       ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
     ],
     "entities": [
       {
@@ -71,9 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -98,12 +97,6 @@
         "name": "validate_document.py",
         "kind": "file",
         "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,30 +184,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Both",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Two open review items remain after packet 005:",
     "created_at": "2026-07-15T04:22:49.243Z",
-    "last_save_at": "2026-07-15T04:22:49.243Z",
+    "last_save_at": "2026-08-30T15:39:18.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:798a74e33c04b21cd8c2c648a5f63a6fbc8b1f7396cd5e76b41475bd447a7a27",
+    "source_fingerprint": "sha256:d7d33e319eea364631605c51859cbc9d774714501250a39ac60f1d91701a8bfd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "414f3b73ca2bedf5aff55fb6a141d4bf4ca12d4a7dbc1f29af192cab1fef2afb",
       "plan.md": "a880ac820a1d8b3e7489d547c12ddfd394f7ee72978464b0291b8ea8e5ca9926",
       "tasks.md": "50d157ec967a24a6512e3633d4733b609c30085ec98f960e57b73e14db7f0b75",
-      "checklist.md": "0e7e5fb6aaba6d1e17e4920efcf92e6119d1e75f134a7c03336d0fe1970d9b86",
       "implementation-summary.md": "e9265a719ee1c242e9eec591f36d470a9c1761a2c8343990e7433771df98703f"
     },
     "last_active_child_id": null,

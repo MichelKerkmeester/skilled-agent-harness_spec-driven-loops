@@ -36,26 +36,14 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
-      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
     ],
     "entities": [
-      {
-        "name": "framework.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
-        "source": "derived"
-      },
-      {
-        "name": "behavior-bench-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,6 +66,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Completes the authored sixteen-scenario suite with DAB-016 to 027, reconciles contracts and pending baseline rows, and defers operator-gated Claude capture.",
     "created_at": "2026-07-14T20:37:00.206Z",
-    "last_save_at": "2026-07-16T16:34:16.257Z",
+    "last_save_at": "2026-08-30T15:39:20.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:07a8a08d6aeebeea3e24826baa76ef6117f6e90bf1ac51dd749a9677aa905362",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1ec9d8cded66db1be875fc53a4f50008fcc849656f63852aa156bb2001e9e84f",
       "plan.md": "416167ccfeca82c08e30aaae2daf7161faf88101ff780a36e8bacc86fae0d8e7",

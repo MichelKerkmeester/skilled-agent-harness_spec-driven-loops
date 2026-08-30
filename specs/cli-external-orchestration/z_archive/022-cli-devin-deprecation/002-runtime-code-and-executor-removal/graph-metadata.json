@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/022-cli-devin-deprecation/002-runtime-code-and-executor-removal",
-  "spec_folder": "cli-external-orchestration/022-cli-devin-deprecation/002-runtime-code-and-executor-removal",
-  "parent_id": "cli-external-orchestration/022-cli-devin-deprecation",
+  "packet_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/002-runtime-code-and-executor-removal",
+  "spec_folder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/002-runtime-code-and-executor-removal",
+  "parent_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -56,15 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "cli-devin was wired into the deep-loop runtime executor layer (executor-config.ts EXECUTORKINDS + DEVINSUPPORTEDMODELS + permission/validation, executor-audit.ts lookup maps, fanout-run.cjs dispatch branch), the deep-improvement model-benchmark dispatcher (two hand-synced KNOWNEXECUTORS sets), and the five deep-loop command YAMLs (ifclidevin blocks + executor enums)",
     "created_at": "2026-06-08T16:10:28Z",
-    "last_save_at": "2026-07-14T19:26:13.626Z",
+    "last_save_at": "2026-08-30T15:39:08.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8dedb4db5bc911aa3043303395da0f3ca5221c807fac82aaf95e6a30b99ca9a",
+    "source_fingerprint": "sha256:73f9a65d83ceb38853ba0882b5cbf950d92e957981fc0479516d95eda5ffc98c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ec7bfe33ce197daea40a87565e4e31233282747677c1d3c69de5dd2673d9d4bf",
-      "plan.md": "2f4687afa5e9b279f6894f6dfdf23f1d1769d6961b4f575be8e2483a50dc72ed",
-      "tasks.md": "6cec9cd9fb4e1059278778f5f986b7b4b3bba0043e87ed9ea9fddbed8bf0e974",
-      "implementation-summary.md": "c93d397252efd52e05149e4cf1b9d83f412066f8a6a916ef3d892fdd868e11ab"
+      "spec.md": "b04190858bd7caeaf7b696a882959cc6f31b36bc4e762b49af3a451f06bc005c",
+      "plan.md": "75b767147ae9f7026376883a14235b08eefd3b64d6ccae805cdef9906f2ebe89",
+      "tasks.md": "1f3901f3aa402bd381b520001d0390f7599c73899151d748446c4560ade7ba8c",
+      "implementation-summary.md": "0148dcc059290513902872d325377dada6fa0d83e907ea57b3cbfb040ccb6754"
     },
     "last_active_child_id": null,
     "last_active_at": null

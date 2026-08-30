@@ -22,7 +22,7 @@
       "feature flag reference tasks",
       "phase 019 tasks",
       "flag catalog manual testing tasks",
-      "feature flag reference checklist"
+      "feature-flag-reference implementation summary"
     ],
     "key_topics": [
       "feature",
@@ -42,13 +42,11 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "dist/lib/config/capability-flags.js",
-      "lib/search/graph-flags.ts",
-      "plan.md",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/config/capability-flags.js"
+      "lib/search/graph-flags.ts"
     ],
     "entities": [
       {
@@ -58,15 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -85,12 +83,6 @@
         "name": "graph-flags.ts",
         "kind": "code",
         "path": "lib/search/graph-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -194,27 +186,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Manual feature-flag-reference scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.305Z",
-    "last_save_at": "2026-07-10T06:21:41.107Z",
+    "last_save_at": "2026-08-30T15:39:39.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c876ea64b24202d2c497d662e376ab94fc629fb884407b25bdb6f706ff879a7",
+    "source_fingerprint": "sha256:0659f30a42c6139dad9fa2d23e647989650f4a4d7084383bc59648dafcb21d92",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa805667cbad7aea96e6cb361491432327014a811bc00027b6e6d3a0b566f291",
-      "plan.md": "9b1cf8c7695be4d8321026e619cb240068f9daeebb296ab80e3be04cde0d0fa6",
-      "tasks.md": "9fce4b52208b57f93cb2102b053108ad94e13d7a935fef31524beffd53162860",
-      "checklist.md": "3663c7842491af56c563d03926f5869f17a7b3805d48e30a0370ed2fd4d09c86",
-      "implementation-summary.md": "b3c713744041a12385b55a8b1826d9d16156b1d5ba8f7d2bb639976ec2210a9d"
+      "spec.md": "966361511cccc225a2c7cadd0e468e7d35afe5fdaa2804c90feb09a460cb268d",
+      "plan.md": "07c2b931a3fc48c1bb75fcef1ca31fd757bf0e43e3627ac22382d33cfa6c9b00",
+      "tasks.md": "566e9181efb5b299cae8cbad92e7f8ba7701562f875e86ab6ee4f4afac2cb6c9",
+      "implementation-summary.md": "2262d3c5765e25858232685b91f0c061c5fbd5feffa09a33d6b3fea626b33858"
     },
     "last_active_child_id": null,
     "last_active_at": null

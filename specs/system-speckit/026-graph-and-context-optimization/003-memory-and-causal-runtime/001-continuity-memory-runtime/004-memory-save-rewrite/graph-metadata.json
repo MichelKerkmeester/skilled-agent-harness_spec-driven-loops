@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "api/indexing.ts"
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,31 +184,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Verdict",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`/memory:save` mutated by default, did work that had nothing to do with the caller's intent, and still honored an artifact family that had supposedly been retired",
     "created_at": "2026-04-15T10:00:01Z",
-    "last_save_at": "2026-08-29T15:22:13.859Z",
+    "last_save_at": "2026-08-30T15:39:29.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b7c3557cd9089305f6e892fe9c44df9a6230b9bd5ee8542aac0329eb9acd8f5",
+    "source_fingerprint": "sha256:d38563a4ead28588fa2f0f1ccd2ea275fca7cceccb2cd98af23b1174af558a9b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71d2241c421a1ef5f070408e6215e810e114c4c4b36770d243a5e68352e588d7",
       "plan.md": "15e0d048e1e38d3a65db98ddadce53f261277ab61a86e30dad17da8ae2f4153c",
       "tasks.md": "c9302e1e963618620bc62a351dc0b1e80edc6ae95314ad052f81d6bdb734f522",
-      "checklist.md": "f0517957dd6e61c9e89af65e2f5325217923b8fa15d4248c98db04e40a0b03b1",
       "decision-record.md": "12c07531f7af17ae104c96439de8f177c8d5a64df932d689c1b8ce082f9b1688",
       "implementation-summary.md": "42b158b7efaf74fd5b4758bcbd2148332ed4dda5828d3f02e3bdf0560754506c"
     },

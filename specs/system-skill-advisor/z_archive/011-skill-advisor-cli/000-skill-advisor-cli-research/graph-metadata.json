@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/011-skill-advisor-cli/000-skill-advisor-cli-research",
-  "spec_folder": "system-skill-advisor/011-skill-advisor-cli/000-skill-advisor-cli-research",
-  "parent_id": "system-skill-advisor/011-skill-advisor-cli",
+  "packet_id": "system-skill-advisor/z_archive/011-skill-advisor-cli/000-skill-advisor-cli-research",
+  "spec_folder": "system-skill-advisor/z_archive/011-skill-advisor-cli/000-skill-advisor-cli-research",
+  "parent_id": "system-skill-advisor/z_archive/011-skill-advisor-cli",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -44,21 +44,38 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md",
       "research/lineages/gpt/research.md",
       "research/orchestration-summary.json",
       "research/gap-audit/lineages/gpt-gap/research.md",
-      "plan.md",
-      "tools/index.ts",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      "tasks.md",
-      "implementation-summary.md"
+      "tools/index.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -74,33 +91,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "index.ts",
         "kind": "code",
         "path": "tools/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mkskilladvisor MCP server (9 tools: 4 advisor + 5 skillgraph) powers Gate-2 routing and the prompt-submit advisor brief, but the MCP surface has the same transport fragility class as the other servers - and this system already shipped a partial answer: skilladvisor.py (3,642 lines) is the documented Gate-2 fallback covering advisorrecommend via a DIVERGENT Python scorer with a native-bridge probe, while advisorrebuild and 4 of 5 skillgraph tools have no CLI at all",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-07-15T11:59:30.975Z",
+    "last_save_at": "2026-08-30T15:39:27.170Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +212,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:baf9475cea51ef99e6f0ab49986ca3128dd4829ca2d93db257f5257bf7021c01",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e77e603e0d9e20cb2fe9365eeb5256503c18a2cbda435c7acce8a83cc2423d44",
       "plan.md": "4e76fdf99ec6b5de125bc78d7bfdefff04d7f4eb96469137b2f18c6e3dcf5d4f",

@@ -18,8 +18,6 @@
       "plan",
       "archive normalization",
       "tasks",
-      "verification",
-      "checklist",
       "decision record",
       "normalization",
       "implementation summary"
@@ -34,9 +32,9 @@
       "plan",
       "normalization",
       "tasks",
-      "verification",
-      "checklist",
-      "decision"
+      "decision",
+      "record",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,37 +173,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "Readme And Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This archived system-spec-kit archive folder captures work related to Readme And Summary With HVR",
     "created_at": "2026-04-12T09:02:53.569Z",
-    "last_save_at": "2026-07-10T06:24:50.069Z",
+    "last_save_at": "2026-08-30T15:39:37.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19f36be5583a5ec30efb98c37147766132cd8bee6090041b16f2588d4d20db17",
+    "source_fingerprint": "sha256:6faec3622ddf0a91a78b54737104ce1871fcae75b14f821d657f63495e008bec",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "52304ab120bf31b3f4a9a2b41f768826d582cfbce70453261c32603450b904de",
       "plan.md": "8d8fe7d65848d365c3800cf5426f277a74e6908e78460390d756069c53aa7d04",
       "tasks.md": "a014c2b33203b477ff9fd5f9e1a0835c54185432934d20c97c7d2651b5dae8ef",
-      "checklist.md": "d3b9b92f48f51ff37b0687e255fd9c0d4278e3e9fa1b4233ebc95364b3a7df8b",
       "decision-record.md": "2f1faa1a6022149841c53ba9eb1c623a71fb263935311426f1d569cd0f275ae0",
       "implementation-summary.md": "014170391a77ab6fd58a78afcb7db4ac789e752afaf263042233390a897c6213"
     },

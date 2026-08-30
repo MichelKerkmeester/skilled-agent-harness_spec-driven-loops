@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The current file-lock is advisory and can be raced under specific host conditions where two processes check the lock in a very tight window before either acquires it",
     "created_at": "2026-06-28T14:01:57Z",
-    "last_save_at": "2026-07-16T16:31:56.242Z",
+    "last_save_at": "2026-08-30T15:39:24.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b6e6d98bd0621e9fc28ef6586b62a56d0378aff1e0f63f18ea59468aa6f80556",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b3d43e2d1f660b42c4ea38b8900cc923e22e36cf9b14442034554a8fad332db7",
       "plan.md": "d4bbb89ece02e0c0daf029737a83e036525c983bd6d34ac2de9337aca3dabaae",

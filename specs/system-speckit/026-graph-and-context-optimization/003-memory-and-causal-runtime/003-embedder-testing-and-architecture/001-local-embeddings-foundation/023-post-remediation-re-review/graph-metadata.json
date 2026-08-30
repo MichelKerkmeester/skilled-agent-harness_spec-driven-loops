@@ -21,8 +21,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "verification",
-      "checklist"
+      "summary",
+      "impl summary core"
     ],
     "key_topics": [
       "feature",
@@ -34,8 +34,8 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
+      "summary",
+      "impl",
       "broken"
     ],
     "importance_tier": "normal",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-13T15:40:34Z",
-    "last_save_at": "2026-07-17T17:19:19.133Z",
+    "last_save_at": "2026-08-30T15:39:29.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c6b733b1d656216b8ed0b6e79fcf6bc02759708c3e180e09d8b2cb2acb11f65e",
+    "source_fingerprint": "sha256:04065235a19afd5c3dbe32d4399326506c9343adc1486565f1f88208a9da0974",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5fc1782f71dbf60d22167dd9e9b046295af68e436d627fb05f24acb2e41d5197",
       "plan.md": "c30aefbe6f4e156640bdbd8fa5e724bbaeb801f53e3d75489cae84df6e981276",
       "tasks.md": "befd5ce6514e6c9fe96a35dc11eff7fabb2203991029084e8453e4fcfd52087e",
-      "checklist.md": "73c95163a168b6c6331132fb022ce2ecd14632179d8de65ef43575f3b955987f",
       "implementation-summary.md": "3149c47bf9e0f4734d17d674f836f54a3be0e234b78626fa86fdad245c18311e"
     },
     "last_active_child_id": null,

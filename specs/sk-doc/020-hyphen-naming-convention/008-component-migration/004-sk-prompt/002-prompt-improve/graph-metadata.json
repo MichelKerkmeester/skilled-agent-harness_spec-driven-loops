@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The prompt-improve packet still uses underscore-separated names for its format-guide assets and core reference files, and those paths are repeated in the packet skill, README, and router resource map. This phase renames only that packet-owned asset/reference set and closes every active path reference while leaving playbook, benchmark, changelog, tool-mandated, and data-key boundaries intact.",
     "created_at": "2026-07-14T15:17:31Z",
-    "last_save_at": "2026-08-30T07:19:30.930Z",
+    "last_save_at": "2026-08-30T15:39:16.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:def7ff8f172cee4db3cd93c4e0bd3b9e1e547a4ec892e7bbd2e940ed5fcf3717",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7e283f5533d19116b621ed3c14b67659c975f7756069d3dc5dee619109c65d56",
       "plan.md": "001ce062b889425eb726718bf4a4a0c3bf227ef9034e2293b1c8d6ee1a2246ea",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/023-kimi-k2-7-code-support/005-filename-underscore-alignment",
-  "spec_folder": "cli-external-orchestration/023-kimi-k2-7-code-support/005-filename-underscore-alignment",
-  "parent_id": "cli-external-orchestration/023-kimi-k2-7-code-support",
+  "packet_id": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/005-filename-underscore-alignment",
+  "spec_folder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/005-filename-underscore-alignment",
+  "parent_id": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,19 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "check-prompt-quality-card-sync.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The house convention for descriptive markdown and asset filenames is underscores (`documentname.md`), matching peer skills such as `mcp-open-design` (`odclireference.md`) and `sk-design-interface` (`designprinciples.md`)",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-07-14T19:26:21.759Z",
+    "last_save_at": "2026-08-30T15:39:08.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8daeb22802d1cfe019a21b8b47cdf5113b3a5cb67d6911c8698dff716963eebf",
+    "source_fingerprint": "sha256:debcf190561fda505923028abc261aeaef2c5f2cba5afc4fa1c8bc33f5fe0989",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9762dc08e0dd30b0f0355205d836d058b5cbe62a29b190c44df2f75a39b577bd",
-      "plan.md": "c3bb8dc72dc8f31f5ab1d7cd15077726ee5d71cf5aa0747381f0700a0d7a466a",
-      "tasks.md": "d5e08fe388da637c8454f142085c4cb78ea17b1d86a45b97f906515ddc9db374",
-      "implementation-summary.md": "ce488ed46639213bacd65b9b4f77be382baa7cbc5f5ac9f28977d85ab981bb79"
+      "spec.md": "9212b4efaf0160ea992db0d03a84f3d0b47e7250e6a5be2fbaaa2dc905be70f2",
+      "plan.md": "d7e15feb5c54494d4a45512fb745a0d7c5263bd4f9df33e4d92b3f09ed5397a4",
+      "tasks.md": "787fde8050ddf1b30dbcfbfe59a207ff4d7ae1d75874d8638e82bf97e0944d62",
+      "implementation-summary.md": "1eefcc9ebb2b556484d0d6742822e1d23570ffced5adfdcd0e466ec68e90004d"
     },
     "last_active_child_id": null,
     "last_active_at": null

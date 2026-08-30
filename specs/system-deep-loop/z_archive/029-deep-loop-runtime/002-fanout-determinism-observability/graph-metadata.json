@@ -44,8 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,12 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Three Wave",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop fan-out runtime merges per-lineage finding registries and pools concurrent CLI lineages on three modules: `fanout-merge.cjs` (merge + dedup), `fanout-pool.cjs` (concurrent dispatch + gauges + summary) and `fanout-run.cjs` (the lineage worker + signal handling)",
     "created_at": "2026-06-19T06:20:37.815Z",
-    "last_save_at": "2026-07-16T16:33:00.226Z",
+    "last_save_at": "2026-08-30T15:39:25.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a994ee3a8d503a3247685b9859ef19bc987a071679568e8bfad310ca36eeea52",
+    "source_fingerprint": "sha256:03db9908167a216fe0797cd62abf930b95ef2736769ba9f26d81fa0f8168938a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d33085707c1e107eee45f9bbe2a55ca23d382498aef8970bde36d97c06c6af61",
       "plan.md": "0a318be9ee84680dbad72424424dcb51a3c4d878173ddb5a1597e51d4af39574",
       "tasks.md": "34d61ea356b8f1694773c8b3c29c667a840f506d94ae33503b2babcb56bfb817",
-      "checklist.md": "dd9acd4655dbb11c1bee6df63ead85e76424a59474152f4fb851136ecc7a5dea",
       "implementation-summary.md": "46a365e86f4d5a06b4111e4e420b858ccbc8f276ef3e5ce41fb664ce9af4c153"
     },
     "last_active_child_id": null,

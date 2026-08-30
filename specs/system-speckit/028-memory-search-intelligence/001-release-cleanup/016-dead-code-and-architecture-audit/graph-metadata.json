@@ -22,7 +22,7 @@
       "architecture simplification plan",
       "dead code audit tasks",
       "release cleanup 016 tasks",
-      "dead code audit checklist"
+      "dead code audit summary"
     ],
     "key_topics": [
       "dead",
@@ -44,15 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "research/devin-findings.json",
       "implementation-summary.md",
-      "research/manual-devin/FOCUS-PLAN.md",
-      "research/BASELINE_SHA.txt",
-      "research/lineages/sol/deep-research-state.jsonl",
-      "research/lineages/composer/findings-registry.json",
-      "research/manual-devin/pass-01.md",
-      "research/orchestration-status.log"
+      "research/devin-findings.json"
     ],
     "entities": [
       {
@@ -74,57 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "devin-findings.json",
-        "kind": "config",
-        "path": "research/devin-findings.json",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "FOCUS-PLAN.md",
-        "kind": "doc",
-        "path": "research/manual-devin/FOCUS-PLAN.md",
-        "source": "derived"
-      },
-      {
-        "name": "BASELINE_SHA.txt",
-        "kind": "file",
-        "path": "research/BASELINE_SHA.txt",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/lineages/sol/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "findings-registry.json",
+        "name": "devin-findings.json",
         "kind": "config",
-        "path": "research/lineages/composer/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "pass-01.md",
-        "kind": "doc",
-        "path": "research/manual-devin/pass-01.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestration-status.log",
-        "kind": "file",
-        "path": "research/orchestration-status.log",
+        "path": "research/devin-findings.json",
         "source": "derived"
       },
       {
@@ -198,26 +149,43 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repository has grown across dozens of packets, several migrations (spec re-nesting, hyphen-case renaming, parent-hub merges), and multiple superseded experiments",
     "created_at": "2026-07-27T05:50:45.833Z",
-    "last_save_at": "2026-07-27T11:48:09.026Z",
+    "last_save_at": "2026-08-30T15:39:34.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a835b8fd7f63d81cd0a9336984eb0ebc6b293da03a066f8f8efc4e81b72d2aa0",
+    "source_fingerprint": "sha256:9d01ba612ae7883b42fa269cb435d4e18910996a2cef34d71d69d3cd659b5e27",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "20716b581d6e74d103669caba432369ed5ced423931f41d961608b5a9cc37057",
       "plan.md": "997b33f36b5c4a6b8be650ee3773c44241ea9ba39dd943de883d70624e64c0d6",
       "tasks.md": "63558bcd2d193db209330581abed8d91dffeeb9d29c52316630033c6dcabaa93",
-      "checklist.md": "a8e4f21891e274b78cf4e7beb65bc3305d4af036e09c4060ea7f68988b3c33b9",
       "implementation-summary.md": "98e6a8c0f97c60827a4aa91825e63daa7705f7654d1de14dfa3f109a10e213dd"
     },
     "last_active_child_id": null,

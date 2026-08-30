@@ -30,10 +30,10 @@
       "cross-phase coordination",
       "research refinement tasks",
       "cross-phase tasks",
-      "research refinement checklist",
       "011-research-based-refinement implementation summary",
       "011-research-based-refinement delivery record",
-      "resource map"
+      "resource map",
+      "011-research-based-refinement resource map"
     ],
     "key_topics": [
       "research",
@@ -45,9 +45,9 @@
       "cross-phase",
       "coordination",
       "tasks",
-      "checklist",
       "011-research-based-refinement",
-      "summary"
+      "summary",
+      "delivery"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -55,15 +55,13 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
       "004-feedback-quality-learning/tasks.md",
       "003-graph-augmented-retrieval/tasks.md",
       "001-fusion-scoring-intelligence/tasks.md",
       "005-retrieval-ux-presentation/tasks.md",
-      "002-query-intelligence-reformulation/tasks.md",
-      "mcp_server/lib/search/search-flags.ts",
-      "resource-map.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "002-query-intelligence-reformulation/tasks.md"
     ],
     "entities": [
       {
@@ -85,27 +83,15 @@
         "source": "derived"
       },
       {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/search-flags.ts",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -205,35 +191,46 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Based Refinement",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep research (spec `019-deep-research-rag-improvement`) produced 29 prioritized recommendations from 5 GPT 5.4 agents (1.35M tokens, ~52 web searches)",
     "created_at": "2026-04-12T09:02:50.233Z",
-    "last_save_at": "2026-07-10T06:22:00.857Z",
+    "last_save_at": "2026-08-30T15:39:38.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:51ffda7665a02c8c50dfd0c80b72d35172efa38ede21f897600d791808f0e5c4",
+    "source_fingerprint": "sha256:10d2ed7a0c5da30242a7de81c9edc03b19f735695ec7f092cff503e412923ed9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b83f034e2aea14aaee5f3ce3317d38efb35012bd28533d27f319f4c056da6381",
-      "plan.md": "d79700dcf267802b10e7427f5fc4a801cc98f7a9d2f5db8566c2adbccf862279",
-      "tasks.md": "a9b937b5d6bf0bee07f8e253e425140a32681dde5bbc502e57c02114bf015a8a",
-      "checklist.md": "6f761f659dcff90cdde6e0095555649dd8381023972af75641b43096c0a2635e",
-      "implementation-summary.md": "841cda4140cdd1373ee1f0cb143b618508868444f1a5d22454a83267e4b5e380",
+      "spec.md": "262e6dd72dabe5803f1f0a4b2eb47f8504b6c2602dcc8790433b5949d8463729",
+      "plan.md": "37714fcc4b90477e9315182dc640fe2649f770cc8fad9e0822444dd511e2bc7c",
+      "tasks.md": "1d35f404b3339b035562c14d7d54b05707195a8bf81a5d72d645d2c284e31106",
+      "implementation-summary.md": "58fc92d7fc694ecd2f8fdd17714dab43177e04bd1c010b22fb536a91cc71ef5e",
       "resource-map.md": "e6a017726af698557ed89333e61f08f11a29d22ff39d6f75c96fc324c8a60820"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/001-fusion-scoring-intelligence",
     "last_active_at": null
   }
 }

@@ -35,19 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research loop's `stepcheckconvergence` step can trigger a STOP after a single candidate forms, with no minimum iteration floor enforced",
     "created_at": "2026-06-28T14:02:06Z",
-    "last_save_at": "2026-07-16T16:32:13.619Z",
+    "last_save_at": "2026-08-30T15:39:24.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3e796323686efbacd8236767aea2777c302be407e7210fa6fa7a73df2cc5b421",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6f8e0764ba26ad9c91c948d75832ffc224cbf686a99a8ba9e4ce7c5d032517e",
       "plan.md": "e918d820be570bb0e7a19b1b9da378789683e9cae5812603a56e80e4ad8d749f",

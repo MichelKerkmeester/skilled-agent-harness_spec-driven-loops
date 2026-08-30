@@ -166,7 +166,7 @@
     ],
     "causal_summary": "The `.opencode/commands/design/assets/` tree contains `designauditauto.yaml`, `designfoundationspresentation.txt`, `designinterfaceconfirm.yaml`, `designmd-generatorauto.yaml`, and `designmotionpresentation.txt`",
     "created_at": "2026-07-14T15:18:33Z",
-    "last_save_at": "2026-08-30T07:20:01.905Z",
+    "last_save_at": "2026-08-30T15:39:17.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,7 +175,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:eca2bbfa5ff3d5ae0036935cfae4d2a8af5770863099c644c913cf7b69251b42",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ed721240aaacc2df8bf20e668c26a271b5c35389d1f5529850e139de3c2c1e8c",
       "plan.md": "3b448661f2790bd86e573f65f9c444327fcf47beb227354bdb0a5642132f7723",

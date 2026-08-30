@@ -39,20 +39,18 @@
       "utcp"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/specs/mcp-tooling/009-mcp-refero/002-skill-authoring/spec.md",
       ".opencode/specs/mcp-tooling/009-mcp-refero/002-skill-authoring/plan.md",
       ".opencode/specs/mcp-tooling/009-mcp-refero/002-skill-authoring/tasks.md",
-      ".opencode/specs/mcp-tooling/009-mcp-refero/002-skill-authoring/checklist.md",
       "scripts/doctor.sh",
-      "checklist.md",
-      "tasks.md",
-      "spec.md",
-      "plan.md",
       ".opencode/skills/mcp-tooling/mcp-refero/SKILL.md",
-      ".opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md"
     ],
     "entities": [
       {
@@ -74,9 +72,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/009-mcp-refero/002-skill-authoring/checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -95,12 +93,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-refero/mcp-servers/refero-mcp/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,27 +190,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `refero` UTCP manual is reachable through Code Mode but has no skill surface: no SKILL.md contract, no documented tool inventory, no routing recall scenarios, no troubleshooting path",
     "created_at": "2026-07-16T09:39:28Z",
-    "last_save_at": "2026-07-17T06:03:03.117Z",
+    "last_save_at": "2026-08-30T15:39:09.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fe093140e4fb043a5591d05be4d50cebc35a153e00196e423422599f1f77645",
+    "source_fingerprint": "sha256:dae3227cfbffb2ca676c65e0b73d49cb5d265316b142a4146797cf18c68d68f5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae8575a65d7ed308d61dc1dfbfd4ee0c153e9243d42946c350e7af51af59239c",
       "plan.md": "5a572be798841f4ad87fddadeaa44d7dbd91b8bc9db0349a784b0a8993ab394e",
       "tasks.md": "33d8b92e667a902ede3551225b22b3b5fe5f126ff7584d67e9279f3e51290f7c",
-      "checklist.md": "6fd0fb010931abe9c10c1fb19d3fab85870304da6e0dfaad4ede6c3a667d6da3",
-      "implementation-summary.md": "030b7cec79ae106f8a5500b6c5f024606bc69329a3d145536dc722e99096db22"
+      "implementation-summary.md": "078ff89c2d2e6eaf1ab76038384eef6df6027607e2070cc6d16bf12485cc5916"
     },
     "last_active_child_id": null,
     "last_active_at": null

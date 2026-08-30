@@ -197,7 +197,7 @@
     ],
     "causal_summary": "cli pi's `/login` does not list Cline, so the operator cannot authenticate the Cline provider from pi and cannot select `cline-pass/cline-pass/deepseek-v4-flash` in pi's model picker — even though opencode already dispatches it",
     "created_at": "2026-08-18T08:28:11Z",
-    "last_save_at": "2026-08-29T14:54:26.293Z",
+    "last_save_at": "2026-08-30T15:39:08.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:acb36aa210186374bc0610283052c85fc4327a40d4030c0cd4344a32182d18af",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "06fff371098a5c5f86339643b0ac4c9fbae4467132964ca017a3dbb8dd15712a",
       "plan.md": "a764ee0abb6e43435a9eabf015a8105c8b0558b7bb1ec18eabe7da371ce652d0",

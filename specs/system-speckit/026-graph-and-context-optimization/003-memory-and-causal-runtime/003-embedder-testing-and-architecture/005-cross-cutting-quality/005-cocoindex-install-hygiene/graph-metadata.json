@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`ccc` from a normal shell resolves to `/Users/michelkerkmeester/.local/bin/ccc`, which points into the pipx venv at `/Users/michelkerkmeester/.local/pipx/venvs/cocoindex-code/`",
     "created_at": "2026-05-18T19:05:18.860Z",
-    "last_save_at": "2026-07-17T17:19:24.849Z",
+    "last_save_at": "2026-08-30T15:39:30.862Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f4a6909f2415ae1437d2afafe73797b11839a84166b7c2adfa755b251c39b4e8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dff15c6abd27b28a9f571208c2c2b3c050ac21b3b7078f081f5256478186af11",
       "plan.md": "43fef0b286b1916ae4475f7c0d25a960bd59797c35a1cb05aa69a033ddd11f36",

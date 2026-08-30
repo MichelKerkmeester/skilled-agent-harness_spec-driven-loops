@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The 037 corpus grew well past what the gen-1 research studied",
     "created_at": "2026-08-13T18:42:57.524Z",
-    "last_save_at": "2026-08-29T15:22:08.515Z",
+    "last_save_at": "2026-08-30T15:39:22.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:eadb5eedc884827b74b211fafe0c7c14c814a66ca3acf839a8e87263b67e8bc8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "03b556ed3ce745233e0d14fed0ab572efe74b89744be8a5dfa3104a348870d2d",
       "plan.md": "7e4f18a92533b23b241d0d84b3341a3da8f08d70311e655fef333c194d33ac9e",

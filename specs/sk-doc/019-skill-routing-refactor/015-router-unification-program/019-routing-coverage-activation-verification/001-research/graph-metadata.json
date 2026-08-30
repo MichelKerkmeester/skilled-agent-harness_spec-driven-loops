@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The compiled skill-router is shipped but inert",
     "created_at": "2026-07-20T21:22:58.681Z",
-    "last_save_at": "2026-08-30T08:04:11.624Z",
+    "last_save_at": "2026-08-30T15:39:15.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f865980fb627a2fcb7280b243300cfa29520e2fc3ed8cc91407e7eb6609898ff",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0cb0d68a303e507955cba22d962466bd3c21f683499104a6b5fded742ea38992",
       "plan.md": "e0f1750442852ff921cae2ef825a6a55afb914d0b469fe89f2cd25f195e9309d",

@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/bin/git-sync.sh",
       ".opencode/bin/git-live-follow.sh",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,26 +188,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "location-derived",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Four spec-kit audit helpers hard-code the same absolute developer checkout root — seven `/Users/…` literals across four files — so they work on exactly one machine and silently produce wrong or empty results anywhere else, including inside a `git worktree` at a different path",
     "created_at": "2026-07-30T19:25:15.091Z",
-    "last_save_at": "2026-08-29T15:21:57.127Z",
+    "last_save_at": "2026-08-30T15:39:11.163Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:7bf81633826f9374662bc35a95a36d0eb42fdfd1834afe0c1a405ffc7f869af9",
+    "source_fingerprint": "sha256:f7fc5a7948a201bac9438390e64deeb879f781d148e793e877c3a6003b07d79e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8199a6d69a56bd72fdacccf399d619d5328f5a9cf210d85baa08fc04b12ace77",
       "plan.md": "a1e78a1e6388e74a251839a2ea56ca8109a8f8101357c381e9536745aa76e067",
       "tasks.md": "8892597d7dc525028ec1acdceccf7eaa1cbca55ac116b34b5283a0e482725a22",
-      "checklist.md": "6a50f4f62d7821e6a847cd1c9ae5489a11c367be1d7a8b6309d73596f35e01ce",
       "decision-record.md": "e1ccf43692c92858d7023cd8328152495996fba20db4bb10396b1d67a1b11c12"
     },
     "last_active_child_id": null,

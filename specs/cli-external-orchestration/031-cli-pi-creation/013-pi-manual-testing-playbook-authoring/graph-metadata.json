@@ -15,7 +15,6 @@
       "cli-pi playbook build",
       "pi manual testing playbook authoring plan",
       "pi manual testing playbook authoring tasks",
-      "pi manual testing playbook authoring checklist",
       "pi manual testing playbook authoring summary"
     ],
     "key_topics": [
@@ -26,34 +25,26 @@
       "cli-pi",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "manual-testing-playbook",
       "contains",
-      "only"
+      "only",
+      "gitkeep"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md"
+      ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -69,21 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -187,26 +172,37 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-pi/manual-testing-playbook/` contains only a `.gitkeep` today",
     "created_at": "2026-07-27T16:34:14.380Z",
-    "last_save_at": "2026-07-27T19:22:54.400Z",
+    "last_save_at": "2026-08-30T15:39:07.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0ada36596fbce25a607620b055665873111fab565272d0bfefa621d4038bf75",
+    "source_fingerprint": "sha256:1389d01b707a93304567b591261cd18caefeeea22b7ea279dbddf2d564fcd40f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8783fead4b5eb6487fbd79ad299a21459d6737553b444fe45a6d740cb8a42888",
       "plan.md": "ca736345b3ae315b23f2b51ea147699b6c7e143e97f85007cf45625265d2390d",
       "tasks.md": "bb780ed6a7349656629f918c26f3b0f6fdd11dbf8554a99678e1bd8a18737b43",
-      "checklist.md": "db8d20e7c1259f823bf3feaebd6dd87d98987934c00be511fe0f38da4bd5579b",
       "implementation-summary.md": "84e0195d61ad98781ca4c75b2c18241142ee3b3741d4b066984f6ece149c6bb2"
     },
     "last_active_child_id": null,

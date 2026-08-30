@@ -37,10 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts",
-      "mcp_server/lib/storage/consolidation.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,24 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "consolidation.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "n3lite-consolidation.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/causal-edges.ts",
         "source": "derived"
       },
       {
@@ -187,11 +165,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Both",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Remediate the two deep-review consolidation.ts findings deferred from 001 as a structural refactor: the read-only contradiction scan holds the BEGIN IMMEDIATE write lock (blocking other writers ~5s/cycle), and the DB handle is threaded inconsistently (latent atomicity risk). Both on the default-ON weekly consolidation cycle, so they need their own concurrency safety gate.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:45.848Z",
+    "last_save_at": "2026-08-30T15:39:34.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7fd6c019ce518d5dcfcde9ab6ef5d0e736e92491e7049657bfb665ea65402485",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca6cf88480eb4ae9349715f94e09a920ad56d0318057b5f6a82472ab3b4e1538",
       "plan.md": "c4f33b003b34681559b371e99d1f41190015f807dd8254bc00ab55beb18c416f",

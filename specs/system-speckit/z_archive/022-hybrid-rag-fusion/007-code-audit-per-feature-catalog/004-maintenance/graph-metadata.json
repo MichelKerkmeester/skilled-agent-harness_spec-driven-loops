@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -27,20 +26,18 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/api/indexing.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -48,12 +45,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "indexing.ts",
-        "kind": "code",
-        "path": "mcp_server/api/indexing.ts",
         "source": "derived"
       },
       {
@@ -66,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,37 +162,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Both Maintenance",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Maintenance has evolved significantly",
     "created_at": "2026-04-12T09:02:50.246Z",
-    "last_save_at": "2026-07-10T06:24:00.729Z",
+    "last_save_at": "2026-08-30T15:39:38.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6dac3d7cf48f6fcefb78999cb1f8b6438331fe6a4787f92eb7b792deee84ba32",
+    "source_fingerprint": "sha256:3368241fa19ef4d30ba8de02dad9dd514da74fe65852a3994681f412fe9ee199",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0104d4700538c235dd0f3b93c6347fa98f526935913faa0db789cbc602174872",
-      "plan.md": "387cbb2833b3b641b9132070dbfafb062208387a0610eabc1c9ba508ef2192b0",
-      "tasks.md": "fd0f81701b666144c281bdff13468108e8c64b941f114e8a5dba6a8c8622686f",
-      "checklist.md": "0af0cbcb25c141fa79acc4d9142ddb04254912add30f3d1b6bbde6fde6cb2861",
-      "implementation-summary.md": "2136f7070f85f3b178bba75408155dc25a94136b57fd40731743cb0928b6107e"
+      "spec.md": "25e1e3d4bb0e4ef610085f735c4cd8c26b9512a72b09d1e292fde4cfda22a67b",
+      "plan.md": "610fd55c92b4c788da48ad11511abc978a9a29165957d7e3a0d8b801c3376100",
+      "tasks.md": "466ebaddc871db6074e154c2b697d8cda25a8aeea9f471f95cc86aa8c4293ce1",
+      "implementation-summary.md": "9bf26cc15435a2738e5ceae67b978d3fcd12820f58619922095bbb7d474b43ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -19,7 +19,6 @@
       "embeddings.ts:774 dead code removal",
       "022/001 plan",
       "022/001 tasks",
-      "022/001 checklist",
       "022/001 shipped"
     ],
     "key_topics": [
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings.ts",
@@ -71,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +190,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "3 P0 audit findings (f-iter001-001, f-iter001-002, f-iter001-003) from packet 021. profile.ts has 4 inline `||` fallbacks in resolveActiveProfileModel (voyage/openai/ollama/hf-local) — 2 of them contradict ADR-014 (hf-local BAAI is CONFIRMED ACTIVE for CLI scripts; ollama jina is LATENT). embeddings.ts:774 has a parallel `|| 'jina-embeddings-v3'` shadowed by upstream config (DEAD CODE per audit). Phase 001 replaces all 4 profile.ts inline fallbacks with getCanonicalFallback(provider) calls + removes the dead-code fallback in embeddings.ts + ships profile.test.ts ban-list invariant.",
     "created_at": "2026-05-23T13:29:12.045886Z",
-    "last_save_at": "2026-08-29T13:10:01.068Z",
+    "last_save_at": "2026-08-30T15:39:30.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3544a36dd600e6e7e024bfafbdda02655ecaa94d890338a1fb4a41d238f0bf7",
+    "source_fingerprint": "sha256:75dba63e3e4563dd2fc8674cc5a15cef85faad9386d361470e2b27cf784a651e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa4957eb2bd81c1cdc0429eefe63815e6313870049f64931da816e642eb42eba",
       "plan.md": "45969bf54cc69f6c6cde4b44a8fa749227e6f4ae1ad39fa5e483e3022cb0c7a6",
       "tasks.md": "e9d9d931a2ec4fa5f09e18130a318660739fdc0eb83625fcd8b3286b74a340b7",
-      "checklist.md": "542312e3a294db53709e83c5aad44f93ec1d4170cc176f4577b8469ba1fdfb06",
       "implementation-summary.md": "6c53237078ed78ddb403989bddad9fe16675b90f874ba443f27b98c43ce9496e"
     },
     "last_active_child_id": null,

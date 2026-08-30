@@ -34,11 +34,17 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
       ".opencode/commands/memory/save.md",
-      ".opencode/commands/memory/search.md",
-      "spec.md"
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "save.md",
         "kind": "doc",
@@ -49,12 +55,6 @@
         "name": "search.md",
         "kind": "doc",
         "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -96,13 +96,14 @@
     ],
     "causal_summary": "Memory files were using inconsistent anchor formats:",
     "created_at": "2026-04-12T09:02:53.512Z",
-    "last_save_at": "2026-07-10T06:24:46.377Z",
+    "last_save_at": "2026-08-30T15:39:36.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:fa759540ba75c29191c31fc71b933f6a1f4c38c5e014c97a5cb8531035e9efb9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ea70b712f0a7aefb426c9c00dc16931a6aaa502fe8bb6a52f8fc01a766654039"
     },

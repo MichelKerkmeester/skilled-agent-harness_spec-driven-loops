@@ -43,34 +43,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/request-quality-aggregation.vitest.ts",
-      "mcp_server/lib/search/confidence-scoring.ts",
-      "mcp_server/tests/request-quality-aggregation.vitest.ts",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "confidence-scoring.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "request-quality-aggregation.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/request-quality-aggregation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,6 +65,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,11 +180,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Quality Aggregation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The request-quality verdict was gated on `topScore >= 0.7 AND qualityRatio >= 0.6` with the ratio computed over the whole result set",
     "created_at": "2026-06-17T19:57:25.102Z",
-    "last_save_at": "2026-07-17T17:19:41.368Z",
+    "last_save_at": "2026-08-30T15:39:33.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2d329fba227e0aec80367ead66232e62af49eedc578ba26305e35b920b14ce82",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7732b274a42350ce6c5689ca29ce17c403716158e8531a37292b7a9fd84a940f",
       "plan.md": "1f68c413c0c98a9daa20539df6297f2e8125b65929a319ed7219173733312731",

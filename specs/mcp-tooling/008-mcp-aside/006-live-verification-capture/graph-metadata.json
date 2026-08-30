@@ -21,8 +21,8 @@
       "aside discovery tasks",
       "aside fixture tasks",
       "aside live verification tasks",
-      "verification",
-      "checklist"
+      "aside discovery summary",
+      "aside fixture summary"
     ],
     "key_topics": [
       "aside",
@@ -36,7 +36,7 @@
       "flip",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md",
@@ -60,7 +59,8 @@
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/mcp/mcp-transport-and-code-mode.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md"
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md",
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -206,26 +200,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The packet predicted `aside.asiderepl` as THE Code Mode callable and marked it UNCONFIRMED/UNKNOWN in 12 files, because live discovery had never run against the registered manual",
     "created_at": "2026-07-16T12:58:31Z",
-    "last_save_at": "2026-08-29T15:21:53.598Z",
+    "last_save_at": "2026-08-30T15:39:09.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4093290f51cb108d38110563fa2549beb5bc71eff26f4bdfefb3fca91f1243e",
+    "source_fingerprint": "sha256:97d44047d51f24a4f59824171ad8ba88280a7e66f9d3bd28fe456b63f184ab63",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "36839bd5ebb9bd37e0488c19ad348ace83950aadaee445c1c31abf2c11ca4d20",
       "plan.md": "cd5db1f482b4863b99a46e57d33e3cf3c4e8d2246e46d74b3cce8ea26c765148",
       "tasks.md": "31cc89276610eeb3ba541800f928ec840e70cc4d6b2f453e162428731fb51bdc",
-      "checklist.md": "1490fbeaf7ab2f586c0c5d21806048514bb2b248b19a24df65124bb4b7749b14",
       "implementation-summary.md": "194f5d617314579aad23c0f907b1fd37522bf6a7143521ea55816ab07ba87733"
     },
     "last_active_child_id": null,

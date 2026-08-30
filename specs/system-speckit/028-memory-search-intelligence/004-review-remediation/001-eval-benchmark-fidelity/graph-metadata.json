@@ -20,8 +20,6 @@
       "flag eval driver fix plan",
       "028 eval benchmark fidelity tasks",
       "flag eval driver fix tasks",
-      "028 eval benchmark fidelity checklist",
-      "flag eval driver fix checklist",
       "001-eval-benchmark-fidelity implementation summary",
       "028 review remediation eval benchmark fidelity"
     ],
@@ -45,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "tests/retrieval-flag-eval-driver.vitest.ts",
       "database/context-index.sqlite",
@@ -68,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,26 +186,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path, and its trigger-channel ablation is a complete no-op",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-08-29T15:22:23.744Z",
+    "last_save_at": "2026-08-30T15:39:36.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61c85886989ed2bcc7e05615bca30874e6ba0d8187dc1dc2688d92e373039f9a",
+    "source_fingerprint": "sha256:9f30de9c083ebe2b8098e13a2df1207f0fe04716cf2701bcdcbe64495b145d1f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "96355c402b7e124c997be1d3fde08797965a5b8efe3dfd499b568e216dc88b61",
       "plan.md": "be4b761ed6047889f0dc3059fcdc7e9dce077a54e0fbbe1aefb7d6d0d4355269",
       "tasks.md": "d78d5c28507e81a21b2092d954eb30b8dfd33307b7bbbd89defabe0232f44fe3",
-      "checklist.md": "1cdd0f2ba40801607b605e34c4507982201e19af23214503bd5070e8fd648551",
       "implementation-summary.md": "48c884c07e4f33793c65c5085ff14c99db466db5f2c23b30e35eaade1a89dc59"
     },
     "last_active_child_id": null,

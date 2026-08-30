@@ -48,7 +48,7 @@
       "quality"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -98,17 +98,18 @@
     ],
     "causal_summary": "Phase parent for skill graph infrastructure covering metadata quality, structural migration, daemon/advisor unification, and extraction across 7 child packets.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-07-16T16:05:59.221Z",
+    "last_save_at": "2026-08-30T15:39:26.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:cda6a9777ed3a4b445aa2ac4aa641abb68e787385fffaff402dddd3cc2667953",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dcc05dc1bd9b2820b4b76f0c9c0f4d283a05ff1f482afda41863139a79c7b2d1"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-skill-advisor/z_archive/004-skill-graph/001-skill-graph-metadata-routing-boosts",
     "last_active_at": null
   }
 }

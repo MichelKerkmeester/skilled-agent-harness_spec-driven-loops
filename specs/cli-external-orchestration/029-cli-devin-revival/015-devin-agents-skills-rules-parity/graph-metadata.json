@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The user asked to \"scaffold a phase that makes sure cli-cursor and cli-devin have all the agents, commands and skills properly working and supported, like .claude and .opencode have.\" Live investigation during the 5-iteration deep-research pass found a mixed picture for Devin specifically:",
     "created_at": "2026-07-27T06:09:14.024Z",
-    "last_save_at": "2026-08-30T07:18:52.606Z",
+    "last_save_at": "2026-08-30T15:39:07.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,7 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9e26b5a964ffde686c3f5e66591adfd1e280ee2bb72a7180811c1cabecde9a33",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "69cf1def2dee43e6fe96f618efe6965956d9167f60780107220eb6e667f1c0f8",
       "plan.md": "4b417109bbe5a916a7b859570def00b05a4744ffcfc246756ca62d8461be95db",

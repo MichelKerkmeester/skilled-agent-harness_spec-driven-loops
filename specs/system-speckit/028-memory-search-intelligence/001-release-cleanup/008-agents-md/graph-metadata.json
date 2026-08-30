@@ -19,8 +19,6 @@
       "agents-md cleanup plan",
       "028 release cleanup agents md tasks",
       "agents-md cleanup tasks",
-      "028 release cleanup agents md checklist",
-      "agents-md cleanup checklist",
       "008-agents-md implementation summary",
       "028 release cleanup 008-agents-md"
     ],
@@ -33,10 +31,10 @@
       "plan",
       "agents-md",
       "tasks",
-      "checklist",
       "008-agents-md",
       "implementation",
-      "summary"
+      "summary",
+      "root"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,10 +42,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".codex/AGENTS.md",
-      ".claude/CLAUDE.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".codex/AGENTS.md"
     ],
     "entities": [
       {
@@ -69,27 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "AGENTS.md",
         "kind": "doc",
         "path": ".codex/AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "CLAUDE.md",
-        "kind": "doc",
-        "path": ".claude/CLAUDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -189,30 +173,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The root AGENTS.md plus CLAUDE.md runtime-routing mirrors needs a release-readiness cleanup contract before any document edits begin",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:46.468Z",
+    "last_save_at": "2026-08-30T15:39:34.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ff3a992f91d02c369cdf0d214e2b3ff69e975c510f6bb963bdb160e3e48d480",
+    "source_fingerprint": "sha256:bd695513a83ca9347072ba58a8a513fd957e82515ab07ecc8a632166ecd30457",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8fad92dbf8621e8b564c639e96cd31eb53b9ebb2d71b04b99f961e3930f6e395",
       "plan.md": "4384147afc38e231c664671f2a585533ddbeefe3687597565b29f41572f569da",
       "tasks.md": "3492a9c422b0fba899b5444a53ceda966e7f49e5c5ac1a76edcf149be12ad66b",
-      "checklist.md": "e599d003a24fd096f71522acd6a11b1e3124c94392b203bb23bd30c27a0773ba",
       "implementation-summary.md": "3171ad2717468b7166f540a16287aa9601a3479048bc8a5701c62e576921ffd8"
     },
     "last_active_child_id": null,

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The five design commands (`.opencode/commands/design/{interface,audit,foundations,motion,md-generator}.md`) are thin routers: each resolves an execution mode and defers to the `sk-design` hub, carrying routing contracts and sibling discriminators but no generative scaffolding",
     "created_at": "2026-07-19T06:46:18.402Z",
-    "last_save_at": "2026-08-30T07:16:11.343Z",
+    "last_save_at": "2026-08-30T15:39:12.623Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:e4e691bf93640d17076a32dffac940ab971a605aa5989bde5c48ee8987e2bc12",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "56018b16fdb5ae9ad23d62f19a7944040c4b616ae5040e369c66b6715be4dc86",
       "plan.md": "bcb59a70f29dbbe25c8e429fe0453ed011f5a4734ffcdd33f93d1d09b6963190",

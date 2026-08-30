@@ -16,7 +16,6 @@
       "deep-alignment SKILL.md smart routing",
       "deep-alignment doc conformance plan",
       "deep-alignment doc conformance tasks",
-      "deep-alignment doc conformance checklist",
       "deep-alignment doc conformance summary",
       "deep-alignment create-skill conformance summary"
     ],
@@ -31,16 +30,15 @@
       "routing",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "summary",
+      "shipped"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,30 +175,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-alignment skill shipped with its build phases but its authored docs drifted from the sk-doc `create-skill` templates",
     "created_at": "2026-07-13T11:01:03.072Z",
-    "last_save_at": "2026-08-29T13:09:57.418Z",
+    "last_save_at": "2026-08-30T15:39:20.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea7be884db85aaced324d3c04b8e92ab69792d12543127c9141b4f53e345b7b4",
+    "source_fingerprint": "sha256:1b626d16faa46bcfc8ca4da6205451ff6ecbac14d54b7a2a5615cc738758b97a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f4749fa08f0f312d0a9c1745cb69e4b7b44617e79a71f3e89f22fb0c3810d98b",
       "plan.md": "3d9c7f9d672a6dd5559580ab3ff39962ae58231129e4c29da8b022fa8ffbc5c2",
       "tasks.md": "f7b6acdc0719f6ec8e2246f292ef788ddeb072b6d11756a1edb27bab0314d78e",
-      "checklist.md": "c5ce82dc8fe587af035376684a59f5d6363af9965ea31275eecca7ca5cc5e219",
       "implementation-summary.md": "de7f600306fdbcaa3f6564720e2ed455a4598729c7d3eea4fbaae9d09b1e1258"
     },
     "last_active_child_id": null,

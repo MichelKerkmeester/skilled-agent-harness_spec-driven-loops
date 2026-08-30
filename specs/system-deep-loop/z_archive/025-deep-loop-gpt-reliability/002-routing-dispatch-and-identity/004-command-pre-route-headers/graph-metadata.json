@@ -19,9 +19,7 @@
       "gpt role negotiation",
       "plan",
       "command-pre-route-headers",
-      "tasks",
-      "verification",
-      "checklist"
+      "tasks"
     ],
     "key_topics": [
       "resolved",
@@ -40,32 +38,16 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/commands/deep/assets/deep_review_auto.yaml",
-      ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_review_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_ai-council_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_ai-council_auto.yaml",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -81,21 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -183,36 +153,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The research evidence identifies role-resolution overhead as the dominant GPT-slow mechanism",
     "created_at": "2026-06-30T15:15:00Z",
-    "last_save_at": "2026-07-16T16:32:39.672Z",
+    "last_save_at": "2026-08-30T15:39:25.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:efd0c74162813b49daa18dc6265a2d14087a220c0f7d9fc85d4b17158c334c06",
+    "source_fingerprint": "sha256:4db8ccc0e36cdf3d39ad04f50a410c91282fdd6c9f61957df038ad7b40b5af60",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ee2285b6b18be61603ac8a6ebfd6ca71f7dbfe24273894543e85a3e05617d424",
       "plan.md": "0561035cc7f9efd69dc27aca6798eef3b6cf2368a8b3b75298fcf92a99fd644e",
       "tasks.md": "a084585a934aba52b863f8633ff69f9cb70755ea358740590739005c290895e9",
-      "checklist.md": "87ff0251caf8ebd3cc6013487dd08be902ce2b800c0f5793697962cab94ffa63",
       "implementation-summary.md": "62fc17cd352314628f09e4d726df87499c87b818b7e1eaf838c2ecdd3d54faff"
     },
     "last_active_child_id": null,

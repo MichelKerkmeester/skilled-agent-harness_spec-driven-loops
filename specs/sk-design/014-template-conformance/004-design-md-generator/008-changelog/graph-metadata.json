@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:03.095Z",
-    "last_save_at": "2026-08-30T07:16:13.082Z",
+    "last_save_at": "2026-08-30T15:39:13.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:09a64fc0510f74551dda7b3deda9f60a2e5c3c6772509b86990e3d60d2bd9a26",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "78b405bf4b9e4d154fbc12643d4a9029fe1abc5ea26299bc80fb1e400039e993",
       "plan.md": "0d292895d217f1db74bcc9ce83571bdec327620f400a090615745c975c41f04b",

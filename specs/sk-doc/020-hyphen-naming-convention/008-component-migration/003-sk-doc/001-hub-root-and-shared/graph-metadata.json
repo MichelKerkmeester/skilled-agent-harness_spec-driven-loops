@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The sk-doc hub's shared assets, references, and one CommonJS contract file use snake_case filesystem names. This phase applies the 020 kebab-case rule to those non-exempt names while preserving SKILL.md, registry metadata, Python files, facade symlink behavior, and path-versus-key boundaries.",
     "created_at": "2026-07-14T15:17:24Z",
-    "last_save_at": "2026-08-30T07:19:24.434Z",
+    "last_save_at": "2026-08-30T15:39:16.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +203,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:3f990b063d9f77e6dc07ed64141a19d3f8c287e21e2d9f4be08d55735999c181",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0edc11a9896f0cc0c8425cc0c87c4180a5f3f2ace8176468f9ad86db6b67dcab",
       "plan.md": "2db7614591344e745d1977456c57a2afa1098585eb4148a80b3336f49efa6cee",

@@ -15,6 +15,10 @@
       "goal offer dispatch",
       "stale filename assertion",
       "goal_prompt_choice",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "goal dispatch",
       "set string shape"
     ],
@@ -27,10 +31,10 @@
       "stale",
       "filename",
       "assertion",
-      "set",
-      "string",
-      "shape",
-      "speckit"
+      "packet",
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -38,6 +42,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
       ".opencode/commands/speckit/assets/speckit-complete-auto.yaml"
@@ -59,6 +65,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -174,32 +192,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-08-30T04:18:15.665Z",
+    "last_save_at": "2026-08-30T15:39:36.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:707a62c276488a6cfaa81b0f296e0f7e7439d9be86262fa4334aabc090d69699",
+    "source_fingerprint": "sha256:9e18032ea232262ea51f18b650c140457f1ffb57df7be1a1ad94bd99ea3d2196",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b81997d3b2050c26f762f0a95968ce10ea31b6044f0209e466f2d19fceb12830",
       "plan.md": "528390b77f054439e10fb6481822ea3d0da6765fa08fffb013fb9fa466016709",

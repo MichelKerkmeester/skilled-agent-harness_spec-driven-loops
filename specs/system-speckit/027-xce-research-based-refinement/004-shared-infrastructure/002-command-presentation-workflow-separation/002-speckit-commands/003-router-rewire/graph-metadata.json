@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Speckit Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:43.264Z",
+    "last_save_at": "2026-08-30T15:39:33.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,6 +189,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f255e9975c1cf77f56d071418db161c092fe4e63074582eb0a64f6e25f370261",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b76c2c10db505184643d5d6fe0510eb89ea21e3a8c089fc8ea685f38dfec0ac2",
       "plan.md": "1f9159e374297f02725bdbaef849cbb884a5afafa5e8e6969bad79efbee4ca73",

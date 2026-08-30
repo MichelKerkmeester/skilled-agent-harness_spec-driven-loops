@@ -19,7 +19,10 @@
       "spec kit template optimization",
       "acceptance criteria template",
       "spec doc closure gate",
-      "level 2 3 3+ template contract"
+      "level 2 3 3+ template contract",
+      "033 goal prompt",
+      "spec kit template optimization goal",
+      "acceptance criteria goal"
     ],
     "key_topics": [
       "spec",
@@ -33,23 +36,37 @@
       "gate",
       "level",
       "contract",
-      "spec-kit"
+      "goal"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "templates/spec-kit-docs.json",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       "scripts/lib/validator-registry.json",
-      "002-acceptance-criteria-template/decision-record.md"
+      "002-acceptance-criteria-template/decision-record.md",
+      "001-spec-template-context-optimization/goal.md",
+      "002-acceptance-criteria-template/goal.md",
+      "003-restore-level-upgrade-and-vocabulary-invariance/goal.md",
+      "004-checklist-deprecation-closure/goal.md",
+      "templates/addons/acceptance-criteria.md.tmpl",
+      "scripts/rules/check-ac-closure.sh",
+      "scripts/spec/upgrade-level.sh"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -62,6 +79,24 @@
         "name": "validator-registry.json",
         "kind": "config",
         "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "check-ac-closure.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-ac-closure.sh",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level.sh",
+        "kind": "script",
+        "path": "scripts/spec/upgrade-level.sh",
         "source": "derived"
       },
       {
@@ -99,17 +134,49 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Operator Goal",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Progress Updated",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "version",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit document templates carry two unresolved costs",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-30T04:17:58.821Z",
+    "last_save_at": "2026-08-30T15:39:36.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:a6c3ec7b1146f1346c5962e97e82abf5a6d38e7d1384eb33e240c55dd9e50395",
+    "source_fingerprint": "sha256:4ffa9f101ecce83845f1c28719207efddfe12455676c2128eb7217f6d0d686ff",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8da74987e00e9b9a2114b06793bfa97fe3239a0b7670df1454fdca517e295861"
     },

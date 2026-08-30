@@ -18,8 +18,6 @@
       "atomic projection bundle plan",
       "transactional projections tasks",
       "atomic gauges tasks",
-      "transactional projections checklist",
-      "atomic gauges verification",
       "transactional projections implementation",
       "atomic projection verifier evidence",
       "projection generation rebuild summary"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/transactional-projections/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts"
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,36 +174,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan deterministic transactional projections that apply each verified ledger event atomically across dashboards, registries, claim tables, and stream-fold gauges, with idempotent resume and isolated replay rebuilds.",
     "created_at": "2026-07-16T03:43:52.461Z",
-    "last_save_at": "2026-08-29T13:09:51.347Z",
+    "last_save_at": "2026-08-30T15:39:20.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7be2770ce2771cb3fb49d6df0d33708d3b7f47d911926a8ab23c8ae95173d183",
+    "source_fingerprint": "sha256:cf4d5d84600da557878d69c8c05e1c23090b76157d02d482c8071a45bf4b2df5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "72253dd88dad422e7c3dd14f127d9719f0ad4ba402b0700943ba8d65bf27705e",
       "plan.md": "db549b597a42e456b2a5ce3ddcbbfdba99aa6ab9a9a17b62ae295aa7c6ed44b4",
       "tasks.md": "c9f7378eb4b6e9dd705f0d60eeea99eb696796e2caafe102376cca762947836e",
-      "checklist.md": "caaa7fd34bfc68c6bcb58fbfaf8b6f39f577f7bfcd15f0a1f30d14fc008a5f1c",
       "implementation-summary.md": "29aff8439535d6409da229dc44d2196b9f52c4b91312d18ec95cb1952b8ca216"
     },
     "last_active_child_id": null,

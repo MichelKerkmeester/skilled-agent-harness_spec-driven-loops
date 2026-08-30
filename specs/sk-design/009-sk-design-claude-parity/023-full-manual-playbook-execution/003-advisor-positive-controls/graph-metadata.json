@@ -18,11 +18,10 @@
       "advisor positive controls dispatch plan",
       "tasks",
       "wave 003 tasks",
-      "verification",
-      "checklist",
-      "wave 003 checklist",
       "implementation",
-      "summary"
+      "summary",
+      "wave 003 implementation summary",
+      "advisor positive controls dispatch summary"
     ],
     "key_topics": [
       "wave",
@@ -34,9 +33,9 @@
       "dispatch",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "defines"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,31 +155,31 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Ran",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +187,21 @@
     ],
     "causal_summary": "`AI-001: Positive Design Controls` defines a single 6-probe battery (P1-P6) verifying that the advisor picks the single public `sk-design` identity — never a child mode as a separate identity — for every positive design-family prompt, and that the hub then resolves each probe to its documented `workflowMode` and packet",
     "created_at": "2026-07-07T15:17:02.203Z",
-    "last_save_at": "2026-08-28T15:53:09.630Z",
+    "last_save_at": "2026-08-30T15:39:12.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d6c6c9d8ec59ca2eb77f13445b0d0f4c1687178ce9ee4addad5b8a3fb62c883",
+    "source_fingerprint": "sha256:0962917882a62ac31c1450df89c170ddf3ce4642862f0525d13301cf1e25e494",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "31ffaf6d9310da512226873da32e3c694974994556bef2c580248fcfba31629b",
       "plan.md": "999e029892aa4cd450e9b9a272b3d8d8d3d102d4994d198acf6864aedf9564f5",
       "tasks.md": "fe0ee130e0c3fed3507ebaca28ed4b1df7259aa25034151a5c490d5d1db98d94",
-      "checklist.md": "28210780fb52fe134c1743d42bfa807235d169fef428d96862ddbe365efc59e3",
       "implementation-summary.md": "dc09997845a9b7a9b2997807d5331ea1d67decad33469c59de8d48fdc24006fc"
     },
     "last_active_child_id": null,

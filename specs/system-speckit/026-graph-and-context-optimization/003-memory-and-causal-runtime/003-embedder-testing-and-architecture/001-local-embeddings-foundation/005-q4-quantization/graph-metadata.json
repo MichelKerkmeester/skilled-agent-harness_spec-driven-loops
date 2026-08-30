@@ -200,7 +200,7 @@
     ],
     "causal_summary": "HfLocalProvider hardcodes `dtype: 'fp32'` in the `@huggingface/transformers` `pipeline()` call",
     "created_at": "2026-05-12T16:27:49Z",
-    "last_save_at": "2026-08-29T15:22:13.894Z",
+    "last_save_at": "2026-08-30T15:39:29.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T21:40:00Z",
     "source_docs": [
@@ -210,6 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ec4a229ced5ef320bb2953bf2cafc38f7b8b50b67045ec736b9281528d89030a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "02dbe64da887db48f0e21839034bbde87b32d0458bcfcb765a2e77eebe32f094",
       "plan.md": "672c8e6fa51044f1b82013c2afaabeececdcc6dcbf58913fd27c3d6bd41cc107",

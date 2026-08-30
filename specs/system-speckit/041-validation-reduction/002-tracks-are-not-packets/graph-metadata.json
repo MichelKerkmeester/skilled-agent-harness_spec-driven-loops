@@ -184,7 +184,7 @@
     ],
     "causal_summary": "A track directory stops being graded as though it were a packet.",
     "created_at": "2026-08-29T17:34:28.731Z",
-    "last_save_at": "2026-08-29T17:34:28.731Z",
+    "last_save_at": "2026-08-30T15:39:36.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:399427caabfa05da72de071c127fc45cf0b003bf9dad86c2fbcb04703a969f34",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7efdda81ac98c3329218fc857552638c85aa715808b104d2a28245471e46ea98",
       "plan.md": "06dbd4898db39167093d69f9c72b3562fd419ae6385adb23a5641943de0deaf2",

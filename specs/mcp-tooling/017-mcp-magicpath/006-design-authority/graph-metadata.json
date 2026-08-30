@@ -18,11 +18,11 @@
       "design authority plan",
       "unconditional skill pairing design",
       "design authority tasks",
-      "crosshubpairing must stay empty",
-      "magicpath design authority adr",
-      "judgment registry missing",
-      "mcp-magicpath design authority shipped",
-      "unconditional sk-design pairing"
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
+      "crosshubpairing must stay empty"
     ],
     "key_topics": [
       "magicpath",
@@ -44,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-magicpath/SKILL.md",
@@ -76,6 +77,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -197,27 +204,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The packet declined to issue design judgment and said so plainly: \"this packet is a read-only transport and issues no such verdict.\" That sentence is correct about ownership and wrong about what happens next",
     "created_at": "2026-08-29T17:22:35.306Z",
-    "last_save_at": "2026-08-29T17:36:54.559Z",
+    "last_save_at": "2026-08-30T15:39:10.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d616c29ed1c5705c4ec7bc94813a9fe61600a0698bbee97535c53cc6da7454c7",
+    "source_fingerprint": "sha256:963ed949f01a7b2eca87665e75b0e3ca8942f496d4a9517e914d6181e8d6523d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a443752ca21322827a67ab54992a3b06109a44107705a9fc3f57b973f4f4e99b",
       "plan.md": "9b6cf8849cbe5eed67231b38f8554ab1cf44f2b5b152c2eb6a8c4f50247c41bf",

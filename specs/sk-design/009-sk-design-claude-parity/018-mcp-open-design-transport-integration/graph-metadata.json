@@ -19,10 +19,10 @@
       "design-mcp-open-design integration plan",
       "tasks",
       "phase 018 tasks",
-      "verification",
-      "checklist",
-      "phase 018 checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "phase 018 implementation summary",
+      "design-mcp-open-design integration summary"
     ],
     "key_topics": [
       "design-mcp-open-design",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/graph-metadata.json",
       ".opencode/skills/sk-code/mode-registry.json"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +182,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The operator physically moved and renamed `.opencode/skills/mcp-open-design/` to `.opencode/skills/sk-design/design-mcp-open-design/` via a raw `mv` (outside git)",
     "created_at": "2026-07-07T07:42:15.977Z",
-    "last_save_at": "2026-08-29T15:21:59.411Z",
+    "last_save_at": "2026-08-30T15:39:12.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0bfb7e1f62232b7c6819866512976525b6c58029ef8d9298cdb145ab52048f58",
+    "source_fingerprint": "sha256:57486efec0acf5ff9e011202da735aa75b8d74f66f9fd5437647f18154401717",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d3254710bf13f113f461983b30328f7c49b33bdca4a48d7dc01d65dd7ddb5bd",
       "plan.md": "aaa9371574796e822be480c6b4f7d2ca11768e92e5ee3f0423420b8faf61d138",
       "tasks.md": "e0d7eb0f9860921d6364168948be393639b970b5cefc2101bbcfecbcfee5c942",
-      "checklist.md": "8c4ba98aceb373432394fa4f749fea56f1b6f3c9df5bfc90c78dc36afb3ed8af",
       "implementation-summary.md": "9fd94009c15a5b73bbfefff32aaf1e35d055a16bcbf2476bfeed5c161095c8a0"
     },
     "last_active_child_id": null,

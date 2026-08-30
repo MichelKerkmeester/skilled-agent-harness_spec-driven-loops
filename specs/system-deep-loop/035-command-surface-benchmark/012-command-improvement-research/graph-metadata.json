@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Runs a two-lineage deep-research fan-out over the 066 benchmark findings and the create-command authoring canon, producing a prioritized cross-model improvement backlog for create-command and every OpenCode command that uses the defined templates and routing logic, ready to seed follow-on remediation packets.",
     "created_at": "2026-07-16T05:38:36.268Z",
-    "last_save_at": "2026-08-30T07:16:23.418Z",
+    "last_save_at": "2026-08-30T15:39:20.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:de3acdb023f536cffba46e2b63b6f32e3489d3b61540839e624a9ed2c172c5e6",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "91b9ae81cc43eada3f405ba3c056af9ce4b9115e232b1a062d4bc351f6230be5",
       "plan.md": "e44d0d71a4ea8a41f0569d5887ae747403f33711a449c28da27a7ec1fb002ddd",

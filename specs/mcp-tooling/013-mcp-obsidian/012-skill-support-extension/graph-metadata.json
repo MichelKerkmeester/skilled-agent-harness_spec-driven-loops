@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phase 11 put health-md in every vault, but the `mcp-obsidian` mode knows nothing about it",
     "created_at": "2026-08-03T08:46:10.530Z",
-    "last_save_at": "2026-08-29T15:21:54.041Z",
+    "last_save_at": "2026-08-30T15:39:10.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a4a15eb83ed0579515b0d338fa17f7f7cb848a4c719e64472005101f1fd3aa07",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a177a2755865e3c806d4e8e3d7aff2a73c63932e486e3f742abd5b0956c431f8",
       "plan.md": "b9a5b36f970098d6e7c8b8bd691dd5d60f52fea7b6f1004fe8ed1b6a2aff12ca",

@@ -17,7 +17,6 @@
       "spec kit relocation plan",
       "system-spec-kit workflows",
       "spec kit relocation tasks",
-      "spec kit relocation checklist",
       "spec-kit relocation summary"
     ],
     "key_topics": [
@@ -31,53 +30,24 @@
       "plan",
       "workflows",
       "tasks",
-      "checklist",
-      "spec-kit"
+      "spec-kit",
+      "summary"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/references/workflows/spec_folder_write_recipe.md",
-      ".opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md",
-      ".opencode/skills/sk-code/code-quality/SKILL.md",
-      ".opencode/skills/sk-code/shared/references/smart_routing.md",
-      ".opencode/skills/sk-code/description.json",
-      ".opencode/skills/system-spec-kit/SKILL.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
-        "name": "spec_folder_write_recipe.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/workflows/spec_folder_write_recipe.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_folder_authoring_checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-quality/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "smart_routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/description.json",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -93,21 +63,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -193,26 +163,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Document Moves",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inbound Reference Updates",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two spec-folder authoring docs lived under sk-code, but spec-folder authoring is system-spec-kit's domain, not a code surface",
     "created_at": "2026-07-05T04:34:33.564Z",
-    "last_save_at": "2026-07-07T17:16:29.283Z",
+    "last_save_at": "2026-08-30T15:39:10.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ad6fc2c2618f08d2ed147559b9f73f2bf279a6828a03f0d7d369eb8f745c4e1",
+    "source_fingerprint": "sha256:b96b28a1e7129a0e997dcbdfe535ff88c7a7df63eafead9b9cbd0ebd61b05c51",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d99265ebdc94ae2be71023fdaff4e414ae89c79c7be95c4595805b73b102eb5",
       "plan.md": "b49090e742b832ce2d550c4bca9ea82741b4987c3d3eec95e7a7ae60b6c66c3c",
       "tasks.md": "6b41c3152e19bd273f844b8a35636516012f6876533ca4ea0637fa73d00d59d0",
-      "checklist.md": "00566b86a114f6a581f1ff0c2d6492f803e42e48e927d5eb592f42b02e329fee",
       "implementation-summary.md": "c45d4a3483f4c5ae60d4be3af3d9459e9be85f4212ac364d44d93423c25ee7ba"
     },
     "last_active_child_id": null,

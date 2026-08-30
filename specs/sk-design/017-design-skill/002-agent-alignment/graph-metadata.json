@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The `design` agent was written when extraction was the only surviving design capability",
     "created_at": "2026-08-28T10:46:56Z",
-    "last_save_at": "2026-08-29T15:22:00.364Z",
+    "last_save_at": "2026-08-30T15:39:13.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:aaab6237002bbe7dfc420a338a3f92d0716db321aa48ed0da5d030a9ac7439b9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eac3a30c98d551d10c2492734fe01d7fec073aa5f557c6ebeb007d7a9413bdbe",
       "plan.md": "8f8d8246f6d4e6c3361bb6273ad7d77a6768e5188cbfb1c28234108319905611",

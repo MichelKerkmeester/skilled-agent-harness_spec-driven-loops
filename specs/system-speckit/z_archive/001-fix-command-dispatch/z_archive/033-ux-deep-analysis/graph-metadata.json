@@ -20,9 +20,7 @@
       "033",
       "fix",
       "plan",
-      "tasks",
-      "verification",
-      "checklist"
+      "tasks"
     ],
     "key_topics": [
       "deep",
@@ -33,18 +31,17 @@
       "spec",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "skill",
-      "server"
+      "server",
+      "commands",
+      "need"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -160,55 +151,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Analysis Phase",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Synthesis Phase",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Documentation Phase",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Phase",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Memory Skill, Memory Server, SpecKit Skill, and Commands need comprehensive UX analysis for public repo readiness",
     "created_at": "2026-04-12T09:02:53.523Z",
-    "last_save_at": "2026-07-10T06:23:21.547Z",
+    "last_save_at": "2026-08-30T15:39:37.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:ce056f51fa59167d358e505cb886e8e60e187efcf7c37f0e212d144121b8c26a",
+    "source_fingerprint": "sha256:bf3bc6f0591d8a28604fbbad594b5fdf339f4e6600071280bfa81ee5465f5f30",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "39ce22178ff9ce0cc431d4f05927b7356288ac3fbf0bc9662bb1538fd9da47b7",
       "plan.md": "de16aaa40cd73cb9fac6d592a95f837138c757f32da8d2854a98e9c856e59457",
-      "tasks.md": "66bc68c2dc1ed10eb1b5c9fcf740031e628017f303dadb5c429668db8d5df164",
-      "checklist.md": "59d1dce3124cc30422f07148a2d8e6af8f589e5b2f9f260137f671e58f27b555"
+      "tasks.md": "66bc68c2dc1ed10eb1b5c9fcf740031e628017f303dadb5c429668db8d5df164"
     },
     "last_active_child_id": null,
     "last_active_at": null

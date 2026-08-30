@@ -20,9 +20,9 @@
       "phase 20 tasks",
       "sk-code rename tasks",
       "code prefix rename tasks",
-      "phase 20 checklist",
-      "sk-code rename checklist",
-      "code prefix verification"
+      "phase 20 implementation summary",
+      "sk-code rename summary",
+      "code prefix rename summary"
     ],
     "key_topics": [
       "sk-code",
@@ -34,8 +34,8 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
+      "implementation",
+      "summary",
       "two-axis"
     ],
     "importance_tier": "high",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-code/mode-registry.json",
       ".opencode/skills/sk-code/hub-router.json",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the phase 013 two-axis restructure, four sk-code sub-skills kept bare folder names — `review`, `webflow`, `opencode`, `animation` — while the four workflow-mode packets already carried the `code-` prefix (`code-implement`, `code-quality`, `code-debug`, `code-verify`)",
     "created_at": "2026-07-05T14:37:02.169Z",
-    "last_save_at": "2026-08-29T15:21:56.194Z",
+    "last_save_at": "2026-08-30T15:39:10.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db89bedba8e1a944524e3c238b574a96428a8c11b43ff8a16531fb5590738006",
+    "source_fingerprint": "sha256:e725972f6f7ec2d8ceb1c0b79dcabad38c3df2eb026c1e5f7e77cbd9db7a4d07",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a046abd1991fa7484eb78c62534280f278c371b32e343b817ab802b87a3282e",
       "plan.md": "9704b335b8baef092ccf163346859e4205e800cb62523496dc94988753e626e5",
       "tasks.md": "7720c55a7510790a0c28be4f866646657f0b7b944c2a62efb84fa99bb67c01d2",
-      "checklist.md": "34a66469a51b65342f8487cdd7b1a9a237886c9e19ad065e80a8717d6cc934ee",
       "implementation-summary.md": "29f342b73881c695bfce4411ee3a72a94be941f802e9b87159a653ca8ae39a15"
     },
     "last_active_child_id": null,

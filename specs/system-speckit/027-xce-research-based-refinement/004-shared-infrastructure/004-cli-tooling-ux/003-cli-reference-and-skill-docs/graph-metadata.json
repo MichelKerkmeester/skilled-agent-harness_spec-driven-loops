@@ -36,28 +36,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-skill-advisor/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "daemon_cli_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -80,6 +66,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -189,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The daemon CLI documentation is accurate but scattered",
     "created_at": "2026-06-10T20:46:28.785Z",
-    "last_save_at": "2026-07-17T17:19:44.229Z",
+    "last_save_at": "2026-08-30T15:39:34.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1af1553a39c0e24e0cfcadf611f8aae7d972e28bddb9a6ceebaa41a93d74ff40",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "de47a50b498f4c4fd30ab0f21a00c8913c42a80e677a44210731705d58f02876",
       "plan.md": "abeca2a3a009c82628a1d4ecb8a6a542da20e53a3217e3397685c3eebfa86ce4",

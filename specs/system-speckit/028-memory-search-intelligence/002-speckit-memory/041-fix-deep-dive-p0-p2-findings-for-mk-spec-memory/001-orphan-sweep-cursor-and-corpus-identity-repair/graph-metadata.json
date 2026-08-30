@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "tests/orphan-sweep-corpus-repair.vitest.ts",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -185,37 +178,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Path Rows Are Drain",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Deprecate",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`handlers/memory-index.ts:684` calls `sweepOrphanIndexRows({ limit: 200 })` with no cursor; the function defaults cursor=0 and returns `nextCursor`, which is echoed in scan results but never persisted or fed back, so every scan re-checks the same ~200 lowest-id rows forever (report §2 Chain B; ledger L2, live-verified 🟢)",
     "created_at": "2026-07-03T09:44:17Z",
-    "last_save_at": "2026-08-29T15:22:22.302Z",
+    "last_save_at": "2026-08-30T15:39:35.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64c12cc17397e985804510492e38b94a4c9074daf36a38bd6cd7341262e1290a",
+    "source_fingerprint": "sha256:e7c58b284be34db777071f2c0f22102e81b38feefe3c1c2fd249c7cd90aed7c3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "de7090e9aaf2f286b2688a94dca45ed9cf4ecaf428354816f1a26db744e83719",
       "plan.md": "b8a32d10ce5dc939145d47da3adf544a1d7b4d3fcddfbbe01c66cecac3f8421d",
       "tasks.md": "64a440693501e357e2a4d94a0141ace94b5ec8c2e0a44807f7c7a989e365c0f0",
-      "checklist.md": "06744174c8cd5cc20eeba47ca6fc5fa6c68e9fac927a4fce814410fadbc4db39",
       "decision-record.md": "79570294b383195e215a6d7849d58edb1910c17c7e7c402010391c2c5e02adaf",
       "implementation-summary.md": "01422bcf48bdca23f48d48df06a5fd82d328c866121c2157d60b62da0c8770ad"
     },

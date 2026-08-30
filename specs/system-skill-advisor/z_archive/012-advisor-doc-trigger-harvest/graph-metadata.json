@@ -21,8 +21,8 @@
       "doc trigger scoring integration",
       "advisor doc harvest tasks",
       "skill_docs task list",
-      "advisor doc harvest checklist",
-      "skill_docs verification"
+      "advisor doc harvest summary",
+      "matchedDocs shipped"
     ],
     "key_topics": [
       "advisor",
@@ -41,60 +41,16 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/doc-frontmatter.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/derived.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-doc-harvest.vitest.ts",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      ".github/workflows/skill-doc-frontmatter.yml",
       "spec.md",
       "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/watcher.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-      ".claude/mcp.json",
-      ".codex/config.toml",
       "tasks.md",
-      "handover.md"
+      "implementation-summary.md",
+      "handover.md",
+      ".github/workflows/skill-doc-frontmatter.yml",
+      ".claude/mcp.json",
+      ".codex/config.toml"
     ],
     "entities": [
-      {
-        "name": "doc-frontmatter.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/doc-frontmatter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph-db.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
-        "source": "derived"
-      },
-      {
-        "name": "derived.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/derived.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-doc-harvest.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-doc-harvest.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "skill-doc-frontmatter.yml",
-        "kind": "config",
-        "path": ".github/workflows/skill-doc-frontmatter.yml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -108,9 +64,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -120,15 +76,15 @@
         "source": "derived"
       },
       {
-        "name": "watcher.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/watcher.ts",
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "name": "skill-doc-frontmatter.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-doc-frontmatter.yml",
         "source": "derived"
       },
       {
@@ -141,18 +97,6 @@
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -202,27 +146,74 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Make",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Flag",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Python Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The frontmatter-benefit investigation (`027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/001-frontmatter-benefit-investigation`) proved with code evidence that the detailed frontmatter block (`triggerphrases`, `importancetier`, `contextType`) carried by 103 of 369 skill reference/asset docs has zero runtime consumers: Spec Kit Memory's index gate (`memory-parser.ts` `isIndexablePath`) admits only spec documents and constitutional memories; the skill advisor compiles only each skill's root `graph-metadata.json` (`skillgraphcompiler.py`, `indexSkillMetadata`,",
     "created_at": "2026-06-11T07:50:07Z",
-    "last_save_at": "2026-07-16T16:06:01.772Z",
+    "last_save_at": "2026-08-30T15:39:27.201Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e41615f4c5ab3831e1e36fdcadde30ad3837b414f2a570df1b55feee8a1d5b59",
+    "source_fingerprint": "sha256:420b6d47111f5a58c6a3988bc8443cd79b5273fcd4959977c5ccb17f7f1c8528",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7582b506b11fd46794a580d13131aec269df2790df4b7a57af55fbc894105f2",
       "plan.md": "c1ade55d9237cafe1cbfce057d9b5254a70b4059b4cf9756aaab6617a3862e89",
       "tasks.md": "772b02e16448bcb505574e2631e0d076f77214a83385ef1ecfa39e9005a8f75b",
-      "checklist.md": "357817e87eb26eecf756f61340719558f704cdb0bfcf2467ff2f723f0388c453",
       "implementation-summary.md": "a074696dec156febee41a7c304fa569fee0caac15b249843424351376ebbedac",
       "handover.md": "142ef303d4a3924498c3ebfa2170ff215181b139a33e22c2b82731ef3cd649cc"
     },

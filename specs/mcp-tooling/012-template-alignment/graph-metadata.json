@@ -22,7 +22,7 @@
       "template alignment tasks",
       "deep alignment audit tasks",
       "mcp docs remediation",
-      "template alignment checklist"
+      "template alignment summary"
     ],
     "key_topics": [
       "mcp",
@@ -41,34 +41,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/mcp-tooling/012-template-alignment/alignment/alignment-report.md",
-      ".opencode/specs/mcp-tooling/012-template-alignment/implementation-summary.md",
-      "scripts/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/mcp-tooling/012-template-alignment/alignment/alignment-report.md",
+      ".opencode/specs/mcp-tooling/012-template-alignment/implementation-summary.md",
+      "scripts/README.md"
     ],
     "entities": [
-      {
-        "name": "alignment-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/012-template-alignment/alignment/alignment-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/012-template-alignment/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "scripts/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,9 +69,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": ".opencode/specs/mcp-tooling/012-template-alignment/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/012-template-alignment/alignment/alignment-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -194,26 +187,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The new `mcp-aside-devtools`, `mcp-refero`, and `mcp-mobbin` packet documentation had drifted from the canonical create-skill reference and asset templates and from the create-readme code-folder README template",
     "created_at": "2026-07-17T06:26:56Z",
-    "last_save_at": "2026-07-17T08:14:18.091Z",
+    "last_save_at": "2026-08-30T15:39:10.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51969b9cb12a859bef49abc06300dca7df5d0fcb4cc906924c65b1493af3ff0c",
+    "source_fingerprint": "sha256:1085ccb8508f3c3a8a6b0b5d1e3312515ad25dbd1a302fe49ca4a054ef472477",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61cc8e0441f76e9e5aa8dfa54f5eb778455a2c5cd1b55b674d1bdd00682d6b3a",
       "plan.md": "dbddd0296d8e9ef5162ce8fcad0dd41d4ce89066c89d5bb09ff73af995839c01",
-      "tasks.md": "1d0925aa2578176a0c062c05b4b3fffd1920523f78cdb863dfb7f820c27805f7",
-      "checklist.md": "5cc835f0c356b0ab5cf5d3cd8d85ab16472493803d2e8ca56d559891390d77b1",
+      "tasks.md": "58b93b11408c3caa885bc820f5303781a90f6958faef903411d9299fdb341c3b",
       "implementation-summary.md": "13f23ef53008cc4d7f306048ca1342550ff29198fb19f92aa708a9e78727ffda"
     },
     "last_active_child_id": null,

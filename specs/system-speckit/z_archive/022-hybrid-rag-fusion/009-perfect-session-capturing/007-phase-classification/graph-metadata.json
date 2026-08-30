@@ -19,8 +19,6 @@
       "implementation",
       "plan",
       "tasks",
-      "verificatio",
-      "checklist",
       "summary",
       "classification"
     ],
@@ -32,16 +30,19 @@
       "implementation",
       "plan",
       "tasks",
-      "verificatio",
-      "checklist",
       "summary",
       "classification",
-      "conversation"
+      "conversation",
+      "handling",
+      "previously"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/utils/phase-classifier.ts",
       "scripts/extractors/conversation-extractor.ts",
       "scripts/utils/tool-detection.ts",
@@ -51,17 +52,31 @@
       "scripts/tests/phase-classification.vitest.ts",
       "scripts/tests/test-scripts-modules.js",
       "scripts/lib/flowchart-generator.ts",
-      "scripts/tests/test-extractors-loaders.js",
-      "plan.md",
-      "implementation-summary.md",
-      "tasks.md",
-      "checklist.md"
+      "scripts/tests/test-extractors-loaders.js"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -125,30 +140,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specific",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,27 +192,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Conversation phase handling previously lived in a keyword-precedence ladder that favored early matches over richer context, so ambiguous exchanges like \"grep in debug output\" could resolve to Research instead of Debugging",
     "created_at": "2026-04-12T09:02:50.271Z",
-    "last_save_at": "2026-07-10T06:24:01.913Z",
+    "last_save_at": "2026-08-30T15:39:38.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e1f4f1e6ec0831496afcfe8a714fa109a9ab8fb802c931e580363c1f25b7b84",
+    "source_fingerprint": "sha256:d0be328df17603ff73c37f80c95aec7b44e55953f56df3791be4d180a5955563",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c412e39a5258a63b4919db19ea97f29f43113997ab1f0dfd7d2ca53759353d5",
-      "plan.md": "949ecbeeca1b25cf158cbc70f9a75e8e926f8bd12fc8da5feed3ad1b3d192bed",
-      "tasks.md": "66d6108bc5e95a9452d1981329a6014b4b2f2692860f8112f2ae7e8cf4876060",
-      "checklist.md": "3de8dc7863b1e460e7c419f54b64e42376b5828bed5b77292fa16fbd306340e4",
-      "implementation-summary.md": "35a60e112bdf2c29c5a7eaa0565726f8b5496757d9781b6352259588855ac857"
+      "spec.md": "bbc22317d8ff067277e0c3e180a422ada23bc8af4c6ea12899cf316b3185aec4",
+      "plan.md": "a4a8cc534b07b2ecc368b37bb0c6fc70fdc6b1f92c1ef4090161c9894cf6faa8",
+      "tasks.md": "0e96db6c7039c95c643c392fdd79f4561c1810424b9a0a6523edac968865bf5e",
+      "implementation-summary.md": "5a95ab8033098003d49178c0f3477efe9e97832dbcbc6f7cc96f133e3a13eb3f"
     },
     "last_active_child_id": null,
     "last_active_at": null

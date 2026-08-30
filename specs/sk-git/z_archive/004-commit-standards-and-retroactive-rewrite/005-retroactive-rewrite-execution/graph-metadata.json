@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 2,795 HEAD commits do not follow the standard locked in Phase 002",
     "created_at": "2026-07-15T04:22:53.600Z",
-    "last_save_at": "2026-07-15T04:22:53.600Z",
+    "last_save_at": "2026-08-30T15:39:18.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:edaa080af99779e5256a0d4140adc730cfec9ecdd232db7f1d6623578ebab303",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "84904e065c84089e320d8f78ae86affad03fc00b90b2fc69e6f9d791b6adc73f",
       "plan.md": "ec3ec0b8bfd02ff2749d653d2a665194f0ab58cbabe5b085940728075fefb9fd",

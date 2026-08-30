@@ -18,8 +18,6 @@
       "authority cutover policy plan",
       "transition versioning rollback policy tasks",
       "event upcaster cutover contract tasks",
-      "transition versioning rollback policy checklist",
-      "authority cutover contract verification",
       "transition policy implementation summary",
       "typed event policy ratification evidence",
       "rollback policy completion receipt"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "transition-versioning-and-rollback-policy.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -166,54 +157,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Parent Sequencing Invariants",
+        "name": "What Was Built Program",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Ratified Policy Contract",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Freeze the event-envelope versioning and upcaster contract, deny-by-default transition authorization, per-mode authority cutover, and rollback-window policy before any typed event writer exists.",
     "created_at": "2026-07-16T03:43:45.134Z",
-    "last_save_at": "2026-08-29T15:22:06.516Z",
+    "last_save_at": "2026-08-30T15:39:20.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:588abe98b72fd769d5bc09ac01e490d1d93d83722f4bea8c622e08776cca600b",
+    "source_fingerprint": "sha256:6387a86995f970269c5a2c376df55c59b119c6d96db6be958a6eebc96f8b4828",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7fb6a01dc0cf1f4330119c3bf19fb3377e95edfb0eb552fc276787bbf928883d",
       "plan.md": "0e16682bedac7a9291d6807d0ab73c39e26f918cd11167d6afc5aace69704c43",
       "tasks.md": "df6a3e46be7e278c421ae2b8bdfe60af218eb66aadfcb2c4247089a34e372852",
-      "checklist.md": "0fe80a0f266a6ff8b99e02454e81dd34603bb090f0ac77b792edabca20b3757c",
       "implementation-summary.md": "f8a24b4e100c8e1986799637e6db057e665ad8a0c5ad19a94a836e483f01694d"
     },
     "last_active_child_id": null,

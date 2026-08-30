@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/011-skill-advisor-cli/003-runtime-integration",
-  "spec_folder": "system-skill-advisor/011-skill-advisor-cli/003-runtime-integration",
-  "parent_id": "system-skill-advisor/011-skill-advisor-cli",
+  "packet_id": "system-skill-advisor/z_archive/011-skill-advisor-cli/003-runtime-integration",
+  "spec_folder": "system-skill-advisor/z_archive/011-skill-advisor-cli/003-runtime-integration",
+  "parent_id": "system-skill-advisor/z_archive/011-skill-advisor-cli",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -42,78 +42,22 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
-      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
-      ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
-      ".opencode/commands/doctor/assets/doctor_skill-budget.yaml",
-      ".opencode/skills/system-skill-advisor/SKILL.md",
-      ".codex/hooks.json",
-      ".codex/config.toml",
-      ".claude/mcp.json",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".claude/settings.local.json",
+      ".codex/hooks.json",
+      ".codex/config.toml",
+      ".claude/mcp.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-cli-fallback.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "user-prompt-submit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-bridge.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_skill-advisor.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_skill-advisor.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_skill-budget.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_skill-budget.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
@@ -132,6 +76,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-fallback.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
@@ -199,11 +185,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor brief sits on the prompt-submit critical path in every runtime; pairing it with the CLI must respect the measured budget — the one-shot native bridge (824.8ms) stays banned",
     "created_at": "2026-06-06T14:45:18Z",
-    "last_save_at": "2026-07-15T11:59:31.392Z",
+    "last_save_at": "2026-08-30T15:39:27.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c243fc569be934911d9cd4c0febe6faf22593ed03febfc74cb50ec2eec2a7bfa",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "47a3dbf281ee080fb497fce53a4230f2a84ae54d323c6f0d1b32a331e5e3768f",
       "plan.md": "54dbbd4f023afd1799652ed6f01eea0c9760607b2b15703f8b1887779dee9831",

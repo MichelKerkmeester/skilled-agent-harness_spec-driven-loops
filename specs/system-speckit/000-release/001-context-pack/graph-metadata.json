@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-release/001-context-pack",
+  "spec_folder": "system-speckit/000-release/001-context-pack",
+  "parent_id": "system-speckit/000-release",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase",
+      "001",
+      "context",
+      "pack",
+      "deterministic",
+      "spec"
+    ],
+    "key_topics": [
+      "phase",
+      "context",
+      "pack",
+      "deterministic",
+      "spec",
+      "seed",
+      "every",
+      "downstream",
+      "worker",
+      "consumes",
+      "model-free",
+      "extraction"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Pack",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inputs",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Output",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Build the seed every downstream worker consumes — a deterministic, model-free extraction of the",
+    "created_at": "2026-08-30T15:39:27.514Z",
+    "last_save_at": "2026-08-30T15:39:27.514Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:801df21f6c3994810c2ceaddd0bec1a927652b6eefad3de4078a0953f5b97aee",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8b0dbf3e98406a298576ba6a0ea046034c52decbcb724b4f6dc84fce5a33ed71"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -36,7 +36,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -155,24 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Every",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -183,26 +158,37 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The two new parent hubs mcp-tooling (children: mcp-chrome-devtools, mcp-click-up, mcp-figma) and cli-external (children: cli-opencode, cli-claude-code) pass Mode-A Type-2 routing (92/89) but their 5 children return NO-SCENARIOS (prose-only playbooks, no expected_intent/expected_resources gold), mcp-figma's INTENT_MODEL tuple router is unparseable by the replay scorer, and Mode-B never genuinely dispatched a live model.",
     "created_at": "2026-07-10T16:26:05.944Z",
-    "last_save_at": "2026-08-29T09:57:28.744Z",
+    "last_save_at": "2026-08-30T15:39:20.010Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:279c45f01e08705628ac69ab828414235eba5345506c2bec32e001f02e10b7cb",
+    "source_fingerprint": "sha256:6b6c0c1c3ba2ac2b6a67e221f8ced6a8e80a1ecba07a3d4ab73260cdc5f01b70",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "17879932eb1be76f99193a4fc919ed884271d1e839227cc3e403f00fd210f7a5",
       "plan.md": "474fd6a6fea866a639e8358009e81023b8e8a5db89198fb48942ce33917b2f27",
       "tasks.md": "bac09a76c6fa11c9bf2ced6e8de7536810f441670478632a9340fab0abb9139e",
-      "checklist.md": "7220cf7163acfef1d2bc6caa5bb5acc6b0d9d19048e7cb8106b3da2a9cf30a86",
       "implementation-summary.md": "b72ea40207467df1ad818cba5100f67426fad913e3ec751ac6517132ff56bd1f"
     },
     "last_active_child_id": null,

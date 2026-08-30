@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Adding a language to `code-opencode` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART ROUTING block, and a parent-hub `RESOURCEMAP` union enforced by a drift guard and a skill-benchmark router-replay",
     "created_at": "2026-07-11T07:13:20.590Z",
-    "last_save_at": "2026-08-29T15:21:56.644Z",
+    "last_save_at": "2026-08-30T15:39:11.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:333a3ca4a9e3ad38e60613f3f782df454f2e70075c72406de6d439fb5266cc25",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "964406917262c7ffbb0b5583f46e5020242e06bb1b73cb2e3beb741211b78b2f",
       "plan.md": "a628d9f5d673304c13bf01594ba56141d40fb5eb2fd446a8e47e2706fcd2ce7e",

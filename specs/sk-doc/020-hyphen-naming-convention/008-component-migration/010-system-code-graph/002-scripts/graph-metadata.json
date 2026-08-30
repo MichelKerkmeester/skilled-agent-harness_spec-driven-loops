@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The system-code-graph surface has two actual script files: scripts/doctor.sh and",
     "created_at": "2026-07-14T15:18:14Z",
-    "last_save_at": "2026-08-30T07:19:52.259Z",
+    "last_save_at": "2026-08-30T15:39:16.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:ee0c0b7c72326576424b7fe73490c8711530ba1398947ef27b979012dd1df928",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf94c6bf01052b4b1b7d59fd6871c4f58ea1f15a9bba5bff737072705c0afd90",
       "plan.md": "49cef3bef4edaeb66016c63f4de1a274cb95a1f8e3e6462eecf4f38da17e8eb9",

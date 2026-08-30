@@ -26,8 +26,6 @@
       "perishable label scrub plan",
       "repo-wide comment hygiene tasks",
       "perishable label scrub tasks",
-      "repo-wide comment hygiene checklist",
-      "perishable label scrub verification",
       "repo-wide comment hygiene done",
       "perishable label backlog cleared"
     ],
@@ -51,7 +49,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -71,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,30 +185,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 024 extended the comment-hygiene checker to catch `RC-N`, single-number `DR-N`, hyphen `phase-NNN`, and `P#-Seat#` labels, and it scrubbed only the daemon-reliability files",
     "created_at": "2026-06-07T18:24:03Z",
-    "last_save_at": "2026-07-17T17:19:35.282Z",
+    "last_save_at": "2026-08-30T15:39:32.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:132e192d9673c1aa60640a114cc3ca897e5a632f459e23aed182bd96232841a9",
+    "source_fingerprint": "sha256:0a3ee7647307cdab0bb8e1a233e60def340825730a8422035fde07c4f0b5550d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3d2b025c84b381a2a05cc2bdf7bd981583d1dcbd0d3c8f7a0046a2cd154f1f2",
       "plan.md": "3edd87f788ef7ab6dc9e3dc0332de43be79cd4dbaa4c71e07f29e168ecdcc30b",
       "tasks.md": "64dffd41041541ac0dc62b35358e6c27560b158b090e4a0319f9491829bb6b0d",
-      "checklist.md": "42ef8b31d6dc1420193194794d04ce81293f01dda6ca48b0c8cb8379ab9f9e20",
       "implementation-summary.md": "b26b282b0c4abbdc07353b637bc69195c957ab14b701d2c53283053d38cf2eb6"
     },
     "last_active_child_id": null,

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/README.md` still carries the older tabular reference-card style and predates the pilot standard that the mcp-obsidian README set and the refined template from phase 001",
     "created_at": "2026-08-04T08:34:38.721Z",
-    "last_save_at": "2026-08-30T07:20:21.927Z",
+    "last_save_at": "2026-08-30T15:39:17.549Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bca0d3ffce82823bf559d9d0abccbb2abf1b2eb2823102f01c7683a56290ec7f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ef9622a08cda4ffcfaac7bb47cf33fa5ac17c810c10c69753c78a9e2640e32ea",
       "plan.md": "9d05fa5b6ab3252c784520072861d6485183d47b077ca3f8df67c8baab1333b3",

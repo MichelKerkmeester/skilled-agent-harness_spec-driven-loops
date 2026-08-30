@@ -19,7 +19,6 @@
       "all skills alignment plan",
       "skill docs batch plan",
       "all skills alignment tasks",
-      "all skills alignment verification",
       "all skills alignment decisions",
       "all skills alignment summary"
     ],
@@ -35,7 +34,7 @@
       "plan",
       "batch",
       "tasks",
-      "verification"
+      "decisions"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -43,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/skills-audit.md",
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,27 +185,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill docs have accumulated mixed current-state language across recent restructures: standalone `systemskilladvisor`, the `mk-code-index` code-graph rename, post-040 embedding behavior, and sk-doc template hardening",
     "created_at": "2026-05-14T18:47:27Z",
-    "last_save_at": "2026-08-29T15:22:14.709Z",
+    "last_save_at": "2026-08-30T15:39:30.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:405ad86393d10dc093eafb745fa44f8ffd0c7b91cee434ee275ee98c1917d874",
+    "source_fingerprint": "sha256:e34806e1bab70df30b844af756c31f49beb60466dcc9350c93fe5f73de13c064",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a1c2d4bafb61e650f536c2dc620816498694508d3a5178d60e02cfcb95cecaca",
       "plan.md": "68b83c4dbaf75dbe248409323899b8f6161bbd090e5321e17915ab3844cb7b37",
       "tasks.md": "bb7e71b64627312a37d527a5a7e7fe6b567fbac764799d0d4c747072be48641a",
-      "checklist.md": "0b3fa16a64bc0af0fa5a9e464b4ef8402670792a162e7b74490d069af96bf83d",
       "decision-record.md": "05fb5462bf0c26209717fc815bf3a52a13cfd5ebe09ddb262ae8a35e9254e321",
       "implementation-summary.md": "39e1511c0b05b6e1516bd516e934b15f3931778859ffeff7c803156037400446"
     },

@@ -20,9 +20,9 @@
       "deep-context benchmark cleanup plan",
       "deep-context runtime cleanup tasks",
       "deep-context fixture cleanup tasks",
-      "deep-context runtime checklist",
-      "deep-context fixture benchmark verification",
-      "deep-context runtime cleanup decision"
+      "deep-context runtime cleanup decision",
+      "conditional context branch removal",
+      "deep-context runtime cleanup summary"
     ],
     "key_topics": [
       "deep-context",
@@ -34,9 +34,9 @@
       "packet",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
-      "decision"
+      "decision",
+      "conditional",
+      "context"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -158,24 +151,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -192,27 +167,44 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Even after public and discoverability cleanup, test fixtures, behavior benchmarks, generated source lists, and shared runtime branches can keep standalone `deep-context` alive as an active compatibility path",
     "created_at": "2026-07-04T14:32:37Z",
-    "last_save_at": "2026-07-16T16:32:55.913Z",
+    "last_save_at": "2026-08-30T15:39:25.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f085f20100f9ad3280b6e60eec682eb7139a3b1b79029147b7f86039eddcc986",
+    "source_fingerprint": "sha256:ee4ec2ebc13eb201d84fe5fe062c8fa58d1b738cec90cff6a125b541ae7bff67",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6816c2a4f819d1cfa9ebe23dbd22480b22bcfd93e6e2a4d2758b9624799eaf67",
       "plan.md": "c3ca3d85ca4a5c869761881b4d211e48f5f54f684635d03bebfa0b7f79043fcd",
       "tasks.md": "90fbcb101189079c34a8ddb9708056a7c43f5123c87fd3245b14b224aba6ccbd",
-      "checklist.md": "d0e00e80b5bfc20236055223c60020cb0720f2439bc0d41352e29577c1a1b198",
       "decision-record.md": "4d3334a50a97ce00affd467a4f977c2cbae072472f0731c0a253b9ec206b19aa",
       "implementation-summary.md": "ab83ce627a93b5567a2cef2a6971189d9079ce17de2ab05c280fa79d0ff9cb9a"
     },

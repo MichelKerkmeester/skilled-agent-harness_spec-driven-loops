@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "tests/derived-id-provenance.vitest.ts",
@@ -76,12 +75,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -203,27 +196,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The causal graph is 94% entity-linker noise and every save ratchets edge strengths toward 1.0, so graph signals cannot rank real causality",
     "created_at": "2026-07-03T09:44:23Z",
-    "last_save_at": "2026-08-29T15:22:22.341Z",
+    "last_save_at": "2026-08-30T15:39:35.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d45422eec38e48d881e1e22350f85786f4c815aac57cba6a5ffcd14fce0beb6",
+    "source_fingerprint": "sha256:f475b9f70702e86552d8e18f54adf5686ec1687f0081f26acf3d9b13c7d6e6b9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5b11bab8dcd9db4b8a410bdc7767c5263cdb43d693de9cda68fdeb0c9969d8c7",
       "plan.md": "8da24a3e4a477d0b314f6432a046d5828f769bbff79b033ec1f4690a43c8b8a3",
       "tasks.md": "448af272bd09ffacf1df90a216eb772518a5e674a66cf49204323be3cede1d64",
-      "checklist.md": "4873d95359a4514e6eae660f51ec4bcee0e403fec9ee613d15eae39370172f2c",
       "decision-record.md": "f06466f4a3b1d8a8923215802de3c252130a2a1f1e9e0917d4a8b632587e8305",
       "implementation-summary.md": "2cf0cdc3f1efc746d641d34aa7c848bcd69e2c0520bfb6d7395fea11547dd6f1"
     },

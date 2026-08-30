@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The operator renamed `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync` to `036-router-replay-surface-slice-sync` and added a new `037-scenario-loader-code-surface-sync`",
     "created_at": "2026-07-06T06:03:40Z",
-    "last_save_at": "2026-08-29T15:22:23.744Z",
+    "last_save_at": "2026-08-30T15:39:36.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:543a5b9566bce09837f5f90108390e960ac2f80a4cc846bcbc6952312951c487",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a25504c75efe5f38c23d3292e7cc8d515d9385c242fc62c4b87dfb796960db7c",
       "plan.md": "c63a7e361b6c9d011cfa8237d7f1c4e2f22e96e816d1d0762b5babb7d0c90906",

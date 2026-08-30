@@ -20,7 +20,6 @@
       "015 notion bases plugin plan",
       "notion-bases reference plan",
       "015 notion bases plugin tasks",
-      "015 notion bases plugin checklist",
       "015 notion bases plugin summary"
     ],
     "key_topics": [
@@ -43,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/notion-bases.md",
@@ -73,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,26 +192,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`mcp-obsidian` already knows Core Bases and Dataview in full, but research §8 confirms it has no knowledge of the Notion Bases community plugin — the single plugin the research verdict ranks P0-required because it recovers two-way relations, 7 rollup functions, 7 view types, self-relation subtasks, and Lookup columns that Core Bases alone cannot",
     "created_at": "2026-08-21T21:57:58.523Z",
-    "last_save_at": "2026-08-29T15:21:54.572Z",
+    "last_save_at": "2026-08-30T15:39:10.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1521d15af232d6d80f596789b0849eee11813670759d20e96b008c288d62a9c3",
+    "source_fingerprint": "sha256:c190ff6214b1dd660beb234854cf857f4a6135bb7aedc4cd5e859273a9d2bca2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "24a18f33a60932de8f588e8f1295fd6b9ae994b084f710b118ded8b42f0ad2b4",
       "plan.md": "92a4fc6a741585b649b4e93666cd948539f9a854b2d19a3b4896dec3b07cfaec",
       "tasks.md": "4cbfbd631dd876215940d6da4648e797e2cbee75ebeb20c85959f4af7495f5b2",
-      "checklist.md": "7cb86818d16e8a694e55eca768ff39d7214cf666f705043d14bc32a3b40e8f3d",
       "implementation-summary.md": "723220422533adab61970a603750afc1245fab5481c212dfff475f95b054d4ca"
     },
     "last_active_child_id": null,

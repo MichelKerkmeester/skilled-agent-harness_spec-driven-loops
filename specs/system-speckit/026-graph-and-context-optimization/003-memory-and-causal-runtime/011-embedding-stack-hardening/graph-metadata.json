@@ -49,17 +49,22 @@
       "observability"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       "shared/embeddings/auto-select.ts",
       "shared/embeddings/providers/hf-local.ts",
       ".opencode/bin/hf-model-server.cjs",
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-      ".opencode/bin/lib/model-server-supervision.cjs",
-      "mcp_server/lib/cache/embedding-cache.ts",
-      "spec.md"
+      ".opencode/bin/lib/model-server-supervision.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "auto-select.ts",
         "kind": "code",
@@ -88,18 +93,6 @@
         "name": "model-server-supervision.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/model-server-supervision.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-cache.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cache/embedding-cache.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -141,17 +134,18 @@
     ],
     "causal_summary": "The local embedding stack does not yet deliver its zero-install promise end to end",
     "created_at": "2026-05-29T11:22:57.361Z",
-    "last_save_at": "2026-07-17T17:19:30.259Z",
+    "last_save_at": "2026-08-30T15:39:31.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:b45349d39041cc6a2fb26cd1657a484ff121b5ecae117073a14b0718462802d4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85ac5cad808089c2b0306c260c8efe2af9194886c495f6cde27cb8b751954198"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges",
     "last_active_at": null
   }
 }

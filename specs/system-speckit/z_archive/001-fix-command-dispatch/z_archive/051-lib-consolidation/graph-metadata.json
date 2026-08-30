@@ -20,9 +20,9 @@
       "051",
       "implementation",
       "plan",
-      "verification",
-      "checklist",
-      "decision"
+      "decision",
+      "record",
+      "decision record"
     ],
     "key_topics": [
       "lib",
@@ -33,45 +33,22 @@
       "spec",
       "implementation",
       "plan",
-      "verification",
-      "checklist",
       "decision",
-      "system-spec-kit"
+      "record",
+      "system-spec-kit",
+      "javascript"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/shared/embeddings.js",
-      ".opencode/skills/system-spec-kit/mcp_server/shared/trigger-extractor.js",
-      ".opencode/skills/system-spec-kit/README.md",
-      "mcp_server/shared/embeddings.js",
-      "mcp_server/shared/trigger-extractor.js",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/README.md",
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/shared/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/shared/embeddings.js",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-extractor.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/shared/trigger-extractor.js",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,12 +62,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -100,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/shared/README.md",
         "source": "derived"
       },
       {
@@ -169,53 +146,70 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Document Status",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "Last Updated",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Must Complete",
+        "name": "Shared Library Location",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Create Shared Lib Directory",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "No Circular Dependencies",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary Consolidated",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit has shared JavaScript modules duplicated or re-exported across two separate lib folders, creating several issues:",
     "created_at": "2026-04-12T09:02:53.533Z",
-    "last_save_at": "2026-07-10T06:24:12.109Z",
+    "last_save_at": "2026-08-30T15:39:37.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97ef63d4478847fabc0a6b7df5f98a2f6b178f630283ff6bb50efc3ed4dfd4ef",
+    "source_fingerprint": "sha256:0808012032589597a030f4c5dde74033a7193d7345a0348fa38ed59315b24244",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c154d98a0d84bc08fccefff50b237fa151eaabd0a3310d7433640e0b97158b17",
       "plan.md": "0401deec93b42b7dcbed2961161f2ee4d43f7979624d7d6ac9a41bfce804c3bd",
-      "checklist.md": "0ae0fec9d5de1bfd6ac2084ef90067fd5c5f7dda05aa91fa529d0ff1395dcf58",
       "decision-record.md": "40881e1940e63f523e1e9be0e2d44aaa534fae34cbdb3760522e41af4cebe21b",
       "implementation-summary.md": "f0c295fd84a39c371cff5e95425fb0992767ef96ab84a104d22acf2aef702d5b"
     },

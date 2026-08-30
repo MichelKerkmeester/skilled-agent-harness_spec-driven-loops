@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Bring public-repo documentation back into alignment with current code defaults (Qwen3-Reranker-0.6B, nomic-embed-text-v1.5, nomic-CodeRankEmbed, mcp_server feature-grouped layout) after the May 2026 retrieval-pipeline arc, the 023B Qwen3 promotion, and the post-restructure rename of benchmark-2026-05-20-expanded → benchmark-2026-05-20.",
     "created_at": "2026-05-20T15:20:22.326Z",
-    "last_save_at": "2026-08-29T14:56:24.957Z",
+    "last_save_at": "2026-08-30T15:39:30.754Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3d5f98d54dc351d4317d728e6b8d45c0caffb21e8fe2801c1d30d6467b9bb5a9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9040c5bcfdc2c2ce03338253b3a0d9b20a3a114f6c77f6979e76b0105a12b3c0",
       "plan.md": "dbdc7d940c9b8ace4a82c7eda781623d0e2c25c613d5fb530ad4872cf57c82c4",

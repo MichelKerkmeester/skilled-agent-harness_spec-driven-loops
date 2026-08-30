@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The sk-design-md-generator mode skill generates markdown from design artifacts",
     "created_at": "2026-08-04T08:34:46.630Z",
-    "last_save_at": "2026-08-30T07:20:30.368Z",
+    "last_save_at": "2026-08-30T15:39:17.766Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c31236118113508196f5b1329a7213ecd3b0076dd892f58a513c834d5cdcf4a7",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "009200966f527d7fee1f607075467660d8e10429f44b600f5053a5d422c4a38e",
       "plan.md": "d224acd897785e33772063582d6c4ce6d96848e4f227d3d3aff420d6508fd8cc",

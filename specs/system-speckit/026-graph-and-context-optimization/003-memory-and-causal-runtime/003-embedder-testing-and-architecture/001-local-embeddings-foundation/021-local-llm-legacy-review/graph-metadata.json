@@ -22,7 +22,7 @@
       "post-014 review plan",
       "015 tasks",
       "local-llm legacy tasks",
-      "015 checklist"
+      "015 implementation summary"
     ],
     "key_topics": [
       "local-llm",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       "review/review-report.md",
@@ -74,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,26 +194,31 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "possibly",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 014 shipped a default-LLM and embedding-stack migration (Voyage → EmbeddingGemma-300m hf-local q8 for Memory MCP; google/embeddinggemma-300m sentence-transformers for CocoIndex; llama-cpp demoted to opt-in with auto-migrate; ONNX rejected)",
     "created_at": "2026-05-13T13:07:10Z",
-    "last_save_at": "2026-08-29T13:10:01.570Z",
+    "last_save_at": "2026-08-30T15:39:29.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd4ae6b1646b94a25995043ed6526db0cf8c4574ca3740bb36b05618661f102e",
+    "source_fingerprint": "sha256:e9d2f0d5af70c3950861a2577bd347a4f0b1a4d5e177742f30610d30c839b824",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6f649f33756a77e8019b394bb718ae21f519efabcc271097d7d58c9bf4ee8e2",
       "plan.md": "eb5f61c18a03530ba5f8ae602536b0c21d8749b1b746ddd842d1c5cecb4e8b73",
       "tasks.md": "f1bd7f44e2d5367d3cd234c8c749cc414b43f67087fadc63b45495fa27361e62",
-      "checklist.md": "ee4d312d9ecb9fdb987251fd600cec5b30cd5a0fa737d72eae60fb045f62930a",
       "implementation-summary.md": "4a73f8f1ea18ac18a83293dfc2c28193e33e8d4f07da1e4af6f4d58e22f87bd4"
     },
     "last_active_child_id": null,

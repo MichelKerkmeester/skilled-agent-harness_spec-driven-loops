@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
   "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
   "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -31,12 +30,11 @@
       "route-gold"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -56,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,36 +165,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Check",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Four",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Fix every remaining deep-review finding: route-gold refresh, phase-parent status rollup, pre-existing repairs, additive advisor vocabulary.",
     "created_at": "2026-07-28T11:56:16.836Z",
-    "last_save_at": "2026-08-29T10:01:28.356Z",
+    "last_save_at": "2026-08-30T15:39:15.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9742d43ceedc2f9df590a786b6107d1c50038df5a44524d33744779ba9b08d89",
+    "source_fingerprint": "sha256:a94128f1629e963e62ed02abf2d6c307cec97c277e6b56b6e4be1479d59ffd2f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c629399fe42966db5f16c5acd0a9b7b25f2835f5afef6910be59b0717d405ac3",
       "plan.md": "891d4e42418d73c861a87b3f46ac6f599b2d99187136893075842c0f9a236167",
       "tasks.md": "36e170c19e1b46c27566a6a8c4f55fa36487db0d5f9598bb3c6faa50e4422d0c",
-      "checklist.md": "d40f81af146dae735379fd76087c97873e051268e7967f1584a40f1c23ec77ba",
       "implementation-summary.md": "6a18bf3c875d34c372ebaaa1c70459af249aa22977847ad69c4bc15ea0c8008b"
     },
     "last_active_child_id": null,

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/024-glm-5-2-support/006-vision-frontend-input",
-  "spec_folder": "cli-external-orchestration/024-glm-5-2-support/006-vision-frontend-input",
-  "parent_id": "cli-external-orchestration/024-glm-5-2-support",
+  "packet_id": "cli-external-orchestration/z_archive/024-glm-5-2-support/006-vision-frontend-input",
+  "spec_folder": "cli-external-orchestration/z_archive/024-glm-5-2-support/006-vision-frontend-input",
+  "parent_id": "cli-external-orchestration/z_archive/024-glm-5-2-support",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "GLM-5.2 is the newest GLM (released 2026-06-16), is natively multimodal, and is widely cited for strong visual-frontend / \"vision-to-code\" work (design taste rated above Claude on design benchmarks)",
     "created_at": "2026-06-28T14:52:33.357Z",
-    "last_save_at": "2026-07-14T19:26:17.783Z",
+    "last_save_at": "2026-08-30T15:39:08.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6fcbece12168d7ec73ce36fb66bfa4a2def5f7ff7f3bcf6b694e6c223eb13bf",
+    "source_fingerprint": "sha256:633cf1b09e8e19500ff8ea28f1f1d18377395d46afab34dc6fbac6da735e8ee6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0349ef012d96b10a4686af546c224573219894ca38ce902b9dbb6c81f701b8e8",
-      "plan.md": "866ca7523b2d3e502ceb805aebc5ddd8e8b87204ea28df6defb7789a7b6467ca",
-      "tasks.md": "d2299626e206d09f5027669e42fa5790ed315f5b0c40bb39500deb0eae078014",
-      "implementation-summary.md": "26fcd2a5c65a8728d546810432ec0eb0e35121476196833708aa77bdd0486595"
+      "spec.md": "17c00068731e9b1ba1a47349202ada858cc5e474379ea2017a22de525b27c0c1",
+      "plan.md": "945e1bdea11d3663dbf6b71191c99e87e6bdb917b10d640f806e0112b52ecd9c",
+      "tasks.md": "8616d347d076f0d906028daed85da2515dbe225c05820917e66b73e04990e869",
+      "implementation-summary.md": "6bdd2d0249786c957479ad80130155bdb517fcb5901ad257c0d80dd273371a7f"
     },
     "last_active_child_id": null,
     "last_active_at": null

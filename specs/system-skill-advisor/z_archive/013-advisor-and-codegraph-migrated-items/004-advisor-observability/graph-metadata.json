@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/004-advisor-observability",
-  "spec_folder": "system-skill-advisor/013-advisor-and-codegraph-migrated-items/004-advisor-observability",
-  "parent_id": "system-skill-advisor/013-advisor-and-codegraph-migrated-items",
+  "packet_id": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/004-advisor-observability",
+  "spec_folder": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items/004-advisor-observability",
+  "parent_id": "system-skill-advisor/z_archive/013-advisor-and-codegraph-migrated-items",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,7 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".claude/settings.local.json"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor already computes scorer evidence internally (`lib/scorer/types.ts:80-87`) but strips it at output, so the public `laneBreakdown` exposes only numeric lane fields and Gate 2 routing decisions are hard to debug (`handlers/advisor-recommend.ts:177-184`)",
     "created_at": "2026-06-10T19:24:08Z",
-    "last_save_at": "2026-07-15T11:59:32.250Z",
+    "last_save_at": "2026-08-30T15:39:27.249Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2a848d85c3e2183b3876f1d539fe4a05a804c4b2b3f77d8d52bdcd26202c094a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4719dc909200faaee2003b69a45ea5d7be9bd9d421a1d18431017f9b74959d49",
       "plan.md": "5b8057aac45ed62eebf6f32d7cfedeca8314da65d47aeb30f40b85ba9964305c",

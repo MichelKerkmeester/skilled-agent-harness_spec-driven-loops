@@ -42,18 +42,35 @@
     "status": "draft",
     "key_files": [
       "spec.md",
-      "research/discovery-summary.md",
-      "research/hard-block-memories.txt",
       "plan.md",
-      "checklist.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      "research/discovery-summary.md",
+      "research/hard-block-memories.txt"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -66,30 +83,6 @@
         "name": "hard-block-memories.txt",
         "kind": "file",
         "path": "research/hard-block-memories.txt",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -189,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "After completing 7 phases of ESM migration, the spec and memory ecosystem has accumulated document drift, template non-compliance, and memory quality degradation across 186 spec folders (66 active top-level + 65 archived + 55 phase children)",
     "created_at": "2026-04-12T09:02:50.321Z",
-    "last_save_at": "2026-07-10T06:22:57.548Z",
+    "last_save_at": "2026-08-30T15:39:39.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e9b8e3eff99898e0785c0f7efb090961fc0cfaf189fd844d1cd2ce39be31c03",
+    "source_fingerprint": "sha256:83032b2f3bb4f005cada14487c9d5fed70c59d08818863b085f5f6dea3e3fabd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2bffd94bcf02473cdc2e80ecb40a349cf5627e429a683a389e2cce5e863cabf3",
-      "plan.md": "43517f76f81abaffdce070440231aa2ace8dcb44e4dcfc040d9f5322d18e5034",
-      "tasks.md": "72ac9fda9ff29d22303f7aa855a82ded607b9f0b4a52cb82b598e637cbccca31",
-      "checklist.md": "cbebca67dd6750927b25bc9d112645080925c42fe989258785f4a224b8962cfa",
-      "implementation-summary.md": "ea396c973aea05499a54a2897c7aca9d94cde5f2a210d8715bed8c5804d619d9"
+      "spec.md": "62f237f737f9037bbdfeb657f99b6ca1802dc66bbd51a28e43b4aac6397d70c4",
+      "plan.md": "8cf8253638fa43fae8085d23a8d031d8b48c1fa54792c08b22e984a568c46898",
+      "tasks.md": "012c48b3ecaaee295a182c3a0dceeaa8d3097135f0e3081459d6c1d711adf43b",
+      "implementation-summary.md": "e50d8d06c84ad9ab3cf6fff9aabbb9759535a1db26ecf3f2d9db31c149fa2d67"
     },
     "last_active_child_id": null,
     "last_active_at": null

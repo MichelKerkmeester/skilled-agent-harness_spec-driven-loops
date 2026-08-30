@@ -21,8 +21,8 @@
       "Deep AI Council rollback and mode gate tasks",
       "deep-ai-council cutover gate tasks",
       "council shadow parity rollback tasks",
-      "Deep AI Council rollback and mode gate checklist",
-      "deep-ai-council mode gate verification"
+      "Deep AI Council retained count boundary",
+      "rollback count authorization binding"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,37 +175,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Authenticated Certificate Boundaries",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Implements the additive-dark Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate.",
     "created_at": "2026-07-16T03:43:35.476Z",
-    "last_save_at": "2026-08-29T13:09:55.141Z",
+    "last_save_at": "2026-08-30T15:39:21.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:73280ae8712ef778ccb649235699b18491b25dec245b725cae76ada5effb8bcf",
+    "source_fingerprint": "sha256:a7ad96c49764be4bc62511dffb7d5436a10abb6a8136decb899945fcbb4bc5b3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0f5fe81fac2a7caeb324ec0e35d6250e8d8ac7dd8b4d6eb83557df4fdca869d",
       "plan.md": "48ac393cf8f620f5e23790a080adcbd64c47d6804ef91ae91175ff30bdd6060e",
       "tasks.md": "780ff40ee5a0db78a857ae8d1eae0a0773f26837763e7e15d147c38a71ec17cf",
-      "checklist.md": "e24d7fa945c49272f998fa9e80384ef820991e1b8828439851077e2ff432c131",
       "decision-record.md": "2280d54ec4a3073a4e7d139bec5b4a8483e571e0cb450d6c59c3a3445f4d7fbf",
       "implementation-summary.md": "3257b68685e12da0e4ab0ed3d3e0309d87a3a1f37817e6c4622ddf5bba7f34a1"
     },

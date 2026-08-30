@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Memory retrieval is hard to inspect",
     "created_at": "2026-06-08T15:10:29Z",
-    "last_save_at": "2026-08-28T16:00:04.214Z",
+    "last_save_at": "2026-08-30T15:39:33.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b7dff096d93b588b2b41fa328d0434254809612a9ca677e3e8f4f5755eb56bd1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4f118a09ebe4418db2e4c635277a0fe3a15331275b480967c312b3c2ceff09f8",
       "plan.md": "77c1ac10a235e542f59ba6653dcf78a77f4f53b7fdc3d540bde246921d478792",

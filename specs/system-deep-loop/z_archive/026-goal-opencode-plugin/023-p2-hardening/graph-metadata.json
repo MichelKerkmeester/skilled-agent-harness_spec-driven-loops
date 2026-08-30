@@ -17,9 +17,6 @@
       "budget_limited recovery",
       "goal plugin p2 hardening plan",
       "goal plugin p2 hardening tasks",
-      "goal plugin p2 hardening checklist",
-      "verification",
-      "checklist",
       "goal plugin p2 hardening implementation",
       "phase 23 complete"
     ],
@@ -40,60 +37,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
-      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-      ".opencode/plugins/tests/mk-goal-state.test.cjs",
-      ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-continuation.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-lifecycle.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-state.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-supervisor.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -110,6 +59,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,26 +150,61 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Google API",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "actual",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Seven adjudicated P2 findings remain in `mk-goal.js`",
     "created_at": "2026-07-04T09:31:20.024Z",
-    "last_save_at": "2026-07-16T16:32:41.224Z",
+    "last_save_at": "2026-08-30T15:39:25.844Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98020a66c1d80b5cce389d2a6cd13996d76d6aed3bc9755df7fa0fa93472e8c1",
+    "source_fingerprint": "sha256:4f2e21b1640bde566ab111d13d288b735cb1fadaefbce5759c477c52d43ddb3b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4020734df6fbc86bfc52dd8a0f8237765e77635c89a066d5b03385eeb216d171",
       "plan.md": "92e147c211fb2636bd4b5457a8e4158367b26f10bc86cad21a4cde534d08a88c",
       "tasks.md": "ccd9997276c1f0aba7f6cacf5adac2e632c92c5240c2678a22976234b485777e",
-      "checklist.md": "ea19bf55d3ec9697af67e0d4bb60cfe58fd2e9b737660e8430d430a9566880ff",
       "implementation-summary.md": "c049dfe466a6ffe42a546b4eca484c8cb45ada3701cbc3bda25789072af6da40"
     },
     "last_active_child_id": null,

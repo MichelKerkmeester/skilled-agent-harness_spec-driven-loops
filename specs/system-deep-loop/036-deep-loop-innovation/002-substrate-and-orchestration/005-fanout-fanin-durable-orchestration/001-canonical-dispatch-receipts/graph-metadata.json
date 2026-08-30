@@ -18,8 +18,6 @@
       "pre-spawn receipt implementation",
       "canonical dispatch receipts tasks",
       "pre-spawn receipt tasks",
-      "canonical dispatch receipts checklist",
-      "pre-spawn receipt verification",
       "canonical dispatch receipts implementation",
       "durable pre-spawn receipt complete",
       "dispatch receipt resume projection"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts",
@@ -69,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,26 +187,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Promote each phase-005 resolved leaf invocation into a canonical, authorized, durable pre-spawn ledger receipt so resume can detect prior dispatch intent without duplicating work.",
     "created_at": "2026-07-16T03:43:49.798Z",
-    "last_save_at": "2026-08-29T13:09:50.132Z",
+    "last_save_at": "2026-08-30T15:39:20.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dddbb791507547e17d09866d46d9ff190fa4f7973e9b451fd79c21fc3c1dddc1",
+    "source_fingerprint": "sha256:53527bdc7cbd0eaf4074cf93ce4fef6163a04931190210a3c607839e1b6fbf25",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fbacf5022a099411c1dadfc9d55bd2d4afd764a574780d907ec2358f8fd66593",
       "plan.md": "1f090694d1d51943b5b5fcee3e4127229091d1c43a4129ad22cfd5f4b338f882",
       "tasks.md": "958ad4d516a52ea9a4f10baa84bec539100dd613c8e5cedde4cbee84fea5e8d3",
-      "checklist.md": "d9be60beafffc04c1e5738bcd62dc7ebfafe9e6e8f26f22721b8b0db86cd4c81",
       "implementation-summary.md": "59f16401111a3d3a7f5ff21b8cf172eb2e28ea3031ae8ee59b8f1f4e6de79bca"
     },
     "last_active_child_id": null,

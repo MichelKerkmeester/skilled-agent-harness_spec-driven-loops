@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
@@ -58,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +168,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 016 broad audit surfaced one confirmed P0 and roughly nineteen P1 findings across the shipped system-deep-loop runtime",
     "created_at": "2026-08-26T07:42:50.946Z",
-    "last_save_at": "2026-08-29T15:22:08.477Z",
+    "last_save_at": "2026-08-30T15:39:22.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ebd80615efcb6e533d04f9929447a141c51d6ef41d0d6bb509893e9ee4b42786",
+    "source_fingerprint": "sha256:4ba8e71780a6c04dd616fe8ecf6508f5f38642d15d227829ab12e2a2dddd741e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80eb7ad7278eb119bb426e8b648b7f7d4f0855c40de9a93971193cd75d04bc4e",
       "plan.md": "9902370d37fdd01300f31a8671081dc5269f4ad72fb27a20896b44accb11b18b",
       "tasks.md": "b3686ade0cd80d903e31897f3b73902fde75922af376feadcddb4c671fa7ffd7",
-      "checklist.md": "39991d9d4c269a0f4d6d22cb2035be185756d76c9a76680dc245b9aa19b92471",
       "decision-record.md": "3710063c575daffedac72b5eb5120137b24af486e85201d87695f92ef734dae1",
       "implementation-summary.md": "df7794b8da6bbb886f8503ca0fa813cc3764ef91e9a1befe6bd6f0eafff6cf3c"
     },

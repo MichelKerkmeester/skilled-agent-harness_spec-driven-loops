@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/004-mcp-click-up-task-management",
-  "spec_folder": "mcp-tooling/004-mcp-click-up-task-management",
+  "packet_id": "mcp-tooling/z_archive/004-mcp-click-up-task-management",
+  "spec_folder": "mcp-tooling/z_archive/004-mcp-click-up-task-management",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -28,9 +28,9 @@
       "clickup skill implementation",
       "mcp-click-up tasks",
       "clickup skill tasks",
-      "mcp-click-up checklist",
-      "clickup skill verification",
-      "mcp-click-up decisions"
+      "mcp-click-up decisions",
+      "clickup skill adr",
+      "mcp-click-up summary"
     ],
     "key_topics": [
       "clickup",
@@ -42,26 +42,24 @@
       "plan",
       "implementation",
       "tasks",
-      "checklist",
-      "verification",
-      "decisions"
+      "decisions",
+      "adr",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
-      "spec.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -77,21 +75,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -201,29 +187,40 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "routing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "No `mcp-click-up` skill exists in `.opencode/skills/`",
     "created_at": "2026-05-31T00:00:00Z",
-    "last_save_at": "2026-07-15T07:48:14.252Z",
+    "last_save_at": "2026-08-30T15:39:10.708Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-31T10:00:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39088405ab942df81923da7250b0ea59f8f3c9cf7a965052ab912abd849b7fdc",
+    "source_fingerprint": "sha256:30b12747527852685db8315182f29bde0630dbfb47547fca0f5810f23ea8c74f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0fb8149be34fdabbce078fe040a67420fe21e3c3a429b3702c566ae23b20183",
-      "plan.md": "b3e4dc93674291b383eccb898902c202164deed89764cf6d70cb0e9231f1baca",
-      "tasks.md": "e3b46e7524f6cbc6f6cf1b35b408c456456aa237c8e3f26b49635b0359122068",
-      "checklist.md": "ee84761e41ee91834f056e5f0cae03f6bb4a091ded3968dfb57e5149535602e2",
+      "spec.md": "d62dc28bfae0a1820cf657a28b5be74962c02a7f5b4258b59d9a787a3f87e552",
+      "plan.md": "20abc865bb7e1544d36b2d38aaa35241aa8215300f2ecd2036fa783c525d9c84",
+      "tasks.md": "1c83d6fd7e3f3bc7d711bf1344a14a0a20267d6dad908a71ac6a39f37b3a594d",
       "decision-record.md": "e70e7593d54aecc1b97357c1ab6f086dd10030428129b6a02d8d987863e14c70",
-      "implementation-summary.md": "d4476be18f4307e95bc6b9418d057c6a87499ff8cadc230cc54a1906c46b7806"
+      "implementation-summary.md": "4691d43e368b10c42d428cd4aa5a0376aab71cb676113779e27b1c2038c2f4e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -40,20 +40,12 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "resource-map.md"
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
@@ -69,63 +61,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "ARCHITECTURE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook_system.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -138,6 +76,24 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -199,27 +155,62 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Evergreen docs were carrying mutable packet and phase references",
     "created_at": "2026-04-29T20:05:00.000Z",
-    "last_save_at": "2026-07-17T17:19:09.469Z",
+    "last_save_at": "2026-08-30T15:39:27.960Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:6cb5b1c5ae5b815a8147e7d5f2fcdd6a6385732a5bd04dfe0234940a173b298d",
+    "source_fingerprint": "sha256:f15cc959608e53b63642439f1a5b902af66c9f8a49274eb47643b0344a0830c0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f3baa9cd322d0f2659a229503fc0e3474b82ffebc3a03ccfdcdb2c31b99704f5",
       "plan.md": "fd9e8d612383ef671e78239f7e2954020af777eb3d67e3ed6be0b4700507c74f",
       "tasks.md": "e3f49d93d3870779856e88b3f3a6ce5676bdd8b00c2a21687d2096adf7aa4ca1",
-      "checklist.md": "5de43fea25c5eaecde1b3d92e17620563c36b7af450521828531aabd54dcd06c",
       "implementation-summary.md": "8863fb2a1c5817561e2b1b01990302eb5604f3fc334a683493fb3f965803b4db",
       "resource-map.md": "ab035a614d9e40a50db5e6bbe32ac1995b31db202799320ee7c6bde3cafe9a61"
     },

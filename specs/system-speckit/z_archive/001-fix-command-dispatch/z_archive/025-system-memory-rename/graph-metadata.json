@@ -18,8 +18,7 @@
       "system",
       "025",
       "plan",
-      "tasks",
-      "checklist"
+      "tasks"
     ],
     "key_topics": [
       "spec",
@@ -29,36 +28,21 @@
       "system",
       "plan",
       "tasks",
-      "checklist",
       "workflows-memory",
       "skill",
       "needs",
-      "renamed"
+      "renamed",
+      "system-memory"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "mcp_server/INSTALL_GUIDE.md",
-      "scripts/package.json",
-      "mcp_server/package.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "scripts/package.json"
     ],
     "entities": [
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": "mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "scripts/package.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,9 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "package.json",
+        "kind": "config",
+        "path": "scripts/package.json",
         "source": "derived"
       },
       {
@@ -178,37 +162,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Directory Structure",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Server Functional",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `workflows-memory` skill needs to be renamed to `system-memory` to align with the naming convention established by the recent `workflows-spec-kit` → `system-spec-kit` rename",
     "created_at": "2026-04-12T09:02:53.517Z",
-    "last_save_at": "2026-07-10T06:21:55.178Z",
+    "last_save_at": "2026-08-30T15:39:37.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:b62d7c6a8baeb5a68dd48f47c586673a24ed0eea422a99bc23929b4d52250c04",
+    "source_fingerprint": "sha256:53175970448ccbe9ebe46cadbf0e17959ba38ebcd21bc3d7c194ddbb8c22818a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0dbfa4dc0d06a865c1e91a39a8b6b758ea9d6d49cebe6b4a7496fefa39f87a5d",
       "plan.md": "6df5dcfa0888ead35290bb0fa1a88cd47a554efb8d4c660f8c0e33a73b117a55",
-      "tasks.md": "a4a86eaa78f5bc9b2f7a26da88408caee81441aa6c6ffd5b22d46a9020144430",
-      "checklist.md": "726ce4e8ac70234b9386eb4a595c2921e7a536d7a22bd560ac1055c322f80fbf"
+      "tasks.md": "a4a86eaa78f5bc9b2f7a26da88408caee81441aa6c6ffd5b22d46a9020144430"
     },
     "last_active_child_id": null,
     "last_active_at": null

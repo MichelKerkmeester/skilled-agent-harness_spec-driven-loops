@@ -20,9 +20,8 @@
       "phase 003 plan",
       "gitkraken mcp doc tasks",
       "phase 003 tasks",
-      "gitkraken mcp doc checklist",
-      "phase 003 checklist",
-      "gitkraken mcp doc summary"
+      "gitkraken mcp doc summary",
+      "phase 003 summary"
     ],
     "key_topics": [
       "gitkraken",
@@ -41,18 +40,17 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-git/SKILL.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/sk-git/SKILL.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -68,21 +66,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-git/SKILL.md",
         "source": "derived"
       },
       {
@@ -170,48 +162,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Authored",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Wrote",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Even after phase 002's registration, sk-git has no idea GitKraken MCP exists — nothing documents its tools, nothing routes intent to it, and nothing warns against using its local-mutation tools in place of sk-git's existing safety-gated Bash workflow",
     "created_at": "2026-07-15T04:22:50.155Z",
-    "last_save_at": "2026-07-15T04:22:50.155Z",
+    "last_save_at": "2026-08-30T15:39:18.549Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da5b2432617893d182843e9216ae166586ec12c2e575a7e4183aee93999ebc68",
+    "source_fingerprint": "sha256:7c7ea9afd853ad624139c76a10fc420af360363ac16814ad1e88276ef8cf52e2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5191b4741f41d7a694edea031f9b9b70e4454e75509624c2ccd603c1dd9de7da",
       "plan.md": "71714ceb19ca4cae148496c989f2c3082f77c8e0ca9f20beb1293e66698ace33",
       "tasks.md": "46991c58eedd7ff3743fa11055f558c075158ba17c3c77f23022c733fc741f92",
-      "checklist.md": "098f06ad40fac97027be2611fed5e2637d1027aeb550114aec7af5a4b925c2a5",
       "implementation-summary.md": "8b5b93064cd998b31f92352a63513fade49283411564ad28166b6d2b58b75557"
     },
     "last_active_child_id": null,

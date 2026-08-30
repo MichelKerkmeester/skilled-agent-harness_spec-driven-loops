@@ -21,8 +21,8 @@
       "deep improvement common rollback and mode gate tasks",
       "shared evaluator rollback switch tasks",
       "deep improvement migration gate tasks",
-      "deep improvement common rollback and mode gate checklist",
-      "shared evaluator migration gate verification"
+      "deep improvement common rollback boundaries",
+      "deep improvement common evidence source map"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,49 +163,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Deep Improvement Common Authenticated Evidence Boundaries",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Deep Improvement Common",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Context The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Delivered the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone without moving authority.",
     "created_at": "2026-07-16T03:43:37.283Z",
-    "last_save_at": "2026-08-29T13:09:53.188Z",
+    "last_save_at": "2026-08-30T15:39:21.204Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e47f5dcaf6cb9ed3c44d52f0ac18aa25d43697a67cf45453fb517134167348c2",
+    "source_fingerprint": "sha256:0e4a0f1974e7766866a9f3bee760327cfb52a8c3628e9957a9fafb3f75137b53",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f4f0397bcf5d2799305f9ae26404102a6cbe92abbeb93f581d586fac5e9a32e5",
       "plan.md": "ececdad1332b78f8419997022a5ca8d1c11874c015188ee96561f5cf710b2639",
       "tasks.md": "3e233df94a13f90551cfbcfe1cbbef25ef8a9166d25c038a03ae4b8f7e663567",
-      "checklist.md": "8d894fc5381d843953a8f8f1971b01ac1841306d9784ad54c12e679fbfbdd279",
       "decision-record.md": "05814c46605a8730d2c0292471d02fdd85a29cc05a3dcfcf0cf214e2ce7c3220",
       "implementation-summary.md": "3a0cc4c49d384c107da65464af0f6d9cc72041a5898d90fc53a7cf6a738026c1"
     },

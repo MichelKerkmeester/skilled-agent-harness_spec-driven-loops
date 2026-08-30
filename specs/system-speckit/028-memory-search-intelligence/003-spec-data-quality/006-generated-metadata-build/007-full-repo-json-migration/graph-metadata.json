@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
@@ -62,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,26 +182,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the J1",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The J1 to J4 generator phases harden how the spec-kit writes `description.json` and `graph-metadata.json`, but they ship their new behavior behind default-OFF flags so the on-disk repo is untouched",
     "created_at": "2026-06-27T17:15:43.078Z",
-    "last_save_at": "2026-08-29T14:54:16.297Z",
+    "last_save_at": "2026-08-30T15:39:35.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50a1fdc83686df24d5a3b24f4027046634ca2bb9b159733d9e1382998ac8dadf",
+    "source_fingerprint": "sha256:6e280f43faea2368f74bd7b33f43ed1672f674749337a161b727d19111c10e73",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e71ddbdc6a5ad67ada0b736acc36b5bf12661f4d12a75855d62867dac8d33559",
       "plan.md": "d5e897c7bc5b2624c272007705198c35e2195b01289174945ae72153cef93b9f",
       "tasks.md": "8c00b9f893b5f838f2ad16ddffab91b9543167061da0fedce9d1847a850ebb84",
-      "checklist.md": "2da84f272b8b91a7d80c81436ae3d99b39e10d86cbea207fdd5c78ff4b8bde08",
       "implementation-summary.md": "c52deaf8aeac18ae12b0d459d4daf2a205da2390a1f5d700dcb12971ba9ffa66"
     },
     "last_active_child_id": null,

@@ -35,19 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -67,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "capability-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`validate.sh --strict --recursive` currently fails on all 43 packet roots repo-wide (257 folders, 0 passing), spanning `ai-systems` (9), `anobel.com` (5), `barter` (6), `deep-loops` (4), `design` (8), `skilled-agent-orchestration` (7), `system-speckit` (4)",
     "created_at": "2026-07-02T03:37:12.946Z",
-    "last_save_at": "2026-07-11T18:40:36.271Z",
+    "last_save_at": "2026-08-30T15:39:36.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1be1464c734ff18405a28e1d7339dd5c9107247d3308ad92041087946b37655a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba66a8b1682b9c6e1825ed28b15012b3765602452b4514ec5db0b2ab58d6cf43",
       "plan.md": "9c288dced7eac9006e54ef170ce794ca5148ae7bfb4cbcfc66897df4eeabf530",

@@ -37,20 +37,12 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "lib/calibration-contract.cjs",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,15 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "calibration-contract.cjs",
-        "kind": "file",
-        "path": "lib/calibration-contract.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -178,36 +164,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The compiled evaluator (`002`) already carries `rankScore`/`scoreMargin` as evidence inside a `route` decision (synthesis §2.3)",
     "created_at": "2026-07-18T13:13:18.421Z",
-    "last_save_at": "2026-08-28T22:23:24.303Z",
+    "last_save_at": "2026-08-30T15:39:15.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7114cd02639c897889ff1f5ffbc04a8825b6e012121c23258c711841b33f7ad8",
+    "source_fingerprint": "sha256:15a96eb959a0a01f0454777275682464e19c607c7deb2150c9b61923a0dd8927",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6a6daf546b18c4e57ccb7c0d11bbaf2d677c5fdf5f1a6e7ac0bf4b89dbf9cb0",
       "plan.md": "0c784d2eca2cc4ea75764f2998bcc78edceafa744f43a42bff45db749d5427fa",
       "tasks.md": "4ec3622b6651ea7eeb2194b3bc94e1506c86dda7531a2999e97947b8450f29fa",
-      "checklist.md": "c4b0a193ae086ace7df8bab33206eb8ebca109792a31caae2267d212b87f3ab6",
       "implementation-summary.md": "28d92657676251503d0b2de07e377b28e46b77739317a81c1be4b703872d34c3"
     },
     "last_active_child_id": null,

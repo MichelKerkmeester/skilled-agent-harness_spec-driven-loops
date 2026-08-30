@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Create Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:43.601Z",
+    "last_save_at": "2026-08-30T15:39:34.044Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5844493231991e37c566d4ac46f8188a9bc81fee61c38f9f5ca17b693d5397eb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "770e01e77e192bbf18ca4f7209f7c86e97d845cceb265bc808c85fbe1e5a6748",
       "plan.md": "4be4b17df33fb500f87c40b8678c0d92992a663902a70cf44932361fefa3c765",

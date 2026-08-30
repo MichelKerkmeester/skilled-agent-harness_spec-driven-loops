@@ -42,22 +42,10 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "lib/storage/history.ts",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "mcp_server/tools/memory-tools.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "mcp_server/handlers/memory-crud-update.ts",
-      "mcp_server/handlers/memory-crud-delete.ts",
-      "mcp_server/handlers/memory-bulk-delete.ts",
-      "mcp_server/handlers/checkpoints.ts",
-      "mcp_server/handlers/pe-gating.ts",
-      "mcp_server/lib/cognitive/prediction-error-gate.ts",
-      "mcp_server/lib/storage/transaction-manager.ts",
-      "mcp_server/lib/storage/history.ts",
-      "mcp_server/schemas/tool-input-schemas.ts",
-      "plan.md"
+      "lib/storage/history.ts"
     ],
     "entities": [
       {
@@ -67,9 +55,9 @@
         "source": "derived"
       },
       {
-        "name": "history.ts",
-        "kind": "code",
-        "path": "lib/storage/history.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -79,81 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "memory-tools.ts",
+        "name": "history.ts",
         "kind": "code",
-        "path": "mcp_server/tools/memory-tools.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-update.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-crud-update.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-delete.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-crud-delete.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-bulk-delete.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-bulk-delete.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pe-gating.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/pe-gating.ts",
-        "source": "derived"
-      },
-      {
-        "name": "prediction-error-gate.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cognitive/prediction-error-gate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "transaction-manager.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/transaction-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "path": "lib/storage/history.ts",
         "source": "derived"
       },
       {
@@ -203,27 +125,92 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Manual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scenario Name",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Direct Manual Scenario",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "History Log",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mutation feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
     "created_at": "2026-04-12T09:02:50.290Z",
-    "last_save_at": "2026-07-10T06:22:21.644Z",
+    "last_save_at": "2026-08-30T15:39:39.034Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57e75aedbf47f4ff38f1cbaec1745959725b7bfe796fde8d275276f60977cb17",
+    "source_fingerprint": "sha256:fd640c01f45908dd719c69292f9b5fef917054f368fd2c89b6ea7d45d33d1cec",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f9ad81526ecb93f242004d1a9c95b6b6e4028ae7966a7b09e7863cc6de624de",
-      "plan.md": "568f1a2f2c35d7c38a8055dafe49bb8aca49cb8c79681ff129aa34bc33c03654",
-      "tasks.md": "140a5287bceb198d19cebbd87f66f2271c53c3f960ccfc728a2a78ccbe8546e7",
-      "checklist.md": "3be682f11901358137fb42e48b48e1104611a3880870e41f231cfe0ee401a2d0",
-      "implementation-summary.md": "e2514a46077be727b565149112147f5f252c2a4bbbb892b9f14444182c730c2b"
+      "spec.md": "475ae7af6dccb52bcc8c8291b2d6f3c89cc037dcd4e90bd1501d7cf1580f7b97",
+      "plan.md": "1d03031a7753e94b7f139b98816a17230d910e6ea50ebca354f17e5036ee4a31",
+      "tasks.md": "19aa67a909d77ff4df622593f3e294f73254cd9be9ba6675774f63ebbf8461dc",
+      "implementation-summary.md": "9ebe39bac6673b5c6351ad6d34a1a2fd879d924ae1604b897978d8c722753346"
     },
     "last_active_child_id": null,
     "last_active_at": null

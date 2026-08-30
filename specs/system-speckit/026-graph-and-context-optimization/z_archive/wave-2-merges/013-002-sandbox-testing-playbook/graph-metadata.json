@@ -41,39 +41,18 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/commands/doctor/assets/doctor_code-graph.yaml",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "resource-map.md",
-      "scripts/tests/test-validation.sh",
       "implementation-summary.md",
-      "dispatch/track-d-sandbox.prompt.md",
-      "handover.md"
+      "handover.md",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh",
+      "scripts/tests/test-validation.sh",
+      "dispatch/track-d-sandbox.prompt.md"
     ],
     "entities": [
-      {
-        "name": "doctor_code-graph.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_code-graph.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "test-validation.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -93,21 +72,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -117,15 +84,27 @@
         "source": "derived"
       },
       {
-        "name": "track-d-sandbox.prompt.md",
-        "kind": "doc",
-        "path": "dispatch/track-d-sandbox.prompt.md",
-        "source": "derived"
-      },
-      {
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-validation.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-validation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "track-d-sandbox.prompt.md",
+        "kind": "doc",
+        "path": "dispatch/track-d-sandbox.prompt.md",
         "source": "derived"
       },
       {
@@ -199,29 +178,46 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Track Coordination",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog Cross",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet `001-doctor-commands/` shipped 5 doctor commands (`/doctor memory`, `causal-graph`, `deep-loop`, `cocoindex`, `update`), 10 active YAML assets, and a migration manifest for spec-kit version migration (3.3.0.0 → 3.4.1.0)",
     "created_at": "2026-05-09T14:45:34.083Z",
-    "last_save_at": "2026-07-17T17:19:36.223Z",
+    "last_save_at": "2026-08-30T15:39:32.715Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:5711354663ec67d71608d72589abfa218a89a5f8d853eb805aeb2045917d40c5",
+    "source_fingerprint": "sha256:96710bcf28d731fc40b1268f0231a6121788f8e54c170bf312b546e716f0c814",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9d246cae1fcb3859e52386e21e989a2af0df64fdb2dfb8619ea929856467880",
       "plan.md": "9e47bf0e4544bf3d2a830e54ecbfe3248d30ded9b3ffcdeac2d835ea0c6199cb",
       "tasks.md": "d7d43bb02094d3e326aea38b6b8459de2503b5a96e5a450fda4aff3a35dabf4b",
-      "checklist.md": "94ce83b5178c14521051814899caa0988cc9c67039d824812931ae11e240a288",
       "decision-record.md": "bb3a07a2ee4874ba100e91447f5c4d69b9e9c2fd09c3f265aebd7bc7cdb9540e",
       "implementation-summary.md": "e4b577819a6de0bbaa81899885cbc9e5f30246b69ec7ba16e6be976199e9e886",
       "handover.md": "fc6ddad55a644af61d7723bc2f84b4a90c94809c001d0ad2b7570318e0ec13b9",

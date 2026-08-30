@@ -32,20 +32,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-council.vitest.ts",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "routing-parity-deep-council.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-council.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -56,12 +48,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -161,48 +147,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built Wave",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "How It Was Delivered The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Key Decisions",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Add parity tests, cost guard tests, documentation, changelog, and final validation",
     "created_at": "2026-05-23T10:21:00Z",
-    "last_save_at": "2026-07-09T10:02:48.658Z",
+    "last_save_at": "2026-08-30T15:39:23.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:91d6de1df7164a2f7ef0ed32391f95955e4895184b168f5cf47dd49eee4ed802",
+    "source_fingerprint": "sha256:8bbeb10cb5c8ea473d78e4a1ce56ad198e35a804faf8b48a7a43365dcb876d88",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35a0b43a8347c417558908aa46f53b9688fef8d6d52142014a874d2a73b9d232",
       "plan.md": "96667e89ea540af9e4b1fb6124be197d77b304876ee0c423e532eac4ac9d3825",
       "tasks.md": "449f432596e096105830e4266e1d4920d372977aba12c6273eefd8eb89a38fc3",
-      "checklist.md": "0637ac70282f563369e2b77a249e256e6a63f5fe4c49f30a936bc314b2cd00b6",
       "implementation-summary.md": "9c7a872a342812ccc5aacd5243f851c03172bda7557a9d900cf32f885658e76e"
     },
     "last_active_child_id": null,

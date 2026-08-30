@@ -20,9 +20,9 @@
       "skill benchmark rollback mode gate tasks",
       "skill-benchmark authority cutover tasks",
       "skill benchmark migration gate tasks",
-      "skill benchmark rollback mode gate checklist",
-      "skill-benchmark authority cutover checklist",
-      "skill benchmark migration gate checklist"
+      "Skill Benchmark rollback gate implementation",
+      "skill benchmark mode migration gate",
+      "skill benchmark rollback switch"
     ],
     "key_topics": [
       "skill",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -157,24 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -191,26 +166,31 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Skill Benchmark mode's rollback switch and independent mode gate for migration to the typed event-ledger substrate. The mode owns skill scenario runs and scoring over the deep-improvement-common backbone, with fail-closed authority-cutover controls, a bounded rollback window, sealed artifacts, and a certificate that permits the mode to exit into phase 014.",
     "created_at": "2026-07-16T03:43:42.643Z",
-    "last_save_at": "2026-08-29T09:58:02.995Z",
+    "last_save_at": "2026-08-30T15:39:21.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9290543f3bbb35e8157bcba67ef607c51429d4a1b77d56e8aec0a6cd34529437",
+    "source_fingerprint": "sha256:d669787014f8189e1d575a21308826daac46aa58d85ae18df69e18f0712c4b3f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a4902fee8423a4d8925662d8c9a58b623f9ee446d9113e0c243d443b2cf0940",
       "plan.md": "33e6e533e4b10d6a9c018d634a8620b7406a0026babf9a8fad011d325d246e15",
       "tasks.md": "5cf428983552810b1b199c6337647bec6dfd494aeea3f039337f6a11f7e555b4",
-      "checklist.md": "6654629813b76630edd7be5bce408cc21e408aa95c84acf0921e30d2930da511",
       "implementation-summary.md": "dff12bf2ce2606dca81bc77547f97124940f1ee232165edc3dad91403c238d2c"
     },
     "last_active_child_id": null,

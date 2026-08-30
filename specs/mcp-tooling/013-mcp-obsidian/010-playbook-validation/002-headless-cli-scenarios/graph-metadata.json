@@ -41,18 +41,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Execute the 8 headless notesmd-cli manual-testing-playbook scenarios against the test vault and record pass/fail. Executor: deepseek-v4-flash via cli-pi.",
     "created_at": "2026-08-03T04:10:01.640Z",
-    "last_save_at": "2026-08-28T22:06:15.100Z",
+    "last_save_at": "2026-08-30T15:39:10.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c13c768660a56d9061a0c60c444a39bcd1b916823627f75f7cd291eb8709d3d8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a717d78c305dd697d13de17c991dd6534b8ead9108ba79b10ed3e48ea5e5d3ac",
       "plan.md": "7e75d3989a02abbbeeb432610bb720fff2f105f5259d5c035d67c4087eb90a5d",

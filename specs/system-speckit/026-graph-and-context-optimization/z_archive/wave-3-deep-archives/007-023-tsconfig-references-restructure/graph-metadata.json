@@ -41,20 +41,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-code-graph/tsconfig.json",
       "spec.md",
-      ".opencode/skills/system-spec-kit/tsconfig.json",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/tsconfig.json"
     ],
     "entities": [
-      {
-        "name": "tsconfig.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-code-graph/tsconfig.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/tsconfig.json",
         "source": "derived"
       },
       {
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "Packet 014 extracted code-graph ownership into `.opencode/skills/system-code-graph/`, but its TypeScript config kept both an `include` for `../system-spec-kit/shared//.ts` and a project `references` entry for `../system-spec-kit/shared`",
     "created_at": "2026-05-14T16:26:51Z",
-    "last_save_at": "2026-07-17T17:19:36.532Z",
+    "last_save_at": "2026-08-30T15:39:32.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e47b9c1b384d9739c3cad318484ec237a079c5c4304df8ff0d2cdafa956f954c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9171039f13eb38818f293dc1a594bb2a16fb1c5cdaa3df0e26d16116f359cd6b",
       "plan.md": "4a50b3261362667072d659728fa3d1c0f0f8cb108aeb2a854285b265f0555c56",

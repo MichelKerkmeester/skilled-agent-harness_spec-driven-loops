@@ -46,10 +46,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       "scratch/verify-direct.py",
       "scratch/blocker.md",
-      "scratch/repro-temp-project-after-patch.txt",
-      "implementation-summary.md"
+      "scratch/repro-temp-project-after-patch.txt"
     ],
     "entities": [
       {
@@ -71,6 +71,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "verify-direct.py",
         "kind": "file",
         "path": "scratch/verify-direct.py",
@@ -86,12 +92,6 @@
         "name": "repro-temp-project-after-patch.txt",
         "kind": "file",
         "path": "scratch/repro-temp-project-after-patch.txt",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Under Setup A (EmbeddingGemma-300m / sentence-transformers / 768-dim), the cocoindex daemon writes valid embeddings to `targetsqlite.db` (proven via direct sqlite-vec KNN returning relevant results at distance 0.97-1.03 on packet-local queries), but every search call through cocoindex's own MCP/CLI path returns `msgspec.DecodeError: Input data was truncated`",
     "created_at": "2026-05-12T21:35:00Z",
-    "last_save_at": "2026-07-17T17:19:18.512Z",
+    "last_save_at": "2026-08-30T15:39:29.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3e51893c2cd96778b6f30bc0337d1d28a3fa4d7077d2f55f5af812f5a8d411f2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "258fdbf2077e72d2c333807a4cbfbe5f88eb519b4e4a4f3fe70d6e4ebbf7642a",
       "plan.md": "d05c63b1f40fcbd23af16962b26ff699decaf1cba1efbd9d019e1f13fc44ccce",

@@ -20,9 +20,9 @@
       "system spec kit rollout tasks",
       "system spec kit compiled router checklist",
       "non hub scorer parity tasks",
-      "system spec kit rollout verification",
-      "system spec kit scorer parity checklist",
-      "bounded default rollback evidence"
+      "system spec kit rollout summary",
+      "system spec kit compiled policy evidence",
+      "non hub real green result"
     ],
     "key_topics": [
       "system",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "harness/run-rollout.cjs",
       "compiled/system-spec-kit/policy.json",
@@ -71,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +191,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The unified compiler was proven on one standalone skill, but `system-spec-kit` has a materially larger authored router: 17 intent classes, 48 manifest leaves, multiline resource arrays, and an explicit always-loaded default resource",
     "created_at": "2026-07-19T10:37:32.836Z",
-    "last_save_at": "2026-08-29T15:22:02.614Z",
+    "last_save_at": "2026-08-30T15:39:15.122Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cea5206f703bc5207c5767b956ec8fec16c6340f757301f6061f9838d693b07a",
+    "source_fingerprint": "sha256:55b4a74b3ef77a71aa162e7ba7473b8b21255df3b3f34e45dcc28f39c4c5e496",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2158e487013e44587cbbfb2a9919cad63525d03c0dcfdf450b4143955bf41940",
       "plan.md": "12f1a97f3adf445de89eed8bb4f343c7388afa3bfb4f59d6445abae333496c71",
       "tasks.md": "58847c23788dd92a80ac58d92b18676889f142d18ac032ee3ae4f072628a9be7",
-      "checklist.md": "0dfe4323a0781c14d6c4b92d82a6a974b5805f5e131a9c0e70f8c0742ea2e05c",
       "implementation-summary.md": "770489dd479338f73ad57c9dd9ef2aa35dc24288944f1a006a6ea502504d0d0e"
     },
     "last_active_child_id": null,

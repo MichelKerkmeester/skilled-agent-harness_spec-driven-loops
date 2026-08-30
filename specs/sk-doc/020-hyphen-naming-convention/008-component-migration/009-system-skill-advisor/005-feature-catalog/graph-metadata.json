@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The advisor's feature catalog currently uses the snakecase root featurecatalog, seven snakecase category",
     "created_at": "2026-07-14T15:18:10Z",
-    "last_save_at": "2026-08-30T07:19:50.116Z",
+    "last_save_at": "2026-08-30T15:39:16.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,7 +196,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:524902888ec58a3150cc9b8a4e56cc6e43ff9a77bcce7922ce8865d7c72ae4fa",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "424c1671cc615120f9eb4346aba2c68f4e0513d412cec025a145cbd3288d180f",
       "plan.md": "da6558060239671c201b6efcbced5db6dcc45c8ff0a1992a8ae639e055ebc64a",

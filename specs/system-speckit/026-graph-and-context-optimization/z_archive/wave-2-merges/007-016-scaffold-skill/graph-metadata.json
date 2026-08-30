@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -58,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,36 +168,41 @@
         "source": "derived"
       },
       {
-        "name": "Verified Phase",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "ADR-001 for parent packet 014 accepted a code-graph extraction plan that makes `.opencode/skills/system-code-graph/` the first-class owner of the code-graph subsystem",
     "created_at": "2026-05-14T07:54:11Z",
-    "last_save_at": "2026-07-17T17:19:35.903Z",
+    "last_save_at": "2026-08-30T15:39:32.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T07:54:11Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7973e129dc00b20c689b7c82af87740e4147ed2ac6dfffacde332741441f5666",
+    "source_fingerprint": "sha256:3186dbc26b8cf54e7188aecd08bbc013f784527350e6a39487f4246c5483a373",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9b4cb2d11d905015f225145a53e7f2f92149395215652d079d5bd2f87dca0824",
       "plan.md": "eb594a275ab1e5a78e69287c3fb3df49f44f3de7989395a6daf3885882e21d94",
       "tasks.md": "841b992d1f083d28c5cf3d1547f89661c45a6893dfb27da35b3e8c4e4996154c",
-      "checklist.md": "e6c2375e75978150aff7221d5a82663713ffdd8274ad3812f529f8c99c4f62c8",
       "implementation-summary.md": "48cd3178ed31f352bca98c2da9e5b22210a12af59f041ae0348d7443dff863aa"
     },
     "last_active_child_id": null,

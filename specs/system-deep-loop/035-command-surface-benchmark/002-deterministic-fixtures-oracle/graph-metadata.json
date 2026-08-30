@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Builds and verifies the independent public and held-out fixture corpus plus a reference oracle, authored before any adapter code so the deterministic adapter cannot validate itself.",
     "created_at": "2026-07-14T20:36:58.868Z",
-    "last_save_at": "2026-08-30T07:16:22.573Z",
+    "last_save_at": "2026-08-30T15:39:20.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:84294cc9027982ff33de60fa86b73e2d08319e397c637d72116bace0a304fd57",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f8040fab0c8aec41ac503bba12883019eb832ffe2416428b4dc9e5b14bb3c980",
       "plan.md": "07160c33cabf1d42e465ff67f380ebe10f76cefc23f2e1d0a9b37713c96de8e5",

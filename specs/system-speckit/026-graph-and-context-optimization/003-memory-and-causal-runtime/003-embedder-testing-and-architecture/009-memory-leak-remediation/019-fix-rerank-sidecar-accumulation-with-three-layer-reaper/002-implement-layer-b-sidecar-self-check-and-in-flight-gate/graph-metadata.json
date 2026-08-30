@@ -19,8 +19,6 @@
       "rerank sidecar self reaper plan",
       "arc 010 005 002 tasks",
       "rerank sidecar self reaper tasks",
-      "arc 010 005 002 checklist",
-      "rerank sidecar self reaper checklist",
       "arc 010 005 002 decisions",
       "rerank sidecar reaper adr",
       "arc 010 005 002 summary",
@@ -43,32 +41,13 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,6 +64,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -172,49 +163,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Managed Async Reaper",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Decision Run",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Pending Shutdown When Requests Are In Flight",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The rerank FastAPI sidecar can remain alive after owners disappear because the current app has no background owner-liveness self-check, no app-level in-flight request gate, no idle timeout backstop, and no process-lifecycle telemetry",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-17T17:19:28.663Z",
+    "last_save_at": "2026-08-30T15:39:31.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08c876f7cafbfbd6cea9858f62c48540530aff694a48f7bb729df13d944afe40",
+    "source_fingerprint": "sha256:dcff10af064fc0bc639c71e14ce17470da4de9e6e1de9cf58fe625bca035742e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19d6724d4c688e67153d878646501158ced39e625b054edbab1ed323701c1bde",
       "plan.md": "d4284361ca36ebce4b53b2b73055f7e5d5ce51f4745f619eae4a2bdc659456ee",
       "tasks.md": "15bb3deea6e1c70e5a0a843ec4e62fbf17968e27085d16bb2a4270c3e606bbd6",
-      "checklist.md": "17c1cfbbdc3cea9d4e6c3e0c059c7790dcdda3de2145d4962b002a24487ac40a",
       "decision-record.md": "6e50c95256aef1a615963c9ee3126a12d4b9f0b2ce925d24bd4e67de4f035570",
       "implementation-summary.md": "71d7cadd37c93848335a23b546064b8ab9809d43b9a0ab1922a6608a12858921"
     },

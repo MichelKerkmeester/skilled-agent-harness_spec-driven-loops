@@ -167,7 +167,7 @@
     ],
     "causal_summary": "The system-code-graph runtime tree is a named migration surface even though its current four files and directory",
     "created_at": "2026-07-14T15:18:15Z",
-    "last_save_at": "2026-08-30T07:19:52.980Z",
+    "last_save_at": "2026-08-30T15:39:16.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,7 +176,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:df0f685c2d7c215427ee185101c161657e5dda252c2b4afdcb1aa8d9f06d34db",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a375b72ba9ce836a923ba85726f30d83145bf0ebd9a23e0e930101de087ae02",
       "plan.md": "e20919eed7c1b28fad2ae26fcca4ab84ea7351d98d4a41abacb6c0f23f975839",

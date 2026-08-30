@@ -20,9 +20,9 @@
       "interface audit pilots tasks",
       "design-interface pilot tasks",
       "design-audit comparison tasks",
-      "interface audit pilots checklist",
-      "design-interface pilot checklist",
-      "design-audit comparison checklist"
+      "interface audit pilots decisions",
+      "design-interface pilot adr",
+      "design-audit non-authority adr"
     ],
     "key_topics": [
       "interface",
@@ -36,7 +36,7 @@
       "lane",
       "plan",
       "tasks",
-      "checklist"
+      "decisions"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -71,12 +70,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,27 +185,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The phase-007 shared context seam defines a neutral `CORPUSCONTEXTPLAN` envelope with common generation, provenance, role, transformation, fallback, and proof fields, but no mode consumes it yet",
     "created_at": "2026-07-18T14:17:16.591Z",
-    "last_save_at": "2026-07-18T19:05:14.998Z",
+    "last_save_at": "2026-08-30T15:39:12.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:941d096c86b2869228714bf6723b083c48b68a8b876187e6ca797df0b28f2ed8",
+    "source_fingerprint": "sha256:a6396ed75405ead0d72b2e0516e41ad28d2b5b34721740dc5a27d0dd11a460b5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dda1f17b56006af0b93377ba369c0cf2e8f6804a7cb003b413e5ac3825139d1b",
       "plan.md": "72535da1df48b63f4c5a67e45caac0a8195eaab4a134a9e199946b1db56a2f34",
       "tasks.md": "13d122d7951a93770cbca237acf98fe97a6679b941ed1d3ecd45f780b1cf16c0",
-      "checklist.md": "50accf3534d81899f73ad8ad62a7509133ccb29a4fb02d66048976bfbb0cf54b",
       "decision-record.md": "c3c60fdaa4fe3665ee01a1c9e66d159a3e7940192f68f7a50b604aed1ed331dc",
       "implementation-summary.md": "35410a878d4ce2e3977677673f1ef143d9c6efbe7d70ce88ead93e5a694d55e4"
     },

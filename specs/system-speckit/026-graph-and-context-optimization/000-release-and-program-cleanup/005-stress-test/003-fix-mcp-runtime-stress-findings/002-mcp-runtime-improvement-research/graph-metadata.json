@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Two recent investigation packets (005 defects catalog and 006 cross-AI stress-test) surfaced a coherent set of MCP runtime defects spanning the memory layer, code graph, cocoindex mirror handling, intent classifier, and a new model-side hallucination class on weak retrieval signals",
     "created_at": "2026-04-27T06:26:49.654Z",
-    "last_save_at": "2026-08-29T15:22:11.291Z",
+    "last_save_at": "2026-08-30T15:39:28.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:efb29113e2500830a5773656bf133a5894f31776baa1d90d5db981a1532f64b4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e36ad10ad562526643024c8c0e392c0b019cfa414579002ca50c1abcf0c8fc2",
       "plan.md": "5d3a6aebe3ea3403aa0680d34fe8deefb45abd11dd7ea4763cd2a10ffad023da",

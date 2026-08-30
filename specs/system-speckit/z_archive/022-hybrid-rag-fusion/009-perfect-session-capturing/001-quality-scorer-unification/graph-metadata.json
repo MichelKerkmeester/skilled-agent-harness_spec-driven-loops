@@ -18,8 +18,6 @@
       "implementa",
       "plan",
       "tasks",
-      "verif",
-      "checklist",
       "implementation",
       "summary",
       "scorer"
@@ -31,17 +29,20 @@
       "implementa",
       "plan",
       "tasks",
-      "verif",
-      "checklist",
       "implementation",
       "summary",
       "scorer",
-      "pipeline"
+      "pipeline",
+      "runs",
+      "three"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/core/quality-scorer.ts",
       "scripts/extractors/quality-scorer.ts",
       "scripts/core/config.ts",
@@ -49,17 +50,31 @@
       "scripts/tests/quality-scorer-calibration.vitest.ts",
       "scripts/tests/runtime-memory-inputs.vitest.ts",
       "core/quality-scorer.ts",
-      "extractors/quality-scorer.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "extractors/quality-scorer.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -90,30 +105,6 @@
         "name": "runtime-memory-inputs.vitest.ts",
         "kind": "test",
         "path": "scripts/tests/runtime-memory-inputs.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,27 +190,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The pipeline runs three quality checks with a split contract: stored/indexed quality uses the 0.0-1.0 scale, but workflow gating uses 0-100",
     "created_at": "2026-04-12T09:02:50.267Z",
-    "last_save_at": "2026-07-10T06:21:41.252Z",
+    "last_save_at": "2026-08-30T15:39:38.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c79cbb6bb45630c6fecce38e9d9e2681dc58658c0b42039ebc5728b8683ed36",
+    "source_fingerprint": "sha256:6f59166591e5e9d1b53f1f820e8ea25c61ccc725aa28f5bd079f6cf2657d3bab",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5f7d9b260d6cea4cc864743b1f1c0cb0920c7becf094a93cd925909dd4305e0d",
-      "plan.md": "a7eae6a14ccaf27fd2549db7bd8a24db5dc1bc56d12bf7c73ea75fd4eb925590",
-      "tasks.md": "221b23c88c1e6cfa5d5b2c669aa9500f88f7ff1566f986c27bf3ff99a8a70d2f",
-      "checklist.md": "0d0137e054846895b48ae15f0a7a958b82243b53bc0424c5f08e90b7df8901de",
-      "implementation-summary.md": "ea0d50c7a23efd4b1941ca780e223938e8dc3af19f7d26256ea1de2d7c344b98"
+      "spec.md": "b06c52f5bbd076befe352923190af2e36bf022757f885dcf217d1fe8c709a8af",
+      "plan.md": "529f5a3c1a93a4a593b55df3046b6c989e7054662cd8e28e16d505cdac07a92f",
+      "tasks.md": "a854b8fb5c8220ec8150edd2bebf4e14f66a38efd3e0eba14ecc33f8dff1fe0a",
+      "implementation-summary.md": "a887691ac3c35ea979ff1f1cb82bbd2114cd7db664c5a20109391f309ac0c564"
     },
     "last_active_child_id": null,
     "last_active_at": null

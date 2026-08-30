@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The shipped mcp-obsidian Dataview reference docs are a disciplined file-layer contract but are materially thin on the query language itself: the DataviewJS API section documents roughly 5 methods against the plugin's real ~30+, and two existing statements (inline-field multiline continuation, and an implied fixed DQL command-resolution order) are contradicted by the plugin's actual behavior",
     "created_at": "2026-08-23T03:43:07.446Z",
-    "last_save_at": "2026-08-29T15:21:54.977Z",
+    "last_save_at": "2026-08-30T15:39:10.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:a5729e1193fc4031b4b876cdbcea243df3dce07b2deeb379dd8a35349277f1eb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0893ebacfac7e3f35c2e86469fe045cf3b2a6b752ad73aa71808d6cbf372d1a",
       "plan.md": "7a9d7f6184542f9db2588100f23a7a7348d5e8af9641f932789dcab54a821314",

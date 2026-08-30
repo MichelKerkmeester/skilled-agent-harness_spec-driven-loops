@@ -21,10 +21,8 @@
       "comment hygiene checker plan",
       "import purity tasks",
       "comment hygiene checker tasks",
-      "verification",
-      "checklist",
-      "name",
-      "template"
+      "import purity done",
+      "comment hygiene checker coverage done"
     ],
     "key_topics": [
       "import",
@@ -43,48 +41,13 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-code-index-import-purity.vitest.ts",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/lib/model-server-supervision.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-watchdog.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/lib/model-server-supervision.cjs"
     ],
     "entities": [
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-code-index-import-purity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-code-index-import-purity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "model-server-supervision.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/model-server-supervision.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-watchdog.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-watchdog.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -104,15 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
         "source": "derived"
       },
       {
@@ -198,26 +161,55 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The post-merge gpt-5.5 cross-check of the daemon-reliability work surfaced two follow-ups",
     "created_at": "2026-06-07T17:55:39Z",
-    "last_save_at": "2026-07-17T17:19:35.278Z",
+    "last_save_at": "2026-08-30T15:39:32.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:724a63a31ff923d8eda0ac9e69a1a6b7184293727428b76c6873a87edf07a2fb",
+    "source_fingerprint": "sha256:3ee8571221bccaf93923da3b7593152b298546e91f808a3b602ea7342d2cc833",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec38b5385c961f40700743312f71842434fba91ac5618f14fcf08ea64f952cf0",
       "plan.md": "30299486830b6e94a5fe8e7ef324267cf244f8f81846c068df9b973c87eae295",
       "tasks.md": "38f1848521429dd1faad8449869b16a3ac6ea5489c2b93241469413c5c9b1c7f",
-      "checklist.md": "43afca73d2ef8d05c260c640e18e911f47f4654d5ece10566af39e8b354d54aa",
       "implementation-summary.md": "c535b08493e7569b6c68790243681806acc066bee72408bdefecc7337823dac8"
     },
     "last_active_child_id": null,

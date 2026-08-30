@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The system-code-graph references tree has seven snakecase Markdown filenames: databasepathpolicy.md,",
     "created_at": "2026-07-14T15:18:15Z",
-    "last_save_at": "2026-08-30T07:19:52.626Z",
+    "last_save_at": "2026-08-30T15:39:16.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:65f3d4a9a1c9c8ec2fdc196c899f307191476997e6401dff88f1cc4d9696d0bc",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "521c6a7053ea7fbf207dc9c5363ad31bfb1bcbf1d14e72971967822663707eb0",
       "plan.md": "e10ea7c6d9134e02b3ba4c6a94e4942ec5f13ad01e04740ba8d9870f5ee74946",

@@ -36,29 +36,39 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_review_auto.yaml",
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/rules/check-comment-hygiene.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
       ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      "scripts/rules/check-comment-hygiene.sh",
-      "spec.md",
-      "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "scripts/rules/check-comment-hygiene.sh"
     ],
     "entities": [
       {
-        "name": "deep_review_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_review_auto.yaml",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -83,30 +93,6 @@
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -192,11 +178,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three related but distinct hygiene defects, all confirmed live:",
     "created_at": "2026-07-01T07:19:07.520Z",
-    "last_save_at": "2026-07-16T16:32:08.800Z",
+    "last_save_at": "2026-08-30T15:39:25.195Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f2ae9d34a85e1dc73b8ff5862a7f4f010c61a04e5b217f419cdc64708080144d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53b71e54b263d83ee7a57e4818153a102a1d0b61782d7eec441559a2bf96154d",
       "plan.md": "14e7c32b62d8b84877b9ccfd11fe370f74881c55ad96d040200de37e26573348",

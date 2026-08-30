@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Map each retrieval/dispatch system (CocoIndex, mk-spec-memory, code-graph, AI council, deep-research, deep-review, sk-doc, skill-advisor) to its indexer + content type (code / text / both / none). Read-only research packet producing a single research.md table + per-system evidence.",
     "created_at": "2026-05-18T16:52:17.344Z",
-    "last_save_at": "2026-08-29T15:22:15.498Z",
+    "last_save_at": "2026-08-30T15:39:31.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "research.md"
     ],
     "source_fingerprint": "sha256:29d0ca205ad63795e32109c2e36d4ee8e0048bb83ac6edda8b7c0cfd17bf8a97",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b2a8dcacef20116df1d0c1655304c88a5fa4bff5f0d37666896100412938a0e",
       "plan.md": "af00bdea19c302b26cf9ddcd82093494e93f5f54bbce58e733d7565863d65c31",

@@ -212,7 +212,7 @@
     ],
     "causal_summary": "A Rust rewrite is attractive on paper (SIMD, no GC, single-binary distribution, fearless concurrency) but the honest picture is nuanced: the backend's hottest primitives are already outside V8",
     "created_at": "2026-07-11T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:09.276Z",
+    "last_save_at": "2026-08-30T15:39:27.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:5294f598a49a3964b673871b597a2de0314bf69f98d0c66403d8ac40107164d1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ac05e68135669d03aae41abcf48352c7cfe43910f4fd7c459d6632365d650999",
       "plan.md": "a5f02fb60534de8f1ef1c56e47fe9cd3630e2076973b7fc52bf09f77aee3e7a5",

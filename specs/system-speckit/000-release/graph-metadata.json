@@ -3,7 +3,7 @@
   "packet_id": "system-speckit/000-release",
   "spec_folder": "system-speckit/000-release",
   "parent_id": "system-speckit",
-  "parent_id_review_required": false,
+  "parent_id_review_required": true,
   "children_ids": [
     "system-speckit/000-release/001-context-pack",
     "system-speckit/000-release/002-per-packet-extraction",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Gather every change between the last public GitHub release (v3.6.0.0, 2026-06-18) and the",
     "created_at": "2026-08-14T00:00:00.000Z",
-    "last_save_at": "2026-08-30T07:28:30.789Z",
+    "last_save_at": "2026-08-30T15:39:27.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +199,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:806b0dd8d0bee829784b706a707ddfada7b4a77e132705caab7decdd2a8f0b9c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "422c72107abc130380c5372c7799810ffdf199afb44430b7abc46588c4f9bfc2",
       "plan.md": "2beba4b731afe5b4074e18e870c6fd5d0d6d773a9565649f303377ceb8fde50c",

@@ -21,8 +21,8 @@
       "parallel git research tasks",
       "two model research queue",
       "sol luna iterations",
-      "parallel git research checklist",
-      "autosync research qa"
+      "parallel git decision record",
+      "single writer publisher decision"
     ],
     "key_topics": [
       "parallel",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
@@ -77,12 +76,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -204,28 +197,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Setup Confirm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Multiple AI coding sessions run concurrently against one shared long-lived branch",
     "created_at": "2026-07-15T04:22:47.622Z",
-    "last_save_at": "2026-07-15T04:22:47.622Z",
+    "last_save_at": "2026-08-30T15:39:18.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:841a2272ab06d1a401f2dbc4ddc561ac28638a4f4d339290988cdd4c04bde24c",
+    "source_fingerprint": "sha256:394c4acf158c108a24ea251acaac92355ad309c079d3ba86eb375c7840c4a895",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "91a8ead5feebb580f947531f3f05ce2b5ba9c05dc820da230e2a09b2648a8333",
       "plan.md": "2983f057e993b28e0c7e9939d3cc33d25f65bbe7ff52e9a5f08d6aae21aa33f7",
       "tasks.md": "245fd11d0462387a71f191d159df2bb40b9915d6363e51cb31ca1e5e6bfa7c09",
-      "checklist.md": "75b542da169461bfc8b19c6fbd992bc36d8de2eb8b27fa188eab5b052a7f613a",
       "decision-record.md": "d95f6ee2bbed8957ed786e66db28bbe279f16200db296ac5eee99f935109d34b",
       "implementation-summary.md": "8c130b4922efed49447b9de1dc0116eed5f611b9ffadb775866c912c9d3394fd",
       "research/research.md": "647422c707f49529b2752d573a21a3e042b7e874f6d6a9e1eab0da9db8286b30"

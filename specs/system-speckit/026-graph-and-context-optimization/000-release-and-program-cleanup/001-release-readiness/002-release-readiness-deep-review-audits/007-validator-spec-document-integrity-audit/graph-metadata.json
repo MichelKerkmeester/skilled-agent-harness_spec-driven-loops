@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "review-report.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -62,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,26 +182,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec validator is a release gate for system-spec-kit packets, phase parents and deep-review output",
     "created_at": "2026-04-29T19:47:00.000Z",
-    "last_save_at": "2026-08-29T15:22:09.329Z",
+    "last_save_at": "2026-08-30T15:39:27.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bac41e146cd9aaa038d991126c7c026ea6c3e47c8fdcd810ca71ff42b5e5adb0",
+    "source_fingerprint": "sha256:76c77df2725ba68272f42b8e63c5a9754ba16fb375406e42843101052bc57aa8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6efa315df6523a47be456da253c0b9c27a3f939ef7e1700e7f5440e0aea12744",
       "plan.md": "e3431248647676d28c51fc3cd536b816b115d568a7ff926e61d5e3c44299acaf",
       "tasks.md": "7ddbcfaed88c6fca0e554cfc2e35be5bf1f82963b7d24abe30b21ae95da24e30",
-      "checklist.md": "3c6260038032c4b152908eda9750f27ebd1d46f92e5627786ec6c59b4049f72e",
       "implementation-summary.md": "c3caf2f706b0a2b8192595c68dd51b897bc505170333df60765657388789f5d9"
     },
     "last_active_child_id": null,

@@ -35,7 +35,8 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".codex/config.toml"
     ],
     "entities": [
       {
@@ -48,6 +49,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -125,7 +132,7 @@
     ],
     "causal_summary": "Rename the deep-agent-improvement skill to deep-improvement across skill dir, SKILL.md, commands, agent + runtime mirrors, advisor graph, descriptions.json, and cross-references; zero dangling refs; green advisor rebuild.",
     "created_at": "2026-05-30T07:27:05.680Z",
-    "last_save_at": "2026-07-09T10:02:49.052Z",
+    "last_save_at": "2026-08-30T15:39:23.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -133,6 +140,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d4aad7e973085e36f832544b3553971ca9ac2a84642f559efe8061ffc91ebdee",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d282ec85bb99a8f19deff39cea03db504e17fd5e768104895390de3c4478a39",
       "implementation-summary.md": "95580e7aa775149f3d3073800bdba1853be48916efee403bea80386f198862a4"

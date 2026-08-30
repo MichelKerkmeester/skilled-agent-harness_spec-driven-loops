@@ -18,8 +18,6 @@
       "agent improvement projection plan",
       "agent improvement reducers tasks",
       "agent improvement projection tasks",
-      "agent improvement reducers checklist",
-      "agent improvement projection verification",
       "agent improvement reducer implementation",
       "agent improvement projection replay",
       "agent improvement common fold extension"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -169,48 +160,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Agent Improvement Reducers",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Deep Improvement",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Define the pure Agent Improvement fold and its three live projection families: iteration/convergence state, a",
     "created_at": "2026-07-16T03:43:37.764Z",
-    "last_save_at": "2026-08-29T09:58:13.590Z",
+    "last_save_at": "2026-08-30T15:39:21.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8827db1266c8a29d83bc1ace55ed8d711870e87f968589e83b74128674496875",
+    "source_fingerprint": "sha256:2bd0697fd906a8d6b46a6326bffec47442ca851618213daad371677041ff77c8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0bd041062254c54d12d3daad4926e1e8bcfeba1548ce2903fe81dafea9d4ec6d",
       "plan.md": "5c77daac2f9fd3b746a416c46fd02992aa05755005781d748ed33f69efe3a462",
       "tasks.md": "6287e0e15707bb959b8621be7002e5abe19dba90ac4f223d6a91c44ece6347c9",
-      "checklist.md": "51be5c77a701f79ac3a6ce3ac7ab9d9fc0e1b6151b6bcd19e64b4db49c77ed1d",
       "implementation-summary.md": "1ed97f0c95268e5ee9036c5c276c1bbca0827e1c8370a092bbd2e0282f68ac72"
     },
     "last_active_child_id": null,

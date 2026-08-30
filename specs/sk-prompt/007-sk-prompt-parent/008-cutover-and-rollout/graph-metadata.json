@@ -41,15 +41,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/spec.md",
       ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/tasks.md",
       ".opencode/specs/sk-prompt/007-sk-prompt-parent/graph-metadata.json",
-      "spec.md",
-      "implementation-summary.md",
       ".opencode/specs/sk-prompt/007-sk-prompt-parent/spec.md",
       ".opencode/specs/sk-prompt/007-sk-prompt-parent/description.json",
-      "plan.md",
-      "tasks.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
@@ -61,15 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/graph-metadata.json",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout/tasks.md",
         "source": "derived"
       },
       {
@@ -79,15 +79,15 @@
         "source": "derived"
       },
       {
-        "name": "description.json",
+        "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/description.json",
+        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/graph-metadata.json",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/description.json",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The sk-prompt parent-hub merge is not provably done until it clears the same strict enforcement bar that the canonical parent hubs already clear",
     "created_at": "2026-07-09T13:34:37Z",
-    "last_save_at": "2026-07-18T06:22:50.367Z",
+    "last_save_at": "2026-08-30T15:39:18.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,11 +211,12 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d59722082e9854419f9eb6153789467aeec488746665c9795b877674e244488f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "43d05d87b8d0cc4ff99fafb83d3e2f40dcc8d3c7f63c921706ea992fb05090f2",
-      "plan.md": "1c62464c9e163c1b22f8771ac8aa6bc46a9898759a27ef023d8ea49a92d1f419",
-      "tasks.md": "5dadc7287b81b09efad08cb0e0fcab67c5dc727186f055d705994dcd7f734274",
-      "implementation-summary.md": "81399a1ef498678571e6ade548b9ee7d449c58d351893f78fd7db9a4d7e2ad3a"
+      "spec.md": "974352942ccb056ad7118c5243ec86e54ccf40d3692dbb2d414b87a648f715fe",
+      "plan.md": "1f5aa2116c970f253181cce59517587bad5b4a477da8e9e1177030d5e049fab7",
+      "tasks.md": "0e2ba490c367f98a6fdf822a9cdbde5cbbc08ae21c80070d356bb68556c350df",
+      "implementation-summary.md": "474a2ef3e20d84dedb6a9568ad5c01638784a40ce990744601c6311ec85a9380"
     },
     "last_active_child_id": null,
     "last_active_at": null

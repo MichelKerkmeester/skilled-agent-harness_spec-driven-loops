@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Four of sk-doc's authoring templates and validators are out of sync with the code that actually enforces or consumes them",
     "created_at": "2026-07-20T21:51:42.834Z",
-    "last_save_at": "2026-08-30T08:04:15.380Z",
+    "last_save_at": "2026-08-30T15:39:15.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0b4a874a87508c2b25bb8078531223e8190247af7d88de919babe42fe4261376",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d96950aff87114f506c928cd07e2b3eb98920937bf72004b497efaebddb68562",
       "plan.md": "dbd83504936faef6e43d46fcc2c4c291f54c39ef18e5b503a6600acc220251f0",

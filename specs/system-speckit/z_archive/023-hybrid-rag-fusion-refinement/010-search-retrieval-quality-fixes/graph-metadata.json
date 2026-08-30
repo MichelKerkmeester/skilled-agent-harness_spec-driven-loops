@@ -42,13 +42,9 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "mcp_server/handlers/memory-context.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/lib/search/folder-discovery.ts",
       "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -58,45 +54,21 @@
         "source": "derived"
       },
       {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-discovery.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/folder-discovery.ts",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -194,27 +166,50 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrieval Quality Remediation The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`memorycontext({ input: \"semantic search\", mode: \"deep\", intent: \"understand\" })` returns 0 results despite the database containing 1202 memories with 20+ relevant matches",
     "created_at": "2026-04-12T09:02:50.323Z",
-    "last_save_at": "2026-07-10T06:24:02.056Z",
+    "last_save_at": "2026-08-30T15:39:39.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bb2628b3343c014d0c9483af5c8256565bce1632ff986dd023cae6557f35e25e",
+    "source_fingerprint": "sha256:e668c854af513653cf2821292d8a80c79c2527fda72a7f4cd3f9ab485d26605e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fec549e008605ebb6d197daeb39ab2770d74af1368e66c1c322ded86f4bc334b",
-      "plan.md": "8340ac0f3cff5de20ef1e31de2d2ff3d5a9efc6d520e4c2ba061c140bc1bdc5a",
-      "tasks.md": "8bdc263afb72447b301758e6c9a985f70f7bb622015f3ef1d3a33e403c86a536",
-      "checklist.md": "3b7e8ff033e8d5d89c9fb53a70434b52a98b0d2c33d74375262c09222872f92c",
-      "implementation-summary.md": "1e4c8cb8274fd79cef79715a8fafbf7b412d3140acc3dfef123b155dd5fe5b38"
+      "spec.md": "f81830804f58f0dcf45a87017d96f2e6fe95580b39a68a62898e23ff9c704c7c",
+      "plan.md": "87fdba6db425e249e3779a002db7f0e63de5253359bcd95318badb2e79aabae3",
+      "tasks.md": "5ba5b605e9455d22d2b25f253a889ba75ac7dcd5962b371bedaacb168a00deaf",
+      "implementation-summary.md": "fe221510206693c50cca1db4d0fb3257c091fd55e547095504cbec9b98c4062b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Roughly 24 skills across the repo carry router pseudocode or keyed routing logic inside their `SKILL.md`, but only the handful of full parent hubs (`sk-code`, `sk-design`, `deep-loop-workflows`, `sk-doc`) follow the canonical 4-pattern smart-router contract documented at `.opencode/skills/sk-doc/create-skill/assets/skill/skillsmartrouter.md`",
     "created_at": "2026-07-07T04:51:44.678Z",
-    "last_save_at": "2026-08-28T15:58:15.606Z",
+    "last_save_at": "2026-08-30T15:39:13.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:aa0cdfbdeea127543ed4e001151cacdaf87b20b975e428d42be114211302dbfe",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1aed3e2c18bf8fe235ca10c022358e514722897fce44f4674138cc2e0073dce6",
       "plan.md": "c0cbbb1ac6a566bb89b377d3f0a1b7c50f3ad87e6e41053622a1a58450a4b9f1",

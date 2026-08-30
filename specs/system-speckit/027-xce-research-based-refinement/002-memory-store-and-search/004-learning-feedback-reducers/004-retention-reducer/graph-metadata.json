@@ -19,7 +19,6 @@
       "edge-tier-basement.ts",
       "009 retention reducer plan",
       "009 retention reducer tasks",
-      "009 retention reducer checklist",
       "009 retention reducer implementation summary"
     ],
     "key_topics": [
@@ -29,12 +28,12 @@
       "edge-tier-basement",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "level",
       "child",
-      "packet"
+      "packet",
+      "learned"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -62,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,42 +165,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Level 2 child packet for learned retention and edge-floor reducer logic.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-08-28T16:00:03.566Z",
+    "last_save_at": "2026-08-30T15:39:33.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18772a685fd96ca16d4e13198976a9a226684d8434bb47d3dd9dbf10decc3950",
+    "source_fingerprint": "sha256:aa5487f4d0f82054e34038bfb3e89f08f23268c1481faec7eb3da4654528f49f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b8d4f68bde91807e03840bd571392c77bdd0eadfea556d889e0f5e1b522f9f3f",
       "plan.md": "e21a4cbd45bf02b27c960e523f35845e88379ce3c49621ec94e664e5cab6d6ea",
       "tasks.md": "060c971e45b6008484d6094e1ba801d06c3af377217f158054f97cbc793da321",
-      "checklist.md": "4b3c3de272c54a4c5ba4ece03817be96b40270829bca1488edc5c68c8a5e612b",
       "implementation-summary.md": "bc063a3e949745a0df4794d682a2c57ed03cb8d5b4e5a27a65235946b40bb2a7"
     },
     "last_active_child_id": null,

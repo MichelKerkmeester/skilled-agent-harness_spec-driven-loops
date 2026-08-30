@@ -19,8 +19,10 @@
       "drop grok devin implementation",
       "grok devin removal tasks",
       "drop grok devin tasks",
-      "grok devin removal summary",
-      "drop grok from devin result"
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr"
     ],
     "key_topics": [
       "grok",
@@ -34,7 +36,7 @@
       "implementation",
       "removal",
       "tasks",
-      "summary"
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -42,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -68,6 +71,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -189,26 +198,22 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The cli-devin allowlist advertised Grok 4.5 and 4.6 model ids (`grok-4-5-high`, `grok-4-5-low`, `grok-4-5-medium`, `grok-4-6-high`, `grok-4-6-low`, `grok-4-6-medium`, `grok-4-6-xhigh`)",
     "created_at": "2026-08-29T17:59:26Z",
-    "last_save_at": "2026-08-29T18:18:37.624Z",
+    "last_save_at": "2026-08-30T15:39:08.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:81b6cd041613f7958c62f02ea89f48fee648466b00da5b2372a06fc19a84cb15",
+    "source_fingerprint": "sha256:5385825c582850dae59fd545e88bf9b27ca3a8e86985777ddfc11216af5b097b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4c367262244287103dc41152d3321a3a7ba3d7024f759cda3d564bda81d39afc",
       "plan.md": "bc0ed9660e59b16e7329162a2077752464b4bd3b47612962e82491c6c858f1e6",

@@ -36,33 +36,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/hf-model-server.cjs",
-      "shared/embeddings/providers/hf-local.ts",
-      "mcp_server/tests/embedders/hf-model-server.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/hf-model-server.cjs",
+      "shared/embeddings/providers/hf-local.ts"
     ],
     "entities": [
-      {
-        "name": "hf-model-server.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/hf-model-server.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/hf-local.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hf-model-server.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedders/hf-model-server.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,6 +66,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
         "source": "derived"
       },
       {
@@ -188,11 +181,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "hf-local currently owns transformers model loading inside provider/sidecar execution paths",
     "created_at": "2026-05-29T05:06:24.637Z",
-    "last_save_at": "2026-07-17T17:19:29.935Z",
+    "last_save_at": "2026-08-30T15:39:31.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8ec945c50d12de72f1dd6b4e64422c9ab07fde4426ab56f323f53c3b64a24a3b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c5c65b4479c1258f92cff134234d6ac922466c8fe14d657419464ae777eced43",
       "plan.md": "322be3eaacd1d631d58398ce9d5360e39d37c255da8ce853471ee6f16f7fe059",

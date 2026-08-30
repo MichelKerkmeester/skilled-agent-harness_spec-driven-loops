@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`cli pi` lists models in its own `/model` picker from pi's provider roster",
     "created_at": "2026-08-17T09:56:22.263Z",
-    "last_save_at": "2026-08-29T15:21:51.536Z",
+    "last_save_at": "2026-08-30T15:39:08.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:0a6b77507eda32c00f7388336d5b22aa55cba13aa5cbc21fdb24a193d025186f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "320ecd6fc287fc7c4568c9051c004f6ee425865018fdcb946023e9d012a1fbb6",
       "plan.md": "9e335e1c9120f59f93a79ecb32288c6aecb8ea640074e5b5a09074ff72ed084b",

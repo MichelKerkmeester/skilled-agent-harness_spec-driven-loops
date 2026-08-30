@@ -15,7 +15,6 @@
       "delete sk-create-flowchart",
       "flowchart deprecation plan",
       "flowchart deprecation tasks",
-      "flowchart deprecation checklist",
       "flowchart deprecation summary"
     ],
     "key_topics": [
@@ -26,11 +25,11 @@
       "sk-create-flowchart",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "phase",
       "merged",
-      "ascii"
+      "ascii",
+      "markdown"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -38,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
       ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,26 +186,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Surface Fixes",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 012 merged `sk-create-flowchart`'s ASCII/markdown capability into `sk-create-diagram` and left the source skill as a redirect stub, matching the \"redirect, not delete\" decision recorded at the time",
     "created_at": "2026-08-13T05:55:33.000Z",
-    "last_save_at": "2026-08-29T15:22:04.923Z",
+    "last_save_at": "2026-08-30T15:39:18.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ccde8b216b905363ecc61ce3e95c0837b085e5b3f85877a5360542b315dba27",
+    "source_fingerprint": "sha256:2e0a970435425a6fbf79bfd5cd110d553700f0d902eaf83b2f4c910f2b80461a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4a2d45e6ebdc263be794fd7ebab7996d51e78daa4cd954867fd427732fad1799",
       "plan.md": "e6849aeb878efb8fed9e238a0ba023457f5ee92fe359cc58c92dfe06cd70e532",
       "tasks.md": "b14f5162c881991d7a879fbfcfe7e4748b3b3a91b26c766507fc248e8bdfd2af",
-      "checklist.md": "6d62a5948f1e6190a587fa4b23d517eb79e9bd910e9f47191e5a381efb8d3446",
       "implementation-summary.md": "cd7f63efc90708048cda28ca0c95230cdb20ab22c79c21bbb99462f46d3c67aa"
     },
     "last_active_child_id": null,

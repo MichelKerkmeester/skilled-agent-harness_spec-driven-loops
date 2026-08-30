@@ -43,9 +43,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      "scratch/.gitkeep",
       "implementation-summary.md"
     ],
     "entities": [
@@ -62,21 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": "scratch/.gitkeep",
         "source": "derived"
       },
       {
@@ -192,26 +178,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The fan-out worker calls the write-containment guard with `artifactDir` set to the single lineage's own directory, so every sibling lineage's directory is out of scope",
     "created_at": "2026-07-27T18:10:15Z",
-    "last_save_at": "2026-08-18T03:58:07.920Z",
+    "last_save_at": "2026-08-30T15:39:21.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:696d81cbd93e88a03cb8caed38f861d313d3aae7e6880c6afcf23e2c1b9a0249",
+    "source_fingerprint": "sha256:5382aa92cf4427a7835d2a8136047cf256106c5632b4bd9da72fc423a008c68a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ff92852e1bfc41412c355c5682459b04360594f0196cf7c80a0cb80d7c145446",
       "plan.md": "e2cb47666edeb6260cb88642a2936f04f0a41db0a5ac0925eefc5a140c3a656f",
       "tasks.md": "e7d10f4402d348c1f3911bf156b09d8ed92c902db2c71d8a14e70593d5767721",
-      "checklist.md": "666c7fc642d4c464d385973e399e27308ec7b082d52929c8ca3c075b8ae4596a",
       "implementation-summary.md": "083e7d5f64b2d84661d1bc8a25c14b178d4e23774ce9e010dc8517b0216ddee8"
     },
     "last_active_child_id": null,

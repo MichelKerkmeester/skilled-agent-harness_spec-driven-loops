@@ -41,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "audit-findings.md",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,27 +188,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Runtime command and agent docs can drift when tool names, paths, hook contracts, and MCP surfaces change quickly",
     "created_at": "2026-05-18T08:15:53.029Z",
-    "last_save_at": "2026-08-29T15:22:09.756Z",
+    "last_save_at": "2026-08-30T15:39:27.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:fef525e2a4373719881469d08505947bc90c120b688d57c4ac78b2ffa3d0d590",
+    "source_fingerprint": "sha256:8e365bfc4a221cb0e3dc424648924d1bfb9b13d4198319d223bbc1fb48a76391",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d42d9114079c7093929019654b572986f5aad56aec36a31bcc946f74e4bd55e0",
       "plan.md": "9e2a0408ee2479a1618552d9694bd93175d057f2b544da9f3479dd17cc7de249",
       "tasks.md": "1f9ac6d092b309172a30a73ce9e895f5ad4ca7329b20d6b329adec165d46d971",
-      "checklist.md": "4cfdca12eb78d3e38910a73bcc71b0f7d29cff27247621090946ab53fc8d8f21",
       "implementation-summary.md": "06eace3bf307b0882e7eb479f52d84ceb81ba478c7fdb474869a107ae1e94618",
       "resource-map.md": "1bb968f7a5272cdbafe8277569265065d71fad893d64380d00c8fc893a1a51df"
     },

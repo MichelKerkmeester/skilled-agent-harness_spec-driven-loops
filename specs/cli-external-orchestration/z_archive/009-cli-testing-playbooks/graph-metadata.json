@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/009-cli-testing-playbooks",
-  "spec_folder": "cli-external-orchestration/009-cli-testing-playbooks",
+  "packet_id": "cli-external-orchestration/z_archive/009-cli-testing-playbooks",
+  "spec_folder": "cli-external-orchestration/z_archive/009-cli-testing-playbooks",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -21,8 +21,8 @@
       "cli testing playbook plan",
       "048 tasks",
       "cli playbook tasks",
-      "048 checklist",
-      "cli playbook checklist"
+      "048 adr",
+      "cli playbook adr"
     ],
     "key_topics": [
       "cli",
@@ -33,7 +33,7 @@
       "validation",
       "plan",
       "tasks",
-      "checklist",
+      "adr",
       "five",
       "orchestrator",
       "skills"
@@ -41,70 +41,43 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/spec.md",
-      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/plan.md",
-      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/decision-record.md",
-      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/tasks.md",
-      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/checklist.md",
-      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/implementation-summary.md",
-      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/description.json",
-      ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/graph-metadata.json",
-      "review/review-report.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md"
+      "implementation-summary.md",
+      "review/review-report.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/decision-record.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/cli-external-orchestration/009-cli-testing-playbooks/graph-metadata.json",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,29 +175,46 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "per-CLI",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Five CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-opencode`) lack manual testing playbooks",
     "created_at": "2026-04-26T08:19:52.465Z",
-    "last_save_at": "2026-07-14T19:26:20.858Z",
+    "last_save_at": "2026-08-30T15:39:08.371Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42ab2ba7a6848a2018e5b0f293a0bf49061f2404a0fb521a7cabaf6940825cf4",
+    "source_fingerprint": "sha256:a34ba005027c13402137187a6b0151e4c698ea599b5819efc767d092ebdb6e09",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2bafe756da95947ba1816d151d7b8e0c1baadd2581e194b133f8bfe59762801f",
-      "plan.md": "666263e6393c77922750f7d205e95f1ec1b854fc69c40e38c30590a08481ea35",
-      "tasks.md": "a712b63ca7ed6770ebb596bcbdd031753b61e852ef9776d3f92c6137ae3f7d72",
-      "checklist.md": "8c2aaa3bc69a758b86e832bd3e3a201c295937a91e23229d76ddcbf168e4dd6c",
+      "spec.md": "8719a953d72039eec7143edc805055f9df03806b529ef6abbfb2e85e5c4eedea",
+      "plan.md": "a0e8a64802556b973b1ebd8cf4ff99342c127aad042e539e042342e40ac589e2",
+      "tasks.md": "3b5f08366181b626a7cfda1e9eb4f5ca890c7a4066af2289e9ecc15dc3726038",
       "decision-record.md": "b7d9792504cdbe326d50b8a9abddd8f4c2c8875c1da51b679a4c6a6b4c72c6a2",
-      "implementation-summary.md": "a49458e111c28c51e19535e56bd66395288e638d8d308d7cb09aaccfb1923701"
+      "implementation-summary.md": "fedc2aedd00cb1b3a49ffdeae39482c30f712b13d63d2f8435d744eabc66f6eb"
     },
     "last_active_child_id": null,
     "last_active_at": null

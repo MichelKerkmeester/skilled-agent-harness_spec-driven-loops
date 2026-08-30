@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/022-cli-devin-deprecation/004-docs-agents-governance-removal",
-  "spec_folder": "cli-external-orchestration/022-cli-devin-deprecation/004-docs-agents-governance-removal",
-  "parent_id": "cli-external-orchestration/022-cli-devin-deprecation",
+  "packet_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/004-docs-agents-governance-removal",
+  "spec_folder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/004-docs-agents-governance-removal",
+  "parent_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -37,19 +37,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "constitutional/post-implementation-deep-review.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "post-implementation-deep-review.md",
-        "kind": "doc",
-        "path": "constitutional/post-implementation-deep-review.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,15 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -187,11 +180,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "cli-devin/devin appeared in agent rosters (deep-context/research/review/improvement across 3 runtimes), governance docs (AGENTS.md, CLAUDE.md, README.md, skills index), cli- sibling skill docs, deep-context skill refs, constitutional docs (cli-dispatch-skill-preload, post-implementation-deep-review), and shared cli references",
     "created_at": "2026-06-08T16:10:30Z",
-    "last_save_at": "2026-07-14T19:26:13.786Z",
+    "last_save_at": "2026-08-30T15:39:08.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e38f3023ad86e9becab45e4c96812cbcf2b24cdb8d42528663b66af8617c056d",
+    "source_fingerprint": "sha256:7f53d3c01173a9fbd533fb9df30147ad209a5bddda0ed5f1b34feefc80de7e75",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a7bbfe093aecca89e8586d5cce4d7175e55a9509f2eb0a8956e7b17a372591b",
-      "plan.md": "a131a042787d14f97e77d68786627aab5684f0f08c5f7bd989dd2e2aa856849e",
-      "tasks.md": "04c5a386831915b54a1f1d9cb673caeb064ca958941a4a6029639b3ad894ecc8",
-      "implementation-summary.md": "7e2ae8c54f987f3fbcb2df7e8df26afce13e1f01dd6452fa40d9a5e58da0be2d"
+      "spec.md": "bf627fd8f39b6d49475aab87e98f798813f0273f6a0fa231b6ff563ee7205b1b",
+      "plan.md": "332b10fe6e06dc9697e41d4a1f2e74006a5b28f05ad5ddae3e40b56b3dc8e73d",
+      "tasks.md": "ee7a299f7fda23bf7a608fe3bf93fb12eb9edacc94007d4c033007d9f9a05cc7",
+      "implementation-summary.md": "4f41c044e90a28729ce35768b00edafd76c3dc71a9963afe6eede08f983a63a7"
     },
     "last_active_child_id": null,
     "last_active_at": null

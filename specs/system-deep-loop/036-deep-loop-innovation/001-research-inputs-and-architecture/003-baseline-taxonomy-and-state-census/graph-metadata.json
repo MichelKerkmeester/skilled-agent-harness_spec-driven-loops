@@ -18,8 +18,6 @@
       "deep-loop recommendations phase 003 plan",
       "baseline taxonomy and state census tasks",
       "deep-loop recommendations phase 003 tasks",
-      "baseline taxonomy and state census checklist",
-      "deep-loop recommendations phase 003 checklist",
       "baseline taxonomy state census implementation",
       "deep-loop baseline evidence bundle",
       "phase 004 census handoff"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "base-manifest.json",
       "phase-004-handoff-manifest.json",
@@ -69,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,26 +187,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "owners",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 036 phase must preserve.",
     "created_at": "2026-07-16T03:43:57.879Z",
-    "last_save_at": "2026-08-29T15:22:06.472Z",
+    "last_save_at": "2026-08-30T15:39:20.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3ec166c80247afffaa4f8b27c2fb16a93f63f9a0c12243d32e67870f804aea2",
+    "source_fingerprint": "sha256:02ffe82a16c06b4b01896cf5e36893bf021c189777db65b3ed907370bfe28aca",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61b9775d41c219383b533746c5a0b3bff545948280fbf2e4280837964595c2ff",
       "plan.md": "d515adc02cfef311e3317d7469c95d395adecd7f6fb4716ac8a77b89ad79678b",
       "tasks.md": "9aa41434a18980c3e23888d8c64b97d77a001b8b402e1872f07e6b1c72fe4288",
-      "checklist.md": "2ffef8a3c503d71bf8bbf72a31bff575a14915742d0ebc26e0701fbe91fdcd25",
       "implementation-summary.md": "3345733aa26afa3b70549af90137fab2493b83950451ef4b2e43bdfde6bffc1b"
     },
     "last_active_child_id": null,

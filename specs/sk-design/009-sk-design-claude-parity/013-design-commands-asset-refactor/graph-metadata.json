@@ -39,12 +39,11 @@
       "workflow"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/commands/speckit/plan.md",
@@ -69,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -180,43 +173,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Question Design",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Presentation Asset",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The five `/design:` commands (`interface`, `foundations`, `motion`, `audit`, `md-generator`) are currently flat, single-file commands with no `assets/` folder",
     "created_at": "2026-07-06T04:33:03.987Z",
-    "last_save_at": "2026-08-29T15:21:59.399Z",
+    "last_save_at": "2026-08-30T15:39:12.241Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09f8bca8757bc8ec44a4c0ddd4af27f42b8b78343c02855a6776b1834adf3dbe",
+    "source_fingerprint": "sha256:194b226287228a84f8f07cfe6744bc99902c9b8d51729f389ef188200b6fb3fe",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d0a23132c2ecae30e1a1c735c4f6e10d5ae9897c830dd0c8830dafb0326ecc0",
       "plan.md": "bb9f5f9084dc14e6618ec43fe3dcfaaf4822ed5d9e211b5375e1ff848f204651",
       "tasks.md": "c400fe670d06bb285644af8b14db759583c0732becba5daad3bba6ad88ba4b29",
-      "checklist.md": "c470f180d79002406952b0d1abd7f136ad666873a8d29d92bb467c6d4d287993",
       "decision-record.md": "550ba0e9fae7d9e2a9245c5e1c256f99e0d7df0c9bbe93f5a37ea33e8c090ff2",
       "implementation-summary.md": "503fe45c00b16fc2182282c1fca2a2623b58e6e825f2d5e7d48a60e98ea11292"
     },

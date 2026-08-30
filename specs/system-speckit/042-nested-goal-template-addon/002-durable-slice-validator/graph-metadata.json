@@ -15,6 +15,10 @@
       "durable slice cap",
       "binding block check",
       "child path existence",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "goal shape rule",
       "durable slice budget",
       "binding child paths"
@@ -31,7 +35,7 @@
       "child",
       "path",
       "existence",
-      "shape"
+      "packet"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -39,10 +43,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
-      "scripts/rules/check-goal-shape.sh",
       "scripts/lib/validator-registry.json",
-      "scripts/tests/check-goal-shape.sh",
       "references/validation/validation-rules.md",
       "mcp-server/ENV-REFERENCE.md"
     ],
@@ -66,15 +70,21 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
-        "name": "check-goal-shape.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-goal-shape.sh",
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,26 +194,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nothing checks a goal document",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-08-30T04:18:13.671Z",
+    "last_save_at": "2026-08-30T15:39:36.787Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60f38668daba4bb7998bca8481624cb82fba339e57c7fd69fb40be68694fd04d",
+    "source_fingerprint": "sha256:370e1418a8440bd5150d68496fc6b264bfae296049e7e97de7a3f22ee6935426",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b90bd84c84aed7ca5f9cd0adea2c914474275afea944980555b5f0aee999ea09",
       "plan.md": "704a648f71b07fc6f76a2a90f492fc2a58da9eca811caa76a3723df363f71d94",

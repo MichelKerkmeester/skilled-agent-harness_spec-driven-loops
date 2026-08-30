@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Repo study 1 (agent-swarms) produced a graph-based deep-loop design but studied a TypeScript product runtime whose weak spots (self-declared loops, best-effort checkpoints, look-alike parity) left the hardest parts under-specified",
     "created_at": "2026-08-13T21:14:44.834Z",
-    "last_save_at": "2026-08-29T15:22:08.873Z",
+    "last_save_at": "2026-08-30T15:39:22.405Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:73878c8d328a8aca6d835a4d1e4cba79f00f098c2f296aca10e36a086af415df",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c3dfbcdd233a7ba2f8d08dd9951426d09ae6cdf0da5f5a55f09f7e74eabaa9a",
       "plan.md": "a27ae8116e2c8e8ae2e56f95478399a693d9f315bf4f99ef63a1c4bdfb9ced2a",

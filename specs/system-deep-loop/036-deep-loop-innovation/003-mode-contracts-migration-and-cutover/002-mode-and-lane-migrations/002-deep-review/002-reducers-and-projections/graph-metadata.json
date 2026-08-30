@@ -18,11 +18,11 @@
       "deep-review projection fold plan",
       "Deep Review reducers and projections tasks",
       "deep-review projection reducer tasks",
-      "Deep Review reducers and projections checklist",
-      "deep-review deterministic projection gate",
       "deep review shared reducer backbone",
       "deep review projection boundary",
-      "deep alignment reducer reuse"
+      "deep alignment reducer reuse",
+      "deep review reducer implementation",
+      "deep review projection contract"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,49 +163,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Shared Review",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Loop Backbone",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Dark Projection Boundary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the pure deterministic reducers and live projections for the Deep Review migration: replay the typed event ledger into iteration/convergence state, an artifact index, and per-mode status while preserving factored finding evidence and the shared review-loop contract used by Deep Alignment.",
     "created_at": "2026-07-16T03:43:32.465Z",
-    "last_save_at": "2026-08-29T13:09:52.649Z",
+    "last_save_at": "2026-08-30T15:39:21.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7252c03d1fb7df9da1cfaacdbc34cd6e01a1bc02a7e21fddcd461580c8e9f8a",
+    "source_fingerprint": "sha256:4ab82e96c0b28d987758399882e6d593f586703b905b346c84e5c83ded18b988",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b9bad1529991affa05a46ec99e251983a6fd8d16bd4962c6fd98d1adf90c61bf",
       "plan.md": "9aefb53c24322c916b7b810a3dd46c404408496634e90965d53c0df3b808fade",
       "tasks.md": "b8a853e8beeb4beec61e60a6e796a252f8da85c2c1656de782926f2e5be6aba5",
-      "checklist.md": "d26ccfedd52f243b80bae170babe3f75de0e7c2cd7c9c52d5363aa665ca58969",
       "decision-record.md": "e2e2873cefd1ddd95e8b3ed4a2234751f0ac50921dc48a3198a9ad015ecc35db",
       "implementation-summary.md": "ed21d2f5b5c05297e4a46ec4f8f9a122ed20698214849270a16e276b7a8d3a89"
     },

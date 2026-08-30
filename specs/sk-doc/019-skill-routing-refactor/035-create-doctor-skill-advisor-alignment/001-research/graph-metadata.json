@@ -204,7 +204,7 @@
     ],
     "causal_summary": "It is not currently easy or reliable to create a new skill: the `/create:` command family and `sk-create-skill`'s guides describe authoring, `/doctor` diagnoses and repairs skill-advisor/skill-routing state, and `system-skill-advisor`'s own index (mode-registry, hub-router, advisor rebuild, skill-graph validate) is the live substrate both of those have to satisfy — and these three surfaces may have drifted out of sync with each other and with the current parent-hub canon",
     "created_at": "2026-07-30T18:20:46.201Z",
-    "last_save_at": "2026-08-29T15:22:03.570Z",
+    "last_save_at": "2026-08-30T15:39:16.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:a67d08d022dffd05fed3db10e2ff95b1c6099b85025cda6e9b82ae6b1799c709",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2403e677cc2b532e671c3d52bf4de069a47acd61ad696a6e698dac162566bfbf",
       "plan.md": "3fa85df8254190a80e5361d47991a0e978bf5e8abcef75c4398c9c877c81b709",

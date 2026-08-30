@@ -46,7 +46,7 @@
       "system"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -96,17 +96,18 @@
     ],
     "causal_summary": "Phase parent for intent routing optimization across the skill advisor system. Coordinates 5 children covering search-and-routing tuning, phrase booster tailoring, smart router remediation, hook surface integration, and setup command infrastructure.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-07-16T16:05:59.878Z",
+    "last_save_at": "2026-08-30T15:39:26.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:76cd26ad10aad3d06a37fd50f3aa08766a45a71f711e810fdcee4bae3d12d9d1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "229f1b23377d5b2a4dd83f78fad241989b7c4b5b27075b983c0499cd5a786372"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/006-skill-advisor-affordance-evidence",
     "last_active_at": null
   }
 }

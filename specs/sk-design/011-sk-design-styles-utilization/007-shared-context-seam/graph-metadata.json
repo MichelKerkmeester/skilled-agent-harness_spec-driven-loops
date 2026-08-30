@@ -20,9 +20,9 @@
       "shared context seam tasks",
       "corpus context plan tasks",
       "sk-design shared fixtures tasks",
-      "shared context seam checklist",
-      "corpus context plan verification",
-      "sk-design shared seam checklist"
+      "shared context seam summary",
+      "corpus context plan status",
+      "sk-design shared seam status"
     ],
     "key_topics": [
       "shared",
@@ -36,7 +36,7 @@
       "fields",
       "fixtures",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 003 global-modes research settled that the styles library is a mode-owned evidence system, not a hub-level style chooser, and that its top-ranked, ship-first deliverable is a thin shared seam (Phase A)",
     "created_at": "2026-07-18T14:14:26.760Z",
-    "last_save_at": "2026-07-18T18:07:37.413Z",
+    "last_save_at": "2026-08-30T15:39:12.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62e652e2069a515ec41a96bcce59c649eefb851a9b79e13f5c6e51d95660a3f1",
+    "source_fingerprint": "sha256:9f0ba5917ad0cf04be50a3b8dd889ba2ff645cc0f71863b21c5936c71b983892",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c5727fab78cfd9d760146eddf4a54fc2da3d3544bd92add95a3f5500972b78d",
       "plan.md": "005234068ead6c6ae86b5ac5d792c24b8f972b59f2f77ff87453b27aa7c959bf",
       "tasks.md": "051b1a95a490ba2a86848512ce85d5005eaa55af5cae759be62aa1111f8be4cb",
-      "checklist.md": "9ed3aeb6884dfe21720375cc46c7e6660ebed749eb8b47f7bc26545fad6728df",
       "implementation-summary.md": "4066bf6fcb4078b47861d6f42e82914fcb852b4a61549da2a550424632520a34"
     },
     "last_active_child_id": null,

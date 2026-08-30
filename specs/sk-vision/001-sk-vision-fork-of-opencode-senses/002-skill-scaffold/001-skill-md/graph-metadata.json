@@ -37,6 +37,7 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/skills/sk-vision/SKILL.md",
+      ".opencode/plugins/sk-vision.js",
       ".pi/extensions/sk-vision.ts",
       ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md"
     ],
@@ -69,6 +70,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-vision/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The workspace has no `sk-vision` skill body, so later children have nowhere to reserve the package path or advisor triggers",
     "created_at": "2026-08-16T07:22:40Z",
-    "last_save_at": "2026-08-29T14:54:24.101Z",
+    "last_save_at": "2026-08-30T15:39:19.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ab393b5f51a49448345db022faed0115473cc5e2eb94c349d4ae71b5a5b1c6ae",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1bdf152e0842d493fe50ca71d190fb0cd92aff997444752e0716d5962df61eb0",
       "plan.md": "7d9cfc4216775f1977db94a5b15357e13f6fa1c477287ce7ef801f520e163bbf",

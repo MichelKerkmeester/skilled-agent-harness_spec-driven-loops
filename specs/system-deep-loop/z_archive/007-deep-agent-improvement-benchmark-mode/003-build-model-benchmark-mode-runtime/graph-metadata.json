@@ -194,7 +194,7 @@
     ],
     "causal_summary": "deep-agent-improvement can improve agent definitions but cannot benchmark models/prompts; the 120/003 benchmark rig is packet-local and one-off",
     "created_at": "2026-05-28T16:24:06Z",
-    "last_save_at": "2026-07-09T10:02:48.944Z",
+    "last_save_at": "2026-08-30T15:39:23.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:731d5cfb755a76df2b568b323c0228e5084396d2e144e5b2cdc82d1421621e0a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "594a9ac66b85ff69ff5fa0c9015324525f33ef230b1ffff8e3cb26919d04bd37",
       "plan.md": "ddbe7536a31d3956e97897d90bd99516153376518ba77785c433250594403b2a",

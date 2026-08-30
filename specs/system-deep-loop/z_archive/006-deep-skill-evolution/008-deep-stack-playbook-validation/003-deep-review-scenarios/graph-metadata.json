@@ -20,9 +20,9 @@
       "deep-review scenarios tasks",
       "deep review playbook tasks",
       "007 phase 003 tasks",
-      "deep-review checklist",
-      "deep review verdict ledger",
-      "007 phase 003 checklist"
+      "deep-review scenarios summary",
+      "deep review playbook summary",
+      "007 phase 003 implementation summary"
     ],
     "key_topics": [
       "deep-review",
@@ -34,37 +34,19 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verdict",
-      "ledger"
+      "summary",
+      "implementation",
+      "autonomous"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "scratch/evidence/drv-01-02.txt",
-      "scratch/evidence/drv-03-iteration.txt",
-      "scratch/evidence/drv-04-convergence.txt",
-      "scratch/evidence/drv-05-06.txt",
-      "scratch/evidence/drv-08-depthv2.txt",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,39 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "drv-01-02.txt",
-        "kind": "file",
-        "path": "scratch/evidence/drv-01-02.txt",
-        "source": "derived"
-      },
-      {
-        "name": "drv-03-iteration.txt",
-        "kind": "file",
-        "path": "scratch/evidence/drv-03-iteration.txt",
-        "source": "derived"
-      },
-      {
-        "name": "drv-04-convergence.txt",
-        "kind": "file",
-        "path": "scratch/evidence/drv-04-convergence.txt",
-        "source": "derived"
-      },
-      {
-        "name": "drv-05-06.txt",
-        "kind": "file",
-        "path": "scratch/evidence/drv-05-06.txt",
-        "source": "derived"
-      },
-      {
-        "name": "drv-08-depthv2.txt",
-        "kind": "file",
-        "path": "scratch/evidence/drv-08-depthv2.txt",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,26 +154,49 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`deep-review` is the autonomous iterative code-review loop built on the shared `deep-loop-runtime`: it owns review entry points and modes, canonical state initialization, per-iteration state discipline (read-before-review, three-artifact write contract, dimension rotation), convergence and recovery gates, pause/resume fault-tolerance, synthesis-save guardrails, and the review-depth v2 validator/reducer rollout",
     "created_at": "2026-05-27T07:08:08.394Z",
-    "last_save_at": "2026-07-09T10:02:48.871Z",
+    "last_save_at": "2026-08-30T15:39:23.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a49fb683e0548e8b59741f105c64985d555cf17b2182d3def4b9dd1d1804404b",
+    "source_fingerprint": "sha256:f6dcfa135d5deb656cac586cf335a5619932b96ed09b343627618b54b13505c8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4598fd10c4b620fb09711acb811149fdcc2fc44afd540a3cb21882c258c10a05",
       "plan.md": "f053dc2bba7448c66a25a597b41cafb4c27e9fb559d70d66c9f7be254111c1e5",
       "tasks.md": "d9920117a9fe76dd4892f25a1332e5d2fc24c166f8ce282d024f3b044a380cfa",
-      "checklist.md": "d930c29fbf23dfd2908afca8b0d0aeb7fe76c4c8cdd15ac385e90b48739c7b3e",
       "implementation-summary.md": "b465a02424471ea2e1517086677f8dd963f8b54a61fd34c890e9ae8b10f086a6"
     },
     "last_active_child_id": null,

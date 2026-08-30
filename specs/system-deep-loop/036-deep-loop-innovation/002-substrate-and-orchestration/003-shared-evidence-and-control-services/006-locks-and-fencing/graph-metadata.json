@@ -18,8 +18,6 @@
       "deep-loop fenced writer plan",
       "locks and fencing tasks",
       "deep-loop fencing token tasks",
-      "locks and fencing checklist",
-      "deep-loop stale writer verification",
       "locks and fencing implementation",
       "deep-loop fencing verification",
       "stale writer rejection evidence"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts"
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,26 +184,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state: scoped leases allocate durable monotonic fencing tokens, every protected mutation rejects stale holders, and bounded timeout/deadlock policy prevents split-brain across legacy, dark, fan-out, and resumed writers.",
     "created_at": "2026-07-16T03:43:47.704Z",
-    "last_save_at": "2026-08-29T14:54:10.996Z",
+    "last_save_at": "2026-08-30T15:39:20.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ec61eb1b50ffa5751fa90f4e5b53d1a6cf1aad8dfe6e253f49428b03470e407",
+    "source_fingerprint": "sha256:600b4639c93f2fe29de429f41c5a0d9e997b3475cfb3bb3d72d103162374320a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "588c7858b9a4eeb2ef908d569f643ba0636c05f4e29bba7a962a7dba92e19381",
       "plan.md": "58044f34f2edafc0f28376a78b6ee112471d8c57e56abe70284922feac61a64a",
       "tasks.md": "677111b6d36f8091ae96da5503a4bdb54f1483fbbeac329145a2f673a20fff12",
-      "checklist.md": "9f5197a068a6ea27037009d4cbbf15eda4a481b942d65d05360a91c5fdbb476f",
       "implementation-summary.md": "764c3674a987fa3db35c0e4005727de55e022a46b45decd12dab6de4c3c61294"
     },
     "last_active_child_id": null,

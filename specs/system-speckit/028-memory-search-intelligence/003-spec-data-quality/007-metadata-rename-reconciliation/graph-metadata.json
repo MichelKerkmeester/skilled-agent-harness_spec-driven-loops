@@ -41,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
       ".opencode/skills/system-spec-kit/scripts/graph/migrate-generated-json.ts",
@@ -73,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,26 +193,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two narrow generator bugs sit on top of the already-shipped identity resolver, unreconciled",
     "created_at": "2026-07-09T06:26:17.088Z",
-    "last_save_at": "2026-08-29T14:54:16.728Z",
+    "last_save_at": "2026-08-30T15:39:35.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aee5abd02117c8bbe69a4301e334cd4d6c0779564e6a225c2bfba2a450e120e9",
+    "source_fingerprint": "sha256:4d0384b864b01726913f756cfcb5a47d313c5ec72402db4bb919eb0d3b8580e1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "23827dbf80d20f876bb189b682ae537f39d37deb5a0914153bf959c280f62ca6",
       "plan.md": "3e7e68be8ffafb05b5f40c675e162b9fdb52a144195886f0d5f9f9b609d4ebd6",
       "tasks.md": "108d4df827b449ea8ba9053342de1b3b62cda13a41eac7f9461410ca9657eaa4",
-      "checklist.md": "07b6df69695d3348ebaf904c3f4f68363153b17b27fb29eb2dfe2f415c1ac8f6",
       "implementation-summary.md": "296e9418b9cd41a9bcf51d01c3fb986d4b19e6bc6ddda8feece1b64dcd49172b"
     },
     "last_active_child_id": null,

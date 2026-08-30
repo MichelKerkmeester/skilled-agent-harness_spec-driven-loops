@@ -39,7 +39,7 @@
       "handoff"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-typed-agent-io-adapter/spec.md",
@@ -106,13 +106,14 @@
     ],
     "causal_summary": "The gem-team adoption research (007) recommended three small, additive refinements to the spec-kit agent runtime, and the integration research (009) showed they collapse onto a single shared advisory contract (`agent-io-contract.md`) emitted/consumed centrally by `@orchestrate`",
     "created_at": "2026-06-06T10:11:02.043Z",
-    "last_save_at": "2026-07-17T17:19:39.112Z",
+    "last_save_at": "2026-08-30T15:39:33.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:f5a4e81307b08a7fe6c8d2e958fc63968ac5258fa10df42876ea1531d13982d4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c02efa89ba7435d9a360537a0be9111347b0c033d4c8146ad2ad0949e8dae61e"
     },

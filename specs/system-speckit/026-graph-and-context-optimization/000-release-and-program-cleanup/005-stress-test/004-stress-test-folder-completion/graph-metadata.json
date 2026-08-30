@@ -41,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "migration-plan.md"
@@ -63,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,31 +179,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 037/005 migrated only two filename-matching stress files into the dedicated stress folder",
     "created_at": "2026-04-29T18:45:00Z",
-    "last_save_at": "2026-08-29T15:22:12.203Z",
+    "last_save_at": "2026-08-30T15:39:28.654Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:b99c3fbc9766bd77428756d98ce6a47b47d49d12740953465489fce6d9dc4be8",
+    "source_fingerprint": "sha256:20f4b0897c97a604c5a69d636c0fcfa43e5252cc12ab47dce582ef4456e265d3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba72bed59bbf5f8b480c50bef8f32742c638b63bc9075cab9cf1a872188a7977",
       "plan.md": "1b0eed50d1289f58b8b63098cd91a151109d81b07454d8fbb241eace19355962",
       "tasks.md": "eada128a3b97296cc20599fa8e79495af6235f47ddb039f8fc7eca93e0379423",
-      "checklist.md": "38094fe7189a28d8c770ba437c1a4b33db0825198a8e730e94f1c1de2fe56b44",
       "implementation-summary.md": "233b75905442afad830641f097ebd2a9809fc0b6408f5a7080eab62157bb197a",
       "resource-map.md": "694ec6e3e6d6e6a8da2aa4075f31818b462b738f44c3a8798d0177d3e2514daa"
     },

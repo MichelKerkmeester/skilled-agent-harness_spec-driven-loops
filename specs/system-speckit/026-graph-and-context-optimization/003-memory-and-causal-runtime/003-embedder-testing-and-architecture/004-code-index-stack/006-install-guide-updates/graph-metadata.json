@@ -35,12 +35,18 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -51,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Document the default + alternatives + swap runbook in INSTALL_GUIDE and README",
     "created_at": "2026-05-18T08:18:02.784Z",
-    "last_save_at": "2026-07-17T17:19:23.272Z",
+    "last_save_at": "2026-08-30T15:39:30.535Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d695337303d02744f1c946e1b1b03ff69a5096aafef79a44383eecdd83cc424c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "52d73f7489834ab035c6034d7c26edb7fa855547f53cc1e8549e361a62dd6da2",
       "plan.md": "679817183c2f0259578108f057103260072d24dae3feccd33dfee3b32b073d90",

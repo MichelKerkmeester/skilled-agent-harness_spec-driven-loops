@@ -189,7 +189,7 @@
     ],
     "causal_summary": "sk-design is referenced across ~180 files; this read-only phase classifies every reference into reconcile buckets and produces dependency-map.md for phases 002-006.",
     "created_at": "2026-08-19T04:18:34.845Z",
-    "last_save_at": "2026-08-29T14:56:23.922Z",
+    "last_save_at": "2026-08-30T15:39:13.483Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2e497f4568475cd99486f5178b2d405766430a181b4ca99c942d7a23dd305912",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2f1292f57b37e035cd135a2bdc7fb1a370d82663f0da0dab51a3557e8eb5d6fe",
       "plan.md": "cfef3fe8d8c6fffb69796872dbba6f7003ee4bc04a3b2c41298cbd480df654b6",

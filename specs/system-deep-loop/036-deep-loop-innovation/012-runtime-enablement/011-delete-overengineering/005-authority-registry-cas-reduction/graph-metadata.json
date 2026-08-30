@@ -36,9 +36,8 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "checklist.md",
-      "tasks.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -49,21 +48,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -169,42 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Reduced",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Wave 5 (final) of the over-engineering removal program: remove the CAS-mutator methods (prepareCutover, compareAndSwap, compareAndSwapRollback, compareAndSwapFinalize) from per-mode-authority-flip/authority-registry.ts once their only production callers (phase 004's enable-modes.cjs and flip-authority.cjs) are gone, keeping the load-bearing read path and the lock-reclaim machinery intact. High-adjacency to the fail-closed authorization gateway; runs last and only after phase 004 is green.",
     "created_at": "2026-08-24T17:06:20.053Z",
-    "last_save_at": "2026-08-24T20:05:36.919Z",
+    "last_save_at": "2026-08-30T15:39:22.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37f28e1b1fb14594ec2a044bc4e7415d9aaa1fa80c2c486f06c88229b5224a49",
+    "source_fingerprint": "sha256:9c8828b48df2c689854e180cba04d592aa61c084006b3e661cf2e723da37b955",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a63ce17e12d4d8d57f2f60d9ac5ad7c42045eb50546c9f20ced061e333b11a3",
       "plan.md": "0b7b5342c5e128b1ec24a0aea5639107035206fa04150fdf63b7b3f99f998212",
       "tasks.md": "e387130a43f4c9df15f7ea417e6b448c4b7d1d40905dc1f2e3ddb116de1714ea",
-      "checklist.md": "621139d095a4e50ddfca277568792ba09facefa4444943aaebeb72c8fe2a708c",
       "implementation-summary.md": "9c07110de688fecf0609f25f4585c97571c62b6d42b5b5f00c0ba9cc8af13632"
     },
     "last_active_child_id": null,

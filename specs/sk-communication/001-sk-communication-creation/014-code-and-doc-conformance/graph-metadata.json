@@ -19,8 +19,6 @@
       "package documentation conformance",
       "tasks",
       "documentation conformance",
-      "verification checklist",
-      "quality gate",
       "implementation status",
       "current state"
     ],
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +166,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Status",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Complete Code",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The implementation was complete, but conformance was not closed until every maintained package folder had a standard README and every operator document passed the reference contract",
     "created_at": "2026-08-13T05:54:57.670Z",
-    "last_save_at": "2026-08-13T05:54:57.485Z",
+    "last_save_at": "2026-08-30T15:39:11.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:199c5301ad81ff7c7d4db606ba52b7d9c26e634c38cf74cd8a67dec2bbae7b16",
+    "source_fingerprint": "sha256:88eb608e8f58723841ace7b3570e7a4224ae92f8ab94bddcacb7825fc23951c6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "10c7a43fbd7abbc4d99b87ddfb9810f49c15c74625abb0df9eaaa5ed23e2b610",
       "plan.md": "eab5e1ad0f0af5cc043bb8c75d64cb4d105472fe4c5219eb991b5165bc7c4adb",
       "tasks.md": "41a4484d49826a81ef7549ecbedae647ea5a59b5eb4c2902c3985c64d20941e7",
-      "checklist.md": "cdfc2470e51cfa5f4a48877d647cfba8f0492eae19954c6a9b5bda650b7570d7",
       "implementation-summary.md": "dc263f16dd2ff24cc55dc83ae589cfae53f469cc07998dd0590ff5cbbe6e3890"
     },
     "last_active_child_id": null,

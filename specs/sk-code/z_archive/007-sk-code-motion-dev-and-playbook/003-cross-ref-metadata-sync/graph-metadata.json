@@ -19,8 +19,6 @@
       "003-cross-ref metadata plan",
       "sk-code motion.dev cross-ref tasks",
       "003-cross-ref metadata tasks",
-      "sk-code motion.dev cross-ref checklist",
-      "003-cross-ref metadata verification",
       "sk-code motion.dev cross-ref implementation summary",
       "003-cross-ref metadata complete"
     ],
@@ -44,10 +42,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/README.md",
-      "implementation-summary.md",
       ".opencode/skills/sk-code/description.json",
       ".opencode/skills/sk-code/graph-metadata.json"
     ],
@@ -71,9 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -86,12 +83,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,26 +186,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 1 and 2 created motion.dev playbook coverage and a populated cross-stack `motiondev/` reference package, but existing Webflow docs still mention Motion mostly as Webflow-local guidance",
     "created_at": "2026-05-05T08:30:57.522Z",
-    "last_save_at": "2026-07-09T10:02:44.291Z",
+    "last_save_at": "2026-08-30T15:39:11.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7773f608c807ef3bfb96c3974496ebb3b39d123f8edb20a5427d99dbabbe3979",
+    "source_fingerprint": "sha256:6928c33772f34deb3c13caf919c518d02d131332cd003f4940727cbd8103e365",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4e0df2179d510a883e0ebc62fe583ce78aa3f81e37b94d41f1070d9221f5013",
       "plan.md": "bcd5a5f38b2609d45195ac671d8bcc8f49955b515892ea282126ba94c124ea14",
       "tasks.md": "4c115bee8977f48cbf73ff8d8f514f96586f571a174b943af1509b8f7e35c696",
-      "checklist.md": "a874c09710a01f9638b735bce0f16d0f5c0a9dd9f5930cc1d9af17aa53015aa7",
       "implementation-summary.md": "1078259ac8aff6a17ee4c718af9b6a2f63615276c0df8bbb432fbc819f55c47b"
     },
     "last_active_child_id": null,

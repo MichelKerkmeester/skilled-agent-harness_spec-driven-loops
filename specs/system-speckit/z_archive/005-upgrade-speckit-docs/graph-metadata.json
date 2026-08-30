@@ -188,7 +188,7 @@
     ],
     "causal_summary": "This archived folder captures work that improved documentation quality for OpenCode and system-spec-kit",
     "created_at": "2026-04-12T09:02:53.563Z",
-    "last_save_at": "2026-07-10T06:22:27.005Z",
+    "last_save_at": "2026-08-30T15:39:37.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:98e59458938ecd1570abd956483125ed15197b6d84382b0c7f46195b514ffc5d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbd23774d88023d39b553674c590b457e56c38d678fe74dee9cc4b6afeeef154",
       "plan.md": "ef8664992bd63ed089e5048d355e8dc93c2982dc28d06a2011848a311a9f1f52",

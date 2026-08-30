@@ -18,8 +18,6 @@
       "pi directive dedup plan",
       "pi local directive suppression plan",
       "pi directive dedup tasks",
-      "pi directive dedup checklist",
-      "pi directive dedup verification",
       "pi directive dedup implementation",
       "pi directive dedup summary"
     ],
@@ -32,28 +30,21 @@
       "suppression",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
       "implementation",
-      "summary"
+      "summary",
+      "stop",
+      "visibly"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
       "spec.md",
       "plan.md",
-      "checklist.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
     ],
     "entities": [
-      {
-        "name": "prompt-advisor.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -67,9 +58,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -79,9 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
         "source": "derived"
       },
       {
@@ -181,37 +172,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built One",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Traced",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Stop Pi from visibly re-appending the three constant advisor directives onto every prompt, by suppressing them on a confirmed session's proven same-content repeat within a lifecycle epoch, without touching the shadow program or the 007 activation gate.",
     "created_at": "2026-08-09T07:25:29.261Z",
-    "last_save_at": "2026-08-11T09:55:00.000Z",
+    "last_save_at": "2026-08-30T15:39:09.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3aa508a470514fd821ed43767f0f81bb2a2523b29b519935af61f6ac2c06ccf",
+    "source_fingerprint": "sha256:9be68a41cc978f99c1265198387fd3152938ef48cf1f88b774c5ed373f1204aa",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e9f15b302c6af062670b54eceb0d2e047a7bc7eea6f3176a397b6cd7b521044",
+      "spec.md": "544edc8c3120877c8d0c13d7d70479fe07e0aac19f1e7764251865f0fa02ac64",
       "plan.md": "8289fbd945b395a768642a738942e685deb22f71b1199ee0ef0c7946854e7343",
       "tasks.md": "4ce61764815369e6e71bde694edf8cfb44c9c55da0ac2945a0c43bad2fcae00e",
-      "checklist.md": "f9b83c265191396de196b3bab733f12d1ab4ba0aaac4f580b71dd6f91118b15e",
-      "implementation-summary.md": "a0900f6c8ab6807f9968a345157d6f0f1e3cf87948f9aecfa9cf485cbd62b1d1"
+      "implementation-summary.md": "10176ed83a4c5aa6e1d4fe765c220795664c600b361bc0d7a08b697c16905b7e"
     },
     "last_active_child_id": null,
     "last_active_at": null

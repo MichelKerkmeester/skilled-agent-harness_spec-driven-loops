@@ -18,7 +18,6 @@
       "create-benchmark contract drift plan",
       "benchmark runtime alignment plan",
       "create-benchmark contract drift tasks",
-      "create-benchmark contract drift checklist",
       "create-benchmark contract drift summary",
       "d5 hard fail alignment cap summary"
     ],
@@ -42,8 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,12 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -185,31 +177,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A three-model GPT-5.6 SOL audit of `sk-doc/create-benchmark` confirmed the packet is structurally complete (all five families present, packager PASS, zero broken links) but that its authoring templates and guides describe an intended contract that drifts from what the deep-improvement (Lane B) and deep-alignment runtime actually implement or accept",
     "created_at": "2026-07-14T16:34:01.669Z",
-    "last_save_at": "2026-07-20T06:30:48.821Z",
+    "last_save_at": "2026-08-30T15:39:14.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be234bf847d53b53979bc8dde1a97bd684b2e962076d197f7cbca4c2a3627fee",
+    "source_fingerprint": "sha256:1112b8720e7b8ccb2d8f7b5821fcd7aa59ef169508a8cf76b38d2dd868fdfedd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "df90765857e23706470820bb0bf2a980711ba3df2a9fd45eda728e9e55f46249",
       "plan.md": "f9c749cd1d6029d48990983ac3074f6adcb518ede271d636e8e07585109f8d36",
       "tasks.md": "889ecac571373181ae33650f1ec31d86c0f2c0131234cd79f13a51cdb31fdc95",
-      "checklist.md": "362ea6019028cd1cbe5ee8c8b708c8b2f37e28845ce022b81fe07832f105f477",
-      "implementation-summary.md": "4fbd7e4dc30915c2d463b1e5f2ccff22a16a415f8d06cc48b63991f55153c9e2"
+      "implementation-summary.md": "280f33656774799cd691d12f1fb2fbdb3d70e82fe1b0e2a82b3a535a4f0cbc11"
     },
     "last_active_child_id": null,
     "last_active_at": null

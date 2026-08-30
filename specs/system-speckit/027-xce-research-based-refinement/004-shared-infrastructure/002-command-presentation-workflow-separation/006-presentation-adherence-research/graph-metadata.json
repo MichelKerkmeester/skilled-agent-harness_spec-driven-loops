@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Live bare-command tests showed mixed presentation-contract adherence: the doctor router menu and Gate-3 blocks rendered verbatim while /memory:search ignored its parseable render template and answered in free prose",
     "created_at": "2026-06-12T06:12:49.512Z",
-    "last_save_at": "2026-08-29T15:22:20.524Z",
+    "last_save_at": "2026-08-30T15:39:34.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:956d2c2abb95ed6c89836448bcc89060b8a27868a43b3311eaa2b2910d021bc1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2e9b16c21719e36e2bf3736e2d4e8d6d8ca1d4e98d0c4319326c03bb23df7e75",
       "plan.md": "afa259e628f25bf91e86e1eb6fedce37c5f56e446359890576d6076774a930b7",

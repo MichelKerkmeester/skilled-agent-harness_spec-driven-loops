@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
-  "spec_folder": "cli-external-orchestration/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
-  "parent_id": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "packet_id": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
+  "spec_folder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
+  "parent_id": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,14 +41,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -62,21 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -192,29 +185,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Propagate Only Medium Pre",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 113/003 cli-devin eval-loop measured that medium-density pre-planning outperformed dense pre-planning by roughly 10-15% on SWE 1.6",
     "created_at": "2026-05-17T12:18:18Z",
-    "last_save_at": "2026-07-14T19:26:20.330Z",
+    "last_save_at": "2026-08-30T15:39:08.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7fce9e225f2921132b44c52ff1bd99f83d0e3943c530753efe4d19a12dd2c27",
+    "source_fingerprint": "sha256:d6e339b01e1608132eb9d489e5152277e01ea588e24b8547624c08e1638034f0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a950b4ffe20151f4bdea848dd785ad61064eb302c3060fc495a82dfb2d28fad7",
-      "plan.md": "fa1f9857fe405e03b29c30f6491e9728e086dd0712e0f809ad6ed33671aca20d",
-      "tasks.md": "4dd16d7c2e25e4920a42bd832a22dc71bbe8bdb9430548fef76d79c73ca0d4f8",
-      "checklist.md": "ccdf3f67708cd09dbf73db5b9d6e624603ee04afe8132647347e3e4c41aa9933",
+      "spec.md": "e72432fef64b960fc1cf56b126575c43721ca6b2fe900b44e78d28580fc2cf5c",
+      "plan.md": "955b9029ac6910be42a634ce95f9de82cccac4097948ce93506d2ed37c93a8ef",
+      "tasks.md": "859499a377ea9b9d52a0a06b3a198af1e382589f37d66e4518aad1970f59962b",
       "decision-record.md": "7f3a8e5f8228f52d9ae02b4dcdff346b69d25c72f5cc10011083bc6ea7ae4d35",
-      "implementation-summary.md": "d55a18549ba7513a3d99cd51aa9201a3482aefb0d76a0ffda0e94fcba2e81403"
+      "implementation-summary.md": "91d4e9fc0125f23f7335c6c74c48b3fb45fc639aab046eaa93457e4a27a0bef3"
     },
     "last_active_child_id": null,
     "last_active_at": null

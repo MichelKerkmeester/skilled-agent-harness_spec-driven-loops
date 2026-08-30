@@ -22,7 +22,7 @@
       "plan",
       "from",
       "tasks",
-      "verification"
+      "decision"
     ],
     "key_topics": [
       "specification",
@@ -34,7 +34,7 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
+      "decision",
       "consolidates",
       "findings"
     ],
@@ -44,14 +44,13 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       "research/smart-ralph-synthesis.md",
       "research/empirica-synthesis.md",
       "research/hooks-synthesis.md",
       "research/superego-synthesis.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
@@ -73,15 +72,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -112,12 +111,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,27 +190,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Complete",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This specification consolidates findings from four prior research specs (060-063) into a single implementation plan for upgrading the system-spec-kit skill. The research analyze...",
     "created_at": "2026-04-12T09:02:53.548Z",
-    "last_save_at": "2026-07-10T06:23:42.061Z",
+    "last_save_at": "2026-08-30T15:39:37.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02f31927ad29cbc9235f4e603903e526cf04e89a6de3095d8c329e49f43b9b1a",
+    "source_fingerprint": "sha256:f2186f721478f9ece6c8bab15ccd12f8f5021d16cd7d8d94eb7427eb46fa6af6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dc378bc4489658e7d91b24dd3191c909519e3b4621a31e20f0af99f8f5f70295",
       "plan.md": "94ebcb58511445922d6d4c39ae42bfd7b71de93604870dad086fa157d189e5df",
       "tasks.md": "8ad60fc323fe29c179a1493d5fda209a112c156974a96cfb5defb8fd15655cbc",
-      "checklist.md": "465a57c0c6862fddccffc406966ba7e9b55690ad8c34b404c2448c6dcf7e1477",
       "decision-record.md": "210f44d5448d903860a82fbf253a069440273bc5178b2a22323b7087a2f010a2",
       "implementation-summary.md": "2bc1456b56cf2319f689ad2cdff8896e998b4f1e84cac7f5b8e1998e72a98e47"
     },

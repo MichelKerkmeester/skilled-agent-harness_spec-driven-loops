@@ -20,9 +20,9 @@
       "deep research 013 plan",
       "bm25 fts5 investigation tasks",
       "deep research 013 tasks",
-      "bm25 fts5 verification checklist",
-      "deep research 013 validation",
-      "bm25 fts5 decision record"
+      "bm25 fts5 decision record",
+      "sqlite fts5 default bm25 engine",
+      "rag fusion lexical lane adr"
     ],
     "key_topics": [
       "bm25",
@@ -41,13 +41,12 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
       "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
       "research/iterations/iteration-001.md",
       "research/deep-research-state.jsonl",
       "research/iterations/iteration-002.md",
@@ -56,12 +55,6 @@
       "research/iterations/iteration-005.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -81,9 +74,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -93,9 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "research.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -199,28 +192,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deep-research-005 ranked the JS in-memory BM25 index as the top resident-memory target, but its recommendation noted that SQLite FTS5 tokenization and weights may not be identical",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-08-28T15:59:41.311Z",
+    "last_save_at": "2026-08-30T15:39:30.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:aaec190b03ca97ce1c774aa08ce5b9439e0da5587ee3b018ade53b58077fe44c",
+    "source_fingerprint": "sha256:6913e53dc1c17f06d5d560cdf476f3171652292517307c69f6b44d478492971c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3bc5ae1c19c3302b963866cadb4ba41a806a8cdc2cfc932b5a7237f8db93f31e",
       "plan.md": "0c31b01d1bcb4ca17d878ae532697bc3869ecd5e57ea3acc7e95b214eb875b8f",
       "tasks.md": "bbb3870d2e05bfc7beba91923015151caa4b5bb35b44caa1b32e57880edf126a",
-      "checklist.md": "8637105dae748859e640769cd93f1a1fe1b3f33ce2342a51aae7156c83d7627d",
       "decision-record.md": "77b05cc8bfc4b7deec305a987a8657f456042dc47a2a4f6c560db593abb93aac",
       "implementation-summary.md": "7789748ccdf2caac588365b685363c468bbfaac6e92e89dfc096dc1574e15682",
       "research/research.md": "bc4dbf8c858138923582800579dad482200731a0f03b85cb3888596e42d6bf58"

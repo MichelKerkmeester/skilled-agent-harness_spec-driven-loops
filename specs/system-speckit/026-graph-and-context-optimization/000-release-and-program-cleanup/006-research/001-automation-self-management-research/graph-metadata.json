@@ -24,7 +24,7 @@
       "deep research automation plan",
       "012 automation tasks",
       "deep research automation tasks",
-      "012 automation checklist"
+      "012 automation implementation summary"
     ],
     "key_topics": [
       "001-automation-self-management-research",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "research/deep-research-state.jsonl",
@@ -57,6 +56,7 @@
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       ".opencode/skills/system-spec-kit/SKILL.md",
+      ".claude/settings.local.json",
       "research/deep-research-strategy.md"
     ],
     "entities": [
@@ -76,12 +76,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -142,6 +136,12 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -207,23 +207,22 @@
     ],
     "causal_summary": "The system-spec-kit + skill advisor + code-graph + memory subsystems are documented as \"auto-managing\" in many places (hook injection, auto-reindexing, auto-routing, auto-prioritizing, etc.)",
     "created_at": "2026-04-29T13:15:00.000Z",
-    "last_save_at": "2026-08-29T15:22:12.241Z",
+    "last_save_at": "2026-08-30T15:39:28.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:3e0c4ebc3d8eb19dacc2b3325948279dee0be330df6449c0fb0b853676863b7e",
+    "source_fingerprint": "sha256:d05e9a4f4d68a243b31c14ce6b1ff24816d771f07176ab85a019a11536567913",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4161bce4db7219e14633857cfeb71ed7a9f19f93b7509ae1d2d0bb709b5fecf4",
       "plan.md": "c3b9aad66bdfec59595fd710ddc9d0a22b1d9a90a93d8fe4c5225eedd72fc92e",
       "tasks.md": "96e08a592a0f4030fad5756f05199894442f91bffdab434eee083bb66cdb839d",
-      "checklist.md": "62ae82ecba293c862fe2c958120b9ee64e7d17768c751b816b5ca881246024d0",
       "implementation-summary.md": "05a9ae0c2be79b216682294f5d4d2b4ea4fd27418d81d8aeddf48761ec39c0f9",
       "resource-map.md": "106afa763573a190524f2cd955cfadffc6754f7ab33ca6f01991d4cc3601c730"
     },

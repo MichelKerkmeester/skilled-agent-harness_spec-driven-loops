@@ -18,8 +18,6 @@
       "deterministic gauge reducer plan",
       "stream-fold gauges tasks",
       "deterministic gauge reducer tasks",
-      "stream-fold gauges checklist",
-      "deterministic gauge replay checklist",
       "stream-fold gauges implementation summary",
       "stream-fold gauge verification evidence"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/stream-fold-gauges/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts",
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan versioned observability gauges as deterministic folds over the transition-authorized ledger, with reproducible progress, novelty, cost, and health values; disposable incremental checkpoints; and byte-identical full-replay verification.",
     "created_at": "2026-07-16T03:43:47.442Z",
-    "last_save_at": "2026-08-29T13:09:51.344Z",
+    "last_save_at": "2026-08-30T15:39:20.562Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b87c5315e2d125f933e7b88f4d1a0ccb606a2fa631164c075ddce6004501372",
+    "source_fingerprint": "sha256:5d8fe1cc3a50a7af10e535019837dfdbca90da7d4e86144b4608346af383ba27",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6cb5db8d50bc44fbcafb01c02588b1954f6a6669bfcdd2da2f3d61dfc62c7ed0",
       "plan.md": "7f6aad00a405175ebae419a14bfb950a4380a3f2e1a28a57b9d2b723d7ae2d55",
       "tasks.md": "55d2fb325e39c6d5c3879321d364ec842e4e85eda414cac42b2a165d8bdc9b90",
-      "checklist.md": "ff1247f2231cf94e9394f06a9e8f6cce80b662d253fbc2f286d98aaf2f87870c",
       "implementation-summary.md": "41ebd50ca4cab167feedeb64ac62510921f24c0b7b13f54392e4d2042a8980b6"
     },
     "last_active_child_id": null,

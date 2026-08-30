@@ -160,7 +160,7 @@
     ],
     "causal_summary": "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 020 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-08-30T07:19:54.109Z",
+    "last_save_at": "2026-08-30T15:39:16.898Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -169,7 +169,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:59bf4168de3fecb4d2762dff1ca7327b8bc9e37bdf75bbed16480102671f27dd",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a7e6742683c824c4bb16ca26fb4fd893a4ee4a8d055a8d3e814d87b1ffa669e7",
       "plan.md": "ce10d69da41ffa32e6f3760706ac63d3d3488dcf6465b12dfbdfc726b866fe64",

@@ -174,7 +174,7 @@
     ],
     "causal_summary": "Phase 004 of packet 035 (the last acute-fix phase). Two standalone dispatch-integrity mechanisms (packet 036's compiled contract will reference them): engine-held HMAC dispatch receipts (the key never leaves the engine process — plan-review GAP-23 blocker) and step-transition progress records with a work-anchored schema. Closes F-010/011/012/013/041 (receipts) and F-015/016/017/031/043 (progress). Absorbs GAP-13/15/23/24/25/26/27/28/29/30/31/32/34/35/36.",
     "created_at": "2026-07-03T14:05:28.547Z",
-    "last_save_at": "2026-07-16T16:32:35.060Z",
+    "last_save_at": "2026-08-30T15:39:25.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,6 +184,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c112054884fdae0d8527ae86f5d5c56df1d9f04bd32c41b8fcf2e9a0d8762697",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "49fcd3f4639e6995bac5a6b1c66b2a63c51078bccb006a9220f5ff3a3e3c8035",
       "plan.md": "c7173e50703e75eb523eb6218e1e5b7ac121c0e5840205daaec74608fe7dbf41",

@@ -38,20 +38,20 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "research/research.md",
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -129,7 +129,7 @@
     ],
     "causal_summary": "Phase parent for removing the migration, rollback, and over-built machinery left in the deep-loop runtime after all 8 modes were finalized to new_authoritative_final. A prior wave removed the rollback ceremony and one-time scaffolding (now in scratch/); this program removes the second-order residue an evidence-backed audit surfaced, as five dependency-ordered deletion waves.",
     "created_at": "2026-08-23T19:32:08.669Z",
-    "last_save_at": "2026-08-24T20:05:37.242Z",
+    "last_save_at": "2026-08-30T15:39:22.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -137,6 +137,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:e2dd9c553bb907666db69112c7c7d2ed1d21aa642ca0177992468b968ac20b5f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8b15702c79c0e3b161f3bffb10a193a4033a40af6e32134d20f22d9da6d7e06a",
       "research/research.md": "bad0e564753f14bf24d083bcfe549497893e5c707cdd073ae331bda9ce778825"

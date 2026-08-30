@@ -19,10 +19,9 @@
       "deep-loop code README repairs",
       "runtime README coverage tasks",
       "deep-loop README verification",
-      "runtime README coverage checklist",
-      "deep-loop README QA",
       "runtime code README implementation",
-      "deep-loop README coverage complete"
+      "deep-loop README coverage complete",
+      "skd036-019 implementation summary"
     ],
     "key_topics": [
       "deep-loop",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -181,36 +173,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Complete",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Markdown",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Most folders that hold code in the system-deep-loop runtime have no README",
     "created_at": "2026-07-29T06:45:11.617Z",
-    "last_save_at": "2026-08-29T09:58:14.547Z",
+    "last_save_at": "2026-08-30T15:39:21.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:825c61200c28b160aceaf0929e15a39b86ca1e934f4dbace182a30de889d6da2",
+    "source_fingerprint": "sha256:1752e7c77183ae30ef264e9e2d2ff9c8cae29c12ec9bc709300ab6aa26318794",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c629a755d4baa1357fa2da0b1c77596700d3b5e2252fe7da19abb2701df5567d",
       "plan.md": "73a042dd6c2f0b1b905ba350c71accfd56fbe8ed0a9074ce212bc49a6404c233",
       "tasks.md": "5804597e774f9149e123ce5f2a0e60d4d3c632086d1c1669a19f30e878a5c471",
-      "checklist.md": "111b7afb5b486b5bb226f24b37a4d272df70310a3c3ed49f799045601d6d81bd",
       "implementation-summary.md": "4bd86b7d3d69cfbd066e1624f0a003381d5a7c99218840085761c32e2e7dab6a"
     },
     "last_active_child_id": null,

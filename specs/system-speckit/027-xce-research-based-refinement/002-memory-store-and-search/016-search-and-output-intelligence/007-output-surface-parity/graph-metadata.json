@@ -43,32 +43,13 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/commands/memory/search.md",
-      ".opencode/commands/memory/assets/search_presentation.txt",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "search_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/memory/assets/search_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,6 +66,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The same retrieval result rendered differently per model: DeepSeek showed `confidence 0.36` while Kimi showed `similarity 0.68` for the identical row, so two surfaces could not be compared or diffed",
     "created_at": "2026-06-17T19:57:25.108Z",
-    "last_save_at": "2026-07-17T17:19:41.374Z",
+    "last_save_at": "2026-08-30T15:39:33.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3c6afb70b884f8131a29f75c28a0a64073f27859dd0c8cdff7ca4ae79ea4e0b9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5e8be04576a8030cad552c9d1372c829249faa896f8673a352c604f3882ec1f6",
       "plan.md": "6ca1cbda944acf2bcbf429488dfdd25e896644abc4a7e20d951fa008dd5a569d",

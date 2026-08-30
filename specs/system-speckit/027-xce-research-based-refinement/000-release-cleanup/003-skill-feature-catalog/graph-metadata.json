@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Add one featurecatalog entry per new 027 feature, bump hand-maintained count self-checks, and keep SOURCE-FILES paths grep-traceable",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-08-28T15:59:58.199Z",
+    "last_save_at": "2026-08-30T15:39:32.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e904d97485dc609c5c917a2aaada38266285eaa783c373dbeccc3d17fa635d83",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dd0aa27b73a666a4dc72b5ebb8bff9bd665323c69ea1e004e54dd141e020da42",
       "plan.md": "556f08f8cf3c524f94b0ddc0c2ce4764cea76345c6761851f0e0946a147b530a",

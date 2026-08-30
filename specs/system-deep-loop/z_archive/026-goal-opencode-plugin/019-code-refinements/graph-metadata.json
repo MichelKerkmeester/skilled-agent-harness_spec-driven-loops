@@ -38,38 +38,22 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
-      ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
-      ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
-      "tasks.md",
-      "implementation-summary.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "goal_plugin.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "mk-goal-supervisor.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-export-contract.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -82,18 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -191,11 +163,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "direct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`mk-goal.js` contains duplication and implicit contracts that made the F-series correctness bugs (fixed in phase 016) possible in the first place: the `sanitizeInlineText(x,160).replace(/\\s+/g,'-')` goal-ID normalization idiom is copy-pasted 7 times as of this phase starting (re-confirmed at mk-goal.js:1265, 1353, 1579, 1598, 1615, 1632, 1823 - grew from the originally-documented 6 sites after phases 016/017 added a 7th; re-verify via `rg` before implementing since this may have shifted further), plus a near-variant at `goalIdFromFactory` (mk-goal.js:487) using the same idiom internally",
     "created_at": "2026-07-03T07:30:49Z",
-    "last_save_at": "2026-07-16T16:32:42.351Z",
+    "last_save_at": "2026-08-30T15:39:25.795Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ebc8ec687b454ddefe4755fde720c0e99d3e042e2d7aace977a50cee278ad44d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c454c798dac55ecfab2efd84e5e070f8f0644c09bc2362fa3fd5195db1adb798",
       "plan.md": "5c3a4367c25acee57d40ad5a165b06e7ed234a473f73d1800aa95f07e3398318",

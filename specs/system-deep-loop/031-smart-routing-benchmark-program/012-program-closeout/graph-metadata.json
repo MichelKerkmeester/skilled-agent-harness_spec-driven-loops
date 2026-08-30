@@ -79,13 +79,14 @@
     ],
     "causal_summary": "Converge the 054 program: reconcile stale child statuses and refresh the parent rollup (children_ids + last_active_child_id), wire a Mode-A + drift-guard CI job (the named only-remaining follow-up), and run a daemon-health-gated canonical memory reindex of the renamed trees — strictly last, after the migration lands.",
     "created_at": "2026-07-09T12:18:01.999Z",
-    "last_save_at": "2026-07-16T16:33:15.132Z",
+    "last_save_at": "2026-08-30T15:39:19.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:929dffd617f8f68c840419a25a55ba96bd399014cb5b3cebd5c0fc47dbc4eb07",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "23587225fa18961ccb382651697d702a285f553ecbc10b4adf5df77f88894132"
     },

@@ -20,9 +20,9 @@
       "refero harness tasks",
       "styles capture tasks",
       "sitemap crawler tasks",
-      "refero harness checklist",
-      "styles capture gates",
-      "sitemap crawler verification"
+      "refero harness summary",
+      "styles capture summary",
+      "sitemap crawler status"
     ],
     "key_topics": [
       "refero",
@@ -36,7 +36,7 @@
       "crawler",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,10 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
-      ".opencode/skills/sk-design/styles/_harness/README.md",
-      ".opencode/skills/sk-design/styles/_manifest.json",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -67,30 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "extract-refero.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/styles/_harness/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "_manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/styles/_manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,26 +166,49 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The styles.refero.design per-style tabs (DESIGN.md, Tailwind v4, CSS Variables, Design Tokens, each Extended) are client-rendered, so they cannot be read from raw HTML and cannot be reproduced through the Refero MCP (a different dataset)",
     "created_at": "2026-07-18T06:28:09.083Z",
-    "last_save_at": "2026-07-18T10:25:47.094Z",
+    "last_save_at": "2026-08-30T15:39:12.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f436aefda12d7333c9de0c597844d721c1b5eb7cd6b05df7039cfde32eed9361",
+    "source_fingerprint": "sha256:36be83772fb3c8125d40a87b31f76041e360a7ee9e81b444123cbebb4ded4cb5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "335037046b81c09d78edc1579155e6897f0681c2cb7342d8c71654891b24b10b",
       "plan.md": "8e4f67f5b6b0487e08131d2285b68bc97ae8394a71ea2c06651e9ffd370d00a7",
       "tasks.md": "5a47c0968d62260c8c509c773f975cba61f27b9f9aadd2c775617eecccaef733",
-      "checklist.md": "4a170983ef2affdb6cff2ac24911248055dde8186242b7fe5c671344fdfcbfe9",
       "implementation-summary.md": "c1ffdd7fc8d2f27e3ef2d54dd3f1b5d28938858e346ceee93c9932a7ed2da571"
     },
     "last_active_child_id": null,

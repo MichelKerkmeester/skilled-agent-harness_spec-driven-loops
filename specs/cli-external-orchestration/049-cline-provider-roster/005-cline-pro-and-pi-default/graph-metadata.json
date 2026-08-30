@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The cline-pass provider carried only DeepSeek V4 Flash, but Cline also fronts DeepSeek V4 Pro (`cline-pass/cline-pass/deepseek-v4-pro`, list-verified)",
     "created_at": "2026-08-18T14:19:31.420Z",
-    "last_save_at": "2026-08-29T14:54:26.724Z",
+    "last_save_at": "2026-08-30T15:39:08.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4789222512ea7b20f2f6d03fd43fece425c7b6715af1f7d3f123d6fe37f54bd1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9145107eef4745fb87674cf408fa077d619837870a94424194f0ecfc876be2e",
       "plan.md": "4640dc691dafd0059fb64d5e14c66d8b32e6574fe9fd97734c55e682e2fb3e93",

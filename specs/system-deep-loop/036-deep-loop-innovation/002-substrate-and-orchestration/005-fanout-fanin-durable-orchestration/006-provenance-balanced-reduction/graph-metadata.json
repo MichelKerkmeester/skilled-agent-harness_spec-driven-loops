@@ -18,8 +18,6 @@
       "source-balanced fan-in implementation plan",
       "provenance-balanced reduction tasks",
       "source-balanced fan-in tasks",
-      "provenance-balanced reduction checklist",
-      "source-balanced fan-in checklist",
       "provenance-balanced reduction implementation",
       "source-balanced fan-in implementation",
       "durable reduction receipt"
@@ -35,8 +33,8 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "durable"
+      "durable",
+      "receipt"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts",
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,26 +185,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan a deterministic fan-in reducer that deduplicates surviving leaf results, balances contribution across source/model provenance, preserves every item's lineage, and escalates contested merges without allowing one prolific source to dominate.",
     "created_at": "2026-07-16T03:43:51.149Z",
-    "last_save_at": "2026-08-29T13:09:50.133Z",
+    "last_save_at": "2026-08-30T15:39:20.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d28db5bdec402a1154ef1601bf5a63781e42cf5e181c4f8dda679c54069ac669",
+    "source_fingerprint": "sha256:64cf749461a9daecc0937d4c01d02ab147574010924963cc069c09b6f191afde",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "da0b546680da8c3b68411d3251b4a166985a5ca0827ae29572bc7006023a2758",
       "plan.md": "f928f2285bd5d3de263a50c287792edb21b4ba7408fb87d58e80e7a201c058e0",
       "tasks.md": "d8eb7e3478bebb3dd8fcd7bbfa6b1b201e0ecb6825c427eaf4fdc4220bbbf944",
-      "checklist.md": "f7f46dacc2105097bb0ff6c3876ace2c5d66c237ac92752ef65fafeb7af479a9",
       "implementation-summary.md": "fb50a607db20b350c3ad70a1fcf7c4cebeba51f7bd82b837122d64c75d886b92"
     },
     "last_active_child_id": null,

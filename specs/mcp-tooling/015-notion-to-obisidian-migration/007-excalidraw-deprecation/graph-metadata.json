@@ -18,7 +18,6 @@
       "015 excalidraw deprecation plan",
       "remove excalidraw wiring plan",
       "015 excalidraw deprecation tasks",
-      "015 excalidraw deprecation checklist",
       "015 excalidraw deprecation summary"
     ],
     "key_topics": [
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
@@ -68,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,26 +187,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Remove Excalidraw",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `mcp-obsidian` skill carried a full Excalidraw integration (a four-file reference tree, a feature-catalog card, two assets, a manual-testing tie-in, and router wiring across `SKILL.md`, README, FEATURE-CATALOG, plugin-operation-logic and the playbook)",
     "created_at": "2026-08-22T13:09:10.941Z",
-    "last_save_at": "2026-08-29T15:21:55.392Z",
+    "last_save_at": "2026-08-30T15:39:10.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9622aff61cb18f3a6ec8dadb6459d822787c4aa542a67fa2a2ec9a4ba1eb2c42",
+    "source_fingerprint": "sha256:e39e34854102cd07c07693fab8d97cbb97be23717a29ea2dff55dc4e8d5c6034",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f1b4f5ff2338f337a95344ca273c7ad2a205687b82157caf3ae1b69b0793bcdd",
       "plan.md": "0209c0b6c802075a6bd7e751421cf2424dec90f37165215fb44c1b6d1b5559b5",
       "tasks.md": "0a29c392154d1e72df12ee9a66fdefe261a1041b8b1df9bad2934e5fa4257118",
-      "checklist.md": "bff0588a69b9fc83e4c0b4946887d6ea8cab9d86da6b79313268f0592a659d0a",
       "implementation-summary.md": "611202a865b430d8c25db4af964fc31bdaadad1fd9a301c655c26ce89892e3dc"
     },
     "last_active_child_id": null,

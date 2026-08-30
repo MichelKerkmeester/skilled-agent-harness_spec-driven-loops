@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
-  "spec_folder": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
-  "parent_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor",
+  "packet_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
+  "spec_folder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research",
+  "parent_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -39,33 +39,15 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "research/iterations/iteration-001.md",
-      "research/deep-research-state.jsonl",
-      "research/deep-research-strategy.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md"
     ],
     "entities": [
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,6 +70,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The system-skill-advisor docs need a coordinated audit before any rewrite/alignment work begins",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-07-15T11:59:25.515Z",
+    "last_save_at": "2026-08-30T15:39:26.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:970268ed1edea9025c390210fa99d92d2858bc49181349278c67e6771c7ed3f5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0aae041b1cb423359de128c9e7b2c1e713bbd6b301108003f1c2883b81f73316",
       "plan.md": "86e067353c83a1e2a96f8d2450371350cc807d1b52942b282c76dae97181237c",

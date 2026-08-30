@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation",
-  "spec_folder": "cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation",
-  "parent_id": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "packet_id": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cross-model-validation",
+  "spec_folder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cross-model-validation",
+  "parent_id": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,48 +41,20 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
-      "state/cross-model-results.jsonl",
-      "scripts/analyze-only.cjs",
-      ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/analysis.md",
-      ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "scripts/cross-model-confirm.cjs",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "state/cross-model-results.jsonl",
+      "scripts/analyze-only.cjs",
+      "scripts/cross-model-confirm.cjs"
     ],
     "entities": [
       {
-        "name": "cross-model-confirm.cjs",
-        "kind": "file",
-        "path": ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/scripts/cross-model-confirm.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "cross-model-results.jsonl",
-        "kind": "file",
-        "path": "state/cross-model-results.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "analyze-only.cjs",
-        "kind": "file",
-        "path": "scripts/analyze-only.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "analysis.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/analysis.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation/implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -98,21 +70,33 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-model-results.jsonl",
+        "kind": "file",
+        "path": "state/cross-model-results.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "analyze-only.cjs",
+        "kind": "file",
+        "path": "scripts/analyze-only.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cross-model-confirm.cjs",
+        "kind": "file",
+        "path": "scripts/cross-model-confirm.cjs",
         "source": "derived"
       },
       {
@@ -198,29 +182,40 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 113/003 eval-loop produced bundle-gate-aversion and framework-dominates-anti-hallucination signals on SWE 1.6",
     "created_at": "2026-05-17T12:18:35Z",
-    "last_save_at": "2026-07-14T19:26:20.046Z",
+    "last_save_at": "2026-08-30T15:39:08.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7ef1c515afa9833e6ecf8a4a3c9a89a9453219bb5e39e4e15b41f07d0a41d2e",
+    "source_fingerprint": "sha256:c47e2ba0b0eb9385d6b18dd89be07033ee2f10937b64c3d7a2ff3304e041507e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "22e8a62d6cc4b50a4f2b23f16b59978f055d577079fed542df86709d9bfb4ee5",
-      "plan.md": "4de53979110c01e274e7e405ef8ad46d2b1d313c126a4ea6e82267d074604fc5",
-      "tasks.md": "79a33ad7d7f7d7749f279e8b926202f95713a1404e2736e34d24f72cb72b1dee",
-      "checklist.md": "d8568ed6192638b70c3d649da5dbc87d64d1eb8c89640217c6a55c1af3f27100",
+      "spec.md": "0657fc9746b17dcc1d56f18c826fa882d80be129cf7f01afcd6f7a5962f5717b",
+      "plan.md": "f8b6eeceae435f2da41eef8012387b169c49e0c90daaa18b0d487c0a4da25528",
+      "tasks.md": "c36f3093c785e8867470048a67e105fb979ff396fc1bc32c33b747b43d1c51ba",
       "decision-record.md": "afd09954e30a05c117c39a32c032dee3facfb54949cff7cc41a81a628f3a41f1",
-      "implementation-summary.md": "39ce9e0a2a91753cb62c9539e0dda7b95997e4aa2be313ed0d82c578a33e9e8c"
+      "implementation-summary.md": "983f3bc1caf507024efb44b4884e798d691a0e0a0b87d50bc28c5f2eec366473"
     },
     "last_active_child_id": null,
     "last_active_at": null

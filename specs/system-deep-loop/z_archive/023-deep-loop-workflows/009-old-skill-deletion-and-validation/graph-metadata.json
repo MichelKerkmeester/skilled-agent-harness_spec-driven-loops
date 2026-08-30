@@ -18,11 +18,11 @@
       "old-skill-deletion-and-validation",
       "deep loop merge implementation plan",
       "deep loop merge tasks",
-      "deep loop merge verification checklist",
       "CHK-065",
       "byte-identical parity",
       "phase-001 parity replay",
-      "deep-loop-workflows parity descope"
+      "deep-loop-workflows parity descope",
+      "decision record"
     ],
     "key_topics": [
       "delete",
@@ -41,42 +41,19 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/commands/doctor/assets/doctor_deep-loop.yaml",
-      ".opencode/commands/doctor/_routes.yaml",
-      "checklist.md",
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
-      ".opencode/commands/doctor/assets/doctor_speckit_presentation.txt",
-      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
     ],
     "entities": [
       {
-        "name": "doctor_deep-loop.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_deep-loop.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -92,39 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_speckit_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/assets/doctor_speckit_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "skill-graph.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-        "source": "derived"
-      },
-      {
-        "name": "routing-parity-deep-skills.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
         "source": "derived"
       },
       {
@@ -198,27 +163,56 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five old skill directories must be deleted only after every surface (skill, commands, agents, advisor, governance, docs, runtime) is green, so that rollback stays per-strata until the very end",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-07-16T16:31:55.647Z",
+    "last_save_at": "2026-08-30T15:39:24.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50f39da5c1794d53f4131ac95a7a4d29cafa9070224b1140b6bf80144f2e48d4",
+    "source_fingerprint": "sha256:6cb66dd7449d1f5ae90a696dd90e53d31912c64170132849cfe9431538226c55",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2740f998331d60598725ea1fb193a6bebffd87b9d9f586013fcff435bb0bdb5d",
       "plan.md": "b66ddda3f0adabec8d57858902c17b4648957bb5094cb6eae2710f3adb4ccb7a",
       "tasks.md": "062f1414c39ffa5fced72dbe3fea50748d8c95228610e329cae4666ecd4f1c64",
-      "checklist.md": "fede7aaaf575ac5c1333081b497b914f1cfdfd961636303f556539935399b6ae",
       "decision-record.md": "431db2812f3d0d67194a6d3144bd3b53da28e7d917b8b0b6aa0bde0189bb3734",
       "implementation-summary.md": "e87e8c0ec3bddef2b009064e6849088e744b91896e689d2a7abab077d6f04c4c"
     },

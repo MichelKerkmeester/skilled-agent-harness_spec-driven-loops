@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit",
-  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit",
-  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit",
+  "spec_folder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/026-sk-code-readme-audit",
+  "parent_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -34,14 +34,14 @@
       "19-skill"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "audit-report.md"
     ],
     "entities": [
       {
@@ -63,12 +63,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -78,6 +72,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-report.md",
+        "kind": "doc",
+        "path": "audit-report.md",
         "source": "derived"
       },
       {
@@ -177,37 +177,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 19-skill tree contains many first-party code folders, but not every code-bearing folder has local README coverage",
     "created_at": "2026-05-15T11:40:19Z",
-    "last_save_at": "2026-07-15T11:59:18.881Z",
+    "last_save_at": "2026-08-30T15:39:26.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f43596fb7598d15d4cab0c1c745782be9099042d182d387136b24348a0f26fb4",
+    "source_fingerprint": "sha256:10e2664a1b22fec68eec7af73ff8400ae4fe641bc2f8d92bf62cd669f1c7fdb6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75d5884cb9cc948e6133fa20422f827cf06f4bed083effcbf1cab399e1a944b1",
       "plan.md": "7e72e293bc21f30445c70d35814e72ce03585d5f298bc2ec04289a5f5609a662",
       "tasks.md": "aec98e3d1f9429205e0032ec91941314241bce64eec22b69f2dc9f799b887d88",
-      "checklist.md": "97d594bce4bd054e34481f9e34b5a00dc01114481b5cae1585c34233993baadc",
       "decision-record.md": "7965886164b9e410738111b11707e42f18fe73e6f1a8837b4ad8a043f0ea1eb3",
       "implementation-summary.md": "1e7850eb7a1b156ac9586d175a79ab011eb59d068868606b677b8b3c6afbd3ad"
     },

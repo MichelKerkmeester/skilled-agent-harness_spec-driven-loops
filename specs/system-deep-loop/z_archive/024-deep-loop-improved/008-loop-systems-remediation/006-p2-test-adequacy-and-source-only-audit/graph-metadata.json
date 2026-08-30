@@ -176,7 +176,7 @@
     ],
     "causal_summary": "The JSONL append test named \"keeps concurrent append records parseable at record boundaries\" ran two child writers with blocking `spawnSync` calls — left fully completed before right started — and wrote through raw `appendFileSync` rather than the real `appendJsonlRecord` fn",
     "created_at": "2026-06-29T10:43:21Z",
-    "last_save_at": "2026-07-16T16:32:25.373Z",
+    "last_save_at": "2026-08-30T15:39:25.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -186,6 +186,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:25dafc5f5f0a522b7a521a81360b04a0d631dc6526bbdf0085c41581f8f9c1ab",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae8514facb1696f5bdf07904ad8b104526c479e8165dc5bc6414df0466e131d4",
       "plan.md": "5e09f74cb98a2ce3573eb37bdf6977e7e36351e353f378df987b9b1a77662bcc",

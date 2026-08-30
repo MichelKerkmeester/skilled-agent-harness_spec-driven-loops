@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -28,39 +27,26 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "catalog"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "config/config.jsonc",
-      "config/filters.jsonc",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "config/config.jsonc",
+      "config/filters.jsonc"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.jsonc",
-        "kind": "file",
-        "path": "config/config.jsonc",
-        "source": "derived"
-      },
-      {
-        "name": "filters.jsonc",
-        "kind": "file",
-        "path": "config/filters.jsonc",
         "source": "derived"
       },
       {
@@ -76,15 +62,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.jsonc",
+        "kind": "file",
+        "path": "config/config.jsonc",
+        "source": "derived"
+      },
+      {
+        "name": "filters.jsonc",
+        "kind": "file",
+        "path": "config/filters.jsonc",
         "source": "derived"
       },
       {
@@ -172,43 +164,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built All",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Feature Flag Reference has evolved significantly",
     "created_at": "2026-04-12T09:02:50.256Z",
-    "last_save_at": "2026-07-10T06:23:31.764Z",
+    "last_save_at": "2026-08-30T15:39:38.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:671228b46ef37ba51acb638e449645a3069d5bb53e971b8a38c9a9451e2a74b0",
+    "source_fingerprint": "sha256:74fa939042be8190211a7492f4f5f0988127c9c16b6c597bd3dce1459998c06f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1228f2d7abfd6a84858895ca99832e0fa79a891be46bff62b27cc0f29d80c1db",
-      "plan.md": "936cf4038497e95d76017627e62f2aa9c7085dc6c89c58b05457a2286867a1d9",
-      "tasks.md": "d37568e3a7f31bdadbd196cffa1dc9e9bbe56a214c5d5e928d8eb88ee7bd6b20",
-      "checklist.md": "15d6ff8edfa86268a6ba7704c1feb31680bedc90810b056201404952609c071d",
-      "implementation-summary.md": "435e5816994af5edad229045b8c487ca41d80402fb5d3b9e5fdf07ea1fe65c43"
+      "spec.md": "017756cb85b05d712a1dfe7f09303fb06d0bf0de2ec5ad3034aa7d21de0d0c44",
+      "plan.md": "aad053fc5e7b98a14039657b422fe5fb1fd6ee7c9f256436b026ff0e8c74221b",
+      "tasks.md": "65f571022212ddbbb57434bc090e59842e69eb468de027f2fffde3fdaad2ef04",
+      "implementation-summary.md": "6ce7404efd21fab07caa1588cbb28430637e89e79c12de1393a9296ae867b616"
     },
     "last_active_child_id": null,
     "last_active_at": null

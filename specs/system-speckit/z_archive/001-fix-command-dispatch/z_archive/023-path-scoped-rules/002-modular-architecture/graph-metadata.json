@@ -19,10 +19,10 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
-      "record"
+      "record",
+      "decision record",
+      "summary"
     ],
     "key_topics": [
       "modular",
@@ -32,72 +32,25 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
       "record",
-      "current"
+      "summary",
+      "current",
+      "validate-spec"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "rules/check-files.sh",
-      "rules/check-placeholders.sh",
-      "rules/check-sections.sh",
-      "rules/check-level.sh",
-      "rules/check-priority-tags.sh",
-      "rules/check-evidence.sh",
-      "rules/check-anchors.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "rules/check-files.sh",
+      "rules/check-placeholders.sh",
+      "rules/check-level.sh"
     ],
     "entities": [
-      {
-        "name": "check-files.sh",
-        "kind": "script",
-        "path": "rules/check-files.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-placeholders.sh",
-        "kind": "script",
-        "path": "rules/check-placeholders.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-sections.sh",
-        "kind": "script",
-        "path": "rules/check-sections.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-level.sh",
-        "kind": "script",
-        "path": "rules/check-level.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-priority-tags.sh",
-        "kind": "script",
-        "path": "rules/check-priority-tags.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-evidence.sh",
-        "kind": "script",
-        "path": "rules/check-evidence.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-anchors.sh",
-        "kind": "script",
-        "path": "rules/check-anchors.sh",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -117,12 +70,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -132,6 +79,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-files.sh",
+        "kind": "script",
+        "path": "rules/check-files.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-placeholders.sh",
+        "kind": "script",
+        "path": "rules/check-placeholders.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-level.sh",
+        "kind": "script",
+        "path": "rules/check-level.sh",
         "source": "derived"
       },
       {
@@ -199,27 +164,56 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Overview",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extract Libraries",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extract Existing Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refactor Orchestrator",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add New Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current validate-spec.sh script is a monolithic ~600 line file. Adding all planned features (PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID, .speckit.yaml config, glob pattern...",
     "created_at": "2026-04-12T09:02:53.516Z",
-    "last_save_at": "2026-07-10T06:22:50.950Z",
+    "last_save_at": "2026-08-30T15:39:37.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6377f810e3ed608f32230d616db2a0ca07fced6750775c56ddd9622c841c1efa",
+    "source_fingerprint": "sha256:20300eb26587024eca175b2dcbabad74e505ec40dffca88020cd2b2065f21069",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92618cea6977e3fb744ed889545d042b61b23003487effdfd624e231ff5b8193",
       "plan.md": "ed5a4658e8cba7b055244348af49243ad02a14d5f091590b5c1e576353b4898c",
       "tasks.md": "10b5a25bb871ba8a7aa211a8af2b2dbc806c8f10957f448a7c06edf7c341b98a",
-      "checklist.md": "96003a09804d15a2fde4a3c1c80fc4e318cd76c4794bc7e994ea21ab52ade62b",
       "decision-record.md": "d1222bda5ccf4f870b18a7eca9ba3c08b0ed27004ae3e0b27258826b45a554bd",
       "implementation-summary.md": "c03eb43377d9d74b49d018fa2450c7715410943869a09e6275196faed5debbf2"
     },

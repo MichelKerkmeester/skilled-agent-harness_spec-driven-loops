@@ -21,8 +21,8 @@
       "argument translation table",
       "pi command layer tasks",
       "command flattening tasks",
-      "pi command layer checklist",
-      "command flattening verification"
+      "pi command layer summary",
+      "pi prompt templates implementation"
     ],
     "key_topics": [
       "command",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/settings.json",
       ".pi/mcp.json",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -195,26 +188,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Deferred",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This repository organizes 36 invokable operator commands (plus 13 non-command supporting files) as nested Markdown under `.opencode/commands/{create,deep,doctor,interface,memory,prompt,speckit}/.md` plus 2 top-level files, using Claude Code's colon-namespaced invocation (`/deep:research`, `/create:skill`) and a single opaque `$ARGUMENTS` string that each command's own router logic parses for flags and mode suffixes",
     "created_at": "2026-07-27T06:48:17.724Z",
-    "last_save_at": "2026-08-29T15:21:51.482Z",
+    "last_save_at": "2026-08-30T15:39:07.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3a08c1d574172181adca6a4548f33491214c645ef7c84d559306fd7b6af625c",
+    "source_fingerprint": "sha256:73540cedf236ad97f490e36ef24b9307124cd7aabc8aee09d8c4612b9042066a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "148acf7616e09081e7ff69e85f640fe9542e5a1490625c9547fe6c1f69fde765",
       "plan.md": "21b9cac8ffb31115cef1dc0b66be138052b99fdb8f6c02369546d4118377f305",
       "tasks.md": "1ea622b6f2532618fcce2066bdd2b0649e44184f77231b4a8182a59cddc55dcf",
-      "checklist.md": "9c1c5758e932e720a2dea5fd4f6da14db2a97c121b4fb42a18ab7339f4fd1d9d",
       "implementation-summary.md": "72e685cfccda411a5bb2ebc588132eeda6c55ad9bc75b7b342b711a2daf9118f"
     },
     "last_active_child_id": null,

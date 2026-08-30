@@ -36,33 +36,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-      "mcp_server/tests/embedders/launcher-model-server.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs"
     ],
     "entities": [
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-ipc-bridge.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-model-server.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedders/launcher-model-server.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
         "source": "derived"
       },
       {
@@ -188,11 +174,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A standalone model server solves the execution boundary but not lifecycle",
     "created_at": "2026-05-29T05:06:24.639Z",
-    "last_save_at": "2026-07-17T17:19:30.265Z",
+    "last_save_at": "2026-08-30T15:39:31.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a1607cf3e2203fe0ba37a6116b246b0b2753a4c0648cff6e05597379d27bff2f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "199057452564a88707ea01585813d5b59eb68ef9989fb790f8fcacd326ddfdeb",
       "plan.md": "9bf770148de97d4a54bc364ffbab23c2de6d7c30e10e19970562606e63048696",

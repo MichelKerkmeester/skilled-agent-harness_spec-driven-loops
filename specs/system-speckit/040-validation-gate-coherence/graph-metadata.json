@@ -16,6 +16,8 @@
       "strict validation failure rate",
       "validation gate coherence plan",
       "validation gate coherence tasks",
+      "validation gate acceptance criteria",
+      "closure gate",
       "validation gate decision record",
       "anchors template headers merge",
       "validation gate coherence status"
@@ -32,7 +34,7 @@
       "rate",
       "plan",
       "tasks",
-      "decision"
+      "acceptance"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -40,6 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -63,6 +66,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -162,49 +171,45 @@
         "source": "derived"
       },
       {
-        "name": "Decision Record",
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "decision-record.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
-        "name": "Context The",
+        "name": "The Verification",
         "kind": "proper_noun",
-        "path": "decision-record.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
-        "name": "Constraints The",
+        "name": "Yes The",
         "kind": "proper_noun",
-        "path": "decision-record.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
-        "name": "Decision The",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "identical",
+        "kind": "key_phrase",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself.",
     "created_at": "2026-08-29T07:44:49.812Z",
-    "last_save_at": "2026-08-29T14:44:45.230Z",
+    "last_save_at": "2026-08-30T15:39:36.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2db04d570d07dbb1eecdc5e2481315b6a528f29d450d27e69428dc35eeb066da",
+    "source_fingerprint": "sha256:4b76be0e72cc1f39b1731348db31a460dc302f8067030fb4e8e4c41ab896341d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ca54a8ec56638bbbfa3f93622b9138c0a085fcb75918bad4ecdc45ad22e0c27f",
       "plan.md": "bb81d9745abe1ee9f179e35781d52193dcf4553ce0c6990935060aa07527e76a",

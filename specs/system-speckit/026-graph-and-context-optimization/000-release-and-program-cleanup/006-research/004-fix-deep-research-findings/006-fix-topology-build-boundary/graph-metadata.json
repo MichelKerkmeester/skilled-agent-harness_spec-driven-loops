@@ -44,13 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
       ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts",
       "scripts/spec/is-phase-parent.ts",
-      "scripts/rules/check-phase-parent-content.sh",
       "scripts/evals/check-source-dist-alignment.ts",
       "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
       "scripts/dist/spec/is-phase-parent.js",
@@ -76,12 +73,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -91,12 +82,6 @@
         "name": "is-phase-parent.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-phase-parent-content.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
         "source": "derived"
       },
       {
@@ -200,26 +185,37 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "finding IDs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist artifacts the existing tooling cannot see:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-29T14:54:17.618Z",
+    "last_save_at": "2026-08-30T15:39:28.795Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53e5a354017f455d0b5473ebadb203b2dcfaf5543a618848daaf2c7f7dbdbcc1",
+    "source_fingerprint": "sha256:bd0a2d122eb8c821917df6bf29aa217ca65e0bc4f039c9d40373400f1074190f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "87f3baff029548e3cb1a52f05ed572c49491247a1b886ff9d618680ffbf9a1f5",
       "plan.md": "5b4435a246b8277505ed6c85f0906c685bf86f78e66b37b196befd7936555a92",
       "tasks.md": "b4ddb4c64105e67d2a074c44f5cd72f76190b969846f416e0d52a72cc38d7285",
-      "checklist.md": "8237d89556276ffb372598b8d58f3169c8303370c239c32aec9695813f673264",
       "implementation-summary.md": "9f3b1351927612b770931b2c6fcbac6efe85c6b77ecc3461eaada6cdf59da823"
     },
     "last_active_child_id": null,

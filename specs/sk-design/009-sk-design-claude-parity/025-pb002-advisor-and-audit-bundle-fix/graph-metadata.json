@@ -19,10 +19,10 @@
       "PB-002 fix workflow plan",
       "tasks",
       "phase 025 tasks",
-      "verification",
-      "checklist",
-      "phase 025 checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "phase 025 implementation summary",
+      "PB-002 fix summary"
     ],
     "key_topics": [
       "phase",
@@ -41,71 +41,19 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/design-foundations/SKILL.md",
-      ".opencode/skills/sk-design/design-motion/SKILL.md",
-      ".opencode/skills/sk-design/design-audit/SKILL.md",
-      ".opencode/skills/sk-design/command-metadata.json",
-      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/sk-design/description.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
-      "spec.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-foundations/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "command-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/command-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "verdict-matrix.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -121,15 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "verdict-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
         "source": "derived"
       },
       {
@@ -203,26 +163,55 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Now Findings",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A fresh, independent Opus-max audit of sk-design's parent hub and all 6 subskills (dispatched after phase 024 closed its 8 bugs) cross-referenced the manual-testing playbook's remaining never-fixed items and confirmed `PB-002` still had two real, live defects: the advisor probe loses `sk-design` top-1 to `sk-code` for a design-scoped review prompt, and the live dispatch resolves a bundled `audit`+`foundations` instead of pure `foundations`, contradicting `sk-design/SKILL.md`'s own Mode Vocabulary Guardrails rule about which mode owns review framing",
     "created_at": "2026-07-07T20:49:01.958Z",
-    "last_save_at": "2026-07-09T10:02:44.646Z",
+    "last_save_at": "2026-08-30T15:39:12.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed9d48439af783d80be870efb0142e44cbeceead6333f33c39f5646cc3b48f7c",
+    "source_fingerprint": "sha256:b44d2f57eaf1d48cc3fbf43e801978cac79c1b3da58d687c20296bc6004fff78",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "39d27576af23c1bc2e3a2cff0548dfe8413578b49fc75d73a8e3b2f5ad12053a",
       "plan.md": "3237e130eec7b6d1f264df1f4f95fe1709879b8ebbef375d0eef021adf3de4e9",
       "tasks.md": "fbbd619b30577e6e9e3f99516c886ea660a3e6d353b935b4ac731cb9201f8688",
-      "checklist.md": "bc6fdd6f2b1a9a551c4ba867a4991a3f842567d5bc86292bc63668746c96f63e",
       "implementation-summary.md": "e07bc069a975f20acd59dafe9327c84bc4b6b6f85b89f3b27485359ee177c2e1"
     },
     "last_active_child_id": null,

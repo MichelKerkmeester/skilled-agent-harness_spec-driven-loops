@@ -37,18 +37,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,6 +59,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`findMaxIterationsPolicyViolation` (fanout-run.cjs:~619) rejects a lineage whenever `synthesis.stopReason !== 'maxIterationsReached'`",
     "created_at": "2026-07-04T10:55:58.324Z",
-    "last_save_at": "2026-07-16T16:32:32.253Z",
+    "last_save_at": "2026-08-30T15:39:25.507Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9d89f7196b87fb548dff7ce6bec2ddfd44f8a14f5bd6ae3daec6f55c9059f1ab",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "87b44d7d421ebc13d8048351480f57ab1a5b8be5a0edc9af53732ccbb3204a8c",
       "plan.md": "64a2d9020eaec5253da0e1c285f4422740646554b7a45d3519b7e95a44b2bb37",

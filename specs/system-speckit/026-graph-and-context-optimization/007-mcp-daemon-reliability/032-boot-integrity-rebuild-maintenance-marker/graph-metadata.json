@@ -21,8 +21,8 @@
       "unclean shutdown sigkill loop fix plan",
       "boot fts integrity rebuild maintenance marker tasks",
       "beginMaintenance boot rebuild tasks",
-      "boot fts integrity rebuild maintenance marker checklist",
-      "beginMaintenance boot rebuild verification"
+      "boot fts integrity rebuild status",
+      "032 complete"
     ],
     "key_topics": [
       "boot",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
       "dist/context-server.js",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,30 +184,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`scheduleBootFtsIntegrityCheck()` fires (`context-server.ts:2467`, right before the daemon",
     "created_at": "2026-07-08T08:42:38.915Z",
-    "last_save_at": "2026-08-29T15:22:18.081Z",
+    "last_save_at": "2026-08-30T15:39:32.592Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e533f110efc911985d2cb6448fc083ed2f26dd20902ac671cb74b54f5c3582ad",
+    "source_fingerprint": "sha256:fea8d1e378ebd7d1be971989f0b9824a2592e1987be10439e51e7c301cbb625f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4f12ba15598a7a19e90390e29b52ca5a99afbcea85d738835f78ff5404c4e3e8",
       "plan.md": "72b3deb4710aed38c3a3917d534676d7b89403b81ca7e5139acd04d900bf0167",
       "tasks.md": "970b6b42f5659c80bb56559f1181b0fa2f774c6f6fe73f3e355b55ea1bb7dc7d",
-      "checklist.md": "67a9afa2856f32c9809f52b8dbad448508106d341af313c946aa03e81df61070",
       "implementation-summary.md": "e6730bfcb5b9ecb8465a2b6339187b6f2bb3524d33da4327de4a1b5e502bf9d9"
     },
     "last_active_child_id": null,

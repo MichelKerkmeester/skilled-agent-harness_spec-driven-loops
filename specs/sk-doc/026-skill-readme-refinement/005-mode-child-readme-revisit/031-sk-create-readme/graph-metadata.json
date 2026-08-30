@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-readme/README.md` still carries the older tabular reference-card style with an AT A GLANCE table, a tabular TROUBLESHOOTING section and a tabular FAQ",
     "created_at": "2026-08-04T08:34:50.395Z",
-    "last_save_at": "2026-08-30T07:20:34.038Z",
+    "last_save_at": "2026-08-30T15:39:17.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2ac2e870a81df2d9e7b9748b33bbc66fab4a610ff046ea6c4bcfcfef92cbc043",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d55a4619325535de546266bedab6ed7d8437c9c79a8425cc1436aa8c0d1b8f7b",
       "plan.md": "cf7ae1661bbfbc21d0f918c7e138c2857e51dfcc4af517d8d02e4f25b74314b2",

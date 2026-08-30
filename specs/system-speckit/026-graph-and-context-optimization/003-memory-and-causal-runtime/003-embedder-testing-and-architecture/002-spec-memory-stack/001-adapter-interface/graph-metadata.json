@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Phase 1 of 016 pluggable embedder architecture. Foundational types: define EmbedderAdapter interface + EmbedderRegistry lookup. Pure TypeScript design work — no runtime wiring yet.",
     "created_at": "2026-05-17T06:35:17.033Z",
-    "last_save_at": "2026-08-29T15:22:14.706Z",
+    "last_save_at": "2026-08-30T15:39:30.122Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ec0dede24b1b2f71b39f1d17d2367bbd293ebc622133956b67a0333d9319f5d6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c9e8dbf8fd24a577706267add63a57c75b74dc20e83964072f667f1adb358e7b",
       "plan.md": "ae0633e2d7990373166634b1c40e241f7e0ad747a015e67c48bdf48260d7af79",

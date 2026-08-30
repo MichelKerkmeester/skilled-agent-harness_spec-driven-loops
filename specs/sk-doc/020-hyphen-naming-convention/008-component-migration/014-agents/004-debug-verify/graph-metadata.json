@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for debug across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:41Z",
-    "last_save_at": "2026-08-30T07:20:06.580Z",
+    "last_save_at": "2026-08-30T15:39:17.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,7 +167,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:dafdeff49f3e80cf7af801676f2736a65bc30155ef2de8bd26a2b014d0ed8b68",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d48f146f0d14b5be364b93ada09af327442ddebe3148fb1fd15278e7cafe9a4",
       "plan.md": "da4c1ecfb12fcd08f7568b82de79c3d6f0fcb66e914b5da19da9a430396b37d7",

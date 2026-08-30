@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -59,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,27 +179,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`references/` holds 10 flat files plus an `examples/` tree with 4 vendor subdirectories (`linear/`, `stripe/`, `supabase/`, `vercel/`), each carrying `DESIGN.md`, `tokens.json`, and `writing-notes.md`",
     "created_at": "2026-07-27T15:10:01.534Z",
-    "last_save_at": "2026-08-29T13:09:59.234Z",
+    "last_save_at": "2026-08-30T15:39:13.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02233d4f408f88d3d933beaba551820a06a1feb6af8e2b97f0534d6520ce4bda",
+    "source_fingerprint": "sha256:310757ee58ffdfa032d500cb5952e50cc2ecfc66aa70bd023569266cb5f63248",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c75be66ab1724bcf29747f30f450099b6dedfa76ed2c29d7007477f60451b79f",
       "plan.md": "e50a752ead4e3f966eb0d5f1f3832d133bad03faf8a055b6d38e6fe3fd65611e",
       "tasks.md": "2a975a93e80447d7905729d63a81012b485f199d07e8fd696378ea1c1a95e0a3",
-      "checklist.md": "4879df2bc829cc3679260e5561551d5194e5e5ce74d2c59a402ec1830a541241",
       "decision-record.md": "70349289d54f4e5d81ebbe0c169ce101ff0c148a526a16179e0f90fa966967a3",
       "implementation-summary.md": "2815a356d9861b163524380688570b79d9e698da768587b891fb13793c74b4eb"
     },

@@ -21,7 +21,6 @@
       "015 llama cpp plan",
       "node llama cpp provider plan",
       "015 llama cpp tasks",
-      "015 llama cpp checklist",
       "015 llama cpp summary",
       "llama cpp benchmark result",
       "node llama cpp evaluation done"
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scratch/bench-results.json",
       "scratch/parity-results.txt",
@@ -73,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,26 +192,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verify Metal",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP local embedding path currently defaults to `hf-local`, which uses `@huggingface/transformers` with the ONNX EmbeddingGemma export and q8 dtype",
     "created_at": "2026-05-13T09:52:09Z",
-    "last_save_at": "2026-08-29T15:22:14.292Z",
+    "last_save_at": "2026-08-30T15:39:29.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:56:14Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39590e73a49fcee34d4345f2914e0c28f5c537b79668769a1ae7f0057c5ee69b",
+    "source_fingerprint": "sha256:3c64062af8735d32bb316e8431949b961f3ce7be3d2ff24a4423645029bd1059",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a7aaa56f2f4e0e1309ad75131469119c524b5d5df3763c24460372e24d191960",
       "plan.md": "3b50761d87e8c7d29a49029fd3d72e914ea5104961aa5c1e4526e682f88aeee9",
       "tasks.md": "9d9e761e7f00b33c0ccc7d2d619753cf6d72fe2f7503130915981dfe19c23ae2",
-      "checklist.md": "8c0c1a65b95c79f33c6f77bee954ae3e7631d3ebce151676eadf2b1d1c17deb0",
       "implementation-summary.md": "bf948cc3b475d62076f9392fb9594206cc0c8fdaa775d1a5bf4c832c53de1ff6"
     },
     "last_active_child_id": null,

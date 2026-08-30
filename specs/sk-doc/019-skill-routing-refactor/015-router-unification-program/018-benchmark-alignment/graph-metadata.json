@@ -18,8 +18,6 @@
       "benchmark compiled legacy parity plan",
       "Lane C compiled routing tasks",
       "benchmark parity task list",
-      "Lane C compiled routing checklist",
-      "benchmark parity QA gate",
       "Lane C compiled routing implementation summary",
       "benchmark parity current status"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
       ".opencode/bin/compiled-route.cjs",
@@ -72,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,26 +190,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original gap was that Lane C validated authored routing but not the compiled-serving path",
     "created_at": "2026-07-20T17:46:53.368Z",
-    "last_save_at": "2026-08-29T13:10:18.128Z",
+    "last_save_at": "2026-08-30T15:39:15.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4245262ac43ad323a10375bdf4a989f35900d38e38cd3be1122359becb14f073",
+    "source_fingerprint": "sha256:92bb747905c0b45d0e4d5c55354a9f9c3f1d8045e73d63ecb9bf02efd05cdc16",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3e35156987984eac920d09c6528508e9897b248b4fbbbc1e15b85de62871c98",
       "plan.md": "25ef9cfb5540273e0f36fabcd49947aaaef4136734e74694693f6ba4a37d9451",
       "tasks.md": "501ece460a52a13829a40c76871f9244d390690de43329dfebcdacda194b19e5",
-      "checklist.md": "ca3be713a80375713ec727f290f24335f9287b723fea883bdeeddc7e1cba9775",
       "implementation-summary.md": "597afced748daf35dced30ac669a858c1d3e5d6011d0372cc506aca1dab8acd4"
     },
     "last_active_child_id": null,

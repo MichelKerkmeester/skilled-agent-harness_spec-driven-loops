@@ -41,77 +41,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
       "scripts/spec/validate.sh",
       "scripts/utils/template-structure.js",
-      "templates/manifest/spec-kit-docs.json",
-      "templates/manifest/review.spec.md.tmpl",
-      "mcp_server/lib/templates/level-contract-resolver.ts",
-      "mcp_server/lib/validation/orchestrator.ts",
-      "mcp_server/lib/validation/spec-doc-structure.ts",
       "scripts/rules/check-files.sh",
-      "scripts/tests/review-record-validation.vitest.ts",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "scripts/tests/review-record-validation.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec-kit-docs.json",
-        "kind": "config",
-        "path": "templates/manifest/spec-kit-docs.json",
-        "source": "derived"
-      },
-      {
-        "name": "review.spec.md.tmpl",
-        "kind": "file",
-        "path": "templates/manifest/review.spec.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "level-contract-resolver.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/templates/level-contract-resolver.ts",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/validation/orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-structure.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/validation/spec-doc-structure.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-files.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-files.sh",
-        "source": "derived"
-      },
-      {
-        "name": "review-record-validation.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/review-record-validation.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -134,6 +75,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-files.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-files.sh",
+        "source": "derived"
+      },
+      {
+        "name": "review-record-validation.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/review-record-validation.vitest.ts",
         "source": "derived"
       },
       {
@@ -201,11 +166,41 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Demonstration Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Lean review-record spec packets carry a spec.md plus a review report under `review/review-report.md` and nothing else: no plan, no tasks, no checklist, no implementation-summary",
     "created_at": "2026-06-24T15:54:41.278Z",
-    "last_save_at": "2026-07-17T17:19:54.093Z",
+    "last_save_at": "2026-08-30T15:39:36.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b79e6238eb841fd3e5cfb88a5fba4b016d2fabc72c9c06424a8579c47945fd86",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d50436deff2900918ab3312e0fecb02e1a05f1432468985eedf82d6c5e37128",
       "plan.md": "729b8bed2a686412759e83e57ef031b892783437cfc2af3bc648794d3f1ad185",

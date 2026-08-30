@@ -193,7 +193,7 @@
     ],
     "causal_summary": "005/REQ-016 captured paraphrase instability: `\"Semantic Search\"` → `fixbug` (0.098) but `\"Find stuff related to semantic search\"` → `understand`",
     "created_at": "2026-04-27T07:56:33.777Z",
-    "last_save_at": "2026-08-29T15:22:11.729Z",
+    "last_save_at": "2026-08-30T15:39:28.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0cb26cc41f639938e0bb7eb9527481ca80f74f494751a5bbe2f14204ad76a64a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "870db610369be98351ca8708ec69b1567b0c3165a1bb9286a0d38c9bf2766561",
       "plan.md": "97191dbe049f82824e3a63bc3b4a3563e72e63fdc3a7efd2948cc368bd93f51f",

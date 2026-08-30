@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The sk-doc `doc-quality` workflow packet (built in the original phase map's `012-doc-quality/`) is named as if it were a mode or feature flag rather than a create- authoring packet, which is inconsistent with the hub's naming convention and undersells what the packet actually does: validate, score, and optimize an existing document — the same job the bound `/doc:quality` command already describes",
     "created_at": "2026-07-07T04:51:44.810Z",
-    "last_save_at": "2026-08-29T15:22:00.806Z",
+    "last_save_at": "2026-08-30T15:39:13.657Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9107cea59e80e7bbe9e57d1501b13d0e9e5d4072d979de1ea3721e471779b0f0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7257d5ac4951e454f0b0433486ef8c6c93e2c6821c357b04a1e5de676047275d",
       "plan.md": "3a9abec5945a8e5a8371b55eb334497ea347b74e8e7a7385206d44fbc0c57a81",

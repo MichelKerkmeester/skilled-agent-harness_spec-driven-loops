@@ -10,10 +10,13 @@
 #
 #   Too loose - skipping on any generation that is not the current one. A marker
 #   nobody recognizes, forged or mistyped, then switches drift detection off for
-#   that packet permanently and silently.
+#   that packet permanently and silently. Skipping when the marker is ABSENT is
+#   the same hole reached by deleting a field rather than forging one, and it was
+#   the common case: the marker was optional, so almost nothing was compared.
 #
-# Only an OLDER generation may skip. Equal compares, and so does newer:
-# reporting a mismatch is recoverable, staying quiet is not.
+# Only an OLDER marker that is actually present may skip. Equal compares, newer
+# compares, and absent is reported: reporting a mismatch is recoverable, staying
+# quiet is not.
 
 set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../.." && pwd)"
@@ -53,6 +56,10 @@ mismatches() {
     bash "$VALIDATE" "$PACKET" --strict 2>&1 | grep -c 'SOURCE_FINGERPRINT_MISMATCH'
 }
 
+missing_marker() {
+    bash "$VALIDATE" "$PACKET" --strict 2>&1 | grep -c 'SOURCE_FINGERPRINT_DOCSET_MISSING'
+}
+
 set_generation() {
     python3 - "$PACKET/graph-metadata.json" "$1" <<'PY'
 import json, sys
@@ -86,9 +93,12 @@ expect "current generation, real drift is reported" "1" "$(mismatches)"
 set_generation 1
 expect "older generation skips rather than failing" "0" "$(mismatches)"
 
-# A legacy file predating generations behaves like an older one.
+# A digest with no marker beside it names no document set, so it cannot be
+# compared. Skipping there was the reachable half of the suppression vector:
+# deleting the field is schema-legal and reached the same silence as forging one.
 set_generation none
-expect "absent generation skips" "0" "$(mismatches)"
+expect "absent marker is reported, not skipped" "1" "$(missing_marker)"
+expect "and drift is not silently passed" "0" "$(mismatches)"
 
 # The suppression vector: an unrecognized marker must not silence the check.
 set_generation 99

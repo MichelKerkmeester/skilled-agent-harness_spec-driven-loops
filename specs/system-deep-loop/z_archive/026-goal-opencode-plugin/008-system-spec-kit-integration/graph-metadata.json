@@ -41,85 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
-      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-      "references/hooks/goal_plugin.md",
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/commands/goal_opencode.md",
-      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      "mcp_server/scripts/evals/generate-known-item-ground-truth.cjs",
-      "references/config/hook_system.md",
-      "mcp_server/plugin_bridges/README.md",
-      "mcp_server/ENV_REFERENCE.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "goal_plugin.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/goal_plugin.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook_system.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "goal_opencode.md",
-        "kind": "doc",
-        "path": ".opencode/commands/goal_opencode.md",
-        "source": "derived"
-      },
-      {
-        "name": "ARCHITECTURE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-known-item-ground-truth.cjs",
-        "kind": "file",
-        "path": "mcp_server/scripts/evals/generate-known-item-ground-truth.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -136,6 +65,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
         "source": "derived"
       },
       {
@@ -203,11 +150,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `/goal` plugin existed as OpenCode plugin code and a dedicated implementation packet, but `system-spec-kit` did not yet route, catalog, or explain it alongside the other OpenCode plugin surfaces",
     "created_at": "2026-06-30T17:33:02Z",
-    "last_save_at": "2026-07-16T16:32:47.600Z",
+    "last_save_at": "2026-08-30T15:39:25.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:872ca415a1f27d6b25f218e9091e04889efbc3693103e2c56fd7a72e1dca3597",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fae47ac7043b3846963de1c0a1a49a559d72cec129381709be1a99c02014b0e7",
       "plan.md": "74715a703dffc6ae8cfd0bae538e5b8537c93589e8f1c6104ca6f33748aa0b82",

@@ -20,9 +20,8 @@
       "manual testing phase 020",
       "phase 020 tasks",
       "feature-flag-reference audit tasks",
-      "phase 020 checklist",
-      "feature-flag-reference audit checklist",
-      "phase 020 implementation summary"
+      "phase 020 implementation summary",
+      "feature-flag-reference audit summary"
     ],
     "key_topics": [
       "feature",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,31 +179,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The code audit for feature flag reference (catalog phase 020) identified that 7 flag categories were audited with 6 MATCH and 1 PARTIAL, plus a post-audit flag graduation event affecting 22 flags",
     "created_at": "2026-04-12T09:02:50.306Z",
-    "last_save_at": "2026-07-10T06:24:04.327Z",
+    "last_save_at": "2026-08-30T15:39:39.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f17eeaeb37665af3cd4011c8654f8c1608466f6642a1f5ba36df2d39a766a6c6",
+    "source_fingerprint": "sha256:e3b38a026c7a562c2ad0f4907849387b75792d79937c45cc2dd55cbfd5c24f78",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bb35fe6962404df1445490f9648a4c3dd85fd4ed09faa17ba1902b945e63554c",
-      "plan.md": "1d85b57bce4f4dff93ece42a9c2a16457da38f28169d883dba8f3a8cf5f65fd8",
-      "tasks.md": "fa3556e6b1eb37f73aa4ff7a732debe6eb485fcd34585a548e9e9318e6782351",
-      "checklist.md": "762e53c2290f95132f45e24d697138b3582db5ce0e56e31bd4a7ef55f159b2f0",
-      "implementation-summary.md": "f1bb891b5824d6464a7f6a149e9190d5b1eec745635de37124da20936292f659"
+      "spec.md": "e3c43ec7f883a48ed905a45034c28fb6715f8bd52921fecb5ffeee2feeb206b5",
+      "plan.md": "9492a25684c748fd43bd418ef1c7a0884e796fc82ded42f4c9f1d686c539dbd4",
+      "tasks.md": "8a80dfefeb8a02de6c55dc83848772b6fbd6094ea722143d94a64243def54f2a",
+      "implementation-summary.md": "f63d243f9712464272b3c1c775b35a8fd0685b2989412d80a75c652c580bb86b"
     },
     "last_active_child_id": null,
     "last_active_at": null

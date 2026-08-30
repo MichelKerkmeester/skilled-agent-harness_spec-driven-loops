@@ -21,10 +21,10 @@
       "006 review research retrospective",
       "008 deep-research review tasks",
       "006 review research tasks",
-      "008 deep-research review checklist",
-      "006 review research checklist",
       "008 deep-research review implementation summary",
-      "006 review research implementation summary"
+      "006 review research implementation summary",
+      "010 deep-research review",
+      "010 closure integrity"
     ],
     "key_topics": [
       "deep-research",
@@ -35,9 +35,9 @@
       "plan",
       "retrospective",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
+      "integrity",
       "phase"
     ],
     "importance_tier": "important",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "research/resource-map.md",
@@ -77,12 +76,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -204,27 +197,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook coverage needed independent audit",
     "created_at": "2026-04-25T23:20:00.000Z",
-    "last_save_at": "2026-08-29T15:22:17.081Z",
+    "last_save_at": "2026-08-30T15:39:32.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:99f37145d82d2413925361720b1802c1884b3e6d5d519d86bd29130389bd0090",
+    "source_fingerprint": "sha256:f945242a4cc8400efc4f75d609150787ad2f767152662ac823c1e3de8b5d07e1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "51286921bf6534d2d4d25c631a433a078e36c948b8b23e73615a5ad092944523",
       "plan.md": "7ad37695bc660b333eae6a82dcd5fc1f8cb1ae4ff7eaf691997c1cdea76f308f",
       "tasks.md": "faf31a175a196c4a33898302ff5403c84e4e9bbbe253852ec4b592f9483bcf10",
-      "checklist.md": "e3a3d8b97eeb33af5490cbd675b8fc71b9cb79de471dcbfb7c53506fb0805123",
       "implementation-summary.md": "504a4f5ec61479ecd192ab69326d9bde552b59e3f882a9541745cab85ecef594",
       "research/research.md": "480fa4bafa757e62a26ada68bdc6b847de8fbe279aa048ce5ed1ce8415c0f4f2"
     },

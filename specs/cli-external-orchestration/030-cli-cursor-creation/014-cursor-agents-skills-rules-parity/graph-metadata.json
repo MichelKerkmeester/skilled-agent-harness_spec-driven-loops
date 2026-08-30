@@ -16,7 +16,6 @@
       "cursor UserPromptSubmit skill advisor",
       "cursor agents skills rules parity plan",
       "cursor agents skills rules parity tasks",
-      "cursor agents skills rules parity checklist",
       "cursor agents skills rules parity summary",
       "cursor static skill routing"
     ],
@@ -32,7 +31,7 @@
       "advisor",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -40,10 +39,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
       ".cursor/rules/skill-routing.md",
-      ".cursor/hooks.json",
-      "implementation-summary.md"
+      ".cursor/hooks.json"
     ],
     "entities": [
       {
@@ -65,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -80,12 +78,6 @@
         "name": "hooks.json",
         "kind": "config",
         "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -189,26 +181,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The user asked to \"scaffold a phase that makes sure cli-cursor and cli-devin have all the agents, commands and skills properly working and supported, like .claude and .opencode have.\" Live investigation during the 5-iteration deep-research pass found:",
     "created_at": "2026-07-27T06:11:40.840Z",
-    "last_save_at": "2026-07-27T11:05:02.843Z",
+    "last_save_at": "2026-08-30T15:39:07.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a66e54d79e4bad381a0b85fff41245cb7fa1ba6d41521751c0c65b274e24eedd",
+    "source_fingerprint": "sha256:ac326167a444b8195e9f5f074b4a61cc7614811fe1b8c6a7cb22825be8befb81",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f7d7f1487b3736bac9c1a3120f9483100133e430bae81779d8cfecdfac7cdf3",
       "plan.md": "19f185f2f42453d489ef2422f995be2f373f9e333ae4e2013e47151ec78b233c",
       "tasks.md": "58dace0720b2587090084303b18b65f6ed923efa90776fb3b80a29ba640eb363",
-      "checklist.md": "6d2bb2f594a7d2ab185ac5409706d913acdcb57c6b80359fcaf95de11e0adf60",
       "implementation-summary.md": "895582ebd9f8167aac36916e8e6cd15fa9c4488446236e042b8fd7a9f9ddfe2f"
     },
     "last_active_child_id": null,

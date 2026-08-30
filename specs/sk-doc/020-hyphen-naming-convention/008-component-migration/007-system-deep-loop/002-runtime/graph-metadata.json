@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The runtime tree has six snake_case directories and 108 underscore-bearing files across its catalog, playbook, libraries, scripts, and tests. This phase renames those in-scope names to kebab-case and updates path consumers while preserving the package workspace, tool-mandated files, database contracts, and all code/data identifiers.",
     "created_at": "2026-07-14T15:17:48Z",
-    "last_save_at": "2026-08-30T07:19:40.403Z",
+    "last_save_at": "2026-08-30T15:39:16.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:7c1a53bc490394af790ec18bf3d984d255c1eaf0e519ef1dd3b46bf864da46e9",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "821d99ec4adc57375d738e5ff43701249c57db4eeefaddd96a63b1720e0a2517",
       "plan.md": "a19c7a7d627105ab2b0f75df3c45377fbb4c3e5b1a3f47b6bd05212149c5bacb",

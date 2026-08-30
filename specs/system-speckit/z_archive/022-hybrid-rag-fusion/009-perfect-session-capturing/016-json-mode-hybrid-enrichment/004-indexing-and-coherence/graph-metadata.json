@@ -42,22 +42,45 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
       ".opencode/skills/system-spec-kit/scripts/renderers/template-renderer.ts",
       ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
       ".opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts",
-      ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/scripts/types/session-types.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -88,36 +111,6 @@
         "name": "session-types.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,29 +190,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The generate-context.js pipeline has no observable signal for embedding health: the retry manager runs a background job every 5 minutes with circuit-breaker logic, but its RetryStats object (pending count, failed count, retry attempts, circuit breaker state) never reaches any MCP tool",
     "created_at": "2026-04-12T09:02:50.279Z",
-    "last_save_at": "2026-07-10T06:22:38.520Z",
+    "last_save_at": "2026-08-30T15:39:38.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88d15092b9f9fcda82e82892cd0294c7677037a604e882f06137c77e1e23bee6",
+    "source_fingerprint": "sha256:8e853fb4a42bc79adc32138d22d16fd315632fc8ecddf5cbfb44feae15189a55",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20c89be68e72baa0c10802bdbf7ff88ffc19b212b8be792bd76cff1d52282a0b",
-      "plan.md": "fab8fda310ac4fd51c40f4c10a798766981272c2f445ff91cbb74975e43f8ddb",
-      "tasks.md": "3e405e30c7e4f62cc0639b23ff92b20ad5933c2d5280e3087d0e636272cab06c",
-      "checklist.md": "252544f5e58d70f3cff063268c3998f633397a9ad43e16eea3d02fb91f3940ea",
-      "decision-record.md": "705723f66aee08b5999e86ae5824dd93b0ecbc8d7b88716ef26e9dbd317b1d1d",
-      "implementation-summary.md": "bd4ae1818a3a495260248a406573e45c9b453cf6cb39574511dfe96faf6bc9e1"
+      "spec.md": "2d3c56e493051cbcca5159102da92f3e25c506e844f10f1d3daa060735bac565",
+      "plan.md": "acbb092d7d5b10e89ad0e1a40cc2e6af849907ba8bad087a3eab0f2a99d7baad",
+      "tasks.md": "16bedb074d3243815876a68974d5e18acff53d31014e858b473e36625fdb5dc0",
+      "decision-record.md": "8cf3effc1adf57e4541a490fae15c634f38eccb11bce30f36669189067eeca0a",
+      "implementation-summary.md": "82331f9431ab9086b10561ff536fec7708343a539e9e4312c2dada16d20eb816"
     },
     "last_active_child_id": null,
     "last_active_at": null

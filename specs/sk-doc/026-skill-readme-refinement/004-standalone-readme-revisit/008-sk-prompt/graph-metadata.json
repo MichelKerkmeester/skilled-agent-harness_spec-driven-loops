@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents that state the outcome before the tooling, obey the Human Voice Rules and pass the sk-doc README validator",
     "created_at": "2026-08-04T08:34:37.731Z",
-    "last_save_at": "2026-08-30T07:20:20.769Z",
+    "last_save_at": "2026-08-30T15:39:17.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9a41d2e29e1fe36f2487b1ea6722b35f47b4d82de4e93d05fe449b355b6a5d1f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b695b9203ac9132a2a1c79e946fc66c150d26096a6b5e6fe5a1ef82a3f34d56b",
       "plan.md": "f93feb0acce07da98041a667f08e3c58dec3cc13032cc5ab72c51735be853ae6",

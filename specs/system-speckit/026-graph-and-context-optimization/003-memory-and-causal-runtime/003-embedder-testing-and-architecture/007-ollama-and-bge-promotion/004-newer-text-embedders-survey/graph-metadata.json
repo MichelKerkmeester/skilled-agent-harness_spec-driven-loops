@@ -42,22 +42,16 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "research.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research.md",
         "source": "derived"
       },
       {
@@ -76,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Live HuggingFace crawl for text embedders released after May 2026 (when ADR-012 selected jina-embeddings-v3 as the mk-spec-memory production default). Research-only survey by default. Measurement only triggers if a candidate looks clearly stronger than jina-v3 on paper (better MTEB + paraphrase-tuned + Apple Silicon compatible + reasonable size).",
     "created_at": "2026-05-18T23:25:32.898Z",
-    "last_save_at": "2026-08-28T15:59:47.444Z",
+    "last_save_at": "2026-08-30T15:39:31.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "research.md"
     ],
     "source_fingerprint": "sha256:645f67fc540a2410bf0957d74e03e9014700bf5074aec43758c5e1ccda3b11b1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e720eb3a8408f605dd3a6668a81cbef46b175ff3e65fe688eaf3ff4d1a6f0d20",
       "plan.md": "43074acfecfc3ac79fe071e6531e51e2097e36e5c4a9d9689420244d5f231a2b",

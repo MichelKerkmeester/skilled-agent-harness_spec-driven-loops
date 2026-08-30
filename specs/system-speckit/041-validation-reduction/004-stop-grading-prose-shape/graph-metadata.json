@@ -168,7 +168,7 @@
     ],
     "causal_summary": "Documents stop being diffed against templates that change weekly; anchors are checked for what actually reads them.",
     "created_at": "2026-08-29T18:27:06.222Z",
-    "last_save_at": "2026-08-29T18:27:06.222Z",
+    "last_save_at": "2026-08-30T15:39:36.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,6 +178,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ca9739292feab431abaef19e984b1f46443a1b3a2b3f719a14464ef7d52ab93c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "76ff976e6c3086b8749665f3bcdcf51e7660e1cb9900707f869ce93e723eba61",
       "plan.md": "651d9350ac26c96e2c31e63ebe1e9bec6d396e4d89b65b0e0643f89414d7ff91",

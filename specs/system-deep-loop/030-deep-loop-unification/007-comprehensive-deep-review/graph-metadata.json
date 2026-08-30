@@ -16,7 +16,6 @@
       "system-deep-loop bug sweep",
       "deep loop comprehensive review plan",
       "deep loop comprehensive review tasks",
-      "deep loop comprehensive review checklist",
       "deep loop comprehensive review implementation summary",
       "system-deep-loop 20 iteration review complete"
     ],
@@ -31,12 +30,16 @@
       "sweep",
       "plan",
       "tasks",
-      "checklist",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
@@ -44,17 +47,35 @@
       ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
       ".opencode/agents/orchestrate.md",
       ".opencode/specs/descriptions.json",
-      ".opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".opencode/skills/sk-doc/scripts/package_skill.py",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      "spec.md",
-      "implementation-summary.md",
-      "checklist.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -74,12 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-review/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
         "name": "executor-audit.ts",
         "kind": "code",
         "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
@@ -95,36 +110,6 @@
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -198,26 +183,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 verified SKILL.md structural template conformance across `system-deep-loop` (already 100%) and fixed a set of soft warnings (asset naming, word count, changelog frontmatter)",
     "created_at": "2026-07-08T18:58:44.424Z",
-    "last_save_at": "2026-07-16T16:33:03.139Z",
+    "last_save_at": "2026-08-30T15:39:19.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8755e7a32262b0139f3cdbc8d540d05efaa4bcc09b565a3dd4e066cb247286a1",
+    "source_fingerprint": "sha256:e603d75c97b1e408c9f9ad44494110e7f781413bb57a32294868adf07f500449",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0ef8c6544a9456b1faa3f01d15422d5db7415f35f17994955c658b2de2a380a7",
       "plan.md": "bd583a92b3d64e25f9bc9684d957bc6e9226b38cee7b9c1acc6d56b19053ec80",
       "tasks.md": "d6c21bb9310c8f5fbfa0bf3a6305b90541d9ea1b28813dd71d61c3d6de0d9746",
-      "checklist.md": "dd3325cc0923f6917dc8832dc4052859cd8890ad98616b7b0bfbf520af53141c",
       "implementation-summary.md": "68a96e4279cc8f4708e9d2d62f98e911c78ceeea40478cc9630d2f7adccce615"
     },
     "last_active_child_id": null,

@@ -21,8 +21,8 @@
       "fluid responsive report tasks",
       "create diff container query tasks",
       "diff report css tasks",
-      "fluid responsive report checklist",
-      "create diff container query gates"
+      "fluid responsive report summary",
+      "create diff container query status"
     ],
     "key_topics": [
       "diff",
@@ -39,17 +39,13 @@
       "width"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
-      ".opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py",
-      "review/review-report.md",
-      ".opencode/skills/sk-doc/create-diff/scripts/validate_report.py",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/review-report.md"
     ],
     "entities": [
       {
@@ -71,39 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "create_diff.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
-        "source": "derived"
-      },
-      {
-        "name": "test_create_diff.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "review-report.md",
         "kind": "doc",
         "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate_report.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-diff/scripts/validate_report.py",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,26 +167,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The create-diff HTML report is a self-contained document opened inside IDE preview panes and editor webviews on the desktop, whose widths vary widely (a narrow split around 480–700px, a half-screen editor around 900–1100px, a full editor up to ~1600px+)",
     "created_at": "2026-07-16T05:37:43.581Z",
-    "last_save_at": "2026-07-17T14:37:13.192Z",
+    "last_save_at": "2026-08-30T15:39:14.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3214e5b2e29b0074d4d9d1a3e04b19fab82afa75255b0490af2dffc8c1c806f5",
+    "source_fingerprint": "sha256:9cb7d76a2c5400b9f259dac2ee76fe247536cf78e1571950435fdab285360f0d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c387b2791507e79bbc8b6ccb52f93284e4f5405a4f5e7f0df28bbbf33f3e1cee",
       "plan.md": "0c095992fc0c20aa63788013285e2537d901987e6006bb6c8cab9cbd9b01e89b",
       "tasks.md": "d4b19b22042be72067feb811048e055b92d250a9dab806707aaf8e15f889009d",
-      "checklist.md": "4deab341b2e103762b213b7a1a6c9c2127c480a17d5a127bfc4de71d6f09b347",
       "implementation-summary.md": "644c14ef7df0bc0891d7053c911e3b2ddafe5a9f1558393b327dc3acbb1b2655"
     },
     "last_active_child_id": null,

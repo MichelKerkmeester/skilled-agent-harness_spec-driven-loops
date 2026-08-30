@@ -22,7 +22,7 @@
       "pipeline architecture tasks",
       "phase 014 tasks",
       "manual testing pipeline tasks",
-      "pipeline architecture checklist"
+      "pipeline-architecture implementation summary"
     ],
     "key_topics": [
       "pipeline",
@@ -36,7 +36,7 @@
       "execution",
       "plan",
       "tasks",
-      "checklist"
+      "pipeline-architecture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handlers/memory-search.ts",
       "tests/memory-lineage-state.vitest.ts",
@@ -69,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,27 +189,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The pipeline architecture category (14--pipeline-architecture) contains 22 features spanning the 4-stage pipeline refactor, chunk-to-memory aggregation, schema validation, DB path standardisation, cross-process rebinding, and lineage projection",
     "created_at": "2026-04-12T09:02:50.301Z",
-    "last_save_at": "2026-07-10T06:22:23.673Z",
+    "last_save_at": "2026-08-30T15:39:39.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d506f1615391295b87f73b3e1de97fc5fac088de7903ee453ec12d8fbeab77c2",
+    "source_fingerprint": "sha256:089c3e9d458e6903b27dc5279dc467326e53909d76502ff0499c15656c046e7b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "07caf9725343e00163f611b1370727ac027a7d208fd15e2851ab108dbc2756fa",
-      "plan.md": "eae36e461bc1c7e60c9a243436803ccc00f03ac29f0404a6d267478dd06862ab",
-      "tasks.md": "3fae8659f6aded9ede93cbfa69ea15b8e27ba09cfe607cdc0f0db2fff3416fd5",
-      "checklist.md": "ccdf6c9c2f502803cc7d7a2b70852b6edfb57d713a056158899204460bc9d6a9",
-      "implementation-summary.md": "dc67e7351fdb32ce284e05a3cc1c0efa1aed539f1ec3adbe515e527af2ffc5b7"
+      "spec.md": "d46387e1403c1b07afbcfc163083f7c5dada558e790971a3a40db9a76c566bb1",
+      "plan.md": "b74af0d3790a103282fe048fa0bd34498cc97a8aed660fb7b0e11a30f14016b5",
+      "tasks.md": "a4a305ecfebdb603a9ae0304fb32d38a6537c641fd55a623e48dd4d59f448f3c",
+      "implementation-summary.md": "46e7a7de799c0f399271a9014335fff7183bfb65c7f1d2fe27129533b0df99d0"
     },
     "last_active_child_id": null,
     "last_active_at": null

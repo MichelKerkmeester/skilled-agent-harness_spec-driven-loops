@@ -198,7 +198,7 @@
     ],
     "causal_summary": "sk-vision's auto-inspect never blocks message submit (a 2-second grace, then it injects whatever is ready — often just a materialized file path)",
     "created_at": "2026-08-18T04:14:00.119Z",
-    "last_save_at": "2026-08-29T14:54:25.020Z",
+    "last_save_at": "2026-08-30T15:39:19.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f4be96e1865d71e6ab1ba968f67d9b63bea25b78d7a0814652ccebadba399873",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d8bcb6d52de1f7327760130316c6845b8864ffa8c36263c20ce6d95986c79951",
       "plan.md": "395dd4ff9ec7e6bdae62e26e2ee60aaeedf149c0616ea8dc9d282f416eb59e77",

@@ -43,19 +43,13 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "review/review-report.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/review-report.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,6 +72,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "This session shipped real, committed code — the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a ported 5-dim scorer, mode-aware records) plus the MiniMax provider integration (120: cli-opencode + sk-prompt skill edits)",
     "created_at": "2026-05-28T17:42:53Z",
-    "last_save_at": "2026-07-09T10:02:48.970Z",
+    "last_save_at": "2026-08-30T15:39:23.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e38526f89e3f901ce72fd8c47853625b0f0b0f3bdc4e30e2163360134308d54c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c4e0abdc1199d8030056155a5cf4a61407176af23fe3ddb2e1fed777e153c3b",
       "plan.md": "56fca476035e256124109ea86ad64c5d89f362adaf318f589c146806e09b95cb",

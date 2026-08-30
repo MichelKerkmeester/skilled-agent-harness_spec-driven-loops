@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The code-graph manual playbook currently uses the snakecase manualtestingplaybook root, nine snakecase category",
     "created_at": "2026-07-14T15:18:17Z",
-    "last_save_at": "2026-08-30T07:19:53.730Z",
+    "last_save_at": "2026-08-30T15:39:16.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:f0763b50035417f6f9ff564bcf573276c6e526a84cb9dd634cf66f2aadb8bc9e",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35a21600c4f698b9797357fb8cd14991414ee91c59c2331515ce0d068a50e856",
       "plan.md": "01972a6eb5af98c3ecb3f48feb6207056f93b347ca6caf5fc78bfef8f1aee0a9",

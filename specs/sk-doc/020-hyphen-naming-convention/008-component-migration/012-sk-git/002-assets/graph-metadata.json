@@ -180,7 +180,7 @@
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the three sk-git asset renames (committed on skilled/v4); the live asset surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm the three kebab targets exist, no source spelling survives in any active pointer, and template content contracts are intact.",
     "created_at": "2026-07-14T15:18:27Z",
-    "last_save_at": "2026-08-30T07:19:58.776Z",
+    "last_save_at": "2026-08-30T15:39:16.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,7 +189,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:aff267df356ccb5147ea55a91c120e87ed29b110d4299224929dcdd162cb5b32",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d4ee203a1dd67d2650e72e62e7884a970963eb67728169662bf07f5df9d74a1",
       "plan.md": "6b34f0afe53c5566b31ef5af60c086f5cf326a0a35e369fe587e9e0a11d1bb47",

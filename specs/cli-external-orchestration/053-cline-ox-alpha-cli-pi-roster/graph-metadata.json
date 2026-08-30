@@ -20,9 +20,8 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
-      "implementation summary"
+      "implementation summary",
+      "x-ai/ox-alpha cline-pass"
     ],
     "key_topics": [
       "cline",
@@ -36,7 +35,7 @@
       "plan",
       "implementation",
       "tasks",
-      "verification"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/models.json",
       ".pi/settings.json",
@@ -72,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,26 +191,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "pi's interactive Cline picker already discovers Ox Alpha as a free model (`Free — Try with limited usage, separate from ClinePass quota`) and can run it live — it is the operator's active model in the current session",
     "created_at": "2026-08-24T10:16:38.355Z",
-    "last_save_at": "2026-08-29T14:54:25.449Z",
+    "last_save_at": "2026-08-30T15:39:08.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75a679e11d9c131d0253a43c413a8b3d44b3f525779bda4b4433f9aa6850317f",
+    "source_fingerprint": "sha256:5f6a1b8c1c50a3dfecddd7e22c1da1d2c988c5e782b4cf43b559a204003ce458",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ab4ea2b8839f66f28460dbd8c6ad64bc285644ca1883f75c08e65db11c9f8951",
       "plan.md": "6426652f024062bd3ed56c07b69d39d340aaf9adf3a03ba9c688170df6a1be5f",
       "tasks.md": "60cac8336ad34b408008bb4a4ccbf14730388df06332def0e05b4e14493d1fd1",
-      "checklist.md": "95861f43aef4b3ce8004c9029c033f039223e70e5c4992fe9b29a75a5bd2d554",
       "implementation-summary.md": "8cb2039b64300e4d0966674f891f5272b2e952d6b65dea7876a0a53b7208eed6"
     },
     "last_active_child_id": null,

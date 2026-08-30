@@ -20,9 +20,9 @@
       "template levels packet 006 plan",
       "command md yaml tasks",
       "packet 006 tasks",
-      "command md yaml checklist",
-      "packet 006 verification",
-      "command md yaml decisions"
+      "command md yaml decisions",
+      "packet 006 adr",
+      "command md yaml implementation summary"
     ],
     "key_topics": [
       "command",
@@ -41,14 +41,19 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -62,21 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -192,27 +185,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The slash-command entry docs and their YAML workflow assets may still mention deleted artifacts such as `compose.sh`, `wrap-all-templates`, legacy template folders, or the old architecture label",
     "created_at": "2026-05-02T06:53:47Z",
-    "last_save_at": "2026-07-17T17:19:16.612Z",
+    "last_save_at": "2026-08-30T15:39:29.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cec747c1c53df6a730175b355ee8d12a2a419c226cabc880c66e15c444ee7e44",
+    "source_fingerprint": "sha256:8326f15cbdfa4a757bad4d03f143b110541e9a6c94bd15803ca1b784c2f8e1b9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "93a3721281a71b682d55b4d2efa8a3acd6e8fc14b293980f833de2e9bd1c4a75",
       "plan.md": "341f548a41a85f863eed36ece33e44a472bac9ae82d35603f3d8a3a235ba59de",
       "tasks.md": "61a73c86279828958daeda448b2be50668e0f85ad18fff6111b658eaeed02896",
-      "checklist.md": "ce96caa3e065e59010121e3f7c8a22b30d42bf3d83651a59970c21d95164916e",
       "decision-record.md": "7c537c790b65ad82874ed3a65384c81aa9bf27410b09a6f9a7f208caec9061b4",
       "implementation-summary.md": "ec8d110d6817c558341821fcf5a53d0f563c3070ee37af052feefaf0930bf356"
     },

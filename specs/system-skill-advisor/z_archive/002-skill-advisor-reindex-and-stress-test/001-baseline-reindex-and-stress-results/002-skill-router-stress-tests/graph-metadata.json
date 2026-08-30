@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
-  "spec_folder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
-  "parent_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+  "packet_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
+  "spec_folder": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
+  "parent_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -18,8 +18,6 @@
       "manual playbook scenarios",
       "065/002 plan",
       "065/002 tasks",
-      "065/001/002 checklist",
-      "router stress checklist",
       "065/002 implementation summary",
       "065/001/002 resource map",
       "router stress resource map"
@@ -34,27 +32,63 @@
       "scenarios",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "resource"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "test-report.md",
       "scenarios/CP-100-ambiguous.md",
       "scenarios/CP-105-adversarial.md",
       "scenarios/CP-101-false-positive.md",
       "scenarios/CP-102-low-confidence.md",
       "scenarios/CP-103-multi-skill.md",
-      "scenarios/CP-104-novel-phrasing.md",
-      "implementation-summary.md",
-      "checklist.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "resource-map.md"
+      "scenarios/CP-104-novel-phrasing.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "test-report.md",
+        "kind": "doc",
+        "path": "test-report.md",
+        "source": "derived"
+      },
       {
         "name": "CP-100-ambiguous.md",
         "kind": "doc",
@@ -89,42 +123,6 @@
         "name": "CP-104-novel-phrasing.md",
         "kind": "doc",
         "path": "scenarios/CP-104-novel-phrasing.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -202,23 +200,22 @@
     ],
     "causal_summary": "Stress-test SKILL.md content + skill router routing efficiency via 6+ manual playbook CP-XXX scenarios dispatched across 3 external CLI executors (cli-codex, cli-gemini)",
     "created_at": "2026-05-18T07:49:27.130Z",
-    "last_save_at": "2026-07-15T11:59:11.923Z",
+    "last_save_at": "2026-08-30T15:39:26.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e52c4ac1479e6a061827f7a78bed27c286c33516314d11bb7e41f97e46e33808",
+    "source_fingerprint": "sha256:901691c7aa2f016041d3e6685207160bd2a525cdc78f433aacc1c5050a00aee5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f587685dd5f0020b88a314a1b56a9187fc794a027fcaec4879045055d7b435bc",
       "plan.md": "d31e748902aeb6e180fc414a09e63999005260020c412194b29595ce9ad938af",
       "tasks.md": "3b791b1e51307faaa4487d514f277ba69cd471566858ec970d86cfed988dbe2a",
-      "checklist.md": "97823641d2796846dff004479f5eab6ce6c1c93454ac27e807f3bc0c04cb2ba6",
       "implementation-summary.md": "5d2d4baa4b178960ffa6b57d1f8ccfc5333722eb6855dfc3e5c8f78b71fd6897",
       "resource-map.md": "f32fa7a8ac668a7beb4782d4313cb931b4c7155510f2821766f0fde1c08b4f69"
     },

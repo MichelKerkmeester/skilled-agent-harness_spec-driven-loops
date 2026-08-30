@@ -18,11 +18,11 @@
       "plan",
       "archive normalization",
       "tasks",
-      "verification",
-      "checklist",
       "decision record",
       "normalization",
-      "implementation summary"
+      "implementation summary",
+      "research",
+      "root"
     ],
     "key_topics": [
       "015-anchor-enforcement-automation",
@@ -34,22 +34,20 @@
       "plan",
       "normalization",
       "tasks",
-      "verification",
-      "checklist",
-      "decision"
+      "decision",
+      "record",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh",
-      "research/research.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -65,33 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-anchors.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -104,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -195,28 +181,39 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This archived system-spec-kit archive folder captures work related to Anchor Enforcement Automation",
     "created_at": "2026-04-12T09:02:53.567Z",
-    "last_save_at": "2026-07-10T06:24:15.485Z",
+    "last_save_at": "2026-08-30T15:39:37.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:bbca4f4ebec5c5ec5dabc49198b316588910a512bae3e36a37c718e1b8bac8fc",
+    "source_fingerprint": "sha256:3f94dd0dfa6207300256d32ee09ef2805455614288a6cbf2f3bd1b6b681969bd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0ee7d980c747f91a2a66e57186a97a04f6018652d69c0df6abcf24f9fc51dbb2",
       "plan.md": "d250b35bc2023004abe9a827294447b55f10ce93166be05c1270a9a55335633b",
       "tasks.md": "a3cc56f9421733973a0fc1b0c33cb465a9d6ea949c8faf0fad579e744b0febaa",
-      "checklist.md": "f576ab6b9e26c3a6645a620b05424a404c6d5f73ba0527bfa37ba905a5390d7d",
       "decision-record.md": "566c9f9c278f48794a6acd2e89b84f87d80ba613efc65a4e3a8560f659daf8ad",
       "implementation-summary.md": "b90e0b17fdafce8d2f0e282465f7c930e36a1640011f75e709157525c153cc88",
       "research/research.md": "bf534d91255e6708a99b316529dd67d5fbd3c04f348b37a61f894bbf6274c1e2"

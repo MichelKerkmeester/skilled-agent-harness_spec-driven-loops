@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
-  "spec_folder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
-  "parent_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test",
+  "packet_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
+  "spec_folder": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
+  "parent_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -26,8 +26,6 @@
       "memory save calibration plan",
       "065/002 tasks",
       "memory save calibration tasks",
-      "065/002 checklist",
-      "memory save calibration checklist",
       "065/002 implementation summary",
       "065/002 resource map",
       "memory save calibration resources"
@@ -42,46 +40,21 @@
       "prompt",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "resource"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
-      "tasks.md",
-      "checklist.md",
-      "resource-map.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
       ".opencode/skills/sk-doc/graph-metadata.json"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -92,6 +65,24 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -201,27 +192,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "T-003: [x] Add regression coverage",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan phase to reduce memory:save false positives for ordinary file-save prompts while preserving context-preservation routing.",
     "created_at": "2026-05-18T07:49:27.132Z",
-    "last_save_at": "2026-07-15T11:59:12.098Z",
+    "last_save_at": "2026-08-30T15:39:26.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:93da26979e276bf8ed793f5799f4fc6ad55a4501cb790b91deecc5cc4a972c48",
+    "source_fingerprint": "sha256:4f1a322d9b91435d99e61cd9262837aa4b0ef41a30634cc699bf30db510e166d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dc2618abf0682af76b1cc627f54a808a920cf49779cb26762935e22dd97b55d5",
       "plan.md": "03ff065e0205d1784598f14ff3f2dff576081bb8f5d8f6c000ef9646e6f0fd9a",
       "tasks.md": "d346100165ea2a9f626e63c9634d77afa7bf64e020e8c420675ba13e3ef0e9ac",
-      "checklist.md": "a74b7cd7799286a6de3fc3cc7555db29f3ae098f86680fb21a84a31972ac5d9d",
       "implementation-summary.md": "09a9627a5a448a866da72a5f4f681d71037428f8efce17ecd25f9a19fbd3cb41",
       "resource-map.md": "0537476d4eb47f662ac03b6967de61473d8237ff660a8a637fd11abde4b1e469"
     },

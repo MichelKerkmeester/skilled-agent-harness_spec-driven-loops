@@ -21,8 +21,8 @@
       "Deep Alignment rollback and mode gate tasks",
       "deep-alignment rollback switch tasks",
       "deep-alignment mode gate tasks",
-      "Deep Alignment rollback and mode gate checklist",
-      "deep-alignment rollback readiness checklist"
+      "Deep Alignment rollback gate implementation",
+      "deep alignment mode migration gate"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -151,24 +144,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -195,22 +170,21 @@
     ],
     "causal_summary": "Plan the Deep Alignment rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, per-lane shadow parity, sealed conformance evidence, certificate closure, and the phase-014 handoff without moving runtime authority.",
     "created_at": "2026-07-16T03:43:44.407Z",
-    "last_save_at": "2026-08-29T09:58:00.436Z",
+    "last_save_at": "2026-08-30T15:39:21.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5dd301b3273a1ca7114018748162957b4b15ae90860259d1cf9f532b2df9447e",
+    "source_fingerprint": "sha256:da7cbb2812b1d3353acd9ef2065c93cf83bfad22d5c6c73cc446815b4bcfd90c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6d4f3779eaccc44e76d992bd8ce993ea027eb0c0db39b10f4512f78a68eec63f",
       "plan.md": "5f712f56e2fb6e2607aaaaa8881b74583eb57ac2e595943348f62531fc41666e",
       "tasks.md": "eec675aa5f5ba0132e1bdaac994a80a104f07d782485ebc41a2ebe0f08bdb076",
-      "checklist.md": "79bf193437e3e959bc34e20cc64a086819ffbaf2579561701ededfae2c7c3994",
       "implementation-summary.md": "db7ca0b047717f4a9f508b6e518bfe5acb55042387ca115b9e3822b8f4bfc85e"
     },
     "last_active_child_id": null,

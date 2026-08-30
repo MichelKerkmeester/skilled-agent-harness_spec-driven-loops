@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "create_diff.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A portable CLI alone does not capture the moment before an AI edit or guide users through review inside OpenCode",
     "created_at": "2026-07-15T10:56:00.016Z",
-    "last_save_at": "2026-07-17T13:38:34.145Z",
+    "last_save_at": "2026-08-30T15:39:14.163Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:55cec7a586f1644dee6a3aaffb57202f7c60b8f745616e602cfce34fc6b22e8d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89fc0e677f9947b985fb26af7bafa07e69797ba335801d0d4556b601363982d5",
       "plan.md": "112383350729c26ff6931f2f8b4c737e28c3295bd9b40eaf6c445bee95368944",

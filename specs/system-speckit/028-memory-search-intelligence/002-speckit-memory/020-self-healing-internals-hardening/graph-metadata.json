@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "dist/handlers/memory-search.js",
       "dist/startup-checks.js",
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,26 +185,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Queue Read Warning",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "F8 — synchronous drift-suspect write can block the search hot path up to 10s ([MEDIUM], flag-gated OFF today)",
     "created_at": "2026-07-09T15:13:35.568Z",
-    "last_save_at": "2026-08-29T15:22:21.843Z",
+    "last_save_at": "2026-08-30T15:39:35.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:981257c9dd327a650e26bebfcc34b6609808c03ca725b8ab23d836439c9fd367",
+    "source_fingerprint": "sha256:d79dcdd3beb66d9a546b9019198c928fffdced398f5e3022e32b37b10dea9363",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9a9f8bb232706878befe650ccf349c35df9643fa8a91d4f0641b5d06337310b9",
       "plan.md": "3326cecca7ced4f22d4bab209d5e2cc506232130c294123022fb5845a96707b3",
       "tasks.md": "f6bb41733dda3bdaa2ae25360f7a0bf28913beb696eb82cc3c9837436e26cdbc",
-      "checklist.md": "a3a6766466bd33a1755b82d18e38d83a92b5631760f26bb1180f0bdf718a2565",
       "implementation-summary.md": "9eaddd8c6a580a32efe84ab22ead602e5d4340b0b0b4ae1b3fcf31e0e9d8daaa"
     },
     "last_active_child_id": null,

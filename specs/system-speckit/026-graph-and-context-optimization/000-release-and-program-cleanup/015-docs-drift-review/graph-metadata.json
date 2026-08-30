@@ -41,19 +41,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "review/review-report.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/review-report.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "This session shipped packets 013 (comprehensive-audit-remediation), 014/015 (launcher-overlap fix), 016 (mk-spec-memory launcher-ownership hardening), and a pre-existing-failure remediation, all now on `origin/main` (HEAD `75cfec1700`)",
     "created_at": "2026-06-05T06:53:42.412Z",
-    "last_save_at": "2026-07-17T17:19:15.376Z",
+    "last_save_at": "2026-08-30T15:39:29.058Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ecb56c58f12ab22e7844625c603319d05a6ca17eb5c2cf6038199418838ba07d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "03cb5de73de363c8817f9405379fbb7af25165243c7eba94456201cee9594fa3",
       "plan.md": "3ddd51dbbe39e138ac2fcde1a404b71a18d6c0317e8dd6b4bec9ddc460852c5c",

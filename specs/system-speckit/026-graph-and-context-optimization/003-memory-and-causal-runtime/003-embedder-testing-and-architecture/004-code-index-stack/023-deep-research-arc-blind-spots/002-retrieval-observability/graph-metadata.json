@@ -18,8 +18,6 @@
       "fingerprint status",
       "retrieval observability tasks",
       "diagnostic counters tasks",
-      "retrieval observability checklist",
-      "023C verification",
       "023C complete",
       "retrieval diagnostics complete",
       "index fingerprint complete"
@@ -35,17 +33,16 @@
       "counters",
       "status",
       "tasks",
-      "checklist",
-      "023c"
+      "023c",
+      "complete"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -61,21 +58,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -175,42 +166,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Query Diagnostics Search",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Daemon Fingerprint Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "mcp-coco-index had timing logs and result metadata, but it did not expose enough retrieval-stage evidence to explain quality regressions",
     "created_at": "2026-05-19T00:00:00.000Z",
-    "last_save_at": "2026-08-28T15:59:43.427Z",
+    "last_save_at": "2026-08-30T15:39:30.687Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7411c58b26066f74baa7e5fdd53154d7a8f61ec75da691a0535f20c5ba888c9d",
+    "source_fingerprint": "sha256:a7dc94747a466081b1f14c9cfc7cb8664eabc04b8e963c3e03d03b6bf23f81e3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "806927fe4b3edca285e905898cf8e815a5bef3f237598c19933e75f61500b503",
       "plan.md": "8cee4b5228abb2dc30f202003fd9e5c704e10c82a3def792c689f6afecc9fd7f",
       "tasks.md": "b7cbfb061612436393848277b2ac36ceb25c0fcea540c44332e7eed7aa608e54",
-      "checklist.md": "ec3637be3a3a0c04ca04f70dab745ffac9d424cff161ff94db48439c41475bdc",
       "implementation-summary.md": "a9c633f42d25aba60e00361b264a43316dc6ad57a35b02d7d320914d39d752e3"
     },
     "last_active_child_id": null,

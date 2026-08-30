@@ -19,7 +19,6 @@
       "benchmark materializer static assets",
       "062 plan",
       "062 tasks",
-      "062 checklist",
       "062 ADRs",
       "062 implementation summary",
       "062 handover",
@@ -42,28 +41,15 @@
     "importance_tier": "high",
     "status": "draft",
     "key_files": [
-      "implementation-summary.md",
-      "handover.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
       "resource-map.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -83,15 +69,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -195,29 +187,34 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After 060/002, sk-improve-agent has CRITIC PASS in the agent body (4 runtime mirrors), score-candidate baseline+delta wiring, scan-integration `.gemini/agents` fix, and YAML emissions for `legalstopevaluated`/`benchmarkcompleted`/`blockedstop`",
     "created_at": "2026-05-02T14:00:00Z",
-    "last_save_at": "2026-07-09T10:02:48.395Z",
+    "last_save_at": "2026-08-30T15:39:22.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:b034a97d27f8ba50ffeef47bb44cda745076faf79f60d281e711f04ba676dfc4",
+    "source_fingerprint": "sha256:271660b1e3381fa1d46098a3caa6756efca382308502b1d5c825e652a7f69a70",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "34ef4ad27e9d9f6a621711952e5e3816866a6133cd459159a81bd10b309c277d",
       "plan.md": "3366c47babeb6b6e719ab357363b28fb1d920c6d9e4d3ed05e4f802514b23ec9",
       "tasks.md": "b6c5e63eccb23e55f77f6c8de57914de8c09a270236fea902cc3718a4e5dfbd3",
-      "checklist.md": "d66143c6bda7128bdd1c1f88d34b50006c15759f719de37ad497e62ee1393fda",
       "decision-record.md": "66e6fbff6b504daedfd2e4f5605d95428819747948b7b1723e3f536ffc0eac12",
       "implementation-summary.md": "8a988271bdacecf3c22bc4d33f99c5adc99acbb38293babf84913244bffb59f7",
       "handover.md": "453aa0fe0b8446478c076cd3a9e060dfcb43a371173b2c96707187cda7fa33b6",

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The cli-cursor skill README at `.opencode/skills/cli-external-orchestration/cli-cursor/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:39.785Z",
-    "last_save_at": "2026-08-30T07:20:23.434Z",
+    "last_save_at": "2026-08-30T15:39:17.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b23a61b49d7cdd8f8ef2b56adf5a02d2a1c0210bb1131adcb838eb5594487f42",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "536fa2f3a94c0ad21e945f4dcc32379b0bbb18d49abf6a36bd92c3b46c61c72f",
       "plan.md": "2fede741e07d5cc6f121221c862fe286b13655d2c630b8056222c1ba00107934",

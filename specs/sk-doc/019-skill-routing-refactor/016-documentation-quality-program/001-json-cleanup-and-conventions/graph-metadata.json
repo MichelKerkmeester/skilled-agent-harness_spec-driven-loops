@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       "AGENTS.md"
@@ -60,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,30 +176,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The skill tree carries two metadata systems that reuse the filenames `description.json` and `graph-metadata.json` with incompatible schemas: spec-folder continuity metadata and skill-advisor hub-identity metadata",
     "created_at": "2026-07-22T08:55:19.438Z",
-    "last_save_at": "2026-08-29T14:56:27.700Z",
+    "last_save_at": "2026-08-30T15:39:15.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:851463a15b42f179d58d3a31e31518a9c4304444716ce6b2d660c6d15d3bb7ff",
+    "source_fingerprint": "sha256:a3c148f07b1f5ecb80ec1314e83a1bac90dc46bad60bf934d29070b79f1dc8f8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c72ee79587f490817c0b1857dd465b61b2cbabe1d12e37feb74242335c896018",
       "plan.md": "f5e41fefb2e52f01aef931d597900df9d203fb4cf305e607b9b4ca801b9430ab",
       "tasks.md": "beb3cc41d620508ff2a5082a1aee488995fa19caa668905dd65c9ad297841d55",
-      "checklist.md": "3a5f639059f8820053de992c329dde49da7d23f64e7cc78f679d53ceb4b5b598",
       "implementation-summary.md": "bbf4d396921b0e510ebf1e715e177a6483df99d9012176da17896aa3b0fc7a42"
     },
     "last_active_child_id": null,

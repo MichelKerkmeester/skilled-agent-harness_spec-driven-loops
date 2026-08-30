@@ -95,13 +95,14 @@
     ],
     "causal_summary": "The deep-loop fan-out declares seven executor kinds in `EXECUTORKINDS`, but they are not uniformly reachable end-to-end",
     "created_at": "2026-07-29T08:25:06.055Z",
-    "last_save_at": "2026-08-18T05:05:09.923Z",
+    "last_save_at": "2026-08-30T15:39:21.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:473e8915f2250fd57fb59cb29cd14754f599fe571aed331d842cdc8174747fc0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c9ea2ee6f2fe79bf4e1248f6e3c20c5c56ef26209a57181b9fddebebf359dcc2"
     },

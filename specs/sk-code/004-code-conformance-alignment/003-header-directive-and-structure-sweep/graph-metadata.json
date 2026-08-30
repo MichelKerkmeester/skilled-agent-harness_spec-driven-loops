@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".claude/statusline-command.sh",
       ".opencode/bin/git-sync.sh"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +182,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The JavaScript style guide states that all JavaScript files MUST begin with a boxed header identifying the module, 78 characters wide, immediately followed by `'use strict';` for `.js` and `.cjs` files — and that `.mjs` and plugin ESM files do not take the directive",
     "created_at": "2026-07-30T19:25:14.846Z",
-    "last_save_at": "2026-08-29T15:21:57.111Z",
+    "last_save_at": "2026-08-30T15:39:11.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:2ab7c9e92c1ea86c990fa0791ec54d5fc294f7be3a7337b59bb450cf304d822f",
+    "source_fingerprint": "sha256:723644ac621f3cc9e30794515840479f9bd9a10c2a020dda3472b228e65d2767",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f817ba5dce99f43d51d6323dc644cd4d14eafb76b480e49228ca627e59ca17f1",
       "plan.md": "1c43b721b77524cb6932d59130652124a1e75e8401d6d0a4664678a7436f68e5",
       "tasks.md": "f0749db09539435ea84d50ce68322d2e22ff46aeb32026d006c3bc1581aa6254",
-      "checklist.md": "19920f6f66b95af97602d0b455d5f3140b2a05c4ddb8461a933312ee4d7edeb0",
       "decision-record.md": "e1ccf43692c92858d7023cd8328152495996fba20db4bb10396b1d67a1b11c12"
     },
     "last_active_child_id": null,

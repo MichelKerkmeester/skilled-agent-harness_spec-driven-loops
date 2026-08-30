@@ -162,7 +162,7 @@
     ],
     "causal_summary": "Phase parent: revisit every skill README in the repo (standalone and child modes) on the mcp-obsidian standard, after refining the shared README template, adding a parent-skill README template, and updating the creation workflow.",
     "created_at": "2026-08-04T07:12:18.255Z",
-    "last_save_at": "2026-08-30T07:28:30.137Z",
+    "last_save_at": "2026-08-30T15:39:17.421Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -170,7 +170,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:665c9569789e2ee5ce3bb2593f33ee79811cb4b9555d859d561ef39d987cdbf7",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c3fff8a946891af11b610fc5cef45f905cdf8857d5546315c7dba51febe85062",
       "handover.md": "68dae050271a9f9289163e1040950f99c27ba47cda00e4cb259e002988b653cc"

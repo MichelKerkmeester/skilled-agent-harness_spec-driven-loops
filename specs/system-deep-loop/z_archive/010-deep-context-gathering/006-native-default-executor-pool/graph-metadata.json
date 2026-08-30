@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +182,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`/deep:start-context-loop` defaulted to a heterogeneous executor pool (`2 native + MiMo + gpt + deepseek`) wired in `deepcontextconfig.json`",
     "created_at": "2026-06-07T09:45:27Z",
-    "last_save_at": "2026-07-08T13:43:38.873Z",
+    "last_save_at": "2026-08-30T15:39:24.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a7c619f3895872246d67fb1fbf3d2be3bb9cdc94a3e05b6ec2a8acb8f724be5",
+    "source_fingerprint": "sha256:9031ad4398cfce04bbc4dbd6444de16ba407cbebb95a642c08b628ea9e23a4f4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7740d0aa7ef43029c8ecfed9b4491cc67c6397dc4c54fc5a9beedcb952cbac0b",
       "plan.md": "8f11ddc8f8ab82014d00d04e8913271ac308894f6829f08e8f266c68563a74df",
       "tasks.md": "afa011ad80f210e19f6e81a8af670f436d5807c0f59fb8c3e8806f47b462a9d8",
-      "checklist.md": "bc70165599fb4eb3e3e228ea3479788d3d0a6501a594a9e3aa9a650cc6064de5",
       "implementation-summary.md": "34fd85db43be70cb85e612c21d9791fb10810288d352ec8965ccc14c5604e86c"
     },
     "last_active_child_id": null,

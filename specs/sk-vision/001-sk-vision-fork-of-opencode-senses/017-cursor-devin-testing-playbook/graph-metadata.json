@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The manual-testing-playbook documented only the OpenCode plugin and Pi extension host adapters",
     "created_at": "2026-08-17T15:53:01.280Z",
-    "last_save_at": "2026-08-29T14:54:24.100Z",
+    "last_save_at": "2026-08-30T15:39:19.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7ce15f70376257ec5923341b5145bef33d48c0a60dfaed7e904a307124641b81",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ea8122f3c4747787ebbc88c23bcec503caaf2c349d563df6371d0d26c60ea1b",
       "plan.md": "e3b388c6cc0076c88785b4af0cb9cb16ab58ad4e26a4c4b484eb56609595326c",

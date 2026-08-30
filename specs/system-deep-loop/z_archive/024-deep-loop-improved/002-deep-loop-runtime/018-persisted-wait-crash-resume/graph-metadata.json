@@ -35,19 +35,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Persist",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When a loop process is killed during a scheduled wait, the next startup re-dispatches immediately instead of resuming the remaining delay; killed lineages cannot distinguish \"killed mid-wait\" from \"killed mid-dispatch.\" This causes duplicate dispatch and incorrect lineage attribution on restart",
     "created_at": "2026-06-28T14:02:05Z",
-    "last_save_at": "2026-07-16T16:32:00.873Z",
+    "last_save_at": "2026-08-30T15:39:24.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7418d4fc4c1150e3bb0142181773e6d50535069b37fd43253420522f28ce7852",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "15f270ebf7a1a70b44e14209812227a08f755ad2aa783935bfc3e91c6aff8483",
       "plan.md": "7d63528fb0af6fd00cb95c1a4363a41b5d72833410c2a1fe7147f9b2d0aa947e",

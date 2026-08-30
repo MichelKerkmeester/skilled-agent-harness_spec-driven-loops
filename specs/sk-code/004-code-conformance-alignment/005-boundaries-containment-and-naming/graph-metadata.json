@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Initialized Level",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Four defect classes here share one property: the standard states what to do, and the code does something else that a machine cannot mechanically rewrite",
     "created_at": "2026-07-30T19:25:15.332Z",
-    "last_save_at": "2026-07-30T19:25:15.332Z",
+    "last_save_at": "2026-08-30T15:39:11.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b368af4a1e840928f3d0e1a3dd72be7a61d7d6cee675fb087d4e3594fd73db39",
+    "source_fingerprint": "sha256:0e4536ae79d5b18485e32323ad131449c57f46c09715c7d14dec6021fb32329a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2426ff2e18e986506f9520c7b33f8e6c482f0b54183b75be971c3978d749e2b4",
       "plan.md": "d06f57ec87da9d4b613d9aa022200a6ebceae7ea30c1161913d316b90873344e",
       "tasks.md": "5b5ab438b0f2ba35e5d2e40a84b7f6def76d81b07b6ae71a46eb5bca0ceb4da1",
-      "checklist.md": "39e206d23ba674a547f8bd189bbe058d09c1bc453660370d10728c7b7b14e8ec",
       "decision-record.md": "e1ccf43692c92858d7023cd8328152495996fba20db4bb10396b1d67a1b11c12"
     },
     "last_active_child_id": null,

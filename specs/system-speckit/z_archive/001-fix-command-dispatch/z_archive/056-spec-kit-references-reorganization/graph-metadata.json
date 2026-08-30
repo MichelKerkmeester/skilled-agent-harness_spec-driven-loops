@@ -20,9 +20,9 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
-      "decision"
+      "decision",
+      "record",
+      "decision record"
     ],
     "key_topics": [
       "system",
@@ -33,40 +33,51 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
-      "system-spec-kit"
+      "record",
+      "system-spec-kit",
+      "skill"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "references/config/environment_variables.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "references/debugging/troubleshooting.md",
-      "references/debugging/universal_debugging_methodology.md",
-      "references/memory/memory_system.md",
-      "references/memory/save_workflow.md",
-      "references/memory/trigger_config.md",
-      "references/structure/folder_routing.md",
-      "references/structure/folder_structure.md",
-      "references/structure/sub_folder_versioning.md",
-      "references/templates/level_specifications.md",
-      "references/templates/template_guide.md",
-      "references/templates/template_style_guide.md",
-      "references/validation/path_scoped_rules.md",
-      "references/validation/phase_checklists.md",
-      "references/validation/validation_rules.md",
-      "references/workflows/execution_methods.md",
-      "references/workflows/quick_reference.md",
-      "references/workflows/worked_examples.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      "spec.md"
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
-        "name": "environment_variables.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "references/config/environment_variables.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -76,111 +87,9 @@
         "source": "derived"
       },
       {
-        "name": "universal_debugging_methodology.md",
-        "kind": "doc",
-        "path": "references/debugging/universal_debugging_methodology.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory_system.md",
-        "kind": "doc",
-        "path": "references/memory/memory_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "save_workflow.md",
-        "kind": "doc",
-        "path": "references/memory/save_workflow.md",
-        "source": "derived"
-      },
-      {
-        "name": "trigger_config.md",
-        "kind": "doc",
-        "path": "references/memory/trigger_config.md",
-        "source": "derived"
-      },
-      {
-        "name": "folder_routing.md",
-        "kind": "doc",
-        "path": "references/structure/folder_routing.md",
-        "source": "derived"
-      },
-      {
-        "name": "folder_structure.md",
-        "kind": "doc",
-        "path": "references/structure/folder_structure.md",
-        "source": "derived"
-      },
-      {
-        "name": "sub_folder_versioning.md",
-        "kind": "doc",
-        "path": "references/structure/sub_folder_versioning.md",
-        "source": "derived"
-      },
-      {
-        "name": "level_specifications.md",
-        "kind": "doc",
-        "path": "references/templates/level_specifications.md",
-        "source": "derived"
-      },
-      {
-        "name": "template_guide.md",
-        "kind": "doc",
-        "path": "references/templates/template_guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "template_style_guide.md",
-        "kind": "doc",
-        "path": "references/templates/template_style_guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "path_scoped_rules.md",
-        "kind": "doc",
-        "path": "references/validation/path_scoped_rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase_checklists.md",
-        "kind": "doc",
-        "path": "references/validation/phase_checklists.md",
-        "source": "derived"
-      },
-      {
-        "name": "validation_rules.md",
-        "kind": "doc",
-        "path": "references/validation/validation_rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "execution_methods.md",
-        "kind": "doc",
-        "path": "references/workflows/execution_methods.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": "references/workflows/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "worked_examples.md",
-        "kind": "doc",
-        "path": "references/workflows/worked_examples.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -206,27 +115,104 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Target Skill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reorganize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Analyze Current Structure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Sub",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proposed Structure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Move Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Reorganize",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `system-spec-kit` skill's `references/` folder currently has a flat structure with all reference files at the root level",
     "created_at": "2026-04-12T09:02:53.535Z",
-    "last_save_at": "2026-07-10T06:24:48.367Z",
+    "last_save_at": "2026-08-30T15:39:37.275Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a50a50f1d3267fb8c498392ca5e1691fec853a6f5cc8f000a4331dc2a7b3c5b8",
+    "source_fingerprint": "sha256:6d302e6a750bccc7574653975143ed99f83710cbd55b34a7ce2e4c055dbe1852",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b15255dee0f642b2cc4ac0a9be9e8aea124bcce4f9ee2cbf5b8ca79e512aa979",
       "plan.md": "d15a73820d1a436871f9d536832a79040617a50f8284ec96b8f45f06df93d962",
       "tasks.md": "67fc76b6f8156194121a86e0c342ab0526b6897bd2e8bef28076dd095b8bd60e",
-      "checklist.md": "89ce9f3220e7ebf1816a8ab1104221b2d1c61c8654dcd4bac7cce6e2d8794263",
       "decision-record.md": "b2662bd3dc6d0b7e7803298e5f0fe9befb8cf3eacccf70c90d468ec4f9dd39f5",
       "implementation-summary.md": "5ccd38de83d6a05623d7dc7eea919c8717b317334709418538d392d050ccd4e3"
     },

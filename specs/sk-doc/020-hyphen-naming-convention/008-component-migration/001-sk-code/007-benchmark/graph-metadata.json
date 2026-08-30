@@ -174,7 +174,7 @@
     ],
     "causal_summary": "The tracked benchmark tree mixes compliant run names with underscore-bearing storage labels: d4rlive/, fixtures/skcode/, livefinal/, livemodeb/, liveremediated/, routerbaseline/, and routerfinal/",
     "created_at": "2026-07-14T15:17:11Z",
-    "last_save_at": "2026-08-30T07:19:18.879Z",
+    "last_save_at": "2026-08-30T15:39:16.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -183,7 +183,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:45d94058ec0e539977fefaa7f93ae69e0d003bfb60724c0b459cd77384b91d09",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8b0e586e1bae2a2a8246f76778d4ad6caef38bfff510c51bb8fd6d0a19483344",
       "plan.md": "21dc10748ef205645fbd016edc157bdccbcb33b8d62d4e0a775123bf0d54f687",

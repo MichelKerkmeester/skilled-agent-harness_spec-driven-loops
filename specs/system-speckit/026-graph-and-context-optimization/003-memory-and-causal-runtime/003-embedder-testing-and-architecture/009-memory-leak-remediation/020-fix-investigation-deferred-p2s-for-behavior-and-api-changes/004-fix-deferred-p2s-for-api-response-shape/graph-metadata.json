@@ -20,11 +20,10 @@
       "api response shape plan",
       "020 004 tasks",
       "api response shape tasks",
-      "020 004 checklist",
-      "api response shape checklist",
       "020 004 ADR",
       "api response shape ADR",
-      "020 004 implementation summary"
+      "020 004 implementation summary",
+      "api response shape implementation summary"
     ],
     "key_topics": [
       "api",
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,37 +176,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Decision Keep",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Five deferred P2 findings remain in the `sidecar-client.ts` API and response-shape surface",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-08-29T13:10:01.585Z",
+    "last_save_at": "2026-08-30T15:39:31.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6bf8fd1eb6c9b675cc979c3196804b3ea1b05f7257b0ed45e056fd7315a5aed",
+    "source_fingerprint": "sha256:5b40ff9d1296b598830f2639aeeafee747faf9ab4f09db2f98e91240b176eca8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0afc4e7e8e1530fa381a1cbc29750be8b38103f52877719678f82c152c4d92d9",
       "plan.md": "a9722d3f59fbbe9b34cfd5702f50948037d62284b097ef158b6f1c34b402ac3e",
       "tasks.md": "21372407601713748bcb0156e6297dd7099408b20b69b8278ab7528016d33fce",
-      "checklist.md": "c84d3c462553f25bf395756bd97487c1fcaa17062ddad0e435cd344ebbbdf9ec",
       "decision-record.md": "a25c7ef0203dd284adde65385fbc911048c48f72826badf45a6b107a6033ce12",
       "implementation-summary.md": "e12e58c4e11b1504fef6352f73e48ff708544c8c2ca08fb8b6255120303fb646"
     },

@@ -40,6 +40,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-vision/vision-runtime/package.json",
+      ".opencode/skills/sk-vision/vision-runtime/.gitignore",
       ".opencode/skills/sk-vision/vision-runtime/python/runtime.test.ts"
     ],
     "entities": [
@@ -65,6 +67,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/vision-runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/skills/sk-vision/vision-runtime/.gitignore",
         "source": "derived"
       },
       {
@@ -174,23 +188,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`vision-runtime/package.json` still points its `repository` at the upstream `opencode-senses` repo, keeps `publishConfig.access: public` and a `publish:npm` script (so a stray `npm publish` would ship this fork to npm), names the upstream author, and describes the package as \"for text-only OpenCode models\" even though Pi is a first-class host",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:06.060Z",
+    "last_save_at": "2026-08-30T15:39:19.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2cdde5e13153d8d48a8b6f50d7bdbb2cd8332adcbfc652b8896df525c628441a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92dcf9624c6caee876613a8a59aef62d011b7e7f405770d7a9c4403fbb365b8d",
       "plan.md": "277b48f442d0e3bd44b9510b4eb0be2d4546099aa900aaa3394f8b49a532241a",

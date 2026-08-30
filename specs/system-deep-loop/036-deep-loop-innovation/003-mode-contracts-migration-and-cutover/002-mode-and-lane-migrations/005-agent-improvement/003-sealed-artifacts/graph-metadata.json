@@ -18,8 +18,6 @@
       "agent improvement AgentIR sealing plan",
       "agent improvement sealed artifacts tasks",
       "agent improvement AgentIR sealing tasks",
-      "agent improvement sealed artifacts checklist",
-      "agent improvement tamper evident verification",
       "agent improvement sealed artifact implementation",
       "agent improvement artifact binding"
     ],
@@ -35,7 +33,7 @@
       "plan",
       "agentir",
       "tasks",
-      "checklist"
+      "artifact"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -162,31 +153,37 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,22 +191,21 @@
     ],
     "causal_summary": "Plan the sealed reference artifacts for the agent-improvement variant: immutable AgentIR and change inputs, frozen improver and evaluator references, content-addressed proposal and trial outputs, and a tamper-evident read path layered on the deep-improvement-common sealing and evaluator services.",
     "created_at": "2026-07-16T03:43:38.008Z",
-    "last_save_at": "2026-08-29T13:09:55.754Z",
+    "last_save_at": "2026-08-30T15:39:21.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b1d181b408ea839f78298603aaf69c4eecec93df6d62212cf3bd62dba07a0210",
+    "source_fingerprint": "sha256:3e2ff10d9c4ecba1f56a68fedb0a166edc987ff8446b58dd683af214f15dd2a3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7bf824f005cc18a3930391d06c1a9a3c8c75140c32cb2b0cd883f4992347c6c2",
       "plan.md": "f4b2abc73d7e8dffddcc2e654915c50880620b0fa2719bcf3dc21a971321e68d",
       "tasks.md": "f3f81ec298de436c2777a3b20cbb9d66a8cece1c656d2dbd33f8d1183901820f",
-      "checklist.md": "c0692c0970f2c1c4fc0a6fdee1b02206f0bcfbeafba6ca1987147cca659db6d8",
       "implementation-summary.md": "a6f7b72c2e9a957087d66b1aec89c4ffc61f307cf99680184b00f3db3b16e7a1"
     },
     "last_active_child_id": null,

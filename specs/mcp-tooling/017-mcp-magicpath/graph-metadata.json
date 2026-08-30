@@ -132,13 +132,14 @@
     ],
     "causal_summary": "MagicPath has no MCP server",
     "created_at": "2026-08-29T11:35:18.007Z",
-    "last_save_at": "2026-08-29T17:22:39.758Z",
+    "last_save_at": "2026-08-30T15:39:10.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:32e868ef31174077489d442214f607e9ef49f95c88e1f1e56eff76d1bb90e5c3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19d33aaa0083764468e37de9273af7436180454c1aee69104da8ab39f553fcfc"
     },

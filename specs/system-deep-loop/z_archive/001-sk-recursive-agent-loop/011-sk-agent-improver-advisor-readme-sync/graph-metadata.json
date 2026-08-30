@@ -17,8 +17,7 @@
       "agent",
       "plan",
       "tasks",
-      "phase",
-      "checklist"
+      "phase"
     ],
     "key_topics": [
       "spec",
@@ -27,33 +26,25 @@
       "plan",
       "tasks",
       "phase",
-      "checklist",
       "advisor",
       "readme",
       "outdated",
       "system-deep-loop",
-      "001-sk-recursive-agent-loop"
+      "001-sk-recursive-agent-loop",
+      "011-sk-agent-improver-advisor-readme-sync"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/README.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
@@ -66,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -157,49 +142,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Hard Blockers",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "threshold",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "P0 — Hard Blockers",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "P1 — Required",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After Phase 008-010, the skill advisor and skill README are outdated",
     "created_at": "2026-04-13T04:55:07.907Z",
-    "last_save_at": "2026-07-09T10:02:48.353Z",
+    "last_save_at": "2026-08-30T15:39:22.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:d76ca406a75c016a61ee8f1795b1d5b3fe67bcfb40937dad130022babcf7b9f0",
+    "source_fingerprint": "sha256:44272c4665dc1517719f41c35aedbb6a309372281475b4cce16c2e15071d1953",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "736f543e36bc948d4233210543266f52ae2fd1717cfaf66328244339e1d4ba19",
       "plan.md": "175be24372b3f22db6ecb7204f206fbe705273af5595125e5ec80409b0c8292d",
-      "tasks.md": "948088d403f95d330fe0bf601f8aca7c759c1152c6ad7434f290e2894cc3e6ca",
-      "checklist.md": "f644282ae4d4353afaf66726ce40c4f40c6ddf2d80ed3846f00da2db121f51d6"
+      "tasks.md": "948088d403f95d330fe0bf601f8aca7c759c1152c6ad7434f290e2894cc3e6ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

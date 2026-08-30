@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -27,11 +26,11 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,43 +162,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built The Analysis",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Analysis has evolved significantly",
     "created_at": "2026-04-12T09:02:50.248Z",
-    "last_save_at": "2026-07-10T06:23:00.422Z",
+    "last_save_at": "2026-08-30T15:39:38.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3de111b65f0618d4623728d4a2a8376b950389cd4edf20503365ece43205f45",
+    "source_fingerprint": "sha256:a6e1203760943ef7c33540d0f77e65f4a255472a9dca6048914f3da611c2e26c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "182817f6b27917a122440770a6c3cf32fddb8b5a8d569ea9d74e3b237734adcf",
-      "plan.md": "5b5faa60e0a1d306a696c5cc54d61957e9f020166c17086853f5c0b8bd7b8988",
-      "tasks.md": "997f4beed15a9965b7a59080bb8d6b783e5f8e372f6b7c247b625649e7a85c45",
-      "checklist.md": "af62bf222c333cb1cdfff668433e39601b964fd5992a9b7e02d8ea4614ebdfd7",
-      "implementation-summary.md": "d9f0422853917ad94ec43b5b2bc999418478b85c8cbf4939428b6fee90986ef9"
+      "spec.md": "949e9d5ab987b7e2a55ee9df01c794591b6798bd750ab744563a3518af242e60",
+      "plan.md": "832f54067f286f7eec53541fea740de20df0c4a85224a5993fc4e3015c210689",
+      "tasks.md": "16af541aed951ee603ff981dc680656ab45befb255bbf8c4cb96e751acecd722",
+      "implementation-summary.md": "451147a3eb19af675f003debdec7811cb74c79b0b731d90e97f3b4a64d0ba18e"
     },
     "last_active_child_id": null,
     "last_active_at": null

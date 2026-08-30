@@ -60,12 +60,12 @@
       "map"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      "review/archive-rvw-2026-04-11/review-report.md",
+      "research/research.md",
       "resource-map.md",
-      "research/research.md"
+      "review/archive-rvw-2026-04-11/review-report.md"
     ],
     "entities": [
       {
@@ -75,9 +75,9 @@
         "source": "derived"
       },
       {
-        "name": "review-report.md",
+        "name": "research.md",
         "kind": "doc",
-        "path": "review/archive-rvw-2026-04-11/review-report.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -87,9 +87,9 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
+        "name": "review-report.md",
         "kind": "doc",
-        "path": "research/research.md",
+        "path": "review/archive-rvw-2026-04-11/review-report.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The deep-loop stack still needs stronger runtime truth, better semantic coverage signals, bounded large-target orchestration, and safer offline tuning",
     "created_at": "2026-04-12T09:02:50.190Z",
-    "last_save_at": "2026-07-16T16:31:45.102Z",
+    "last_save_at": "2026-08-30T15:39:24.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,14 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e452602e5a99c0da18bd45f1420f75fbc76f0aa7b7085e751ad6b68981dfc8b3",
+    "source_fingerprint": "sha256:83ce151388fa0f2d0ed75ebe3c3f7eff37a72ac2e951ef79984322ac5e47cc2f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06422f53838607d462f303868856f70020dc3e5154777b6a042db59f330ec802",
+      "spec.md": "26985b8d52a3944a70d724935a8ef7bdfc8704b0b3dca3b17afacc1289ab635a",
       "research/research.md": "d6f2654d2016ce7b6f7acba36ccbbc7a4556de00876b95721312f8e42008c20e",
       "resource-map.md": "2a60cac2c335c29288adb6ec81f0a4a5ef11d37cc47126301e0df670931ed2fa"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/004-offline-loop-optimizer",
     "last_active_at": null
   }
 }

@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every prior phase in this packet plans internals (adapters, runtime wiring); none of it is reachable by a user or by the advisor until a command exists to invoke it, a leaf agent exists to execute one iteration, the advisor knows to route alignment requests here, a benchmark proves the mode behaves as intended, and the standard cutover gates confirm the packet is structurally sound before it ships",
     "created_at": "2026-07-11T06:23:43.199Z",
-    "last_save_at": "2026-08-29T15:22:06.468Z",
+    "last_save_at": "2026-08-30T15:39:20.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2f2b03ca174debbb65256fc55e2df7bcff448d7dc4d90ad0da20ab7d5d21dfd",
+    "source_fingerprint": "sha256:ae23eb61e38d059c8560c6001ae86bc2671c7c505a98eedd88053073a30b2757",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1955cf2014ddf7137bfb104aa4882b07e99ce49756859bf213bd5f58d4b16902",
       "plan.md": "46da367b29c2eee2ec45ee8a7fc9cccc995e6dac7f5f9c409e1ef35697ee6d1a",
       "tasks.md": "df4945c13d2d52ec04cc33626a692aec32a06b554f732fa04db6339eb80b7bb2",
-      "checklist.md": "c65d855c43b056d2a5b418a98d27480011b014d86c3bc7f87eaefc32bbc711fc",
       "implementation-summary.md": "f49f6a8b09352a8b3da8321cc0af706934a318711216e927e46b7a8e4fed1a3c"
     },
     "last_active_child_id": null,

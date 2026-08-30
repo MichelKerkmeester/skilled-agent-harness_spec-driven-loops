@@ -44,22 +44,38 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md",
       "research/lineages/gpt/research.md",
       "research/orchestration-summary.json",
       "research/gap-audit/lineages/gpt-gap/research.md",
-      "plan.md",
-      "mcp_server/tool-schemas.ts",
-      "lib/ipc/socket-server.ts",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      "tasks.md",
-      "implementation-summary.md"
+      "lib/ipc/socket-server.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -75,39 +91,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
         "name": "socket-server.ts",
         "kind": "code",
         "path": "lib/ipc/socket-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,11 +185,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mkcodeindex MCP server (8 tools) is the structural-code-search backbone, but its only client surface is the MCP protocol layer: a mid-session transport disconnect removes the tools until restart (Code Graph showed \"unavailable\" at this session's own startup), every session pays schema token overhead, and hooks/cron/CI have no sanctioned shell path",
     "created_at": "2026-06-06T13:40:00Z",
-    "last_save_at": "2026-07-17T17:19:42.316Z",
+    "last_save_at": "2026-08-30T15:39:33.874Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +212,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:c702680736376faa05caf24d0f4f21f56bbb876359dbacb6e2971373e068b0ee",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "48da558e674a1b755690aa3130716f0a759207fb0beac83ae2feea2880e6f520",
       "plan.md": "61ff6d85265aac78a1712b4d849abd28f7d1bad7537f7a67a017aeb7941aea18",

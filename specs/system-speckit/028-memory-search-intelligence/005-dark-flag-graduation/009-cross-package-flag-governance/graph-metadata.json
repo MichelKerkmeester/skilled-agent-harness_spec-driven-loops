@@ -191,7 +191,7 @@
     ],
     "causal_summary": "F5 — RESOLVED: two different homes for new feature flags, with opposite default-polarity",
     "created_at": "2026-07-09T15:11:30.263Z",
-    "last_save_at": "2026-08-29T15:22:24.218Z",
+    "last_save_at": "2026-08-30T15:39:36.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:815184782b5dd185f5967798541d31f4a05661450fb4ab200a28a967958ebfe5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c4178a544754640648bbfe969c46e7a90786fdf2e31db885615aeb3ae2af49c",
       "plan.md": "71e8b8e14193b94d20b11759464fa20566b0515f4724ebcc392916440a92817c",

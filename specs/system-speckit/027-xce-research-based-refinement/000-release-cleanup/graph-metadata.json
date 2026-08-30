@@ -101,13 +101,14 @@
     ],
     "causal_summary": "The shipped 027 reality spans schema v37, default-off feature flags, new CLI front doors, constitutional rules, memory behaviors, and doctrine from peck, gem, memclaw, and openltm",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:37.253Z",
+    "last_save_at": "2026-08-30T15:39:32.900Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:28426563425c2395a4daee53a45953231b3373b9080f2039dc49c06b2c70c456",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd7a06329315a9ffdc5fd12ce3f3dbf7329e3fe71eca0992b989f79627de6945"
     },

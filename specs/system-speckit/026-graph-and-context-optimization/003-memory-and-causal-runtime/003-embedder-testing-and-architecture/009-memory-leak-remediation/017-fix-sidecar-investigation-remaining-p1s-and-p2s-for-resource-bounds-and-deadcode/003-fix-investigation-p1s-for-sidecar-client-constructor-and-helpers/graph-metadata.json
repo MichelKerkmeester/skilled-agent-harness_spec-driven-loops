@@ -19,8 +19,6 @@
       "sidecar-client p1 constructor helpers plan",
       "arc 010 003 003 tasks",
       "sidecar-client p1 constructor helpers tasks",
-      "arc 010 003 003 checklist",
-      "sidecar-client p1 constructor helpers checklist",
       "arc 010 003 003 decision record",
       "arc 010 003 003 summary",
       "sidecar-client p1 implementation summary"
@@ -42,33 +40,13 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "execution-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -91,6 +69,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,31 +174,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Helper Fixes",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Constructor Option Split",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`sidecar-client.ts` retained several P1 issues from arc 010/001 deep research: production constructor options still blurred into test-only knobs (F18), `EmbedOptions` existed twice (F20), trivial single-call helper indirection hid the flow (F25), termination still split signal/exit sequencing across duplicate paths (F57), response handling used unsafe post-parse assertions instead of discriminator narrowing (F62), `ready()` had no production role in the sidecar execution path (F73), and `embed()` validation was a nested cascade (F91)",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-17T17:19:28.345Z",
+    "last_save_at": "2026-08-30T15:39:31.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03891f1623e4d4c0a3f4f4d58e14b7574afc0dca4e4f18928cb2857481be29f0",
+    "source_fingerprint": "sha256:d1e5c3b54a11ada3b800677d23b21eaa93b91c0cb1d08a907c665ada5a6b46a7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "93ee074af9743b61cea6e925b70c4b4b908ad102030ef0f5ee09b1982ac171c4",
       "plan.md": "2852a0534378c057c8a1ee4b6f4581f7569e8c9d1a5e89ee41889839f44568c6",
       "tasks.md": "cc6b90bc0cdc642dbf38384e697b3410d405c49c9071708172bb6a4f38ba3da0",
-      "checklist.md": "4b3889ba2b9c121e2dd5f627d6caaa6929085c230cc334030ffa7e83d458cdd9",
       "decision-record.md": "49b94db067fc967e1ed43a396752ace1162cd7b6a23260a659079ef67c51e5f1",
       "implementation-summary.md": "e9506cc78f47fa1f29bb8d8f75d114be45216811ea64d703c428a688f56cb062"
     },

@@ -41,11 +41,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "fixtures/learning-overlay-cases.v1.json",
-      "lib/correction-overlay.cjs",
-      "harness/validate-learning-overlay.cjs"
+      "fixtures/learning-overlay-cases.v1.json"
     ],
     "entities": [
       {
@@ -67,12 +64,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -82,18 +73,6 @@
         "name": "learning-overlay-cases.v1.json",
         "kind": "config",
         "path": "fixtures/learning-overlay-cases.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "correction-overlay.cjs",
-        "kind": "file",
-        "path": "lib/correction-overlay.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate-learning-overlay.cjs",
-        "kind": "file",
-        "path": "harness/validate-learning-overlay.cjs",
         "source": "derived"
       },
       {
@@ -191,26 +170,43 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Offline Correction Overlay",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
     "created_at": "2026-07-18T13:13:20.713Z",
-    "last_save_at": "2026-08-29T15:22:02.212Z",
+    "last_save_at": "2026-08-30T15:39:15.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51e15050bb08318365092ddec0950ce1d63beb7696f94a5731bc6531e4efa563",
+    "source_fingerprint": "sha256:9288726eee8bde0642231a9723bea4bf25c212bb41bd1a184191c0a1485bdfcb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c19d7aaf9f3afd478b08c2b3c6666d22e826711640e3ba4df1ca7213d01ca32",
       "plan.md": "d64eaab8d0e55feb0d45b0e4de48d9afee3c8dcc33011c70f65a6a3d9158202f",
       "tasks.md": "ea19f6ac21d340f749323718f5f7ca01affe639e7f8d80ccddaa210afd10d6b6",
-      "checklist.md": "942c75b9d30fd83f3b52d199835e996ae1838853503597469752a43b3682d215",
       "implementation-summary.md": "43ed84cd759e35658270fc6973780928c59c1e79f3154b56a04065e50f0fa661"
     },
     "last_active_child_id": null,

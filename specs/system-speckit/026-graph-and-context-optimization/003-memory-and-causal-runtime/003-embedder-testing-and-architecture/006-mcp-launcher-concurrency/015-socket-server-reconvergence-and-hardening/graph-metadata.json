@@ -39,23 +39,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/ipc/socket-server.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
-      "shared/ipc/socket-server.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      "shared/ipc/socket-server.ts"
     ],
     "entities": [
-      {
-        "name": "socket-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,6 +69,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
         "source": "derived"
       },
       {
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "After 014, the IPC bridge `socket-server.ts` existed in three drifted copies",
     "created_at": "2026-06-04T20:36:31.198Z",
-    "last_save_at": "2026-07-10T06:21:09.856Z",
+    "last_save_at": "2026-08-30T15:39:31.012Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:96a848f61de518e3d877c511037a3c1eeac74ab5723ef00ce6d1ef0df4f0a964",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0245398311f74b4e97dff9cc7625633fb3a2813711cb3d9567633ab36cec21e8",
       "plan.md": "73fe363d511a3aa079ccefb31ca087673fb7abb1584d4c1f26607fac5323e860",

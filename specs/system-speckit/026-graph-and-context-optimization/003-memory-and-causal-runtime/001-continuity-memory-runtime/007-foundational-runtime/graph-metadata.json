@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Phase 017 (27 `fix(016)` commits landing P0-A/B/C/D, S1-S7 structural refactors, M3-M13 medium refactors, 21 quick wins, 34 test migrations) completed the remediation scoped from the 50-iteration Phase 016 research",
     "created_at": "2026-04-18T14:40:19.024Z",
-    "last_save_at": "2026-08-30T08:04:43.702Z",
+    "last_save_at": "2026-08-30T15:39:29.478Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,7 +223,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:9e163dc97d5d4bd3d32d1009c0c3a5c870d2473c48afead9f2efc4b451969f6e",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9bfb2208404d10799cc8fdd056068067ba705e7e7380aacd74c4c85976ad5e12",
       "plan.md": "745476362721a25610c0838445040dcdf5f188fff484f5d3efb0818b9491e9b7",

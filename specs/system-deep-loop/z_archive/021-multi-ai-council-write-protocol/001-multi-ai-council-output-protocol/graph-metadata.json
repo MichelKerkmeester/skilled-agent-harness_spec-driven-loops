@@ -22,9 +22,9 @@
       "ai-council implementation plan",
       "multi-ai-council folder rollout",
       "ai-council tasks",
-      "ai-council checklist",
       "ai-council adr",
-      "multi-ai-council decision record"
+      "multi-ai-council decision record",
+      "ai-council implementation summary"
     ],
     "key_topics": [
       "ai-council",
@@ -46,12 +46,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "implementation-summary.md",
       "research/research.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "ai-council/council-report.md",
       "ai-council/ai-council-state.jsonl"
     ],
@@ -75,27 +74,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-validator.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -108,6 +89,18 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-validator.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -199,28 +192,33 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Agent",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Council deliberation outputs are transient: they return inline to chat and any intermediate seat outputs land in unstructured `scratch/` files",
     "created_at": "2026-05-06T12:31:00.902Z",
-    "last_save_at": "2026-07-16T16:31:41.186Z",
+    "last_save_at": "2026-08-30T15:39:24.270Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8b63b6e5a6e4b6de5a04422b986f11faedc51985a907104ea70efc67ccf0ccab",
+    "source_fingerprint": "sha256:f9e84c95d63a6049e7342958c926617e8b767c77eaaefb1592a4a623664265e3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0a49c92835476c708f952a6d9afd5a6efec2dee25a5e798c5f574463680ebbf",
       "plan.md": "1942a7a83ae0a6e05e49fa2ab24295ab5cdd2653a0ea0112c163dc063f4685c8",
       "tasks.md": "b479d3f792fef963c6232bda0a516ff3d79f3658278e84f19615540192914e90",
-      "checklist.md": "383db23f6361ae9c2fe0a26d8b7fb71acac565042336e7989b0495d45d354b6a",
       "decision-record.md": "0b24d7ec2e165cea9ff2fc9aafec19eee2cef82e804cd76f1940b423c3b616c2",
       "implementation-summary.md": "8ac612b76450da4616549e4042a198986a8e2d82783040a68d1563c94c1f38fb",
       "research/research.md": "9d9e27f07f1f2290cd8a84b4633f2e5a0b4a1b1f7558122ed224bcbd864d5489"

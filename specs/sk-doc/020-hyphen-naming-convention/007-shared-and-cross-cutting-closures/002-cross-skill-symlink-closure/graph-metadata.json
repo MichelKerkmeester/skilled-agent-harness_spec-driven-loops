@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Symlink targets and link-nodes cross skill boundaries, so a target name change is safe only when every pointer, relative target string, and executable target mode moves as one dependency-closed operation.",
     "created_at": "2026-07-14T15:16:51Z",
-    "last_save_at": "2026-08-30T08:04:22.905Z",
+    "last_save_at": "2026-08-30T15:39:16.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:0899c46b2470052cedce83549e0adb8b7e65599f4434d362a0d55d4e18f12216",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8c0ab9f7d8e0eec85f1893d2353c3dcc62b74328fc9af14eb1b9f1a777a569c",
       "plan.md": "d7a10f4df9d5010aabee00ad6051ce881b24a92ca9c5f862665f22e4063d38f3",

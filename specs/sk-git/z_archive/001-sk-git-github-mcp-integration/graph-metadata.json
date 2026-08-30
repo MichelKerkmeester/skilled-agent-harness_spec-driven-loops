@@ -22,7 +22,7 @@
       "implementation",
       "plan",
       "tasks",
-      "verification"
+      "summary"
     ],
     "key_topics": [
       "feature",
@@ -35,26 +35,19 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
+      "summary",
       "sk-git"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-git/SKILL.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-git/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -68,12 +61,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -83,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
         "source": "derived"
       },
       {
@@ -192,26 +185,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-git skill documented GitHub MCP usage with incorrect call syntax, incomplete tool coverage, and weak guidance on when to use GitHub MCP instead of local git or `gh`",
     "created_at": "2026-07-15T04:22:51.339Z",
-    "last_save_at": "2026-07-15T04:22:51.339Z",
+    "last_save_at": "2026-08-30T15:39:18.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2ae34a480c19732c99562f7c4bf79d637cec8194c3cea7fa72e067e5a973991",
+    "source_fingerprint": "sha256:97fbc55f5ccfa508d154d8a233c2037bd1da9613f9a9ae6b779bbbdfbd91a05a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "503d38e56b55482701cdca646f270f3831d045972ef378f2a8f647a1bf54a42b",
       "plan.md": "8ce9f0af271da6a5ec462fdaa10a5d660a0b18e4e101c55518a853a56e207db0",
       "tasks.md": "31ab9bd2b929bc883b25f0d4b78800a170630156d4d6978bda2271823f6f0fd7",
-      "checklist.md": "1e93586a367bc7f9f17ef80948985e293d4cf2cd060f90482407a143e05e8fd0",
       "implementation-summary.md": "78dc98c4653e4e8437ef4879feb2f59d6ccdad1e7a9136c3fb54f6bca08a57ba"
     },
     "last_active_child_id": null,

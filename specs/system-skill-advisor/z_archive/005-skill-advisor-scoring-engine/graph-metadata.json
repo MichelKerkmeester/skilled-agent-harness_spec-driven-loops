@@ -50,7 +50,7 @@
       "children"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -100,17 +100,18 @@
     ],
     "causal_summary": "Phase parent for skill advisor scoring optimization across 8 children: embed cache, cosine wiring, ablation/weight/corpus sweeps, and routing calibration to activate semantic similarity lanes.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-07-16T16:05:59.535Z",
+    "last_save_at": "2026-08-30T15:39:26.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:5987a69d8b08a794be3556269e3446a465dcb934e2816150101f141c38cb7cf7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8cf9f8c598c0e84c54d3b23c56632f13df5d31679060bf4d6a179873631e6158"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-skill-advisor/z_archive/005-skill-advisor-scoring-engine/008-routing-confidence-calibration",
     "last_active_at": null
   }
 }

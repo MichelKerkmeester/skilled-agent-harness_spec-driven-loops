@@ -16,7 +16,6 @@
       "hooks manual testing playbook run",
       "cli-cursor hooks test results plan",
       "cli-cursor hooks test results tasks",
-      "cli-cursor hooks test results checklist",
       "cli-cursor hooks test results implementation",
       "CU-013 CU-014 CU-020 CU-021 verdicts"
     ],
@@ -37,23 +36,16 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".cursor/hooks.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
+      ".cursor/hooks.json",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-fires-smoke-test.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md",
-      "implementation-summary.md"
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md"
     ],
     "entities": [
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,9 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
@@ -94,12 +92,6 @@
         "name": "task-dispatch-guard-live-fire.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,26 +183,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 004, 006, 009, 010, and 011 each captured live-fire evidence for the hooks category's events as part of their own build/wiring work, but no single session had independently re-executed the hooks category's playbook scenarios end-to-end afterward, purely as a verification exercise separate from any build",
     "created_at": "2026-07-24T17:05:15.833Z",
-    "last_save_at": "2026-07-27T03:27:51.143Z",
+    "last_save_at": "2026-08-30T15:39:07.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40793a1728f1eefcb6acec631a0979fcacbb1e85faaef8740952076fad32a3ca",
+    "source_fingerprint": "sha256:b520fcdc131b0cc2e30279e6f2f66052481fed49e072ed253267353dc292afb5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a6b4a0cf2caa42f29b9f71f148aa4f941ea12c7957e87aac3714bdddc57cc3bb",
       "plan.md": "46016fd8fcf704769a8a5c7a96245b63b414799518e41426c6caaea65702480b",
       "tasks.md": "de58a763b526ff7dbaaf44382b2c363de7df1ca5b2a2b54c7ce45a0532a61d7a",
-      "checklist.md": "11a9fd1e0d39a028acb6232907d98ab11cd780e80177ef3197d94c0213cf8590",
       "implementation-summary.md": "a867c754858bbeabefb7748bf8987f90686f69e4cf2fe95b811130812accf164"
     },
     "last_active_child_id": null,

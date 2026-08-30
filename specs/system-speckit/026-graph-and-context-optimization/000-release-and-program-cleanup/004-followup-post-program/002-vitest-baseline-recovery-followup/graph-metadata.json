@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Sibling packet `003-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup: 026/000/002-vitest-baseline-recovery-followup` annotations",
     "created_at": "2026-05-09T00:00:00Z",
-    "last_save_at": "2026-08-29T15:22:10.762Z",
+    "last_save_at": "2026-08-30T15:39:28.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:4a3affca714a0b6019e2243bd75b58abcbf1e60da0456e09117b4b480810facd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1412082e4869bb194302f84b4e8275e29bf06d264a03534b01535d13e8a1de73",
       "plan.md": "c6ba455e469a4773a95b4cae944a8c43dac0c802da4dba501bf04002223e576a",

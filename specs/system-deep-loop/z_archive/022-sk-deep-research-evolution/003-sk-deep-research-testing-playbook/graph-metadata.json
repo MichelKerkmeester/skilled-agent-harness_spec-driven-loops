@@ -20,9 +20,9 @@
       "sk-deep-research playbook",
       "deep research playbook tasks",
       "manual testing playbook tasks",
-      "deep research playbook checklist",
-      "manual testing playbook checklist",
-      "deep research playbook adr"
+      "deep research playbook adr",
+      "manual testing playbook decision record",
+      "deep research playbook implementation summary"
     ],
     "key_topics": [
       "sk-deep-research",
@@ -35,31 +35,24 @@
       "creation",
       "plan",
       "tasks",
-      "checklist",
-      "adr"
+      "adr",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".codex/agents/deep-research.toml",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".codex/agents/deep-research.toml"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-research.toml",
         "source": "derived"
       },
       {
@@ -75,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -90,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
         "source": "derived"
       },
       {
@@ -189,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Alternatives Considered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`sk-deep-research` documents a rich operator-visible surface: the consolidated setup prompt, spec-folder choice, `:auto` and `:confirm` modes, initialization artifacts, state-discipline rules, convergence logic, recovery behavior, pause and resume flow, progressive synthesis, memory save, and LEAF-only guardrails",
     "created_at": "2026-04-12T09:02:50.175Z",
-    "last_save_at": "2026-07-16T16:31:49.992Z",
+    "last_save_at": "2026-08-30T15:39:24.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d756531ba86ba0fa7cb0035da93b594b5e27e34aafa59b139c87123c24a72602",
+    "source_fingerprint": "sha256:ac01a8d64b48798fadd1a98e0bfbb9beb7ab27f88d4935404fbd2758971c73d3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0d55182069ecadbf24386ef6395ffa79c978ff2650044c15c472d34d25d43b8c",
       "plan.md": "e18ca55d915daba2c90ab30aa7e58af5b01b5c39f3af75894e781ecc70577122",
       "tasks.md": "6b2d62f177cc49001642e6a9002cbcc6f067162e018211080c2dc372d99e065a",
-      "checklist.md": "d00a989c625084f5c88c81f7e0ffdb515ffc6b91d173a27f8cde1c920dd917b5",
       "decision-record.md": "a35a59aec299d93446bd4dbc9f839977a3a9def3a26459aad78732b65774387f",
       "implementation-summary.md": "d03c44b5b00fc304687d89d94f9a0dba1fac0aa32dd56336140d60d6fd04f2d0"
     },

@@ -79,13 +79,14 @@
     ],
     "causal_summary": "Build the planned loop-host --mode=skill-benchmark-optimize → optimize-skill-benchmark.cjs that turns benchmark signals into propose-by-default router.patch + gold.patch (behind --apply-router/--apply-gold), re-deriving concrete fixes from source, gating every candidate through a mandatory anti-gaming guard and a re-benchmark, and preserving the sk-code parent==union(children) invariant.",
     "created_at": "2026-07-09T12:18:01.690Z",
-    "last_save_at": "2026-07-16T16:33:17.731Z",
+    "last_save_at": "2026-08-30T15:39:19.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:eb6f57d1044760e349c6f408541eb21954722a1137927ba06fb0415e73b67fa5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "889307bb51bcf1575ed5b0301c782607a4a30ca8ba2789ae1a3bb46f570ac2f0"
     },

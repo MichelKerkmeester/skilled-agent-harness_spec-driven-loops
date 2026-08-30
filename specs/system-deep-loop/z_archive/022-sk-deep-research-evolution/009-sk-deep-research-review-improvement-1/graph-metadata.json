@@ -48,11 +48,11 @@
     "key_files": [
       "spec.md",
       "research/research.md",
+      "resource-map.md",
       "research/recommendations-sk-deep-research.md",
       "research/recommendations-sk-deep-review.md",
       "research/deep-research-state.jsonl",
-      "research/iterations/iteration-001.md",
-      "resource-map.md"
+      "research/iterations/iteration-001.md"
     ],
     "entities": [
       {
@@ -65,6 +65,12 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -89,12 +95,6 @@
         "name": "iteration-001.md",
         "kind": "doc",
         "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`sk-deep-research` and `sk-deep-review` had sound packet-first loop architectures but implicit contracts: lineage and lifecycle branches were undocumented, reducer ownership was ambiguous, artifact naming drifted between research and review modes, and runtime mirrors across Codex/OpenCode/Claude/Gemini could diverge without detection",
     "created_at": "2026-04-12T09:02:50.183Z",
-    "last_save_at": "2026-07-16T16:31:51.111Z",
+    "last_save_at": "2026-08-30T15:39:24.419Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,13 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:ce13684b173c11e8f7b1d224ffa3c965bcf236378d20bf66fa07fb3c56b238a0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cf97c1617045161c42bc0ed1287275aba3064996307fea3cbb876298ad75e0a5",
       "research/research.md": "43a7193a9655cf6837da1a25c403a8e70a26db5b5f37211eb54d67f4614ada35",
       "resource-map.md": "a2c784ad191e213d8dc07ec4750468afef990e4c131d8d6f708aebe3886d700b"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution/009-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements",
     "last_active_at": null
   }
 }

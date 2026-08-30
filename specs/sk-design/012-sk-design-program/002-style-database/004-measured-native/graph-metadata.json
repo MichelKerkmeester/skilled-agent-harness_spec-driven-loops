@@ -20,9 +20,9 @@
       "measured native experiments tasks",
       "entry gate candidate evaluation tasks",
       "promote or reject no rust tasks",
-      "measured native experiments checklist",
-      "residency honesty forbid unsafe code",
-      "byte parity oracle win verification"
+      "measured native experiments implementation summary",
+      "planning packet no runtime code shipped",
+      "roadmap phase 2 conditional native"
     ],
     "key_topics": [
       "measured",
@@ -41,12 +41,11 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md"
     ],
     "entities": [
       {
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -152,24 +145,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -190,22 +165,21 @@
     ],
     "causal_summary": "The 013 research concluded no Rust rewrite now, but reserved a conditional, measured path for later native work",
     "created_at": "2026-07-20T09:21:23.740Z",
-    "last_save_at": "2026-07-22T16:57:32.156Z",
+    "last_save_at": "2026-08-30T15:39:12.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26d1701ea8d76f11ac1946ec412c6d4781737c8c6fb71e6ad3c2dfe8c9e3b69c",
+    "source_fingerprint": "sha256:4b804d5ad054f0ef3b2e5784e48b683fb8b1ec5da9b618f2b8add82d1202d452",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e71fb590ab7d7f271922e712b48e170c51327f4c462bbac30a2930f2f8ca76b7",
       "plan.md": "6c445055416faa79ecb49595dcb8f7f4523ea82c2bb448b057aa3adca85dafb5",
       "tasks.md": "511b55bf19e603ec962e6880e2053e3605f73ff2138b15e9d183fbed611a0eb3",
-      "checklist.md": "5afbc41fdb19f18a42f85fa11bfc854d64aeb3f5dc78720513233705ccbaed9e",
       "implementation-summary.md": "fd21b84723f7d2e771f32c4717adb8d59a3fb4d56499c83b30fbbe6f91d6d694"
     },
     "last_active_child_id": null,

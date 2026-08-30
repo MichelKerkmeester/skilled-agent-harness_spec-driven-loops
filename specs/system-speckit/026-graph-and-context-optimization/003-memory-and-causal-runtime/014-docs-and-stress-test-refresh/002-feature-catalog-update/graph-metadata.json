@@ -22,9 +22,9 @@
       "feature catalog update tasks",
       "catalog v2 front proxy error codes tasks",
       "register feature files tasks",
-      "feature catalog update checklist",
-      "catalog accuracy verification gates",
-      "feature catalog register validate checklist"
+      "feature catalog update decisions",
+      "expand in place vs new file catalog",
+      "unified error code reference decision"
     ],
     "key_topics": [
       "feature",
@@ -43,25 +43,45 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "feature_catalog/feature_catalog.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "lib/storage/checkpoints.ts",
       "lib/search/vector-index-schema.ts",
       ".opencode/bin/lib/launcher-session-proxy.cjs",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      "lib/errors/core.ts",
-      "mcp_server/ENV_REFERENCE.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "lib/errors/core.ts"
     ],
     "entities": [
       {
-        "name": "feature_catalog.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -83,57 +103,9 @@
         "source": "derived"
       },
       {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
         "name": "core.ts",
         "kind": "code",
         "path": "lib/errors/core.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -201,27 +173,50 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Checkpoint",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Works",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog (`featurecatalog/featurecatalog.md` plus the per-capability files under `NN--category/`) is the inventory operators read to discover and reason about server behavior",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-07-17T17:19:31.196Z",
+    "last_save_at": "2026-08-30T15:39:31.865Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b32383b3c7c2b9fe18ebd7d61103400b1cfeb315ae6464dc61481c11194bb0c3",
+    "source_fingerprint": "sha256:29d10561edfeb8ef6c1f90dc04376f76d63e057fe3b8329d02df413d32a671a6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "10fef3916d40bd3d7ac3d547a970b5110a54a4f899ec9b3011b98f37ba6be87d",
       "plan.md": "2fee71309a4d1bb9531e031bae54ec01cc67b476c8fe31987e2d0769a8e732c4",
       "tasks.md": "75848a814c4d780b9189ce2201f8c3d188ccf449c88b81747023ead8b8b8b876",
-      "checklist.md": "925a246bca2a947b620a17ac52cef5e4610ec7a51caf3f51610c1ded9bcfec8c",
       "decision-record.md": "f6e7da122e91ea461b2f450cb324e5d9c8576156f5557f0f9d5a55b5607e796e",
       "implementation-summary.md": "e2ed01dfe655774cb2bc3b457eed6d553f71dcd7869fe20c47a6ac1f74f15eb0"
     },

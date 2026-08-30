@@ -20,9 +20,9 @@
       "deep_loop_graph_query",
       "tasks",
       "deep loop graph",
-      "verification checklist",
       "decision record",
-      "implementation summary"
+      "implementation summary",
+      "coverage graph"
     ],
     "key_topics": [
       "semantic",
@@ -36,17 +36,20 @@
       "tasks",
       "deep",
       "loop",
-      "verification"
+      "decision"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-core.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-signals.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-contradictions.cjs",
       ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
       ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-core.vitest.ts",
@@ -54,18 +57,37 @@
       ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-convergence.vitest.ts",
       "lib/storage/causal-edges.ts",
       "lib/graph/graph-signals.ts",
-      "lib/graph/contradiction-detection.ts",
-      "plan.md",
-      "decision-record.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "lib/graph/contradiction-detection.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -90,12 +112,6 @@
         "name": "coverage-graph-convergence.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {
@@ -147,36 +163,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specifi",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,27 +191,38 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deep research and deep review currently know a great deal about iteration counts, novelty, and state transitions, but they still lack a first-class semantic model of coverage",
     "created_at": "2026-04-12T09:02:50.193Z",
-    "last_save_at": "2026-07-16T16:31:43.164Z",
+    "last_save_at": "2026-08-30T15:39:24.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fec5bab8fcdde2ec46a2441b0aac04c6547913edf4f83cd142c28388f7439b4e",
+    "source_fingerprint": "sha256:fe355ef78f1ad0a07d92cf774110c47d53111d2dc2007c99e4c55e27014d91ad",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4e7124b55226b72df202281bd9b68270a47d371c09e82065e9d9c3148bac3299",
       "plan.md": "2f2c90a7e3305dd966fb380abe92d3c3ce3df2f1baf80b79ea0aba747103569b",
       "tasks.md": "fd0e1a172fe2cb5ea2720c786b80fafb4d6f641de2401eaa1f90426703a6c9ed",
-      "checklist.md": "bc80b5754a35966d23428851b9f89175121b6f3c9bbf9c88f20fbc1aacb945e9",
       "decision-record.md": "ca4a50ea87295a4d32688b3d3c072682da1addb5285be3d02068015024cefa65",
       "implementation-summary.md": "2e5a70eafc8b54873f58747686952d9d71857ec9de19b41c4a56488f621d39b2"
     },

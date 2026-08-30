@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Arc 009 phase 008 shipped adapter close idempotence + a fallback RSS gate but kept severity at P2 (default) because growth was not yet measured",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-08-29T15:22:16.098Z",
+    "last_save_at": "2026-08-30T15:39:31.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,6 +192,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8a957b5bc0a45ad9a00a7d5baed07420e61d7f44b4a19daefeee88303c69710a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8dd2dbac699eab2fd62e40d52897f7490e9fb931ef88ae7fc588637d4e59c3e8",
       "plan.md": "ec9042761623b07616ea8c6cd730af476e7be03e93f15671f6d072421645e2ce",

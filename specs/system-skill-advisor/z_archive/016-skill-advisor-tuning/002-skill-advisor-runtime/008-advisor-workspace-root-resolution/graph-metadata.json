@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution",
-  "spec_folder": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution",
-  "parent_id": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime",
+  "packet_id": "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution",
+  "spec_folder": "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution",
+  "parent_id": "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -21,8 +21,8 @@
       "advisor dist rebuild",
       "advisor root tasks",
       "advisor-state cleanup tasks",
-      "advisor root checklist",
-      "advisor-state qa"
+      "advisor root summary",
+      "advisor-state fix"
     ],
     "key_topics": [
       "advisor",
@@ -41,27 +41,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
-      "mcp_server/package.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "advisor-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,26 +172,43 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "reconnect",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor wrote its generation state to <cwd>/.opencode/skills/.advisor-state whenever it ran with a subdirectory as the working directory, creating stray nested .opencode trees across the repo. Resolve the workspace root deterministically from the module location instead of process.cwd().",
     "created_at": "2026-06-21T15:40:00Z",
-    "last_save_at": "2026-07-15T11:59:34.760Z",
+    "last_save_at": "2026-08-30T15:39:27.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:055b819637381d94a77aabc45627cd7e34df59a2ea47a01904b6dafb45597674",
+    "source_fingerprint": "sha256:76ed9f690df56b1e368676a260e1e33455729471f8fb3293f86e08cdf634275e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0919482d76dcd70d6560bb0322e91dfa06c24734d6ecab8a55f1868e7bb4a654",
       "plan.md": "78750fc0dce1f10051de89fa91b09d889839b8c9a132bb641f779c7272a2fce1",
       "tasks.md": "604d76d9ed2c14b4e0c710a961a3c71543696874bbb300b5ab698b8f203b1479",
-      "checklist.md": "877b9680e0b5f80d2d6ed8739e752da595a6a1d253523a16712faa64de7361cb",
       "implementation-summary.md": "b7d70695f68125f206da4718f64d2639ee0a12d971d604b300c9f0ac368196ed"
     },
     "last_active_child_id": null,

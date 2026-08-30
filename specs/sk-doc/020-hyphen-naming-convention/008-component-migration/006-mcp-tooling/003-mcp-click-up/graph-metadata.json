@@ -165,7 +165,7 @@
     ],
     "causal_summary": "The mcp-click-up component contains snake_case catalog roots, catalog category directories, manual-testing categories, index files, reference files, and hundreds of links between them. This phase renames the component-local filesystem paths to kebab-case and updates path-derived references while preserving ClickUp CLI identifiers, package manifests, and data keys.",
     "created_at": "2026-07-14T15:17:43Z",
-    "last_save_at": "2026-08-30T07:19:37.570Z",
+    "last_save_at": "2026-08-30T15:39:16.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,7 +174,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:d46d0134d771b149d50b02c1cd93519a8287e83b9e711a7284834fb21dc33480",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa58d92b7c1e6d1358b87b74f7b2ae285d708b4f49874940a67e7aabb678fd5d",
       "plan.md": "b50a33cca5dd1e35327b5d46ad635fabc47b1103498cfbe76ec6248e9cbf411b",

@@ -38,19 +38,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The only way to trigger an immediate deep-loop iteration is to wait for the configured cadence or restart the process",
     "created_at": "2026-06-28T16:59:37.521Z",
-    "last_save_at": "2026-07-16T16:32:06.601Z",
+    "last_save_at": "2026-08-30T15:39:25.058Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1d2be8a7da907baad670cdf8292b3c9a976d7359a64906f6595f5cb7475271c3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c8c954c946c8029472eeac5ee8af34951ce315deb06f00fe1d0eb318f5399863",
       "plan.md": "fa24852f47c3c7c9d743f9c03d073281faa089dc8a5c487daf3df88e59a7233c",

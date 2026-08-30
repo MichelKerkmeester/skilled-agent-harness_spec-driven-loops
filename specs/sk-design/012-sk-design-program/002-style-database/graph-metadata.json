@@ -42,7 +42,7 @@
       "flat"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -92,17 +92,18 @@
     ],
     "causal_summary": "The style library began as 13k flat files with no indexed query, no semantic retrieval, and no incremental sync — the largest structured dataset in `sk-design` still trapped in flat files",
     "created_at": "2026-07-22T16:38:24.094Z",
-    "last_save_at": "2026-07-22T16:57:34.094Z",
+    "last_save_at": "2026-08-30T15:39:12.678Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:17cb2471f5331f90311a5680a64997bdb5fac9bf069bb69eab6ef9921708adda",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3676d9c46c982db51d7c5c702cb2ca7a9c8290e051337faa8483e41e87da5d60"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-design/012-sk-design-program/002-style-database/001-style-database",
     "last_active_at": null
   }
 }

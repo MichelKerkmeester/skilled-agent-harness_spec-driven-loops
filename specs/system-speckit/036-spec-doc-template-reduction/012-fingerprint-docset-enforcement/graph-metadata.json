@@ -22,7 +22,7 @@
       "acceptance criteria",
       "closure gate",
       "fingerprint docset criteria",
-      "implementation"
+      "stamp only reversed"
     ],
     "key_topics": [
       "source",
@@ -38,20 +38,21 @@
       "plan",
       "stamp"
     ],
-    "importance_tier": "important",
-    "status": "draft",
+    "importance_tier": "critical",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-schema.ts",
       ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh",
+      "scripts/tests/fingerprint-docset-generation.sh",
       "mcp-server/lib/graph/graph-metadata-schema.ts",
-      "mcp-server/lib/validation/generated-metadata-integrity.ts",
-      "scripts/tests/fingerprint-docset-generation.sh"
+      "mcp-server/lib/validation/generated-metadata-integrity.ts"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The marker skips comparison on an absent value, and the field is optional, so almost nothing is",
     "created_at": "2026-08-30T13:58:20Z",
-    "last_save_at": "2026-08-30T14:12:55.501Z",
+    "last_save_at": "2026-08-30T15:48:37.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +210,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6693c796155785f8fa70155055f02cc072a5cb45f6b7ce48a94aaef5903c1af9",
+    "source_fingerprint": "sha256:c9dedb761c7f919727b2ecca69fbb722760d4f1dd4282ff2d72d053d41b6a357",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "766523de418db28575a1826e01ad842734beb91ac385353752a05c3e399dc9d9",
+      "spec.md": "e3182fdeb8298c09c53c130c5f11ce83a84686fc7a7eb330aba42434df6cee52",
       "plan.md": "bd03e81ee495aded38131bd96a4e0f5be7187dad81e73be612a800b13cbfdcd3",
-      "tasks.md": "e91d5432f4f00485b03e9a3ad24275ceca396e7a2452f0e69cd1095c53f62b38",
-      "implementation-summary.md": "acdcc4b6adc1f0252aa9b5dacab1b6d59e620ce559c5bff003db60fa06a71eea"
+      "tasks.md": "346d6ec8e8164abcc0a55c046e6cddeee6ce0294ef1977770524d77262ac45f8",
+      "decision-record.md": "409c24a164ac994674e098e301e07fc5b89861c990951ab58e78f020d0453db8",
+      "implementation-summary.md": "21caaa1bc503b859d32909047648975acd855194696d4aab147984de07f747b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

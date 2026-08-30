@@ -20,9 +20,7 @@
       "plan",
       "task",
       "breakdown",
-      "tasks",
-      "completion",
-      "checklist"
+      "tasks"
     ],
     "key_topics": [
       "post",
@@ -34,25 +32,18 @@
       "task",
       "breakdown",
       "tasks",
-      "completion",
-      "checklist",
-      "following"
+      "following",
+      "successful",
+      "system-memory"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "plan.md",
       "spec.md",
-      "tasks.md",
-      "checklist.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,15 +51,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -172,43 +163,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Must Complete",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Should Complete",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Following the successful merger of system-memory and system-spec-kit (035-memory-speckit-merger), a comprehensive analysis revealed 29 issues requiring attention:",
     "created_at": "2026-04-12T09:02:53.524Z",
-    "last_save_at": "2026-07-10T06:22:45.890Z",
+    "last_save_at": "2026-08-30T15:39:37.119Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:ab3c7369527a755bc653bade1860c3d4b41b6f1d01867d5942837f7b0216cdfa",
+    "source_fingerprint": "sha256:717f33f2480cae905d0efde34a38fb0311770bbcbb160195d37c3043f8d9eee0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a930c25f5c9ac203178853d4d11c1270d9ded803b84a34964e7832a27ead18be",
       "plan.md": "5e17a1bf974933b55acc12db28410a37054390f1d2ad573bcb887f53f083cbba",
-      "tasks.md": "88d1b80e6c22c54c564ca4fb32e4dfdbc7ef7dc88d85b93f7b7768a26f08ebca",
-      "checklist.md": "4702acf528fb52ee47683a89856ea5267cbd7601180cdba9600619b775efa9a9"
+      "tasks.md": "88d1b80e6c22c54c564ca4fb32e4dfdbc7ef7dc88d85b93f7b7768a26f08ebca"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The cli-claude-code README is a tabular reference card with no problem-first entry point, and it carries a stale fact: it lists 11 delegatable agents (the OpenCode agent set) when the skill's own SKILL.md documents 9",
     "created_at": "2026-06-07T09:30:52Z",
-    "last_save_at": "2026-08-28T15:59:21.177Z",
+    "last_save_at": "2026-08-30T15:39:14.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:50c6139c9097c8f5b8b3137b82ed925cef8cdf83f04a2e2bc1405a66b2c51d97",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2fd5264befd1ea14c188afeb47cb9c6df81a6a2d5e1f18dc04c06e838897a68e",
       "plan.md": "0e92257dc3cf48c963c77a2a22aa7e1a80e6b74022ce5a512ed2d8b424d3a103",

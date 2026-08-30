@@ -22,7 +22,7 @@
       "plan",
       "tasks",
       "test",
-      "verification"
+      "summary"
     ],
     "key_topics": [
       "feature",
@@ -35,24 +35,45 @@
       "plan",
       "tasks",
       "test",
-      "verification",
+      "summary",
       "system-spec-kit"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "scripts/tests/test_dual_threshold.py",
-      "scripts/tests/test-extractors-loaders.js",
-      "scripts/tests/test-five-checks.js",
       "spec.md",
       "plan.md",
-      "checklist.md",
-      "mcp_server/tests/README.md",
-      "scripts/tests/README.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/tests/test_dual_threshold.py",
+      "scripts/tests/test-extractors-loaders.js",
+      "scripts/tests/test-five-checks.js"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "test_dual_threshold.py",
         "kind": "file",
@@ -69,42 +90,6 @@
         "name": "test-five-checks.js",
         "kind": "code",
         "path": "scripts/tests/test-five-checks.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "mcp_server/tests/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,26 +181,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit has grown to ~10,500 LOC across MCP handlers (2,208 LOC) and scripts (8,500 LOC), but test coverage is incomplete",
     "created_at": "2026-04-12T09:02:53.549Z",
-    "last_save_at": "2026-07-10T06:24:36.043Z",
+    "last_save_at": "2026-08-30T15:39:37.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d1aac2d4a106be31d23a86c35ff1146fda390c1faf63df72bd67fbd13da4bcf",
+    "source_fingerprint": "sha256:927be4d165f6d0bdc7c10622c5d4ad14e895aa052ae2075c82b6557f069c4426",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a16f97a55f15439f275331391ea92073dc3625c2ba31d66fc0d3fe2dd613ac03",
       "plan.md": "2787f2618684b79a467ce41320dca89c276d448a9e11af21561e20ec5c841e09",
       "tasks.md": "28cb5962ed9207de3db5928da5c28a8689dc971e843cc22e58cfa2a5c5dbb0b1",
-      "checklist.md": "d7ba2cbb32ba0083f790e3c905aa46f58b71450fc7888921ef65644b756e1ee5",
       "implementation-summary.md": "d5b4b0d8630371f48c4baf940d821bb7719bec8b4bfc69641c4324b7d9493e1d"
     },
     "last_active_child_id": null,

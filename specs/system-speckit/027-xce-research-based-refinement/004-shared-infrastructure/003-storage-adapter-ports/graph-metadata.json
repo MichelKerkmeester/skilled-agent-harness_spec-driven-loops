@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Driver coupling is scattered across roughly 127 production files: vector access, lexical search, graph traversal, maintenance (vacuum/checkpoint family), and contention/retry idioms are implicit better-sqlite3 call sites rather than named seams",
     "created_at": "2026-06-10T17:48:34Z",
-    "last_save_at": "2026-08-29T15:22:20.548Z",
+    "last_save_at": "2026-08-30T15:39:34.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:67eada1f3ed878803115f7ffcb48e4c14f75319c2cdbdbabdce2b008fbeb1c47",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "26a6501af269e636b180ee56f38cb3ee0c99b3e9e8f7b05edeb6a181d17dc9a2",
       "plan.md": "d010d2b5853ad24f41d8f5fcf31e05d1378573be3ee3b2af457df71cfbb78f6b",

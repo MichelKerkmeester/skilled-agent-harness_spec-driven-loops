@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Existing provenance can verify GPT first-dispatch correctness without new benchmark tooling, but the smoke must include route-proof assertions",
     "created_at": "2026-06-30T15:20:00Z",
-    "last_save_at": "2026-07-16T16:32:40.047Z",
+    "last_save_at": "2026-08-30T15:39:25.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:029f2ee829b6cccba87da288b6dd3e554f7a96f597be74ef0a8fa02a3061a77d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "422e533444db431bf218d0cf788c6ac4008b9fc1124a10fa5c2275fe0bda4e58",
       "plan.md": "a97270755dfca8af2b6b30b7f4c082b7d84ab9f1a0b5e84ef938cef0d46bf037",

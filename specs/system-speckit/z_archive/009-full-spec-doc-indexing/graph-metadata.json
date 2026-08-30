@@ -193,7 +193,7 @@
     ],
     "causal_summary": "This archived folder captures work that indexed full spec folder documents",
     "created_at": "2026-04-12T09:02:53.564Z",
-    "last_save_at": "2026-07-10T06:22:01.195Z",
+    "last_save_at": "2026-08-30T15:39:37.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:fd3e0900ba36c2f6d8ef569e50bd8df3a3be7d49d79e49ad2d306238f6a23fe6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2dc918ac8babfb91bdf2a58e487ce9501ff6b0cd917214239bf14a4dd3d2b26",
       "plan.md": "657529018bfaf593a0d29aac5ce533ef69202f60e502ead51837b4d766319690",

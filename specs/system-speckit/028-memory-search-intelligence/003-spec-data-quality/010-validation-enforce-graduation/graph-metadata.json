@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
@@ -60,7 +59,8 @@
       "scripts/rules/check-status-cross-doc-consistency.sh",
       "scripts/rules/check-metadata-disk-consistency.sh",
       "scripts/rules/check-graph-metadata-child-drift.sh",
-      "scripts/dist/spec/is-phase-parent.js"
+      "scripts/dist/spec/is-phase-parent.js",
+      "scripts/spec/is-phase-parent.ts"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -160,6 +154,12 @@
         "source": "derived"
       },
       {
+        "name": "is-phase-parent.ts",
+        "kind": "code",
+        "path": "scripts/spec/is-phase-parent.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,23 +210,22 @@
     ],
     "causal_summary": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail validation today, because each is gated by its own default-`false` enforce flag:",
     "created_at": "2026-07-09T20:32:08.332Z",
-    "last_save_at": "2026-08-29T14:54:16.291Z",
+    "last_save_at": "2026-08-30T15:39:35.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19166993f0db89d75cf01340b15506e874cbfbff8f9fbb4a91592163fb3c2c7d",
+    "source_fingerprint": "sha256:383103165784afd1f25912c297ad877a8e03eb01731c592e4317e5ea4c3ca9ad",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2d7e4fd6f71a1c92e6c83c3159b6129b83820474a460a7992cf90c12f22b9162",
       "plan.md": "9890286782000de9443d6a891811d18fcc74cd308fb84d669906ce3cac43dcb7",
       "tasks.md": "32ea66390c05a08a85d929d5aae502f216890a3766b4c89e38b6b1f67b68bb68",
-      "checklist.md": "78328cdfb8b40dcaf2b47cabe8f44aa2afa7087070935561f55f1ccc6feeb1ed",
       "decision-record.md": "12709c07b161dc7e8542e382b035babee440f6b877dc1caf085dce0b09677d8c",
       "implementation-summary.md": "5d56cf97273e30089a8fc6dede31e840a5c42a4f965a54a75371d6f93b4a1f1c"
     },

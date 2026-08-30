@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The `.opencode/commands/create/assets/` tree has maintained filenames such as `createagentauto.yaml`, `createfeaturecatalogconfirm.yaml`, and `createmanualtestingplaybookpresentation.txt`",
     "created_at": "2026-07-14T15:18:31Z",
-    "last_save_at": "2026-08-30T07:20:01.080Z",
+    "last_save_at": "2026-08-30T15:39:17.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:8eac7bdc92511df5fba2026da40c8cc6a6d21a0040b041d36bb18e1211ce5ace",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4cce32c761ab97fc32d9b2d4bc43340f239e4f829dfa0ee0a0fe41844192eac3",
       "plan.md": "4aec195498ae4e49089f37fff526b44a17792496d0fb269145a9507bf83f91ce",

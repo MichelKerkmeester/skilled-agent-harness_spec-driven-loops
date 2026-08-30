@@ -44,14 +44,14 @@
       "single"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       "001-core-isolation-deliberation/spec.md",
       "002-skill-scaffold/spec.md",
       "003-lib-runtime-migration/spec.md",
       "004-script-shim-db-relocation/spec.md",
-      "005-mcp-tool-surface-removal/spec.md",
-      "spec.md"
+      "005-mcp-tool-surface-removal/spec.md"
     ],
     "entities": [
       {
@@ -99,17 +99,18 @@
     ],
     "causal_summary": "This cluster groups 9 sub-phases that share a single thematic focus",
     "created_at": "2026-05-23T09:52:56.265976Z",
-    "last_save_at": "2026-07-08T13:43:40.381Z",
+    "last_save_at": "2026-08-30T15:39:23.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:2179ec36b0bdd7f7bfe29fbec505acd35ed390f4c297faff88612461a36438e2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c5d2cf76b284a2348572f2724e5d8c92e3b5272bfb70ad3965b3678789a531e2"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/006-deep-skill-evolution/004-deep-loop-runtime/011-migration-closeout-cli-verification",
     "last_active_at": null
   }
 }

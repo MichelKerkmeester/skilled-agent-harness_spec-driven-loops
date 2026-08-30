@@ -18,8 +18,6 @@
       "durable wave scheduler plan",
       "logical branch ids leases waves tasks",
       "fenced wave scheduling tasks",
-      "logical branch ids leases waves checklist",
-      "durable fanout lease verification",
       "logical branch lease implementation",
       "durable wave scheduler evidence"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/branch-leases-waves.vitest.ts",
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,26 +185,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Stable logical branch identities, fenced worker leases, and ordered wave scheduling over the existing capped pool, with canonical ledger records that make fan-out deterministic, durable, and resumable.",
     "created_at": "2026-07-16T03:43:50.306Z",
-    "last_save_at": "2026-08-29T13:09:50.141Z",
+    "last_save_at": "2026-08-30T15:39:20.659Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0adae9e5f3206bad82c88b26ba021193b96faf7aa80bfb4540bcd2d7fc0f4af1",
+    "source_fingerprint": "sha256:a646941b646744cfc8e3c9199934cbbb40c7645e3dc81227d3d7a09950846723",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e8f025fb743ec011447fd67126de96d3e5aa3d9b77f7caf909a87ef8db318aa",
       "plan.md": "ebdbed1fe62ad37f6948c5c53fd0c6708d26df7e0b7a79080b76e367d64fd15b",
       "tasks.md": "196d87bf20ef80b2f09f02c680adad43131003d0931c77e5159d12e1d9e1e554",
-      "checklist.md": "c8d5f6e1b271113dff079b5986889add5646ba7802c9ac8206d93bcfd877b5ff",
       "implementation-summary.md": "31ee0449864f88faba0f54fa79d470a3ee2814bd3eb8f3e0bc13cb30b81a61cc"
     },
     "last_active_child_id": null,

@@ -48,19 +48,13 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "handover.md",
       "002-deep-research-enablement/implementation-summary.md",
       "003-fleet-enablement/plan.md",
-      "002-deep-research-enablement/scratch/directive-census-remeasured.md",
-      "spec.md",
-      "handover.md"
+      "002-deep-research-enablement/scratch/directive-census-remeasured.md"
     ],
     "entities": [
-      {
-        "name": "directive-census-remeasured.md",
-        "kind": "doc",
-        "path": "002-deep-research-enablement/scratch/directive-census-remeasured.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -71,6 +65,12 @@
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-census-remeasured.md",
+        "kind": "doc",
+        "path": "002-deep-research-enablement/scratch/directive-census-remeasured.md",
         "source": "derived"
       },
       {
@@ -148,7 +148,7 @@
     ],
     "causal_summary": "Turn the dark deep-loop substrate on: build the append gateway and legacy projection the modes lack, migrate each mode's write protocol onto it, flip authority serially across all seven modes, retire the legacy writers, gate the whole system, and document the result.",
     "created_at": "2026-08-19T06:57:07.539Z",
-    "last_save_at": "2026-08-24T08:57:41.070Z",
+    "last_save_at": "2026-08-30T15:39:22.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -156,6 +156,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:cad3b539dc7782113e3a03db326539650ff6026697c7cbeb381877d3d78e4b56",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae6dbf59623770e22e3dd5cde466152da5c2b4d15723563492e722c533bf3ad4",
       "handover.md": "ea702a75e63ac5e95b7efd7125fad19201bc04d879fe6910dbce58a774b840ba"

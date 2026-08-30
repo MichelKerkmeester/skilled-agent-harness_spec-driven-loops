@@ -91,13 +91,14 @@
     ],
     "causal_summary": "The deep-loop skill family has five completed frontmatter-alignment phases, each covering one deep-loop sub-skill and the same canonical reference/asset frontmatter contract",
     "created_at": "2026-07-08T05:57:34.075Z",
-    "last_save_at": "2026-07-16T16:33:04.996Z",
+    "last_save_at": "2026-08-30T15:39:19.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:a9854a3c302623780ace40d9df7beb751d471eac3b4ece2b166076fd498def90",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a4b3f0a19142b40bbc1f3283396f7344bf343c162ae2d92b37ba3b36bc056960"
     },

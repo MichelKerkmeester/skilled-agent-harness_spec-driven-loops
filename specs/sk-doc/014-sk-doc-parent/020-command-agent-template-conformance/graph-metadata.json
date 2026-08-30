@@ -18,8 +18,6 @@
       "125 sk-doc phase 020 plan",
       "command agent conformance tasks",
       "125 sk-doc phase 020 tasks",
-      "command agent conformance checklist",
-      "125 sk-doc phase 020 checklist",
       "command agent conformance summary",
       "125 sk-doc phase 020 summary"
     ],
@@ -33,9 +31,9 @@
       "align",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "routers"
+      "routers",
+      "markdown"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
     ],
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,30 +178,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc `/create` command routers and the `markdown` agents all fail `validatedocument.py`",
     "created_at": "2026-07-07T14:28:17.730Z",
-    "last_save_at": "2026-08-29T14:54:23.632Z",
+    "last_save_at": "2026-08-30T15:39:13.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ac48971960b03308249bdca84a541055869a5a050120cfe0c094ac10e2eac83",
+    "source_fingerprint": "sha256:8ea4e433f7b46ff41539b2f1c51b4e6d067d9e8d1db7a6c75c78d83f0a157fa2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "82354261ab8eece970bcbf311a4f5ea92d62e0cabfc14f99eaa8ebfe6cbb6d1f",
       "plan.md": "02cdaf117bee67dea65618fad5ca185c6310c95c4d698322f0ec808672f97fb2",
       "tasks.md": "12cb2c5877d7fc2ccfe785957af2919b4ee3d4d35b7d5a918837ef17ccd78f35",
-      "checklist.md": "834d25a21dde02cd5e667275e301d0a6e0e421690a9af408e0aa757f95782757",
       "implementation-summary.md": "07fe5d761dbf6052c5c13d155a774199ed212e5002c0e67a9b557b31f72545d1"
     },
     "last_active_child_id": null,

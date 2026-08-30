@@ -202,7 +202,7 @@
     ],
     "causal_summary": "After Phase 4 the mode is registered but unproven end-to-end: nothing has confirmed that every mode doc validates, that a fresh operator can install and diagnose the mode without touching a real workspace, that the mode's headline numbers agree across all docs, or that the packet's completion metadata is internally consistent",
     "created_at": "2026-08-21T15:00:46.691Z",
-    "last_save_at": "2026-08-29T15:21:54.497Z",
+    "last_save_at": "2026-08-30T15:39:10.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7070c561f3e99c77c2330b3b92543cf8dec0211917a6e9b83f0ef1dcbb41b6db",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "73a32e101d44b628c3da8c5d28903cf820b04dc114a956a7e65e224cecc754b5",
       "plan.md": "c5c3c2fa8c8b9fcdc5cf4f9d9c0634faab31b186ffd8477b7ac210d7fdd68ee2",

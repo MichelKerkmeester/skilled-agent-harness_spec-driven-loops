@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +182,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The data-quality program is a fleet of eighteen build phases that share one engine and one registry, yet the ordering that makes them safe lives only in research prose at `../research/research.md:104-118` and nowhere executable",
     "created_at": "2026-06-27T17:15:40.091Z",
-    "last_save_at": "2026-08-29T14:54:16.738Z",
+    "last_save_at": "2026-08-30T15:39:35.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c97cbe618fe688730d62f935d5fbbd17a005036b5511217a892693b62ff59536",
+    "source_fingerprint": "sha256:aff78135ed05fa4c3de8ae679ab2adf01b429820bbd0dbe333a73b1c0df67f4c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c9e918f8b5ffa5c05e3266f529fa1eb92f994dbb4eb8eee8988b0d1fc60e0109",
       "plan.md": "e0bfdb14d28c5490762405da721ae0e40568d2ec454d3d44485532ee25acc370",
       "tasks.md": "4f8eeb9d797f45a65e8d3f89285d685fe137fb496c7a7dbec683e148b1b31df0",
-      "checklist.md": "51cdd038e48b617fd0f92db4bb4b2b78ed6859029437b1faae5300f196340a24",
       "implementation-summary.md": "d7891d0ddf935c328e4fca6cac9d2f2c62050dd2eae562a8d2b02564f59c3c5a"
     },
     "last_active_child_id": null,

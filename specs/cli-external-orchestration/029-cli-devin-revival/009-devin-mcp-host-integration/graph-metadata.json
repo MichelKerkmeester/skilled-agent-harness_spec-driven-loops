@@ -39,7 +39,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "decision-record.md"
+      "decision-record.md",
+      ".devin/config.local.json"
     ],
     "entities": [
       {
@@ -64,6 +65,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.local.json",
+        "kind": "config",
+        "path": ".devin/config.local.json",
         "source": "derived"
       },
       {
@@ -179,17 +186,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Alternatives Considered",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repo runs 3 stdio MCP servers (spec-kit-memory, code-graph, skill-advisor) that every other CLI executor (Claude Code, OpenCode) can already reach",
     "created_at": "2026-07-24T06:43:36.338Z",
-    "last_save_at": "2026-08-30T07:18:50.560Z",
+    "last_save_at": "2026-08-30T15:39:07.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +200,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:30e67a7b3870f7879f10ea8a9fe0ea0c6d3b45b26d094538b0977a0acb7efad9",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "595e4a20d431a0e8491b60b713344f3fed9c1d6ed934309b888ec54d819d78fb",
       "plan.md": "3a079dc2d6a0d8d8702a4088179c1ba6afff0d5c31c02a16f7929532aa2151f0",

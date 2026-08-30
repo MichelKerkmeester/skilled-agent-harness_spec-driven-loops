@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The sk-code-review README at `.opencode/skills/sk-code/sk-code-review/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:45.171Z",
-    "last_save_at": "2026-08-30T07:20:28.858Z",
+    "last_save_at": "2026-08-30T15:39:17.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1880100cc56442fd6e1fed2d2deb219780c5879023ac92cf48cf177d786cbbea",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0505ae5e74ac6c1b4d157055d4556da7e8d1ddb234a3ca8373330564b3124a6",
       "plan.md": "b5f038c4d829b65698a9a6aaeb7f17e24462c3046cd3bdeea6709bb5793d9c10",

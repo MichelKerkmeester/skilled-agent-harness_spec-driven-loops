@@ -22,7 +22,7 @@
       "graph retrieval tasks",
       "community summaries tasks",
       "retrieval improvement checklist",
-      "graph retrieval checklist"
+      "graph retrieval adr"
     ],
     "key_topics": [
       "graph",
@@ -42,6 +42,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "lib/graph/community-summaries.ts",
       "lib/graph/community-storage.ts",
       "lib/search/community-search.ts",
@@ -56,17 +60,37 @@
       "tests/contradiction-detection.vitest.ts",
       "tests/usage-weighted-ranking.vitest.ts",
       "tests/temporal-edges.vitest.ts",
-      "lib/search/entity-linker.ts",
-      "lib/search/pipeline/stage1-candidate-gen.ts",
-      "lib/search/recovery-payload.ts",
-      "lib/search/causal-boost.ts",
-      "lib/search/search-flags.ts"
+      "lib/search/entity-linker.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -160,30 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "stage1-candidate-gen.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage1-candidate-gen.ts",
-        "source": "derived"
-      },
-      {
-        "name": "recovery-payload.ts",
-        "kind": "code",
-        "path": "lib/search/recovery-payload.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-boost.ts",
-        "kind": "code",
-        "path": "lib/search/causal-boost.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,25 +210,24 @@
     ],
     "causal_summary": "The graph is structurally healthy but does not meaningfully improve retrieval",
     "created_at": "2026-04-12T09:02:50.338Z",
-    "last_save_at": "2026-07-10T06:24:12.975Z",
+    "last_save_at": "2026-08-30T15:39:39.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a0de40c566626b1c0dbb3f86154efc690bd6d6e73124bce1fa52d537516f5fdb",
+    "source_fingerprint": "sha256:6e4bcf96aff7fdad820b4639524a3d45938e726bed2dcd311534a66ee11c9001",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17e54c5441ced12fda6854f99800c02f5e349d10de68fb25754dfbf8b248e3c6",
-      "plan.md": "6387607d2a4cb3eeeccd73695b52c5f2b67ba3f2b96a467548009aadbe4d2c1e",
-      "tasks.md": "30bfeaddbed996322c7a91ace9fe87f259f2b74dc0f2a89dd0c2a66ec20bc173",
-      "checklist.md": "692edc69a82200a33faa30169d5e4ddf71c19e2faff104c17fa6ebfb87d07d39",
-      "decision-record.md": "db4383ef82dddd3e40ef49f7af7c575a7845f9d93dd8610a5f2febd11ac81376",
-      "implementation-summary.md": "146f48029627929387b19318b1302b21a3643e3fd2821db9979f15a0252f702b"
+      "spec.md": "dc36afeb9fd8fffe0b4d5c35d577fad65d5ba56bb2d3da60944ac9697151944c",
+      "plan.md": "f478bdddea5e6e0ee6713317ac6e19dadb5b4266ebe067683e87b095c333590d",
+      "tasks.md": "bae300a67b3ad48d10a2c95ad52dd92c4858b522e4ff85b04768544d95bd004a",
+      "decision-record.md": "0a06cded1a27857d514f8ffda3cebdd2131598362954dd9a5c1c5406ad00599a",
+      "implementation-summary.md": "eef81206fa5a3e4d90981232a6e3cec431146cad613d6b2e75cb9b66a6ea0e45"
     },
     "last_active_child_id": null,
     "last_active_at": null

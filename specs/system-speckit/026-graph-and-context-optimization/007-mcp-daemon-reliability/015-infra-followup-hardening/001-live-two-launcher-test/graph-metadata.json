@@ -17,7 +17,6 @@
       "live reap test plan",
       "F2 clean-close coverage plan",
       "live reap test tasks",
-      "live reap test checklist",
       "live reap test summary",
       "F2 clean-close coverage summary"
     ],
@@ -32,15 +31,14 @@
       "reapleasechildbeforerespawn",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "summary",
+      "mk-spec-memory-launcher"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -55,12 +53,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,30 +176,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The F2 clean-close barrier (`reapLeaseChildBeforeRespawn` in `mk-spec-memory-launcher.cjs`, shipped in 032/001) decides whether a possibly-dirty DB is handed to a replacement daemon",
     "created_at": "2026-05-30T19:47:42.617Z",
-    "last_save_at": "2026-08-28T15:59:55.713Z",
+    "last_save_at": "2026-08-30T15:39:32.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a8977cf850381538c236a900a883ada5c64f697609b74700f92c5286acae14d",
+    "source_fingerprint": "sha256:361c3fd9fd8f6ef17bb1b06e5b1f2268aa9b473c94928477b40516cd1b3c9a7a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "43f08e6605eeefa6d9661f1ef16e3607ceb89eda50c902b7707b6586c5ad0d5d",
       "plan.md": "903b71c0a349cc960611310b852804f9bb1af1c3b349bd0f3753004816aa1e7d",
       "tasks.md": "a822cd35606e79088abb38e8b73a68faf65fe6d4a92878d0fa442adee38283fc",
-      "checklist.md": "d4902f39a4e27b924cb2ba6282be2e979a7efbcebb04b227cdbbb33f5d098c5f",
       "implementation-summary.md": "30dd7686609087b9d323914214265f0fcd9756986ec79a807b8c505d5d3257c7"
     },
     "last_active_child_id": null,

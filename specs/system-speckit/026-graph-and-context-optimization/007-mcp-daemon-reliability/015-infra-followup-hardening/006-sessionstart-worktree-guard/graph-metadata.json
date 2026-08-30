@@ -16,7 +16,6 @@
       "035 backstop sessionstart",
       "sessionstart worktree guard plan",
       "sessionstart worktree guard tasks",
-      "sessionstart worktree guard checklist",
       "sessionstart worktree guard summary"
     ],
     "key_topics": [
@@ -29,9 +28,9 @@
       "backstop",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "packet"
+      "packet",
+      "detect-and-warn"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,8 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
+      ".claude/settings.local.json",
       ".opencode/bin/worktree-guard.sh",
       ".opencode/bin/README.md"
     ],
@@ -64,15 +63,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -192,22 +191,21 @@
     ],
     "causal_summary": "Packet 035 created `worktree-guard.sh` — a detect-and-warn SessionStart guard that warns when a top-level session is running directly on the shared `main` checkout instead of an isolated worktree",
     "created_at": "2026-05-30T21:50:43.392Z",
-    "last_save_at": "2026-08-29T14:54:18.055Z",
+    "last_save_at": "2026-08-30T15:39:32.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c5f898cd7ec533030c5f0dee3354a589ec4245f6eecdb68b3cb06ecee6e6b113",
+    "source_fingerprint": "sha256:907b414a9855e2591d3b37982389fe3461b965d52ae2af905302746179dff411",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "df3994f4d389e7187fea100cbdd95ba030d3dc9e494d7107d244e5c81ae44221",
       "plan.md": "f43980a0bda12d8b52650e296726de2cb0d5c382b3375afa45afd17b6b8207d5",
       "tasks.md": "fa8ba92fcf4c01e4844af3cb3e8b018a7b8152bf982c5cf67c9928a38899f9e7",
-      "checklist.md": "815a3e740eda59b7d2ecbc87a08c83b16260c69f68f8df0bd11003d04e3e7a8d",
       "implementation-summary.md": "d73ee591e04e05bb451381c3ac2ce9245019d61e75798b14125c4380d59602d2"
     },
     "last_active_child_id": null,

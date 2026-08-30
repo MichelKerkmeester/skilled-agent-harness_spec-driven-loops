@@ -79,13 +79,14 @@
     ],
     "causal_summary": "Convert deep-ai-council's INTENT_MODEL (per-keyword tuple weights, unparseable by the Mode-A harness → D5=0 from 10 dead_intent_keys) to canonical INTENT_SIGNALS, add a 10-scenario Type-1 gold and a key-sync test, landing the already-designed PASS-92 conversion into the working tree.",
     "created_at": "2026-07-09T12:18:00.101Z",
-    "last_save_at": "2026-07-16T16:33:11.591Z",
+    "last_save_at": "2026-08-30T15:39:19.973Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:4ba85523b6e9097a5ad13ec53343352c42daef1e4dc471aa2b433e3c65301d0c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "516ab6577fee734bfa31ac1406691e519c7e18f28f529a832102c8ebc2c1b951"
     },

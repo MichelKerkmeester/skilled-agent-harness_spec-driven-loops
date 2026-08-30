@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/022-cli-devin-deprecation/005-historical-record-reference-sweep",
-  "spec_folder": "cli-external-orchestration/022-cli-devin-deprecation/005-historical-record-reference-sweep",
-  "parent_id": "cli-external-orchestration/022-cli-devin-deprecation",
+  "packet_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/005-historical-record-reference-sweep",
+  "spec_folder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/005-historical-record-reference-sweep",
+  "parent_id": "cli-external-orchestration/z_archive/022-cli-devin-deprecation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -39,8 +39,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -56,15 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "cli-devin is mentioned in ~1760 historical files (specs/, changelog/, benchmark state/eval)",
     "created_at": "2026-06-08T16:10:30Z",
-    "last_save_at": "2026-07-14T19:26:13.927Z",
+    "last_save_at": "2026-08-30T15:39:08.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:200eb7211064d5bfa7b38936ef28820d3725f5ec7095337e244924343a85e83f",
+    "source_fingerprint": "sha256:9cb12095ee665967f92aea36a84a4eb97ca15cc62c64c0b8e049a0207bd95f37",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4914ee5b84a0883e574604fde64b8732b13482e74619c6d586aa126a5051618a",
-      "plan.md": "aacad81e45fb3d076924a96834f835eae2c4d3bfc0a6a4bc2b38a39cfb88266c",
-      "tasks.md": "c62f741317f2c6e315b7e742569d9007bb06ba6ee2332378f1f4b295470fefa3",
-      "implementation-summary.md": "c4f9daab8265ab830477b27c2a8086ef3dadfccf83e4b4d5e1b9db6964a3a81e"
+      "spec.md": "077b96cc51bd0af6996c228190ee3fa2e5c1ceee19d6b2741a3c0a50d042edb4",
+      "plan.md": "211f4faff67b840438e3dbf1f436de9b16234d6db9639800c7f5d3d47f524743",
+      "tasks.md": "4e8db4dda4ee74c26896005caec27a6da992feb8eadb4ddb15a54174720c2431",
+      "implementation-summary.md": "8b85a97ef5001585269da05575310917ac434f67090638bfe0e331b54e8e2f28"
     },
     "last_active_child_id": null,
     "last_active_at": null

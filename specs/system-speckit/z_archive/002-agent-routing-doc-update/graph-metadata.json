@@ -188,7 +188,7 @@
     ],
     "causal_summary": "This archived folder captures work that updated system-spec-kit documentation for agent routing behavior",
     "created_at": "2026-04-12T09:02:53.562Z",
-    "last_save_at": "2026-07-10T06:22:29.115Z",
+    "last_save_at": "2026-08-30T15:39:37.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:24b3c455f00d78df817270b00d878013fd55079930527b10c62627b06ca66821",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d7d0526bca240ecf53a591fd13219b447da81ae8839a5d380102071d151ceaa7",
       "plan.md": "db38f2c20afc2272c29516b8b080290303ce2aeaa92c183f84c11e156c746da8",

@@ -21,7 +21,6 @@
       "embedding local-first plan",
       "resolveProvider reorder",
       "embedding local-first tasks",
-      "embedding local-first checklist",
       "embedding local-first summary",
       "ollama default embedder shipped",
       "resolveProvider local-first"
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       "shared/embeddings/factory.ts"
@@ -68,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,48 +165,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Made",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The shared embeddings factory has three provider-order definitions",
     "created_at": "2026-06-02T21:06:00Z",
-    "last_save_at": "2026-08-29T14:54:19.390Z",
+    "last_save_at": "2026-08-30T15:39:31.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3321177d82187cb618a8522eea08aa7369e3985bde81a6ab26266163e8465790",
+    "source_fingerprint": "sha256:3ca3fdd9f2b0c7584d479fdfc0828031c0302c07edf932001bb4fd4f1dc353e3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9479fb74a77e27e141a440c831617307ad1ec782400429adccd4736042f63ee",
       "plan.md": "ddf3b3b5e26d4967f8ac3bc1c2533b44fdba22a65603af256e4c645d42919d5a",
       "tasks.md": "f72029a528b486a7136f22b2e849fa12d99600f9edaff431ffcaf2da8948f500",
-      "checklist.md": "3f6cbc089eb46aabb28ef2d68affca47c1ee0fb582c3948101f66e38970f210d",
       "implementation-summary.md": "8459b0d069c335cce0060fb7a6d6e7d317763f84d47985cee08586f1ee886890"
     },
     "last_active_child_id": null,

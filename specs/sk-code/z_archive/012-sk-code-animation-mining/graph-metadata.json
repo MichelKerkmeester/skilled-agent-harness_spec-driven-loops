@@ -17,7 +17,6 @@
       "animation principles reference",
       "sk-code animation mining plan",
       "sk-code animation mining tasks",
-      "sk-code animation mining checklist",
       "sk-code animation mining summary"
     ],
     "key_topics": [
@@ -29,28 +28,21 @@
       "reference",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "motion",
-      "dev"
+      "dev",
+      "surface"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "proposals/ANALYSIS.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "proposals/ANALYSIS.md"
     ],
     "entities": [
-      {
-        "name": "ANALYSIS.md",
-        "kind": "doc",
-        "path": "proposals/ANALYSIS.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,15 +62,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ANALYSIS.md",
+        "kind": "doc",
+        "path": "proposals/ANALYSIS.md",
         "source": "derived"
       },
       {
@@ -178,36 +170,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "sk-code's Motion.dev surface is strong on API how-to (animate/timelines, scroll/gestures, integration, a decision matrix, performance pitfalls) but light on the design-principle layer — when/why to use a given easing, concrete duration/stagger values, anticipation/arc guidance — and has no animation-specific visual-verification recipe",
     "created_at": "2026-06-02T08:43:12.089Z",
-    "last_save_at": "2026-07-09T10:02:44.360Z",
+    "last_save_at": "2026-08-30T15:39:11.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc40a1ecbc963daf436da0201b0ebd94e2556812f75c373226dd6e1af3ee1457",
+    "source_fingerprint": "sha256:b9ae9175f3949875bfdb0be438108200722e9038f2a816ca6f17c93d4decf32b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3f95a99cf2c0aff116fbb501ba9bd43838cb899e466858c3900c93a5e48d608e",
       "plan.md": "893d005c7a9bdd55460cd48acb46ed0a8f0072d2b8228e3abdc33f53d156f81c",
       "tasks.md": "f7c83ddbc133cb69cc1b74ccc89c1d91f30f945b7e1feaabb195c860b3eb85e2",
-      "checklist.md": "0e9e1483d041bdb2377de21004834a95466b9694a8a04500076cb22f7c30af8b",
       "implementation-summary.md": "a9f80f5cb0593d661d0f5d26604b57d96dda03ce1f1f97ce49b3c8ecd69b9d56"
     },
     "last_active_child_id": null,

@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Only approved branches reach origin, and no session can create a remote branch on its own.",
     "created_at": "2026-08-29T20:37:47.914Z",
-    "last_save_at": "2026-08-29T20:37:47.914Z",
+    "last_save_at": "2026-08-30T15:39:18.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:238d8f4d76e57bf4ba080f1d5b0bbebee667d267de21727ede4ed2a98fe1423a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "18642c6b5c098e2894b47c52de823a3cc0ec42e1a6590ceba037ca206b8871b5",
       "plan.md": "7991b4e7427036b1e80f3274340eadd6da4e68dbc997d95109e6ddd3223d8e7b",

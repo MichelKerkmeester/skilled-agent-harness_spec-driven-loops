@@ -99,13 +99,14 @@
     ],
     "causal_summary": "The sk-communication projection layer ships as a package that is off by default and invoked by hand",
     "created_at": "2026-08-19T04:24:46.147Z",
-    "last_save_at": "2026-08-29T15:21:58.546Z",
+    "last_save_at": "2026-08-30T15:39:11.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:2bf052f8916dd6ae74324d67fa435ea1ceb8d9bba911dd233dc5814947cbaf62",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "630718e59d88db03f9de1276a4b1d9fb80177f82f7d84ee98ac26facac3d1e74"
     },

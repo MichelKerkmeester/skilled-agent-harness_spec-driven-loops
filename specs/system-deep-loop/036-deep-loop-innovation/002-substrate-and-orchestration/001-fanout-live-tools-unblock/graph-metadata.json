@@ -18,8 +18,6 @@
       "fanout search adapter plan",
       "fan-out live-tools tasks",
       "fanout search adapter tasks",
-      "fan-out live-tools checklist",
-      "fanout live search verification",
       "fan-out live-tools implementation",
       "fanout live search shipped",
       "fanout manifest compiler complete"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,36 +174,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Base",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Ship the early, backward-compatible fan-out live-tools unblock on fanout-run.cjs: a typed liveTools.webSearch policy, a fail-closed executor capability matrix, per-kind command adapters with invocation fingerprints, and models-by-branches-by-replicas manifest expansion. The phase changes dispatch only and preserves every canonical persisted state and event shape.",
     "created_at": "2026-07-16T03:43:58.400Z",
-    "last_save_at": "2026-08-29T13:07:30.835Z",
+    "last_save_at": "2026-08-30T15:39:20.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e75a055fa28b6d7ca2aa2db4a8078b43602c62c0953b175c7dd5b12fbd3bc9b",
+    "source_fingerprint": "sha256:4d4dab76e0e784a2fcdc42f41ccd34170012f00180568c6b7d6ca00f1debbf4a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "97625220b1655845168a25040c2a8d8fda0df01d65e9459c6a2648b25ae72c45",
       "plan.md": "11cc315058857a8109105b8f464b2ed8e282c9f370fab93330fad36f4f3e6d2a",
       "tasks.md": "bbdec52843ca5f45746bc8575bca3dc5065d369b359293283df35336aef7bcb1",
-      "checklist.md": "5ec98407af05f44cef5340bd56c13bccb81b2b23c7b3274769d65470500279fa",
       "implementation-summary.md": "01e5532dd49ab53277ad93b9e0f821acf330e26b5f6072e3741c05acff21482e"
     },
     "last_active_child_id": null,

@@ -86,13 +86,14 @@
     ],
     "causal_summary": "Improve internal spec-kit and skill-system mechanics: the resource-map and deep-loop artifact plumbing, the skill-advisor system, the spec-folder template system, and spec-folder naming policy",
     "created_at": "2026-05-26T16:35:26.421Z",
-    "last_save_at": "2026-08-28T22:55:54.935Z",
+    "last_save_at": "2026-08-30T15:39:29.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:c1221b33bb8179473ef0f48c5227c87840e6227fe1d190f89eddefbb48fb578b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "361e6d6fcc1af9f697fe3f9c39affe2f7f905114913bb6ee8be255bee2a48284"
     },

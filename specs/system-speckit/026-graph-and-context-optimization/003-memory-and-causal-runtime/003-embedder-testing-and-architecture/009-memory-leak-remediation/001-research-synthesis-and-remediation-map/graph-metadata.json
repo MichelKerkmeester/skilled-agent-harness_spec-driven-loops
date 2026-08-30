@@ -15,9 +15,6 @@
     "trigger_phrases": [
       "research-synthesis-and-remediation-map",
       "memory leak 1",
-      "phase 001 checklist",
-      "memory leak research archive validation",
-      "source research recovery checklist",
       "phase 001 decision record",
       "memory leak research consolidation adr",
       "delete old research packets decision",
@@ -30,14 +27,14 @@
       "memory",
       "leak",
       "phase",
-      "checklist",
-      "research",
-      "archive",
-      "validation",
-      "source",
-      "recovery",
       "decision",
-      "record"
+      "record",
+      "research",
+      "consolidation",
+      "adr",
+      "delete",
+      "old",
+      "packets"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -45,14 +42,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md",
       "research/remediation-map.md",
-      "research/source-evidence-index.md",
-      "research/source-research/020-cli-process-memory-leak-deep-research/research/iterations/iteration-001.md",
-      "research/source-research/024-cli-deep-research-memory-leak-audit/research/iterations/iteration-001.md"
+      "research/source-evidence-index.md"
     ],
     "entities": [
       {
@@ -71,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -107,12 +95,6 @@
         "name": "source-evidence-index.md",
         "kind": "doc",
         "path": "research/source-evidence-index.md",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/source-research/020-cli-process-memory-leak-deep-research/research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -198,28 +180,39 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Local Research Archive",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The two source packets identify overlapping process, sidecar, daemon, lock, and host-memory hazards",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-08-29T13:10:02.192Z",
+    "last_save_at": "2026-08-30T15:39:31.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:bd2a8b2a9677602eb3ab9c8810e2ea49e140cecb8a3f58ea006e1306a0b341e2",
+    "source_fingerprint": "sha256:1442ea6cd4844c49448aeaadfe3d198681b1501051caf39844773f263f878e16",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a6d6ff91e6b70784f75d6d43ba15a30d7a22ab275678095345911e9aba1fecf5",
       "plan.md": "e722b892359a487537382ff6f70a18adedbba67e1bb1bb00090f84a390b06343",
       "tasks.md": "05f1fa4124cce57e1431db80f9af4568a3f4e32fec0c5e2c0eef225345463087",
-      "checklist.md": "be778e81072838afe44360c8207dd6a5a223c026fccf460eb744dff085a4952e",
       "decision-record.md": "20e8328a6f89d8c7428f2a5d52207092c3dead5601a984b0d6ff6e1c6f577b0b",
       "implementation-summary.md": "e7068ea9f413f34ef7d7432d185fea090ba9b46155b6cc84c1282e5eab3dbf1a",
       "resource-map.md": "ec5d843c9efefe7797a66204f59c5b68a9725b6a5b4313bfe7428d19eb694bc1"

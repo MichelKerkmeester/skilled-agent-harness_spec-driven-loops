@@ -19,10 +19,10 @@
       "plan",
       "reimagined",
       "tasks",
-      "checklist",
       "decision",
       "record",
-      "decision record"
+      "decision record",
+      "implementation"
     ],
     "key_topics": [
       "spec",
@@ -32,101 +32,42 @@
       "plan",
       "reimagined",
       "tasks",
-      "checklist",
       "decision",
       "record",
+      "implementation",
       "title",
       "system-spec-kit"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
-      ".opencode/skills/system-spec-kit/references/templates/level_selection_guide.md",
-      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
-      ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
-      ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
-      ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
-      ".opencode/skills/system-spec-kit/assets/template_mapping.md",
-      ".opencode/agents/orchestrate.md",
-      "implementation-summary.md",
-      "checklist.md",
+      "spec.md",
+      "plan.md",
       "tasks.md",
-      "references/templates/level_specifications.md",
-      "references/templates/level_selection_guide.md",
-      "references/memory/embedding_resilience.md",
-      "references/config/environment_variables.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/agents/orchestrate.md",
       "scripts/spec/validate.sh",
       "scripts/spec/create.sh",
       "spec/validate.sh",
-      "assets/level_decision_matrix.md"
+      "config/filters.jsonc",
+      "config/config.jsonc",
+      "config/README.md",
+      "scripts/scripts-registry.json"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "level_specifications.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
-        "source": "derived"
-      },
-      {
-        "name": "level_selection_guide.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/templates/level_selection_guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "environment_variables.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
-        "source": "derived"
-      },
-      {
-        "name": "validation_rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "level_decision_matrix.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
-        "source": "derived"
-      },
-      {
-        "name": "parallel_dispatch_config.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
-        "source": "derived"
-      },
-      {
-        "name": "template_mapping.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/template_mapping.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.md",
-        "kind": "doc",
-        "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -136,9 +77,33 @@
         "source": "derived"
       },
       {
-        "name": "embedding_resilience.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "references/memory/embedding_resilience.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
@@ -151,6 +116,30 @@
         "name": "create.sh",
         "kind": "script",
         "path": "scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "filters.jsonc",
+        "kind": "file",
+        "path": "config/filters.jsonc",
+        "source": "derived"
+      },
+      {
+        "name": "config.jsonc",
+        "kind": "file",
+        "path": "config/config.jsonc",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "config/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "scripts-registry.json",
+        "kind": "config",
+        "path": "scripts/scripts-registry.json",
         "source": "derived"
       },
       {
@@ -206,28 +195,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Count Reconciliation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "title: \\\"Spec 089: system-spec-kit Reimagined Refinement\\\"",
     "created_at": "2026-04-12T09:02:53.559Z",
-    "last_save_at": "2026-07-10T06:21:45.060Z",
+    "last_save_at": "2026-08-30T15:39:37.644Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4fb50a3d8407460428d5280f93bafd59a835fdadd0fb509541c10217a12241cd",
+    "source_fingerprint": "sha256:261b4303e787b143b149cc998a804973e7ddd72625930e91e4d09f1bc75c64d8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b4642344d67dc933af128191af68e2e31178f9469d31860996b98f6358e2cf7a",
       "plan.md": "7197e97a55fab5f65bc805e7cb99ebef679717ffec372a8c0d6fac78dc728850",
       "tasks.md": "702c144ce45d0ab9e5a5e97faab68fc35925af7c7ab30196422f2670d3fcb13a",
-      "checklist.md": "e0738d9acd31a4bee5e83ec1603e5ea79dc9f4fecffd08bf424d420854eab365",
       "decision-record.md": "0e3b011f6be0f9d3a09b7454be3a2aaffcf2efaa7aa38ed273f36a084dee6aa8",
       "implementation-summary.md": "1e1e3b34b2d7ec4fc5c48b7ff987f45b0de6ab93419c388271d6a59d7d745101",
       "research/research.md": "96b1eeb1de2a991d831f2c91e82f69e0eef98e3156933b2f0b6f638b74f38b99"

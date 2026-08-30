@@ -16,7 +16,6 @@
       "GIT_DIR scrub",
       "git env isolation plan",
       "git env isolation tasks",
-      "git env isolation checklist",
       "git env isolation summary"
     ],
     "key_topics": [
@@ -28,10 +27,10 @@
       "scrub",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "three",
-      "git-family"
+      "git-family",
+      "test"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs",
       ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
@@ -72,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,26 +191,31 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three git-family test/tool helpers create throwaway git repositories and write config into them, isolating those writes only by passing a `cwd`/`-C <dir>` to git",
     "created_at": "2026-07-29T06:06:33.668Z",
-    "last_save_at": "2026-08-29T13:10:19.750Z",
+    "last_save_at": "2026-08-30T15:39:18.663Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa04e14406dace523f8835daf049b4a05358505fa38a388a9ca353a8b6dd0421",
+    "source_fingerprint": "sha256:8b89fa96e2e526c80c5453c6d8d02cbdc9d7110e8c03b4bdd1af8c38c50e5261",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "20816f6d87aac04c0a8b3fb42dc3afe7ae94caa46dba8cc40609ae41ca603391",
       "plan.md": "c0226b0f4e762e88c3dafced4676980daacb2a2bd803c21206dfa3201decd18d",
       "tasks.md": "cfafa14a4e7c315be8b8b4d47b1e18559ed285b0f25d7832479cc347aa8cbbb4",
-      "checklist.md": "ab6a0dd1fa695d07cb58749ca52f3452c9dbd4a556ac2e63a91c10aba3844d5e",
       "implementation-summary.md": "a26f4c16b0c4cd6ee13230734d4dcf8c9c49098f124f65a2b22a1b16f5ca8ac5"
     },
     "last_active_child_id": null,

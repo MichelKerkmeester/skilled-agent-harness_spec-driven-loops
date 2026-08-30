@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/018-cli-devin-prompt-quality/003-eval-loop",
-  "spec_folder": "cli-external-orchestration/018-cli-devin-prompt-quality/003-eval-loop",
-  "parent_id": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "packet_id": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/003-eval-loop",
+  "spec_folder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/003-eval-loop",
+  "parent_id": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -19,7 +19,6 @@
       "hill-climbing convergence",
       "113/003 plan",
       "113/003 tasks",
-      "113/003 checklist",
       "113/003 decisions",
       "113/003 summary"
     ],
@@ -35,19 +34,24 @@
       "convergence",
       "plan",
       "tasks",
-      "checklist"
+      "decisions"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -61,21 +65,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -181,39 +173,44 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context Single",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "We have a rig (002) and a ratified design contract (001)",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-07-14T19:26:19.485Z",
+    "last_save_at": "2026-08-30T15:39:08.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2f00c949d63b4fcf5bcf4b686a4f5d3e5012eb0ef95c69a0baa9985c85fd3b6",
+    "source_fingerprint": "sha256:369f57576824dde77349f385da3c8a326e5f14fe78999b2fbf19c36eccaa4ef3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e6f9b9b64071984ef6293e57d1fbab836b723800b289aac1196b3869c6a4e4b9",
-      "plan.md": "eb84de393c82e4cc6d365bebbb647003c9d592e4f5e0e3b44be7eb31d67bc187",
-      "tasks.md": "4c861dd39c200e9198cc6946206274f2e564457fca0df5286bac1c1dbaa59386",
-      "checklist.md": "b7d1b1a6c25c3308a6dcc3203f08234ebef398be3afc66089b73d2a5a0660cc8",
+      "spec.md": "870aa6e0d77e70bd0a854d205421345c3393c9f8a3aa9c5712af908db35c0a22",
+      "plan.md": "2f34795ab2579711388e9d4fe5c9d2d6079c58ec54ed4bdcb90629a47f39b22a",
+      "tasks.md": "34448faeacb4624ddc422971c1c4576794ecd3a0d44a6447fa0c147a10848ac8",
       "decision-record.md": "e155c762f9ac46de60335e4120bd3f54a663eba765aadedaa8ba92a27b162cbb",
-      "implementation-summary.md": "d5c0f9ef7464146eac20ea5609722cae5bd92ca53bd1f7b85a711c582f1274d6"
+      "implementation-summary.md": "9809012caf7460f4d9a31c7a6656ccc1517aae43463130b33e7b932c763b905c"
     },
     "last_active_child_id": null,
     "last_active_at": null

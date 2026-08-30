@@ -174,13 +174,14 @@
     ],
     "causal_summary": "Six host configurations launch the `codemode` MCP server with `/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`",
     "created_at": "2026-08-28T16:11:19Z",
-    "last_save_at": "2026-08-29T15:21:55.470Z",
+    "last_save_at": "2026-08-30T15:39:10.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:c8ccef89e3d75dd0321907fc6699ab10edbc4c7f4197ef5a7e2aad033051cfc3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "231995c4ab9066de481481c8111e52048010d64ac5d79cd209e575a102c83533"
     },

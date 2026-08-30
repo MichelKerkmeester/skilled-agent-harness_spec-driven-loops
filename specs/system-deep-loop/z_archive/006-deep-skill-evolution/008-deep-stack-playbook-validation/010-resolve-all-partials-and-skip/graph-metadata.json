@@ -40,19 +40,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "scratch/evidence/PARTIAL-RESOLUTION-LEDGER.txt",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/evidence/PARTIAL-RESOLUTION-LEDGER.txt"
     ],
     "entities": [
-      {
-        "name": "PARTIAL-RESOLUTION-LEDGER.txt",
-        "kind": "file",
-        "path": "scratch/evidence/PARTIAL-RESOLUTION-LEDGER.txt",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,6 +69,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "PARTIAL-RESOLUTION-LEDGER.txt",
+        "kind": "file",
+        "path": "scratch/evidence/PARTIAL-RESOLUTION-LEDGER.txt",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After 009 the 007 matrix stands at 145 PASS / 31 PARTIAL / 0 FAIL / 1 SKIP",
     "created_at": "2026-05-28T00:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:48.913Z",
+    "last_save_at": "2026-08-30T15:39:23.585Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:523afd83f29cde0ef87aa2b193a2f5d25eea9f1be3c53a8eeb397223817fd8d5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3bd35ed3b6f50ac33ae7951bac0f52dd9da31ba1cb1449809652e5d9050ef4bb",
       "plan.md": "4c10a5848dd937d1af0cecc7efafbe587eb07ee20d07a84f4eb2d044478d316d",

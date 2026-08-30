@@ -23,8 +23,8 @@
       "070 phase 005 tasks",
       "root docs config tasks",
       "phase 005 verification",
-      "070 phase 005 checklist",
-      "root docs config verification"
+      "070 phase 005 implementation summary",
+      "root docs config implementation summary"
     ],
     "key_topics": [
       "phase",
@@ -46,8 +46,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
+      "graph-metadata.json",
       ".claude/settings.json",
       ".claude/settings.local.json",
       ".codex/config.toml",
@@ -73,15 +73,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
         "source": "derived"
       },
       {
@@ -201,22 +201,21 @@
     ],
     "causal_summary": "Packet 070 renames the old deep-loop skill IDs to `deep-review` and `deep-research`",
     "created_at": "2026-05-05T19:30:00Z",
-    "last_save_at": "2026-07-16T16:31:33.889Z",
+    "last_save_at": "2026-08-30T15:39:24.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T19:45:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac38325dca2045338a683ec628ea7691cec7c11112bf4aa0c0aa969e1e83dca4",
+    "source_fingerprint": "sha256:7f649482306f3ba38bb8ddf1bd9f5fbcc0a35c7da798ed4f8e934dbfaeb79793",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5bec9c4314c77534c526bb414a7cd5855aa0c804fc15e4ec4b760f9f5ea161fe",
       "plan.md": "b6b9dc2f13ba488142a99a0c0e3bff7c25ddf3c87cf44b3424b8efd54d170476",
       "tasks.md": "27a5d782c4c4c4755f2f4f46be8b65c35b60ec3aef7736aae7f500a3f8b33ef5",
-      "checklist.md": "bfec1d7b5a31b2a356bbc23461766e890f0f5256bdc861714a3850078043cf13",
       "implementation-summary.md": "5039b8985ceba122c182a2b70d64a183b4f5ca59225b3cfa49d29b8c8e486fcd"
     },
     "last_active_child_id": null,

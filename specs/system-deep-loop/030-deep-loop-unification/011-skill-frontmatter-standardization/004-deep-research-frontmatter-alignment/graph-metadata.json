@@ -43,8 +43,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "deep-research reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 13 references and 0 of 2 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:28Z",
-    "last_save_at": "2026-07-16T16:33:05.661Z",
+    "last_save_at": "2026-08-30T15:39:19.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f378fdfb11b85ac59f4fa56e8de5188439e312a71c45d987367ae94cc0e255db",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ef218e06ca3dc0479c735ad7fd6d157a836e7fd247116739d3680cfe9047163",
       "plan.md": "1e1a999ebf53966a5857230c68bbd167d36275b5edb642290be8ad44eff51747",

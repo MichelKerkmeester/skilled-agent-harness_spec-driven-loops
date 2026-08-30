@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Exercise all 39 mk-spec-memory MCP tools and execute all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 to validate behavior post-113 z_archive un-exclusion.",
     "created_at": "2026-05-16T13:55:00Z",
-    "last_save_at": "2026-08-29T15:22:12.215Z",
+    "last_save_at": "2026-08-30T15:39:28.696Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:b062ad0a0f47ffdfbe77f7156f417132b1d205f28982cd94f4ceadf53f3733f4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2ce9b46d9a5dc0230e1ef24b8822c2d6f5677c1466ea3c74b2cce79a6a5fb686",
       "plan.md": "5efc5410bf6d6794c8ad2993f5abbcbd1690ff3a8a9488aebc7e791d622e7d87",

@@ -18,7 +18,6 @@
       "integration verification rollout plan",
       "advisor daemon reload verification plan",
       "integration verification rollout tasks",
-      "integration verification rollout checklist",
       "integration verification rollout outcome"
     ],
     "key_topics": [
@@ -39,30 +38,16 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/package.json"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-root-metadata-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -78,15 +63,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/package.json",
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
         "source": "derived"
       },
       {
@@ -168,48 +153,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Outcome",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "Depends On",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built This",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "How It Was Delivered Phase",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Final gate for the skill/advisor JSON optimization implementation program: rerun the pinned routing-accuracy corpus end-to-end and report the top-1/top-3 delta, prove the live advisor daemon actually reindexes new derived/edges/command data (shipping a reload/verification step if it does not), add source-change cache invalidation for watched derived files and the executor-delegation alias cache, and record a rollback for every high-blast schema/edges/command-rewire change before the program closes.",
     "created_at": "2026-07-29T08:00:38.637Z",
-    "last_save_at": "2026-07-30T14:23:17.870Z",
+    "last_save_at": "2026-08-30T15:39:15.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9c5fc721a3729235520bc19b937eaedca138d9ddc6b895f964f6c2f35c8cd62",
+    "source_fingerprint": "sha256:75fdbef9b8ff2f751695ff913493eb15636af8671bd0b72de579aa5be52ab5a3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d5730eab9e5b8b24691e4bd586213ddd97b4eb79284f35c477c529313d2d7286",
       "plan.md": "c3f668394119bdce50ea330cdac241b0e3c1ed70232704506a467c8f5ef1debc",
       "tasks.md": "ffc94b7b17f15bb120e26e96fbc268a49dd3f5dd14b23aeae32c7be19e392cf7",
-      "checklist.md": "02fa623741641c5d8f39b5538e4c510ba394ff4a997c1b17176e8e37d5a43e58",
       "implementation-summary.md": "77fe97ae614bf5d9663ef6e2fd22fb6536c6adfd7950f22d40381544d8ebbd64"
     },
     "last_active_child_id": null,

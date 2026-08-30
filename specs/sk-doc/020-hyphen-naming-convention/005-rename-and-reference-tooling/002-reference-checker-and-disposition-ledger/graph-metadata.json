@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The migration needs a whole-repository checker that follows every mapped path through code, docs, configs, registries, and symlinks, while recording a disposition for every rename and dynamic require, source, or glob site.",
     "created_at": "2026-07-14T15:16:48Z",
-    "last_save_at": "2026-08-30T08:04:21.010Z",
+    "last_save_at": "2026-08-30T15:39:16.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:10ecc442f65d0b89ab6bc02971403a8f17fbbf2b15058b2596b4197843aec7d8",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eeeeb66f69006457ee4b2be0c5a8f07dc2dae3a8d869d7a78a35c6e7f2b75c99",
       "plan.md": "b48904ac3b5c58cf16d6dea08ee4606a03accaeccccf52d194df99b65ed1f92a",

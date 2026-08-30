@@ -25,8 +25,8 @@ A task is done when its evidence cell names something that was actually observed
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [P0] Capture the baseline counts: total packets, packets with a fingerprint, packets with a marker
-- [ ] T002 [P0] Reproduce the skip on a copied packet and record the observed silence as the negative control
+- [x] T001 [P0] Capture the baseline counts: total packets, packets with a fingerprint, packets with a marker
+- [x] T002 [P0] Reproduce the skip on a copied packet and record the observed silence as the negative control
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -34,11 +34,11 @@ A task is done when its evidence cell names something that was actually observed
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 [P0] Write the stamp-only migration; verify on a sample that each changed file differs by exactly one added key
-- [ ] T004 [P0] Run the migration across the tree; confirm the fingerprint-without-marker count reaches 0
-- [ ] T005 [P0] Add the schema refinement requiring the marker when a fingerprint is present
-- [ ] T006 [P0] Stop the integrity rule skipping on an absent marker, keeping the older-present skip
-- [ ] T007 [P1] Invert the test case that pins "absent generation skips" and add the presence contract cases
+- [x] T003 [P0] Write the stamp-only migration; verify on a sample that each changed file differs by exactly one added key
+- [x] T004 [P0] Run the migration across the tree; confirm the fingerprint-without-marker count reaches 0
+- [x] T005 [P0] Add the schema refinement requiring the marker when a fingerprint is present
+- [x] T006 [P0] Stop the integrity rule skipping on an absent marker, keeping the older-present skip
+- [x] T007 [P1] Invert the test case that pins "absent generation skips" and add the presence contract cases
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -46,10 +46,10 @@ A task is done when its evidence cell names something that was actually observed
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 [P0] Run every new case against pre-change code and confirm it fails
-- [ ] T009 [P0] Confirm a stamped packet with real drift now reports a mismatch
-- [ ] T010 [P1] Run the migration a second time and confirm an empty diff
-- [ ] T011 [P1] Record the exposed mismatch count and hand it on rather than repairing it here
+- [x] T008 [P0] Run every new case against pre-change code and confirm it fails
+- [x] T009 [P0] Confirm a stamped packet with real drift now reports a mismatch
+- [x] T010 [P1] Run the migration a second time and confirm an empty diff
+- [x] T011 [P1] Record the exposed mismatch count and hand it on rather than repairing it here
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -90,9 +90,9 @@ is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` reports `RESULT: 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Ordering and rollback defined in plan.md
-- [ ] CHK-003 [P1] Baseline counts captured before any file is written
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Ordering and rollback defined in plan.md
+- [x] CHK-003 [P1] Baseline counts captured before any file is written
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -100,9 +100,9 @@ is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` reports `RESULT: 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Migration writes only the marker key
-- [ ] CHK-011 [P0] Schema refinement leaves a packet with neither field legal
-- [ ] CHK-012 [P1] No new comment embeds an artifact identifier
+- [x] CHK-010 [P0] Migration writes only the marker key
+- [x] CHK-011 [P0] Schema refinement leaves a packet with neither field legal
+- [x] CHK-012 [P1] No new comment embeds an artifact identifier
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -110,10 +110,10 @@ is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` reports `RESULT: 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] Every new case observed failing against pre-change code
-- [ ] CHK-021 [P0] Older-present marker still skips
-- [ ] CHK-022 [P0] Deleting the marker is a failure, not silence
-- [ ] CHK-023 [P1] Migration idempotence proven by a second run
+- [x] CHK-020 [P0] Every new case observed failing against pre-change code
+- [x] CHK-021 [P0] Older-present marker still skips
+- [x] CHK-022 [P0] Deleting the marker is a failure, not silence
+- [x] CHK-023 [P1] Migration idempotence proven by a second run
 <!-- /ANCHOR:testing -->
 
 ---
@@ -123,9 +123,9 @@ is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` reports `RESULT: 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | [ ]/7 |
-| P1 Items | 3 | [ ]/3 |
+| P0 Items | 7 | 7/7 |
+| P1 Items | 3 | 3/3 |
 | P2 Items | 0 | [ ]/0 |
 
-**Verification Date**: [YYYY-MM-DD]
+**Verification Date**: 2026-08-30
 <!-- /ANCHOR:summary -->

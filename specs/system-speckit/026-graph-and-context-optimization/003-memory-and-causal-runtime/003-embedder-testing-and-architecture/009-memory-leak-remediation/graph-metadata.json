@@ -136,13 +136,14 @@
     ],
     "causal_summary": "Phase parent for memory and process lifecycle remediation across Spec Kit Memory, deep-loop CLI dispatch, CocoIndex, Code Graph, rerank sidecars, and Apple Silicon host-memory verification.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-08-29T15:22:16.094Z",
+    "last_save_at": "2026-08-30T15:39:31.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:a584297d55be0837c8786e06c3e8644f5d12f35e52c03e91907f7fc6d0dd39d3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9752b6edec5dcba4c9ffc58a2838e307d35e41c2e61dacfdeabe618e092f2997"
     },

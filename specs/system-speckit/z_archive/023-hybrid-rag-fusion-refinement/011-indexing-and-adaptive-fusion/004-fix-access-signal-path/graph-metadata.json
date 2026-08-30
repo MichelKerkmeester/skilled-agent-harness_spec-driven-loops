@@ -18,8 +18,6 @@
       "batched access signal plan",
       "fix access signal tasks",
       "batched access signal tasks",
-      "fix access signal checklist",
-      "phase 4 verification",
       "phase 4 implementation summary",
       "access signal path summary"
     ],
@@ -33,20 +31,17 @@
       "signals",
       "plan",
       "tasks",
-      "checklist",
       "phase",
-      "verification"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/lib/search/pipeline/stage2-fusion.ts",
-      "mcp_server/tests/adaptive-ranking-e2e.vitest.ts",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -56,27 +51,9 @@
         "source": "derived"
       },
       {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/stage2-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking-e2e.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/adaptive-ranking-e2e.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -86,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -192,27 +169,44 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Adaptive ranking needed access events from the main search pipeline, not only from storage-side batching paths",
     "created_at": "2026-04-12T09:02:50.333Z",
-    "last_save_at": "2026-07-10T06:24:24.652Z",
+    "last_save_at": "2026-08-30T15:39:39.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e51e8a8e4d30d376f8794197ce3152c5ebee285d7397638917d9bf60f8547717",
+    "source_fingerprint": "sha256:02b0ba51c062838641ad86d79db201182bfa4b8a450b5926fda3fad1c8c850d2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "097ff082d4ba2e232539729008bfee8a32a8f57e6c3bf2db9675e7eaf57cc900",
-      "plan.md": "38106372bc6aba79bda817c849d8b6a1976e9f3ac73e0a1dbdaaa78e4934b520",
-      "tasks.md": "00f3057221231890a1fd73cf2e57ff036dcc03d719f903f2151e53de55dc086a",
-      "checklist.md": "2213f2441da17a2b0491fa400219d0843c3fe94992337f8054f99efbf34ef575",
-      "implementation-summary.md": "d7a28fca5b1ae2020749be5986ceffec296e4f736c56cf236bad1fff80a2dd75"
+      "spec.md": "de7cc8732662521c220e10f266ba61deea9f0538d4418cabcf97a2c37f2d1457",
+      "plan.md": "c344a9cdf687e28c41b7b433ac59ac54b84cfab545c3d82a40dd022c33c1a6ce",
+      "tasks.md": "32b5d42824fe6a085760ba4e8eb76d2d90608d19bd34c39b148016d80a7bfb77",
+      "implementation-summary.md": "f6f302092df73080c8c7d2204abcaa3587726ba6d98de292693d5f7443cca27d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -38,44 +38,25 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/commands/speckit/complete.md",
       ".opencode/commands/speckit/plan.md",
-      ".opencode/commands/speckit/implement.md",
-      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
-      "plan.md",
-      "spec.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/commands/speckit/implement.md"
     ],
     "entities": [
       {
-        "name": "complete.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/speckit/complete.md",
-        "source": "derived"
-      },
-      {
-        "name": "implement.md",
-        "kind": "doc",
-        "path": ".opencode/commands/speckit/implement.md",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_complete_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -88,6 +69,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The speckit `:auto` mode cuts interactive approval prompts but is not designed for crash-safe unattended execution",
     "created_at": "2026-06-28T20:06:47.253Z",
-    "last_save_at": "2026-07-16T16:32:03.530Z",
+    "last_save_at": "2026-08-30T15:39:25.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b4ca85a12f231802b4146397b8187dcfa747efa60c320cdb86ec5940bfe45064",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dc271fe0ed82526111c57a7e6eef3f7b1b7bf0f76003f27257bbdede62e05d10",
       "plan.md": "6b258e29de50f3a42db49abc975f869499c83d16762440ca361996fe545b6579",

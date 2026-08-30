@@ -19,10 +19,9 @@
       "session-notes router plan",
       "handover anchor tasks",
       "session-notes tasks",
-      "handover anchor checklist",
-      "session-notes verification",
       "handover anchor implementation",
-      "session-notes implementation"
+      "session-notes implementation",
+      "046 handover anchor naming"
     ],
     "key_topics": [
       "handover",
@@ -34,76 +33,19 @@
       "plan",
       "router",
       "tasks",
-      "checklist",
-      "verification",
-      "implementation"
+      "implementation",
+      "memorysave",
+      "filepath"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/content-router.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/intent-routing.vitest.ts",
-      ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/spec-doc-structure.vitest.ts",
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "content-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-structure.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/templates/manifest/handover.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "content-router.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/content-router.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "intent-routing.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/intent-routing.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "save_workflow.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/memory/save_workflow.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-structure.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/spec-doc-structure.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -117,21 +59,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,26 +135,73 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Divergence Map",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`memorysave({ filePath: \".../014-local-embeddings-migration/handover.md\", routeAs: \"handoverstate\" })` routed to `handover.md::session-log`, but the handover template and live handover files use the `session-notes` anchor",
     "created_at": "2026-05-14T16:48:27Z",
-    "last_save_at": "2026-07-17T17:19:20.428Z",
+    "last_save_at": "2026-08-30T15:39:30.016Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a98f7ff210b2501eaf2504e89e6ebef78d2927835267b7718cbd77fb7748031a",
+    "source_fingerprint": "sha256:e516ff0df1443342e5e872a486c741f32f8b8cc22004deac972cc97499546fe1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f30f29c6a735f26d2d3405457e6d1f128e660af6dc5f06ad956aca83271996da",
       "plan.md": "0758a70df2eed3e97d58ac869bc5925ea23c7da54d8331574c86885144510f21",
       "tasks.md": "bd98a2d3722c5559382e78b5555e2fc295b30c096f32a3ca154c045b672b5de1",
-      "checklist.md": "2d7c739aed8bd347e7600aaa6d10ee587067db84d04a29dd535e7f2e01985650",
       "implementation-summary.md": "f70870054016e8f72cd9b3abdd3d2b56812f825749e4d370d80e607cc69ea883"
     },
     "last_active_child_id": null,

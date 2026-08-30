@@ -19,7 +19,6 @@
       "llama-cpp 1k retrieval probe",
       "017 default flip plan",
       "017 llama cpp tasks",
-      "017 llama cpp checklist",
       "017 llama cpp implementation summary"
     ],
     "key_topics": [
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scratch/migration-run-results.json",
       "scratch/probe-1k-results.json",
@@ -75,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,26 +194,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Source Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 015 and 016 showed that `llama-cpp` is much faster than the current `hf-local` Memory MCP embedding backend and that the smaller 200-row retrieval probe was rank-equivalent",
     "created_at": "2026-05-13T11:10:00Z",
-    "last_save_at": "2026-08-29T15:22:14.292Z",
+    "last_save_at": "2026-08-30T15:39:29.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T11:10:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7abe8e83cb14afa5642169b55cae0885edc913bee82c80e0967a428c95dd8d9",
+    "source_fingerprint": "sha256:b0963f496ee882647619bfff1f7aad1682c329197ae7319bccf7dd95d47825b6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "43db7e84a6a002f73e09c188668ac534126c71a4ed66e8f375d9fc09f0731eb1",
       "plan.md": "98675d2c368bbee0479e4c9e3846fde24b6569788909cc1a348eda923ebc24ed",
       "tasks.md": "3af3f3be16c51b13a097583b014f6ebcd6549329f6ad9e7fea43a2bc24899e44",
-      "checklist.md": "5b68df8377982498896107dedb50819d5e8c9c3df0041132ca947c998ae86909",
       "implementation-summary.md": "9591f30d53f1d2d90d74e8a5a398025b6de10f45a78ce6a0441db7cef3d8680c"
     },
     "last_active_child_id": null,

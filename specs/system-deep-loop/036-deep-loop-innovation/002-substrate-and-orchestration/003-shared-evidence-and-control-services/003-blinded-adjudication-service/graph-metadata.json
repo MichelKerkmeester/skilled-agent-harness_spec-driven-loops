@@ -18,8 +18,6 @@
       "counterfactual adjudication service plan",
       "blinded adjudication tasks",
       "counterfactual adjudication implementation tasks",
-      "blinded adjudication checklist",
-      "counterfactual adjudication verification",
       "blinded adjudication implementation summary",
       "blinded adjudication verification evidence"
     ],
@@ -34,7 +32,7 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
+      "summary",
       "verification"
     ],
     "importance_tier": "high",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/blinded-adjudication/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts",
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan a shared blinded and counterfactual adjudication service that controls identity and position bias while preserving replayable raw scoring evidence.",
     "created_at": "2026-07-16T03:43:46.917Z",
-    "last_save_at": "2026-08-29T13:09:50.751Z",
+    "last_save_at": "2026-08-30T15:39:20.546Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e99b6cdcdb7d15b9c66bbf702e09b9c1763759bf8cd428c8ac8ac79d0250cfad",
+    "source_fingerprint": "sha256:9b28629836c47a83aaef4a56610336f91ab589845ef66f013089eba1293aefe1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d78b8a23b867b74585fa6997d0967d1bf3efb6dfd6b9a03f8c90384204fe189",
       "plan.md": "0cca190150b00df1cdb114db07ae2e987780c0dbaea272947ab8072a3f04f657",
       "tasks.md": "836ea7dbb1a5a50c82ac83dc7085787716e47f636760ca3614bf6344982970e0",
-      "checklist.md": "82d436a783073c0b46a03421fce006ee076ff5d07bbb6c6cfe9d373df73f0a6c",
       "implementation-summary.md": "590be3062bd4d3bcb345c0e698bf8119887acf1b1f2bff37dde43d26bd87e295"
     },
     "last_active_child_id": null,

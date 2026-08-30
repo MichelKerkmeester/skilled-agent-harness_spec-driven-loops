@@ -41,14 +41,14 @@
       "still"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
+      "spec.md",
       "001-research-baseline-and-inventory/spec.md",
       "002-public-redirect-and-replacement-contracts/spec.md",
       "003-discoverability-docs-mirrors-and-index/spec.md",
       "004-fixtures-benchmarks-and-runtime-cleanup/spec.md",
-      "001-research-baseline-and-inventory/research/research.md",
-      "spec.md"
+      "001-research-baseline-and-inventory/research/research.md"
     ],
     "entities": [
       {
@@ -96,17 +96,18 @@
     ],
     "causal_summary": "The deep-loop framework still exposes a standalone `deep-context` route through command, agent, nested skill, registry, advisor, generated contract, documentation, fixture, and benchmark surfaces",
     "created_at": "2026-07-04T10:46:17Z",
-    "last_save_at": "2026-07-16T16:32:55.114Z",
+    "last_save_at": "2026-08-30T15:39:25.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:1da4d42c89a6b3b97a082080ec1a1424e7caf59021f78e1f835ba7e6bf24113d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2eac569461493a757d63c75f6462f7d6f4358925e281fa2efc03e07ee3306309"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup",
     "last_active_at": null
   }
 }

@@ -24,7 +24,7 @@
       "016/004/014 tasks",
       "mirror dedup tasks",
       "canonical mirror tasks",
-      "016/004/014 checklist"
+      "016/004/014 summary"
     ],
     "key_topics": [
       "mirror",
@@ -38,7 +38,7 @@
       "pollution",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "evidence/phase2-comparison-014-dedup.md",
       "evidence/phase2-comparison-013-vs-014-delta.md"
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -179,42 +172,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Commit Handoff No",
         "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Hardens CocoIndex's _dedup_and_rank_hybrid_rows() so the 4 runtime mirrors (.opencode/.codex/.gemini/.claude) collapse to ONE canonical representative before the rerank window is selected. Operator-configurable canonical mirror via COCOINDEX_CANONICAL_MIRROR (default .opencode). Eliminates redundant rerank slots, gives every embedder + reranker a cleaner candidate set, addresses the mirror-pollution failure mode documented in 011/research iter 2 + iter 5. Embedder-agnostic, reranker-agnostic, future-proof for any new mirror that gets added.",
     "created_at": "2026-05-19T13:10:00.000Z",
-    "last_save_at": "2026-07-17T17:19:23.591Z",
+    "last_save_at": "2026-08-30T15:39:30.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:25c6ea7ee85079db0eaef3c8ce550283a5cc6ebf021f265616d0197599982bc0",
+    "source_fingerprint": "sha256:81ec1766a4e98d51d216f12ce77d2e1931a6100d465ef0b8399ef0954ffa2359",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "07bb734c267af3a1867dedc974eadaf8dc971fb45070f506cf4d8885d9dcffd1",
       "plan.md": "a0a4a3325633f00449821101e3e07cc00d88df88b9696332e5270a479abaaca5",
       "tasks.md": "be050e198bda8b7efd0be6ff3b7f5aae60c5bb3e1951b88b66d9e8303f358273",
-      "checklist.md": "22eb2d2f7386b7684d398492f53ae4008a19152b84b55657897a3d3b256574bb",
       "implementation-summary.md": "cd1ffdf8c5579b0d0d16cbff3e8b3a1f18c28022ea01fda591dedca83c20b2f6"
     },
     "last_active_child_id": null,

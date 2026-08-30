@@ -19,10 +19,10 @@
       "MR-004 fix workflow plan",
       "tasks",
       "phase 026 tasks",
-      "verification",
-      "checklist",
-      "phase 026 checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "phase 026 implementation summary",
+      "MR-004 fix summary"
     ],
     "key_topics": [
       "phase",
@@ -41,60 +41,19 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/description.json",
-      ".opencode/skills/sk-design/changelog/v1.4.3.0.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md"
     ],
     "entities": [
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "v1.4.3.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/changelog/v1.4.3.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "verdict-matrix.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -110,21 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
         "source": "derived"
       },
       {
@@ -198,26 +163,55 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Version Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 025 closed `PB-002` but left four items explicitly open or deferred: `MR-004`'s newly-discovered live-daemon-path advisor conflict (out of that phase's scope), a pre-existing `skilladvisor.py` negation-matching bug affecting `AI-004`'s standalone probe, and two \"fix-now, improvement\" findings from the fresh audit the operator declined to bundle into phase 025's narrower scope (parent version-number alignment, and the transform-verb-precedence doc-symmetry gap for `excludedAliases.audit`)",
     "created_at": "2026-07-08T03:36:33.546Z",
-    "last_save_at": "2026-07-09T10:02:44.655Z",
+    "last_save_at": "2026-08-30T15:39:12.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8bafd65347f6961c4a30babb967bae30014766f1d0cf9f9e79671f5e18a7620",
+    "source_fingerprint": "sha256:13d6d969f128927b5464132bc5c2eb2d82555424b079818219541fd617ff8398",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d326b115b15876952a745f7cd2f681279c52b64acc702b887b878407f32ea11c",
       "plan.md": "9f814de3e9d04828cee015f989ac56baf428005cf71c03e8874623481c78a27b",
       "tasks.md": "d5a2091665a5872f7ac5d4fb64af6faf6da032349d7bfe3079ef53c470a81173",
-      "checklist.md": "45b98769116e09233bce95b4661c32f8b305829d83294e74f1a085aa56018727",
       "implementation-summary.md": "97f36191ea8895880edba8e31bcbeeb2589e2b4df9fec7a6c3f9f1488f99907e"
     },
     "last_active_child_id": null,

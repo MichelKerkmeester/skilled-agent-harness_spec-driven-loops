@@ -18,8 +18,6 @@
       "deep-loop upcaster registry plan",
       "versioned event envelope tasks",
       "deep-loop upcaster implementation tasks",
-      "versioned event envelope checklist",
-      "deep-loop upcaster verification",
       "versioned event envelope implementation",
       "event type registry implementation",
       "adjacent upcaster verification"
@@ -36,7 +34,7 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist"
+      "adjacent"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts",
@@ -72,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Define the canonical wire envelope, type/version registry, per-type required-field contracts, and deterministic read-time upcaster entry points that every future deep-loop ledger event uses while the new substrate remains additive, dark, and non-authoritative.",
     "created_at": "2026-07-16T03:43:45.370Z",
-    "last_save_at": "2026-08-29T13:09:50.125Z",
+    "last_save_at": "2026-08-30T15:39:20.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df20813d527a51ad41d65430d76eaad6dc763e50c5da9046c2ddebc516a33004",
+    "source_fingerprint": "sha256:216bd3fe76b4eb3238cc162cc5a31ae236b382d2208cbb1e83540db97982925e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "48c3f5e89f9732c87200906ba758534f5c71de5f8da2588ec9a979c6f03185de",
       "plan.md": "de92809effe29346181750d7a47604f3c651bbba54642f2728eca0f3a007ea4d",
       "tasks.md": "0c57f06b228df840cb09aa79c3dc8e270c2cce8962b044c2e06193f59f7518a4",
-      "checklist.md": "d75a88a5609a58969e11a0733f569063f0881cb60b8809ad8d0ddb763996ed92",
       "implementation-summary.md": "d4a8db9b55413c585d30033801d07de350608c2ccd57835d68dcf5a3098b4a33"
     },
     "last_active_child_id": null,

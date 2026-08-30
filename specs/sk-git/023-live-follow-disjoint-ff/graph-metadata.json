@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Relax the primary-checkout reconcile and follower so a behind-only checkout fast-forwards through git's own --ff-only even while carrying unrelated work-in-progress, instead of hard-skipping on any tracked change; only the rebase/publish path keeps the clean-tree boundary.",
     "created_at": "2026-08-28T22:36:51.848Z",
-    "last_save_at": "2026-08-29T14:54:26.724Z",
+    "last_save_at": "2026-08-30T15:39:18.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1c4b7926ee5d8d4837866495c45f634030c4b0dad9318d0d57ba25959cca14cf",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6a22268be183981353ea2615a3dc539daf7562cd2ddee8641af61a0f5c6d3184",
       "plan.md": "9a00dd1708014ad56cdd8e19e0fda2c83c2db0f0bfd5d211514db229a4c1ecf3",

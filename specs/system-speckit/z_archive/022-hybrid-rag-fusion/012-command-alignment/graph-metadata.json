@@ -21,8 +21,8 @@
       "alignment",
       "012",
       "tasks",
-      "verification",
-      "checklist"
+      "implementation",
+      "summary"
     ],
     "key_topics": [
       "command",
@@ -35,8 +35,8 @@
       "reality",
       "plan",
       "tasks",
-      "verification",
-      "checklist"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,13 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       ".opencode/commands/memory/search.md",
       ".opencode/commands/memory/manage.md",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
       ".opencode/commands/memory/README.txt"
     ],
     "entities": [
@@ -73,12 +70,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -88,12 +79,6 @@
         "name": "tool-input-schemas.ts",
         "kind": "code",
         "path": "schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
         "source": "derived"
       },
       {
@@ -197,27 +182,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 012 spec pack previously described a command surface that is no longer true on disk:",
     "created_at": "2026-04-12T09:02:50.286Z",
-    "last_save_at": "2026-07-10T06:24:01.111Z",
+    "last_save_at": "2026-08-30T15:39:38.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:806b37c1d33cc555b1a3a9237d37052e20cec127f92d12f5f0d1ce52d6e138ee",
+    "source_fingerprint": "sha256:8b8966ab7b6cf87e66a261d00eb1d9d8111b4edea4d3f8385394d488dbb19b74",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b13e32ca5c845b5fdc414516ecf8b7fa1e625b8f2278bdb5bfe71167ec3a465",
-      "plan.md": "62906abb61e723290b9be20370603f3818050bc003755d20983d21b412508043",
-      "tasks.md": "04c2a518d5448fcd783e0fc22f5a126f509460cdbe02aa892ef0ebbde4b237c5",
-      "checklist.md": "74ceac52d0c9a3d5f9e65e4b44fb53baa1c5577db62359e0990ef0e83f191002",
-      "implementation-summary.md": "45aa5328bb398b2d95f6a0485ff7a6d9a459f471e87e1bb3d5215c267b709f3a"
+      "spec.md": "6f6d3287b886267a4a8ed7b1e1229e50a0921c8b8dd52f8eb4710940a4e2d519",
+      "plan.md": "2fe123fbcd3080eb778d0fba6e993cc0585b9cca2327a1c2e23d6eb556f82d15",
+      "tasks.md": "a9161219b734517b87c749aaa36f6f13b50c21a80a389738228ec2e3678e1c3e",
+      "implementation-summary.md": "70dff3200f38bcd57018b3ba4e844830d243a76877452a38f6b1b045a3597ad6"
     },
     "last_active_child_id": null,
     "last_active_at": null

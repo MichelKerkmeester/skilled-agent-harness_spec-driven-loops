@@ -192,7 +192,7 @@
     ],
     "causal_summary": "After phase 001 unblocks routing to the HTTP cross-encoder path, there is still nothing answering at `localhost:8765/rerank`",
     "created_at": "2026-05-23T11:55:15.604Z",
-    "last_save_at": "2026-07-17T17:19:26.457Z",
+    "last_save_at": "2026-08-30T15:39:31.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ffb6233d1445fcc1c090276b4e14eec08d90962ac83ef8bd10d26616b34aa2a7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6db339e8f831c135c4a95eb93e95e9b517506b730179bb8ea6196610059cf52",
       "plan.md": "5c1ef4de6d7310356a8ec937948aab451b28456003dbd6ab07b091ccd9d2f376",

@@ -20,9 +20,8 @@
       "sprint 1 tasks",
       "graph signal tasks",
       "r4 tasks",
-      "sprint 1 checklist",
-      "graph signal checklist",
-      "r4 checklist"
+      "002-sprint-1-graph-signal-activation implementation summary",
+      "002-sprint-1-graph-signal-activation delivery record"
     ],
     "key_topics": [
       "sprint",
@@ -32,11 +31,11 @@
       "channel",
       "plan",
       "tasks",
-      "checklist",
-      "now",
-      "functional",
-      "contributes",
-      "only"
+      "002-sprint-1-graph-signal-activation",
+      "implementation",
+      "summary",
+      "delivery",
+      "record"
     ],
     "importance_tier": "critical",
     "status": "in_progress",
@@ -44,8 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "mcp_server/package.json",
       "implementation-summary.md"
     ],
     "entities": [
@@ -65,18 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
         "source": "derived"
       },
       {
@@ -182,37 +167,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Narrative",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The graph channel is now functional after Sprint 0's G1 fix, but it contributes only through graph-search results (traversal)",
     "created_at": "2026-04-12T09:02:50.226Z",
-    "last_save_at": "2026-07-10T06:22:55.472Z",
+    "last_save_at": "2026-08-30T15:39:38.023Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d174d68ac7eda1145fc5d56862a9b21e4e9531dc0ee4607bc9bcc6c35a45d30e",
+    "source_fingerprint": "sha256:f338006256a1657993ea4de9ee84f43c4277e087b785d2959f8507cc3048f97c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8eb039a81c940ba48a31af1e09fe9240db686e200a0bcac6198e9ede66a1777",
-      "plan.md": "3360a3552e9932f9fc1b641a94db90ec5fe5262a9eede67a6a059ea5df1b9052",
-      "tasks.md": "17295310bc2c38b7ca708cc7fc2be9b68d0cecf90f2922a1625f8cfb0c28a98d",
-      "checklist.md": "30a5811b34a569e45d04cebc66f8859765e1575f7fb42b42963a94490be23e24",
-      "implementation-summary.md": "7d33176ed5a50062cd930a92e22f39b502916dcc4fe8246fff446a685a0fdb17"
+      "spec.md": "ec96d22fca5dfd60233dd14f0e4749be471f56a828fbee0ebe7dcf3f5687ab06",
+      "plan.md": "2e18b8c7a9e289d20df327240abd73fc86b03a93be90291e03e076411164917f",
+      "tasks.md": "09d9ba2912362b93afcea0e2cb5b3956eb11cdcb6d0e95099ef8c6e2e60a8140",
+      "implementation-summary.md": "0bdf1b874936b5c2bb215164b1f0ea3b2c7573f342bb6f10290fbdd45a5ee7c6"
     },
     "last_active_child_id": null,
     "last_active_at": null

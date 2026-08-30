@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Pure helper tests can pass while extension registration, lifecycle ordering, command ownership, or status calls are wired incorrectly",
     "created_at": "2026-08-16T09:08:02Z",
-    "last_save_at": "2026-08-30T08:04:08.750Z",
+    "last_save_at": "2026-08-30T15:39:09.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,7 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a29967db6d99683f8a6d0e6424f3d31aabf34e6b910b13a93b8a0fb9b1889cd3",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6b8c0e62e4a32decc482f00d7a87b3519cbaf41ee2062628b9cc4c08cefd72db",
       "plan.md": "589d81534d07c08f87aa993faa4103788b1ae29c32d38c7b7fc7e96f19b81553",

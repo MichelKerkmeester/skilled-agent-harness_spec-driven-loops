@@ -39,21 +39,15 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -66,6 +60,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Spec-memory's `SPECKITCROSSENCODER=true` path stays default-off because Qwen3-Reranker-0.6B on Apple Silicon CPU is too slow under the MCP rerank-gate timeout:",
     "created_at": "2026-05-23T11:55:15.619Z",
-    "last_save_at": "2026-08-28T15:53:27.825Z",
+    "last_save_at": "2026-08-30T15:39:31.106Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:63e5526cf2d4300afa537a162c1145e12d8e49231e3de54013e00269080ca980",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "971feb56176601fe479a73cadefb7d44af0fb4b1f3ded0b84246ca8929f991c2",
       "plan.md": "c101efa0567f4ab56b453300518d08601d487d01185297d338cf691a7d7753aa",

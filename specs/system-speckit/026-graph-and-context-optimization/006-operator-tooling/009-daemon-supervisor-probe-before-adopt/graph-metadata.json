@@ -21,8 +21,8 @@
       "launcher deep probe gate",
       "daemon probe before adopt tasks",
       "stale reclaim reap tasks",
-      "daemon probe before adopt checklist",
-      "wedged daemon verification"
+      "daemon probe before adopt decision",
+      "stale reclaim respawn adr"
     ],
     "key_topics": [
       "daemon",
@@ -41,40 +41,19 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
-      "handlers/memory-save.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "handlers/memory-save.ts"
     ],
     "entities": [
       {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-ipc-bridge.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "daemon-reelection-adoption-live.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -90,27 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -196,27 +175,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The stale-reclaim adoption branch (`mk-spec-memory-launcher.cjs:1580`) adopts a released daemon when `processLiveness(orphanChildPid) !== 'dead'` AND `bridgeReadiness(adoptResult).ready`",
     "created_at": "2026-06-14T17:37:27Z",
-    "last_save_at": "2026-07-17T17:19:33.391Z",
+    "last_save_at": "2026-08-30T15:39:32.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ec9cda392a6475fae0ee0999e16ff63897c6667f05d704166ccc3a0549e3862",
+    "source_fingerprint": "sha256:47d7a03a638b72ca589b0c9fa1b3a272aea2576001effab166dba09d189148da",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f4139aa25405eec3811b312976c2e8eba1ccc1c8e7c0c143ba5019d7d6813d24",
       "plan.md": "fe8ff8459f1d38608fed9e304e9e9186d53436791e8cec065e4252aacae6a684",
       "tasks.md": "b20ae4e0642a27059ac1083336cd8f18c3349870925f24736ed7f1bb46449471",
-      "checklist.md": "adc1ea6d32d1db48d0b6bd0f1488d0c927453ae200137cf6576274f49d428088",
       "decision-record.md": "48db6a1381d5058e0ab5e1462947d2c33b8eab5fc028c77968fdb31d82e3edad",
       "implementation-summary.md": "d120b68e418df284ee81c955fd1de0b661cb9b971bff611dfaa91a0b7a34fbea"
     },

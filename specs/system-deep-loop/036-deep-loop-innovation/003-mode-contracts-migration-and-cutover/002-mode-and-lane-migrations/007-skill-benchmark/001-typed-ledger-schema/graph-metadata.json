@@ -20,9 +20,9 @@
       "Skill Benchmark typed ledger schema tasks",
       "skill benchmark event vocabulary tasks",
       "skill benchmark upcaster tasks",
-      "Skill Benchmark typed ledger schema checklist",
-      "skill benchmark event schema verification",
-      "skill benchmark ledger gate"
+      "Skill Benchmark prevEventHash boundary",
+      "skill benchmark ledger head linkage",
+      "schema payload digest boundary"
     ],
     "key_topics": [
       "skill",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-ledger-schema/skill-benchmark-ledger-types.ts",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -185,37 +178,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Skill Benchmark Ledger Head Boundary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Actual",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the Skill Benchmark event vocabulary over the deep-improvement-common backbone: a typed append-only envelope for paired scenario treatments, progressive skill exposure, trajectory evidence, gold integrity, raw scoring observations, and versioned contribution-certificate lifecycle facts. This phase defines event types and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:41.092Z",
-    "last_save_at": "2026-08-29T13:09:54.186Z",
+    "last_save_at": "2026-08-30T15:39:21.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea7cab0dca09dec089a49385b7784f132ef1671daf48f22858cda5186d60c22d",
+    "source_fingerprint": "sha256:bd9d3c23f2ed20281aab0c1ac1cd4be17028411c88ec0989f27d51f949c54234",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d05fa98fdf65c941646146d997ed7808f0520c2a72f2ca315d25d5d1431ccfc2",
       "plan.md": "cb19b60b6012dfd6ff3d2324ca7d935a8ccdad1aef534f17496c35c1651291a3",
       "tasks.md": "5bbef33b2b0cb8760b6faecbb7267836dddf934b4351078867eaab25af389dca",
-      "checklist.md": "f3e72956fb12ac4e049b52db70db3da9b726e9721cce407d380063de643ce31d",
       "decision-record.md": "a445685aa38d8ad423fcf67b1a228aaf834c90b944dde427e1b1d7bfc5e10697",
       "implementation-summary.md": "751a8d78a00edf429eed0d849ecb686695bd79d93bdc908f3218b7c01bb5009d"
     },

@@ -29,8 +29,8 @@
       "adopter guide plan",
       "skill upgrade tasks",
       "single to parent tasks",
-      "skill upgrade checklist",
-      "single to parent checklist"
+      "skill upgrade summary",
+      "single to parent summary"
     ],
     "key_topics": [
       "skill",
@@ -52,7 +52,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md",
       ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
@@ -76,12 +75,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,30 +192,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This repo is a framework others adopt and customize",
     "created_at": "2026-08-15T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:05.274Z",
+    "last_save_at": "2026-08-30T15:39:18.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d42eb7febbd115e4cc6570d1327cbc35992fcc8a7f9f00d556ae6403ef55b789",
+    "source_fingerprint": "sha256:536d44a8feb7188bb77e0a9cff274b215548e90ba95a58d91e84c148e8092cb2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9fc444447ac9cb3e5ff1dcd1b823f296bac560bee337d0d80f17baf130d53822",
       "plan.md": "457077e1610c984345d4445102db474083ccb8301fd756dfb56e9d53fe142d9d",
       "tasks.md": "76d579da8258e4dafb1823d1dd0e49924b2d862f6b749bf159893cef6ef3ef9c",
-      "checklist.md": "78433e865971f241a045ac97efed06ef344a656f65494a99c3d7484f16379e2e",
       "implementation-summary.md": "60cf44f730a9875c8f3b5ee9a68d3c7747fa88b373c4e67d72f0d6aea999faca"
     },
     "last_active_child_id": null,

@@ -41,40 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/README.md",
-      "mcp_server/stress_test/durability/README.md",
-      "mcp_server/stress_test/search-quality/README.md",
-      "mcp_server/stress_test/substrate/README.md",
-      "mcp_server/stress_test/README.md",
-      "mcp_server/package.json",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -91,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,11 +178,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Automated Harness Awareness Before",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The stress-test documentation had five confirmed drifts from the shipped `mcpserver/stresstest/` harness",
     "created_at": "2026-07-05T09:43:38Z",
-    "last_save_at": "2026-07-17T17:19:55.050Z",
+    "last_save_at": "2026-08-30T15:39:36.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1c4c536c1874ee22c67f81be911899bff51461599f05471acf0a64731c12647d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ddea1a65a2efdbb639d4be4142b298f82a3d77ce71b35a3ad7d26215187b7ea",
       "plan.md": "a328f5aa6059c386d323ef2ce41eff1b8fbbc96f0e424694ec41764b5c12c216",

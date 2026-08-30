@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Nineteen server registrations span six configuration files",
     "created_at": "2026-08-28T16:11:21Z",
-    "last_save_at": "2026-08-29T15:21:55.796Z",
+    "last_save_at": "2026-08-30T15:39:10.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:75910672200aaeadd7f38fb3c401fbb3fef8522f635136c6a66352e5c3ef1884",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53d12237813e05d0c82bdf6dbd079866237151125a77981d86a6ff2a2c275aa8",
       "plan.md": "b3507b18873aa90fde6b32d34555bc64bf6ddea1188c655140b5ec9f005d8038",

@@ -23,8 +23,8 @@
       "council graph support plan",
       "101/003 tasks",
       "deep-ai-council graph tasks",
-      "101/003 checklist",
-      "council graph verification"
+      "101/003 decision",
+      "council graph decision"
     ],
     "key_topics": [
       "deep-ai-council",
@@ -35,45 +35,21 @@
       "storage",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
+      "decision",
       "deliberation",
-      "needs"
+      "needs",
+      "durable"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "checklist.md",
-      "tests/context-server.vitest.ts",
-      "tests/layer-definitions.vitest.ts",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -96,24 +72,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": "tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "layer-definitions.vitest.ts",
-        "kind": "test",
-        "path": "tests/layer-definitions.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,27 +157,62 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Scaffold Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dedicated Derived Council Graph",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Council deliberation needs durable structural context beyond append-only artifacts, but the existing deep-loop coverage graph is specialized for research and review coverage",
     "created_at": "2026-05-10T06:35:40Z",
-    "last_save_at": "2026-07-09T10:02:48.450Z",
+    "last_save_at": "2026-08-30T15:39:22.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:91f470100ab498de46381929ab3a55679670987bbdb16a176336bc4eff44ce38",
+    "source_fingerprint": "sha256:833aa7d6e5d860f333ebadcacd8d5f637f21a80e6cc13d1b9dd66c8867088a03",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6533c88f9729de7bcf2d2716f49bc1dd4343826a79d5a5101eeb654ce5d3344",
       "plan.md": "b0991082dbe79c383067d46fd5b47f0444f2c3debcd72f88accf2be00602e832",
       "tasks.md": "c0ae92288ff87ccc1e7d20b8ed88787c835662fcf0e5916fcec6f0cad3919fea",
-      "checklist.md": "f298046d0e4373b2fd7f97540f3d92b248bed4021c229a6820d465a4eba36b60",
       "decision-record.md": "b7c0758ea8f1cab7738930c13fd69684946785e94f68e33ea8d09541bff3bda2",
       "implementation-summary.md": "d87806cf19d9a2d4ce43c61ae0d83df4500d3d2e3ba09c34441eb72bcadce7b8"
     },

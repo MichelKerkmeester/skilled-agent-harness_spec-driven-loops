@@ -21,8 +21,8 @@
       "ux hooks tasks",
       "phase 018 tasks",
       "ux hooks test execution tasks",
-      "ux hooks verification checklist",
-      "phase 018 checklist"
+      "ux-hooks implementation summary",
+      "phase 018 summary"
     ],
     "key_topics": [
       "hooks",
@@ -42,11 +42,10 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "hooks/index.ts",
-      "plan.md",
       "tests/hooks-ux-feedback.vitest.ts",
       "tests/memory-save-ux-regressions.vitest.ts",
       "tests/context-server.vitest.ts",
@@ -65,15 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -86,12 +85,6 @@
         "name": "index.ts",
         "kind": "code",
         "path": "hooks/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -201,27 +194,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Manual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Manual UX-hooks scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.304Z",
-    "last_save_at": "2026-07-10T06:24:50.852Z",
+    "last_save_at": "2026-08-30T15:39:39.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03e8cc3fdf8659ffbc94121183c5506a99fce248bf1f39bcf3cc970e9fdd1436",
+    "source_fingerprint": "sha256:1a11d03140584ff05c36eeb36208ce160d780cdb9d7c7fd957579d73cec721a0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f84410e6cebe500e8f248a17bec0cfd77cd9ce990e1b47c258bae0b247909ea5",
-      "plan.md": "76b65bd93fd7dca5c9e9549180209c5399d84420158127967ca67c8629eb30fd",
-      "tasks.md": "56e347260a5b6118e64450e0363005d764cfbfc53b9a6b9f910a6089dcaa6784",
-      "checklist.md": "a55d2284e361594b4b04219ecbb933f40d64f250cd1cd4cd521ed62af0f47331",
-      "implementation-summary.md": "5242dd2ff7ffa95429aca0e5601fd83c948ff2a959ac66f9eb338ca36cbcf795"
+      "spec.md": "f470bdf3ae866156f78702b0bea123bf477fcf56f103b8eb2f247e07463273a8",
+      "plan.md": "8e53dd8b64a303ce4a57b726e0e05ed6dd9616cb4f6640d77139f77674fa1ecb",
+      "tasks.md": "78b1d6e958e601bd84a453fa9bbf349429d1c825d47f61920e3544018c59a91d",
+      "implementation-summary.md": "ac3c8c6c1660a3a0a869ef9697c78e1526d23163301255fa53710d80bc84018e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The skill now has two co-equal lanes (agent-improvement and model-benchmark) in its prose, but `references/` and `assets/` are still function-organized (integration, promotion-gates, scoring, workflow)",
     "created_at": "2026-05-29T07:56:24Z",
-    "last_save_at": "2026-07-08T13:43:35.360Z",
+    "last_save_at": "2026-08-30T15:39:23.693Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f779f9920e4ba23e1df969d28102d3835004f854f6285a70eaf490ff474a1abe",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bfa97471ae97a7b1973d5d98ddf0d3a8317610565b27a579c55fe27154c53719",
       "plan.md": "c14e7d7ff457a7add877ca020c0395404b205a0174713cde1582ed332a6a19de",

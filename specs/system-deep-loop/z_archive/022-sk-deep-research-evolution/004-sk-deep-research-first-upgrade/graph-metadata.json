@@ -47,8 +47,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/research.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
       {
@@ -70,15 +70,15 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The first sk-deep-research upgrade needed grounded input from comparable autonomous research systems",
     "created_at": "2026-04-12T09:02:50.176Z",
-    "last_save_at": "2026-07-16T16:31:48.186Z",
+    "last_save_at": "2026-08-30T15:39:24.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:426026646ea275f2c2f37b3c401124793f2c73d7204cd24cdaf595f448561b0d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b488ba270cd7d1af4e5fabfe91042d84a510620307e7506cc2d578710e58bc79",
       "plan.md": "6a144386421a83342fc224ac859c08cd7df7fa3d20b14d86103acae470b8fa4a",
@@ -216,7 +217,7 @@
       "implementation-summary.md": "328bca68895d6e1e5689739a959a6c1ced1eaf25dd1440cc4d2c9c03cb8c71ff",
       "research/research.md": "3e1ff68d4a83a178e1ea25b9e21140967268287f5f3e08bc1eb00807379bf367"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/022-sk-deep-research-evolution/004-sk-deep-research-first-upgrade/027-cmd-create-yaml-refinement",
     "last_active_at": null
   }
 }

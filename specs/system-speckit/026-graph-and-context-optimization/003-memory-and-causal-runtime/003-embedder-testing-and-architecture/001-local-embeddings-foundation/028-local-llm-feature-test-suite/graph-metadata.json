@@ -22,7 +22,7 @@
       "plan core",
       "tasks",
       "tasks core",
-      "verification"
+      "summary"
     ],
     "key_topics": [
       "local-llm",
@@ -41,34 +41,15 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
-      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"
     ],
     "entities": [
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "profile.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,15 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
         "source": "derived"
       },
       {
@@ -194,26 +187,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 014-local-embeddings-setup-a phase parent + the 021/022 remediation packets shipped a major change to the local-LLM embedding stack: cascade resolution (Voyage → OpenAI → llama-cpp → hf-local), profile-keyed sqlite filenames, auto-migration between hf-local and llama-cpp, model-keyed prefix registry, q8 default quantization, and Apple-Silicon Metal acceleration via llama-cpp",
     "created_at": "2026-05-13T19:09:45Z",
-    "last_save_at": "2026-07-17T17:19:19.452Z",
+    "last_save_at": "2026-08-30T15:39:29.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05026b5370c4ca50e2b107448c72c4270cf800c191f9d2d6d389ac24170d2dbd",
+    "source_fingerprint": "sha256:5dec0083aa6968eeb1fa0ace3eea2372fc22b82905063197bbc97de1b1004ab8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11af8d6843161a5392fc5e981449fdf70cae5a4c930f5955c589b75a3059b041",
       "plan.md": "e73836b4d7062fe631a5d17decff547ac768787b1a56b93e3bf5408e6402f4c4",
       "tasks.md": "e362db68a000a87f3c777c630b1165aeff828c9f9619ded2a96bcbe251772d8b",
-      "checklist.md": "2b8b7a70c614ba5341bf9b7f5eeac59cb9f067cc5d3d0ac6a80be4f783387f7c",
       "implementation-summary.md": "a340c25f3c8dc0b71e8e68efb8072e1e2a8780e3dd97cd38208d4db258e08c8f"
     },
     "last_active_child_id": null,

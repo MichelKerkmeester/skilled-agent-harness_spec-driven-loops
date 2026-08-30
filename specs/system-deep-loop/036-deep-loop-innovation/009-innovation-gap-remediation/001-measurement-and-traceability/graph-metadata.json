@@ -18,8 +18,6 @@
       "recommendation status join plan",
       "measurement traceability tasks",
       "recommendation status join tasks",
-      "measurement traceability checklist",
-      "recommendation composition verification",
       "measurement traceability implementation summary",
       "recommendation status join evidence"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "recommendation-traceability.json",
       "consolidation-alias-manifest.json",
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,26 +185,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the derived recommendation-to-runtime traceability join, three-field composition status schema, and consolidation alias manifest without rewriting the frozen recommendation ledger.",
     "created_at": "2026-08-14T12:47:55.592Z",
-    "last_save_at": "2026-08-29T15:22:08.040Z",
+    "last_save_at": "2026-08-30T15:39:22.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e54a222b265567fa3bac07b0a57151c8572ae8deeec4a43b776a3deae9c8a996",
+    "source_fingerprint": "sha256:2240e7edabda16e5037cf065681a08d17a517de908afb4c2087f9d4330d4b924",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec94ac851a412f1bbfba4839a56dfb3e56a18db62de24af8f862e2c57184799e",
       "plan.md": "59c235c1582d353d8bc6c409b5b58df37357102f449e4d1cd957d376d6974a1a",
       "tasks.md": "65b60ec7b194bcc9c13776ec04f7fa2bc4b42c7d9e706b91e94e987eb6bb96f8",
-      "checklist.md": "f2fcf65f3bff384be116a400570bed0c7dc973565fb951313394c6ca5e497c40",
       "implementation-summary.md": "4818b2b4c79e876c47b3579b9dd51caae398f805b80d51cd52259cc0e27dcabe"
     },
     "last_active_child_id": null,

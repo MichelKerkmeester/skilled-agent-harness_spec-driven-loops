@@ -39,20 +39,20 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      "001-contract-compiler-design/design.md",
-      "spec.md"
+      "spec.md",
+      "001-contract-compiler-design/design.md"
     ],
     "entities": [
-      {
-        "name": "design.md",
-        "kind": "doc",
-        "path": "001-contract-compiler-design/design.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": "001-contract-compiler-design/design.md",
         "source": "derived"
       },
       {
@@ -94,17 +94,18 @@
     ],
     "causal_summary": "Design-first structural packet carved from 035 (GPT-reliability fixes) after the phase-003 design pass confirmed the contract compiler is research-sized, not a single implementation phase. Builds the build-time unified command-contract compiler that collapses the ~14-file resolution chain into one self-contained typed contract per command, plus the deterministic setup loader, the drift-guard contract, the retrofit of all deep commands + 14 agent files to contract pointers, the deferred AGENTS.md autonomous-precedence bridge, the rollout emitter-wiring, and pacing/resume.",
     "created_at": "2026-07-05T02:24:11.411Z",
-    "last_save_at": "2026-07-16T16:32:28.566Z",
+    "last_save_at": "2026-08-30T15:39:25.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:6c460cd0d0705033a19d53cb9d1c28407204e45ce76e1a96d015db3a0a2162e9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "86b55733dbc6e09a3822ec03844d0ced959677720fd4cc77b9ba10d036c5e21a"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/007-compiled-contract-compiler/001-contract-compiler-design",
     "last_active_at": null
   }
 }

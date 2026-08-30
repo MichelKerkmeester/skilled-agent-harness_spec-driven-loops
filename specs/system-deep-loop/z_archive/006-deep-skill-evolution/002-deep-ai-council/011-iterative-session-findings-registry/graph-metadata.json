@@ -32,26 +32,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "decision-record.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
-      "tasks.md"
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,15 +52,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -161,49 +154,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Prefixed Registry File Name",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Decision Use",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Alternatives Considered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Implement session-level topic sequencing, council-findings-registry.json, and cross-topic priors",
     "created_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-07-09T10:02:48.648Z",
+    "last_save_at": "2026-08-30T15:39:23.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fcc038073af902bcaebe11e7328379b2b7f93a5d226d52d8f553d7ae95d709e7",
+    "source_fingerprint": "sha256:8b5335fb8de9839459afafd0d0f075fb7879feab8352d7b69102b65a2251a94c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "56efadbb1a0051c53f8fa0c08d5013ea1a558f6d23486c031d7d8853a45a43fd",
       "plan.md": "9d3031172995631cbea4c7058f58bd9787424c15016bf49fc1cce6fc8a2128d6",
       "tasks.md": "b3f747a1a0d54c34361baad4fc39f4dbeb64c8a18dd194f7f1f7493a7033b37b",
-      "checklist.md": "c910e4057cf2713b79870a013072c8fe65e18eff6ffa43b93328d3bf48038bb9",
       "decision-record.md": "2a54ead04a29ec7276dbca9d31de77502fc2223009f579d64c2e28f02f68a51c",
       "implementation-summary.md": "83af96cab6e49617a59fb6c27d351a75a933448ab64165f8503fbad8e36be3e3"
     },

@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,30 +171,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`backend/` is structurally unlike every other sk-design mode folder: it is a real TypeScript package (`package.json`, `tsconfig.json`, `tsconfig.build.json`, `vitest.config.ts`, `README.md`, `.npmignore`) with `scripts/` (29 `.ts` files) and `tests/` (19 `.ts` files + fixtures, 173 tests total)",
     "created_at": "2026-07-27T15:10:02.344Z",
-    "last_save_at": "2026-08-29T13:09:58.604Z",
+    "last_save_at": "2026-08-30T15:39:13.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa9d576106968a35273802ff9aba41a220eab0406dceff5e75161a0c45902475",
+    "source_fingerprint": "sha256:81e92367bb232a8b5d311864d7c371e336277b2a8b990b90cf2545f0dcdfda90",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8869a2b2fbae521e744d105f729f815901751a3eb434745a8388847707465bdf",
       "plan.md": "4a82102d6d321684a88459330a38fe2030f87f67c8b07f6848da12cbc0f50fe8",
       "tasks.md": "02d507c80fec8533e0cc9682a7f57b45e74e7f01222510946c3733ed068d2fdc",
-      "checklist.md": "200f40c6f5df44e515f5b49816e63eda6d005769b74bd3f2f48e34ce749144f2",
       "implementation-summary.md": "c3215f0b82d7cdada49e8e268b34f91501ded42f261383aba2a511d2dfdfa966"
     },
     "last_active_child_id": null,

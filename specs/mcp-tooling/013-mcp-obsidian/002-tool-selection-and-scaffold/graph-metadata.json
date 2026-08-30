@@ -42,21 +42,15 @@
     "status": "draft",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 1 produced a recommendation, but nothing is committed: there is no locked build-vs-adopt choice per surface and no package to build into",
     "created_at": "2026-08-02T05:50:26Z",
-    "last_save_at": "2026-08-28T22:05:57.497Z",
+    "last_save_at": "2026-08-30T15:39:10.058Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c9e7aeb30339bae111b1bed904d976e7f17ffd6e0dfbbc833b1b7ca3fa852579",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "513edb3a339321a04662c863444a5b214270abba4f704a371739fd1b3ff6a040",
       "plan.md": "8de975fa19d8f9862b89adcf0fb9284033735a062d834e2cf125bb413a36c11d",

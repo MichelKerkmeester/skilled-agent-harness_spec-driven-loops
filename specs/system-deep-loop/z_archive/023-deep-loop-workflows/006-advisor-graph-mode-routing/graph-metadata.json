@@ -18,7 +18,6 @@
       "advisor-graph-mode-routing",
       "deep loop merge implementation plan",
       "deep loop merge tasks",
-      "deep loop merge verification checklist",
       "deep-loop-workflows phase 006 summary",
       "advisor graph mode routing collapse built",
       "skill advisor family correction deep-loop"
@@ -40,28 +39,15 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "checklist.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+      "implementation-summary.md",
       ".opencode/skills/system-skill-advisor/graph-metadata.json",
       ".opencode/skills/system-spec-kit/graph-metadata.json",
-      ".opencode/skills/sk-prompt/graph-metadata.json",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-council.vitest.ts",
-      "implementation-summary.md"
+      ".opencode/skills/sk-prompt/graph-metadata.json"
     ],
     "entities": [
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -81,51 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "aliases.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-        "source": "derived"
-      },
-      {
-        "name": "explicit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lexical.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/lexical.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/system-skill-advisor/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "routing-parity-deep-skills.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "routing-parity-deep-council.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-council.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,26 +149,67 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Collapse Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_graph_scan",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonicalSkillId",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Collapsing five advisor skill IDs into one risks a routing precision/recall regression from unioning the trigger phrases (risk R2)",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-07-16T16:31:52.989Z",
+    "last_save_at": "2026-08-30T15:39:24.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3ba54a10e7a8e7e30fdc891e8ab43b18b18ec9351419f6f78c476f511e1e215",
+    "source_fingerprint": "sha256:d670cbba752cf57890ea8dda51d1f5e28e2dca0be07e823af8e8fa231d2dec7a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1b403fb9bdd90c9b4316c38ede1a339fc5c05a6a317b5f2923538beed33ad15",
       "plan.md": "b9af147b21d0f10e7140b842dcf7bc158743c1fa4c6c0ce2fdd8030ce2ef676f",
       "tasks.md": "c3016a078356e48693917b88e01ada2abe8db878a9755ae17b779dcaa3a2c8e8",
-      "checklist.md": "567a378331eca0f744377c93922931fb7c765ae00ebfc0bf6eae722d995ee8f6",
       "implementation-summary.md": "158f0b08d8652ebb4d336b044e213e2ae3c6a437f9bb5ca7f3c46d0902413b63"
     },
     "last_active_child_id": null,

@@ -21,10 +21,10 @@
       "memory retention sweep plan",
       "033 retention tasks",
       "memory retention sweep tasks",
-      "033 retention checklist",
-      "memory retention verification",
       "033 retention implementation",
-      "memory retention sweep summary"
+      "memory retention sweep summary",
+      "005-memory-retention-policy-sweep resource map",
+      "memory retention sweep file ledger"
     ],
     "key_topics": [
       "005-memory-retention-policy-sweep",
@@ -34,11 +34,11 @@
       "enforcement",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
       "implementation",
       "summary",
-      "supplemental"
+      "resource",
+      "map",
+      "file"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -46,23 +46,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+      "resource-map.md",
       "tools/memory-tools.ts",
-      "tools/types.ts",
-      "resource-map.md"
+      "tools/types.ts"
     ],
     "entities": [
       {
@@ -84,87 +71,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "memory-retention-sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-manager.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
         "name": "memory-tools.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "path": "tools/memory-tools.ts",
         "source": "derived"
       },
       {
         "name": "types.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "scope-governance.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
+        "path": "tools/types.ts",
         "source": "derived"
       },
       {
@@ -208,27 +135,86 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Runtime Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 013 supplemental research validated P1-2: governed memory ingest persists `deleteafter`, but no cleanup path consumes it",
     "created_at": "2026-04-29T13:55:41Z",
-    "last_save_at": "2026-07-17T17:19:08.552Z",
+    "last_save_at": "2026-08-30T15:39:27.739Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:edc7eb229781608c4becc032c2dea1427bbff1a1ca20eac7bb4bd51be352c462",
+    "source_fingerprint": "sha256:6c81093597a28e07654445e81634f9c3db68cd8462e0c68380450d388d01e36d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "82390b710b3258abab599a4de702488c604551dadfa1ce19d4a98181bb326c39",
       "plan.md": "c84ff6c15c36249bc2830f4539fd4588974fe0cb723e4286690bddb47d812ff2",
       "tasks.md": "f08a337d888b73e640e068a13f0c3098d68a705da0895a45e5a74900522e2092",
-      "checklist.md": "4c1e5ca147ffcf7322bb60bd9d62e790772cc4c2e1e7e342a7ad4bd370b524a2",
       "implementation-summary.md": "e2b88693455b8b01bc84d10d86076e9cca67e504c3499de58545fe9c9b6e48e1",
       "resource-map.md": "84b05752593e1794c7b58af9e185b03be5eb61468cd25c6b087cd65c66cf4710"
     },

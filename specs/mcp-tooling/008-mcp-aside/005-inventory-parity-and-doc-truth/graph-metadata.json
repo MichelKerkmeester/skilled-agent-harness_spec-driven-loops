@@ -20,9 +20,9 @@
       "registered state flip plan",
       "aside parity tasks",
       "aside doc truth tasks",
-      "verification",
-      "checklist",
-      "aside parity checklist"
+      "aside parity summary",
+      "aside doc truth summary",
+      "aside registered state"
     ],
     "key_topics": [
       "aside",
@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/feature-catalog/feature-catalog.md",
@@ -53,14 +57,33 @@
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/mcp-transport/code-mode-discovery.md",
       ".opencode/skills/mcp-tooling/mcp-aside-devtools/scripts/doctor.sh",
-      ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.0.0.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-aside-devtools/changelog/v1.1.0.0.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -122,36 +145,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,26 +197,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `aside` UTCP manual is now registered in `.utcpconfig.json`, but the `mcp-aside-devtools` packet still documents registration as a \"later phase\" in roughly 30 places, gates its Code Mode discovery scenario on non-registration, and ships a doctor that treats manual absence as expected",
     "created_at": "2026-07-16T12:58:30Z",
-    "last_save_at": "2026-07-17T06:03:59.456Z",
+    "last_save_at": "2026-08-30T15:39:09.862Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f21f2f98a134e40151b6949293900e2b5786e0cf41e7c6b9eaff45e8cc96b043",
+    "source_fingerprint": "sha256:2a800dcfd4dbe2e71f25914d51395806048d48df93cb8bc8952163e46fba17e3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fac27d7ac16395ebfbf84ffab977dc0cec111be91514fbee4dc6738521666c42",
       "plan.md": "882e0f326e9c32f817ee883527bee5ac23a1736496d4f54758dca21e7d5c5512",
       "tasks.md": "261d6197f1064207640155838924dad5d103cc9bf1ac9ea77643bf5e8eab0b16",
-      "checklist.md": "4e82bec9822ac830c2a1edfe91cc6145a4640a47dcdae206a4c8b4539b00e1fc",
       "implementation-summary.md": "b5e459ee559b2cf6d62baeecdf8b82bd866e21667aea7039dedd222c073bc5ce"
     },
     "last_active_child_id": null,

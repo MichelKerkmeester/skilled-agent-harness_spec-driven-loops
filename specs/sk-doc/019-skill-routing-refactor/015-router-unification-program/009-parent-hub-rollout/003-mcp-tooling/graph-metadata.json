@@ -41,19 +41,18 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
-      "harness/validate-canary.cjs",
-      "compiled/blast-radius.json",
-      "activation/acceptance.json",
-      "compiled/destination-graph.json",
-      "compiled/PolicyCardV1.md",
-      "harness/build-artifacts.cjs",
-      "implementation-summary.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -67,57 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate-canary.cjs",
-        "kind": "file",
-        "path": "harness/validate-canary.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "blast-radius.json",
-        "kind": "config",
-        "path": "compiled/blast-radius.json",
-        "source": "derived"
-      },
-      {
-        "name": "acceptance.json",
-        "kind": "config",
-        "path": "activation/acceptance.json",
-        "source": "derived"
-      },
-      {
-        "name": "destination-graph.json",
-        "kind": "config",
-        "path": "compiled/destination-graph.json",
-        "source": "derived"
-      },
-      {
-        "name": "PolicyCardV1.md",
-        "kind": "doc",
-        "path": "compiled/PolicyCardV1.md",
-        "source": "derived"
-      },
-      {
-        "name": "build-artifacts.cjs",
-        "kind": "file",
-        "path": "harness/build-artifacts.cjs",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +148,67 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Router Canary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The three preceding parent-hub activations (`sk-code`, `system-deep-loop`) exercise evidence composition (`surfaceBundle`) and shared-packet/backend projections, but none of them has an effect-ordered transport chain or a cross-hub judgment approval that must precede an external commit",
     "created_at": "2026-07-18T13:13:20.120Z",
-    "last_save_at": "2026-08-28T22:23:37.290Z",
+    "last_save_at": "2026-08-30T15:39:15.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ef15c58ce3299916b07f05df1e024af30b85b5d78d55e1f78979a5d40ba9f0b",
+    "source_fingerprint": "sha256:e0e6f82327d191f9ba954d17a4314707dacace7221eeec79f979795d05c266f0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95230e7ad7a1db1695a2263e1c4861535287ead361a69034cc65fa755cafe2eb",
       "plan.md": "e7013b38c6b38101f19eeef51a88bedbbc3651ba2a8e56b358d9169118cc909b",
       "tasks.md": "3c8a2044638e61b2d7a66f3865e8172a0b3e1521f6c96c45154d86fbe288cb37",
-      "checklist.md": "cef31aca0b398904c6e7ccf861765c95b177d8504b8c4c281d958db42104528a",
       "implementation-summary.md": "ab8c482528b5e03570a80769390679cee6cba7160e0965dc5aac80a03d2964cd"
     },
     "last_active_child_id": null,

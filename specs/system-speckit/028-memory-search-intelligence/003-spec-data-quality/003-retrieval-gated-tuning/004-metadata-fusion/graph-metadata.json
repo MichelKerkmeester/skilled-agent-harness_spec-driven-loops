@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -57,12 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -174,36 +167,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-289`, clamped by `clampMultiplier` at `stage2-fusion.ts:157`)",
     "created_at": "2026-06-27T17:15:37.106Z",
-    "last_save_at": "2026-08-29T00:37:20.288Z",
+    "last_save_at": "2026-08-30T15:39:35.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d49bc78c6acbf146bb662004348e60359c78892c0bb2b39e91d4a6bbb069a89f",
+    "source_fingerprint": "sha256:d483c1164b8e86d518aa65cc883a63250401d50b4dc68559a7c3426539de4d74",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37942b3689c23b353472f8e1c49d112288b07e828ad04dbd0277ea8e54a47dff",
       "plan.md": "689bf90db2049a1a7e47cb9742c17463dd6de64d81ee2ad141bd6c6d1c1dabec",
       "tasks.md": "579926026eb47a67ec4e5f8714055f38a38b3d5ff78b7e6937f070371a5e7a69",
-      "checklist.md": "3e5269b1a52405b2bc76f496f136b9b75325c1b03478dd2fdc41d51741de6e57",
       "implementation-summary.md": "f1c4e33ae42203baae30181e2497d4ad2c57086cc703bd6d3a0fd9a3dbcc9f7d"
     },
     "last_active_child_id": null,

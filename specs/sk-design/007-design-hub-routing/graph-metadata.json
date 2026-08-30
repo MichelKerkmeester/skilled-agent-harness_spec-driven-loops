@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,43 +166,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped sk-design hub is the public advisor-routable home for the design family, but its hub-level routing contract was absent from git and memory as a spec packet",
     "created_at": "2026-07-16T09:11:02.038Z",
-    "last_save_at": "2026-08-29T14:54:13.507Z",
+    "last_save_at": "2026-08-30T15:39:12.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f2372de3ef46679a7a21cb824a2896df47ca15af0df28e340046f3d55d3ae79e",
+    "source_fingerprint": "sha256:859110f4c62afe4cc8110be7c816d839a4900bcf396d9347c05e93bf26662633",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0e7d2299fb68531014ea1f80332c1edb067bf9f491c8c906e5eccb86e95f3165",
       "plan.md": "bbb93d0a1efb8517bda24c1a913598856e23bacdb62d9ce1cdaf03bb807f1ddd",
-      "tasks.md": "e65a0a835c3d261a0e347e9a886efae2a6764efb695363b769e87ba4163bf610",
-      "checklist.md": "49291aba51f3084db05e732f11291d2fa51142550995a24663b97b809fa12cb7"
+      "tasks.md": "e65a0a835c3d261a0e347e9a886efae2a6764efb695363b769e87ba4163bf610"
     },
     "last_active_child_id": null,
     "last_active_at": null

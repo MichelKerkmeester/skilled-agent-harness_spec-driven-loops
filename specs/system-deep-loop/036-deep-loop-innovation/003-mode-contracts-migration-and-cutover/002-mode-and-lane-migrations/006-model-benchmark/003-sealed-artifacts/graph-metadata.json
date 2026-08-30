@@ -18,8 +18,6 @@
       "model benchmark scoring matrix plan",
       "model benchmark sealed artifacts tasks",
       "model benchmark matrix sealing tasks",
-      "model benchmark sealed artifacts checklist",
-      "model benchmark tamper evident scoring verification",
       "model benchmark sealed artifacts implementation",
       "model benchmark verified sealed reads",
       "model benchmark scoring evidence binding"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,31 +154,37 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +192,21 @@
     ],
     "causal_summary": "Define how Model Benchmark seals its reference artifacts over the typed event-ledger substrate",
     "created_at": "2026-07-16T03:43:39.766Z",
-    "last_save_at": "2026-08-29T09:58:09.545Z",
+    "last_save_at": "2026-08-30T15:39:21.331Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9a020bd5774b1857ce113024854a87c1af0c970c3da922a1a3e29204c232cb1",
+    "source_fingerprint": "sha256:90d6f5bdf49f6de3622cb1ece7ceddba273f58d3093df27e7d3225330e5e1500",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0e40a6525eb47b4deba2a5a4b141ca82aa6ca950759efa503f737bf7e0cd1e9",
       "plan.md": "99b1d5686852009846a52f989344f3f956686d4f828a7b0be506ec183304f827",
       "tasks.md": "63a8e7d600ea03857623817b5804190b7eab6bb4333462999e987090f9c3a1fc",
-      "checklist.md": "60db148cf26f91572d0e46446f58b50c5c2c3402b03b829bf23b66268673fadc",
       "implementation-summary.md": "1b140ba36b5f572d05d09c8169c50fbceacc724c11c1581ab1a57bcfb7b24468"
     },
     "last_active_child_id": null,

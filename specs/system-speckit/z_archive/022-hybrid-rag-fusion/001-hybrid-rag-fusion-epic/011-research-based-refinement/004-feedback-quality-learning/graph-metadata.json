@@ -43,8 +43,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -166,49 +159,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Add implicit feedback event ledger, FSRS hybrid decay policy, quality gate exceptions, weekly batch learning, assistive reconsolidation, and shadow scoring with holdout evaluation.",
     "created_at": "2026-04-12T09:02:50.236Z",
-    "last_save_at": "2026-07-10T06:22:17.391Z",
+    "last_save_at": "2026-08-30T15:39:38.147Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:81a24a7c03b65327ac9dec53689d80d62ee04e6ddf2f47342d87d33cfeeacfd6",
+    "source_fingerprint": "sha256:88d0abeed72aa0f0143f620b80fa77874054caf83693d1ece1d863eaa8db7c1c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f280b1d2ca1aa788fcb2db1e3861ef89b90538fe0e6ec89e1c41c02711f273bc",
-      "plan.md": "65a6723438f7d88ad4c12c2921ecad6303a676974b62bf341b71b7239037992f",
-      "tasks.md": "be8c509ec99092ae01e1d991959b3265d9afd61bf9eb91d8069a65974ccf0c85",
-      "checklist.md": "271b62c82871884c59f2d1c54298c70115d7b4c2823367b1d99911c1e1162667"
+      "spec.md": "4d5329cd4d577784ee8ffb5e8a543070e62cc84453129b2989ebfdc7ee09ea9a",
+      "plan.md": "fb473d2ee8903cdc6b52df22757e7ccc7bb1c900bee97a6b7dba01c6b25c719d",
+      "tasks.md": "fea08544fe875a05de5a0c0cf1ab58ce0202118f40edd32f7260c26b0007da96"
     },
     "last_active_child_id": null,
     "last_active_at": null

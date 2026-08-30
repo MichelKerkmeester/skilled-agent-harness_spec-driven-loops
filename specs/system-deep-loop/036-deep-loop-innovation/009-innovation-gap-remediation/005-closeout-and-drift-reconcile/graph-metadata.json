@@ -19,9 +19,7 @@
       "ledger composition reconciliation plan",
       "closeout drift reconciliation tasks",
       "three field status tasks",
-      "ledger composition reconciliation tasks",
-      "closeout drift checklist",
-      "epic evidence reconciliation"
+      "ledger composition reconciliation tasks"
     ],
     "key_topics": [
       "closeout",
@@ -42,8 +40,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -62,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -159,55 +150,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the final documentation and evidence reconciliation that separates library, shadow, and authority status, joins measured composition into the 178-row recommendation ledger, removes stale claims and paths, and aligns epic completion with the verified production boundary.",
     "created_at": "2026-08-14T12:47:57.211Z",
-    "last_save_at": "2026-08-29T09:58:16.484Z",
+    "last_save_at": "2026-08-30T15:39:22.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:37fd1a58ed1b4df911cff5d2c8921ca4877a06009059b062977ee9dc09b73fa6",
+    "source_fingerprint": "sha256:5e18f8da1fd06b992afe55f4c277c3f36351fe3b442c120222a0f803423fbd0a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0a96f2ef78d358d8eb8ee145826c1bfc9df4e1ae977df8aeb3dc9adbaaafa38c",
       "plan.md": "67beb3854985e01394b5d7dee983137ef1513a8662fa4bbe6bf8fc2a0ac6108d",
-      "tasks.md": "38b6fb0d70cc50506f9bd779d8ffd2d63d5604b0307a46b4ce75bb4e69c3f460",
-      "checklist.md": "bd47ef088ef3b17639d386d3223250c474bb209f149dd7257e7e5402394d7273"
+      "tasks.md": "38b6fb0d70cc50506f9bd779d8ffd2d63d5604b0307a46b4ce75bb4e69c3f460"
     },
     "last_active_child_id": null,
     "last_active_at": null

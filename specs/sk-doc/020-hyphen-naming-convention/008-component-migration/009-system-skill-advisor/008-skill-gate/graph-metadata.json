@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The six surface-migration phases can each appear green while a cross-phase path, an exempt name, a stale reference,",
     "created_at": "2026-07-14T15:18:12Z",
-    "last_save_at": "2026-08-30T07:19:51.153Z",
+    "last_save_at": "2026-08-30T15:39:16.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:10aa001f070473f16c63510d5ae4aef1bc69fe61578c4f187b94c31408b1493f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4ffc2c8f1d848e1f007bba804de2913c21caa49bfd96807559e216628708f24",
       "plan.md": "7d798ee76e5fd4c8caea777323aa804dc19cd0232de3f1948e9da38f4220beff",

@@ -18,8 +18,6 @@
       "deep-loop replay digest implementation",
       "replay fingerprints tasks",
       "deep-loop replay digest tasks",
-      "replay fingerprints checklist",
-      "deep-loop replay digest verification",
       "replay fingerprints implementation summary",
       "replay fingerprint verification receipts"
     ],
@@ -35,7 +33,7 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts"
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,30 +179,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Define independently versioned replay fingerprints over closed typed-ledger ranges, canonical replay dependencies, and byte-stable outputs, with immutable attestation storage and fail-closed mismatch detection for shadow parity and whole-system verification.",
     "created_at": "2026-07-16T03:43:45.873Z",
-    "last_save_at": "2026-08-29T13:09:49.494Z",
+    "last_save_at": "2026-08-30T15:39:20.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:635b045cb4f10ac127826b558d8311696b2d0ea3273cda261b2946d83552dcfa",
+    "source_fingerprint": "sha256:ee17d65e6c7fb663d7a8d301521444a12ea4983051372dce3f6ebb0202df93ba",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "911886d9569bc3811b19aff7f81d019a19b44109ed3fc6b1f7b07bf25d29d649",
       "plan.md": "1372d1cf25f37c2f5aebcf42ea718fb44f439ba470a46bd187bca5afebadb4b5",
       "tasks.md": "030ea2b7a0d2031c0e89ef206eb002aec2c3ca89467458dbcd8fbea9e0e7d47b",
-      "checklist.md": "40986bcf3d75bea0d2525a3683fd72ba3ca0b44afea658d931fd5a8914a9a395",
       "implementation-summary.md": "6a0a4a4379a9dd08eabfb7ecf863c8cb4d1a488d0213674cf8382ed722385bf0"
     },
     "last_active_child_id": null,

@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The system-code-graph README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T15:16:11Z",
-    "last_save_at": "2026-08-28T15:59:23.445Z",
+    "last_save_at": "2026-08-30T15:39:14.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:99686d4cf6501cf9dd5d0b8abc831227ae68e8ded61fcb0be7c8f3b1930a9d30",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9e71a030d4267ca2dcf8ab24fb757b007b8bf9e865ca3fc43d7a6162f7f4cf25",
       "plan.md": "9f2271e3fd514e434893e0b8d9f326a54746d54495862e8f30ccb795c402f5b2",

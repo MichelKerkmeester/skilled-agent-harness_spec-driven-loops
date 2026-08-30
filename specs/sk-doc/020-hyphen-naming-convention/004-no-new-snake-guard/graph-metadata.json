@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Nothing prevents snake_case from re-entering in-scope filesystem names. The program needs an exemption-aware guard with a debt-tolerant changed-only mode during migration and a whole-tree mode after, so intermediate commits stay green while the end state is enforced.",
     "created_at": "2026-07-13T14:34:05.525Z",
-    "last_save_at": "2026-08-30T07:19:11.786Z",
+    "last_save_at": "2026-08-30T15:39:16.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4cf15ae9f6cd5efc5267793c6c88ec5ac033c3efd923cf7ab77c7ef57367fb2b",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bd33f000df0f410ef98577247569ff7fc00b1a921dc0ee483575c41bc2394755",
       "plan.md": "792056ee9bf332a8c07442a67067d546225a2555e05b215232fc63ab406cb364",

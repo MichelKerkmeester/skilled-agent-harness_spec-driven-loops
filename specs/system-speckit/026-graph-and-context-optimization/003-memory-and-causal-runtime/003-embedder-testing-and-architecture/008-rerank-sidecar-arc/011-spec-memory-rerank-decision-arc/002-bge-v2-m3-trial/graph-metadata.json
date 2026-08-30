@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Arc 008 tried two off-the-shelf rerankers on spec-memory:",
     "created_at": "2026-05-23T11:55:15.630Z",
-    "last_save_at": "2026-08-29T15:22:15.539Z",
+    "last_save_at": "2026-08-30T15:39:31.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8a783938fb229f941a622606def46ef4330d258d3d7d324955312e87cb0e14c1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8b1f2c2ad9571fa11c9c1aa75aea141f50f26cbee533ca6ab5b1552c908ab68d",
       "plan.md": "a75d5ca22ed04e233315aa56960a5c8b2c8e1d50e61f669ec7ba0fe6afd769e6",

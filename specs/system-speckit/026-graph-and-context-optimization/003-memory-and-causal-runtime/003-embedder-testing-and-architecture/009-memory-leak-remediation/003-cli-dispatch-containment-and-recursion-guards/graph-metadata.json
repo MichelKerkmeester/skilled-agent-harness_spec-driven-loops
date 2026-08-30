@@ -174,7 +174,7 @@
     ],
     "causal_summary": "The broad memory audit found raw shell branches, inconsistent timeout handling, and prose-only self-invocation guards",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-08-28T15:59:48.457Z",
+    "last_save_at": "2026-08-30T15:39:31.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,6 +184,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ff5fbaa19a8aeca7a98c9b4570ca5ba3163eada4d27388213534d4a867e13eb7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eefa6edb56eb7901822c0d73b9f709b79270641f790890928f619c09b50f4c41",
       "plan.md": "4ff7ee336e201d8371c8d469e93cd7b6c09028c7e9a3717e1e45d67726b88081",

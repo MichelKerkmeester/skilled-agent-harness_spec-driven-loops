@@ -46,9 +46,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".claude/settings.local.json",
       "scratch/100-percent-completion-closeout.md"
     ],
     "entities": [
@@ -71,12 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -86,6 +80,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -191,31 +191,30 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`CodeEnvironment/Public` had no evidence-anchored baseline for which Claude Code token-waste patterns are most prevalent, which configuration changes are already adopted, and which hook or behavioral interventions should be prioritized",
     "created_at": "2026-04-12T09:02:53.445Z",
-    "last_save_at": "2026-07-17T17:19:15.681Z",
+    "last_save_at": "2026-08-30T15:39:29.118Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b752f751db5bb15ee39da51adef60e2649f4b8dd1bce08e645eb8ead38f0aa93",
+    "source_fingerprint": "sha256:fb003b7bdbe7a1fdef774983797b1c1970f705a86722871f525c907140f02ce7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "16f1d54cfd4c020528d5bdac2f76f2104c448085c497521f5f597331e3c850bd",
       "plan.md": "110ec7b1f3f2f7709ffeb7ada22584d6843cb64a35fb48a05d008a2c52f0db4b",
       "tasks.md": "d6a2c7703c7f6811b5646364f3a04c6595204be367012a02a283bb059e4e06d6",
-      "checklist.md": "d193c1b9b66137becb34f36c6b3b53d6488828e3a4c0612f4412eabc8dee5553",
       "decision-record.md": "33b1f148c712b2ca6df7aaa3881bd48d3d35be5ef5d94c92681ff1d03046b05f",
       "implementation-summary.md": "49f898c13919e98f343e1919cae4a85a6ae3fc383d23aa9414d19d3c58fa38d7"
     },

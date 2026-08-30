@@ -22,7 +22,7 @@
       "hook feature flags tasks",
       "hook kill-switch phase status",
       "packet 010 reconciliation",
-      "hook feature flags verification"
+      "hook feature flag decisions"
     ],
     "key_topics": [
       "hook",
@@ -44,10 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
+      ".opencode/hooks/hook-flags.env",
       ".opencode/hooks/README.md",
       ".opencode/hooks/hook-flags.env.example",
       ".opencode/hooks/shared/hook-flags.cjs",
@@ -80,12 +80,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -101,6 +95,12 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env",
+        "kind": "file",
+        "path": ".opencode/hooks/hook-flags.env",
         "source": "derived"
       },
       {
@@ -208,24 +208,23 @@
     ],
     "causal_summary": "Equivalent hooks used different runtime adapters, module formats, and shell entrypoints",
     "created_at": "2026-08-13T17:49:26.189Z",
-    "last_save_at": "2026-08-29T15:21:53.176Z",
+    "last_save_at": "2026-08-30T15:39:09.592Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:169a62bca8ed43e642fcbce19ef67c98b213023c49619b31afc3298652ee1c15",
+    "source_fingerprint": "sha256:ed7d9e54e62219207bcd4e03b567bcd2e0db5c60d51535cba85e170878a4e10e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e979cb24ba06c19e78ec540e6e56a606e19726ccdc31dba8bd65f2d19eea868e",
       "plan.md": "1c885c83745098108058554324f4e7aaef68a83e52e865c1236188e740f0ee1f",
       "tasks.md": "47f7d7ea1acc9554b9bca41aaa9e4f6c059accf719c57d954ac5adccd56d008b",
-      "checklist.md": "76eebd3b2ff6776f29c5fce30b784cc6e8520f0273dbe5a0e456bd9d0b4b205d",
       "decision-record.md": "bd494acb13081c4e8cdf9235592ce5576752deb7cca1808a8f3b6e2702b5d04a",
       "implementation-summary.md": "586d24bf383519ceff5941edebe9368bf3b16309289f48afccd229607b242498",
       "research/research.md": "77cfbcc380247e02e0efe09a2e9d3d22f9adcd0d9b0e675eca468375e06a6ef2"

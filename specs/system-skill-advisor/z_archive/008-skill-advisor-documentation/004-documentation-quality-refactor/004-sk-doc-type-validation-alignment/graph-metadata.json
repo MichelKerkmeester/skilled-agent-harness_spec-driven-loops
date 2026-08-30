@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment",
-  "spec_folder": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment",
-  "parent_id": "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor",
+  "packet_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment",
+  "spec_folder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment",
+  "parent_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Per-file sk-doc template adherence varies across system-skill-advisor doc surfaces",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-07-15T11:59:25.965Z",
+    "last_save_at": "2026-08-30T15:39:26.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:89a456d5d000e5f55e0332a683d80fe9c8e6108548ca1150e2c56cd2e2716d24",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2847537552bb217874fb20a474ed9ca50783065f8ab7227ac325cee1718ff8e7",
       "plan.md": "f2f64f9736abc775e4444a9acdb1329c75de96b259024acfd5eebb0abb4aa129",

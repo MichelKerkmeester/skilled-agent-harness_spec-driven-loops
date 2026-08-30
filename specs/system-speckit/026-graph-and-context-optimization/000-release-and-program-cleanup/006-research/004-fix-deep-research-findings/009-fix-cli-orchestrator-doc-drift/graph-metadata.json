@@ -22,8 +22,6 @@
       "010 cli orchestrator drift plan",
       "F-007-B2 tasks",
       "010 cli orchestrator drift tasks",
-      "F-007-B2 checklist",
-      "010 cli orchestrator drift checklist",
       "010 cli orchestrator drift summary"
     ],
     "key_topics": [
@@ -46,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,42 +169,47 @@
         "source": "derived"
       },
       {
-        "name": "Quality Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "What Was Built Six",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Application",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-08-29T15:22:12.641Z",
+    "last_save_at": "2026-08-30T15:39:28.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d74fcd92a8791400c347785cbc8178630345f5722d1091d2850a0e9e6200453",
+    "source_fingerprint": "sha256:31da2da8550f18dbc009a125c84fefd9ec5fe6020bcf1be343905809f7de4a2c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "db928981909338e9c7a49b2a0c942f676e7d190c776c30acf7e3e8652e18d2ad",
       "plan.md": "86e7830ec7202f828ccd75738bbb156049508de71594f4a0a31c3204ed48e9e8",
       "tasks.md": "9fd69560b9d9f7d312cd70ce17dbbb401588269ca114615107e4100817662fac",
-      "checklist.md": "ded7e414b5311c45bdcdb64f0aba54a586453470a07b98d59a5f6783cc342c4a",
       "implementation-summary.md": "79e70eaffb60f17417130c1d884c27352fd5441068a2f6f02f64650c093df6b8"
     },
     "last_active_child_id": null,

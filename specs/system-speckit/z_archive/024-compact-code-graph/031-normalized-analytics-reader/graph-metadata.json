@@ -42,51 +42,21 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".claude/settings.local.json",
       "tests/fixtures/hooks/session-stop-replay.jsonl",
       "hooks/claude/claude-transcript.ts",
       "lib/analytics/session-analytics-db.ts",
-      "tests/session-analytics-db.vitest.ts",
-      "tests/hook-session-stop-replay.vitest.ts",
-      "tests/hook-stop-token-tracking.vitest.ts"
+      "tests/session-analytics-db.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "claude-transcript.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/claude-transcript.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-analytics-db.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-analytics-db.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-stop-replay.jsonl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/fixtures/hooks/session-stop-replay.jsonl",
         "source": "derived"
       },
       {
@@ -102,12 +72,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -120,15 +84,33 @@
         "source": "derived"
       },
       {
-        "name": "hook-session-stop-replay.vitest.ts",
-        "kind": "test",
-        "path": "tests/hook-session-stop-replay.vitest.ts",
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
-        "name": "hook-stop-token-tracking.vitest.ts",
+        "name": "session-stop-replay.jsonl",
+        "kind": "file",
+        "path": "tests/fixtures/hooks/session-stop-replay.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "claude-transcript.ts",
+        "kind": "code",
+        "path": "hooks/claude/claude-transcript.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-analytics-db.ts",
+        "kind": "code",
+        "path": "lib/analytics/session-analytics-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-analytics-db.vitest.ts",
         "kind": "test",
-        "path": "tests/hook-stop-token-tracking.vitest.ts",
+        "path": "tests/session-analytics-db.vitest.ts",
         "source": "derived"
       },
       {
@@ -202,29 +184,40 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Stop hook already captures token snapshots and now persists transcript identity plus cache-token carry-forward data, but that state remains stranded in per-session JSON files",
     "created_at": "2026-04-12T09:02:53.440Z",
-    "last_save_at": "2026-07-10T06:22:15.576Z",
+    "last_save_at": "2026-08-30T15:39:39.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21a36e56740c2a901d308ce6781d39038807cf339ab7b6e61d0d622eec746012",
+    "source_fingerprint": "sha256:e2df8222e7c2cb79750354d284b426e8cd9473de0dee457f796b1ac42dc885a9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "62bcfde79665917dfaf2554ebdf4e172eb3611bc9a2af5abf62f8687b6d6dce9",
-      "plan.md": "de1ecaa9ac29cb0f6c7fd2eaaff7d77ae3ca3b9045f114f93d51aa634632025c",
-      "tasks.md": "b0dc6e2dac54aee29595918741be7f3fd2fb2249b0eed36219afc6217e7503eb",
-      "checklist.md": "9fa83e15ea690c716f4a60978a931cde92af89e0bc8c493b0c56001e8e63d04d",
-      "decision-record.md": "0453f804a13e215db47f83b6c8770eacc5eadd17b61284ce7f7e78fee2e4d34f",
-      "implementation-summary.md": "5a9a48656aaae135fa9ef97e6b8760e0be31e2a96dc7e1a774d0d9e6763f4e63"
+      "spec.md": "30e479ade4a7a57bde1055c943f82c2131f6cc0e8298025d452491a19c46c5bf",
+      "plan.md": "42b1eed9cdd612d34a20df86668f3bb1145da4822ebd472a51575aa3ad4fb242",
+      "tasks.md": "844e6fc849f832059f36cc77f96ac8e6293fe034615509d175014dda794a8231",
+      "decision-record.md": "d4387c501440285668056de6dbfea64d265f5810025a50f0b32ec5061195ff85",
+      "implementation-summary.md": "f1731e92062b3ff1881f70ffa173512262e2c62bdd7f5a87c4327cefd2868269"
     },
     "last_active_child_id": null,
     "last_active_at": null

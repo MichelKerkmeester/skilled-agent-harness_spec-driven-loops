@@ -22,7 +22,7 @@
       "027 consolidation tasks",
       "027 six track tasks",
       "spec tree regroup tasks",
-      "027 consolidation checklist"
+      "027 consolidation summary"
     ],
     "key_topics": [
       "spec",
@@ -39,13 +39,12 @@
       "timeline"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -61,21 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -163,31 +156,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Mark",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Six",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Deterministic",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +182,21 @@
     ],
     "causal_summary": "The `027-xce-research-based-refinement` packet accreted to 31 flat top-level phase children (`000`-`030`) as work was added over the epic",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:37.243Z",
+    "last_save_at": "2026-08-30T15:39:32.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5140529506240808d67e536ab05a69c90f9fc6c4b2869f9541cf47fdbbc7658",
+    "source_fingerprint": "sha256:e285c65d1e70e22d8760ddbeff81cbd984c0aabc1a411622e221cbeae7f16f5c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "28457b9aaaff6cba1f4854f417821305a88db1049706960c8042527e8c75fc45",
       "plan.md": "84ddaed204131ecf666a9721d54d4307bbf3a52bd34bf90be97b54d61abd9140",
       "tasks.md": "29de6a6619d0940e30e85d05511685084abdfb321046b2df8cbb21d1e2c73f2d",
-      "checklist.md": "93899e525a98fc578ddcad84203b068e57bf43ab9792c52a9f4adf67fae71587",
       "implementation-summary.md": "71af819f053e4ac1e0ddb4ab7396016fd449afb5ed0aa7295eda8581306b636d"
     },
     "last_active_child_id": null,

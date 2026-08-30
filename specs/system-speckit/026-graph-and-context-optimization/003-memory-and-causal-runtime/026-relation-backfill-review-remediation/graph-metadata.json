@@ -21,10 +21,10 @@
       "relation backfill remediation plan",
       "conflict guard implementation",
       "backfill honest delta counting",
-      "relation backfill remediation checklist",
-      "conflict guard verification",
-      "backfill honesty verification",
-      "relation backfill remediation decision"
+      "relation backfill remediation decision",
+      "suppress contradicts emission vs detector",
+      "relation agnostic conflict guard decision",
+      "backfill delta counting decision"
     ],
     "key_topics": [
       "relation",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "tests/relation-backfill-conflict.vitest.ts",
@@ -73,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,27 +193,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`collectSupersessionEdges` emits `contradicts` for predecessor->successor, and `collectLineageEdges` emits `caused` for the SAME directed pair because lineage is reciprocal (`A.supersededby=B` AND `B.predecessor=A`)",
     "created_at": "2026-06-04T14:30:00Z",
-    "last_save_at": "2026-08-29T15:22:17.081Z",
+    "last_save_at": "2026-08-30T15:39:31.992Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27f09bbb5b89fa6094b5dc02143ed3020d7ddd177a61dae527b2ffb8520a7851",
+    "source_fingerprint": "sha256:bab861e44d4f91ba597ea36ec737df6b780be9d69933c08d0125ee1b8c5a3aad",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9bdc24c6231d41b045f5dd96e92af176f02e4e7035ce3e61923a003cb7fdbd05",
       "plan.md": "6fc2b1aeaa77f73fa61134bac0fe1e9914b08b5e31a04f740bf7c534230f927c",
       "tasks.md": "de1d7c93b72b73c0de118c31c3630700dc3769b945ba01a266c1bcbffdebed3f",
-      "checklist.md": "2f7cc42caf048b5f8516d3c8d9713ea4e801a29dce43dd9b65b000c90f8af028",
       "decision-record.md": "8023dc8b0a283e8e8689dc56052575decb01a8832c321689d95d8f5eeb9dc4d9",
       "implementation-summary.md": "6c66fe7f33e012ea8d318aa351222087ea240fc11f5c62cf2f2a70d681bfbda8"
     },

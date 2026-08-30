@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 052 rename shipped functionally, but deep review found command-layer namespace regressions and stale packet documentation",
     "created_at": "2026-05-15T05:59:52Z",
-    "last_save_at": "2026-08-29T14:54:18.980Z",
+    "last_save_at": "2026-08-30T15:39:30.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7f7375b837f47d39049ff1faf6ccdb512ff6486703cc3a460d3145642ff7422b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "39b30cdae6207fdd9f8f902d3fb37a0d5b9a50b32954ea2f4fa6ceac9077647e",
       "plan.md": "bb49b7efcbd3639caaec9a5499e83bd630c571789a682cc449ee8d0a36c0892a",

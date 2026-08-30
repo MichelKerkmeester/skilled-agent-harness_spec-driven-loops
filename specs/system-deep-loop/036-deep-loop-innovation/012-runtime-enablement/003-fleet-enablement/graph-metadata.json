@@ -3,7 +3,6 @@
   "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -19,8 +18,6 @@
       "serial enablement driver",
       "fleet enablement tasks",
       "enablement driver tasks",
-      "fleet enablement checklist",
-      "fleet driver verification",
       "fleet enablement summary",
       "enablement driver built",
       "fleet flip complete"
@@ -37,23 +34,21 @@
       "plan",
       "driver",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scratch/negative-controls.md",
       "scratch/finding-improvement-mode-unroutable.md",
       "scratch/adversarial-review.md",
       "scratch/dryrun.json",
       "scratch/authority-prerun-capture.md",
-      "scratch/realrun.json",
-      "scratch/false-completion-proven.md"
+      "scratch/realrun.json"
     ],
     "entities": [
       {
@@ -72,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -120,12 +109,6 @@
         "name": "realrun.json",
         "kind": "config",
         "path": "scratch/realrun.json",
-        "source": "derived"
-      },
-      {
-        "name": "false-completion-proven.md",
-        "kind": "doc",
-        "path": "scratch/false-completion-proven.md",
         "source": "derived"
       },
       {
@@ -199,26 +182,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "external",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mode registry names seven canonical modes",
     "created_at": "2026-08-19T06:57:08.040Z",
-    "last_save_at": "2026-08-29T13:09:56.788Z",
+    "last_save_at": "2026-08-30T15:39:22.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:358dbc80459a23733fa9d7a661d3a26ff7293fc47107a7c7800f3f7e52f0ccc1",
+    "source_fingerprint": "sha256:865e56cf0aa2cedf18768cb62a2b3e2db134b736691a9fb8d01b32f75eb89ea1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "87053dee8415c5884f05547e715ce1e9d9cf984582359c90d8fafe0f3eae5a77",
       "plan.md": "af87fbeaaa1a9687a249f6cfc9f3c5f52dbd6047c77c956459dbc174aed3b9e9",
       "tasks.md": "0378543e7db3f6812d3119fc9d68e8bde0fadaab175ffcdfd8c52d1ceae68e21",
-      "checklist.md": "254d20db2e275807f5ab0f13aa258c97e766c92860b5385a61dadadfc540b75b",
       "implementation-summary.md": "03e012036e669a7b8ff1745593ec14ab9d98f498c4b5a641ffea312cba2a26ff"
     },
     "last_active_child_id": null,

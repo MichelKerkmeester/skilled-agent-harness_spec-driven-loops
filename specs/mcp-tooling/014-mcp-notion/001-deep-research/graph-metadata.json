@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The `mcp-tooling` hub covers ClickUp, Chrome DevTools, Obsidian, and several design transports, but has no Notion support",
     "created_at": "2026-08-21T10:59:48.443Z",
-    "last_save_at": "2026-08-29T15:21:54.489Z",
+    "last_save_at": "2026-08-30T15:39:10.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:3a50e0d9ad8c9255a110bb1b176dd79a95be11cba42f4e299e41f160a10821b6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "06eea5ec93dd81a2cac50f62e8a84354698211996cef9a8bd7a41827b91c9c50",
       "plan.md": "4cac88a667392647c005fd67dc4be78e996c638b875dc98baa60f9ff44c581bf",

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Phase 007 renames the surviving design-reference command to /design:extract (file, owned assets, all six runtime mirrors), and closes the interface->design mirror residue that 016/006 documented but did not fully clean: broken .claude/commands/interface symlinks and stale, never-synced .codex/.pi interface-*.md prompt copies.",
     "created_at": "2026-08-20T18:58:22.797Z",
-    "last_save_at": "2026-08-29T14:54:13.029Z",
+    "last_save_at": "2026-08-30T15:39:13.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:dd9335e6c1bc1c3aea75c8cee8c0d889e7d6bdfa461e9ae004e2a94872e5755a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8abc6fe367b914f341e20772fd7947044fc84fc284b590776812db2bf0a588ec",
       "plan.md": "304bc313ed73471051d13ed8433b9e04bdb02af27713c91204a901f5afab06a6",

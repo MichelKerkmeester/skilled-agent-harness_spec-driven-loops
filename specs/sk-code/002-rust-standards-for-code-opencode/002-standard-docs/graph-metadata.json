@@ -180,7 +180,7 @@
     ],
     "causal_summary": "The research produced a complete Rust standard (section skeletons, consolidated rules, the four repo non-negotiables) but nothing is authored yet",
     "created_at": "2026-07-11T08:49:16.490Z",
-    "last_save_at": "2026-08-28T22:09:14.441Z",
+    "last_save_at": "2026-08-30T15:39:11.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,6 +190,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4f7ac6b7c55ecdecef945f9eadf82e3d67fb106ad18d40a75408b0287b355575",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fd40368c7ed4a868c31ed804858f625ab332b1e64bfb69a5e8021ddde2ea7351",
       "plan.md": "802117e900d3d9dfbbb96ee624557e29daa6bff2b9372692a357db63e0dccd1a",

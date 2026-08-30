@@ -20,11 +20,10 @@
       "drift simplification research strategy",
       "sidecar research tasks",
       "arc 010 iteration ledger",
-      "sidecar research checklist",
-      "arc 010 validation checklist",
       "sidecar research implementation summary",
       "arc 010 phase 001 summary",
-      "sidecar investigation report"
+      "sidecar investigation report",
+      "system-spec-kit mcp sidecar audit"
     ],
     "key_topics": [
       "deep-research",
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "research/deep-research-config.json",
@@ -62,7 +60,8 @@
       "research/iterations/iteration-006.md",
       "research/iterations/iteration-007.md",
       "research/iterations/iteration-008.md",
-      "research/iterations/iteration-009.md"
+      "research/iterations/iteration-009.md",
+      "research/iterations/iteration-010.md"
     ],
     "entities": [
       {
@@ -81,12 +80,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,6 +179,12 @@
         "source": "derived"
       },
       {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
         "name": "Research Investigation",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,23 +211,22 @@
     ],
     "causal_summary": "The system-spec-kit MCP sidecar surface has grown quickly across TypeScript client/worker code, a Node ensure helper, and supporting embedder lifecycle logic",
     "created_at": "2026-05-22T21:00:18Z",
-    "last_save_at": "2026-08-29T13:10:02.203Z",
+    "last_save_at": "2026-08-30T15:39:31.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7a1248fefa9183c839f3739abb602673332144f53e37f3bfba7a664a91ce324e",
+    "source_fingerprint": "sha256:5eb3a40d9bba550e71cb11aa31d7ab73d89f11ec06ac863497e4138cf2ce1c97",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3c708ee283a5e040161a8b2204002e15e171399ad7763d6beed18725569c2b65",
       "plan.md": "ebe28a023f8f4db60295b5ab5192514ba3c4e1284fa1de2213a9b2a4aeee172d",
       "tasks.md": "ef8c888d81af9f7f7d92d17012facd85827fd34594af0ad81899adc89c3a4ffd",
-      "checklist.md": "2cb1a9c6d27d5b97f4491277609753e816a31e9c91b8146257368d55dd9b9f33",
       "implementation-summary.md": "b297b044642360f3511f3dbb3222ee01d1cfa9839a659a6c63a5d8a3519c78d8",
       "research/research.md": "8ac40c52f3cb423da8a46f15d161b969a0967fba93ca482fa894d2ac0fa69158"
     },

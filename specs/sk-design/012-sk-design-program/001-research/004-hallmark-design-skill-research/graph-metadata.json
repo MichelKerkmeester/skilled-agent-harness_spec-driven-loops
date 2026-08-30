@@ -32,20 +32,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,15 +58,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -183,26 +176,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Hallmark is a shipped design skill for AI coding assistants (\"refuses to look AI-generated\") whose four verbs — build, `audit`, `redesign`, `study` (design DNA → portable `design.md`) — plus ~29 reference docs (slop-test with 57 gates, anti-patterns, macrostructures, motion, microinteractions, color, typography, component-cookbook, design-md, study, export-formats, …) overlap heavily with sk-design's five modes (interface, foundations, motion, audit, md-generator/design-reference) and its styles database",
     "created_at": "2026-07-20T09:21:27.020Z",
-    "last_save_at": "2026-07-22T16:57:33.030Z",
+    "last_save_at": "2026-08-30T15:39:12.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e01f80061e5b845844d63ae9b7b0b648dc0e856876b112e12ce42002acdeb71",
+    "source_fingerprint": "sha256:fa8962308e991206fa19114121f9c577195062bc5703beeb9f32cc0db7ca83f4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b052defd0157b314b60299a11daef4685f0bfd77c132e02fcac40eaf008d8d08",
       "plan.md": "e340d3099498d49f56d6b5ac53540c7150e9f6d0faef53f60b41a9aedb615c9d",
       "tasks.md": "b754f8e9a03085e7262748c8827cd71c5c7c0443c3581442313db5471f659ac4",
-      "checklist.md": "2a87a63e3d9095bba41d5f310fccef49e9744ea9be5c2184ecf594c58e407d8e",
       "implementation-summary.md": "1489ea07e018c09e8e6ac6a4327108ee409e1c075c224dc566d7245530e80edc"
     },
     "last_active_child_id": null,

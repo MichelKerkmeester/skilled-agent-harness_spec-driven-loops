@@ -21,8 +21,8 @@
       "active findings remediation",
       "029 tasks",
       "review remediation tasks",
-      "029 checklist",
-      "review remediation checklist"
+      "029 implementation summary",
+      "review remediation summary"
     ],
     "key_topics": [
       "review",
@@ -35,77 +35,24 @@
       "active",
       "plan",
       "tasks",
-      "checklist",
-      "completed"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
-      ".opencode/agents/context.md",
-      ".claude/agents/context.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "hooks/claude/session-stop.ts",
-      "tests/session-bootstrap.vitest.ts",
-      "tests/hook-session-start.vitest.ts",
-      "tests/hook-session-stop.vitest.ts",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/agents/context.md",
+      ".claude/agents/context.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-bootstrap.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shared.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/shared.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-stop.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-snapshot.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-snapshot.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
@@ -121,33 +68,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-bootstrap.vitest.ts",
-        "kind": "test",
-        "path": "tests/session-bootstrap.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hook-session-start.vitest.ts",
-        "kind": "test",
-        "path": "tests/hook-session-start.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hook-session-stop.vitest.ts",
-        "kind": "test",
-        "path": "tests/hook-session-stop.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
@@ -203,27 +132,86 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Scoped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Gemini",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prime Package",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Gemini",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The completed deep review for `024-compact-code-graph` found seven active issues that leave the packet internally inconsistent across runtime contracts, hook safety, evidence traceability, and cross-runtime guidance",
     "created_at": "2026-04-12T09:02:53.434Z",
-    "last_save_at": "2026-07-10T06:23:54.313Z",
+    "last_save_at": "2026-08-30T15:39:39.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22687100a67ed446a5a064ab86a8b6757b00aaf55b35cdf59865c5feeaadfc1b",
+    "source_fingerprint": "sha256:6794c4236472553f8796315ac51b963fa83119333016f388f1949f26f896ee63",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a161d54db90e173af3beb91dad92b9ba35a75c6c7e81b781dd62904828ff9ba5",
-      "plan.md": "f5e0b54b76045fcd45a636ba0a3bda05febe18a2f933d24e528659b168f4f74e",
-      "tasks.md": "dcb61b1565ab4a57b3f5ce50db0bd0979b88599024ad0e2c54482ea6aa152ef4",
-      "checklist.md": "c871be5d56b6d8b18bac80af9e71914c8d916c4fbcc0760b91fc85c4d149b7d2",
-      "implementation-summary.md": "e89685e4451518377d30eecab68b245f6211c0d6b6dee7fe0bca5af6f09387cb"
+      "spec.md": "f65310b8385e873cd9d5587b777f76ef02c266a12dda58d82dff25ce2c4b06df",
+      "plan.md": "7d56943796a42a1170d9410c07acff1c32684a5a8ef29816de73059cb91e5bcc",
+      "tasks.md": "dfcd73a2d69fac1b25c997e1b1edd700f8d3e5fee9eab3558e0c427fe629b4fc",
+      "implementation-summary.md": "444d7e8b80617b3407bf84aae0b86b07b7b5fb572c0143724914f3ad41bd0814"
     },
     "last_active_child_id": null,
     "last_active_at": null

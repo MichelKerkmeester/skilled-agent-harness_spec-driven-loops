@@ -104,13 +104,14 @@
     ],
     "causal_summary": "Migrate the autonomous Deep Research loop from initialization through iterative evidence gathering, convergence, synthesis, and memory-save handoff onto the typed event-ledger substrate through seven concern children and an independent mode gate.",
     "created_at": "2026-07-16T03:43:55.017Z",
-    "last_save_at": "2026-08-18T11:07:33.464Z",
+    "last_save_at": "2026-08-30T15:39:20.906Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:40cde6fcfa52fb9b5a72389f9c4cdabbb6859252d57ff50bce75077fb3896474",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9b49b945221cc1de48a48c837a22052fb69a27cf9af3f22c3d6cb0e64012c2d7"
     },

@@ -21,7 +21,6 @@
       "scouted bugfix batch 5 plan",
       "verify-first round-3 tail workflow",
       "scouted bugfix batch 5 tasks",
-      "scouted bugfix batch 5 checklist",
       "scouted bugfix batch 5 summary",
       "verify-first round-3 tail shipped",
       "3 fixes batch 5"
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts"
@@ -68,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,30 +183,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The verify-first round-3 tail left 4 targets originally classified as unconfirmed",
     "created_at": "2026-06-03T11:00:00Z",
-    "last_save_at": "2026-08-29T14:54:17.624Z",
+    "last_save_at": "2026-08-30T15:39:28.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:274a3c03daf841e74b892dac6a7f3d7d0406ac5471c118b7368f306e8467a440",
+    "source_fingerprint": "sha256:b044ff51a3b1089ff911584f2ca2ac66879c074d4dbcc2baa4554da34a0e7e24",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b597b3cc1420732248fe8f76b46e17e37464cebbf9e9e725165fba9703104a3b",
       "plan.md": "c44f1caab22daeb9c623a779c8fe99fb0df673904babc1216379bf332cfd922e",
       "tasks.md": "7d293dcde2b3f3f67387c35626539ad93b952a6b48386e44812e91d4e3522e28",
-      "checklist.md": "18f3c37b815e7a253793d57fa14e7270fa4193d98167a70bb1d7a153fdd302db",
       "implementation-summary.md": "007e2ff822c5227fde7f318fb77e0383821142a7a5bc6a011fcd3d6f1536794d"
     },
     "last_active_child_id": null,

@@ -41,19 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-code-mode/mcp_server/index.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/mcp-code-mode/mcp_server/index.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,7 +182,7 @@
     ],
     "causal_summary": "The mcp-code-mode stdio MCP server (`mcpserver/index.ts`) connected its transport and never handled session end: no stdin-EOF handler, no transport-close handler, no parent watchdog",
     "created_at": "2026-06-11T16:30:00Z",
-    "last_save_at": "2026-07-17T17:19:44.536Z",
+    "last_save_at": "2026-08-30T15:39:34.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +192,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6a4147d9b5bb1daf294cf1b6e37ba2cd7f929a7689ce3793827faa1bb90d5a1c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "41fee3650db4d7b41ab0e41a47762b4137594eb7a5c833bd32dd6b829b1e5de4",
       "plan.md": "ecfa77581f6f8ca5485557946c98659514e35281bcab67f837bef97e9e5af69d",

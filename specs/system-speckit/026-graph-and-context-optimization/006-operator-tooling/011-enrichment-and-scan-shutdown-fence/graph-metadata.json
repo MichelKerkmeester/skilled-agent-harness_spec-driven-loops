@@ -19,7 +19,6 @@
       "enrichment scan shutdown fence plan",
       "fatalShutdown fence sequence",
       "enrichment scan shutdown fence tasks",
-      "enrichment scan shutdown fence checklist",
       "enrichment scan shutdown fence decision",
       "enrichment scan shutdown fence summary"
     ],
@@ -40,27 +39,18 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "handlers/memory-save.ts",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handlers/memory-save.ts"
     ],
     "entities": [
       {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -76,27 +66,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -194,27 +178,38 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`fatalShutdown` (`context-server.ts`) fences `fileWatcher` and `ingestWorker` before `closeDb()` because both write through `requireDb()`, which reopens a closed DB",
     "created_at": "2026-06-15T05:48:42Z",
-    "last_save_at": "2026-07-17T17:19:33.697Z",
+    "last_save_at": "2026-08-30T15:39:32.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d184c42f43ec07beaefaa676813066ef44f63a72619caf73ebc98bc255a2a9e",
+    "source_fingerprint": "sha256:9a66382b9f43d2b5485cef5240a1b900e5180e56e02e9eab24d64bbc195ebb58",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "472306fa670ef8e2d0f178eb0e6bebe80ef1862fa503b36d251d91f6583b2a10",
       "plan.md": "c947e3536d3c1a42ebd9c52682e24abd006e064b869314d5dd7ea97541ee4a65",
       "tasks.md": "854218a266e6e8668a92459f1782d3cbb38b1ccffae9c666a7481f529567ed34",
-      "checklist.md": "4f30a6bd999c810507001270c3a88fbb52b914de27c55b6e0640d212fe5e6999",
       "decision-record.md": "dfaef96c3f919c05d6bf4f667e946326656d11a566c7a87fe757efa24403c1d3",
       "implementation-summary.md": "bbb2d4603ae9f694939ae0e58e22de9505fbcb56213e6668ae1137f411df84bd"
     },

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/008-skill-advisor-documentation/001-documentation-code-alignment",
-  "spec_folder": "system-skill-advisor/008-skill-advisor-documentation/001-documentation-code-alignment",
-  "parent_id": "system-skill-advisor/008-skill-advisor-documentation",
+  "packet_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation/001-documentation-code-alignment",
+  "spec_folder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/001-documentation-code-alignment",
+  "parent_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -20,11 +20,9 @@
       "skill-advisor docs plan",
       "phase 020 audit plan",
       "022 tasks",
-      "022 verification checklist",
-      "skill-advisor docs checklist",
-      "phase 020 audit checklist",
       "022 implementation summary",
-      "skill-advisor hook docs complete"
+      "skill-advisor hook docs complete",
+      "phase 020 code alignment complete"
     ],
     "key_topics": [
       "skill-advisor",
@@ -43,29 +41,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scratch/audit-findings.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts",
-      "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
+      "implementation-summary.md",
+      "scratch/audit-findings.md",
       "lib/context/shared-payload.ts",
       "hooks/claude/user-prompt-submit.ts",
-      "hooks/codex/user-prompt-submit.ts",
-      "mcp_server/lib/context/shared-payload.ts"
+      "hooks/codex/user-prompt-submit.ts"
     ],
     "entities": [
       {
-        "name": "audit-findings.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "scratch/audit-findings.md",
-        "source": "derived"
-      },
-      {
-        "name": "shared-payload.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -75,9 +64,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -87,15 +76,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "audit-findings.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "scratch/audit-findings.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "shared-payload.ts",
+        "kind": "code",
+        "path": "lib/context/shared-payload.ts",
         "source": "derived"
       },
       {
@@ -189,36 +178,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 020 shipped the skill-advisor hook surface across 4 runtimes (Claude/Gemini/Copilot/Codex) with 11 new lib files, 4 hook adapters, 11 test files, and full reference documentation at `.opencode/skills/system-spec-kit/references/hooks/`",
     "created_at": "2026-04-19T18:10:00Z",
-    "last_save_at": "2026-07-15T11:59:24.965Z",
+    "last_save_at": "2026-08-30T15:39:26.877Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:957fce4722382bd43b2bcde64c9a8f854ea96d33a70a0f1535ba40cebcf8a9c0",
+    "source_fingerprint": "sha256:27b5e5e67d7c7de61c7344ac6135bf50dac058979334be74e1ad47d35ae2d3ea",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c95de1873686d6066993dcb39e317467e8969663de1ce3eb11d65104daccc035",
       "plan.md": "7b2084d4073c16aeb020bb79d646a1aaafbcc6d43a2ab14642fcba287523e2fd",
       "tasks.md": "0a6a82132a4d836aba01953a2e7fb9b115de3bbd7474a675f88ab9f4ba281dee",
-      "checklist.md": "b6bd1054d6a18231d109ce7f47e184ac5cefeb6c2e63e539f865aae881dfb0f8",
       "implementation-summary.md": "673ab7ab2c078c7356d18e6527706fa460dc2851fcc18c6bcfd3dc1caf65e3c5"
     },
     "last_active_child_id": null,

@@ -35,19 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Added",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When a loop iteration overruns its scheduled fixed-rate slot, the next slot starts immediately without any record of the overrun; missed slots are silently dropped and there is no `skippedCount` in the persisted state",
     "created_at": "2026-06-28T14:01:58Z",
-    "last_save_at": "2026-07-16T16:32:02.761Z",
+    "last_save_at": "2026-08-30T15:39:24.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:09f205ce11a903ad0e367fe70fdfc80c3f171357619e77166a63479805824932",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f4f0a462f946b63d8deca000b3ce975ce0ddc1af4c1747ec290ec7f398bfe27a",
       "plan.md": "7c6899b06be4e7ac2c1c6451d9b44ec7c778d554d3b0ebe0e12d8ab7167f4490",

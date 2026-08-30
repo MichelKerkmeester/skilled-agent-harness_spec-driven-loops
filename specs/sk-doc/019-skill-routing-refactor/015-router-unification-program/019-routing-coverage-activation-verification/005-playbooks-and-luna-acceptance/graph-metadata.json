@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the standard authoring template omits typed manifest gold (CF-PB-1)",
     "created_at": "2026-07-20T21:51:32.363Z",
-    "last_save_at": "2026-08-30T08:04:13.553Z",
+    "last_save_at": "2026-08-30T15:39:15.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9f845a27648a296942a71efee708d74abd724f805855915a7bccc3dfb3b14a27",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2517f7b1bb6d33ab87feb6af57904a3b1c2fb385bf136cfcb5d84b8831ef5fe2",
       "plan.md": "aab5b1a5205d51accfb85a36774584f542aa94476f82efce3b2e544f24b20907",

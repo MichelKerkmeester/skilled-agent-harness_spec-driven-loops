@@ -39,7 +39,7 @@
       "dirs"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -89,17 +89,18 @@
     ],
     "causal_summary": "`design-motion` is the smallest and cleanest sk-design mode (19 dirs, 39 files), but a sample pass already found real conformance gaps in `references/`: separator discipline abandoned mid-document in two files, and sentence-case H2s where ALL-CAPS is required",
     "created_at": "2026-07-27T14:53:12.627Z",
-    "last_save_at": "2026-07-27T14:53:12.627Z",
+    "last_save_at": "2026-08-30T15:39:13.059Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:266c044f70bf3230bca2514d79a15a9d36d1062be662193e2bfab2fd9bc5fd2e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b24303ec11db3b61c9965e41382ec69a991b0eec3e47f1003da61d88e77eb3cc"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-design/014-template-conformance/003-design-motion/001-packet-root",
     "last_active_at": null
   }
 }

@@ -50,7 +50,7 @@
       "currently"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "resource-map.md",
@@ -60,12 +60,8 @@
       "004-runtime-mirrors/spec.md",
       "005-root-and-config/spec.md",
       "006-advisor-and-validate/spec.md",
-      ".claude/CLAUDE.md",
       ".opencode/specs/descriptions.json",
       ".opencode/commands/README.txt",
-      ".opencode/install_guides/SET-UP - AGENTS.md",
-      ".opencode/install_guides/README.md",
-      ".opencode/skills/README.md",
       ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
       ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl",
       ".opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md"
@@ -84,12 +80,6 @@
         "source": "derived"
       },
       {
-        "name": "CLAUDE.md",
-        "kind": "doc",
-        "path": ".claude/CLAUDE.md",
-        "source": "derived"
-      },
-      {
         "name": "descriptions.json",
         "kind": "config",
         "path": ".opencode/specs/descriptions.json",
@@ -99,18 +89,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "SET-UP - AGENTS.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/README.md",
         "source": "derived"
       },
       {
@@ -200,7 +178,7 @@
     ],
     "causal_summary": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/prompt`) and agent (`@improve-prompt`)",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-07-16T15:57:11.029Z",
+    "last_save_at": "2026-08-30T15:39:19.004Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,11 +186,12 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:b6cba32049509ac159b1818d2a378891e1f886b15033259d8b292c44b8db09c5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ddb1d18062cdaaae546d39ce57bc2d4f8be504872fbd75024a2e145dce28c652",
       "resource-map.md": "d7de1001ce4d5115f82f3e9f064fc9d86ea202a09a3058860f5ee92cbfad29f7"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-prompt/z_archive/002-sk-improve-prompt-rename/006-advisor-and-validate",
     "last_active_at": null
   }
 }

@@ -20,9 +20,9 @@
       "execution plane task list",
       "prepare verify commit tasks",
       "idempotency ledger fixture tasks",
-      "execution plane verification",
-      "prepare verify commit checklist",
-      "idempotency fencing evidence"
+      "execution plane implementation summary",
+      "prepare verify commit results",
+      "idempotency fencing replay"
     ],
     "key_topics": [
       "execution",
@@ -41,19 +41,42 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "lib/execution-plane.cjs",
       "lib/idempotency-ledger.cjs",
       "lib/projector.cjs",
       "fixtures/execution-route-gold.v1.json",
       "tests/execution-plane.test.cjs",
-      "harness/run-phase.cjs",
-      "checklist.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "harness/run-phase.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "execution-plane.cjs",
         "kind": "file",
@@ -88,36 +111,6 @@
         "name": "run-phase.cjs",
         "kind": "file",
         "path": "harness/run-phase.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A route decision is not an effect",
     "created_at": "2026-07-18T13:13:17.358Z",
-    "last_save_at": "2026-07-24T12:11:56.043Z",
+    "last_save_at": "2026-08-30T15:39:14.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f732de1b9a225d904bf0ab41f4f3b482f0b93f1db7ccdab871037098807e5c7c",
+    "source_fingerprint": "sha256:3491ad77aefa3b18c1eb07dd32847a23c0e59fa24e11600844439420322ccbfc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9cdc01eb0d74249e4c968983112de16705fc084e20759561a09636c91bb34f5",
       "plan.md": "46e15ecc57498e05b005cf8683e518334c4f430a78a862e855ac2268b6fa0833",
       "tasks.md": "3fdcf5b1974370b0b99c9a1c33d7e4c2c19cf470ba853727a561c482d48e24cb",
-      "checklist.md": "08172b19245b81110378aec04a08c91f058379ef196886cef95927ea5c6524ee",
       "implementation-summary.md": "9d4e6fb35c70879636b1ea2fa7334c854097602ad90154aed601ffc7d61c7054"
     },
     "last_active_child_id": null,

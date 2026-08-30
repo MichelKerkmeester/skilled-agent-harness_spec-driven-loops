@@ -25,7 +25,7 @@
       "sk-code merger tasks",
       "054 tasks",
       "sk-code task list",
-      "sk-code merger checklist"
+      "sk-code merger ADR"
     ],
     "key_topics": [
       "merge",
@@ -38,24 +38,27 @@
       "tasks",
       "task",
       "list",
-      "checklist",
+      "adr",
       "two"
     ],
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      ".opencode/agents/deep-review.md",
-      ".claude/agents/deep-review.md",
-      ".opencode/skills/README.md",
       "implementation-summary.md",
-      "spec.md",
-      ".opencode/skills/sk-code/SKILL.md"
+      ".opencode/agents/deep-review.md",
+      ".claude/agents/deep-review.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -69,27 +72,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
@@ -99,15 +84,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "deep-review.md",
         "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
+        "path": ".opencode/agents/deep-review.md",
         "source": "derived"
       },
       {
@@ -199,27 +178,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "New Skill Scaffold",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two parallel code skills (`sk-code-web` and `sk-code-full-stack`) overlap in phase model, intent vocabulary, and advisor scoring keys, causing routing ambiguity and operator confusion",
     "created_at": "2026-04-30T08:30:00Z",
-    "last_save_at": "2026-07-09T10:02:44.264Z",
+    "last_save_at": "2026-08-30T15:39:11.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:614029dfbfcc358ee44e8b9b73061b00b25e74511dc8648306d279446802c490",
+    "source_fingerprint": "sha256:5087a0d5e584bfcc10cb8c98ec8a33db9c0498851e61fd7386f3a2b64215f237",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e4a848c221d18cb93ef7cea638b95f03e78d548f6a8c66f5fe6a88993f1bdb3",
       "plan.md": "d352a4f11432645b0438e9139bfefd9b1a965dede18cb70ec4cab221a4cb659a",
       "tasks.md": "0893e6a10e6e1f434395967b4b6bdc4fb0aa34bc8b97d62d83179a8492137f86",
-      "checklist.md": "3005b70184f4cdbba3763b7694dd8e52a13fee1e58ac8e513cf63edcc4ae85b3",
       "decision-record.md": "66bc27511674d1b9d8ba05ecf7f096accb6d90d7a74300abc618d8b0701555f1",
       "implementation-summary.md": "f7b6b866aed286c6454493364ada2c5a5af9849810eb8873e2054e89b9c9683e"
     },

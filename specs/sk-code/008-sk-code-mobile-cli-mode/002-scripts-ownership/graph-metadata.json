@@ -12,17 +12,18 @@
   "derived": {
     "trigger_phrases": [],
     "key_topics": [
-      "scripts",
-      "ownership",
-      "app",
-      "skill",
-      "references",
-      "tooling",
       "decision",
-      "surface",
-      "read-only",
-      "npm",
-      "ci"
+      "packet",
+      "answering",
+      "whether",
+      "mobile",
+      "cli",
+      "verification",
+      "tooling",
+      "scripts",
+      "token-identity",
+      "cdp",
+      "render"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -58,6 +59,24 @@
         "source": "derived"
       },
       {
+        "name": "The Mobile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "1. METADATA",
         "kind": "heading",
         "path": "spec.md",
@@ -70,33 +89,99 @@
         "source": "derived"
       },
       {
-        "name": "3. DECISION",
+        "name": "3. SCOPE",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. SCOPE",
-        "kind": "heading",
-        "path": "spec.md",
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "5. SUCCESS CRITERIA",
+        "name": "1. SUMMARY",
         "kind": "heading",
-        "path": "spec.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "6. CROSS-REFERENCES",
+        "name": "2. QUALITY GATES",
         "kind": "heading",
-        "path": "spec.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Storybook",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "METADATA",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "WHAT WAS BUILT",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "HOW IT WAS DELIVERED",
+        "kind": "heading",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The app keeps scripts/; the sk-code-mobile-cli surface skill references it. A read-only surface leaf cannot own executable, app-coupled, CI-wired tooling. Analysis only, no move.",
+    "causal_summary": "Decision packet answering whether the Mobile CLI verification tooling in scripts/ (token-identity, the *-cdp render gates, naming/scan-*, release-verify, 26 scripts) should move into the sk-code-mobile-cli surface skill. It should not: the skill is a read-only surface leaf that cannot own or run executable tooling, the scripts are coupled to the app tree and CI and wired as npm scripts, and the skill already references them by name. Analysis only — no files move.",
     "created_at": "2026-08-25T19:45:00.000Z",
-    "last_save_at": "2026-08-25T19:45:00.000Z",
+    "last_save_at": "2026-08-30T15:39:11.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -106,6 +191,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5a8bc3dcb083805b71747081283cd030462c10c99e2bb8be3643950defed197c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4f33e7d5e841379e0daae42d48d3e41d568ca0f5781efb91413643783996e9a3",
       "plan.md": "c85c6c423664da08cd77b282796ebcf97e2f09bc73e476c5f8843c84e9f1cd5e",

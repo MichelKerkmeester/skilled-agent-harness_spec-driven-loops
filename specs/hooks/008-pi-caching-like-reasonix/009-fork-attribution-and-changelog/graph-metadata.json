@@ -17,7 +17,6 @@
       "deep-pi fork notice",
       "fork attribution plan",
       "fork attribution tasks",
-      "fork attribution checklist",
       "fork attribution implementation",
       "pi-cache-optimizer changes from upstream",
       "deep-pi changes from upstream"
@@ -32,9 +31,9 @@
       "deep-pi",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
-      "extensions"
+      "extensions",
+      "readme"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -42,13 +41,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/extensions/pi-cache-optimizer/README.md",
       ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
       ".pi/extensions/deep-pi/README.md",
       ".pi/extensions/deep-pi/CHANGES-FROM-UPSTREAM.md",
-      ".pi/deep-pi-stats.json",
       ".opencode/scripts/vendored-fork-provenance.json"
     ],
     "entities": [
@@ -71,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -92,12 +83,6 @@
         "name": "CHANGES-FROM-UPSTREAM.md",
         "kind": "doc",
         "path": ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-pi-stats.json",
-        "kind": "config",
-        "path": ".pi/deep-pi-stats.json",
         "source": "derived"
       },
       {
@@ -195,26 +180,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Both `.pi/extensions/pi-cache-optimizer/README.md` and `.pi/extensions/deep-pi/README.md` read as if they were the unmodified upstream package",
     "created_at": "2026-08-08T11:49:51.770Z",
-    "last_save_at": "2026-08-29T15:21:52.748Z",
+    "last_save_at": "2026-08-30T15:39:09.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:212060bdc7f5009eb55f2d939bd0d3ca957a20c104f813af898efcc90a7421b6",
+    "source_fingerprint": "sha256:c176edd1677ca9dddadd4dc1aa93c27a0263d6502ad5dfc6abc0db0b1ed9b31b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8733a7683afd3028f17dfbca016ba29073f75eb80929baea1f1ee83655231f5d",
       "plan.md": "c68e67078c9e917d6cc93ee9051a93cc295b1d69ab81f62c7217f938efafac88",
       "tasks.md": "b4a061be05dca8c4724eafe616d1715143075ededd41d3623e586931944bf7b2",
-      "checklist.md": "19b2d57e30811b3a032c9bef69b0ec578c0e7e459b57fb761d4f7a877d9d8aa6",
       "implementation-summary.md": "b60d65d3671c261b6ea4f1dd6590dc3736fc860a48ffec07585df36ce6735ac9"
     },
     "last_active_child_id": null,

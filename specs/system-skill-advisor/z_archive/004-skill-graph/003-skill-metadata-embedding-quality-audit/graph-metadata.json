@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/004-skill-graph/003-skill-metadata-embedding-quality-audit",
-  "spec_folder": "system-skill-advisor/004-skill-graph/003-skill-metadata-embedding-quality-audit",
-  "parent_id": "system-skill-advisor/004-skill-graph",
+  "packet_id": "system-skill-advisor/z_archive/004-skill-graph/003-skill-metadata-embedding-quality-audit",
+  "spec_folder": "system-skill-advisor/z_archive/004-skill-graph/003-skill-metadata-embedding-quality-audit",
+  "parent_id": "system-skill-advisor/z_archive/004-skill-graph",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 015/004 seeded sweep proved that the cosine lane cannot flip routing decisions on the current 24-prompt corpus regardless of weight (V0–V6, including V6-cosine-dominant at semantic=0.30)",
     "created_at": "2026-05-14T00:30:00Z",
-    "last_save_at": "2026-07-15T11:59:13.446Z",
+    "last_save_at": "2026-08-30T15:39:26.326Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:30:00Z",
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:aea9ff04425c040c5a8e3ebcf8b3299e41325e73bb0169e2230f07344e2fa4ca",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c2ffb53c949b00dd8f58c9f171032d9ce61199f7ecaf270ab311bd148d0a8f7f",
       "plan.md": "acf1c0ff9ff59dcbff1bc85910b12186e1ef34b06ca1aaa12cb1bf7a0290a98c",

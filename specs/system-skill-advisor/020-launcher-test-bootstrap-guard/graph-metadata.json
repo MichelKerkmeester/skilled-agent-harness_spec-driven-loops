@@ -36,21 +36,15 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -63,6 +57,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -176,7 +176,7 @@
     ],
     "causal_summary": "`mk-skill-advisor-launcher.cjs buildIfNeeded()` runs `npm ci` when advisor build artifacts look stale",
     "created_at": "2026-08-15T15:18:56.799Z",
-    "last_save_at": "2026-08-15T15:19:30.256Z",
+    "last_save_at": "2026-08-30T15:39:26.167Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -186,6 +186,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:fdf1a8712e8285364986160d09c9512c2c1194fe67486bdb38a993ad369a101e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92b8fe5faf21709eb87df90428d093809142401d7c5a0543032eeb59adf782a3",
       "plan.md": "6eb404ddedc374030a60f8cc7c19908ba0599653332fad2a987edb19aecd41ca",

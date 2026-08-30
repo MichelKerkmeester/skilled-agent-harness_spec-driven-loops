@@ -22,7 +22,7 @@
       "plan",
       "tasks",
       "compatibility",
-      "verification"
+      "decision"
     ],
     "key_topics": [
       "feature",
@@ -34,7 +34,7 @@
       "plan",
       "tasks",
       "compatibility",
-      "verification",
+      "decision",
       "misinterprets",
       "agent"
     ],
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/commands/create/agent.md"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,43 +170,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Reuse Three",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Pronged Approach",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Team",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Codex misinterprets agent routing metadata in create command files in three ways:",
     "created_at": "2026-04-12T09:02:50.215Z",
-    "last_save_at": "2026-08-29T15:22:00.811Z",
+    "last_save_at": "2026-08-30T15:39:14.037Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1bf5b7cfc170f2f46891fc31b525d203b75c0b6996c2b6ea14098248e7d96ec",
+    "source_fingerprint": "sha256:abaaab83956998e37790ce0e66ea2f54fbb873abe322d144711c9a12c0bffc04",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2308c329af7e4f77b60baae8a735f436743b1c6ecbd11f558f4e657e8830289c",
       "plan.md": "05b220e1b60190f3cace5d661c5a1eee602681bb502c77599c3b6a873d554d41",
       "tasks.md": "84ae19023a486145383f79025d108478009e45471562f598943559e0d5cd43f2",
-      "checklist.md": "b3c019e601a1879a7124732c4d94ef49a6e02be6ad94771dbbf1a5be3d92d7fc",
       "decision-record.md": "33552ed2dd1d95552e2ffd08a7d68b86a2bc2f43fa5e7001d15c068837e6c4fb",
       "implementation-summary.md": "29817351d9924d3ea43e96d2c3a53adb16ea34011562029d74a398481f0c6155"
     },

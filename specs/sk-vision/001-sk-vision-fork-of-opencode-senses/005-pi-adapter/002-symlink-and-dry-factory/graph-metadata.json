@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Pi discovers extensions under .pi/extensions/",
     "created_at": "2026-08-16T07:22:49Z",
-    "last_save_at": "2026-08-29T14:54:24.551Z",
+    "last_save_at": "2026-08-30T15:39:19.538Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:15ceb540dd4558bd7cf51f041e74f96e5441617377f827c96a146e3c13c9b589",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d68e659ed28542ecbe03147a6aba200e431a55d2a955bc9db9e66267a71d6cfe",
       "plan.md": "2fd8cb74c3119a2f15f9b47c864393eb2624c7232851456fbd602f739375e816",

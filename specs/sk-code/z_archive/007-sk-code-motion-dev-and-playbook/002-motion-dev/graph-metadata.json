@@ -21,8 +21,6 @@
       "002-motion-dev plan",
       "sk-code motion.dev tasks",
       "002-motion-dev tasks",
-      "sk-code motion.dev checklist",
-      "002-motion-dev verification",
       "sk-code motion.dev implementation summary",
       "002-motion-dev complete"
     ],
@@ -36,9 +34,9 @@
       "002-motion-dev",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
-      "implementation"
+      "implementation",
+      "summary",
+      "complete"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -46,12 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/spec.md",
       "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/plan.md",
-      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/tasks.md",
-      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/checklist.md"
+      "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/tasks.md"
     ],
     "entities": [
       {
@@ -70,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "specs/sk-code/z_archive/007-sk-code-motion-dev-and-playbook/002-motion-dev/checklist.md",
         "source": "derived"
       },
       {
@@ -193,30 +183,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The sk-code skill has empty peer folders for cross-stack motion.dev guidance",
     "created_at": "2026-05-05T08:00:00Z",
-    "last_save_at": "2026-07-09T10:02:44.288Z",
+    "last_save_at": "2026-08-30T15:39:11.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51db5ea49529e61ec9d241103f6f613f306de94e6ad2f35a97ce5fdb85e88c07",
+    "source_fingerprint": "sha256:baebf6d1f3d7d10dda9171f17fe2458365d204a34ca113e0d61052c17bd1e35e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6fd431efcf66a4e18fa68bec88533e09577be90188b8e9395275dce1e455e1d1",
       "plan.md": "2ad492dc674d575aea7c7fbfda5e334284a22ad4bd7c2606cabf60b3a40ed23a",
       "tasks.md": "d46e737f464120abee76a6d3f125c6698522c2175c702ed279ffd23dbbf9e573",
-      "checklist.md": "7d47b179028686fe00a339933a1220379704e3758292defe9629f118ebc8e17e",
       "implementation-summary.md": "59711737a4e3fb573475ca7705e05aa51c78515c35d6b5fcc8db6b8d11c8a3c4"
     },
     "last_active_child_id": null,

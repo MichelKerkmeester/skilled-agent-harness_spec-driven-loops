@@ -66,8 +66,8 @@
       "manual testing tasks",
       "playbook phase tasks",
       "umbrella test tasks",
-      "manual testing checklist",
-      "playbook verification"
+      "manual testing implementation summary",
+      "playbook umbrella summary"
     ],
     "key_topics": [
       "manual",
@@ -81,46 +81,20 @@
       "test",
       "tasks",
       "umbrella",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "shared/index.ts",
       "spec.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-      "006-analysis/spec.md",
-      "resource-map.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      "shared/index.ts",
+      "006-analysis/spec.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "shared/index.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -134,15 +108,27 @@
         "source": "derived"
       },
       {
-        "name": "MANUAL_TESTING_PLAYBOOK.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "shared/index.ts",
         "source": "derived"
       },
       {
@@ -240,31 +226,42 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Integrity",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Graph Signal Activation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: manual-testing-per-playbook",
     "created_at": "2026-04-12T09:02:50.288Z",
-    "last_save_at": "2026-07-10T06:24:27.626Z",
+    "last_save_at": "2026-08-30T15:39:39.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:aac38e839dd60434f63fc4e9a152c7b3fa2a37a0b0ac15f51d5230c88a2ddcbd",
+    "source_fingerprint": "sha256:8071d4915dcd0b78d4e3044f2d9b151e7d9bbfbe4cf075d40a9ac4ab4eefc3b4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a160db6b1c376d9573977a93e83b1819c4239d7b9f462b723beabc893efba561",
-      "plan.md": "7757a044f86cd4f376671bf30de54e5e7a6fd952b2f9a4a14d0cbb96d21a1aad",
-      "tasks.md": "06d3122458f706d8477154e2ccb6c83fea4a2c21085358ab45d7dc3b4e84f470",
-      "checklist.md": "1b1a957068b0af5911273902dca190ebba023b9576ab87e2d11f005dd8155e8a",
-      "implementation-summary.md": "a5fe4f26155536415983eb183056dd5dbd952eca70eacfa59190ec01aad01640",
+      "spec.md": "eae0da52e893017070c9835fbb812b6d7ba2c3f22b30e44a25e560f99a7133d8",
+      "plan.md": "85626c7b08d3dca9a303b30e4d25de3e9c38990ce4d003b5bf9e366cb065d0c2",
+      "tasks.md": "ab44bd1082b4ec98e9051e604f9effabaed448b3301924d4d42591f7c5c30f6f",
+      "implementation-summary.md": "7c902a29929a73b236056d6e7146f90f6305d9288047c0c86a392bd42422f386",
       "resource-map.md": "f1ada1c699a38e521712b890b6624345a6242ce715cf84fd3b24aa8ba3b6182f"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/018-ux-hooks",
     "last_active_at": null
   }
 }

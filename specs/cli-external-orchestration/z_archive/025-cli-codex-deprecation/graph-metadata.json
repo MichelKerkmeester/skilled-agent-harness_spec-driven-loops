@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/025-cli-codex-deprecation",
-  "spec_folder": "cli-external-orchestration/025-cli-codex-deprecation",
+  "packet_id": "cli-external-orchestration/z_archive/025-cli-codex-deprecation",
+  "spec_folder": "cli-external-orchestration/z_archive/025-cli-codex-deprecation",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -22,7 +22,7 @@
       "cli-codex deprecation tasks",
       "codex cli retirement tasks",
       "executor cleanup tasks",
-      "cli-codex deprecation checklist"
+      "cli-codex deprecation decision"
     ],
     "key_topics": [
       "cli-codex",
@@ -41,27 +41,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".codex/config.toml",
-      ".opencode/skills/README.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
       "implementation-summary.md",
-      ".opencode/commands/speckit/assets/speckit_plan_auto.yaml"
+      "README.md",
+      "AGENTS.md",
+      ".codex/config.toml"
     ],
     "entities": [
       {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/README.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -77,21 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -101,9 +82,21 @@
         "source": "derived"
       },
       {
-        "name": "speckit_plan_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -195,29 +188,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-codex` remains a first-class skill and executor in active OpenCode surfaces even though the user wants it deprecated",
     "created_at": "2026-06-30T06:25:16Z",
-    "last_save_at": "2026-07-14T19:26:22.014Z",
+    "last_save_at": "2026-08-30T15:39:08.878Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29b9a82bcc9817747b4e63136c10ed2cf2c631906f49e73d4ab26f8224b6f4fc",
+    "source_fingerprint": "sha256:528dbcd4cd3d37e0d49564096246ba7246b6b878fe0a8796cf09158b2cb7e1d4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55195e91b8b5a45d5a240333691e98c3b5998e8deb4bba90d5424ea8833879d8",
-      "plan.md": "3615b3df966815d31d65e96a8ff8b8e131bf7f8f08734c9ed1e9ccec552ca190",
-      "tasks.md": "e5823c961da619ae59121048ed210f1340732f8efa4c6b5197cd80af731fe25a",
-      "checklist.md": "c0059bb867be0080fe733d71ea912797786783a86fb9496b8ee77a667ffcf477",
+      "spec.md": "299643e1ac494b550aeb4c6945f89c8aa4420435f65242f531002e7a1f9b795b",
+      "plan.md": "ea3b43c2b6ff83ed08412efb8e658be48afaebe271f2818c9ed90a0ce70eee36",
+      "tasks.md": "921bd9fd991e0280025c3b9a3299b80ba2a786204973945cabef75cf8989f4b0",
       "decision-record.md": "33572244ebde07ed8cf9442b9d90ad254a317ca58752feec77901e250c492aef",
-      "implementation-summary.md": "d233e5d277ebca60f9e145d2a7104bfe3d05b01a0741efb8d0b8026f2da5d0df"
+      "implementation-summary.md": "e307c3fe455c23fec67bfc4a5e7da5fdee03db0bad2e74eb3c1da98a6af02aeb"
     },
     "last_active_child_id": null,
     "last_active_at": null

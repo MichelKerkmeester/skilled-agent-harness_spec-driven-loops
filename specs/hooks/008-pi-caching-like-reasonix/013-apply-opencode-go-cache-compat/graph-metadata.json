@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The vendored `pi-cache-optimizer` fork emits a startup warning that `opencode-go/deepseek-v4-pro` is DeepSeek-like but its merged compat lacks `sendSessionAffinityHeaders` (and `supportsLongCacheRetention`), so a multi-upstream proxy may split provider-side prompt caches and reduce or hide cache hits",
     "created_at": "2026-08-13T00:00:00.000Z",
-    "last_save_at": "2026-08-29T14:54:14.922Z",
+    "last_save_at": "2026-08-30T15:39:09.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c65bf9305604a2a6d51252da5652a7a8e164b15736a4fc55322dae113629c2c6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8abcf6f744ff27dbcd85d371a2b846b81ce121450e41f835a62f3807a569e015",
       "plan.md": "1e5de3c56eb2fb817da9761d69ec9df403d4e207afbd1b77d13b90ef98c07a9f",

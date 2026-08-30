@@ -3,7 +3,6 @@
   "packet_id": "cli-external-orchestration/036-grok-4.6-support",
   "spec_folder": "cli-external-orchestration/036-grok-4.6-support",
   "parent_id": null,
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -37,9 +36,9 @@
       "grok 4.6",
       "cli-cursor cli-devin roster",
       "tasks",
-      "verification",
-      "checklist",
-      "decision"
+      "decision",
+      "record",
+      "summary"
     ],
     "key_topics": [
       "grok",
@@ -52,8 +51,8 @@
       "cli-cursor",
       "cli-devin",
       "tasks",
-      "verification",
-      "checklist"
+      "decision",
+      "record"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -61,7 +60,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
@@ -90,12 +88,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -217,27 +209,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "cli-cursor's enforced `CURSORSUPPORTEDMODELS` allowlist and cli-devin's enforced `DEVINSUPPORTEDMODELS` allowlist both curated only Grok 4.5 (6 ids on Cursor, 3 uids on Devin)",
     "created_at": "2026-08-12T16:53:55.000Z",
-    "last_save_at": "2026-08-29T14:54:25.049Z",
+    "last_save_at": "2026-08-30T15:39:07.857Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60a326df0619e653ffcbec0d5cc39ec08e4541526bcedf9784f78526d4713512",
+    "source_fingerprint": "sha256:1c18ad00169d38bafaa3eed0ed0b15b055a2d620cc36d06ca717eab0b59dd0ce",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "de9656a603d6b8dceb3eb8db67fdb6f324361b910fabec0acbf473e2c1d94073",
       "plan.md": "055e4ea987d48c81f9b3ebb007cca190b7a20614bb9a31fecc8492347a381a67",
       "tasks.md": "ccfb588e304bea6bbe8664113949235d46ef0c2fadd6ae5a6fd9bb2e83dd3be0",
-      "checklist.md": "9296e4eeb8a1185a8e034e60f2711847ebcfc6c09bbc1f6cdaa446e5cc1f5623",
       "decision-record.md": "12bf17c2614f142d9242ffa6c2d85e1cce791b6f6bcfa1e81cae7f90fb48a35f",
       "implementation-summary.md": "a910b78640b127728d96452bfdc8602155cfddea226654f607bec0b3b73a3395"
     },

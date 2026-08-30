@@ -111,13 +111,14 @@
     ],
     "causal_summary": "The current convergence anchor is council-specific and threshold-based. This phase defines five child contracts that replace count-based stopping with path coverage, cycle detection, independent stopping clocks, value-of-computation allocation, and generic cross-mode health signals.",
     "created_at": "2026-07-16T03:43:59.896Z",
-    "last_save_at": "2026-08-29T15:22:06.843Z",
+    "last_save_at": "2026-08-30T15:39:20.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:c28a3a53e93a91b24399b6bbd3ac26397a84817a9d3ee317a4aa887912903640",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d0f2ccdcc3e7c1b747ccdc471747c156ae02154e56bda57f07d96f457f84805b"
     },

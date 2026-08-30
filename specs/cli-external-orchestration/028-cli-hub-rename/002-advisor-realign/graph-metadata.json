@@ -27,8 +27,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "advisor realignment checklist",
-      "cli-opencode smoke"
+      "advisor routing decision",
+      "cli-external-orchestration cli-opencode"
     ],
     "key_topics": [
       "feature",
@@ -41,25 +41,24 @@
       "plan",
       "tasks",
       "advisor",
-      "realignment",
-      "checklist"
+      "routing",
+      "decision"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/description.json",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/cli-external-orchestration/description.json"
     ],
     "entities": [
       {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-external-orchestration/description.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -75,12 +74,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -93,9 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/description.json",
         "source": "derived"
       },
       {
@@ -195,31 +188,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Hub",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Moving the hub invalidates advisor paths and projections unless they are regenerated or repointed",
     "created_at": "2026-07-13T03:34:31Z",
-    "last_save_at": "2026-07-14T19:26:23.710Z",
+    "last_save_at": "2026-08-30T15:39:07.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2adb95b32cacb5ab301d70c3c79ac1631a67d15ac3199bc5a9030e7bd5ce7b9",
+    "source_fingerprint": "sha256:74c89a63e5064a26e377383d0af3de2331e4f938b061adc583cfbee92fadb826",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f6a07b84fd7ced59e1e0334ac40956e061a5387e265d186d2680251ec44154ff",
       "plan.md": "f3de305390baed1e4be53c8a079e9b0a770506273d371738c10495079ed6c21e",
       "tasks.md": "ba564c4c3f12a7f23fbc083d709db2a3e9d5852b3ee6ae3ad588a7e280377544",
-      "checklist.md": "658efba0c7066032f5b3c7731f22b6465983fee2c24e5a8d95d5873d2601bd3c",
       "decision-record.md": "f427135babab7c00f5bcb52b96cf78de0e522752e4d7bfd34f3c4ed43b15b78f",
       "implementation-summary.md": "0ce91cb6bab10a71754a3e39ae7c197c13af6796863fc9a93e4206259a25b1e6"
     },

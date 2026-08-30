@@ -58,9 +58,8 @@
       "resource"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "mcp_server/formatters/search-results.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -68,12 +67,6 @@
       "resource-map.md"
     ],
     "entities": [
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "mcp_server/formatters/search-results.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -211,11 +204,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Channel Stabilization",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: Indexing and Adaptive Fusion Enablement",
     "created_at": "2026-04-12T09:02:50.324Z",
-    "last_save_at": "2026-07-10T06:23:28.350Z",
+    "last_save_at": "2026-08-30T15:39:39.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,15 +224,16 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:2fe964e8cab6c5857a3a343df152581f1de897e02b617a316f23292144d96e78",
+    "source_fingerprint": "sha256:4091c22f5ed79e486c0d6aed77484ef48cc1e5562106c12f71617193b193ff2e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9889f10877ddb4d700a457c9ebded0c30ded364ccfc1ebb93015a4aa8c171fc0",
-      "plan.md": "6ce977702385ed0e384b473eeec90adac4b3d8b91710c5c4ab73ca2fa01cb60b",
-      "tasks.md": "2c1afa2a7314041821793302619b9522fcde5f4c30fdf02502e757561254a315",
-      "implementation-summary.md": "b449057a4dc407215a83998d906f45512481e759afbf1469532c9b5050ec10ee",
+      "spec.md": "a0b78bca5e15da9f1d549d874eb27b52f5bd490dd5cfb6b056e4d0a3612a02c2",
+      "plan.md": "a0f3d7b273547987c8df22e97d803e9205248b63d214267cb34c53928c41f072",
+      "tasks.md": "85a5c3016daae223ecfe170cbe4b4ed27573abfbfa9c95e97fce26a0d0de5dce",
+      "implementation-summary.md": "78a4565d6f16328f8e2fcb6a8c3a4cf226a280230b0060dbe095b5213eb690ed",
       "resource-map.md": "89f0b9a412ef5ca6abcd5563551be7df8ae55fa48c54bf207b95b44d828a8553"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/004-fix-access-signal-path",
     "last_active_at": null
   }
 }

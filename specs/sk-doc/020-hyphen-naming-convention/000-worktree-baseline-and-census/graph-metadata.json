@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The migration must be reproducible and isolated from the actively-raced main checkout. Before any change, the program pins an immutable BASE SHA, establishes a dedicated worktree with a fresh deterministic dependency install (never a symlink to the raced tree), and captures a complete baseline the later phases prove th",
     "created_at": "2026-07-13T14:34:05.514Z",
-    "last_save_at": "2026-08-30T07:19:08.794Z",
+    "last_save_at": "2026-08-30T15:39:16.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f2f3c8aa20f7cf579237d7cff74253507637b9077e51cfd0f624d6ba96d6b890",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e3fc2138f1df69fca6a6ecf1941daa32afa8c8db4ec29ad08e6a5a0d0f66d130",
       "plan.md": "e16308ace1d517eefb1de7b977d157de92f3d73df615b3f24c253bf96e7cfb98",

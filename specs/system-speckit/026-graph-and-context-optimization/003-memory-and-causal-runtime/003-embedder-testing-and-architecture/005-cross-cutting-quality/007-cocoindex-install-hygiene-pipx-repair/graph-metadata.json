@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The predecessor diagnosis confirmed that the pipx-installed `ccc` executable is stale/non-editable and missing newer modules, while the local venv points at the editable source",
     "created_at": "2026-05-23T11:55:15.564Z",
-    "last_save_at": "2026-07-17T17:19:25.207Z",
+    "last_save_at": "2026-08-30T15:39:30.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:620ff1d2491545965623a2a48d103ec5c633e8dda728248de5d71b5666eca9f7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "56b4bfdc4556318a01838c177c88f3e4edc246015bed45fa84f969fefb1c23d5",
       "plan.md": "b8b3b53513a205e4812cdcb693aa01e849ec127fa691f5d624a117c65e0c494f",

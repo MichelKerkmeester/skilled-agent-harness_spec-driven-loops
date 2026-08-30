@@ -35,9 +35,9 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "001-dependency-and-node-abi-alignment/implementation-summary.md",
-      "002-command-rollout-mode-resolution/implementation-summary.md",
-      "spec.md"
+      "002-command-rollout-mode-resolution/implementation-summary.md"
     ],
     "entities": [
       {
@@ -85,13 +85,14 @@
     ],
     "causal_summary": "Packet 018 triaged the ten pre-existing runtime test failures and fixed the one that was cleanly correct",
     "created_at": "2026-08-26T11:00:43.389Z",
-    "last_save_at": "2026-08-26T15:07:47.621Z",
+    "last_save_at": "2026-08-30T15:39:22.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:fe4bd74784ace7f8169bfd5fd1ff62a71377ee36cdf517d0d557c2b601c984eb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "277f610b67806db0cc109ca6b8736e873c7fb4b14ce405f09e3faffd15f6f78b"
     },

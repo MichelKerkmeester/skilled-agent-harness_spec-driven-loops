@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
       ".opencode/agents/orchestrate.md",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,26 +190,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit's highest-risk agent transitions are governed by prose, not machine-checkable discipline",
     "created_at": "2026-06-06T10:11:07.809Z",
-    "last_save_at": "2026-08-29T15:22:19.095Z",
+    "last_save_at": "2026-08-30T15:39:33.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3d12db831dcea5a93fe0d7861028921a43040aafb6935682e7db4688bca341c",
+    "source_fingerprint": "sha256:40324cddee3922ad5efe510f2a4fee39e692f424eae80224bbfa7678d2589dae",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b921794dfdb34aa0508500076a6b4777ed05a67388e09678e03d5b64c0e50d59",
       "plan.md": "82c187749f22e3fd6af9a4e80a6b769b64291fb567494424ad193861bc4982ef",
       "tasks.md": "bf0291e31b950f9db0b6e3cddb300da46039cc9fbd92730dc683234724871812",
-      "checklist.md": "3cea2801fbc7ac2fffde2935032109bf4be5279b81b049b4699703fcdc975814",
       "implementation-summary.md": "1a1ba11355e872e8f92adbd2969d521ac197b8877ae2253cf3b9bf98ca4a19bc"
     },
     "last_active_child_id": null,

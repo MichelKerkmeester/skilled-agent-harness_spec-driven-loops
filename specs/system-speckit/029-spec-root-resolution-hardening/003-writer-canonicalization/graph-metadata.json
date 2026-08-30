@@ -180,7 +180,7 @@
     ],
     "causal_summary": "The automatic writers resolve legacy-first or re-materialize `specs/`: the Stop autosave, bare/new `generate-context`, the phase-pointer refresh (which re-resolves the original argument and can silently skip), and `spec/create.sh` untracked (`mkdir -p specs/`)",
     "created_at": "2026-07-17T11:01:02.467Z",
-    "last_save_at": "2026-08-29T15:22:24.215Z",
+    "last_save_at": "2026-08-30T15:39:36.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,6 +189,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:50a752702e06c3c999cd27304ef9b0bdf5d698cb7f2aa146c9b901ecb3234902",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "026bab2c9d7f18d9ad337a5853dd4beb9f403eabf543f161bb7bde1171a8f858",
       "plan.md": "e066f3609083b4808e3bf4096a0a8608c345bcb4a7efce8766a5b4ca38c72da7",

@@ -40,21 +40,21 @@
     "importance_tier": "high",
     "status": "planned",
     "key_files": [
-      "plan-review/gap-synthesis.md",
       "spec.md",
+      "plan-review/gap-synthesis.md",
       "plan-review/gap-registry.md"
     ],
     "entities": [
       {
-        "name": "gap-synthesis.md",
-        "kind": "doc",
-        "path": "plan-review/gap-synthesis.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "gap-synthesis.md",
+        "kind": "doc",
+        "path": "plan-review/gap-synthesis.md",
         "source": "derived"
       },
       {
@@ -102,17 +102,18 @@
     ],
     "causal_summary": "Implementation packet for the packet-034 research synthesis, restructured per the plan-review (58 verified gaps) into the unified command-contract architecture. Five phases in dependency order: acceptance + rollout foundation, the P0 Gate-3 precedence package with a concrete validator, the build-time compiled command contract (subsuming render + agent-contracts + compiled + injection), dispatch receipts + progress records, then retrofit + pacing + rollout completion.",
     "created_at": "2026-07-05T02:24:11.224Z",
-    "last_save_at": "2026-07-16T16:32:34.642Z",
+    "last_save_at": "2026-08-30T15:39:25.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:5bf3841edeb752901779f93358f1c304f6a55d05635cd762dac966519204761b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37370c6342d5e08a0df4fd334ba0b0349ea3a9a501628f81ee709a382622ea66"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/001-acceptance-and-rollout-foundation",
     "last_active_at": null
   }
 }

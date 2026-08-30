@@ -41,49 +41,16 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
-      ".opencode/plugins/mk-code-graph.js",
-      ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
-      ".claude/mcp.json",
-      ".codex/config.toml",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      "shared/ipc/socket-server.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      "shared/ipc/socket-server.ts"
     ],
     "entities": [
-      {
-        "name": "socket-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-graph.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-code-graph.js",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -106,6 +73,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -197,11 +182,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A fresh Fable 5 debug seat root-caused the persistent `[mk-code-graph] Bridge skipped … (exit=75)` banner empirically: the shared daemon IPC socket server caps concurrent clients at 8 (`DEFAULTMAXSECONDARYCLIENTS`) and refuses excess connections by accepting then immediately closing them",
     "created_at": "2026-06-11T17:40:00Z",
-    "last_save_at": "2026-07-17T17:19:44.534Z",
+    "last_save_at": "2026-08-30T15:39:34.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:222dcbb6585ad466d4562e1a10617663da9d6c243d16aa50cc33b3dc0cc04245",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6219e1f82f41f59899f998720e6f199ea2740d3c2064e60e98e6f62d7a31860f",
       "plan.md": "55c4d3a217ac074b372bbe3dfa0e1d62fbf9f30aeaab4d3df15e7b087a1a948e",

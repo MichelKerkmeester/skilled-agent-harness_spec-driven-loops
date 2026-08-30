@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The sk-create-diff README at `.opencode/skills/sk-doc/sk-create-diff/README.md` still reads in the older tabular reference-card register and predates the pilot standard set by the mcp-obsidian README and by the refined template from phase 001",
     "created_at": "2026-08-04T08:34:48.487Z",
-    "last_save_at": "2026-08-30T07:20:32.161Z",
+    "last_save_at": "2026-08-30T15:39:17.803Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c2a32f449a58c98e41abe7e33d6cdec231c5b6a9e113f86a4910aed6f5747ab6",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "abefe4bcba9f99988610dcddb3ef9b771fb7c7ada18032e6dfff45da4b142c1c",
       "plan.md": "53160c733ac99e68b6fa6a0bb0b2141d27efd2e1df0e7f49fd1882ee5faa74ee",

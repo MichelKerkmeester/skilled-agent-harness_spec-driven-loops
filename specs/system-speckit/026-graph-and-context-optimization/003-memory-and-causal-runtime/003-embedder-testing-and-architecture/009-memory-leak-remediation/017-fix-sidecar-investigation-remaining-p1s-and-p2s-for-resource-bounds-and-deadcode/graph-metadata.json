@@ -44,32 +44,11 @@
       "specification"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "execution-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reindex.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -115,17 +94,18 @@
     ],
     "causal_summary": "arc 010/002 closed 18 findings (3 P0 + 15 P1) from arc 010/001's deep-research synthesis",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-07-17T17:19:28.342Z",
+    "last_save_at": "2026-08-30T15:39:31.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:778184baf694ea7a10ec610daa55419296454e796b81d50ff0ff753583ae025e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "166dff76ad55faf267e81b7a46d53dcad2528018c7fd10a5b21f07ba1da10fa7"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/004-fix-investigation-p1s-for-launcher-and-reindex-deadcode",
     "last_active_at": null
   }
 }

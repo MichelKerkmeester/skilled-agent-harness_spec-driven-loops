@@ -22,7 +22,6 @@
       "reference asset alignment plan",
       "rcaf deep skills plan",
       "deep skills alignment tasks",
-      "deep skills alignment checklist",
       "deep skills alignment decisions",
       "deep skills alignment summary"
     ],
@@ -46,11 +45,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "schemas/iteration-output.schema.json",
-      "prompts/iteration-rcaf.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "resource-map.yaml",
+      "validation-report.md"
     ],
     "entities": [
       {
@@ -72,33 +70,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "iteration-output.schema.json",
-        "kind": "config",
-        "path": "schemas/iteration-output.schema.json",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-rcaf.md",
-        "kind": "doc",
-        "path": "prompts/iteration-rcaf.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.yaml",
+        "kind": "config",
+        "path": "resource-map.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "validation-report.md",
+        "kind": "doc",
+        "path": "validation-report.md",
         "source": "derived"
       },
       {
@@ -192,31 +184,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Deep",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The three deep skills now share a runtime family but their references and assets were uneven",
     "created_at": "2026-05-25T06:37:29.559Z",
-    "last_save_at": "2026-07-08T13:43:49.085Z",
+    "last_save_at": "2026-08-30T15:39:22.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:823720325a9a0e656f3c78e1922dfe701daf1e60c7b56cbf31f3c3b51cd58d85",
+    "source_fingerprint": "sha256:f0f4fd938f688d378de7b77292c006d57051478e5a2a8a19c57cc30b767d70c1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e164cda365a4f8761fe1dfe8b68c7ee598c2b44b7cabeac0a6c5d5cbece33d04",
       "plan.md": "4037a7f34b53e249adf4cdb6a7215392cd5cefbed03c5d0518a3b7a6ae282639",
       "tasks.md": "4c6680d135a729f2d614ce021fd16c9f8ac67512567d6b98a082e7c4625fb30c",
-      "checklist.md": "8287542a31bb4a0b2d85cbeb6f56ecc90db14028f73ae503206f404acaa0fc09",
       "decision-record.md": "5ce0ecefcd60c925f297588f6fb16225d3eeb86734c175ef15fca73756fb72f6",
       "implementation-summary.md": "a1e7140e5b1ed2e9616490cf7fcb5049a6d36dc9f438d90dd41828e40e4d2826"
     },

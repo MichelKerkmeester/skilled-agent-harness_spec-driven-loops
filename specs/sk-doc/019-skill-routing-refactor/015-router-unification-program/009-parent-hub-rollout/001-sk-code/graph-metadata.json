@@ -20,9 +20,9 @@
       "sk-code canary tasks",
       "surfaceBundle activation task list",
       "stage-4 per-hub canary checklist sk-code",
-      "sk-code canary verification",
-      "surfaceBundle stage-4 evidence",
-      "sk-code rollback drill"
+      "sk-code canary implementation summary",
+      "surfaceBundle canary results",
+      "sk-code stage-4 handoff"
     ],
     "key_topics": [
       "sk-code",
@@ -41,20 +41,43 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "lib/registry-compiler.cjs",
       "lib/canary-router.cjs",
       "lib/execution-fence.cjs",
       "lib/policy-card.cjs",
       "lib/activation-gate.cjs",
       "fixtures/canary-cases.v1.json",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
       ".opencode/skills/sk-code/mode-registry.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "registry-compiler.cjs",
         "kind": "file",
@@ -89,36 +112,6 @@
         "name": "canary-cases.v1.json",
         "kind": "config",
         "path": "fixtures/canary-cases.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,26 +191,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code` today routes through a registry-driven hub that reads `mode-registry.json` and applies `routerPolicy.outcomes.surfaceBundle` to bundle a workflow mode with read-only surfaces [Confirmed: `.opencode/skills/sk-code/SKILL.md:50-57`]",
     "created_at": "2026-07-18T13:13:19.473Z",
-    "last_save_at": "2026-07-24T12:11:53.728Z",
+    "last_save_at": "2026-08-30T15:39:15.038Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a02392fd76c8d35e7447859fff2f8186d5c5c47f09805e3e50b3640af58d515",
+    "source_fingerprint": "sha256:52272c53776da9e8a08d7cdf1c3d373f054b28ba01609f0b509dc9f278555b26",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "281ac6ded5bcd5460514403922617fee9c7bfd024d37cc56237331da6a85d8fd",
       "plan.md": "9b0f1225a431b433b5064aab9ab9ddfd7cd1736467fa7bf3fc6fdb5b71a1bd5d",
       "tasks.md": "1154cbcb813c19f318c496ff6138f63257edb3aa41b4ed0d23c2dccb433ba7f9",
-      "checklist.md": "e0f80f79666978eee55e9fd580620d6dcfad1a4f36798278a459f9104065d50d",
       "implementation-summary.md": "d1b1ef8f4ded35c3af4e9cf464718ec14376798367f8fb79b18891084f96ee89"
     },
     "last_active_child_id": null,

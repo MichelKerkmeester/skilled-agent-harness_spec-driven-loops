@@ -175,7 +175,7 @@
     ],
     "causal_summary": "~688 in-scope skill markdown files carry `ANCHOR:name` / `/ANCHOR:name` HTML",
     "created_at": "2026-05-26T09:40:16.339Z",
-    "last_save_at": "2026-08-28T15:59:19.125Z",
+    "last_save_at": "2026-08-30T15:39:14.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,6 +185,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:801d3f5f2aae62f7dd39b116fa037708bfdef448103b703628f6e2d85d311c17",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95aad0c6471ecf46fcdb39dad787d178a13feb443334390abb642d9aee893699",
       "plan.md": "843b6a306107f4d06fe9c484f3998c0f2f9f10a79d453fbf22afc59dd58213e7",

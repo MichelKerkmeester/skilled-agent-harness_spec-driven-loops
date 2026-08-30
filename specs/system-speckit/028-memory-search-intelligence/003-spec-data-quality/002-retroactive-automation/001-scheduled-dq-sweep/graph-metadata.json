@@ -34,20 +34,12 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "mcp_server/tests/flag-ceiling.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -64,12 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -185,26 +171,37 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The eight shipped CI workflows are all `on: pullrequest` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/` returns empty, so no data-quality check runs on a timer or on demand",
     "created_at": "2026-06-27T17:15:35.490Z",
-    "last_save_at": "2026-07-12T13:12:08.365Z",
+    "last_save_at": "2026-08-30T15:39:35.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:415b1214c0ee2941fbbb6c82d612433494020e78ea617651d0b067ec3bdc5596",
+    "source_fingerprint": "sha256:1f3e6f362f1f5b1b1b45c750f40bf3040b7f5f6f947edcde299cf20093e6649f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85556874436eef534ed294d668ce8da830910277ed8355d46d6bbdfb1eacdd51",
       "plan.md": "3428fb604da5fa9fe97c577abeffeb99329a95f62105d5b5c5661a53d24080bb",
       "tasks.md": "5d65c07c3db9e182b9d4b8c1163ef603154276e5596c534876df244efd77d917",
-      "checklist.md": "765145eea2e943a01eecfaf7e03732c94df3ec90bda9ad6cc2dd9cee7266242b",
       "implementation-summary.md": "281787d1fa0cfc2019e56c141b0a965f8b0b21d0bf118e1ddb7c85fb169c16bc"
     },
     "last_active_child_id": null,

@@ -43,7 +43,7 @@
       "smoke"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-cli-freshness-and-smoke/spec.md",
@@ -52,7 +52,6 @@
       "004-cli-fallback-envelope-and-bridge/spec.md",
       "005-cli-automation-compact-completion/spec.md",
       ".opencode/bin/spec-memory.cjs",
-      ".opencode/bin/code-index.cjs",
       ".opencode/bin/skill-advisor.cjs"
     ],
     "entities": [
@@ -66,12 +65,6 @@
         "name": "spec-memory.cjs",
         "kind": "file",
         "path": ".opencode/bin/spec-memory.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "code-index.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/code-index.cjs",
         "source": "derived"
       },
       {
@@ -119,13 +112,14 @@
     ],
     "causal_summary": "027 phase 010 (`010-mcp-to-cli-tool-transition`) shipped three daemon-backed CLI front-doors over the existing mk- MCP daemons: spec-memory (`.opencode/bin/spec-memory.cjs` -> `system-spec-kit/mcpserver/spec-memory-cli.ts`, 37 tools), code-index (`.opencode/bin/code-index.cjs` -> `system-code-graph/mcpserver/code-index-cli.ts`, 8 tools), and skill-advisor (`.opencode/bin/skill-advisor.cjs` -> system-skill-advisor cli, 9 tools)",
     "created_at": "2026-06-10T20:46:28.777Z",
-    "last_save_at": "2026-07-17T17:19:44.227Z",
+    "last_save_at": "2026-08-30T15:39:34.134Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:2b5d95ccaed3d94d6678c4085c9d1decd4aefedc9c4fd5016c57d61b9017f6e4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4e2ea6b6b8c36143f7353836c570d6e4bf4eebd24a15b1109e62574f0f6e4f25"
     },

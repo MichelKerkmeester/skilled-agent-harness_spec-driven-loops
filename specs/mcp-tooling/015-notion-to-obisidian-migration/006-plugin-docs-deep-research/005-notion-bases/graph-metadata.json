@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The mcp-obsidian Notion Bases file-layer reference tree omitted exact plugin syntax needed for reliable AI-authored files",
     "created_at": "2026-08-23T03:44:43.265Z",
-    "last_save_at": "2026-08-29T15:21:54.979Z",
+    "last_save_at": "2026-08-30T15:39:10.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:47811e6f6e4e9a821441756d89e6154306bfd9ca1539c2a3fc6748ea66ed55f8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4a1b2d986a3c2ad7f06fa48ada82c79acc61d2981817b1f9e780be7f027ac362",
       "plan.md": "e6e2e4ef3a504466e3c5b8ddb9a761027a63e76085f6e28170f3b025f1ec11ea",

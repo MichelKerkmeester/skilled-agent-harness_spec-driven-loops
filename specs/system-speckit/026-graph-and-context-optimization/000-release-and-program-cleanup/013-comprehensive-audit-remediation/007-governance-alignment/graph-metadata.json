@@ -41,40 +41,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md",
-      ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
-      ".opencode/skills/sk-code/SKILL.md",
-      ".github/workflows/comment-hygiene.yml",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".github/workflows/comment-hygiene.yml"
     ],
     "entities": [
-      {
-        "name": "comment-hygiene.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md",
-        "source": "derived"
-      },
-      {
-        "name": "gate-tool-routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "comment-hygiene.yml",
-        "kind": "config",
-        "path": ".github/workflows/comment-hygiene.yml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -97,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Semantic",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Ten governance drift findings exist across sk-doc, sk-code, and system-spec-kit/constitutional: the sk-doc spec frontmatter row instructs agents to remove required frontmatter; command required-section lists diverge across three docs; the comment-hygiene checker misses half the forbidden patterns the constitutional rule lists; enforcement docs miscount enforcement gates and misstate bypass behavior; and the alignment verifier false-positives on Python scripts with .sh extensions while passing on P0 header gaps",
     "created_at": "2026-06-04T20:45:44Z",
-    "last_save_at": "2026-07-17T17:19:15.374Z",
+    "last_save_at": "2026-08-30T15:39:29.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0ff3f989ce5629aa8fbc0fdc4f40c16cdfff75af2c0c30a4e41be6ec5b74ee87",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8bb28d077ea74850ae7a83f6899b848852afc38b016f34d480d45f03fa62f0c4",
       "plan.md": "3d1890cf93dc04bed787d0d3593e0be40d67015e1f1ea232f00ca43096d6b859",

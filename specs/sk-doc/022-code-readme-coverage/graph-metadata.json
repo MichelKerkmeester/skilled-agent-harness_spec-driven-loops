@@ -134,13 +134,14 @@
     ],
     "causal_summary": "Three separate defects share one root cause: nothing mechanically enforces the code-README standard, and the standard itself is ambiguous about what it requires",
     "created_at": "2026-07-30T18:58:50.938Z",
-    "last_save_at": "2026-08-29T15:22:03.563Z",
+    "last_save_at": "2026-08-30T15:39:17.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:cd4cc5db3b735c163e240a1b31dc382f74d24989410ccb5dd64639d2853a9a56",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c63d971f681a867dec07cc5feef54052d60479ad2fd9b5cd2188a1473e985008"
     },

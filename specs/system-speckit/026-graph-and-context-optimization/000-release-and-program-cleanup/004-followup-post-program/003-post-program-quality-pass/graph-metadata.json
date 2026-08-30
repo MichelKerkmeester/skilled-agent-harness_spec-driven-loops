@@ -164,7 +164,7 @@
     ],
     "causal_summary": "Packets 031-036 shipped a wave of remediation work (5 packets implementing 013's research findings + 035's CONDITIONAL verdict + 036's CLI matrix adapters)",
     "created_at": "2026-04-29T16:30:00.000Z",
-    "last_save_at": "2026-08-29T15:22:10.772Z",
+    "last_save_at": "2026-08-30T15:39:28.181Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -172,6 +172,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:3405e07b9599e2a3097d9318f6de9684de9e9cdfef83e8f581708944129d768f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "43e8ccbbfd20c2497c11b072894742b4c53b688b8645f87cdace1945fc4c8376",
       "resource-map.md": "f69e9ed9d9655bd1de38f167ab72c5f5720ca2058ce2c10ce94266aec645627a"

@@ -38,19 +38,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Deep-loop findings only land in Spec Kit Memory at the final `memorysave` call after a run completes",
     "created_at": "2026-06-28T21:17:48.961Z",
-    "last_save_at": "2026-07-16T16:32:05.132Z",
+    "last_save_at": "2026-08-30T15:39:25.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bbc4d4883dbc1e2023c3f1a69aa5b770b05f9d6165321228e3994608618aaf2c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc2f5c6e17dd74848c69d54381acdcf2f5c8e9f17204d9523a083436db411353",
       "plan.md": "505802c953711e4c309a68f79b9acc02b59677bbcd96ef7d033267994bbf9a02",

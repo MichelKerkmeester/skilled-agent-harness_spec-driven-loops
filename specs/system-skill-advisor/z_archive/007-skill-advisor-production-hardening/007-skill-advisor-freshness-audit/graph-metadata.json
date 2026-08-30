@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/007-skill-advisor-production-hardening/007-skill-advisor-freshness-audit",
-  "spec_folder": "system-skill-advisor/007-skill-advisor-production-hardening/007-skill-advisor-freshness-audit",
-  "parent_id": "system-skill-advisor/007-skill-advisor-production-hardening",
+  "packet_id": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/007-skill-advisor-freshness-audit",
+  "spec_folder": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening/007-skill-advisor-freshness-audit",
+  "parent_id": "system-skill-advisor/z_archive/007-skill-advisor-production-hardening",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -38,8 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review-report.md"
     ],
     "entities": [
       {
@@ -61,15 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review-report.md",
         "source": "derived"
       },
       {
@@ -157,31 +157,31 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Freshness Audit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Report You",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -189,22 +189,21 @@
     ],
     "causal_summary": "Release readiness depends on whether the skill advisor reports freshness honestly, keeps status diagnostic-only, rebuilds graph state on explicit request, and avoids scoring drift or silent stale-context fallback",
     "created_at": "2026-04-29T20:05:20.000Z",
-    "last_save_at": "2026-07-15T11:59:24.548Z",
+    "last_save_at": "2026-08-30T15:39:26.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a24fdd397186194c5f8baa8d893e39d242d72f5c3a83f90c5812e8ffb8ab238",
+    "source_fingerprint": "sha256:c6e5b06b86d4814541d6f1f29fcf5538b3f8eb8bc964fee987cef0eac6db676e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3095de93c84fc3410a684cfb714180ff2f491a3b249b669691c5c4fbb029e356",
       "plan.md": "59deb999e801fd097ded5b46b570fcff2852e0748671d635360392542eec4159",
       "tasks.md": "c7faff4a36feb7111475b528d04406dde32f4c3d05eae6c3ed9feab11e047193",
-      "checklist.md": "e972ea6ab40bbb5bf29c2372a3c6bb836b4a9ec0c1a04f759c0c32dd440a8d9c",
       "implementation-summary.md": "4e6d8e3d577b21048a148b06c6226fa69f2132fe99775ed2ec2564285196ec8c"
     },
     "last_active_child_id": null,

@@ -20,9 +20,9 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
-      "decision"
+      "decision",
+      "record",
+      "decision record"
     ],
     "key_topics": [
       "specification",
@@ -32,18 +32,17 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
+      "record",
       "generate-context",
-      "script"
+      "script",
+      "837-line"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "checklist.md",
-      "plan.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
@@ -52,21 +51,15 @@
     ],
     "entities": [
       {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -194,29 +187,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Create Test Fixtures",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `generate-context.js` script is a 4,837-line monolithic file containing 84 functions across 18 sections",
     "created_at": "2026-04-12T09:02:53.536Z",
-    "last_save_at": "2026-07-10T06:23:10.783Z",
+    "last_save_at": "2026-08-30T15:39:37.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:3dba9704f0e5b4f1f09de7cfaf8ddc829248cd22bc0fb6e59c67789aca6fa115",
+    "source_fingerprint": "sha256:dabaa89333cbbf9057e5ee0529aef420c5352708099955f4533bb5059770722b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "44f42867918b85c437aa12255c333e34be06d3cb003c06e774d8a558c2bd467f",
       "plan.md": "2ccb05babeb024808682056e539e6770c253cf26413d6c269e9536997dc7da90",
       "tasks.md": "210d09b250c4fc82d1a82eb325df17e6370ce5f86138142a4745b4d14ed6522e",
-      "checklist.md": "cd524eaf5d64b083f02d312aa7449757bb1e2b4295fbed6670e44b9651e83d51",
       "decision-record.md": "77c5ba40ea54ee6a000313d0ab04ec8ad962d5e3df02dd53657a6199c1036ded",
       "implementation-summary.md": "62a27a0bb04527793abc1c32d1fa19f1e46bb7f392a87e1f80838d1f3273e4e7",
       "research/research.md": "7bbe243aa79f66efa729eb61a25fdb9223701e4b496cfe9dd7f1f2ffed5bceb2",

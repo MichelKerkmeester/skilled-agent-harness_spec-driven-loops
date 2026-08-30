@@ -188,7 +188,7 @@
     ],
     "causal_summary": "There is no integrity check on loaded registry or config JSON between iterations; a partially-written snapshot or externally tampered file is indistinguishable from a clean one and silently corrupts the loop session on resume",
     "created_at": "2026-06-28T14:01:52Z",
-    "last_save_at": "2026-07-16T16:31:57.809Z",
+    "last_save_at": "2026-08-30T15:39:24.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4eb62f8ea58af697d3cbc18c7e3032141da52604876822b6546a30d867e31f6a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f19ed37d2ddf51e5791b05f944bc0550bf7d9a93b11de851c2eafd31d51d78a",
       "plan.md": "c41f52f5b860d5c233bcee2c5befd3548d8f7279703ce0e6e2595114b1d3317e",

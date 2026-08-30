@@ -38,21 +38,55 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-skill-advisor/SKILL.md",
-      ".opencode/skills/system-code-graph/SKILL.md",
-      "research/root-readme-context-bundle.json",
-      "research/root-readme-delta-verified.md",
-      "research/root-readme-edit-evidence.md",
-      "README.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       "resource-map.md",
-      "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      "implementation-summary.md"
+      "README.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      "research/root-readme-context-bundle.json",
+      "research/root-readme-delta-verified.md",
+      "research/root-readme-edit-evidence.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -75,48 +109,6 @@
         "name": "root-readme-edit-evidence.md",
         "kind": "doc",
         "path": "research/root-readme-edit-evidence.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "README.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Compose Task",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Audit the README's factual claims (tool counts, file paths, server names, integration patterns) against current reality",
     "created_at": "2026-05-15T12:55:00Z",
-    "last_save_at": "2026-07-17T17:19:36.536Z",
+    "last_save_at": "2026-08-30T15:39:32.743Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +209,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:6f57a2b743fa06cc860c0d036827ac803f43efd3c5b41f41d0dee38a7a6a23a1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a2aee77c08f6fc7fdd42b208bae1b77f318d58b1ffa83ea3d7d570c44c9b3180",
       "plan.md": "2479ea831b3979cd4620bf7f75c02b4530f6477d10140676b7f12c7e674c8280",

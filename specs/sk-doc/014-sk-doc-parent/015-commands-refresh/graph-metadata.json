@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The `.opencode/commands/` surface (the `/create:` and `/doc:` command files plus their `assets/` presentation and resource YAMLs) cited the pre-refactor sk-doc layout: hub-root `assets/`/`references/` facades, the deleted `creation.md` monoliths, the pre-regroup `create-skill/references/skillcreation/` path, the `doc-quality` packet name, and `shared/references/global/`",
     "created_at": "2026-07-07T06:36:20.172Z",
-    "last_save_at": "2026-08-29T14:54:23.629Z",
+    "last_save_at": "2026-08-30T15:39:13.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:479d7976700982db71df655e765be82ba226f456fc693483b1ad6ee5186f8d28",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0f2526a3419bb2218c22ca2071cb42d6f6a3ce7b3754495b61e6434abbecb782",
       "plan.md": "be285e20caeea22480de85cd7201833e8cc356d76fbb6ed008ace669142b32db",

@@ -18,8 +18,6 @@
       "readme rewrite plan",
       "phase 20 tasks",
       "readme rewrite tasks",
-      "phase 20 checklist",
-      "readme rewrite verification",
       "phase 20 implementation summary",
       "readme rewrite summary"
     ],
@@ -40,58 +38,20 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v1.4.1.0.md",
-      "implementation-summary.md",
       "spec.md",
-      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.4.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/changelog/v1.4.1.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-readme-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -107,9 +67,33 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
         "source": "derived"
       },
       {
@@ -195,26 +179,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-obsidian README and SKILL.md state the skill's reason for being as routing between two CLI profiles and the MCP",
     "created_at": "2026-08-04T05:41:57.238Z",
-    "last_save_at": "2026-08-04T05:42:43.795Z",
+    "last_save_at": "2026-08-30T15:39:10.213Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abdba4944ae57a2caa6c3879cea91c4af41562b822035a2b428f100d58f5ce14",
+    "source_fingerprint": "sha256:4c49217aabec6f4be6394c2605276ffac98967fca2903f740b8611f7f66e0ac4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "48a21b4286777a422314ccf083857fd951ba3267edea10eea08646f1816d47a4",
       "plan.md": "5d11e1c77cb3b04cae3ab7030ef05a7b2fe6464a2cf334e0a415ed35c8de899b",
       "tasks.md": "10ff18e2527088a8d9f36fb480bfd883737248a0dcc3678ba37d07d618bf9174",
-      "checklist.md": "a49f2677d545db6db28c74d8e7beb32c9f363c64a5759defcae3624b58fa247d",
       "implementation-summary.md": "23bbac7d4ce9d2e7c61c0fe45be4cd87ca10b117364652090596f5b8ede0cd53"
     },
     "last_active_child_id": null,

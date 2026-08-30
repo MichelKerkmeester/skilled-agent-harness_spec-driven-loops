@@ -118,13 +118,14 @@
     ],
     "causal_summary": "Port the OpenCode passive session-goal system to cli-devin, cli-cursor and cli-pi via a runtime-neutral goal hook concern, activate the dormant hard_rules for those CLIs in the dispatch hook, and mirror the OpenCode plugins into the unified hooks tree.",
     "created_at": "2026-07-28T17:29:36.478Z",
-    "last_save_at": "2026-08-29T14:54:15.288Z",
+    "last_save_at": "2026-08-30T15:39:09.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:77a8266b36f5092da6241a632c287f91c5f9bf161a6d35aa352c56020f928480",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "abe8f3f59a387b1a37002bc9c3e841cf170c76aac654177af8377352dff21a95"
     },

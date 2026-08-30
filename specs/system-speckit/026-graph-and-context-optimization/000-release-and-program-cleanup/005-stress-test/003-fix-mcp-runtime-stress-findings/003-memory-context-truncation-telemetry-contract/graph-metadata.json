@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 005 post-remediation verification (2026-04-26 18:49) showed that the Cluster 1 truncation fix is NOT live in the daemon: `memorycontext({input:\"Semantic Search\"})` still returns `meta.tokenBudgetEnforcement.{enforced:true, truncated:true, returnedResultCount:3, originalResultCount:5}` while `actualTokens=65 / budgetTokens=3500` (1.9% utilization) and `data.content[0].text` still contains `{\"count\":0,\"results\":[]}`",
     "created_at": "2026-04-27T07:29:35.265Z",
-    "last_save_at": "2026-08-29T15:22:11.728Z",
+    "last_save_at": "2026-08-30T15:39:28.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8bb0d3f28f20bf6cbdd65b37f7d3860e81e6d2896cd429a0d6a5e83f5defdced",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1c1afd7d498ef1fd8296da04b69991fa5be8f59b5cbda641fcf6d9209025894f",
       "plan.md": "1273da74e70c1644c14a99b2fcee8236a86ebbe58c7d4afc5ae0003a9f1876bf",

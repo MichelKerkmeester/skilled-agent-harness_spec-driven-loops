@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-communication/SKILL.md",
       ".opencode/commands/rewrite/explain-visually.md",
@@ -61,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,26 +181,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-communication` adapts an explanation on exactly one axis: register",
     "created_at": "2026-08-28T04:22:57.540Z",
-    "last_save_at": "2026-08-29T14:54:10.292Z",
+    "last_save_at": "2026-08-30T15:39:12.013Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8447efe6f997cccacad1b379422e5cd935a9f8ff4b8bf8dc7c1cabe26b44ea6",
+    "source_fingerprint": "sha256:3c65e65ec2e7959ef123c3e401dfd58451b6d4b1eed56fecc80c51791c209260",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61a877941528a9d09bcb9440afd213e4f733571acd87e3d0c03e0a2c2e459f58",
       "plan.md": "0bd7249966d24f032cc8f899b43bbcca383d986b237dc9d2de1b07d7e832e0ce",
       "tasks.md": "ccc27782c7a080678bd9ad16501ed71468c5904f95ce5b6c147bd2efaf3c6de8",
-      "checklist.md": "15b62e84c371cd0b39442e65a1980cdcd96280d0e0bad3b16ad210ca60cf576f",
       "implementation-summary.md": "6660ed29c51ef790545ac934ce1301f81cf5712fc099b3282deb77a533ef1093"
     },
     "last_active_child_id": null,

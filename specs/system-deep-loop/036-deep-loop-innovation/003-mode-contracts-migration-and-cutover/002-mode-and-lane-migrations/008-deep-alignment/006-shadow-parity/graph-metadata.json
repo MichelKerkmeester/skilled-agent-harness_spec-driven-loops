@@ -20,9 +20,9 @@
       "Deep Alignment shadow parity tasks",
       "deep-alignment parity harness tasks",
       "ledger event comparison tasks",
-      "Deep Alignment shadow parity checklist",
-      "deep-alignment parity gate",
-      "ledger shadow acceptance criteria"
+      "Deep Alignment shadow parity implementation",
+      "deep alignment parity receipt",
+      "deep alignment mode gate input"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -157,30 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -191,26 +160,37 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-014 shadow framework and reuses the shared review-loop contract frozen in phase 012.",
     "created_at": "2026-07-16T03:43:44.129Z",
-    "last_save_at": "2026-08-29T13:09:53.827Z",
+    "last_save_at": "2026-08-30T15:39:21.496Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eaf9f7ed2645fe7359a205048f39a486afaee8ad9d5b3f25c09e0382afb37a5c",
+    "source_fingerprint": "sha256:bf8e86895c68ab82e852a79bf89c123c5e67a0707fdb7a40c187033c2ff30c25",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1d1474a784d724bb616b139ac28bafa782bbba0f93f3218c1f236df1e0ae75e",
       "plan.md": "889753d8ff4124fe1007239c590c17cdf761cf50ad8cd5f856b9760c38f130b6",
       "tasks.md": "76e0e47d52731e22f0bb38e132bc62717bd45f2040b80d4a0d169a79563bbede",
-      "checklist.md": "1cfb0d6813f788754350e4eb76ffc44457131d8a535aab1ccae5790d8e6d2c5c",
       "implementation-summary.md": "9a27a8d3ad3b2c72da6af6c55f932d2f9a8504d6d7d6353196e332a839035ac7"
     },
     "last_active_child_id": null,

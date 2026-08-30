@@ -42,6 +42,9 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/commands/memory/search.md",
       "handlers/memory-context.ts",
       "handlers/memory-search.ts",
@@ -55,18 +58,31 @@
       "lib/search/search-flags.ts",
       "lib/search/graph-flags.ts",
       "formatters/search-results.ts",
-      "shared/contracts/retrieval-trace.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts",
-      "tasks.md",
-      "checklist.md"
+      "shared/contracts/retrieval-trace.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -154,36 +170,6 @@
         "source": "derived"
       },
       {
-        "name": "memory-tools.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-tools.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-tools.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,27 +192,38 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The retrieval feature category of the hybrid-RAG-fusion system requires structured manual verification against the official playbook",
     "created_at": "2026-04-12T09:02:50.289Z",
-    "last_save_at": "2026-07-10T06:21:57.354Z",
+    "last_save_at": "2026-08-30T15:39:39.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8d75a8f23432c830745d3f693380dac60eb430417feefdece9e9467a60ab2c9",
+    "source_fingerprint": "sha256:d3e0c120a71e76edded9e4b238f4aeb6da56cfb7ec0b3f8d02ee4a6a6c5e7b31",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93962d1ee701f1449ce3c8947cdf0544aecffa14550d300b9601dd4ed846ab37",
-      "plan.md": "ceb8d25d12856f13a3c2232e3a33cd78f4e25aa6c844a09ef9475775705e122e",
-      "tasks.md": "1252c940e4d460079be62e38a489a529b86a892e5812bf5e7333ca53971c6d64",
-      "checklist.md": "c71d068a945b68b386a693e7cf8959d7ec100e4ba78b24b325629be35b305ccd",
-      "implementation-summary.md": "2ffe596ba200dc2a009da9cd384ff796461cf420aa4cf21103c2f9eedc1f2b84"
+      "spec.md": "79445c966670a77ed9ed5c38046a3c287755aeb4ecb5f0e1b3fbb78865d26bfc",
+      "plan.md": "13cd7eff9ef99357cb2385f9f72b142ebcd49ad2f003502fa5029a44065ae730",
+      "tasks.md": "523dfb23cd046f53ab9f40acee2d5737aaf2484716d2bdd45723b88b63fe2327",
+      "implementation-summary.md": "5d11c7090bf2d49bf83a64208a8b2c897e72801eb50f79f8957bf9b14e0dc59f"
     },
     "last_active_child_id": null,
     "last_active_at": null

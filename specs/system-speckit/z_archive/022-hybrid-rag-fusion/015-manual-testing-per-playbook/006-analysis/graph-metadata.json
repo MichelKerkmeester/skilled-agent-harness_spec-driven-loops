@@ -21,8 +21,8 @@
       "analysis tasks",
       "analysis test tasks",
       "causal graph tasks",
-      "analysis checklist",
-      "analysis verification"
+      "analysis summary",
+      "analysis results"
     ],
     "key_topics": [
       "analysis",
@@ -35,22 +35,16 @@
       "history",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "summary",
+      "results"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/tools/causal-tools.ts",
-      "mcp_server/tools/lifecycle-tools.ts",
-      "mcp_server/handlers/causal-graph.ts",
-      "mcp_server/handlers/session-learning.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,33 +54,9 @@
         "source": "derived"
       },
       {
-        "name": "causal-tools.ts",
-        "kind": "code",
-        "path": "mcp_server/tools/causal-tools.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-tools.ts",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/causal-graph.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-learning.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/session-learning.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/causal-edges.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -96,21 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -196,27 +154,62 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-tools.ts",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "code",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "upsert",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The analysis category contains 7 manual test scenarios covering causal graph operations (create, stats, delete, trace), epistemic measurement (preflight, postflight), and learning history retrieval",
     "created_at": "2026-04-12T09:02:50.293Z",
-    "last_save_at": "2026-07-10T06:22:31.086Z",
+    "last_save_at": "2026-08-30T15:39:39.072Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0d240c1a7d300d3822505608e2106e690f06967d96d36ff20aee37460cf6458",
+    "source_fingerprint": "sha256:d077212d67b04b4dac781890e8ab5ebd56253323e9dd2b3bc74c27bda314134d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0243e89e9222a0986c36fdae335fa8c84543df705d6ccfae22f817d2f3935c2c",
-      "plan.md": "f3c5acb22fea455442f4260b95ae541fb740e725a3ac631f7fe82cd88d18f462",
-      "tasks.md": "016df4e5a16c5224cfa6aceb827948a22706a94520c7b04415f93a5ef016ae0c",
-      "checklist.md": "423f7c81aeafb55f72a54c745abed43d718cb22fab56b189698dbbba11272b5a",
-      "implementation-summary.md": "7d6c7bd8973584679c08f2fa8ae0158f7c95e4efd40d0bf52af2dc841ecf7cf0"
+      "spec.md": "9afa1c8931fa06ec28c89f6d362f2f23f5c81cf0f72e9b58cb36db52c48004e4",
+      "plan.md": "e49072010b43a0337641e0fb0ba0a75783aea2ae79142eb462443fc6402b9581",
+      "tasks.md": "c9eb722ab24bc10f7579e553f43586fb9560c00ae545e1c4933a081615fdab4f",
+      "implementation-summary.md": "29d654fbef8e7d46b14b95b8a4e2d76eb8363401a222450c485205ffc08aa8fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -21,8 +21,8 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist"
+      "decision",
+      "record"
     ],
     "key_topics": [
       "path",
@@ -34,28 +34,21 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
+      "decision",
+      "record",
       "quality"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      "scripts/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "scripts/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -90,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -177,44 +170,49 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Priority Definitions",
+        "name": "Validation Implementation Language",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Must Complete",
+        "name": "Context We",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Options Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "1. No quality enforcement: Incomplete specs pass silently",
     "created_at": "2026-04-12T09:02:53.515Z",
-    "last_save_at": "2026-07-10T06:24:23.560Z",
+    "last_save_at": "2026-08-30T15:39:37.006Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3755fa06458d6dea93083921c678012cc1101288dc9b1f35dd287aa1d301676",
+    "source_fingerprint": "sha256:6729600b57bcebaf363053c5ecfe24c495cd50e56a23ecb4c7994c5e485fff8f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53543317c7d7644be9c86ccb98bc66038d45c646e47d528ef76f47aed5dbebdb",
-      "plan.md": "40b3f283caa88484286345945dc00c12a3cc0ee78c4ade0710d95cb6eff1988b",
+      "spec.md": "ae9b1fb8e4cce3e407e2aa3d9d6c4f90d4926e404e2efdd5d11801ea00925999",
+      "plan.md": "b3ab9ef03f87a86eec38782fd953ed2c666658a38856e35017faf93a5ff9f320",
       "tasks.md": "67462265d4f886ea0fa46633eb94f77a2fe40049f3ef82e3be30b007d2603fc9",
-      "checklist.md": "7ebc7a027e649acf0085cb7dc4613cb6787da62db82cffbd556280c0c5a1c384",
-      "decision-record.md": "74d2f9986e56003b2f44ad0e13f087e7846cb8def871d2b579dcb8ab9afa5831",
+      "decision-record.md": "ecfc422d8d14b1c040bab69ed0a801b75d6b90f03065bb565e1834828ac016cf",
       "implementation-summary.md": "de65da104ae2f7b8be088a27b48afe8a2c356cdb0fe38527780d1bedad324639"
     },
     "last_active_child_id": null,

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The two trigger commands sat at the flat paths `.opencode/commands/rewrite-response.md` and `.opencode/commands/rewrite-response-by-external-agent.md`, so they invoked as `/rewrite-response` and `/rewrite-response-by-external-agent`",
     "created_at": "2026-08-19T20:23:37.258Z",
-    "last_save_at": "2026-08-29T14:54:10.254Z",
+    "last_save_at": "2026-08-30T15:39:11.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:305e72495854f1dc8340fae79e9b9a003f60390d0181b67b08d021e0bb26b258",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8eeb60edf69d4488a01bbd3935a5e047bf57d3c3feaa88a56c33817678beb49",
       "plan.md": "df6603072dbfa6611677d8358d361c249496028e8f5f60d08f1341f25124b180",

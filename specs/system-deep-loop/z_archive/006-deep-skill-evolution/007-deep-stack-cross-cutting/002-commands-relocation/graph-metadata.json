@@ -46,10 +46,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/install_guides/SET-UP - AGENTS.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,12 +69,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -86,12 +78,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SET-UP - AGENTS.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
         "source": "derived"
       },
       {
@@ -191,31 +177,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Asset Strategy",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Naming Convention",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 3 deep- slash-command MD files moved to `.opencode/commands/deep/` and are registered as live skill names (`deep:review`, `deep:research`, `deep:ai-council`)",
     "created_at": "2026-05-23T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:48.845Z",
+    "last_save_at": "2026-08-30T15:39:23.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0ec15cc8b180d261bf34c22ad7c131945147b13cddb4c56894d1cf62539e7de",
+    "source_fingerprint": "sha256:fd97abd9ab61f42a57ee769f9a27c70ff1a5d8c960e54de4db62f621dd066882",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "689a9b34ee27fc2494d4778a9c2bd647c049799357427034d27ffb8a5fdf7dc5",
       "plan.md": "8d6e642774d97eadc4bd93803d0375086471411d6b90800b59c1c5834c79f601",
       "tasks.md": "8cf8245136311de0355cb674cc369667fe0f0370bd9544f91e536356cd536cdf",
-      "checklist.md": "7b4e44bc4865766dfaef54cdc6a36e3268a56d0877d37dd3e927837f96926793",
       "decision-record.md": "fd71bb3b967efffa304a22b45fb1a54e2b419a69d99cdfe01c50490fa57c7d1e",
       "implementation-summary.md": "a3716b1a7ed7b418fcd9f2ffe717856659edeff37d57ac973b4abd226b6cc64d"
     },

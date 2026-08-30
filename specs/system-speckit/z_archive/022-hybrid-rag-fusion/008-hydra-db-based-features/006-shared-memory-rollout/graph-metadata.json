@@ -19,10 +19,10 @@
       "shared memory plan",
       "phase 6 tasks",
       "shared memory tasks",
-      "phase 6 checklist",
-      "shared memory checklist",
       "phase 6 adr",
-      "shared memory adr"
+      "shared memory adr",
+      "phase 6 summary",
+      "shared memory summary"
     ],
     "key_topics": [
       "phase",
@@ -33,8 +33,8 @@
       "spaces",
       "plan",
       "tasks",
-      "checklist",
       "adr",
+      "summary",
       "roadmap",
       "aims"
     ],
@@ -42,11 +42,6 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "mcp_server/lib/search/vector-index-schema.ts",
-      "mcp_server/tools/lifecycle-tools.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "checklist.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
@@ -57,36 +52,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-tools.ts",
-        "kind": "code",
-        "path": "mcp_server/tools/lifecycle-tools.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "MANUAL_TESTING_PLAYBOOK.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {
@@ -196,29 +161,58 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Setup Context",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reuse Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Context",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Context",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The roadmap aims to support cross-agent and collaborative memory, but sharing memory safely requires stronger controls than the current system provides today",
     "created_at": "2026-04-12T09:02:50.262Z",
-    "last_save_at": "2026-07-10T06:22:24.955Z",
+    "last_save_at": "2026-08-30T15:39:38.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fece57719b598b1f14feda0c7fd11cecdb90224097b4638b8255eb81b8ff396",
+    "source_fingerprint": "sha256:623803912ff4b283ea25258fe47e9c6b1e95e9668f1133703d1e26f64b47d9f0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "40ab5b6fbd8fdd30fb6d9dc558b9673bd76e27cb773c15e15029ef0949489e5a",
-      "plan.md": "7f83bd1c3864b237dcb19f3757a2f04826880e4ba68125a3e4a9ba613a593376",
-      "tasks.md": "ddfdf2dde2b5ba2a6f4c4f9b7c549f08b42aab71286f165ccd4078470f6bb171",
-      "checklist.md": "d9ee008de556baa054c89e01b6312f654540bd033402f6fd1cfccdf6c6df24ca",
-      "decision-record.md": "501b04871d78d0843872355d5a198b6fa23af6347845de3e41d7e8d15d107517",
-      "implementation-summary.md": "465a47a242fc662597ec7f5d73c9b64d93de746909bd1184a9569065df7a1bcc"
+      "spec.md": "d01c52011ef2e48c8acb453be23c1e2d6a350971840d31f42b0b862900e42c36",
+      "plan.md": "7b1710bf4933662fdef5ce1d9b342c9a18354dedf6a9af79a87a46d8f89b4a71",
+      "tasks.md": "df504b72aa1657f745175f00800c365f2181111bcad50ab47557a9b6db0f31b2",
+      "decision-record.md": "4d6164ddd96417dc169d59be9360155de4830cf631666f6cde2ff8e64f3abf71",
+      "implementation-summary.md": "0a1a3fb50cf32abc749586764848139b5c58764731ef85b4fd5bf275be4078fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

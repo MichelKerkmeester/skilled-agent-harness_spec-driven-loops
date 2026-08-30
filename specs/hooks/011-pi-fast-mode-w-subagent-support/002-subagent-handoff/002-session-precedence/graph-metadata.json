@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The Pi flag registry exposes a boolean default, so a plain false value cannot prove that the operator explicitly supplied a false flag",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-30T07:18:55.177Z",
+    "last_save_at": "2026-08-30T15:39:09.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4afc6254e2dfb717979830bc7b532fcca7fea57071d41e1848010186b9d57f99",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "96ec3aad613ff654d4b8682d3b71c326c097eca6d8ae93d4c1b4a1514b0df791",
       "plan.md": "af4d054f3a146c0b47786b3846734b1f197f94348821400070ad4a1deb56228e",

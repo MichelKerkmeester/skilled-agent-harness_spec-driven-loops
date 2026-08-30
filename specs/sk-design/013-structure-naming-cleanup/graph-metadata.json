@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/013-structure-naming-cleanup",
+  "spec_folder": "sk-design/013-structure-naming-cleanup",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design structure cleanup",
+      "sk-design naming convention",
+      "styles/docs stray removal",
+      "dunder test folder rename",
+      "interface command yaml conformance"
+    ],
+    "key_topics": [
+      "sk-design",
+      "structure",
+      "cleanup",
+      "naming",
+      "convention",
+      "styles",
+      "docs",
+      "stray",
+      "removal",
+      "dunder",
+      "test",
+      "folder"
+    ],
+    "importance_tier": "standard",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Naming Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Deletes",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three structural/naming defects in `sk-design`: (1) a misplaced `styles/docs/` folder holding a stray `manual-testing-playbook.md` whose content the hub playbook already covers under `styles-library-utilization/`; (2) dunder test/fixture folders (`corpus/tests` in five modes plus a backend `tests/fixtures`) that violate the kebab-case sk-doc filesystem naming convention (nodemodules excepted as tool-mandated); (3) the `/interface` command workflow YAML assets that do not conform to the create-command contract that governs `commands/interface/assets/`",
+    "created_at": "2026-08-30T15:39:12.961Z",
+    "last_save_at": "2026-08-30T15:39:12.961Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:73be24af0322fdfa5d487ae7e6e4864eb6daed62e22dac53c9aaab2c00ec6ecb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "37e61880bc333077ceb5919dab3ff73c0cb46a5c0c0280dfb34fa34659df17b4",
+      "plan.md": "774e066dd721bed70bfbed6f8af95ad9279eeb01556dda30aad0d2da16d10ec2",
+      "tasks.md": "3cb900af547fcacc24b9e8af6e06fa2e52d2e439f8e52c78fcb2d19b373daf9f",
+      "implementation-summary.md": "c5e7f664d13039cb212baad4138631cc898d4bd56a21cfe2e7598f7c591934f0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -16,7 +16,6 @@
       "sk-code reference asset snake_case frontmatter",
       "019 plan sk-code split doc alignment",
       "019 tasks sk-code split doc alignment",
-      "019 checklist sk-code split doc",
       "019 summary sk-code split doc alignment"
     ],
     "key_topics": [
@@ -39,9 +38,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "changelog/v3.3.0.0.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,21 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "v3.3.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v3.3.0.0.md",
         "source": "derived"
       },
       {
@@ -177,36 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "What Was Built All",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Serial",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover.",
     "created_at": "2026-07-12T14:23:01.630Z",
-    "last_save_at": "2026-08-29T13:09:57.431Z",
+    "last_save_at": "2026-08-30T15:39:18.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c09a6d390d1fc9991bd8e3e0095c5eeb4df38be3b302a5ddd2b6b6e12598d741",
+    "source_fingerprint": "sha256:92af80452b491cc880b9649a160f98997c7f105e1ce828b7a8efdc374a004c31",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d310ce219d18f8734dcc4f713cdb2551868c3e31fc674a9e5bfb12540d7a9cc",
       "plan.md": "287f6a96799ec4b6b3610c187859320ff86d87c787c457cdfcf9d17573d07e57",
       "tasks.md": "75d364d93f465781f8c0afd0b271c2a3ac5cbffa2757ff4f072c5fb810602aad",
-      "checklist.md": "8730f5477e42a275bea082e27c9f42a53bbc15921c936f6a7eac5cfd0cae1735",
       "implementation-summary.md": "a71ec8796bb8dcdeffb959df59f6b1b243997317395905042249bb6cc7df727d"
     },
     "last_active_child_id": null,

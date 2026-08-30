@@ -41,45 +41,22 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/spec.md",
       ".opencode/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/decision-record.md",
-      "decision-record.md",
-      "checklist.md",
       ".github/workflows/prompt-card-sync.yml",
       ".opencode/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/plan.md",
-      ".opencode/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/tasks.md",
-      "plan.md",
-      "spec.md",
-      "tasks.md",
-      "scratch/.gitkeep",
-      ".opencode/skills/sk-prompt/mode-registry.json",
-      ".opencode/skills/sk-prompt/hub-router.json",
-      ".opencode/commands/prompt-improve.md",
-      "implementation-summary.md"
+      ".opencode/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/tasks.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-card-sync.yml",
-        "kind": "config",
-        "path": ".github/workflows/prompt-card-sync.yml",
         "source": "derived"
       },
       {
@@ -95,33 +72,21 @@
         "source": "derived"
       },
       {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": "scratch/.gitkeep",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-improve.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/commands/prompt-improve.md",
+        "path": ".opencode/specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
         "source": "derived"
       },
       {
@@ -201,27 +166,56 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rationale",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "base",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The program has approved high-impact structural decisions for folding `.opencode/skills/sk-prompt/` and `.opencode/skills/sk-prompt-models/` into a single `.opencode/skills/sk-prompt/` parent hub, but phase 003 cannot safely scaffold the hub until those decisions are frozen in one architecture record",
     "created_at": "2026-07-09T13:34:33Z",
-    "last_save_at": "2026-07-15T10:52:34.912Z",
+    "last_save_at": "2026-08-30T15:39:18.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eebdffb0dd6ca68771611ef119787c6c3db3b9eeab3d9ef7211f652a69fb99e2",
+    "source_fingerprint": "sha256:5f08fe29c8a10da7c36a038407100f4544659885e0afc03ccee936d22fbb8b52",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "edd77271c4a5d98a52fd035ca285bb05d40da51f90b215bd282de85bb9e71716",
       "plan.md": "5a82097bec7d661de8bf6b8c503b9f386608fbbb4b809e4694b5ff0d1b73f02c",
       "tasks.md": "8323b4a7b411ff121cf4e8b9c4b896cb3ad21050e87d1a26648dacee9332d2d4",
-      "checklist.md": "7c3c4b72424da54e8729f12328131d9f761a435168454f62eb3ae9af453f924e",
       "decision-record.md": "ec3bd7d5b9b52974225b615b36bd9589ac4babfecb3c278540af25edc8ba0bfb",
       "implementation-summary.md": "b68551f9b7461f15b224a78ecddfe77e4d6c73694d2f3d3e0faef702b6b3ab40"
     },

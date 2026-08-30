@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Cocoindex's benchmark (2026-05-20-expanded, 73 probes on code chunks) showed Qwen3-Reranker-0.6B winning by `+1 hit / 73` over jina-v3 — a hit-rate delta of +1.4 pp",
     "created_at": "2026-05-23T11:55:15.610Z",
-    "last_save_at": "2026-08-29T15:22:15.509Z",
+    "last_save_at": "2026-08-30T15:39:31.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ddc491b397ab901f5ad3c7ef714f8dd3acde2dc993c628b0cc5d973d47a4f6de",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "130c1d3a827e0de339cb1ba4d6c6c8712b2659ce3b9c3c8c583045f98afe0d78",
       "plan.md": "d25e3a0673fa6cecefcbcdf38684fda3434b6e49ec8ac08029584c5512a2df55",

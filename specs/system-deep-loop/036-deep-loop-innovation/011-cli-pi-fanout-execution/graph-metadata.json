@@ -31,12 +31,11 @@
       "phase-1"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -59,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,27 +179,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Amendment (from Phase-1 reproduction)",
     "created_at": "2026-08-16T13:47:37.884Z",
-    "last_save_at": "2026-08-29T15:22:08.042Z",
+    "last_save_at": "2026-08-30T15:39:22.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8afa73c40800fb09e23718133bae7162d0de32f92228820207d290d06c55f434",
+    "source_fingerprint": "sha256:939194c46ec6473c25a80518482999fc7917a8a7a300e9895dcadb07095c6378",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "58c7b649fedfa20d961a4d08d983f85b75edce19f00835820aca6c6e048fb843",
       "plan.md": "c7a56edd5a06afeb0b0d133c1a3cb2647fc0671ca2b64e9c66bd4b02c9806baf",
       "tasks.md": "5dcd71dbff011ca524a1061caa8fbe5246864e7bff1a61aa37b9fdfbb1739aac",
-      "checklist.md": "59a9369a72a046056f928654d6d409802215819973cc8308c6bc4ee0b9b5b6c2",
       "decision-record.md": "ae20fd26f6636a76aa639e67291a6dde36b4c779bd41513222a37c225c17f723",
       "implementation-summary.md": "768f36f7869067e655153cb6fb92d94a71a1cdaa8e3b0766d1bf089b0f8263cb"
     },

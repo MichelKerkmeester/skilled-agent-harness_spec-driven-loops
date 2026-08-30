@@ -18,7 +18,6 @@
       "015 plugin expansion plan",
       "advanced canvas claudian project manager plan",
       "015 plugin expansion tasks",
-      "015 plugin expansion checklist",
       "015 plugin expansion summary"
     ],
     "key_topics": [
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -176,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Real Install Execution",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The `mcp-obsidian` skill documented thirteen plugins (twelve community plugins plus the Minimal theme), but the operator's vault stack was growing",
     "created_at": "2026-08-22T06:59:23.392Z",
-    "last_save_at": "2026-08-29T15:21:54.938Z",
+    "last_save_at": "2026-08-30T15:39:10.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed0b4f104a8329f4f4e7307cfa908888177541b98b93e768908ab60df2d72981",
+    "source_fingerprint": "sha256:676bb5670f0fea9de277da81c5639ab06f3ef650b64aa5fccf9b26256b78feb0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "58f2544ebe15295c8efb0ed163123ae7e5c613e20b0035b5899660747c6d208b",
       "plan.md": "2342dc67093a163ef29884837c361f22329fea16447677d258e2e3e703ff1166",
       "tasks.md": "435ff2adc415898edfa0d9c928dbcfc4199cc38e6c9534cf1683af74d05f53f2",
-      "checklist.md": "ed371d68bc7671514969145a41e9182130ed41883f6067ac81d7851d88c4126a",
       "implementation-summary.md": "c2aa7ea9885e4b4949ee453cb57812b9bc5e5041fa45fe2e0af131035c538a1f"
     },
     "last_active_child_id": null,

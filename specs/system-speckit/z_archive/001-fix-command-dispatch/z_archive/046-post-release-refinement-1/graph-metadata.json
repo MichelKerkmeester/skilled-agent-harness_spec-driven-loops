@@ -41,29 +41,14 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/mcp-chrome-devtools/SKILL.md",
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-priority-tags.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/sk-git/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-priority-tags.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-priority-tags.sh",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -83,15 +68,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -191,30 +176,41 @@
         "source": "derived"
       },
       {
-        "name": "Validation Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Checkpoint Deduplication Strategy",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Missing Validation Scripts Approach",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Systematically address all bugs, misalignments, and technical debt identified during the comprehensive 20-agent deep dive analysis of the OpenCode infrastructure. This includes ...",
     "created_at": "2026-04-12T09:02:53.529Z",
-    "last_save_at": "2026-07-10T06:24:29.633Z",
+    "last_save_at": "2026-08-30T15:39:37.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:2e837847de83d3a6a9e9ba4d75ad240429a4bbbd66137d58c97fd281ba2e66b1",
+    "source_fingerprint": "sha256:c49203d796a91282024e0cc69fb92a529c0824504f6b5ff984f5df5eedb80e4b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "240ee7cae674b06f1acd1fb003920e2477b5755759538116c85a30522d37e591",
       "plan.md": "07ffd4052030c6541bcd25bc9c0ebc30a1ec806069e4b1e4175845548c48c714",
       "tasks.md": "636ad0f1d4aa6287fd7186542e84d6c126804c38df169a672f7e816694c0ef78",
-      "checklist.md": "42d469c4f886061c973eecaa717d9740f680df38bb7ea83e3006750c3d5874ac",
       "decision-record.md": "623d873bb5765001bce721156af9c9aae6efb01d69e63aa2dec85d034d3b4314"
     },
     "last_active_child_id": null,

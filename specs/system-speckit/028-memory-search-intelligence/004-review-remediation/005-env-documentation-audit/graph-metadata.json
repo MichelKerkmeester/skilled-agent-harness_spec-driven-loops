@@ -41,19 +41,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "review/review-report.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/review-report.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The root README points readers to ENVREFERENCE.md as the complete flag reference, and a code-graph changelog claimed specific flags were documented there",
     "created_at": "2026-06-24T14:18:13.088Z",
-    "last_save_at": "2026-07-17T17:19:54.091Z",
+    "last_save_at": "2026-08-30T15:39:36.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5c77a82d48fa6579cb5dc6cd5547502b4f8c3ac544f09d723e7fed49c88b6107",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7ff63e386c0620b0647416803c525282699fb456767fb282f0928291315c48b3",
       "plan.md": "58c9f255279bee7dfcdc5096deddf593cabfa5d5d189b0a788a69e7e13c53fd8",

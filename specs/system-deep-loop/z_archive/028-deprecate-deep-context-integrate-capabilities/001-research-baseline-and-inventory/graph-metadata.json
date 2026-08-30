@@ -19,10 +19,10 @@
       "context deprecation baseline",
       "deep-context inventory tasks",
       "research baseline tasks",
-      "deep-context baseline checklist",
-      "research inventory verification",
       "deep-context evidence decision",
-      "research baseline decision"
+      "research baseline decision",
+      "deep-context research baseline summary",
+      "phase 001 implementation summary"
     ],
     "key_topics": [
       "deep-context",
@@ -35,20 +35,19 @@
       "evidence",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "decision",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "research/research.md",
-      "research/deep-research-state.jsonl",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-002.md",
       "research/iterations/iteration-003.md",
@@ -61,18 +60,6 @@
       "research/iterations/iteration-010.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -92,12 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -107,6 +88,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
@@ -204,28 +197,33 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Standalone `deep-context` has many active and historical references",
     "created_at": "2026-07-04T14:32:34Z",
-    "last_save_at": "2026-07-16T16:32:54.391Z",
+    "last_save_at": "2026-08-30T15:39:25.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c294ace52d665ba2080b6acff2e263d2ad0c5760748151bf15210a3dc013b425",
+    "source_fingerprint": "sha256:bd955d7ab7618a22c75d3240da2abdf31104211f08d92be2a9092a9165ef69fd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8b972dc3692d50f06d3107de7640a6575f50fa9c0787506a2656de6a110a3b1c",
       "plan.md": "1802d42383751ce511218444a07997d7e631d5ec9a247d931a92d99d790c142b",
       "tasks.md": "5d093ca4efa09ba41d61099e436aace86ca20c58786870bf9a366c2470fb762c",
-      "checklist.md": "d3363cfa55e0df743ae1552251a10131aa5dadb432e848b690a1c39dec624c99",
       "decision-record.md": "52ae1b5df26b124d47653311b4ce0a2bea6e372343318dfcb291e511ea2e330c",
       "implementation-summary.md": "289825b177c31c3a61198c3746c53e7b18d059a2580225f2b511fd468a979f42",
       "research/research.md": "3977ccc8a84bad3efc9990483e0ca2d84f4eb24c0091ee9b91f953c9eccec488"

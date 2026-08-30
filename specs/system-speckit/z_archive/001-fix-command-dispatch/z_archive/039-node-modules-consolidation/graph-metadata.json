@@ -20,9 +20,7 @@
       "plan",
       "task",
       "breakdown",
-      "tasks",
-      "completion",
-      "checklist"
+      "tasks"
     ],
     "key_topics": [
       "node",
@@ -34,17 +32,16 @@
       "task",
       "breakdown",
       "tasks",
-      "completion",
-      "checklist",
-      "system-spec-kit"
+      "system-spec-kit",
+      "skill",
+      "duplicate"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,37 +169,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verified By",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `system-spec-kit` skill has duplicate nodemodules directories consuming ~1.9GB:",
     "created_at": "2026-04-12T09:02:53.525Z",
-    "last_save_at": "2026-07-10T06:24:34.921Z",
+    "last_save_at": "2026-08-30T15:39:37.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:17b41602a4954d7627f6c521edfaed6db75917972273c14567aea424de9913d3",
+    "source_fingerprint": "sha256:21e59f8d82cb398a2852b6d954d9a1bdfab586e58d21a3cb046d12fd9253e6aa",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0cc936a754d90c0e637894f64aacd7524644f4921aaac3c61fdc6c29a5762765",
       "plan.md": "54cf3f11575f4af4af2e95b0c8f177157cad32c36f1ed4e1a34f6c947ab23de4",
-      "tasks.md": "e1dc073617750135dd8dc61682fc35679d7d39c1a1e18686d9871e4c2acfcfd7",
-      "checklist.md": "e49bb477e5eeeee787c6a7a30299f1c82f9ae1aa59dcdc1eb513431e5545d02c"
+      "tasks.md": "e1dc073617750135dd8dc61682fc35679d7d39c1a1e18686d9871e4c2acfcfd7"
     },
     "last_active_child_id": null,
     "last_active_at": null

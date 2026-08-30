@@ -16,7 +16,6 @@
       "cursor hook box header",
       "cli-cursor hooks sk-code alignment plan",
       "cli-cursor hooks sk-code alignment tasks",
-      "cli-cursor hooks sk-code alignment checklist",
       "cli-cursor hooks sk-code alignment implementation",
       "cursor hook box header fix"
     ],
@@ -32,38 +31,19 @@
       "header",
       "plan",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-      ".cursor/hooks.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
-      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
-      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
-      ".opencode/skills/sk-code/code-opencode/SKILL.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".cursor/hooks.json",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs"
     ],
     "entities": [
-      {
-        "name": "hooks.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -83,51 +63,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec-gate-enforce.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-enforce.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-classify.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-classify.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-route-guard.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs",
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
         "name": "post-tool-use.mjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "task-dispatch-guard.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/task-dispatch-guard.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,26 +145,67 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Cursor",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The operator asked directly: \"make sure all hook code aligns with sk-code code-opencode standards.\" `sk-code`'s `code-opencode` surface packet is the canonical evidence base for `.opencode/` system code (TypeScript/JavaScript/Python/shell/config standards, and — specifically relevant here — a dedicated `references/shared/hooks.md` covering \"runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability.\"",
     "created_at": "2026-07-24T17:25:17.654Z",
-    "last_save_at": "2026-07-27T03:27:51.384Z",
+    "last_save_at": "2026-08-30T15:39:07.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be00b52b6cd3132380df42d06af92c3a830597ecab7cb3b96773fa1ddf31181e",
+    "source_fingerprint": "sha256:484c3a794ef455ba833c4e8272e9bf6e3dcca8c8204144fb547f0276443cedf1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0f81e5c235b2251740ad0eac181fa3e8e15a74d00e575fb8672998647bd41f54",
       "plan.md": "1b4c43dadeb3206e2685f65597e9cba2c79bc51a8b2f8c577d13499ff8661363",
       "tasks.md": "b23d66b19ca33359177cdc739d4ac4af2520619a87399a2677655eab8b8b2413",
-      "checklist.md": "4b07af7d59d7b8bb91ba47beae255f2712787280bc10eb977ec63fcdfb9a91c7",
       "implementation-summary.md": "4e3bff997d1a065b21e227ed4fe1dd0c4638ad2fad0ee5b2752d30b97d2d2dec"
     },
     "last_active_child_id": null,

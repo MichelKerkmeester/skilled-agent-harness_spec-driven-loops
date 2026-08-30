@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Before this phase, `sk-code`'s router had no `OBSIDIAN` surface",
     "created_at": "2026-08-28T18:17:36Z",
-    "last_save_at": "2026-08-29T15:21:57.161Z",
+    "last_save_at": "2026-08-30T15:39:11.221Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a7ec488b5e97116dc7a85c46fdf76a3eb8a6fb69684270698f0187fb68c99f2f",
+    "source_fingerprint": "sha256:2b19b4a7efc6375771b904cdcbf71942d81d6345d549814f1152dde94458260b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "82c097aa6b4ddd7e999fd1a554139cbb0fb6f55ae9e32ea6dbbe2bf43286127a",
-      "plan.md": "8121126282c3765be35246c40d7be93bbfed6f9441a8fb82ddbc87d25fa374ae",
-      "tasks.md": "e869c19f7091b1643d0ae217497ecd7acacc34e58be5e785957de14b26b44803",
-      "implementation-summary.md": "2586a42fa7b2eb4710416e12f50fde8da658a3911c5e9e788e89de7becd46448"
+      "spec.md": "ef0c4db1e7cc351643e2de3e36cd283bed5cb7e68063e944c9665d33b9cde3a1",
+      "plan.md": "f92aeab8b7a225dfdf642fccce5beb1a40b513f8faa7c85e9861e7cc58e9ebe6",
+      "tasks.md": "7c57ebe30f0da597ea9557ab8eb45995bff381a42dc3c1707acd303a78bbbedb",
+      "implementation-summary.md": "6b8af9029a603b72a1cdeea4fcfa95352178e611ca0ad93f6ba68da301bde183"
     },
     "last_active_child_id": null,
     "last_active_at": null

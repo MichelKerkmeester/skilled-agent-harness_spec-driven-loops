@@ -20,9 +20,9 @@
       "gate question fix plan",
       "spec-gate question noise tasks",
       "gate question fix tasks",
-      "spec-gate question noise checklist",
-      "gate question verification",
-      "spec-gate question noise summary"
+      "spec-gate question noise summary",
+      "gate question fix summary",
+      "session"
     ],
     "key_topics": [
       "spec",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handover.md",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
@@ -59,8 +58,9 @@
       ".devin/hooks.v1.json",
       "hooks/pi/spec-gate-enforce.ts",
       ".opencode/specs/hooks/006-spec-gate-question-noise/spec.md",
-      "hooks/claude/spec-gate-classify.mjs",
-      "hooks/codex/spec-gate-classify.mjs"
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-advisor-brief.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -142,9 +136,21 @@
         "source": "derived"
       },
       {
-        "name": "spec-gate-classify.mjs",
-        "kind": "file",
-        "path": "hooks/claude/spec-gate-classify.mjs",
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-brief.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/skill-advisor-brief.ts",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
         "source": "derived"
       },
       {
@@ -200,33 +206,26 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "three",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The SPEC FOLDER QUESTION is injected on nearly every user turn in the pi CLI, and re-asks every turn in every runtime once the gate has opened",
     "created_at": "2026-08-02T13:16:09.194Z",
-    "last_save_at": "2026-08-29T14:54:14.507Z",
+    "last_save_at": "2026-08-30T15:39:09.159Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f44b884d612ff6da560a8d5e67fce4441d02a3ed14e9b6305cc7c08a2aa6304b",
+    "source_fingerprint": "sha256:e80ef120edd42a777a1437c8fa1745faeaf669efd9502680500008649c94fc43",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "086f154d28f5be1814657bab55414d01dc3ed8fa4c2ae0a68109bc2a1a183511",
       "plan.md": "9cbcd0b1affca5dfd221344d98b01e2272288aa44b5f8f68b8ade360ce69c5f8",
       "tasks.md": "6941e972be486d14e8f64e3640300f5b1fda9565dd71e0d7b6934cb6d9636f81",
-      "checklist.md": "4848604e29f95e1c970c6453f7d0efc67d02765e26269fa027afd6488a102081",
       "implementation-summary.md": "046bfc6e8aaf85d359edf25542083eb619f4c2e84968043fc3080ae19db5a979",
       "handover.md": "b6a3af5937dfca468ecb7a8e282c928db21e9951984c3ba87366e9a962d40445"
     },

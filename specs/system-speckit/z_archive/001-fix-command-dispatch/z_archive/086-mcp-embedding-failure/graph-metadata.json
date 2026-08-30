@@ -40,47 +40,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "shared/embeddings/factory.js",
-      "shared/embeddings/providers/hf-local.js",
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
-      ".opencode/skills/system-spec-kit/references/debugging/troubleshooting.md",
-      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "shared/embeddings/factory.js",
+      "shared/embeddings/providers/hf-local.js",
+      ".opencode/skills/system-spec-kit/references/debugging/troubleshooting.md"
     ],
     "entities": [
-      {
-        "name": "factory.js",
-        "kind": "code",
-        "path": "shared/embeddings/factory.js",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local.js",
-        "kind": "code",
-        "path": "shared/embeddings/providers/hf-local.js",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "troubleshooting.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/debugging/troubleshooting.md",
-        "source": "derived"
-      },
-      {
-        "name": "environment_variables.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -103,6 +71,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.js",
+        "kind": "code",
+        "path": "shared/embeddings/factory.js",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.js",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.js",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/debugging/troubleshooting.md",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Provide Immediate Fix Instructions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "High Priority",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Users report that the `speckitmemory` MCP server fails to generate semantic embeddings due to a corrupted local HuggingFace embedding model cache",
     "created_at": "2026-04-12T09:02:53.558Z",
-    "last_save_at": "2026-07-10T06:22:30.382Z",
+    "last_save_at": "2026-08-30T15:39:37.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:635bb0380c504d561ea31a7800549fa422e2077fdc9de0285798a7d447b7caa8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "64f36c797231e79becc8a5eb29f937ed6bd8c99af776e484d4f27ac212b1ec85",
       "plan.md": "8d6bd6bbaa19ef1eab075464007e37a39e65b569592464bbecf9efcf8a622f46",

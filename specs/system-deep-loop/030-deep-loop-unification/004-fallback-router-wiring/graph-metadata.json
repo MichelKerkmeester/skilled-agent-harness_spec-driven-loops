@@ -156,7 +156,7 @@
     ],
     "causal_summary": "`deep-loop-runtime/lib/deep-loop/fallback-router.ts` is a fully shipped, unit-tested pure-function library (`resolveFallback`/`createFallbackRouter`/`validateFallbackGraph`, confirmed via direct code read) implementing exactly the \"model A fails, route to model B in a different quota pool\" pattern the operator asked for on `001-reference-research`'s GLM-5.2 → MiMo-v2.5-Pro lineage",
     "created_at": "2026-07-08T04:36:15.774Z",
-    "last_save_at": "2026-07-16T16:33:08.911Z",
+    "last_save_at": "2026-08-30T15:39:19.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -165,6 +165,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:1fb00de468d2975e4ce4b65bbf3a52ac737ff3008498fb7260aebd2f9251bace",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c63875ba7fb9edd9fb7a8b9ae4e964f475c582c7ed835fa2788222dd2b19ddb5",
       "plan.md": "85ed4e530d375f1b8b3d7759e422cae802ea814a01633ea571768f37429f570b",

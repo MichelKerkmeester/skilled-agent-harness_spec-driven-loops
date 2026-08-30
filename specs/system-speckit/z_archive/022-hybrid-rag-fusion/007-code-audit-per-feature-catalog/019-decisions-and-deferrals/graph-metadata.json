@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary",
       "decisions & deferrals"
     ],
@@ -29,10 +28,10 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "catalog"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -171,43 +163,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built This",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results Meta",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Decisions and Deferrals has evolved significantly",
     "created_at": "2026-04-12T09:02:50.255Z",
-    "last_save_at": "2026-07-10T06:24:30.535Z",
+    "last_save_at": "2026-08-30T15:39:38.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f34d21d97b65ed67f5f4f910e4380e62685ec7d333e9917d9f0f5c3ea6e23201",
+    "source_fingerprint": "sha256:e00f41135c87a50e6285742362a21458aafc8c8b9a32759fd5815d40f8a49e4d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a435efcff802455ef791c91a36566d5a8343fb1256ec831b60e1c8df53f1ef76",
-      "plan.md": "270cff0968f3e3888c70b45fafde79ca764ee8f44de0af966b2405310be9ff97",
-      "tasks.md": "4dcfa8da33099966d6acaf2f3e55ae3bc23e84cbd8fa4601629ad13a8ce5feb8",
-      "checklist.md": "e396d3ef3456b892ff717c677a7d655a4144d9b63f04b13325a4e24425b4a82f",
-      "implementation-summary.md": "3060ed3a98cc9a9bec0118006979be2c5b88c068391ed6454521d930c91d2ce1"
+      "spec.md": "930732a97e8e714ba7a96d82180c8b1d42b385f3a8a0bb179dcd0263b6c3f0a0",
+      "plan.md": "c06cddcd362b5e5c0b13d67ddcb4e4aa3fdca2df52ef0357fb94f4e2e74636c5",
+      "tasks.md": "8ac1dbf3280249392e52dba7a31fdf3be2d6bba956a682deb6f2cebc23a74b6b",
+      "implementation-summary.md": "a2c36c270c31998273f52ab04bcabd50ed761bdacfdb5040d95f0b8238c8c141"
     },
     "last_active_child_id": null,
     "last_active_at": null

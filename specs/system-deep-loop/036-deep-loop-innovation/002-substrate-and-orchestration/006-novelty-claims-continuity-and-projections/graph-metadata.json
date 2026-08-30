@@ -104,13 +104,14 @@
     ],
     "causal_summary": "This phase defines the intelligence layer over the durable deep-loop substrate: concept-level novelty, typed contradiction and supersession, stable claim continuity, next-focus semantics, and deterministic transactional projections and gauges for convergence to consume.",
     "created_at": "2026-07-16T03:43:59.653Z",
-    "last_save_at": "2026-08-29T15:22:06.852Z",
+    "last_save_at": "2026-08-30T15:39:20.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:564ceb2d8700ad7699c8968d21660eaee808803bc401ddb450041508b4c25419",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a8ba80c96eec5687606f67fdb64f12259b23abdffc31b6f6b9647c1ce10968ed"
     },

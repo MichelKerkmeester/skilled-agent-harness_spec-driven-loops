@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/001-mcp-coco-integration",
-  "spec_folder": "mcp-tooling/001-mcp-coco-integration",
+  "packet_id": "mcp-tooling/z_archive/001-mcp-coco-integration",
+  "spec_folder": "mcp-tooling/z_archive/001-mcp-coco-integration",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -42,15 +42,14 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".claude/mcp.json",
-      ".codex/config.toml",
-      "research/research.md",
-      ".opencode/agents/context.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "scratch/cross-cli-auto-usage-test-results.md",
       "implementation-summary.md",
+      "research/research.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".opencode/agents/context.md",
+      "scratch/cross-cli-auto-usage-test-results.md",
       "scripts/common.sh",
       "scripts/doctor.sh",
       ".claude/agents/context.md",
@@ -61,30 +60,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
@@ -100,21 +75,39 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
         "source": "derived"
       },
       {
         "name": "cross-cli-auto-usage-test-results.md",
         "kind": "doc",
         "path": "scratch/cross-cli-auto-usage-test-results.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,28 +193,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode had no semantic code search capability",
     "created_at": "2026-04-12T09:02:50.170Z",
-    "last_save_at": "2026-07-15T06:01:28.408Z",
+    "last_save_at": "2026-08-30T15:39:10.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5fb400cac2caa82029d367c9e7ffcb093a9f393aed878c6ec0df0c3fb969dcae",
+    "source_fingerprint": "sha256:936075cf3092ea6995d04e37c1ab0afde39a0c7ba4d959dd5cdd8d2ad312955d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fac1671bae67827f24fec082e7ab70eabe1466afd8d4d623874fbbac9eb081dc",
-      "plan.md": "19dde1817d67e8ff7060abcbc48cbcc7bff91d6575b7ff9f7aee24df5f088447",
-      "tasks.md": "1370130107b65fb5ff26f1fef780c423a7d91991ff19c50fd2b45b8ad8af2b0a",
-      "checklist.md": "4f96b1485944a3dd2594cd0de7fb2798c145d9890dfeee4b9ac8ae66d37ed41b",
-      "implementation-summary.md": "cba627eace0935ac437160a9474fe4e601b8897d4ce2399bdbd6b6ee057e368e",
+      "spec.md": "91232ee12a9aebaa4a215bbe5ae4f64d52b3c8481258ff99e143fd34040ddcc0",
+      "plan.md": "fa32d0b927071d0383eef7ca577e34a46d56e29125a3dcdea8d1b9affc4565ef",
+      "tasks.md": "3eb10c42df67bf10a15c981edfc0dc5983f363f8c112790e875ee78b5d58142d",
+      "implementation-summary.md": "30f0487397e732b21d8d0a3692f2f36a99c5939a5e439a80832b79db9fc87551",
       "research/research.md": "c19163b2133a063265c9d7301e330bfaa1487eb70d54930c08874bf75f870824"
     },
     "last_active_child_id": null,

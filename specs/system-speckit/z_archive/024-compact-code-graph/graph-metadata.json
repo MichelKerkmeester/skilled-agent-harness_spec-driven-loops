@@ -57,21 +57,34 @@
       "024-compact-code-graph"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "research/research.md",
+      "resource-map.md",
       "hooks/memory-surface.ts",
       "handlers/memory-context.ts",
       ".opencode/agents/context.md",
       ".claude/agents/context.md",
-      "resource-map.md",
-      "research/research.md"
+      ".codex/agents/context.toml"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -93,15 +106,9 @@
         "source": "derived"
       },
       {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
+        "name": "context.toml",
+        "kind": "file",
+        "path": ".codex/agents/context.toml",
         "source": "derived"
       },
       {
@@ -205,17 +212,11 @@
         "kind": "heading",
         "path": "resource-map.md",
         "source": "derived"
-      },
-      {
-        "name": "6. Specs",
-        "kind": "heading",
-        "path": "resource-map.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `024-compact-code-graph` packet spans a large phased workstream, but the parent folder originally had metadata without a canonical root `spec.md`",
     "created_at": "2026-04-12T09:02:50.341Z",
-    "last_save_at": "2026-07-10T06:23:36.068Z",
+    "last_save_at": "2026-08-30T15:39:39.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,13 +224,14 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:05cae257e005a744bac47940d54122a6360b5c285f4998eb7d64bedaff7ecf27",
+    "source_fingerprint": "sha256:96cd5c8995f985f15e7604e68a642c532af75f06c2cd7ea9d64d81065606ca0a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd2acfd2e1953014c28d15d2465e3a1c06c8169dfc82be998d0453441c9d7506",
+      "spec.md": "5c39bffbc79006211688412bf0c09e231500c899179924f3102e9f39410e5a31",
       "research/research.md": "a04fc96fe5dba99ed423ea4d421faa4bc301779681f58ac7968cd36cfb90eb75",
       "resource-map.md": "112da533e2fe6785207db429dbb6da3a31acec8ef28e4043759e97d98ab709b0"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/z_archive/024-compact-code-graph/007-testing-validation",
     "last_active_at": null
   }
 }

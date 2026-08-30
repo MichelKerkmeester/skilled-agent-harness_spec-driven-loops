@@ -22,9 +22,9 @@
       "command lane-asking tasks",
       "model-benchmark command tasks",
       "lane-asking task list",
-      "command lane-asking checklist",
-      "model-benchmark command checklist",
-      "lane-asking verification"
+      "command lane-asking summary",
+      "model-benchmark command summary",
+      "lane-asking implementation summary"
     ],
     "key_topics": [
       "command",
@@ -41,16 +41,13 @@
       "list"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/commands/README.txt",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/README.txt"
     ],
     "entities": [
       {
@@ -72,33 +69,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "aliases.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-        "source": "derived"
-      },
-      {
-        "name": "explicit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,26 +175,43 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The model-benchmark lane of deep-agent-improvement runs end-to-end at the runtime layer (`loop-host.cjs --mode=model-benchmark`) but has no command entry, so a user cannot start a benchmark run without hand-writing the loop-host invocation",
     "created_at": "2026-05-29T06:52:14Z",
-    "last_save_at": "2026-07-08T13:43:35.880Z",
+    "last_save_at": "2026-08-30T15:39:23.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38b8f2b0ed276bf9bf967f5a4d64ff1df152e6ecd8a09377ecae50d388d3e7d1",
+    "source_fingerprint": "sha256:1a5fe83ca701d5b12ef1826f7e782c66c5622fc7f6a975d2f5e57e0b598cd5f3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1a95923cde05b6eab3a7f29fedbf8c79ac80b7d8425f72b3c09f1353dacfe9e9",
       "plan.md": "f0c1fa1a836145abcb6cf3c9bf9ab11b49390c9d66dfe29c20ca458b805ea819",
       "tasks.md": "2b57cd9e2af39d9475ebea1909e6592839d7ae04acc820672060448215df0673",
-      "checklist.md": "f4fdb3b0eb1d94318cc349882f833e335af4ae1b0d8431768e5d54e13a100e70",
       "implementation-summary.md": "5f04c866e438aae3a114c0e9694aa42416951705647ebbbd1e9eebc49922a512"
     },
     "last_active_child_id": null,

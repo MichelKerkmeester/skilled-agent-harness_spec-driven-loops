@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon",
-  "spec_folder": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon",
-  "parent_id": "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime",
+  "packet_id": "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon",
+  "spec_folder": "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon",
+  "parent_id": "system-skill-advisor/z_archive/016-skill-advisor-tuning/002-skill-advisor-runtime",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -44,12 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "scripts/spec/validate.sh",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts",
-      "decision-record.md"
+      "scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -71,9 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -86,24 +83,6 @@
         "name": "validate.sh",
         "kind": "script",
         "path": "scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "metrics.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "bm25.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -191,31 +170,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Michel Kerkmeester",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Skill Advisor ranks skills by metadata similarity (the 5-lane fusion scorer), not by whether the recommended skill has historically WORKED on tasks like the current one",
     "created_at": "2026-06-19T06:06:27.156Z",
-    "last_save_at": "2026-07-15T11:59:34.623Z",
+    "last_save_at": "2026-08-30T15:39:27.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0de610e8f3d1e01291ece69585d4608a2a97fb8d8fe1708498523933d801cfd9",
+    "source_fingerprint": "sha256:bb882e105ab9016ad657048ad9835cb114097a6bfb54352c5af72c50a28b4274",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d3011395bfd1242dad6858460d534eb0f372deed6ca16b4e0726ba5df061a26a",
       "plan.md": "7130fc029a35947082399e3b6d72eb967ec1ac1856981b1432d84e17b3dd3147",
       "tasks.md": "d7b4bfd3502bfe9c1d4aad6ebb52f3f5e6e46e1756cf9e20c3cdef68a9be141e",
-      "checklist.md": "4144bab9e59b103c8b7d09d5781c1ffdbd0ff2088ad0f86338dee7ab661fa15a",
       "decision-record.md": "4f9d7ea21a91a86f08c25f6d60dbdb5ace2b94b6e6e1455a1e6347959742dd05",
       "implementation-summary.md": "5d3261d148d7a706bbc3702f8db9ba6f7864820e284883107bef8dc90e93a4a0"
     },

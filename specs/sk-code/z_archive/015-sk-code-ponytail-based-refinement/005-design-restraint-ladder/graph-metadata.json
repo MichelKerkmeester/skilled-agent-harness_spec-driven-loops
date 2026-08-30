@@ -37,19 +37,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/SKILL.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      ".opencode/skills/sk-code/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,15 +57,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -179,7 +179,7 @@
     ],
     "causal_summary": "Encode ponytail's 6-rung 'do you really need this?' ladder as a ~15-line subsection in sk-code's always-loaded universal quality doc, attached at the Phase 0->1 transition and gated to implementation intent — run AFTER surface+intent routing. The only recommendation touching the actual workflow; its clean integration must be proven before merge.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-07-09T10:02:44.406Z",
+    "last_save_at": "2026-08-30T15:39:11.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,6 +189,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:88f150c24affae36cae39d769d9eb784c187ac009d9c33f6327f8a69e01cfd1a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d9ff8cf8ee5087bd2408b09d382f7c46f6368cc13537a829a62d0b510ca8fe2",
       "plan.md": "532293b13bf2d249c9a443802dc68ca530e9f2abfe111050bfd3e174f3950aa5",

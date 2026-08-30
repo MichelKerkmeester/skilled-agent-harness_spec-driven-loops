@@ -34,69 +34,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
-      "lib/response/profile-formatters.ts",
-      "references/config/environment_variables.md",
-      ".opencode/commands/memory/search.md",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "lib/response/profile-formatters.ts",
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "profile-formatters.ts",
-        "kind": "code",
-        "path": "lib/response/profile-formatters.ts",
-        "source": "derived"
-      },
-      {
-        "name": "environment_variables.md",
-        "kind": "doc",
-        "path": "references/config/environment_variables.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "run-eval-v2.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "session-state.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/session-state.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -116,15 +61,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "profile-formatters.ts",
+        "kind": "code",
+        "path": "lib/response/profile-formatters.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -192,26 +143,67 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Twelve live SPECKIT feature flags carry a `V1` version suffix in their environment-variable name",
     "created_at": "2026-06-24T06:24:03.473Z",
-    "last_save_at": "2026-07-17T17:19:54.405Z",
+    "last_save_at": "2026-08-30T15:39:36.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05d8f4f114852468e74fd88d4af22a5a5b8551071041aa73d5b40e3e3ce82b15",
+    "source_fingerprint": "sha256:dd3da493f4dc0d9fea047aa6fee09c1542e013e0525fd29334fc218c007d79c2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0369d095ea49e3639b595f2cdabd06fa64f6ccf81e5e93bdb2f9586e9c496acf",
       "plan.md": "25caf65acd7825b12909678929ae78d03e17b4ba133c897ba68f9103722d653b",
       "tasks.md": "81230101a87e27ac98db8d5ee6c63e34f658be899258f171e542169e38f60ad1",
-      "checklist.md": "e1a25cb049a2eb5df3e12d870ec531bd44df5dab865d4ef65e33a9cfd8d757a3",
       "implementation-summary.md": "7b23d39291d9e3e440fa55b2c4390e5d9763a7adf22737e47446fde15f51cfdb"
     },
     "last_active_child_id": null,

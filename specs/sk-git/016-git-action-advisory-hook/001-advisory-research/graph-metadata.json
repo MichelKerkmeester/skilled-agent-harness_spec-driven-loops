@@ -21,8 +21,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "advisory research checklist",
-      "git advisory verification"
+      "advisory research summary",
+      "git advisory research outcome"
     ],
     "key_topics": [
       "git",
@@ -42,19 +42,15 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "research.md",
-      "checklist.md",
-      "implementation-summary.md",
       "plan.md",
-      "research/BRIEFING.md",
-      "research/manual-devin/FOCUS-PLAN.md",
-      "research/manual-devin/devin-03.md",
-      "research/manual-devin/devin-04.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research.md",
       "research/lineages/sol/findings-registry.json",
       ".claude/mcp.json",
       ".codex/config.toml",
       "research/manual-devin/devin-05.md",
-      "tasks.md"
+      "research/manual-devin/devin-03.md"
     ],
     "entities": [
       {
@@ -64,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "research.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -82,33 +78,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "research.md",
         "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "BRIEFING.md",
-        "kind": "doc",
-        "path": "research/BRIEFING.md",
-        "source": "derived"
-      },
-      {
-        "name": "FOCUS-PLAN.md",
-        "kind": "doc",
-        "path": "research/manual-devin/FOCUS-PLAN.md",
-        "source": "derived"
-      },
-      {
-        "name": "devin-03.md",
-        "kind": "doc",
-        "path": "research/manual-devin/devin-03.md",
-        "source": "derived"
-      },
-      {
-        "name": "devin-04.md",
-        "kind": "doc",
-        "path": "research/manual-devin/devin-04.md",
+        "path": "research.md",
         "source": "derived"
       },
       {
@@ -136,9 +108,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "devin-03.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "research/manual-devin/devin-03.md",
         "source": "derived"
       },
       {
@@ -200,27 +172,50 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The incident list in the parent spec is a starting point drawn from one session, not a survey",
     "created_at": "2026-07-27T18:47:24Z",
-    "last_save_at": "2026-07-27T19:53:25.257Z",
+    "last_save_at": "2026-08-30T15:39:18.596Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:e17d2d86c31045e24e0ea7840da787c5c6428ed0bb33a56aae9f6bf2a256ec71",
+    "source_fingerprint": "sha256:96d5b5d34a445a114b05e0f2e97081c53487a82ad39694a417c0b09d3cb2c147",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf0cc15c5290a351062a25dc819fa2c13b68f5e9667934d3af21e07a75a2a3a7",
       "plan.md": "bc2d8bb3f59a72b59c9851c3653ccdd953651da823cadd31916deadccefc253a",
       "tasks.md": "24b249e54dc60645977a5ef19c07247bb1f3b5af31033fd8f02788aef3f8ea20",
-      "checklist.md": "4ea1a16264c86f23afd3e6cbf7eb8c51cc25317eaed6a761ab73df6973d15dc7",
       "implementation-summary.md": "d54fde64379493aa274d0817ec64e7078b7c1a075c42b4fb9b140778776c97f7",
       "research.md": "91c8ad98b7a394de185cde09fee5259a9d274fa4414792f30145a4f622b1c053"
     },

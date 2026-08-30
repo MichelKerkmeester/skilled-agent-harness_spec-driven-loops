@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The mcp-obsidian skill still documented Beancount Finance as a supported plugin after its double-entry paradigm was dropped from the vault's finance workflow, and the plugin is `isDesktopOnly` so it cannot serve the mobile use case the skill targets",
     "created_at": "2026-08-23T17:58:57.913Z",
-    "last_save_at": "2026-08-29T15:21:55.430Z",
+    "last_save_at": "2026-08-30T15:39:10.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:11c0626d7801478628042c9168dfd4e4f17d9b9012d38a34076cb083c55713ab",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0e8952feeb105f8ed95ed64e59692481d93d427a1f556692ca99a16b3e6fb278",
       "plan.md": "61e07f54b413906cdd2f40ec76a45a370e2401eafd36beb18b7d9837c87440e7",

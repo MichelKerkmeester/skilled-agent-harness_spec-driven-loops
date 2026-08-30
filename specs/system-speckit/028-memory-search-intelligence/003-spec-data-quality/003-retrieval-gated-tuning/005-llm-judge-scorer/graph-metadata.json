@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -57,12 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -180,30 +173,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The retrieval fusion stage already applies a bounded quality multiplier over the composite score",
     "created_at": "2026-06-27T17:15:37.376Z",
-    "last_save_at": "2026-08-29T00:37:22.170Z",
+    "last_save_at": "2026-08-30T15:39:35.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a98d85e057360595e1dd17eb186f672270686174c614c43f198c7c77d797bc7e",
+    "source_fingerprint": "sha256:85d6289f2519636affd887da6a18d506d09ca2855c3db27fd038b1aa17910caa",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "626e543f93d94b01334a0bb91887ab9415de708aaa300152aef1f5ebf9b99b83",
       "plan.md": "a8ddb7be731c4213b1cc8913838258aa56883297b71d4ed877a3a06525637fbf",
       "tasks.md": "bf737a3ff37f90a1de5aa56820158175019c61239a0d0ea636b10eb774c49997",
-      "checklist.md": "bf896e32e756bcefc85cd77d286c3d167010de358ee8ec99b1be46d434a797ae",
       "implementation-summary.md": "007022805ab83876a6faf7edd937a4c61499c19b195974e116829774b18b469d"
     },
     "last_active_child_id": null,

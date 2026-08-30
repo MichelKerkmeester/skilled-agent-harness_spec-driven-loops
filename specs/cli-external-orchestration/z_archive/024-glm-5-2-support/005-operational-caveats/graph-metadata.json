@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/024-glm-5-2-support/005-operational-caveats",
-  "spec_folder": "cli-external-orchestration/024-glm-5-2-support/005-operational-caveats",
-  "parent_id": "cli-external-orchestration/024-glm-5-2-support",
+  "packet_id": "cli-external-orchestration/z_archive/024-glm-5-2-support/005-operational-caveats",
+  "spec_folder": "cli-external-orchestration/z_archive/024-glm-5-2-support/005-operational-caveats",
+  "parent_id": "cli-external-orchestration/z_archive/024-glm-5-2-support",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The phase-1 profile records GLM-5.2's documented capabilities, but real dispatch behavior (reasoning-effort cost, thinking preservation, tool-streaming, broad-scope timeouts) is only knowable from use",
     "created_at": "2026-06-28T10:15:18.274Z",
-    "last_save_at": "2026-07-14T19:26:17.528Z",
+    "last_save_at": "2026-08-30T15:39:08.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b3c321ef265cfbfa8bc3343af48d62e64fbb911d44e3ef3f6c499d1126e8f8c",
+    "source_fingerprint": "sha256:146611cef386a5ea715813cedf74133dfb46bcfd9048d6adf86ffd8f0423f357",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3c4bcdd771f9c4518da7dfe4e688dd29f642e8db524ea46ad7ebe7a298bf5365",
-      "plan.md": "4ab2b28d37252604bbb33d7677b8f2d208b60ddfff9b440f3b96c20eb7f31bc0",
-      "tasks.md": "81df79b98318673715ddd2805f8463b47a5048366cde836611655568c406b769",
-      "implementation-summary.md": "0cd27eb91812410bae80d1ce1d8ac9a5a608e95481de18defc00de2124b7a6db"
+      "spec.md": "c674d7251112840b7b330f06d7f65118233a051633f9390b8dedf36364082041",
+      "plan.md": "96b96fd924f0d78de6622eccae5b91654aac0f8edc547e30bd26882942df5e43",
+      "tasks.md": "a04cc417fa54106e6b37411b1923a422ff6fffb41907e28b9922fe5ef29d5165",
+      "implementation-summary.md": "9b610747c8b5deceda0c32acb482a365ea30d85d71bec7be02c47bfe935cd7ef"
     },
     "last_active_child_id": null,
     "last_active_at": null

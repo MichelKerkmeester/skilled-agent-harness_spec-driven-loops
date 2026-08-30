@@ -41,18 +41,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Run the mcp-tooling skill/routing benchmark (Mode A router-replay) validating seven-mode routing, and record the official-CLI scenarios as blocked-pending-Register-CLI.",
     "created_at": "2026-08-03T04:10:02.728Z",
-    "last_save_at": "2026-08-28T22:06:20.942Z",
+    "last_save_at": "2026-08-30T15:39:10.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7390d00edb239d40a8148a57b2a9b52e6edba78b1ff325456e1661c983a2a7c5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "653d04454dd67f2635d4f39ef91e8a32e1643a4c9a4f3caaf58798de483ddef5",
       "plan.md": "020a99b1fa1db853ee789ef97062623173df99ee9ead900042993a2931735aae",

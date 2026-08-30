@@ -18,7 +18,6 @@
       "014 plan",
       "agents md plan",
       "014 tasks",
-      "014 checklist",
       "014 summary",
       "014 implementation"
     ],
@@ -32,9 +31,9 @@
       "table",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "implementation"
+      "implementation",
+      "three"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -62,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,43 +165,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Updated Quick Reference",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Universal Template",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The three AGENTS.md governance framework files reference outdated Quick Reference workflow tables that show 5 memory commands instead of the current 4-command memory surface",
     "created_at": "2026-04-12T09:02:50.287Z",
-    "last_save_at": "2026-07-10T06:21:09.861Z",
+    "last_save_at": "2026-08-30T15:39:38.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d20788a8891659f1eaa675f4ac809513f0127535544ca8007aca894bffa68bf2",
+    "source_fingerprint": "sha256:d06ebd62ffa8426527fbb7892f88f764425576d00b5d7e5373e2ae75142c44dc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f2d7c02a43bfd47aa06f3d517b6500c2cbdcb47a37de6917b5750f84b5ac050",
-      "plan.md": "a6c6a5c80f6cbff07eb27b398181a6ff42da22fa08aabb801f17e8fa25abf8f8",
-      "tasks.md": "5110c245600c21d84890b79acea690f336b9c68505705834a66f8478609767d8",
-      "checklist.md": "09195a63f28914a74a0471e1e9177cfbd7e3b83da30ccc1047e57bf6a6c9e508",
-      "implementation-summary.md": "301dab4ca275f0cf82c52a9e2e9e57b0ae415e3399f9e11595204bccc617cc05"
+      "spec.md": "8dc8ac4b68228b2b6fa2d28004ce3d575289457fe53a4d0bbff0e8cc2d5d25c2",
+      "plan.md": "ff1739cb722954729b5a54161d62317bddcfbff0f008b0d759e1c97657e8734b",
+      "tasks.md": "db3cf5726e88299595a4de81daa88a282367b5382eda6cf3868d49b4325df072",
+      "implementation-summary.md": "0884a63ed29e6ab2f67a51ff8e09ccc1c8c6f901fb050d9c2760ad91745f6390"
     },
     "last_active_child_id": null,
     "last_active_at": null

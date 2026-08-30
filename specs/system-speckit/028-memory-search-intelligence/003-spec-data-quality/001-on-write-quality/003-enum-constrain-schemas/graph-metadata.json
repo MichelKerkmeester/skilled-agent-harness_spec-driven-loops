@@ -34,62 +34,14 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
-      ".opencode/commands/doctor/scripts/route-validate.py",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/scripts/route-validate.py",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
-      {
-        "name": "graph-metadata-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "description-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "route-validate.py",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/route-validate.py",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -109,15 +61,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -191,26 +149,61 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The two zod metadata schemas type their controlled-vocabulary fields as free strings",
     "created_at": "2026-06-27T17:15:33.334Z",
-    "last_save_at": "2026-07-17T17:19:50.644Z",
+    "last_save_at": "2026-08-30T15:39:35.538Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53a9b3b51e97c221a8bf5b38652cd9064525946afbf14aec25535cf497bc7864",
+    "source_fingerprint": "sha256:80b1b8b97fd43363770fd14c8097dacac4c8841c4f729292fec998258c587b10",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2958a20a4b68723b22866d7d2869282f05e94b672bbd18d23b7c0017d459c62f",
       "plan.md": "c884671ee5b88dacd0efbe5285ac6ceb33ab670b2424711e0b26ef8826019e44",
       "tasks.md": "d87f5c6d07229fced3b4c4fa9b19c096f4cd531358b1fa982c8d8d17b1bd0806",
-      "checklist.md": "f7b8f29200bfa600982cc9b0027c2a76f31d94744c3b4c4f959bddb86e9f4520",
       "implementation-summary.md": "e3070826690f043ef1a4d893f31197d547759974e2a82be90350b6199f07708e"
     },
     "last_active_child_id": null,

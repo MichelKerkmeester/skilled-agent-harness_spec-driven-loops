@@ -41,7 +41,7 @@
       "existing"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "handover.md"
@@ -128,7 +128,7 @@
     ],
     "causal_summary": "Phase parent: add an opt-in fan-out layer above the existing single-executor sequential loop so /deep:start-research-loop and /deep:start-review-loop can run N executor lineages concurrently (capped), each in an isolated sub-packet, then a consumer-specific cross-lineage merge. Single-executor stays the default and byte-identical. Generalizes the proven manual pattern from packet 122.",
     "created_at": "2026-05-30T10:12:01.126Z",
-    "last_save_at": "2026-07-09T10:02:49.103Z",
+    "last_save_at": "2026-08-30T15:39:23.912Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -136,11 +136,12 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:4bfe93b4610f36d58b606aa377159b0293bbbf0b0558e6c16036573cfbbdd37e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ff9e065c90681d7339b1263a1456e9a10881d3385a8c6efcd5c4d6fbfe3c057",
       "handover.md": "6fbb8535d01c801fd5b83a1ae0e18213e8791ad6c7b6cf6f1e6158237e842ceb"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/009-fanout-remediation",
     "last_active_at": "2026-05-30T14:31:20.568Z"
   }
 }

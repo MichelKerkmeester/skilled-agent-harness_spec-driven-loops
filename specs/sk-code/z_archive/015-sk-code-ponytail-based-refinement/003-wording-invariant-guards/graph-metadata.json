@@ -38,16 +38,40 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".github/workflows/rule-canary-sync.yml",
       ".opencode/package.json",
       ".opencode/skills/sk-code/SKILL.md",
-      ".github/workflows/comment-hygiene.yml",
-      "spec.md",
-      "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      ".github/workflows/comment-hygiene.yml"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "rule-canary-sync.yml",
         "kind": "config",
@@ -70,30 +94,6 @@
         "name": "comment-hygiene.yml",
         "kind": "config",
         "path": ".github/workflows/comment-hygiene.yml",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Add a standalone canary guard that locks automation-parsed exact strings (the Review status triplet) and, after canonicalizing the 3-way-drifted Iron Law wording, a minimal Iron Law invariant. Wired as a script + CI workflow (the proven comment-hygiene.yml pattern), not a vitest.",
     "created_at": "2026-06-13T11:40:00Z",
-    "last_save_at": "2026-07-09T10:02:44.392Z",
+    "last_save_at": "2026-08-30T15:39:11.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:72fbd7616b6b1e0f3be27c8311cc4fa240dc8df736e2c4340cdbcc3b036e5e51",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b1a5e7694d1ff6d70cf44fd70a53ce122dca3d34b8701285be05c09a5dec4099",
       "plan.md": "bcc58127bc290e0cec9efc9969ed0dab6ddee96450f50bdf6c2e87ab701507f8",

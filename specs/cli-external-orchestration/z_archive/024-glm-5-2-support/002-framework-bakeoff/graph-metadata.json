@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/024-glm-5-2-support/002-framework-bakeoff",
-  "spec_folder": "cli-external-orchestration/024-glm-5-2-support/002-framework-bakeoff",
-  "parent_id": "cli-external-orchestration/024-glm-5-2-support",
+  "packet_id": "cli-external-orchestration/z_archive/024-glm-5-2-support/002-framework-bakeoff",
+  "spec_folder": "cli-external-orchestration/z_archive/024-glm-5-2-support/002-framework-bakeoff",
+  "parent_id": "cli-external-orchestration/z_archive/024-glm-5-2-support",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`glm-5.2` is registered in Phase 001 with a reasoned-but-unverified framework: `recommendedframeworks.primary` is `craft` and `status` is `default-unverified` (chosen from Z.AI prompting guidance, not a benchmark)",
     "created_at": "2026-06-28T10:15:17.430Z",
-    "last_save_at": "2026-07-14T19:26:17.402Z",
+    "last_save_at": "2026-08-30T15:39:08.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68796c7e6c0ed7f710bfaaa5bc3ebb84a1d8e0e4429bad3c153ba6c79c34b748",
+    "source_fingerprint": "sha256:ec8e94a9e5ed890ad61b537d19d6ff6e5f2267e6371150a0c800c9fe405ebb73",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a567a3cd5265e26338fc197141e4975ebf298b4b8d293f4d7cd64789f1bcff15",
-      "plan.md": "a9b50ebd2fd9731efe8d9045d46d1879f8a171e3fb1717800bbe1e1ec646a217",
-      "tasks.md": "60e3ed17de8e300539aeed8f3f405231352f3c6381c39190e764699fb4078979",
-      "implementation-summary.md": "cba53c9f9b1cb4a4b285a61edd8781e8a246cb7cf6f01cd1b6e0c00fd77c5da6"
+      "spec.md": "57355adc1305e61af0b208d0b0b14557d64a66b7c6f1e10d77f5a216d10a9e04",
+      "plan.md": "b210ab204c334da332bb232579a6a60cec693eed799df1d28defaf1cad929cdc",
+      "tasks.md": "2c870f1e4098927e1ee131dc26d9c661b66419c6ae87a5b2dd4db392b63c13c6",
+      "implementation-summary.md": "9eb2af9d4d77a32d879979c42dc8238215dbb2e80771fc94f94b41bc6cfc3752"
     },
     "last_active_child_id": null,
     "last_active_at": null

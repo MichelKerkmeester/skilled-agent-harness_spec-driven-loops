@@ -23,8 +23,8 @@
       "phase 007 tasks",
       "test migration tasks",
       "deep-loop-runtime tests tasks",
-      "phase 007 checklist",
-      "test migration verification"
+      "phase 007 implementation summary",
+      "test migration summary"
     ],
     "key_topics": [
       "phase",
@@ -46,8 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "mcp_server/vitest.config.ts",
       "implementation-summary.md"
     ],
     "entities": [
@@ -67,18 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "mcp_server/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -178,42 +164,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Commit Handoff",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Migrated",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "After phases 001-006 land, the test layout in `system-spec-kit/mcpserver/tests/deep-loop/` is out of sync with the runtime code's new home in `deep-loop-runtime/lib/`",
     "created_at": "2026-05-22T20:05:00Z",
-    "last_save_at": "2026-07-09T10:02:48.752Z",
+    "last_save_at": "2026-08-30T15:39:23.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8597cd92ecea41d3b24640817f905628b18d227589362a0ae7ba091036386eaf",
+    "source_fingerprint": "sha256:d57ccce742942b00a1799cc5ece0cbf5679d66350793e4799cd97c46ef88c3c6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a1f20dfdb8fb603bc2ddce97397d438ff6cfd419d6602dadfafa3afd3e53bd23",
       "plan.md": "e005623cf05b0234ab421405d8c4fb1019aa56a598c779348a6824624e2819b0",
       "tasks.md": "0d7d1829436c27e9e8f9144fd8ff933e9fffb6d0a07e8a059bf13c541de1e864",
-      "checklist.md": "17e516fd2c4eec82ab43a02ba146ea46b4d201f900156a937060ab421b729153",
       "implementation-summary.md": "aa295ee5f75bfe13f0be877d578cec9781bce26900162a194f9773c74bcd81bb"
     },
     "last_active_child_id": null,

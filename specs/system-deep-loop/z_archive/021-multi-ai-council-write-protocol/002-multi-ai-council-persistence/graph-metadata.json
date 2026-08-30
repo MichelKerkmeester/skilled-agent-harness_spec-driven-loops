@@ -21,8 +21,8 @@
       "packet 089 plan",
       "multi-ai-council persistence tasks",
       "packet 089 tasks",
-      "multi-ai-council persistence checklist",
-      "multi-ai-council persistence adr"
+      "multi-ai-council persistence adr",
+      "packet 089 decision record"
     ],
     "key_topics": [
       "multi-ai-council",
@@ -41,22 +41,51 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
-      "decision-record.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
       ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md",
       ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md",
       ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md",
       "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-      "scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
-      "implementation-summary.md"
+      "scripts/tests/multi-ai-council-mirror-parity.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "multi-ai-council-persist-artifacts.vitest.ts",
         "kind": "test",
@@ -76,36 +105,6 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "council-output-full.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md",
@@ -121,12 +120,6 @@
         "name": "council-output-missing-required.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,27 +193,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Caller Persistence Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 080 documents the `ai-council/` output protocol but provides no persistence machinery",
     "created_at": "2026-05-06T17:06:24Z",
-    "last_save_at": "2026-07-16T16:31:40.701Z",
+    "last_save_at": "2026-08-30T15:39:24.280Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4cdeae5bc7fa8e320483a3e025f0f1cf6c2f21693c3cc5bcb64491cd8a99819",
+    "source_fingerprint": "sha256:c20476fe6dc64d8e2811ae0bd59b43d8cb2b0f1c9d073396573b5b6757d09bcf",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3babaf883a2392c3052ae4ad3229eb626516b63e69cb8ab2303e7fccaf5af81",
       "plan.md": "90cc969b9fc9543e081a19e74dd54211890f2f0d72924d3d6a412add978aa550",
       "tasks.md": "cd6b5a8657b8618414b467df7f24f8a070f956bdbf0d06a42a5dc56992495621",
-      "checklist.md": "babd17b67d2b7ee13a7a752f966a72140c9021a41eb7b3c1bc00be206100a45c",
       "decision-record.md": "1e0c2dcde277a2ceb37775d82b79b2aa0f1245c853ea92cb4cbd088a3d46c5fe",
       "implementation-summary.md": "7aff948c782ddd49025ed0c746d584a4530904556892994bebf197110d2295ed"
     },

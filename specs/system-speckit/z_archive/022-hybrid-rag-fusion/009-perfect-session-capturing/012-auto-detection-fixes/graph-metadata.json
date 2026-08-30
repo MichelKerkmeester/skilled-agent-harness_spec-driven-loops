@@ -20,9 +20,9 @@
       "plan",
       "tasks",
       "det",
-      "verificatio",
-      "checklist",
-      "summary"
+      "summary",
+      "auto-detection",
+      "fixes"
     ],
     "key_topics": [
       "feature",
@@ -33,30 +33,47 @@
       "plan",
       "tasks",
       "det",
-      "verificatio",
-      "checklist",
       "summary",
-      "multiple"
+      "auto-detection",
+      "multiple",
+      "compound"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/spec-folder/folder-detector.ts",
       "scripts/core/workflow.ts",
       "scripts/extractors/decision-extractor.ts",
       "scripts/extractors/session-extractor.ts",
-      "scripts/extractors/session-activity-signal.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "scripts/extractors/session-activity-signal.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -87,30 +104,6 @@
         "name": "session-activity-signal.ts",
         "kind": "code",
         "path": "scripts/extractors/session-activity-signal.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,27 +189,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Dedup Fix",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Multiple compound failures in auto-detection and memory quality:",
     "created_at": "2026-04-12T09:02:50.273Z",
-    "last_save_at": "2026-07-10T06:24:45.575Z",
+    "last_save_at": "2026-08-30T15:39:38.761Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:590047a25f1d936c0e9fc3389d03fa693efa48a456ac273ea2bf819fb3669530",
+    "source_fingerprint": "sha256:8fc73b2b281eac81a1ecd45d99352fde061ee241ef57c5d1741a73dec5ed3c1c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f91350ab9fbc2d798ed583bce9b31a587e87e7fea3b0cda22a73601d6985f03a",
-      "plan.md": "652bf8c9bca9fb44e20cca5ae84024ce6f737384893f5dee007a73c2c2eda647",
-      "tasks.md": "bce09b3a4c1bd8ec2d97ece11cbdac5d4cbd49efa1845d39cdae861d6f5a7951",
-      "checklist.md": "ccba2e0fb572596359815a53b7118fd0cf71e0a8e9208bea5a4da4c293d4ee4d",
-      "implementation-summary.md": "a967f3d7e86f9441d61392a07e679cb4f6baccb3f50183f1256d052e2e7c05d1"
+      "spec.md": "6f04f94a9add756bfc4ab844c28dd0a2730c0174558dc38150a05b9d323aa481",
+      "plan.md": "e4e119b87e8b456e1c17525cf607cb6d91a4973da0918c59610015d716cb2973",
+      "tasks.md": "93868dbcadcfec1dbb745bc97195ca4fb0971813ea1c0eafca783cd2b6d5cdbd",
+      "implementation-summary.md": "6d3db7af6bb28548eebcb8bf2ee22a2eecb70448de6fc79d67d040a25bbe5743"
     },
     "last_active_child_id": null,
     "last_active_at": null

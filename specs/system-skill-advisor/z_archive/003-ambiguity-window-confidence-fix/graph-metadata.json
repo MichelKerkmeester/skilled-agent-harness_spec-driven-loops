@@ -43,8 +43,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "SAD-002 (manual playbook) verified the ambiguity contract but exposed a calibration gap: the scorer flagged the cross-domain prompt \"Review the OpenCode docs and improve the prompt package for a release note workflow\" as `ambiguous: false` even though the top-2 confidences (sk-code 0.9287 vs sk-prompt 0.8888) were within 0.04 of each other",
     "created_at": "2026-05-06T13:05:18.900Z",
-    "last_save_at": "2026-07-16T16:05:58.828Z",
+    "last_save_at": "2026-08-30T15:39:26.279Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d4605524ae93e6a8460857a2b02a806af384785c94760cc2ca7c070efc282dbc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c47e4ab40e0d6182e1a9ea6832746309797d16c83b61e060e04d78fcdd4d35e5",
       "plan.md": "e385f3cd1887e70d0b497b34283e49e28aac133e5542fdb71c388d477a9da5ec",

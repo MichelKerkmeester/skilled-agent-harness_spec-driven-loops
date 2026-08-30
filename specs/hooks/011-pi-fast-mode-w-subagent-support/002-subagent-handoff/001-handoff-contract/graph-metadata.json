@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Child Pi processes need a stable representation of the parent's fast-mode preference",
     "created_at": "2026-08-16T09:08:02Z",
-    "last_save_at": "2026-08-30T07:18:54.867Z",
+    "last_save_at": "2026-08-30T15:39:09.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,7 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6f1b3f801af8c3dc560943c8c03abedd71eb4a676db188111134f09e6d7f05aa",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec365985acfa43b1aa42808103d6948e7e813bb3797616b5914218f0e3f53ac1",
       "plan.md": "c23221cc40e83082ff8b896f865c34ed204b1a503d6677df2477b681d9f7f75b",

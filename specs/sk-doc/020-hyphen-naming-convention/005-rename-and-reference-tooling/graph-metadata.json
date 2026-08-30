@@ -86,14 +86,14 @@
     ],
     "causal_summary": "The tooling phase defines a deterministic, exemption-aware rename engine, a read-only whole-repository reference checker with a disposition ledger, and a compare-and-swap static reference-rewrite executor, then proves them against disposable fixtures before any migration run.",
     "created_at": "2026-07-13T14:34:05.527Z",
-    "last_save_at": "2026-08-30T07:19:12.189Z",
+    "last_save_at": "2026-08-30T15:39:16.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:4cb613c916ca8a4b79117865463f5b053da22d7c74a1582eebfac2878c50abbe",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "524fa9be263e8582d5547259f1da6876ef7c98ffeeef495b6d025867a189e70f"
     },

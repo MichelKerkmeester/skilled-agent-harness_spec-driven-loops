@@ -167,7 +167,7 @@
     ],
     "causal_summary": "The deep-research packet contains 13 underscore-bearing directory families and 103 underscore-bearing files across assets, catalogs, playbooks, behavior benchmarks, references, and state artifacts. This phase renames those in-scope paths to kebab-case and repairs their consumers while preserving research state schemas, Python exemptions, and the SKILL.md contract.",
     "created_at": "2026-07-14T15:17:49Z",
-    "last_save_at": "2026-08-30T07:19:40.718Z",
+    "last_save_at": "2026-08-30T15:39:16.682Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,7 +176,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:ceb0d5fa261fedf01a743680ea38d17ff02dd1b47b3d28ac4366ad0022ad8a75",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ed5a65989061d7d21661ef4efe3e7847b06559f82bf8e3c51a2807fe0a0d0a42",
       "plan.md": "4feb01272536ff74e8631e6bc28503d74be9bfd49c5dc0e567e90cf4168e3d1c",

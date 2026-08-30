@@ -52,24 +52,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/commands/deep/research.md",
-      ".opencode/commands/deep/assets/deep_research_confirm.yaml",
-      "spec.md"
+      "spec.md",
+      ".opencode/commands/deep/research.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_research_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_confirm.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -115,17 +101,18 @@
     ],
     "causal_summary": "Operators running deep-loop research, review, or context passes receive no in-progress trend data (novelty/score history invisible), no telemetry parity between single-executor and fan-out runs (one dashboard for two modes is absent), no canonical event envelope (producers emit native formats that no single reader can index), no forced-run mechanism (only cadence-based triggers), no incremental memory persistence (findings only land in Spec Kit Memory at final save), and no safe dry-run mode to inspect setup/convergence without side-effects",
     "created_at": "2026-06-29T05:08:46.224Z",
-    "last_save_at": "2026-07-16T16:32:06.963Z",
+    "last_save_at": "2026-08-30T15:39:25.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:b22b798bd72d647da089dbf25c11ce4ab9c1458c6ad5a1543a4bb622b637f7ee",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ae1d200d0576a730053f0473c0c143a16b0f7c15a5485ca97b9ad1ab0b8ce10"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/024-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope",
     "last_active_at": null
   }
 }

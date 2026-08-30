@@ -35,46 +35,21 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/utils/source-capabilities.ts",
       "scripts/extractors/contamination-filter.ts",
       "scripts/memory/generate-context.ts",
       ".opencode/skills/system-spec-kit/scripts/utils/source-capabilities.ts",
       ".opencode/skills/system-spec-kit/scripts/extractors/contamination-filter.ts",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "source-capabilities.ts",
-        "kind": "code",
-        "path": "scripts/utils/source-capabilities.ts",
-        "source": "derived"
-      },
-      {
-        "name": "contamination-filter.ts",
-        "kind": "code",
-        "path": "scripts/extractors/contamination-filter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "MANUAL_TESTING_PLAYBOOK.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {
@@ -93,6 +68,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-capabilities.ts",
+        "kind": "code",
+        "path": "scripts/utils/source-capabilities.ts",
+        "source": "derived"
+      },
+      {
+        "name": "contamination-filter.ts",
+        "kind": "code",
+        "path": "scripts/extractors/contamination-filter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "scripts/memory/generate-context.ts",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The session-capturing pipeline still expressed source-aware policy with a raw source-name exception",
     "created_at": "2026-04-12T09:02:50.266Z",
-    "last_save_at": "2026-07-10T06:22:19.420Z",
+    "last_save_at": "2026-08-30T15:39:38.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:839f391fde72fb4ad1b53d6baf1c8ed946ecab15af0f13c2f3163e8a9ad00256",
+    "source_fingerprint": "sha256:5f8be8bd73cfb49ecf1f39b5a6d222e25fb26b21de492dd3b1e3e0ba5ead1855",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a128fcc3934ccb5d729925209e5f9b802e5318d0cf5294db6b88b3e0ba35e63",
-      "plan.md": "bb060bd50fa8134a9c2a94ff52cfca72a6a6f8320a45cc70ec6e7ca599e6c861",
-      "tasks.md": "8fb8a074c2e704790fdbede3680fdbcdd5977db539453e404bf9dce10e5724fb",
-      "implementation-summary.md": "5cfe66d6af8d8f99a4b0ce81ecc8a2f980ae0db3064ff9ac2bb175204f720888"
+      "spec.md": "d517114c398a29254d1c80d8866003595e66df2b53592a45bd802b40128f2c71",
+      "plan.md": "c2e2ade31ca9ac2d827da76c1681ef8db2b094c7f0a55405236501437ec1baf7",
+      "tasks.md": "24ec895fca569f7ff1193eed3fc1124e9ab3d037b5baaefe6169dbf599fc1dfa",
+      "implementation-summary.md": "37c6637e658846707317dc3ef6860cca5e2ec005dcfea36385b39f55b7ac1551"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -19,10 +19,10 @@
       "reverse parent folders plan",
       "013/001 rollback tasks",
       "reverse parent folders tasks",
-      "013/001 checklist",
-      "reverse parent folders checklist",
       "013/001 implementation summary",
-      "reverse parent folders implementation"
+      "reverse parent folders implementation",
+      "013/001 resource map",
+      "reverse parent folders resource map"
     ],
     "key_topics": [
       "reverse",
@@ -41,57 +41,25 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
-      "resource-map.md",
-      ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+      ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
+      ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
       ".opencode/agents/deep-research.md",
       ".claude/agents/deep-research.md",
       ".codex/agents/deep-research.toml",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
-      ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
       ".opencode/skills/system-spec-kit/scripts/tests/review-research-paths.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "review-research-paths.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "migrate-deep-loop-local-owner.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "migrate-deep-loop-legacy-owner-map.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -105,15 +73,39 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-research-paths.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-deep-loop-local-owner.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-local-owner.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-deep-loop-legacy-owner-map.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/migrate-deep-loop-legacy-owner-map.cjs",
         "source": "derived"
       },
       {
@@ -138,12 +130,6 @@
         "name": "deep-review.toml",
         "kind": "file",
         "path": ".codex/agents/deep-review.toml",
-        "source": "derived"
-      },
-      {
-        "name": "folder_structure.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
         "source": "derived"
       },
       {
@@ -205,27 +191,38 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Restore",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The centralized parent-root placement policy made child-phase deep-research and deep-review artifacts land under ancestor/root `research/` and `review/` folders",
     "created_at": "2026-04-24T12:32:52.475Z",
-    "last_save_at": "2026-07-17T17:19:15.991Z",
+    "last_save_at": "2026-08-30T15:39:29.202Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:45e889737cb61fa3cb9c4d26a20bdc4030a733b0a271aca6b520d7e6fa671eac",
+    "source_fingerprint": "sha256:ce1a4f5707b1583ccc7318ddb85938ee5138189425764c7ef06b6aafba5df930",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2f769c750f8ea11c6c1920088e225a4262e2c20605c9c621175fe804ab6807a",
       "plan.md": "d17dce493cdf34aaf18f62621571d556fde9ae7836c5fb053cc39d396eca1ea6",
       "tasks.md": "63292672342ef12399c5d70d514a25ae379fa85effbb0fd20952bba3df27356f",
-      "checklist.md": "85cb74ba8bd1d81cbdc7b5e638ee74821ffdaa4442c5508eaef1603a912eb8ab",
       "implementation-summary.md": "1fad3df5affff2d13ffba465ac1df1bfd1b954f0606c02d96de5b3b315063a4f",
       "resource-map.md": "0ae0aac767f3d7bcf6166ec70263ad1c88235ef2b2043e99f7c837d3c3327171"
     },

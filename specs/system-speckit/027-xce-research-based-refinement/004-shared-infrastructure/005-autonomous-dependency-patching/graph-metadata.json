@@ -197,7 +197,7 @@
     ],
     "causal_summary": "GitHub and npm security advisories can flag stale transitive dependencies in skill package lockfiles even when package ranges permit patched versions",
     "created_at": "2026-06-11T06:30:00Z",
-    "last_save_at": "2026-08-28T23:37:42.592Z",
+    "last_save_at": "2026-08-30T15:39:34.179Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:26439e630f9e4e10600826a6a9ef83376fa2543f0d9a34d28cf539b979f10c95",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "770f133005095028d7d2bb2d7b4b7397ac79f755b2a7f1ea8282df7f9c073f8f",
       "plan.md": "b2993d464bd752f3785cb39b6a5b15e72c9afb8c35c949e47a45e146bce56e48",

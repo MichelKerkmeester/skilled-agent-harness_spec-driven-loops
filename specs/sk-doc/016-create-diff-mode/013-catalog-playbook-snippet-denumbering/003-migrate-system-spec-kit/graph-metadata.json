@@ -37,7 +37,6 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -52,12 +51,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -181,30 +174,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`system-spec-kit` is the largest catalog/playbook package: 673 numbered snippet files (308 featurecatalog + 365 manualtestingplaybook) across ~67 category folders",
     "created_at": "2026-06-06T06:46:12.387Z",
-    "last_save_at": "2026-08-28T15:59:19.632Z",
+    "last_save_at": "2026-08-30T15:39:14.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85d23769a472d9dec8c06bc18723bb4bb1779a889c0fee55203a975313e47f89",
+    "source_fingerprint": "sha256:183b786185f06e908e6e0f14cfc184ae1634bae112158ca0bc56ee8d1262232c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d885788f7edc2166ab0b8487fdeeac3cea1d7226e9cfa740b953fabf3c79c26",
       "plan.md": "2b1e786c10da5c247fe0ad88cf4e4e69ad87211e9606897a43ecc3522b13431e",
       "tasks.md": "f95ea80bf575c4d1d987d3f62dacbf30ef9a87f1e6d6cf9bd96b9dfd44155e0d",
-      "checklist.md": "b0deb1f7fdf59f9a9c69e9c73ac776475debc30e4b866c9846e2bdc387a3a7cb",
       "implementation-summary.md": "21a6c0ca4322496d48abfcc8237a0a17dd41cd9ab76cfca6e16b37267f18b5d6"
     },
     "last_active_child_id": null,

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
-  "spec_folder": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
-  "parent_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization",
+  "packet_id": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
+  "spec_folder": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
+  "parent_id": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -22,7 +22,7 @@
       "mimo minimax deep loop task list",
       "tasks",
       "name",
-      "deep skills executor integration checklist"
+      "deep skills executor integration summary"
     ],
     "key_topics": [
       "deep",
@@ -43,7 +43,6 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -58,12 +57,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "MiMo-V2.5-Pro and MiniMax cannot be cleanly used as deep-loop executors: every `cli-opencode` dispatch in the deep skills injects `--agent general`, which the current opencode rejects/falls-back-from, producing noisy warnings and (for token-plan providers) failed dispatches",
     "created_at": "2026-06-01T20:21:29.318Z",
-    "last_save_at": "2026-07-14T19:26:14.939Z",
+    "last_save_at": "2026-08-30T15:39:08.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddc3bf081fb154bc9d2a3e48a0be639d2e834d0fca35b13657e8c7e380252a71",
+    "source_fingerprint": "sha256:61502746ad37a1b4ba9c4d6663a8c737ee98846f6c2cb5f4b8b3a5203f73a1c3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4e1a9ef1b633a0f6b764673cec55f44b91694cfe72bb6bb28678ed55d8d1df0d",
-      "plan.md": "ee699b09e3f68bea4d687c587449451b9ae7e67bc51a20d5bb6cdf6063f334cf",
-      "tasks.md": "0ef96c344dcf69bbe19a4bda6c245218a2f93ef0018a6ac5f7e4688626544923",
-      "checklist.md": "f5336bcb0efa1ee6cfec24533ff6101443924d2dbe5863d6117afb1550801456",
-      "implementation-summary.md": "0616a1cbc1538e198c68d1ac72f85da263f255ab09787c04c6dafb627e7342f0"
+      "spec.md": "f221e131330258ec221f95b036baec853d8f096d461533ee3cbf000dbeb7661f",
+      "plan.md": "e7974433d2a753ea7882086fe09f6f435bd0e202e1e93fd93901727288a9818b",
+      "tasks.md": "2173e550d703baf21d1101b29f71727fa6d7aae8b985251c7cc6fba0bac0a80b",
+      "implementation-summary.md": "624ce22678ad53cc0ec173b7a518b5c3cd3ed9d92d58c2c73a444c534a482fea"
     },
     "last_active_child_id": null,
     "last_active_at": null

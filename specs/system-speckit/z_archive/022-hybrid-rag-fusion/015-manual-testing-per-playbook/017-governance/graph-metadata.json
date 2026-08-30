@@ -22,7 +22,7 @@
       "governance tasks",
       "phase 017 tasks",
       "governance test execution tasks",
-      "governance verification checklist"
+      "governance implementation summary"
     ],
     "key_topics": [
       "governance",
@@ -42,14 +42,12 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "lib/governance/scope-governance.ts",
       "handlers/memory-save.ts",
-      "lib/search/search-flags.ts",
-      "plan.md",
-      "mcp_server/lib/search/search-flags.ts"
+      "lib/search/search-flags.ts"
     ],
     "entities": [
       {
@@ -59,15 +57,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -92,12 +90,6 @@
         "name": "search-flags.ts",
         "kind": "code",
         "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -195,27 +187,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "documented",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Manual governance scenarios for the Spec Kit Memory system live inside the central playbook and require a phase-specific document that preserves exact prompts, command sequences, evidence expectations, and verdict criteria",
     "created_at": "2026-04-12T09:02:50.303Z",
-    "last_save_at": "2026-07-10T06:22:13.685Z",
+    "last_save_at": "2026-08-30T15:39:39.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c7c9955328e6e2b8f82ab4dadfa95d3e13c2eb8fa1588d35c6b9cb631c78dcb",
+    "source_fingerprint": "sha256:1f14e8ed8bdb192432b1f017096e4541b624ddb31489149e40d1777079acb91e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24c7d4885e674bea82ff78782032598cb2bac6b032a645cd4c5829ebba5bb4bc",
-      "plan.md": "c99752dd253bbf2c081dff5af35000b412c89ffcb76bf62524bbaf1b8ba4cd10",
-      "tasks.md": "267a4182301805670556db3c933dc11bba1d3a4b88f32f6b309b47bb26dc044a",
-      "checklist.md": "583e41bc90dcf908999fbff9c51ed831a4a9421d0aa25f087a571e9398ec68a7",
-      "implementation-summary.md": "92a691bef7b9a677aace823802b7c4c0eed6abc052bdc2049626ff264005d929"
+      "spec.md": "cbc554912f7dc9588ec338f3c845ff1e22136d211de7cbe946b5f44bd0bcf756",
+      "plan.md": "cc9a3579b9a2c4ad326b8b90dbbf0e065dfa44e7a4b66c37d1d2b8d9c6595c90",
+      "tasks.md": "b47c8ab5a60436a342e43310f156c801f9fadb1b6ef8cc66be52c91a2315d6c6",
+      "implementation-summary.md": "c30f9ef1488a9293649617a8f69c1236b6f144dbad75651e0bf09cfb3ca973f3"
     },
     "last_active_child_id": null,
     "last_active_at": null

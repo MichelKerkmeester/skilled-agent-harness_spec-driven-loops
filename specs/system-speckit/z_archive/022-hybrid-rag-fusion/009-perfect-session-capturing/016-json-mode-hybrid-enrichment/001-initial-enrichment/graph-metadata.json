@@ -17,8 +17,6 @@
       "git metadata",
       "implementation",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
       "record",
       "summary"
@@ -33,14 +31,18 @@
       "git",
       "implementation",
       "tasks",
-      "verification",
-      "checklist",
-      "decision"
+      "decision",
+      "record",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "scripts/core/post-save-review.ts",
       ".opencode/skills/system-spec-kit/scripts/types/session-types.ts",
       ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
@@ -49,19 +51,38 @@
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
       ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
       ".opencode/skills/system-spec-kit/scripts/core/post-save-review.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
       "scripts/types/session-types.ts",
-      "scripts/core/workflow.ts",
-      "implementation-summary.md"
+      "scripts/core/workflow.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -104,36 +125,6 @@
         "name": "session-extractor.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -201,29 +192,34 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original phase-016 pack had drifted away from the code that actually shipped",
     "created_at": "2026-04-12T09:02:50.277Z",
-    "last_save_at": "2026-07-10T06:24:51.965Z",
+    "last_save_at": "2026-08-30T15:39:38.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4728088fde7c9a91650c92d018d3b610601047d795221adcf79aff591bbb8351",
+    "source_fingerprint": "sha256:c2b00f252e2c359b4217e66def421bf2692e59e2becd387fca41ca604d050d7e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a3d221e08b42062e351fa5b40df709cb1d4864b0771f7afe9949e7766826d8e",
-      "plan.md": "da94fca487566e387669941f8d489cabd0e6d77cfd1cf13c107567608845aba5",
-      "tasks.md": "be1947628142363489eae927b9c29324e046c977153aa4f8c385af1b0d2c83c5",
-      "checklist.md": "5e1edc52c073d1d83e09a68c8f773d2ae7d415e246ab45cf1182ee87790800cd",
-      "decision-record.md": "0bca360a078cd9e31eeb8515b24b4af382e2465e48859353454a660fb59106c9",
-      "implementation-summary.md": "fe05fe7c0f41bd869a05712795f5a4e1425e72f5caefcd727d715d3595365860"
+      "spec.md": "5af1c4733c295712b18831626e0d4172b08ee98fd0bbc518275f123b3f9cdd62",
+      "plan.md": "9e90fa2c6fe0a9b25f2d8566764d4bab5ddc885edaeee5eeaa2a72ba8edd1054",
+      "tasks.md": "8df96cbe75cb7f59df2bcc71ecc430b8261d2788adf04ec1240afbf122f005fa",
+      "decision-record.md": "d302a082ed723ff6294b881b0b553154777e4e4d6cbfa3639a0ff69e2a0b4d36",
+      "implementation-summary.md": "28a4393dabd55e80514776ace8194bad2b23317edb8c767761bf4f8f096d3166"
     },
     "last_active_child_id": null,
     "last_active_at": null

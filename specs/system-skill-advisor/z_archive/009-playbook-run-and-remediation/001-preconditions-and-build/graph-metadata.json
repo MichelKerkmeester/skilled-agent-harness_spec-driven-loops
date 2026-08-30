@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/009-playbook-run-and-remediation/001-preconditions-and-build",
-  "spec_folder": "system-skill-advisor/009-playbook-run-and-remediation/001-preconditions-and-build",
-  "parent_id": "system-skill-advisor/009-playbook-run-and-remediation",
+  "packet_id": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/001-preconditions-and-build",
+  "spec_folder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/001-preconditions-and-build",
+  "parent_id": "system-skill-advisor/z_archive/009-playbook-run-and-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -18,8 +18,6 @@
       "028 phase 001 plan",
       "playbook preconditions tasks",
       "028 phase 001 tasks",
-      "playbook preconditions checklist",
-      "028 phase 001 checklist",
       "playbook preconditions summary",
       "028 phase 001 summary"
     ],
@@ -32,10 +30,10 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "global",
-      "require"
+      "require",
+      "current"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -43,8 +41,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/api/index.js",
+      "dist/cli.js",
+      "dist/context-server.js",
+      "dist/hooks/devin/user-prompt-submit.js"
     ],
     "entities": [
       {
@@ -66,15 +67,33 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.js",
+        "kind": "code",
+        "path": "dist/api/index.js",
+        "source": "derived"
+      },
+      {
+        "name": "cli.js",
+        "kind": "code",
+        "path": "dist/cli.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": "dist/hooks/devin/user-prompt-submit.js",
         "source": "derived"
       },
       {
@@ -172,44 +191,25 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The playbook's §2 global preconditions require a current MCP server build, an unset `SPECKITSKILLADVISORHOOKDISABLED` flag, and evidence workspaces before any scenario can run",
     "created_at": "2026-05-26T20:10:23.387Z",
-    "last_save_at": "2026-07-15T11:59:27.460Z",
+    "last_save_at": "2026-08-30T15:39:26.998Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cedf68ee1469bf6b0585154def66ab42dd70206a06816bf1617b17dac0f6c5a4",
+    "source_fingerprint": "sha256:f683ffcd50025e940c389abbec93e25f6eaa3cc65b682f51c02a7187a328d4de",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90bc82e0ff2da046e3a533d7ceccdbaa4e7e85590212a9c62665ec06c00ebe21",
       "plan.md": "839f8263b9354b490c150fcffdc63b6293f2886e71b1e453d7c23d64810aca1c",
       "tasks.md": "a1dbabd139973c644d2d0cf7fb012032a97d6bfdc811a20e50bc30149dfe3031",
-      "checklist.md": "5c3d3ddeda82be1cf2438c290246fd15ebcd870d017ebf0f620679942d807289",
       "implementation-summary.md": "7d0daa1e9c8a4f0b1eb2cc620c3ceda4b4d95da4237f10b9e78033dc1998b998"
     },
     "last_active_child_id": null,

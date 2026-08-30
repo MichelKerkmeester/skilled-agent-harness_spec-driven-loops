@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
-  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
-  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "packet_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
+  "spec_folder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
+  "parent_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -40,19 +40,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three deferred items remained after 014",
     "created_at": "2026-06-05T12:47:32.528Z",
-    "last_save_at": "2026-07-15T10:52:32.429Z",
+    "last_save_at": "2026-08-30T15:39:19.315Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a5c501a5ff23d21460549243d684c88896197cd69dbf7b44b213e2646968e85f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a268ec54bdbc01e72d32882919f52fbc30b54a0af91d6bd3bdff886639efa18c",
       "plan.md": "c5b6d08e2d1d1d132ad12114a518e9f911b481e5d6f6a6366903cd641dcd3197",

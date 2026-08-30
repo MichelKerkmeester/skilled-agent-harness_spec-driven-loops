@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`design-motion`'s packet root carries exactly two markdown files, `SKILL.md` and `README.md`",
     "created_at": "2026-07-27T14:53:12.796Z",
-    "last_save_at": "2026-08-30T07:16:12.655Z",
+    "last_save_at": "2026-08-30T15:39:13.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5fabbb4d229d456089bdddae47fa1cee551b33c044a2c675eec3cc124234212f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "99ceadad158693787a97f2a5da6c1423772a0d896cad09d698d0d21dc417e221",
       "plan.md": "54fddfe957e31325d891b8981bbd4776edc2ba64864aa7ee2cfbde84b6b58e0e",

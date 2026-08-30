@@ -19,8 +19,6 @@
       "fail-closed producer plan",
       "effect enablement tasks",
       "fail-closed producer tasks",
-      "effect enablement checklist",
-      "fail-closed producer verification",
       "effect enablement summary",
       "effect producer built"
     ],
@@ -35,8 +33,8 @@
       "audited",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "summary",
+      "cutover"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts"
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A cutover certificate attests that a run's external effects were recorded and confirmed, deriving that from an effect",
     "created_at": "2026-08-21T20:04:08.398Z",
-    "last_save_at": "2026-08-29T13:09:56.798Z",
+    "last_save_at": "2026-08-30T15:39:22.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5016019169309f77c00aa7e64bdb6272f937f6d7ff6ccaefe1a881b68d357a7",
+    "source_fingerprint": "sha256:d50eaceed82abfa84f71f117bf7a9f6b71aa6cd24186a164dd83f51231ca2297",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "08919e1991dfa71596a611cad2ff03ce53b5275c9a0922b2c1a3ac9722ed3115",
       "plan.md": "486b32aaa9bb351325349d4fec554285279c09d7e1b2f39c6dadc43196948028",
       "tasks.md": "e1fbcc51ff6864068932a6f31dd1dcc93a253e049d5070099138f1a56c942881",
-      "checklist.md": "6278868659b2abe03f85b6c799c28b2ff815093c925d6fb543fe39fa7d65db7b",
       "implementation-summary.md": "87c7c654fa5f755b1601e8f2d8e0c70c879a3939ac523fe8e1dfca11cc7a3144"
     },
     "last_active_child_id": null,

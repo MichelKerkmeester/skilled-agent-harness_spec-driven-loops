@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/002-mcp-testing-playbooks",
-  "spec_folder": "mcp-tooling/002-mcp-testing-playbooks",
+  "packet_id": "mcp-tooling/z_archive/002-mcp-testing-playbooks",
+  "spec_folder": "mcp-tooling/z_archive/002-mcp-testing-playbooks",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -21,8 +21,8 @@
       "playbook implementation plan",
       "049 tasks",
       "mcp playbook tasks",
-      "049 checklist",
-      "mcp playbook checklist"
+      "049 decisions",
+      "mcp playbook decisions"
     ],
     "key_topics": [
       "mcp",
@@ -31,7 +31,7 @@
       "plan",
       "implementation",
       "tasks",
-      "checklist",
+      "decisions",
       "three",
       "four",
       "skills",
@@ -44,14 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "research.md",
-      ".opencode/specs/mcp-tooling/002-mcp-testing-playbooks/research.md",
-      ".opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md",
       "implementation-summary.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      "research.md",
       ".opencode/skills/mcp-code-mode/SKILL.md"
     ],
     "entities": [
@@ -74,33 +69,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/002-mcp-testing-playbooks/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
         "source": "derived"
       },
       {
@@ -188,40 +171,51 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "Four Skills This",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Rejected",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase-1",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Three of the four MCP- skills (`mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mode`) ship without a manual testing playbook",
     "created_at": "2026-04-26T09:17:15.287Z",
-    "last_save_at": "2026-07-15T07:48:12.601Z",
+    "last_save_at": "2026-08-30T15:39:10.650Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:96bc205119035036f607d0008cd9a59ffbaf41d73cf9d391bde37388e14bf45a",
+    "source_fingerprint": "sha256:f1d1699973e6c45ac985f867a965ba49f50a52fcdd14093bc9753762930aebb8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5a6ac406cac19104c4b14ade612b3ce4a8049920b93f6ec8674de538d5fe9bc2",
-      "plan.md": "71a80c25df0ccab17b9b62a798ace3f33a753009df1682a652c4a60c7daa42f8",
-      "tasks.md": "1cfac0d51fb426b8a51e19970c4847c77a72a6329496c5312f14fe4460696926",
-      "checklist.md": "68131cb6389f86ccfdfc45661289afc2d513692ea8e2eadaeb1e6910c148e87d",
+      "spec.md": "07b48c4aa06839a6044bde132b1f459ade7319b3f0156e84df908aef61a0565a",
+      "plan.md": "b4bafa7951e679e3acb800a301b4c729342074edb317b28eff3f66528903e1e7",
+      "tasks.md": "a527338b9e653ce343ec9d7f995863fc88336422d8c029f80184eee0a50f6bdc",
       "decision-record.md": "ca1d55543d98b46554e01e565a9e3339b6bfe62245b9b4dfca534b4b7aa2df6f",
-      "implementation-summary.md": "bec70fb39685f9feb27853753315fc95d255f5f668a74cd4e422f8673843f0d2",
+      "implementation-summary.md": "4dcc0f552510a53d24fcf0fa29b7e331712275dabeece55d5eeb39f2b159b78e",
       "research.md": "e4cae139a4711cd7eb5106ef5a0137f4589017d621fcea1a5130581e8d6960cd"
     },
     "last_active_child_id": null,

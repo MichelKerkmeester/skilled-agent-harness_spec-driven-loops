@@ -19,10 +19,10 @@
       "027 phase 004",
       "027 phase 004 tasks",
       "causal edge tombstone tasks",
-      "causal edge tombstone checklist",
-      "tombstone verification",
-      "causal graph lifecycle verification",
-      "implementation"
+      "implementation",
+      "summary",
+      "template",
+      "impl summary core"
     ],
     "key_topics": [
       "causal",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "lib/search/vector-index-schema.ts",
       "lib/causal/sweep.ts",
@@ -52,8 +51,7 @@
       "lib/storage/canonical-fingerprint.ts",
       "lib/storage/memo.ts",
       "handlers/memory-index.ts",
-      "tests/causal-edge-tombstones.vitest.ts",
-      "tests/secret-scrubber.vitest.ts"
+      "tests/causal-edge-tombstones.vitest.ts"
     ],
     "entities": [
       {
@@ -72,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -126,12 +118,6 @@
         "name": "causal-edge-tombstones.vitest.ts",
         "kind": "test",
         "path": "tests/causal-edge-tombstones.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "secret-scrubber.vitest.ts",
-        "kind": "test",
-        "path": "tests/secret-scrubber.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,26 +185,37 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `causaledges` table is a flat active-edge table with no lifecycle record",
     "created_at": "2026-05-13T09:00:46Z",
-    "last_save_at": "2026-08-29T15:22:19.128Z",
+    "last_save_at": "2026-08-30T15:39:33.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4bf9d12685e9430b0939cd3e9a02ff9f4b4104693832259b7bf15cd2836a8fdc",
+    "source_fingerprint": "sha256:b8d04e679ff15b015a080eace2fcbb9ff539f9df458cb55d725743f4bdc59d73",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bc4579397b5228f276fbf2c0a1455e80acd6adb62b92b6803209a9d594b03397",
       "plan.md": "163469f8387fa35ddba3f7ee03977778056f99a1ae722df187886af9f66817ad",
       "tasks.md": "438cc9f6af26246183925fb2444e1a5bf884506ad538d0be1dae4ceaeffd474e",
-      "checklist.md": "0eb8b3cbe6d98ef394fb860381d8dae964b847947a75f1b92aebbdecd3d5d931",
       "implementation-summary.md": "46d1a235ae8fdc2f671235b9051b53e14e955234694b3f61adb75c069f57b3f6"
     },
     "last_active_child_id": null,

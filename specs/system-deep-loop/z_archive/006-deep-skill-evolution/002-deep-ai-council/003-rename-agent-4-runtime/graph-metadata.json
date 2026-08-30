@@ -38,31 +38,20 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/agents/ai-council.md",
-      ".claude/agents/ai-council.md",
-      ".opencode/agents/README.txt",
-      ".claude/agents/README.txt",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".codex/agents/ai-council.toml",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "ai-council.md",
-        "kind": "doc",
-        "path": ".opencode/agents/ai-council.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/agents/README.txt",
         "source": "derived"
       },
       {
@@ -81,6 +70,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Cross-References",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `@deep-ai-council` agent slug uses the `deep-` prefix that conflates with the autonomous-loop family (deep-research, deep-review, deep-agent-improvement)",
     "created_at": "2026-05-21T06:57:09Z",
-    "last_save_at": "2026-07-09T10:02:48.605Z",
+    "last_save_at": "2026-08-30T15:39:23.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:125fbb6f39b84ccab9b97f1a3730b8a0fc0a51b6725b444d22dba2d52b274b23",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae89497cfa1ae54526f6b0cf79164871e7b6e5ab1657efd1376d2503f1fa9ef8",
       "plan.md": "c3038828d954b9d888303943c48754415a70446d690637a7078ddb7967c96038",

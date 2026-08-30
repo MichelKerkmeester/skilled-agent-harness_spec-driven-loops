@@ -20,7 +20,6 @@
       "sk-code-review NAME-ref map",
       "sk-code cutover tasks",
       "sk-code rollout runbook tasks",
-      "sk-code cutover checklist",
       "sk-code-review alias removal runbook",
       "sk-code advisor-rebuild main-side"
     ],
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       ".github/workflows/routing-registry-drift.yml"
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,26 +185,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cutover removes `sk-code-review` as a routing identity and cuts the release",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-08-29T13:09:58.040Z",
+    "last_save_at": "2026-08-30T15:39:10.818Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8c860f3ea705eda7b17fae5e5b6122c8b758d80ba9ed811f715e99463ab45267",
+    "source_fingerprint": "sha256:0bdd7eab35f0576e2a63315af1d9a8c8685c71336d6921464c6d6e3c8fbc2a65",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ff036d4bb98cc18256adf713d3597eeba44592ccff7418c9766c9a5e222dfc2b",
       "plan.md": "1bfc04e9f875f5c085fbbbd1c50dceb7bc8fa3933847dc245f2c1c5d2061e2de",
       "tasks.md": "d93f6b60e2fc42f68abaa6196eaa99521a91052c2065b9baacf90e80938f65b8",
-      "checklist.md": "1305e505f350a953a3684d959c3532ec1a8bfc5d54cb6b6b95c0f5f25fa96007",
       "implementation-summary.md": "25b4e0c0f9b2924f3f3e0364c351cdb74bbff06bc8d08b52a65d87db6228fdae"
     },
     "last_active_child_id": null,

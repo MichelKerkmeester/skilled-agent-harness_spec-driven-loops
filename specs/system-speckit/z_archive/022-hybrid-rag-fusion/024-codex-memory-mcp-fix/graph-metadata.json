@@ -42,25 +42,19 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts",
-      "tasks.md",
-      ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
-      ".claude/mcp.json",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
       "plan.md",
-      "implementation-summary.md",
+      "tasks.md",
       "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
+      ".codex/config.toml",
+      ".claude/mcp.json",
       "scripts/utils/logger.ts",
-      "mcp_server/lib/search/vector-index-store.ts",
-      "mcp_server/tests/vector-index-store-remediation.vitest.ts",
-      "mcp_server/lib/config/spec-doc-paths.ts",
-      "mcp_server/lib/config/memory-types.ts",
-      "mcp_server/tests/modularization.vitest.ts",
-      "checklist.md",
-      "tests/db-dimension-integrity.vitest.ts"
+      "tests/db-dimension-integrity.vitest.ts",
+      "tests/lifecycle-shutdown.vitest.ts",
+      "tests/stage2b-enrichment-extended.vitest.ts",
+      "lib/errors/core.ts",
+      "tests/error-sanitization.vitest.ts"
     ],
     "entities": [
       {
@@ -70,15 +64,9 @@
         "source": "derived"
       },
       {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store-remediation.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-remediation.vitest.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -88,39 +76,9 @@
         "source": "derived"
       },
       {
-        "name": "logger.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-paths.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/spec-doc-paths.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/memory-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "modularization.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/modularization.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -130,21 +88,51 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
+        "name": "logger.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/logger.ts",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
         "name": "db-dimension-integrity.vitest.ts",
         "kind": "test",
         "path": "tests/db-dimension-integrity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-shutdown.vitest.ts",
+        "kind": "test",
+        "path": "tests/lifecycle-shutdown.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2b-enrichment-extended.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage2b-enrichment-extended.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "core.ts",
+        "kind": "code",
+        "path": "lib/errors/core.ts",
+        "source": "derived"
+      },
+      {
+        "name": "error-sanitization.vitest.ts",
+        "kind": "test",
+        "path": "tests/error-sanitization.vitest.ts",
         "source": "derived"
       },
       {
@@ -206,29 +194,34 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Codex could fail to initialize `speckitmemory` because the MCP server assumed it could create a SQLite database under the workspace and because startup-time structured logs could leak onto stdout during background memory scans",
     "created_at": "2026-04-12T09:02:50.313Z",
-    "last_save_at": "2026-07-10T06:23:44.786Z",
+    "last_save_at": "2026-08-30T15:39:39.376Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49821be1deb22c89cfdaeb740a384240d9e7ff7bfa578879f8395165bb064f60",
+    "source_fingerprint": "sha256:7b5b53511ef129a748ad6d9935caffc1bf5fa636ed32ed58d417a048dc855e52",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c84fc93c424be4d5e005465e79b022f234cef8d23173a8b05ddeb34d5fd5eedd",
-      "plan.md": "c641369479871e9b6e7e79d6eb07b5e8b9f1a249608291d8d8a16b4256d82a17",
-      "tasks.md": "84531d43795a89efc2c0b98d3306937137e4d9ca2856fbba79bbb84df5a489d4",
-      "checklist.md": "62eee2b75c1e4bf406cb09836bc5fb9528ffc825c8ed321aa84571e44ff3bb80",
-      "decision-record.md": "54a4759e849f96120ed225f4173ce4490d02eb5754160a182b5b5f90e0d10f53",
-      "implementation-summary.md": "c0afe410f67444903b57e2147c2e74f84ac9a4943b2d2dd75f4549628e0c8ad3"
+      "spec.md": "96495c988e8933d9dd55ff445ce70fd51fd5867f32c2ef5cc6ccce8f665db25b",
+      "plan.md": "54c4bb2300aff35334663c0d7c06212821d826f2664fe736f1ae318c6feb1d16",
+      "tasks.md": "b49b472c0a9409f0b92192eff5119991bdfe669f1c2f3598ce2893006808b75e",
+      "decision-record.md": "f0f31cffff5725a60a8f599f98aa09d4259a7c5dded2614ec157f0db6b1088c9",
+      "implementation-summary.md": "c399732ad9806b68fe895d06345fc03ce3cdb70d3c456c0552459badbed9533d"
     },
     "last_active_child_id": null,
     "last_active_at": null

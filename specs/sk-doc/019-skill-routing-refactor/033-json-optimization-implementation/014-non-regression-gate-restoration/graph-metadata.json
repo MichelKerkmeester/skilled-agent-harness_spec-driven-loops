@@ -17,7 +17,6 @@
       "non-regression gate dead",
       "gate restoration implementation plan",
       "gate restoration task breakdown",
-      "014-non-regression-gate-restoration verification checklist",
       "non-regression gate restoration summary"
     ],
     "key_topics": [
@@ -38,21 +37,32 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
       ".github/workflows/routing-registry-drift.yml",
       "evidence/ratchet-green-baseline.txt",
       "evidence/ratchet-mutation-proof.txt",
       "evidence/ratchet-restored-green.txt",
-      "mcp-server/package.json",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "mcp-server/package.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -89,24 +99,6 @@
         "name": "package.json",
         "kind": "config",
         "path": "mcp-server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,26 +184,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Repair the scorer-eval baseline ratchet — the only test that pins holdout accuracy exactly and enforces the release floors — and wire it into CI, so the hole that let a -2 routing regression ship undetected closes behind this program.",
     "created_at": "2026-07-30T08:10:27.264Z",
-    "last_save_at": "2026-07-30T13:07:46.234Z",
+    "last_save_at": "2026-08-30T15:39:15.957Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21a48cae27d9be82671bb377ac652dd239296f74de444f7445873d22097e7677",
+    "source_fingerprint": "sha256:7867fb56a1116dd4ff5c7e4af23fb428c23c0b1e773edbdef6b9481b129189cd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "10dff411aed8530a13313de736c93363351ef53a71c3bfada056f0f362f9452b",
       "plan.md": "abaa4edd079b7d77274422693a49637edfd07c299fe7baa4413b9e619979b4b5",
       "tasks.md": "5b80476e4332de06ac26ed4a2f428c8bc7645b9859420b128508c3d49aac6c0a",
-      "checklist.md": "a943571a5475c24823fa8abfa190417aaa3b87a5934f13c8b76f55f5c7adabbe",
       "implementation-summary.md": "3757f01474e5e937ec45f7eaaa9bc3566cebcfc307eb22dc2892091704017263"
     },
     "last_active_child_id": null,

@@ -23,8 +23,8 @@
       "005-claudest research tasks",
       "005-claudest task list",
       "claudest deep-research tasks",
-      "005-claudest checklist",
-      "005-claudest verification"
+      "005-claudest decision record",
+      "005-claudest adr"
     ],
     "key_topics": [
       "005-claudest",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,31 +186,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Architecture Decision Records",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`CodeEnvironment/Public` already has Spec Kit Memory MCP (semantic search, intent-aware routing, importance tiers), Code Graph for structural queries, the `024/002` SessionStart hook for source-aware routing, and the `024/003` Stop hook for token snapshots and session summaries",
     "created_at": "2026-04-12T09:02:53.450Z",
-    "last_save_at": "2026-08-29T15:22:13.058Z",
+    "last_save_at": "2026-08-30T15:39:29.166Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9dcc00af808981210248ba89b7c8ca431c9e9061fa72830998bc581c7fd6683e",
+    "source_fingerprint": "sha256:8240928079640713e9c6d87640c025159250ecc6fe346458bfa1f77121122258",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8ee50cf6d24c78b002efff7824da15c90fd00e2297d8279377c2b72d08ef037",
       "plan.md": "4a293b1ba3d7c4f36ee797d03bd7faea3f6db65ebfae4c3a5aa742e0b0c35c59",
       "tasks.md": "31fe7b81663c948919e38badf11bf85e9b725648b97d556384e111b6cc29893b",
-      "checklist.md": "3a248d774444ebd267bf30d04438185e58440b0295bf8b387217e02272461d1d",
       "decision-record.md": "3a71dc359457ded4baacdaec32aecd670dddcac34e53942392338b29d12da055",
       "implementation-summary.md": "6d91efd5a1bb3dc416bdd0e833c953b9c0dc77ec8e3947bdcc4bdc9165990090"
     },

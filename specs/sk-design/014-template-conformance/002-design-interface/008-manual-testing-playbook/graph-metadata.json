@@ -16,7 +16,6 @@
       "foundations scenario residue",
       "manual-testing-playbook plan",
       "manual-testing-playbook tasks",
-      "manual-testing-playbook checklist",
       "manual-testing-playbook implementation summary"
     ],
     "key_topics": [
@@ -31,17 +30,15 @@
       "residue",
       "plan",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
       "plan.md",
-      "checklist.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -51,33 +48,21 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -183,30 +168,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`manual-testing-playbook/` has 20 category subdirectories (a `find -maxdepth 1 -type d` count; the dispatching brief cited 21 — corrected here to the measured count)",
     "created_at": "2026-07-27T14:56:08.891Z",
-    "last_save_at": "2026-07-27T18:09:09.712Z",
+    "last_save_at": "2026-08-30T15:39:13.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5dc834b19de897f5198f06870914215c348741f1588cd8268ad8b6733014b4ca",
+    "source_fingerprint": "sha256:50c35382985be2dff21c45308c033903c3f4b6c7448c8be24dcfa4349f8a940e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2837445f4973661e99e49164b13de3e77da0d54e71369dd7513ddd7ce4a35d76",
       "plan.md": "2638f3a98dec7a1701020db2c12c2a13299d388ae002e9acd7e01d505e29f679",
       "tasks.md": "bc82aa48fcde399c8d216fa48ccf6b993aed6cd26ce7e94192a3a5e711d372f8",
-      "checklist.md": "eca4f48d7bc6684cf26c191362809eb6ede050125c534bc64fc9b36c92b20efd",
       "implementation-summary.md": "73038a33c0a3e6699a2efb34920d34bf394e77b368259152c4aada553511d03c"
     },
     "last_active_child_id": null,

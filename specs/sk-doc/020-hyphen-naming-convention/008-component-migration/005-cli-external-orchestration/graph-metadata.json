@@ -110,14 +110,14 @@
     ],
     "causal_summary": "Phase parent for the kebab-case migration of the cli-external-orchestration hub, its three CLI workflow components, manual-testing-playbook trees, benchmark boundary, release evidence, and final subtree gate. Children keep ownership and verification independent.",
     "created_at": "2026-07-14T15:16:58Z",
-    "last_save_at": "2026-08-30T07:19:33.017Z",
+    "last_save_at": "2026-08-30T15:39:16.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:88cc92d1477b4123585ff554cb3ce84964107b05cf536da7658a5906f4145d81",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "12a464a2575ad94168da1ae54cb334f58d41e3e64cd5ab3f40bf904b1775c38f"
     },

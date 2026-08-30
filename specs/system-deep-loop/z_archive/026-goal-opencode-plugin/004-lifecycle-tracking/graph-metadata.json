@@ -37,33 +37,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-      ".opencode/plugins/tests/mk-goal-state.test.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-lifecycle.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-state.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,11 +168,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "M1 persisted and injected goals, but it did not observe session lifecycle events",
     "created_at": "2026-06-28T20:44:10Z",
-    "last_save_at": "2026-07-16T16:32:49.480Z",
+    "last_save_at": "2026-08-30T15:39:25.652Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:db4026181e5dcab29d8ac563921319afe0dfe46d4bc0e9bb7cbf9f8cfe36be6e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7925f4a380fe00df1e0f649473199e2d3538d5f2ac96af89b9d74174576b1000",
       "plan.md": "95f2711606a9c8040e9db77390c00982721f2c56fd94d7fc74b849b46963f9ef",

@@ -19,7 +19,6 @@
       "codex shape fold-in plan",
       "severity mapping implementation",
       "dispatch shape coverage tasks",
-      "dispatch shape coverage checklist",
       "dispatch shape coverage summary"
     ],
     "key_topics": [
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
       ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
@@ -51,8 +49,7 @@
       ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
       ".codex/hooks.json",
       ".opencode/specs/hooks/003-goal-hooks-cross-runtime/spec.md",
-      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
-      ".opencode/hooks/dispatch/README.md"
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md"
     ],
     "entities": [
       {
@@ -71,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -125,12 +116,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/hooks/dispatch/README.md",
         "source": "derived"
       },
       {
@@ -198,26 +183,37 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-devin`, `cli-cursor`, and `cli-pi` already declare `hardrules:` in their SKILL.md frontmatter (availability check, self-invocation guard, deep-loop-runtime delegation — all `severity: error`), but the shared dispatch-shape registry (`DISPATCHSHAPES` in `.opencode/hooks/dispatch/lib/dispatch-audit.mjs`) only recognizes `opencode run` and `claude -p` command shapes",
     "created_at": "2026-07-28T17:27:32.298Z",
-    "last_save_at": "2026-08-29T14:54:15.318Z",
+    "last_save_at": "2026-08-30T15:39:09.114Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:176f6f33335bd0686f373f30e2be8ad37dc27cc1ad6c022300e2b983fd9ccec3",
+    "source_fingerprint": "sha256:28486d3a3af6d1bf6bd7cdc8e5472c23da407ec1c758352d0766e4af2768a7f7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b9ab55a123d27c7a96e4ff70244f6e0c47462cc8843ede853cdb52275bb431e0",
       "plan.md": "343aecbfd7b36384cdf98e40b26c072d786344d25688e369d87018d5903d5593",
       "tasks.md": "fb0b4cff583d8d5fc1d5612604bfd9147b3a5867ded7e138553ab61da7266928",
-      "checklist.md": "d4b406ee9b6f3cec1d691b21599a7a08b0a45cb850853b08617165d76338d899",
       "implementation-summary.md": "2b20729b08b3fb19ad90f5bb42ad1392a8ac7953439b1b7c8bcd19f66c217311"
     },
     "last_active_child_id": null,

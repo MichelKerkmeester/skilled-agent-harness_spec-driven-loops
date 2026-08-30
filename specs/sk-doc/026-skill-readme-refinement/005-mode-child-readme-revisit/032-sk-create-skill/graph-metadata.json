@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The sk-create-skill README still carries the older tabular reference-card style, opens with an AT A GLANCE table and predates the pilot standard proven by the mcp-obsidian README",
     "created_at": "2026-08-04T08:34:50.785Z",
-    "last_save_at": "2026-08-30T07:20:34.444Z",
+    "last_save_at": "2026-08-30T15:39:17.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d01422e01fdb61cb2dffecee53099257500e2caca93e2f9be1c83b792006a39b",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0069bc350fe4f18ee050928e44777c3c43ef44adf7cedaa3f43310fbebbf8e9d",
       "plan.md": "c7aac7bffc920e11bab3cf0b98dbeb755d29c96fa09949a898d5286a8256b838",

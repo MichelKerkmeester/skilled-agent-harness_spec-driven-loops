@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`assertRollbackHashGuard` in `rollback-candidate.cjs` accepted either the pre-acceptance target hash OR the promoted-candidate hash as a valid current-target state before authorizing rollback",
     "created_at": "2026-08-13T06:44:37.411Z",
-    "last_save_at": "2026-08-29T15:22:08.026Z",
+    "last_save_at": "2026-08-30T15:39:22.057Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f395b755aee3cf7885d35d575aeae8372bcfd71678784aa4640f038bb474466b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "881839a1f7140838bdd08d1641afa6c054d2d95965ad96a5bc54e0e58ef50f3f",
       "plan.md": "5ed50bbb8359bfc0b4cf9f8dde81da60c42528f24f5f3b7b6ad040b7f82f15ee",

@@ -13,8 +13,6 @@
     "trigger_phrases": [
       "sliding window convergence mode",
       "denominator drag fix",
-      "sliding window convergence checklist",
-      "verification checklist",
       "sliding window convergence decisions",
       "convergence mode architecture",
       "decision record"
@@ -26,22 +24,21 @@
       "mode",
       "denominator",
       "drag",
-      "checklist",
-      "verification",
       "decisions",
       "architecture",
       "decision",
-      "record"
+      "record",
+      "adr-001",
+      "sliding-window"
     ],
     "importance_tier": "medium",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,21 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -177,37 +168,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "In Parallel Path",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refactor Of The Existing Calculation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`ADR-001: Sliding-Window Convergence Mode For Long Loops` (`.opencode/specs/system-deep-loop/024-deep-loop-improved/009-research-backlog-remediation/009-convergence-design-and-hardening/decision-record.md`) proved via generation-2 forced-depth research — two real 35-iteration lineages run under `stopPolicy=max-iterations` — that the current full-history convergence-novelty calculation suffers \"denominator drag\" on 30+ iteration loops",
     "created_at": "2026-07-01T19:38:04.144Z",
-    "last_save_at": "2026-07-16T16:32:21.224Z",
+    "last_save_at": "2026-08-30T15:39:25.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:646033c221e18061a6fd5ba559b3a55782307da1fbdd58f964f1bc6687dd347a",
+    "source_fingerprint": "sha256:5732b8b63b0ac732be1dc2c7f42bdf1c8f6e6a97dce9d256af7dd08151fad3fc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e77b487148546b99e5759061e4d15ee841656b2a86e3448cc56b3f0ff2911084",
       "plan.md": "3d3cbc0ffd654435212eec1ee4198a09cca9d56d7cf6e0c19918e9192f08dd7d",
       "tasks.md": "d5212bb05c8571d7d6c60a96737bbcdddb3bc40e170be07b455d6e84c702d70b",
-      "checklist.md": "6368fd88d87a57057d7ef5f6b0fbb314c524b196d26adb9528b533ef9ca0e0b9",
       "decision-record.md": "550273b295ada328d2b110e9d3eff3d3ba3b311c7102fe07fa394e7ffea7aa48",
       "implementation-summary.md": "8dca5512f7c7b9a0525f7612a36a41eed45c14026cff8aecce66c9f6d135fa28"
     },

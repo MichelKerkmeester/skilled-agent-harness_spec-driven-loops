@@ -32,22 +32,16 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".codex/hooks.json",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".codex/hooks.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -66,6 +60,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The hook was registered for the Claude runtime only, so under Codex the rules stayed prose-only — the exact gap this packet exists to close, reopened per runtime",
     "created_at": "2026-07-28T04:00:23.083Z",
-    "last_save_at": "2026-07-28T04:00:23.083Z",
+    "last_save_at": "2026-08-30T15:39:18.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:768ab21529af4024a9e05d0efafbb50d6d28cb7c73f24a5498c78e3b9c607e73",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e0da56e9e5fe518143fc100e084458e294b05db43fdc2e186891abf631b709b6",
       "plan.md": "1a9d7d449c94e54e7c298609600237baf7ecb089fc29af919b5d49444622507a",

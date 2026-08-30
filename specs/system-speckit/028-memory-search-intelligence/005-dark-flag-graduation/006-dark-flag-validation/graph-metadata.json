@@ -35,6 +35,9 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md",
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-002.md",
@@ -44,16 +47,31 @@
       "research/deep-research-state.jsonl",
       "research/deep-research-strategy.md",
       "research/deep-research-findings-registry.json",
-      "review/review-report.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "review/review-report.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -114,24 +132,6 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 007 Dark Flag Graduation Suite returned GRADUATE verdicts for 4 clusters (9 flags) across multihop tail-appends, code-graph staleness repair and bitemporal reads, advisor RRF fusion and conflict-rerank, and deep-loop finding dedup and gauges",
     "created_at": "2026-06-24T15:37:46.751Z",
-    "last_save_at": "2026-07-17T17:19:54.736Z",
+    "last_save_at": "2026-08-30T15:39:36.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:6d3e234a9e4f71fb8ec48cd765cbfda65989c1bbef1269c4b96d1d5529e9a848",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "61bded23a8cc834d8af27061e0215fa75e44ddf8a1df8547ed124818af29b2e8",
       "plan.md": "c7ac1353e67d950ba094f91e1e7645000a186d7fc4b205d2257f48d0434fdf99",

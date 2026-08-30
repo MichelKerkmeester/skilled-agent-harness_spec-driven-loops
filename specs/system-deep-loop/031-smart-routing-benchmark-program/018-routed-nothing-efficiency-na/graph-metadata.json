@@ -19,10 +19,9 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "d3 routed nothing null",
-      "efficiency undefined salvage"
+      "efficiency undefined salvage",
+      "holdout scoring honesty"
     ],
     "key_topics": [
       "efficiency",
@@ -41,40 +40,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
-      "decision-record.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "score-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -94,9 +68,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,27 +186,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The stage-aware scorer (packet 061) added a fitted-vs-holdout split and a `generalizationGap`",
     "created_at": "2026-07-11T21:53:32.572Z",
-    "last_save_at": "2026-07-16T16:33:16.358Z",
+    "last_save_at": "2026-08-30T15:39:20.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4e7a75fab38a7f5ac9ef9f66d5ab4e49690b75f983bdf705e8ba314fdbc0c5b",
+    "source_fingerprint": "sha256:77aa6195f5d6b4e95ba15c95343ac7582027a0435f2ccc98258cf0e3facd7bd1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5bef0b8818ed63b36501e83658f7a674aa1a92e30b5adc6dea9ad5a2e8435658",
       "plan.md": "7d088cae302c3bdfb93723e2b5e04578fb414939736e1fa35775fb254c5c5a08",
       "tasks.md": "3a95e64ea5b699690eb36e383e7db6b6aca6c8b9f85ae8604c06ee22adc5d7f5",
-      "checklist.md": "d47ea0b8243443fcaf5dee9b1d264bfca9cc373f18e2af7e0bdf7035b74c50d3",
       "decision-record.md": "1448e17703c65dda40b949ab4b4328d2b148b1d40f5481277428e0a97dac923f",
       "implementation-summary.md": "94282c01eb255645a1a9872327a5116c27409018015309e70238c5bd52eecb30"
     },

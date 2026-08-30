@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The maintained deep asset tree contains names such as `deepai-councilauto.yaml`, `deepresearchpresentation.txt`, and `deepai-council.body.md`",
     "created_at": "2026-07-14T15:18:32Z",
-    "last_save_at": "2026-08-30T07:20:01.522Z",
+    "last_save_at": "2026-08-30T15:39:17.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:502ad91c6e54dddf1337fadd55af73d3f1d6beff0fe24609418e517ddbb78572",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d74ef9d6c1bfbfe0a954d702a2c3e33566025c8c9a9868835ac8cd762569e470",
       "plan.md": "31572194d4289734c569653fde4d9d183fa16a82ab915501e1c559ee667274c1",

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The deprecation touches search plumbing, tier config, learned-triggers, a command, root docs, and the advisor — a wide blast radius",
     "created_at": "2026-08-26T05:34:14Z",
-    "last_save_at": "2026-08-29T14:54:20.172Z",
+    "last_save_at": "2026-08-30T15:39:36.678Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:aedec6d53e1e2617c3d92dcd624795c24cdfb605b41cdb8adeef24bef4215d81",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d49a7af048a4e06843a17ee70aea4b4c08c753082675c84d77b31dd27409a411",
       "plan.md": "c0645a0f1ec0fbb892c39a83162d61bc5f763f1a5fc48e66bafef785fb448d7e",

@@ -37,22 +37,16 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "review/review-report.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/review-report.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -71,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Two-model deep review (SOL-high + GLM-high, 5 iterations each, no early convergence) of the complete skill-metadata program landed at a39e6ea716, covering the H/S class contract, fleet gate, command-metadata standard, JSON templates, creation-journey fixes, doctrine sweep, and advisor ingestion-seam watcher.",
     "created_at": "2026-07-29T04:21:25.552Z",
-    "last_save_at": "2026-07-29T04:24:22.089Z",
+    "last_save_at": "2026-08-30T15:39:15.688Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:92e987e1c9da3b758d0c6deb397409afc074277ce0a90b39c1463c0e4d5ce65b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c3a83f8724e04afdb4c2fd05fc393000fefe284b475e7ec140d3946467b1580e",
       "plan.md": "f5387e6e6ada4d9956178be87f22b47be4294524d2a68104c1643e6fdbf1bde5",

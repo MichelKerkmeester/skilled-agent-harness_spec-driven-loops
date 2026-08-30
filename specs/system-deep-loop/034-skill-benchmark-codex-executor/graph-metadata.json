@@ -22,7 +22,7 @@
       "codex transport tasks",
       "codex executor tasks",
       "runtime codex dispatch tasks",
-      "codex transport checklist"
+      "codex transport implementation summary"
     ],
     "key_topics": [
       "skill-benchmark",
@@ -39,19 +39,42 @@
       "cli-codex"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/codex-executor.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "codex-dispatch.cjs",
         "kind": "file",
@@ -74,36 +97,6 @@
         "name": "live-executor.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/live-executor.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,26 +188,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Lane C skill-benchmark live path (Mode B) dispatches its model \"test subject\" exclusively through cli-opencode; the `--executor` flag is threaded all the way to `runLiveScenario` but ignored there, so cli-codex is unwired",
     "created_at": "2026-07-15T14:32:09Z",
-    "last_save_at": "2026-07-17T13:33:36.147Z",
+    "last_save_at": "2026-08-30T15:39:20.198Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8bda47a85bc0b1bfacf6cc737262bfd7ed56c2893afb48e162de17d39a2fe42f",
+    "source_fingerprint": "sha256:988bcd200b5644864aee9f1e415c36f6f2ed1671b65a39158d14d05111605dcb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "438976d0cb2d51f6558a7513b6ae7007947ebe99f7d806cdaad07f8a2cfaa2e3",
       "plan.md": "8eeafd3d1758258f97e451b2f0c0a81c9d675d8ee7b48897e0f7f8eb060e3574",
       "tasks.md": "f5c78482b653c2284f2673aa23e4e6cb061e34bb7c921b358cd321da2e009417",
-      "checklist.md": "2438f214560b15b25215ef0752812189f5dd1296bf29f08f00c884f3d775cc5e",
       "implementation-summary.md": "65818f94b5e61ce11f2d109941fb44e46a9bfb34f3c65836f074689eb653720b"
     },
     "last_active_child_id": null,

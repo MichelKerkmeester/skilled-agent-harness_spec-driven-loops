@@ -20,9 +20,9 @@
       "scripts-physical-reorg tasks",
       "scripts lane reorg tasks",
       "deep-agent-improvement scripts tasks",
-      "scripts-physical-reorg checklist",
-      "scripts lane reorg checklist",
-      "deep-agent-improvement scripts checklist"
+      "scripts-physical-reorg decisions",
+      "scripts lane reorg adr",
+      "deep-agent-improvement scripts decision record"
     ],
     "key_topics": [
       "scripts-physical-reorg",
@@ -33,22 +33,27 @@
       "subdirs",
       "plan",
       "tasks",
-      "checklist",
-      "skill",
-      "now",
-      "exposes"
+      "decisions",
+      "adr",
+      "decision",
+      "record"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -62,21 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -192,27 +185,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill now exposes two co-equal lanes (agent-improvement and model-benchmark) in prose, and phases 010-012 split references, assets, the agent note, the catalog, and the advisor by lane",
     "created_at": "2026-05-29T08:26:20Z",
-    "last_save_at": "2026-07-08T13:43:33.435Z",
+    "last_save_at": "2026-08-30T15:39:23.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fa4975c8f41c89a29b72d630681aaf3fc8066d2eac1e8f5e9b1241b5d105b6c",
+    "source_fingerprint": "sha256:83af1c395962fc5307e0febad9bdaff70664c0d1f4c88f4c44c292e2da262fcb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9e8e2f9d130dec50c3ab127a8b30b2b0452cae8e75badbd85b34db598ef369b9",
       "plan.md": "ba835d0df6e1849afb94ba7b2becad41bfd8b06b1bdd5b0fa1801d09b5af7f30",
       "tasks.md": "8626de8c9e6a30fb19eb94543f6ddae07547ded752e8430df881cfeeed246844",
-      "checklist.md": "c3e801d6ea1169916acf6f2ebcce8fabbd6592c1762b12f43fc2b0111ed130cc",
       "decision-record.md": "2c80eba0c6194fafeedacac99a0e3bd6b4383262cd43663781fc301ddd6c7104",
       "implementation-summary.md": "333401d5547b96cd35b4d697a9b8074c86a74d6b09a0bddd46bb51e1ddc35f9e"
     },

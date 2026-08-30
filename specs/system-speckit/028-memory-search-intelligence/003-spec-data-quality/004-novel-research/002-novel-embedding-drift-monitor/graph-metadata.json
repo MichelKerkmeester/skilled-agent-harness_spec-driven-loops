@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings.ts",
       "shared/embeddings.ts"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,36 +176,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The re-index path has no mixed-vector guard and never specified one",
     "created_at": "2026-06-27T17:15:37.922Z",
-    "last_save_at": "2026-08-29T14:54:16.751Z",
+    "last_save_at": "2026-08-30T15:39:35.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d2b9e4b8140f150cf8a89f140ab8bbf5403950720534139249931f09478ba08",
+    "source_fingerprint": "sha256:a419541d9a4b24fd64a5b440650e8e62e481c293ee379a65cf40ea04dd807c18",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37b1d5675978b5de6e57318e7334687b2c96909c3e3663311489aacaba7ea8a1",
       "plan.md": "7cb419593ae5c63ce0ad91fcef57f35318378275fa8a5d0540e07f319c9d15b6",
       "tasks.md": "7d6e6f048ec1d4e0a71188b1b4dbdb99f3dc9c2ecd0e1791bd3de387fb96bb75",
-      "checklist.md": "0d76ce2a278a8f163504d602b2ca94241417ad1eea59d96c6f67b7420b93a117",
       "implementation-summary.md": "5f98793f7847f238b3c4d5360459bddce5faa0bb2d5b71fdc3de76fc19088bdc"
     },
     "last_active_child_id": null,

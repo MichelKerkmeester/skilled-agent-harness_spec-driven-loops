@@ -203,7 +203,7 @@
     ],
     "causal_summary": "020's marker keeps a busy daemon un-reaped, but a blocked event loop is still the failure mode that breaks re-election: it cannot answer a competing launcher's bridge/probe, and it cannot fire the marker's 20s self-refresh, so a synchronous phase that blocks longer than the 180s TTL lets the marker go stale and a fresh launcher spawns a second daemon",
     "created_at": "2026-06-17T17:15:00.000Z",
-    "last_save_at": "2026-08-29T15:22:20.086Z",
+    "last_save_at": "2026-08-30T15:39:33.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e7ec147c65ac870e9ec4d97f4aaea4c2c6f0cdbbf4376cbcd0c46b67fa1a7840",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a8712e5df08619f0acea6f8097bc3df8aff3179a1e4a25b1be8cf5f4cc74f21c",
       "plan.md": "33097646ad6e5da0216dc81b5f7d1bcf64d26cacba34783cc3f1d1a3f67dfd33",

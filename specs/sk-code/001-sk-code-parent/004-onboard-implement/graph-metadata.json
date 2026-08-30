@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After the parent-hub scaffold existed, the flat top-level `references/`, `assets/`, and `scripts/` directories still held the prior monolithic sk-code content",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-07-07T17:16:28.267Z",
+    "last_save_at": "2026-08-30T15:39:10.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f8dd041ae84dad5f92c0e88cf74d46c284f16a341d199aa79176f32686455847",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a517fbcaa3fffd92f098fa2cced9ab036b6df3ca3843617925a8272ccf24210e",
       "plan.md": "7dd1e43958aa009dad9f972aac4ff2bae0b17f500e6549a38a2bf8af0e09c5c2",

@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Three defects in the governing surface, each independently confirmed against source:",
     "created_at": "2026-07-30T18:58:50.551Z",
-    "last_save_at": "2026-08-30T07:16:19.698Z",
+    "last_save_at": "2026-08-30T15:39:17.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:883c356ceeb74e1de84b0eb0be57ac94d5a41433ff24770ff3d635ddd56fe51a",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bc3766626d9385e596f6ac9364d617a7dc701f6eaec1565e027c41ff9cab34d9",
       "plan.md": "f685f5b749992c82d499159bb8039afad6e83a9853817e2a21bb37f81acd9caf",

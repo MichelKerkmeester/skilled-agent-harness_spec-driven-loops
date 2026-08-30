@@ -222,7 +222,7 @@
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than current `v3.4.1.0`) needs a one-shot path to bring every database/index/graph in the spec-kit ecosystem into alignment with their current codebase and skill set",
     "created_at": "2026-05-10T06:24:00.129Z",
-    "last_save_at": "2026-08-29T15:22:17.537Z",
+    "last_save_at": "2026-08-30T15:39:32.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,6 +231,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:8233bf4cc14f4dc16a502f0ff87781d330ce0e1ff7e3ec8b79c4afc1f3df442e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e810470ee89ca59a3e7c46c760a34513e100c0b3afe4b092a6931d9bec646160",
       "handover.md": "9fa00041927e1a908233137474b7fa0d7f06e622d4c61cbe4068cd3e001f2a3b",

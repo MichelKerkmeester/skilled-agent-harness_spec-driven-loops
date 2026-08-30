@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The mcp-code-mode scripts surface must be audited under the 020 filesystem exemption boundary. The current non-Python script names are already kebab-case, while validate_config.py is an explicitly exempt Python filename; this phase proves that inventory and closes any eligible script reference set without renaming the Python file.",
     "created_at": "2026-07-14T15:18:21Z",
-    "last_save_at": "2026-08-30T07:19:55.609Z",
+    "last_save_at": "2026-08-30T15:39:16.927Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,7 +167,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:52f91f11f11fa1155fe7085aaf78f88f09822144b5e09e18f207c5a965c25e8f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dcaff7bd57255b30a0b5b5ffd589d0d8a944d396abd76e34008c9878b028881e",
       "plan.md": "e71619be0761208e235b47bc58314951c7a5739ec0fda59eacfdb2040f49d04f",

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Now that each mode has a dedicated `providers-and-models.md`, the exhaustive model enumerations still living in that mode's `cli-reference.md` model section and `SKILL.md` roster are redundant duplicates that will drift out of sync",
     "created_at": "2026-07-29T08:35:29Z",
-    "last_save_at": "2026-08-11T07:17:30.779Z",
+    "last_save_at": "2026-08-30T15:39:07.816Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:da19e7e78813b7ddecf1656956c9cb3014296391ad22f29f81ac354b2aea3795",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8175b73e35e78789cc193da7e8ee63b0c18953ecc65be29b85d5162404cd47c7",
       "plan.md": "2ead03ed87ce4a67e667ccd3f598ae072b27bbb47b9762f5a3b684bf1a0d0d0e",

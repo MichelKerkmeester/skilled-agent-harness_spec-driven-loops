@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The sk-prompt benchmark surface contains underscore-separated authored result directories such as live_final, router_final, and router_mode_a, plus generated raw-run filenames with double underscores. This phase renames authored benchmark paths, updates path references, and records generated/frozen output dispositions without changing benchmark payload keys, fixtures, profiles, or scores.",
     "created_at": "2026-07-14T15:17:33Z",
-    "last_save_at": "2026-08-30T07:19:31.895Z",
+    "last_save_at": "2026-08-30T15:39:16.518Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:5b0676d7fc14b2a4e1dc2d65e825de2973a541db15b8baab88401de6652941b0",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2206780b949819b2321912640aed192242d01582776515f74d3cd686eace53de",
       "plan.md": "61a11fc1d66f2bfb1f8516c0d38d9ea36911e8725488c90ce736ce78fdcb895b",

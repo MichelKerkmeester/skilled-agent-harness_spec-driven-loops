@@ -20,9 +20,9 @@
       "baseline reconciliation",
       "vitest baseline recovery tasks",
       "baseline triage",
-      "vitest baseline recovery checklist",
-      "baseline verification",
-      "vitest baseline recovery summary"
+      "vitest baseline recovery summary",
+      "baseline implementation summary",
+      "vitest baseline recovery resource map"
     ],
     "key_topics": [
       "vitest",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "scratch/vitest-baseline-pre-recovery.json",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,27 +190,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After Unit A (memory search Clusters 4-7 remediation) shipped, a full-repo `pnpm vitest run` reported 198 failed tests across 166 files out of 11,829 total (11,587 passing)",
     "created_at": "2026-05-08T21:35:00Z",
-    "last_save_at": "2026-08-29T15:22:09.753Z",
+    "last_save_at": "2026-08-30T15:39:27.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:41f05acb65c2161b61a6112bc14440974edd8dc3b1067035beaf61008e5d78b8",
+    "source_fingerprint": "sha256:039093db654d460186c3142b238b4c5d3583fe71aa82df3d67a36bb69417765f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11d6f9e2666aa63c0c6ee98187be0fad68506788b01a9503120441afec4c6632",
       "plan.md": "4aa400d8fa2f6fb608e94c1ed89aafffc2f3557ed81ef9925cd120c7f0bccaf9",
       "tasks.md": "e4b1c34f9bc70eab57d6d50d52efa03aa1ec3290162b01152c0b41ee50aba8a2",
-      "checklist.md": "20377da707add3f33dbe584c225c9ae8e75c261c2733e1d1ae0957b278ce88df",
       "implementation-summary.md": "04aab6d3bd90cf6736415a7a7514579b765456cf5e0eefa2a64fa350d5210e4f",
       "resource-map.md": "2e8aaff3882a7cfb313bdd35620e1224a45b9d255834f059b900ddee7774b4cf"
     },

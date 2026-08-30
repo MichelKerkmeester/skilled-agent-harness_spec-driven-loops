@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handlers/save/post-insert.ts",
@@ -73,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,27 +193,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`memorysave` commits the primary row inside `writeTransaction.immediate()`, then runs secondary enrichment (FTS, vector, entity/summary, causal/graph edges) afterward via `runPostInsertEnrichmentIfEnabled()`",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:17.081Z",
+    "last_save_at": "2026-08-30T15:39:31.799Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b174b430cf85ddefa618c60b4310918c4c5222c9cf9f0ea1362b7174fce18b4f",
+    "source_fingerprint": "sha256:3ee24114fd0ff23d704ad4ba2f4394f75f869b395249230feb2941f8a68bf384",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "469e4e0fc81b1db58ea3b536e5511f40592118dddd1ee45430271fc08549becb",
       "plan.md": "6b5c0c1aaa6f84f9463ea8a1f8886beb8291e2514ab1f2821d1b8fecc1df5d4b",
       "tasks.md": "3501970fde4578839162d2ab6df4936014e2770091ea5b0b9dff1b0c311212b0",
-      "checklist.md": "7832def6556da1122d0bb8cfde9871e5b12927fc46fdaa7613c71b23ca4251aa",
       "decision-record.md": "73ba5e50bfec25cf0b478c9e717b757f7b22304b279a89a56ce18145aba35b37",
       "implementation-summary.md": "c3a76b19a0d73c524a8407d3f11d951d7b256cfb6971c5ad4cc3bd190ed46cd0"
     },

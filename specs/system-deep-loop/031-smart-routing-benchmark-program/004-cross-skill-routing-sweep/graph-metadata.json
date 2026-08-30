@@ -19,7 +19,6 @@
       "routing optimization phase 2",
       "cross-skill routing sweep plan",
       "cross-skill routing sweep tasks",
-      "cross-skill routing sweep checklist",
       "cross-skill routing sweep summary",
       "phase 0 triage results"
     ],
@@ -35,52 +34,21 @@
       "phase",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/003-routing-optimization-mode/assets/cross-skill-routing-audit.md",
-      "assets/phase0-triage.md",
-      "checklist.md",
-      "assets/code-opencode-language-split-design.md",
-      "assets/deep-research-router-precision-finding.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/003-routing-optimization-mode/assets/cross-skill-routing-audit.md",
+      "assets/phase0-triage.md",
+      "assets/code-opencode-language-split-design.md",
+      "assets/deep-research-router-precision-finding.md"
     ],
     "entities": [
-      {
-        "name": "cross-skill-routing-audit.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/003-routing-optimization-mode/assets/cross-skill-routing-audit.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase0-triage.md",
-        "kind": "doc",
-        "path": "assets/phase0-triage.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "code-opencode-language-split-design.md",
-        "kind": "doc",
-        "path": "assets/code-opencode-language-split-design.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-router-precision-finding.md",
-        "kind": "doc",
-        "path": "assets/deep-research-router-precision-finding.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -103,6 +71,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-skill-routing-audit.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/003-routing-optimization-mode/assets/cross-skill-routing-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase0-triage.md",
+        "kind": "doc",
+        "path": "assets/phase0-triage.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-opencode-language-split-design.md",
+        "kind": "doc",
+        "path": "assets/code-opencode-language-split-design.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-router-precision-finding.md",
+        "kind": "doc",
+        "path": "assets/deep-research-router-precision-finding.md",
         "source": "derived"
       },
       {
@@ -190,30 +182,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fresh Sonnet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 003 audit flagged routing defects beyond code-review: orphan references (deep-improvement 18, deep-research/deep-review 4 each, deep-ai-council 1) and D3 over-routing below 100 across ~6 skills",
     "created_at": "2026-04-29T12:04:01Z",
-    "last_save_at": "2026-07-16T16:33:13.603Z",
+    "last_save_at": "2026-08-30T15:39:19.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d27c8a93653ef275bc6083d235e7a915e6ba5d58bdb08742c1bd4c214cc845fd",
+    "source_fingerprint": "sha256:b3f6b701963b962b5d10c63c85432ff33f1426e62f7f1210a7a14d92a517cbbc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d4d44112525cd7ab264b57673bde434899b2f7f727935fef3a602f450dd1d8c",
       "plan.md": "f36e3dcdc62066b46b64aa2a5957f65a2b01f7002d8be287b56200424af74fea",
       "tasks.md": "845f41cd90b325eade4f26e7b3a70b321863d19de9fcd8f2ce1ba06a3d20993c",
-      "checklist.md": "77aeff7a8538067866af70ea9eaa32db367ca510e8d272ad4199fe14e41ae946",
       "implementation-summary.md": "7b325d6186fd141289f94ba3df5a7c517e55c685d6e6bb998b22a5b6fb0563be"
     },
     "last_active_child_id": null,

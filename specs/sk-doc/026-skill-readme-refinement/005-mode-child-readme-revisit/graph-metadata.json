@@ -145,14 +145,14 @@
     ],
     "causal_summary": "Phase parent: one child phase per mode (child) skill, each revisiting that skill's README against the refined template from phase 001, using mcp-obsidian as the exemplar.",
     "created_at": "2026-08-04T07:12:17.718Z",
-    "last_save_at": "2026-08-30T07:20:22.332Z",
+    "last_save_at": "2026-08-30T15:39:17.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:80ff166e38c12f1e335541d4627d02b06157b5502f731e1b9d79694519bb08b2",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9e8232e6db806c80cb374716aa257e2670fb793221ebcc020eb5d3d74961bb73"
     },

@@ -40,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "audit-target-list.md",
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,27 +185,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 031 through 036 changed operator documentation, runtime references, matrix-runner README files, matrix prompt templates and packet-local spec docs",
     "created_at": "2026-04-29T15:41:50.000Z",
-    "last_save_at": "2026-08-29T15:22:11.250Z",
+    "last_save_at": "2026-08-30T15:39:28.219Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:7be9a042d5dd7d9fac2c7c293b13e275244cf964587162b0d31e79e8cb2ca0b2",
+    "source_fingerprint": "sha256:650067692d5449ef8e579d47c2e4a9826abb14c1b7e48a5dd2a74abbfc2afafb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7bebbe6bc90ef3c3c1ca949189eae4d0662f02df9b3815fdc83116141f115e08",
       "plan.md": "db871c96c0f9de396028cc4ea5aea706ad290ced62a749e2b3bd9f6bf331625d",
       "tasks.md": "aa8cc7b99c4fc38e74870fec9f321f97eb672b559c3325502e2f3e11c421c758",
-      "checklist.md": "e49d78d6cf90386f6b62c67bdfc56f1cb35e4dea4c3eeb2c06c94b6c29881282",
       "implementation-summary.md": "453c53bf2b0b45f0089e504ab31d3d0c6e3dc5e4aa772c1acb01469813abec80",
       "resource-map.md": "dbd023232955e0ce952ad70902abd75883cfd89981beb37aa4c073df4f09a55b"
     },

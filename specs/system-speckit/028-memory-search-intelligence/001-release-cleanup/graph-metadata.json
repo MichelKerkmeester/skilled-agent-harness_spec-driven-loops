@@ -50,7 +50,7 @@
       "executed"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-code-readmes/spec.md",
@@ -117,17 +117,18 @@
     ],
     "causal_summary": "Packet 028's release-cleanup track has executed across most documentation surfaces and follow-on validation phases",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-27T08:51:24.004Z",
+    "last_save_at": "2026-08-30T15:39:34.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:74d6ab418f5ecd77d929daab0e440459e86c00f36441181e3670c8d3661893ca",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c5844f7fdc61eb784b3870bb385e4c2949e6e5b84b5c1d188450af808ee0ae50"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/028-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep",
     "last_active_at": null
   }
 }

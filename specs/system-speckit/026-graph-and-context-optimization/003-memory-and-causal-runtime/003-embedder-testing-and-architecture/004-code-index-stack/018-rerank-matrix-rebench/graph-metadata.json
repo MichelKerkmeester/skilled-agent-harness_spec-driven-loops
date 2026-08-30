@@ -24,7 +24,7 @@
       "016/004/018 tasks",
       "rerank matrix tasks",
       "final reranker verdict tasks",
-      "016/004/018 checklist"
+      "016/004/018 summary"
     ],
     "key_topics": [
       "rerank",
@@ -41,17 +41,22 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "evidence/phase2-comparison-018-final.md",
-      "evidence/rerank-matrix-results.md",
-      "spec.md"
+      "evidence/rerank-matrix-results.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -62,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -86,12 +85,6 @@
         "name": "rerank-matrix-results.md",
         "kind": "doc",
         "path": "evidence/rerank-matrix-results.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -191,30 +184,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Optional Lane",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Issues Lane",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Re-benchmarks ALL reranker candidates (BGE-baseline, BGE+path-class, jina-reranker-v3, no-rerank ablation) under the FULLY-FIXED candidate-set pipeline produced by 013/014/015/016/017. Closes the loop on '011 deep-research said jina-v3 won' — but that measurement was made on the BROKEN pipeline. After all upstream pipeline defects are fixed, who actually wins? Embedder fixed (bge-code-v1). Hybrid fixed (017 recalibrated). Chunking fixed (015). Dedup fixed (014). Queries fixed (016). The only variable is the reranker.",
     "created_at": "2026-05-19T15:29:56.011Z",
-    "last_save_at": "2026-07-17T17:19:23.905Z",
+    "last_save_at": "2026-08-30T15:39:30.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c579aa47a07a31363fb8e6bd70353d366af292e535515cc65715d6139eda0084",
+    "source_fingerprint": "sha256:f0465c1372eb51addaf8779ea726fbd13bb9027e19bbadc6d0c144e6c2524207",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "83b20e4a09fbafb153932fae37ac2b8928ebed43d3633c44bb2ed6f15cd48332",
       "plan.md": "84231398b416ce0fe75c5bcc6360ae31eacbcb632a12a1ec18756af5e98db3b0",
       "tasks.md": "8d8cf7aadf5dc940a629b5d674b5935632d6335c3c1802cf8a3ba2150ec71d54",
-      "checklist.md": "060dbbd0017324783f39a66ab2db610c4158531093f8e22f995e9e5350a34291",
       "implementation-summary.md": "a535afe897112d54875d1e7cf3c8f7565c78a18e15a95369876cf5b8184fd405"
     },
     "last_active_child_id": null,

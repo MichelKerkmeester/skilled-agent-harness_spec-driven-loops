@@ -18,11 +18,11 @@
       "parity-baseline-and-runtime-ownership-adr",
       "deep loop merge implementation plan",
       "deep loop merge tasks",
-      "deep loop merge verification checklist",
       "deep-loop-runtime ownership adr",
       "deep-loop-workflows backend promotions",
       "nested graph-metadata discovery rule",
-      "deep-loop-workflows phase 001 summary"
+      "deep-loop-workflows phase 001 summary",
+      "parity baseline captured"
     ],
     "key_topics": [
       "deep-loop-workflows",
@@ -41,25 +41,18 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "baseline/advisor-routing.txt",
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "baseline/advisor-routing.txt"
     ],
     "entities": [
       {
-        "name": "advisor-routing.txt",
-        "kind": "file",
-        "path": "baseline/advisor-routing.txt",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -75,21 +68,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-routing.txt",
+        "kind": "file",
+        "path": "baseline/advisor-routing.txt",
         "source": "derived"
       },
       {
@@ -193,27 +186,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A structure-only merge can silently change behavior",
     "created_at": "2026-06-14T20:16:09.677Z",
-    "last_save_at": "2026-07-16T16:31:52.630Z",
+    "last_save_at": "2026-08-30T15:39:24.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3416cc7d90fcfeffdc8dafeabcffc6f9515c1042e06f9215eb69b04153b90198",
+    "source_fingerprint": "sha256:14004517d0438e4c0012a9c2e40451e562ee01c443ed16c4d696ddb391f64d56",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "586d004495c05526ed4d3a535098f8756739d4ed9f8687916d36b7385c92cc8a",
       "plan.md": "a83698db839567ecf086c78b52db8b13b9cc6625dd53ea83b924d888ef921a51",
       "tasks.md": "f9586dde4cd484b29d7459e34c4f061eee7dd98bd7a836fa38d15d67312baf9c",
-      "checklist.md": "5524c5feaa834f6e2692c9541443f083b9cde143d0bffc167e13e7758aa10546",
       "decision-record.md": "b527d1a233c1924431b11c56cf253791da2a50571c9e0932f1d2cc9805de72e5",
       "implementation-summary.md": "94166677222842e76c9849289e2ee4fc4015be8b9c611a7d2ec4a7bd40e89efa"
     },

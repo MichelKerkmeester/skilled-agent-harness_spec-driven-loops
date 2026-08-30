@@ -22,7 +22,7 @@
       "memory database refinement tasks",
       "deep research review tasks",
       "mcp server fix tasks",
-      "verification checklist"
+      "memory database refinement summary"
     ],
     "key_topics": [
       "memory",
@@ -42,6 +42,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
       "review/review-report.md",
       "lib/storage/lineage-state.ts",
       "shared/embeddings/factory.js",
@@ -56,17 +60,37 @@
       "handlers/memory-save.ts",
       "lib/search/vector-index-mutations.ts",
       "lib/search/bm25-index.ts",
-      "lib/storage/causal-edges.ts",
-      "handlers/causal-graph.ts",
-      "lib/search/vector-index-schema.ts",
-      "lib/cache/embedding-cache.ts",
-      "handlers/chunking-orchestrator.ts"
+      "lib/storage/causal-edges.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -154,30 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "handlers/causal-graph.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-cache.ts",
-        "kind": "code",
-        "path": "lib/cache/embedding-cache.ts",
-        "source": "derived"
-      },
-      {
-        "name": "chunking-orchestrator.ts",
-        "kind": "code",
-        "path": "handlers/chunking-orchestrator.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,24 +210,23 @@
     ],
     "causal_summary": "The Spec Kit Memory MCP server is a 70K+ LOC system with 31 MCP tools, a 57-column `memoryindex` table, 5-channel hybrid search, causal graph traversal, FSRS-based scheduling, PE-gating, reconsolidation, lineage versioning, and a 2,500-LOC monolithic save pipeline",
     "created_at": "2026-04-12T09:02:50.315Z",
-    "last_save_at": "2026-07-10T06:24:15.517Z",
+    "last_save_at": "2026-08-30T15:39:39.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:02adff5042e8f33f8f33beb6aded1ff609584807bddc6943080695a509ee6dad",
+    "source_fingerprint": "sha256:f6c214f03ce5ef65efdb09a06561abfcc8a49039cb7256c1a2414bc08540dc17",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9e942ee4f2eaeb4d0c3f281361402c5553ba9c775c8047424f6b4315a78cb674",
-      "plan.md": "7016d0ebf0992f68a1aaada6f1be19a7ab9ecdcca3a4835157bb52b5ea320c4a",
-      "tasks.md": "6774f5e3d10658ea1f9310c279a62ce82a0e65c6a515230b137611b4b94aee61",
-      "checklist.md": "87938ec7a6a87882d1bb7266e71a759dfbc4425a2f1324650a49aa8bafb90075",
-      "implementation-summary.md": "789058d51d838623ab16211aff19b9ba27d882a6cbc6b854df5290ea90af4ec5",
+      "spec.md": "e258c1b034c2bd9d7cc0a286b319c2382be29d2feff3696da92fb9bf9774ad23",
+      "plan.md": "134035930e35652d6dd9267a36ebc28660e35ac419c8d921c40e87846c917c9c",
+      "tasks.md": "b08441263731735a419771d6ffe6e15e63d94646916a21bee862fbf6ea9afd58",
+      "implementation-summary.md": "9db6d88b28ae4d133aa71c25d557c7c6b2c27ed5327828af6745d1b0a1108276",
       "research/research.md": "6b2038dfea20d4f27bd9cc142395dca149b87695764c6fa08161260013e4642a"
     },
     "last_active_child_id": null,

@@ -32,9 +32,9 @@
       "embedding worker deep-dive plan",
       "037 tasks",
       "llama-cpp embedding worker tasks",
-      "037 checklist",
-      "llama-cpp embedding worker checklist",
-      "ADR-003"
+      "ADR-003",
+      "llama-cpp context size decision",
+      "037 decision record"
     ],
     "key_topics": [
       "llama-cpp",
@@ -56,7 +56,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/chunking.ts",
@@ -79,12 +78,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -206,27 +199,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "032 surfaced a persistent root issue in the local llama-cpp embedding worker: `node-llama-cpp`'s `getEmbeddingFor()` returns `null` on substantive content",
     "created_at": "2026-05-14T14:09:05Z",
-    "last_save_at": "2026-08-29T14:54:18.991Z",
+    "last_save_at": "2026-08-30T15:39:29.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f114a62eca246b83b24e4924e349cc6b1a42dada04599c7c8665fc48602030d",
+    "source_fingerprint": "sha256:14eb20ee685208ab8f1f32a50314fe558c667b277edc8c8895d693aae431b52c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e981be74ced1b8851630b08beb98bec7f18faff4e35dfd4cb2d604d6ebde8fcf",
       "plan.md": "7b94e93367cded015f274289286f2de817f14fe60dc19cf2a482e0bd71a2effc",
       "tasks.md": "9ece92407fe29de6427a114ea44653361befba3acc91d68ed38a7b598cc65f86",
-      "checklist.md": "feac40b53a76b76cca1cdced5a75a170146516a90d6df1ccb669008c9334854c",
       "decision-record.md": "ee071d311470af218bfaaf163aaca52bca1c10fe450d74abe9c127064d819c5f",
       "implementation-summary.md": "da5256168bb3708964bbcc8e5a4beafbc9b03844d3c69ee0c3131b575a077805"
     },

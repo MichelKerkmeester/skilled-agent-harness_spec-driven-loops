@@ -17,7 +17,6 @@
       "d5 registry wiring plan",
       "cli test repair plan",
       "d5 registry wiring tasks",
-      "d5 registry wiring checklist",
       "d5 registry wiring summary",
       "cli test repair summary"
     ],
@@ -33,16 +32,15 @@
       "plan",
       "cli",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -58,21 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,31 +176,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 004 shipped the D5 exit-code hard-fail but recorded two limitations it left untouched as out-of-scope",
     "created_at": "2026-07-14T17:33:04.434Z",
-    "last_save_at": "2026-07-20T06:30:49.153Z",
+    "last_save_at": "2026-08-30T15:39:14.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff85f5c52ec6cced5835cedb546c263f47a8ffe1b106468bc411a77b089492af",
+    "source_fingerprint": "sha256:6b22e599c9ebe9647b06d45a6d9c4f9d508987fb151a5a3ed71afcd3c183db9d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e407f2d3301c5c92e1660c322230d6bfb464ebf1ddcf1b8cb801c36f97dacff",
       "plan.md": "6f051e732dc4ae40f6f3929b05da3b607aa24f63d1de1179f6b2f6d9e22da327",
       "tasks.md": "3c5e4716aa19d7ce39a32b35a7bb849290598ba671b181dc1fb1e678c0a9abf5",
-      "checklist.md": "a81d9c732eb999a9346de8e69247cd031777449bb0b33b69c653e6567841427d",
-      "implementation-summary.md": "6860d9cb8b0d873b7ca0ec1cac85540b02c9b2d6bf35ec7ca85b6b383450ab2c"
+      "implementation-summary.md": "7584053bc7cc231915749d3ae22f7b1d8b758b73ffca1ec2180875e3a502b1aa"
     },
     "last_active_child_id": null,
     "last_active_at": null

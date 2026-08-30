@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The cli-claude-code README at `.opencode/skills/cli-external-orchestration/cli-claude-code/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:39.087Z",
-    "last_save_at": "2026-08-30T07:20:22.683Z",
+    "last_save_at": "2026-08-30T15:39:17.594Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7b1db8e72389f8df1f42714b225c922d0c113e8466cd218cdadc1260964b9aa2",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2081d19f472a3b8bcad3cac5c1ab0c65b8333ddd810c127d3729172dee379488",
       "plan.md": "4e73302039f06f649c08811f4911a87dfa526cefe6aae68dfb064b81e63f908e",

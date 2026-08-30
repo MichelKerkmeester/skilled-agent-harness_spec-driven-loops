@@ -188,7 +188,7 @@
     ],
     "causal_summary": "On executor failure the fallback router retries flat without knowing the failure kind, routing all failures identically and producing no trace of the routing decision",
     "created_at": "2026-06-28T14:02:03Z",
-    "last_save_at": "2026-07-16T16:32:00.106Z",
+    "last_save_at": "2026-08-30T15:39:24.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:68a581ffe129d135da828ae7a1186bc381ba6c63b31c97d65184cc85744ddf43",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "60efd5cf7d6890a56f9ee2ee9638c48ceaece68c1c0f4945c992afb493f1e08c",
       "plan.md": "0e537b17234cbbaa63c78825c56a9653d027fefaca9609591634f1006b935bb2",

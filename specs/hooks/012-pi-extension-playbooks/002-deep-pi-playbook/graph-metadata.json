@@ -15,7 +15,6 @@
       "deeppi manual testing",
       "deep-pi playbook plan",
       "deep-pi playbook tasks",
-      "deep-pi playbook checklist",
       "deep-pi playbook implementation summary"
     ],
     "key_topics": [
@@ -26,19 +25,18 @@
       "testing",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "unit",
-      "tests"
+      "tests",
+      "operator-facing"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "tasks.md",
       "plan.md",
-      "checklist.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -49,21 +47,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -181,30 +173,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`deep-pi` has 81 unit tests but no operator-facing manual-testing playbook, so there is no reproducible way to validate that `/deeppi` activates only on the supported DeepSeek models and reports the measured cache economics",
     "created_at": "2026-08-17T14:15:15.700Z",
-    "last_save_at": "2026-08-17T15:48:07.441Z",
+    "last_save_at": "2026-08-30T15:39:09.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:354b9d48e663d9ed719de85c015623539067048f2a5881d2cd2e1172d4e86527",
+    "source_fingerprint": "sha256:dcabb1976f2b04b381118d92856d6c325efcd008bebb91403cc10534a3cfc3e0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a788c845485825b685cbc90ac55ebdb581c976cc29f72cfc258314f7e2eb011c",
       "plan.md": "7a42aec80b4870b6d309eecf77f645c0b3e07a9df6219256cf47276569a69ba2",
       "tasks.md": "a258d9ee0712273206ec434a1b84b8015b005a2bfaffe4b706946ca0543b856d",
-      "checklist.md": "4044d78fc61883a3dabd019a080aa1be1373794e799ad93ecc0b12e66788c651",
       "implementation-summary.md": "14d59c9a8c26b960a3933697657e75c338c444b095d0b4c9fa7ea37182c35bdd"
     },
     "last_active_child_id": null,

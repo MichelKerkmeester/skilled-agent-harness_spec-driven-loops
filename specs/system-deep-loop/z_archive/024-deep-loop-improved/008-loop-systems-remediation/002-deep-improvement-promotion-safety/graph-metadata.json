@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The pre-mutation 4-runtime mirror-sync gate in `promote-candidate.cjs` read the candidate body and called `verifyMirrorSync(agentName, candidateContent, …)`, comparing each runtime mirror against the candidate",
     "created_at": "2026-06-29T10:43:18Z",
-    "last_save_at": "2026-07-16T16:32:22.805Z",
+    "last_save_at": "2026-08-30T15:39:25.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:eda27befdbc68c93bbeb5ea138f82762608d8596b38176e8ab626b670fe7007a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9275223e2ecf2ea18699ffb5b8be87d7210abc42d2e1cd2e5dc5783e3eb19c7f",
       "plan.md": "20bb2a7ceedbabfad6ad41404e5b87eee2ab16b624e534a3c302a781d095c775",

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The fleet has parent hubs with READMEs of inconsistent shape",
     "created_at": "2026-08-04T07:12:16.602Z",
-    "last_save_at": "2026-08-30T07:20:16.451Z",
+    "last_save_at": "2026-08-30T15:39:17.435Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e8931507012c11571371a0ba3766a1b14359455c072e270177cd6fc059441f37",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ffe76950139396f4d85af8f327e085e87a3e1480cb1f59272ba3638e6686ac0",
       "plan.md": "24d8d297f06efd67d3df07d892fa96775d805f98d30f3f8cc494162016db1a41",

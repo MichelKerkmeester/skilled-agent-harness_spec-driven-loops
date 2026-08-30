@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Pi and Cursor now bind every supported lifecycle operation to native session identity",
     "created_at": "2026-08-10T11:33:30Z",
-    "last_save_at": "2026-08-29T15:21:52.815Z",
+    "last_save_at": "2026-08-30T15:39:09.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:eb57932265804011b29283750f3c429543e58547136d43d95eb6b597dda46a73",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "56e07100ef391fec46f5227de87ffe22b7fc528035c1df291a524a54dc248fca",
       "plan.md": "7b6db5861aeb4b4740af7866d7de3bbf5d9a6649a21df5a7bb4a4c662f5f18cf",

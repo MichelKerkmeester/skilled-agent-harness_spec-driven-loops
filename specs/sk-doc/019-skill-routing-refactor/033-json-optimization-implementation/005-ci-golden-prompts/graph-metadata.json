@@ -16,7 +16,6 @@
       "joined parent mode routing test",
       "gate-2 golden prompt suite plan",
       "gate-2 golden prompt suite tasks",
-      "gate-2 golden prompt suite checklist",
       "gate-2 golden prompt suite outcome"
     ],
     "key_topics": [
@@ -34,18 +33,17 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-parity-deep-skills.vitest.ts",
       ".github/workflows/routing-registry-drift.yml",
-      "tasks.md",
-      "checklist.md",
       ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/gate2-golden-prompts.jsonl",
       ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-golden-prompts.vitest.ts",
-      ".opencode/bin/compiled-route.cjs",
-      "implementation-summary.md"
+      ".opencode/bin/compiled-route.cjs"
     ],
     "entities": [
       {
@@ -61,6 +59,18 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "routing-parity-deep-skills.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/routing-parity-deep-skills.vitest.ts",
@@ -70,18 +80,6 @@
         "name": "routing-registry-drift.yml",
         "kind": "config",
         "path": ".github/workflows/routing-registry-drift.yml",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -100,12 +98,6 @@
         "name": "compiled-route.cjs",
         "kind": "file",
         "path": ".opencode/bin/compiled-route.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,26 +183,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Outcome",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add a joined parent-then-mode golden-prompt acceptance suite to routing-registry-drift.yml, grounded in a live 029 research miss (a parent-hub scaffold prompt ranked sk-prompt above sk-doc); asserts top-1/top-3 skill selection plus compiled-route mode selection for representative prompts (create-skill, git, deep-research), independent of the O1 derived-authority decision.",
     "created_at": "2026-07-29T08:00:15.756Z",
-    "last_save_at": "2026-07-30T11:11:55.549Z",
+    "last_save_at": "2026-08-30T15:39:15.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f7846d5f28b076e9c2a39fb001bb1e5af9f69db32fb2833737268e52e333427",
+    "source_fingerprint": "sha256:d807b2f83276e7fa651d6597c9e50c705c0e7f3fa89d2bd286909ba5e4eed77d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d0b773e7112d45da103d4d356bd6ec21fe0541afd63b3299650b1e9d30aa8e8",
       "plan.md": "59363fb2d87a9f7be4eae027e85d701169f00bd2273989219815540f542681cd",
       "tasks.md": "a8838304d6689904d34307b0712d09e26ea2568180b29b78d4802222f4f8c3d5",
-      "checklist.md": "1c6c4dde2977be5ee0ff7f152c400701fd80a9d7f374cc566c60ea77a8d03446",
       "implementation-summary.md": "275d24eace52672b02d6df2b306e326aa418fbb2c785f43d7356fbfad2f11e29"
     },
     "last_active_child_id": null,

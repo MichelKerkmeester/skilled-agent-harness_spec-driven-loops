@@ -20,9 +20,9 @@
       "agents",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "implementation summary"
     ],
     "key_topics": [
       "agent",
@@ -33,10 +33,10 @@
       "agents",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "original"
+      "original",
+      "013-agents-alignment"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scratch/archive-pass2/review-report.md",
       "scratch/archive-pass2/iteration-001.md",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,27 +187,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses",
     "created_at": "2026-04-12T09:02:50.287Z",
-    "last_save_at": "2026-07-10T06:22:47.626Z",
+    "last_save_at": "2026-08-30T15:39:38.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80b9f4c3825dd161f999a33761502a8c192d6b6b17f9562e8b602187cb73e5a1",
+    "source_fingerprint": "sha256:77f311bc0a55d0351c8e5523e5e4f858f74e9c7a62529b578b610640d1012133",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0dc5937420c00bd520ee59b8c0705dd45ace2d5935e9bb44181221825b1ff78",
-      "plan.md": "78e7dc5cc78c288f68095ebf1de098d53dedca24793f73148d46abe816b72503",
-      "tasks.md": "392b4b80f6822dbf596cc912540fba5a17234aa9446b54b27384dd3c3e4ec87f",
-      "checklist.md": "8027b1f304b69e80e10ece4bdecf968f371e80f03d4796ed9b497cc858539a08",
-      "implementation-summary.md": "f1e1894deb950e53d8a4d188a5f751641de77ffdf8635a2528d9e6e4cd9cc1c9"
+      "spec.md": "7aa309c0fe10ee4d258fbc36ddc6ae465b48e9bfbe22db466510205080ce2f07",
+      "plan.md": "1dd6ad3086c8cd603c58295e00d8d665a00f7a1e960ca3e48046c8701095d887",
+      "tasks.md": "2badcaeb150c5904aafbe91246a8d0e244e921d2809843d60751647bd317998d",
+      "implementation-summary.md": "e0d7f47b9a45c730a7c26daa044e36978eac692db2cfa6c84c9d6fcb7c70a070"
     },
     "last_active_child_id": null,
     "last_active_at": null

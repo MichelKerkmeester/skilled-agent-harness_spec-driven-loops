@@ -167,9 +167,25 @@ function assertSourceFingerprint(
   // marker nobody recognizes - a forged one, or a typo - switch drift detection
   // off for that packet permanently and silently. A newer marker is compared
   // like any other: reporting a mismatch is recoverable, staying quiet is not.
+  //
+  // An ABSENT marker is not a skip either, and that is the sharper edge. The
+  // marker was optional at first, which meant a digest with no marker beside it
+  // was never compared - true of almost every packet in the repository, so the
+  // check was inert where it mattered most. Worse, deleting the field reached
+  // that silence deliberately and stayed within the schema. A digest now has to
+  // say which document set produced it, or it does not count as a digest.
   const rawDocset = derived ? derived.source_fingerprint_docset : undefined;
   const storedDocset = typeof rawDocset === 'number' && Number.isInteger(rawDocset) ? rawDocset : null;
-  if (storedDocset === null || storedDocset < SOURCE_FINGERPRINT_DOCSET) {
+  if (storedDocset === null) {
+    violations.push({
+      file: 'graph-metadata.json',
+      code: 'SOURCE_FINGERPRINT_DOCSET_MISSING',
+      message:
+        'source_fingerprint is present without source_fingerprint_docset, so the digest names no document set and cannot be compared',
+    });
+    return;
+  }
+  if (storedDocset < SOURCE_FINGERPRINT_DOCSET) {
     return;
   }
 

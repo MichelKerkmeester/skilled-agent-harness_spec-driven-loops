@@ -22,9 +22,8 @@
       "packet 069 routing audit plan",
       "phase 005 tasks",
       "cross-cli harness tasks",
-      "phase 005 checklist",
-      "cross-cli harness verification",
-      "phase 005 implementation summary"
+      "phase 005 implementation summary",
+      "cross-cli harness summary"
     ],
     "key_topics": [
       "phase",
@@ -46,12 +45,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "prompts/universal_test_prompt.md",
       "scripts/run_matrix.sh",
       "results/SD-001-codex.yaml",
-      ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
       "scripts/run_codex.sh",
       "scripts/run_copilot.sh",
       "scripts/run_gemini.sh",
@@ -77,12 +74,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -104,12 +95,6 @@
         "name": "SD-001-codex.yaml",
         "kind": "config",
         "path": "results/SD-001-codex.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -201,26 +186,37 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Tracked Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 069 now has Motion.dev peer references and manual playbook coverage, but it lacks a repeatable way to ask multiple AI runtimes how they would route the same sk-code scenarios",
     "created_at": "2026-05-05T10:30:00Z",
-    "last_save_at": "2026-07-09T10:02:44.309Z",
+    "last_save_at": "2026-08-30T15:39:11.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T10:30:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32bddaf3cb69851fd40e80a07181e410496692707f3ba292fb909c6f9a0f33c7",
+    "source_fingerprint": "sha256:483551dd208cbd42b29cd3c2f02305487cccd51328d9b33eb1a42fee1d6c3c82",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f717c8dff1515ebdb9e4c23fdf7f761dbd7255ec9ee456c996505989f64227a8",
       "plan.md": "075b79db6af674bf6166d9d764f0616daf79fde5ed04e63a1f58f0dff09f0f1a",
       "tasks.md": "4b59e4e27d11d6bc23d6e05b7c03f76c81676d1646fcb82ad08d0f8061f42ec8",
-      "checklist.md": "aed785b5b87da9a4589efff954661e32dc98c1d7c8e8a7ddd5ace3dd8fe0fbaa",
       "implementation-summary.md": "4d942e1ba6cf2f2bd0d7c52f738ec7cdcfc24a6592a89747e4ecc17eb810293b"
     },
     "last_active_child_id": null,

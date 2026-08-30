@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The mcp-tooling changelog history predates the 020 kebab-case rename set and currently has no verified append-only entry for the hub/component filesystem migration. This verification phase checks the root and component changelog version bumps, scope descriptions, exemption notes, and history preservation without performing any rename.",
     "created_at": "2026-07-14T15:17:46Z",
-    "last_save_at": "2026-08-30T07:19:39.094Z",
+    "last_save_at": "2026-08-30T15:39:16.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,7 +167,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:ad6f495048308c003b8adb8828d3d6b63e93717bfb4819949a2cac2647aff5df",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d31eb76776030a4c94047149feb6f666d9a89b38153e4c58154dbe3ca11627a",
       "plan.md": "2f49480159f96f46125ffe25b5a6fc0176a9e3dafbea597c2ab4d4d2789a17fb",

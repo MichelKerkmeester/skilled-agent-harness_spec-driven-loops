@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Speckit Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:43.265Z",
+    "last_save_at": "2026-08-30T15:39:34.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:61889c2e82cd8453543d1bcdafe92eb4b401ba6d40d7d526ecbff204ed328df1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "08b176d2c605e3c892fce90f4c1f5aea5d59f5b316f1a1a5d810190f174e694c",
       "plan.md": "16f0831fb310c212f2ee2f2a5a179aed6d49f6900717d423c560cb73214bb9f7",

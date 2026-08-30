@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-command packet contains snake_case command templates and routing guidance filenames. This phase renames those non-exempt resources to kebab-case and updates command-authoring references without changing command manifests, argument fields, or tool-mandated names.",
     "created_at": "2026-07-14T15:22:35Z",
-    "last_save_at": "2026-08-30T07:19:26.404Z",
+    "last_save_at": "2026-08-30T15:39:16.429Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:e6beaa928db33e2e73af7e17369ac654f47b30718bc9ec2c2771f0624c0fc744",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a2cf644d1930acc638485ed1556b9c1f59a23e688615978d351562204debeae",
       "plan.md": "b6f944ccf5bc14fb4f94fc0cf1bce93721cd755bffcf902b71e5535691082a5d",

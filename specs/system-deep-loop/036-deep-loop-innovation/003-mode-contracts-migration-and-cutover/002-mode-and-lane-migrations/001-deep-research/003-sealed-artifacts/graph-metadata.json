@@ -18,8 +18,6 @@
       "deep-research seal-on-write plan",
       "deep research sealed artifacts tasks",
       "deep-research verified read tasks",
-      "deep research sealed artifacts checklist",
-      "deep-research tamper-evident artifact checklist",
       "deep research sealed artifacts implementation",
       "deep-research artifact bindings",
       "deep research verified sealed reads"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-research-sealed-artifacts/deep-research-artifact-set.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-sealed-artifacts.vitest.ts"
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Deep Research Sealed Artifacts",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Deep Research",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Research mode binding for immutable, content-addressed reference artifacts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:30.948Z",
-    "last_save_at": "2026-08-29T13:09:53.826Z",
+    "last_save_at": "2026-08-30T15:39:20.934Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83d035613cdcfef84db4a5babb25442f20abff54c9e888baf5781f5e2444fc80",
+    "source_fingerprint": "sha256:9578b696244938c02a71b2c72fd82fb664ccc4b80c97baabede76b34345d2628",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a3f2e45de8c2cca91af80d4e62a63faff47fcf9b022da80ac88f35368beef99",
       "plan.md": "bb5e5175d90f92db2620c83d9a9b2e9821045393e57939db3d3f2cc2ab50fdbb",
       "tasks.md": "941b1fd8ae7761cc7e72225230648767fc22f97c45984690be4d2d0092f1784d",
-      "checklist.md": "5de3bbeb0e332b243ab25055e11a474e65334a74a95cb9879f4e09105492056f",
       "implementation-summary.md": "2713cabcc332f24d0f065673f912c5944c366db201be97655661933e7ccb145f"
     },
     "last_active_child_id": null,

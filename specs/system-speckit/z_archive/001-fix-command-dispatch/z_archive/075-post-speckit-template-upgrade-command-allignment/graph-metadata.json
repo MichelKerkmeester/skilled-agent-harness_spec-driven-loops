@@ -20,9 +20,9 @@
       "plan",
       "upgrade",
       "tasks",
-      "checklist",
       "decision",
-      "record"
+      "record",
+      "decision record"
     ],
     "key_topics": [
       "spec",
@@ -32,11 +32,11 @@
       "plan",
       "upgrade",
       "tasks",
-      "checklist",
       "decision",
       "record",
       "comprehensive",
-      "analysis"
+      "analysis",
+      "specs"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "research/research.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,49 +163,54 @@
         "source": "derived"
       },
       {
-        "name": "Must Complete",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Research Phase",
+        "name": "Section Header Standardization Approach",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Section Structure",
+        "name": "Options Considered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Mandatory Gates",
+        "name": "Mandatory Gate Addition Strategy",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Summary",
+        "kind": "proper_noun",
+        "path": "research/research.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Comprehensive analysis of specs 072-075 in 003-memory-and-spec-kit combined with current system-spec-kit state to determine command alignment needs.",
     "created_at": "2026-04-12T09:02:53.546Z",
-    "last_save_at": "2026-07-10T06:21:55.153Z",
+    "last_save_at": "2026-08-30T15:39:37.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e7be8b32c5f4792be335df042399c5dd933590376bc5dc00ea8bbd9f51f6b109",
+    "source_fingerprint": "sha256:264f9d26b182c8e255de282b12169bca9af699480ab28d83bb8af44ff5b5d1af",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4379420f6a55a9b78560e2f7d404e75e633c85de0286a982c76b8810aff028f3",
       "plan.md": "0a56ece9e60ed1bde09d27454c280da676c6e12ff1d162ad82ab16f4bbb35205",
       "tasks.md": "75120768f8d874472c8973e842adaa56288157ce5a986c2233dd280809177a70",
-      "checklist.md": "0cf7838fc8eaca08de800a823be9308ba9c01e39d6a656c675600500c5ee9470",
       "decision-record.md": "a8c1645dbcf1f06303f3ce8bf1905b3f98219967024c36dfdacf8fc9f640cee1",
       "research/research.md": "aaea8eec52c5ab4a74954e5a5d3949f30073e799f7ea425e857d88ded9306d0a"
     },

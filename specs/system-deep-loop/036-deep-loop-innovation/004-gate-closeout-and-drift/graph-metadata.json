@@ -79,13 +79,14 @@
     ],
     "causal_summary": "Whole-system gate, integrate-latest closeout, and drift census and plan revalidation.",
     "created_at": "2026-08-13T09:22:50.245Z",
-    "last_save_at": "2026-08-18T05:05:11.734Z",
+    "last_save_at": "2026-08-30T15:39:21.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:486d8ca7c91e428fc2bd10b97a8091a996f6f61505ca800288f386710051d8b0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c3710abe8625f44a188520d94280b4da2e1804cd5181096838b93662acf1e63"
     },

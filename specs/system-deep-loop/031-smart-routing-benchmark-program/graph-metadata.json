@@ -81,7 +81,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts"
@@ -103,12 +102,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -214,43 +207,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Author Type",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Run Mode",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "If Mode",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Skill routing quality was only partially measured",
     "created_at": "2026-07-08T18:22:20.553Z",
-    "last_save_at": "2026-08-29T14:54:10.675Z",
+    "last_save_at": "2026-08-30T15:39:19.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c1cf9c0c31ea540c69943808a2cca573c1d0caa7d7d57ad4977ad3b1f601cfb",
+    "source_fingerprint": "sha256:b7dad17179a0fd0f84a742f570c882df5a317d104ecb79a52812fc99f82c214f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "21ad65ef2857f81d104066a8bfb2d65ef18b1a8f21ed87986753823303347f78",
       "plan.md": "167e918f509f92e95d2d628ef7e6100c951a75adb31393fc3a07a67cfcaba55b",
       "tasks.md": "2944017130812aa7ec62a9a0e9df91661509b9827a425f89d3c12d9c548b4fbe",
-      "checklist.md": "493c22c05ba4ba853be4c93d299080739430941f65d89f1a9f2d8605d870edfd",
       "decision-record.md": "ec884e0bc9d8db01662cf12deb3b22382412aac50c44fa3bffc599fcab12d19b",
       "implementation-summary.md": "467c4cb240b19d56648f68995277092dc2e7ee20229906a6d2b2646dd0c0371c"
     },

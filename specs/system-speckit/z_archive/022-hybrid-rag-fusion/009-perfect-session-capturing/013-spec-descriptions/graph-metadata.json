@@ -21,8 +21,7 @@
       "spec folder description",
       "description tasks",
       "implementation tasks",
-      "description verification",
-      "checklist"
+      "description implementation"
     ],
     "key_topics": [
       "descriptions",
@@ -42,18 +41,14 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "specs/descriptions.json",
-      "mcp_server/lib/search/folder-discovery.ts",
       "scripts/spec/create.sh",
       "scripts/utils/slug-utils.ts",
       "scripts/core/workflow.ts",
-      "scripts/spec-folder/generate-description.ts",
-      "mcp_server/tests/folder-discovery.vitest.ts",
-      "mcp_server/tests/folder-discovery-integration.vitest.ts",
-      "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "scripts/spec-folder/generate-description.ts"
     ],
     "entities": [
       {
@@ -63,15 +58,27 @@
         "source": "derived"
       },
       {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": "specs/descriptions.json",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "folder-discovery.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/folder-discovery.ts",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -96,42 +103,6 @@
         "name": "generate-description.ts",
         "kind": "code",
         "path": "scripts/spec-folder/generate-description.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-discovery.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/folder-discovery.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-discovery-integration.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/folder-discovery-integration.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -199,27 +170,50 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Target Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Folder Description Infrastructure",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Uniqueness Guarantees",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The centralized `specs/descriptions.json` stores all spec folder descriptions in a single file, creating three problems:",
     "created_at": "2026-04-12T09:02:50.274Z",
-    "last_save_at": "2026-07-10T06:22:09.165Z",
+    "last_save_at": "2026-08-30T15:39:38.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9b84ccb523e524c76c2673bfce7e05176b6824af70aeec376adad7b9759e6016",
+    "source_fingerprint": "sha256:ed0bf734d87a1750839c7ff3e392824510711f210d74e85c29e9ef035b3f2349",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "33a7fca3d9672d344cc8af7aabc543882327d99bbca5fe4befdf6206f3cd4150",
-      "plan.md": "cda6ab6d526a08a896446e2d50f527916d4bd20bfcd39f0f7833526ce4d9e158",
-      "tasks.md": "29acd2a3e33d5cf17dd3a81a5897d1a6e95d82e691aaed45a0009d82c11cedd4",
-      "checklist.md": "d26a316692672c681ca1312fc4657d9964dccb82418ea4f53f736b4d81b53747",
-      "implementation-summary.md": "c0845696320ead5c9b503488a3331316c1c5741578a0e4f18a7e3784132018bf"
+      "spec.md": "8687d4dd8e4c98076088af6a25760207c9fb644ba5294356705f8d7ecd352176",
+      "plan.md": "081889d0a9c3e35dfbaa2dee90beaae8953fff3f35d260b791ee35c5d5420f70",
+      "tasks.md": "61cb1a7c6b26f4eb85f12c59351b97681480ddc3e014bf3b1863ca819f71c02f",
+      "implementation-summary.md": "327f1f519126ddfabddd34d490b63e3820d4cb4d819e6d9246e61107bb7effe4"
     },
     "last_active_child_id": null,
     "last_active_at": null

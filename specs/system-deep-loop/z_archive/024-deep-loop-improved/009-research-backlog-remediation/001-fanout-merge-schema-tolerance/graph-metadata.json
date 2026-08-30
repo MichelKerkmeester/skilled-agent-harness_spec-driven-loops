@@ -39,8 +39,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -56,15 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -172,7 +172,7 @@
     ],
     "causal_summary": "`.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:472` — `mergeResearchRegistries` does `if (!registry || !Array.isArray(registry.keyFindings)) continue;`",
     "created_at": "2026-07-01T06:22:13.241Z",
-    "last_save_at": "2026-07-16T16:32:12.052Z",
+    "last_save_at": "2026-08-30T15:39:25.179Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,6 +182,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1ea0d879cd3ff3b77b0c9a25075a1f265fcb236d294bafcefd90819d365525c3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "76e6bbea1c255c4733be223c1a095d9d3ed8935abe503ed5e9fb86ed14e845cb",
       "plan.md": "0f3778bc953a142b840c3229cb8f96aaa89622eeee43fa8ae6605f0ae1df0d67",

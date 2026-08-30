@@ -48,7 +48,7 @@
       "docs"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -98,17 +98,18 @@
     ],
     "causal_summary": "Phase parent for skill-advisor documentation work across 3 children: docs/code alignment, code-folder READMEs, and doc/config drift fixes.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-07-16T16:06:00.518Z",
+    "last_save_at": "2026-08-30T15:39:26.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:9a75e0c9550dd23e373f7dbec2ad402b2ccfe614c0c945b87f7bd05e2fa96188",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0584b729345856c2007b97ec27e2e2ab5bd7993297eb92db90c27f35594f0d9c"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-skill-advisor/z_archive/008-skill-advisor-documentation/007-reference-template-alignment",
     "last_active_at": null
   }
 }

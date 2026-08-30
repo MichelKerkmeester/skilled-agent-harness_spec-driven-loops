@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
-  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
-  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "packet_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
+  "spec_folder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
+  "parent_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The benchmark rename was a filesystem operation git never saw",
     "created_at": "2026-07-15T08:09:50.292Z",
-    "last_save_at": "2026-07-15T10:52:31.767Z",
+    "last_save_at": "2026-08-30T15:39:19.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8549f33fba3c5b97bef79ff0f4a8202b011848a42c79b225d05b8ba8bc076689",
+    "source_fingerprint": "sha256:325dbbcd87bf9b87ab85e716c4ed4f02266e71d9b386c9c6c8ffefdf2caa8fb9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f38ce4181857ac4a6ad70d8feaa147b39c7238461979336d64975dd9fad4fa9a",
+      "spec.md": "2b3407bcee1542830ae4b28a99057d07a2f1423c8058185c3772c70204fbdb5d",
       "plan.md": "e9d1c6beecded0e6e422e2550950ba71751e7907740fa39aa556abb65a85a024",
-      "tasks.md": "59aa596e1ee3432761c820a1ca8217a425fb8c98287069146105011e15c80430",
-      "implementation-summary.md": "a2e98943ddee11a229b3263f83d8694936cfed9194dab13a807f964bac606cb2"
+      "tasks.md": "d0db716979d0cd9fa6210acf9ee2bab9a36acfe5336f584357b5a452615f7f12",
+      "implementation-summary.md": "a6a37fc155792400554ff186edc6a6e72efbadf003bb53a0220973e1d1290175"
     },
     "last_active_child_id": null,
     "last_active_at": null

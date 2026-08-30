@@ -22,7 +22,7 @@
       "manual verification tasks",
       "Fable-5 fix tasks",
       "bm25 regression fix tasks",
-      "manual verification checklist"
+      "Fable-5 bm25 decision"
     ],
     "key_topics": [
       "manual",
@@ -44,9 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,21 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -182,37 +175,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Record Fable",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Owner",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Fable-5-refined surface-alignment features needed a manual verification pass after documentation remediation and automated stress coverage",
     "created_at": "2026-07-05T16:13:22.892Z",
-    "last_save_at": "2026-07-17T17:19:55.389Z",
+    "last_save_at": "2026-08-30T15:39:36.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ecd2869b0e1d8ec1bc5243d4ad4b1c6df8948243a642706dbe74ed6620d8e91",
+    "source_fingerprint": "sha256:7c39c64389493f8487b8c01e60a4fc6fcf91088a01cf9f3c69b6df4f01607c1d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cc85bff17ed11741c933a52adb21e31be5b3422e9226fd27052888d3525c83b6",
       "plan.md": "adb0d3a740d2fae942c5b176acd3672c352cd83019f544d553a21e6c305df448",
       "tasks.md": "700ec491a93e772f24006617f56c556e1e67a8d575cfdcf6fab0df1289744dbb",
-      "checklist.md": "313d570e84e66d7802ac8a5a95799525536ed5f32c327edc01ed9cb7b1fbbb0d",
       "decision-record.md": "d59a268b086ca66d60e839bb75db3598d29021a6a8ca9fe2358c0fb4fb830c42",
       "implementation-summary.md": "aee5804b31ae9d5bab9da40de09eb864897d28d72ee281ee00975d488ff28c5b"
     },

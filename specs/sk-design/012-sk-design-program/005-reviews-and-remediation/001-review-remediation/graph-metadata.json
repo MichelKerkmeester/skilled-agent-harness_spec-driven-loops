@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,30 +171,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The GPT-5.6-SOL deep review over packet 012 stabilized 0 P0, 9 P1, 1 P2",
     "created_at": "2026-07-19T13:04:50.464Z",
-    "last_save_at": "2026-07-22T16:57:29.449Z",
+    "last_save_at": "2026-08-30T15:39:12.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2888d0fcc3edba128650e1b6659499fc626367450cde5afdd8acf70cebd89041",
+    "source_fingerprint": "sha256:3aee8564190e2227831ff50421dffd5d2eddf8e066e302251022afb7b9899bbc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1db1eccfc3d1ae8008a39b0b8a505ba910862e176fa1beff2af88dd0af5ccc4e",
       "plan.md": "3f9463c85048b9286d2ce87a9d0c20ea2bf2f85fa220b3a8d663f52b59d17e08",
       "tasks.md": "5387420142a31fcdf815a49229429eb3eb6f367d24a90ffc8c68c22eda9c74e5",
-      "checklist.md": "a0d0a436048007e1abd636ad8400d6896827717c091617d263a7beaacf03d012",
       "implementation-summary.md": "5d46c472899a5de8ecdcd8ce0de9e3fc65f2ef1443351ddfd161fd14c89c42c0"
     },
     "last_active_child_id": null,

@@ -36,41 +36,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/goal_opencode.md",
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "mcp_server/ENV_REFERENCE.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "goal_opencode.md",
-        "kind": "doc",
-        "path": ".opencode/commands/goal_opencode.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "goal-prompting-runtime-specific.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,11 +161,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003's docs mandated `.opencode/commands/goal.md`",
     "created_at": "2026-07-01T10:04:51Z",
-    "last_save_at": "2026-07-16T16:32:41.920Z",
+    "last_save_at": "2026-08-30T15:39:25.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5e823840415e74f18c48744a4526e75313eb25949e5499e7a919835b6c4a1463",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fd978aab73ece7754340b1eafc931fb6592875530d2d47165615fab75906052e",
       "plan.md": "063667db988fbd409de2e9c2924331cccd6819a9d37db3c491a2d4147f39c351",

@@ -36,68 +36,17 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/spec-memory.cjs",
-      ".opencode/bin/code-index.cjs",
-      ".opencode/bin/skill-advisor.cjs",
-      ".opencode/bin/cli-offline-smoke.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
-      ".opencode/bin/cli-offline-smoke.test.cjs",
-      ".opencode/bin/worktree-guard.sh",
-      "mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/spec-memory.cjs",
+      ".opencode/bin/skill-advisor.cjs",
+      ".opencode/bin/cli-offline-smoke.cjs",
+      ".opencode/bin/cli-offline-smoke.test.cjs",
+      ".opencode/bin/worktree-guard.sh"
     ],
     "entities": [
-      {
-        "name": "spec-memory.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/spec-memory.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "code-index.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/code-index.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/skill-advisor.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-offline-smoke.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/cli-offline-smoke.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "finalize-dist.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/finalize-dist.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-offline-smoke.test.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/cli-offline-smoke.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "worktree-guard.sh",
-        "kind": "script",
-        "path": ".opencode/bin/worktree-guard.sh",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-bridge.mjs",
-        "kind": "file",
-        "path": "mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -120,6 +69,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-offline-smoke.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/cli-offline-smoke.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-offline-smoke.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/cli-offline-smoke.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-guard.sh",
         "source": "derived"
       },
       {
@@ -193,11 +172,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-memory shim's mtime-based freshness gate (`.opencode/bin/spec-memory.cjs:24-42`, guard observed at `:29-40`) exits `69` (\"spec-memory dist entrypoint is stale...\") and blocks dispatch even when dist content is current",
     "created_at": "2026-06-10T20:38:53.995Z",
-    "last_save_at": "2026-07-17T17:19:44.219Z",
+    "last_save_at": "2026-08-30T15:39:34.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:03dcf77ad04a292fc16b0908c854a791009798a98d52884c4f4f1fd57f636b0f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8eba4ba6cf90ac57a3a5e1b685a2124b97c2440abb47eec90a1487a4ec773c9e",
       "plan.md": "5aa356917854bac30b5b132a9489f32af171fbb286723a398c69b17c6b22b967",

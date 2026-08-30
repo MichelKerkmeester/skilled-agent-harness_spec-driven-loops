@@ -21,8 +21,8 @@
       "plan",
       "tasks",
       "024",
-      "checklist",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "key_topics": [
       "phase",
@@ -33,8 +33,8 @@
       "spec",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
+      "summary",
       "addresses",
       "concrete"
     ],
@@ -42,38 +42,17 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/hooks/claude/session-prime.ts",
-      "mcp_server/hooks/claude/shared.ts",
-      "mcp_server/hooks/claude/hook-state.ts",
-      "hooks/claude/session-prime.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".claude/settings.local.json",
+      "hooks/claude/session-prime.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shared.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/shared.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hook-state.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/hook-state.ts",
         "source": "derived"
       },
       {
@@ -89,15 +68,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "hooks/claude/session-prime.ts",
         "source": "derived"
       },
       {
@@ -195,26 +180,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.343Z",
-    "last_save_at": "2026-07-10T06:23:54.311Z",
+    "last_save_at": "2026-08-30T15:39:39.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f26521df2c0552e2a03a56102704b5e24c8bcfb54af6d2ae9d61571c61ec2ca",
+    "source_fingerprint": "sha256:bad43974d9e0b229538d3b3b90749f19331550e200121231be899f6227bed5c4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a6456c74fdf27b2cdd8fa1df581008b20c347bd760f6b06cc413ca8103d091d",
-      "plan.md": "ce3a01da6e4e15a2897676ac46321ea2397bdad5102feafc45acc877e1bf14f7",
-      "tasks.md": "420366a6c0b7412914f345047bd55571e484944e57b828269f62225c3bb40405",
-      "checklist.md": "682154e5b428271b3adb0f1e65d25ba7c0456152f0bde9b34905c10806816ea9",
+      "spec.md": "6f782b2f91ded19a35768cbfdd2a1ca7a219596cd0806d8ff72047d93c145445",
+      "plan.md": "4cfe89bec32a78d2974758fcc7216d36016aa9f01e1083fbc7e644c0fb7496ac",
+      "tasks.md": "38734d36728af30c94368bf8cef2ed093ecf021954b96f60bee285ef80a446f7",
       "implementation-summary.md": "09f0a5f7a939aae4e3c7aa141230cebe39bb04b7fdf1328a56a8ba81920cc411"
     },
     "last_active_child_id": null,

@@ -186,7 +186,7 @@
     ],
     "causal_summary": "A packet created with no human input stops failing validation the moment it exists.",
     "created_at": "2026-08-29T17:48:11.238Z",
-    "last_save_at": "2026-08-29T17:48:11.238Z",
+    "last_save_at": "2026-08-30T15:39:36.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c6226e97b92f4da3a5a7e53e923726078c045c51c3ac29943943a29c1a06e4e2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e8e0f3144ee882e9f813e65d48598df8e44d9a586000563cf4c481b79f6771e4",
       "plan.md": "9c082307d36f7f2e218dd5baf4787c0ab3fe9ba28e97ed249dd1ebe61e93fe72",

@@ -19,8 +19,6 @@
       "spec",
       "implementation",
       "plan",
-      "checklist",
-      "paths",
       "summary",
       "implementation summary"
     ],
@@ -32,18 +30,17 @@
       "spec",
       "implementation",
       "plan",
-      "checklist",
-      "paths",
       "summary",
       "memory",
-      "files"
+      "files",
+      "saved",
+      "incorrect"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -57,12 +54,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -144,42 +135,6 @@
         "source": "derived"
       },
       {
-        "name": "Alignment File Paths Fix",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Alignment File Paths",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Must Complete",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Should Complete",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Results Summary",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Integration Test Results",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -190,24 +145,47 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Added Configuration",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Functions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Updated Functions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Added Step",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Memory files are being saved to incorrect spec folders because the alignment scoring ignores file paths",
     "created_at": "2026-04-12T09:02:53.557Z",
-    "last_save_at": "2026-07-10T06:23:13.391Z",
+    "last_save_at": "2026-08-30T15:39:37.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:011b9142bd3956f38755f213e429da84142f27f81a104d7808da7f5858a2c388",
+    "source_fingerprint": "sha256:3f424de0c1ffdd326eb6fbb42284b539c5b61485c1ede3c1fba9296ca62ebc68",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "299ec563b44b96f9022a995c7576b1849689a76ce3dc129c8e64004a2ed3e6ee",
       "plan.md": "6f1d289b4d1fe51638832c4956a23e8b575a68e31f6e2cf866a2b6af01218c1c",
-      "checklist.md": "2102708ddf6dc12f6c669ecd7ebb70f097d447a48de47eb5bc3100614cdb9a3d",
       "implementation-summary.md": "6eaab52c7213a4af29ef47a8ddb17d64ff88bd4e561a284473bb4bc3e9a110eb"
     },
     "last_active_child_id": null,

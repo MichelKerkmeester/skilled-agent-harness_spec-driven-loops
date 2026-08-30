@@ -43,8 +43,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "sk-code-review reference/asset frontmatter is inconsistent with the repo-wide contract: 0 of 10 references and 0 of 0 assets carry the detailed memory-style block (triggerphrases, importancetier, contextType), while the rest carry title+description only",
     "created_at": "2026-06-11T05:47:33Z",
-    "last_save_at": "2026-07-17T17:19:38.498Z",
+    "last_save_at": "2026-08-30T15:39:33.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b21b283bf92100dd31684d75bed162093d811854ab28c03c857f56e50d5035f4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2ee667094f38d88f401a663d60c8eff0a21cff6dbc31ed54f6b139d4549f07f5",
       "plan.md": "65ddf540cc8c9fe4e92ec55919b8c0e77d98ce5562902efd3fedf1863efd01c2",

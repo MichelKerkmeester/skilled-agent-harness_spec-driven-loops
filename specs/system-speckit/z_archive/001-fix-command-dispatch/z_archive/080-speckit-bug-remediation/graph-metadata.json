@@ -19,10 +19,10 @@
       "speckit",
       "plan",
       "tasks",
-      "checklist",
       "decision",
       "record",
-      "decision record"
+      "decision record",
+      "implementation"
     ],
     "key_topics": [
       "spec",
@@ -32,30 +32,23 @@
       "speckit",
       "plan",
       "tasks",
-      "checklist",
       "decision",
       "record",
+      "implementation",
       "comprehensive",
       "audit"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "shared/trigger-extractor.js",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "shared/trigger-extractor.js"
     ],
     "entities": [
-      {
-        "name": "trigger-extractor.js",
-        "kind": "code",
-        "path": "shared/trigger-extractor.js",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -90,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-extractor.js",
+        "kind": "code",
+        "path": "shared/trigger-extractor.js",
         "source": "derived"
       },
       {
@@ -171,49 +164,54 @@
         "source": "derived"
       },
       {
-        "name": "High Bugs",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Critical Bugs",
+        "name": "Phased Parallel Execution Strategy",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Medium Bugs",
+        "name": "Decision Use",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Low Bugs",
+        "name": "Fix Strategy",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Comprehensive audit by 10 parallel Opus agents identified 45+ bugs across the Spec Kit MCP server codebase",
     "created_at": "2026-04-12T09:02:53.551Z",
-    "last_save_at": "2026-07-10T06:24:51.123Z",
+    "last_save_at": "2026-08-30T15:39:37.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8a2801c7daba48370a7546b56d23f0ae5d71679ca9d4097efeb44880b285843",
+    "source_fingerprint": "sha256:14600edb6b55fcf5074a3041593b7b9eb79fd338d21dadc6e52c13d72a5390f8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "15c51185a3cc2c665c9a31d9b10a013e1be2cff59d5251544dbd0ec1b58eded3",
       "plan.md": "c4a470fcec67f37a6dd6a6650145e09d866d26f89df68a7ca6fb3fb794fc696d",
       "tasks.md": "4ec1b4292f38e27316dc2ade9c15f247755e61ea412c86dfef0f040b54dbd3b6",
-      "checklist.md": "764a354c28ae9f87c6337d850d6593a33c613e1670a558457e7187d5dfaa9105",
       "decision-record.md": "8f3e129b02f81e4ccfcf5bd786892dcb002f2705bf9dfb50e233d719fe11b4dc",
       "implementation-summary.md": "d5c8b1a185448ec5262fdb52d983af80227298cdc95e0b478913566034a80091"
     },

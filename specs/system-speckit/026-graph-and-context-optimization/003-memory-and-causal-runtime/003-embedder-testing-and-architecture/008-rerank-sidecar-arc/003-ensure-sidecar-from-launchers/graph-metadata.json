@@ -40,40 +40,14 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      ".claude/mcp.json",
-      ".codex/config.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      ".codex/config.toml"
     ],
     "entities": [
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -96,6 +70,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phase 002 ships a runnable sidecar, neither MCP launcher knows to start it or attach to it",
     "created_at": "2026-05-23T11:55:15.607Z",
-    "last_save_at": "2026-07-17T17:19:26.454Z",
+    "last_save_at": "2026-08-30T15:39:31.078Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:06486669e98dd4fe63b308e7cf88e1d90cf0938e11fa82c88d6fe3a115fb5e93",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba88501602c9d0f93d4477c174a8488ada016628442cbda7344fc82b5c37f385",
       "plan.md": "3f30366bcdbb30b9068013fa70661c33f755ca06280843fd9c7b949270b1e9d2",

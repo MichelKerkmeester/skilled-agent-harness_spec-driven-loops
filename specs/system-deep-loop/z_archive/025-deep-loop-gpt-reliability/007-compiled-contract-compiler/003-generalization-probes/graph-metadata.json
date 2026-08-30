@@ -38,19 +38,13 @@
     "importance_tier": "medium",
     "status": "complete",
     "key_files": [
-      "scenarios/CXB-004.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      "scenarios/CXB-004.md"
     ],
     "entities": [
-      {
-        "name": "CXB-004.md",
-        "kind": "doc",
-        "path": "scenarios/CXB-004.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -64,15 +58,21 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "CXB-004.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "scenarios/CXB-004.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 003 of packet 036. Prove the compiled-command-contract behavior flip generalizes beyond review/research to the context and council modes, and check whether the leaf-reliability check lifts the pass rate. Prepares behavior-benchmark scenario cells (context CXB-004, council ACB-005, review re-probe) and runs them fix-vs-fallback on the gpt-fast-med leg; results and the generalization verdict are recorded here.",
     "created_at": "2026-07-04T14:19:08.954Z",
-    "last_save_at": "2026-07-16T16:32:28.212Z",
+    "last_save_at": "2026-08-30T15:39:25.604Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:97a3dac433f28ad4db2345a0bcd306a0d0aa392549e77e682912977cd35d3243",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e953e4f43e71789a05f5cefcc9a5152790c7d6e1e06fcd18bf7867c0f6af8346",
       "plan.md": "6e0b9d996eae2972f20d85c8339efbaeab77d3e026abb323363944a2a07b4e91",

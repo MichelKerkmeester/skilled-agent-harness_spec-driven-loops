@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The sk-create-changelog README at `.opencode/skills/sk-doc/sk-create-changelog/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:47.756Z",
-    "last_save_at": "2026-08-30T07:20:31.453Z",
+    "last_save_at": "2026-08-30T15:39:17.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e297d9c87ac1ac25858eab388b63acbd1456563cd943890f9c93cb5dded36ab5",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f3d3ed1b58254e1096efb403a84397b1c04e1019fba8e053eaf2c413119ca567",
       "plan.md": "df61916ab59abe22744ab9e0b59f573849907a73fcfc835f90837915909cd526",

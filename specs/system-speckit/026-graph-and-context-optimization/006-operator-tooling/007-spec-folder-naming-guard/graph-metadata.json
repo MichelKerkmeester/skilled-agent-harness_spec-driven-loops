@@ -44,11 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research.md",
-      "checklist.md",
       "implementation-summary.md",
-      "references/config/hook_system.md",
-      "scratch/.gitkeep"
+      "research.md",
+      ".claude/settings.local.json"
     ],
     "entities": [
       {
@@ -70,33 +68,21 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "hook_system.md",
+        "name": "research.md",
         "kind": "doc",
-        "path": "references/config/hook_system.md",
+        "path": "research.md",
         "source": "derived"
       },
       {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": "scratch/.gitkeep",
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -184,37 +170,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Actual Effort",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Spec folders can be created with names that are syntactically valid but semantically wrong or mis-located, and nothing stops this at creation time",
     "created_at": "2026-06-06T05:55:29.189Z",
-    "last_save_at": "2026-07-17T17:19:33.378Z",
+    "last_save_at": "2026-08-30T15:39:32.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:1dc1f765bec3e113f52da17febabad0b8754aeab9dc69582cb143dbb59a7d5db",
+    "source_fingerprint": "sha256:ac850fb92191693f7dc05011f4cb1890f0908f2fb63040b38b78ddcbb24eefd0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37ba0c3f4c4c77210ba9de172f0671ee30d05475ea7a0d0c14b0c3ecd47eec8f",
       "plan.md": "77a2e91bbc9d0d6641e3e359b818fcce98e97ce38288ec8bd7604e40db90fca6",
       "tasks.md": "2661fd1620ace0cfa8d0d80c5e4f429089dd990ee352e9b4aba341a130e8d974",
-      "checklist.md": "7d13f23c693c345857e826fb91492779286a1d045ac54326178d163f6e544fa1",
       "implementation-summary.md": "6705b7a275b12342265855b6fa1e9f4fb618cb3de12d879bb0c4ec3f134491f2",
       "research.md": "b12942598eca37ef75dc4854fdff9de63cbe8e1b050a26a6eb364c39ad6371d1"
     },

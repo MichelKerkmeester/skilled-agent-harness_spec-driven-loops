@@ -172,7 +172,7 @@
     ],
     "causal_summary": "This read-only rollup gate aggregates phases 001–007 and proves that the complete cli-external-orchestration naming surface is kebab-clean within the 020 exemption boundary. It performs no new rename, reference rewrite, changelog repair, or metadata mutation.",
     "created_at": "2026-07-14T15:17:40Z",
-    "last_save_at": "2026-08-30T07:19:36.111Z",
+    "last_save_at": "2026-08-30T15:39:16.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,7 +181,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:e86c92b0e7ddf8825d34cf94a751c5fbe6087bcfc2046a0e440f5c858107a761",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e741d85c9cecffe35200583e9c4b7f42f7673e3b43e3775932c05c306765e98",
       "plan.md": "aea5f91a4150cf3e6123dbe179f4679bd438313091762c474aabcc36eca4d327",

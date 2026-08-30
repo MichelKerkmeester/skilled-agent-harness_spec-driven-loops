@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-code subtree can complete its physical path migration while its public release record omits affected surfaces,",
     "created_at": "2026-07-14T15:17:12Z",
-    "last_save_at": "2026-08-30T07:19:19.212Z",
+    "last_save_at": "2026-08-30T15:39:16.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:16f7b7162611d79342a695e1ae6868c689fda1ee813ee075cdb99ba672a299b2",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "268779a24688f91c83097401d4599949747a9e8b5e858458f216934e40033804",
       "plan.md": "e44ed501e74bceb8650905c9da7747a1e635c5e330b307af582e574f1883c4c0",

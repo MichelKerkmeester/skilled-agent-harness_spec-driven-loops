@@ -21,8 +21,8 @@
       "startup scan yield",
       "background enrichment cap tasks",
       "enrichment scheduler tasks",
-      "background enrichment cap checklist",
-      "enrichment scheduler verification"
+      "background enrichment cap decision",
+      "enrichment scheduler adr"
     ],
     "key_topics": [
       "background",
@@ -41,34 +41,19 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      "review/review-report.md",
-      "handlers/memory-save.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/review-report.md",
+      "handlers/memory-save.ts"
     ],
     "entities": [
       {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "review/review-report.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -84,27 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -196,27 +181,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "claude2",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`scheduleBackgroundEnrichment` (`handlers/memory-save.ts`) incremented `activeBackgroundEnrichments` inside the deferred `run` callback (executed later via `setImmediate`), then gated scheduling on `activeBackgroundEnrichments < MAXBACKGROUNDENRICHMENTS`",
     "created_at": "2026-06-14T18:42:07Z",
-    "last_save_at": "2026-07-17T17:19:33.696Z",
+    "last_save_at": "2026-08-30T15:39:32.249Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68e3f0e0ef084a9bdcd1a175e75d832d6de9deaeaa901cf6d0028f0fd338c34a",
+    "source_fingerprint": "sha256:626131d6d3aa766a950afd999e3ed32519b4f55e202d42c8b9220a2f689dc6eb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a93cbdfb143cc3dade59c86b8aad107478589caac82899b7276b093f35867d31",
       "plan.md": "381c7ff469f6c24c06afac21fa219f1b076862196f6afa0bab453f35f10074a4",
       "tasks.md": "649fac7d19bf0325e593cd48d278f5d288ef09a6714d832851aa403015f535fc",
-      "checklist.md": "7623e6f7cdc7fde70cf92fc96a66796354777c71fec5139ffd39fc6c02f3c909",
       "decision-record.md": "fbbb33a816273a6a39bdd1e3804d495679e67d5b3a0449cbeb28110414ef340f",
       "implementation-summary.md": "2dc9ee2daefb7358aff3a02fcd483e9f062354edb0ba12dc811df4d863a9bf38"
     },

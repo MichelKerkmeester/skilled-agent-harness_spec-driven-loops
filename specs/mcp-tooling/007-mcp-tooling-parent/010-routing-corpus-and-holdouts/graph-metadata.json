@@ -22,7 +22,7 @@
       "routing corpus holdouts tasks",
       "blind holdout tasks",
       "scorer baseline tasks",
-      "routing corpus holdouts checklist"
+      "routing corpus holdouts summary"
     ],
     "key_topics": [
       "routing",
@@ -41,62 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_task_tracking.md",
-      ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_agentic_browser.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/labeled-prompts.jsonl",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/scorer-eval-baseline.json",
-      ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_web_design_reference.md",
-      ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_mobile_pattern_research.md",
-      ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_browser_inspect.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "holdout_task_tracking.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_task_tracking.md",
-        "source": "derived"
-      },
-      {
-        "name": "holdout_agentic_browser.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_agentic_browser.md",
-        "source": "derived"
-      },
-      {
-        "name": "labeled-prompts.jsonl",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/labeled-prompts.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "scorer-eval-baseline.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/scorer-eval-baseline.json",
-        "source": "derived"
-      },
-      {
-        "name": "holdout_web_design_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_web_design_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "holdout_mobile_pattern_research.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_mobile_pattern_research.md",
-        "source": "derived"
-      },
-      {
-        "name": "holdout_browser_inspect.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/manual_testing_playbook/hub_routing/holdout_browser_inspect.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -107,12 +57,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +142,73 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The hub grew from three modes to six, but the blind-holdout suite in `hubrouting/` covered only mcp-chrome-devtools (MT-H01) and mcp-figma (MT-H02), so routing regressions in the four other modes had no blind detection",
     "created_at": "2026-07-16T12:58:36Z",
-    "last_save_at": "2026-07-16T13:59:42.485Z",
+    "last_save_at": "2026-08-30T15:39:09.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cfaca7504f6b7e6037beafd3c4fcec2adb4838b7cdd02bb442917783b8b1a556",
+    "source_fingerprint": "sha256:adcd4a1d6f7b5b92d69617c6596caad4ee70f9f075f1b2896dbf353bfcac7389",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "019bbf312f4d807e42d5ec7f04d0fa5996ef50cc5cb611d5eadf343f0782ae89",
       "plan.md": "7160c541814619f270097a60b7ddf962f688c1685e0ac99fa841e2062a0ed201",
       "tasks.md": "005bb111d73c62d3d8887c4108743de0a4b71659b9716856779a2659401b74f3",
-      "checklist.md": "ae2142c6f974452afb3efcbf8ed0da124e8928680e828a87aa9bea0d31e93b76",
       "implementation-summary.md": "c28a19e1519ba8d2a62f5572f7bc881f1d6b6ecbd93bf88ddc006bb10f15a3a6"
     },
     "last_active_child_id": null,

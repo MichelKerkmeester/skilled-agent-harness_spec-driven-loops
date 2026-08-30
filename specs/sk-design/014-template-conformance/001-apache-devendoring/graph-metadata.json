@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/specs/sk-design/014-template-conformance/spec.md"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,27 +186,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-interface/LICENSE.txt` was the full Apache-2.0 text, committed in the skill's first commit (`c9c2d381c34`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill",
     "created_at": "2026-07-27T14:48:39.949Z",
-    "last_save_at": "2026-08-29T15:22:00.342Z",
+    "last_save_at": "2026-08-30T15:39:12.979Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e560405f76446e8eaebf883115694d5f14843bf19ae8f1fdb8c62bc7058de4c1",
+    "source_fingerprint": "sha256:5a710b7d5c20fb957d5a845a7d046d939f22c4988000e1dcbcc4bb1c564ef8c7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "26d19b33dd682302d609efc6ad9bb6771d2ff23ab49c82aef26f269a3c200721",
       "plan.md": "01d377e8c865fe963398543f8033eac06a9dc60d1a5c8a1224eb14e250d94490",
       "tasks.md": "65018b5f63e68c12f2a9c5cad22fb1bcdc9efdc4ab9a93df0dc4a2ddf7fe53cf",
-      "checklist.md": "93e7014d5dbecbe4d40eaa9903c4af3314c5335c4625e6ccfecb224ec4ddd7d7",
       "decision-record.md": "55ce5d4f977a751c8c9c5743b8bb9f4d0aafdcedc191772364b24a6269b5267f",
       "implementation-summary.md": "114f6c4868fe94a9f0198b26d6d5c7bd6bb00be406a9122b1967b292ce5f9b13"
     },

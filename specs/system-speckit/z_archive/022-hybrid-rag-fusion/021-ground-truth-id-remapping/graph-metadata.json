@@ -42,17 +42,11 @@
     "status": "draft",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/map-ground-truth-ids.ts",
-      "mcp_server/scripts/map-ground-truth-ids.ts",
-      "mcp_server/lib/eval/data/ground-truth.json",
-      "mcp_server/package.json",
-      "plan.md",
-      "mcp_server/lib/eval/ground-truth-generator.ts",
-      "mcp_server/lib/eval/ground-truth-data.ts",
-      "mcp_server/scripts/reindex-embeddings.ts"
+      "database/context-index.sqlite"
     ],
     "entities": [
       {
@@ -62,15 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -86,39 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "ground-truth.json",
-        "kind": "config",
-        "path": "mcp_server/lib/eval/data/ground-truth.json",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "ground-truth-generator.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/eval/ground-truth-generator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ground-truth-data.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/eval/ground-truth-data.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reindex-embeddings.ts",
-        "kind": "code",
-        "path": "mcp_server/scripts/reindex-embeddings.ts",
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": "database/context-index.sqlite",
         "source": "derived"
       },
       {
@@ -198,27 +162,56 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ground Truth Data",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generator Module",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The ablation study (`evalrunablation`) produces all-zero retrieval metrics — Recall, MRR, Precision, NDCG, MAP, and Hit Rate are all 0.0 — because `ground-truth.json` references memory IDs (e.g., 32599, 22351, 22303, 7518, 7285) from a prior database snapshot",
     "created_at": "2026-04-12T09:02:50.311Z",
-    "last_save_at": "2026-07-10T06:24:48.428Z",
+    "last_save_at": "2026-08-30T15:39:39.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37f3c7d96a3f1df4f6d1ba06ee2de25b792b71f9757e3451ed6560b9533ca894",
+    "source_fingerprint": "sha256:f7ae7d3957ef162624b1dd4eb603c7530a533fc8a8c9b42305ffb8c445d52bf8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2d3fd3c137a6459ca0aa309676fa73bbe6f5ebef14bde92c0b7e37f207a5ea19",
-      "plan.md": "988275508408f854432da3031a5bd89d6b1a25cbec6e7478e25e288afe0b952b",
-      "tasks.md": "c84d6aaffab5965572a416b502ffaa7e3667dd5eb1e9e15bc0eb513e999da831",
-      "checklist.md": "9ec18d6da8395b091ebbf50e7b67a64d0e19583871e570db6d35b1de153e1314",
-      "implementation-summary.md": "81f6e625f444bfd414bc47ebf9dd186a99383872013eb9e1c26594ddbd5a9983"
+      "spec.md": "00527257d0e1b5592ada0178c8e7866cfd4034dee6174e7fd30b0a924273db1a",
+      "plan.md": "b5690bbfb4c8bf82dd91652b2cec4aadfd311d5d313328c5c9e5e9c32608c4fe",
+      "tasks.md": "a208c454009472c07880029b5cf14c31a34b7f32267be5728d0ab4b0242caba1",
+      "implementation-summary.md": "2c0b4a30441959d1f95351a330b3fb848dbbcbab9db5356b7367fe2058e73022"
     },
     "last_active_child_id": null,
     "last_active_at": null

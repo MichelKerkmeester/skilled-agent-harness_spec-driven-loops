@@ -22,7 +22,7 @@
       "sk-doc routing fixes tasks",
       "leaf resource contract task list",
       "nine step fix plan tasks",
-      "sk-doc routing fixes checklist"
+      "sk-doc routing fixes decision record"
     ],
     "key_topics": [
       "sk-doc",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/mode-registry.json",
@@ -75,12 +74,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,27 +195,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc's Tier-2 gpt-5.6-luna benchmark run scored 20/100 with roughly 19 percent exact-resource recall (`tier2-sk-doc-luna-opencode.report.json`)",
     "created_at": "2026-07-16T08:08:19.396Z",
-    "last_save_at": "2026-08-29T15:22:02.017Z",
+    "last_save_at": "2026-08-30T15:39:14.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55778298b180fc64554b39d62b0bde3c39736ade2c7740c385e57a563ec08e36",
+    "source_fingerprint": "sha256:00c0487c444a3c62bb42e0b816877312e55793a26a01fad8df4b5a1828efefbf",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "03ff24550578ded671371fe5c21fa5d64b8f9d7b79e5d71db7da7a3df87c7997",
       "plan.md": "c0867b2e57c6968879c6fec260bd9e244c26893a55aea8e8463d8a2bf4aa9216",
       "tasks.md": "1e02eab54a8b401f8986fc12c393e5aa30e8713961f47dc32618e11e7aec13a1",
-      "checklist.md": "f18a8bc3d5a2468af4eccba67eeaeb6a888ef0b89df952376cc8f29501fe0830",
       "decision-record.md": "c3f251fcc570d8efec57a391c278fbda87d00d139ba0795fe4347b1d1be47db2",
       "implementation-summary.md": "5311f08d2f52384306a6cb6963f25b8ef20d083a9857a9a1d2d156d493fedb11"
     },

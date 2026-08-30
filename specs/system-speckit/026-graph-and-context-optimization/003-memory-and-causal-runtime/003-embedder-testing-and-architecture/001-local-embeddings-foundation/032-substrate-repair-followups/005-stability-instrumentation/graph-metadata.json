@@ -21,10 +21,10 @@
       "memory health rss instrumentation",
       "substrate stability instrumentation tasks",
       "memory health rss tasks",
-      "substrate stability instrumentation checklist",
-      "memory health rss verification",
       "substrate stability instrumentation summary",
-      "memory health rss fields outcome"
+      "memory health rss fields outcome",
+      "substrate threshold map",
+      "memory health resource thresholds"
     ],
     "key_topics": [
       "substrate",
@@ -41,20 +41,19 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "resource-map.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      "resource-map.md"
     ],
     "entities": [
       {
-        "name": "resource-map.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "resource-map.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -70,21 +69,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -190,31 +183,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Substrate flap incidents are difficult to diagnose when the only visible signal is a degraded `memoryhealth` response",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-08-28T22:58:19.233Z",
+    "last_save_at": "2026-08-30T15:39:29.905Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:25:36Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:a67f34ec7b817cddb252d8e0e3100178e88f19cdbf16729a968e956143b178e1",
+    "source_fingerprint": "sha256:2ed6b490fdab8d770766270a1d3e4f1a7a65946e4cfd9444266f958b245e4516",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "efb26fda9519836234a6fc889785635403e1c3ba6470ab736b555cafbe05405d",
       "plan.md": "145708d0eadaea43ec3247a54fe2c20c02dcf9dc87fc4d400ea473702cdada32",
       "tasks.md": "70ef4ed20898d023d9e236c24cbe8e6f9a6633859df31577342bfc83f2223e48",
-      "checklist.md": "8698da02b166970560a5ad55b4b1c22617eb3aae9e7bbefd8aa4ea8d31960789",
       "implementation-summary.md": "bae7d19d769df43a0c585cbd310cbc6cd0b9efada8bc17f881e38f80ee894f80",
       "resource-map.md": "8dab71fca0866696f828f2162b6e031a8d936b91813904246ae570f226ff4cde"
     },

@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "shared/README.md"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Exactly Two Root",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Six class-H hubs still expose their second-stage router at `shared/references/smart-routing.md`, while mcp-tooling already uses root `ROUTER.md`",
     "created_at": "2026-08-15T13:00:00Z",
-    "last_save_at": "2026-08-29T15:22:02.621Z",
+    "last_save_at": "2026-08-30T15:39:15.389Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:adf28a7077226046e8af7772f2adb3a34351c6694c47ac784b22667736ee680a",
+    "source_fingerprint": "sha256:d59ab12e106b63591628328eea6f730ef6e494411ca713190ef3e7923c158a73",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b30acf311d00d1679bf203e66962d0ba384e65f127e9662020310a2ec7a7425b",
       "plan.md": "5ce729dae97bea4fd9bb9edbdc71fff3e35e6eeb6e2594c2f5de2ee00d0db8d4",
       "tasks.md": "f870cc7049890edc189987adc57d76397a96cb95826705d993b8abc8cfd5f931",
-      "checklist.md": "c8566787f429e81548112ae610e2bfb83a3013e9d299b76d07e5a78b2c93f06f",
       "decision-record.md": "5d2e39158f158f86b3a89e4106eb781933912acadbc7d6226603e4543ee848b4",
       "implementation-summary.md": "59500ef3f0b3479861fffcd5470fc2cbb9f6fb8ad3f2bfb94fae95bf1c06bc9d"
     },

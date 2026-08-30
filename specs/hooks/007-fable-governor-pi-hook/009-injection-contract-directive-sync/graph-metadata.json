@@ -21,8 +21,8 @@
       "injection contract sync tasks",
       "directive inventory tasks",
       "contract grep tasks",
-      "injection contract sync checklist",
-      "directive documentation verification"
+      "injection contract sync summary",
+      "directive ownership status"
     ],
     "key_topics": [
       "injection",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/hooks/injection-contract.md",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -190,30 +183,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The review's P3 finding requires `injection-contract.md` to document all three fixed advisor directives — comment hygiene, governor, and proof-over-appearance — and the modules that own their text",
     "created_at": "2026-08-04T17:57:55Z",
-    "last_save_at": "2026-08-29T14:54:14.901Z",
+    "last_save_at": "2026-08-30T15:39:09.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:358c926559eb6b12357b9039206e9b022f62f42c7e48de5ce73e4d3a68aa46d2",
+    "source_fingerprint": "sha256:aa9db95c4fd80eae86f2b1966bcea041d9b715dfccdf9b895af3d256caf01ada",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "943d642fff2715e800671abec8e1f265b37eba640def09a30799cf59d2f38072",
-      "plan.md": "5d475b7e4bab4f4f2139d3e1456ca732a2cda1f63d11c641cb07bf4fd95bfc8e",
-      "tasks.md": "438aeed53fd8f71d08da0ed3334a6acc7c2927bfb54049e35e17f004b053dd8f",
-      "checklist.md": "c5e7977eabba4f7d6ec9654d16f7ef7c2c11fdb101dbab1108caa34cb22eb6b5",
+      "plan.md": "876f07bcda0c1e73a42ec3d0aabf93ba638cd71495afa9e0953aa11bcff54e1e",
+      "tasks.md": "4b0310f96b316a0aa9d75fb7a1672fb90130acccd49111e94d4a270c694ab080",
       "implementation-summary.md": "afaa7f4978e16ad394ccbf018c72473a72c3468760cc295c3c1d3a004eca9d1c"
     },
     "last_active_child_id": null,

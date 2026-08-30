@@ -46,38 +46,15 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/handlers/mutation-hooks.ts",
-      "mcp_server/tests/transaction-manager-recovery.vitest.ts",
-      "mcp_server/tool-schemas.ts",
+      "spec.md",
       "schemas/tool-input-schemas.ts",
-      "lib/embedders/embedding-reconcile.ts",
-      "mcp_server/lib/graph/graph-metadata-parser.ts",
-      "spec.md"
+      "lib/embedders/embedding-reconcile.ts"
     ],
     "entities": [
       {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-hooks.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/mutation-hooks.ts",
-        "source": "derived"
-      },
-      {
-        "name": "transaction-manager-recovery.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/transaction-manager-recovery.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/tool-schemas.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -90,18 +67,6 @@
         "name": "embedding-reconcile.ts",
         "kind": "code",
         "path": "lib/embedders/embedding-reconcile.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -143,17 +108,18 @@
     ],
     "causal_summary": "The packet-012 audit surfaced ~50 verified findings — one true infrastructure P0, two governed-scope findings calibrated to P1 under the local single-user model, and pervasive contract/metadata/doc drift — clustering into five systemic root causes",
     "created_at": "2026-06-04T20:45:40Z",
-    "last_save_at": "2026-07-17T17:19:15.052Z",
+    "last_save_at": "2026-08-30T15:39:28.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:81a5cf573fa48cd0cbfe0c7ed7a1525eb0f5aa6a5cc7a5e941227f5dbfc90a7a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1f9cc345a6c49b5ce9cf8e07287c3661155aad14b3de3f455dccd0238019f5e9"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment",
     "last_active_at": null
   }
 }

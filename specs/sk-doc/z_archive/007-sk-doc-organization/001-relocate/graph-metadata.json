@@ -40,8 +40,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -57,15 +57,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The sk-doc skill's `assets/` directory has accreted a two-level hierarchy where heavy-traffic templates and package folders sit one level deeper than they need to be (`assets/agents/agenttemplate.md`, `assets/documentation/featurecatalog/`, etc.)",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-07-09T10:02:44.885Z",
+    "last_save_at": "2026-08-30T15:39:18.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9a869e90c050f532b31aa655ca081a22c4f170f2b05e748d8d4aacdf146452fd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e95d370ad634f046132436c52f9389325d9ae2316e13d7031804210fc41c1837",
       "plan.md": "63a867d25377f8462f5604f9477965b82e3080b96bddf316f71da8ba44a5b24d",

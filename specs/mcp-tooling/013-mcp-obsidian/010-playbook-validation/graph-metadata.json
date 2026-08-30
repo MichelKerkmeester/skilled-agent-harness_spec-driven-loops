@@ -86,13 +86,14 @@
     ],
     "causal_summary": "Phase parent for the mcp-obsidian playbook validation run: execute every manual-testing-playbook scenario against a live throwaway vault (headless CLI, MCP, plugins) plus the mcp-tooling routing benchmark, across five phase children.",
     "created_at": "2026-08-03T04:10:31.628Z",
-    "last_save_at": "2026-08-03T05:51:42.041Z",
+    "last_save_at": "2026-08-30T15:39:10.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:d0a85aa6a398e9d0e98498df44358811cdcf945df01260b970f9425ffa2a3678",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "79a0887dcccf7abc78ea3d17fbe99423703a935102e3f799d24e7a96b9c842bf"
     },

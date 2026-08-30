@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Two validation claims in the always-loaded framework document are corrected to match measured behaviour.",
     "created_at": "2026-08-29T19:48:08.557Z",
-    "last_save_at": "2026-08-29T19:48:08.557Z",
+    "last_save_at": "2026-08-30T15:39:36.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:52834fc94dd77d625f69e03f641b762e2afe3c871c15523c725b2c8e8332f995",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85cbb948fc95ca034a67b9dbd0a44e9cc1a760eb97bce29d06c5465204098d01",
       "plan.md": "01bc9d05e36cc64637653127d02533c610073485f580766fad20669d30dabf39",

@@ -89,13 +89,14 @@
     ],
     "causal_summary": "Phase parent for adding Notion support to the mcp-tooling hub: first validate whether the official Notion MCP (@notionhq/notion-mcp-server, 24 tools) covers the needed operations, then adopt-or-build an mcp-notion mode mirroring mcp-obsidian — deep research, scaffold, author the skill, register in hub + advisor, verify. BUILT: mcp-notion mode shipped and routing at 0.95 advisor confidence.",
     "created_at": "2026-08-21T10:59:49.005Z",
-    "last_save_at": "2026-08-21T15:58:25.321Z",
+    "last_save_at": "2026-08-30T15:39:10.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:a2162185e624b05abad541ad0a7736520b20a729935efb89c8555248e6a86bbd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a515503cf2d0eacb92cb90361cffd3646e8ad5af061068adf9453cca92e9b29"
     },

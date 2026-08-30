@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Three real bugs: (F5a) `runtime.py::resolveimage` uses strict `base64.b64decode`, so unpadded/URL-safe data URLs raise `Incorrect padding`; (F3a) `handleocr` never calls `requiretask(\"ocr\")`, so the OCR-incapable default `moondream2` returns silent garbage instead of failing loud; (F5b) the TS layer (`types.ts`/`photon.ts`/`tools.ts`) drops `settings`, so `maxtokens`/`temperature` cannot reach the model even though the Python runtime accepts them",
     "created_at": "2026-08-17T19:25:00.615Z",
-    "last_save_at": "2026-08-29T14:54:24.562Z",
+    "last_save_at": "2026-08-30T15:39:19.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7b2294365cf10c576282361e1ebcd4ace936feee653bb00c686351a34ba90536",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "48064f79450482dacc046efdc7b51671d0d4ba4e0560f33623f1204483dbe548",
       "plan.md": "d3af98bcc5ac2369bc48e494ebc3bf411f17b8d04c3305be40ef77be26f90c07",

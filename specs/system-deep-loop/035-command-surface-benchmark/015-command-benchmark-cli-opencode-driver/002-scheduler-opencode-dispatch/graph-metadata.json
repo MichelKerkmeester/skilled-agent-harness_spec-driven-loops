@@ -20,9 +20,9 @@
       "tasks scheduler opencode dispatch",
       "runner buildSpawnArgs tasks",
       "cli-opencode leg wiring tasks",
-      "checklist scheduler opencode dispatch",
-      "buildSpawnArgs verification checklist",
-      "cli-opencode leg checklist"
+      "implementation summary scheduler opencode dispatch",
+      "runner dispatch planning stub",
+      "cli-opencode leg impl summary"
     ],
     "key_topics": [
       "scheduler",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
       ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,42 +170,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Not",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The runner `behavior-bench-run.cjs` builds a leg's spawn command from a fixed `LEGTABLE`",
     "created_at": "2026-07-22T06:16:27.208Z",
-    "last_save_at": "2026-08-29T13:09:57.304Z",
+    "last_save_at": "2026-08-30T15:39:20.377Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80b5085630626543ff414d4b052a7608c524f163f89cff1ac2fbb09aeb6543df",
+    "source_fingerprint": "sha256:515d36888c5d01cb82ecc0e859119c0a0441ccf402d264f5f6177d36f2b109cc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e4f3e38a29457cebd58e7f4f7d67ad884d9d298657e7ef1744e37a958fb40abb",
       "plan.md": "258b368aa56cfc17078a0f6e2256785954ae85b462f0ca7040a0b01835cf73af",
       "tasks.md": "67646d8fb5cfb2a14e603d1ad0921836463f2a1cdbfd3320566feaa50f2e1d5e",
-      "checklist.md": "1da4153ccfdad5d2055c8b1a99174072830788958c6259d429410e137a79c884",
       "implementation-summary.md": "7e59e7d3b57c959b098cfabe801e4e36e53bdeda56fcb15acafb65a60a336288"
     },
     "last_active_child_id": null,

@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The deep-research loop folds cross-iteration state by rewriting anchored sections of a per-run strategy file",
     "created_at": "2026-06-19T06:06:27.158Z",
-    "last_save_at": "2026-07-16T16:33:01.448Z",
+    "last_save_at": "2026-08-30T15:39:25.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,6 +180,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0b7b5a2899d2ae76a40045e7a2f84fa53c48c7eec401258da1d665eca8319d59",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cef265397ce156531c4060c0d5b35323a0b0d710e08328a0ea20b093b225252f",
       "plan.md": "f41ff2df8c8f861eae0c3678ef7ac5bd27c8d8fa661f9658d5d85773be3f4245",

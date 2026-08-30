@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The framework document carried a hard rule requiring consultation of the deleted packet before any small-model dispatch, and several catalogs still described sk-prompt as a parent hub with two packets",
     "created_at": "2026-08-28T08:49:40Z",
-    "last_save_at": "2026-08-29T15:22:05.676Z",
+    "last_save_at": "2026-08-30T15:39:18.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:35493d551cfc6addda0122a0ddaaf56a12b7b5986a63abf38114cbda277e7e9b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f2fd6330e9405e375771e0216c6b9e51fa137c90e8973d0a7bd91e0520c9a39",
       "plan.md": "b2ac5a1070dcdba5a5d45689b4c5748cd44ff92e9893e03c14642f88a48c290d",

@@ -16,7 +16,6 @@
       "document the enabled system",
       "enablement closeout plan",
       "enablement closeout tasks",
-      "enablement closeout checklist",
       "enablement closeout summary",
       "claim sweep results",
       "unreachable authority flip"
@@ -32,8 +31,8 @@
       "system",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "summary",
+      "claim"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -41,15 +40,12 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scratch/probe-reachability.mjs",
       "scratch/probe-pending-transition.mjs",
       "scratch/adversarial-refutation.md",
       "scratch/validator-exit-vs-summary.md",
-      "scratch/claim-sweep.md",
-      "scratch/catalog-spot-check.md",
-      "scratch/playbook-walkthrough.md"
+      "scratch/claim-sweep.md"
     ],
     "entities": [
       {
@@ -68,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -110,18 +100,6 @@
         "name": "claim-sweep.md",
         "kind": "doc",
         "path": "scratch/claim-sweep.md",
-        "source": "derived"
-      },
-      {
-        "name": "catalog-spot-check.md",
-        "kind": "doc",
-        "path": "scratch/catalog-spot-check.md",
-        "source": "derived"
-      },
-      {
-        "name": "playbook-walkthrough.md",
-        "kind": "doc",
-        "path": "scratch/playbook-walkthrough.md",
         "source": "derived"
       },
       {
@@ -195,26 +173,43 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After enablement, the epic's documentation describes a system that no longer exists",
     "created_at": "2026-08-19T06:57:08.525Z",
-    "last_save_at": "2026-08-29T13:09:56.764Z",
+    "last_save_at": "2026-08-30T15:39:22.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2367c49bd079579f60a1e0649967c6e4bbea79f49a5604cc24f3f1404b17b3e2",
+    "source_fingerprint": "sha256:9be11ab0142d9b6ae7b4abfb0bd007f3ef0c35f0824ae4e549ed98438e385607",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d549f24060c2053f1a3061dec98f4b3e1cfe0f8f0abdcbf82336df9c102a92c",
       "plan.md": "cbc2b7684b734029dc9d071ac965f61547897f48ce93efc873a407d32fdc69ff",
       "tasks.md": "7936cd160ea74f9817fe34806e29603b861cd937252a7477085ee30909096f97",
-      "checklist.md": "8a697a2014e380dca58a8caded2b170fb5fb737c402b8ccbc5e1e9c3b10f6cfa",
       "implementation-summary.md": "0545c9f2b6113a717557e4ce404ab55a90e427c4f8fedfecc7f56c2ff259a93c"
     },
     "last_active_child_id": null,

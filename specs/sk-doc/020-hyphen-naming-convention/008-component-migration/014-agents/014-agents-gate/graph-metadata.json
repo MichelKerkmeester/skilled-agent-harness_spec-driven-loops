@@ -160,7 +160,7 @@
     ],
     "causal_summary": "The agents subtree needs one blocking rollup that aggregates the 13 definition audits and proves the whole runtime naming surface has no in-scope snake_case filesystem name outside the program exemption set.",
     "created_at": "2026-07-14T15:18:48Z",
-    "last_save_at": "2026-08-30T07:20:10.369Z",
+    "last_save_at": "2026-08-30T15:39:17.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -169,7 +169,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:8423ef80d418499651801e6f771f2a094541e466b9932323909edec4121c0142",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ef0e0a78bbe56efd01297e3b18690baf4158ff135c31eb466000102f18782a86",
       "plan.md": "90c26599ba9566aab580dee8313ec4e47d452698c5d20d1a392ff5afc6d1025a",

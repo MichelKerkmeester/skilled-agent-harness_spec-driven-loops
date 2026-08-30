@@ -182,7 +182,7 @@
     ],
     "causal_summary": "The epic deep-review sweep left this lane with 14 unverified P1 claims and 5 P2 clusters",
     "created_at": "2026-06-11T19:10:00Z",
-    "last_save_at": "2026-07-17T17:19:44.863Z",
+    "last_save_at": "2026-08-30T15:39:34.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,6 +192,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b806c42d90c70f3e05e55271916a93b8a1726bb14bc3e84e4b041fbd38e89ac7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5aeec872cfa1215b2c8e20816051d386446ca9830f26715b2cb4ff67de5215c8",
       "plan.md": "2e0224b4d239d1efc4a3d3274f13473a8e16890452f171baad1b4dfc02cdf8e5",

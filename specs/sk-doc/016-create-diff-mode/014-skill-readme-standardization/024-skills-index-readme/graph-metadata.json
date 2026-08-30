@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The skills index is a tabular reference card that has drifted: it counts 21 skill folders when there are 22, miscategorizes system-code-graph as a semantic-search MCP skill, lists it twice in the structure tree, references a non-existent skill, and pins per-skill version numbers that age immediately",
     "created_at": "2026-06-07T19:05:00Z",
-    "last_save_at": "2026-08-28T15:59:24.196Z",
+    "last_save_at": "2026-08-30T15:39:14.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:cb7d40ad3aa4734e9ee4edb0eab504cbe4a8b53b7bb82c783c722e2fbe342da7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "411effdf08157e50026a076109f7a65b489646bf9f48ea5be9594b50571d8b5e",
       "plan.md": "f8dadc4c8cfd89310a029bcfc2d84382478df1d6f40a4f79e94f48a6c905f09b",

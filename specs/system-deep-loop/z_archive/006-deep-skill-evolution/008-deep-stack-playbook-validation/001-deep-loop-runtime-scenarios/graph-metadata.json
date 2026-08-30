@@ -20,9 +20,9 @@
       "deep-loop-runtime scenarios tasks",
       "deep loop runtime playbook tasks",
       "007 phase 001 tasks",
-      "deep-loop-runtime checklist",
-      "deep loop runtime verdict ledger",
-      "007 phase 001 checklist"
+      "deep-loop-runtime scenarios summary",
+      "deep loop runtime playbook summary",
+      "007 phase 001 implementation summary"
     ],
     "key_topics": [
       "deep-loop-runtime",
@@ -35,34 +35,18 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verdict"
+      "summary",
+      "implementation"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "checklist.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "scratch/evidence/dlr-01-executor.txt",
-      "scratch/evidence/dlr-02-05-lib-inspection.txt",
-      "scratch/evidence/dlr-06-08-gating.txt",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,27 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "dlr-01-executor.txt",
-        "kind": "file",
-        "path": "scratch/evidence/dlr-01-executor.txt",
-        "source": "derived"
-      },
-      {
-        "name": "dlr-02-05-lib-inspection.txt",
-        "kind": "file",
-        "path": "scratch/evidence/dlr-02-05-lib-inspection.txt",
-        "source": "derived"
-      },
-      {
-        "name": "dlr-06-08-gating.txt",
-        "kind": "file",
-        "path": "scratch/evidence/dlr-06-08-gating.txt",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,36 +156,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verdict Ledger",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`deep-loop-runtime` is the shared foundation for the other four deep-loop skills (executor, prompt-pack, post-dispatch validation, atomic state, JSONL repair, loop lock, permissions gate, Bayesian scorer, coverage-graph DB/query/signals, the four `.cjs` script entry points, and council durability)",
     "created_at": "2026-05-27T07:08:08.391Z",
-    "last_save_at": "2026-07-09T10:02:48.866Z",
+    "last_save_at": "2026-08-30T15:39:23.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:14df09050b8ba760d80c953a6af3ca5344b9c6127deda27f5af848a3319d6c0e",
+    "source_fingerprint": "sha256:a24864d5c534c9c94a904e93436d2d4cf688ce9848338fa7752f4915d2de3649",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "10ef21feb000379412b858e870f011977ac8e4e10caf79c8f052da9848cf8dcb",
       "plan.md": "d1095ddc361634cc3ffa253b4d181459efc65605e70a01b3788230beed8be61a",
       "tasks.md": "51f95f6d879128b7577a0473901b4322c55ba86346a8c7f4ed50362a15eebc33",
-      "checklist.md": "f8df83f70ab9cf337338f9412b3af9e499386cd0d411007443300ef40b20b257",
       "implementation-summary.md": "f4ac503fe31807f41a19eb68dc8ffa9bdae123b0ea26775f6606e64dd2b273d7"
     },
     "last_active_child_id": null,

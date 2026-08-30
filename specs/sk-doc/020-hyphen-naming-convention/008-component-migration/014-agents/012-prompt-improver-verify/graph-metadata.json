@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for prompt-improver across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:47Z",
-    "last_save_at": "2026-08-30T07:20:09.597Z",
+    "last_save_at": "2026-08-30T15:39:17.174Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,7 +167,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:ef85e181ac3c4e6dee0d399d3d29a06d2038155e1a227b0d2b93b0c9819d00f7",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cf1d764cac454be79865a0fd3ba6e922e2659723994c496c06f9f4da8048717c",
       "plan.md": "250bdf394dca914216f1c319ef6fa646e080f97cde12a16b242df65ddea2d96b",

@@ -40,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/mode-registry.json",
@@ -63,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -168,49 +161,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Two",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Three mechanisms invalidate alignment coverage",
     "created_at": "2026-07-31T01:25:20.480Z",
-    "last_save_at": "2026-08-29T15:22:07.252Z",
+    "last_save_at": "2026-08-30T15:39:21.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34737fcb59e0f9af5feb284326571eac9fa3016bb15014e6868d92c7e87b1fc6",
+    "source_fingerprint": "sha256:85ad8c5a7939340d925c9f53681d8e7c7802ece3df4e52ca230cee447ab7541a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5291d51bddf91e372c580aa269a5e3cf38ac83c363730ebcc72cef296eee9925",
       "plan.md": "fba6cecd1b31103a6ee416f65e19bbe887402cb70de11e375e4b57f3d7fffbfe",
       "tasks.md": "92bf5e90e4247edfed8d25f690ac7ced9d63829a47741a87244bfcf59ab80efc",
-      "checklist.md": "029e4a4694ca695582588667a3013deedbb58f1ed22b0fb02298e64b01a4e053",
       "decision-record.md": "b9b11587fd8484fda6486c92e5beaf72341d6569e20365787533932f900ea2dc",
       "implementation-summary.md": "48b6df7b1e946f4f9752fdb97a0d2f8c70d3c1483c2732553f3bd27527d93d1d"
     },

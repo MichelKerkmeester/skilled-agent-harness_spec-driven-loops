@@ -18,11 +18,11 @@
       "implementation plan",
       "tasks",
       "implementation",
-      "verification checklist",
-      "quality gate",
       "architecture decision",
       "use deterministic-first validation with a reject-only model judge",
-      "implementation status"
+      "implementation status",
+      "current state",
+      "phase 004 handover"
     ],
     "key_topics": [
       "protected-spans-fidelity-render",
@@ -44,10 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "handover.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -69,27 +68,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -189,32 +182,37 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Protect",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Protect non-negotiable content, validate rewritten candidates deterministically, and choose a safe presentation mode",
     "created_at": "2026-08-11T10:04:29Z",
-    "last_save_at": "2026-08-28T19:09:01.277Z",
+    "last_save_at": "2026-08-30T15:39:11.694Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:0c8d69618573707f30288f463eb9ebb8f3ba4ac7e4974d57c973ceff370a1088",
+    "source_fingerprint": "sha256:ead8f8f40315276d94951ff1de855fa87ee8c0c5ab12f6ba246b13d781544b70",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d1f87a52f809c7c11c36ed9b951f70073c5be013c506075f15771f895cf37b0a",
       "plan.md": "4c26c8678d33de878ee968b4647ce3deb1f5b391a79a5cfecea505301a94ab29",
       "tasks.md": "53b71f378b36dab8ed7fa974da27deda215c74267ed6f533455ab30dd3044c56",
-      "checklist.md": "527be0d312658194c1ef87c50bf70dc82c9f735bd343ac8b376bc9ab0e70c77e",
       "decision-record.md": "95f7c123a6f1c99fddeb9afa485b5b07236cce7ab4bde0acdef5c04c288329a2",
       "implementation-summary.md": "10e17ec577f619d391e1baccbf9b8d7acdccfc1adfbe3d585c40d437ea524928",
       "handover.md": "1787cb13fb058e0b7c870179d06766b4aaa218eac53fc2aa74f9dde1ba67b8ce"

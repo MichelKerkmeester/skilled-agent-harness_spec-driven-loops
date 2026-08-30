@@ -34,39 +34,17 @@
       "extracted"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-extraction-harness/spec.md",
-      "002-pilot-batch/spec.md",
-      ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
-      ".opencode/skills/sk-design/styles/_harness/README.md",
-      ".opencode/skills/sk-design/styles/_manifest.json",
-      ".opencode/skills/sk-design/styles/README.md"
+      "002-pilot-batch/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "extract-refero.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/styles/_harness/extract-refero.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/styles/_harness/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "_manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/styles/_manifest.json",
         "source": "derived"
       },
       {
@@ -108,17 +86,18 @@
     ],
     "causal_summary": "`sk-design` holds exactly one extracted design reference (`.opencode/skills/sk-design/styles/cursor/`), captured by hand from a styles.refero.design per-style page",
     "created_at": "2026-07-18T06:04:54.636Z",
-    "last_save_at": "2026-07-18T10:25:47.447Z",
+    "last_save_at": "2026-08-30T15:39:12.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:59482f449dd8354b4628d490df4da372094f0885bb42ddedea2a10ff4b17e218",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3944fcc674bb86f2bfab906a9145cf88f819394284da28b256ef0d2e1be307c5"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-design/010-sk-design-styles-from-refero/002-pilot-batch",
     "last_active_at": null
   }
 }

@@ -43,17 +43,29 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
       ".codex/config.toml",
-      ".codex/hooks.json",
-      "plan.md",
-      "tasks.md"
+      ".codex/hooks.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -72,18 +84,6 @@
         "name": "hooks.json",
         "kind": "config",
         "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 028 CLI-transition research and gap audits surfaced four live defects in the three MCP systems' integration surfaces: the OpenCode code-graph plugin bridge crashed on import (three paths pointing at files that moved during skill extraction), Codex sessions ran Claude's hook scripts instead of the purpose-built Codex adapters, the Codex config carried a backwards DB-path note (calling the real default \"legacy\"), and the Gemini hook catalog pointed at the shim instead of the active implementation",
     "created_at": "2026-06-06T16:45:00Z",
-    "last_save_at": "2026-07-17T17:19:35.589Z",
+    "last_save_at": "2026-08-30T15:39:32.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2d42b0f7ff35d94c03a57d98b80477e3eba62c94bf7e7095c033a9f349a06240",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd70c0aee331c7e1e67cf620141ee16fefe582179e16bdb9cec12d63964b9d36",
       "plan.md": "7f51ab0029ea78933e4376bd29e93220205b50cc71e73716671be7e106b83134",

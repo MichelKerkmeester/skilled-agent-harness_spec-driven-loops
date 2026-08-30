@@ -27,8 +27,8 @@
       "recursive validation remediation tasks",
       "strict validator proof tasks",
       "phase chain metadata tasks",
-      "recursive validation remediation checklist",
-      "strict validator exit zero checklist"
+      "recursive validation remediation summary",
+      "21 of 21 strict validation"
     ],
     "key_topics": [
       "recursive",
@@ -50,7 +50,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -181,42 +174,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Scope Decision",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The plan-named gate `validate.sh .../015-router-unification-program --recursive --strict` exited 2 and blocked publication of the completed `020-root-router-document-standard` phase",
     "created_at": "2026-08-16T00:00:00Z",
-    "last_save_at": "2026-08-29T15:22:02.624Z",
+    "last_save_at": "2026-08-30T15:39:15.451Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:460256b6bef0d963fd82b5fd8b04a7b6641f47dd76323b2635a6f4ad25a2c1ed",
+    "source_fingerprint": "sha256:d1024dca4f63f3841bff339605089a6118e438f8f182a990988ba5915f1fd718",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8b88ac55cef028eb39033cf8d6e4d6a583b7d9427464fde65ce87f3056bc836d",
       "plan.md": "b1c264c69094bee2c8df0a9e494c23f2998b31eafbd37a4b9cc4e5d2868f0766",
       "tasks.md": "0b2de95975fe7eca578c9e17ca48bec2cd44cbe68aec39c1f8b157f3fefef4ea",
-      "checklist.md": "e96f1c6a9ae79fa1d49fe83b75e721dd5cf8163086cbc3d3d9d191a73e9c9f54",
       "implementation-summary.md": "fe65d5ed5b7c8e6087f9bee5b35a963d08a7e6a824da58c9d64483270a46a5d5"
     },
     "last_active_child_id": null,

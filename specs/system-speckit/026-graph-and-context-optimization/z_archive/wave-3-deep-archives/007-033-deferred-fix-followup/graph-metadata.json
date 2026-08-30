@@ -43,10 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      ".opencode/skills/system-code-graph/architecture.md",
-      ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,24 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "architecture.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/architecture.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -192,11 +171,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Closed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Closure Manifest",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Closes the 5 deferred findings from 018 (F001, F006/F011, F012, F017, F018) — architecture.md reconstruction, launcher kitDir-derived path, source-map verification, 3 new playbook scenarios.",
     "created_at": "2026-05-14T21:35:00Z",
-    "last_save_at": "2026-07-17T17:19:36.874Z",
+    "last_save_at": "2026-08-30T15:39:32.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:83bbbc91456b44c44407eec5cda916f3690f973025b8772069a890eca93a539a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b7de98032ea3faf5d34f3b403c678ca2b8cacf0c42c1efbbd4e0b78e2ef47907",
       "plan.md": "1b88c376d2caa8b39396c668209fbb84ecbff6c1ccfbaef2ab87cc97dbbff292",

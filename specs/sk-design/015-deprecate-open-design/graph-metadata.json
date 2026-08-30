@@ -31,12 +31,11 @@
       "opendesign"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".utcp_config.json",
@@ -52,7 +51,7 @@
       ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
       "review/review-report.md",
       "review/deep-review-config.json",
-      ".pi/settings.json"
+      ".pi/agents/deep-review.md"
     ],
     "entities": [
       {
@@ -71,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -152,9 +145,9 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".pi/settings.json",
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".pi/agents/deep-review.md",
         "source": "derived"
       },
       {
@@ -198,27 +191,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Open Design transport (`sk-design-mcp-open-design` skill + `opendesign` MCP server registration in `.utcpconfig.json` + `od` CLI wiring) is being retired by operator decision",
     "created_at": "2026-08-10T08:15:00Z",
-    "last_save_at": "2026-08-29T14:56:24.266Z",
+    "last_save_at": "2026-08-30T15:39:13.461Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ea39651295cda3ee1c57446c4d9a6e6434f790392d2e23d52f366818d8a0ef2",
+    "source_fingerprint": "sha256:fe18350dd635728c97c335c76002910d1af536afc716314ca32ef35c0da4dede",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6c4d91584336fae26488f6a9d121c63c4a7ef98d2fed7478edea1070e9a722b",
       "plan.md": "b0cf21168ec4c14b1ea187ca79497c0d8d5622a2483004082bfc67bc74fb0cb3",
       "tasks.md": "174fb5521ffaa49d8342a258e1075012ce15efa0c69dbd22acb6886e10686447",
-      "checklist.md": "6ed573a9de5f4ebd3f39ad72622541738c6274d3c273bf1e1afabb64e815c547",
       "decision-record.md": "4eafc4d59f203a3875ae3a7b14f66a1c5eec992c6378fc7a21fb157acaed0e9c",
       "implementation-summary.md": "6aa65c51f04129574bd5e0051f2c2b2b08be3f8b2ef53a419822b858dc069e64"
     },

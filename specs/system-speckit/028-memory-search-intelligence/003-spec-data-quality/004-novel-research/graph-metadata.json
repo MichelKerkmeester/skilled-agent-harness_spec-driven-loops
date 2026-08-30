@@ -88,17 +88,18 @@
     ],
     "causal_summary": "Novel Research subgroup of the spec-data-quality track: novel data-quality research ideas.",
     "created_at": "2026-06-27T17:25:47.076Z",
-    "last_save_at": "2026-07-17T17:19:51.576Z",
+    "last_save_at": "2026-08-30T15:39:35.660Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:1aa795f61164d3df3a9ad8a3b60ab0e90ed47080c412362d3bb9d3fdbdac57a2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c677987e403b870754a578a71c7af4a83efbaf97957ebd0fecc7089388401231"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research/001-novel-contradiction-detection",
     "last_active_at": null
   }
 }

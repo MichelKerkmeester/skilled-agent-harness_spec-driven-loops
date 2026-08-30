@@ -113,13 +113,14 @@
     ],
     "causal_summary": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fixes",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-08-29T15:22:09.282Z",
+    "last_save_at": "2026-08-30T15:39:27.569Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:3d52fba5752ac6f187158d49b7f46d26d17b81d37c73d4c80c69b46195447275",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d1e2fff60a3ad5f9929708eba1449e3865bd6e187c84e0854fb39043301cfe1"
     },

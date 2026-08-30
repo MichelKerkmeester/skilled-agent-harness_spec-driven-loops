@@ -119,7 +119,7 @@
     ],
     "causal_summary": "Bring SKILL.md, README, catalog, and advisor metadata up to the three-lane (agent-improvement / model-benchmark / skill-benchmark) reality of the renamed deep-improvement skill; run hardening/deep-review gate; end-to-end validation.",
     "created_at": "2026-05-30T07:27:05.681Z",
-    "last_save_at": "2026-07-09T10:02:49.059Z",
+    "last_save_at": "2026-08-30T15:39:23.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -127,6 +127,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:69e0e53e719239f6da87738f6273cc52cfd8ef7a9082bc2e3e6c8a0b2bec5e29",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "659271306a220f9b8304972b41d27cf8fb173d24db5652a220df4bc12d4c0a86",
       "implementation-summary.md": "91092b03f2e43ceab8dcfa077a15696728cbf0e6939b4ad40097ed6bb8a23ca2"

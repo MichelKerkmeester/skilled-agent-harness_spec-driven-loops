@@ -51,35 +51,38 @@
       "hooks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "handover.md",
       "013-cursor-spec-gate-prebind/spec.md",
       "014-cursor-agents-skills-rules-parity/spec.md",
       ".cursor/hooks.json",
-      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
       ".opencode/agents/context.md",
       ".cursor/mcp.json",
       "009-cursor-hooks-lifecycle/spec.md",
-      "spec.md",
       "001-cursor-contract-pin/spec.md",
       "002-deep-loop-executor-support/spec.md",
-      ".opencode/skills/sk-doc/create-skill/SKILL.md",
       ".codex/hooks.json",
-      ".claude/settings.json",
-      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-      "handover.md"
+      ".claude/settings.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
       {
         "name": "hooks.json",
         "kind": "config",
         "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-core.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
         "source": "derived"
       },
       {
@@ -95,33 +98,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -199,7 +178,7 @@
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) is a real, actively-developed terminal coding agent (build `2026.07.23-e383d2b`, installed and live-verified on this machine in phase 001) that has never existed in this repo — no standalone skill, no hub mode, no archived packet (a `zarchive` grep for \"cursor\" returns nothing)",
     "created_at": "2026-07-24T05:00:33.109Z",
-    "last_save_at": "2026-07-27T11:06:46.686Z",
+    "last_save_at": "2026-08-30T15:39:07.405Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +186,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:bf188ebb4c20c03ec625a8095a0e7e76de584bb29eb065dfc4a9e8c8edb2989e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eb304f00bb165e30e74129c85e0c53590a04ea2652c4d916c94145a403d19a53",
       "handover.md": "fc98e8115efa03c5dcb34f42be55ef11c2a08ec2031afc10f04ad830662fc33c"

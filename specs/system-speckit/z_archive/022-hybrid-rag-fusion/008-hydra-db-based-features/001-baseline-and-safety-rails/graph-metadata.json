@@ -21,8 +21,8 @@
       "phase 1 tasks",
       "baseline tasks",
       "safety rails tasks",
-      "phase 1 checklist",
-      "baseline verification"
+      "phase 1 adr",
+      "baseline decision"
     ],
     "key_topics": [
       "phase",
@@ -33,8 +33,8 @@
       "checkpoint",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
+      "adr",
+      "decision",
       "roadmap",
       "cannot"
     ],
@@ -42,79 +42,20 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/lib/config/capability-flags.ts",
-      "mcp_server/lib/eval/memory-state-baseline.ts",
-      "mcp_server/scripts/migrations/create-checkpoint.ts",
-      "mcp_server/scripts/migrations/restore-checkpoint.ts",
-      "mcp_server/lib/search/vector-index-schema.ts",
-      "mcp_server/package.json",
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/memory-state-baseline.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/migrations/restore-checkpoint.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "tests/memory-roadmap-flags.vitest.ts"
+      "implementation-summary.md",
+      "tests/memory-roadmap-flags.vitest.ts",
+      "tests/memory-state-baseline.vitest.ts",
+      "tests/migration-checkpoint-scripts.vitest.ts",
+      "tests/vector-index-schema-compatibility.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "capability-flags.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/config/capability-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-state-baseline.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/eval/memory-state-baseline.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create-checkpoint.ts",
-        "kind": "code",
-        "path": "mcp_server/scripts/migrations/create-checkpoint.ts",
-        "source": "derived"
-      },
-      {
-        "name": "restore-checkpoint.ts",
-        "kind": "code",
-        "path": "mcp_server/scripts/migrations/restore-checkpoint.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "MANUAL_TESTING_PLAYBOOK.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -130,21 +71,39 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "memory-roadmap-flags.vitest.ts",
         "kind": "test",
         "path": "tests/memory-roadmap-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-state-baseline.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-state-baseline.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "migration-checkpoint-scripts.vitest.ts",
+        "kind": "test",
+        "path": "tests/migration-checkpoint-scripts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-compatibility.vitest.ts",
+        "kind": "test",
+        "path": "tests/vector-index-schema-compatibility.vitest.ts",
         "source": "derived"
       },
       {
@@ -206,29 +165,58 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Focused Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Operational",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Baseline Inventory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Hydra roadmap cannot safely progress while the baseline runtime and documentation disagree about what exists",
     "created_at": "2026-04-12T09:02:50.259Z",
-    "last_save_at": "2026-07-10T06:23:11.946Z",
+    "last_save_at": "2026-08-30T15:39:38.521Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab44e63a724221d37ffe6da02be21d1c4afddc33b8733b3cd530e8310973c5cd",
+    "source_fingerprint": "sha256:abedaa8b78048342052b5bb41467bc95e7ced7418f007f266820d2a111f97874",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b8b3ecc52ac132e72dc0a206a1ebe80b61cfb9add5f1f7622075eab1ee60b07a",
-      "plan.md": "0544411454dd631a462614bc19c342171b5a0741a23cae71aa4052623f4994c0",
-      "tasks.md": "10aba9082557721d163ca22bf7336221ab2523acfe084763587ef0629f236958",
-      "checklist.md": "22561d33466ba605c6d44ec9fc11e3b4a3df2900b682141b675901b1c3daaa80",
-      "decision-record.md": "2a668a67e4e6ca742bb95b32d66da1957bb9b630e84c58de5e0dd749243f901f",
-      "implementation-summary.md": "a8959cc188add9a66dbce7c8ccd5c8f07649c7dca749433f9efaa4717cc1ac1c"
+      "spec.md": "b16235ac5bde402049fc2618b4d68180efc1edb8d4b5b1983e36bb679544bcb7",
+      "plan.md": "a0c7465c58faecf8abc468ab56b8ef72cf4c408c5caafa6387533c8333582c61",
+      "tasks.md": "4e7692384b6b5871bc0c48f1bd7678afc991720bda97108f05b7e9df65c26373",
+      "decision-record.md": "bd667316ea9bc86990d468159240de1aaa78c778d97eff7801f15fc047a13c4e",
+      "implementation-summary.md": "a777a571d757d646184c602ff069b529c2e19a2e66ed71f5f186a1f366095795"
     },
     "last_active_child_id": null,
     "last_active_at": null

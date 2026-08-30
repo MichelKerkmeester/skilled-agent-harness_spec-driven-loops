@@ -44,13 +44,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/plan.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/checklist.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/description.json",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/spec.md",
@@ -74,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/checklist.md",
         "source": "derived"
       },
       {
@@ -197,31 +189,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Define Numeric Near",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Phase 012 packet still described future work as \"Planned / Not Started\" even though a real benchmark run already exists and passed at `.opencode/skills/sk-design/benchmark/reports/2026-07-06--after-012-routing-rigor--router/report.{json,md}`",
     "created_at": "2026-07-06T04:40:02.795Z",
-    "last_save_at": "2026-08-29T15:21:59.393Z",
+    "last_save_at": "2026-08-30T15:39:12.228Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce468eccc748aca761d20b7477cea663f642d34381c751a62703bc0d89799b1c",
+    "source_fingerprint": "sha256:01f4510ab13b3808d2edcc749091fb79f7ea988e277436573d24a87602fbbffb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d1831b889f38296b59310d72c83c3eb78a019ffe409d6ca0e7a571ea39f65636",
       "plan.md": "bac9697711d1c51e2c0e999b8067ed2a080b0b8329a46d2eeea96f34cf58c41e",
       "tasks.md": "6dd9b5e459ad11a77e9481f7e0d4f4382065fea4ba37c0b3ad32ba1d7b1b6c5b",
-      "checklist.md": "5cb81aebef16f6fffebd41c201067bc7977424dfca1c1b18ad4f7edd0d165652",
       "decision-record.md": "6fb93260d0defbbc6582f30a6efe78b59c7248e2297c72cc997862cbfa793775",
       "implementation-summary.md": "184ac1ee198f796be929ca65c076ad901ab35190260ef777666f542c859895bf"
     },

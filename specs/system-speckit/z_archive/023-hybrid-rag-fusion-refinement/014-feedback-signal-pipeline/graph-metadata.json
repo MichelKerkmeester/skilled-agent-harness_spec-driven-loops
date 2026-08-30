@@ -42,18 +42,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/lib/feedback/query-flow-tracker.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/lib/feedback/feedback-ledger.ts",
-      "tasks.md",
-      "checklist.md",
-      "tests/query-flow-tracker.vitest.ts",
-      "mcp_server/tests/context-server.vitest.ts",
-      "mcp_server/tests/query-flow-tracker.vitest.ts",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "mcp_server/lib/search/pipeline/stage2-fusion.ts"
+      "tests/query-flow-tracker.vitest.ts"
     ],
     "entities": [
       {
@@ -63,27 +55,9 @@
         "source": "derived"
       },
       {
-        "name": "query-flow-tracker.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/feedback/query-flow-tracker.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "feedback-ledger.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/feedback/feedback-ledger.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -93,39 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "query-flow-tracker.vitest.ts",
-        "kind": "test",
-        "path": "tests/query-flow-tracker.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "name": "query-flow-tracker.vitest.ts",
+        "kind": "test",
+        "path": "tests/query-flow-tracker.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,27 +149,68 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The feedback signal pipeline is implemented in the current repo, but this packet no longer matched the shipped code or the available verification evidence",
     "created_at": "2026-04-12T09:02:50.340Z",
-    "last_save_at": "2026-07-10T06:21:52.996Z",
+    "last_save_at": "2026-08-30T15:39:39.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:171caf8646ceff9590096988d61549aab1eeca5f0ad8ddba716efa598dfb58e2",
+    "source_fingerprint": "sha256:e78ad78d5df62101cc0f2e2f4faaaf360ec9679f05e3b3ce9159790e737747b1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9343b528e7852cfd15ff8569a17187e5f6237a3e4c08c6ded3b71935264f76f",
-      "plan.md": "9b4a831819ce0814b7860b239b53683632041733cd25a4d241f332551bf4ed80",
-      "tasks.md": "68ddf32af4384f3aab369d5b5c33fa16575350596a97afd17a1b4e06cc87c136",
-      "checklist.md": "56d7ff187a5642c40b5b2838b8999265ee1016ef3187f7bad1c6b6b68cd9b7d5",
-      "implementation-summary.md": "b1be00e78e7f8a65406e0926dbc30ead72c97476c34caa32552665e9c66a5663"
+      "spec.md": "42d4546420fa89862c07320c21dfe7963f9f1c1f2e94ecf5f938c03e1f43f6aa",
+      "plan.md": "9170d4978dbb4a60cad71d0473e4a4d1d5482ac5f8e9fa5d3c8b4102a24b703d",
+      "tasks.md": "ef12a18c39a0043ec66cfce6f5cebcc1d8eefcb206addeb375b4a89ee456f007",
+      "implementation-summary.md": "58f18308552b89426ea2a6c2c8da30cc01e6bdee830a911b754f362dcd5edf71"
     },
     "last_active_child_id": null,
     "last_active_at": null

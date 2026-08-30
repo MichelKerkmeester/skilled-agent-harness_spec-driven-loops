@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/003-land-recommended-frameworks-data",
-  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/003-land-recommended-frameworks-data",
-  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "packet_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/003-land-recommended-frameworks-data",
+  "spec_folder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/003-land-recommended-frameworks-data",
+  "parent_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`sk-prompt/assets/model-profiles.json` contained no per-model framework guidance",
     "created_at": "2026-06-05T12:47:32.509Z",
-    "last_save_at": "2026-07-15T10:52:30.305Z",
+    "last_save_at": "2026-08-30T15:39:19.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:57814950d80015cbd84aff59a7ad8cef5b4c6e77c5b8822386b9cc20b7d4d5fc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e0199b92d888ba0c4935c57416717d1dff4955a9af1f1bd3fd268c185fdb55c1",
       "plan.md": "dbe944081a3a283516b262ca0ab6a95868d4a8de4cbf02bce5aab8d9d95c8bd9",

@@ -19,8 +19,6 @@
       "commercial-safe profile",
       "tasks",
       "023D",
-      "verification",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -42,7 +40,6 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -57,12 +54,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -174,42 +165,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doctor Command",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "CocoIndex operators had no single preflight for three high-trust failure modes: a stale global `ccc`, non-commercial default reranker licensing, and expensive model-swap reindexing",
     "created_at": "2026-05-19T20:36:58.000Z",
-    "last_save_at": "2026-08-28T15:59:44.163Z",
+    "last_save_at": "2026-08-30T15:39:30.719Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7db32105e869f8d4288e565d2b8ed0c0e9b1124e520fe2ccede5b73c55481e47",
+    "source_fingerprint": "sha256:bac0c8357afa63339dcf37e08710f8fee8c5ac4ff654ecfbc35d176c77189dfd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ecb4331b5cb0366cc04f70b8724447a071f46b34d11cb49bcd04bcd35af2f31b",
       "plan.md": "d45d9834fb3e262f143097bfbbb307325845b8ad5e1c18acc173559a7202554e",
       "tasks.md": "403fd6ac47c27b5620507ec17330ee9466d5090ae8a50a01be0f84c8a53696a1",
-      "checklist.md": "b8dd00b661532ceede853e561d33435d769ea56ac508e44b2873598c52193027",
       "implementation-summary.md": "59fa84c305e485e0ccb4dda40cc8a2e3ebe73fd8e1b689fdb8a4c0076c051074"
     },
     "last_active_child_id": null,

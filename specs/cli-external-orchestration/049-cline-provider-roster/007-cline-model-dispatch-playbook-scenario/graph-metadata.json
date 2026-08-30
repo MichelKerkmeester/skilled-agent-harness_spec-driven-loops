@@ -195,7 +195,7 @@
     ],
     "causal_summary": "cli-pi's manual testing playbook has a Model Dispatch group (PI-017, PI-018), but neither scenario mentions the cline provider — the only cli-pi file that referenced cline was the provider roster",
     "created_at": "2026-08-18T18:42:01.971Z",
-    "last_save_at": "2026-08-29T14:54:26.726Z",
+    "last_save_at": "2026-08-30T15:39:08.123Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f2a5020be5d8026590afdd7c045d69f0ae99b5c22f0093629155ef84ab7c9d33",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e5de8ec700d591c72649e7822afee6a14755c5e68af3138c18b7e284fd0f69a",
       "plan.md": "38f9278539e24537db5f623e5c68eecc8fd874f7a3d5879e8ac871d619c29d2c",

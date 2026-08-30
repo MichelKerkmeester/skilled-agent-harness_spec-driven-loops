@@ -39,14 +39,19 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       ".opencode/commands/speckit/complete.md",
       ".opencode/commands/speckit/plan.md",
       ".opencode/commands/speckit/implement.md",
-      "001-speckit-autopilot-lifecycle/spec.md",
-      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
-      "spec.md"
+      "001-speckit-autopilot-lifecycle/spec.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "complete.md",
         "kind": "doc",
@@ -57,18 +62,6 @@
         "name": "implement.md",
         "kind": "doc",
         "path": ".opencode/commands/speckit/implement.md",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_complete_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -110,17 +103,18 @@
     ],
     "causal_summary": "The speckit `:auto` flag reduces approval prompts but does not deliver a crash-safe unattended execution envelope",
     "created_at": "2026-06-29T05:08:45.653Z",
-    "last_save_at": "2026-07-16T16:32:03.890Z",
+    "last_save_at": "2026-08-30T15:39:24.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:e87a0087f19714b884789943aec18256c74e2feeb51a4e27cb303f893a422d17",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cc77b045c03174c8c09501c3fa9e19dfe8b5f0aff534ceea6566b6403716a91c"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/024-deep-loop-improved/004-system-spec-kit/001-speckit-autopilot-lifecycle",
     "last_active_at": null
   }
 }

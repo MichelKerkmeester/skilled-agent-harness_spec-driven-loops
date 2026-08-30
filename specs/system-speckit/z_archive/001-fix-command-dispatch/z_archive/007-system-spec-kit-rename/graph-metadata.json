@@ -20,9 +20,7 @@
       "system",
       "implementation",
       "plan",
-      "tasks",
-      "verification",
-      "checklist"
+      "tasks"
     ],
     "key_topics": [
       "skill",
@@ -34,41 +32,20 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
-      "workflows-spec-kit"
+      "workflows-spec-kit",
+      "system-spec-kit",
+      "across"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/assets/template_mapping.md",
-      ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/sk-doc/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "template_mapping.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/template_mapping.md",
-        "source": "derived"
-      },
-      {
-        "name": "level_decision_matrix.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/level_decision_matrix.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,9 +65,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -188,31 +165,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Rename the workflows-spec-kit skill to system-spec-kit across the entire codebase, ensuring all references are properly updated while preserving historical documentation.",
     "created_at": "2026-04-12T09:02:53.509Z",
-    "last_save_at": "2026-07-10T06:22:32.625Z",
+    "last_save_at": "2026-08-30T15:39:36.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:1c552338701276d46c85b546902cd55a8fc7706bd588c1cc58a89722037539de",
+    "source_fingerprint": "sha256:4dee2ec60932451f6d00742f132bacc237b655048391e2e297b0efb55efbc90f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2ea90a58c01d75f159ecbf71038775df99320410050efc059ded86b41d24a5d",
       "plan.md": "625ad9f9f432ac487ac3979019387f27dc388c55bec56e7e1195954a128dbe5f",
-      "tasks.md": "90d8cef0592152eea9255e05271a86b05c70abe4fc9fb984ad1a1f84e7e20b09",
-      "checklist.md": "ae6036f32ed31f5d76eba8885ef4ff13cd885831aa132d2d0258bd9dbdac2dc7"
+      "tasks.md": "90d8cef0592152eea9255e05271a86b05c70abe4fc9fb984ad1a1f84e7e20b09"
     },
     "last_active_child_id": null,
     "last_active_at": null

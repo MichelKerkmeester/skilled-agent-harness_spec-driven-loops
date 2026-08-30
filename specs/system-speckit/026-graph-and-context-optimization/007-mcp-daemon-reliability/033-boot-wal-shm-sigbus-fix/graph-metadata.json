@@ -205,7 +205,7 @@
     ],
     "causal_summary": "A boot-time health check in context-server.ts silently reverts the deliberate journal-mode-DELETE fix back to WAL on every daemon restart, re-exposing the WAL/mmap'd -shm SIGBUS class that fix was written to close",
     "created_at": "2026-07-08T16:02:23Z",
-    "last_save_at": "2026-08-29T15:22:18.060Z",
+    "last_save_at": "2026-08-30T15:39:32.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:642addf0be42af3637fa90a28407bbe53122672e7ec4bdfbccc64ee38ccb4b1d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b0ee7efd8382841893730c10efa8d01e8f7ce959d012a9de82104bcd74d1dd64",
       "plan.md": "0492ac63955e37e62aec35bc059417d6b5914cb15648a1c02811badd6e1f318f",

@@ -68,30 +68,21 @@
       "memory"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
-      "research/research.md",
       "spec.md",
       "plan.md",
+      "research/research.md",
+      "resource-map.md",
       "dist/context-server.js",
       "scripts/dist/memory/generate-context.js",
-      "mcp_server/package.json",
+      "shared/package.json",
       "scripts/package.json",
-      "mcp_server/handlers/v-rule-bridge.ts",
-      "mcp_server/handlers/memory-crud-health.ts",
       "009-reindex-validator-false-positives/spec.md",
       "010-search-retrieval-quality-fixes/spec.md",
-      "011-indexing-and-adaptive-fusion/spec.md",
-      "mcp_server/lib/search/search-flags.ts",
-      "resource-map.md"
+      "011-indexing-and-adaptive-fusion/spec.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -102,6 +93,18 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -119,31 +122,7 @@
       {
         "name": "package.json",
         "kind": "config",
-        "path": "mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "v-rule-bridge.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/v-rule-bridge.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
+        "path": "shared/package.json",
         "source": "derived"
       },
       {
@@ -229,11 +208,29 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Quality Verification",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Flag Audit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: ESM Module Compliance",
     "created_at": "2026-04-12T09:02:50.316Z",
-    "last_save_at": "2026-07-10T06:23:33.933Z",
+    "last_save_at": "2026-08-30T15:39:39.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -242,14 +239,15 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:05b43b1609c58e91e2dffc0bb14762e797b85438017e42b66420579a2c5a3bee",
+    "source_fingerprint": "sha256:701c14262e4a014e674d409cab3649e6f77c4b3eadc4784125cd5ba52465b419",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d1661ca842baa84145073e5542e1da9df636e947f5548eedcd3077d7fa21f176",
-      "plan.md": "e976f356dc3cfd5f6691024a46d7a46baee5f2f486f48a9e4b40584039004cb8",
+      "spec.md": "14293bdcbeedc526889a1b1cf41d6a4039a426bc118dccd8ec019ed66a66d745",
+      "plan.md": "03112f634df6080c9739fbe2501e5778eb1d2d91993651788b7584b464972e9b",
       "research/research.md": "ef673d239f4f0aea36ca70fcdf4c40289ee0b12ef82c5dd7959f2d583544fa34",
       "resource-map.md": "4a8846d8beff9351bb9151133ff7c3cce45604587d21ba683ddd82eec6220ab3"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives",
     "last_active_at": null
   }
 }

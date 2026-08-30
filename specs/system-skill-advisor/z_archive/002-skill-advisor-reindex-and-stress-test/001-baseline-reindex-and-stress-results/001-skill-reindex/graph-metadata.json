@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
-  "spec_folder": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
-  "parent_id": "system-skill-advisor/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+  "packet_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
+  "spec_folder": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/001-skill-reindex",
+  "parent_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -18,8 +18,6 @@
       "doctor skill-advisor",
       "065/001 plan",
       "065/001 tasks",
-      "065/001/001 checklist",
-      "skill reindex checklist",
       "065/001 implementation summary",
       "065/001/001 resource map",
       "skill reindex resource map"
@@ -33,54 +31,22 @@
       "skill-advisor",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "resource"
+      "resource",
+      "map"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json",
-      "implementation-summary.md",
-      "tasks.md",
-      "checklist.md",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       "spec.md",
       "plan.md",
-      "resource-map.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json"
     ],
     "entities": [
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -94,9 +60,27 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -194,27 +178,38 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "counts",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Refresh skill advisor memory system: run skill graph rescan, advisor rebuild, and memory index scan; capture before/after snapshots for verification",
     "created_at": "2026-05-18T07:49:27.128Z",
-    "last_save_at": "2026-07-15T11:59:11.779Z",
+    "last_save_at": "2026-08-30T15:39:26.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:be00aba179e70f8de69bd246c8f81bde511e75df25fa4d991bd18f0049a8d4f8",
+    "source_fingerprint": "sha256:d5ad690b2816aeb868eac456bccf5274494027d940b58681ad55e17ff38037e9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "02b28aa2e4308ff5890cbddd71887269c996773f1e2cbf0d9d221dfaf15c1ebf",
       "plan.md": "c3ac0d90673eedb56622b076d7c336953138eb6d8d5a3c5782f6507a9b3bef4b",
       "tasks.md": "d955804f2253cb677443ac2e5d6e41aa669b7f651dae9f3f037c683bc59cd589",
-      "checklist.md": "32f167725c41625d028e9b8c331f766f5723201b0c1ebeb096de5d4222c45053",
       "implementation-summary.md": "969eb52fc6a8b6efa23d7625ac400a6fbb2e718761e94178d0c6fbecf452eb9f",
       "resource-map.md": "b0b4097edbad55e649a8e6a84916c35ee9e6077db7396c692c3f1793b05fadf9"
     },

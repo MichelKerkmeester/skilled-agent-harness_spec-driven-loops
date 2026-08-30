@@ -34,27 +34,15 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/agents/deep-research.md",
-      ".claude/agents/deep-research.md",
-      ".codex/agents/deep-research.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/agents/deep-research.md",
+      ".claude/agents/deep-research.md",
+      ".codex/agents/deep-research.toml"
     ],
     "entities": [
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-research.toml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,6 +65,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`@deep-research` (476 LOC) has not been through the sk-improve-agent v2 lens",
     "created_at": "2026-05-18T07:49:27.109Z",
-    "last_save_at": "2026-07-16T16:31:32.316Z",
+    "last_save_at": "2026-08-30T15:39:24.074Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5e3782924c544a2e41eed16eec9b806d78156bfe36599e1ba3830d594e2b394f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "da40e2eef57e4e1d85dfdf7eb18f3481866228895199d6f01dcd0d92522357ee",
       "plan.md": "1fbe7318a1ae5846626c57ccd493efe9a83329fd4a695b59fee4c3c0a911b48a",

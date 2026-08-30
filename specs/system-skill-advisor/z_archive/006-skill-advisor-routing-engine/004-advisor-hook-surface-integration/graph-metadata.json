@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration",
-  "spec_folder": "system-skill-advisor/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration",
-  "parent_id": "system-skill-advisor/006-skill-advisor-routing-engine",
+  "packet_id": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration",
+  "spec_folder": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration",
+  "parent_id": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -21,10 +21,10 @@
       "skill advisor brief",
       "026/009/001 skill advisor hook plan",
       "026/009/001 tasks",
-      "020 checklist",
       "020 adr",
       "skill advisor hook decisions",
-      "026/009/001 implementation summary"
+      "026/009/001 implementation summary",
+      "skill advisor hook summary"
     ],
     "key_topics": [
       "skill",
@@ -41,25 +41,23 @@
       "tasks"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
       "lib/context/shared-payload.ts",
       "hooks/claude/user-prompt-submit.ts",
+      ".claude/settings.local.json",
       "hooks/codex/user-prompt-submit.ts",
       "shared/unicode-normalization.ts",
-      "implementation-summary.md",
-      "mcp_server/hooks/claude/session-prime.ts",
-      "mcp_server/hooks/claude/user-prompt-submit.ts",
-      "mcp_server/hooks/claude/hook-state.ts",
       ".github/hooks/scripts/user-prompt-submitted.sh",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      "battle-plan.md",
-      "handover.md"
+      ".claude/scheduled_tasks.lock",
+      "battle-plan.md"
     ],
     "entities": [
       {
@@ -81,15 +79,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -105,27 +109,15 @@
         "source": "derived"
       },
       {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
         "name": "unicode-normalization.ts",
         "kind": "code",
         "path": "shared/unicode-normalization.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hook-state.ts",
-        "kind": "code",
-        "path": "mcp_server/hooks/claude/hook-state.ts",
         "source": "derived"
       },
       {
@@ -141,15 +133,15 @@
         "source": "derived"
       },
       {
-        "name": "battle-plan.md",
-        "kind": "doc",
-        "path": "battle-plan.md",
+        "name": "scheduled_tasks.lock",
+        "kind": "file",
+        "path": ".claude/scheduled_tasks.lock",
         "source": "derived"
       },
       {
-        "name": "handover.md",
+        "name": "battle-plan.md",
         "kind": "doc",
-        "path": "handover.md",
+        "path": "battle-plan.md",
         "source": "derived"
       },
       {
@@ -205,28 +197,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Current state — skill-advisor invocation and context cost:",
     "created_at": "2026-04-19T05:20:26.002Z",
-    "last_save_at": "2026-07-15T11:59:22.980Z",
+    "last_save_at": "2026-08-30T15:39:26.748Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c9b2ef5000a2bfa00465895591dbedacf87ebe57abebe7762b2f7a2630eada3c",
+    "source_fingerprint": "sha256:1236524a68c14d3f6054522ee0a5925902e54db3c0a89c4e6e40dd449e973260",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7d2eb585571ca2cba64f40ed44af4ba7118a86962f4530e6a15dc00413d04eef",
       "plan.md": "6e3467bca258a6dab20dfd6ae43a07e6aeeed859dd39f636d5f805fa99ff47cd",
       "tasks.md": "2247310effdc9e8104ca22296c144ce8993dcc9ce5806280a751e721c3cf66ef",
-      "checklist.md": "aa769fd829a5ef70f37244a69dff39195b61b422c7224a7843534ebd42a8707c",
       "decision-record.md": "d3e0756f65709ce33df4a47b55c70cb555ca79e5bd10e71544360a3b642245b3",
       "implementation-summary.md": "dc4005a993b7f98011da1c587cfdfa1e7d54e4d757b7357d0acca18e9343f50a",
       "handover.md": "d5eda84fb1086c3413c96fee288c15bbcf35d90aeab4ee07039d79d8153a51d0"

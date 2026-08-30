@@ -21,8 +21,8 @@
       "agent improvement rollback and mode gate tasks",
       "agent loop rollback switch tasks",
       "agent improvement migration gate tasks",
-      "agent improvement rollback and mode gate checklist",
-      "agent loop migration gate verification"
+      "Agent Improvement rollback gate implementation",
+      "agent improvement mode migration gate"
     ],
     "key_topics": [
       "agent",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -157,30 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -191,26 +160,37 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the fail-closed Agent Improvement rollback switch and independent migration gate for the agent-loop proposal-generation and scoring variant. Reuse the deep-improvement-common evaluator, canary, and promotion services; certify this mode only after shadow parity, sealed evidence, replay/resume integrity, and rollback readiness pass.",
     "created_at": "2026-07-16T03:43:39.029Z",
-    "last_save_at": "2026-08-29T09:58:13.176Z",
+    "last_save_at": "2026-08-30T15:39:21.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e77f91f3224fabaaf6c287787a1e5a18e6859868866f25fc2c7f4a8987a3ed7",
+    "source_fingerprint": "sha256:e1a2cba7582f08cc6a987cb248bde39eafce546e4bc5effdf901277078cfa6a0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "82f7d503767eabe44a2837ff0ead1d978d223193a2ffb8a15351f240620e258f",
       "plan.md": "a3bb7c9d87930befeffef91621045ddc331ad2640b6731c71623a865b019ebcc",
       "tasks.md": "b6e3fe6128fd605f2d37f41dd021d4b58a8a96cfd24005e641222e3ba1d7749a",
-      "checklist.md": "7ddfaaf1ee01214ce69c9ba3f61e8b589f84aaa8bec226ef69912430866c9ee0",
       "implementation-summary.md": "91634cc2d7f74a1e26aacad0fa9ef1fcdaad5f6488286638bad2987677129a9b"
     },
     "last_active_child_id": null,

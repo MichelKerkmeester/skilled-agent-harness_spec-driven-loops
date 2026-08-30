@@ -43,7 +43,8 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/bin/lib/node-engine-resolver.cjs",
-      ".opencode/bin/lib/node-engine-resolver.test.cjs"
+      ".opencode/bin/lib/node-engine-resolver.test.cjs",
+      ".opencode/skills/mcp-code-mode/mcp-server/package.json"
     ],
     "entities": [
       {
@@ -80,6 +81,12 @@
         "name": "node-engine-resolver.test.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/node-engine-resolver.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-code-mode/mcp-server/package.json",
         "source": "derived"
       },
       {
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The requirement is published in two places already: the server manifest declares `engines.node` as `>=24.0.0 <25.0.0`, and a postinstall check warns when the installing module ABI is not 137",
     "created_at": "2026-08-28T16:11:19Z",
-    "last_save_at": "2026-08-29T15:21:55.800Z",
+    "last_save_at": "2026-08-30T15:39:10.530Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:cf64620c9821dd25eb63c8d6ea5f08f7b4070fb0fbd7f1b00bfeb3072616467f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d5774fab7049f11fb48e9f31fe0494ca727e2a9ded32e88ac504066b0a93310b",
       "plan.md": "d1cfe1d7583f5cdce40cf1a066039795c0eb1f06e76f705204c041deeaf6ffb9",

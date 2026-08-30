@@ -36,40 +36,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
-      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
-      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs",
-      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/fixtures/dab-v1-golden.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs"
     ],
     "entities": [
-      {
-        "name": "framework.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
-        "source": "derived"
-      },
-      {
-        "name": "behavior-bench-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "behavior-bench-run.test.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "dab-v1-golden.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/fixtures/dab-v1-golden.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -92,6 +67,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "behavior-bench-run.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Adds shared behavior-benchmark framework schema v2 with direct-dispatch evidence, outcome probes, setup-misbind detection, and fixture-boundary evidence, while preserving the existing DAB-001 to 011 scores under backward-compatible v1 parsing.",
     "created_at": "2026-07-14T20:36:59.716Z",
-    "last_save_at": "2026-07-16T16:34:17.188Z",
+    "last_save_at": "2026-08-30T15:39:20.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8dd0729d43a9b19d012c6b07be965a324764c2a8d31b022de04f157be5897694",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7e313ba5ea62dd9aa3a68584c44e45c2b7fce5ec6f347c896d489e91d51f979f",
       "plan.md": "9d96ccb67dec4f4d4bb68c9e5f06d9009e0a390a178060c4b7fa1cc244a22737",

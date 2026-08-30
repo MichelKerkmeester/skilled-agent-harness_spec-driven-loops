@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The capsule line (phase 003) is reminder-only: pi can still silently spawn `cursor-agent -p`, `devin -p`, `opencode run`, etc",
     "created_at": "2026-08-04T12:04:54Z",
-    "last_save_at": "2026-08-29T14:54:14.520Z",
+    "last_save_at": "2026-08-30T15:39:09.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ff6cde887db7fef3a9feeb83acb93c07e8bcdefbb1f423e0c6ba80f9855c73e0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad5bf56d817d845317a5294112b748606792829fa964ce240beba3bc002128fd",
       "plan.md": "546c29321df1451b5f3ba0f724641129a8e9acbb6ee8fd7d4e2bbdbfacd8f05f",

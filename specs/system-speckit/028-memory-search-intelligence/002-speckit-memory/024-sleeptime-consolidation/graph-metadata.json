@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handlers/save/reconsolidation-bridge.ts",
@@ -72,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -199,27 +192,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The internal Memory MCP has no off-turn memory reorganization",
     "created_at": "2026-06-19T05:47:05.579Z",
-    "last_save_at": "2026-08-29T15:22:21.847Z",
+    "last_save_at": "2026-08-30T15:39:35.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2eea17dd4cf3ce6c03b84d21491298f00f9ed89035b83b284f8e3038c14a2afd",
+    "source_fingerprint": "sha256:f8907c5419fde0302c00a4df1f5c752f723d356c524c4b27cb41b162992daf35",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b52db362e0c8ddeaef2b68f24a6b9c2c2ce8aecf797a941b01b0a7c8956c0d37",
       "plan.md": "608011245fa579dc623b52d86f5cf767f5a77cfd18148d4644f29fe4c5e9b224",
       "tasks.md": "d25a206e7bcd16c40643570ef04d2272e1ebb558d9c56edbdc5b016010cb423e",
-      "checklist.md": "478ebcee918cab8854631ad403ba47bda76a0cdff41cb9a27978e72758f35485",
       "decision-record.md": "78772836c1d57106a1765cfcbbb83e06175bf74834f3b2abeb0a0aecf2181c01",
       "implementation-summary.md": "752951f9a450589832ce3a0f9edfaae51f7fdd95dc1cf67f6c5f42e3273cf225"
     },

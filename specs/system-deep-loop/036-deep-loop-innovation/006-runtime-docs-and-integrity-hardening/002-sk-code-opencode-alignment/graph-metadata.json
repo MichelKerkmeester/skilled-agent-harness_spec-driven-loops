@@ -19,10 +19,9 @@
       "code-opencode runtime alignment",
       "sk-code alignment tasks",
       "code-opencode runtime verification",
-      "sk-code alignment checklist",
-      "code-opencode runtime QA",
       "sk-code alignment implementation",
-      "code-opencode runtime alignment complete"
+      "code-opencode runtime alignment complete",
+      "system-deep-loop module header alignment"
     ],
     "key_topics": [
       "align",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,30 +179,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A large share of the system-deep-loop runtime was authored across many independent fan-out build sessions, and that code",
     "created_at": "2026-07-29T06:45:18.104Z",
-    "last_save_at": "2026-08-29T13:09:56.232Z",
+    "last_save_at": "2026-08-30T15:39:21.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:061a42b49f692c3ade4d4f52062a28080063ff8a4d82e4a41014aeea1503c7aa",
+    "source_fingerprint": "sha256:b95a19b8ddab48c6184b8634b1a4529ed47227fa766c09f9131865d344c625ac",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6b9cc0b0ebf9cf9a3b76c4199ca8f4995b6f3e347cf1661ef5d36b2ee43c7002",
+      "spec.md": "1f0befc85739dbf8ed2c1c0ee72119b678d6b259a9ed3c17ad2ce7584874ff96",
       "plan.md": "cbd2f58c54617315ff9a6784f9731f06d068cd9a6c7bcfad10a6f709419bbbbb",
       "tasks.md": "b5f5f4f5a3e452eb2cb8c5297527fa4078435e799baf0871b0f8f38a827b95db",
-      "checklist.md": "42eaeb3b7b271b1f4a211544ac3924379b1a9a09161d47359f21d0bcad6fee8b",
       "implementation-summary.md": "5b0b4b931d5dcfea1c276833e7036e62d025a2c34547e1dc11ddd27b95ab68e4"
     },
     "last_active_child_id": null,

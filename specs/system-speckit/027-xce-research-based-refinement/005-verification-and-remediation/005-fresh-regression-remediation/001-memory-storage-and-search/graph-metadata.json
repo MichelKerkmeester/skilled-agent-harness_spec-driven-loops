@@ -31,8 +31,8 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "tasks.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -43,15 +43,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -153,7 +153,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 34 findings (5 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-07-10T06:23:50.979Z",
-    "last_save_at": "2026-07-17T17:19:45.527Z",
+    "last_save_at": "2026-08-30T15:39:34.319Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -163,6 +163,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a428392433b95b08ea7ead22703a55cd108420a85a321bf0a80593c17787f18a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cb90c05c6f60c9452e9eaacde9306d19d9deeef31ac145f405fe871816c8c709",
       "plan.md": "75917971bb73a91baff34e9cc048ed52c9222cfab32414eca47cdbde72150158",

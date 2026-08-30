@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Two contracts share one directory name, and only one of them is checked",
     "created_at": "2026-07-30T19:29:15.567Z",
-    "last_save_at": "2026-08-30T07:16:20.156Z",
+    "last_save_at": "2026-08-30T15:39:17.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:54c76ce257a8f91f717d543cebb3e86f04fa7ae3e198550361dae5786d90868f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6143fe953b67ddec8e112aae41a8aea32ffb4275d5c7babe2a3d7923d2dcf647",
       "plan.md": "eff5a2d863c9076f73e28840ba55db7bf92b55e302e9fcc1d683146fef047c33",

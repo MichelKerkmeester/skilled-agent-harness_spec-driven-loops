@@ -41,18 +41,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Provision the live test env for the playbook run: install notesmd-cli, register the Obsidian test vault, install + activate the Local REST API plugin (MCP), and configure .env; verify every surface is reachable.",
     "created_at": "2026-08-03T04:10:01.256Z",
-    "last_save_at": "2026-08-28T22:06:13.337Z",
+    "last_save_at": "2026-08-30T15:39:10.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ccdb6c28ee28c0d7b3de1fdc8378305f05f07a3af8c6219b81b581311da1e2ab",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3936a688b8169e2f77ba784489b809f8dafbc31bed3055e36e182dc9e0845815",
       "plan.md": "623bf155c2473bb23d4a2e74bf04115f054c66c5ce92af833d4f902076173860",

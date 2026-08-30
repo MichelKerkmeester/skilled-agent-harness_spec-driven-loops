@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The Lane C skill-benchmark harness has a benchmark scenario `stage` axis (`routing` | `holdout` | `negative`) that is only half-wired:",
     "created_at": "2026-07-11T20:55:10.283Z",
-    "last_save_at": "2026-08-30T07:16:21.662Z",
+    "last_save_at": "2026-08-30T15:39:20.025Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7f902a0e0feb2c1ef6f66e8136fbfbdc3ac19877c6d31300680200ef8bf04fbd",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "37cff1f8dda8438104e850ee6da2fc0e6552ed4a2054903786344139e7921ad8",
       "plan.md": "60e4daa7cc5c91d95557a139e7d38f698831bab84b40fabec4892bd79e497fa8",

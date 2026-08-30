@@ -20,11 +20,10 @@
       "implementation plan",
       "mixed-executor",
       "tasks",
-      "verification",
-      "checklist",
       "decision",
       "record",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "key_topics": [
       "deep-agent-improvement",
@@ -36,17 +35,16 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
-      "decision"
+      "decision",
+      "record",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -172,49 +164,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context Deep",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Iter Pattern",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Deep-agent-improvement currently lacks the methodology patterns proven in arc 119's deep-research uplift: (1) mixed-executor dispatch for multi-iter sweeps, and (2) adjudication-iter false-positive filtering",
     "created_at": "2026-05-23T08:30:00.000Z",
-    "last_save_at": "2026-07-09T10:02:48.825Z",
+    "last_save_at": "2026-08-30T15:39:23.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0bf81feb5f70d4dd9145ad093f5651980bc529c49c9c0ee1794d211c48883a9",
+    "source_fingerprint": "sha256:dbcede4583b3803f60a3a8fe777a1c57488599b94063a95bef726ebf53d58241",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eca925981af5d9b90af2dee31d7fe295b35fc9b1e41c573f0d572b2997bfbdbc",
       "plan.md": "6caa67ed0cdec31a6ed536644ac4c3ad98888ca4892188da65c375aa3445945e",
       "tasks.md": "f2ea19fe4d8d9d066fdb180f0792df7081fbdd4cab467cc105ba9b86e044189c",
-      "checklist.md": "c066c9cbe67644fe34bad66bbb811da285d136a52267088f93d2a2c10a067906",
       "decision-record.md": "71387581b406c94a985d681394a46ca537066ba174288f1e404dd23894a898f8",
       "implementation-summary.md": "e0e374fe94e4965d91b07f18c86e5db38e11db9d680df128f7069c42c4fdeb4a"
     },

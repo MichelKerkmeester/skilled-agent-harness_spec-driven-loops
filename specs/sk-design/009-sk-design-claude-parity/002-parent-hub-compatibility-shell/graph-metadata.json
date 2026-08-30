@@ -28,9 +28,9 @@
       "implementation plan",
       "mode registry",
       "tasks",
-      "verification",
-      "checklist",
-      "decision record"
+      "decision record",
+      "implementation summary",
+      "complete"
     ],
     "key_topics": [
       "parent",
@@ -49,23 +49,15 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/sk-design/mode-registry.json"
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/graph-metadata.json"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,12 +77,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -103,15 +89,15 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
+        "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -187,43 +173,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verified Phase",
+        "name": "Put Manager Choreography",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Parent Hub Shell",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The parent `sk-design` hub needed the feel of a design manager: context first, visible plan, proof expectations, and verifier cadence before mode handoff",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:44.439Z",
+    "last_save_at": "2026-08-30T15:39:12.122Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8bccda5ada492d5e01994944a841c874200bc91da4c21d461ca307b3d454fe81",
+    "source_fingerprint": "sha256:4ea4ff17782bfa25ba977f151043586792f2bc5508fd321df57058f944ff45c7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80a4cce19934e863133ee39af3d14222d983087d84b75d84a4fd593ec156dcca",
       "plan.md": "7ccf18163baa1449ffd41c81811c7b67698866c89d03c68da57d70ddc3594bc1",
       "tasks.md": "549f2c22379cffd47a3c37bb1088ef1ea9a95821fdf749db7e1b6ae8897399db",
-      "checklist.md": "505a72e6d35d776792759bf02ff615ed8659b2594017b332b1b2e4afeb4858ce",
       "decision-record.md": "3a8512a7919ea3167a4a78ad5b3310e4aeeac16474fc39a6e4e5ae42790485fd",
       "implementation-summary.md": "e4904ffe60705ef466cad3fef8bbac9aec3d318a3c401bb1883cf57802faea83"
     },

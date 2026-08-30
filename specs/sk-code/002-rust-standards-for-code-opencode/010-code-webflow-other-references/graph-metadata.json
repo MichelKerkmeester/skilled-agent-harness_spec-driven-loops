@@ -33,15 +33,21 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -54,12 +60,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Eight code-webflow non-implementation docs exceed 500 lines (largest: debuggingworkflows 1940)",
     "created_at": "2026-07-11T17:01:18.234Z",
-    "last_save_at": "2026-07-11T17:01:18.234Z",
+    "last_save_at": "2026-08-30T15:39:11.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a34659008addcfeb47775c47321f09e39afb1021c26155c96069786b8478c4ea",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2204fd231eae81b8da9f10c6ab2b0fa4e17de087abe33ecc442159ccb2ee28fc",
       "plan.md": "36602554e42aab0b7ceee31a4fc81fb5062100f2d34ca2fd689639da64de1f32",

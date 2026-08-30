@@ -18,8 +18,6 @@
       "command metadata ingestion plan",
       "command bridges generator tasks",
       "command metadata ingestion tasks",
-      "command bridges generator checklist",
-      "command metadata ingestion checklist",
       "command bridges generator outcome",
       "command metadata ingestion outcome"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
       ".github/workflows/routing-registry-drift.yml"
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,36 +173,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Outcome",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Derive both the TS COMMAND_BRIDGES array (projection.ts) and the Python COMMAND_BRIDGES dict (skill_advisor.py) from the fleet's 7 command-metadata.json files instead of two hand-maintained, already-drifted authorities; add a drift-guard asserting all three sources agree, plus denser command-metadata/leaf-aliases e2e tests. High-blast: live routing rewire on the advisor's hottest file, shipped shadow-mode-first with a documented rollback.",
     "created_at": "2026-07-29T08:00:35.400Z",
-    "last_save_at": "2026-08-29T15:22:03.103Z",
+    "last_save_at": "2026-08-30T15:39:15.935Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5549bc70805cb50c598c6b83bd0270ffac474dc0a9bbb3ff10cb2feca0f08e86",
+    "source_fingerprint": "sha256:9fb1f0e1438f5f27315cc1eadef68dc924597c6593d77973d7d7a59b0a60a620",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54e9d50cb9453f0df38be119e49d3fc4a7ccab160e545484121480c0955c5ba0",
       "plan.md": "d14591148caa6deca6999f90c2415103ecdc84ba57214086bb239ba6f1e53705",
       "tasks.md": "60764a07dbe90bb332d13c94b7ac790229f3df15922d0b8b27d359c6dea13a9e",
-      "checklist.md": "6e55ed04d4b7daadc037ab822e83913794651629e196114eccc5315db9997063",
       "implementation-summary.md": "6ccdd60b1d215c715a7168cad368ac1956ea17139748cb101d6e2d6b79c29e5f"
     },
     "last_active_child_id": null,

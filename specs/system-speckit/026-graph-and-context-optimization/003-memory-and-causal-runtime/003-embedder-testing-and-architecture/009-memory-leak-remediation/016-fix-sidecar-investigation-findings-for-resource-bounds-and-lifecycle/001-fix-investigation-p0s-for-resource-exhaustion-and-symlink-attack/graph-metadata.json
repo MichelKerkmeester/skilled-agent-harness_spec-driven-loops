@@ -18,7 +18,6 @@
       "F12 F13 F47 plan",
       "arc 010 p0 tasks",
       "F12 F13 F47 tasks",
-      "arc 010 p0 checklist",
       "arc 010 p0 decisions",
       "arc 010 p0 implementation summary"
     ],
@@ -42,9 +41,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,21 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -168,49 +160,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Architecture Decision Records",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Context Sidecar",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Decision Set",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Arc 010/001 found three P0 security issues where sidecar IPC and ledger writes can consume unbounded resources or use predictable filesystem names",
     "created_at": "2026-05-23T03:50:22.749Z",
-    "last_save_at": "2026-08-28T18:47:08.495Z",
+    "last_save_at": "2026-08-30T15:39:31.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e104d092b30ba4033831587a0e6082c8589e3d60eef53f73a224e780efe299a",
+    "source_fingerprint": "sha256:5ef3035340e60a524b7fb4c6d8b2c08c9016d38ff01f8bfa49a54b46a69f2920",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6db009604205c08a2bfc18355cf91d2e0b2d58926ce95f75f0e21c66fbe28e48",
       "plan.md": "8c0dbfc73f98e4a70096463f3bb8b82af8eab9f88ed23982afd0f75db54d954e",
       "tasks.md": "b5866883124b0d6378d105e6efabd276b77c7a636678844169acf27595c7fe04",
-      "checklist.md": "e185292e53c55581675a087bc24e3eb0ffba0986b0aae8689bd8d4e2f644017c",
       "decision-record.md": "acadd9e92dd4d18b604ec5c42ac700383f8054ee057b716c720cfdc56202d630",
       "implementation-summary.md": "d3531ed6ae81d6f6cd0ecb5da3c0049bb4dce202f95913ecab23d380fa363e03"
     },

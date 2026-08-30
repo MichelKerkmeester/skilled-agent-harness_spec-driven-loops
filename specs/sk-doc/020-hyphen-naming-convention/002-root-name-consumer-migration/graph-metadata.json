@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All",
     "created_at": "2026-07-13T14:34:05.520Z",
-    "last_save_at": "2026-08-30T07:19:09.551Z",
+    "last_save_at": "2026-08-30T15:39:16.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6208f96e1101ee101ad90c3c977b527071b257177bc3d0585d8f45ad88f52667",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "04c007421ef4d029fda97a20f571b42b401ce0ecb907cbd842c367f9bf6c6821",
       "plan.md": "2d836b98d5362780ee1bf25132b635faaff9e9644aa19ece97a4c7b245f7bc57",

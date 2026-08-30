@@ -18,7 +18,6 @@
       "deep-ai-council 001",
       "deep ai council 001 plan",
       "deep ai council 001 tasks",
-      "deep ai council 001 checklist",
       "deep ai council 001 adrs",
       "deep-ai-council architecture decisions",
       "deep ai council 001 summary",
@@ -32,46 +31,27 @@
       "deep-ai-council",
       "plan",
       "tasks",
-      "checklist",
       "adrs",
       "decisions",
       "summary",
-      "synthesis"
+      "synthesis",
+      "current"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/iter-001.md",
-      "research/research.md",
-      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
+      "research/research.md",
+      "research/iter-001.md",
       ".opencode/agents/ai-council.md",
       ".claude/agents/ai-council.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts"
+      ".codex/agents/ai-council.toml"
     ],
     "entities": [
-      {
-        "name": "iter-001.md",
-        "kind": "doc",
-        "path": "research/iter-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -91,9 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -103,15 +83,27 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.md",
+        "kind": "doc",
+        "path": "research/iter-001.md",
+        "source": "derived"
+      },
+      {
         "name": "ai-council.md",
         "kind": "doc",
         "path": ".opencode/agents/ai-council.md",
         "source": "derived"
       },
       {
-        "name": "routing-parity-deep-skills.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-parity-deep-skills.vitest.ts",
+        "name": "ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/ai-council.toml",
         "source": "derived"
       },
       {
@@ -197,28 +189,33 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Runtime Boundary Decision",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`deep-ai-council` had a current single-session, flat round artifact model",
     "created_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-07-09T10:02:48.636Z",
+    "last_save_at": "2026-08-30T15:39:23.065Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:87a6e32bf40763b6595a154dd9b220fe46d3cbe43e84c8589650863b584c21d9",
+    "source_fingerprint": "sha256:31c4afd2f751a12779b4ed2c0608f4454b282fad6b476d31dbdf9243dd51a6a9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "27db3dc0eb1baa9d2bfd369f5c549713313814c4ef04a52204a485a53cdf1aae",
       "plan.md": "bd8dcde0f051c71e1db985369ff593467bb481420591d81010326faea36273fa",
       "tasks.md": "11ae542b4cfb929d7b02b4c29ea816127a92ec4704f8948a5b9676a1bf8bea9d",
-      "checklist.md": "b4d540811c826bdc2ea033f19641efd5915a788bb923a2c9032dc0a4d74370c0",
       "decision-record.md": "1f9b447463c1f75bf8d6ea6224ec38b0b7e84897408d87cadb9da6c5347152de",
       "implementation-summary.md": "469b9327ae97af5cb80dccefc019b90091e09a0ed752478ca15452bbcd77e356",
       "research/research.md": "88f67cadd764113edb95ea74878a955f41b2c46eae71044d720ad3a2f1143c58"

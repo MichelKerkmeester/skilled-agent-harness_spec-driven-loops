@@ -20,9 +20,9 @@
       "deep review resume adapter tasks",
       "sealed ledger recovery tasks",
       "deep-review replay idempotency tasks",
-      "deep review resume adapter checklist",
-      "sealed frontier resume verification",
-      "deep-review idempotent replay checklist"
+      "deep review resume adapter implementation",
+      "deep-review resume decision",
+      "deep review continuity projection"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,31 +156,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +182,21 @@
     ],
     "causal_summary": "Plan the Deep Review resume adapter for interruption-safe recovery from the sealed typed event ledger. The adapter folds the shared review-loop history through versioned reducers, maps the continuity ladder from scope through dimension passes, findings, convergence, and review-report, and re-enters idempotently without double-applying, losing, or replaying events.",
     "created_at": "2026-07-16T03:43:33.197Z",
-    "last_save_at": "2026-08-18T11:07:23.219Z",
+    "last_save_at": "2026-08-30T15:39:21.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ace747410ae151de296e8b8b372ab0fee1cd1fada1be0f644ff5ab111719f4e3",
+    "source_fingerprint": "sha256:07499386b17670164f8d8ced439ab190bda5fae7be7e042485c49fa8dd4dee41",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be3a08c2a9bb79f454cf8d0fd331f21407623e5ca727611113ad9cc9d107147c",
       "plan.md": "dd9078889207edd74746a9919ac6496070d2f05a2215518b356e462e9adc8df0",
       "tasks.md": "0ab070052306e9200470ecaf5f67ff2aac1a270e79186eb66c829ba2722f8673",
-      "checklist.md": "c3b48aab3f8926a03473237ea1ed4d93d83eb2683c44f1e6cf7e0de23fbb38d1",
       "implementation-summary.md": "fd9e576a0ab50b0117a041980ba9842e94dcd557b1158b0a92101a2faccb748d"
     },
     "last_active_child_id": null,

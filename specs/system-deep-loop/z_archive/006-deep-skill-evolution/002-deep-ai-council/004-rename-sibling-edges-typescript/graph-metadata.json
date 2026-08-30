@@ -37,38 +37,18 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
       "spec.md",
-      ".opencode/skills/system-spec-kit/graph-metadata.json",
-      ".opencode/skills/system-skill-advisor/graph-metadata.json",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/graph-metadata.json",
+      ".opencode/skills/system-skill-advisor/graph-metadata.json"
     ],
     "entities": [
-      {
-        "name": "explicit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-runtime-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
         "source": "derived"
       },
       {
@@ -87,6 +67,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -190,11 +176,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After 002/003 rename, sibling skill graph metadata + advisor-scorer code + parity test still reference the OLD names",
     "created_at": "2026-05-21T06:57:09Z",
-    "last_save_at": "2026-07-09T10:02:48.611Z",
+    "last_save_at": "2026-08-30T15:39:23.028Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:63db2027a9f6f9ec0322a15c4e1bc8d5b8723275f30549a38f3f67a005357546",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9b6efab15910fadc201c3a3b61607926836e6ff5b52a942e4ad5338309d8ae6d",
       "plan.md": "6373468e3e7516c041c03019b6fb883769751e44a80eaf5bf3aa1149594cdf3f",

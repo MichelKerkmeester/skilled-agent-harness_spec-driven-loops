@@ -22,7 +22,7 @@
       "tasks",
       "devin -p print projection tasks",
       "devin runtime adapter wiring tasks",
-      "verification checklist"
+      "implementation summary"
     ],
     "key_topics": [
       "devin-wrapper",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-communication/cli-communication-projection/src/runtimes/devin.ts"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -176,42 +169,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Wired Devin",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Devin",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Devin exposes only input, tool, and session-lifecycle hooks, so no hook rewrites the rendered assistant answer; the CLI-output wrapper is the only integration path",
     "created_at": "2026-08-14T05:42:48.044Z",
-    "last_save_at": "2026-08-29T15:21:58.503Z",
+    "last_save_at": "2026-08-30T15:39:11.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d471f0349e35218409ebb156bac0db6a52c6b313dd015f764c4f238b7c2cd402",
+    "source_fingerprint": "sha256:abb38cec2e80de4221b6bc7a4ab625eac6bee93b3701095e350d0340db028b70",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a469eea5418b1d3d4154659ae8cbcac33c1fa345116289ca36a2ce7e6a78598f",
       "plan.md": "36523c1775c9e5cebf000c62c1e0eac660335505648e7b11e59e894a44145567",
       "tasks.md": "6fd038cd66732b2618b663ee5ad9361622f0530bde14d2174c5227d05026235b",
-      "checklist.md": "ecf61dc878b1cbc08c0ad775d10b3adf9353a7a47118d887e90f38f422a64937",
       "implementation-summary.md": "929f62f70036ba407b04ef323557842fbdb6b55392bf8198097f86686a88586d"
     },
     "last_active_child_id": null,

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/005-cli-self-invocation-guards",
-  "spec_folder": "cli-external-orchestration/005-cli-self-invocation-guards",
+  "packet_id": "cli-external-orchestration/z_archive/005-cli-self-invocation-guards",
+  "spec_folder": "cli-external-orchestration/z_archive/005-cli-self-invocation-guards",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -43,8 +43,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -60,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The CLI bridge skills are meant for cross-AI delegation, but the shared skill system makes it possible for a runtime to be told to invoke the very bridge that targets itself",
     "created_at": "2026-04-12T09:02:50.204Z",
-    "last_save_at": "2026-07-14T19:26:19.093Z",
+    "last_save_at": "2026-08-30T15:39:08.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8842de8a8ea7c3fca29b8ac663c6cedfd92509424e5f5d22e46d51539529e56c",
+    "source_fingerprint": "sha256:83fcafcd0525a6670d78d7ef6f76a454fdb2dbe5f36c8863d203be13c6488ccb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5e772082b152705a91c4424ca0e10135ed09a74163df021e05918ea2fa4b1872",
       "plan.md": "9c44faba81b9ba96a1ffa95766941d5b04983abcf4ccaeb85d26952cd5a801db",
       "tasks.md": "65142682fb23e489298cf244604788b0a5e16d110a61cb9df1317fab575dddb6",
-      "implementation-summary.md": "3d19ae5c09a7909c5137a28126208de7a6632354879f4f3726de945fba95493a"
+      "implementation-summary.md": "347a23ef163ae013ee6a9d207782de28f8c8ed6f2b74c1f69d84a0ac15c3ffd1"
     },
     "last_active_child_id": null,
     "last_active_at": null

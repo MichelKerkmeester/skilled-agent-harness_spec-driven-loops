@@ -20,9 +20,9 @@
       "model benchmark reducers tasks",
       "model benchmark projection tasks",
       "scoring matrix reducer tasks",
-      "model benchmark reducers checklist",
-      "model benchmark projection verification",
-      "scoring matrix replay verification"
+      "model benchmark reducer completeness decision",
+      "model benchmark fail closed fold",
+      "model benchmark evidence projection decision"
     ],
     "key_topics": [
       "model",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,37 +175,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Closed Model Benchmark Reduction",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preserve Evidence Before Ranking",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Define the model-benchmark reducers and projections on top of the deep-improvement-common services from mode 004",
     "created_at": "2026-07-16T03:43:39.522Z",
-    "last_save_at": "2026-08-29T13:09:54.878Z",
+    "last_save_at": "2026-08-30T15:39:21.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2921b64934ae781f9117d174ca89ff2620760422c732a996773657c8fbf55630",
+    "source_fingerprint": "sha256:a51733710187cd5372556b49afdef1e95edeae666d2aca91fc03e333ef5dce12",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5425615005fb82303f057b589a66cc0d48564cdb1ad68d724cc15ea3e8cad27",
       "plan.md": "ade5869bf9979528c55bd1c569dabd84f39ec644992b368b74e0c71ede65cc69",
       "tasks.md": "0685c01011d9a5c0dba8d62cd4d02b66ea066951c3500ff276e39ed5a96d4182",
-      "checklist.md": "25f23bf62324fd0cf0b163ff3870bde2c1eeae129acd6a735e2452e6273b9f49",
       "decision-record.md": "f9588d8635c0bfc239d2e064589a92cca88e43db1f6712bd09b6051ff0810a49",
       "implementation-summary.md": "72f1e0fdf364128809c10a8c8dff14ac06c2a4aa55cb6ba9900a3b84f69858f9"
     },

@@ -21,8 +21,8 @@
       "deep alignment resume adapter tasks",
       "sealed ledger alignment recovery tasks",
       "deep-alignment replay idempotency tasks",
-      "deep alignment resume adapter checklist",
-      "sealed frontier alignment verification"
+      "deep alignment resume adapter implementation",
+      "deep-alignment resume decision"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -157,24 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -191,26 +166,37 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Alignment resume adapter for interruption-safe recovery from the sealed typed event ledger. The adapter folds shared reducers, rebuilds the continuity ladder for authority-bound per-lane conformance, and defines idempotent re-entry without double-applying, losing, or replaying events.",
     "created_at": "2026-07-16T03:43:43.893Z",
-    "last_save_at": "2026-08-18T11:07:11.409Z",
+    "last_save_at": "2026-08-30T15:39:21.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbc7ff98c88d5e9eaf0993940141f7e83fd1d719c9fec8aa1e9a9b5d1c08aa8b",
+    "source_fingerprint": "sha256:ec498fe77c4939595d09b20ee53c2d5b54b7a75bc8334f1bcacd2759ddbe214f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c9a343cd63ca880a6cede9bffbfcf6acd702ecb2f1bb941eab7c9c122bbcf92b",
       "plan.md": "3667a3df2ffdab0e9d348992c177a499e0c33ef0f1f185b67334a5bd81afbeb3",
       "tasks.md": "97c7532b2e81544fcae3a224ca2f781af3d94a606c0635997b26ef3379d3de99",
-      "checklist.md": "5be90f68630d65af85c2addd36938150f05719d6104c48dd2454b45d8ab5e48f",
       "implementation-summary.md": "2c9795fa1ce2d7fef85171e0e44db70c16ff325675357bcdf5da51bb33697c05"
     },
     "last_active_child_id": null,

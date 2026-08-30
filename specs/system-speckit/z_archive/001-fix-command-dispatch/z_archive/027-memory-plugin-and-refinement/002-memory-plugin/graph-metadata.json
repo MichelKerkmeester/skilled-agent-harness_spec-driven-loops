@@ -162,7 +162,7 @@
     ],
     "causal_summary": "Reduce token consumption from ~2,000-5,000 tokens to ~500-1,000 tokens per session by replacing full memory content injection with a compact ASCII dashboard that surfaces memory IDs for on-demand loading",
     "created_at": "2026-04-12T09:02:53.519Z",
-    "last_save_at": "2026-07-10T06:22:07.260Z",
+    "last_save_at": "2026-08-30T15:39:37.061Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -171,6 +171,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:d72547b42eab506c6de67f3eef70cdf8dc79a44fe3f4e509c4be7644b25b67c1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be33822e61fd3fa428d8bf36ef24c3ac7684190385313ceb86dd5e9f48488e59",
       "plan.md": "df114577b2249802699925169ffa0a4dac70ceb7a9e95ff332e9ae661c07948a",

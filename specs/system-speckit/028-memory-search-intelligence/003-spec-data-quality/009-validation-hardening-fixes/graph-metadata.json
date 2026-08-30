@@ -45,15 +45,12 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
       ".opencode/skills/system-spec-kit/scripts/lib/status-classifier.sh",
       ".opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
       "scripts/tsconfig.json",
-      "scripts/rules/check-evidence.sh",
       "scripts/lib/status-classifier.sh",
-      "scripts/sweep/strict-pass-freshness.ts",
-      ".github/workflows/strict-pass-freshness-sweep.yml"
+      "scripts/sweep/strict-pass-freshness.ts"
     ],
     "entities": [
       {
@@ -81,12 +78,6 @@
         "source": "derived"
       },
       {
-        "name": "check-evidence.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
-        "source": "derived"
-      },
-      {
         "name": "status-classifier.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/lib/status-classifier.sh",
@@ -108,12 +99,6 @@
         "name": "tsconfig.json",
         "kind": "config",
         "path": "scripts/tsconfig.json",
-        "source": "derived"
-      },
-      {
-        "name": "strict-pass-freshness-sweep.yml",
-        "kind": "config",
-        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
         "source": "derived"
       },
       {
@@ -173,7 +158,7 @@
     ],
     "causal_summary": "F6 — the evidence \"substance\" checker has two live defects, a false-negative loophole and a false-positive regression, both in `evidenceitemhassubstance()` (`check-evidence.sh:30-68`)",
     "created_at": "2026-07-09T15:10:28.777Z",
-    "last_save_at": "2026-08-29T14:54:17.166Z",
+    "last_save_at": "2026-08-30T15:39:35.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -183,6 +168,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:792b16bf9d0ed966445a6b5a05fcdf7ed0a6de764a9b52ce9dbc106a1ab86b82",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5105df2b7ed1459ef644939d00f26799f978d0bf3fded40ddb557c1b41f9cb40",
       "plan.md": "44e30f7b5c876dfa429e55b4308fea23a5ad4aea50a517fa3f14d65903ef8940",

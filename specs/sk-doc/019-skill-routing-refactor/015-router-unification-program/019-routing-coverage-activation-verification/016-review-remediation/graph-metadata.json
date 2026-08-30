@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) audited the v4 compiled-routing landing (packet `013-compiled-coverage-buildout`)",
     "created_at": "2026-07-22T06:15:19.898Z",
-    "last_save_at": "2026-08-30T08:04:17.638Z",
+    "last_save_at": "2026-08-30T15:39:15.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e5165effc4f081def2e462eaa5f3571041050e942eb0fe6793004686dd4cd61c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b83f3f3e66e03914a73616092b4088095810c0271e60b6d5bb64484d7f94edb7",
       "plan.md": "dcde1720b820e04f86f40f6f68901bba8343df06a0f5a0af0b40e1c57c21ce7c",

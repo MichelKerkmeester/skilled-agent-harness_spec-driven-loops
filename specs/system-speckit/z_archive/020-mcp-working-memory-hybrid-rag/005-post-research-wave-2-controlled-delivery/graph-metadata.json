@@ -18,7 +18,6 @@
       "archive normalization",
       "validation",
       "tasks",
-      "verification",
       "decision record",
       "implementation summary"
     ],
@@ -34,7 +33,7 @@
       "normalization",
       "validation",
       "tasks",
-      "verification"
+      "decision"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -63,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -168,49 +160,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Context The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Alternatives Considered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Five Checks Evaluation",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This archived child phase folder under 020-mcp-working-memory-hybrid-rag preserved implementation planning for Post Research Wave 2 Controlled Delivery",
     "created_at": "2026-04-12T09:02:53.573Z",
-    "last_save_at": "2026-07-10T06:22:53.852Z",
+    "last_save_at": "2026-08-30T15:39:37.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d56980de4e15e7a4c81c19d6884daf6774917254f7d883bfc98e20e45ba8370",
+    "source_fingerprint": "sha256:8c47cf53705fcb6820111696d5d4e32cecda70502f8da6244cecbb6d0ff7021d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5dee19c67dc1371e99b6b907cbbbeb0cdbf8842c68efa65cf3aff7b682b21746",
       "plan.md": "af6bfb4147a4facb0293d974a1fa09ef913b9d4b5883e34a29a822bb4394b0bd",
       "tasks.md": "d8cb63af0b1c93d362a0e49de1dac144a8567eca4a4a8a597f1e7387cd29644e",
-      "checklist.md": "0269f0f5e330b204d6e2b6f48b0cfb1e7f0fa79df256ff8061bb46702859ed29",
       "decision-record.md": "9ff57c5e89b69136ea2205aa5c174c790d09819078545202035d9ec93aaf886b",
       "implementation-summary.md": "acd398b51bcdcd2f6e1cfba858081c50796d7bb74e2208a8a2a2dacb6a7a1e0f"
     },

@@ -158,13 +158,14 @@
     ],
     "causal_summary": "The sk-code `code-opencode` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical path-containment pattern for every authored code file in this repository",
     "created_at": "2026-07-30T19:25:15.551Z",
-    "last_save_at": "2026-08-29T15:21:56.660Z",
+    "last_save_at": "2026-08-30T15:39:11.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:a344987ce0a0ae08943f78cc1b95b1bb3eef71cff2108d2520346991ca3bce58",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "312b8bb2d427505780225b916f0dc99c7014294afb5d98497e206507b6f3bc1a"
     },

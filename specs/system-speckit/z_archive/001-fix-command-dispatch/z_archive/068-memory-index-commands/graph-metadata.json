@@ -21,8 +21,8 @@
       "implementation",
       "plan",
       "tasks",
-      "validation",
-      "checklist"
+      "decision",
+      "architecture"
     ],
     "key_topics": [
       "feature",
@@ -34,31 +34,30 @@
       "implementation",
       "plan",
       "tasks",
-      "validation",
-      "checklist",
+      "decision",
+      "architecture",
       "current"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/memory/search.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
       "decision-record.md",
-      "plan.md",
-      "checklist.md"
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -74,15 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "search.md",
         "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -182,37 +175,42 @@
         "source": "derived"
       },
       {
-        "name": "Validation Checklist",
+        "name": "Architecture Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Validation Items Checklist",
+        "name": "Architecture Decision Record Architecture Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Related Feature",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The current `/memory:search` command (667 lines) combines two fundamentally different concerns:",
     "created_at": "2026-04-12T09:02:53.541Z",
-    "last_save_at": "2026-07-10T06:22:57.419Z",
+    "last_save_at": "2026-08-30T15:39:37.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:7750aaccda98499dc9bbdd4b0bbf7487d47bd737fd56dbf11565b22a8a3b95a3",
+    "source_fingerprint": "sha256:3e7351cfbca9f8ebacf29eb6c507e338da3f253da212c6a060c4666d14e1d293",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c474f560901cae1c58599ebf1b6c82cdce944acbf7643fe5b28683a2a16ee41",
       "plan.md": "c364b5c1ddb781b7a0def3a551015147de57791ecd8647455b1a2fcff37b6651",
       "tasks.md": "9d267dac5ffc42fb1bd9d35f2111a86aa8f5535da375cc466f2a673ca4b3f024",
-      "checklist.md": "cd881abfc96d53405acd55363d8e7f7e446c86ed18ec421b4d331dcc560fa996",
-      "decision-record.md": "96d9a12a2dd78b2bbb907ffe44f36a1de3422e2985483ff36df306e3876238a4"
+      "decision-record.md": "029f0896f4c9392b2d19ea6baec5dfc0f44e41c067ee10fc058a8f1754c14815"
     },
     "last_active_child_id": null,
     "last_active_at": null

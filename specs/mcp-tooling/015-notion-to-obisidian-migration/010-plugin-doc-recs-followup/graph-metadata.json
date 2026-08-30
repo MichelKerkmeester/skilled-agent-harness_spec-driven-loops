@@ -18,7 +18,6 @@
       "015 plugin doc recs followup plan",
       "mcp-obsidian deferred docs plan",
       "015 plugin doc recs followup tasks",
-      "015 plugin doc recs followup checklist",
       "015 plugin doc recs followup summary"
     ],
     "key_topics": [
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".claude/mcp.json",
       ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md",
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,26 +185,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Adding Metadata",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 009 left five documentation items and one sibling-packet error unresolved",
     "created_at": "2026-08-22T20:16:22.967Z",
-    "last_save_at": "2026-08-29T15:21:55.400Z",
+    "last_save_at": "2026-08-30T15:39:10.494Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c8746b3f309ad009c8c4fa0a548c805b0a329bd0a70177432fffd0f3c941df5",
+    "source_fingerprint": "sha256:57bd030617f1f72ee3d2f1273183b251238b4c62ec7b4fbfa868149b36d417b1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "65b58f4865374b9d7bf4077ffbe9c4d321915ac804eddb6de06f53fc2856e041",
       "plan.md": "cfad787951898f5b4c0fac5f881bad347c2504c4f550fe17541820ad8650ded1",
       "tasks.md": "2515b00ad8deffd3b5bc4d56f97bbf88c5956a84c12f2b106ed5e458dd007667",
-      "checklist.md": "34a3adc5933c6c35005489d6f41a9bb384256bc40e27a77e0570a27f6d76f421",
       "implementation-summary.md": "4ab4d5c26426ca479fa6bde20fd6ef19d4d23fec3ff2e43019d4f46050c88717"
     },
     "last_active_child_id": null,

@@ -21,8 +21,8 @@
       "cross-mode closures tasks",
       "deep-loop shared closure tasks",
       "phase 012 closure fixtures",
-      "cross-mode closures checklist",
-      "deep-loop closure verification"
+      "cross-mode closures implementation",
+      "shared closure verification evidence"
     ],
     "key_topics": [
       "cross-mode",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/README.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -176,42 +169,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built All",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Shared Owners",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Hoist recurring evidence, receipt, adjudication, budget, and projection behavior into reusable closures so all phase-013 mode migrations share one implementation while retaining explicit mode-owned policies and state reducers.",
     "created_at": "2026-07-16T03:43:54.270Z",
-    "last_save_at": "2026-08-29T13:09:52.638Z",
+    "last_save_at": "2026-08-30T15:39:20.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac163f9ab32ef029301fe33b943a006c85bf2c1c4fdfb3daefc2c70f2e4a9fcd",
+    "source_fingerprint": "sha256:1536e51bc2ac97abef8701fc511495f57e7008e2e351c9db5f731d860fb3e038",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "584ad47468e8c2ba96b5b4eb609450dda791d146cda61c9944a5e2aa98b8b7de",
       "plan.md": "d7fb4f11ca1f43bb3ce6d89bdea22ff8ae7ceeccef9707365a0fad04cc1f7de3",
       "tasks.md": "1fb52f33a7039b2b3c6a793466e45dba086d737ecbdef26081226a04d7341365",
-      "checklist.md": "973f6f5f4e74f0cca656203a1cb5f14d606d70cb9470f014a6192611ad71c4f7",
       "implementation-summary.md": "3fca0ad3c7001a87c7e460b1fd9f3070fad7260899711828024bba0f0b541b87"
     },
     "last_active_child_id": null,

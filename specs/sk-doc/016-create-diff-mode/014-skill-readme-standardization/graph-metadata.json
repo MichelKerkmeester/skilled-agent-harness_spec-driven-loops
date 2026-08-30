@@ -113,13 +113,14 @@
     ],
     "causal_summary": "The repo root `README.md` and the recent `system-spec-kit` changelogs read in one warm, human-centered narrative voice: a problem-first opener, an \"At a Glance\" table near the top, outcome-named section headers, sparse tables, honest trade-off notes, and a verification closer",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-08-28T22:21:04.491Z",
+    "last_save_at": "2026-08-30T15:39:14.405Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:8a8964e2fca31929f2dea2fb9b8a640b7e11cbb36bfab01f0fa9c095d2a431a4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ef1903340e749c3bbba70c5e96627a0e68c5c8eb4d0ffc78d918eb74124e3a18"
     },

@@ -41,19 +41,13 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "scripts/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "scripts/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 122 review flagged that the ported 5-dim scorer (`score-model-variant.cjs`) was built and available but never wired into `run-benchmark.cjs` (deferral F-P2-1/F-P2-2), and the deep-agent-improvement SKILL.md did not document the model-benchmark mode at all (the whole 121/003 feature was undocumented in the skill)",
     "created_at": "2026-05-28T19:15:44Z",
-    "last_save_at": "2026-07-08T13:43:33.696Z",
+    "last_save_at": "2026-08-30T15:39:23.650Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7930196be140a7c31a00352ba6fc643b743c6c24013d3d85e46c84d0f5638a8f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "79566988e9c3113485f9d97740deae52da44c30fa3a002da256295154394ee53",
       "plan.md": "e6b5f63291dcdf6b12e38989c124650190ff322d03a59038b76a6b8c03d62f93",

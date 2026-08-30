@@ -23,8 +23,8 @@
       "review depth research plan",
       "deep-review complexity tasks",
       "deep-review research tasks",
-      "deep-review complexity checklist",
-      "deep-review research verification"
+      "deep-review complexity decision",
+      "evidence-led deep-review research"
     ],
     "key_topics": [
       "deep-review",
@@ -41,25 +41,54 @@
       "deep-loop"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "research/research.md",
       "research/iterations/iteration-001.md",
       "research/deltas/iter-001.jsonl",
       "research/deep-research-state.jsonl",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "spec.md",
       ".opencode/agents/deep-review.md",
       "research/deep-research-config.json",
-      "implementation-summary.md",
       "research/iterations/iteration-015.md",
       "research/deltas/iter-015.jsonl",
       "research/deep-research-dashboard.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -85,36 +114,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".opencode/agents/deep-review.md",
@@ -124,12 +123,6 @@
         "name": "deep-research-config.json",
         "kind": "config",
         "path": "research/deep-research-config.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -203,28 +196,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-review workflow should be the strongest bug-finding path for iterative audits, but user experience indicates focused deep-research loops can surface more defects when prompted to look for bugs",
     "created_at": "2026-05-22T05:50:19Z",
-    "last_save_at": "2026-07-08T13:43:55.435Z",
+    "last_save_at": "2026-08-30T15:39:23.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:16dfdfc36c3915d2308341d094f6fff9d3c9df044b2f9160f2b029c235ae5d73",
+    "source_fingerprint": "sha256:74c339ca845e3d600720af7f0ae875d794865300b0a0aaeea65c372ef87b971d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "799957ca05115ff6e33d9e0a68892d464c5c493bb2d51938a701ba06abd181a0",
       "plan.md": "fad020b490c6853d7a3bc850f501c4e61197655e5e3ec5d19c7551c218de4e30",
       "tasks.md": "cad1b37ee612e8b1e227c67838fb2464cf32195ef0803104e25ab72abac307ef",
-      "checklist.md": "6e55dda3710bbb07a4f1e466436ca722e338971b4d26b52737305fcc913b0b77",
       "decision-record.md": "8e2c070825a35e9e9c584f8c874e163b71ae8ff0adbfb9cbd2fd0b36d7622afb",
       "implementation-summary.md": "9bcb7908f28b1e9bed98c839c114874949f40685ea30881bf3002df0819739d1",
       "research/research.md": "96b71bced8f52519eb49c47731b27a3644d9f7b950adfea8688ca27774842b5a"

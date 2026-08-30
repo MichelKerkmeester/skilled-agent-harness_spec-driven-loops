@@ -33,15 +33,21 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -54,12 +60,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Four `code-opencode` Rust docs exceed 500 lines — `references/rust/styleguide.md` (1987), `references/rust/quickreference.md` (1571), `references/rust/qualitystandards.md` (1475), and `assets/checklists/rustchecklist.md` (1005)",
     "created_at": "2026-07-11T16:27:46.397Z",
-    "last_save_at": "2026-07-11T16:34:29.226Z",
+    "last_save_at": "2026-08-30T15:39:11.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:91f01fd1070548e05abff3ad4489797087eba2629b3b77b4af03da78215c59c7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4ea830a9c66f892648edd5266539e0b377d46d78dbfdc4e6e74431f0e72417f",
       "plan.md": "41f3c3f87c5076b17208b8844ddf4ced062ee82caea6642929348797bde80b2a",

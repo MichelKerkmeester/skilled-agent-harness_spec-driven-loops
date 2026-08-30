@@ -47,7 +47,7 @@
       "real-world"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -97,13 +97,14 @@
     ],
     "causal_summary": "Phase parent: rename deep-agent-improvement to deep-improvement and add Lane C (skill-benchmark) measuring a skill's real-world routing, unprompted reference/asset discovery, efficiency, and usefulness; multi-model deep research (001) informs rename (002), Lane C build (003), and validation/docs (004).",
     "created_at": "2026-05-30T07:27:05.678Z",
-    "last_save_at": "2026-07-09T10:02:49.035Z",
+    "last_save_at": "2026-08-30T15:39:23.795Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:3e85fdc163db4bed5e2e79e1a6a9f3e13a4792acd3f59dd3b547b56617230f2c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0bde9d76f8e665031459a867acb41540327cb4ff53ce44b4cfaf0a4acced9760"
     },

@@ -19,7 +19,6 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "implementation summary"
     ],
@@ -31,45 +30,22 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "083-memory-command-consolidation",
       "system-spec-kit",
-      "001-fix-command-dispatch"
+      "001-fix-command-dispatch",
+      "implementation-summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "mcp_server/README.md",
-      ".opencode/commands/memory/manage.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/memory/manage.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "manage.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/manage.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -89,15 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manage.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/manage.md",
         "source": "derived"
       },
       {
@@ -195,26 +171,43 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary Successfully",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "After Comparison",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec ID: 083-memory-command-consolidation",
     "created_at": "2026-04-12T09:02:53.554Z",
-    "last_save_at": "2026-07-10T06:21:09.874Z",
+    "last_save_at": "2026-08-30T15:39:37.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:37c9bac3d95296d79a5ee41eb21cb8eea34e8502e6e594759d55b174d159d8ee",
+    "source_fingerprint": "sha256:c9ebd300200560d219f079c29d21f0b8f1a5dab35863feab1064d83c849c4a8d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2373ebc2609d4bd6bfa0dce5171e3d9143a84b1ba39e2db9218c3b2adcd67e1",
       "plan.md": "0e97a49561264dd98d8cdfa32b74abea0fe59181526abc10e3bd15a90abc41e3",
       "tasks.md": "a1d11a12ea6eccb7f465b0c3332adcbd293c35c421745530a3f75df68e68fb31",
-      "checklist.md": "8fb8245c5120f0907002140879967afe0ba7e92982d60661177c656edf4fd87b",
       "implementation-summary.md": "95d2b1fbff48bf9af9ebde9eea945253af06e2d5abedd18926e4e55bf1dd187b"
     },
     "last_active_child_id": null,

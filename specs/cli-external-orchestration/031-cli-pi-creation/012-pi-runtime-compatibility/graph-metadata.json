@@ -16,7 +16,6 @@
       "pi command agent hook parity",
       "pi runtime compatibility plan",
       "pi runtime compatibility tasks",
-      "pi runtime compatibility checklist",
       "pi runtime compatibility summary"
     ],
     "key_topics": [
@@ -31,7 +30,7 @@
       "parity",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/mcp.json",
       ".pi/extensions/README.md",
@@ -55,7 +53,8 @@
       ".opencode/skills/system-spec-kit/scripts/codex/README.md",
       "codex/README.md",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
-      "scripts/pi/sync-prompts-pi.cjs"
+      "scripts/pi/sync-prompts-pi.cjs",
+      "scripts/pi/sync-agents-pi.cjs"
     ],
     "entities": [
       {
@@ -74,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,26 +194,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-pi` is registered as the hub's 6th executor and its model/MCP-host integration are real and live-verified (phases 007/009), but Pi still cannot actually run this repo's 36 commands, 13 agents, or governance hooks the way Claude Code/OpenCode/Codex/Cursor/Devin already can — phases 005/006/008 designed HOW each would translate but explicitly stopped short of writing the files (`.pi/prompts/`, `.pi/agents/`, `.pi/extensions/` all do not exist in this worktree today; only `.pi/mcp.json`/`.pi/settings.json`/`.pi/npm/` exist, from phase 007)",
     "created_at": "2026-07-27T15:52:18.832Z",
-    "last_save_at": "2026-08-29T15:21:51.498Z",
+    "last_save_at": "2026-08-30T15:39:07.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:020e62a7c26700e4240150825a00cfceb151dd6d2a4fdf326c6fcbe7bb50a5d9",
+    "source_fingerprint": "sha256:c1f3160f7122df9e0ff0d926cdc37956a0c0eb48ebe23f3a15c022cd21f1655a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ddd7abfb35e2c816a641e2fe3de9f8e510f06674d746277e12a100b42039a15c",
       "plan.md": "6d9fc8bd8b418f1465f8518bfe318d6442841016e1d914351dfff30522adc418",
       "tasks.md": "09aca979fd41f733681e5665a080d03f2915daa7359d7b14f8ecb922e33ac192",
-      "checklist.md": "1c4fc5d2af23b025b49f95ab12ed70483c43f0f90e555f9aab949a05c0eb559e",
       "implementation-summary.md": "f10b451b411b7c746a3869e69b15f5697945245dae7caa7f57a4debc917e8c2c"
     },
     "last_active_child_id": null,

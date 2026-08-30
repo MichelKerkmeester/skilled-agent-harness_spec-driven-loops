@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The in-memory BM25 fallback channel has two latent defects at the measured corpus (10,245 docs, 69.2 MB indexed text)",
     "created_at": "2026-06-10T17:48:33Z",
-    "last_save_at": "2026-08-29T15:22:19.619Z",
+    "last_save_at": "2026-08-30T15:39:33.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:97a4405bb63b1b0420745852e25dd2214c579a71ff876a8578f0c7a07381e21a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a821681a956a240a82b15d5af55efc9789ae6cf6a723631852a813445354dff",
       "plan.md": "88fab17277feea1926ea75a853186735f52fc59fe5cc6b1ff5c6e0f3eaebca21",

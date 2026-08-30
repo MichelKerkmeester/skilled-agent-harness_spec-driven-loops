@@ -136,18 +136,29 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "handover.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       ".claude/mcp.json",
       ".codex/config.toml",
-      "spec.md",
-      "mcp_server/tsconfig.json",
       "scripts/finalize-dist.mjs",
       "lib/search/embedding-expansion.ts",
-      "scripts/lib/validate-memory-quality.ts",
-      "handover.md"
+      "scripts/lib/validate-memory-quality.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
       {
         "name": "hf-local.ts",
         "kind": "code",
@@ -173,18 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tsconfig.json",
-        "kind": "config",
-        "path": "mcp_server/tsconfig.json",
-        "source": "derived"
-      },
-      {
         "name": "finalize-dist.mjs",
         "kind": "file",
         "path": "scripts/finalize-dist.mjs",
@@ -200,12 +199,6 @@
         "name": "validate-memory-quality.ts",
         "kind": "code",
         "path": "scripts/lib/validate-memory-quality.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -283,7 +276,7 @@
     ],
     "causal_summary": "This phased decomposition tracks Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory across independently executable child phase folders",
     "created_at": "2026-05-12T16:27:47Z",
-    "last_save_at": "2026-07-17T17:19:17.889Z",
+    "last_save_at": "2026-08-30T15:39:29.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T12:01:28Z",
     "source_docs": [
@@ -291,11 +284,12 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:465fc8d611670359fb3c3318770939fc7b6fe2766e248d19e57484468d7714fb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "38e3aa2d4ce23d53c5eb40f1015d522405b543df651608442a9687445979939e",
       "handover.md": "10c8d753db4d76321ea18ff2103cd6bd7b473fb70bab4fd3b40e97a62d0f71da"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation",
     "last_active_at": null
   }
 }

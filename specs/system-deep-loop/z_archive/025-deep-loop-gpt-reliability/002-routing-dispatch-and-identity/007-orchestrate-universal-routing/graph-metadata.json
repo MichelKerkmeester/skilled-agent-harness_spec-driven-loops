@@ -18,8 +18,6 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "summary"
     ],
     "key_topics": [
@@ -39,31 +37,18 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/agents/orchestrate.md",
-      ".claude/agents/orchestrate.md",
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md"
     ],
     "entities": [
-      {
-        "name": "orchestrate.md",
-        "kind": "doc",
-        "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -79,9 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
         "source": "derived"
       },
       {
@@ -157,37 +148,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Priority Table Completion Added",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +174,21 @@
     ],
     "causal_summary": "`orchestrate.md`'s \"Agent Selection (Priority Order)\" table (`.opencode/agents/orchestrate.md:97-105`) is the single deterministic routing surface for ALL of orchestrate's dispatch decisions — it already lists `@context`, `@deep-research`, `@ai-council`, `@markdown`, `@review`, `@code`, `@debug`",
     "created_at": "2026-07-01T10:56:26.768Z",
-    "last_save_at": "2026-07-16T16:32:39.352Z",
+    "last_save_at": "2026-08-30T15:39:25.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eca7a77374e6606d8a6ca35d6e0309597ecb81c5f0802abaaab3ce6ab03a3d39",
+    "source_fingerprint": "sha256:34de3bc2841516aa8e14c4684d243cc91fb9d060bdbccc014b3798b652f29aed",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "213e0bbaa66ccd33a9e9a3d976e787cc8dbd87fdd5877f0e19f4214e8332877a",
       "plan.md": "b1a7d0bec0a4ae9af84354d7a45f28136be75ddf32fee214e8619828c7c3391e",
       "tasks.md": "530e45d2c0e4774ab34aee44ad7f393ff523bd6c17e89a992a8bab85476ed5a0",
-      "checklist.md": "bb4879060b36bf66953acc5407b9358ea40954e0c5a7f74586c050253af8807f",
       "implementation-summary.md": "c873fb75dad69c43319b3f0b821c9b1a9b2da9d9007c48bb4dadd18558e8f89f"
     },
     "last_active_child_id": null,

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/006-sk-prompt-models-rename/002-core-rename",
-  "spec_folder": "sk-prompt/006-sk-prompt-models-rename/002-core-rename",
-  "parent_id": "sk-prompt/006-sk-prompt-models-rename",
+  "packet_id": "sk-prompt/z_archive/006-sk-prompt-models-rename/002-core-rename",
+  "spec_folder": "sk-prompt/z_archive/006-sk-prompt-models-rename/002-core-rename",
+  "parent_id": "sk-prompt/z_archive/006-sk-prompt-models-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "After `git mv`, the skill's own internal references still name the old folder: `references/models/.md` link `../../../sk-prompt-small-model/...` (now a dead path), `modelprofiles.json` carries `profileref: \"sk-prompt-small-model/references/models/...\"`, and the `name:`/`skillid` still say the old name",
     "created_at": "2026-06-28T13:47:21.316Z",
-    "last_save_at": "2026-07-15T10:52:33.035Z",
+    "last_save_at": "2026-08-30T15:39:19.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c1e4fb2e4b451ac1b41e0ee47da50d6a7b2d517863bfa3931f888af56e7087c3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3007cc5ff1c2b2299e4aa780841f75a07d449504c4aa10b70fb4990cd125e9dc",
       "plan.md": "d5f0512371155b8790603a530ed7113af60c035a66c42bc542c87e3967ed26ce",

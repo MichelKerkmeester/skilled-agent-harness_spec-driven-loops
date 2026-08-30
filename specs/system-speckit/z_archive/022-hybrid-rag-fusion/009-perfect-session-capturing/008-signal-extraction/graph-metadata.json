@@ -19,8 +19,6 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "summary",
       "extraction"
     ],
@@ -32,16 +30,19 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "summary",
       "extraction",
-      "pipeline"
+      "pipeline",
+      "real",
+      "engines"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "scripts/lib/semantic-signal-extractor.ts",
       "scripts/lib/trigger-extractor.ts",
       "scripts/core/topic-extractor.ts",
@@ -51,17 +52,31 @@
       "scripts/tests/test-scripts-modules.js",
       "shared/trigger-extractor.ts",
       "core/topic-extractor.ts",
-      "lib/semantic-summarizer.ts",
-      "plan.md",
-      "implementation-summary.md",
-      "tasks.md",
-      "checklist.md"
+      "lib/semantic-summarizer.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -104,30 +119,6 @@
         "name": "test-scripts-modules.js",
         "kind": "code",
         "path": "scripts/tests/test-scripts-modules.js",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -201,27 +192,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Unified Engine Construction",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The pipeline uses 3 real extraction engines plus 1 wrapper, each with different stopwords, weighting, and placeholder rules:",
     "created_at": "2026-04-12T09:02:50.271Z",
-    "last_save_at": "2026-07-10T06:24:39.096Z",
+    "last_save_at": "2026-08-30T15:39:38.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78ea3b6abe735708ad9cc13d94cfcacf25643ab1bb91fcc17a673310cf4017b3",
+    "source_fingerprint": "sha256:e074bd28ad50f861c1e13045a67f30aedda36ee0b391229bc04f8ce4069be905",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31ea2228c969c3cdb0c50ce4644c0a44b744e6827fc8c97459aef01769a5ef08",
-      "plan.md": "a8897f6a43c57ef1dd1af129ef5708d4a7a5a152f35d1544b7ad82c71949b108",
-      "tasks.md": "e6aea55fe9a6f04b01e49592d7bcd9f4df954d1594b3c9801a34f8aaa5c14fc6",
-      "checklist.md": "59216e7e42ef9dfa76130a9a0f61f148ebb9ad712e84c515b697742d81655e10",
-      "implementation-summary.md": "662ef763beedde70b932fb4123b83b7d36c1b6ba711df1ababb717b4e2ecdc05"
+      "spec.md": "dcf1a2778e31f28081e3b8139a5c5a6bb8a011bfd0ffed920db16e6e58ff3f78",
+      "plan.md": "2596c6e1178d7fb97361974e7b783063a3604b2d410077135df0cabef5356f7e",
+      "tasks.md": "f4da6b62fe0a4e2cfb455c1d9d4bf48038f70172525cb2ff3ce8c83eaab4ad7f",
+      "implementation-summary.md": "c8a6f17c573d1dab3f822232a19f70f50a2a1c9570a83f902083d12f8e443bf7"
     },
     "last_active_child_id": null,
     "last_active_at": null

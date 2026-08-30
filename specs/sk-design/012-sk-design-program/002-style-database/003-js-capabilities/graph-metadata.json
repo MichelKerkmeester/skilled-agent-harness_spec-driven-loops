@@ -20,9 +20,9 @@
       "js capability features tasks",
       "styles db phase 1 task breakdown planned",
       "layout fingerprint screenshot dedupe watcher tasks",
-      "js capability features checklist",
-      "styles db phase 1 verification checklist",
-      "shadow flag phash reconciliation invariants"
+      "js capability features implementation summary",
+      "styles db phase 1 planned summary",
+      "roadmap phase 1 key decisions deferred verification"
     ],
     "key_topics": [
       "capability",
@@ -41,12 +41,11 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/sk-design/012-sk-design-program/002-style-database/spec.md"
     ],
     "entities": [
       {
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -152,24 +145,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -190,22 +165,21 @@
     ],
     "causal_summary": "Once Phase 0 (`001-foundation`) ships its measurement plane, the 013 research identified six concrete JS-only capability opportunities the styles database does not yet have: DOM-derived layout fingerprints, screenshot-based palette/dedupe, a shadow multimodal retrieval lane, batched embeddings, an auto-reindex watcher, and (conditionally) a parsed-projection cache",
     "created_at": "2026-07-20T09:21:23.223Z",
-    "last_save_at": "2026-07-22T16:57:32.313Z",
+    "last_save_at": "2026-08-30T15:39:12.703Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2764d50d1ee5566f6c03e69d7cf79099e7ee6af6e31c5fab3e0aef17089a37e9",
+    "source_fingerprint": "sha256:72eea429682c33c189f42bb2011452437c8845bc4006f7a8f9699d708f9f4d77",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f0555c52e58593e9ba9743414759b7825312207d73ba20d8c03a9931735473e",
       "plan.md": "fe83b6f86bb1c1336f55052608133aab1e3a536f8c07731320c9521ddf553d5d",
       "tasks.md": "3fb67e36196d6063174e3261b53eb80d50adbae4ddb69c4fabe693cdb1846485",
-      "checklist.md": "f34f0d76cfd1108d35079d2fd48e357069e614566e9a33e4873aacbb1ce6a7a9",
       "implementation-summary.md": "a617026450db3c612570c7470ee064adc6acf05285c2a9cf1ee4a629b80c02c7"
     },
     "last_active_child_id": null,

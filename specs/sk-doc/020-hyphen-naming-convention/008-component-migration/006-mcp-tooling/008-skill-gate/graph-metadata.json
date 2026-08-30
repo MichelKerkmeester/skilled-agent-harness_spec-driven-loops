@@ -153,7 +153,7 @@
     ],
     "causal_summary": "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases. This gate performs no new migration work; it aggregates sibling evidence and proves that the complete in-scope surface is kebab-clean with the 020 exemption set intact.",
     "created_at": "2026-07-14T15:17:47Z",
-    "last_save_at": "2026-08-30T07:19:39.423Z",
+    "last_save_at": "2026-08-30T15:39:16.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -162,7 +162,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:f9b2f234089f196b543874e32986d365a029c0c734cc18e610af693a04935154",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ccaa4ae6df4003a46e6a5ed0d8e5cb5243269e48923e596553fd4a54d58ea42f",
       "plan.md": "c82d90b769cd19c412a8419293f82119af63a7cfb70f91c2f8ac05bebf8b98c2",

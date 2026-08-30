@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -27,20 +26,18 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -48,12 +45,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "gate-enforcement.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
         "source": "derived"
       },
       {
@@ -66,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,37 +162,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Governance has evolved significantly",
     "created_at": "2026-04-12T09:02:50.254Z",
-    "last_save_at": "2026-07-10T06:23:05.758Z",
+    "last_save_at": "2026-08-30T15:39:38.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29f42670553e69be1f324383f300ea0b27e959b894e3c6a4bac9382dcc56684a",
+    "source_fingerprint": "sha256:70a011ab0ac635c24d7eab14c34a66cb0537bd5d876ebb1a8d6e028bda3b7420",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b9ba002ff6bc2652e14a9f7b501ad916a9bd66ca0f385bf6685b137e28b991f",
-      "plan.md": "b367e4b69cf996272cf5a5dc12b8af346d6c719af00186a42a9f12e3239f2bd5",
-      "tasks.md": "5cfeb1f8df16f1ed3cc446c912ecd48c93831c52b2b2c57937e6998748f494b6",
-      "checklist.md": "483bb5e36e94e628051fb631a15f61ed72357b8ba6e35b75e9d8ac961c8a8d6c",
-      "implementation-summary.md": "e26e4b308cb8e522d8622534462176999f8ac663b603de0f8ffc8c5e275da116"
+      "spec.md": "aac6c4b6690adf8dde65deda787651f20e4892dbdce6a31616cbc0bb5ae38002",
+      "plan.md": "59abd66935db9cdedc20d77459958d9887d45cda08cb73e289d50571bbf94358",
+      "tasks.md": "424c9e65c4106ffa7e2ee033f402233dfc4b1230b720d247bdc5ec92fd0b6d96",
+      "implementation-summary.md": "56ffa5400737ee1f3d27b3ebd561774a65fd8dae4d665e460923800801f945c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

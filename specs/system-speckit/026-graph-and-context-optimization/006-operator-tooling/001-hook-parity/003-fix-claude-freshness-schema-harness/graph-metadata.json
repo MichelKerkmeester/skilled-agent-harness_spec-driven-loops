@@ -43,17 +43,29 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "plan.md",
-      "implementation-summary.md",
-      "checklist.md",
       "spec.md",
-      "tasks.md"
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".claude/settings.local.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -63,21 +75,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -177,42 +177,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Resolve Claude",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Which Claude",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Hook testing surfaced three defects",
     "created_at": "2026-04-23T10:15:00.000Z",
-    "last_save_at": "2026-08-28T23:06:02.170Z",
+    "last_save_at": "2026-08-30T15:39:32.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a7e11b067b11ba6e56947986dcefbaf9ebea763a271085634ded975ba5c5ead",
+    "source_fingerprint": "sha256:ad700d055c2159cf6217e1a9fc541822903386e974e4b979b4a16be2992881c5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "afc04a59709284cf1421b43f6c3fc29bba51e9f3a16d84f96802e614984eaf05",
       "plan.md": "d6a557ea18e776eaa488376dcf173c81dca5366a89a44f92c597e77caa7c0415",
       "tasks.md": "531d1aef20bb48b7714909b1e856ea93c0056f4497902ce73a144ef1ef88c831",
-      "checklist.md": "a0b1e151b602e44edc609b00cc87d05941d19bdf20671a0b48205d76bced2e3e",
       "implementation-summary.md": "38d740a2e3120750b8910d6fb61b2870edfb0ddb5538548ff6db889b1f5e5f5d"
     },
     "last_active_child_id": null,

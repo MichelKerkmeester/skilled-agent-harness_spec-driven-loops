@@ -41,13 +41,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/spec.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/plan.md",
-      ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/tasks.md",
-      "tasks.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/spec.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/plan.md",
+      ".opencode/specs/mcp-tooling/010-mcp-mobbin/004-validation-and-handoff/tasks.md"
     ],
     "entities": [
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "After phase 003 the mcp-mobbin mode is wired but unproven at strict level: no strict packaging gate has run on the new packet, the hub has not been re-validated as a four-mode unit, the spec packet's checklists carry no evidence, and no continuity has been saved",
     "created_at": "2026-07-16T09:39:34Z",
-    "last_save_at": "2026-07-16T14:39:10.214Z",
+    "last_save_at": "2026-08-30T15:39:09.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a4ad3b079020adb948627c9ae99c96a102bc43c4617e0dfc0aa4931a99fc4597",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f6a3f3f3eaee447b02298b56ce830de6c77c11cb6ad785ff57e15bcf939d62ca",
       "plan.md": "a70e9c9a826fe55fe013b4415b1a5d4f4c3e79892fcf533cd4523ede7818904e",

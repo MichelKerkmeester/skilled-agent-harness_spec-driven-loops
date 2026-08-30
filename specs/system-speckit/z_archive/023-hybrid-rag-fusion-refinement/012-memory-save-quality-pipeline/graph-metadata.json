@@ -19,10 +19,10 @@
       "json mode plan",
       "memory save quality tasks",
       "json mode tasks",
-      "memory save checklist",
-      "json mode verification",
       "decision record",
-      "memory save quality decisions"
+      "memory save quality decisions",
+      "memory save implementation summary",
+      "json save quality summary"
     ],
     "key_topics": [
       "memory",
@@ -36,30 +36,59 @@
       "compaction",
       "plan",
       "tasks",
-      "checklist"
+      "decision"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
       "scripts/core/workflow.ts",
       "scripts/extractors/conversation-extractor.ts",
       "scripts/extractors/collect-session-data.ts",
       "scripts/extractors/decision-extractor.ts",
       "scripts/lib/validate-memory-quality.ts",
-      "scripts/core/quality-scorer.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "scripts/core/quality-scorer.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -96,42 +125,6 @@
         "name": "quality-scorer.ts",
         "kind": "code",
         "path": "scripts/core/quality-scorer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -199,30 +192,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Memory Save Quality",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Structured memory saves (`--json`/`--stdin`) could degrade into poor outputs when normalization did not adequately feed downstream extraction/scoring paths",
     "created_at": "2026-04-12T09:02:50.338Z",
-    "last_save_at": "2026-07-10T06:23:47.572Z",
+    "last_save_at": "2026-08-30T15:39:39.640Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f217920f3557ddb8d19889ec51cbfe3d816f15fbfd0c6df828748f95278cd1cf",
+    "source_fingerprint": "sha256:dcebcdb313551c1167d7f03fa3c460621116b4c66ad6709a6ce1622690e93cf3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a6c6edf140e4bba9392573d467017dac9f2bd1a1e9857bffc251f41b7e560b3",
-      "plan.md": "4ebe7234e985d60cf46307eaf3c7e9ffe2ed29aad30021415face7906433386d",
-      "tasks.md": "3d460bbd27729909a0474d70a5cc6b79eb7b03639ac4de9c848761e89d1ad10b",
-      "checklist.md": "375b0148855640301dc042fc011580121ba7c4d18e17e0765d20db43ae88fded",
-      "decision-record.md": "f5a36e80f44f4b5bd32a6ecddf7beb75e00dba1223af386690546ba44c011264",
-      "implementation-summary.md": "a396c1f2ca7ff2710df9d96fa62e5cc4a624c033b2af70db66c59c4c07ddfe54",
+      "spec.md": "e18172c95e9572d6b5fd9ca61aab66649a84f2c1f4f62d3673d5bc280362e61b",
+      "plan.md": "b75cf7a10971047cd5a76d49768ecd8c6cb71e3cdce0a52715da5cdcd6736e55",
+      "tasks.md": "095397725906af07a891eace31aed21757b8b1c00dfbfd7e20af8227d776ceae",
+      "decision-record.md": "e41336ed3a69acecc741e1408c9cabe0bc56f828ee8564b1981eeb544e1cbd62",
+      "implementation-summary.md": "b167b36c83a70835f5e100e62d0533c9d03e526ab0a5666ee192e3136e8ccabc",
       "research/research.md": "ba8086a312b128a6834ee967df9b992dc5dd74380605ded96c7545ab08df1508"
     },
     "last_active_child_id": null,

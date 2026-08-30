@@ -15,7 +15,6 @@
       "template conformance audit",
       "plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -27,21 +26,26 @@
       "audit",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "opencode"
+      "opencode",
+      "skills"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -52,18 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -169,43 +161,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Scaffold Planned",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Audit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/sk-design/shared/ (11 root markdown files)` has not been audited against `no single authored template for loose shared-root contracts; closest structural analog is .opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md (numbered OVERVIEW, --- separators) — apply as a judgment call and record it`",
     "created_at": "2026-07-27T14:59:51.122Z",
-    "last_save_at": "2026-07-27T16:17:27.228Z",
+    "last_save_at": "2026-08-30T15:39:13.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f3adb608b5bd6b7d0f1d53f31960568f759307cdd58211a095c63eae38d05fc",
+    "source_fingerprint": "sha256:a3af7728c3bb7f0cc1af5a4bbe7ee3becdd53ff70f5d68fefe4ff0eab7a4967d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa65c9621fba84aaef1361647321d0258dfa009b7ee9df7cd312d152337e6e96",
       "plan.md": "5413ddeac0aad430d6c6e558917603d5fb9a76334ea346a3f4114e2038f7d78c",
       "tasks.md": "c864dbcc1ac5baacd118bdd533af4b9e05b57cbf0acf0f190677b262912e1aa1",
-      "checklist.md": "5a6426c3d60d1ab70af6a1d8e5fb09631273eb0268e7a13daff252454f7c206c",
-      "implementation-summary.md": "0b692af6a79b312dd75901bd82fe1ca563abe751fc7b486e36e42af9f4447244"
+      "implementation-summary.md": "0c3682ea1c8b2efbd838517a72251b7b20dadcfecef703d8392062832b11d9dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

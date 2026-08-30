@@ -20,9 +20,9 @@
       "write path reconciliation",
       "027 phase 006 tasks",
       "statediff reconciliation tasks",
-      "write path reconciliation checklist",
-      "statediff verification",
-      "subscriber action batch evidence"
+      "statediff action batches shipped",
+      "write path reconciliation implementation",
+      "subscriber based mutation hooks"
     ],
     "key_topics": [
       "statediff",
@@ -44,14 +44,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "lib/storage/statediff.ts",
       "handlers/memory-index.ts",
       "handlers/memory-save.ts",
-      "tests/statediff.vitest.ts",
-      "tests/mutation-hooks-statediff.vitest.ts",
-      "tests/write-path-reconciliation.vitest.ts"
+      "tests/statediff.vitest.ts"
     ],
     "entities": [
       {
@@ -70,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -106,18 +97,6 @@
         "name": "statediff.vitest.ts",
         "kind": "test",
         "path": "tests/statediff.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-hooks-statediff.vitest.ts",
-        "kind": "test",
-        "path": "tests/mutation-hooks-statediff.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "write-path-reconciliation.vitest.ts",
-        "kind": "test",
-        "path": "tests/write-path-reconciliation.vitest.ts",
         "source": "derived"
       },
       {
@@ -197,26 +176,43 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`memoryindexscan` and `memorysave` currently reconcile state through scattered handler branches and post-mutation hooks",
     "created_at": "2026-05-13T09:00:48Z",
-    "last_save_at": "2026-08-29T15:22:19.592Z",
+    "last_save_at": "2026-08-30T15:39:33.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1726b461634870dedcaeff45a5c41c4d1ad85605fe922fd8025333ea86e90de",
+    "source_fingerprint": "sha256:222a427366354217b94b38808900c3062e51a013f0796ad1b52f5cfd8e2b4c2b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0388da336bc63410b72dbb8899832a28d314d4548360b7e5bb14167502bca9d",
       "plan.md": "8a23d780fa20d98e2fc6f04ea96947ddcde2b9b83f40d267446730125ffc3727",
       "tasks.md": "16ba743142d7e95aad86fc73a4835f2214f8aa8bdb89691ebe44b8b2cc660785",
-      "checklist.md": "495ff3fc23609895ba5fb8f544ba6e7e78714f7234f1f574d6152e6031412962",
       "implementation-summary.md": "051442174219f7d4d6ec6584aaa85af76d88c882ad61fed40ac0a43a8e1f6669"
     },
     "last_active_child_id": null,

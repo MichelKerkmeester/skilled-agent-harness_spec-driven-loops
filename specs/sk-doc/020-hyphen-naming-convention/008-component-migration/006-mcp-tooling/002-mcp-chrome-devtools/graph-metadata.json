@@ -165,7 +165,7 @@
     ],
     "causal_summary": "The mcp-chrome-devtools component contains snake_case manual-testing categories, scenario filenames, reference filenames, and an uppercase underscored install guide. This phase renames those filesystem paths to semantic kebab-case and updates every component-local reference while preserving the SKILL.md contract and non-filesystem identifiers.",
     "created_at": "2026-07-14T15:17:42Z",
-    "last_save_at": "2026-08-30T07:19:37.206Z",
+    "last_save_at": "2026-08-30T15:39:16.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,7 +174,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:3aea3240abf9267c84435801cbddbf2ef2aa79ecdc89cc43cb97862fb0e85c1c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "828985d438a7d2dbe1a4c3516a2f97233132f9fef3222714f78869f7c629161c",
       "plan.md": "d830d64110b3ba0a5bb0548a6529679161f9ff1fc76adedcb25bbbec5d417662",

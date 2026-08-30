@@ -37,8 +37,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "lease.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
         "source": "derived"
       },
       {
@@ -184,11 +177,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 011 asked for a dead-PID liveness probe, but that read-path probe already exists in `lease.ts:226-247`",
     "created_at": "2026-05-23T11:55:15.590Z",
-    "last_save_at": "2026-07-17T17:19:25.832Z",
+    "last_save_at": "2026-08-30T15:39:30.999Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:04ca9efdb7fbefbe08f097fd7d290e4f0ea2d5759228cbf8b90047020f3b6b96",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "45b2252c67fd90d906eb479bdecf8071d422c87467f0c4e4ea1076711dd0072c",
       "plan.md": "25edfb2e2ceed0409c1411a0c3c92ce07fdbe8427e388db0249ed8e0911290ad",

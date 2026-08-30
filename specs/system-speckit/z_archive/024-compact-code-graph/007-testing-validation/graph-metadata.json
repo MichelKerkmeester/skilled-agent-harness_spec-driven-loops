@@ -19,7 +19,6 @@
       "plan",
       "tasks",
       "024",
-      "checklist",
       "implementation",
       "summary",
       "implementation summary"
@@ -31,17 +30,20 @@
       "spec",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "addresses",
       "concrete",
-      "context-preservation"
+      "context-preservation",
+      "code-graph"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "tests/fixtures/runtime-fixtures.ts",
       "tests/runtime-routing.vitest.ts",
       "tests/hook-session-start.vitest.ts",
@@ -51,17 +53,31 @@
       "tests/token-snapshot-store.vitest.ts",
       "tests/session-token-resume.vitest.ts",
       "tests/edge-cases.vitest.ts",
-      "tests/dual-scope-hooks.vitest.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "tests/dual-scope-hooks.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -125,30 +141,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Summary Implement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,26 +193,31 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "token",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-12T09:02:50.347Z",
-    "last_save_at": "2026-07-10T06:24:43.445Z",
+    "last_save_at": "2026-08-30T15:39:39.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36911c75e725e78b376dccb96e55906c51d4299916fa471a54661f2f4c5810b5",
+    "source_fingerprint": "sha256:0a78a547f8052410534175c16af3f36c40fe8885f11da5890b107819fa0c3ed6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a7ae9bdfcc309fc35f15e7432fcfcae14a2dac6c46e9a2178e193be9506d9ce9",
-      "plan.md": "e4783d7caea91ccc8cbc6fd4b6da8fcad3dffd1bf9f0b5a98d50b979e5caf2e1",
-      "tasks.md": "2e78697cad6bbc391be9131898dd71eb4335fad5eb489472d30f9c4cee989217",
-      "checklist.md": "74af19699fc17a95d3112aeacada60b65cfafd8621f448fed4cd80544027b6ef",
+      "spec.md": "3d31f6d4961298c16b3adb1dd0e4702ea6946148ef1f0cfc7be3b16304357dca",
+      "plan.md": "d97c4c11060a3f39ce2f47ca7793d02b550087042d663fd1110bf85c717d92c8",
+      "tasks.md": "8ddb84806482e90a90f58943f5c06564ea9913e98e4bedd2094bd7a2d039e17f",
       "implementation-summary.md": "52acf9043627b9b598389aa372d7f8a1248fdb56fe0323b0f7313cea26c80f83"
     },
     "last_active_child_id": null,

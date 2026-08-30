@@ -36,54 +36,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "shared/embeddings/providers/hf-local.ts",
-      "shared/embeddings/providers/ollama.ts",
-      "mcp_server/tests/embedders/hf-local-client.vitest.ts",
-      "mcp_server/tests/embeddings.vitest.ts",
-      "mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
-      "shared/embeddings/factory.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/providers/ollama.ts",
+      "shared/embeddings/factory.ts"
     ],
     "entities": [
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/hf-local.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ollama.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/ollama.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local-client.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedders/hf-local-client.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embeddings.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "health-reporting.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -106,6 +67,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
         "source": "derived"
       },
       {
@@ -191,11 +170,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "hf-local.ts currently owns in-process transformers execution",
     "created_at": "2026-05-29T05:06:24.638Z",
-    "last_save_at": "2026-07-17T17:19:29.940Z",
+    "last_save_at": "2026-08-30T15:39:31.613Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:dd372837861db66d6e864d03f28e39bbac8743468b79ad841a4ff0e47b08f58e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7a6ab20df9a14673cb8bff8dca719752be4e09bb62049dd961fd6cb8c9f3f006",
       "plan.md": "7d9ff450e66ef1208fae9f502040ac48edbd670eb08dfa348ec94d1a1eb25e04",

@@ -167,7 +167,7 @@
     ],
     "causal_summary": "The code-review packet contains snakecase checklist files, review-flow and security scenario directories, a manualtestingplaybook root, benchmark labels, and review reference documents",
     "created_at": "2026-07-14T15:17:09Z",
-    "last_save_at": "2026-08-30T07:19:17.903Z",
+    "last_save_at": "2026-08-30T15:39:16.265Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,7 +176,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:72a65f57ecda67e3da261cc8970755a11b621bd5bba7afe8bcb8f84f737b66a0",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "79a227892a847545e859cfd6585b2ddd1e9b00b535ab3b79603b75e4810c448c",
       "plan.md": "5e78b892c5b7a89723fce6e8df872075cfeb2a81204fadfae63172dd0eb454ea",

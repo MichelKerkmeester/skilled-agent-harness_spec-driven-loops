@@ -35,19 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "tasks.md",
       "spec.md",
-      "checklist.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -55,15 +48,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -169,42 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Removed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Wave 1 of the over-engineering removal program: delete the three lowest-risk, zero-caller leaves (F5 hierarchical-budgets shadow-adapters, F6 receipts legacy-recovery manifest, F8 dead AUTHORITY_FLIP_COMMON constants) and their tests, severing barrel exports first. No live-loop adjacency.",
     "created_at": "2026-08-24T17:06:18.731Z",
-    "last_save_at": "2026-08-24T17:12:30.570Z",
+    "last_save_at": "2026-08-30T15:39:22.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42ce27e7156edf01e9cf7e979d6fd724abdde7bb46c5ddb8cfbf016a1154cd62",
+    "source_fingerprint": "sha256:bc435d67813a873a9759968467d357408ac4f227ba292db693a2263c6474fd8c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "332a65264424a9cbbb373b7a57df2072747695c7797203074275d094b8775d78",
       "plan.md": "a6af15ec5648c0bce0d4d1d8f52b74973f576633746402d8f9056e731c742fce",
       "tasks.md": "4d328986f0254269d7c7363a35c70430cc88814878436609c60ecccd1c3b0eb5",
-      "checklist.md": "05810d353ce76c6d01c979b42d3b575af0f980b3a8d8219816ea0c866f626f2e",
       "implementation-summary.md": "3ed1c537899e4814f1fa36319a0c8e1375492c164c105e2cf00ed82ccdd10a28"
     },
     "last_active_child_id": null,

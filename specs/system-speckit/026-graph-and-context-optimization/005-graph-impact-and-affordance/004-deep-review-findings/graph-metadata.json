@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
     "created_at": "2026-04-25T13:51:18.730Z",
-    "last_save_at": "2026-08-30T08:04:48.687Z",
+    "last_save_at": "2026-08-30T15:39:32.023Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:76d454a9b6a4fc6a71789cc02c8f8785b4bf0a37966171149d034e13db73729e",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2f9103548a779e348de746db4982e5a3ff45095b1ce07256e12f19b9ab762e2d",
       "plan.md": "986fec3039e685538cb1f081697dd5444143aea2875883def6f4158b86cc502c",

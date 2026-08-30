@@ -20,9 +20,9 @@
       "daemon lifecycle healing tasks",
       "boot fts rebuild tasks",
       "substrate test fix tasks",
-      "daemon lifecycle healing checklist",
-      "boot fts rebuild checklist",
-      "substrate test fix checklist"
+      "daemon lifecycle healing summary",
+      "boot fts rebuild summary",
+      "substrate test fix summary"
     ],
     "key_topics": [
       "daemon",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "dist/context-server.js"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,26 +185,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 032 deep-research loop established a single production root cause behind two live symptoms (SQ4): the `mk-spec-memory` launcher's respawn path can `SIGTERM`->`SIGKILL` an incumbent `context-server` child when its IPC deep-probe fails, then relaunch without verifying the DB closed cleanly (WAL checkpoint + `db.close()` + `.unclean-shutdown` removal)",
     "created_at": "2026-05-30T16:25:17.710Z",
-    "last_save_at": "2026-08-29T15:22:18.060Z",
+    "last_save_at": "2026-08-30T15:39:32.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:415a0ba1ddaa26a184fee713593171085c03359194fe41a4240e6bbc29a44a1c",
+    "source_fingerprint": "sha256:a6a88195f970fac4654fadde26cc561389b8d9fd5e0da3a0ab13ffb67bcaf15d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c09cd87d93f00c0099d17bcacd6bdecc40fff958f3b4ecb495e05f4183533221",
       "plan.md": "59a29aa60264e51a87ed3e11382765ec875f3deef13119926a95fac0d6f1dfb3",
       "tasks.md": "ab615408f6dae220eb54bea919662281350647ae6904efefb9c25d648629d4d9",
-      "checklist.md": "76724af8d0c7852f06e1a2be79619021f76c20c42f999f0131f39c75da1bc152",
       "implementation-summary.md": "8dc24fe67cfd176109465244190a09a5bbdbeb4209138b2c6aa2d90f5cf3f61c"
     },
     "last_active_child_id": null,

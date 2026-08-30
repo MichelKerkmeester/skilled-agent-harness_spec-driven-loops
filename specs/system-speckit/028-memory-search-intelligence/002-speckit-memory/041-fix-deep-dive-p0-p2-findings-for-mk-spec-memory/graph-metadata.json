@@ -131,17 +131,18 @@
     ],
     "causal_summary": "The 2026-07-03 deep dive (live production probing + eight code audits over ~96k lines) found ~150 defects across the mk-spec-memory search stack",
     "created_at": "2026-07-03T09:43:59Z",
-    "last_save_at": "2026-07-17T17:19:49.634Z",
+    "last_save_at": "2026-08-30T15:39:35.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:553ee8b1f878297655556b954896f72df3e2a18d288fd19f52d8da03e6de6d5e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55e746697ec2d2a14fbd695d3d89ce6ce1f545beb13a07b0f709ebc5450bbb97"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/028-memory-search-intelligence/002-speckit-memory/041-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/009-learning-feedback-loop-repair",
     "last_active_at": null
   }
 }

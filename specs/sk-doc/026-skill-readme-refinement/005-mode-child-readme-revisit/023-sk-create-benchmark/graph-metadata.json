@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-benchmark/README.md` predates the pilot standard",
     "created_at": "2026-08-04T08:34:47.400Z",
-    "last_save_at": "2026-08-30T07:20:31.109Z",
+    "last_save_at": "2026-08-30T15:39:17.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:31ce6e16a6a06021258ef90298dba898667d45a1cd41b183ce343cc65311f335",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "394bdc12fd83d3c76ee07c83058b3bef9abe4061cd27c00d7569071f10b4b53d",
       "plan.md": "a887ff977c4f08d7b81f68374fd9e0ca369b5e4933434ca93589864993f0d188",

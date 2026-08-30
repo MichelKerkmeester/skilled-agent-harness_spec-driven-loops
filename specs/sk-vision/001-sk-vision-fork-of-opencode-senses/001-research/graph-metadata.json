@@ -17,7 +17,6 @@
       "sk-vision research plan",
       "senses fork plan",
       "sk-vision research tasks",
-      "sk-vision research checklist",
       "sk-vision ADR",
       "senses fork decisions",
       "sk-vision research summary",
@@ -34,9 +33,9 @@
       "registertool",
       "plan",
       "tasks",
-      "checklist",
       "adr",
-      "decisions"
+      "decisions",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,10 +43,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
+      ".opencode/plugins/sk-vision.js",
       ".pi/extensions/sk-vision.ts",
       "specs/sk-vision/description.json",
       ".opencode/skills/sk-communication/SKILL.md",
@@ -73,12 +72,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -94,6 +87,12 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
         "source": "derived"
       },
       {
@@ -201,24 +200,23 @@
     ],
     "causal_summary": "The workspace has an OpenCode Senses source dump but no spec, no skill, and no Pi path",
     "created_at": "2026-08-15T15:38:25Z",
-    "last_save_at": "2026-08-29T15:22:05.687Z",
+    "last_save_at": "2026-08-30T15:39:19.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:271078a77505aa0db1e134a20527750c6d45a57bafe4700662f88b072d2eab06",
+    "source_fingerprint": "sha256:3f4d1007970164835fa8a2bedbf15f3fdd2ba90ae45be108395859e1b5a93d66",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a8535c29d320ff10bed0263f289a85e0e0efd46c3af2a3bf475ff9d1e8ef3e3b",
       "plan.md": "a4581ec8bd8324f44423447f2cdc10f6953176b20715e1dc71b2574908120ac1",
       "tasks.md": "0868436bade87e816007142088d15b233910c86faf61840a9433765160654102",
-      "checklist.md": "145d9b70ba761bece5ad479811066ea9c3aabe9cc7ecc3c09beab83210538b1b",
       "decision-record.md": "0614bec1c850a2972770ec8d95bc1117a7ef67425d72ad703b8a9e1126505e2e",
       "implementation-summary.md": "c90f19d4cc028972874d97ca4f3e48adbde430b98ae5793bbe8be2c62369fc20",
       "research/research.md": "5baa3f72e5fae2056a33c52be5d3738fc3abd0e76cecb64af7576e15ef997d8d"

@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase-parent control packet for the hybrid lexical+semantic trigger fallback: schema + backfill, semantic matcher, hybrid handler integration, and tests/goldens/shadow eval. Lexical stays primary; semantic is a feature-flagged UNION fallback, default-off and shadow-first.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-08-29T15:22:19.597Z",
+    "last_save_at": "2026-08-30T15:39:33.377Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:4a62a5005cd3e63c941b89fa79ff7ad7044a53df17528376cc89fbbe2759d5a9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e5cb1ec8af5b9728dd15b6d929a974edc60fd05667122302f5d16693e5983b5d",
       "decision-record.md": "f07a8d1d5b5dd24526be59884a795dd2882f404fb94209f6b5c4b8be8cd06775",

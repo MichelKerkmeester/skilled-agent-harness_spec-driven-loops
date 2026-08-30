@@ -21,8 +21,8 @@
       "deep review certificates and receipts tasks",
       "deep-review transition receipt tasks",
       "offline certificate verifier tasks",
-      "deep review certificates and receipts checklist",
-      "deep-review certificate verification checklist"
+      "deep review certificates implementation",
+      "deep-review receipt issuer"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Deep Review Certificates",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Review per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase defines attestation boundaries, replay-fingerprint inputs, receipt coverage, and independent offline verification for scope, per-dimension review passes, P0/P1/P2 finding adjudication, convergence, synthesis, and review-report publication.",
     "created_at": "2026-07-16T03:43:32.955Z",
-    "last_save_at": "2026-08-29T13:09:52.652Z",
+    "last_save_at": "2026-08-30T15:39:21.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bf155fffd26d43b47aaefe97f6898309aef4a45850d692868543db9d90bc5440",
+    "source_fingerprint": "sha256:a7d20c889c22f2efbb1a828a5c957ab23641d9c6250b53285d600e4d44b81850",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b7bd9619e3b5c0d559a01bbebc8e2d0008b8176277c9a8788d347891c8f66fcc",
       "plan.md": "f50dcf63f2d2bb9ea3e6b19028752a0fe2f9282897fa2ef5b7d6fa731ef0966e",
       "tasks.md": "edc8b7ca70681bd8170b1f392bd90a4ebe00b4a332084ae9c25fef16b0ccb9c8",
-      "checklist.md": "4c251ac426c8633653a450dfdbf5799fa9402115f5ba29e5506a609082c746e3",
       "implementation-summary.md": "06fb139250512b2ca28fedb055e29c4fb2d5a36fb65d470ca6b1610679e5e3f2"
     },
     "last_active_child_id": null,

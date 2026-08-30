@@ -108,17 +108,18 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-28T20:37:12.579Z",
+    "last_save_at": "2026-08-30T15:39:20.399Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:d358c88abd8429f51ee747105d7dafac2cf3770c2af3ce2654af8745e5fdbc14",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8fa06d3a0b2da5f26bfbbfad2b22ef54fa5f847cca8079f1c011c549562c0c2b"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review",
     "last_active_at": "2026-08-28T20:37:12.579Z"
   }
 }

@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-manual-testing-playbook packet contains snake_case template and prompt-voice resource filenames. This phase converts those non-exempt names to kebab-case and updates packet-local links while preserving playbook schema fields and scenario identifiers.",
     "created_at": "2026-07-14T15:22:37Z",
-    "last_save_at": "2026-08-30T08:04:23.986Z",
+    "last_save_at": "2026-08-30T15:39:16.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:ed95ca7acde93280d7183cdc12d3335e843f17d8115adf20a6e78ee736733198",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c156aed0e03e2069fb31709902da8314a5fc1b2be6cb4380886121fdbc0562a",
       "plan.md": "459130cf5a4c7298da4af861c758b188cffaa20df40b2f664d1fd98d265b5a1e",

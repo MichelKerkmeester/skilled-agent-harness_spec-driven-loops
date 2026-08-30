@@ -35,14 +35,20 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       "evidence/code-retrieval-fixture.json",
-      "evidence/fixture-validate.sh",
-      "spec.md",
-      "implementation-summary.md"
+      "evidence/fixture-validate.sh"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -56,6 +62,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "code-retrieval-fixture.json",
         "kind": "config",
         "path": "evidence/code-retrieval-fixture.json",
@@ -65,18 +77,6 @@
         "name": "fixture-validate.sh",
         "kind": "script",
         "path": "evidence/fixture-validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Author 10-20 deterministic query→expected-source pairs for CocoIndex embedder benchmarking",
     "created_at": "2026-05-18T08:18:02.786Z",
-    "last_save_at": "2026-07-17T17:19:22.956Z",
+    "last_save_at": "2026-08-30T15:39:30.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:79aef1a0227241cf813efaa19c67c94fc5544d2a863a9d08f16362b89d6ef662",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "369ece5fc35e0377884d007605df38667dea4527b8b5b92181c1e36c5f3052e1",
       "plan.md": "6378ca5b26b4a2f63e8bdfa92f6dc99696256af95b328c9fcb1d6fed035f6c3a",

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "After Phase 2 the `mcp-obsidian` mode has an empty skeleton but no working CLI surface: there is no way to install the chosen Obsidian CLI, verify it, or look up its commands",
     "created_at": "2026-08-02T05:50:27Z",
-    "last_save_at": "2026-08-29T15:21:54.006Z",
+    "last_save_at": "2026-08-30T15:39:10.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:546f344e6a2893564db2cf366842819508275a8a45b6bfee703e064b72c69188",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0506d0cbee7bf2d5072b907a813d07a868895d571dd9d2afaeb8c72b01266ea8",
       "plan.md": "f7f34da799d607bc78ec1a8efef1a03d7a6fdb7baf8f3efeb6737367a2e7c211",

@@ -21,8 +21,8 @@
       "deep research reducers tasks",
       "deep research projection tasks",
       "deep research replay fold tasks",
-      "deep research reducers checklist",
-      "deep research projection verification"
+      "deep research quarantined evidence",
+      "deep research convergence cursor"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -190,31 +183,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Projection Ownership",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the pure reducers and live projections for the deep-research migration: replay the typed event ledger into deterministic iteration/convergence state, an artifact index, and per-mode status without side effects or authority cutover.",
     "created_at": "2026-07-16T03:43:30.675Z",
-    "last_save_at": "2026-08-29T13:09:53.199Z",
+    "last_save_at": "2026-08-30T15:39:20.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b90670d26efbe3bd133b7b7d400ef78f9c8c38f3293ba2bb7b911552f16b29a6",
+    "source_fingerprint": "sha256:b9d638408e2852aede8f34b67b6de88263f5f6c6f596d73fc3997174f231f117",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19d99869666475bfde544cdd0aa6bfe67a59ab44a7c0ab86861ffa65dc5557bd",
       "plan.md": "c99699886a703b57b3a9bc0f69876be5408a0dd8138e4cf327e7463dd4a13ed0",
       "tasks.md": "fa3c97c164a637cb10ae02997d1dc08d03dd58f25d202303eb33ae43172e5384",
-      "checklist.md": "bc29aa7ae34ca71b59fbb0d06edd86669274f6fd86769aef0e028f984ae2ad2a",
       "decision-record.md": "e8462a63444e108fa094850cd190caca3df21c682e0b822a4754e2bc9f3fc5b6",
       "implementation-summary.md": "33424c1b2be2cbd2bd9dd2df1712ab9b5f088259b967630cd34f27b7f04f5f7e"
     },

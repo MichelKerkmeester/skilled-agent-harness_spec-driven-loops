@@ -20,11 +20,10 @@
       "filesystem durability plan",
       "020 003 tasks",
       "F22 F28 F59 F66 F67 F72 F89 F103 F104 tasks",
-      "020 003 checklist",
-      "filesystem durability checklist",
       "020 003 ADR",
       "filesystem durability ADR",
-      "020 003 implementation summary"
+      "020 003 implementation summary",
+      "filesystem durability implementation summary"
     ],
     "key_topics": [
       "filesystem",
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,37 +176,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Decision Extend",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Nine deferred P2 findings remain in the rerank sidecar launcher durability surface",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-08-29T13:10:01.575Z",
+    "last_save_at": "2026-08-30T15:39:31.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76839ee95788b8b5da9d847d4045130775f55b14038e6bad85ac5efaa8acc88a",
+    "source_fingerprint": "sha256:8aef2c7e5693e65aff3ead4beaa4228d90e4d17f7e5e8b6a8b167350562291ab",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c866f023cdf46028295273f3f6ec3e0a10567235f4cc761d5ea80e1577f7c85a",
       "plan.md": "68b497f9d251dcf44c8585c94e6d4db96247c005063ac9170f4aedf5294d85ad",
       "tasks.md": "1e384acd023828ce33e09b0c3133556fb4c3c613c45a1b5bab95749b5a9dcdae",
-      "checklist.md": "c6c905b23df52b42150545e9a8f9783d46469fe5e9a1862947f61dad36bbeeb7",
       "decision-record.md": "6f9483a829bb24208a543c862f15136c603cd16e7c6279df198008b80043bacd",
       "implementation-summary.md": "5af17f46e3b2a35000270cb2e13e3750dcf88593c64a82b998ee15b6cf092161"
     },

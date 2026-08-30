@@ -4,7 +4,8 @@
   "spec_folder": "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment",
   "parent_id": "sk-doc/019-skill-routing-refactor",
   "children_ids": [
-    "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research"
+    "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/001-research",
+    "sk-doc/019-skill-routing-refactor/035-create-doctor-skill-advisor-alignment/002-core-alignment-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -82,13 +83,14 @@
     ],
     "causal_summary": "Skill authoring, skill diagnostics, and skill-advisor routing are three surfaces that evolved somewhat independently: the `/create:` commands and `sk-create-skill` guides describe how to author a skill, the `/doctor` command surface diagnoses and repairs skill-advisor/skill-routing state, and `system-skill-advisor`'s own index (mode-registry, hub-router, advisor rebuild/validate, skill-graph scan/validate) is the live routing substrate all of that authoring eventually has to satisfy",
     "created_at": "2026-07-30T18:20:46.580Z",
-    "last_save_at": "2026-07-30T20:41:57.709Z",
+    "last_save_at": "2026-08-30T15:39:16.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:a60dcc50613468106d2a2329a8cb02a1425660d8bef78440cf090bda7d3a9799",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32488699e63968303c4c86b83331d01636b7cf2ebf684e816e844ffd993d8482"
     },

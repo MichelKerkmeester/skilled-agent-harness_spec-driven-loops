@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The 122 deep review confirmed (post Opus-4.8 arbitration) 3 unique P1 correctness/security defects in the shipped model-benchmark mode — the dispatcher drops the requested working directory for 4 of 5 executors, the D3 path guard misclassifies sibling-prefix paths, acceptance criteria run un-gated shell commands, and the D4 grader accepts unbounded model scores — plus 11 P2 advisories",
     "created_at": "2026-05-28T18:39:19Z",
-    "last_save_at": "2026-07-09T10:02:48.952Z",
+    "last_save_at": "2026-08-30T15:39:23.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0b921e861f8733e33a187c4d82150e4d37dd5cb83f52430a123e3fac46871cfc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7861f3379a5642ef83bfc8656d930b6dd51971786233140deb0b560351cbe83",
       "plan.md": "57bb86a214eab266e4aa9a61ae11f8580350cf54dea64ebb9172bd466dc45fae",

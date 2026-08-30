@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,36 +176,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Created Claude",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The framework supports three runtimes — OpenCode, Claude Code, Codex — whose `agents/` directories are real, separate folders (unlike `commands`/`skills`/`specs`, which are symlinks to `.opencode/`)",
     "created_at": "2026-06-07T09:07:23Z",
-    "last_save_at": "2026-07-08T13:43:39.927Z",
+    "last_save_at": "2026-08-30T15:39:24.017Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1383b5631eec739704f139d4d713917d8afcd1939ae6696ba20052af5991e5d3",
+    "source_fingerprint": "sha256:67f8ad78ca445b502f7116f168eaba1b21d8b7a78f6000bbe9911aaf574bd597",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54ee065db08710449a8eca3308bc31d5c2437a1349de2c521d803843f62435dd",
       "plan.md": "2cc59a39639b189435e8fcfa88621bc895e4e21c8bee9705ac5545528b345cb1",
       "tasks.md": "c2d2837a31de39a52ecbad2e714aab28eea2bbc8ddec3bc58c1fd61ea3020bd9",
-      "checklist.md": "a1bee7f425590bd029f4c0dab6d5ccb97cef94f3b5bf07842175a600c52a799b",
       "implementation-summary.md": "2dc1da099d58da53ea9a4b20d72b5863c055eaa7a9fee3d9e5d345a6e590a37d"
     },
     "last_active_child_id": null,

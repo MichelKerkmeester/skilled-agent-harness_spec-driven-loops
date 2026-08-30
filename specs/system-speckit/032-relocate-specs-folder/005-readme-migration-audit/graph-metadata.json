@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The specs-root topology flip (`003-migration-execution`) changed the canonical location of every spec-kit document",
     "created_at": "2026-08-07T17:29:17Z",
-    "last_save_at": "2026-08-29T14:56:24.606Z",
+    "last_save_at": "2026-08-30T15:39:36.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:aa9d19caed7dffa2aee67044df67844d2453bff8616106d55f36a0bdb657f6a8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e43bdda983c3e6f58eb30c41d15d89d9ed059e968747d2cd6f4df6f8203f1c0",
       "plan.md": "5cb68639de7b2cbf0faaf596774f3c89aa503e71ce525adc68bfeeee8eff628e",

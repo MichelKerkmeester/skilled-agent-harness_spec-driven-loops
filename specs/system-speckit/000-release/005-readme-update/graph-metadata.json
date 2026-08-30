@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-release/005-readme-update",
+  "spec_folder": "system-speckit/000-release/005-readme-update",
+  "parent_id": "system-speckit/000-release",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase",
+      "005",
+      "root",
+      "readme",
+      "update",
+      "spec"
+    ],
+    "key_topics": [
+      "phase",
+      "root",
+      "readme",
+      "spec",
+      "refresh",
+      "public",
+      "state",
+      "targeted",
+      "edits",
+      "regeneration",
+      "opus",
+      "surgical"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Refresh",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Latest System Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Release Notes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoped",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inputs",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Refresh the public root README.md to the v4 state — targeted edits, no regeneration.",
+    "created_at": "2026-08-30T15:39:27.543Z",
+    "last_save_at": "2026-08-30T15:39:27.543Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:edb1e82c206f672e6df6746047a6b2c672ea2c4d8039554aba69b674cc24f288",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "89e9da22e5e456714c02444cc28cde29322feaf80ec199428e180622ef8a2983"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

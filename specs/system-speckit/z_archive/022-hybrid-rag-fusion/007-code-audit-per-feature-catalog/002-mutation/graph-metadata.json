@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -27,29 +26,46 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "catalog",
-      "evolved"
+      "evolved",
+      "significantly"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "shared/parsing/memory-sufficiency.ts",
-      "shared/parsing/spec-doc-health.ts",
-      "handlers/checkpoints.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "shared/parsing/memory-sufficiency.ts",
+      "shared/parsing/spec-doc-health.ts",
+      "handlers/checkpoints.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -68,30 +84,6 @@
         "name": "checkpoints.ts",
         "kind": "code",
         "path": "handlers/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -189,27 +181,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The feature catalog for Mutation has evolved significantly",
     "created_at": "2026-04-12T09:02:50.245Z",
-    "last_save_at": "2026-07-10T06:21:11.299Z",
+    "last_save_at": "2026-08-30T15:39:38.284Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0972d2c41de4c012b99de381d6cdabcf0a2a379565c670d682c52afd0d0b1383",
+    "source_fingerprint": "sha256:8a147c82149c2c6e70053e15a408111abeef8d211d695b8e0fa0117aa6545b06",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b61ad8de8072b0cd66abbbd39f8ff23f63ef6b37474c3c2fb8102d3cf7a550f",
-      "plan.md": "897390a55b88f588786f5ab386e7c4f322519d30658d23a855284d9fd118333a",
-      "tasks.md": "ea8698ec9a55277718d7a7d2137d9a250ea3d7287461fde14a755afbdf364fea",
-      "checklist.md": "d704a887ffe14b27c7d9a14f316d7a61588e22d3f2faeb1e4650d8877863af22",
-      "implementation-summary.md": "4659016407f0569154d41e87a76e750ee02022806990292c0885878ddc552b42"
+      "spec.md": "e940b7ec83a824a4a61d81d8c21794f3755a9d0578a7a4712c5fa9639e4dafa5",
+      "plan.md": "08d60b6ad8d08e4f2b4ced07358e97a96a8a67b294d55ab05cbdfa95e9ed914d",
+      "tasks.md": "71447d3713eaecb938962b62b5b5be779754043f2ca825e6e127fb05a7848889",
+      "implementation-summary.md": "3619a2ca52ad5387be2e5a68a261f3a4b0160fb0a80aec3ad86c847546f14d2e"
     },
     "last_active_child_id": null,
     "last_active_at": null

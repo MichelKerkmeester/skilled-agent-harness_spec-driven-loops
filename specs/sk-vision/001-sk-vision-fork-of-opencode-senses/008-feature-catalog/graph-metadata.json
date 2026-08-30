@@ -3,7 +3,6 @@
   "packet_id": "sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog",
   "spec_folder": "sk-vision/001-sk-vision-fork-of-opencode-senses/008-feature-catalog",
   "parent_id": "sk-vision/001-sk-vision-fork-of-opencode-senses",
-  "status_review_required": true,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -18,7 +17,6 @@
       "sk-vision capability inventory",
       "sk-vision catalog package",
       "sk-vision 008 tasks",
-      "sk-vision 008 checklist",
       "sk-vision 008 summary"
     ],
     "key_topics": [
@@ -29,21 +27,21 @@
       "inventory",
       "package",
       "tasks",
-      "checklist",
       "summary",
       "ships",
       "tools",
-      "plus"
+      "plus",
+      "runtime"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-vision/feature-catalog/feature-catalog.md",
+      ".opencode/plugins/sk-vision.js",
       ".pi/extensions/sk-vision.ts",
       "feature-catalog/feature-catalog.md",
       ".opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
@@ -69,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -84,6 +76,12 @@
         "name": "feature-catalog.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-vision/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
         "source": "derived"
       },
       {
@@ -197,22 +195,21 @@
     ],
     "causal_summary": "sk-vision ships 13 tools plus a runtime and two host adapters, but has no canonical current-state inventory",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-29T14:54:24.634Z",
+    "last_save_at": "2026-08-30T15:39:19.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2ccaaaa06ad43b3400e443b6e65c51657a8fad3f5fc9208f6d6e082c86afaec",
+    "source_fingerprint": "sha256:8c04a64a23d23e4e95e0e4a22ddc1a8d567402f2d071e5b3442017501331dadc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85117a4b9489b6c668c782eee0394ff3e8159895cf1b8d4c5bd5fb3a303eed06",
       "plan.md": "c5afd09533005bef2e387c45599b97c814f02830e43d526b631c5fef6a98e2af",
       "tasks.md": "edfdebdd9bdc6d9f208fdac716f06093186df426b98f60eaffd620427d2eeb72",
-      "checklist.md": "2c6caca9c1a16d5e498c42866c58753a979b9c64bc570c376bf914671870f468",
       "implementation-summary.md": "3d7626b48ed5730cea74128ef32ba65082a0fd9280a365b48bb41ac31dd47829"
     },
     "last_active_child_id": null,

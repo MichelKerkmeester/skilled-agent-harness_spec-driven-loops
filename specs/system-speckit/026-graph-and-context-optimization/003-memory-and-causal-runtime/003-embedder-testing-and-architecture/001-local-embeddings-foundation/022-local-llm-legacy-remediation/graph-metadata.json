@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31)",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-08-30T08:04:44.815Z",
+    "last_save_at": "2026-08-30T15:39:29.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [
@@ -218,7 +218,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7254e25233bcbe6625225b202c338b4ec509b28596b83eda635551dd0464f455",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e83b1aa17cb23afc8e5e49cb467c893101bc02121580fb6d2e62a10aa9fcaa7a",
       "plan.md": "e6c45eabea83e3b667afd99e2e085a739106a581d4420cfe3273c35ba6e4211f",

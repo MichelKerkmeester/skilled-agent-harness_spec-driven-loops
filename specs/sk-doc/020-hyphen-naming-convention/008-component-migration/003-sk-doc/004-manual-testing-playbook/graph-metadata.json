@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The root sk-doc manual_testing_playbook tree uses snake_case for its category directories, scenario filenames, and root index. This phase converts those non-exempt filesystem names to kebab-case and updates the playbook index and path references without changing scenario content or identifiers.",
     "created_at": "2026-07-14T15:17:26Z",
-    "last_save_at": "2026-08-30T07:19:28.992Z",
+    "last_save_at": "2026-08-30T15:39:16.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:c14c9c04ee4d2d4737fcd56034c2ab7c1f40b37fbf269da6bc6d17f5462d1f4a",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1fc091eb64348081471cb5ecb4ffe71e01f02457d90ab86367316cba3103b60f",
       "plan.md": "1df4901f5c012f0319912be386d46c1690375b2c5dff7f21cb164d0b807dbe1d",

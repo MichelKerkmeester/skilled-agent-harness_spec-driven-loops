@@ -17,6 +17,10 @@
       "cli transport proof plan",
       "probe manual design",
       "cli transport proof tasks",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
       "cli transport proof summary",
       "utcp cli discovery contract"
     ],
@@ -40,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -164,42 +175,38 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built Nothing",
+        "name": "The Verification",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
-        "name": "Files Changed",
+        "name": "Yes The",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Every manual this repository has ever registered is `calltemplatetype: \"mcp\"`",
     "created_at": "2026-08-29T11:28:53.691Z",
-    "last_save_at": "2026-08-29T17:24:30.841Z",
+    "last_save_at": "2026-08-30T15:39:10.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a781aae3977d4b0c7115e4a3ba8845b3b57689b7e2e5989267f9d12e1e8cbfb8",
+    "source_fingerprint": "sha256:f7665953d8dd66b8e2579ca9583baa6357a6603477c3ae1d436719cde1e86ee8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a538b87eac30b2b3a1dc08aa96e12c94c9f5fa4a65ac0f8282739be496578255",
       "plan.md": "1fb1c54c57ba831b5c032e949154f3eb123357b82ab0551496516c9a15ba7119",

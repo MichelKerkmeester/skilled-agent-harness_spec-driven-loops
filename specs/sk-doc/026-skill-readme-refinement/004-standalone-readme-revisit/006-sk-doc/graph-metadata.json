@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The sk-doc README still carries the older tabular reference-card style and predates the pilot standard set by mcp-obsidian",
     "created_at": "2026-08-04T08:34:37.008Z",
-    "last_save_at": "2026-08-30T07:20:19.960Z",
+    "last_save_at": "2026-08-30T15:39:17.505Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0e980c134f5e681c8cf2ba46a053007cf191a9f84dc3b19eda62221fdb713eae",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b3d2d2f0e3ce626bcddd919c8542e549b4cd2fc8b265c42915845a4132e76ba0",
       "plan.md": "f5d797b641359bb899b2e4fa24d0d8641730dd7cdfc02ec91756571031c1e768",

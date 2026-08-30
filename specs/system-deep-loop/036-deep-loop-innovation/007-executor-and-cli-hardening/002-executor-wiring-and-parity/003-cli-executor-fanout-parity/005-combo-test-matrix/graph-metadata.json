@@ -39,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
@@ -62,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,42 +166,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Per",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Two things needed to close the fan-out parity packet",
     "created_at": "2026-07-29T15:59:11.801Z",
-    "last_save_at": "2026-08-29T13:09:49.494Z",
+    "last_save_at": "2026-08-30T15:39:21.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b37771b7afe083802967c07c381280c98a5493f3e7939dbfc1c8f5265af700fe",
+    "source_fingerprint": "sha256:d107aff24212b4b347ebc42fdbcf454ffaea2ef90d8894074ebd5e884dbd83ee",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55260ea13f98d8003241f56a9cb14527280dc001fdc64e77078bb41f65ccdf78",
       "plan.md": "c10c8560877da4438bf86ab65d35e90bc65fc794f81164518117e97d3e7b9cd0",
       "tasks.md": "6b98603ed64d11412127dcfb029630650dc9778590004cc6ba2d07d35dab6a12",
-      "checklist.md": "f7b7cb7323c1c7dd7574132f6fb8da54def5f8a8653acc022581992d9eef58ee",
       "implementation-summary.md": "a444aee130a666ec3b882923364318bc17f120e1250f32ad8ee31f4a459572d3"
     },
     "last_active_child_id": null,

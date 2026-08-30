@@ -3,7 +3,6 @@
   "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/004-legacy-writer-retirement",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -18,8 +17,6 @@
       "direct append removal plan",
       "legacy writer retirement tasks",
       "direct append removal tasks",
-      "legacy writer retirement checklist",
-      "direct append guard verification",
       "legacy writer retirement summary",
       "direct append guard",
       "direct append retirement complete"
@@ -33,27 +30,21 @@
       "removal",
       "plan",
       "tasks",
-      "checklist",
+      "summary",
       "guard",
-      "verification",
-      "summary"
+      "complete",
+      "fleet"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/check-direct-append.cjs",
       "scratch/inventory.md",
-      "scratch/authority-unchanged.md",
-      "scratch/append-site-conformance.md",
-      "scratch/append-site-census.md",
-      "scratch/full-suite-delta.md",
-      "scratch/guard-probe.mjs",
-      "scripts/README.md"
+      "scratch/authority-unchanged.md"
     ],
     "entities": [
       {
@@ -72,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -102,36 +87,6 @@
         "name": "authority-unchanged.md",
         "kind": "doc",
         "path": "scratch/authority-unchanged.md",
-        "source": "derived"
-      },
-      {
-        "name": "append-site-conformance.md",
-        "kind": "doc",
-        "path": "scratch/append-site-conformance.md",
-        "source": "derived"
-      },
-      {
-        "name": "append-site-census.md",
-        "kind": "doc",
-        "path": "scratch/append-site-census.md",
-        "source": "derived"
-      },
-      {
-        "name": "full-suite-delta.md",
-        "kind": "doc",
-        "path": "scratch/full-suite-delta.md",
-        "source": "derived"
-      },
-      {
-        "name": "guard-probe.mjs",
-        "kind": "file",
-        "path": "scratch/guard-probe.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -199,26 +154,61 @@
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "pinned",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "append",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
     "created_at": "2026-08-19T06:57:08.198Z",
-    "last_save_at": "2026-08-29T13:09:56.256Z",
+    "last_save_at": "2026-08-30T15:39:22.169Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23851a379c94e3d5a8556e32cfe8a4a10ee44d5fd2bee6e03fea1d553881c415",
+    "source_fingerprint": "sha256:bf5ab5942c70c1724894e3330c23f46cd2d348783e391b5832e3914fc8ad8d88",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c3394271a2e37fc251a8e42ce94d106a032b8ea5f9184596ff74ce7b2053f28",
       "plan.md": "c8e0bf8ec8d0a29359d9ad919306b947641822972b31b4c8c76e1ec7a6afa513",
       "tasks.md": "663571a93b53e6c36acdc18b86e93c3950b2f3f1fed1c6331aaadfb46373274d",
-      "checklist.md": "bbd215e960979b1a90edccd4397a57b32acc6febf3ab34e3339b8918c74730b5",
       "implementation-summary.md": "29a6ea11e2510da89dc2fe3c5700e858b1e9dd0586747d809f722457c0e7629f"
     },
     "last_active_child_id": null,

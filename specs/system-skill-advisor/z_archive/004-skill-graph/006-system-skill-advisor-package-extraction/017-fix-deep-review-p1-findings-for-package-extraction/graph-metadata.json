@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction",
-  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction",
-  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction",
+  "spec_folder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction",
+  "parent_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -19,7 +19,6 @@
       "013/009/017 plan",
       "P1 remediation plan",
       "013/009/017 tasks",
-      "013/009/017 checklist",
       "013/009/017 implementation summary",
       "P1 remediation summary"
     ],
@@ -32,10 +31,10 @@
       "plan",
       "remediation",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "10-iteration"
+      "10-iteration",
+      "review"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -43,13 +42,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      ".claude/mcp.json",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/shadow/shadow-sink.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-bootstrap.vitest.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/shadow-sink.vitest.ts"
+      ".claude/mcp.json"
     ],
     "entities": [
       {
@@ -71,12 +65,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -86,30 +74,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-sink.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/shadow/shadow-sink.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-bootstrap.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-bootstrap.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-sink.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/shadow-sink.vitest.ts",
         "source": "derived"
       },
       {
@@ -195,26 +159,55 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 10-iteration review identified two P1 edge-case risks in the extracted `mkskilladvisor` server: a stale bootstrap lock directory could block a clean checkout after a hard crash, and the shadow delta sink accepted an environment-controlled path without workspace containment validation",
     "created_at": "2026-05-19T15:11:02.194Z",
-    "last_save_at": "2026-07-15T11:59:17.330Z",
+    "last_save_at": "2026-08-30T15:39:26.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5a0129c4392987ac836c64aa8dc6442f610af59144b279f046c77615a738ea9",
+    "source_fingerprint": "sha256:b8d8f5a5bd29f2d4e5faa55e094ddadaac3fdeb2531b9fbe7066501fff8fa608",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2ded6be730368aff9b12d4450bcad99a6ded1a2ed737ed64097c20416b594337",
       "plan.md": "19575ce6c6826d0cc577a5af719a8372dbcd4043f7a2212e7b74d7405edfa6fd",
       "tasks.md": "d25b29618b8047cda2c550cb3c672099eb38d53328b0b1fa8754753ede4f1173",
-      "checklist.md": "2f4e26228403c1a51688250372b2de6a4faba5f6523bd9f09433fd0a6d6655d8",
       "implementation-summary.md": "896da3c1e878f8549f0821226a2d4e2ed3d16a8f3b41850ca231efb71da033b9"
     },
     "last_active_child_id": null,

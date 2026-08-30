@@ -20,9 +20,9 @@
       "parity proof fallback start plan",
       "tasks",
       "wave 008 tasks",
-      "verification",
-      "checklist",
-      "wave 008 checklist"
+      "implementation",
+      "summary",
+      "wave 008 implementation summary"
     ],
     "key_topics": [
       "wave",
@@ -44,12 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/spec.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/plan.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/checklist.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/dispatch-log.md"
     ],
@@ -70,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/checklist.md",
         "source": "derived"
       },
       {
@@ -187,36 +179,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Five",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The larger 023 manual-playbook-execution packet needs every `manualtestingplaybook` scenario actually dispatched through the real `cli-opencode` orchestrator (not just read or reasoned about) and graded strictly against that scenario file's own Pass/Fail Criteria",
     "created_at": "2026-07-07T15:09:17.527Z",
-    "last_save_at": "2026-08-29T15:21:59.881Z",
+    "last_save_at": "2026-08-30T15:39:12.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:970b0e40233921bc194944801631a5bcb2ee5e411849e3c78c975ef92c3f57a9",
+    "source_fingerprint": "sha256:a10fdb82bf8b16f9cf47fc1ccf2861b8572ac57505bf440f6c1e78e6c18ae6da",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe8f20f710385ebf2be4105039853effa6a6e384b207d24188c1efece6fc9274",
       "plan.md": "fbe728fc548dabd7859f75549b4e08a0822024ce82c5a9e5c57de628451772da",
       "tasks.md": "01d8b9669002da658a04f8d1ad8670117b667df0547e0c0bde651bd4a775e7f8",
-      "checklist.md": "591eef41abc7a0d3500512499fbc46b0ad6f4efc577d5f68f78549d39b9557ac",
       "implementation-summary.md": "a72499174e4998389980258766acfa74201ee10df66e7c74ae97b12c39c67e2b"
     },
     "last_active_child_id": null,

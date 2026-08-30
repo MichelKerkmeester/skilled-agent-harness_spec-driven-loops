@@ -18,8 +18,6 @@
       "dark ledger projection plan",
       "legacy projections tasks",
       "dark ledger projection tasks",
-      "legacy projections checklist",
-      "dark ledger projection checklist",
       "legacy projections implementation",
       "legacy projection verification evidence"
     ],
@@ -35,7 +33,7 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist"
+      "verification"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/legacy-projections.test.ts",
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +180,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan deterministic folds from the verified dark ledger into byte-identical legacy JSONL and JSON artifacts, preserving every existing reader while legacy authority remains unchanged.",
     "created_at": "2026-07-16T03:43:48.679Z",
-    "last_save_at": "2026-08-29T13:09:50.744Z",
+    "last_save_at": "2026-08-30T15:39:20.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17d59c16397c8cdc8dc095aeeb1d03d4c8b63dbc60b038e3af35f23c0c710ab6",
+    "source_fingerprint": "sha256:a5559ea90c71fcd0c6bdd45ba5191a6c42f9d69787d42ab8802d05b855474902",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "601d1552f4dab35ff7d6d2572b3e51e6617f0180183658effda8d54e744823b9",
       "plan.md": "543bf1f4bc645ccc376c41651d0e4aae159ccf058b6838ed1d0acf12425aeebb",
       "tasks.md": "77a3a7c505eed3e491afec57f237766018a5c0fe4459412fb281c0af9a33561b",
-      "checklist.md": "9714d0e86830b33b2d0179f74f0ed9f19cc4ed561f28dc5a2668a445026c1051",
       "implementation-summary.md": "58d5f5f7a3eff2f946789f3ff455b36e8ca3d7d4ee4ee780c8fb66d3e04002bc"
     },
     "last_active_child_id": null,

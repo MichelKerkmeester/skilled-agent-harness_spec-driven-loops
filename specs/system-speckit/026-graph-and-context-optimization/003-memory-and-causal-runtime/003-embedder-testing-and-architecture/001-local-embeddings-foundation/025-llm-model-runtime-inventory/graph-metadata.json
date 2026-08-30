@@ -195,7 +195,7 @@
     ],
     "causal_summary": "After the 014 setup-A line migrated both MCP servers off cloud Voyage onto local EmbeddingGemma, two distinct runtimes ended up in production: a quantized GGUF/ONNX path for the Memory MCP family, and a full-precision sentence-transformers path for CocoIndex",
     "created_at": "2026-05-13T17:30:00Z",
-    "last_save_at": "2026-08-29T15:22:14.294Z",
+    "last_save_at": "2026-08-30T15:39:29.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T17:30:00Z",
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2ab1891ea15c58931d30006f86dca40e59819cfd8b4493015a0b10edaf8aa066",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c0f325ee65b52d42ac473346edc6c0bd84465a9c03497b6c25f2572516bdd644",
       "plan.md": "a890a6d3fd72001284f89250c6e47ee3f4c4305f9ceddcb2cd2bd002c47ff7e7",

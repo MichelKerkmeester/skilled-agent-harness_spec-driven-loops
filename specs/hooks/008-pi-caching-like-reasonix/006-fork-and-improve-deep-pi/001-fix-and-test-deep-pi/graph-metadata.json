@@ -15,7 +15,6 @@
       "deep-pi patch",
       "deep-pi fix and test plan",
       "deep-pi fix and test tasks",
-      "deep-pi fix and test checklist",
       "deep-pi fix and test status"
     ],
     "key_topics": [
@@ -24,13 +23,13 @@
       "patch",
       "plan",
       "tasks",
-      "checklist",
       "status",
       "full",
       "read",
       "installed",
       "source",
-      "lines"
+      "lines",
+      "across"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/settings.json"
     ],
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,26 +178,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A full read of `deep-pi`'s installed source (1,299 lines across 7 files — `deeppi.ts`, `eligibility.ts`, `stability.ts`, `stormbreaker.ts`, `telemetry.ts`, `hashlines.ts`, `utils.ts`) surfaced source-level gaps",
     "created_at": "2026-08-07T16:34:28Z",
-    "last_save_at": "2026-08-29T15:21:52.319Z",
+    "last_save_at": "2026-08-30T15:39:09.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59476992903e69fb616f5d694c787c8638f583c44fabbbf24dca4baaec34619c",
+    "source_fingerprint": "sha256:045b505f5eba504a3db99cce2909067b4d8c6225e3622047c9bd3f568688a02e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85f24222bc0b9421be91aeb770aee399ef41beb612e5e22f294bd0f31574efa6",
       "plan.md": "51719553c78e2b2f33744d977012e304d42392afec1e1361848d5080bf7b141a",
       "tasks.md": "8d36832ae7eb437e2724ad0d3efca339531b92d2e1a21556dcecf20ee6830b36",
-      "checklist.md": "5134c4b641de83e7f66ef3c0dec4276a379cf5b6ec4683bb884920b269229af5",
       "implementation-summary.md": "fe1e2ef07915cc00acadbd1eb8b16fe9b9df96b415eb85a0399cdd9207726e79"
     },
     "last_active_child_id": null,

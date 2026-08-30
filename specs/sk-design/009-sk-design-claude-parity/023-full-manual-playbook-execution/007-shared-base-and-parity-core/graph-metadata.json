@@ -19,10 +19,10 @@
       "shared base parity core dispatch plan",
       "tasks",
       "wave 007 tasks",
-      "verification",
-      "checklist",
-      "wave 007 checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "wave 007 implementation summary",
+      "shared base parity core summary"
     ],
     "key_topics": [
       "wave",
@@ -44,13 +44,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "dispatch-log.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/spec.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/plan.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/checklist.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/implementation-summary.md",
       ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/dispatch-log.md"
     ],
@@ -71,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/checklist.md",
         "source": "derived"
       },
       {
@@ -164,30 +156,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -198,26 +166,43 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Executed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Command Sequence",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 023 (full manual playbook execution) requires every `manualtestingplaybook` scenario to be dispatched for real through `cli-opencode` with the raw scenario prompt, not the Lane C harness's routing-analysis-only wrapper, and graded against that scenario file's own Pass/Fail Criteria",
     "created_at": "2026-07-07T15:11:26.139Z",
-    "last_save_at": "2026-08-29T15:21:59.877Z",
+    "last_save_at": "2026-08-30T15:39:12.378Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:172e6b7113b174548866fa001fa55844a3d7c77d73e10c844d327f37e1e4b881",
+    "source_fingerprint": "sha256:37ee95b25939be5a2b27204b0894c493ca501cb2aa17360d5d50b3682280f004",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "91bb0c9ebca370c7c334e0bb01b8fe8ba65e2391da015872e2bb3678c9a1b1da",
       "plan.md": "fcca035a5300892105d1421d97ab220a8bdd8987bdb3d2688faded1c4afd0477",
       "tasks.md": "eaee187cc7b3d65e378fadac95eaadb796035d88de8134fc8096ecc68bc89ff2",
-      "checklist.md": "c06195864112c54a4abde9a0cd73cb979c3c5da36ca86a6c9ccdc84f399045a6",
       "implementation-summary.md": "4382ebe70c610e0930604c80deeba74c267ba56235bb92d1ab7a1d7bbaa94335"
     },
     "last_active_child_id": null,

@@ -133,13 +133,14 @@
     ],
     "causal_summary": "The `system-spec-kit` backend is ~244K LOC of authored TypeScript across ~1,487 files (`mcpserver/`, `scripts/`, `shared/`), run as a long-lived MCP server over `StdioServerTransport` (`mcpserver/context-server.ts`)",
     "created_at": "2026-07-11T00:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:08.922Z",
+    "last_save_at": "2026-08-30T15:39:27.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:b3a99e721aa05aa6f0b1dbb76fe27a20e21a6592212a7596a13625a554fa8fcd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "225154c5118ad5aa384497e491d57efd5456080a93552df1534c43e7729ce896"
     },

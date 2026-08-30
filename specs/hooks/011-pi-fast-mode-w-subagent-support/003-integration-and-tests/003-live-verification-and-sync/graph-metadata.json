@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Source and package tests cannot prove real TUI/RPC status delivery, custom-footer coexistence, or a child Pi session inheriting the preference",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-30T08:04:09.258Z",
+    "last_save_at": "2026-08-30T15:39:09.684Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:31b6d719694f9e3f45f4090ba8380889315e683c7a4e520723793013c979e20c",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0372204fb2191d51713da6dc1530ecdaadbd9b79c162b886d3f1ffd4627b53f3",
       "plan.md": "3722bb249fc68f28752bec022737ac57e4f1580cc7d44c84bdd27a38f1afdd03",

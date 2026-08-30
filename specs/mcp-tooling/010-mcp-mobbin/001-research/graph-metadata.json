@@ -41,17 +41,17 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
       ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/spec.md",
       ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/plan.md",
       ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/tasks.md",
       ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/context/website-link.md",
-      "research/research.md",
       "research/resource-map.md",
-      "tasks.md",
-      "spec.md",
-      "plan.md",
-      "context/website-link.md",
-      "implementation-summary.md"
+      "context/website-link.md"
     ],
     "entities": [
       {
@@ -73,9 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "website-link.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/context/website-link.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -85,9 +85,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "website-link.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/mcp-tooling/010-mcp-mobbin/001-research/context/website-link.md",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phases 002 and 003 must author a transport packet and a `.utcpconfig.json` manual for an MCP server this repo has never run",
     "created_at": "2026-07-16T09:39:32Z",
-    "last_save_at": "2026-07-16T15:05:29.774Z",
+    "last_save_at": "2026-08-30T15:39:09.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:94f5bcd0785b3fc7e7cb4a8ab0459597a5756be5b81e4bc211f6634551854d63",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "01bea300f0e765c65dd63234823a12fc6aaefbba9f6f23b00e567b4db82f59b1",
       "plan.md": "8e57904c4f6ed8ee54aeb34542bd407f1dff8569209c395216fe8064425c8e22",

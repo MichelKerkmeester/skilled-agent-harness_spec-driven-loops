@@ -38,20 +38,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json"
     ],
     "entities": [
-      {
-        "name": "optimizer-manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -80,6 +74,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "optimizer-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The optimizer can propose a config candidate that satisfies individual parameter ranges while violating `minIterations <= maxIterations`; there is no cross-mode invariant group to catch this",
     "created_at": "2026-06-28T14:02:08Z",
-    "last_save_at": "2026-07-16T16:32:13.146Z",
+    "last_save_at": "2026-08-30T15:39:24.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:845873e84d0a9e4809252eccde0cd618ce1323f7dcc63df1650b69aba991dd3d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "daa68c4f52291238afa7dd3f29f468cb9be008ae03de1b97d9f0cc78cffc292e",
       "plan.md": "f143383c774090b4664f6e1dd6b831528e7337caed26fdba334d166489c66c41",

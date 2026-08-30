@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The migration needs a deterministic git-mv engine driven by an explicit semantic source-to-target map. It must batch by dependency closure, skip every policy exemption, abort safely on collisions, remain idempotent, and support dry-run and rollback without performing the migration during authoring.",
     "created_at": "2026-07-14T15:16:48Z",
-    "last_save_at": "2026-08-30T07:19:12.539Z",
+    "last_save_at": "2026-08-30T15:39:16.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5ff93d89a635472c1e10bbd63b23a36a016dfc3db33221895c7efa34c1313d26",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "33e73b1f5ca3ce3e8343134880c10434fe9bca144a978137d1ab43adc9729a8e",
       "plan.md": "7c03239bb0f02867e92c609931eed31bee7c573898ab06bfdd744ffbb1d0abb2",

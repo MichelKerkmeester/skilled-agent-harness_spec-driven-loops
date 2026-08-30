@@ -36,25 +36,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/README.md",
-      "tasks.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "README.md",
+      "AGENTS.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -68,9 +57,27 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "key_phrase",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -124,12 +131,6 @@
       {
         "name": "Overview Mechanical",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "AGENTS.md",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -190,7 +191,7 @@
     ],
     "causal_summary": "Root docs still reference old names post-002/003 rename",
     "created_at": "2026-05-21T06:57:10Z",
-    "last_save_at": "2026-07-09T10:02:48.619Z",
+    "last_save_at": "2026-08-30T15:39:23.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:48615ab65ee69d502501a7b861a0ccea32eb6d8ff99ccd703a8d4fb8facc81ff",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11ec2932e1c044f0b3ca0b8c312307de1b6106957641358b98c127a246220621",
       "plan.md": "184d2842fa85592bc3aec3555aa446db69476a458f2cd1d3c2e94a89e48eb24b",

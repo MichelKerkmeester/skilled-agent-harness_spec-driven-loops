@@ -20,9 +20,9 @@
       "manifest impl plan",
       "012 tasks",
       "template impl tasks",
-      "012 checklist",
-      "template impl checklist",
-      "012 ADR"
+      "012 ADR",
+      "template impl decisions",
+      "012 outcome"
     ],
     "key_topics": [
       "template",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md",
@@ -60,7 +59,8 @@
       "scripts/spec/recommend-level.sh",
       "scripts/spec/upgrade-level.sh",
       "scripts/rules/check-files.sh",
-      "scripts/rules/check-template-headers.sh"
+      "scripts/rules/check-level.sh",
+      "scripts/rules/check-template-source.sh"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,9 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "check-template-headers.sh",
+        "name": "check-level.sh",
         "kind": "script",
-        "path": "scripts/rules/check-template-headers.sh",
+        "path": "scripts/rules/check-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-source.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-template-source.sh",
         "source": "derived"
       },
       {
@@ -210,24 +210,23 @@
     ],
     "causal_summary": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T12:37:22Z",
-    "last_save_at": "2026-08-29T15:22:13.483Z",
+    "last_save_at": "2026-08-30T15:39:29.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:acdd877a0717220904a78ad4dd324e8d307d818019426b90d01b10631a275215",
+    "source_fingerprint": "sha256:4bb23d172d41f64603d47d0c7b68d0cf7939b103e526b3f53acaa927f45c748e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2b6a55b69a9b86d8fa12a5100aa811e60d8c12a807fc1d7d2991c40ae20a344",
       "plan.md": "7ad76bd753e275cc3f8f01988eb8a3225331786aa94eccf70f51af481bb52488",
       "tasks.md": "aef93665c519c94b24d417a9b083595945c091c9c514e93e66a8ef65378e0058",
-      "checklist.md": "c33b75bb7dc889edd69eaf3d6ccab8a67057fa547a0040b640793c253aaba2bf",
       "decision-record.md": "e46899e7add5c5751c2498bf43baf1b00acc72c8c25d4be5b3fd7ea1d7fb9ae1",
       "implementation-summary.md": "6b304fb01149e37a2bea15406dd76ebf723cf284d231c20603b1e8c3868166d9",
       "resource-map.md": "c87d71c5571b0831952e1cb4f4f259de34e4b9dc3118d13e21880a9d125d976f"

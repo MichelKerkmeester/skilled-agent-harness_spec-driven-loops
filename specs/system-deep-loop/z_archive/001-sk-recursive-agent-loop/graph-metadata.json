@@ -55,7 +55,8 @@
     "key_files": [
       "spec.md",
       "research/research.md",
-      "resource-map.md"
+      "resource-map.md",
+      ".codex/config.toml"
     ],
     "entities": [
       {
@@ -74,6 +75,12 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -187,7 +194,7 @@
     ],
     "causal_summary": "The original `041-sk-improve-agent-loop` packet grew into a longer agent-improver program with seven explicit implementation phases",
     "created_at": "2026-04-12T09:02:50.184Z",
-    "last_save_at": "2026-07-09T10:02:48.289Z",
+    "last_save_at": "2026-08-30T15:39:22.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +203,13 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:522a1fd32fc96bd9d5d6910ccfbbfab55d9e7599ebf309db74c0b4d386026128",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "70b5d51cba517b69fb8ab6925e8b381d36515eda6bd2363d4bff21d76899170b",
       "research/research.md": "ba0a01ebd35b19274907032a4630da2f8aef2d70e7be8915d689936f64927d2f",
       "resource-map.md": "d6791a793bdab08746671d9062e52f35f34a76fd3bac2fe8c415900ccb57151a"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/001-sk-recursive-agent-loop/011-sk-agent-improver-advisor-readme-sync",
     "last_active_at": null
   }
 }

@@ -40,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
@@ -63,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -190,27 +183,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A spec folder claims its acceptance criteria are satisfied through a single self-attested checkbox (\"All acceptance criteria met\") in `checklist.md`",
     "created_at": "2026-06-06T10:22:05.634Z",
-    "last_save_at": "2026-08-29T15:22:18.608Z",
+    "last_save_at": "2026-08-30T15:39:33.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:000739715ca556d747ffd151010decadbd3433958e6e7aca2672f9ca574ecd44",
+    "source_fingerprint": "sha256:b8158abfa69de1f9fd4eab6386f7924a9153957ed69161fb2e5c64d1860b1a3e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6b3e278c2076bd86efa76f1ce878b6fb2653787afea18a20c70419b8d0aafca2",
       "plan.md": "37680110e0239db538a64acccd36d5f4cced70a087283f30e508b4bef1da1f01",
       "tasks.md": "4069449494537234a4744a60a8d1d2cb94a834735b2c021f696db29d625ac952",
-      "checklist.md": "1408dd46af8f63938c494d523715e53f3c429c54961b4124573c0b5b16e9de90",
       "decision-record.md": "4779c3188394e4df07acb6ba063899d234b33fa962f2f2ef56ab580728ec2a23",
       "implementation-summary.md": "efecd7386fcb872978ea8005e3404de2a877800e1318934b9910f53d4acb2c0e"
     },

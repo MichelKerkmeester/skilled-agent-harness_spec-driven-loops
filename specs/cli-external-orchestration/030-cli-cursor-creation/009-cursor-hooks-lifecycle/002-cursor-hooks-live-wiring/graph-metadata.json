@@ -16,7 +16,6 @@
       "cursor hooks live wiring",
       "cli-cursor hooks.json registration plan",
       "cli-cursor hooks.json registration tasks",
-      "cli-cursor hooks.json registration checklist",
       "cli-cursor hooks.json registration implementation",
       ".cursor/hooks.json live wiring"
     ],
@@ -31,43 +30,24 @@
       "wiring",
       "plan",
       "tasks",
-      "checklist",
-      "implementation"
+      "implementation",
+      "phase"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".cursor/hooks.json",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
-      ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
+      ".cursor/hooks.json",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+      ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-fires-smoke-test.md",
-      "feature-catalog/feature-catalog.md",
-      "implementation-summary.md"
+      "feature-catalog/feature-catalog.md"
     ],
     "entities": [
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "hook-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,9 +67,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
@@ -102,12 +100,6 @@
         "name": "confirmed-fires-smoke-test.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-fires-smoke-test.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,26 +185,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "synthetic",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 004's ADR-001 explicitly decided to register the guard adapters in a committed, project-level `.cursor/hooks.json`, but the operator deferred the actual file to \"a later, separately-approved step.\" That step never happened: no `.cursor/` directory existed anywhere in this repo",
     "created_at": "2026-07-24T13:32:31.907Z",
-    "last_save_at": "2026-07-27T03:27:50.639Z",
+    "last_save_at": "2026-08-30T15:39:07.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d2ae0e5f260ffea5e9e2cce93152c9be0a9046a2f93de571e4c174b0714f451",
+    "source_fingerprint": "sha256:10cd1b7876e9bdbbaefbc509f4c442128c5e77b9b306da53f97a97c1dae49b5f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "10a5b5f4537bb15b3f7c179bfcc350b5bda7cc88e85e3c707da98bdd116d570c",
       "plan.md": "a53a8acf8b6796e1f26abcd152743d1c6e542f8fba72f7277d99f2727d4f0df4",
       "tasks.md": "32b8cd7f890b745f22b503964c1589176af3bab53a2751ce11b34e190ecccf73",
-      "checklist.md": "b2ad5a55a81929af44e4b113212ae9b7e8645acdd544b1a64bb797e1cb9b6503",
       "implementation-summary.md": "090cc253e72a72e38380efcb1356bd6ba2e9a969eec496fb935f1221b65d033a"
     },
     "last_active_child_id": null,

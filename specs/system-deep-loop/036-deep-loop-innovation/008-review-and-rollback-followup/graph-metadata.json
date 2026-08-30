@@ -84,13 +84,14 @@
     ],
     "causal_summary": "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption.",
     "created_at": "2026-08-13T09:23:03.369Z",
-    "last_save_at": "2026-08-18T11:07:58.583Z",
+    "last_save_at": "2026-08-30T15:39:22.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:58de9d8752b3decf29179cc6190045d7dd432ff138fbcc3de5960aacebf2a9ce",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec9f71173eb34d392a9cd46c690da80e6c0bbee54b95c6dc76a724f1a717c47f"
     },

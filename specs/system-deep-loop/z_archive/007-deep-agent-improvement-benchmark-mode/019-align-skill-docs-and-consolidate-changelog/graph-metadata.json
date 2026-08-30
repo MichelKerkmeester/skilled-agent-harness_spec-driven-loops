@@ -41,27 +41,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "manual_testing_playbook/manual_testing_playbook.md",
-      "scripts/README.md",
-      "scripts/tests/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/README.md",
+      "scripts/tests/README.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "scripts/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After 121 reshaped the skill into two co-equal lanes, the skill `README.md` still described the pre-121 flat single-lane layout (wrong `references/` subdirs, flat script tree, miscounts, no Lane B or `/deep:start-model-benchmark-loop`), and 10 \"Mode 4\" labels survived pointing at a `SKILL.md` section that was renamed to §4 Lane B",
     "created_at": "2026-05-30T06:29:13Z",
-    "last_save_at": "2026-07-09T10:02:49.029Z",
+    "last_save_at": "2026-08-30T15:39:23.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0f695d21d81f8f5d6c3fef0b3dfba6a698c24ada62c979740bf4d0c9b5d9fbaf",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3a423252269884fd5ffed4cd0c3b72ba4f0169db9af538326c6f949a5239e0d",
       "plan.md": "ac99018b4a1edd8f4bc98d30172f7d22892fc0061f5971e7b539497bf5206917",

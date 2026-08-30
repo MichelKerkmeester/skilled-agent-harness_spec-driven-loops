@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The skill now runs two lanes (agent-improvement and model-benchmark) through one agent, but the feature catalog and the manual testing playbook do not say which lane each entry serves, so operators cannot tell agent-improvement features apart from model-benchmark features",
     "created_at": "2026-05-29T07:37:38Z",
-    "last_save_at": "2026-07-08T13:43:37.079Z",
+    "last_save_at": "2026-08-30T15:39:23.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:711bae7e05cc6032692029362f2f4d7c48c09517238ca42cda0f121d4d5819c7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9d69474a43d32a65c0903f420b83d9d7ba4d468532a49398fd39657c227937ba",
       "plan.md": "592538feb209e2ae9ad558b9e4a97d6867c62cbdc9c305af16e540bbddb0a764",

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only",
+  "spec_folder": "hooks/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "directives every message",
+      "pi directive startup compaction only",
+      "directives-only fallback dedup gap",
+      "boundary-gated directive delivery",
+      "boundary-gated directive delivery plan",
+      "pi directives-only fix plan",
+      "pi directives-only fallback dedup summary",
+      "directives every message fix status",
+      "phase 019 implementation summary"
+    ],
+    "key_topics": [
+      "directives",
+      "every",
+      "message",
+      "directive",
+      "startup",
+      "compaction",
+      "only",
+      "directives-only",
+      "fallback",
+      "dedup",
+      "gap",
+      "boundary-gated"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      ".opencode/hooks/injection-contract.md",
+      "hooks/claude/user-prompt-submit.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Directive Delivery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compaction Only",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Interactive Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gated Directive Delivery",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. FIX DESIGN — \"show once per boundary\"",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PER-RUNTIME APPLICATION",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. TESTING PLAN (the \"test across runtimes\" ask)",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Directives",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Fallback Dedup",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_PI_ADVISOR_DEBUG",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. WHAT SHIPPED",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Constant advisor directives shown on every cli-pi message. Root-caused: the directives-only advisor-failure fallback was intentionally always-shown, so it repeats whenever the advisor is unavailable in Pi. Fix ships: the fallback now dedups to once per boundary (Pi). Root-cause of the advisor unavailability in cli-pi is a separate open thread.",
+    "created_at": "2026-08-30T15:39:09.055Z",
+    "last_save_at": "2026-08-30T15:39:09.055Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:af695c3624a84c43b5535935252966006ced495a4fe92a3579acebe4fbe65e49",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3808902412384215d0cbec607027e2ff8105609cf7cf7b049d2787aade65d58b",
+      "plan.md": "1bc547d91b0b6a05ad1d287ebe8c00b04cea2375b92ee6c401f39fc1619bb48f",
+      "implementation-summary.md": "dbe07a6f724f815cdc359697c918f2e3db9cd1678b4348aec6f9c0b85e6c2744"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

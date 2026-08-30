@@ -17,7 +17,6 @@
       "diagram scaffold plan",
       "diagram design system plan",
       "diagram scaffold tasks",
-      "diagram scaffold checklist",
       "diagram scaffold summary"
     ],
     "key_topics": [
@@ -30,9 +29,9 @@
       "scaffold",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "phase"
+      "phase",
+      "decided"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-diagram/assets/icons.html",
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,26 +183,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 decided what ports and how `SKILL.md` remaps, but nothing has been written yet — the packet folder does not exist",
     "created_at": "2026-08-12T06:09:18.609Z",
-    "last_save_at": "2026-08-29T15:22:04.450Z",
+    "last_save_at": "2026-08-30T15:39:17.960Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fe5066d3c5e477778383e13c2deaa6f4f5fef0639f0722c0d5f323c6ca9930b",
+    "source_fingerprint": "sha256:aa67ae029bf8ed9aacca4377358e6e83ad2f2f745a98fbc551e5602c30b223ee",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "15768f5824c625238bece55bcef8850a27df0e3112f97db957198967a3fafe36",
       "plan.md": "faa8a343082f3c204deb7e7e4fa453f2e24dd39ad754bd25ded15165c74fd01f",
       "tasks.md": "018fd08c7177e96ccce61531f739fa8123b74ea4be815d1013f14f20cb6fb4ae",
-      "checklist.md": "36e274350e6c92e1c0f038d7ca8b2df49594eecfe0e9383a9a1a2c4caefdf09a",
       "implementation-summary.md": "b8b125d0fced667eae6e33975f621d223626d24845841793dcacc2fb5699feae"
     },
     "last_active_child_id": null,

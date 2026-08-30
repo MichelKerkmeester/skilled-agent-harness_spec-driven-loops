@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The seven current activation manifests were produced by fixed per-hub build harnesses",
     "created_at": "2026-07-21T04:50:51Z",
-    "last_save_at": "2026-08-30T08:04:16.695Z",
+    "last_save_at": "2026-08-30T15:39:15.331Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,7 +212,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:628f3631bddff587dece8b10b7dd1501e1a18e397a65e30b2a672f7473ee5b86",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6c58c1d62a1f76ffc2ffd2d393c29bf4c5edb6ee91ceb6951065ec46b5913459",
       "plan.md": "379b9006e6067e4da27fdf4ed4e86934705592a04eb4f7fa0d7ccef030e0ccd9",

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Both research packets defer live proof for several memory claims",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-08-29T14:54:19.386Z",
+    "last_save_at": "2026-08-30T15:39:31.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:345ea80932e9d2e47008fa1a477128838c70905ed5a99a89dc080e5823eadbb5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a202b013b1dd93f99c631455c29834c48dfe3279b2d1df612e470ab6102874f0",
       "plan.md": "8c6bddf1d9ad8f4c271c7efaf86c5a0b871c95f5db3bffe474378ea4297af311",

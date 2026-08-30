@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-08-30T08:21:55.343Z",
+    "last_save_at": "2026-08-30T15:39:14.194Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8ecd78b91e9340b7edb6670688853952fdb1757985baf96f7050843b0e7e86fa",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2ec7c38f3057b812a4a9bb860a1f791a75af65dfaef35260257080c480089f2c",
       "plan.md": "984b28c9e3438c09b5c3681522ecaf7ac4b9f5a8ac1757530e14b5fb93ebc321",

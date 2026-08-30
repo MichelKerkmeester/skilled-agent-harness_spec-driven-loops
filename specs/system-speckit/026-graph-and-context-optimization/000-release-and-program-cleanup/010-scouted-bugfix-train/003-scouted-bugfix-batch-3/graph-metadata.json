@@ -21,7 +21,6 @@
       "scouted bugfix batch 3 plan",
       "verify-first second-scout fix workflow",
       "scouted bugfix batch 3 tasks",
-      "scouted bugfix batch 3 checklist",
       "scouted bugfix batch 3 summary",
       "verify-first second-scout batch fix shipped",
       "12 fixes 23 files"
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".claude/agents/deep-research.md"
     ],
@@ -67,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,36 +176,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A second scout surfaced a fresh 20 high-risk targets across previously-untouched subsystems: code-graph stress tests, the deep-loop convergence script, the devin compact-recovery hook, install scripts, the mk-spec-memory launcher, shell version guards, vector-index retention sweeps, memory-search community gating, agent finding-registry filenames, and AI-council skill asset references",
     "created_at": "2026-06-03T08:00:00Z",
-    "last_save_at": "2026-08-29T15:22:12.676Z",
+    "last_save_at": "2026-08-30T15:39:28.900Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23e94cdb54c24385b1ceb23b47cd199ead8dc6919d61625f5e9c8ac1e53443e3",
+    "source_fingerprint": "sha256:3dd332b9687a53f384baaee8354ffc11eef3988e2baffc62b219cc31c5faae0b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "820d89513418d7579e4d977e3ffd9520e05a61997a8e7605bc7b9bff9d91fed5",
       "plan.md": "ed24e2253392d1f59c1c82f223f31a03bcfa9e51217469fa8e7d168bfd3313e3",
       "tasks.md": "258faf7c3dec45e390b11dc608e0242d9c3791d7f9388fd9316ee35cd8d608a4",
-      "checklist.md": "866123e90c4dffc9f94c42e8d9059b8d407a1e4dbbc4aa97f1164c047d18b539",
       "implementation-summary.md": "7568e0a31df5f3c776f9bd11b1c92cb3d9efbc5d544b6c9efad5962c7fab494b"
     },
     "last_active_child_id": null,

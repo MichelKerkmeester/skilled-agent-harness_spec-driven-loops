@@ -32,50 +32,19 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".devin/hooks.v1.json",
-      ".opencode/plugins/mk-git-preflight-advisory.js",
-      ".pi/extensions/git-preflight-advisory.ts",
-      ".cursor/hooks/git-preflight-advisory.mjs",
-      ".cursor/hooks.json",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".devin/hooks.v1.json",
+      ".pi/extensions/git-preflight-advisory.ts",
+      ".cursor/hooks/git-preflight-advisory.mjs",
+      ".cursor/hooks.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "mk-git-preflight-advisory.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-git-preflight-advisory.js",
-        "source": "derived"
-      },
-      {
-        "name": "git-preflight-advisory.ts",
-        "kind": "code",
-        "path": ".pi/extensions/git-preflight-advisory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "git-preflight-advisory.mjs",
-        "kind": "file",
-        "path": ".cursor/hooks/git-preflight-advisory.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
@@ -94,6 +63,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.ts",
+        "kind": "code",
+        "path": ".pi/extensions/git-preflight-advisory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "git-preflight-advisory.mjs",
+        "kind": "file",
+        "path": ".cursor/hooks/git-preflight-advisory.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 003 and 006 wired the shared advisory hook for Claude (`Bash`) and Codex/Devin (`exec`)",
     "created_at": "2026-07-28T06:05:25.353Z",
-    "last_save_at": "2026-07-28T06:05:25.353Z",
+    "last_save_at": "2026-08-30T15:39:18.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,11 +198,12 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e8a4e1c0da867ba137a6ca6cd5cc45e8c059132ccd4941131f43543d1e14b6ea",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "08f8e4aa97c6ab2cec62fa27bd21f0b38cc65918258dd53ba87926a72e88edf7",
       "plan.md": "5a8a8d28d37db3013060b9eaa0089c309fa7e5796d10f555f7ff3d9577a07031",
       "tasks.md": "cc7b60ad034cfe06f999e95a335d1de44a3d7f37c04c90365e3c4725b9387152",
-      "implementation-summary.md": "76ee6ea370d60a3f4a39848208b6b1ee2b543afb05ab3c7b97a89dfdad08b498"
+      "implementation-summary.md": "f53ebee7cef0b2256e6dc3372aa4ad0d597af420f27c6450655f128fdb18c9db"
     },
     "last_active_child_id": null,
     "last_active_at": null

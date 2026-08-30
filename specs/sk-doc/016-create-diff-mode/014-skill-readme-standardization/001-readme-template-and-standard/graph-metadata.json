@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-doc skill-README template encodes a tabular reference-card layout: a feature inventory, a structure tree and a settings table, with no human entry point",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-08-29T14:54:20.659Z",
+    "last_save_at": "2026-08-30T15:39:14.411Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3080bd46d81017b528e28a14c03e73e3c98b113cf5f716182f1f0a195cf62200",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "27b7de00d555d4140fdd2ab9fb78783a34287f903a5795ad468bcc2a6d04dc99",
       "plan.md": "85e57d7d9162eb64940006b9740d09db51cdaf61a096453bc30afb492bf95717",

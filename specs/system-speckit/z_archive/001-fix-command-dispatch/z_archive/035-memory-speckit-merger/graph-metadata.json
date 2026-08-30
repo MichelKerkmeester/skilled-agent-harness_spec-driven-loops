@@ -19,8 +19,7 @@
       "035",
       "implementation",
       "plan",
-      "tasks",
-      "checklist"
+      "tasks"
     ],
     "key_topics": [
       "memory",
@@ -30,42 +29,23 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
       "current",
       "architecture",
       "two",
-      "overlapping"
+      "overlapping",
+      "skill"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/commands/memory/save.md",
-      ".opencode/commands/memory/search.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/commands/memory/save.md",
+      ".opencode/commands/memory/search.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,9 +65,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
         "source": "derived"
       },
       {
@@ -179,37 +171,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Note",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Hard Blockers",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The current architecture has two overlapping skill folders for documentation and context management:",
     "created_at": "2026-04-12T09:02:53.523Z",
-    "last_save_at": "2026-07-10T06:22:51.039Z",
+    "last_save_at": "2026-08-30T15:39:37.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:3ecafa9a660916a5f35863a6f6ace9ce926119e771f9e3fbe47f568dbb09281b",
+    "source_fingerprint": "sha256:5d67e23a69a111dd30f448977d7cd6ec1cf498281e617d780298cc2e1dfe265f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9fccd0946d7a8d0d94f48dcd3917d1130c6084ccb68ca575f2c542854d78ad3b",
       "plan.md": "e1c2af536f1e4b5923d34103897ed7f4c11bc23184d6f47ea3f95284ab6fed7b",
-      "tasks.md": "834c2451728e78727d81911eb440e5dd25d01e3aa791aec02588ab68bdbd0796",
-      "checklist.md": "b97dd2b00f71398a415474de7382b9386e61774ad07c0282d48a4fe4b76d4f91"
+      "tasks.md": "834c2451728e78727d81911eb440e5dd25d01e3aa791aec02588ab68bdbd0796"
     },
     "last_active_child_id": null,
     "last_active_at": null

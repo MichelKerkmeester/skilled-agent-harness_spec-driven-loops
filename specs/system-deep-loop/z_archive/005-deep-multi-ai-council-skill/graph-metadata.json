@@ -43,7 +43,7 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+      "spec.md",
       "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
       "001-deep-ai-council-skill-creation/spec.md",
       "002-deep-ai-council-reference-expansion/spec.md",
@@ -52,26 +52,19 @@
       "005-deep-ai-council-fixups-and-graph-value-scenarios/spec.md",
       "006-council-graph-value-scenario-automation/spec.md",
       "007-council-infrastructure-hardening/spec.md",
-      "008-council-surface-polish/spec.md",
-      "spec.md"
+      "008-council-surface-polish/spec.md"
     ],
     "entities": [
       {
-        "name": "multi-ai-council-runtime-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "multi-ai-council-persist-artifacts.vitest.ts",
         "kind": "test",
         "path": "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -113,17 +106,18 @@
     ],
     "causal_summary": "The council workflow currently belongs to `system-spec-kit`, but it is a specialized multi-agent planning workflow with its own agent persona, artifacts, persistence scripts, and future graph needs",
     "created_at": "2026-05-10T06:35:39Z",
-    "last_save_at": "2026-07-08T13:43:06.716Z",
+    "last_save_at": "2026-08-30T15:39:22.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:a3c624ac227c8549fe4ce8d0857ffc9bff6d9adc5d8d4d3e3c4a06668518eb50",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c2d8a23e50c6c50428b95efc50dc1a0808199a7e95adc8fb68555f3ec0a13ebb"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/008-council-surface-polish",
     "last_active_at": null
   }
 }

@@ -18,8 +18,6 @@
       "adaptive deep-loop allocation implementation plan",
       "value of computation allocation tasks",
       "adaptive deep-loop allocation tasks",
-      "value of computation allocation checklist",
-      "adaptive deep-loop allocation checklist",
       "value of computation allocation implementation",
       "voc allocation shadow evidence",
       "rank-only fan-in usefulness"
@@ -35,8 +33,8 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "voc"
+      "voc",
+      "shadow"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/index.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts",
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -190,30 +181,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Replay-stable value-of-computation scoring and additive-dark adaptive allocation over typed budget pressure.",
     "created_at": "2026-07-16T03:43:53.514Z",
-    "last_save_at": "2026-08-29T13:09:51.722Z",
+    "last_save_at": "2026-08-30T15:39:20.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8f63f1385ac367262547335ed23a68e25a1e0007242cc0f177752ebe23e2a9d",
+    "source_fingerprint": "sha256:db2d35603610621be435bcb9289ed30cbe06e416aca99d9cceb5317995f85b7b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2365d52af0203409e062c2a948f993e3c0397e1dc6fb8cdcc53b00c74a5cf414",
       "plan.md": "1b269345106152aa7a15a943b9ab009e872ddabeaffcbce9e592d76a8b81670e",
       "tasks.md": "5db991e97f2475b65068cf865493f1fefd9f395df602f61c9360bbe88b49f723",
-      "checklist.md": "24628951ae6c4c95b6b276fe85eb17d4ba1f60bb7d44e32b47337b176189d1b2",
       "implementation-summary.md": "a09917f6655b0453805aee32f9407a2c8e32f2121aff5c1b2356ce98838fdcb3"
     },
     "last_active_child_id": null,

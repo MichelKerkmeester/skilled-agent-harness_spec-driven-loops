@@ -80,13 +80,14 @@
     ],
     "causal_summary": "027 (`xce-research-based-refinement`) just launched as a phase parent with 9 child phases",
     "created_at": "2026-06-04T18:53:35.322Z",
-    "last_save_at": "2026-07-10T06:23:09.838Z",
+    "last_save_at": "2026-08-30T15:39:28.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:a7f30d53ddc35aebcf0f2ba29f37f7a3494c20f7d5b965b1f74beaa9c2f2b2e8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5829a136ad7629fb77fd826e9cfce2507e9f3aef3777c8a416fdb1efe864945"
     },

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`SearchDecisionEnvelope.degradedReadiness` (defined in `mcpserver/lib/search/search-decision-envelope.ts:31-42`) is currently always undefined when emitted by `memorysearch`",
     "created_at": "2026-04-29T09:30:00.000Z",
-    "last_save_at": "2026-08-29T15:22:11.769Z",
+    "last_save_at": "2026-08-30T15:39:28.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:ede2d85e2b1c01073ca067c3116e8637ae6cf9ab6dfeee6f9553a8e00b977338",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4c3c160c9afe40941ece51d3d65b224b8a0234fae6f7565762e789e36246e4bc",
       "plan.md": "988aab9cf9fe7030ada79cb651f7c2c016bc019352300785f3dbce9d660709d8",

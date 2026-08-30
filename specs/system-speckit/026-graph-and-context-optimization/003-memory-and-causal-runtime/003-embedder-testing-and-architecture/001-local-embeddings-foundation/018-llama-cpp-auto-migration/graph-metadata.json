@@ -19,7 +19,6 @@
       "hf-local to llama-cpp startup migration",
       "018 auto migration plan",
       "018 llama cpp tasks",
-      "018 llama cpp checklist",
       "018 llama cpp implementation summary"
     ],
     "key_topics": [
@@ -32,9 +31,9 @@
       "startup",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "provider"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -42,14 +41,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scratch/pre-flight-notes.md",
       "scratch/test-output.txt",
-      "mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "shared/embeddings/factory.ts"
     ],
     "entities": [
@@ -72,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -96,21 +85,9 @@
         "source": "derived"
       },
       {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
         "name": "factory.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
         "source": "derived"
       },
       {
@@ -196,26 +173,43 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the llama-cpp provider became the local default candidate, startup only warned when a populated `hf-local` sqlite existed while the active profile pointed at the llama-cpp store",
     "created_at": "2026-05-13T12:01:28Z",
-    "last_save_at": "2026-07-17T17:19:18.822Z",
+    "last_save_at": "2026-08-30T15:39:29.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T12:01:28Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:896e77703e82e679f0534b7f4176671d32aae203f00d42840b638b7d5ada9351",
+    "source_fingerprint": "sha256:480e2292e687ca109ac7b896d07cff7f4eb5dc836a67ff61ff0408ace0685ffb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4a63ea1edfe793d5296685efb494cc4b34423d76305720f716b9c5a0f19bcc9a",
       "plan.md": "438459faa65bf27dec17f69793d0bfc56af2088ac213683c26302377702b9efd",
       "tasks.md": "60c7c4c3c5d297fb19ae9c2f33fe84054afe10ba41d7fbcc4baa0f0d8a07cdd0",
-      "checklist.md": "ad18bc647a1e25da32cb15ac201951f2c64e6a11ffd4835dd763b32b1e25c244",
       "implementation-summary.md": "3ec024b6357f02dacaf1825dee971a0c797c738f893717a341b9be088d4c0df0"
     },
     "last_active_child_id": null,

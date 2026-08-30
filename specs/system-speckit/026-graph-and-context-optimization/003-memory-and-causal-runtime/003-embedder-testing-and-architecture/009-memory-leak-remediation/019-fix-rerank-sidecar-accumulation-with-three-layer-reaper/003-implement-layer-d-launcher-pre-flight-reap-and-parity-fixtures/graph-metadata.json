@@ -18,11 +18,10 @@
       "layer d launcher reap plan",
       "arc 010 005 003 tasks",
       "layer d launcher reap tasks",
-      "arc 010 005 003 checklist",
-      "layer d launcher reap verification",
       "arc 010 005 003 decisions",
       "layer d launcher reap adr",
-      "arc 010 005 003 implementation summary"
+      "arc 010 005 003 implementation summary",
+      "layer d launcher reap handoff"
     ],
     "key_topics": [
       "arc",
@@ -36,7 +35,7 @@
       "fixtures",
       "plan",
       "tasks",
-      "checklist"
+      "decisions"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "node_modules/vitest/vitest.mjs"
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -165,24 +157,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -193,27 +167,50 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Gated Layer",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Layer",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The detached rerank sidecar launchers could reuse or spawn sidecars without first removing rows whose registered launcher owners were all dead",
     "created_at": "2026-05-23T07:46:28Z",
-    "last_save_at": "2026-08-29T15:22:16.563Z",
+    "last_save_at": "2026-08-30T15:39:31.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7de8e3250592523cdb98d70e4364fa91e68d8258b19ea887b0ec1bb4675ddb2",
+    "source_fingerprint": "sha256:9601e33120069a371d4189464ab4ce42d85532d32dc2eac7bdb8e5a0f8025d29",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f14dee7014b38c3e65ce116990b7ab0d2c01c2406e59a465f97cf4eb564dc181",
       "plan.md": "2aa30148baf5c3742373bbec95f39ad9978463a13d0143d9bf3f060ac2fdae5e",
       "tasks.md": "5adc2da57499038b7d9f320dc733b932113ac49cfeaf63dac3c6e6c4b10bb30b",
-      "checklist.md": "51026b99cb920487ea4576c7be8229c3c80d24013b5f4323cd6b18a88d981d6e",
       "decision-record.md": "d4b92be89216c68573048e51cf01987fad61ea049e9e35e4774865514456a3b0",
       "implementation-summary.md": "b69af72000fe7b8b783c77db77f103b908fb652705dfc486b37e93a65d1bda30"
     },

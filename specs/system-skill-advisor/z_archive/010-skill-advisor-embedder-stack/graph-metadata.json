@@ -50,25 +50,25 @@
       "registry"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       "001-pluggable-architecture/spec.md",
       "002-jina-swap-and-reindex/spec.md",
       "003-install-guide-docs/spec.md",
-      "shared/embeddings/factory.ts",
-      "spec.md"
+      "shared/embeddings/factory.ts"
     ],
     "entities": [
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
         "source": "derived"
       },
       {
@@ -110,17 +110,18 @@
     ],
     "causal_summary": "Skill-advisor embedder work delivered the pluggable architecture, registry, schema, and writer wiring. The active runtime remains gemma; default alignment to mk-spec-memory Nomic is deferred to 003/006-shared-embedder-logic.",
     "created_at": "2026-05-18T16:14:38.284Z",
-    "last_save_at": "2026-07-16T16:06:01.180Z",
+    "last_save_at": "2026-08-30T15:39:27.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:864f6885fcc5367ada561e383c54f1720a6ce53ef89ddca05c539240161171a0",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "abef5aa8f0077bb83630869614a0bd886f1afa73b91e6f7425a913d10c7ac291"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-skill-advisor/z_archive/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2",
     "last_active_at": null
   }
 }

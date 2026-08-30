@@ -24,7 +24,7 @@
       "memory index phased async scan job plan",
       "memory index scan implementation tasks",
       "013 memory index tasks",
-      "memory index scan implementation checklist"
+      "memory index scan implementation decisions"
     ],
     "key_topics": [
       "memory",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
@@ -62,7 +61,8 @@
       "handlers/memory-index.ts",
       "core/db-state.ts",
       "handlers/save/embedding-pipeline.ts",
-      "lib/search/vector-index-mutations.ts"
+      "lib/search/vector-index-mutations.ts",
+      "lib/providers/retry-manager.ts"
     ],
     "entities": [
       {
@@ -81,12 +81,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,6 +180,12 @@
         "source": "derived"
       },
       {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,24 +212,23 @@
     ],
     "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
     "created_at": "2026-05-31T15:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:16.617Z",
+    "last_save_at": "2026-08-30T15:39:31.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:4f8ca7e97b9ba36f0e20d0aa847c1745ca8b6488a1e55b50ddac7cddcae57981",
+    "source_fingerprint": "sha256:b81953a0bc493d53cf8d6ff42c3086e4d9ca7a703490c6a6b4d467dcaf8ad7b3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ff8eab297a9f6798fb94ea1c1f742cb2bdd8ac62ae32e84b2d47d2a81ea9ca4e",
       "plan.md": "3b5ce684cf43b9b02fd840f8906164057b9d94d6c5b71798e1c46a6a0f528718",
       "tasks.md": "e2fcada6919b81231edc8b8409f830b71b401b8dfd242cc22b02de0dce5c4d69",
-      "checklist.md": "3279d7d5493fe75d0fdaaa13955eb04e1b2c93c6fdb9e49921add7fe83d68eaf",
       "decision-record.md": "d26d97aad4d5300e20dcd9d038ac2d0d6c18a0b38ddcb4ddb44385030247b243",
       "implementation-summary.md": "6df708611532aba359c7bca4a358fe6ed586be39dbb0ddd8dc8ed47c32e30595",
       "handover.md": "d24e906daf6360c2faf60ba5a12ffc8243e22cf34cf594b00555436279c263f7"

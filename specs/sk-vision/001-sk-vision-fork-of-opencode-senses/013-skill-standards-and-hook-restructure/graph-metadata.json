@@ -17,7 +17,6 @@
       "sk-vision restructure plan",
       "sk-vision hooks plan",
       "sk-vision restructure tasks",
-      "sk-vision restructure checklist",
       "sk-vision restructure summary"
     ],
     "key_topics": [
@@ -30,9 +29,9 @@
       "plugin",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "shipped"
+      "shipped",
+      "meet"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -40,17 +39,18 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/013-skill-standards-and-hook-restructure/spec.md",
       ".opencode/skills/sk-vision/SKILL.md",
       ".opencode/skills/sk-vision/hooks/opencode/sk-vision.ts",
       ".pi/extensions/sk-vision.ts",
+      ".opencode/plugins/sk-vision.js",
       ".opencode/skills/sk-vision/README.md",
       ".opencode/skills/sk-vision/leaf-manifest.config.json",
       ".opencode/skills/sk-vision/leaf-manifest.json",
       ".opencode/skills/sk-vision/hooks/pi/sk-vision.ts",
       ".opencode/skills/sk-vision/vision-runtime/scripts/build.ts",
+      ".opencode/skills/sk-vision/.gitignore",
       ".opencode/hooks/sk-vision/pi/sk-vision.ts"
     ],
     "entities": [
@@ -73,12 +73,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -94,6 +88,12 @@
         "name": "sk-vision.ts",
         "kind": "code",
         "path": ".opencode/skills/sk-vision/hooks/opencode/sk-vision.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
         "source": "derived"
       },
       {
@@ -118,6 +118,12 @@
         "name": "build.ts",
         "kind": "code",
         "path": ".opencode/skills/sk-vision/vision-runtime/scripts/build.ts",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/skills/sk-vision/.gitignore",
         "source": "derived"
       },
       {
@@ -191,32 +197,25 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped sk-vision skill did not meet `sk-create-skill` standards and its adapters were inconsistently placed",
     "created_at": "2026-08-17T10:31:57.840Z",
-    "last_save_at": "2026-08-29T14:54:24.634Z",
+    "last_save_at": "2026-08-30T15:39:19.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4f7d573fdb6e2ea73116699481352f0245ba8914c449644eb126b3034c88941",
+    "source_fingerprint": "sha256:b1ae127056aa33e86c3bfbf8fb8ce290e581878e32dc23af26ec3fe504858e63",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "db4e402093bc91da0e3581544fb51dece737e54debc504695e17f6ce23fed84c",
       "plan.md": "19fb733708078566ac937c7ebcfc3d71e32e1a852d5423db48694ec6edfd4cd9",
       "tasks.md": "039333b80236b56da9d2034cf6a8886f0f1616bd325e4a0e58b972c8f95e1f3b",
-      "checklist.md": "8048570b1f2d57a71c7ca746c64b1dc30fda5a4df062f08da4d6d58061799cf4",
       "implementation-summary.md": "c1036d7264266d66131acc9f02840804f9aa2bef4b33405ee65165b8c9ae5f20"
     },
     "last_active_child_id": null,

@@ -18,7 +18,6 @@
       "gpt-5.5 medium playbook run",
       "manual playbook execution sweep plan",
       "manual playbook execution sweep tasks",
-      "manual playbook execution sweep checklist",
       "manual playbook execution sweep decisions"
     ],
     "key_topics": [
@@ -33,7 +32,7 @@
       "medium",
       "plan",
       "tasks",
-      "checklist"
+      "decisions"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "manifest.tsv",
       "001-findings-remediation/spec.md"
@@ -63,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -180,36 +172,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Claude Sonnet",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Automated stress tests confirm code-level behavior under load, but manual testing playbooks exist specifically to validate operator-facing, end-to-end scenarios (MCP tool call sequences, CLI invocations, degraded-mode behavior) that stress tests don't cover",
     "created_at": "2026-07-02T04:40:48.870Z",
-    "last_save_at": "2026-08-29T15:22:20.989Z",
+    "last_save_at": "2026-08-30T15:39:34.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a4bb7c45efa63591ad2c023ece8fc7ef6ee3598d909c965abbd2b46673709c98",
+    "source_fingerprint": "sha256:75d61652c433483654c962bb04837d7c8dc0c2fe8faf8095fc1e28dbdb5750b4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "338ae745a22fb00d1d7260c3d25432e303a659aebb6d6397077cb38ce500368c",
       "plan.md": "4a248715d81f8ff0431d0f4c898e651b7ec601c8910d017cfa6dd03f00c52285",
       "tasks.md": "f4b8060af2e39f17a489a4a2a43a11accb9bd1b35b2cd0c978b71f391820ef41",
-      "checklist.md": "c16283841a1546a2e025de6d32384c13992e3acb1391c44cb30729137e616368",
       "decision-record.md": "fe705ce9de621f94f404e89e7c2b1d746b1ad7695ce2ad61c662b0a11997febc"
     },
     "last_active_child_id": "system-speckit/028-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep/001-findings-remediation",

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "In the vendored `pi-cache-optimizer` fork, the DeepSeek compat path treated `supportsLongCacheRetention` as a required/missing flag: it appeared in the \"merged compat lacks …\" startup warning, in the copyable \"Recommended DeepSeek compat snippet\", and in the `/cache-optimizer fix` auto-write set",
     "created_at": "2026-08-13T00:00:00.000Z",
-    "last_save_at": "2026-08-29T14:54:14.915Z",
+    "last_save_at": "2026-08-30T15:39:09.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:78b5e9427873224286eb56bda4b8d2c9c35058ae4b135eccbb7cd7ddffec8746",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "375c252571c6e71fa9b0000609b285672aad889d3b5992907dc34acef9a79d68",
       "plan.md": "b6a0a783345856ab4436dabab1c32b3bc60c51944b8c6e2dfd9d6098d6173661",

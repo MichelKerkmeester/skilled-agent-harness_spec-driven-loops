@@ -42,44 +42,19 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/README.md",
-      ".opencode/skills/system-spec-kit/changelog/v3.3.0.0.md",
-      ".opencode/install_guides/README.md",
-      "matrix_runners/run-matrix.ts",
-      "changelog/v3.3.0.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "resource-map.md",
-      ".opencode/install_guides/SET-UP - AGENTS.md",
       "implementation-summary.md",
+      "resource-map.md",
+      ".opencode/skills/system-spec-kit/changelog/v3.3.0.0.md",
+      "changelog/v3.3.0.0.md",
       ".opencode/commands/README.txt",
-      ".claude/commands/README.txt",
       ".opencode/skills/system-spec-kit/changelog/v3.4.0.0.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/remediation-008-docs.vitest.ts"
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v3.3.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/changelog/v3.3.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "run-matrix.ts",
-        "kind": "code",
-        "path": "matrix_runners/run-matrix.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -99,9 +74,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -111,15 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "SET-UP - AGENTS.md",
+        "name": "v3.3.0.0.md",
         "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/system-spec-kit/changelog/v3.3.0.0.md",
         "source": "derived"
       },
       {
@@ -144,12 +113,6 @@
         "name": "generate-context.js",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
-        "source": "derived"
-      },
-      {
-        "name": "remediation-008-docs.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/remediation-008-docs.vitest.ts",
         "source": "derived"
       },
       {
@@ -205,27 +168,56 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill folder `.opencode/skills/sk-improve-agent/` is named with the legacy `sk-` prefix that has been deprecated for autonomous-loop skills",
     "created_at": "2026-05-06T07:55:50.002Z",
-    "last_save_at": "2026-07-08T13:43:10.000Z",
+    "last_save_at": "2026-08-30T15:39:22.695Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:88368d4301912789f915c4053e4609502e2390701d1598dc15989fc959f47dcc",
+    "source_fingerprint": "sha256:0556ae8993c6222149bc9702a69d7fa2cd921988b2de20057b58b0c4f4e7bcea",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ceacf9b4c1bc164a032ab279f6dbbbb55e59a6761777c75dad84dcac5378b18",
       "plan.md": "88ff2b089ecc14bebfc4b8654ec696524352eed5bc698875a972c11bb11a944c",
       "tasks.md": "d3f7117a476561d21e92af2bee804ebbba0e08dd506d5985c13d2a3c220edae5",
-      "checklist.md": "2865fa778228ad9e098e5b533dbf630eeb21ce799124f51c28c9d1f00599caa8",
       "implementation-summary.md": "90ff043f15a2c3642507b8172d83c4d21aed8155e66065224cccaa43d5618547",
       "resource-map.md": "e9c8c1b9f7aa725f7f8b3c048463d5010f24fb44a74592b363787d7f0eb921df"
     },

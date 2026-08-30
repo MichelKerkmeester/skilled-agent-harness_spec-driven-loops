@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Before any rename, the in-scope surface must be frozen into a fully-classified rename map partitioned by dependency closure, pinned to the CURRENT migration tip (not the authoring SHA). Every candidate is classified exactly once (rename/exempt/frozen/generated/tool-mandated) with no 'unknown' bucket; rename entries carry a pending vs already-applied disposition because concurrent v4 work has landed part of the surface (the sk-git kebab pilot). The map is hashed with BASE so execution is reproducible, and the generated .codex/prompts surface is in scope, classified generated.",
     "created_at": "2026-07-13T14:34:05.529Z",
-    "last_save_at": "2026-08-30T07:19:13.990Z",
+    "last_save_at": "2026-08-30T15:39:16.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e22cd68ddd6a5e2d77e4d98a870d7ed61efd457cd6ee9a272eac2e24a03e9127",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc5246137827ababc04ee3a74adeb18a544e3b658a8c3f671c775c3c57c46a3c",
       "plan.md": "ce0480732558d2679e8b281714361e8f021c4eff49a3856ad7e504f35e2210b2",

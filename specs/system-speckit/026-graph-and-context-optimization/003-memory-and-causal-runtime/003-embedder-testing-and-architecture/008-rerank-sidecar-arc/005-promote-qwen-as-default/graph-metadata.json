@@ -192,7 +192,7 @@
     ],
     "causal_summary": "After phases 001-003 ship, spec-memory has a working cross-encoder rerank pipeline plumbed to a shared Qwen sidecar",
     "created_at": "2026-05-23T11:55:15.613Z",
-    "last_save_at": "2026-08-29T15:22:15.513Z",
+    "last_save_at": "2026-08-30T15:39:31.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f5d13dafb7daebfe5280350766d2191be8744d627beb8e26ef72e9a573cb450c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2b9bd2a2df7599edb182636b2cd50313cffcf332c32d1394ea505b5759f5dfd",
       "plan.md": "f7f18f6bd79d0544112909c0dd47c810ea9f14ac8b3ff5341f0fb7070eddc114",

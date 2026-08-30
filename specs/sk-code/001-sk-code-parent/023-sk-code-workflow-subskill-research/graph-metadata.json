@@ -20,9 +20,9 @@
       "phase 126 tasks",
       "sk-code workflow research tasks",
       "workflow sub-skill research close-out tasks",
-      "phase 126 checklist",
-      "sk-code workflow research checklist",
-      "workflow sub-skill research verification"
+      "phase 126 implementation summary",
+      "sk-code workflow research summary",
+      "workflow sub-skill upgrade proposal summary"
     ],
     "key_topics": [
       "sk-code",
@@ -41,6 +41,10 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md",
       ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/spec.md",
       ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/research.md",
@@ -50,26 +54,38 @@
       ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/graph-metadata.json",
       ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/plan.md",
       ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/tasks.md",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/checklist.md",
       ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/implementation-summary.md",
-      "spec.md",
-      "research/iterations/iteration-001.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "research/iterations/iteration-001.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -94,30 +110,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/implementation-summary.md",
         "source": "derived"
       },
       {
@@ -203,27 +195,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code parent hub exposes four WORKFLOW sub-skills — `code-implement`, `code-quality`, `code-debug`, `code-verify` — that carry the day-to-day coding lifecycle",
     "created_at": "2026-07-05T14:53:44.541Z",
-    "last_save_at": "2026-07-09T10:02:44.212Z",
+    "last_save_at": "2026-08-30T15:39:10.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5237c12e9846b7673f854dc5634394ac9b7ece2cfe56142321dac7feb50900c3",
+    "source_fingerprint": "sha256:b269364b367d994e9ad90818cfe07fa86eda7be6336e65d973ed0832c3505bd5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75d2b6f2e3a2477296f3560e104f3383dda874288ea886095e997de2e9a16ddc",
       "plan.md": "5bd6a7cf60e3a564f2f9ba26c2ca20d1e1a94793427906f5f6b5818823b005b0",
       "tasks.md": "f7c152fc0a31d360faaab5e052d1e5a3c6a664765a53b406d6392c003a5edce4",
-      "checklist.md": "3e2acd6687e3c936aac35c6f9bee62de4a9ef077a9f11b996ea2c209bd5097f9",
       "implementation-summary.md": "a57c6f8013b2440584f6af5b398d4eef7b3c65aca7a0f42012335a77b39c1deb",
       "research/research.md": "5e979fa1489d3d32a5a121690e12ada4ca6a8dd5c9eb1c79ae5947df85abd0dc"
     },

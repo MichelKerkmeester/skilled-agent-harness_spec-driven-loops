@@ -39,40 +39,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/tests/mk-goal-state.test.cjs",
-      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
-      ".opencode/commands/goal_opencode.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-state.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-tool-path.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "goal_opencode.md",
-        "kind": "doc",
-        "path": ".opencode/commands/goal_opencode.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +164,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "backward-compatible",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/goal set` currently stores and injects the sanitized raw user objective",
     "created_at": "2026-06-30T16:17:28Z",
-    "last_save_at": "2026-07-16T16:32:43.640Z",
+    "last_save_at": "2026-08-30T15:39:25.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6aab1a9f237765d69d24405a2f045d75b2eac502a08f80fcc0c63ae2f286bfd4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "72f06d22052910e69070fde546aad083c386cf4bde972d81c55eb4f03f748de1",
       "plan.md": "61be42f1c8036080dd9dcff4ef3f555a4641a519c58f5f06efc385ccbf2a9c64",

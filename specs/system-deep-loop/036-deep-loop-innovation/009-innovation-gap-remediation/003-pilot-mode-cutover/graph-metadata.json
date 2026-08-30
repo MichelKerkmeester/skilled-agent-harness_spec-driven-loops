@@ -19,9 +19,7 @@
       "five-boundary rollback plan",
       "pilot mode authority cutover tasks",
       "deep-research cutover implementation tasks",
-      "five-boundary production test tasks",
-      "pilot authority cutover checklist",
-      "deep-research cutover verification"
+      "five-boundary production test tasks"
     ],
     "key_topics": [
       "pilot",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-selector.ts"
     ],
     "entities": [
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -160,55 +151,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the deep-research pilot that wires the authority-flip coordinator into its production composition root behind a rollback window, requires shadow parity before cutover, and proves five production boundaries.",
     "created_at": "2026-08-14T12:47:56.429Z",
-    "last_save_at": "2026-08-29T13:09:56.235Z",
+    "last_save_at": "2026-08-30T15:39:22.099Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:119834ac002afc686dbc1f5dba126e3c98ad4fa096b849e8cace36fdb776d81e",
+    "source_fingerprint": "sha256:f33e8a117a83bb9d8b87641a447b65caf80b4fb2887cf99c82202a7665ade4f2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8dca81910f5a8f09febf786839fd2b6d7b2622ef3314817e2dc14dd486312007",
       "plan.md": "45cff12ed56bb5da417dad31f3145e21dcfba28d97b6b32da6164d5b99d3526d",
-      "tasks.md": "ad92e85cd3fba6194b8e884ff9e8168a9f13431b905ea55461e78b1de3c137f6",
-      "checklist.md": "197310b6472465006c0591c5c7b8bf12f84c713c96cb2da01d521b5c7b0bfb8b"
+      "tasks.md": "ad92e85cd3fba6194b8e884ff9e8168a9f13431b905ea55461e78b1de3c137f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

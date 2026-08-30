@@ -34,9 +34,11 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       ".claude/mcp.json",
-      "cli-verification/results.md",
-      "implementation-summary.md"
+      ".codex/config.toml",
+      "README.md",
+      "cli-verification/results.md"
     ],
     "entities": [
       {
@@ -46,21 +48,33 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
-        "name": "results.md",
-        "kind": "doc",
-        "path": "cli-verification/results.md",
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "results.md",
+        "kind": "doc",
+        "path": "cli-verification/results.md",
         "source": "derived"
       },
       {
@@ -132,7 +146,7 @@
     ],
     "causal_summary": "Closeout of the deep-loop runtime isolation arc: reconcile stale tool-count config/README references, delete deprecated-MCP remnants (orphan README dirs + relocated DB copy), record the now-green test sweep, and prove the deep-loop skills use the new .cjs CLI by running their CLI-exercising playbook scenarios through cli-devin SWE-1.6.",
     "created_at": "2026-05-25T11:00:44.830Z",
-    "last_save_at": "2026-07-09T10:02:48.776Z",
+    "last_save_at": "2026-08-30T15:39:23.349Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -140,6 +154,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:eaf8a3bd41b52d960fb042e48f6c3ac55f20a5f3f54dda99b03dcd305c4484fb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6bd22c3d2e0c911664f03a7e9510d0730466032c99f79da392aab6110da73262",
       "implementation-summary.md": "dca2195fe2d8cc192b297cf97ddd7ad80c84237de5bb6e3746c215de5adebff6"

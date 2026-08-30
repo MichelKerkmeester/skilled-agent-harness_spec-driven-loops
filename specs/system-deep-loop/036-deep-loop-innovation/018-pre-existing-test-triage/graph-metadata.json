@@ -32,18 +32,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,6 +54,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The 017 remediation established a clean whole-suite gate but left 10 pre-existing test failures untouched — they were failing before any of that work and are independent of it",
     "created_at": "2026-08-26T10:02:59.278Z",
-    "last_save_at": "2026-08-26T10:03:53.480Z",
+    "last_save_at": "2026-08-30T15:39:22.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -183,6 +183,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:13926448301f0210e7f090c57a547e8b836082f01b2675f35c4d2c60e8e9e1e7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2de685d4f1e36bcc9d3533978b4bb4c500cfad2ed416869cdf4fddb624dbb3f1",
       "plan.md": "508f8209d013d8e9dff03348b662771734bf1e8b2f4d611dfe217b17f8bbcb2a",

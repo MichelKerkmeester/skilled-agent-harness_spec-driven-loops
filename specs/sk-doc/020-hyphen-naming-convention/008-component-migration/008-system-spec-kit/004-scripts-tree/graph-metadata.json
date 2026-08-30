@@ -176,7 +176,7 @@
     ],
     "causal_summary": "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic.",
     "created_at": "2026-07-14T15:18:00Z",
-    "last_save_at": "2026-08-30T07:19:45.173Z",
+    "last_save_at": "2026-08-30T15:39:16.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,7 +185,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:7f486f74b689624d2388b2c94e610eac548ac3107188f0e286db678e0744e326",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6d22349cc537a70e8bb7ac03b791943627d819217514e3674aa0e26db4489f46",
       "plan.md": "f92fd9b547e02bb739512ec7dcab8b3bc948c758236a2544532fbc8c1ff596c8",

@@ -86,17 +86,18 @@
     ],
     "causal_summary": "Retrieval-Gated Tuning subgroup of the spec-data-quality track: retrieval-tuning items gated behind benchmarks.",
     "created_at": "2026-06-27T17:25:40.245Z",
-    "last_save_at": "2026-07-17T17:19:51.269Z",
+    "last_save_at": "2026-08-30T15:39:35.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:41de1152602a48d849abbaeb73c7e9f3ab2c2f96dc62654d8fa3813ba89e29bc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5393b331d04ff2a68dc2ae8bda9b757bd1dd2276d04270b21e9f8f6157fc86d6"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/002-prodmode-recall-gate",
     "last_active_at": null
   }
 }

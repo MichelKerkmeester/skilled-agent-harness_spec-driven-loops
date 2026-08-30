@@ -41,27 +41,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts",
-      "lib/architecture/layer-definitions.ts",
-      "tests/layer-definitions.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "lib/architecture/layer-definitions.ts",
+      "tests/layer-definitions.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "layer-definitions.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts",
-        "source": "derived"
-      },
-      {
-        "name": "layer-definitions.vitest.ts",
-        "kind": "test",
-        "path": "tests/layer-definitions.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "layer-definitions.ts",
+        "kind": "code",
+        "path": "lib/architecture/layer-definitions.ts",
+        "source": "derived"
+      },
+      {
+        "name": "layer-definitions.vitest.ts",
+        "kind": "test",
+        "path": "tests/layer-definitions.vitest.ts",
         "source": "derived"
       },
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "`memorycausalunlink` is a registered MCP tool (added by commit `deee30b319`, defined in",
     "created_at": "2026-06-04T00:00:00.000Z",
-    "last_save_at": "2026-07-17T17:19:31.831Z",
+    "last_save_at": "2026-08-30T15:39:31.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:db8479c26617606996b71d6b701efdd358f4a481768dbbd34acc5b93aea1c623",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c30b75a8a8fac23b50282545635b80e94cb6073ba18bd67cf7402095b68f62d1",
       "plan.md": "3149943f41af87eb296ace69d78da7b4b3cdbc8131529f2b24b9cbe0934245dd",

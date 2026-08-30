@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "lib/governance/scope-governance.ts",
       "lib/utils/skill-label-sanitizer.ts",
@@ -56,8 +55,7 @@
       "tests/bm25-security.vitest.ts",
       "tests/advisor-fixtures/unicodeInstructionalSkillLabel.json",
       "formatters/search-results.ts",
-      "handlers/memory-triggers.ts",
-      "tests/security/README.md"
+      "handlers/memory-triggers.ts"
     ],
     "entities": [
       {
@@ -76,12 +74,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -157,12 +149,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "tests/security/README.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,26 +189,37 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds",
     "created_at": "2026-06-19T05:40:37.443Z",
-    "last_save_at": "2026-08-29T15:22:20.991Z",
+    "last_save_at": "2026-08-30T15:39:34.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b016e2ae875575c51c7c800513946b8482e1fba7a9319d8caa65f69aab45432e",
+    "source_fingerprint": "sha256:f1a87e2fff8b6a64f23d654a4837c6ccd16ee4645b19efa182ccea5d8a7081d3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "16fdc6c19c6f7605a16ee320ce0e3697b0593857eff56c20d10192cfe48690ca",
       "plan.md": "4d471b2343aa23d3d967d98862bf97b3a9557d90acff2b5e18916b440dc81ec3",
       "tasks.md": "1f55cf5ac7848f9979ce765972039e63d5371a0ab6d1f8565e12e45e8d795558",
-      "checklist.md": "094c16e3afd7e8128ee43795425ed1c9bf9331f785b966b8560b6b5d36442b2e",
       "implementation-summary.md": "950a2757246174dd49abbf7d4de1ba38d90c54c9cc247a7d1ec73e91b664a8db"
     },
     "last_active_child_id": null,

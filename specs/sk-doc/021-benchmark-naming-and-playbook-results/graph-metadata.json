@@ -19,10 +19,10 @@
       "playbook results plan",
       "benchmark naming tasks",
       "playbook results tasks",
-      "benchmark naming checklist",
-      "playbook results checklist",
       "benchmark naming decisions",
-      "playbook results decisions"
+      "playbook results decisions",
+      "benchmark naming summary",
+      "playbook results summary"
     ],
     "key_topics": [
       "benchmark",
@@ -36,7 +36,7 @@
       "reports",
       "plan",
       "tasks",
-      "checklist"
+      "decisions"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -44,12 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "assets/rename-map.json",
-      "manual-testing-playbook/manual-testing-playbook.md",
-      "benchmark/reports/README.md"
+      "assets/rename-map.json"
     ],
     "entities": [
       {
@@ -71,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -92,18 +83,6 @@
         "name": "rename-map.json",
         "kind": "config",
         "path": "assets/rename-map.json",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "benchmark/reports/README.md",
         "source": "derived"
       },
       {
@@ -191,31 +170,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Render The Backfill Rather Than Author It",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Sixty",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Backfill",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Two defects, one cause",
     "created_at": "2026-07-27T09:25:16.484Z",
-    "last_save_at": "2026-08-29T13:10:02.828Z",
+    "last_save_at": "2026-08-30T15:39:17.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af45b2e724651f5437f609e1571763419f076f2ce35b1a4805e8b22610bfd071",
+    "source_fingerprint": "sha256:085e194136b72662528c28d15872eed43c8ba46d8ed5aef2ab6e040ca3602174",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89accefe8f16a7b0973680bb6a3907c2a178bcd6c14bddf8a49788b185230958",
+      "spec.md": "c43a19964757671b34c9516e661fe2db98366efef2dddd9f299fa10de95d4141",
       "plan.md": "ed7814f8625178a4098747ec9f9ab7720c2bc771f868750bc3ccf5500cfd3cab",
-      "tasks.md": "4daf3370296562cb183167a3bc103fe5d07101ebbaf9707872376d4b6a7b7b93",
-      "checklist.md": "998c2070c210b362a6e67629f9bcac9b4b8e6f0c3f8f1ff9186ffbbb72fd8016",
+      "tasks.md": "d3d8bf0469614ff5b64485fe25aad4316bc331410a2d973dbf972134aded0233",
       "decision-record.md": "0c887c2df2c5e3be95e662e27fda32937f6b19ee84f422974afcf3f2881a3716",
       "implementation-summary.md": "5ea70692b49b85ff4c439ac62500df9edf1aa5cecbe34f6731b7fc36111c1bda"
     },

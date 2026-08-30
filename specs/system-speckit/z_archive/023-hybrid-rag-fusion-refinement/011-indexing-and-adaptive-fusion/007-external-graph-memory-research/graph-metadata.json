@@ -42,30 +42,17 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "research/research.md",
-      "decision-record.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -81,15 +68,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -183,40 +176,45 @@
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Compare Seven External Systems Against",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixed Internal Baseline",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Spec Kit Memory graph subsystem is structurally sound but underutilized",
     "created_at": "2026-04-12T09:02:50.335Z",
-    "last_save_at": "2026-07-10T06:23:43.873Z",
+    "last_save_at": "2026-08-30T15:39:39.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4f0d735146d0d580aee69fa52e56e0864768c2ae6b1d976ed942a6be4a5a2e40",
+    "source_fingerprint": "sha256:6c1328a1db6d630dcb012477b2b2f23e6d91114d356974c62ddb03473cdc7018",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e562dd1f659d811014863bd87f2fef6333e8d4b687656f8c6f117e9596be1365",
-      "plan.md": "45820eefd648f6da9054ad5bd36f837b667bbf7a5c807d753ff5cccbfdbd6513",
-      "tasks.md": "c3f9611b7f313e4afffb0c70e01db30f6ea45b50b50daed54ee9b951642ba428",
-      "checklist.md": "aea471314b740368ad0aee56ee07efb307f30105cf28ed66f1cf0d2cc139d19f",
-      "decision-record.md": "751c3ad07d6c26160982ac79a9d0c9a5ce44fca273abf41886a82d416cb3ee6b",
-      "implementation-summary.md": "d0e80209b1f433a8de093e2b658543f9f422cfa7c00869d2c4c6a15c9d026919",
+      "spec.md": "bb179537fbe88ae2cc7fa214806a321dcb5d78805427e4ec06678315ccb777ed",
+      "plan.md": "338c781275bae464d46b7ecdfc9b7657e148c1953744851be02e5fe806603ca5",
+      "tasks.md": "611c3f8b9ab55058f493321b20aa25279622bc2f825d67e7d75f79783fcba4d2",
+      "decision-record.md": "76b9875674ac5b37e180a7a64e30822ae6a56d76807669b9c2445282fd7c5186",
+      "implementation-summary.md": "baeb4ee24af533fd9428ddaac41009bac31b8ec60074647ecf9809f4604c5754",
       "research/research.md": "0074cc774c74005be4319ac005f28880f09589f4870db290212004bf79494c18"
     },
     "last_active_child_id": null,

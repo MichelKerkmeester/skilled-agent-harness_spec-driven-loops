@@ -20,9 +20,9 @@
       "005-code-cli-mcp-prompt-children tasks",
       "per-file conformance tasks",
       "LUNA update Sonnet verify",
-      "005-code-cli-mcp-prompt-children checklist",
-      "conformance verification gates",
-      "per-file validator gate"
+      "005-code-cli-mcp-prompt-children implementation summary",
+      "conformance batch status",
+      "shipped and verified"
     ],
     "key_topics": [
       "005-code-cli-mcp-prompt-children",
@@ -41,35 +41,22 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/code-opencode/SKILL.md",
-      ".opencode/skills/sk-code/code-quality/SKILL.md",
-      ".opencode/skills/sk-code/code-review/SKILL.md",
-      ".opencode/skills/sk-code/code-webflow/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
       ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
-      ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
-      ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
-      ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
-      "tasks.md",
-      "plan.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -79,21 +66,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -193,36 +180,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Bring the 12 skill SKILL.md files in this batch into full conformance with the create-skill contract; each file is updated by a fresh GPT-5.6 LUNA MAX agent and independently verified by a fresh Sonnet-5 xhigh agent, then must pass its validator.",
     "created_at": "2026-07-14T04:26:33.795Z",
-    "last_save_at": "2026-07-17T14:37:08.569Z",
+    "last_save_at": "2026-08-30T15:39:13.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdf0dd3cc94d6cff3bf9b3ea106766f51c39c4386852cde101f7225e6f0c4682",
+    "source_fingerprint": "sha256:f07ebd051626c2e0faf0eafb95efdad2dbc4a20d711c4c77cf8c5f8bcb03e1f3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ed4b01f00845dfe5e2ac809cfcd8aebaa96f895f9d2ca2903201d9c81989d375",
       "plan.md": "b1ff6a11942c6f096a90084bffcc08bb6f61da82c56c3b0eb455060da2fc59ce",
       "tasks.md": "11a5cbcf796da3f98f52ae53a6ed61ff33e8a9ea54bed502bb6e6f3b8d1c27ec",
-      "checklist.md": "bfb049c86d0aef6a489ded1b295111f8ee874ddc21a98c57d25c634b94a5d905",
       "implementation-summary.md": "12b1695128c725c47b435e30401b57ced3e827066f474d4c624e006ea02ddc3a"
     },
     "last_active_child_id": null,

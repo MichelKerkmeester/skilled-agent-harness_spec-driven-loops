@@ -16,7 +16,6 @@
       "sk-code D3 D4 build",
       "sk-code surface-nested router plan",
       "sk-code surface-nested router tasks",
-      "sk-code surface-nested router checklist",
       "sk-code surface-nested router summary"
     ],
     "key_topics": [
@@ -27,11 +26,11 @@
       "nesting",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "routes",
       "correct",
-      "surfacematch"
+      "surfacematch",
+      "true"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,42 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built Implemented",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Key Decisions",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "sk-code routes to the correct surface (`surfaceMatch` true 3/3 live) but over-loads: the `RESOURCEMAP[intent]` value unions Webflow + Motion.dev + OpenCode + universal resources, so the detected surface's slice arrives bundled with the other surfaces' resources",
     "created_at": "2026-06-01T19:25:23.863Z",
-    "last_save_at": "2026-07-09T10:02:49.087Z",
+    "last_save_at": "2026-08-30T15:39:23.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3599ae425ac1d949d3cfd05fdea7b7ccfa0542393938837e7164243849e4fa4f",
+    "source_fingerprint": "sha256:5d1a62f452404ac6cbd866ba9339448082557f4782bb1ba8f99a288c970e2040",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "13e57fe7cb4b104fe2809946c91ffb675d78ae5a5bf56627d14ad2a5c399c7dd",
-      "plan.md": "53f196a465939c5b1b31eef3bbdb0cefeb20be877a697febbc34c63b13a28901",
+      "spec.md": "1e5df3a95fb0ad4d582730de302abf63636725bf7e31bc6bd2d75168da89bd64",
+      "plan.md": "708e0c92f99ebf3fd470e9614bbf911975bcba318b62e8a6930ec84ada7357ed",
       "tasks.md": "73f8a947730ab34bf46584fae94e0c5b4d4b32ccd42c57a8ddbc642ee293f6e5",
-      "checklist.md": "b02153d6bd309a26880093aa95e94aa0493c1d891e9b7062c067e96383a516d5",
       "implementation-summary.md": "14d68faf24b9fd7f0c97e3abb557ca0b55bb4aa073a24655a7381ae1e2e3e85e"
     },
     "last_active_child_id": null,

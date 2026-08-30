@@ -34,7 +34,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -54,12 +53,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -159,48 +152,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Check",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata",
+        "kind": "heading",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Replace the throwing cli-pi command-builder stub with a real print-mode dispatch so cli-pi runs as a genuine deep-loop lineage.",
     "created_at": "2026-07-29T06:55:51.972Z",
-    "last_save_at": "2026-08-29T10:01:28.588Z",
+    "last_save_at": "2026-08-30T15:39:07.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6469b576151ec54a43fbc8fcb2fb0682e2f0eb67edaac94c3b0e7bbee4462a0a",
+    "source_fingerprint": "sha256:4f2d69e00d068998b6c02b944c8ecdc7b25a56b13f4aee6353af8cfaebbddc78",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d64b84c8f97d32e5396103a5e2efd1e7894990d80288c64d66c5ec164ba10534",
       "plan.md": "d0df2c8ac919d8d67cd529d49ee5caf4fab953c87ce77fcf6bfe7640ef8447ea",
       "tasks.md": "0c554b543bf3781d63f9a27e21c5d5556580b0ad2eb5eeacfc5d92ee2d77e2cc",
-      "checklist.md": "a93486598735e1970b268efe5161b22e6e4ff339c66c1f904e88b9e68e32e4d6",
       "implementation-summary.md": "076506dca398dba428216aaa2b9c31c830cad09895ec4d14ec52f17e98eecbcf"
     },
     "last_active_child_id": null,

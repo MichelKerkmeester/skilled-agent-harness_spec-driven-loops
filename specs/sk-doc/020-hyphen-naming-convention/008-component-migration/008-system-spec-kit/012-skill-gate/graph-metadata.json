@@ -167,7 +167,7 @@
     ],
     "causal_summary": "This rollup gate aggregates phases 001-011 and verifies that the complete system-spec-kit naming surface is kebab-clean outside the declared exemption set. It adds no migration work: acceptance depends on sibling evidence, a scope-aware whole-tree scan, reference closure, and coherent release evidence.",
     "created_at": "2026-07-14T15:18:06Z",
-    "last_save_at": "2026-08-30T07:19:47.954Z",
+    "last_save_at": "2026-08-30T15:39:16.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,7 +176,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:a9f385c5db587bdef7f39962cbed6617c9bf3acea39249b8b3c8d10086e32242",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6b53bbb64fe6d47aa2f783fcb7399faff0c76353096b8182c916b881617d875a",
       "plan.md": "b4e6fbb0d085406fe5147814e5ed22b0e689c68ebb10f07547b94ace40f15d38",

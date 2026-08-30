@@ -80,13 +80,14 @@
     ],
     "causal_summary": "Forced 5-iter GPT-5.6-SOL research on separating the 1,290 style data folders from backend code and aligning the styles tree to the deep-loop/runtime architecture.",
     "created_at": "2026-07-21T09:46:41.179Z",
-    "last_save_at": "2026-07-22T16:57:28.883Z",
+    "last_save_at": "2026-08-30T15:39:12.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:7a12252a234b4c6b641d11fe6e88c11c04cacd182ee6c9b396486638a72821b7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ff6d2e2414012ede087ffbdcf2f3c477ee4206967eac2bb5abc4f5dfab274cd4"
     },

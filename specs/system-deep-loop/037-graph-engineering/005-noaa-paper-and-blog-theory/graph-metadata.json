@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Studies 1–4 covered the GRAPH layer (orchestration, event-sourcing/belief, governance, knowledge doctrine)",
     "created_at": "2026-08-14T04:58:30.034Z",
-    "last_save_at": "2026-08-29T15:22:08.887Z",
+    "last_save_at": "2026-08-30T15:39:22.440Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:a0f3b0710792dd113aec4e938044e86db4551664c209224eb2e3c2baf8190301",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8ad506faf312aa8b08336ff705edb467992590d813e184014588da3a85f7c684",
       "plan.md": "95bbb24e89939d4ebbc144f1df9267cf58069b69223fb31a593b02c945bbe10a",

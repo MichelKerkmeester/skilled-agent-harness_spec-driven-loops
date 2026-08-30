@@ -20,9 +20,8 @@
       "plan",
       "tasks",
       "embedd",
-      "verificat",
-      "checklist",
-      "summary"
+      "summary",
+      "optimization"
     ],
     "key_topics": [
       "feature",
@@ -33,38 +32,48 @@
       "plan",
       "tasks",
       "embedd",
-      "verificat",
-      "checklist",
       "summary",
-      "phase"
+      "optimization",
+      "phase",
+      "scripts-side"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "shared/embeddings.ts",
       "scripts/lib/semantic-summarizer.ts",
       "scripts/core/workflow.ts",
       "scripts/core/memory-indexer.ts",
-      "mcp_server/handlers/save/embedding-pipeline.ts",
-      "mcp_server/tests/embedding-weighting.vitest.ts",
-      "mcp_server/tests/embedding-pipeline-weighting.vitest.ts",
       "scripts/tests/test-embeddings-behavioral.js",
-      "mcp_server/lib/providers/embeddings.ts",
-      "shared/index.ts",
-      "mcp_server/lib/search/vector-index-queries.ts",
-      "mcp_server/lib/cognitive/tier-classifier.ts",
-      "mcp_server/lib/search/vector-index-schema.ts",
-      "plan.md",
-      "implementation-summary.md",
-      "tasks.md",
-      "checklist.md"
+      "shared/index.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -92,24 +101,6 @@
         "source": "derived"
       },
       {
-        "name": "embedding-pipeline.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/save/embedding-pipeline.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-weighting.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedding-weighting.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-pipeline-weighting.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedding-pipeline-weighting.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "test-embeddings-behavioral.js",
         "kind": "code",
         "path": "scripts/tests/test-embeddings-behavioral.js",
@@ -119,48 +110,6 @@
         "name": "index.ts",
         "kind": "code",
         "path": "shared/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-queries.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-queries.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tier-classifier.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cognitive/tier-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -204,27 +153,68 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Embedding Optimization",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pipeline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Weighted Payload Builder",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Indexer Routing Update",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Before this phase, the scripts-side indexer embedded raw markdown via `generateEmbedding(content)`, while the MCP save path normalized content but still treated the document as a flat body",
     "created_at": "2026-04-12T09:02:50.272Z",
-    "last_save_at": "2026-07-10T06:22:03.676Z",
+    "last_save_at": "2026-08-30T15:39:38.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a389a3e830da9e938dbd0eed1266a23b2f66e7316423df1b1d9a7725d011a6b",
+    "source_fingerprint": "sha256:f59ee16fdef54448d4e9a21d6c491a5cd2f1cdd36cdcc643b9cfc0b9d8a07e64",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "793c788321eafee755b4b66d0bdd2f0d02052907fc556e5ac17689e0d1bb9706",
-      "plan.md": "c11ea8f0e8a9d7c061612ebbb190c1dd8e88802c47e3098b1835e5d279d0d42e",
-      "tasks.md": "aa6b0fb56651d6efe32d1bd2b118aa8538b31a68f4905686437a0a29fd284ece",
-      "checklist.md": "2c353bb3c440b061ce7f0b36831a1659f325c592382833687f57b6bec4be405a",
-      "implementation-summary.md": "b58b12d3aab814fab5d699f972976dc7d629827462a0ff4e2a341fb51e87ccd9"
+      "spec.md": "711a800847f64b6c71838636ed2e42666721ad6ad2fb1aa143bd01cda12f3f12",
+      "plan.md": "8fc3cbab180190ad79ed7fcbcf6eda49b1b4a972e3fee6a6f9881e8a0c23f1bd",
+      "tasks.md": "1abc9f38f2bc67cf3e6aa53351bd185c746aea19156aa5967b20e578151bcbfa",
+      "implementation-summary.md": "26d4619afeb7a959fe0a587b1c09bf59df3979e895df012efdbf6df53e452bcb"
     },
     "last_active_child_id": null,
     "last_active_at": null

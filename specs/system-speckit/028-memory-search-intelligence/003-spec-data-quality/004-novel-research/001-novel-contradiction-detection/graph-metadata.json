@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "tools/causal-tools.ts",
       "lib/extraction/entity-extractor.ts",
@@ -60,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -165,25 +158,31 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed No",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Not",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -191,22 +190,21 @@
     ],
     "causal_summary": "The corpus has detectors for shape, frontmatter and cross-surface coherence within a single packet, but nothing checks whether two distinct docs that describe the same entity actually agree on the facts",
     "created_at": "2026-06-27T17:15:37.645Z",
-    "last_save_at": "2026-08-29T15:22:22.714Z",
+    "last_save_at": "2026-08-30T15:39:35.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21f58acea47636e7a942db3fe36fca3601721028a9a0933c116234f15aae5b7d",
+    "source_fingerprint": "sha256:f5d443afbe570827fe18ed13c2485c37841cd11f0088101853e8de70cc99518d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c0f4dcee725b364ccc1ddf44a78ff42820a56822f1df1699ce5ef406be7ef150",
       "plan.md": "427e2c7fc7846e98765c128298026384558bf0d595628bdede0208d819cba4e4",
       "tasks.md": "285af71eb293daed9f830f1f7992e0541469251a86e5033b821ed7af7147e61b",
-      "checklist.md": "4a1cacf487f7180d88989febc6127dc1823de6c70ec5d164b543f3d513541d37",
       "implementation-summary.md": "8bd7d862f2332c5994cfca39f921cdab82a5a7af304a9da3b15cc73c78f00762"
     },
     "last_active_child_id": null,

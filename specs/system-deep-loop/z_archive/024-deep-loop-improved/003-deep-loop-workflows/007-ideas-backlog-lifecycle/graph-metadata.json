@@ -35,26 +35,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
-      ".opencode/agents/deep-research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/agents/deep-research.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,6 +64,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
         "source": "derived"
       },
       {
@@ -186,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research loop has no threshold-gated idea promotion; ideas surface in one iteration and disappear in the next without any canonical lifecycle record",
     "created_at": "2026-06-28T14:02:11Z",
-    "last_save_at": "2026-07-16T16:32:14.658Z",
+    "last_save_at": "2026-08-30T15:39:24.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d28b7d05b5595fa6c0fe8fb92c9bb4a4ee2c1d1ec0dc58fe23fbda6013a68469",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ef5f05c9d02dc3df155cf8992f74fe2ad43bc70094ade02f1c615f9980c3fca0",
       "plan.md": "e24ab91bd4fdd8a29281030b9693531fac2cdb4b6b2ff26380068f74a7cd01a4",

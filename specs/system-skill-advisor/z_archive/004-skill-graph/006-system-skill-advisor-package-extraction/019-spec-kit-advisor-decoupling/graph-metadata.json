@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling",
-  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling",
-  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling",
+  "spec_folder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/019-spec-kit-advisor-decoupling",
+  "parent_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -22,9 +22,9 @@
       "019 tasks",
       "advisor decoupling tasks",
       "import isolation task ledger",
-      "019-spec-kit-advisor-decoupling",
-      "advisor import isolation checklist",
-      "decoupling verification"
+      "019 decision record",
+      "advisor decoupling ADR",
+      "spec-kit advisor import boundary"
     ],
     "key_topics": [
       "spec-kit",
@@ -37,25 +37,23 @@
       "tasks",
       "task",
       "ledger",
-      "019-spec-kit-advisor-decoupling",
-      "checklist"
+      "decision",
+      "record"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -71,12 +69,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -86,12 +78,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -179,43 +165,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Alternatives Considered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Five Checks Evaluation",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Beyond Local Maxima",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Ownership Move Moved Claude",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`system-spec-kit/mcpserver` still contained advisor source imports after advisor extraction",
     "created_at": "2026-05-15T06:55:51.323Z",
-    "last_save_at": "2026-07-15T11:59:17.680Z",
+    "last_save_at": "2026-08-30T15:39:26.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1d7ea9b6ce34237c0d94b088cd30cfc1ce6a08b34e63ceb36effc7d6bbcafd8",
+    "source_fingerprint": "sha256:59492ee8fd79b3d12cc08cfef1410e14aa0d9367d726f5c809e37a1ef31ce853",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ba956d9163e8ac42de78ca3497d8d3b25beecaf93ef41089a6af63ed0f9337ac",
       "plan.md": "c7af1a7125381cd7c0f2946be488f1821be0c2ecf337dc9c7ff7c143a5dd60c0",
       "tasks.md": "9cca9d8c81fd922e2aac06126950dc7eeaa26dcf3cb43f41fcc257a303d31063",
-      "checklist.md": "084264f8dcba311c9e3115515677df9a74f8275096c68e5fc012ec390ee66751",
       "decision-record.md": "8eaf8d81b35a878ecb9cdedc9181046b1e5ae55ccad121b109b577895c83899c",
       "implementation-summary.md": "9ab1ff137e0b5aff17abdf00d212b45f6fcae139a1b76097ce300522827d84e8"
     },

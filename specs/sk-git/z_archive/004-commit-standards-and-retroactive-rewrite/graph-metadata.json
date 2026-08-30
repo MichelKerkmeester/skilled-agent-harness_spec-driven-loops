@@ -39,7 +39,7 @@
       "documents"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-prerequisites-and-baseline/spec.md",
@@ -101,17 +101,18 @@
     ],
     "causal_summary": "The `sk-git` skill documents conventional-commit-style standards at `.opencode/skills/sk-git/SKILL.md` §3 and `assets/commitmessagetemplate.md`, but the git log itself does not follow them",
     "created_at": "2026-07-15T04:22:53.889Z",
-    "last_save_at": "2026-07-15T04:22:53.889Z",
+    "last_save_at": "2026-08-30T15:39:18.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:90eab7752fd815d828dea12241824008e026daa43ccbacd7032d15fd36c855e4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "19c82a39d1276fc5505ea4c8c9b202d53e72b9afee2de9f1d6cfd3d2172cdc80"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-git/z_archive/004-commit-standards-and-retroactive-rewrite/005-retroactive-rewrite-execution",
     "last_active_at": null
   }
 }

@@ -22,7 +22,7 @@
       "sprint 3 tasks",
       "query intelligence tasks",
       "complexity router tasks",
-      "sprint 3 checklist"
+      "004-sprint-3-query-intelligence implementation summary"
     ],
     "key_topics": [
       "sprint",
@@ -34,9 +34,9 @@
       "fusion",
       "plan",
       "tasks",
-      "checklist",
-      "queries",
-      "full"
+      "004-sprint-3-query-intelligence",
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -169,49 +162,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Narrative",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Exit Gate Status",
+        "name": "How It Was Delivered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "All queries use the full 5-channel pipeline regardless of complexity, meaning simple lookups (e.g., trigger phrase matches) pay the same latency cost as complex semantic queries",
     "created_at": "2026-04-12T09:02:50.227Z",
-    "last_save_at": "2026-07-10T06:24:41.250Z",
+    "last_save_at": "2026-08-30T15:39:38.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a12459508d600be59634d3d84fb759c69459912cee56e22eb3e40e1bf1beee9",
+    "source_fingerprint": "sha256:7292a10093fdac25d38d908254bd97587734f3b7d5f852338da97032aa7f3ec4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a59a487a02687bad7751cd5b56de88e7b53f7393125162950efc06623125315a",
-      "plan.md": "7aacb6fce8c44f4f2c881f1ae7a7c90c9110f5fbaee884112f936992c1069bd7",
-      "tasks.md": "360afc7137927b921e2759bace7b3da8e827c365ae060e60c92e6ad25a56cfe4",
-      "checklist.md": "0440c37c08349bdebb308c1c4dfe0deae73ee07bcc94c5c084c5c8907cb62f14",
-      "implementation-summary.md": "8d5d34424cadd634804b65ee68544641df762f637b83b0fd9d9d905e636cc4bd"
+      "spec.md": "1bf5aea9fa52f47ed25c8a0a2a231b61a7dae35a8e8fc228d8c315752565fc9d",
+      "plan.md": "e7525b56da4b6698051ffab46c97795cedbeefeee6913b63480ada64b25f2490",
+      "tasks.md": "57b02168a666b9f2cf46ffdfd7ee72b23140d807ee8f29a14c76ff0a461860c6",
+      "implementation-summary.md": "4ef66013ba0d77d5c77b998f76481ef25d4a53495f237a354e720543323a5734"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -21,8 +21,8 @@
       "scripts mcp server boundary",
       "architecture audit tasks",
       "boundary remediation tasks",
-      "architecture audit checklist",
-      "boundary remediation verification"
+      "decision record",
+      "architecture adr"
     ],
     "key_topics": [
       "architecture",
@@ -42,43 +42,29 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "decision-record.md",
-      "research/research.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "mcp_server/scripts/reindex-embeddings.ts",
+      "research/research.md",
       ".opencode/skills/system-spec-kit/scripts/memory/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/database/README.md",
       "shared/utils/token-estimate.ts",
-      "mcp_server/handlers/handler-utils.ts",
-      "mcp_server/api/indexing.ts",
       "scripts/memory/reindex-embeddings.ts",
       "lib/cognitive/adaptive-ranking.ts",
       "shared/utils/path-security.ts",
       "shared/lib/structure-aware-chunker.ts",
       "handlers/save/types.ts",
-      "shared/config.ts"
+      "shared/config.ts",
+      "core/config.ts",
+      ".opencode/skills/system-spec-kit/.gitignore",
+      "scripts/utils/path-utils.ts",
+      "lib/eval/eval-quality-proxy.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -94,9 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -106,9 +92,9 @@
         "source": "derived"
       },
       {
-        "name": "reindex-embeddings.ts",
-        "kind": "code",
-        "path": "mcp_server/scripts/reindex-embeddings.ts",
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -124,15 +110,9 @@
         "source": "derived"
       },
       {
-        "name": "handler-utils.ts",
+        "name": "reindex-embeddings.ts",
         "kind": "code",
-        "path": "mcp_server/handlers/handler-utils.ts",
-        "source": "derived"
-      },
-      {
-        "name": "indexing.ts",
-        "kind": "code",
-        "path": "mcp_server/api/indexing.ts",
+        "path": "scripts/memory/reindex-embeddings.ts",
         "source": "derived"
       },
       {
@@ -163,6 +143,24 @@
         "name": "config.ts",
         "kind": "code",
         "path": "shared/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "path-utils.ts",
+        "kind": "code",
+        "path": "scripts/utils/path-utils.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-quality-proxy.ts",
+        "kind": "code",
+        "path": "lib/eval/eval-quality-proxy.ts",
         "source": "derived"
       },
       {
@@ -210,26 +208,25 @@
     ],
     "causal_summary": "The codebase had blurred ownership between build-time and CLI tooling in root `scripts/` and runtime concerns in `mcpserver/`",
     "created_at": "2026-04-12T09:02:50.240Z",
-    "last_save_at": "2026-07-10T06:23:57.407Z",
+    "last_save_at": "2026-08-30T15:39:38.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:04e777b42991578dba09dffae3ddba2d21d58834fd48b970aeaaa459d9649535",
+    "source_fingerprint": "sha256:e52c73f297f22791a353d89d2b85067970e4713b5ec0d90693425814e1f0f0d5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68c533a50b52b7f768e230e893548a6109e700f3b35a62ad7a7bcc01f25bc58d",
-      "plan.md": "286cda76a41f15bc4da7c3e3c386aabb57e9932f70fd9599c949f77b8a91badf",
-      "tasks.md": "e8b10b7df632a0e550f67995f59a1bfc73abe92f3433f851d49d4b0ea1d7f131",
-      "checklist.md": "3d941b60525642efb98e3612b956000aa82ba62db822d897f8293ac3e11fd1de",
-      "decision-record.md": "e5d1d026c620cc48d5b1f9656cc7b7fe8ed70fed52b5c61c81af65a0bbeff478",
-      "implementation-summary.md": "d7c0968be19f4f12278ea36f9e09bdbb3f92d6d1181ec59b99d137267d9d45b0",
+      "spec.md": "a3461dfd2cfb8b1326787c0c1a8d8de5a9ff791ae161bb9235eb29e2aec2546d",
+      "plan.md": "33b47b3986abbf288d60fd288359ad4115d7635b8b5cb536526c75868388d065",
+      "tasks.md": "07633ffefe6be5f6c38c6028df65cdfc7b51ef4107fc81d1f3ed0dfdb8b7026e",
+      "decision-record.md": "ed21c41fa5b63b37dd881b97baaad66f0f68bd0df574138f970929107ab27dae",
+      "implementation-summary.md": "1c3cb7c2128baa7ca10e935283977f7c0eab7ae4a8a2c4dcd1b3a1de4b043514",
       "research/research.md": "b3a62bb66b9b6c3cdfc69eab25ca7e6717467098e16d5c8c7d9c941a01b07c45"
     },
     "last_active_child_id": null,

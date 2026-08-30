@@ -38,8 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review-report.md"
     ],
     "entities": [
       {
@@ -61,15 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review-report.md",
         "source": "derived"
       },
       {
@@ -157,31 +157,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Completed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop Workflow Integrity Audit The",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -189,22 +183,21 @@
     ],
     "causal_summary": "The release-readiness program needs a truth check for the deep-loop workflow layer",
     "created_at": "2026-04-29T20:30:00.000Z",
-    "last_save_at": "2026-07-16T16:33:01.764Z",
+    "last_save_at": "2026-08-30T15:39:26.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5cba45372339b0eb1ee56038a1f51ad095b930df47aa8702bc3f499462ba32b8",
+    "source_fingerprint": "sha256:f1ef97a2df543b0162b6dcd559f2050fcd1e62ddc773af3b7711d55e4af62dd8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2e147b8cf7d1d3cf94641555d32fa84c3cedc6397d24ccf8a18b414dc53b1d86",
       "plan.md": "5ba05d1ca0313ed27de986fc3222e74d97ff5ff621ef6ce36039e16bee22e570",
       "tasks.md": "2ae6cf151891661809c35ea1394af6fa04e18bcdd0325cfe4754d942a192c1d8",
-      "checklist.md": "9bb6e4ad0fe7f403261bdc57114bedb1f06d5e8283676c3a5d67a35e857a2676",
       "implementation-summary.md": "0aa51dd8f0b3f5c0de99b5a3e52fc53451598dce5cecc84a86b924d33ce5c8da"
     },
     "last_active_child_id": null,

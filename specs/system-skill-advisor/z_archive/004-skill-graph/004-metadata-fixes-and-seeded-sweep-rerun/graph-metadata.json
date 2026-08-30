@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/004-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
-  "spec_folder": "system-skill-advisor/004-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
-  "parent_id": "system-skill-advisor/004-skill-graph",
+  "packet_id": "system-skill-advisor/z_archive/004-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
+  "spec_folder": "system-skill-advisor/z_archive/004-skill-graph/004-metadata-fixes-and-seeded-sweep-rerun",
+  "parent_id": "system-skill-advisor/z_archive/004-skill-graph",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -19,7 +19,6 @@
       "metadata-aware sweep delta",
       "metadata fixes plan",
       "metadata fixes tasks",
-      "metadata fixes checklist",
       "metadata fixes summary"
     ],
     "key_topics": [
@@ -42,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/sweep-results-after-fixes.md"
     ],
@@ -63,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,30 +178,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Applied",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 015/005 produced a research report (`research/audit-report.md`) ranking the 8 lowest-scoring skills with concrete WHAT/WHY/EXAMPLE phrasing changes",
     "created_at": "2026-05-14T01:00:00Z",
-    "last_save_at": "2026-07-15T11:59:13.633Z",
+    "last_save_at": "2026-08-30T15:39:26.337Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T01:00:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:248781061189edfd187a801c6254b9b96f60678724bd4e6115c3d7dd8f4f33d5",
+    "source_fingerprint": "sha256:d847900eb54c7c7b12225c79722fdbae36513d518ffaa0d5428c623d359746c4",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8b9ef6a3fbb0c4a5481be88061f84b0a794269c467358e1b299b847028684bc0",
       "plan.md": "60242c927fe7a7234f4725478ac244621f0f596688f83de07cf757f4b52640cc",
       "tasks.md": "b9b74399183103e84d528cf49a227f387ca20626866ac54ae44603b49fa7061e",
-      "checklist.md": "4a44fe0a077f149d4f99c3b93af5e4b5c2feff9920f702d09909a8f71417b85c",
       "implementation-summary.md": "78dd2d235beee227819cdf366d41cc447e0bded6564bd0373edf1cb884124dba"
     },
     "last_active_child_id": null,

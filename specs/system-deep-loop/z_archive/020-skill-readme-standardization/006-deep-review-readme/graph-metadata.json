@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The deep-review README is a tabular reference card with a buried Key Statistics block and no problem-first entry point",
     "created_at": "2026-06-07T12:18:52Z",
-    "last_save_at": "2026-07-16T16:31:38.107Z",
+    "last_save_at": "2026-08-30T15:39:24.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:5100c60d273ab8195c21368a8cf0e66dc4d7fa6763f99a82be192a418ff8c520",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3532a5a419b1667330d4efe18302d5df1792f1b865df8c17c925c1aec801aee2",
       "plan.md": "21faf1d6a3aeb0ca36b8031935a0badf1805435d539c1264a5afffbc41837365",

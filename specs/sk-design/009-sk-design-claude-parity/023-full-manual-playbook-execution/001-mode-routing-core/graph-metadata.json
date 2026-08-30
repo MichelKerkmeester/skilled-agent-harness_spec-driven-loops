@@ -18,11 +18,10 @@
       "mode routing dispatch plan",
       "tasks",
       "wave 001 tasks",
-      "verification",
-      "checklist",
-      "wave 001 checklist",
       "implementation",
-      "summary"
+      "summary",
+      "wave 001 implementation summary",
+      "mode routing core dispatch summary"
     ],
     "key_topics": [
       "wave",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,31 +155,31 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Ran",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Read",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +187,21 @@
     ],
     "causal_summary": "The sk-design `manualtestingplaybook`'s `mode-routing` category has never been dispatched for real",
     "created_at": "2026-07-07T15:09:43.419Z",
-    "last_save_at": "2026-08-28T15:53:08.282Z",
+    "last_save_at": "2026-08-30T15:39:12.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7dbcbee38b572ad26c3ba19c4ab3e86a760c3cc9f20f935cc3c892596a6aae7d",
+    "source_fingerprint": "sha256:b5a20d329177fb2ce8efc3498ef1023a803aa7d4d467e6d024ec2506f1f77816",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7181dbde2a62ceee5ba80baa083c25246bcfaab82e174b38223b7fb0df431f7d",
       "plan.md": "3e6543bc79a9d0110d46077d225296a6230ee6fccd99502aa0eda1fa963ef6fa",
       "tasks.md": "b1177a870fb410fd0c756cd46be0e00190eec45876e56aafeb714533aab6177f",
-      "checklist.md": "407c94fca15edc060229cdca3a6fb188c72b951a0f9f324ba7ff9b9e9c9aa0a9",
       "implementation-summary.md": "e65dfba662c32bb16c03578e5b8ea0de29049e53b707192aaa161fa2382a8714"
     },
     "last_active_child_id": null,

@@ -21,8 +21,6 @@
       "combinedQuery cap plan",
       "034 query expansion tasks",
       "combinedQuery cap tasks",
-      "034 query expansion checklist",
-      "combinedQuery cap checklist",
       "034 query expansion summary",
       "combinedQuery cap summary"
     ],
@@ -46,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "tests/stage1-expansion.vitest.ts"
     ],
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,36 +175,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Packet",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 039 made the llama-cpp embedding worker resilient by truncating over-budget input through the model tokenizer",
     "created_at": "2026-05-14T15:40:13Z",
-    "last_save_at": "2026-08-29T15:22:14.697Z",
+    "last_save_at": "2026-08-30T15:39:29.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17c809c37105c400a131ef663789e158427483010b11d5e47bf0685e97353ec4",
+    "source_fingerprint": "sha256:7472bcc46d5129532b1710fdde1be45f4e05c7c1be37dbe93137af88e7087d7e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c0526ec97eaa5a3659abf62b9c9b916da65fc69cdef50dc027c6b03074ab6047",
       "plan.md": "be628fa887d84d34d5bd20d8109d4fe9e3fceafc27dfd2a2e3b93298cbaa28a1",
       "tasks.md": "9ec6631b3ccdfcb03020bfa5d730e53cbe54066e3643eae69d25ab5c7c9fa24f",
-      "checklist.md": "a722000dbab1d13e32cc9552dfd30eb4f63fd72d3da0a4806d44660ce672c50a",
       "implementation-summary.md": "39dbd564a2d4737c6ee0c662074ff4f8a7c030c76b5ce28e1123a45e340961a5"
     },
     "last_active_child_id": null,

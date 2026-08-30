@@ -17,7 +17,6 @@
       "tooling and scripts manual test",
       "016 tooling and scripts plan",
       "016 tooling and scripts tasks",
-      "016 tooling and scripts checklist",
       "016 tooling and scripts summary"
     ],
     "key_topics": [
@@ -28,20 +27,19 @@
       "test",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "tooling-and-scripts",
       "category",
-      "contains"
+      "contains",
+      "scenario"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -51,27 +49,21 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -159,31 +151,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Executed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verdict Table",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -191,23 +177,22 @@
     ],
     "causal_summary": "The tooling-and-scripts category (16) contains 33 scenario files covering 65 exact scenario IDs that have not been manually tested against the live system",
     "created_at": "2026-04-12T09:02:50.302Z",
-    "last_save_at": "2026-07-10T06:24:23.492Z",
+    "last_save_at": "2026-08-30T15:39:39.188Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:029326747f9d25e269b475be2a5891ca0a09973ae9a841652249d73f33469e4d",
+    "source_fingerprint": "sha256:0b41f0cac6c935b78ee56c1c6ac9b78e0ecbde5c95cb55f19c4eec548747d995",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4911e5b9913bc3d62e2180443cc6a5871b7d0c233304496754e6b5e046203155",
-      "plan.md": "112391cedcb36b4d1beecb85097de31f9bfee40eb81cca827ea0ad0e135ebb7b",
-      "tasks.md": "34335bd598928d3e2eccfd561b6c29898096e544203d0a659ae179b78a8d3d4d",
-      "checklist.md": "25a50a07244f87bcb9ce3d98600b47eff3dfdc778f6339da5f708c1f71b027c6",
-      "implementation-summary.md": "f13ef0c774cd1089bb27252f88974c1636ef737114f97bfc709dd100b3341f62"
+      "spec.md": "62bc06909e9bbdd08c142407e766ed9d3815beaf6f74e689ddace7b36fe4c1cd",
+      "plan.md": "ca71bee844228ae879865e1cf902333d494da16bbc797f23e4bba11108dd5d99",
+      "tasks.md": "6601f56b544933dfeb49197d6865d0293b98d346a45ea6ef10fe47927140d3c0",
+      "implementation-summary.md": "3d97048ba56c26c122eaa71c44a169df69cc5a330000250bedca1134f991a94c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -21,8 +21,8 @@
       "local projection design",
       "tasks",
       "research loop execution",
-      "verification checklist",
-      "quality gate"
+      "accepted GROK synthesis",
+      "localProvider loader design"
     ],
     "key_topics": [
       "local-llm-easy-config",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       ".pi/settings.json",
@@ -60,7 +59,8 @@
       ".opencode/skills/sk-communication/cli-communication-projection/src/privacy/router.ts",
       ".opencode/skills/sk-communication/cli-communication-projection/src/wrapper/run.ts",
       ".opencode/skills/sk-communication/cli-communication-projection/bin/cli-output-wrapper.mjs",
-      ".opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md"
+      ".opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/docs/configuration.md"
     ],
     "entities": [
       {
@@ -79,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -184,6 +178,12 @@
         "source": "derived"
       },
       {
+        "name": "configuration.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/docs/configuration.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,23 +210,22 @@
     ],
     "causal_summary": "Produce a validated, ranked design recommendation that specifies the operator UX and the activation seam for local LLM easy-config: config-file and environment-variable discovery, provider auto-construction, a judge default that permits local accepts without weakening the reject-only safety contract, privacy defaults that keep traffic local-only, and how the plugin and wrapper automatically pick up the configured provider with no further operator steps",
     "created_at": "2026-08-14T14:57:53.601Z",
-    "last_save_at": "2026-08-29T15:21:58.513Z",
+    "last_save_at": "2026-08-30T15:39:11.886Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:08ad1e80fcc327e2e390945dc552197b23e949b7150049c0f302dfd583a0550d",
+    "source_fingerprint": "sha256:e7970206556af389111c4b9d0bd8a60bcbc6b223d2ddf7f3860b75dd2563ea5d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6c7d16582d9d7f07cfb8334dcf04238bf07e1b7b80ad1931fa723fbee3e79182",
       "plan.md": "4d805c19aa8f3d7232a71891fced0c4b763e731f0a3ad486f094aa90dbbe7e13",
       "tasks.md": "431e31020abac7b3566950f26ef4255aeae4ce07ac2ae8e5d419b0d25faae7f1",
-      "checklist.md": "7d1add0dffcddeb24a6bcb9997ad72221385aeb7f40e599b6dcb3aadf69a9365",
       "implementation-summary.md": "834730887ac4ed611a2cc3f0ee87610bc53d79ffcc33c66a2876480f4af4bf2d",
       "research/research.md": "04107d185c81fbea22f6909cde9ba51b55c642f9a5a57c584ccfaba17256ba19"
     },

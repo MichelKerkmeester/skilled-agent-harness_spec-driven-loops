@@ -35,8 +35,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -55,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -164,43 +157,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill-advisor subsystem has never had a systematic sweep of its own code and structure surface",
     "created_at": "2026-07-27T15:47:30Z",
-    "last_save_at": "2026-08-14T07:50:02.128Z",
+    "last_save_at": "2026-08-30T15:39:26.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:c3c812e8066341e90bfccec323019ee63fd95457263d82ed7b444e30e9de8347",
+    "source_fingerprint": "sha256:6eb0cceae3f9f8b5ad6f42fe7b491adcc4c8bfed4473f0ec63eebda8f19e3e99",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4b0bd0394a997b3833e2e58070cf4990cee94415888494b38065b9c48085d722",
       "plan.md": "c96f6abdfc1a6cfca8c5a03336677f5e33d143d21891d899e7a12756687ae9e9",
-      "tasks.md": "2fc6ab01a9ddf61d5804688ac36c58405e819b314fc531243bb8a09971d11e49",
-      "checklist.md": "efc25eec2d88583fdfde1b240ce5cd7e5dd5037955922dd772afabc93b90479f"
+      "tasks.md": "2fc6ab01a9ddf61d5804688ac36c58405e819b314fc531243bb8a09971d11e49"
     },
     "last_active_child_id": null,
     "last_active_at": null

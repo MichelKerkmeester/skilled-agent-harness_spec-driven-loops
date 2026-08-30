@@ -23,7 +23,6 @@
       "findings-registry reference plan",
       "deep-ai-council follow-on tasks",
       "deep-mode docs tasks",
-      "deep-ai-council follow-on checklist",
       "deep-ai-council follow-on summary"
     ],
     "key_topics": [
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +181,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-ai-council skill documents single-round council behavior thoroughly, but the v2.0.0.0 deep-mode capability (session → topic → round, exposed via `/deep:ask-ai-council`) is implemented in `scripts/orchestrate-session.cjs` + `orchestrate-topic.cjs` + `scripts/lib/findings-registry.cjs` with no reference documentation",
     "created_at": "2026-05-24T06:00:00.000Z",
-    "last_save_at": "2026-07-08T13:43:47.673Z",
+    "last_save_at": "2026-08-30T15:39:22.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:847cde7077d1c4fcdf41c916d26cda189253d2c639f56e21a2cb0da336932286",
+    "source_fingerprint": "sha256:c05b108cd0a3ff8b02f8b66199b545bd946c2f37c5e5b2b56c21c3858145882d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "63826191a0bb340777ed17b467078e43fe0e7b68118cba2515d490eb69871997",
       "plan.md": "f3058296bba09f5b31353c50833f6fa34415a88b0c2b243a08ac1621050aa64f",
       "tasks.md": "5b0b47b30d29fca8c7ccf9d3342ff139c2b109416fd70d45b02c7481eb4c1cf5",
-      "checklist.md": "06fbe49869b1ee3e30857bcd5a62f9b3c2b2df1dedd6383c8ff13a9dda3336db",
       "implementation-summary.md": "5f7053a3b5b326505bb9757d177dbad40c7c8163ddb4dc51a4f51e70814038ff"
     },
     "last_active_child_id": null,

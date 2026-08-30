@@ -20,9 +20,9 @@
       "path-covering termination tasks",
       "coverage certificate tasks",
       "deep-loop phase 011 child 001 tasks",
-      "path-covering termination checklist",
-      "coverage certificate checklist",
-      "deep-loop phase 011 child 001 checklist"
+      "path-covering termination implementation",
+      "coverage certificate implementation",
+      "deep-loop phase 011 child 001 implementation"
     ],
     "key_topics": [
       "path-covering",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
       ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -190,30 +183,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan replay-stable termination on proven, mode-specific search-space coverage: every major path or semantic community is addressed, required contradictions are resolved, and partial coverage remains explicit instead of being hidden by an iteration cap.",
     "created_at": "2026-07-16T03:43:52.736Z",
-    "last_save_at": "2026-08-29T13:09:52.018Z",
+    "last_save_at": "2026-08-30T15:39:20.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13ef117eea74d18c52425799e256933b1bb738278940a9cba6d91147c53dfbc4",
+    "source_fingerprint": "sha256:7320b2c71d84835e3c08894acd92f78edd0dae2887889b19e06884416adc8213",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "29f1986dd5f81efdd01b3bb9502968e0fd93dbb0a2c81dae2920affdd1ed8afc",
       "plan.md": "8678653229dc8ab11bf6b23abb85bfd70faf46b49b30cdbf2074672d6adcdeab",
       "tasks.md": "1de3cc406fdbaf3531852d3d2e07f06da4606fe355a03248bb6b8e9c6df96f50",
-      "checklist.md": "ff4e9e7d35e0578061ee35ac97506b2c7552fd96544700e510c71337b514daab",
       "implementation-summary.md": "b5a8a61116ede76bc0b0156cc12cb0f3cddea18ed7f067fb290e254e2f3995b0"
     },
     "last_active_child_id": null,

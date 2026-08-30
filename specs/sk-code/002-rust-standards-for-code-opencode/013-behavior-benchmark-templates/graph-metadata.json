@@ -36,17 +36,22 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
-      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
-      "plan.md"
+      ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -62,21 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-benchmark/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "framework.md",
         "kind": "doc",
         "path": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -178,7 +171,7 @@
     ],
     "causal_summary": "Add first-class sk-doc authoring support for the behavior_benchmark family: three fillable templates (index, scenario contract, baseline), an end-to-end creation guide, and a create-benchmark SKILL/README extension, so a deep-loop mode's behavior_benchmark package can be authored the way MCP promotion benchmarks already are. Templates mirror the shipped deep-alignment package and sk-doc conventions; the shared framework stays the single measurement contract.",
     "created_at": "2026-07-12T08:52:23.170Z",
-    "last_save_at": "2026-07-12T08:54:33.013Z",
+    "last_save_at": "2026-08-30T15:39:11.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,6 +181,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:880a58642d185705c666155d93febdb6d27ff3f02c520a2e71c50fa34fa3a3d1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe65a452b97a97682d3b3607b62f09fdf1bce6aebec0c3c186c2c578693c75d8",
       "plan.md": "3aa01ddccc628b66afbb4a40e5b366f771b7bc42182d6458ec0848bac3ed9f0d",

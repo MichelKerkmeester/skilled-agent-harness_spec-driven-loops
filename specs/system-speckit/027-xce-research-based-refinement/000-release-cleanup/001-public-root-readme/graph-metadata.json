@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Rewrite the repo-root README to current shipped reality: MCP and CLI dual-stack, memory capabilities, skill, command, and agent surfaces",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-08-29T14:56:25.646Z",
+    "last_save_at": "2026-08-30T15:39:32.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:83bbadd7a5e20fa1a0591b5bbe48c85c704ca7acd44b0784944fae87f61317f9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "161d6ae1ea52385580115d3c84b4e1576a8b70a0bebc04ee9df698489a86bad0",
       "plan.md": "9de13d18d40124e2471b84dc6045d127a6a8ce094e2a81371c91c74355843340",

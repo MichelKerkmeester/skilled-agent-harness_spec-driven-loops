@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The system-deep-loop subtree needs one blocking rollup gate after its ten scoped child phases. This verification-only phase aggregates sibling evidence and proves the complete surface has no in-scope snake_case filesystem name outside the 020 exemption set, with no new rename work.",
     "created_at": "2026-07-14T15:17:56Z",
-    "last_save_at": "2026-08-30T07:19:43.412Z",
+    "last_save_at": "2026-08-30T15:39:16.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:8227a9895e0937843cba1a5d7d8962dcb5a315a71e2b42fe9079686996ba4740",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf59a050384c1ae1cad80381ef96f27d1773c6975f10b6eb6f388300e4ed388d",
       "plan.md": "50c959a8170a9165a4ce34b5a0918ae9f91d4a0683d47ebecd1830dbe58069fa",

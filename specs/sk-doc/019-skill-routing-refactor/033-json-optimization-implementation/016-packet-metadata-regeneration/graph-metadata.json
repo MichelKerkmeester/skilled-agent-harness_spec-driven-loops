@@ -17,7 +17,6 @@
       "run generate-context at close",
       "metadata regeneration implementation plan",
       "metadata regeneration task breakdown",
-      "016-packet-metadata-regeneration verification checklist",
       "packet metadata regeneration summary"
     ],
     "key_topics": [
@@ -38,22 +37,15 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,9 +61,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -171,42 +163,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Each",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Files Changed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Close the stale phase map, stale continuity blocks, planned derived status and missing source fingerprints as the single defect they are — the close-time metadata generator was never run — and do it only after the regression is dispositioned.",
     "created_at": "2026-07-30T08:10:27.570Z",
-    "last_save_at": "2026-07-30T11:23:36.920Z",
+    "last_save_at": "2026-08-30T15:39:15.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76c328022458ab7e296b9127fcff563808258ac2aa4d120d4a6585bd3247b1be",
+    "source_fingerprint": "sha256:0bad4622b85bd0cb7c96aa4c79cf850d7d8b265b819d5e291edffe93eca0d53b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a474b59241ef0049da2fca81e89758b3d23f2f564616843a18395aff9f325d85",
       "plan.md": "cc81dc7a0173e12ff7709c87aba0e9c6c642449ccf9856755a617ee0bb110f63",
       "tasks.md": "f76be9dda94fcf319ecd2421cefd3e9a0d52741d5672c4f8614300961d3ffe06",
-      "checklist.md": "6d450741477b2fe7214c768842b7be253b7a28e5b603f8f70ae1332fab20e486",
       "implementation-summary.md": "5a5b41595d326d93e13002e71b9de8a903fc94858f01b1971fceb7ddcf9150ab"
     },
     "last_active_child_id": null,

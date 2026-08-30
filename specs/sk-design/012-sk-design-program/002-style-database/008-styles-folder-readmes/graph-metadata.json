@@ -41,20 +41,12 @@
     "importance_tier": "standard",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/styles/lib/README.md",
-      ".opencode/skills/sk-design/styles/tests/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/styles/lib/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -184,7 +176,7 @@
     ],
     "causal_summary": "Give every non-data folder under .opencode/skills/sk-design/styles a README.md stating its purpose, key files, and architecture fit — completing the restructured tree's documentation. Preserves existing READMEs; treats library/bundles as data (one top-level README, not per-bundle).",
     "created_at": "2026-07-22T03:18:47.187Z",
-    "last_save_at": "2026-07-22T16:57:31.455Z",
+    "last_save_at": "2026-08-30T15:39:12.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +186,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1e5541170000416b7a575bfbc92ed156247016a05e9690fb685681fc6628557d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c2a21dbc09ec4ff8db0eed7df57051d7b4ef26ab3644de5f7d247c92cc4e0622",
       "plan.md": "68e4400d56cb0d5351c29fd47cdbfa61b651eeed9a0d92e08e4aba3138201f23",

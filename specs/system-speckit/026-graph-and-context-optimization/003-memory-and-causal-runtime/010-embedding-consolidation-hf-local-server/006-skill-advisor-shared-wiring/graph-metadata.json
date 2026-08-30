@@ -36,47 +36,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/lib/model-server-supervision.cjs",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      "mcp_server/tests/embedders/launcher-model-server-cross-launcher.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/lib/model-server-supervision.cjs"
     ],
     "entities": [
-      {
-        "name": "model-server-supervision.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/model-server-supervision.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-model-server-cross-launcher.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedders/launcher-model-server-cross-launcher.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -99,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
         "source": "derived"
       },
       {
@@ -190,11 +162,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "new",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The architecture only pays off if mk-spec-memory and skill-advisor consume the same resident model server",
     "created_at": "2026-05-29T05:06:24.649Z",
-    "last_save_at": "2026-07-17T17:19:30.259Z",
+    "last_save_at": "2026-08-30T15:39:31.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2d55e92b5a52ea2a9a9d8e096f137d4c529bb6bed95aae9247b4f1b7182cf83a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "140b2d52fe715325842be04b41d8ca6305beaca31f935a60bebc131702033fb3",
       "plan.md": "192ef767684dea4d0a66845df6b530889a19fe3546732afeeac592806b391e07",

@@ -19,9 +19,7 @@
       "zero-use legacy writer retirement plan",
       "fleet authority cutover tasks",
       "remaining seven mode rollout tasks",
-      "legacy writer retirement tasks",
-      "fleet authority cutover checklist",
-      "legacy writer retirement verification"
+      "legacy writer retirement tasks"
     ],
     "key_topics": [
       "fleet",
@@ -42,8 +40,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -62,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -153,55 +144,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the serial cutover of the seven remaining mode roots onto the typed ledger, prove five production boundaries per mode, preserve rollback windows, and retire legacy writers only after mode-scoped zero-use telemetry.",
     "created_at": "2026-08-14T12:47:56.842Z",
-    "last_save_at": "2026-08-29T09:58:16.166Z",
+    "last_save_at": "2026-08-30T15:39:22.106Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:1063c1588a1f756eadd6eb6e61d66f5daa2dff73884b8eed76fc24e31a446481",
+    "source_fingerprint": "sha256:d4168da527cac399db8cb4cdb5d3ed459ec27994b97ecafbe5391b12c275d547",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4a17f98b6b28440d199c1b116580c33f96301a6797c8e05a1ecf620c2a3efbe6",
       "plan.md": "b4d03cc3559e2b7adf6f5fe9ea27e10e6a2a50a25871a472b53228ff6c1bbc99",
-      "tasks.md": "fe701a857844bef4dda551c2fdd7ada5697119cb522a181049009e2f326686a0",
-      "checklist.md": "66b00974e87d55ceba5c2094fa821b46c98ad4b6908e2951db76501f7ad4f3b1"
+      "tasks.md": "fe701a857844bef4dda551c2fdd7ada5697119cb522a181049009e2f326686a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

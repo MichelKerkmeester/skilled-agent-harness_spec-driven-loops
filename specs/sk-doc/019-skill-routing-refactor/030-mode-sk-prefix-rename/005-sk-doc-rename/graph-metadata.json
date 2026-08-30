@@ -33,8 +33,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -50,15 +50,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Move all eleven create-* packets to sk-create-* and twelve routing keys including the shared-packet pair sk-create-skill and sk-create-skill-parent, holding PASS 98.",
     "created_at": "2026-07-28T05:34:10.590Z",
-    "last_save_at": "2026-07-29T09:11:09.623Z",
+    "last_save_at": "2026-08-30T15:39:15.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a86e6a52a25c7bcaa4bc49e7d949772481d02c9d22575add707fcc4f3e5d5a29",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11ac702029492a9b1bb590ee797808a1131aa6fd2938e2c7694226e25ab6f128",
       "plan.md": "a1788a1bb5d08cbaffb34ea855b627f6cdd87eb5f494aa36371b10d2b7ae040c",

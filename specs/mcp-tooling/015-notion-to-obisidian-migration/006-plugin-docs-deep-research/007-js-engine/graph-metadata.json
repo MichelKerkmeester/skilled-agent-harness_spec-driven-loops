@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The mcp-obsidian reference docs depend on the JS Engine plugin for Meta Bind `js` button actions, but the engine API, execution context, and frontmatter mutation path needed evidence from the real plugin and installed build",
     "created_at": "2026-08-23T03:47:30.065Z",
-    "last_save_at": "2026-08-29T15:21:55.388Z",
+    "last_save_at": "2026-08-30T15:39:10.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:51f692e9a113aa34bc0686e5ff2ddae5b0db6626a78ccf1c67da912200087c72",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "43a5b21ce188bcd7b06dc443222a0fe0cd2735e97efe61183e6060620ad4fb6d",
       "plan.md": "72c5951ca434f5cce5875a5f37d04ff8fecffbcb12965bf8ff307bfca81673ee",

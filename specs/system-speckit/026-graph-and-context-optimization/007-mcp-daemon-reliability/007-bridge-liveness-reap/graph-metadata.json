@@ -36,61 +36,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      "mcp_server/lib/ipc/socket-server.ts",
-      "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
-      "mcp_server/tests/launcher-watchdog.vitest.ts",
-      "mcp_server/context-server.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs"
     ],
     "entities": [
-      {
-        "name": "launcher-ipc-bridge.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "socket-server.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/ipc/socket-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-ipc-bridge-probe.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-watchdog.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/launcher-watchdog.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -113,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
         "source": "derived"
       },
       {
@@ -192,11 +150,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stale-lock",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`maybeBridgeLeaseHolder` (`launcher-ipc-bridge.cjs:97`) bridges whenever `fs.existsSync(socketPath)` is true (the gate at `:122`) with NO liveness probe; `bridgeStdioToSocket` (`:57`) then `net.createConnection`s",
     "created_at": "2026-05-28T18:43:50Z",
-    "last_save_at": "2026-07-17T17:19:34.006Z",
+    "last_save_at": "2026-08-30T15:39:32.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:a09978050daf8e647849798d3f048d7d7e375255807ea80fddcda69f40012e70",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "788160ee6e2bfc1391e7571a5f3b013ca0330f61a20be032e9fb1b1dffdacca0",
       "plan.md": "fe7795501dd63842ffdac4ba415882bd673185342d5b37b3bc21c2e472f6f74b",

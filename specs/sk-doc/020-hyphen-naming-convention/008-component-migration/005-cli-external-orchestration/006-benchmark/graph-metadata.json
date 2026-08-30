@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures, profiles, storage guides, reports, or generated runs are present at execution time. This phase applies the 020 authored-versus-generated naming boundary and records an explicit zero-candidate baseline.",
     "created_at": "2026-07-14T15:17:39Z",
-    "last_save_at": "2026-08-30T08:04:26.867Z",
+    "last_save_at": "2026-08-30T15:39:16.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "decision-record.md"
     ],
     "source_fingerprint": "sha256:c7846db17da8cbc74e510826e7e86d985223f2438eb3f5367dc3528f726506cc",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec477e782396b3fe8dbafc810d308740d543d9e3fb291ac2175b54d9395c74b1",
       "plan.md": "7287a7cbca1e3445332343f5a8dc2d632363ddf4f022d96a6d789cb6532d6495",

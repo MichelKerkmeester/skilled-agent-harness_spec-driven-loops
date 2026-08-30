@@ -41,8 +41,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/sk-git/SKILL.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-git/SKILL.md"
     ],
     "entities": [
       {
@@ -64,15 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "sk-git documents commit standards in two places — SKILL.md §3 and `assets/commitmessagetemplate.md` — and both are partially stale relative to the decisions locked in Phase 002",
     "created_at": "2026-07-15T04:22:52.937Z",
-    "last_save_at": "2026-07-15T04:22:52.937Z",
+    "last_save_at": "2026-08-30T15:39:18.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:02f2b40da0e8fe4644b3ab8f415336cd0ee9db55cbfebe1b1e73d7a47c0b7c42",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a7f805995b361d1552c39cb70b91e7efb2991c587659e1c671182b6341e3fb3",
       "plan.md": "25d9b409ed2b4e90b46d0be84f788edc8af7b215a23676942e0a83736df5b386",

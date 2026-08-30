@@ -19,8 +19,6 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -33,9 +31,9 @@
       "plan",
       "implementation",
       "tasks",
-      "verification",
-      "checklist",
-      "summary"
+      "summary",
+      "alpha",
+      "model"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -69,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,26 +187,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "OpenRouter",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Ox Alpha model needed to be dispatchable from cli-pi and cli-opencode",
     "created_at": "2026-08-22T10:23:23.561Z",
-    "last_save_at": "2026-08-29T14:54:25.466Z",
+    "last_save_at": "2026-08-30T15:39:08.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da15eb9c438706d866785f6e4f954871d42177110751507a7fecf3ec971f0180",
+    "source_fingerprint": "sha256:9bbf710e23b0fe27607a45737be5f1b9ab41aebad06bd049911cb02f972a626e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b98f3f480b3ee1051c4849dc52e981856f3377f5c7a9a814285b8787c08e19f8",
       "plan.md": "4cbad429ab009386c2077283a94b5f3f05e7f70e80d3dfb8ce24f979c6b7ad3a",
       "tasks.md": "6afc3293d2d99e62e14e3bf1bed61b9ac9cdd7aa8c813f45b92a28c6405b3edc",
-      "checklist.md": "8e86db2f4aa1e79b0101dc3909aa85301e46528f7abc867f4a0116f6b848dc6a",
       "implementation-summary.md": "8bb02ff197029d48d62348255d002ebab938cad0a679a1a3b52dac2e733247bd"
     },
     "last_active_child_id": null,

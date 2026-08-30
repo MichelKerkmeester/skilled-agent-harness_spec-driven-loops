@@ -15,8 +15,6 @@
       "advisor index handoff implementation",
       "core alignment fixes plan",
       "core alignment fixes tasks",
-      "core alignment fixes checklist",
-      "advisor index handoff verification",
       "core alignment fixes implementation summary",
       "advisor index handoff shipped"
     ],
@@ -31,8 +29,8 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "summary",
+      "shipped"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/commands/doctor/scripts/route-validate.py",
       ".opencode/commands/doctor/_routes.yaml",
@@ -56,7 +53,8 @@
       ".opencode/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md",
       ".opencode/skills/sk-doc/sk-create-skill/scripts/tests/advisor-index-handoff-contract.test.cjs",
       ".opencode/commands/doctor/scripts/tests/skill-advisor-route-contract.test.cjs",
-      ".opencode/skills/sk-doc/leaf-manifest.json"
+      ".opencode/skills/sk-doc/leaf-manifest.json",
+      ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs"
     ],
     "entities": [
       {
@@ -75,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -180,6 +172,12 @@
         "source": "derived"
       },
       {
+        "name": "parent-skill-check-leaf-manifest.test.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,22 +204,21 @@
     ],
     "causal_summary": "`../001-research/research/research.md` found the create → doctor → skill-advisor system structurally sound but operationally under-wired: no command proves a newly created skill reached the live advisor index, `/doctor:skill-advisor` omits the live `skillgraphvalidate` tool from its own declared surface, `leaf-manifest.json` generation is inconsistently owned, and three small but real, fully-diagnosed defects sit in the doctor/create surfaces (route-validate parity, a stale template cross-reference, a missing tool declaration)",
     "created_at": "2026-07-31T03:21:54.016Z",
-    "last_save_at": "2026-08-29T15:22:03.574Z",
+    "last_save_at": "2026-08-30T15:39:16.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f35258a7e38a5aa68636b1ce558ec27b7b95b4d961ee865f933625992fb33c35",
+    "source_fingerprint": "sha256:4a0348bd5204a252ce235d7371327c2c8011f651fc8216093e88445799055acb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2e240bafdda3d18a4b2c387d1af94da5610e2f60055986c7bc52d4efe876b4dc",
       "plan.md": "7fae8818336b80fcfc5e030388a09d585f701bea68f2e3e3bf623f4c75573b0b",
       "tasks.md": "898e578edb344dc3dd64c0740d15d1b19a42e8a0d672ce3b69e915cc57c01003",
-      "checklist.md": "1b881ed258ad5ed84b98ec62cdf94c2d56e84021e5c48be2f20474c398cc8eea",
       "implementation-summary.md": "8b0d17951fcb3e55a9ab18aee4a7c5152578e2b4b0376eed9642da006515f35a"
     },
     "last_active_child_id": null,

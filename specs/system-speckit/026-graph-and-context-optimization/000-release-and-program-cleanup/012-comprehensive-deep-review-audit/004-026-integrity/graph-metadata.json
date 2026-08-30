@@ -80,13 +80,14 @@
     ],
     "causal_summary": "The 026 program (8 tracks, ~634 sub-packets) recently had changelog audit drift and completion-claim reconciliation remediated",
     "created_at": "2026-06-04T18:53:35.320Z",
-    "last_save_at": "2026-07-10T06:24:35.393Z",
+    "last_save_at": "2026-08-30T15:39:28.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:d3b8370ac888e164e0b628cea028433a718d9023a887ecc8f04646df315a457d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95fdad4d5a6372a13cc6892eac736d99a3407c485763804a6b61953fc672bfcd"
     },

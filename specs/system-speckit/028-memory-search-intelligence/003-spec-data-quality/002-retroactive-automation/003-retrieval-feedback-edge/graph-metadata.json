@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built Nothing",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Impression Capture",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The retrieval-learning loop records only the positive selection edge",
     "created_at": "2026-06-27T17:15:36.032Z",
-    "last_save_at": "2026-08-29T00:37:11.730Z",
+    "last_save_at": "2026-08-30T15:39:35.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf485a3e838c45cef628d998988c096705fd3333ff92f1fbe1d57623d766988f",
+    "source_fingerprint": "sha256:9fcc9c0f2f4fc1fdfcb280bbdc0e8f32043c98f2152d1c5dba3b1da8c208e7fe",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2b9d6a21761842a56a41f88892d56c3987bc510ee09d3827b014ed8f47871cca",
       "plan.md": "de51cae967c960080c91cd82cfc970fa0da1a27426821b49170c0a46f48313a7",
       "tasks.md": "2f6dbf389464bf2317a9b7e881006a45e191116d66116764d7de1e877194857a",
-      "checklist.md": "77aba6b4b54721b931b4f94e03692a64ac669150b56ac473cbbd37b0df5b1fed",
       "implementation-summary.md": "941d0b7d7e9733e12574057dfa80101abc340d990e7dda0ddb76d147f245398e"
     },
     "last_active_child_id": null,

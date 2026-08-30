@@ -167,7 +167,7 @@
     ],
     "causal_summary": "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than being hidden inside one component subtree.",
     "created_at": "2026-07-14T15:16:52Z",
-    "last_save_at": "2026-08-30T07:19:15.400Z",
+    "last_save_at": "2026-08-30T15:39:16.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,7 +176,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:41f3799238d229d64ab7699313ac32e00c98518f43f146b969c48deba6338d06",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c3d79ee1ea16984a1c740dbe334fc3de3e0794a57ac4870f576a3f3e32dadb8f",
       "plan.md": "7151fa2b01ef408567adc8b89656e330e80a1df03756a8559f8f5f03b3a5512f",

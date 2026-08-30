@@ -194,7 +194,7 @@
     ],
     "causal_summary": "On a realistic corpus the packed BM25 warmup spikes process RSS to ~687MB (4.6x over the 150MB budget) even though retained heap after GC is only ~105MB",
     "created_at": "2026-06-11T05:11:29Z",
-    "last_save_at": "2026-08-29T15:22:20.043Z",
+    "last_save_at": "2026-08-30T15:39:33.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:1deff8a7e23068618de22c69754163663bc3ce4ca38d4f9782bcb6c3cabaf140",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d0433060487e5ecd2fa89307dab06a15e2ff7dfaaae2d5c3bc0a775bc9c0dbca",
       "plan.md": "6066ecc10aaa1bdc224bed26cb2fbc8115297cb0676c42cbe73c432f8e90e213",

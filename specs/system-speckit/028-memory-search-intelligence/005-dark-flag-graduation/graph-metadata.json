@@ -45,7 +45,7 @@
       "capability"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "007-graduation-follow-ups/spec.md"
@@ -96,17 +96,18 @@
     ],
     "causal_summary": "This cycle added 41 feature flags",
     "created_at": "2026-06-24T05:05:10.913Z",
-    "last_save_at": "2026-07-12T12:17:00.114Z",
+    "last_save_at": "2026-08-30T15:39:36.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:fac88eae83ecb1f98ca205b152d6e98f0f602f8b60b049753a9607450dd044d6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "64fec47bc27d5c441b0b83bae5b12a8e35767d023ad13ef41950f3e7430c6196"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/028-memory-search-intelligence/005-dark-flag-graduation/011-graph-preservation-quality-benchmark",
     "last_active_at": null
   }
 }

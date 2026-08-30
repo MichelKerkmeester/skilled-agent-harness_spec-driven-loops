@@ -21,8 +21,8 @@
       "create diff command tasks",
       "diff command router tasks",
       "create-diff command workflow tasks",
-      "create diff command checklist",
-      "diff command verification"
+      "create diff command summary",
+      "diff command status"
     ],
     "key_topics": [
       "diff",
@@ -39,22 +39,16 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       ".opencode/commands/create/diff.md",
-      ".opencode/commands/create/assets/create_diff_presentation.txt",
-      ".opencode/commands/create/assets/create_diff_auto.yaml",
-      ".opencode/commands/create/assets/create_diff_confirm.yaml",
       ".codex/prompts/create-diff.md",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-      ".opencode/skills/sk-doc/mode-registry.json",
-      ".opencode/commands/create/flowchart.md",
-      ".opencode/skills/sk-doc/create-diff/SKILL.md",
-      "checklist.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/mode-registry.json"
     ],
     "entities": [
       {
@@ -76,27 +70,15 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "diff.md",
         "kind": "doc",
         "path": ".opencode/commands/create/diff.md",
-        "source": "derived"
-      },
-      {
-        "name": "create_diff_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/create/assets/create_diff_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "create_diff_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_diff_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "create_diff_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_diff_confirm.yaml",
         "source": "derived"
       },
       {
@@ -115,30 +97,6 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/sk-doc/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "flowchart.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/flowchart.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-diff/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,26 +158,61 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `create-diff` mode ships a working engine (`creatediff.py`) and validator (`validatereport.py`), is registered in the sk-doc hub, and routes through the advisor — but it is the only one of the eleven sk-doc `create-` workflow packets with no dedicated slash command",
     "created_at": "2026-07-15T18:43:15.367Z",
-    "last_save_at": "2026-07-17T14:37:12.467Z",
+    "last_save_at": "2026-08-30T15:39:14.245Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5c6873f8e52043ce7bc2cb0f54f20d0ec32e96c27264de78231af5a05751580",
+    "source_fingerprint": "sha256:7f5226d36d608697e529b984916f74fe67f5f485bab8c888c480f65c6e432b87",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0986d2ade30725137ed5df27728a1d4ff36cc7ffac4597d7bb4f06c1a08faf2d",
       "plan.md": "b5d10d9a36f1c381d47e0c89868f54b2d3791851fa47784ddfdaa3df76f94ed6",
       "tasks.md": "f966b2e073bf6b2ab074240d33e7b30b205ad224b61ebb17a5b9025c95b76aba",
-      "checklist.md": "3342da49541d31b4999ca10994dd213572a6ec03d357a651f41c4da1c74eb451",
       "implementation-summary.md": "e774a5286258c4c34add66fc4fb4ca43028a6188aedd33987c34cc87644118c3"
     },
     "last_active_child_id": null,

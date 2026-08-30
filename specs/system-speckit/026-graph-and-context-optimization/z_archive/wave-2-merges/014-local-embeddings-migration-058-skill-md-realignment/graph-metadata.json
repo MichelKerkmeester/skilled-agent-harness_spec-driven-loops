@@ -39,44 +39,28 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-skill-advisor/SKILL.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/system-code-graph/mcp_server/README.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/README.md",
-      "research/iterations/iteration-001.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
       "resource-map.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      "research/iterations/iteration-001.md",
       "research/track-seeds.md",
       "assets/iter-template.md",
-      "research/research.md",
       "research/delta-verified.md",
-      "spec.md",
       "research/deep-research-state.jsonl",
       "research/edit-evidence-A.md",
       "research/edit-evidence-B.md",
-      "research/edit-evidence-C.md",
-      "implementation-summary.md"
+      "research/edit-evidence-C.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -92,9 +76,33 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -110,21 +118,9 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "delta-verified.md",
         "kind": "doc",
         "path": "research/delta-verified.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -149,12 +145,6 @@
         "name": "edit-evidence-C.md",
         "kind": "doc",
         "path": "research/edit-evidence-C.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -204,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "20 cli-devin SWE 1.6 deep-review iterations identify drift + gaps",
     "created_at": "2026-05-15T15:00:00Z",
-    "last_save_at": "2026-07-17T17:19:36.532Z",
+    "last_save_at": "2026-08-30T15:39:32.755Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +216,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:535886d0d585f5738092f91ca8d99fbfaa32673ae2383eb78b50c520da268526",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2959c30e59258b3d50912d5d1cd20e31e076c8fed6267af8f7d4c60fba4935f4",
       "plan.md": "829215443dee625481232a83b785c808ed5e8beb67cda02c99ed042e365a6fc7",

@@ -18,11 +18,10 @@
       "fallback hub intake dispatch plan",
       "tasks",
       "wave 009 tasks",
-      "verification",
-      "checklist",
-      "wave 009 checklist",
       "implementation",
-      "summary"
+      "summary",
+      "wave 009 implementation summary",
+      "fallback hub intake dispatch summary"
     ],
     "key_topics": [
       "wave",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-design/SKILL.md"
     ],
@@ -65,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -176,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built Executed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The sk-design `manualtestingplaybook` documents real-orchestrator scenarios but none of the fallback-and-resilience (`fallback-and-resilience/`) or hub-manager-intake (`hub-manager-intake/`) scenarios had ever been run through a real `opencode run` dispatch against the live GPT-5.5-fast executor",
     "created_at": "2026-07-07T15:21:16.287Z",
-    "last_save_at": "2026-08-29T15:21:59.891Z",
+    "last_save_at": "2026-08-30T15:39:12.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:daf3d1bd863af66f393da833be02795244400e460b1a356941cfddac915f0ce7",
+    "source_fingerprint": "sha256:4b6cd2876fc1f8103ae885fae5a1bd9865dbe0778541242bbf1d774a2c7fcc99",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a60de73f5966f6e5451ae312d025414fef29b55b963058d3be48c476f0ad8169",
       "plan.md": "d41d2d014bca412516097997da8cbe2308b31d143a8b399388249e6fb2f38d23",
       "tasks.md": "e644c62659ff81ba1448e79ddf5f19ab8d4e775eb72d7b30ea56832240a9de06",
-      "checklist.md": "9ad0f15fc6f07f999eafd7f04c0263079b2da8f34e34d94856a2fa98218878b0",
       "implementation-summary.md": "8a2b045c7554f28ac582a749656fbe2c9869aa11fad2c84373352b87d9bbbf3f"
     },
     "last_active_child_id": null,

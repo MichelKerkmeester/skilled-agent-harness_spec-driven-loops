@@ -19,10 +19,9 @@
       "fanout builder re-map plan",
       "devin cursor exec hardening tasks",
       "fanout builder re-map tasks",
-      "devin cursor exec hardening checklist",
-      "fanout read-only containment qa",
       "devin cursor exec hardening done",
-      "cursor mode plan trust fanout"
+      "cursor mode plan trust fanout",
+      "devin read-only auto no sandbox"
     ],
     "key_topics": [
       "devin",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
@@ -69,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,26 +188,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "strict",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The devin and cursor fan-out lineage builders mapped the generic sandbox modes (`read-only`, `workspace-write`, `danger-full-access`) to CLI flags that live testing of the installed binaries proved incorrect:",
     "created_at": "2026-07-29T12:31:59.435Z",
-    "last_save_at": "2026-08-29T13:09:49.497Z",
+    "last_save_at": "2026-08-30T15:39:21.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31b9ec1358712ed7de3e1d7a3a27d2ede54d2a98480e3cd055f974ec671df96a",
+    "source_fingerprint": "sha256:1274852490622e588f5b73ab1591a3788297ab5505e9fcd6a52b019ebf202c80",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "139cd67c9e7bfa89dea5652c8f386218cb1fa66dd3f90ba67125c0ac6c47a217",
       "plan.md": "dbf3d640aeebac66d7b362ee0a18d7da684c2d2042c5a81990c3676575914bb0",
       "tasks.md": "ba6f82cf0ae4af6a3e51c907667beb81a9db22224c32f9e9fb7d8ee72eb7505f",
-      "checklist.md": "0c59ef960b8af6f6180fc456bc7c8aff51d25f36c6216b07c0b950c309b1e108",
       "implementation-summary.md": "b48715c7904dde3daad82d5a80fc359ed029cb0d41aa7ecab619df79aa0dfac2"
     },
     "last_active_child_id": null,

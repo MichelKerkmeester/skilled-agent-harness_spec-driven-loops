@@ -42,35 +42,17 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      ".codex/config.toml",
-      ".claude/mcp.json",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".codex/config.toml",
+      ".claude/mcp.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -83,6 +65,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Runtime mirror directories have diverged from their canonical sources, one mirror is a stale physical copy rather than a link, and MCP server configuration exists in three places that disagree about which servers are registered",
     "created_at": "2026-07-27T08:41:13Z",
-    "last_save_at": "2026-07-27T15:28:15.622Z",
+    "last_save_at": "2026-08-30T15:39:34.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:64432972eb24081647e0f5529551378fa4bc0cd50437fb690d0e667bf230bdd9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a5ca65a087b5dc89594d9f4745528c9c92e29b4f4f7ce8642888159145cddbbf",
       "plan.md": "7a76135356f908ec94e0fad473bcf0ec425367851b0425fffefd0b0ff70aab72",

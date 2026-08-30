@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The packet shipped a resolver whose search-path branch cannot return a candidate on a real host",
     "created_at": "2026-08-29T09:58:50.535Z",
-    "last_save_at": "2026-08-29T15:21:55.809Z",
+    "last_save_at": "2026-08-30T15:39:10.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:69a5047d6a206bb21b3d1418d230fc9f9346513d3a037cff4a651a0f38e95a1f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0a5d56c18ec84ba5b30ddd3bc56343c65a66c6d00912b29c2a79ad05f7e0b599",
       "plan.md": "3def9c56494c907c111421e3fb16ac83c12adbffdc7108dba937419d11f303c4",

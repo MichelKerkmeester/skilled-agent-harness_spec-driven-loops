@@ -35,43 +35,14 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/relation-coverage-unit.vitest.ts",
-      "mcp_server/lib/causal/relation-coverage.ts",
-      "mcp_server/tests/relation-coverage-unit.vitest.ts",
-      "mcp_server/tests/causal-stats-output.vitest.ts",
-      "lib/causal/relation-coverage.ts",
-      "handlers/causal-graph.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "lib/causal/relation-coverage.ts",
+      "handlers/causal-graph.ts"
     ],
     "entities": [
-      {
-        "name": "relation-coverage.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
-        "source": "derived"
-      },
-      {
-        "name": "relation-coverage-unit.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/relation-coverage-unit.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-stats-output.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/causal-stats-output.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "handlers/causal-graph.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -94,6 +65,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relation-coverage.ts",
+        "kind": "code",
+        "path": "lib/causal/relation-coverage.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "handlers/causal-graph.ts",
         "source": "derived"
       },
       {
@@ -191,11 +174,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`memorycausalstats` reports a `relationCoverage` block whose `backfillJob.command` is `memoryhealth({ autoRepair: true, confirmed: true })` and whose `remediationHint` says \"Run … to backfill relation coverage; prioritize caused.\" A code review of the 2026-06-04 \"optimize causal graph\" request found this is a no-op: `lib/causal/relation-coverage.ts` is a pure reporter (no edge writes), and the autoRepair handler (`memory-crud-health.ts`) only does FTS rebuild + orphaned-edge/vector cleanup — it never balances relations",
     "created_at": "2026-06-04T09:45:00Z",
-    "last_save_at": "2026-07-17T17:19:31.513Z",
+    "last_save_at": "2026-08-30T15:39:31.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +194,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:28e591704750da22813b73a27d48866dee8602898de899d029caa4e3bf298ec6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71d02011bf0d2616e02f6b08c06e9d2cba4be5e0ff844e2d21f763f90960ba25",
       "plan.md": "7e1f433515cad31bccb486e70d19b37dfbed5fe847afb809df9e3c0153956de5",

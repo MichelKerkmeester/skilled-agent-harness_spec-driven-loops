@@ -42,21 +42,15 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Eighty of the audit's 88 findings were path-checked but never claim-tested",
     "created_at": "2026-07-27T08:41:07Z",
-    "last_save_at": "2026-07-27T11:46:55.955Z",
+    "last_save_at": "2026-08-30T15:39:34.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f603e07e45103d6e9070bb03689fdc7a298662db212a6eed62cd9302348268c5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4092f6dea6b9fdfedce195594df06b42cb69564037063b07ec2eb1587dae2a4f",
       "plan.md": "ae096ecf97d9b4d4b4f16aab1a57bd841017947b5de61b7cc7e246fa1d4b06bb",

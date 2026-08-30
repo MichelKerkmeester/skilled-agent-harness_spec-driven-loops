@@ -37,7 +37,7 @@
       "skill-level"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -87,13 +87,14 @@
     ],
     "causal_summary": "Skill-level documentation — the `SKILL.md`, `README.md`, `references/` and `assets/` that agents read before acting — has drifted away from the code, registries and installed binaries it describes",
     "created_at": "2026-07-30T19:29:17.418Z",
-    "last_save_at": "2026-07-30T19:29:17.418Z",
+    "last_save_at": "2026-08-30T15:39:17.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:e67dac86fae8e28e0621af600691208204f647a506e93e2849c30b60065e3e19",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5a4f3e85f2170c316275fdb4018d1483edb8fb16fa60c15dc22ef08d68ec2e61"
     },

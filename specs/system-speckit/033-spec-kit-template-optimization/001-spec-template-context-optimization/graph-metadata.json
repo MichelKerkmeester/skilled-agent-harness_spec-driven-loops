@@ -22,7 +22,7 @@
       "spec kit template task list",
       "033 implementation tasks",
       "template context optimization tasks",
-      "spec kit template qa checklist"
+      "packet goal"
     ],
     "key_topics": [
       "spec",
@@ -44,7 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
@@ -53,14 +53,14 @@
       "mcp-server/handlers/memory-search.ts",
       "mcp-server/tests/memory-search-token-budget.vitest.ts",
       "scripts/rules/check-ac-coverage.sh",
-      "scripts/rules/check-scope-adherence.sh",
       "scripts/lib/validator-registry.json",
       "references/validation/validation-rules.md",
-      "manual-testing-playbook/tooling-and-scripts/scope-adherence-advisory-rule.md",
       "scripts/tests/research-template-gating.vitest.ts",
-      "scripts/tests/check-scope-adherence.vitest.ts",
       "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
-      "changelog/v3.9.0.0.md"
+      "changelog/v3.9.0.0.md",
+      ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
+      "scripts/spec/check-completion.sh"
     ],
     "entities": [
       {
@@ -82,9 +82,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "goal.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -130,12 +130,6 @@
         "source": "derived"
       },
       {
-        "name": "check-scope-adherence.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-scope-adherence.sh",
-        "source": "derived"
-      },
-      {
         "name": "validator-registry.json",
         "kind": "config",
         "path": "scripts/lib/validator-registry.json",
@@ -148,21 +142,9 @@
         "source": "derived"
       },
       {
-        "name": "scope-adherence-advisory-rule.md",
-        "kind": "doc",
-        "path": "manual-testing-playbook/tooling-and-scripts/scope-adherence-advisory-rule.md",
-        "source": "derived"
-      },
-      {
         "name": "research-template-gating.vitest.ts",
         "kind": "test",
         "path": "scripts/tests/research-template-gating.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-scope-adherence.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/check-scope-adherence.vitest.ts",
         "source": "derived"
       },
       {
@@ -175,6 +157,18 @@
         "name": "v3.9.0.0.md",
         "kind": "doc",
         "path": "changelog/v3.9.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "inline-gate-renderer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-completion.sh",
+        "kind": "script",
+        "path": "scripts/spec/check-completion.sh",
         "source": "derived"
       },
       {
@@ -206,28 +200,34 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
     "created_at": "2026-08-12T12:51:40.227Z",
-    "last_save_at": "2026-08-30T04:14:18.686Z",
+    "last_save_at": "2026-08-30T15:39:36.473Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:63ef4bbec431d0dee7f3bb82d3e958369b95d4100d852e89d4b4c79a1514a81c",
+    "source_fingerprint": "sha256:deb339286a000400e39e0219abb839febbf664182aa1eeab0a92179ba327cf3f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "34be02752b6d02cecd8913327e1d705940330f68c9fd74027df89a0b0aee7ec0",
       "plan.md": "cd874d1f662c4cf5cd4aa41839ac23d161556f6969c29c89d51c79d1e2af4f28",
       "tasks.md": "df0735c3b1f94d70c29791f3104c40631a13ff1aa55fb00f63b3e9ee5c5813b5",
-      "checklist.md": "bce36fb119998d7eb304578410ed562f3ac0cf76af27dc1d023f042f3aebb2a8",
       "decision-record.md": "737fd7bd28fa1e333ba727bba1d01821f95a0ec900805d8a5bbdb137699168c5",
       "implementation-summary.md": "f030cb7020b14a8bfb5d6820ded0084de74ed030936d17066417d6521d154ce1",
       "research/research.md": "dd31944295aa48933d1a022dab903852758477b27182ceb14bac27afc0a9b583"

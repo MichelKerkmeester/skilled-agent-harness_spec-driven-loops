@@ -19,7 +19,6 @@
       "CP-040 CP-043 CP-044 CP-045 rerun",
       "061 plan",
       "061 tasks",
-      "061 checklist",
       "061 ADRs",
       "061 implementation summary",
       "061 handover",
@@ -45,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
@@ -68,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,33 +183,38 @@
         "source": "derived"
       },
       {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "Begin Stage",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "After 062, the executable wiring is in place but the existing CP-040..045 stress scenarios still dispatch via prepend-agent-body",
     "created_at": "2026-05-02T15:00:00Z",
-    "last_save_at": "2026-07-09T10:02:48.387Z",
+    "last_save_at": "2026-08-30T15:39:22.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:9511de85e56203e0467e72176af548e92ed24b99d936d9908033c7af09d554a1",
+    "source_fingerprint": "sha256:e2811b29e5a23925ff6cd053891522c7cba75c14fa720740a263273652dfc61e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9676c3419b17d9c22e4c49efc91a7fa98da36400a18813f8c458b2068dd3880d",
       "plan.md": "f285ab601f87b9871cf7b5e4369e0e64bcadafb70b2d3cdd6833d806afe24cc8",
       "tasks.md": "e2fa64a955e9aa857614b49f1f378582c2dc9794c4defd6e414aec78210694e2",
-      "checklist.md": "4463be23d692846048a1824372ece56464c960a32e596ed8a30b6b7864b4a967",
       "decision-record.md": "2e9ded593032245af49d0f52b0fc94fd969e554d0724701df0185e3117111b64",
       "implementation-summary.md": "b38b6df056e8fa2fd91d286350fdefb9e814aad810010e46188d524024423662",
       "handover.md": "8b2152bbe51ddbf41c528aa9aba681f3e4e02b970152fadb901fc7120e01597e",

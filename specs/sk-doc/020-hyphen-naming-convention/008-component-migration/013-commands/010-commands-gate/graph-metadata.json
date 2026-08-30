@@ -166,7 +166,7 @@
     ],
     "causal_summary": "The commands surface is split across seven namespace migrations, a loose-root classification, a residual asset/reference closure, and this gate",
     "created_at": "2026-07-14T15:18:38Z",
-    "last_save_at": "2026-08-30T07:20:04.635Z",
+    "last_save_at": "2026-08-30T15:39:17.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,7 +175,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:a55aa2f8f1bbb35a3eff7aa2b923959da79f441842f724edf646709f75e5c9f5",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1240ddc2e54455ad49b4d5077bf2e520a0827775026a85fde3a2f6f69a699c6d",
       "plan.md": "15be0536c926779f5af51346c1071639ea3580670e35876ce4fd9b17712e8082",

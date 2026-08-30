@@ -41,18 +41,22 @@
     "status": "planned",
     "key_files": [
       "spec.md",
+      "resource-map.md",
       "handlers/index.ts",
       "formatters/search-results.ts",
-      "lib/response/profile-formatters.ts",
-      "mcp_server/README.md",
-      "mcp_server/INSTALL_GUIDE.md",
-      "resource-map.md"
+      "lib/response/profile-formatters.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -71,24 +75,6 @@
         "name": "profile-formatters.ts",
         "kind": "code",
         "path": "lib/response/profile-formatters.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": "mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -166,7 +152,7 @@
     ],
     "causal_summary": "Public's Code Graph, Memory causal graph, and Skill Advisor systems each carry known gaps that the 007-external-project deep-research effort surfaced concretely (pt-01 + pt-02 syntheses)",
     "created_at": "2026-04-25T10:47:55.572Z",
-    "last_save_at": "2026-07-17T17:19:37.249Z",
+    "last_save_at": "2026-08-30T15:39:32.869Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -174,6 +160,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:9aa5c083d11554e22da0421e5d932ec26366adf05afe58d53defe928511368c1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ae9d9a794d6c1f69ac49e6047af4342d5da9413e1dd8a1ddd51421d0a1fb8a3",
       "resource-map.md": "7ce1ca7b6343fade1c65c2d5a3576f6252c00e7a560fb242bcb34fc4e8013a2e"

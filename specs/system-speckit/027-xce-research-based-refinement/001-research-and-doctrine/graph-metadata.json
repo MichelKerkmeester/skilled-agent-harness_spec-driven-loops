@@ -87,13 +87,14 @@
     ],
     "causal_summary": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:38.790Z",
+    "last_save_at": "2026-08-30T15:39:33.143Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:c098b66e9e05d71cbb97405784ad35a46a4e27158483fc291c0c95cb57e1606f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0b9e1d99e1cf3815962810f0ecb90697d848d832c36deb8dc87f7642c56dd5e0"
     },

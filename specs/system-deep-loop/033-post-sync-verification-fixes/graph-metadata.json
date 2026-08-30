@@ -41,6 +41,10 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-review-contract-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/reducer-backlog-remediation.vitest.ts",
       ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
@@ -54,13 +58,33 @@
       ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
       ".opencode/commands/deep/assets/deep-review-confirm.yaml",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "deep-review-contract-parity.vitest.ts",
         "kind": "test",
@@ -134,30 +158,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A large operator-directed sync of outstanding working-tree state (3,801 files, from concurrent sessions on `skilled/v4.0.0.0`) was committed and pushed",
     "created_at": "2026-07-11T23:38:57.864Z",
-    "last_save_at": "2026-07-20T08:42:05.666Z",
+    "last_save_at": "2026-08-30T15:39:20.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:53e94cd158e8dfacf0f9642edb1eee05707aa378021df1bf45d408b1cb859f81",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f2b0eba5fe6d8724856a76950720579235fbabd6e7203991cf07fbda6f003661",
       "plan.md": "d769c59cba2c59842974545f6078da3bfb1f799fddfe5025b5f7634d7a1a3bed",

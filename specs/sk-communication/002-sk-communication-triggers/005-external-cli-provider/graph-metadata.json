@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Command 2's cli- engine path is pure command-level orchestration",
     "created_at": "2026-08-19T06:20:53.378Z",
-    "last_save_at": "2026-08-29T14:54:10.263Z",
+    "last_save_at": "2026-08-30T15:39:11.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7bb3abaa86c0623817bd847b428df22ae169af6979505a79ad3a3f293273cec6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa7e4b28fa804c547b323f0662318d31b2759a9e9b4b928db9d2232b776b1f0b",
       "plan.md": "e1361c2117b9b7e80600308156341e92ee172111452930776c298260232ee548",

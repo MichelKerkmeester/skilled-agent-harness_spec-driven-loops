@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
-  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
-  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "packet_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
+  "spec_folder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
+  "parent_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -40,20 +40,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +183,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two playbook scenarios (`SP-023` CLI card fast path, `SP-024` escalation thresholds) tested the CLI",
     "created_at": "2026-06-05T12:47:32.530Z",
-    "last_save_at": "2026-07-15T10:52:32.573Z",
+    "last_save_at": "2026-08-30T15:39:19.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:82b9525ba1ed3d624249f5a0ad5b72e9ceab7a929055a61f5653775e75ec56be",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "342862d7d90c8c952f7db8a5f634f09069492fdb220a58f61c5c15881f2a04fe",
       "plan.md": "0e9c507dd3b9319edf6c8fc983d473239a741a3a72bc15415650485e70d7264d",

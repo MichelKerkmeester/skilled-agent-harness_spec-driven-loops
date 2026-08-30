@@ -19,9 +19,7 @@
       "spec",
       "034",
       "implementation",
-      "plan",
-      "verification",
-      "checklist"
+      "plan"
     ],
     "key_topics": [
       "gate",
@@ -32,17 +30,16 @@
       "spec",
       "implementation",
       "plan",
-      "verification",
-      "checklist",
       "refine",
-      "gate-enforcement"
+      "gate-enforcement",
+      "cover",
+      "hard"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "checklist.md"
+      "plan.md"
     ],
     "entities": [
       {
@@ -55,12 +52,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -134,59 +125,22 @@
         "kind": "quoted",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Memory Retrieval",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "compaction",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "completion",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "similarity",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Content",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Refine the gate-enforcement.md constitutional memory to cover ALL 4 HARD BLOCK gates (0, 3, 5, 6) instead of just 2 (3, 5).",
     "created_at": "2026-04-12T09:02:53.523Z",
-    "last_save_at": "2026-07-10T06:24:44.501Z",
+    "last_save_at": "2026-08-30T15:39:37.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "checklist.md"
+      "plan.md"
     ],
-    "source_fingerprint": "sha256:da8de25efdc9edeb81657f817551026e45aba01b5a7d2361362c29513f2962fa",
+    "source_fingerprint": "sha256:eea07fdde6bb14440686cfab3c789ebc6ca06c6609adf7c4b4970607bdf29e10",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6011ac0d28a0945bad39d9a7eca0e0921e911abc721d8cb41eac80ee5f7a6018",
-      "plan.md": "8cef35c861fe169abd0247e03df5876e641bbb3ab3d1a939474ea3be0aa3c5d1",
-      "checklist.md": "48bf2ec379de123f1ea483e1fc2b149011e9fe21e1576449c3ad0258f4529dd9"
+      "plan.md": "8cef35c861fe169abd0247e03df5876e641bbb3ab3d1a939474ea3be0aa3c5d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -16,7 +16,6 @@
       "deepseek cache overlap check",
       "cache split verification plan",
       "cache split verification tasks",
-      "cache split verification checklist",
       "fork-and-split deepseek cache split",
       "supersede pi caching build gate",
       "cache split verification status"
@@ -33,7 +32,7 @@
       "check",
       "plan",
       "tasks",
-      "checklist"
+      "fork-and-split"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".pi/settings.json"
@@ -63,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -174,43 +166,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Caching Ownership",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Five Checks",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claim Resolution",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phases 003 and 004 each verify their own piece in isolation (the fork's diff scope; deep-pi's self-gating)",
     "created_at": "2026-08-07T05:55:45Z",
-    "last_save_at": "2026-08-29T15:21:52.315Z",
+    "last_save_at": "2026-08-30T15:39:09.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61af48e91d27dda1e94e42eaab777bdc5f74bb1212143d9ffc435a59b7bc6a3a",
+    "source_fingerprint": "sha256:d86a1c729b2847550cf209d940518af6b7b2b9907a31f9330c824ebf6c260782",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a4a03906d1694c3c2b7b3b3d0b5229ad2dce898d65e7aee9643c869ff69191f",
       "plan.md": "c8dfaf438b48b2bbd4fb6432f0156dbaae7c65e3870107e430e50ce591437002",
       "tasks.md": "bfa85e84e8aa84f9e19baa69aeece66d91ae8103665ab547d80d8635b3659e0a",
-      "checklist.md": "10ac25d22b07ad50901d2443874f52ba4d7bf6cb0b85167f382edc37e92125b3",
       "decision-record.md": "a260e00024cf5b95d0d5d6327cf2cfff8aabfaba388d3d74b42adfe1f167f828",
       "implementation-summary.md": "7c4150440bb33369c2ea19ed6c70c3dd5579cf6139b354cd4f980b0dd1645509"
     },

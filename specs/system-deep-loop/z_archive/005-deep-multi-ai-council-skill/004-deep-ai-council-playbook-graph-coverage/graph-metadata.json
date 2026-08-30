@@ -41,12 +41,12 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -62,15 +62,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -81,12 +81,6 @@
       },
       {
         "name": "Council Playbook Graph Coverage",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -105,6 +99,12 @@
       },
       {
         "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Bring",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -186,11 +186,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 of `101-deep-multi-ai-council-skill` shipped a dedicated council graph (4 MCP tools, 8 node kinds, 10 relation kinds, 5 query modes, 3 convergence buckets) backed by `council-graph.sqlite` and verified by `tests/council-graph.vitest.ts`",
     "created_at": "2026-05-11T05:27:10Z",
-    "last_save_at": "2026-07-09T10:02:48.454Z",
+    "last_save_at": "2026-08-30T15:39:22.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,9 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdcc9589b71d32e0c641fad3fc1c0f5ed4f042846364aaec4d4b2909d01e44e7",
+    "source_fingerprint": "sha256:662d0365093ebf43a47d220e3a50a661441dc2ed9fa7241f538c2aae461d5d29",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af599f054188c26f939a35575f05719c7eb302bb148e2408d463c453baab74e6",
+      "spec.md": "3b97da0da5e0df415428d4a064cfeb7d7e4b052c912c45d2b9de5fcca95acb6a",
       "plan.md": "8bc6aae301da1eff785c06f0be4909c2849152c183db8da130b8a8b5c9d1bcde",
       "tasks.md": "f0ce5fe3693e53eae050a8b24c0f9fb0c9975e9fc226df0b70b0448df23878a8",
       "implementation-summary.md": "395f588dacd8b7e35a2499a0468b6643ea682d187678c262c96e5a868ab04fce"

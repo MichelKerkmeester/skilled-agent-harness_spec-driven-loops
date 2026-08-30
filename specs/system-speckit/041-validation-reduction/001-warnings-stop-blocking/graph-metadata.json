@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Strict mode decides which rules run; it stops deciding what a warning means.",
     "created_at": "2026-08-29T17:25:57.562Z",
-    "last_save_at": "2026-08-29T17:25:57.562Z",
+    "last_save_at": "2026-08-30T15:39:36.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:8336e7f4cd094d6e8f6b88f909d2eb0c62402db8072725b8f938d80d1a65096e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7e68328893c5c3d39899fdf0310cfe13658a91345e20cfe5dab67e72b2aeb05",
       "plan.md": "2dda903645c56694c52bba7c1f26ee59ef798e8ac6dd88063a72e42f3fa1a89b",

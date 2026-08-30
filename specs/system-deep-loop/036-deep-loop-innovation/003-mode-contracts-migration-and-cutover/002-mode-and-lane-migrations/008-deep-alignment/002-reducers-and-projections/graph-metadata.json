@@ -18,8 +18,6 @@
       "deep-alignment projection fold plan",
       "Deep Alignment reducers and projections tasks",
       "deep-alignment projection reducer tasks",
-      "Deep Alignment reducers and projections checklist",
-      "deep-alignment deterministic projection gate",
       "deep alignment reducer implementation",
       "deep alignment projection contract",
       "deep alignment shared review loop reuse"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,31 +154,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Alignment Reducers",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,22 +180,21 @@
     ],
     "causal_summary": "Plan the pure deterministic reducers and live projections for the Deep Alignment migration: replay the typed event ledger into lane, authority, artifact, finding, convergence, and per-mode status state while preserving verify-first evidence and the shared review-loop contract used by Deep Review.",
     "created_at": "2026-07-16T03:43:43.138Z",
-    "last_save_at": "2026-08-18T11:07:12.353Z",
+    "last_save_at": "2026-08-30T15:39:21.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53fd2e1dd81d363b58223951848b6546501bac1b7ccba4ebe00eef3791bb4777",
+    "source_fingerprint": "sha256:ca2f5164a8a99f963bc28f07265c4179a9e3c2d4619d23a889d4c80c35e0d626",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d895910e6ecd800da5cfec1adac34026287686f7da55ddf0e26dfc3f31d7f5e",
       "plan.md": "e0e6ac0fd9b32c7ee021567af815089ef0b8f26b3db6ccce867a2342fcbfa728",
       "tasks.md": "efb258d538453ce7c4fe5ee8edcc078c3128821db6985b7e513b64e1dc63afc1",
-      "checklist.md": "1943d5a4d65b69488b93b6a526824cf9158411be45ec533582ef46bb761b3fff",
       "implementation-summary.md": "b5c297fab24179f2dce8bdb03a86553f7fba5d9ca6e897fb4d29553c5453cbb4"
     },
     "last_active_child_id": null,

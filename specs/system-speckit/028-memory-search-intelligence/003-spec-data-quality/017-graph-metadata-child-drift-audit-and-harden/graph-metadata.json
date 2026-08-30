@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata.sh",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,27 +190,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A phase parent's `graph-metadata.json` `childrenids` array is populated only when `backfill-graph-metadata.js` is explicitly re-run against that parent",
     "created_at": "2026-07-06T06:03:21Z",
-    "last_save_at": "2026-08-29T14:54:16.742Z",
+    "last_save_at": "2026-08-30T15:39:36.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76f14027d26f9f50ce827269c329c3b63bb559d8c7d95c6ce0917e953b30c7fb",
+    "source_fingerprint": "sha256:4af2b32305bb93e44631dcfd6b89fea2b68ffa8e1eb52ee7ea9f2f482537a670",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35abf1f866248f551b1fe0f63197ad9aefbff595c199b00513694a2178b1c8a5",
       "plan.md": "c802797e5aead58acf7328e4f6bba48e220bdd88ab6a7e92a383a6ca05b7db12",
       "tasks.md": "5b24931f753d75712ecb8a63590d7532f17d2b27b316cca81b28809f13e35196",
-      "checklist.md": "70f3014d5ef17c214e4b7d4badfda9d9fa37c2c3e9abb098c4ae17a7e514fc3f",
       "decision-record.md": "ddd80c71547c2e9371e46d7bffb13f59562af6591ad08b2b9cb4472f982d3688",
       "implementation-summary.md": "a24209690d8c6119e835b816c9abd9e3cbf950ef26c896dce2085fdb526d0606"
     },

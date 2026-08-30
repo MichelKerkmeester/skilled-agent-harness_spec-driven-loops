@@ -20,9 +20,9 @@
       "phase 4a",
       "phase 4b",
       "tasks",
-      "verification checklist",
       "decision record",
-      "implementation summary"
+      "implementation summary",
+      "advisory promotion"
     ],
     "key_topics": [
       "offline",
@@ -42,6 +42,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/optimizer/replay-corpus.cjs",
       ".opencode/skills/system-spec-kit/scripts/optimizer/rubric.cjs",
       ".opencode/skills/system-spec-kit/scripts/optimizer/search.cjs",
@@ -52,18 +56,37 @@
       ".opencode/skills/system-spec-kit/scripts/tests/optimizer-rubric.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/optimizer-search.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts",
-      "plan.md",
-      "decision-record.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/scripts/tests/optimizer-promote.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -133,36 +156,6 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specific",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,27 +196,32 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop products now have richer runtime state, but tuning them is still largely manual: convergence thresholds, stuck detection, recovery escalation, and related numeric controls are adjusted by human judgment and one-off testing",
     "created_at": "2026-04-12T09:02:50.194Z",
-    "last_save_at": "2026-07-16T16:31:46.958Z",
+    "last_save_at": "2026-08-30T15:39:24.496Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c09e489fe4e12a5ba206a74068e41860f30bb6fc237f18b550420b985cf54611",
+    "source_fingerprint": "sha256:9c514dcadf18e26cb3c0fee9608471e83594073ded989d7410ed58bf26cfda94",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "812ee030719e888bbd7d392d62eb20ca29a68cbdca2e4610102b24698649f3fd",
       "plan.md": "8314edb9abcc06f02b9f1d6944770062bba46afe6a2f7ee92f1d8df24293e7a3",
       "tasks.md": "5075826fbd84ea0fb56379d3185528b180b9f642caa37639e043b4a80bd572e3",
-      "checklist.md": "ac2484b3278b0af98217001f134c5478950c8ad3cefa5233fc6959e47af33936",
       "decision-record.md": "e3cc47145b866b9f4a525f1a6629bcf64b49555beb5b3b169273abe06d7b822f",
       "implementation-summary.md": "d42c7f4e3c4eaf5d016706bf1e718039bb6403c9e87c4d1699683636892d92d4"
     },

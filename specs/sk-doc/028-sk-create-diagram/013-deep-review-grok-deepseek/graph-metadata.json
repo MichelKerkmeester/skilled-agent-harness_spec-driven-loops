@@ -15,7 +15,6 @@
       "sk-create-diagram review CONDITIONAL",
       "diagram deep review plan",
       "diagram deep review tasks",
-      "diagram deep review checklist",
       "diagram deep review summary"
     ],
     "key_topics": [
@@ -28,9 +27,9 @@
       "conditional",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "every"
+      "every",
+      "prior"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -38,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "review/review-report.md",
       "review/deep-review-findings-registry.json",
@@ -61,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,26 +180,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every prior phase in this packet was orchestrator-verified against real files, but never run through an independent, adversarial multi-model review",
     "created_at": "2026-08-12T19:55:45.000Z",
-    "last_save_at": "2026-08-29T15:22:04.881Z",
+    "last_save_at": "2026-08-30T15:39:18.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:961a96988ffb08188650fce1e7fcd6fbb21c6133cffc7d24f492789426944525",
+    "source_fingerprint": "sha256:b175683b9176b7d2b234f28a9779b73793f095bc901d30ee67e39c64909e3561",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "01f0211bc323cf5e3d92b977a55b4abfa17565b1059b20bd72ae40ac326b3043",
       "plan.md": "9c5b23405c539f5b0c5e0380518b0a9b1111d9afd6a4fdeab316ad8489cd9e30",
       "tasks.md": "65b643d34be21386190f3a943e795ace976b2e9526061fae330f1fce7ae7c57e",
-      "checklist.md": "08a368593b2727ac1430c973364d2c4f1171d407931325d30baf41291c871e4f",
       "implementation-summary.md": "ec16320183a54391240e5bdc42a2207ce1363a7d42d127be8d98b1a2fbd95b02"
     },
     "last_active_child_id": null,

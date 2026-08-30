@@ -18,7 +18,6 @@
       "sk-code router benchmarkability plan",
       "reference-following parseRouter plan",
       "sk-code router benchmarkability tasks",
-      "sk-code router benchmarkability checklist",
       "sk-code router benchmarkability decision",
       "3a-structured reference-following decision",
       "sk-code router benchmarkability summary",
@@ -35,27 +34,20 @@
       "doc",
       "plan",
       "tasks",
-      "checklist",
-      "decision"
+      "decision",
+      "3a-structured"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code/benchmark/README.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
-      "decision-record.md",
       "tasks.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/benchmark/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,9 +61,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -81,15 +73,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/README.md",
         "source": "derived"
       },
       {
@@ -189,31 +181,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The Lane",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Lane C skill-benchmark harness parses a skill's router by literal-scanning `SKILL.md` for `INTENTSIGNALS = {` and `RESOURCEMAP = {`",
     "created_at": "2026-06-01T10:15:07.917Z",
-    "last_save_at": "2026-07-08T13:43:15.304Z",
+    "last_save_at": "2026-08-30T15:39:23.849Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68f0bd3fc465828702de61208907ff9f1cd4f2407b003a25a4867f4d236bba42",
+    "source_fingerprint": "sha256:0f6777cf9267d5279e857842c3d642d926cd2d04c5eeb448d08821410e46ac39",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "855f87cdb801705f1ac0b3719dff3e7b396ba944dcd843f78f322592afacc341",
       "plan.md": "8451cbff259b56238ffc78759f8ba6ee1d9b79c01c7b62b4b9ab58d456c1730d",
-      "tasks.md": "eec6ae2ddd0996fdac476fbc54ed5bca3898288edb3313c570b66cd342dbb067",
-      "checklist.md": "d7c593915f142c0e24aaf3e1e966d4592b486d02d4b07c62c3560893a16ef4bd",
+      "tasks.md": "e42978c223f09847af3312887f060922d33829807c6ecee328a52066b0b772ad",
       "decision-record.md": "76e4811d97e025d5e0287c5c2675a1b3a4152ba38dbfa39618c9c8bc650fae3e",
       "implementation-summary.md": "cc6e9a1dd6d6c73fcaf98c2d39a9a480e5b3f1a780680753a0eba52a7e5525fc"
     },

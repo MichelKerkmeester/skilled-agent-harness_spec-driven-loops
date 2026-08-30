@@ -18,7 +18,6 @@
       "plan",
       "phase",
       "tasks",
-      "checklist",
       "agent",
       "orchestration",
       "041",
@@ -31,12 +30,12 @@
       "plan",
       "phase",
       "tasks",
-      "checklist",
       "agent",
       "orchestration",
       "implementation",
       "summary",
-      "sk-improve-agent"
+      "sk-improve-agent",
+      "skill"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,42 +167,47 @@
         "source": "derived"
       },
       {
-        "name": "Hard Blockers",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built Transformed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Dimensional Progress",
+        "name": "New Scripts",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Refactored Scripts",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The sk-improve-agent skill evaluates agents by checking keyword presence in markdown (~15-20% of what a true agent improvement system needs). The scorer tests \"does the file men...",
     "created_at": "2026-04-13T04:55:07.905Z",
-    "last_save_at": "2026-07-09T10:02:48.333Z",
+    "last_save_at": "2026-08-30T15:39:22.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:358decaa6db245df3aa7a09bb63c400d43919a361edc9397194ee10b2f021a63",
+    "source_fingerprint": "sha256:a91c475f5f2af8f50fc2f2e9129b1df585eb4ce95b054a72d5f261bd7309b85d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b9d78b4d9c9b00132db55d23deb82bdfbd364384091ddb56ef19056466c7e167",
       "plan.md": "58a2c34701e17b31b05f57c7f4fa970ff67c497c790c5398c413d3e7d73a6545",
       "tasks.md": "6bbbc19c2310286c2f024b5b6740c450ec297f454ed9b6daff6c4970e672851d",
-      "checklist.md": "df933cdb994f08cd683b22e79a4d4b32e8138048b799e46d3f8feb3c49964ee3",
       "implementation-summary.md": "6a7392c5e57d262395a6d94d5c26acb34373935924051499bf093fe376d9d547"
     },
     "last_active_child_id": null,

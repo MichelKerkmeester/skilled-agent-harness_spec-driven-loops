@@ -30,25 +30,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "evidence/playbook-fairness-audit.csv",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "evidence/playbook-fairness-audit.csv"
     ],
     "entities": [
-      {
-        "name": "playbook-fairness-audit.csv",
-        "kind": "file",
-        "path": "evidence/playbook-fairness-audit.csv",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,6 +53,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-fairness-audit.csv",
+        "kind": "file",
+        "path": "evidence/playbook-fairness-audit.csv",
         "source": "derived"
       },
       {
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "Inventory predicate type, stale fixed ground truth, aspirational thresholds, and orphan-row dependencies for every pre-expansion scenario.",
     "created_at": "2026-05-17T12:59:58Z",
-    "last_save_at": "2026-07-17T17:19:24.532Z",
+    "last_save_at": "2026-08-30T15:39:30.781Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2826538982978a719ac941b576d174068ea31d271fec9c5c808fea55e16a38db",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d135f73b1d3b77757e57020fbfcd756dcebc96130186619a13f5ce46a3443df",
       "plan.md": "ea70d699f54124a9d288c783198e46559911daff5d6f063e6c54fc7de9c9e0fe",

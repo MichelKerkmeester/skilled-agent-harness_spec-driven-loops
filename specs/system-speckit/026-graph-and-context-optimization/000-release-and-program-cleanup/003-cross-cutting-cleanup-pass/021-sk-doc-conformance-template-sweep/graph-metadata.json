@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The user spotted format drift in two cited manualtestingplaybook examples (`system-spec-kit/mcpserver/skilladvisor/` and `.../codegraph/`)",
     "created_at": "2026-05-18T08:15:53.141Z",
-    "last_save_at": "2026-08-30T08:04:39.625Z",
+    "last_save_at": "2026-08-30T15:39:28.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:e37b13aa46d772f280eb21bc037a8a1fa3131f94812d5c6314becf20a9879864",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "da1ec8591953761bbbd6c84c986c56396c96373435cfe1032c36ebd32bb22bec",
       "plan.md": "63e51fd824cfe21a1e3e66d746d7223023c927e9be1876a93c5f422f4c773933",

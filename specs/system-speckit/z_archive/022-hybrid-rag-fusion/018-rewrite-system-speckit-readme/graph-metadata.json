@@ -42,19 +42,36 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      "scratch/research-brief.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      "scratch/research-brief.md",
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -70,27 +87,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The system-spec-kit README (`README.md`, ~872 lines) was written before the 22-category feature catalog, 14-command suite (8 speckit + 6 memory), and phase decomposition system existed",
     "created_at": "2026-04-12T09:02:50.309Z",
-    "last_save_at": "2026-07-10T06:22:12.109Z",
+    "last_save_at": "2026-08-30T15:39:39.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3fbb592585c9f7deedc551544ae29a5f2f53783c80b3e8eb1d14e64e774c008",
+    "source_fingerprint": "sha256:366a9d4bc36176f751bebf87435f42e9519dcebdd3074263b4d963fff79b4349",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16edcc6dbea9ed3b78f33bc029a4121a5732247e8a4721d0cfdcbd4277062d38",
-      "plan.md": "055a0fcbc6a7470dddf30018e32e3b8ea3ea13bff580554a50c8d589115210bf",
-      "tasks.md": "8595bb9fea5a0f4d8b73659c8e651f6dd6abc611ad02ea38af2e1e468f268e8e",
-      "implementation-summary.md": "1e2fbe2445b6d436b2ba69ac5f01b45796a3ef600d7499a69e7e07294146304c"
+      "spec.md": "3b7dfbb69d3077c821fec7298fe0279d47de660468f8a9a3287797144db4f216",
+      "plan.md": "8dc334a4f6046b7a7385425b8798abaee30fe64dca208468dc851eb391c1ef82",
+      "tasks.md": "2736b5deb1c4ead6aab609aaa153fb65ca03cdddbf77c9c041868eaa8a702e28",
+      "implementation-summary.md": "01b71d482e66ed4578279e2390523e12473b19f9a531cedb8f522091623a5ec6"
     },
     "last_active_child_id": null,
     "last_active_at": null

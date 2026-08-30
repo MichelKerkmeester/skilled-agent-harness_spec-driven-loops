@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The advisor has versioned changelog entries through v0.10.0, while the skill identity documents expose version",
     "created_at": "2026-07-14T15:18:11Z",
-    "last_save_at": "2026-08-30T07:19:50.794Z",
+    "last_save_at": "2026-08-30T15:39:16.847Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,7 +196,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:57d407e1eae4a79d0b38a0b25484192a120bb7b1573f0e9a18f29ce6ef7ba57e",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "301c998a7df1a6022ec8437217297c4a7caed9459630c32305c373d52fbf22f1",
       "plan.md": "6d7c4631e09b7ac5860791524dd29b20a92f4a5a00742c16eb805a6e0cf35fa6",

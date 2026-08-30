@@ -18,11 +18,10 @@
       "create-readme sweep plan sk-design",
       "styles readme alignment tasks",
       "create-readme sweep task list",
-      "styles readme alignment checklist",
-      "create-readme sweep verification",
       "styles readme alignment decisions",
       "create-readme sweep adr",
-      "styles readme alignment summary"
+      "styles readme alignment summary",
+      "create-readme sweep implementation status"
     ],
     "key_topics": [
       "styles",
@@ -41,37 +40,18 @@
     "importance_tier": "standard",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-design/README.md",
-      ".opencode/skills/sk-design/styles/library/README.md",
-      ".opencode/skills/sk-doc/create-readme/assets/readme-template.md",
+      "spec.md",
       "plan.md",
-      ".opencode/skills/sk-design/styles/lib/README.md",
-      ".opencode/skills/sk-design/styles/lib/engine/README.md",
-      ".opencode/skills/sk-design/styles/lib/database/README.md",
-      ".opencode/skills/sk-design/styles/library/bundles/README.md",
-      ".opencode/skills/sk-design/styles/library/manifests/README.md",
-      ".opencode/skills/sk-design/styles/scripts/README.md",
-      ".opencode/skills/sk-design/styles/tests/database/README.md",
-      ".opencode/skills/sk-design/styles/tests/engine/README.md",
-      ".opencode/skills/sk-design/styles/tests/oracle/README.md",
-      ".opencode/skills/sk-design/styles/tests/oracle/golden/README.md",
-      "decision-record.md",
       "tasks.md",
-      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/sk-design/README.md"
     ],
     "entities": [
       {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "readme-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-readme/assets/readme-template.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -81,21 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -105,9 +79,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-design/README.md",
         "source": "derived"
       },
       {
@@ -205,27 +179,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Author",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Root",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `007-styles-folder-readmes` packet gave every styles folder a README, but most are minimal stubs",
     "created_at": "2026-07-22T05:45:30.641Z",
-    "last_save_at": "2026-07-22T16:57:31.307Z",
+    "last_save_at": "2026-08-30T15:39:12.749Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7213712d589aa3d0d5788ad14b49edb53bb6c3f8254c02127834f600fa822407",
+    "source_fingerprint": "sha256:c2186a6f796edef5cc89f5603c89daedcc47483840dd1f6f166a243400d27d51",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "35a623a555c0af7ae7e5512a018d717264250287633f6d0571c00ad6e3395c9c",
       "plan.md": "5f5a3fa6347c68d5c5065274cf71a76667e8f15174d495e82d3ea78cab752926",
       "tasks.md": "b52c902f5027753505a0fa451552611a839a7568c7baa7fa0f501959079e8824",
-      "checklist.md": "a6ec05e495c521a406fabdbeb2420e5492b31af272abff31379fa046dcb46a10",
       "decision-record.md": "eeb03374bbe006e37a0b3ef1b5753c1b1669b891731db0bcb3b35dc193f18e71",
       "implementation-summary.md": "c3dbde21199f0be6a2ec4a43c311da4128b6ca407f22a5edc3b5e96d99df81dc"
     },

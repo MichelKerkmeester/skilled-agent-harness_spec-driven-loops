@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The `systemarchitectureswimlane.md` flowchart example was box-widened wholesale (~40 borders) to satisfy the old box-width validator, which counted every horizontal rule — including connectors",
     "created_at": "2026-06-05T12:47:32.523Z",
-    "last_save_at": "2026-08-28T15:58:17.005Z",
+    "last_save_at": "2026-08-30T15:39:13.709Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0480ea0e62254f350839435d4f14433d2853afa1d973652a6e43b3a47c6c52a6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "12eb0b265662243fb77e5bf1d02e9e8c2d87b71f6f7c55fdb0bc3cec629aedf7",
       "plan.md": "692452ffcf420fdb60ee2ab419bae31517851a6e06812937cdf5a8b83460abc7",

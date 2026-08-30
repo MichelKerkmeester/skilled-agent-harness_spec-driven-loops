@@ -45,8 +45,7 @@
       ".codex/config.toml",
       "scratch/codex-config-patch.md",
       "shared/embeddings/factory.ts",
-      "shared/types.ts",
-      "mcp_server/handlers/memory-crud-health.ts"
+      "shared/types.ts"
     ],
     "entities": [
       {
@@ -95,12 +94,6 @@
         "name": "types.ts",
         "kind": "code",
         "path": "shared/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Cross References",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "v4 deep-review found one remaining real startup path where Voyage auto-shadow warnings happened too late, a health-report gap for hf-local dtype, one mutable Python list default, and several documentation/config examples that still described the pre-42aa114e3 or wrong-slug state",
     "created_at": "2026-05-13T09:45:00Z",
-    "last_save_at": "2026-07-17T17:19:18.822Z",
+    "last_save_at": "2026-08-30T15:39:29.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:45:00Z",
     "source_docs": [
@@ -206,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:cd18386cb427c19193fa936f7a9ca39015899123cb54dc7515275aa745bf26d9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d09d826125ffe83e851729435a88f6a42c51bbaf7ea8a0980042e00adf6c2575",
       "plan.md": "149c78eb4c2b4b383af32d0c446617864027ed36f2da2ff929e0ccd4f61127c9",

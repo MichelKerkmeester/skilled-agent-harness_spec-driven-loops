@@ -18,11 +18,11 @@
       "sessionStart Gate-3 plan",
       "Cursor prebind tasks",
       "Cursor Gate-3 wiring tasks",
-      "Cursor prebind verification",
-      "Cursor Gate-3 checklist",
       "Cursor prebind implementation",
       "Cursor Gate-3 delivery",
-      "Cursor Gate-3 handover"
+      "Cursor Gate-3 handover",
+      "analyze Cursor prebind",
+      "review autonomous child no-op"
     ],
     "key_topics": [
       "cursor",
@@ -44,12 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handover.md",
       ".cursor/hooks.json",
-      ".cursor/hooks/spec-gate-prebind.mjs",
-      "shared/dist/gate-3-classifier.js"
+      ".cursor/hooks/spec-gate-prebind.mjs"
     ],
     "entities": [
       {
@@ -68,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -98,12 +90,6 @@
         "name": "spec-gate-prebind.mjs",
         "kind": "file",
         "path": ".cursor/hooks/spec-gate-prebind.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "gate-3-classifier.js",
-        "kind": "code",
-        "path": "shared/dist/gate-3-classifier.js",
         "source": "derived"
       },
       {
@@ -195,27 +181,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activated Cursor",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Cursor's deny-capable `preToolUse` adapter is wired, but it only enforces when session gate state is already `open`",
     "created_at": "2026-07-25T13:39:58Z",
-    "last_save_at": "2026-08-29T15:21:50.950Z",
+    "last_save_at": "2026-08-30T15:39:07.577Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e456ef4b94c9c1c00d39ae56cc171c082c8a9c57da8302024771197a9a8f0841",
+    "source_fingerprint": "sha256:a82cee8605f0c1fb3522fee054f1507fa6cbafcd8b6fb9c64853c41dcc96026a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "57034755f0153111b3b72e2b9b626069582604fc9798c68bf4bd7a6cf173a785",
       "plan.md": "b661cadb8df56a327b74f5f38a4876dd7ab32c7e94f22707e8266ac09b62677b",
       "tasks.md": "efb9cdcaae12cffc3c2f2627244f4645e2eff2ed75d4b3979be3620c408a8562",
-      "checklist.md": "1fe800225465dfa5383db8282c7a54f1bff03de23bdb4586717e0648d0967ccd",
       "implementation-summary.md": "20ac16bfe23f307d952d1e7a36f51b4014199646739120b4ec099daddac83dc0",
       "handover.md": "f1f2ec4e900dd24a29ffa58a694a9bef43aa5cd6c09b89b03ca81f405eb45013"
     },

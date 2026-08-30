@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -166,42 +159,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Planning Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Turns the implemented contracts and observed operations into accurate API, security, setup, maintenance, incident, and rollback documentation",
     "created_at": "2026-08-10T18:28:43Z",
-    "last_save_at": "2026-08-10T18:49:12.984Z",
+    "last_save_at": "2026-08-30T15:39:07.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59872415ebf2e23ffd0efc71c899f7ff9b280a05ba89067d3fc5a4b3a134df47",
+    "source_fingerprint": "sha256:7280e86481abe5df46b1d12884aa695dc44fdea6c79935a646480abd232580ad",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dbe612c76b9b93a1a7a47a8c8cf038c01dcd58d7bbd8ffbc1f614a472e5d6f83",
+      "spec.md": "f594ad19fa8abe8103c8b016ce38112a0e3ef06825408846da7b5266f34b3780",
       "plan.md": "36ff274d6b77c62a96e2b1e323c6682fd73e93a116cb89d481520a7bd851a59c",
-      "tasks.md": "1f5cbe3cc834d558a396c9ad914068a2478c5db927c26bedcc8a4a16d1f37ece",
-      "checklist.md": "54b51e7ebbb151012058ecf1da5104bb20fd717a4fd5469625d72be277a0d6f6",
+      "tasks.md": "008a2e5d85da8aca7f516b75089b8cb13fcff390531b1550765481a24cca2075",
       "implementation-summary.md": "8b4b7aee2d109ba3cc24e56ab9c57b64faec75f766600296d1c18f0cf6bccab3"
     },
     "last_active_child_id": null,

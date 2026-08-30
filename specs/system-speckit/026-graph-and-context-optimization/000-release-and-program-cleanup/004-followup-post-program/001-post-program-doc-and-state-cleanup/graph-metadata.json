@@ -20,8 +20,6 @@
       "026 validator cleanup plan",
       "005 post-program cleanup tasks",
       "026 cleanup task ledger",
-      "005 post-program cleanup checklist",
-      "026 cleanup verification",
       "005 post-program cleanup summary",
       "026 cleanup implementation summary"
     ],
@@ -37,7 +35,7 @@
       "tasks",
       "task",
       "ledger",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "high",
     "status": "in_progress",
@@ -45,9 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,21 +65,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-phase-links.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh",
         "source": "derived"
       },
       {
@@ -183,36 +167,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 026 deep-review remediation program landed most runtime and documentation fixes, but left post-program status and validator surfaces stale",
     "created_at": "2026-04-28T19:26:58Z",
-    "last_save_at": "2026-08-29T15:22:10.748Z",
+    "last_save_at": "2026-08-30T15:39:28.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eafaad2efdc8d518794d49fca6a96dabceb881807983999f00e01f04b9aa64ed",
+    "source_fingerprint": "sha256:02031bc0790025c023748dd307745344dad47f3041f2a4b1551161f7291d3d20",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ce64cff2ce54279b2c661ba8ead2a5063c8da7b54855247c70812c87136d43cc",
       "plan.md": "b39703cf12ef99f96da9b23eed1ee8e128ad5eeced7c879fcae3beee08b43dbf",
       "tasks.md": "6b847762fb61c475a06bbf3337af2556a1026ef353eb50ea48d1620029e5f0ed",
-      "checklist.md": "f2fb1e97725c8ca0cab127b5ea2b603b14470ebcae31b93de487cddfd50dd919",
       "implementation-summary.md": "271a2ccd45c0e995a88401fbb92321145bc2541c727daa42da8c81e7bb0a90d2"
     },
     "last_active_child_id": null,

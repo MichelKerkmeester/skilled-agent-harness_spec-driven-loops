@@ -206,7 +206,7 @@
     ],
     "causal_summary": "sk-prompt's routing is only half-instrumented, and its baseline of 100 is misleading",
     "created_at": "2026-07-17T04:07:17.535Z",
-    "last_save_at": "2026-08-29T15:22:01.731Z",
+    "last_save_at": "2026-08-30T15:39:14.699Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:54930c07403c1a713010f4a03d548cf4e8717ed1a485dda2d28f5fc55f534339",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f157a12a978f4ac823f4c5ac9e79d8e6a06ba28211133ff0bbab0c79cfbdab21",
       "plan.md": "b4196db69a9deb89e5c9b02bf71ac57c22c072378b9a53daac2e5a8003829d91",

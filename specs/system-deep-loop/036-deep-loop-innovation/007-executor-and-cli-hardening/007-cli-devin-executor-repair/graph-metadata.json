@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Primary (systemic): the installed `devin 3000.4.16` added a workspace-trust gate",
     "created_at": "2026-08-12T20:56:31.733Z",
-    "last_save_at": "2026-08-29T15:22:07.682Z",
+    "last_save_at": "2026-08-30T15:39:22.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0628cc4496db190490bf591ce77ad2e16b4de8a93b76a26967970831a67e6bab",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "62768eb421c2be6f6ad096f8c41a03e1f7989b70f3d14c8344673e4f01fae5d2",
       "plan.md": "9562096236b4cd7bc9b434a4e503f2b8836a0c9b44d76f1f54ddfec97a26b88d",

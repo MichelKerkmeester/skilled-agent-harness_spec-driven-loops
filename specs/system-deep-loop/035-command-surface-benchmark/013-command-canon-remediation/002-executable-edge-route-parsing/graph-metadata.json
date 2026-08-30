@@ -35,40 +35,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs",
-      ".opencode/commands/create/assets/create_readme_auto.yaml",
-      ".opencode/commands/doctor/_routes.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/_routes.yaml"
     ],
     "entities": [
-      {
-        "name": "sk-doc-command.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sk-doc-command-adapter.test.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "create_readme_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_readme_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -91,6 +64,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
         "source": "derived"
       },
       {
@@ -188,11 +167,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Backlog K3: replace the route-cycle detector's raw-text edge extraction — which reads YAML comments as dispatch edges and yields false P0 circular-dependency findings — with schema-aware parsing that traverses only declared dispatch fields. Clears the false P0 cycles while keeping real direct/subaction/workflow cycles failing. Independent of the 001 contract chain; can run in parallel.",
     "created_at": "2026-07-16T07:51:58.792Z",
-    "last_save_at": "2026-07-16T16:34:19.573Z",
+    "last_save_at": "2026-08-30T15:39:20.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0edd4f733408e9c3bb7413c8bbc9e91ed42a6d87265f53267e4f5b6933f9aab7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "57be4bb61909de01144b3449a428949f2b7bf9c89652c7d016820664bf6546e6",
       "plan.md": "dcf5ac13bc07e5b5a8399610572295512932636368f2ec3d2b26689f239d7ba9",

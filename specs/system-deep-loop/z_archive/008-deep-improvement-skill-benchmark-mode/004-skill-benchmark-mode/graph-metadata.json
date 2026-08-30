@@ -119,7 +119,7 @@
     ],
     "causal_summary": "Design and build Lane C (skill-benchmark) in the renamed deep-improvement skill: scenario fixtures, hint-free dispatcher capturing resource-load traces, routing/discovery/efficiency/usefulness scorer, ranked remediation report, and /deep:start-skill-benchmark-loop command.",
     "created_at": "2026-05-30T07:27:05.680Z",
-    "last_save_at": "2026-07-09T10:02:49.054Z",
+    "last_save_at": "2026-08-30T15:39:23.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -127,6 +127,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c7e6d83055fb63ec2b26c0e0a2e567c74bcc6c809fa95e99abd8c95c48fc7f08",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bfd68355cf4f24a19ffdc22348e47abfa0a3767d4a636c9b7d1f9a9ef27c2c1e",
       "implementation-summary.md": "3510e23fbe912c9997217557e83cb8ed1a0aba97264b303346d5ba974fd9ef4c"

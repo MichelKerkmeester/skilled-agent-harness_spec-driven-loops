@@ -38,13 +38,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md",
       ".opencode/skills/sk-git/graph-metadata.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -61,12 +67,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phases 001-004 each verified their own scope in isolation",
     "created_at": "2026-07-15T04:22:50.746Z",
-    "last_save_at": "2026-07-15T04:22:50.746Z",
+    "last_save_at": "2026-08-30T15:39:18.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0fc23f8f28b174a1599fa72313abe4833053beb2a5d1c3a05b7c9da9e62d17d5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "42b5eb91f4b9072c007ea2f32fe82fa6ec3cbff98cebd46691c88515b0c90239",
       "plan.md": "a5c022bc6cdcca26a45c7a6ae79d957a9c827f5158f4498c5ac78a66eee9cbd1",

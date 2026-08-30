@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`mk-spec-memory` reports `requestQuality: 'weak'` on every `memorysearch` because the local reranker provider slot in `cross-encoder.ts:54` has no sidecar to talk to",
     "created_at": "2026-05-23T11:55:15.627Z",
-    "last_save_at": "2026-08-29T15:22:15.526Z",
+    "last_save_at": "2026-08-30T15:39:31.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:59a2268e0942e15e2af04f2b307a05b2dfaa7127ebe932f4869339941a179607",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f0cff255ea089392ce74be4f33f83fd3363146f99a7d1b4ba10313c03b5a7b77",
       "plan.md": "1abc815c3b26c301796631391fecdbd044a16ab86b8515acdd82e77ae0424c94",

@@ -18,7 +18,6 @@
       "post-dispatch validate v2",
       "116 validator v2 plan",
       "116 validator v2 tasks",
-      "116 validator v2 checklist",
       "validator v2 ADR",
       "116 validator v2 summary"
     ],
@@ -30,27 +29,38 @@
       "validate",
       "plan",
       "tasks",
-      "checklist",
       "adr",
       "summary",
       "deep-review",
-      "validation"
+      "validation",
+      "previously"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "plan.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "checklist.md",
       "spec.md",
-      "tasks.md"
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -63,24 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -186,31 +178,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Rollout",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Deep-review post-dispatch validation previously proved that an iteration produced a markdown file and a minimally shaped JSONL row",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:48.680Z",
+    "last_save_at": "2026-08-30T15:39:23.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d6b3d9453bfbd6ee48634576f126b21005b61b3d75137a32ba340dcc586c183",
+    "source_fingerprint": "sha256:02cf67bcf5645d2d2275f6153f980ae7180c6ad08b14970890aafd563886e4e5",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "900b1f4985b86a4e056d25688b169e5457a9a92fa5a6b9b7382e321e7a2b25d5",
       "plan.md": "6b9730ec2eb9bc06d3863f6607b844259f22baeb52ec5ea6304f5fed833e3051",
       "tasks.md": "5029cdfb20cd72d6afd4962d9b6de783960f19428c71bedd707afbec952db9da",
-      "checklist.md": "2213d687c08774ca7f90ced1418f84d559242e0df46829be9b6d49df70e27d22",
       "decision-record.md": "9605f7fe55a48c7dc2cc867fe027d41a3f102059fa8b02729607356b2411b9e7",
       "implementation-summary.md": "429f24c83da18848f345a79e38cc7760f5096ab316e86bc9f4cc09acefe8021b"
     },

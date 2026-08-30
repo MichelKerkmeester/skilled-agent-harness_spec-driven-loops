@@ -22,7 +22,7 @@
       "plan",
       "tasks",
       "refinement",
-      "verification"
+      "decision"
     ],
     "key_topics": [
       "feature",
@@ -35,42 +35,21 @@
       "plan",
       "tasks",
       "refinement",
-      "verification",
+      "decision",
       "achieved"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
-      ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/config/config.jsonc",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/config/config.jsonc"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "level_specifications.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/templates/level_specifications.md",
-        "source": "derived"
-      },
-      {
-        "name": "parallel_dispatch_config.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/assets/parallel_dispatch_config.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -90,27 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "config.jsonc",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/config/config.jsonc",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.jsonc",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/config/config.jsonc",
         "source": "derived"
       },
       {
@@ -196,27 +175,44 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Research Workstream",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Workstream",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Spec 073 template optimization achieved significant template reduction (74-82%) but required comprehensive review to validate implementation quality, identify gaps, and implement refinements",
     "created_at": "2026-04-12T09:02:53.545Z",
-    "last_save_at": "2026-07-10T06:23:30.674Z",
+    "last_save_at": "2026-08-30T15:39:37.416Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:726d508137996070cebfa5e68666d76502f64fb64685970150bd21c9b696f5a1",
+    "source_fingerprint": "sha256:07b6d636b15c6ed35d1a6a53529318bdedfe60f06e6238db5eb83556c6a47e2c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92dc4f99c447bf7511e3703aa8a7167ce0f943d0c67df2a6e60e8f1f6892b6c3",
       "plan.md": "10acf5699bc7d9c31a70e6bc4599c2571de56df883ec0852072293759e7d0246",
       "tasks.md": "3397d3cf66152d40d104498bac44daacbaea8016d1c19412401df8a76fc79cae",
-      "checklist.md": "c126b4679c16a88ac882fd4628e6f24dd160cc5ef1b76849a3ee082ff08b3d26",
       "decision-record.md": "119306d2d2bb35e693808abfd81988d994fd0dc97d185185680283994713dce6",
       "implementation-summary.md": "197bd6dfd801c4a3cf4e52332eba315f1c046c0cc446b1fc1163b8af47a11cfc"
     },

@@ -84,17 +84,18 @@
     ],
     "causal_summary": "The `cli-external` and `mcp-tooling` hub docs — feature catalogs, manual testing playbooks, references, vendored `mcp-servers//README.md` files, and SKILL.md prose — have drifted from the live CLI/MCP surfaces they document and from the sk-doc create-skill templates",
     "created_at": "2026-07-11T08:56:59.117Z",
-    "last_save_at": "2026-07-17T13:38:30.011Z",
+    "last_save_at": "2026-08-30T15:39:13.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:1ad7147e66987cc4d751c50025b5e9151af0d3efe7596b4ac95cf80cce53e38b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae8730a06f9bf8415ca6394e0f6cdcf05ba52b3b947fc5ec996d7debb62080b4"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes",
     "last_active_at": null
   }
 }

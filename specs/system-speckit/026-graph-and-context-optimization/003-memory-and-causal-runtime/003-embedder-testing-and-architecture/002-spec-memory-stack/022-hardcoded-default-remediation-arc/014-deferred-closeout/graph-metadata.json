@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Closes 3 of 4 deferred follow-ons from the 022 arc: tracked dist/data JSON-copy script + install-guide note, advisory pre-commit hook + install script for validate-doc-model-refs.js, Z_SCORE_THRESHOLD comment update reflecting post-013 state. node-llama-cpp dep prune resolved-by-discovery (no live package.json dep).",
     "created_at": "2026-05-23T22:00:00.000000Z",
-    "last_save_at": "2026-08-29T14:56:24.960Z",
+    "last_save_at": "2026-08-30T15:39:30.475Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d197dd55ea56a17a196c4a1c6a34dd275274bb738b87103ed4368242fb13b667",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dfcb599f061e4a266a6444a37ddfbbbe3715f008b85367ceaac0597f7fa876a4",
       "plan.md": "7997554c32ee6ca9b7217ec42cf87f099a76242a2351f6c0f756626f0e61de74",

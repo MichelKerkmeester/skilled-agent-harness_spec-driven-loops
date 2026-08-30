@@ -41,18 +41,12 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "After Phase 7 the mode is registered but unproven end-to-end: nothing has confirmed the whole packet validates under `--recursive --strict`, that the advisor actually recalls `mcp-tooling` for obsidian prompts, that the CLI and MCP paths execute against a real vault, or that the packet's completion metadata is internally consistent",
     "created_at": "2026-08-02T05:50:30Z",
-    "last_save_at": "2026-08-28T22:06:08.301Z",
+    "last_save_at": "2026-08-30T15:39:10.095Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ec4ebf5f0cdf870ec144cd54c88ad3cf59f4ef3b6312a295dc126a7e90152178",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d92fd2f0c3a45cb68f5030880a6b95b310c4733c283542c89b55814b8e731185",
       "plan.md": "b92ed08cdc31b4819abe76c517ff563aea550486466a1a0297366e3c468ca569",

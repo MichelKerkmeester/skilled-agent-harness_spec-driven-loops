@@ -40,49 +40,15 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "mcp_server/lib/embedders/embedding-reconcile.ts",
-      "mcp_server/tests/embedding-reconcile.vitest.ts",
-      "mcp_server/tools/types.ts",
-      "schemas/tool-input-schemas.ts",
-      "mcp_server/tests/vector-coverage-hygiene.vitest.ts",
-      "tests/vector-coverage-hygiene.vitest.ts",
-      "lib/embedders/embedding-reconcile.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "schemas/tool-input-schemas.ts",
+      "tests/vector-coverage-hygiene.vitest.ts",
+      "lib/embedders/embedding-reconcile.ts"
     ],
     "entities": [
-      {
-        "name": "embedding-reconcile.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/embedders/embedding-reconcile.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-reconcile.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedding-reconcile.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "mcp_server/tools/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-coverage-hygiene.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/vector-coverage-hygiene.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -105,6 +71,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-coverage-hygiene.vitest.ts",
+        "kind": "test",
+        "path": "tests/vector-coverage-hygiene.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-reconcile.ts",
+        "kind": "code",
+        "path": "lib/embedders/embedding-reconcile.ts",
         "source": "derived"
       },
       {
@@ -196,11 +180,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Verification during the 005 reconcile found 23 rows marked `embeddingstatus='success'` that are MISSING from an active vector surface — not present in `activevec.vecmemoriesrowids` OR not present in `activevec.vec<dim>`",
     "created_at": "2026-05-27T08:49:43.296Z",
-    "last_save_at": "2026-07-10T06:21:09.862Z",
+    "last_save_at": "2026-08-30T15:39:31.566Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:dc31766d4af5dcc5cbf8529338f78afe305cb9b0fc5195abe64c6e10d7aefc5f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9ed394cbb454597c56887bf8e242bc5658d38f50b7918095f6a33c57bdd8a214",
       "plan.md": "d0ec5d6452666755969e017f30ccef9ef42e34cc6615960cad1d721ff7c092e9",

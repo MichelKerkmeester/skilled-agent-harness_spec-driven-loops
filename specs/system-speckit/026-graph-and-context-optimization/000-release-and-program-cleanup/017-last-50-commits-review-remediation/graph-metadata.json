@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md",
@@ -78,12 +77,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -205,28 +198,33 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sibling deep-review packet `016-last-50-commits-deep-review` returned a CONDITIONAL verdict over the last 50 commits: 0 active P0, 3 actionable P1 (ingest-worker shutdown fence, compound concurrent-SIGTERM failure, runtime-fork drift guard), and ~17 P2 advisories spanning IPC/socket hardening, validator DoS, memory-write guards, MCP contract gaps, config-note drift, and test-integrity gaps",
     "created_at": "2026-06-05T12:47:33.243Z",
-    "last_save_at": "2026-08-29T15:22:13.044Z",
+    "last_save_at": "2026-08-30T15:39:29.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:71d02a5134fc4419639cf2c55c9ff0bb8db25b1003087a1719eb4fa6259c631c",
+    "source_fingerprint": "sha256:8d86c5f6d680a379b32c469f86e58c1ccc693e2a462e453f11f4c944dc73f473",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "96d25abbb053187c77e7112cf9de517c91e99cd2776f12c025d42141a3c158f1",
       "plan.md": "f286650aa69725f56a3946b23ae38f2a25702c7fe1edd1b8b01ddcd382a9d822",
       "tasks.md": "b5fa98250ed13fcb7fab1974adf134f9ec5b5a88f2bf9531264906d15f435b42",
-      "checklist.md": "736bc9ec015f08b45fe3586643b1071daa6e6e5f6a479f3cba0abc699e7ad45a",
       "decision-record.md": "c0d6791f48bd6851c3c092e83594e8ff989b6db870f6ebf07507142d039b1ad2",
       "implementation-summary.md": "cf20966cd1df029772866f9d231af284ef1c922b481f5d0e285ccaf7a1d6a1a7",
       "resource-map.md": "7e069bd32258df35cdf6b7ac0a7d3443e1e0a024c9f4c31b9f65541273ceabb2"

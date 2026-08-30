@@ -43,8 +43,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -166,49 +159,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design family shares a backbone of register, context, proof, transport-boundary, token, procedure, and verification contracts, but this packet was absent from git and memory",
     "created_at": "2026-07-16T09:11:04.878Z",
-    "last_save_at": "2026-08-28T22:11:52.106Z",
+    "last_save_at": "2026-08-30T15:39:12.079Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:faa4cc0238b12665c45e3d7343ab39f219ab3c2561cea857e8f1cc8a725ec811",
+    "source_fingerprint": "sha256:a750c81b114d79c99c247ac14a8e5e66105b4402b3635b0d8c945e5bad210c74",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f37ed1f3c07bc634793f820301bd363c4580750b1e647a9d6f3f14dbb862832e",
       "plan.md": "bf84ac6a6d816fc2752ff74fa65b526e2a8f901855ee5fbadb6fab017c04b720",
-      "tasks.md": "ea7cdfb50a49d99c13e8768488295ac4edddafc46eda78868a25b2f54ae650dc",
-      "checklist.md": "46e5e0567e91860fcc4120bf27bdfccb4aefe5033f9709ef6424e830239f6fe9"
+      "tasks.md": "ea7cdfb50a49d99c13e8768488295ac4edddafc46eda78868a25b2f54ae650dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

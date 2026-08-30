@@ -43,88 +43,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/goal_opencode.md",
-      ".opencode/commands/speckit/assets/speckit_plan_presentation.txt",
-      ".opencode/commands/speckit/assets/speckit_complete_presentation.txt",
-      ".opencode/commands/speckit/assets/speckit_implement_presentation.txt",
-      ".opencode/commands/speckit/assets/speckit_resume_presentation.txt",
-      ".opencode/commands/speckit/plan.md",
-      ".opencode/commands/speckit/complete.md",
-      ".opencode/commands/speckit/implement.md",
-      ".opencode/commands/speckit/resume.md",
-      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
-      "handover.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
-      ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
-      ".opencode/commands/speckit/assets/speckit_plan_confirm.yaml",
-      ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
-      ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml"
+      "handover.md",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/commands/speckit/complete.md",
+      ".opencode/commands/speckit/implement.md",
+      ".opencode/commands/speckit/resume.md",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"
     ],
     "entities": [
-      {
-        "name": "goal_opencode.md",
-        "kind": "doc",
-        "path": ".opencode/commands/goal_opencode.md",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_plan_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/speckit/assets/speckit_plan_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_complete_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/speckit/assets/speckit_complete_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_implement_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/speckit/assets/speckit_implement_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_resume_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/speckit/assets/speckit_resume_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "complete.md",
-        "kind": "doc",
-        "path": ".opencode/commands/speckit/complete.md",
-        "source": "derived"
-      },
-      {
-        "name": "implement.md",
-        "kind": "doc",
-        "path": ".opencode/commands/speckit/implement.md",
-        "source": "derived"
-      },
-      {
-        "name": "resume.md",
-        "kind": "doc",
-        "path": ".opencode/commands/speckit/resume.md",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-goal-offer-contract.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -150,33 +80,33 @@
         "source": "derived"
       },
       {
-        "name": "mk-goal-export-contract.test.cjs",
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume.md",
+        "kind": "doc",
+        "path": ".opencode/commands/speckit/resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-goal-offer-contract.test.cjs",
         "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_plan_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_plan_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit_plan_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_complete_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_complete_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
+        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
         "source": "derived"
       },
       {
@@ -208,11 +138,71 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Finding",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Auto Resolution Table",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Presentation Contracts",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Finding INT-1 (dossier §E, verbatim): the `/speckit:` goal-prompt offer — this phase's whole original purpose — is NOT implemented",
     "created_at": "2026-07-02T05:31:05.812Z",
-    "last_save_at": "2026-07-16T16:32:43.986Z",
+    "last_save_at": "2026-08-30T15:39:25.696Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +213,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:8d2b3feefa91af56aae9cb75a1bd087663cf28653c6a134769ad49dc6b50e800",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "039d1adc4e465931dba16b94a8582e98e52f749a219c2d7da39703afe656a4b9",
       "plan.md": "243c42bda44ba0a7d200d7c4296aebbc099e667f2204b7bc37aff40f2736def8",

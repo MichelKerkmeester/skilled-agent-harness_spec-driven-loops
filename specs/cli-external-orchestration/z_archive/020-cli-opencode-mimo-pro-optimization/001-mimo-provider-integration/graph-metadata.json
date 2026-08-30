@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
-  "spec_folder": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
-  "parent_id": "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization",
+  "packet_id": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
+  "spec_folder": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
+  "parent_id": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -22,7 +22,7 @@
       "xiaomi-token-plan-ams task list",
       "tasks",
       "name",
-      "mimo provider integration checklist"
+      "mimo provider integration summary"
     ],
     "key_topics": [
       "mimo",
@@ -39,11 +39,10 @@
       "task"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
       "implementation-summary.md"
     ],
@@ -58,12 +57,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -169,49 +162,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "The Xiaomi Token Plan",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "MiMo-V2.5-Pro is reachable on the install (`xiaomi-token-plan-ams/mimo-v2.5-pro`) but is invisible to the framework: it is not a documented cli-opencode provider, is absent from `model-profiles.json`, and the `sk-prompt-models` sentinel never names it",
     "created_at": "2026-06-01T20:21:29.317Z",
-    "last_save_at": "2026-07-14T19:26:14.348Z",
+    "last_save_at": "2026-08-30T15:39:08.594Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7998bf89d45b3a69f18d04d7c457ee4788b54e006f0e8549e3c91f4e7974d1d",
+    "source_fingerprint": "sha256:9f8b6e11d011c06443850d36847500b6347f3cfcc66b5ea30e4be4d71daf5771",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3ae2efb1a3f3941bade12d00abca6374285b4459f348a3e1dce776db02e94a1c",
-      "plan.md": "46110c2eb4bfa84fa333303fa89c6cb2415f3429e77c4b65449a0c8949fd9f45",
-      "tasks.md": "6b79c19f306a1cf3d10b39ca622b89c7a7eebfe558633ed8fdbe1a165c3a41ea",
-      "checklist.md": "acd2f7996bc4effd61d422747fdb95c84d79e57bd99641f1d3e70a176b548180",
-      "implementation-summary.md": "810e68942f708147f3d41fc725cb6fe3a1340411188246f339507c4ecba40122"
+      "spec.md": "3e2d210013c4b07c71826166d3c504dfca089be13eba7564086944311bc91169",
+      "plan.md": "6ab4f4d65c2b7f11c896bdacf17011e45071e17670aa6154f598543930015d4b",
+      "tasks.md": "c23cfa62c529883ce3c250ca3e1941de84440e8ffe6425260803618ff67f6612",
+      "implementation-summary.md": "56139720866df204e3fe7e03fd14dbda8ef54053eaa9ee198ddb1980f77e8ade"
     },
     "last_active_child_id": null,
     "last_active_at": null

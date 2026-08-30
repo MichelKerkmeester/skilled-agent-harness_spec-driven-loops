@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Three related integrity gaps sit at the P1 rollback/audit/policy layer of the activation program",
     "created_at": "2026-07-20T21:51:45.508Z",
-    "last_save_at": "2026-08-30T08:04:15.866Z",
+    "last_save_at": "2026-08-30T15:39:15.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:4ed0ccc64515a4baf6a6ea1eef9d607947e35c03cf3ec1a3b829c7c5fdd9fbe6",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "664d4f1d611307b5f4dfa830b3233cb14733495a02f4e3221e2935c1abed8a05",
       "plan.md": "92c6d7318e4660ef5d6e5ad3845e24bd3d424f3ea79f446341aa58db2ff5ab94",

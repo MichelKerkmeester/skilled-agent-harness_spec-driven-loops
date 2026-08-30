@@ -41,14 +41,14 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/spec.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/plan.md",
       ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/008-cutover-and-rollout/tasks.md",
-      "implementation-summary.md",
-      "tasks.md",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/graph-metadata.json",
-      "spec.md",
-      "plan.md"
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/graph-metadata.json"
     ],
     "entities": [
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The fold-in is functionally complete and benchmarked, but it is not canon-clean until the strict parent-hub check passes with zero warnings, the whole track validates recursively, and a final sweep confirms no stale reference survived",
     "created_at": "2026-07-09T20:18:26Z",
-    "last_save_at": "2026-07-16T13:56:41.810Z",
+    "last_save_at": "2026-08-30T15:39:09.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:38d3f94fe59db4bcac965ba1377c2ea2357084bcfbd98d138c3b4c52cf2d4ce6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d1e1f56a1f49aa6e51b4a6830119da3cfc1ed540be07545296d434b7530d2e7",
       "plan.md": "69e92630b99e9ddb6dba592f4c558f54abf844ad0e315ef8f05ca11721d89fbe",

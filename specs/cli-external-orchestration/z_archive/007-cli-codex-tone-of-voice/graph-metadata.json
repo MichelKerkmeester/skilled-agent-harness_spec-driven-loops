@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/007-cli-codex-tone-of-voice",
-  "spec_folder": "cli-external-orchestration/007-cli-codex-tone-of-voice",
+  "packet_id": "cli-external-orchestration/z_archive/007-cli-codex-tone-of-voice",
+  "spec_folder": "cli-external-orchestration/z_archive/007-cli-codex-tone-of-voice",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -39,23 +39,16 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".codex/AGENTS.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".codex/AGENTS.md"
     ],
     "entities": [
-      {
-        "name": "AGENTS.md",
-        "kind": "doc",
-        "path": ".codex/AGENTS.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -90,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
         "source": "derived"
       },
       {
@@ -171,51 +164,56 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Related Resources",
+        "name": "Claude Code",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "checklist.md",
+        "name": "Embedding Codex",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "clear",
-        "kind": "key_phrase",
-        "path": "checklist.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Opus Soul Document",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Codex-family models (GPT-5.4, GPT-5.3-codex) and the Codex APP product default to a response style that differs from Claude Opus in observable, friction-producing ways: (1) opens with pleasantries (\"Certainly!\", \"Absolutely!\", \"Great question!\"); (2) declares conclusions without showing reasoning or trade-offs; (3) agrees with faulty user premises for conversational flow; (4) silently over-engineers and gold-plates beyond the stated scope; (5) reports partial work as a \"good stopping point\"; (6) hedges less when uncertain; (7) rarely surfaces assumptions explicitly",
     "created_at": "2026-04-19T11:24:29.406Z",
-    "last_save_at": "2026-07-14T19:26:19.222Z",
+    "last_save_at": "2026-08-30T15:39:08.335Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9ed60f13c2b8d48e325dd76e3fb3041c9eda9d57ba174cf87041049506da77a",
+    "source_fingerprint": "sha256:9c49885f28df549da76e4007ea4e011f4c3e0af1c87b1b80f9e820a1c87e7aef",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71e20fcf683e7025167a290877e6db8871ad7601c37118d1fe5b0bd54080b531",
-      "plan.md": "8ef1fc6ef0f0d907f4964f64a393eca093c1bbaee63134bba26a954db3e6e300",
-      "tasks.md": "e698ae3ebac879f29f4d2f10e87cac9830e1636969d83a51cd1743156106c8f4",
-      "checklist.md": "fafdb14923daf41ed43ced18160ebc40e2e532936164bce9af124a24dc666993",
+      "spec.md": "26999f194f7175ad9b9009f3360fb73b5c9a7d36530173d920801cc646139e31",
+      "plan.md": "a1cd2a9929965f2e0309626489ee0ffb49ce7fb1e6f53dff50da12c1d61ffcc1",
+      "tasks.md": "81278221c53bda8c91305efa5dba1f4ed156c577d7a55c90fb318003bc24c3d9",
       "decision-record.md": "82dd2a49c3e0c598dced781df9d9d42fd64ab2fe7cb063849a4510f7d142e5d1",
-      "implementation-summary.md": "af72f70922a5cace7b801956ef150f491b2666408ac05e1e3757dff637f33ae4"
+      "implementation-summary.md": "1306cc99c25189c3f5969bbb1692ea99f940908cf462b5f71fdab15753b5f4e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

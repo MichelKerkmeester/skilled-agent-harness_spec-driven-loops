@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The former `templates/` directory mixed required core templates, optional add-ons, packet-type templates, the contract manifest, and maintainer guides",
     "created_at": "2026-08-27T17:51:34.375Z",
-    "last_save_at": "2026-08-29T15:22:24.669Z",
+    "last_save_at": "2026-08-30T15:39:36.603Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6cd5142b44927c1649bbd3677406f49fe6d49997d962edcb445431173b1faa90",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e2ef5c0e05fc11efa11f7407d27de53baa2f61072a1697e8377b9d2e55e0a690",
       "plan.md": "f3693bc6ee875499efd6e049da88806f209a5874b68d1e6166d9936b5f61d19d",

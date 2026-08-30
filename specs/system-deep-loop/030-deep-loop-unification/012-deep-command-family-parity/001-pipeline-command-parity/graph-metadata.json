@@ -34,46 +34,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_alignment_presentation.txt",
-      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-      ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
-      ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
-      ".opencode/commands/deep/assets/legacy/deep_alignment.body.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json"
     ],
     "entities": [
       {
-        "name": "deep_alignment_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/deep/assets/deep_alignment_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "compile-command-contracts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep_alignment.contract.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "command-injection-rollout.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep_alignment.body.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/legacy/deep_alignment.body.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -89,21 +61,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-injection-rollout.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
         "source": "derived"
       },
       {
@@ -189,26 +161,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Core Documents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unit Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integration Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/deep:alignment` is the only render-pipeline sibling that never joins the compiled-contract path",
     "created_at": "2026-07-13T13:11:37.033Z",
-    "last_save_at": "2026-07-16T16:33:06.421Z",
+    "last_save_at": "2026-08-30T15:39:19.900Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ec426fd5f21ca7b1f489a1fbd1e0b9d38449792dca06af3b2cf48d133a7bc47",
+    "source_fingerprint": "sha256:09f98aaaaadfce954297a83786ea0b02c035007086b70dcb2ed1242952f7d245",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e8ed67f468d73805df98280a993b7316fa4fcd8f5d538d54e33e60fe866d8d7",
       "plan.md": "217f4a53387439de8ff55c19a5cf23b6ab87fb9a8ab9d25e6fe2cf4e4c8c528c",
       "tasks.md": "3f28c8533ff55a1ad69ec45547a8162f9e33484564e927a4270f5aa939926a1a",
-      "checklist.md": "6f653025e6fb849a42cf0087e799c1285aa133c8658d585773f3f0ea63bb43bc",
       "implementation-summary.md": "156e17ab74756abd5f4fa2ea408f89eb4d0027c7f09bc61f49aa22b13769be07"
     },
     "last_active_child_id": null,

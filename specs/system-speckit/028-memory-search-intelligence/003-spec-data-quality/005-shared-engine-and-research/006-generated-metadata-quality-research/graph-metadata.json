@@ -22,7 +22,7 @@
       "generated json quality research tasks",
       "safe regeneration research task list",
       "10-angle read-only research tasks",
-      "generated json quality research checklist"
+      "generated json quality research summary"
     ],
     "key_topics": [
       "json",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn",
     "created_at": "2026-06-27T17:15:40.899Z",
-    "last_save_at": "2026-08-29T15:22:22.721Z",
+    "last_save_at": "2026-08-30T15:39:35.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2451fcaea25f9e9dc2c5157290f364856136c6642af1409a3cd0fdd122c48eea",
+    "source_fingerprint": "sha256:9b6929c6056a58da1f4d3bcc5a924faf7a056b442d6d653023fb67bb512d7bd9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e90760a784ff42a161d56371827985d812bef347a9eac2a6f56a0921e8c3af81",
       "plan.md": "debc671c116bbdc3d0b54cbe950e1faec96b601ca7990d7ccc1888216ef29c17",
       "tasks.md": "a09e42d4e5db6f806f5195127b62bef6cc04ab7e308ee133380f94a00d9c8c87",
-      "checklist.md": "88454e91383eea28fcaee4c7b83f93dc7514fc8c3947772d6ddefb59291b5ff2",
       "implementation-summary.md": "371d4da94574ba91bf324de299768493db6eceb00eb36b479d9c8b0fcecc9f12",
       "research/research.md": "c019804186c0b5baaadcdf97202c8dc1db44606fb7899576d937c3b436e30e35"
     },

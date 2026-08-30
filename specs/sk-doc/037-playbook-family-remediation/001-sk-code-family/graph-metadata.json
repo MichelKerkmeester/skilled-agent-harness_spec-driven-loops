@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Five dirty roots in the sk-code family carried 586 operator-scenario violations, the largest single class being a grading vocabulary the validator forbids that a prior literal alignment to sk-doc had imported.",
     "created_at": "2026-08-29T11:53:22.131Z",
-    "last_save_at": "2026-08-29T14:54:12.201Z",
+    "last_save_at": "2026-08-30T15:39:18.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:249b2bdfc0053e32dce5d93fb1332d5082e14f276e5d0c61915a3ad744744d68",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "feb0c85577734c300d63326ecd127ddc05d2d0f79dfb1ae4d5719c8a92a2b518",
       "plan.md": "efd72130a2df44de0b90e7535f3857d539e7e092cac1fa93f87cf1fac0450d4b",

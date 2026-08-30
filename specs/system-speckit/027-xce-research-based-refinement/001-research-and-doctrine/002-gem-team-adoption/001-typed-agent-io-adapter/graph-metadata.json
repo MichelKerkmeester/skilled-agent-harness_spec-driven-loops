@@ -39,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
       ".opencode/agents/orchestrate.md",
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,26 +185,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Four Laws",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit agents pass work to each other through loose prose",
     "created_at": "2026-06-06T10:11:05.143Z",
-    "last_save_at": "2026-08-29T15:22:19.093Z",
+    "last_save_at": "2026-08-30T15:39:33.268Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d8c52f961c823100e9142914cdf6923cc51a84d6248d98a732fa7a402670c7c",
+    "source_fingerprint": "sha256:cc67f4112ea7ec5ae703bd58209754c880f6f60ce72e6bd9c614b6b4653f82bb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "398dfe5eeb52a7cf2f1cdf317b2abe0204c2d374ad7407ca6126d0bc28d469c5",
       "plan.md": "d1c0a9272c98a2be96bdacf017ba97cfb7685f568101bdec981ed318ad3fa424",
       "tasks.md": "32d101766ab44d539afe34a12a6c330211c7edb3596948b67824736f79fd3c6e",
-      "checklist.md": "a790468f4a07a450003bf4b01bac8b09606f7545aaa5044ee7b355a138fce869",
       "implementation-summary.md": "d19b1aa9566277379408b286d9b1f39312362dd8754d67b5306778f730f2bf05"
     },
     "last_active_child_id": null,

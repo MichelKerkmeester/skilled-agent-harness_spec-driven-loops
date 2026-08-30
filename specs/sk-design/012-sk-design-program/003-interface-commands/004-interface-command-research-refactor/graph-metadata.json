@@ -41,33 +41,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/commands/interface/design.md",
-      ".opencode/skills/sk-design/shared/creation-contract.md",
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
-      {
-        "name": "design.md",
-        "kind": "doc",
-        "path": ".opencode/commands/interface/design.md",
-        "source": "derived"
-      },
-      {
-        "name": "creation-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/creation-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -90,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verdict The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Evidence-based deep research (web-enabled, mixed GPT-5.6-SOL-fast + Opus-4.8-max executors) into how leading tools structure design/UI commands, then refactor or re-author the five /interface:* commands to be genuinely useful, tested, and benchmarked — hard-aligned with the sk-doc create-command standard.",
     "created_at": "2026-07-22T04:45:48.388Z",
-    "last_save_at": "2026-07-22T16:57:30.572Z",
+    "last_save_at": "2026-08-30T15:39:12.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +206,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:24ebccebcbba1c836661759506230b32a73c1e96df9ed78c14ec1d028d70ae51",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8ebf624eb90d28756dd81c709fd741f45ca2670a352a10206782876ad1d7e342",
       "plan.md": "fd961fb7e9e30cc0300a83c80c6b6f60b5bc7b4ce4219d8058a6e45335da06df",

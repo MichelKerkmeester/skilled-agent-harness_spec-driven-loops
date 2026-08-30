@@ -41,18 +41,12 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`context-server.ts` opens SQLite and starts memory-owned background work during MCP startup",
     "created_at": "2026-05-18T22:53:49.699Z",
-    "last_save_at": "2026-08-28T22:59:26.894Z",
+    "last_save_at": "2026-08-30T15:39:30.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:68fce7e1982a37e7229a0288addfe3fd6ae81f438f8ed98add49876fd0b1ee72",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d1dd8fe32366fa8cddc76f84f3e9196f017700413b68f86810c8a6e63deb610",
       "plan.md": "b9033f3c0ff8c62efe0856151a85098c0548eb300508ba7c9e67889a2af2d835",

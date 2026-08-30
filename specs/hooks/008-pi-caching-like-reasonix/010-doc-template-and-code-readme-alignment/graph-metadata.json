@@ -17,7 +17,6 @@
       "sk-code opencode alignment",
       "doc template code readme alignment plan",
       "doc template code readme alignment tasks",
-      "doc template code readme alignment checklist",
       "doc template code readme alignment implementation",
       "glm-5.2 cli-devin dispatch"
     ],
@@ -41,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
       ".pi/extensions/deep-pi/CHANGES-FROM-UPSTREAM.md",
@@ -53,7 +51,6 @@
       ".pi/extensions/pi-cache-optimizer/index.ts",
       ".pi/extensions/shared/composition/one-owner.ts",
       ".opencode/skills/sk-code/SKILL.md",
-      ".pi/deep-pi-stats.json",
       ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
       ".opencode/skills/sk-code/sk-code-opencode/SKILL.md"
     ],
@@ -74,12 +71,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -134,12 +125,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-pi-stats.json",
-        "kind": "config",
-        "path": ".pi/deep-pi-stats.json",
         "source": "derived"
       },
       {
@@ -201,26 +186,37 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "How This Compares",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Both `CHANGES-FROM-UPSTREAM.md` files were authored as free-form prose sections (Upstream / What Changed / Why / Verification) without following any `sk-doc` document template, so they read differently from every other authored doc in this repo",
     "created_at": "2026-08-08T12:24:19.875Z",
-    "last_save_at": "2026-08-29T15:21:52.739Z",
+    "last_save_at": "2026-08-30T15:39:09.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58eb14f55a53074e14135895cbb714c0de21d7a1f73d20fdcbe955cdd8f8bd01",
+    "source_fingerprint": "sha256:8d1fbb34215c4b913984e88b1bb952fb2e26dab1bb577ba1de19f73210362606",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "20b12ac18a6de6ad13ba4a1672bdb91391ec9355aeaa715be97f21006442bf6c",
       "plan.md": "d773c597ac6ecc539adea8cbef5000a5ac647ed16b997f7b4c2021aa6e9e024c",
       "tasks.md": "996fb896e2adbb9ad00c39a31cfda3208428b2b1fe6c6e19e94d68fbdec257ae",
-      "checklist.md": "0a6d8506ff2b5da5655888d07bd974c2ad4422bbe7b394ce48ac0037e4271288",
       "implementation-summary.md": "ee24405db0eccca19292dca3b6ce7ca20c2408f1e2c0a8001b2d45aa04ca1472"
     },
     "last_active_child_id": null,

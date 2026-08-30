@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The sk-design hub and mode packets use manual_testing_playbook roots, category directories, scenario files, and index names with underscores, and catalog/index references point into those paths.",
     "created_at": "2026-07-14T15:17:20Z",
-    "last_save_at": "2026-08-30T07:19:22.825Z",
+    "last_save_at": "2026-08-30T15:39:16.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,7 +181,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:0797e3278c720c3751c256582e155abbce017ecc135006acb9220575bf2e6d93",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55fc437f4e03fd04e77146ab4d9d46392e352e719e45bc581ff94c37e662c0d1",
       "plan.md": "0eff5eccf369a8814962058dfba1b18fda0bbea26417beeda23652d2064fca93",

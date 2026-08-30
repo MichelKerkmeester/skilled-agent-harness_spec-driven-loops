@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/018-cli-devin-prompt-quality/004-skill-uplift",
-  "spec_folder": "cli-external-orchestration/018-cli-devin-prompt-quality/004-skill-uplift",
-  "parent_id": "cli-external-orchestration/018-cli-devin-prompt-quality",
+  "packet_id": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/004-skill-uplift",
+  "spec_folder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/004-skill-uplift",
+  "parent_id": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -19,7 +19,6 @@
       "cli-devin v1.0.5.0",
       "113/004 plan",
       "113/004 tasks",
-      "113/004 checklist",
       "113/004 decisions",
       "113/004 summary"
     ],
@@ -32,22 +31,27 @@
       "application",
       "plan",
       "tasks",
-      "checklist",
       "decisions",
       "summary",
-      "synthesis"
+      "synthesis",
+      "lists"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "spec.md"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -61,12 +65,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -76,12 +74,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -181,39 +173,44 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context Memory",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Convention",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The synthesis.md from 003 lists winning prompt patterns, but they live in eval-loop packet artifacts — invisible to future cli-devin dispatches",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-07-14T19:26:20.198Z",
+    "last_save_at": "2026-08-30T15:39:08.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0b4942dc4a423985f4197e175fb5cccd758325b6e3a299a9f015dcbe8aa60aa",
+    "source_fingerprint": "sha256:e737bbf23e02323e69400868f2f0b3fcb00d639db91e0d5a0148b6d01589fdcb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "637e930766794bc354007d655e467905a342e4208ae84da1e803692cc590f26d",
-      "plan.md": "fe532516f681da69a4ee30ca3fffa6145edd4231205124c3a24b3a2c4241205d",
-      "tasks.md": "28f0b2338a68e982660045e77b63322d8bb093a6f2969c7985879f20e7df91c9",
-      "checklist.md": "07f177f44de1f78c8510e9157b106f0736c28cf6a92b40650ab2205edd91d36f",
+      "spec.md": "c59c7ba9671e6eff315802885bb1eddd8c1995508a7582244f9f90067175c03d",
+      "plan.md": "852d0d89e08a2eaf28f8fccf95188223868a37ab727129457cad79170ae86b68",
+      "tasks.md": "acc82360ddaa3afcb7369cb9e127a96fc987101dc23c04dea1fe32609a8e6fe4",
       "decision-record.md": "cc555b105abe49cbf76ab4995650b2cda436f30205384d1354b71bdfce054bc8",
-      "implementation-summary.md": "182e817ed4a8af3cfb211533b3f4bde785f160d2eb1a3356bb6e8846f37df9c1"
+      "implementation-summary.md": "dc5c1d31afb25b88b20ef25864484615225bdae8ae7b1ed8a86ffa9a8bdd2751"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 004 deep-research investigation proved a bulk re-embed of the mk-spec-memory store cannot reach `0 failed / 0 pending` because of three durable defects: (1) the `embedderset`/reindex completion transaction writes vectors but never commits `memoryindex.embeddingstatus`, so a completed re-embed leaves rows stale; (2) `enforceRetryRetentionLimits()` parks clean never-attempted `pending` rows as `failed` before the drain can embed them; (3) retry-retention config is read once at module load, so tuned env never applies to a long-lived daemon without a precise restart",
     "created_at": "2026-05-27T03:52:02.042Z",
-    "last_save_at": "2026-08-29T15:22:16.555Z",
+    "last_save_at": "2026-08-30T15:39:31.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:f97ff3a7e32c6470997a7fe8c0fde88435c0b29b61960bf720943a9bd9359250",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "11b328320d6082b8303d78331ed532f0e3d6bd7fae075b8170e3c5f81530f377",
       "plan.md": "b2e481d38634ea6577134df922731d273f000c83355a1341c7073b10f23a74a5",

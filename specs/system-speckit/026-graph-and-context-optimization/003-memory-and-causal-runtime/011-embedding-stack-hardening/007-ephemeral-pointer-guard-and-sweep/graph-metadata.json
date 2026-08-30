@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Packet 006 cleaned ephemeral-artifact pointers from code comments using hand-rolled grep patterns",
     "created_at": "2026-05-29T20:35:49.807Z",
-    "last_save_at": "2026-08-29T14:54:18.064Z",
+    "last_save_at": "2026-08-30T15:39:31.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2a28453e524310ec4fa9ab499361ce093bd17b2f1338aca478f11e4950ae0666",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1909349899b6cc6ecf040373bda501083088e71b89564c6d408404e628042705",
       "plan.md": "eb60fe6c2ae9322cdbc38dea417f17108ad7b7598a913b739e7cbd857ff43eb0",

@@ -87,17 +87,18 @@
     ],
     "causal_summary": "Compile standalone skills that carry their own inline router into the unified policy contract",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-24T12:11:58.019Z",
+    "last_save_at": "2026-08-30T15:39:15.092Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:d6abbd9e00d946649118aaac6c4e8bb1bdd7d2f5f9adf04220ef06e663ccbfb1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "42f43d7ada1abe57e4a5e228e676b58e985d65ae38e3c83197e34a0675a465b7"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit",
     "last_active_at": null
   }
 }

@@ -38,19 +38,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Each deep-loop producer appends events in a different native format",
     "created_at": "2026-06-28T21:08:34.372Z",
-    "last_save_at": "2026-07-16T16:32:07.334Z",
+    "last_save_at": "2026-08-30T15:39:25.049Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:9b1c656530759703d30da0da189e7b0fd539d4f748bd0225d2175d59cef40d03",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "424021f9a258bbaaa63351e19bd2d8fbc09d7a1ce0487f3d61cd5373f824a0c3",
       "plan.md": "b4544a31db109f89f1e7d4ba0d22b5303ff43bf760e45b4e60acade38fba3213",

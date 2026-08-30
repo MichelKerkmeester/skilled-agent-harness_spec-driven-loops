@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The advisor manual-testing tree uses the snakecase root manualtestingplaybook, nine snakecase category",
     "created_at": "2026-07-14T15:18:10Z",
-    "last_save_at": "2026-08-30T08:04:31.933Z",
+    "last_save_at": "2026-08-30T15:39:16.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,7 +182,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:93c144ca74d30132db371484b1bea73d379abe8ba4a7671df3a5dfa57429c68d",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "332ee2be9b178c743fb7d48be94b5f7bb0abfe0f8307885d2b1c54aec31b96d4",
       "plan.md": "b68d019c0a704aa0f3ea7f0ee450ff45dbfe3a2604f0cc070d1076468b460718",

@@ -44,11 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scratch/mechanism-baseline-2026-07-04.md",
       "lib/search/rerank/retrieval-rescue.ts",
-      "lib/search/retrieval-directives.ts",
       "lib/search/hybrid-search.ts",
       "lib/storage/incremental-index.ts",
       "handlers/memory-index.ts",
@@ -75,12 +73,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -96,12 +88,6 @@
         "name": "retrieval-rescue.ts",
         "kind": "code",
         "path": "lib/search/rerank/retrieval-rescue.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval-directives.ts",
-        "kind": "code",
-        "path": "lib/search/retrieval-directives.ts",
         "source": "derived"
       },
       {
@@ -199,26 +185,37 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Warm `memorysearch` takes 2.0-2.9s at 33,101 rows (stage1 0.5-1.5s, stage2 ~1.2s constant even for 15-19 candidates), with +3.9s on the first-call auto-surface, ~15s cold runtime init, and ~492MB RSS at 9s uptime (deep-dive report §1/§4, measured 🟢 2026-07-03)",
     "created_at": "2026-07-03T09:44:24Z",
-    "last_save_at": "2026-07-11T18:40:36.054Z",
+    "last_save_at": "2026-08-30T15:39:35.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:876a3374179c86646b38530ce0e38524e36fd2ffeaf7edeea9880c1e95f66d9e",
+    "source_fingerprint": "sha256:8868679d7276bfd7e57db91391070244edab423b3b2f927dddcf48e7872b2292",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8474de980c0687f5685e8293734ded889a9535f1017b3f89988e8d7559f7c48e",
       "plan.md": "f4d31dfd5fb2dea3480b00fc27fb68177c4532bd5e83748e03436f42cfeb7d6d",
       "tasks.md": "29ce082b31e89818ceb48c28246d85063f6b758b58ce837d72fec86ee171aeee",
-      "checklist.md": "8500d864da958ed661b437451f57dd7a889cb9379ce762a2444d784e8fc20ca5",
       "implementation-summary.md": "798790d4ec754013368b607c5327674d1b50c40fed792d6ac9931f5c3639912f"
     },
     "last_active_child_id": null,

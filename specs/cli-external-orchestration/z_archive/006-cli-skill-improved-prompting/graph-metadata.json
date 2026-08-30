@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/006-cli-skill-improved-prompting",
-  "spec_folder": "cli-external-orchestration/006-cli-skill-improved-prompting",
+  "packet_id": "cli-external-orchestration/z_archive/006-cli-skill-improved-prompting",
+  "spec_folder": "cli-external-orchestration/z_archive/006-cli-skill-improved-prompting",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -17,7 +17,6 @@
       "cli skill improved prompting spec",
       "cli skill improved prompting plan",
       "cli skill improved prompting tasks",
-      "cli skill improved prompting checklist",
       "cli skill improved prompting decision record",
       "cli skill improved prompting implementation summary"
     ],
@@ -41,25 +40,20 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/spec.md",
-      ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/plan.md",
-      ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/implementation-summary.md",
-      "implementation-summary.md",
-      ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/decision-record.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -69,21 +63,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/006-cli-skill-improved-prompting/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -159,24 +147,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Packet State",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -193,29 +163,46 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The CLI orchestrator skills currently rely on static prompt templates without a lightweight framework-selection or quality-check layer",
     "created_at": "2026-04-12T09:02:50.198Z",
-    "last_save_at": "2026-07-14T19:26:18.828Z",
+    "last_save_at": "2026-08-30T15:39:08.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea6055212c243667adbb492a071f90777fbf1347973d27e4b87d288c41b094d1",
+    "source_fingerprint": "sha256:14ee529eff891da03d0ff1b910486afb7dae6f0d6ebf7dd90340c103c916436d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "491e6857af33c8fdc334a3651536d8322949c794ec3565a1b6680a127f8852a3",
-      "plan.md": "19c340e5aa5fda4787474994b215e1f41c9c3aff6e9212905b10f6c3e351417b",
-      "tasks.md": "556f9aa8b547ca4c5ef871ae888b6289c379abcf00c11975f13ebea4dfafb92e",
-      "checklist.md": "a446a6c40012019359b5c7dc3fca66ff777650c2a49a32993da185022314db70",
+      "spec.md": "7d3f7f5aa9ef75814fe7e2d4af9ba091a0d0928efb25171d23c40f1c3a678554",
+      "plan.md": "ff6beb860511e03d6b0533254cfe12a2f6b8d273951246a2d2d53cc50f67e20d",
+      "tasks.md": "52744db0bcbdbafa103f621760b4020ccfd0d9014c45e3ec8f2e1dd7eabcb104",
       "decision-record.md": "7e5535bc7a3567634df622a3516707f5d2e758cc80f5a7fb1c3f3a400de6e510",
-      "implementation-summary.md": "d2d1a62a8af5feb1cb51d3b3827680bf840e969551da24993e6e1a6bd12c3670"
+      "implementation-summary.md": "5d3a00bfbd452ef9565d81a96bac44a5464d0730255c015ec29bd0f918151ce4"
     },
     "last_active_child_id": null,
     "last_active_at": null

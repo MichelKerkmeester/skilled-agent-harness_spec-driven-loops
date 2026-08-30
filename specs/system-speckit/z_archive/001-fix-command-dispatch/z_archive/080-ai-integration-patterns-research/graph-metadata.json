@@ -39,19 +39,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,6 +68,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Cross-repository analysis of AI assistant integration patterns from three open-source projects to inform improvements to the system-spec-kit MCP.",
     "created_at": "2026-04-12T09:02:53.551Z",
-    "last_save_at": "2026-07-10T06:22:26.994Z",
+    "last_save_at": "2026-08-30T15:39:37.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:14a76774144fe4d20bea998917593799a790a034fff334a67bb4bd18c5ff4e53",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c7f2bdd540d0b19e8319a8c8d55b5bd9eead09ef349662b013236d2b3b489dc",
       "plan.md": "9287cdd7238576a03c28d65ccf5975aa884c973555b0389bb3780ad1f94071bb",

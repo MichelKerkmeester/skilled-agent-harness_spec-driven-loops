@@ -39,7 +39,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_research_auto.yaml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,12 +46,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep_research_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Make",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When an injected question from `research/inbox.jsonl` disagrees with the reducer's `key-questions` rewrite, the current system has an unresolved markdown overwrite race: whichever writer runs last wins, with no event emitted, no conflict record stored, and no declared owner",
     "created_at": "2026-06-28T14:02:09Z",
-    "last_save_at": "2026-07-16T16:32:16.817Z",
+    "last_save_at": "2026-08-30T15:39:24.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:43af1082576ef85b592b9c343c7d8d86abaddf96b469759d2fbaf493b98bdc46",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9574c119f28e6156bcbd6b43ca35d3de4c01f3d4d90df94c6d527b48b2ff36e3",
       "plan.md": "2ab239c624a628a42b1b0a839ef6c7dbfdfa01c4c2fdeb9dfc04c734fb34cd00",

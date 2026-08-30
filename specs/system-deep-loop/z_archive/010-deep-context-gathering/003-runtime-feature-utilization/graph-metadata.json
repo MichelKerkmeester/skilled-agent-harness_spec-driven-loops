@@ -43,18 +43,17 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "spec.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -70,21 +69,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -184,37 +177,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep skill family wraps `deep-loop-runtime` but each skill adopted runtime features at different points in time, leaving three gaps:",
     "created_at": "2026-06-06T23:59:00.000Z",
-    "last_save_at": "2026-07-08T13:43:39.694Z",
+    "last_save_at": "2026-08-30T15:39:23.999Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:196af7ba5774ff8870a1f7a228632b1ad903cd453dd6b6e7f662c3a398976f5e",
+    "source_fingerprint": "sha256:adbe56ec20f10a3eed01bd9496270b34bf55c9fbb048c34db44883882a614e1a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eabe939bb1b6551eb39eadeb383a3057b887a2f9eb2efa93faa226dbbb403fbc",
       "plan.md": "800581063a71cad8bb607f68f978aeb0b227f355bd11217394dfc29e5df2aa1c",
       "tasks.md": "38c9c34261a5078812f0f7117eaf49b979573c16d70c3cf8dfe884d2edac2ab7",
-      "checklist.md": "856fe3bd6a188967b4a98d627bcdfd091bec86a59252334ee4e8046339d994ce",
       "decision-record.md": "ec9a9c3f8622379704f2d0e9fbc3976e2f8a056492d57be5e46e68fba8bdede5",
       "implementation-summary.md": "3d2e0ff59fee067adc31eef8713e82852babca5ad7c1e71332981482d13d9ebd"
     },

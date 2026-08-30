@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Text-only coding models in OpenCode and Pi cannot read screenshots, mockups, or error images",
     "created_at": "2026-08-15T15:38:25Z",
-    "last_save_at": "2026-08-29T15:22:05.689Z",
+    "last_save_at": "2026-08-30T15:39:19.416Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:4fcfa36bb3c8704db0c743fdc9748e86208b9f2fc1fc1d37f04d976873630501",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "368b63afa1768f025adf3139617084a9d4d851b2f0d2076dc78217f088b8c142",
       "handover.md": "afd25fc7e3e414d52adb94152c4fc783d9ae1cabda977ca61946464f24e95841"

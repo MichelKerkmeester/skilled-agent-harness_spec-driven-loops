@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary"
     ],
     "key_topics": [
@@ -28,10 +27,10 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "catalog"
+      "catalog",
+      "evolved"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -158,31 +150,25 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -190,23 +176,22 @@
     ],
     "causal_summary": "The feature catalog for Query Intelligence has evolved significantly",
     "created_at": "2026-04-12T09:02:50.251Z",
-    "last_save_at": "2026-07-10T06:24:14.656Z",
+    "last_save_at": "2026-08-30T15:39:38.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:862c4fcb6eec7652a63f0ce9baae7205f324ccc79fa3087d0aef96a54ecb2911",
+    "source_fingerprint": "sha256:d342e91ba9f6a98cac43f7737c6a52c97f1716b92b2ddfe9f6cac134ddf5cbed",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b36044bdc372aa946ef0dd6cdf7250a3b1e8e111bf283db915edb789f891e60",
-      "plan.md": "369e774fa1f36b29fc1dddb92e48c63435fac14c4bc7b9e4191490b6dce6634c",
-      "tasks.md": "41a096221df7e8f99634420e69f44c727f05a84fdbae4c937483f70fe89c2ef6",
-      "checklist.md": "bd664e485e5b980f511fc387b305bd0c9d566a818e0d2ee8069087495467055a",
-      "implementation-summary.md": "0edf5dd120353462218fdc3d627136bae9b1fc5c8807e72bf73fdfa9dc87e16d"
+      "spec.md": "32ca8e8d3694f9f1a6d0af33557366a7b547500a5039f0dfd15822062f550ac2",
+      "plan.md": "87ec73806505cdfa26f6a181247939a506c3c75366e99c6eeec4dc8784a07824",
+      "tasks.md": "5b3d1764d034965fe3bfeaaf4d52774900646a4dbc29a33983021b04feac6216",
+      "implementation-summary.md": "6dfb6587e0f1e4b181c0f07d0d61f94cc2412633fa3251f287f349c6a978a6db"
     },
     "last_active_child_id": null,
     "last_active_at": null

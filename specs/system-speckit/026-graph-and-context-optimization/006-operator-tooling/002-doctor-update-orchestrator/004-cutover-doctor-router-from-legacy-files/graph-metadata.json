@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/commands/doctor/mcp.md",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,31 +186,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architectural Decision Records",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 shipped the new `/doctor` router additively",
     "created_at": "2026-05-11T17:00:00.000Z",
-    "last_save_at": "2026-08-29T15:22:17.537Z",
+    "last_save_at": "2026-08-30T15:39:32.145Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e82bdae9a33cdd678480846475af65d51310adcc09d2f85e979daa6d19738d63",
+    "source_fingerprint": "sha256:ca69063fe3a60485511f89ae12d16fd15e07c93b62a0ca44a0b61232081ed8ef",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbcd4599efa528fbcbec05ac324da63f9c3d29b3305838da7043b45ce3965ed5",
       "plan.md": "c084bb86e7f3be2a13b6084177e218cb072789ac6a4f8128a2fb53acc111e26f",
       "tasks.md": "a8923733c4ee039da40a9575b85dfdfb5d8a710194a6cb0a30fccebc81818d3c",
-      "checklist.md": "8eb22eb0d2080b5fb8265d2442b040ac6f8021ad9b8ce54c6a8f2080cbb7ae1b",
       "decision-record.md": "5ee252c8ed54fac1fae693e14b86f5b1693b6aeae7027e28d6e323d6905eae1e",
       "implementation-summary.md": "c7aaaffd6b2854d3d9ba72f829a615b526ef99bbfd34ce98f6943153e364abbc"
     },

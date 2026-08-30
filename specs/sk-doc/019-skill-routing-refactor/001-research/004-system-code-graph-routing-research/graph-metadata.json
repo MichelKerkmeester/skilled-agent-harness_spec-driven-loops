@@ -209,7 +209,7 @@
     ],
     "causal_summary": "system-code-graph's routing cannot be measured on the canonical typed-pair surface, and unlike its sibling hubs it has no measurement scaffolding at all",
     "created_at": "2026-07-17T04:06:39.227Z",
-    "last_save_at": "2026-08-29T15:22:01.722Z",
+    "last_save_at": "2026-08-30T15:39:14.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:57ca2bb07b73d4e291298fe6f880acb98136d38969c6f7a94e817cccc546014a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e7debbf4d4fb010ef0fdefd15c861795aebd937e6ec6adab5e49bd008799e6a",
       "plan.md": "33609302b2bab44ad0898fd09d05448e20b67b93cd12124d1aca2d84131e2c35",

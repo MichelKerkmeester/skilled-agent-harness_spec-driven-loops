@@ -44,27 +44,27 @@
       "promotion"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
+      "spec.md",
       "001-provenance-and-audit/spec.md",
       "002-idempotency-and-near-duplicate/spec.md",
       "003-feedback-log-and-005-reframe/spec.md",
       "004-tombstones-and-edge-promotion/spec.md",
       "005-stale-audit-and-tool-ownership/spec.md",
-      "lib/storage/causal-edges.ts",
-      "spec.md"
+      "lib/storage/causal-edges.ts"
     ],
     "entities": [
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
         "source": "derived"
       },
       {
@@ -106,17 +106,18 @@
     ],
     "causal_summary": "The Spec Kit Memory system would benefit from a coherent set of write-safety and quality hardenings derived from a deep study of the caura-memclaw fleet-memory system (research in `../research/008-caura-memclaw-fleet-memory-teachings/`)",
     "created_at": "2026-06-06T10:10:44Z",
-    "last_save_at": "2026-07-17T17:19:40.423Z",
+    "last_save_at": "2026-08-30T15:39:33.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:3551a965cd935e9fec826b690e6d293d53767f7a4c048545145f3cc0fae56ace",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "86a3299edbb0beca08063b78d6ebdb1bd59d89ec87b9d3821c2fff66bfb5a59e"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
     "last_active_at": null
   }
 }

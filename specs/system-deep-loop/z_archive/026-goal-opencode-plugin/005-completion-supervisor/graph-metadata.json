@@ -37,26 +37,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-supervisor.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-supervisor.test.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +174,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The plugin could store and track goals, but automatic completion still needed a verifier that did not trust assistant self-report",
     "created_at": "2026-06-28T20:44:10Z",
-    "last_save_at": "2026-07-16T16:32:44.310Z",
+    "last_save_at": "2026-08-30T15:39:25.659Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ea3c2f5c601e4cceb3055ce90f58472177b50ffc1f583b2a9a9dd0fbcf830027",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "68c96f8dbc25e52d2e7be684d061237a22611d6a86468e75deb8207b49e8f7a2",
       "plan.md": "da232368797c928f19825340f4499d424c860663150891e0cdd2f9d31c449d0b",

@@ -41,18 +41,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Execute the 6 MCP manual-testing-playbook scenarios (round-trip + verification) against the live Local REST API and record pass/fail. Executor: deepseek-v4-flash via cli-opencode.",
     "created_at": "2026-08-03T04:10:02.018Z",
-    "last_save_at": "2026-08-28T22:06:16.886Z",
+    "last_save_at": "2026-08-30T15:39:10.126Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:7cef008d7160a206ce7cc2f44c4fe63cf572f537c6a4893fedc95ce89478eecf",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "26cc683712ca9eef0c432c8f2550d1eb44315255c983bc7c39b29a3b5d0c3895",
       "plan.md": "9cf3c82124d96a4a5deca82cc2fbaf4a630dac7ae9abda2d3fedf571fcfe0e2b",

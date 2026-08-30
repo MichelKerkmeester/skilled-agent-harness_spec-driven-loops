@@ -200,7 +200,7 @@
     ],
     "causal_summary": "sk-code is the hub skill for code work with modes for quality, review, webflow and opencode routing",
     "created_at": "2026-08-04T08:34:36.138Z",
-    "last_save_at": "2026-08-30T07:20:19.070Z",
+    "last_save_at": "2026-08-30T15:39:17.487Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:10af60fb3da21f57e25e54235a5aef76938f6dae15fff3b0bdf000d95715d0a0",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "13f16843dd97bf37d950e2476a63d4ffb24e3c7a83b5e8dc37a789d4adf299bd",
       "plan.md": "d3502055254f11d4dee4cbf52b01299c06145133ba974ff353f7963d16b804e9",

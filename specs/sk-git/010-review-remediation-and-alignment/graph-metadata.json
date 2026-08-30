@@ -20,9 +20,9 @@
       "sk-git remediation tasks",
       "worktree tooling hardening tasks",
       "sk-git sk-code alignment tasks",
-      "sk-git remediation checklist",
-      "worktree tooling hardening checklist",
-      "sk-git sk-code alignment checklist"
+      "sk-git remediation decisions",
+      "worktree tooling hardening adr",
+      "sk-git sk-code alignment adr"
     ],
     "key_topics": [
       "sk-git",
@@ -35,8 +35,8 @@
       "alignment",
       "plan",
       "tasks",
-      "checklist",
-      "owner-first"
+      "decisions",
+      "adr"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -44,8 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       ".opencode/bin/README.md",
       ".opencode/scripts/git-hooks/lib/autostash-orphan-guard.sh",
       ".opencode/scripts/git-hooks/README.md",
@@ -54,8 +54,7 @@
       ".opencode/skills/sk-git/scripts/worktree-naming.sh",
       ".opencode/bin/tests/worktree-reaper.test.sh",
       ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
-      ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
-      "implementation-summary.md"
+      ".opencode/scripts/git-hooks/tests/pre-push.test.sh"
     ],
     "entities": [
       {
@@ -77,15 +76,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -134,12 +133,6 @@
         "name": "pre-push.test.sh",
         "kind": "script",
         "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -201,27 +194,32 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "parallel GPT-5.6-LUNA",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The owner-first worktree tooling passed its own harnesses (31/9/8) but the harnesses never exercised adversarial inputs",
     "created_at": "2026-07-15T04:22:48.313Z",
-    "last_save_at": "2026-07-15T04:22:48.313Z",
+    "last_save_at": "2026-08-30T15:39:18.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:225177473e2d9494e28af5fc4f19762a27c4dd53b00622053099c58ec81bbca7",
+    "source_fingerprint": "sha256:b4117b4f0c069c18a7c6f2a716ab7a2ca3c4f5f3d340cf2340a7d1240ca35d11",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "64ef0ab7b2fdcfd4a232e71b10a6e6d1acb58f70f6ce5eaec61d4f98d4ae5304",
       "plan.md": "96b40e20e0e9bb76a7459f27a4a9ff4f63b5fbcfa5b5d33ddf1428679fd0734d",
       "tasks.md": "76b985700aa087872af49d0de2dd06f16cc81588087274475db9df322f1bd157",
-      "checklist.md": "100d53d268b576aec40c1e8c34d42cd26970c528adbf36d8d34193d714f550a1",
       "decision-record.md": "745f6fe89cbcfa55ae5ad739b828dfd46591804afaedb39515530b875dddd64e",
       "implementation-summary.md": "97886bd91095d079c1884da9c01d02f28d8b55415d75efbaeeaad4713c7004af"
     },

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-design/sk-design-interface/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:45.924Z",
-    "last_save_at": "2026-08-30T07:20:29.608Z",
+    "last_save_at": "2026-08-30T15:39:17.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:84020fe634e87a5c5e59d778f2e3f06e2fc668f93f38d0f87c31ab4cf16753b3",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "73325b312d982fef0e521960be6adaf5601b6549d9ca27e30575228222d9864d",
       "plan.md": "9aa322487b52d5bfd4491ac4127b749e990e994bc59d06348da3ecaa2d08a6b1",

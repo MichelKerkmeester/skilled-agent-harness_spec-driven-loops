@@ -39,9 +39,9 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
+      "plan.md",
       "tasks.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -51,9 +51,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -63,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Compiled routing serves six parent hubs from a promoted closure with a per-hub activation fence",
     "created_at": "2026-08-28T08:49:39Z",
-    "last_save_at": "2026-08-28T09:56:47.384Z",
+    "last_save_at": "2026-08-30T15:39:18.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:fd973384b42ff0866edf2ec5c606cb5fc05ad77d7d1c1d2f8fd8e8f639b448ce",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "baccaab889a02f3f974e84582e07a4c4d71296c7b7cf44efd5e2c7b2b00a7a1b",
       "plan.md": "82711f01b98f2aca87add1c8987827e8d04c52fd5d871e35273ee0056fd9dfe4",

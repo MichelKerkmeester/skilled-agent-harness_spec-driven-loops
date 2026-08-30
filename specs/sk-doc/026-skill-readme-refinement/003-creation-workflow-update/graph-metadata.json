@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The create-skill workflow at `.opencode/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md` predates the README refinement program",
     "created_at": "2026-08-04T07:12:16.927Z",
-    "last_save_at": "2026-08-30T07:20:16.901Z",
+    "last_save_at": "2026-08-30T15:39:17.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b4b07a77a04b16dca2e3a9339103dc9b7bfa267f39add900b2ee99b37f0f9e55",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b813378f2ec2531b699d7de0afa253dcca24bdf46952cb804798c62139b1adff",
       "plan.md": "b450b82cc69683029d4cd8104d71b89ab0cb2d16779c8ad92b5fd480468debfc",

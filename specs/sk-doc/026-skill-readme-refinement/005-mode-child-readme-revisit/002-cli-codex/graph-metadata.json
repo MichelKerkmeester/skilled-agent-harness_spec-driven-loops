@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The cli-codex README at `.opencode/skills/cli-external-orchestration/cli-codex/README.md` still carries the older tabular reference-card style and predates the mcp-obsidian pilot standard",
     "created_at": "2026-08-04T08:34:39.453Z",
-    "last_save_at": "2026-08-30T07:20:23.082Z",
+    "last_save_at": "2026-08-30T15:39:17.611Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:21a5e495e1e02eee68c487efb36975240b70557f0ae58fecfd02a8f2f0cd7b22",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a4f90089a9888c32722d3cb0538ff679c72dcb5cb92e36bd78cee38d36a8023",
       "plan.md": "b567e4ecc268d2e4304259293b8b20f20935705d07779d0daa91e40748b24bca",

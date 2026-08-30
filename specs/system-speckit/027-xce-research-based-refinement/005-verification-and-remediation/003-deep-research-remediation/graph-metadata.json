@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The tri-system deep-research program (`../028-tri-system-deep-research`) and the command-adherence research (`../011-command-presentation-workflow-separation/006-presentation-adherence-research`) produced 239 findings",
     "created_at": "2026-06-12T11:12:59.644Z",
-    "last_save_at": "2026-08-29T15:22:20.952Z",
+    "last_save_at": "2026-08-30T15:39:34.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,7 @@
       "handover.md"
     ],
     "source_fingerprint": "sha256:c103c5e8ace90e0761a532e34c9aa91c156f709d0c9aa36907e5a8e3a9c726d2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7527c1f2ccb692087a208b1c5abb4d6a6601661810b9a72ab7ec24acdd071a07",
       "plan.md": "a5a894d9826675a8ee5eb92e2e33b4d34aea58f846c84228c5dc80b288f47277",

@@ -34,12 +34,18 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -50,12 +56,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Refresh root README.md with current embedder defaults + architecture summary + link to canonical pluggability narrative",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-07-17T17:19:24.864Z",
+    "last_save_at": "2026-08-30T15:39:30.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,6 +197,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:ae17012374ffa30006cf3e4f0793f7439890496c53101bc3f9bf11847bf387c6",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5b3fc55152db4df5eab93063007407200429dfbd15ab499b03aee44da18d3655",
       "plan.md": "dd385aaacef39287ea1664927f70b1aa06e9192a12bbf4ac5c22d01ec29c9dac",

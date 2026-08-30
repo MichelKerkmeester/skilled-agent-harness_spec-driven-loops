@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Doctor Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-08-29T15:22:20.497Z",
+    "last_save_at": "2026-08-30T15:39:34.062Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:eec5a88cffce733bc2cc0ce8a1b94a8dd828270b8ba66de864014707f32d4d06",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aed2546a09a36b46733e3495857a071b36e2afdd0585cd5cc632e134c2755ff6",
       "plan.md": "f289091265875468c10a91170c21c0236b2fa28ef0f7bb1d8cfde868469c59e9",

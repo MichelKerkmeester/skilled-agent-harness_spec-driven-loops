@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call `memorysearch`, and its cold-start injection is dead code",
     "created_at": "2026-08-26T05:34:11Z",
-    "last_save_at": "2026-08-29T14:56:25.300Z",
+    "last_save_at": "2026-08-30T15:39:36.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:20c587143bf00494f96ecfd9981aa07512fb9fff213b297726a46c16b6264c2b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1292f36c0a6ee66a13f34cda2ffa703a0d6cf4de7beab73ac901aff867fd28aa",
       "plan.md": "6f8e6c4e6d0f66fe2476256e1e617805c62b67be1c7771f0b36a90242d7115c8",

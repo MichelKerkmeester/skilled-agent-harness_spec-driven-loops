@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/014-cli-copilot-deprecation-due-to-price-hike",
-  "spec_folder": "cli-external-orchestration/014-cli-copilot-deprecation-due-to-price-hike",
+  "packet_id": "cli-external-orchestration/z_archive/014-cli-copilot-deprecation-due-to-price-hike",
+  "spec_folder": "cli-external-orchestration/z_archive/014-cli-copilot-deprecation-due-to-price-hike",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -41,74 +41,25 @@
     "importance_tier": "critical",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/README.md",
-      "matrix_runners/run-matrix.ts",
-      "matrix_runners/matrix-manifest.json",
-      "matrix_runners/README.md",
-      "mcp_server/tests/description/fixtures/017-001-infrastructure-primitives.description.json",
-      "implementation-summary.md",
-      ".opencode/install_guides/README.md",
-      ".opencode/install_guides/SET-UP - AGENTS.md",
-      "resource-map.md",
-      "checklist.md",
+      "spec.md",
+      "plan.md",
       "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json",
-      ".opencode/specs/cli-external-orchestration/014-cli-copilot-deprecation-due-to-price-hike/spec.md",
-      ".opencode/specs/skilled-agent-orchestration/description.json",
-      ".opencode/specs/descriptions.json",
-      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json"
+      ".opencode/specs/descriptions.json"
     ],
     "entities": [
       {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/README.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "run-matrix.ts",
-        "kind": "code",
-        "path": "matrix_runners/run-matrix.ts",
-        "source": "derived"
-      },
-      {
-        "name": "matrix-manifest.json",
-        "kind": "config",
-        "path": "matrix_runners/matrix-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "017-001-infrastructure-primitives.description.json",
-        "kind": "config",
-        "path": "mcp_server/tests/description/fixtures/017-001-infrastructure-primitives.description.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SET-UP - AGENTS.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -118,39 +69,27 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": ".opencode/specs/cli-external-orchestration/014-cli-copilot-deprecation-due-to-price-hike/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/description.json",
-        "source": "derived"
-      },
-      {
         "name": "descriptions.json",
         "kind": "config",
         "path": ".opencode/specs/descriptions.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -206,28 +145,75 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "other",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-copilot",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`",
     "created_at": "2026-05-06T10:28:50.690Z",
-    "last_save_at": "2026-07-14T19:26:18.961Z",
+    "last_save_at": "2026-08-30T15:39:08.422Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:1cd106a120452400ba4fbe9967c988b2a203fa2fc8b093de31951b5c32c696e7",
+    "source_fingerprint": "sha256:4dad1b97a3bf885f3d580e1562b07d231c135df8894ce1f518cd215bff8c79d9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc4f085dee29f3eb8938adb25aaa8add2a97c5e8ebc4045be51a48bd28fdbcae",
-      "plan.md": "3716eb6aed62def2d6cb225d99fac773f32bb1a4b9dfd5d52364bf356bd3a5c6",
-      "tasks.md": "3e2a4306fc14d45e1bdd93d1866d19d82529ba362faa4c99540a5d6d7de79818",
-      "checklist.md": "7e6d1f704012b5c76eb88bce9539f47a617765b0ed16ab8169f8371443e22e78",
-      "implementation-summary.md": "7a5d18b769e477f8fee3ea42bb6a45661165768b784cbb90b2f8c2f69dae4d4e",
+      "spec.md": "1c91c6c9fa89ce123c189feef6607c78edeaabd1bcf40eac15c383ccb6c2d72b",
+      "plan.md": "f425fd51679949f66ed338eb02b6503772ad93bcdc8a7d1e6ba4f9888817b8fc",
+      "tasks.md": "9892ea25052ba96def1c45f526605f30e298c0a9998e3bb34112a269da4c72f0",
+      "implementation-summary.md": "2465277937a9fac6d05d0a7355cd5495a02f19c018f751dcf6a6a7f8b60475e3",
       "resource-map.md": "c3b96ce854e26d0b9ae6961351d6cf33baaba8c7c777ddc6f57dc527f979a992"
     },
     "last_active_child_id": null,

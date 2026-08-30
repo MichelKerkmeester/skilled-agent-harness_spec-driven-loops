@@ -18,7 +18,6 @@
       "system-code-graph final validation",
       "code graph validation cleanup plan",
       "code graph validation cleanup tasks",
-      "code graph validation cleanup checklist",
       "code graph extraction 006-validation-and-cleanup summary"
     ],
     "key_topics": [
@@ -31,9 +30,9 @@
       "final",
       "plan",
       "tasks",
-      "checklist",
       "extraction",
-      "006-validation-and-cleanup"
+      "006-validation-and-cleanup",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -41,9 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -65,21 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-verify.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-verify.vitest.ts",
         "source": "derived"
       },
       {
@@ -189,26 +174,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001-005 completed the design, scaffold, physical source/database move, consumer rewire, and documentation/runtime migration for extracting code-graph into `.opencode/skills/system-code-graph/`",
     "created_at": "2026-05-14T08:43:25Z",
-    "last_save_at": "2026-07-17T17:19:35.908Z",
+    "last_save_at": "2026-08-30T15:39:32.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:43:25Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0ef0ce8d4215b28dcaa81c5712a9b873a1b0cdafbf05c07e5370dc52d8abf65",
+    "source_fingerprint": "sha256:6562963a97247359b72e63c23c888ec3504566cce10ab87a90af757b980dd337",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fcd2cffe6efa20943a35a80e29403d74cec372f657c492ec7e138d4dc242b1eb",
       "plan.md": "f70afdb81c39c7b9fa1ce7947cac157f97ca91c798d1a39b7b61b5c59b995c32",
       "tasks.md": "d7d97e421246bd7fc11aebff6dd317a09b95171a5cc3175dbc21dd23904d12f9",
-      "checklist.md": "e801adce0f8aa3b7587c1ae01edc6c49b1188c2fe83c39fed3b7e98616228861",
       "implementation-summary.md": "16f57e3ebbbcd80883a2674cf4905674122af069ece0594096b33f784d892934"
     },
     "last_active_child_id": null,

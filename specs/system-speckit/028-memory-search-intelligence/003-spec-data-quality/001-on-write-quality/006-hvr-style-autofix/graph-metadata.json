@@ -34,34 +34,13 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts",
-      "scripts/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/lib/validator-registry.json"
     ],
     "entities": [
-      {
-        "name": "quality-loop.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": "scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -81,15 +60,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -177,36 +156,53 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts every time a spec-doc is hand-edited",
     "created_at": "2026-06-27T17:15:34.135Z",
-    "last_save_at": "2026-07-17T17:19:50.646Z",
+    "last_save_at": "2026-08-30T15:39:35.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bdc162b82c7ec8638c5643712e3f84e27f465e10ed6887d116247e1ff430eff7",
+    "source_fingerprint": "sha256:87ab8904b338b86d3cee4efe849f19c1b4d617e7f0721770b9a6c0c5c2d8ba05",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a370e1bb45a34bfbff07720ed79674a3883d0cbf94cc772120a91532cf107adc",
       "plan.md": "baba7212bd50a2281fc99a8852b22b10f5934b39c6ea3ba8d89f1791766a7d75",
       "tasks.md": "1ad6169284e859e7ed4f6f1841bc38d80d260615f962f827e1ed7aa790614fd6",
-      "checklist.md": "821255ce5af14de3643861174da2e927105158edbacf24841d3e31558325cc40",
       "implementation-summary.md": "a510ae7fb90e72705fdd39993e88fb730064304c25a391f007a19afd0354d725"
     },
     "last_active_child_id": null,

@@ -20,9 +20,9 @@
       "recovery ladder tasks",
       "shared uncertainty budget task list",
       "clarify handoff ladder checklist",
-      "recovery ladder verification",
-      "uncertainty budget checklist",
-      "recovery shadow replay"
+      "recovery ladder implementation summary",
+      "shared uncertainty budget evidence",
+      "recovery shadow replay results"
     ],
     "key_topics": [
       "recovery",
@@ -41,18 +41,41 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "lib/recovery-ladder.cjs",
       "lib/compatibility-projector.cjs",
       "fixtures/recovery-cases.v1.json",
       "fixtures/typed-route-gold.v1.json",
-      "harness/validate-recovery-ladder.cjs",
-      "checklist.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "harness/validate-recovery-ladder.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "recovery-ladder.cjs",
         "kind": "file",
@@ -81,36 +104,6 @@
         "name": "validate-recovery-ladder.cjs",
         "kind": "file",
         "path": "harness/validate-recovery-ladder.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -192,30 +185,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Strict Validation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The synthesis named \"two ways to handle uncertainty\" as an open seam: Idea 4 (bounded handoff to a better destination) and Idea 5 (a calibrated one-turn clarification) each independently proposed a recovery mechanism with its own budget (synthesis §4, Seam B)",
     "created_at": "2026-07-18T13:13:17.719Z",
-    "last_save_at": "2026-07-24T12:11:58.162Z",
+    "last_save_at": "2026-08-30T15:39:14.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7bf2582da64fa7277bb65e97b34d2e0f46f8b1b2346b80404ab966a2c77de1de",
+    "source_fingerprint": "sha256:9be7730e669b25a9456d36b9300f7cf59f8edca9ccc48b60e17b180e3235d79a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3c6f4782041a7b935d9567f1138764613309266efc2c18763104cbe1fbbb3e8",
       "plan.md": "8b9fcd2c18bf90e3a3c1a8294f7ce8e77ad135900934875c8812ba7ec6b0ccd8",
       "tasks.md": "5ce88fc239bcf5d83b223e3980c033325f72b6a9bac18bd281171e0ecfd144e3",
-      "checklist.md": "049a6fc4f0538bb0a772720362c976e0db45df4567b9565c7d51b1e30ae37843",
       "implementation-summary.md": "112008d4bd18048e626e871f89b4a5d73d6b414b7d9099375dffac31af52d78d"
     },
     "last_active_child_id": null,

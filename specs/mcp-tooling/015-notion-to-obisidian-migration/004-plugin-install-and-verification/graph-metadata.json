@@ -17,7 +17,6 @@
       "015 plugin install plan",
       "verify-notion-migration-parity plan",
       "015 plugin install tasks",
-      "015 plugin install checklist",
       "015 plugin install summary"
     ],
     "key_topics": [
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-dataview-install.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,30 +181,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation column it cannot yet write, because neither Notion Bases nor (potentially) Dataview is confirmed present in the operator's actual vault",
     "created_at": "2026-08-21T22:01:25.732Z",
-    "last_save_at": "2026-08-29T15:21:54.943Z",
+    "last_save_at": "2026-08-30T15:39:10.394Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:371ed4eda61c6295f9b7bf09d2b4045ffa3f1b093d1f887c3076f4e24cc1f581",
+    "source_fingerprint": "sha256:7e5e59ae54242efca38622c40c66865ef63ab99abbe68c8ff8ebb8de8d0f9ab9",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3ed4f554569f6a5ebe3acfecfa219807004c531c9a1497a6c3d2ab1b1be21dcf",
       "plan.md": "6bc31f5698406252fd6d6070869b22b1771233ae7dae33e8c1fbaf2bcc6f224b",
       "tasks.md": "2c4099483f7e06d01fcf0df832ea1ef1b55465ff638d318f757fd41863f29a47",
-      "checklist.md": "048f37e7ec6397813e2b5364a92532f2a75def9614c7c6508c9997d4f11d10a2",
       "implementation-summary.md": "0244f8d99088779e043d8893ae1ceca7d9b283823b35f1f566c1aa3331acf187"
     },
     "last_active_child_id": null,

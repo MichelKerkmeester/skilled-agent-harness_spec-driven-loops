@@ -31,29 +31,17 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".claude/agents/deep-review.md",
-      ".codex/agents/orchestrate.toml",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".claude/agents/deep-review.md",
+      ".codex/agents/orchestrate.toml"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".claude/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.toml",
-        "kind": "file",
-        "path": ".codex/agents/orchestrate.toml",
         "source": "derived"
       },
       {
@@ -72,6 +60,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
         "source": "derived"
       },
       {
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 42 findings (21 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied.",
     "created_at": "2026-07-10T06:23:51.463Z",
-    "last_save_at": "2026-07-17T17:19:45.529Z",
+    "last_save_at": "2026-08-30T15:39:34.377Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,6 +195,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:09636d48a146f5cb4384d0c261edf08d6a227a8299d4cf3c069f342874827f77",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1ebecb4447029e8ac7385e60eba94cdb577e29760ebd5859e6937ba2f17cddb",
       "plan.md": "5fe4f640b8578922a97d31574090488126cc25d453fe5679a9b8146164f9cdcc",

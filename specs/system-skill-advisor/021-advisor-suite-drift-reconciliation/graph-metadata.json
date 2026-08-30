@@ -16,7 +16,6 @@
       "advisor corpus expectation update",
       "advisor suite drift plan",
       "advisor suite drift tasks",
-      "advisor suite drift checklist",
       "advisor suite drift summary"
     ],
     "key_topics": [
@@ -31,28 +30,21 @@
       "expectation",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -68,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -170,42 +162,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Reconciled",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Concurrent work — retiring the code-graph skill, renaming skills, adding hubs (Figma, mcp-tooling, CLI-hub, sk-communication), and rewiring hooks — legitimately shifted advisor behavior but left ~32 tests red across six clusters: frozen output baselines, routing-corpus expectations, cross-language skill-list agreement, hook-settings shape, launcher env fixtures, and stress simulations",
     "created_at": "2026-08-15T15:40:30.895Z",
-    "last_save_at": "2026-08-15T17:14:48.802Z",
+    "last_save_at": "2026-08-30T15:39:26.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28db3475046e25dbfa58b2ab4fa4ab7671b605c85025dc4bdead93a255fe9e7d",
+    "source_fingerprint": "sha256:2e371135d49695a6d185f535526575dad0c4bc4bcecac1e09fc0e4b637c9a094",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae5a839820055d859f191af108cd742efb48ecc4a46133b7a7ca833d136bb607",
       "plan.md": "11a167f8068bd0fc2919088e20c6316dcb1c3b881bb3076fdf2a18b0b6528dd3",
       "tasks.md": "df48f18896fc75503cd95db508dcd9d81bd4cf16f290b3911091402db2ecdd11",
-      "checklist.md": "487eb4c88095e8300ea45860d0462dacdb6c84db9b1c36f84af66375184037a8",
       "implementation-summary.md": "4eb8f4b0354f1bfac775ac2035f4d4b237a5b6bbbf3d7157f41c7f81fc1a63e2"
     },
     "last_active_child_id": null,

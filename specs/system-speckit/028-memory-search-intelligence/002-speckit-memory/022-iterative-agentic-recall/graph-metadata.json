@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "schemas/tool-input-schemas.ts",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,27 +190,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "step-cap",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP's `memorycontext` is a static mode router with zero tool-calling: its `executeStrategy` switch dispatches `quick|deep|focused|resume`, and each branch is one straight-line retrieval call (quick→triggers, deep/focused→single `handleMemorySearch`, resume→ladder) [CONFIRMED: `handlers/memory-context.ts:1292-1311` (`executeStrategy` switch), deltas/iter-017.jsonl]",
     "created_at": "2026-06-19T05:40:37.449Z",
-    "last_save_at": "2026-08-29T15:22:21.843Z",
+    "last_save_at": "2026-08-30T15:39:35.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac224a357a170d3f7a760754b892a31a4d3f1f5983b2de390dd83ba5890f5f8e",
+    "source_fingerprint": "sha256:df12ccaa2f3850f3fc222da1ea5bec41c1c36ec97e87ecd93a0b1f1a1657f277",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6421184638c2db1f73cf490013a411951a70c231ddc3845a6e1105ca340ddaec",
       "plan.md": "0ac30259564065804b5a9ae8cb5077a2d9370001d5ce022105dca918a9ae8f64",
       "tasks.md": "fc34c236ee3a904664eb9b27331ff77c5a02e1ed49422d92ace7e3eaf24b7839",
-      "checklist.md": "9abdfe30f4a65f5c08d5c26b8c7122c77c63d6b233ec3631362b027e4f5eb08e",
       "decision-record.md": "94fff6386d3d5f14c1b3876e0def6f71afc7ec056ddc8cf24a4f9f068f4f2834",
       "implementation-summary.md": "bcc7824fa30c01c6454b258691ed85647c6f80c3edab3e8b41a85bd899e33c91"
     },

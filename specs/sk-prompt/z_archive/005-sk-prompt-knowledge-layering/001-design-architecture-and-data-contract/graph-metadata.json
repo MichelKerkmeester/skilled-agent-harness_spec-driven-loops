@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/005-sk-prompt-knowledge-layering/001-design-architecture-and-data-contract",
-  "spec_folder": "sk-prompt/005-sk-prompt-knowledge-layering/001-design-architecture-and-data-contract",
-  "parent_id": "sk-prompt/005-sk-prompt-knowledge-layering",
+  "packet_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/001-design-architecture-and-data-contract",
+  "spec_folder": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering/001-design-architecture-and-data-contract",
+  "parent_id": "sk-prompt/z_archive/005-sk-prompt-knowledge-layering",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The remaining phases need a single, ratified design to implement against: where per-model prompt-craft prose lives, the exact shape of the `recommendedframeworks` data field, the per-model profile structure, and one delegation rule that replaces the contradictory ones in use today",
     "created_at": "2026-06-02T18:04:10Z",
-    "last_save_at": "2026-07-15T10:52:29.971Z",
+    "last_save_at": "2026-08-30T15:39:19.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bb03b86dd4c3d84e2abb680daf49dea7586728ee614cb00905af3f78ab53e510",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fc75152b2c8ba34f7c7fe28ace05c599878afee1f8e3eb8c6cabd927afb8025a",
       "plan.md": "072ee4b60eea7301c0ce18b5aadb1499c306caeb13c084a4599c43e07fac6f0d",

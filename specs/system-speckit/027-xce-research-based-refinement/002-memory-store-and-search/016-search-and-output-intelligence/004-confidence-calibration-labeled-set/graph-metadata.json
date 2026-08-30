@@ -43,58 +43,14 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/confidence-calibration.vitest.ts",
-      "tests/absolute-relevance-calibration.vitest.ts",
-      "mcp_server/lib/search/confidence-scoring.ts",
-      "mcp_server/lib/search/confidence-calibration.ts",
-      "mcp_server/lib/search/search-flags.ts",
-      "mcp_server/tests/confidence-calibration.vitest.ts",
-      "tests/confidence-calibration.vitest.ts",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "tests/absolute-relevance-calibration.vitest.ts",
+      "tests/confidence-calibration.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "confidence-scoring.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-calibration.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-calibration.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/confidence-calibration.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "absolute-relevance-calibration.vitest.ts",
-        "kind": "test",
-        "path": "tests/absolute-relevance-calibration.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -111,6 +67,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "absolute-relevance-calibration.vitest.ts",
+        "kind": "test",
+        "path": "tests/absolute-relevance-calibration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-calibration.vitest.ts",
+        "kind": "test",
+        "path": "tests/confidence-calibration.vitest.ts",
         "source": "derived"
       },
       {
@@ -202,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Per-result `confidence.value` was only ~40% absolute relevance, so a strong-but-isolated high-cosine hit could be capped at \"medium\" - dragged down by weak heuristic signals (the 0.6/0.4 blend favoured the heuristic)",
     "created_at": "2026-06-17T19:57:25.104Z",
-    "last_save_at": "2026-07-17T17:19:41.368Z",
+    "last_save_at": "2026-08-30T15:39:33.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b00c27d6d2c9e901a32c23fe96d31d38963325a71d9f5dd942fd2b87752acb72",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "255e766d813591e0112ffea160f47243c80cc82c4c3a0435bd68d8b337d09028",
       "plan.md": "48c633ecaab43772fbfa9f938e8c8be608efff82c5ddf0afc8f1fe26f5415a96",

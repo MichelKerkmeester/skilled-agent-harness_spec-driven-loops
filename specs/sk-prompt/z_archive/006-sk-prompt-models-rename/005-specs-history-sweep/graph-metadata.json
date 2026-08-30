@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-prompt/006-sk-prompt-models-rename/005-specs-history-sweep",
-  "spec_folder": "sk-prompt/006-sk-prompt-models-rename/005-specs-history-sweep",
-  "parent_id": "sk-prompt/006-sk-prompt-models-rename",
+  "packet_id": "sk-prompt/z_archive/006-sk-prompt-models-rename/005-specs-history-sweep",
+  "spec_folder": "sk-prompt/z_archive/006-sk-prompt-models-rename/005-specs-history-sweep",
+  "parent_id": "sk-prompt/z_archive/006-sk-prompt-models-rename",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The user chose to rewrite ALL references, including historical spec docs, logs, and changelogs (~700 files)",
     "created_at": "2026-06-28T13:47:22.113Z",
-    "last_save_at": "2026-07-15T10:52:33.583Z",
+    "last_save_at": "2026-08-30T15:39:19.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:3be7e4e75e0c33fd00bba0504e2e4f3922b2915bf91cb613d2e1333ed044f030",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "29eedff932757179810c8b57387f03eb7e72eeda1941808149e6552178ffa0ae",
       "plan.md": "5cc62f7f9ec093459c2bcd0dddb89d8b4265b6fad211290eca8722e503a1f75d",

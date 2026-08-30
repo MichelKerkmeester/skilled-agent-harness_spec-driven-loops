@@ -16,7 +16,6 @@
       "cursor enforced models",
       "cli-cursor model allowlist plan",
       "cli-cursor model allowlist tasks",
-      "cli-cursor model allowlist checklist",
       "cli-cursor allowlist summary",
       "cursor model enforcement implementation"
     ],
@@ -30,43 +29,24 @@
       "models",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "enforcement"
+      "enforcement",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts",
-      "implementation-summary.md"
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -86,9 +66,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
         "source": "derived"
       },
       {
@@ -101,12 +99,6 @@
         "name": "remediation.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -192,26 +184,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 gave `cli-cursor` a permissive model reference (`CURSORSUPPORTEDMODELS = ['auto', 'composer-2.5', 'composer-2.5-fast']`) explicitly documented as \"not exhaustive by design.",
     "created_at": "2026-07-24T11:23:29.374Z",
-    "last_save_at": "2026-07-27T03:50:26.603Z",
+    "last_save_at": "2026-08-30T15:39:07.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ad146e44d4d0f697faa66dd35258c04363ee41c67c681e14273f45b19575b15",
+    "source_fingerprint": "sha256:32717a62425db3d86ec72ed6b0a85b92ce8a2ba3cb54287bf0e996f1624927b1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c2f964a2bd8385c2acbc8b43793217fc71c006d7cbda000839659d791a0d9b7b",
       "plan.md": "36c48d5d607e24a805d4f2d63910f1afe900b9082122130bed19188ac3d52aac",
       "tasks.md": "cb7d345d6effda1f5390d5bf4e90fcb355dd5351e12e6a326480903687262d02",
-      "checklist.md": "7b6e5d80b4dd2b074bef4600c475c77916ce9f6c1b14d0463c4335e08f8c7c23",
       "implementation-summary.md": "74954856a762343ffa8327ed02c053325178d21cdb9cf1e081f66efbddab13c5"
     },
     "last_active_child_id": null,

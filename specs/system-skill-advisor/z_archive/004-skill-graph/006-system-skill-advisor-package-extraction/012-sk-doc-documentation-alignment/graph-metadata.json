@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment",
-  "spec_folder": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment",
-  "parent_id": "system-skill-advisor/004-skill-graph/006-system-skill-advisor-package-extraction",
+  "packet_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment",
+  "spec_folder": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment",
+  "parent_id": "system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -20,8 +20,6 @@
       "doc alignment plan",
       "013/009/012 tasks",
       "advisor doc alignment tasks",
-      "013/009/012 checklist",
-      "advisor doc alignment verification",
       "013/009/012 implementation summary",
       "advisor doc alignment summary"
     ],
@@ -34,10 +32,10 @@
       "plan",
       "tasks",
       "advisor",
-      "checklist",
-      "verification",
       "implementation",
-      "summary"
+      "summary",
+      "package",
+      "grown"
     ],
     "importance_tier": "critical",
     "status": "complete",
@@ -45,10 +43,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/ARCHITECTURE.md",
-      "mcp_server/tools/index.ts"
+      ".opencode/skills/system-skill-advisor/ARCHITECTURE.md"
     ],
     "entities": [
       {
@@ -70,12 +66,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -85,12 +75,6 @@
         "name": "ARCHITECTURE.md",
         "kind": "doc",
         "path": ".opencode/skills/system-skill-advisor/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "mcp_server/tools/index.ts",
         "source": "derived"
       },
       {
@@ -194,26 +178,37 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `system-skill-advisor` package had grown through extraction packets",
     "created_at": "2026-05-18T08:53:19.989Z",
-    "last_save_at": "2026-07-15T11:59:16.390Z",
+    "last_save_at": "2026-08-30T15:39:26.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dee62b5b52d50367360941b45d1d99ab5b342d5c40e2c2af1758fa493ff6cd97",
+    "source_fingerprint": "sha256:f97617c4786de66ea44322473f353055d70afbe56db2161ea76783a32dfd5953",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d6f0864eeae894b733ceb99ef189da69860ab45b11314d4c7c006dd15470389",
       "plan.md": "64ccd5eddcaf18e29a9e1cd02f8667beb54c66874480e27dcb6570f19ad9074c",
       "tasks.md": "972a6d06e6140d0dc3d08e457e8c5f0cbe78e73dedca5107e7f69108d6c1381f",
-      "checklist.md": "d07538ed2802d0117a7117b98123595023baae329950dca41c6c622d86f679b6",
       "implementation-summary.md": "97cf3232486387f6b4d9cba178547e81ba9a91dee35b4339b0d03490095619d4"
     },
     "last_active_child_id": null,

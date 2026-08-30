@@ -36,34 +36,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts",
-      ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts",
-      "mcp_server/spec-memory-cli.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec-memory-cli.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-index-cli.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-cli.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,11 +167,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The three daemon CLI front-doors are inconsistent in discoverability and error recovery",
     "created_at": "2026-06-10T20:46:28.784Z",
-    "last_save_at": "2026-07-17T17:19:44.217Z",
+    "last_save_at": "2026-08-30T15:39:34.150Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:c916cac70c34a69690aedccccbe91fdc7e6fb29231c24beacafcf8a93e29e06d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7644d03e6fdda494fe1262f77ad9d331e3a0e38c209a5d4b8d8983e799309439",
       "plan.md": "6904d0e5998012b7d112a92b2f104f7bc74002b84e3e2c6380a5b55a376ba30c",

@@ -20,9 +20,9 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
       "decision",
-      "record"
+      "record",
+      "decision record"
     ],
     "key_topics": [
       "spec",
@@ -33,42 +33,29 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
       "decision",
       "record",
-      "memory"
+      "memory",
+      "mcp"
     ],
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
       "scratch/test-agent-02-search/TEST-REPORT.md",
       "scratch/test-agent-04-crud/TEST-REPORT.md",
       "scratch/test-agent-06-checkpoint/TEST-REPORT.md",
       "scratch/test-agent-07-validation/TEST-REPORT.md",
       "scratch/test-agent-09-tiers/TEST-REPORT.md",
       "scratch/test-agent-10-e2e/TEST-REPORT.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "handover.md"
+      ".opencode/skills/system-spec-kit/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "TEST-REPORT.md",
-        "kind": "doc",
-        "path": "scratch/test-agent-02-search/TEST-REPORT.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,12 +75,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -109,6 +90,18 @@
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "TEST-REPORT.md",
+        "kind": "doc",
+        "path": "scratch/test-agent-02-search/TEST-REPORT.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
@@ -200,28 +193,33 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Spec Kit Memory MCP and related tools lacked comprehensive testing:",
     "created_at": "2026-04-12T09:02:53.528Z",
-    "last_save_at": "2026-07-10T06:23:06.831Z",
+    "last_save_at": "2026-08-30T15:39:37.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e0babe8691276abca0dfcf40c8b99fab932cde193a36d9d808f74b0a4f12bd83",
+    "source_fingerprint": "sha256:9b6b8e78bd4853c6df304dfb1335ce1c816511dfc884ceb956ce35be7c76ea4d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ce2687f9f2e9e60494fa5670c579b1162dadfcda48a30099cd8780d4c1296aa",
       "plan.md": "6647a0283b28432b636ec81760cc12b4b9a7249b3ddf4f9af387ff77ec48b0aa",
       "tasks.md": "9d1d1f47761f964eb4d522c8d4b968a7252ba57cfb2ab5d9b431f78108d0c00d",
-      "checklist.md": "19c939d4326c205e266e7d21efa64b6f540f7ffa74554b85b3b4b6367a3bdf92",
       "decision-record.md": "078d64c318c679f988a32c593f2834c02ecbd768e8917fcbecc6b6ac6400b22a",
       "implementation-summary.md": "20369a1a24341578d47684943697ffb5be8fd30a24a52451865d19aac2745965",
       "handover.md": "6db5f14fb11b1d277c9f5c37abf012a3917993f7c1bd0150dbe454cf7d6fd6cb"

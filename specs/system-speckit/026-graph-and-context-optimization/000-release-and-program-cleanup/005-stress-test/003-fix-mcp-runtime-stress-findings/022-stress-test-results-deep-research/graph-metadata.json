@@ -23,8 +23,8 @@
       "v1.0.3 research plan",
       "022 tasks",
       "stress deep research tasks",
-      "022 checklist",
-      "stress deep research verification"
+      "022 implementation summary",
+      "v1.0.3 stress deep research summary"
     ],
     "key_topics": [
       "022-stress-test-results-deep-research",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "research/research-report.md",
@@ -80,12 +79,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -207,27 +200,32 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Planning Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The v1.0.3 stress test (Phase H, packet `021-stress-test-enterprise-wiring-expansion`) ran the search/query/RAG stack against post-Phase-G wiring (W3 trust tree, W4 default-on conditional rerank, W5 shadow weights, W6 CocoIndex calibration, W7 degraded-readiness, W8 SearchDecisionEnvelope, W9 shadow JSONL sink, W10 degraded integration, W11 CocoIndex runtime consumer, W12 real QueryPlan to Stage 3, W13 decision audit + SLA)",
     "created_at": "2026-04-29T07:15:00.000Z",
-    "last_save_at": "2026-08-29T15:22:11.744Z",
+    "last_save_at": "2026-08-30T15:39:28.526Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:983aba05062e665830f763aee3ba9e013a929b341ab82cb6bfbe0d071d75f9cb",
+    "source_fingerprint": "sha256:9022179aeb147ab0e438709f818df73287ca617ca3ad2d1c63b79cee03e15324",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89c072fdc74c5a75305d2d6528bb89217f5bdfa4e9c58dafbd9178c90fb47eae",
       "plan.md": "abc97f32dc91d3551a128a4fffbbce5db3a69f59600e833ed9fad054b0bf276f",
       "tasks.md": "8c08d8e35f1b0f820fd2cecdfa7e3baa197f11ff3f4757719a0ab18fa01811b1",
-      "checklist.md": "8f7afedbaa31669b43d49d29263cddf81843149a07918c4253cbe223e92a8c20",
       "implementation-summary.md": "cf1183a6c7ce29a08a0f0e5484cb37a64cf2c9aa963b91ce2334682e7b35e014",
       "resource-map.md": "82761e6b2aad4c76beafd56f74f827ef571f5bb041e1884b3be4f8d9630fa0da"
     },

@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "shared/parsing/memory-template-contract.ts"
     ],
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,26 +187,31 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "During the 2026-05-14 substrate repair wave, several Codex-authored spec packets passed `validate.sh --strict` but `memorysave` dry-runs rejected the same canonical docs with `missingblanklineafterfrontmatter` and `missingsection` violations",
     "created_at": "2026-05-14T16:44:57Z",
-    "last_save_at": "2026-08-29T15:22:14.701Z",
+    "last_save_at": "2026-08-30T15:39:29.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02b9d2bad8488ad571dfcc506bff9574fcfa0e4e8c9561c42c6301bf1f217bcc",
+    "source_fingerprint": "sha256:b123f94dcbbbc621461f6b3df3472b193dfa0f0b76a4282ee52a516649db37d7",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "70cb6ac993c444791bffd77781ab00f20651ac77f5754edb66fb5981d886a016",
       "plan.md": "5ed2e45c3f1c27a8e9b5fd439009e255f0383313129330791971520262968ab6",
       "tasks.md": "d9faf634074491a5672de748d5e69341c473d73815dbdd74a4a475c4ca412d63",
-      "checklist.md": "5e3066ef51e1a0b9899d1fa35a0438a67633d15ae62f2b5984e67e490d418f4c",
       "implementation-summary.md": "e90a1b4abd4ef4668bd2ff272b627c855c6ef8a239ebb74853086a2bee795826"
     },
     "last_active_child_id": null,

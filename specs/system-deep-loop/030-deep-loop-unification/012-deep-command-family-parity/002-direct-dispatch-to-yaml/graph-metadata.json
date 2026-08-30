@@ -33,39 +33,17 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/assets/deep_skill-benchmark_auto.yaml",
-      ".opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml",
-      ".opencode/commands/deep/assets/deep_skill-benchmark_presentation.txt",
-      ".opencode/commands/deep/skill-benchmark.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/commands/deep/skill-benchmark.md"
     ],
     "entities": [
       {
-        "name": "deep_skill-benchmark_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_skill-benchmark_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_skill-benchmark_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_skill-benchmark_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_skill-benchmark_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/deep/assets/deep_skill-benchmark_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/deep/skill-benchmark.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -81,21 +59,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "skill-benchmark.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/commands/deep/skill-benchmark.md",
         "source": "derived"
       },
       {
@@ -187,26 +159,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Unit Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integration Tests",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`/deep:skill-benchmark` (Lane C) was the remaining deep command that dispatched its loop host inline: its `command.md` declared \"direct-router family — no workflow YAML\" with an inline `§5 PRESENTATION BOUNDARY` instead of a presentation asset",
     "created_at": "2026-07-13T14:07:04.711Z",
-    "last_save_at": "2026-07-16T16:33:06.904Z",
+    "last_save_at": "2026-08-30T15:39:19.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36dc7e2e84bfee0c7c8bd6754e4e680b5fb747533fb7c8f0ecb7344e6eb9afad",
+    "source_fingerprint": "sha256:84b9a370afd341cd9728524fcd91626ca05566765a7826e2cf86b5fd3f16fee3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "01d9fd38df165977a78bc27702c610c445cfca79e4ed2f0dfe98d7ecb28fd0b2",
       "plan.md": "bf80503cba2ee86f2474eca71b09874ba50bfc309b037ef26e72395bb9e5bcb9",
       "tasks.md": "63dc0eb76b7e6e3145f8c8c8b49b09022871400e0ab6cdac1d4670694023bb2a",
-      "checklist.md": "c428f94a613a082d657b08782341e889a5f8d3f63a47bda445f7a2987b90474b",
       "implementation-summary.md": "a01a5efdb9a85b1bf491d9b7da200b70bc5dc3c474f3dfb9620078ce80f20036"
     },
     "last_active_child_id": null,

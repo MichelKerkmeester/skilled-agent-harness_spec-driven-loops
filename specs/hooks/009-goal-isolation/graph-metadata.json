@@ -66,7 +66,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/hooks/goal/lib/goal-core.cjs",
@@ -79,10 +78,7 @@
       ".cursor/hooks.json",
       ".devin/hooks.v1.json",
       ".opencode/hooks/goal/lib/goal-core.test.cjs",
-      ".pi/extensions/goal-context.ts",
-      ".opencode/hooks/goal/pi/goal-pi.test.mjs",
-      ".opencode/hooks/goal/bin/goal.test.cjs",
-      ".opencode/hooks/goal/cursor/goal-cursor.test.mjs"
+      ".pi/extensions/goal-context.ts"
     ],
     "entities": [
       {
@@ -101,12 +97,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,24 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "goal-pi.test.mjs",
-        "kind": "file",
-        "path": ".opencode/hooks/goal/pi/goal-pi.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "goal.test.cjs",
-        "kind": "file",
-        "path": ".opencode/hooks/goal/bin/goal.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "goal-cursor.test.mjs",
-        "kind": "file",
-        "path": ".opencode/hooks/goal/cursor/goal-cursor.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -228,27 +200,50 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cross-runtime core resolves every Pi and Cursor goal operation to one fixed file, `active-goal.json`",
     "created_at": "2026-08-10T10:17:19Z",
-    "last_save_at": "2026-08-29T14:54:14.512Z",
+    "last_save_at": "2026-08-30T15:39:09.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32d2e7bd8b92d7bf3d72ea34f67c17376abc9650b8060d3b350502af445723e8",
+    "source_fingerprint": "sha256:33dcff3e9a4c72dd6ab381618b8a3b12c38d98e29da62df270a421c846a14db3",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "027c5a3278b20eecdb7d8a0a28b6df42c0304816f1f1813c98def7e17feb4419",
       "plan.md": "1515971baa25e90f0bec0ac426205c9275e38191abe0e16e506cbeee7c8c3157",
       "tasks.md": "d5cb1b2439003d99988f1bfec7f67746d00166991b942fcdf8f56fe41da58a5e",
-      "checklist.md": "2afc7febae4601609a417ce891127dbe3d36b6b4ebc6f7449dc5c189326b19ff",
       "decision-record.md": "ded40514cc3d262923a8b4985f31f34639d3fee38875bea7e7a5a37a5b4fc378",
       "implementation-summary.md": "0213dc94ec4ef973b0a153c97a9239320bf20e8115332025961bed9f6b1d8857"
     },

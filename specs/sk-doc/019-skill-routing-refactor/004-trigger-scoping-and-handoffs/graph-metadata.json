@@ -17,8 +17,6 @@
       "packet handoff alignment",
       "trigger scoping tasks",
       "handoff alignment tasks",
-      "trigger scoping checklist",
-      "sibling handoff checklist",
       "trigger specificity decision",
       "sibling handoff decision",
       "trigger scoping summary",
@@ -35,25 +33,24 @@
       "handoff",
       "alignment",
       "tasks",
-      "checklist",
-      "specificity"
+      "specificity",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/hub-router.json",
-      "plan.md",
-      "decision-record.md",
-      "tasks.md",
-      "checklist.md",
       "spec.md",
-      "implementation-summary.md"
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/hub-router.json"
     ],
     "entities": [
       {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -63,33 +60,27 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
         "source": "derived"
       },
       {
@@ -189,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Specificity",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Bare benchmark, generic documentation, command suffix, and hub-schema terms carried too little artifact intent to select a packet safely",
     "created_at": "2026-07-13T04:45:47Z",
-    "last_save_at": "2026-07-24T11:03:16.728Z",
+    "last_save_at": "2026-08-30T15:39:14.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53e9f701be1e2d0f5a9ca1cb3ac8a2e59adac10f8ab0241ed3bbe76740263b8e",
+    "source_fingerprint": "sha256:d542cf2efc4a04f84dabc2ef2cee2b70623b2c7828f7baf5c4945b3ec5b9a111",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d15b557d56f69a1f3a46f91e2f563100cab4c886ed4ab386fe32db9a55ccf059",
       "plan.md": "af30bab8458ebc51498f169a7dbf0788f23de03a328576bcc32b3b6c6cb6ee17",
       "tasks.md": "ee09c5c22501713ad780f75f2204256e2f056c625bd1fee9f5fd0ea43101082d",
-      "checklist.md": "8304b131a29880d9306967b30c8666e8c9dcfe423b1df8ce0983265608cc735d",
       "decision-record.md": "ece89c5c8b32ce85b8d2e0666a5c77083525023e082f6efdef827ca21920e4d0",
       "implementation-summary.md": "c46616d7d87f40e8c98cd679d2cacdf62873e09d2a68d844c89e587a24eb481b"
     },

@@ -38,10 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "shared/ipc/socket-server.ts",
-      "shared/ipc/README.md"
+      "shared/ipc/socket-server.ts"
     ],
     "entities": [
       {
@@ -63,12 +61,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -78,12 +70,6 @@
         "name": "socket-server.ts",
         "kind": "code",
         "path": "shared/ipc/socket-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "shared/ipc/README.md",
         "source": "derived"
       },
       {
@@ -183,30 +169,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Thirty",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The repo-wide scan flagged forty-five code and script folders without a README across sk-design (13), sk-prompt (14) and system-spec-kit (18)",
     "created_at": "2026-07-22T13:27:47.875Z",
-    "last_save_at": "2026-08-29T15:22:03.083Z",
+    "last_save_at": "2026-08-30T15:39:15.535Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:384dbef14803e41ca6aa7ae58da660536d7ac9b76e27f4f73c9f891000a9307f",
+    "source_fingerprint": "sha256:16c497c54ecb3056bd4c9143c90de0c9bbeb2cc46a67be1aab873d00e8308ac1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "42f9551791d5302f2f8a5293414efc71dd57c28b922ed51de2d64c9725404885",
       "plan.md": "d4ad4f50e70484904e8a11efcb2f6d9ffea93c7f0aeb4f0fc9b095c4e0839fd9",
       "tasks.md": "719535d04159e0d148524fa469c61add0faf00f5fa0e31f25cc4fd56fe42089d",
-      "checklist.md": "438f5d53925afd316b6cc9dcd25185890640e2dcbc12d26a731aed2481aa7441",
       "implementation-summary.md": "35e12fe9558864a98dfeffe3646bd95dc5db51cf4098aa2f35eee9d41d67177c"
     },
     "last_active_child_id": null,

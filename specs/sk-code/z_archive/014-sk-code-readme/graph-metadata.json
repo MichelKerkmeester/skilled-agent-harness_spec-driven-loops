@@ -35,19 +35,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,6 +64,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
         "source": "derived"
       },
       {
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The sk-code README is a tabular reference card with no problem-first entry point, and it carries a material accuracy error: it presents MOTIONDEV as a third code surface and a valid surface-override value, when SKILL.md and the reference docs define only two surfaces (WEBFLOW, OPENCODE) plus an UNKNOWN fallback, with MOTIONDEV a cross-stack resource intent loaded after surface detection",
     "created_at": "2026-06-07T14:07:55Z",
-    "last_save_at": "2026-07-09T10:02:44.365Z",
+    "last_save_at": "2026-08-30T15:39:11.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:e6ded56580714a22324a8ecd93bd5f2f6f323c5c987829fc2215284e9eb8d6ac",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cc6b173de6d0ed9dac6c472491aa34513b9a77acb6ffab22c00a56316399bde7",
       "plan.md": "21b346b4961e5007a35ed4d6cdb54ecf1852d395b0c7a642d69d10ad65d0b3e6",

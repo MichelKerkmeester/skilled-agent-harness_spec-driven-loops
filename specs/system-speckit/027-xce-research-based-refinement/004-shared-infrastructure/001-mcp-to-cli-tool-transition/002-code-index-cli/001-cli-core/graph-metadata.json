@@ -42,9 +42,6 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts",
-      ".opencode/skills/system-code-graph/mcp_server/code-index-cli-manifest.ts",
-      ".opencode/bin/code-index.cjs",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
@@ -54,24 +51,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "code-index-cli.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-index-cli-manifest.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/code-index-cli-manifest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-index.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/code-index.cjs",
         "source": "derived"
       },
       {
@@ -193,11 +172,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mkcodeindex daemon has no CLI front door: 8 tools are MCP-only, so transport-down sessions, hooks, cron, and scripts cannot reach structural code search at all",
     "created_at": "2026-06-06T14:45:13Z",
-    "last_save_at": "2026-07-17T17:19:42.632Z",
+    "last_save_at": "2026-08-30T15:39:33.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +204,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:2124847972a25f8f2314af918f42cfbd5682eb328fcfb94f5653ef834ebc6b92",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cd2beacc666b4c40f849fe7ea403652cca3ad614b889c253ddac8d4d15889d42",
       "plan.md": "0a482248d83ec6fa7150866399964030d55218e50a3706f9ef1fe067563430de",

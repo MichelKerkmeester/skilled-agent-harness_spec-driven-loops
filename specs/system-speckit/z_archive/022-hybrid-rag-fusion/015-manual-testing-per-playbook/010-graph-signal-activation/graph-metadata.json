@@ -42,24 +42,10 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "mcp_server/lib/search/graph-search-fn.ts",
-      "mcp_server/lib/cognitive/co-activation.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/lib/graph/graph-signals.ts",
-      "mcp_server/lib/graph/community-detection.ts",
-      "handlers/causal-graph.ts",
-      "mcp_server/lib/search/search-flags.ts",
-      "mcp_server/lib/search/graph-flags.ts",
-      "mcp_server/lib/search/graph-lifecycle.ts",
-      "mcp_server/lib/search/graph-calibration.ts",
-      "mcp_server/lib/search/entity-linker.ts",
-      "mcp_server/lib/search/causal-boost.ts",
+      "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "mcp_server/handlers/causal-graph.ts",
-      "mcp_server/lib/search/result-explainability.ts",
-      "plan.md"
+      "handlers/causal-graph.ts"
     ],
     "entities": [
       {
@@ -69,75 +55,9 @@
         "source": "derived"
       },
       {
-        "name": "graph-search-fn.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/graph-search-fn.ts",
-        "source": "derived"
-      },
-      {
-        "name": "co-activation.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cognitive/co-activation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-signals.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/graph/graph-signals.ts",
-        "source": "derived"
-      },
-      {
-        "name": "community-detection.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/graph/community-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "handlers/causal-graph.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-flags.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/graph-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-lifecycle.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/graph-lifecycle.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-calibration.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/graph-calibration.ts",
-        "source": "derived"
-      },
-      {
-        "name": "entity-linker.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/entity-linker.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-boost.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/causal-boost.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -147,27 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "result-explainability.ts",
+        "name": "causal-graph.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/result-explainability.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "path": "handlers/causal-graph.ts",
         "source": "derived"
       },
       {
@@ -205,27 +113,104 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Manual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-type",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "MAX_TOTAL_DEGREE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPECKIT_COACTIVATION_STRENGTH",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Manual test scenarios for graph-signal-activation need structured per-phase documentation instead of relying on scattered playbook rows",
     "created_at": "2026-04-12T09:02:50.296Z",
-    "last_save_at": "2026-07-10T06:21:54.660Z",
+    "last_save_at": "2026-08-30T15:39:39.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02c6d2a83073215a86fb2302e4708a661e68a25e6afa1116d9905ec94e8da20c",
+    "source_fingerprint": "sha256:672e8bd7cc1cb682042edc84596d0f9935fd1d348a7f845fa24a850fb1933593",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7621a9defcc8ba026ac90b9633836a7a4838d8c7ed4e5c28ceaa5edb5345b818",
-      "plan.md": "a46d0c24a0ac9e6eb93e60a785e77e7fc84c68c351b876ff22d9b01c48044dbd",
-      "tasks.md": "05878f4e8dd2696491e84c9b227f6253beebbe0d9b945174af6e3a0738f6cdb0",
-      "checklist.md": "97b24611a138f4818d4512f3df0821d6bb2238d839c003a79ea678f5908bc202",
-      "implementation-summary.md": "816e28b35e1d60f53e953c441b8b7a3594c9cfbd1c39ade31c8f59c3c2cb859f"
+      "spec.md": "85106f59b12e22ca5297b6e14835299c67ba96f515d0783b987e154e2d1a36f9",
+      "plan.md": "7525cccf6631ab90a709db918f6aef7a880f1da934f695356216ba51fee0fefd",
+      "tasks.md": "85588d1fe79c4132ef644652291bd7862eb3695d878c795947de7a3da8d7083f",
+      "implementation-summary.md": "23bba9ec488d4e10b12a9b9862790b931f28dda2cc272c99e0f47119b933c871"
     },
     "last_active_child_id": null,
     "last_active_at": null

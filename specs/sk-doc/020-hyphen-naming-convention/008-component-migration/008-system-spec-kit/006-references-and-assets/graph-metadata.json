@@ -168,7 +168,7 @@
     ],
     "causal_summary": "The system-spec-kit reference and asset surfaces contain a broad set of underscore-bearing Markdown filenames, plus MCP documentation and curated benchmark report files. This phase renames permitted reference/asset files and updates links and pointers while keeping tool-mandated names, generated artifacts, Python files, keys, and frozen history within their exemptions.",
     "created_at": "2026-07-14T15:18:01Z",
-    "last_save_at": "2026-08-30T07:19:45.818Z",
+    "last_save_at": "2026-08-30T15:39:16.772Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,7 +177,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:8181dd06c0f9794cbc82065444f6f1647d4c3aa21957e19fb7128a04160e8b41",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "194a084b538041c406b114b6ee6277efeb788c0448afb11e75d33b49f242f3e4",
       "plan.md": "ce51a9a40719a75d7fcc86c0dd3be6a01dfe24bc7f9a1cd68751bb1287e65ed4",

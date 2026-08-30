@@ -35,7 +35,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,30 +171,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus 7 subdirectories — `cluster-classify/`, `extract/`, `feature-extractors/`, `interaction-capture/`, `procedure-cards/`, `report-preview/`, `validate/`, `write-design-md/` — each holding one file, 8 subdirectory files plus the root (9 total)",
     "created_at": "2026-07-27T15:10:02.584Z",
-    "last_save_at": "2026-08-29T13:09:58.603Z",
+    "last_save_at": "2026-08-30T15:39:13.174Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95bfcec78e692a43f0436418f6f36110d23de76a700c73eeeb86f9fbc28c2a8d",
+    "source_fingerprint": "sha256:b78e7dbcfca1a861a35d931ee70b5d8ad39b8f7583f9d5de30846a948c4bbd13",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9a38d26135469bbc56b27bc8cbbaa3157b0203b0af40a1006288491f0b4e25b",
       "plan.md": "202abdf8326cd7955de7841d312ec83e37a86333b6b4c2965f76b21d8dbaa11f",
       "tasks.md": "90e53811c7392ed6ea97f4fe861a4fcd0d75cb69ed34306cc12811cd52773af7",
-      "checklist.md": "4bb0c887e6819c85a8f98eaee91c97f98bbd157ba2684ca515f3a82497b9caf6",
       "implementation-summary.md": "2a20a07562a4fec415b5fd7d269cc6798f561658762e5afcdbccb0217037d016"
     },
     "last_active_child_id": null,

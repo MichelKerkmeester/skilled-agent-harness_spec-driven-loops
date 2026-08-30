@@ -114,13 +114,14 @@
     ],
     "causal_summary": "Feature catalogs are the canonical inventory of what each skill does today, and agents read them to decide what",
     "created_at": "2026-07-30T19:29:15.340Z",
-    "last_save_at": "2026-08-29T15:22:03.577Z",
+    "last_save_at": "2026-08-30T15:39:17.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:2d3b8666da6a026e50438919bf45cabfee3363f653d23cf021bf63efb7b78f8f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e656cac18da19e53f65c10891f1b3747bc4a5ec451d4a4473795b0c1c1fc88ea"
     },

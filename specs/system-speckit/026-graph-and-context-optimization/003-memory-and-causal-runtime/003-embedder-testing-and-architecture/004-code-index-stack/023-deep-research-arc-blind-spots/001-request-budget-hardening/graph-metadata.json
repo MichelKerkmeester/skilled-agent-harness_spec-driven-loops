@@ -20,8 +20,6 @@
       "SearchBudget plan",
       "023E request budget tasks",
       "SearchBudget tasks",
-      "023E request budget checklist",
-      "SearchBudget verification",
       "023E request budget implementation summary",
       "SearchBudgetExceeded implementation",
       "mcp-coco-index request budget hardening"
@@ -37,8 +35,8 @@
       "plan",
       "searchbudget",
       "tasks",
-      "checklist",
-      "verification"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -46,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -177,42 +168,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Findings Closed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "What Was Built Implemented",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "mcp-coco-index search cost scaled unexpectedly with `offset`, `limit`, path filters, and multi-language requests",
     "created_at": "2026-05-19T20:10:29Z",
-    "last_save_at": "2026-08-29T13:10:00.492Z",
+    "last_save_at": "2026-08-30T15:39:30.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2321109a1034b2b0c9e2c3393d068e9e832e8903b90908b0fa75d8bf7fddaadf",
+    "source_fingerprint": "sha256:d1828244846560ad544e275f5fccc2ebc3ffe4fcc018ede93f09596030e26cc8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f7c7f8e2680261890e6f61cfd0e8c7e1ce71946bc4322e2e99db354edf4c3acd",
       "plan.md": "7e8c401f3617ee1fe1120d3b4c41eac78a69fd9adb441f594528258e63a0e94d",
       "tasks.md": "e24c62a4351aa7ef37ab4fc120230246ff91c6e9a7585c040488c763d477856d",
-      "checklist.md": "be83d218c5b73a7c4dce732683bd95e29c71fa1762f8ec5f8e2be98ad329db49",
       "implementation-summary.md": "57a9cc60d54c7ea1436acc3638f6f3acc1b54ee99e912c7ff65f44e7d065ae6a"
     },
     "last_active_child_id": null,

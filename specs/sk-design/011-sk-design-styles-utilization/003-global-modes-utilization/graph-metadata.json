@@ -44,8 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/lineages/sol/research.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/lineages/sol/research.md"
     ],
     "entities": [
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 001 research settled a shared retrieval substrate and md-generator gets its own deep dive in 002, but the other sk-design modes — `design-interface`, `design-foundations`, `design-motion`, `design-audit`, plus the `design-mcp-open-design` transport — have no defined way to exploit the 1,290-style library",
     "created_at": "2026-07-18T12:23:41.736Z",
-    "last_save_at": "2026-07-18T16:04:37.166Z",
+    "last_save_at": "2026-08-30T15:39:12.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:b8dc50de8bd510874a6b62b26acb1e94b511de671be914ab43290c01b8c09d2e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9cda7843964c697dd3d424aa6d2b0f03610a595da24cc66bee01e0c8715ddb59",
       "plan.md": "6e9ca2ee1b44f979f91e9f5fd8fddb657cfb43ddb9909baaa195c6f8956ab753",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze",
-  "spec_folder": "system-skill-advisor/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze",
-  "parent_id": "system-skill-advisor/016-skill-advisor-tuning",
+  "packet_id": "system-skill-advisor/z_archive/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze",
+  "spec_folder": "system-skill-advisor/z_archive/016-skill-advisor-tuning/008-semantic-shadow-prove-or-freeze",
+  "parent_id": "system-skill-advisor/z_archive/016-skill-advisor-tuning",
   "children_ids": [],
   "migrated": false,
   "manual": {
@@ -28,8 +28,8 @@
       "fail-on-skip guard architecture",
       "semantic shadow freeze tasks",
       "semantic ablation task breakdown",
-      "semantic shadow freeze checklist",
-      "semantic ablation verification checklist"
+      "semantic shadow freeze summary",
+      "semantic ablation implementation summary"
     ],
     "key_topics": [
       "semantic",
@@ -48,18 +48,17 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/system-skill-advisor/graph-metadata.json",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/specs/system-skill-advisor/graph-metadata.json"
     ],
     "entities": [
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-skill-advisor/graph-metadata.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -75,21 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-skill-advisor/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -189,36 +182,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The `semanticshadow` lane weight (0.05) had never been confirmed on the full 193-row corpus with real embeddings",
     "created_at": "2026-07-07T09:00:00.000Z",
-    "last_save_at": "2026-07-15T11:59:35.610Z",
+    "last_save_at": "2026-08-30T15:39:27.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbfae768b4372ef1c67777e042ab945929de92a67929964517e2eff408ef23f7",
+    "source_fingerprint": "sha256:567f8a788026b678c6ab7467ba384bf77189c243b74b83503fb17629ce1b1b78",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "865fb6685cb69b058c16cd821adcee3d076245b1e8641ffae71d45e5dd25cd09",
       "plan.md": "865bf41af9702179f519539f5d41c049a1a90b01cde18b83c3833dd3d5d3869e",
       "tasks.md": "8845616027a63f5756a2ba9c4210d619a08fd846526e48cc2462a7f95c5520c5",
-      "checklist.md": "53bc89a4d8f313d34b7c9c33261a902c52c26c35f74c74a15a457837cb519ba3",
       "implementation-summary.md": "d34b4ddb49ac2015836a7f4f880433067429de7dc397156a900d0dca0b901281"
     },
     "last_active_child_id": null,

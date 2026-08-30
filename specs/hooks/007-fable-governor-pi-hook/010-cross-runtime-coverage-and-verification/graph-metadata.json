@@ -21,8 +21,8 @@
       "quoted executor fix tasks",
       "cross-runtime coverage tasks",
       "dispatch inspection verification tasks",
-      "quoted executor fix checklist",
-      "cross-runtime coverage checklist"
+      "quoted executor fix summary",
+      "cross-runtime coverage status"
     ],
     "key_topics": [
       "quoted",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
       ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
@@ -73,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -200,26 +193,31 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A parked deep review of packet 007 (`review/deep-review-findings-registry.json`, session `review-1785915676506`) surfaced finding R1-P1-001: \"Quoted executor forms bypass Pi dispatch inspection.\" The root cause was a blanket guard in `directExecutor()` (`.opencode/hooks/dispatch/lib/dispatch-audit.mjs:186-197`, prior to fix) that returned `null` for any quoted command-position executor",
     "created_at": "2026-08-05T12:47:41.790Z",
-    "last_save_at": "2026-08-29T14:54:14.502Z",
+    "last_save_at": "2026-08-30T15:39:09.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb3449b47af042826d9f95a6faca707346429810d49f0820f89b4a7a45555d16",
+    "source_fingerprint": "sha256:ce84bf64db1bab7e0f80bfc446227ee65d617020306c49ca3df3ba9f5abf8cfb",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c3fa16b01dea69dfc6c7727387ffb9b1c5056a7aa99a11751d0733330472092c",
-      "plan.md": "96036b80983fe686bd38b6c1d57798b5db00b8494be8e95876340c7d844d87d1",
-      "tasks.md": "1eec1f5a622374ea68ac54b09242b41fcca4ad2b6ac44f18fea6c4c41da5efa2",
-      "checklist.md": "4797c16f4d3f81455387692a5f52e034f86f3a0e71d6b4482cf41fb986158eab",
+      "plan.md": "463c348037cf3018efce8abc82462fc4e8581b88cde8f51e0d6a7916f5ee2c17",
+      "tasks.md": "630b11e418b5ec21d7bb11908ae3dacc24ce4e8d052366fb866a8999c9804079",
       "implementation-summary.md": "528d27c80068c7b4b15b6b63ef25a449f31c318a14adc5711612d77e9c79b3d7"
     },
     "last_active_child_id": null,

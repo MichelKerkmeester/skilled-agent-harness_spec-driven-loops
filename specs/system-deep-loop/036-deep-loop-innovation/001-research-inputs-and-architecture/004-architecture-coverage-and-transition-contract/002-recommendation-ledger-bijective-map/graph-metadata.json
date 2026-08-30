@@ -18,8 +18,6 @@
       "178 row ledger construction",
       "recommendation ledger tasks",
       "bijective map verification tasks",
-      "recommendation ledger checklist",
-      "178 row bijection checklist",
       "recommendation ledger implementation summary",
       "178 row ledger evidence"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "recommendation-ledger.json",
       "recommendation-ledger-validation.json",
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,36 +174,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Recommendation Ledger Bijective Map",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Freeze the 178 deep-loop recommendations into one immutable classified ledger with stable IDs, normalized taxonomy targets, exactly one disposition per source recommendation, and machine-verifiable corpus and phase coverage.",
     "created_at": "2026-07-16T03:43:44.897Z",
-    "last_save_at": "2026-08-29T15:22:06.482Z",
+    "last_save_at": "2026-08-30T15:39:20.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc6d3f80952fdf36121b67c7f6cbdf346efd984f6a1b1df89e9ca96b3c329fc0",
+    "source_fingerprint": "sha256:9bae22a046b0d65bbcdd1e6558cb2db2dd3a0bc7e95fd645cd0ba1269e746403",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dbfd66eb089f8b097d0bf93baeff4456b29c3e3deeceacde8a77b643ee0e72f2",
       "plan.md": "7029cce3692875023291e0231d2901034e7e3a9338feb8e4ce26ef89475da1a1",
       "tasks.md": "6d6e1fae3aa0d57a00d6b496daf5722ab3e0c4cbb71c458b8e15d23ff15efc17",
-      "checklist.md": "e883825863e3c6def764d2995c237d2a4b218c04c2466a264fe1a2211b7b9d14",
       "implementation-summary.md": "5f0d7164e2c5885e1d3699985c1f1a0e3f9fe166e7b189b1445fcae13fce2a99"
     },
     "last_active_child_id": null,

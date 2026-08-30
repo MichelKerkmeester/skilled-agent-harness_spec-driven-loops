@@ -36,22 +36,16 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/seed-council-value-fixture.cjs",
-      "scripts/seed-council-value-fixture.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/seed-council-value-fixture.cjs",
+      "scripts/seed-council-value-fixture.cjs"
     ],
     "entities": [
-      {
-        "name": "seed-council-value-fixture.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/seed-council-value-fixture.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,6 +71,12 @@
         "source": "derived"
       },
       {
+        "name": "seed-council-value-fixture.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/seed-council-value-fixture.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -95,12 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -108,6 +102,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Phase 005 shipped 6 value-comparison scenarios DAC-027..DAC-032 that contrast the no-graph operator workflow with the with-graph MCP workflow on real-world council situations",
     "created_at": "2026-05-11T09:25:00Z",
-    "last_save_at": "2026-07-09T10:02:48.469Z",
+    "last_save_at": "2026-08-30T15:39:22.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,9 +196,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:365a8d3e578487f7b7ce64ef0a954c00e0dcd52701019e9beac84fac0745572a",
+    "source_fingerprint": "sha256:a6b655b2db3eb118b477ded8a8b89c3063ed88cf7956e9086a64be5edc390586",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c4c32c501c19f87942bd50aff54e8f020aa9a7557d419b180ba250a4084f93e8",
+      "spec.md": "c0bc43ece42a314932034f05c35790068d1f7b74e432314a8d2bc7f4726f10b2",
       "plan.md": "e0963358d7467a763d65eebb1973415fe082c69f13c596a81f970b204134e294",
       "tasks.md": "be84eb0e2f75df973dccdfd117d2f1979963ddc3879fe44164fb28c86acc202f",
       "implementation-summary.md": "eb3e3680d7c471f86a4fdb396486db4efc433148863fabbad176983cce87ec81"

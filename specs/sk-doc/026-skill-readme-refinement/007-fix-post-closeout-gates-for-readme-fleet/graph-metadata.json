@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phase 006 proved that the changed README surfaces have no broken links, but the repository-wide guard still reports 96 failures across older documents",
     "created_at": "2026-08-05T05:58:53Z",
-    "last_save_at": "2026-08-30T07:20:38.001Z",
+    "last_save_at": "2026-08-30T15:39:17.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:bc01dfe54a53513b05b07a66c2a97f40bfcfc9a55710f426481af3df83d7b733",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "48235bd6fb4b8f15f98df642b9daf7ed8f91028a9f02df21f0981928c591ce00",
       "plan.md": "01fcff709128a6b80ce8a52c7d892b93629390276c1863b9473b3354c93f2b55",

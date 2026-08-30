@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The README at `.opencode/skills/sk-prompt/sk-prompt-improve/README.md` still carries the older tabular reference-card style: AT A GLANCE, QUICK START and HOW IT WORKS tables come before any narrative about why the skill exists",
     "created_at": "2026-08-04T08:34:51.229Z",
-    "last_save_at": "2026-08-30T07:20:34.861Z",
+    "last_save_at": "2026-08-30T15:39:17.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:837e975a4da4cd52de8c4f1a39c301fea731675ade39c7227f7a485644dff08d",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "77481227310e6f65f84748b6c98429b6ac4e407463b50a3cf9691c7fa05678b1",
       "plan.md": "57bf1ecdd026d2c84ed0986bb646726fd8f6556f62721a74c39c9ef057766861",

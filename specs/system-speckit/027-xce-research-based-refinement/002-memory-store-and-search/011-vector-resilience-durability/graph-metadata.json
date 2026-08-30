@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Vector-shard quarantine previously relied on process memory plus a per-shard sentinel",
     "created_at": "2026-06-11T06:25:38Z",
-    "last_save_at": "2026-08-29T15:22:20.040Z",
+    "last_save_at": "2026-08-30T15:39:33.558Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:df7fa9d06c64ecf238385bf7c8ea4db8a0f25d7182c65f3149640f074556e7c1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "df2d7251428fcb56bb84703517757b54462284fa4624a4cc67e226e7e3dd3315",
       "plan.md": "3b5a8e34f478147d09d389234feae9848adaf48c8d21c8f0696658305a0a26e9",

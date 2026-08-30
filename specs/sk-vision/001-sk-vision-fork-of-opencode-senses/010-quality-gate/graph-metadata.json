@@ -17,7 +17,6 @@
       "sk-vision conformance proof",
       "sk-vision metadata reconciliation",
       "sk-vision 010 tasks",
-      "sk-vision 010 checklist",
       "sk-vision 010 summary"
     ],
     "key_topics": [
@@ -29,10 +28,10 @@
       "metadata",
       "reconciliation",
       "tasks",
-      "checklist",
       "summary",
       "six",
-      "phases"
+      "phases",
+      "work"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-vision/SKILL.md",
       ".claude/hooks/git-primary-reconcile.sh",
@@ -63,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -190,26 +182,31 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six phases of work (001-005 shipped, 006-009 amended) need one authoritative proof that the skill is aligned with sk-create-skill standards and the packet is coherent",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-29T14:54:24.125Z",
+    "last_save_at": "2026-08-30T15:39:19.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0393d0de661f82d3a5ddba2b89cb54c0e96f5ac700238c636d429fcefa7dae4e",
+    "source_fingerprint": "sha256:bc13f4eeee79f02a40599a28e064a7dbfae62051b1eb624de1cdab8524712935",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "187ba14e71923e0e70aa2776a20f466f1c0edf864bce4e36a1d2ceceb6d520ee",
       "plan.md": "c6160e22d607e291fb8f0c09ee528b31d7787e1bb235a8bb03dd5ad9ba7b3afc",
       "tasks.md": "a62d3aa177d0223129c4a786933fd2bd05d5be8d71349533dbc801649667e00f",
-      "checklist.md": "7d287f9cf549a8617e20058f33540e6971514de413b16ff79a9516cbcbcb078e",
       "implementation-summary.md": "08f9cb1d1f2e244576d03c7a247ea7feeb74ed5aad7f38dd2d5d1d5602527351"
     },
     "last_active_child_id": null,

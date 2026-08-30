@@ -38,7 +38,7 @@
       "evidence"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -88,13 +88,14 @@
     ],
     "causal_summary": "The sk-design program needed evidence before building: which database technology fits the style library, why the design commands did not help create, whether Rust was warranted, how a hallmark design skill should work, and what gaps remained after the first build passes",
     "created_at": "2026-07-22T16:38:24.421Z",
-    "last_save_at": "2026-07-25T13:39:25.826Z",
+    "last_save_at": "2026-08-30T15:39:12.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:269a1c8e6b62e708c860149e8c3e50626b1e3572baac3a0150e0f355f00d649c",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2dccb298961d0d9b24109bff54db7bbf21ad15cc63b34685ec95e1b494f3ed37"
     },

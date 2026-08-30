@@ -20,9 +20,9 @@
       "sk-doc rollout tasks",
       "sk-doc canary status",
       "sk-doc router tasks",
-      "sk-doc checklist",
-      "sk-doc real green evidence",
-      "sk-doc scorer verification"
+      "sk-doc implementation summary",
+      "sk-doc real green result",
+      "sk-doc policy evidence"
     ],
     "key_topics": [
       "sk-doc",
@@ -41,20 +41,40 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "harness/validate-canary.cjs",
       "compiled/policy.json",
       "harness/build-artifacts.cjs",
-      "activation/manifest.candidate.json",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "activation/manifest.prior.json",
-      "lib/registry-compiler.cjs",
-      "activation/acceptance.json",
-      "tasks.md"
+      "activation/manifest.candidate.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "validate-canary.cjs",
         "kind": "file",
@@ -77,54 +97,6 @@
         "name": "manifest.candidate.json",
         "kind": "config",
         "path": "activation/manifest.candidate.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "manifest.prior.json",
-        "kind": "config",
-        "path": "activation/manifest.prior.json",
-        "source": "derived"
-      },
-      {
-        "name": "registry-compiler.cjs",
-        "kind": "file",
-        "path": "lib/registry-compiler.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "acceptance.json",
-        "kind": "config",
-        "path": "activation/acceptance.json",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -198,26 +170,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Required Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "References See",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Compile the authored sk-doc documentation hub into the frozen router contract, exercise its exact ordered bundle and negative outcomes through the shared projector and real scorer, and retain legacy authority behind a fenced rollback path.",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-08-28T15:53:14.570Z",
+    "last_save_at": "2026-08-30T15:39:15.068Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d29390662a5641d912e98ee5b8fe877061c5bc0cfa7f645c48031db45786d133",
+    "source_fingerprint": "sha256:b47404a22bda87c2f4f0773e19a6a3293b0c04250aa495ee941b570edd6ec7bf",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8cbe51daa22adaa3a380cc1ccce9b5f6def3b0fe2097c174453203842f4e86f0",
       "plan.md": "16c711da9ede730911c3738ecfab3ce1b8e84d5857c483b43736e23570ce7fad",
       "tasks.md": "9f0295b6e5ae296aed36b0c401431fa9315e433af7bde3ffce164e5b98e5c9da",
-      "checklist.md": "f9f28e48785fe7f739c455199ed4f884dd4770b918dcdea13bfa694a2c68a9c0",
       "implementation-summary.md": "9bd4c9b1bf2b17af0a0bd2d6975c48786f962d52bfbe8c168affc4e9a0056965"
     },
     "last_active_child_id": null,

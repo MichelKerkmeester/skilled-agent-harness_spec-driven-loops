@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
     "created_at": "2026-05-31T14:05:03.746Z",
-    "last_save_at": "2026-08-29T15:22:16.589Z",
+    "last_save_at": "2026-08-30T15:39:31.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,6 +221,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:0eb848f4aaf7109d8144c5745b338439db081677676e822a3388c11db7647f8d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3dfa53885d9109d2ebe21c7a462236e1e4068b5e90cdf64cc052f3b38e843cfb",
       "plan.md": "97aae8a19f20102fbdae9addd24780ecf8b52e7b645f825ab26cb40f3182cde8",

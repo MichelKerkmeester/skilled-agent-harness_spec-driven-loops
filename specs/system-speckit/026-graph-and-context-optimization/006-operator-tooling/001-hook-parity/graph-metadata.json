@@ -51,7 +51,8 @@
       "spec.md",
       "research/research.md",
       "resource-map.md",
-      ".codex/config.toml"
+      ".codex/config.toml",
+      ".claude/settings.local.json"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
         "source": "derived"
       },
       {
@@ -189,7 +196,7 @@
     ],
     "causal_summary": "Runtime hook coverage drifted across Claude, Codex, Copilot, and the OpenCode plugin loader",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-08-29T15:22:17.083Z",
+    "last_save_at": "2026-08-30T15:39:32.053Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +205,7 @@
       "resource-map.md"
     ],
     "source_fingerprint": "sha256:4dd0d989542092259ca6f0ffdbd685cc4cae428b2165ef58b6abb6ff92133b2f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "87205e5792ee13a53703a2eba60c64b7a9eaf18a18475802ccac4ef5c6e8aed4",
       "research/research.md": "e3ddf3443f627d914eb70741b3760c129fb201007302d5254f3e887d89b41798",

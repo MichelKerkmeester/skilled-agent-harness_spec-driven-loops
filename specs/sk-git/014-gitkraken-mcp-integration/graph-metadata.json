@@ -38,12 +38,11 @@
       "server"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-git/graph-metadata.json",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts"
+      ".opencode/skills/sk-git/graph-metadata.json"
     ],
     "entities": [
       {
@@ -62,12 +61,6 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/sk-git/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "explicit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
         "source": "derived"
       },
       {
@@ -109,17 +102,18 @@
     ],
     "causal_summary": "GitKraken publishes an MCP server (`gitkraken/mcp`, npm package `@gitkraken/gk`, stdio transport) exposing 31 tools spanning local git operations, GitLens AI workflows (commit composer, launchpad, PR review, start-work), and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira",
     "created_at": "2026-07-15T04:22:51.016Z",
-    "last_save_at": "2026-07-15T04:22:51.016Z",
+    "last_save_at": "2026-08-30T15:39:18.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:f8c0aa544ce49fc41419e0bdeadd5b10a3c3e866239e9e8f7b211c02ee48563f",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8094df63a357793ef813e6791ee9e41f553a0a88db73d726a28d8151c0c5ed67"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-git/014-gitkraken-mcp-integration/002-utcp-config-registration",
     "last_active_at": null
   }
 }

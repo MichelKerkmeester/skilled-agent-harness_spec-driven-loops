@@ -20,9 +20,8 @@
       "plan",
       "tasks",
       "descri",
-      "verificat",
-      "checklist",
-      "summary"
+      "summary",
+      "enrichment"
     ],
     "key_topics": [
       "feature",
@@ -33,31 +32,48 @@
       "plan",
       "tasks",
       "descri",
-      "verificat",
-      "checklist",
       "summary",
-      "two"
+      "enrichment",
+      "two",
+      "different"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "utils/file-helpers.ts",
       "scripts/extractors/file-extractor.ts",
       "scripts/core/quality-scorer.ts",
       "scripts/extractors/git-context-extractor.ts",
       "scripts/utils/file-helpers.ts",
-      "scripts/types/session-types.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "scripts/types/session-types.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -88,30 +104,6 @@
         "name": "session-types.ts",
         "kind": "code",
         "path": "scripts/types/session-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,27 +189,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "specific",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two different quality gates validate file descriptions at different pipeline stages with partial overlap and divergent coverage",
     "created_at": "2026-04-12T09:02:50.270Z",
-    "last_save_at": "2026-07-10T06:23:48.565Z",
+    "last_save_at": "2026-08-30T15:39:38.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1d4b58b91cf6bed84bc7a595b0ef763ff600d16ff8a06e59187298a89e1e87f",
+    "source_fingerprint": "sha256:6306722f02fdb8da4ed70a5735760209f5cdb300f93b0c76295f80b01f9bca64",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b2943863b7beaa6bcd3c71423ca406001e3d32628e169578575c4ae9bc999431",
-      "plan.md": "0fecaa6c03a20daa68fcba3d53b73ac2a2ef3cccf321c2bb7bee71ffb030d270",
-      "tasks.md": "997659872fc250978beecaba1c69926c4976f017653a1f8d470c77c49ac03ac2",
-      "checklist.md": "dd0c63028d60ab4e3b64dfc4b4f395c227cc6aa19625bb29f82330702fae7eb1",
-      "implementation-summary.md": "671bd6327dd81efe31c0a890105a227b9056f844736c49c460f62884f5dcd180"
+      "spec.md": "b3cfa6060650404e75797350e945128e971f04b95235c798247b2e997d0d124a",
+      "plan.md": "c37063b7b71e709691c7d19781d52b6b07f217c97dae7519bcfec643e07e99f5",
+      "tasks.md": "e8aec4923ce16663471f8cd40b62d2eb6f3d08d993ee17a9f4a7220f2fd4d1f5",
+      "implementation-summary.md": "94a69f6c5c88fcfdeae7ea4943d4f26bd59ba7d4b7fe9c052c0506e7ddb49aa2"
     },
     "last_active_child_id": null,
     "last_active_at": null

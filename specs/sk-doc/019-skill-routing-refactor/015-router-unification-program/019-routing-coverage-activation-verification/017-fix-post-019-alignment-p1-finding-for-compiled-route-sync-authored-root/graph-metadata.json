@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Restore reproducible compiled-route closure checks after the router implementation tree was flattened and renumbered. Keep the stable serving root while synchronizing the current authored internal topology atomically and preserving routing parity.",
     "created_at": "2026-07-25T10:26:07Z",
-    "last_save_at": "2026-08-30T08:04:18.109Z",
+    "last_save_at": "2026-08-30T15:39:15.368Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d1e566ed8f5bbb155cda9f10be1c7813fd46a8af0dfca48a7d5e799e295b29f5",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3bbafc566c4de85a688a60bd9d08e1e889d6d3a8ffdbefc6e7a43c013c122592",
       "plan.md": "704db87e0df331d8ee470d054e4eec7de0e6512d9462c33723af9d2738e56c92",

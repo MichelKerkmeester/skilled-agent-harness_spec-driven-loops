@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The create-skill packet uses snake_case directories and template/reference filenames throughout its parent-skill and ordinary skill resource trees. This phase converts those non-exempt filesystem names to kebab-case and updates generator and documentation references while preserving SKILL.md, manifests, and Python scripts.",
     "created_at": "2026-07-14T15:22:33Z",
-    "last_save_at": "2026-08-30T07:19:25.426Z",
+    "last_save_at": "2026-08-30T15:39:16.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -179,7 +179,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:b45b7edc51358db05860f92027a27db8479b494e9892ace68c61ea0de2c331b5",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5b56f034f478c23966691e708af580e6d396b287bb80385ce7fcfd7702cd6d6c",
       "plan.md": "2164a6616a57f327a19eda72517e6446840161f66f73f52d753f4d5d3c8e263a",

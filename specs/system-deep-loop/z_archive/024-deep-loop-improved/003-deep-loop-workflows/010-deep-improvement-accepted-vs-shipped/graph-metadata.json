@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The deep-improvement `promote-candidate.cjs` collapses candidate acceptance (verified + preserved) and canonical shipping (overwrite/merge to canonical tree) into a single step",
     "created_at": "2026-06-28T14:02:13Z",
-    "last_save_at": "2026-07-16T16:32:17.402Z",
+    "last_save_at": "2026-08-30T15:39:24.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:fcced59fb957a61db0c64ebc031bc97baba9416d0506a873f527ce5cdb39f4a2",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d393670cc2f13ed61e63398079e519b42890b28cd94f48342a0dbc0396534dd8",
       "plan.md": "ed73cd39724b7a7346390e3bf760d1a8856becbb9ba2af974d3034814be33296",

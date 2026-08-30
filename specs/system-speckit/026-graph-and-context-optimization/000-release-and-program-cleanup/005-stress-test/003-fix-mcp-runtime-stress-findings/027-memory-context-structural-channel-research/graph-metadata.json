@@ -21,10 +21,9 @@
       "code_graph_query channel fusion plan",
       "memory_context structural routing tasks",
       "code_graph_query channel fusion tasks",
-      "memory_context structural routing checklist",
-      "code_graph_query channel fusion verification",
       "memory_context structural routing implementation summary",
-      "code_graph_query channel fusion research complete"
+      "code_graph_query channel fusion research complete",
+      "027-memory-context-structural-channel-research resource map"
     ],
     "key_topics": [
       "027-memory-context-structural-channel-research",
@@ -36,9 +35,9 @@
       "retrieval",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
-      "implementation"
+      "implementation",
+      "summary",
+      "research"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -46,7 +45,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md",
       "research/deep-research-state.jsonl",
@@ -80,12 +78,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -207,27 +199,32 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Today the system has two parallel retrieval surfaces with no routing layer between them:",
     "created_at": "2026-04-29T09:30:00.000Z",
-    "last_save_at": "2026-08-29T15:22:12.200Z",
+    "last_save_at": "2026-08-30T15:39:28.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:edb37f7862b4d2b0751b4c6d7c48b9da0e0c325be7f28318e9ece0f2e4bb8c28",
+    "source_fingerprint": "sha256:e8fa1828283a7728606df6a3e16b8ed2d274e25b55e01d736995c8dab10a9b26",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8dc227d8e33d5cb0b8b455c7627ad58df954a2f672ef0e26be1cccd4418cec47",
       "plan.md": "b79394a3dad71ee8129fc550593076b293972a58f57124a15badf8364ec1f91c",
       "tasks.md": "f577628c9e5843bdd719651d9f5e14e3960f57a0fcdac30e6456114d542ddcf0",
-      "checklist.md": "8ed23e636a3028fcde5577cfa9bdabaab867eac6750ed6117f5de9285681d490",
       "implementation-summary.md": "37e492c250366003a10b566ae162614e9cc99ed81a4498f24e8353ef976a426c",
       "resource-map.md": "13a1fd0780cfe686500536fe8e3dbd7e90aeb543912f2b97744afae8841dd7a1"
     },

@@ -33,8 +33,8 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -50,15 +50,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -184,7 +184,7 @@
     ],
     "causal_summary": "One frozen contract and machine-readable map: 21 workflowModes, 20 packet directories, the shared-packet exception, gate definitions and history exclusions.",
     "created_at": "2026-07-28T05:34:09.175Z",
-    "last_save_at": "2026-07-29T09:11:06.767Z",
+    "last_save_at": "2026-08-30T15:39:15.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:6e7e993dfa409d1afabf253fd0ee7aa5718c5c430c0d874ef726e1861a9fec5e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3b08b6ba023cbd459b6c690a7a0ec707d42632ac117a29114063ba14ab061783",
       "plan.md": "1671ac8ac1e3303a0934e84e9d9f3d3737ae9f9f811be8d99ccf38cb8097f951",

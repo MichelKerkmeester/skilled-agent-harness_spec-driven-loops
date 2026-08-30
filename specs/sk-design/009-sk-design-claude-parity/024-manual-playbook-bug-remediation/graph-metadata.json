@@ -19,10 +19,10 @@
       "manual playbook remediation workflow plan",
       "tasks",
       "phase 024 tasks",
-      "verification",
-      "checklist",
-      "phase 024 checklist",
-      "implementation"
+      "implementation",
+      "summary",
+      "phase 024 implementation summary",
+      "manual playbook bug remediation summary"
     ],
     "key_topics": [
       "manual",
@@ -41,61 +41,19 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/design-interface/SKILL.md",
-      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
-      ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
-      ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/sk-design/description.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "spec.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md"
     ],
     "entities": [
       {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "authoring_boundary.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "verdict-matrix.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -111,15 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "verdict-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/verdict-matrix.md",
         "source": "derived"
       },
       {
@@ -199,26 +169,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Fixed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 023's first-ever full manual execution of sk-design's `manualtestingplaybook` (56 real dispatches through `cli-opencode`, `openai/gpt-5.5-fast --variant medium`) produced a genuine `NOT READY` release verdict and catalogued 8 real bugs in `023-full-manual-playbook-execution/verdict-matrix.md`'s \"Real bugs found\" section — routing misses, a skipped ALWAYS-marked resource load, an unenforced excluded-alias rule, a router-precedence loss on a brief-only authoring-boundary scenario, an intake-before-routing violation, a weak-signal transform-verb prompt producing zero skill routing, and a",
     "created_at": "2026-07-07T19:18:48.068Z",
-    "last_save_at": "2026-07-09T10:02:44.638Z",
+    "last_save_at": "2026-08-30T15:39:12.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1a7118947da0f64a050ca7c477bf84fa14b88e89968fdf188b85a5c2fe1c92b",
+    "source_fingerprint": "sha256:5e19ac64f2e630bbb74dc2a52355e99f1ae14f7fd7f59e8e753432209fd6689e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "74a22bd6aef795168ef3ce08460af96d745a787a84ed49f210162220ffda742f",
       "plan.md": "cb27d72eb1f7f72342a4f6d0fa29b868f13d3def7ef79dd4b4495064a29f702e",
       "tasks.md": "6451382d46ae1bdad8087365b340e03b9fc732c1ff6d5f72a48186893ec16459",
-      "checklist.md": "44fb8ad15ccd9014263f99fbbcb3c6b277bcc0870ca1dbf4d87f5b122c12b249",
       "implementation-summary.md": "3dea8ff143e6a1f4406a33aa148d4a8d3fe2aa90fe5d001dcb38db7cbece1cb2"
     },
     "last_active_child_id": null,

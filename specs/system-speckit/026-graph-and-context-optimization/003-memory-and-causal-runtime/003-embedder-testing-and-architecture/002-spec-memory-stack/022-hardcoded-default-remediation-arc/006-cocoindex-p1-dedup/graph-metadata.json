@@ -28,7 +28,6 @@
       "chunk-size consolidation",
       "022/006 plan",
       "022/006 tasks",
-      "022/006 checklist",
       "022/006 shipped"
     ],
     "key_topics": [
@@ -38,12 +37,12 @@
       "consolidation",
       "plan",
       "tasks",
-      "checklist",
       "shipped",
       "dedups",
       "constants",
       "values",
-      "consolidated"
+      "consolidated",
+      "indexer"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -51,7 +50,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -71,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,42 +174,41 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "correct",
-        "kind": "key_phrase",
-        "path": "checklist.md",
+        "name": "Commit Handoff Suggested",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "1. VERIFICATION PROTOCOL",
+        "name": "2. WHAT WAS BUILT",
         "kind": "heading",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "2 dedups: chunk-size constants (3 values) consolidated from indexer.py + config.py to single source in config.py; COCOINDEX_RERANK_VIA_SIDECAR default consolidated to module-level _DEFAULT_RERANK_VIA_SIDECAR constant. Closes 2 P1 audit findings.",
     "created_at": "2026-05-23T17:30:00.000000Z",
-    "last_save_at": "2026-08-29T09:58:46.063Z",
+    "last_save_at": "2026-08-30T15:39:30.418Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96110227995d48e750ff44e156339f8cd40aea794a5dc6d7b7f6b7f82cc4fe5b",
+    "source_fingerprint": "sha256:7dff146397f31278f806dd7d580a7988c1f87ff80eb03ea5d9ab2ee9582c87c1",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f376bac5540f382ea78c30c217649eda972277f4644da01ef309c019200b7d65",
       "plan.md": "70cce8faefdf16ae4b2346c94134da1c8d99b0098b8eb5a3f6bf7cfcc2c1398a",
       "tasks.md": "ac6a256fa1734ea6abd5d8953f234673c6acfb7c9154945982e591e99a052012",
-      "checklist.md": "af6617fc483242f650cddcb6dc1154031f2479d2aff940079565fa64a171fdb6",
       "implementation-summary.md": "0b79ace7dab760df0f27fe96e762aa22123e909b8c153898d1646d703cafca0a"
     },
     "last_active_child_id": null,

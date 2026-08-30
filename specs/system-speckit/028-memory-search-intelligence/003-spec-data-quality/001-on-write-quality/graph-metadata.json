@@ -41,7 +41,7 @@
       "gates"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-extend-quality-loop-authored/spec.md"
@@ -92,17 +92,18 @@
     ],
     "causal_summary": "On-Write Quality subgroup of the spec-data-quality track: on-write authored-spec quality gates.",
     "created_at": "2026-06-27T17:25:23.276Z",
-    "last_save_at": "2026-07-17T17:19:50.328Z",
+    "last_save_at": "2026-08-30T15:39:35.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:c9b64f52a45accc418f6879f01f626aadf1341b8f3fde6509ed6af63888bf026",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d91fb7eae813ee5616925bc891ecb38491b60bf7b3b40d16e8d3ccff3ec29c40"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
     "last_active_at": null
   }
 }

@@ -16,7 +16,6 @@
       "hook numbered sections",
       "cross-runtime hook style plan",
       "cross-runtime hook style tasks",
-      "cross-runtime hook style checklist",
       "cross-runtime hook style summary",
       "hook style alignment results"
     ],
@@ -32,32 +31,18 @@
       "sections",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/code-opencode/assets/checklists/javascript-checklist.md",
-      ".opencode/bin/compiled-route-status.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/compiled-route-status.cjs"
     ],
     "entities": [
-      {
-        "name": "javascript-checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/javascript-checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route-status.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/compiled-route-status.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,15 +62,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-status.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/compiled-route-status.cjs",
         "source": "derived"
       },
       {
@@ -189,26 +174,37 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-opencode`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use strict'` in `.mjs`)",
     "created_at": "2026-07-24T18:00:37.292Z",
-    "last_save_at": "2026-07-27T03:48:31.369Z",
+    "last_save_at": "2026-08-30T15:39:07.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c569f8ee41b157d9a4b21640091480fba8a2845464ff9bc895799e8ef8f52a5",
+    "source_fingerprint": "sha256:2b32d1596d158b93e31df1aae4e4af494815c9386ff92fce5e8eee9874d55662",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3f2df3ad55a7e793e5409f9005a8dfe5d010005ca8ee72673dd77e964c35b0aa",
       "plan.md": "eb74d3a6a07c9e900344beec3e088fc779f05775594ec2893f5d6313be73fadc",
       "tasks.md": "871932889bf5ede2af2c7b5bc209b81e27ff0e36a200790be3919cac6236a77f",
-      "checklist.md": "84567e6c6b090f443d9a0b910ea94441315fd71e90c57876e29e59bfd188f0f3",
       "implementation-summary.md": "58e0b3410e18c6e49ee5fcb72d5bd2caafe8f18a8e51a9b85cfee9ca04f5132f"
     },
     "last_active_child_id": null,

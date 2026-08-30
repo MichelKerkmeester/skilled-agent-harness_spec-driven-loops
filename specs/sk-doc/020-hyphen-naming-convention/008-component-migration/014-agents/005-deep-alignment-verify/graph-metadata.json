@@ -158,7 +158,7 @@
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for deep-alignment across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:42Z",
-    "last_save_at": "2026-08-30T07:20:06.968Z",
+    "last_save_at": "2026-08-30T15:39:17.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,7 +167,7 @@
       "tasks.md"
     ],
     "source_fingerprint": "sha256:5a6df49e0038676ae75cf066cedc0eaf66af7d02df8f87f5e1871e092af4ef44",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "51445df65aa8bcbe75ceb25bf1342b7ca4d725596e5b1377239f2363be6e8f68",
       "plan.md": "f400b9b7afa36b8b9f3379490300b737a6238d367c60a781bafe6a3e9b293c64",

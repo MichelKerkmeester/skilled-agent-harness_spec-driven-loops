@@ -34,36 +34,22 @@
       "phase-parent"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs",
-      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md"
     ],
     "entities": [
       {
-        "name": "command-benchmark-matrix.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json",
-        "source": "derived"
-      },
-      {
-        "name": "run-command-behavior-matrix.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -105,17 +91,18 @@
     ],
     "causal_summary": "Phase-parent packet: add a cli-opencode driver leg to the command-surface behavior benchmark so command scenarios run under cli-opencode executors alongside the frozen claude-cli and gpt-fast legs. Decomposed into three Level-2 phases — matrix/driver-leg schema, scheduler dispatch wiring, and integration/evidence/tests. Runtime-affecting.",
     "created_at": "2026-07-22T05:45:31.136Z",
-    "last_save_at": "2026-07-22T06:33:12.656Z",
+    "last_save_at": "2026-08-30T15:39:20.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:dce110443ee09098db5c918bfd168a4ce170c2353acd5e45f433f4cafa090c43",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "89311826336523d8e7038323e77bf4a676a7409b22c7bcaa21170b48ef18cd65"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/035-command-surface-benchmark/015-command-benchmark-cli-opencode-driver/001-driver-leg-and-matrix-schema",
     "last_active_at": null
   }
 }

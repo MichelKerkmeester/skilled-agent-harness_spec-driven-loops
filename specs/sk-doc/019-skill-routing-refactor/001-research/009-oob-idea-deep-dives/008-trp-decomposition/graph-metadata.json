@@ -80,13 +80,14 @@
     ],
     "causal_summary": "The candidate hypothesis is that `defaultMode` conflates how much evidence is needed to commit with what happens after uncertainty or a wrong pick",
     "created_at": "2026-07-18T10:05:19.988Z",
-    "last_save_at": "2026-07-24T10:52:33.110Z",
+    "last_save_at": "2026-08-30T15:39:14.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:8b0168e7c0570dfe7cf0a5a8fe63d0f1fa83ca43498479978cbc70f5f5490659",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "33d59a853f798675bdf7261d2b337d8568eb8be40cef50d70adf08db73a69302"
     },

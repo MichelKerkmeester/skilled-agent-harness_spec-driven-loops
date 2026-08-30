@@ -37,59 +37,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/plugins/tests/mk-goal-state.test.cjs",
-      ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
-      ".opencode/commands/goal_opencode.md",
-      ".opencode/plugins/mk-goal.js",
-      ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-      ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
-      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
-      "plan.md",
-      "implementation-summary.md",
       "spec.md",
-      "tasks.md"
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "mk-goal-state.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-state.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-export-contract.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-export-contract.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "goal_opencode.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/goal_opencode.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-goal.js",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-lifecycle.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-lifecycle.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-continuation.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-continuation.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-tool-path.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -99,21 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -193,11 +144,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "assert.deepEqual",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Research (F-018/019/021) found the `experimental.chat.system.transform` hook — the actual mechanism that injects `[activegoal]` into every turn — is never invoked by any test; the `event()` handler swallows all exceptions with no test asserting on the error path; and 7 of 9 wired events (`session.created`, `message.updated`, permission/question asked+replied, `session.deleted`, `.disposed`) have zero coverage through the real entrypoint (tests bypass the state machine by writing state directly)",
     "created_at": "2026-07-01T10:04:52Z",
-    "last_save_at": "2026-07-16T16:32:41.576Z",
+    "last_save_at": "2026-08-30T15:39:25.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +200,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0ee7018cfe7159d2ad5ca92a85ccbe89c6106284f293e332a4b95c8784f5c01a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ada169088575c31294c1eaaeb5d69dc7b385dc3a00f8dfd7f5ec28b8a539ff04",
       "plan.md": "8b00e22dacde7b53e94b9feeff38bab78c899332e6c881bfbdc6a894cbee63d9",

@@ -16,7 +16,6 @@
       "feature verification",
       "audit plan",
       "tasks",
-      "checklist",
       "implementation summary",
       "remediation & revalidation"
     ],
@@ -29,25 +28,17 @@
       "verification",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "completing"
+      "completing",
+      "feature-category"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "mcp_server/lib/validation/preflight.ts",
-      "mcp_server/handlers/v-rule-bridge.ts",
-      "mcp_server/handlers/quality-loop.ts",
-      "mcp_server/lib/validation/save-quality-gate.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "mcp_server/handlers/checkpoints.ts",
-      "mcp_server/handlers/memory-crud-health.ts",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,48 +46,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "preflight.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/validation/preflight.ts",
-        "source": "derived"
-      },
-      {
-        "name": "v-rule-bridge.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/v-rule-bridge.ts",
-        "source": "derived"
-      },
-      {
-        "name": "quality-loop.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/quality-loop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "save-quality-gate.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/validation/save-quality-gate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
@@ -109,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,27 +137,74 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Results Meta",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After completing 20 feature-category audit phases covering 220+ features, a set of cross-cutting catalog hygiene issues emerged that require structured remediation",
     "created_at": "2026-04-12T09:02:50.256Z",
-    "last_save_at": "2026-07-10T06:22:06.902Z",
+    "last_save_at": "2026-08-30T15:39:38.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28b9a3c37a4b5d62b28200ce7d3df65f361e4c67b413d7431a6e486cfef92ec0",
+    "source_fingerprint": "sha256:5f6099ec2db0ce1cdc6dd6c2137129a95e620dcea9e0eba8ef515fdb925a487b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5c3ef0ff99f388bec2ced6057a40ac06f13d4ffa5f01af4e741fbb60ea1d6831",
-      "plan.md": "ba3d6e972b92f1dbc2e236d679ccbe37a0739e4b216d776de872b8ee4fb2a1be",
-      "tasks.md": "7cff63b94de1a5797a33cb8fe2a1fbfc76f31f41554c8a10760110cfb0605b48",
-      "checklist.md": "8455ace17368a94b318862b2c6102de4471489a77ae0c84c60b6e3898223f9c0",
-      "implementation-summary.md": "80ae99054fc4bb17b0936746b963a7544853c65ae13baa41f1c6532a1b0c0862"
+      "spec.md": "caff5d98604e773750ed0b2a49eca20e07c7f03499281860e13e666c61a2a26a",
+      "plan.md": "143d92de85f267283fe964b63b9ee8eb93ac581aa553633d164cb9a9b3ced796",
+      "tasks.md": "af28b0838b3f5006aee58fa368645cc362d6114b22da7ce347cadb211108eb39",
+      "implementation-summary.md": "3c923f551db851a828ff31e7b07acf05dcfea69db5ccd11255589f33a3a02b7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

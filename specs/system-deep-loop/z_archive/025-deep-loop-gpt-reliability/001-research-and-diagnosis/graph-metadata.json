@@ -88,17 +88,18 @@
     ],
     "causal_summary": "GPT-backed OpenCode mis-handled deep-loop routing, host identity, and orchestration",
     "created_at": "2026-07-04T18:47:57.345Z",
-    "last_save_at": "2026-07-16T16:32:29.194Z",
+    "last_save_at": "2026-08-30T15:39:25.374Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:562d3eefc7d92c9361dba8b754937bd78d23ff2cf087c8c537287f9763ae5795",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "75fdac3674b1fca7457f4946e0e6b3c7db65a9bbb067117b30e27e4d5f8e4fc2"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/001-research-and-diagnosis/001-gpt-behavioral-hardening-research",
     "last_active_at": null
   }
 }

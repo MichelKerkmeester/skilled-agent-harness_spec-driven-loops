@@ -19,10 +19,9 @@
       "deep-alignment model matrix plan",
       "deep-alignment hardening tasks",
       "deep-alignment matrix tasks",
-      "deep-alignment hardening checklist",
-      "deep-alignment matrix verification",
       "deep-alignment hardening decisions",
-      "deep-alignment executor ADR"
+      "deep-alignment executor ADR",
+      "codex leaf-only decision"
     ],
     "key_topics": [
       "deep-alignment",
@@ -36,51 +35,23 @@
       "hardening",
       "plan",
       "tasks",
-      "checklist"
+      "decisions"
     ],
     "importance_tier": "critical",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/deep/alignment.md",
-      ".opencode/commands/deep/assets/deep_alignment_auto.yaml",
-      ".opencode/skills/system-deep-loop/deep-alignment/assets/alignment_prompt_pack.md.tmpl",
-      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "checklist.md",
-      "spec.md"
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
     ],
     "entities": [
       {
-        "name": "alignment.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/deep/alignment.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_alignment_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_alignment_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "alignment_prompt_pack.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/assets/alignment_prompt_pack.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -102,15 +73,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
         "source": "derived"
       },
       {
@@ -196,26 +167,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "approval",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `deep-alignment` loop has never had a full live end-to-end run (its own README names this \"the remaining acceptance step\")",
     "created_at": "2026-07-14T06:37:56.864Z",
-    "last_save_at": "2026-07-16T16:33:23.791Z",
+    "last_save_at": "2026-08-30T15:39:20.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:633c39dacd0be52f341fe1a70254f663b01f75d450f6a90e250cc87e85d197a6",
+    "source_fingerprint": "sha256:6f3cc61ae98ad0ec719b1533479805eb804ee4390df97b566767f89f334a18a8",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "983ed3ff19f917123b62966c85a8a52cf5d3c11bd915f00a64612015584cbbab",
       "plan.md": "c6799bf7c07d7d60eea73e3505c846c0a3252b4ae6d04088aa0e326b9265e8c5",
       "tasks.md": "0a765237c3b19acef77625c452a4d258cc287d4ccfe49bfcbe85ce75f8a93604",
-      "checklist.md": "0619a8c53543b3af806a714fcad4d64f2b36267f292eabcab60f670acb66d7b8",
       "decision-record.md": "7f3f0dc49eff29ce819549645a7355b8ca8468567713183fe26d2bcd1b1c63cf"
     },
     "last_active_child_id": null,

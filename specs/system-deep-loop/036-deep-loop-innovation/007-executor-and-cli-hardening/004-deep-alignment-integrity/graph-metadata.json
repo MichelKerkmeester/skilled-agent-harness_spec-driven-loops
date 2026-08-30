@@ -85,13 +85,14 @@
     ],
     "causal_summary": "Group the deep-alignment loop integrity fixes: a trustworthy findings-registry seal state and a contained multi-executor path.",
     "created_at": "2026-08-08T07:14:12.196Z",
-    "last_save_at": "2026-08-18T05:05:10.826Z",
+    "last_save_at": "2026-08-30T15:39:21.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
     "source_fingerprint": "sha256:466766d2849c7406422c6bbda0c3bb7db3368f0b743cb32d1f9b7cc6d9603011",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2f1ad5b599d44cda7de6970b2115be1058250531f4ad732162951dda8e48f1c4"
     },

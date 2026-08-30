@@ -76,7 +76,7 @@
       "candidate"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "research/research.md",
@@ -86,7 +86,6 @@
       "040-opencode-temp-worker-reaping/spec.md",
       "042-embedder-relisten-and-reaper-hardening/spec.md",
       "shared/algorithms/rrf-fusion.ts",
-      "mcp_server/lib/search/pipeline/stage2-fusion.ts",
       "lib/search/query-router.ts",
       "lib/response/envelope.ts",
       "lib/storage/causal-edges.ts",
@@ -113,12 +112,6 @@
         "name": "rrf-fusion.ts",
         "kind": "code",
         "path": "shared/algorithms/rrf-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/pipeline/stage2-fusion.ts",
         "source": "derived"
       },
       {
@@ -238,7 +231,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-07-12T13:12:08.165Z",
+    "last_save_at": "2026-08-30T15:39:34.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -246,6 +239,7 @@
       "research/research.md"
     ],
     "source_fingerprint": "sha256:a454da81899fbc177d33dba6d8604bdd905a540649c8ae112ac1de802cbdff84",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c8485532e3ba33c76f52f5ca3b39adba6d6fdd6ff69831a32434728c76412e76",
       "research/research.md": "1b660c1db38d7d958962be1851e6c18522db6929f4636700136c59e70fc8f604"

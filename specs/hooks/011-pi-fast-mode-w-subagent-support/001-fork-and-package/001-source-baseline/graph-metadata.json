@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Later phases need a stable source boundary so package identity, compatibility, and handoff changes can be reviewed independently",
     "created_at": "2026-08-16T09:08:02Z",
-    "last_save_at": "2026-08-30T07:18:53.574Z",
+    "last_save_at": "2026-08-30T15:39:09.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0f3e9cd5af96e67cc70a616a2cace49716fa84ff3abd2b585cb3c304dfa8b24a",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c6ebbc580ef83d90947e0850ac853281ed812c2942564d6cf65fb5361d0fb77f",
       "plan.md": "8fa8317b3386fccdf869c02e7a14e7de6eb9c20c69c3a3d9438d6443e2f26dd9",

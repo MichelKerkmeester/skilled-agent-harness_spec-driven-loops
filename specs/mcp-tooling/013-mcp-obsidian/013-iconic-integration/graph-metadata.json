@@ -38,17 +38,41 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/iconic.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/iconic-rules.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "plugin-operation-logic.md",
         "kind": "doc",
@@ -77,30 +101,6 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The user's vaults run the Iconic plugin (repo `gfxholo/iconic`, v1.1.10 — icon/color customization for tabs, files, folders, bookmarks, tags, properties, ribbon) with a pre-built auto-icon rulebook (21 file rules by extension + 11 folder rules by name) already applied and enabled in all three vaults",
     "created_at": "2026-08-03T11:57:50.451Z",
-    "last_save_at": "2026-08-03T15:19:03.962Z",
+    "last_save_at": "2026-08-30T15:39:10.163Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:f3b7c86d1e4ff80707ee8e4159a3c1a972777c883b403580b6de5324d4746478",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ab4469207ee7875c28846965941ec84a89578ee9aac4bf6c50af5bc6027ca6f",
       "plan.md": "a71a3a16a24eec3d00236ba0b3b4f4afba73b2940c6ef3689d2d3e455e141ef8",

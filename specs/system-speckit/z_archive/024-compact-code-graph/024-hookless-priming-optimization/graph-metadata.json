@@ -19,7 +19,6 @@
       "spec",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "implementation summary"
     ],
@@ -31,16 +30,19 @@
       "spec",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "addresses",
-      "concrete"
+      "concrete",
+      "context-preservation"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "lib/session/session-snapshot.ts",
       "lib/session/context-metrics.ts",
       "handlers/session-resume.ts",
@@ -56,16 +58,31 @@
       ".opencode/agents/orchestrate.md",
       "tests/context-server.vitest.ts",
       "tests/review-fixes.vitest.ts",
-      "tests/session-resume.vitest.ts",
-      "tests/cross-runtime-fallback.vitest.ts",
-      "tests/fixtures/runtime-fixtures.ts",
-      "tests/modularization.vitest.ts"
+      "tests/session-resume.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -159,24 +176,6 @@
         "source": "derived"
       },
       {
-        "name": "cross-runtime-fallback.vitest.ts",
-        "kind": "test",
-        "path": "tests/cross-runtime-fallback.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runtime-fixtures.ts",
-        "kind": "code",
-        "path": "tests/fixtures/runtime-fixtures.ts",
-        "source": "derived"
-      },
-      {
-        "name": "modularization.vitest.ts",
-        "kind": "test",
-        "path": "tests/modularization.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Hookless Priming Optimization",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -209,23 +208,22 @@
     ],
     "causal_summary": "This phase addresses concrete context-preservation and code-graph reliability gaps tracked in this packet",
     "created_at": "2026-04-13T04:55:10.700Z",
-    "last_save_at": "2026-07-10T06:23:55.393Z",
+    "last_save_at": "2026-08-30T15:39:39.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a25588edb6aa4a2b67d35364317b2e14088715ae7c2edee74075d9216e0c97e0",
+    "source_fingerprint": "sha256:b477d7d817ea9da621923b9adbaad8436b14c56e90e5eda945485f698b7d0868",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17d09bf1c1e6cfb93e9f672025c99f908ee04dce337da3d02f17e7622bd0c8d3",
-      "plan.md": "1a78cc3b3b4329cdfa4d3ac7090843b941ed74b623a3896dcfc1cfc456bc86f9",
-      "tasks.md": "0efc9537de7d5e0dfcf74aecbccdfb781aed7c185ba7f1cf87a2ba7e8cd29ca0",
-      "checklist.md": "77ee240ed1372a77f4c0a9030abfa05c4fb7a8653281a3cdbc20ded974b9b81e",
-      "implementation-summary.md": "ced67f57a9fb3deef87533f9a94bee8d70a2f0d2942de95e8c12cb73aa8ff881"
+      "spec.md": "39cf99973b68d97853936da656158eba88dbd1eb4d01f079586d57cc998d8f59",
+      "plan.md": "38cd8d3c3a3859b5c951c09b71eb58a431bc1f257d69a205b43fee854bed3c42",
+      "tasks.md": "ea6666fc592968157611352cdb2da2f644b24f752f6cec6bb1ddb64825c17f69",
+      "implementation-summary.md": "df32bc3ef118c77e3dbd331a5f6fb0397b8a5dcaa9fdbcc697053fa9b496dc0c"
     },
     "last_active_child_id": null,
     "last_active_at": null

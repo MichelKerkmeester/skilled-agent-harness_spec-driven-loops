@@ -19,7 +19,11 @@
       "nested goal addon",
       "goal.md template",
       "parent goal child phases",
-      "durable slice cap"
+      "durable slice cap",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "nested",
@@ -32,19 +36,24 @@
       "durable",
       "slice",
       "cap",
-      "operator",
-      "sets"
+      "packet",
+      "directive"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       "research/research.md",
       "resource-map.md",
       "templates/spec-kit-docs.json",
       "templates/addons/goal.md.tmpl",
       "scripts/utils/template-structure.js",
       ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+      "001-manifest-and-goal-template/goal.md",
+      "002-durable-slice-validator/goal.md",
+      "003-runtime-neutral-goal-dispatch/goal.md",
+      "004-parent-set-string-playbook/goal.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
       ".opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
       ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
@@ -52,18 +61,19 @@
       ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
       ".opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts",
       ".opencode/skills/system-spec-kit/references/structure/phase-definitions.md",
-      ".opencode/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
-      ".opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh",
-      ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
-      ".opencode/hooks/goal/README.md",
-      ".opencode/hooks/goal/goal-plugin.md"
+      ".opencode/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -139,36 +149,6 @@
         "source": "derived"
       },
       {
-        "name": "acceptance-criteria.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "check-ac-closure.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh",
-        "source": "derived"
-      },
-      {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/hooks/goal/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "goal-plugin.md",
-        "kind": "doc",
-        "path": ".opencode/hooks/goal/goal-plugin.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,19 +183,45 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "An operator sets one session objective, and whatever they set is frozen at that moment",
     "created_at": "2026-08-29T17:39:40Z",
-    "last_save_at": "2026-08-30T04:18:09.777Z",
+    "last_save_at": "2026-08-30T15:39:36.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "goal.md",
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:c370d0aeab9d184ae9c77de68ab4eeb3bcd14e50b2d95e854d062019dda6e7b1",
+    "source_fingerprint": "sha256:e752edb95568575840a91e8b6dcbd3b187bb322f410bfbceab46f9724f2c8d15",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "774485ff3e823c808221394789132c9ecd9603ef8d2556953e23b369df24dc7a",
       "research/research.md": "ace2291925f302fc0732524cecd51440e501cc389863663222f1b0f658afb081",

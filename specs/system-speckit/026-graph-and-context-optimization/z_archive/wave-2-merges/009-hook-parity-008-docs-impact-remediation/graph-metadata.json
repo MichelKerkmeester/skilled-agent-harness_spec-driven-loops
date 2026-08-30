@@ -20,8 +20,6 @@
       "026/009/012 plan",
       "docs impact remediation tasks",
       "026/009/012 tasks",
-      "docs impact remediation checklist",
-      "026/009/012 checklist",
       "docs impact remediation summary",
       "026/009/012 summary"
     ],
@@ -34,81 +32,24 @@
       "alignment",
       "plan",
       "tasks",
-      "checklist",
       "summary",
       "external",
-      "documentation"
+      "documentation",
+      "files"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      "references/config/hook_system.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      "mcp_server/INSTALL_GUIDE.md",
-      "mcp_server/ENV_REFERENCE.md",
-      "mcp_server/README.md",
-      ".opencode/install_guides/SET-UP - AGENTS.md",
-      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md",
+      ".claude/settings.local.json",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
-      {
-        "name": "hook_system.md",
-        "kind": "doc",
-        "path": "references/config/hook_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "ARCHITECTURE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": "mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "SET-UP - AGENTS.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -128,9 +69,33 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -204,26 +169,49 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Graph Metadata",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changes Applied",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Links",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Update 13 external documentation files flagged by the 009 impact analysis (10 HIGH + 3 MED) to reflect the hook, advisor, plugin-loader, renderer, and Copilot wrapper behavior actually shipped across sub-packets 001-011. Source of truth is impact-analysis/merged-impact-report.md.",
     "created_at": "2026-04-23T19:40:00Z",
-    "last_save_at": "2026-07-17T17:19:36.218Z",
+    "last_save_at": "2026-08-30T15:39:32.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef82930442a61d2def4f6e868c44cddc55b7e526a447bc99e4b0467eba21122c",
+    "source_fingerprint": "sha256:8dba42855a5744e5815c052e075610d25cac1cce54ba100a46cac71ab3e5252d",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ae1bcef281af150bf19fd402796618256cfb922f366d98ecb1cd88c4a950eb9c",
       "plan.md": "f0e3dbe7e88dc11d1754b9fa83828ea01f9750e3f73acf60c4ecb8551f8eb1d1",
       "tasks.md": "9840a4775efac25ddd71e87ca3bda9d1ba5fc7d87146e92349b18915259feee9",
-      "checklist.md": "50a5ad8cd4f57f7ef62f95a01ac50aaaa667c0e75eff4fa588fe4b8d089add26",
       "implementation-summary.md": "9b13621d6fe8b057ed85d06c30ab5b988cef8488c13a5625cb743d9f4d265a9a"
     },
     "last_active_child_id": null,

@@ -41,14 +41,19 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -62,21 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -176,43 +169,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Context The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Alternatives Considered",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The Prompt Improver is a comprehensive, standalone Claude Project that provides advanced prompt engineering capabilities (10 frameworks, DEPTH methodology, triple scoring)",
     "created_at": "2026-04-12T09:02:50.200Z",
-    "last_save_at": "2026-07-16T15:57:10.728Z",
+    "last_save_at": "2026-08-30T15:39:18.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b8b2e0ee13ab7b6ef807481747afd425705dbafebea76c138790182617890f2",
+    "source_fingerprint": "sha256:c07ae96a50ec4ed2531ab952dcc27e823f1704afe11372adac1ac7c5009330cc",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9c29444b0c769d73c623ffdc41c86838a48a43fc07dfc2f9db33500b2faf99fe",
       "plan.md": "d6569f513dbd36ffebc1fd3d3252ac97b35a19896ca0ce16f141a49b8da6a2d2",
       "tasks.md": "c97c9960c45fb30b51da7cced4a212abc0e28420dbbe60ec6baa22c4ebd54fc7",
-      "checklist.md": "6c20108a546d38c633b1bf4945f8668fc5403cd03fd8063b938b0fa5c1cbcc48",
       "decision-record.md": "9f85dd689c1a5626d5e3fcd953009ec84322650e68628654e8e353f16dd4c2ae",
       "implementation-summary.md": "4b48b3f1ca67af78816f63a6d762227b1d94304c9e0888e0be3445469f4a948f"
     },

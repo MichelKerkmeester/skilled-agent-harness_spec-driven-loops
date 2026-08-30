@@ -18,7 +18,6 @@
       "non-deepseek fixes plan",
       "prompt cache key fix plan",
       "non-deepseek fixes tasks",
-      "non-deepseek fixes checklist",
       "non-deepseek implementation summary",
       "pi-cache-optimizer fixes complete",
       "prompt cache key self-heal summary"
@@ -43,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/extensions/pi-cache-optimizer/index.ts",
       ".pi/extensions/pi-cache-optimizer/tests/hook-guards.test.ts",
@@ -71,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,26 +190,31 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Medium Priority",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "011's research produced 15 findings (K1-K15) about `pi-cache-optimizer`'s non-DeepSeek code path",
     "created_at": "2026-08-09T08:37:22.485Z",
-    "last_save_at": "2026-08-29T14:54:14.917Z",
+    "last_save_at": "2026-08-30T15:39:09.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e7e6a3968fb1f33c73ddeb1f7c1894eb54b45e7f5abc20b202c4a7683f6c2bf",
+    "source_fingerprint": "sha256:1f2c8f706d48f888de6afd1fe7bd25eebc90a83316fb2f8dea5e79a565b1abcd",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "131c19cc49565c11ad6f7b592b6a9e4e1a5aa175433239c7a30d847ecf3bf382",
       "plan.md": "685a56f6c74e88bcaced628e9b38375da5ffbe55041a18ceb929527785a6ee4d",
       "tasks.md": "77502627eea3f90ea1bfd10085c65d909d6c8f105efea5f28eee4633034a8615",
-      "checklist.md": "35a58a3220607d76fa91a7aa72282df1799b73ce55b92db79f691f65a4c29121",
       "implementation-summary.md": "2fed5ae57f2420b90b8931db898bea8b4ffb4a3ad745ec8cd3f62fb195cd80ed"
     },
     "last_active_child_id": null,
