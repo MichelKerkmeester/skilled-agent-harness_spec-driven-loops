@@ -94,7 +94,7 @@ The interesting constraint was not the escape but the shape of the fix: the obvi
 
 | Check | Result |
 |-------|--------|
-| Spec-shaped path outside the workspace | Refused, no file created |
+| Spec-shaped path outside the workspace, with no `.opencode` among its ancestors | Refused, no file created |
 | Traversal escaping the workspace | Refused |
 | In-repo destination | Written |
 | Symlinked sibling-repo track | Written |
@@ -115,9 +115,10 @@ The interesting constraint was not the escape but the shape of the fix: the obvi
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A symlink planted inside a configured root still redirects the write.** Creating one already requires write access to the repository, so this guard bounds arbitrary destinations rather than replacing filesystem permissions.
-2. **`repair-derived` still refuses symlinked tracks outright**, by its own pre-existing packet-tree guard. Unrelated to this boundary, and unchanged here.
-3. **A workspace is recognized by a real `.opencode` directory beside it.** Planting one next to a destination authorizes writes there. Like limitation 1, that requires filesystem write access at the destination, which this guard does not attempt to replace.
+1. **A directory named `.opencode` beside a destination authorizes writes there.** That is the whole of what the guard measures, so it bounds a caller passing an arbitrary destination and nothing more. Reasoning and the two stricter variants that were built and measured as worse: ADR-001.
+2. **A symlink planted inside a configured root still redirects the write.** Creating one already requires write access to the repository, so this guard bounds arbitrary destinations rather than replacing filesystem permissions.
+3. **`repair-derived` still refuses symlinked tracks outright**, by its own pre-existing packet-tree guard. Unrelated to this boundary, and unchanged here.
+4. **A workspace is recognized by a real `.opencode` directory beside it.** Planting one next to a destination authorizes writes there. Like limitation 1, that requires filesystem write access at the destination, which this guard does not attempt to replace.
 <!-- /ANCHOR:limitations -->
 
 ---

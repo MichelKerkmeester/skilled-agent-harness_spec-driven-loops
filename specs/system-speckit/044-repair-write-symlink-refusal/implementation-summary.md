@@ -79,9 +79,9 @@ That is the same trade-off the graph-metadata write boundary settled the same wa
 | Check | Result |
 |-------|--------|
 | Normal destination | Written, content replaced |
-| Destination swapped to a symlink | Refused |
+| Destination *file* swapped to a symlink | Refused |
 | The symlink's target | Unchanged |
-| `scripts/tests/repair-write-symlink-refusal.sh` | 5/5, against the shipped function |
+| `scripts/tests/repair-write-symlink-refusal.sh` | 5/5, against the shipped function — every case swaps a file, so none covers a swapped directory |
 | Negative control | Protection removed: 2 failures, victim file overwritten |
 | Repair script end to end | `node mcp-server/scripts/repair-graph-metadata.mjs --dry-run` reports 366 candidates, 0 remaining, writes nothing |
 <!-- /ANCHOR:verification -->
@@ -116,7 +116,8 @@ overwritten.
 
 1. **A test that reimplements what it checks proves nothing.** The first version of this suite did exactly that and passed on unfixed code; it now imports the shipped function and is pinned by a negative control.
 2. **A symlink already in place before the scan is skipped, not reported.** The walk drops it silently, as it did before; this change only closes the gap between that decision and the write.
-3. **The resume containment gap remains open by decision**, with the measurement above as the reason.
+3. **A swapped parent *directory* still writes through, and destroys the target.** `O_NOFOLLOW` refuses a symlink at the final component only. Reproduced against the shipped code; the file outside the scanned tree was overwritten. This packet closed one half of the vector. Reasoning and the scheduled fix: ADR-001.
+4. **The resume containment gap remains open by decision**, with the measurement above as the reason.
 <!-- /ANCHOR:limitations -->
 
 ---
