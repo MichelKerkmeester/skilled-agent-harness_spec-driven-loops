@@ -47,7 +47,6 @@ The current system is therefore not just descriptive documentation. The node is 
 | `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Script | Creates phased parent/child spec structures and supports append mode for existing parents |
 | `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` | Script | Computes documentation-level scoring plus the separate phase recommendation and suggested phase count |
 | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Script | Runs recursive validation across a phase parent and its child folders |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh` | Validation rule | Enforces parent back-references, phase-map presence, and predecessor/successor link consistency |
 
 ---
 

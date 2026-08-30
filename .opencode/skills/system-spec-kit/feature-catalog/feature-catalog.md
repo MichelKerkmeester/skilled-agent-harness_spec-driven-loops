@@ -4971,29 +4971,6 @@ Shell script: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
 
 ---
 
-### Phase link validation (check-phase-links.sh)
-
-#### Description
-
-All link validation issues are reported at warn severity rather than error severity, reflecting that missing links are a documentation gap rather than a structural failure. The script exits with code 0 when all links are valid and code 1 when any link check produces a warning.
-
-#### How It Works
-
-`check-phase-links.sh` validates the structural integrity of phase folder relationships by checking four types of inter-phase links. First, it validates the Phase Documentation Map in the parent `spec.md`, confirming that every listed child phase folder actually exists on disk. Second, it validates parent back-references in each child phase folder, confirming the parent folder path is correct and reachable. Third, it validates predecessor links, confirming that each phase (except the first) correctly references the phase that precedes it. Fourth, it validates successor links, confirming that each phase (except the last) correctly references the phase that follows it.
-
-#### Source Files
-
-Shell script: `.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh`
-
----
-
-## 21. IMPLEMENT AND REMOVE DEPRECATED FEATURES
-
-The tables below catalogue the documented environment-variable surface that is still read by code or intentionally retained as a live compatibility shim. The "Default" column reflects the value in effect when the variable is absent from the environment.
-
-For SPECKIT_* flags that use `isFeatureEnabled()`: the function returns `true` when the variable is absent, empty or set to `'true'`. It returns `false` when explicitly set to `'false'` or `'0'`. This means almost all graduated search-pipeline features are **ON by default** and require an explicit opt-out.
-
-The `SPECKIT_ROLLOUT_PERCENT` flag applies a global percentage gate on top of any individual flag check. At 100 (the default), checks pass normally. At 0, checks fail. Between 1-99, inclusion uses deterministic identity hashing and calls without identity fail closed. Malformed rollout values fall back to 100.
 
 ### 1. Search Pipeline Features (SPECKIT_*)
 

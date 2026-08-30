@@ -43,7 +43,6 @@ Validate Phase-System Knowledge Node against bash .opencode/skills/system-spec-k
 1. `bash .opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh`
 2. `node .opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js`
 3. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase --recursive`
-4. `bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh .opencode/skills/system-spec-kit/scripts/tests/fixtures/phase-validation/valid-phase`
 
 ### Expected
 
@@ -60,7 +59,6 @@ Test transcript, recursive validation output, and direct rule output
 
 ### Failure Triage
 
-Inspect `references/structure/phase-system.md`, `scripts/tests/test-phase-system.sh`, `scripts/spec/validate.sh`, and `scripts/rules/check-phase-links.sh` if the documented model diverges from executable behavior
 
 ---
 

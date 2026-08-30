@@ -3317,17 +3317,6 @@ Per-phase pass/fail in output; JSON `phases` array; combined exit code reflects 
 #### Test Execution
 > **Feature File:** [PHASE-003](../manual-testing-playbook/tooling-and-scripts/recursive-phase-validation.md)
 
-### PHASE-004 | Phase link validation
-
-#### Description
-Run `check-phase-links.sh` on a phase folder and verify 4 link checks at warn severity.
-
-#### Scenario Contract
-Prompt: `Validate Phase link validation against bash .opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent> and report cited pass/fail evidence.`
-
-4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity
-
-#### Test Execution
 
 ### PHASE-005 | Phase command workflow
 

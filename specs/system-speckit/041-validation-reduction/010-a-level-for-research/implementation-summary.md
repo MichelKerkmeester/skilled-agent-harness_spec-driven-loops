@@ -126,13 +126,12 @@ level only made them visible.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The `review` level still requires a top-level `review/review-report.md`.**
-   Deep-review writes per-lineage reports under `review/lineages/<name>/`, so the
-   two packets fixed here happened to have a promoted report and others will not.
-
-2. **Eight packets carry a `review/` with no top-level report and are unfixed.**
-   They need either a promoted report or a looser review contract, which is the
-   open question above.
+1. **Eight packets carry a `review/` with no top-level report and stay failing.**
+   Each holds five per-lineage reports, a findings registry and an orchestration
+   summary, so the fan-out ran and the synthesis did not. Deep review's workflow
+   compiles into `review/review-report.md` by contract, so the level is right and
+   the packets are incomplete. Writing those syntheses by hand would invent the
+   consolidated findings the loop never produced.
 
 3. **The level is still an author's declaration.** Requiring
    `research/research.md` means a packet cannot take it without producing the

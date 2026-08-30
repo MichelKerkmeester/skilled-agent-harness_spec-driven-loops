@@ -84,7 +84,6 @@ VALIDATE  --> Recursive validation of all children + parent as integrated unit
 | `create.sh --phase --phases N --phase-names a,b,c`| Create parent + child phase folder structure       |
 | `validate.sh --recursive`              | Validate parent + all child phases as a unit       |
 | `recommend-level.sh --recommend-phases` | Phase recommendation scoring alongside level       |
-| `check-phase-links.sh`                 | Validate parent-child link integrity (rule plugin) |
 
 ---
 

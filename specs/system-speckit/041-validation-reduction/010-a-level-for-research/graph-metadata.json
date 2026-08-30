@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Give a research record a level it can meet, and make the rules agree with the",
     "created_at": "2026-08-30T09:39:26.002Z",
-    "last_save_at": "2026-08-30T12:18:30.691Z",
+    "last_save_at": "2026-08-30T13:02:48.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b96e48f726f968f12c14b30b04f74bfa8f270e9998ba2a8ea2fd4b128c27dddf",
+    "source_fingerprint": "sha256:f05b7219ae3f97fa367906a242d84043f68997bccf3ec74744c7aff41296a1ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d135aae2e2d4997e75cefa398349a154905274c9190f0200739be4fc05900a7",
+      "spec.md": "42bb24797b1563c81f8593af7443b0a9c10573c05e1a4477d5ab02ce89783587",
       "plan.md": "2ee61e74a5f3f4f1f99e3ed06e44888626d42ed99df813d63ab1355957bdea32",
       "tasks.md": "dc7cf3232282b162b6600e6f003a28839262883c4f108964fcbd4e4dd2bb5d9f",
-      "implementation-summary.md": "f018557c3b259014e99137a0c81f2372226b157fa79ec30d31750caec5fd197a"
+      "implementation-summary.md": "d117bb8c610fe8ffda13af118485a48f7172d035202e2deab8eea41511793822"
     },
     "last_active_child_id": null,
     "last_active_at": null

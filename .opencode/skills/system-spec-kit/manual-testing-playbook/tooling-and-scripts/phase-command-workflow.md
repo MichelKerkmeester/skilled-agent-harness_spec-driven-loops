@@ -46,7 +46,6 @@ Validate Phase command workflow against /speckit:plan :with-phases and report ci
 4. Verify Step 3: Phase naming (auto-generated or user-provided)
 5. Verify Step 4: Phase folder creation (create.sh --phase)
 6. Verify Step 5: Template population in all phase folders
-7. Verify Step 6: Phase link validation (scripts/rules/check-phase-links.sh)
 8. Verify Step 7: Recursive validation (validate.sh --recursive) passes
 9. Verify final output reports success with folder paths
 
@@ -103,7 +102,6 @@ $ bash ".opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh" --json
 }
 ```
 
-Execution stopped before Step 4 because the scenario requires `bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {parent_level}`, which creates parent and child spec folders. The active manual-test constraints for this run explicitly allowed writes only to `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/phase-command-workflow.md` and banned modifying, creating, or deleting any other file. Therefore folders could not be created, template population could not be performed, and `check-phase-links.sh` / `validate.sh --recursive` could not be run against newly created workflow output.
 
 ### Pass / Fail
 

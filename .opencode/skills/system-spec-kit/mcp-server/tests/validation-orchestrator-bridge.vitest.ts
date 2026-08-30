@@ -112,6 +112,33 @@ describe('registry node rule execution', () => {
 
     expect(result.rule).toBe('CONTINUITY_FRESHNESS');
     expect(result.status).toBe('pass');
+    // The bridge has to carry the rule's own words back, not just its verdict.
+    // Asserting only the status would pass on a bridge that dropped the
+    // message, which is the difference between a report and a bare exit code.
+    expect(result.message).toContain('Continuity freshness');
+    expect(Array.isArray(result.details)).toBe(true);
+  });
+
+  it('carries a changed message back from the rule rather than a cached one', () => {
+    const folder = createLevelOneFolder('# Tasks\n\n- [ ] Pending task\n');
+    const scriptPath = __testables.resolveRegistryRuleScript(NODE_RULE.script_path);
+    if (!scriptPath) throw new Error('Expected continuity freshness script to resolve');
+
+    // Same rule, different environment, different reason: the flag flips this
+    // rule from "not enabled" to a real applicability check. If the bridge
+    // returned a fixed string the two runs would be indistinguishable.
+    const before = __testables.runRegistryNodeRule(folder, NODE_RULE, scriptPath, true);
+    const previous = process.env.SPECKIT_COMPLETION_FRESHNESS;
+    process.env.SPECKIT_COMPLETION_FRESHNESS = 'true';
+    let after;
+    try {
+      after = __testables.runRegistryNodeRule(folder, NODE_RULE, scriptPath, true);
+    } finally {
+      if (previous === undefined) delete process.env.SPECKIT_COMPLETION_FRESHNESS;
+      else process.env.SPECKIT_COMPLETION_FRESHNESS = previous;
+    }
+
+    expect(before.message).not.toBe(after.message);
   });
 });
 

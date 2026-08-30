@@ -137,9 +137,13 @@ manifest about which levels exist.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Whether the `review` level should also accept per-lineage reports under
-`review/lineages/`, which is where deep-review actually writes them. Two packets
-in this pass happened to have a top-level report; others will not.
+Resolved: the `review` level is correct as written. Deep review's own workflow
+compiles its findings into `review/review-report.md` — that is the documented
+output path, not an accident of the two packets that have one. The eight packets
+carrying only per-lineage reports ran the fan-out and never ran the synthesis
+step, so they are incomplete work rather than a mis-stated contract. Loosening
+the level to accept a lineage report or a findings registry would make them pass
+by lowering what a review record means.
 <!-- /ANCHOR:questions -->
 
 ---
