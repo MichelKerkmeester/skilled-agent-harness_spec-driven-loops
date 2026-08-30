@@ -13,7 +13,7 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment"
     last_updated_at: "2026-05-26T06:48:34Z"
-    last_updated_by: "template-author"
+    last_updated_by: "spec-author"
     recent_action: "Initialize continuity block"
     next_safe_action: "Replace template defaults on first save"
     blockers: []
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Status** | Complete |
 | **Created** | 2026-05-26 |
 | **Branch** | `scaffold/002-operator-surface-realignment` |
 | **Parent Spec** | ../spec.md |

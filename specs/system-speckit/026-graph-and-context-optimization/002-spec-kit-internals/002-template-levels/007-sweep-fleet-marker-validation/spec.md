@@ -13,7 +13,7 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation"
     last_updated_at: "2026-05-02T08:52:26Z"
-    last_updated_by: "template-author"
+    last_updated_by: "spec-author"
     recent_action: "Initialized Level 3 template"
     next_safe_action: "Replace continuity placeholders"
     blockers: []
@@ -66,7 +66,7 @@ DO NOT use Level 3 if:
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Status** | Complete |
 | **Created** | 2026-05-02 |
 | **Branch** | `scaffold/007-sweep-fleet-marker-validation` |
 <!-- /ANCHOR:metadata -->
