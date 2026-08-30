@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration"
+    packet_pointer: "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase-001 shipped; strict validate PASSED"

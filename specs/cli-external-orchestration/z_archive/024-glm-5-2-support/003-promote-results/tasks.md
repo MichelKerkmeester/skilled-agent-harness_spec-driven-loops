@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/024-glm-5-2-support/003-promote-results"
+    packet_pointer: "cli-external-orchestration/z_archive/024-glm-5-2-support/003-promote-results"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Task list scaffolded; not started"

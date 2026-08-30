@@ -13,7 +13,7 @@
 #                           derived from `git diff --name-only <SYSTEM_SCOPE_BASE>`.
 #   SYSTEM_SCOPE_CHANGED_FILES takes precedence when both are set.
 #
-# A packet's own canonical documents (spec.md, plan.md, tasks.md, checklist.md,
+# A packet's own canonical documents (spec.md, plan.md, tasks.md,
 # decision-record.md, implementation-summary.md, research.md, resource-map.md,
 # handover.md, description.json, graph-metadata.json) are always in-scope for
 # that packet's change-set and never counted as violations, since reconciling
@@ -131,7 +131,7 @@ run_check() {
         return 0
     fi
 
-    local canonical_docs=" spec.md plan.md tasks.md checklist.md decision-record.md implementation-summary.md research.md resource-map.md handover.md description.json graph-metadata.json "
+    local canonical_docs=" spec.md plan.md tasks.md decision-record.md implementation-summary.md research.md resource-map.md handover.md description.json graph-metadata.json "
     # Resolve the packet's own folder so the canonical-doc exception below stays
     # scoped to THIS packet — a same-named file elsewhere in the tree is never
     # in-scope merely by matching a basename.

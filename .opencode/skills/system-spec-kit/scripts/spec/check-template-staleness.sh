@@ -167,7 +167,7 @@ main() {
                        local basename_md
                        basename_md=$(basename "$md_file")
                        case "$basename_md" in
-                           spec.md|plan.md|tasks.md|checklist.md|decision-record.md|implementation-summary.md)
+                           spec.md|plan.md|tasks.md|decision-record.md|implementation-summary.md)
                                if head -n 30 "$md_file" | grep -q "SPECKIT_TEMPLATE_SOURCE:"; then
                                    # Only bump the version portion (vN.N), preserving the template ID
                                    # e.g., "plan-core | v2.0" → "plan-core | v2.2"

@@ -6,7 +6,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/013-cli-copilot-hallucination-caveat"
+    packet_pointer: "cli-external-orchestration/z_archive/013-cli-copilot-hallucination-caveat"
     last_updated_at: "2026-05-05T18:00:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Caveats shipped; ready to commit + push"
@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 075-cli-copilot-hallucination-caveat |
+| **Spec Folder** | 013-cli-copilot-hallucination-caveat |
 | **Completed** | 2026-05-05 |
 | **Level** | 1 |
 | **Predecessor** | 072 review-report-v2.md (P1-072-001 finding) |

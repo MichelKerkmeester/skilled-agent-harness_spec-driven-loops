@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/006-mcp-skill-install-doctor-standardization"
+    packet_pointer: "mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization"
     last_updated_at: "2026-06-15T06:10:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Implemented all skill changes, doctor wiring, and cross-refs; verifying"

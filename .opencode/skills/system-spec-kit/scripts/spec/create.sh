@@ -505,12 +505,9 @@ create_graph_metadata_file() {
     if [[ -f "$folder_path/spec.md" && ! -f "$folder_path/plan.md" && ! -f "$folder_path/tasks.md" ]]; then
         source_docs_json='["spec.md"]'
         key_files_json='["spec.md"]'
-    elif [[ -f "$folder_path/checklist.md" && -f "$folder_path/decision-record.md" ]]; then
-        source_docs_json='["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"]'
-        key_files_json='["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"]'
-    elif [[ -f "$folder_path/checklist.md" ]]; then
-        source_docs_json='["spec.md","plan.md","tasks.md","checklist.md"]'
-        key_files_json='["spec.md","plan.md","tasks.md","checklist.md"]'
+    elif [[ -f "$folder_path/decision-record.md" ]]; then
+        source_docs_json='["spec.md","plan.md","tasks.md","decision-record.md"]'
+        key_files_json='["spec.md","plan.md","tasks.md","decision-record.md"]'
     fi
 
     cat > "$graph_path" <<EOF

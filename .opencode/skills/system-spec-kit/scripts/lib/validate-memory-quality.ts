@@ -1003,7 +1003,7 @@ function validateMemoryQualityContent(content: string, options?: { filePath?: st
   // V12: Topical coherence — check if memory content overlaps with spec's trigger_phrases
   // Skip when:
   // - File is in a */memory/ directory (already validated by save pipeline, may use different terms)
-  // - File is a spec doc (spec.md, plan.md, checklist.md, etc.) — these define the spec itself
+  // - File is a spec doc (spec.md, plan.md, tasks.md, etc.) — these define the spec itself
   // - filePath is provided and matches known spec doc patterns
   const isMemoryDirFile = options?.filePath ? /[/\\]memory[/\\]/.test(options.filePath) : false;
   const isSpecDoc = options?.filePath

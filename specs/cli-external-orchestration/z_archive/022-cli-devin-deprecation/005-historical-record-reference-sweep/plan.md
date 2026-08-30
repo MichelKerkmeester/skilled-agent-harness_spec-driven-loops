@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/022-cli-devin-deprecation/005-historical-record-reference-sweep"
+    packet_pointer: "cli-external-orchestration/z_archive/022-cli-devin-deprecation/005-historical-record-reference-sweep"
     last_updated_at: "2026-06-08T17:36:07.655Z"
     last_updated_by: "deprecation-host"
     recent_action: "Phase 5 plan executed"

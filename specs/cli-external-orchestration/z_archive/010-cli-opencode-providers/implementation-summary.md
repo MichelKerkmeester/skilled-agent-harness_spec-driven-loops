@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/010-cli-opencode-providers"
+    packet_pointer: "cli-external-orchestration/z_archive/010-cli-opencode-providers"
     last_updated_at: "2026-04-29T11:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Auth pre-flight protocol added to SKILL.md, cli_reference.md, README.md FAQ; spec docs updated"

@@ -26,7 +26,6 @@ run_check() {
         "spec.md"
         "plan.md"
         "tasks.md"
-        "checklist.md"
         "decision-record.md"
         "implementation-summary.md"
         "handover.md"
@@ -60,7 +59,7 @@ run_check() {
         RULE_STATUS="fail"
         RULE_MESSAGE="TOC sections are not allowed in ${#violations[@]} non-research spec file(s)"
         RULE_DETAILS=("${violations[@]}")
-        RULE_REMEDIATION="Remove '## TABLE OF CONTENTS' / '## TOC' sections from spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, and debug-delegation.md. Only research/research.md may include a TOC."
+        RULE_REMEDIATION="Remove '## TABLE OF CONTENTS' / '## TOC' sections from spec.md, plan.md, tasks.md, decision-record.md, implementation-summary.md, handover.md, and debug-delegation.md. Only research/research.md may include a TOC."
     else
         RULE_STATUS="pass"
         RULE_MESSAGE="TOC policy passed: no TOC headings in non-research spec documents"

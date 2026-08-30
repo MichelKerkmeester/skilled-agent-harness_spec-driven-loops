@@ -34,7 +34,7 @@ run_check() {
 # 2. VALIDATION LOGIC
 # ───────────────────────────────────────────────────────────────
 
-    local files_to_check=("spec.md" "plan.md" "tasks.md" "checklist.md" "decision-record.md" "implementation-summary.md")
+    local files_to_check=("spec.md" "plan.md" "tasks.md" "decision-record.md" "implementation-summary.md")
     
     for file in "${files_to_check[@]-}"; do
         local filepath="$folder/$file"

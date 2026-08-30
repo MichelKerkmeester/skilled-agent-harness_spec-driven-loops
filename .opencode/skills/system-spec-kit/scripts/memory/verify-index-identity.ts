@@ -173,7 +173,6 @@ const IDENTITY_COLUMNS = [
 const COLD_ARCHIVE_TIERS = new Set(['archived', 'deprecated']);
 const MIN_SHARED_SUFFIX_SEGMENTS = 3;
 const GENERIC_WORKFLOW_ARTIFACT_BASENAMES = new Set([
-  'checklist.md',
   'decision-record.md',
   'description.json',
   'graph-metadata.json',

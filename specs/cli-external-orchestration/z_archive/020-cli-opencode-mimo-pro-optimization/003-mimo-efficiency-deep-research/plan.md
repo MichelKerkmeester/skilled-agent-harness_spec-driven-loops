@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research"
+    packet_pointer: "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored phase-003 plan (focused research synthesis)"

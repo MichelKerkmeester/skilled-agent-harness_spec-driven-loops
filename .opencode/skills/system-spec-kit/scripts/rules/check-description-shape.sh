@@ -83,7 +83,7 @@ EOF
     # nothing reported it, so the repair tool never engaged on it either.
     local declared recorded doc
     declared=""
-    for doc in spec.md tasks.md plan.md checklist.md; do
+    for doc in spec.md tasks.md plan.md; do
         [[ -f "$folder/$doc" ]] || continue
         declared="$(sed -n 's/.*<!--[[:space:]]*SPECKIT_LEVEL:[[:space:]]*\([0-9][+]*\)[[:space:]]*-->.*/\1/p' "$folder/$doc" | head -1)"
         [[ -n "$declared" ]] && break

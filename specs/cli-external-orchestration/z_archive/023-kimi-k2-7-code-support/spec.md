@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/023-kimi-k2-7-code-support"
+    packet_pointer: "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support"
     last_updated_at: "2026-06-17T11:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase 6 k2.7 broad-scope timeout caveat shipped; phases 1-6 complete"

@@ -1,7 +1,11 @@
 {
+  "level": "phase",
   "specFolder": "system-speckit/037-decisions-memory-redesign",
-  "description": "Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill",
+  "description": "This phased decomposition tracks Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and",
   "keywords": [
+    "phased",
+    "decomposition",
+    "tracks",
     "deprecate",
     "constitutional",
     "memory",
@@ -11,16 +15,14 @@
     "notes",
     "system",
     "integrated",
-    "spec",
-    "skill"
+    "spec"
   ],
-  "lastUpdated": "2026-08-26T05:34:11.096Z",
+  "lastUpdated": "2026-08-29T12:13:22.655Z",
   "specId": "037",
   "folderSlug": "decisions-memory-redesign",
   "parentChain": [
     "system-speckit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

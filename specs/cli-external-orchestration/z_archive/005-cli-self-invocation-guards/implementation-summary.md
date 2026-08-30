@@ -22,7 +22,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-cli-self-invocation-guards |
+| **Spec Folder** | 005-cli-self-invocation-guards |
 | **Completed** | 2026-03-02 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

@@ -75,6 +75,12 @@ export const graphMetadataDerivedSchema = z.object({
   // cleanly; a strict read re-derives over the current docs and reports a mismatch as
   // drift. Persisted only when the generator-hardening flag is on.
   source_fingerprint: z.string().min(1).optional(),
+  // Which canonical document set the digest above was computed over. A digest is only
+  // comparable to one computed over the same set, so retiring a document from the set
+  // invalidates every stored digest at once - through no fault of the packets. Recording
+  // the generation lets a strict read tell "these docs changed" apart from "the document
+  // set changed underneath this packet", and only the former is drift.
+  source_fingerprint_docset: z.number().int().positive().optional(),
   // Freshness key for the drift gate: sha256 of each present source doc keyed by its
   // packet-relative path. Optional so legacy files and a flag-off derive omit it cleanly;
   // a doc edit changes its digest, letting a strict run skip the re-derive when the docs

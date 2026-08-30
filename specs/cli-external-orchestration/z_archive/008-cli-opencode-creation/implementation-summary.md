@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/008-cli-opencode-creation"
+    packet_pointer: "cli-external-orchestration/z_archive/008-cli-opencode-creation"
     last_updated_at: "2026-04-25T09:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Implementation complete across 3 streams"
@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 047-cli-opencode-creation |
+| **Spec Folder** | 008-cli-opencode-creation |
 | **Status** | Complete — orchestrator owns final commit + push + tag |
 | **Level** | 3 |
 | **Tasks total** | 36 |

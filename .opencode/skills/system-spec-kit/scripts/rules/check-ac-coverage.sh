@@ -81,17 +81,11 @@ _ac_lifecycle_active() {
     return 1
 }
 
-# The merged tasks document is the current home for verification traceability.
-# A standalone checklist.md is a pre-merge artifact, so it is the fallback and
-# never the preference: a packet carrying both is a new packet with a stale file.
+# The merged tasks document is the only home for verification traceability.
 _ac_traceability_file() {
     local folder="$1"
     if [[ -f "$folder/tasks.md" ]] && grep -q '<!-- ANCHOR:protocol -->' "$folder/tasks.md" 2>/dev/null; then
         printf '%s\n' "$folder/tasks.md"
-        return 0
-    fi
-    if [[ -f "$folder/checklist.md" ]]; then
-        printf '%s\n' "$folder/checklist.md"
         return 0
     fi
     return 1
@@ -237,7 +231,7 @@ _ac_analyze_canonical() {
 }
 
 _ac_analyze_traceability() {
-    local checklist_file="$1"
+    local traceability_file="$1"
     local merged_tasks="${2:-false}"
     awk -F'|' -v merged_tasks="$merged_tasks" '
         function trim(value) { gsub(/^[[:space:]]+|[[:space:]]+$/, "", value); return value }
@@ -279,7 +273,7 @@ _ac_analyze_traceability() {
             }
         }
         END { printf "%d\t%d\t%d\t%s\n", rows, covered, malformed, malformed_ids }
-    ' "$checklist_file"
+    ' "$traceability_file"
 }
 
 run_check() {
@@ -318,16 +312,16 @@ run_check() {
     if [[ -f "$ac_file" ]]; then
         analysis="$(_ac_analyze_canonical "$ac_file")"
     else
-        local checklist_file
+        local traceability_file
         local merged_tasks=false
-        if ! checklist_file="$(_ac_traceability_file "$folder")"; then
-            RULE_MESSAGE="Acceptance coverage gate not active: no verification checklist source found"
+        if ! traceability_file="$(_ac_traceability_file "$folder")"; then
+            RULE_MESSAGE="Acceptance coverage gate not active: no verification traceability source found"
             return 0
         fi
-        if [[ "$checklist_file" == "$folder/tasks.md" ]]; then
+        if [[ "$traceability_file" == "$folder/tasks.md" ]]; then
             merged_tasks=true
         fi
-        analysis="$(_ac_analyze_traceability "$checklist_file" "$merged_tasks")"
+        analysis="$(_ac_analyze_traceability "$traceability_file" "$merged_tasks")"
     fi
     IFS=$'\t' read -r rows covered malformed malformed_ids <<< "$analysis"
 

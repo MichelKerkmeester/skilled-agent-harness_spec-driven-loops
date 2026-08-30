@@ -50,7 +50,7 @@ function resolveSpecFolderForDescription(folderPath: string, legacyValue: string
 }
 
 const LEVEL_MARKER_RE = /<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/;
-const LEVEL_MARKER_DOCS = ['spec.md', 'tasks.md', 'plan.md', 'checklist.md'];
+const LEVEL_MARKER_DOCS = ['spec.md', 'tasks.md', 'plan.md'];
 
 // The level is required of every description record, but it used to be written
 // only when the caller passed it explicitly. A folder generated without it was

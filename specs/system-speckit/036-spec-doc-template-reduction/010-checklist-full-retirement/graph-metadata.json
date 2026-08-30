@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
+  "spec_folder": "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
+  "parent_id": "system-speckit/036-spec-doc-template-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "checklist retirement",
+      "retire standalone checklist",
+      "source fingerprint docset",
+      "verification lives in tasks",
+      "ac coverage evidence source",
+      "traceability precedence",
+      "canonical criteria read",
+      "checklist deprecation",
+      "checklist deprecation closure",
+      "traceability precedence fixed"
+    ],
+    "key_topics": [
+      "checklist",
+      "retirement",
+      "retire",
+      "standalone",
+      "source",
+      "fingerprint",
+      "docset",
+      "verification",
+      "lives",
+      "tasks",
+      "coverage",
+      "evidence"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
+      "scripts/spec/upgrade-level.sh",
+      "templates/spec-kit-docs.json",
+      "mcp-server/lib/graph/graph-metadata-parser.ts",
+      "mcp-server/lib/validation/generated-metadata-integrity.ts",
+      "scripts/rules/check-evidence.sh",
+      "scripts/utils/template-structure.js",
+      "scripts/tests/check-ac-coverage.sh",
+      "specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-evidence.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level.sh",
+        "kind": "script",
+        "path": "scripts/spec/upgrade-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/validation/generated-metadata-integrity.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": "scripts/tests/check-ac-coverage.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Checklist Full Retirement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The merge that unified tasks and checklist recorded `Delete/retire` against `templates/addons/checklist.md.tmpl` and then kept it, along with its three worked examples",
+    "created_at": "2026-08-30T04:40:40Z",
+    "last_save_at": "2026-08-30T05:45:05.885Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e1a86761b56910a489340a2b81dfae8e010e738646ba8be1ce00c8bd661d0afa",
+    "source_fingerprint_docset": 2,
+    "source_doc_hashes": {
+      "spec.md": "1e250447c9915435a3a8b8b27ed2bb8e824a3d84f6069bc3d5d7ac369378d4d4",
+      "plan.md": "61ab3d10aecc69361410400ebab4b3732cf3e546a4ebc5637c2465f484cdded5",
+      "tasks.md": "b63be6bb6aa66d210101f7a4cafb0d0697f9f2bbf4c2f7252ee8597f2bd7689a",
+      "implementation-summary.md": "c1422979b3fed480acc40a0c71b198eaf5145294a38e28d2d6194adf60eef687"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

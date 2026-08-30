@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/013-cli-copilot-hallucination-caveat"
+    packet_pointer: "cli-external-orchestration/z_archive/013-cli-copilot-hallucination-caveat"
     last_updated_at: "2026-05-05T17:55:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Plan authored"

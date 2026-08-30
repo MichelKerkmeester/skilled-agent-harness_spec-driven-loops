@@ -95,7 +95,7 @@ const REDERIVABLE = new Set([
 
 const POINTER_LINE = /^([ \t]*packet_pointer:[ \t]*)(["']?)([^"'\r\n]*)(["']?)[ \t]*\r?$/m;
 const SPEC_FOLDER_ROW = /(\|[ \t]*\*\*Spec Folder\*\*[ \t]*\|[ \t]*)([^|\r\n]+?)([ \t]*\|)/;
-const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'implementation-summary.md', 'handover.md'];
+const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'handover.md'];
 const PACKET_MARKERS = new Set(['spec.md', 'implementation-summary.md']);
 
 // The recorded location lives in the leading YAML block. A pointer written into
@@ -165,7 +165,7 @@ function findings(report) {
 }
 
 const LEVEL_MARKER = /<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/;
-const LEVEL_MARKER_DOCS = ['spec.md', 'tasks.md', 'plan.md', 'checklist.md'];
+const LEVEL_MARKER_DOCS = ['spec.md', 'tasks.md', 'plan.md'];
 
 // The level the packet states about itself, or null when it states none.
 // Mirrors the generator that owns this field so the two writers agree; the

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "fix"
 _memory:
   continuity:
-    packet_pointer: "specs/cli-external-orchestration/015-cli-opencode-stdin-fix"
+    packet_pointer: "cli-external-orchestration/z_archive/015-cli-opencode-stdin-fix"
     last_updated_at: "2026-05-08T13:30:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Scaffolded 097 spec folder for cli-opencode stdin-redirect fix"

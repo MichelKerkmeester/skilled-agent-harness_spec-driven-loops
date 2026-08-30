@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/009-cli-testing-playbooks"
+    packet_pointer: "cli-external-orchestration/z_archive/009-cli-testing-playbooks"
     last_updated_at: "2026-04-26T17:00:00Z"
     last_updated_by: "claude-opus-4.7"
     recent_action: "Closed cross-cutting P0 + P1 deep-review findings"
@@ -48,7 +48,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 048-cli-testing-playbooks |
+| **Spec Folder** | 009-cli-testing-playbooks |
 | **Completed** | 2026-04-26 |
 | **Status** | In Progress (remediation pass) |
 | **Level** | 3 |

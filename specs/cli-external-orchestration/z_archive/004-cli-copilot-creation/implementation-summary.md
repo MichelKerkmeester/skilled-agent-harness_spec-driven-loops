@@ -18,7 +18,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-cli-copilot-creation |
+| **Spec Folder** | 004-cli-copilot-creation |
 | **Completed** | 2026-03-02 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

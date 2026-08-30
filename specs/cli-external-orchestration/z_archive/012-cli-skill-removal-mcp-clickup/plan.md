@@ -6,7 +6,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/012-cli-skill-removal-mcp-clickup"
+    packet_pointer: "cli-external-orchestration/z_archive/012-cli-skill-removal-mcp-clickup"
     last_updated_at: "2026-04-30T08:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored implementation plan"

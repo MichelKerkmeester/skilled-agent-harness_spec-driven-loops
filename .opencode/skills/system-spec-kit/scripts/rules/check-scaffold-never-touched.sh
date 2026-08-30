@@ -33,7 +33,6 @@ run_check() {
     local status_value=""
     local spec_complete=false
     local -a files=("plan.md" "tasks.md" "implementation-summary.md")
-    [[ -f "$folder/checklist.md" ]] && files+=("checklist.md")
     local -a found_markers=()
 
 # -----------------------------------------------------------------------------
@@ -127,7 +126,7 @@ run_check() {
         RULE_STATUS="fail"
         RULE_MESSAGE="Found $count scaffold-signature marker(s) in Complete spec folder"
         RULE_DETAILS=("${unique_markers[@]}")
-        RULE_REMEDIATION="Replace scaffold-origin frontmatter in plan.md, tasks.md, implementation-summary.md, and checklist.md before claiming Status: Complete."
+        RULE_REMEDIATION="Replace scaffold-origin frontmatter in plan.md, tasks.md, and implementation-summary.md before claiming Status: Complete."
     fi
 }
 

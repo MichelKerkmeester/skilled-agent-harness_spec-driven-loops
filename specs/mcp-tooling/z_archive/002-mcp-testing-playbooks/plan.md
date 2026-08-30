@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "specs/mcp-tooling/002-mcp-testing-playbooks"
+    packet_pointer: "mcp-tooling/z_archive/002-mcp-testing-playbooks"
     last_updated_at: "2026-04-26T00:00:00Z"
     last_updated_by: "claude-opus-4.7"
     recent_action: "Authored Level-3 plan with 3 phases and CM→BDG→CU→CCC sequence"

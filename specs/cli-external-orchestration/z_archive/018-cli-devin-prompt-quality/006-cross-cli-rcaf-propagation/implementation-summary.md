@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation"
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation"
     last_updated_at: "2026-05-17T12:18:18Z"
     last_updated_by: "cli-codex"
     recent_action: "summarized-completed-propagation-work"
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation |
+| **Spec Folder** | 006-cross-cli-rcaf-propagation |
 | **Completed** | 2026-05-17 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

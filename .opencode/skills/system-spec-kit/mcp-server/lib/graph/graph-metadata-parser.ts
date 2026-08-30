@@ -53,7 +53,6 @@ const CANONICAL_PACKET_DOCS = [
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'decision-record.md',
   'implementation-summary.md',
   path.join('research', 'research.md'),
@@ -65,7 +64,7 @@ const CANONICAL_PACKET_DOCS = [
 const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/;
 const FILE_REFERENCE_RE = /`([^`\n]+\.[A-Za-z0-9._-]+)`/g;
 const CANONICAL_PACKET_DOC_RE =
-  /^(spec\.md|plan\.md|tasks\.md|checklist\.md|decision-record\.md|implementation-summary\.md|research\.md|research\/research\.md|handover\.md|resource-map\.md)$/;
+  /^(spec\.md|plan\.md|tasks\.md|decision-record\.md|implementation-summary\.md|research\.md|research\/research\.md|handover\.md|resource-map\.md)$/;
 const KEY_FILE_NOISE_RE =
   /^(node |npx |pnpm |npm |yarn |bun |python([0-9]+(\.[0-9]+)*)? |bash |sh |vitest |jest |mocha |tsx |ts-node |TMPDIR)|^v[0-9]+\.[0-9]+(\.[0-9]+)?$|^[a-z]+\/[a-z0-9+-]+$|^_memory\.continuity$|^[A-Za-z][A-Za-z0-9_-]*:\s.+$|^console\.warn(\(|$)/;
 const BARE_FILE_RE = /^[^/]+\.[A-Za-z0-9._-]+$/;
@@ -726,6 +725,19 @@ function projectDocForFingerprint(relativePath: string, content: string): [strin
  * @param docs - The source docs to fingerprint, by packet-relative path and raw content
  * @returns A `sha256:`-prefixed hex digest of the volatile-ignoring projection
  */
+/**
+ * Generation counter for the canonical source-doc set the fingerprint spans.
+ *
+ * Bump this whenever a document joins or leaves that set. Every stored digest then
+ * reads as "computed over an older set" instead of as content drift, so a packet
+ * nobody touched does not start failing validation because the toolchain changed
+ * shape. Digests refresh naturally on the next save or repair.
+ *
+ * 2: the standalone verification checklist left the set; the merged tasks document
+ *    carries its content.
+ */
+export const SOURCE_FINGERPRINT_DOCSET = 2;
+
 export function computeSourceFingerprintFromDocs(
   docs: Array<{ relativePath: string; content: string }>,
 ): string {
@@ -1207,14 +1219,12 @@ function deriveStatus(
 
   const rankedPaths = [
     'implementation-summary.md',
-    'checklist.md',
     'tasks.md',
     'plan.md',
     'spec.md',
   ];
   const ranked = [
     docs.find((doc) => doc.relativePath === 'implementation-summary.md')?.status,
-    docs.find((doc) => doc.relativePath === 'checklist.md')?.status,
     docs.find((doc) => doc.relativePath === 'tasks.md')?.status,
     docs.find((doc) => doc.relativePath === 'plan.md')?.status,
     docs.find((doc) => doc.relativePath === 'spec.md')?.status,
@@ -1246,8 +1256,7 @@ function deriveStatus(
     return { status: 'planned', reviewRequired: hadNonEnumExisting };
   }
 
-  const checklistDoc = docs.find((doc) => doc.relativePath === 'checklist.md');
-  if (!checklistDoc) {
+  {
     const tasksDoc = docs.find((doc) => doc.relativePath === 'tasks.md');
     const mergedVerification = tasksDoc ? extractMergedVerification(tasksDoc.content) : null;
     if (mergedVerification !== null) {
@@ -1260,7 +1269,7 @@ function deriveStatus(
       };
     }
 
-    // Folders without a checklist.md (the common Level-1 case) used to derive 'complete'
+    // Folders with no verification section used to derive 'complete'
     // from implementation-summary.md's mere presence, so a freshly scaffolded but never
     // authored template read the same as a finished one. Gate on real completion evidence
     // instead: the doc's own completion_pct plus whether tasks.md still has open items.
@@ -1284,15 +1293,6 @@ function deriveStatus(
     };
   }
 
-  const checklistComplete = evaluateChecklistCompletion(checklistDoc.content) === 'COMPLETE';
-  const tasksDoc = docs.find((doc) => doc.relativePath === 'tasks.md');
-  const openTasks = tasksDoc ? hasOpenTaskItems(tasksDoc.content) : false;
-
-  return {
-    status: checklistComplete ? 'complete' : 'in_progress',
-    // Open tasks make a complete checklist inconsistent, so flag it for review.
-    reviewRequired: checklistComplete && openTasks,
-  };
 }
 
 function extractMergedVerification(content: string): string | null {
@@ -1471,6 +1471,7 @@ export function deriveGraphMetadata(
     source_fingerprint: isGeneratorHardeningEnabled()
       ? computeSourceFingerprintFromDocs(docs.map((doc) => ({ relativePath: doc.relativePath, content: doc.content })))
       : undefined,
+    source_fingerprint_docset: isGeneratorHardeningEnabled() ? SOURCE_FINGERPRINT_DOCSET : undefined,
     // Chronology pointer is owned by the canonical save path (generate-context.ts);
     // a derive/re-derive must carry it forward, never invent or drop it.
     last_active_child_id: phaseParentRollup.lastActiveChildId,

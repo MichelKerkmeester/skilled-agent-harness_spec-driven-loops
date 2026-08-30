@@ -18,7 +18,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-cli-claude-code-creation |
+| **Spec Folder** | 003-cli-claude-code-creation |
 | **Completed** | 2026-03-02 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

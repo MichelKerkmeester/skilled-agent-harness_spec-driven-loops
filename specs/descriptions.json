@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-08-26T16:01:08.830Z",
+  "generated": "2026-08-30T05:47:43.398Z",
   "folders": [
     {
       "specFolder": "agents/001-terminal-proof-discipline",
@@ -103,6 +103,22 @@
         "implementation"
       ],
       "lastUpdated": "2026-08-16T09:05:15.011Z"
+    },
+    {
+      "specFolder": "agents/006-restraint-and-routing-gates",
+      "description": "Every restraint rule this framework needs already exists somewhere, but not where it fires",
+      "keywords": [
+        "every",
+        "restraint",
+        "rule",
+        "framework",
+        "needs",
+        "already",
+        "exists",
+        "somewhere",
+        "fires"
+      ],
+      "lastUpdated": "2026-08-29T14:08:52.376Z"
     },
     {
       "specFolder": "cli-external-orchestration/026-cli-external-parent",
@@ -2511,6 +2527,55 @@
       "lastUpdated": "2026-08-24T13:40:15.059Z"
     },
     {
+      "specFolder": "cli-external-orchestration/055-glm-5-3-flash-gemini-roster",
+      "description": "The Ox Alpha stealth model (`stealth/ox-alpha` on OpenRouter, `x-ai/ox-alpha` on Cline) was the operator's small-model workhorse across cli-opencode",
+      "keywords": [
+        "alpha",
+        "stealth",
+        "model",
+        "ox-alpha",
+        "openrouter",
+        "x-ai",
+        "cline",
+        "operator",
+        "small-model",
+        "workhorse",
+        "across",
+        "cli-opencode"
+      ],
+      "lastUpdated": "2026-08-28T16:31:49.181Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/056-roster-drop-deepseek-api-pro-terra",
+      "description": "The operator retired three dispatch targets:",
+      "keywords": [
+        "operator",
+        "retired",
+        "three",
+        "dispatch",
+        "targets"
+      ],
+      "lastUpdated": "2026-08-29T12:13:37.122Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/057-roster-drop-grok-from-devin",
+      "description": "The cli-devin allowlist advertised Grok 4.5 and 4.6 model ids (`grok-4-5-high`, `grok-4-5-low`, `grok-4-5-medium`, `grok-4-6-high`, `grok-4-6-low`,",
+      "keywords": [
+        "cli-devin",
+        "allowlist",
+        "advertised",
+        "grok",
+        "model",
+        "ids",
+        "grok-4-5-high",
+        "grok-4-5-low",
+        "grok-4-5-medium",
+        "grok-4-6-high",
+        "grok-4-6-low"
+      ],
+      "lastUpdated": "2026-08-29T18:18:30.650Z"
+    },
+    {
       "specFolder": "cli-external-orchestration/z_archive/001-cli-gemini-creation",
       "description": "Claude Code and OpenCode lack a structured way to delegate tasks to Google's Gemini CLI",
       "keywords": [
@@ -2620,7 +2685,7 @@
         "quality-check",
         "layer"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.385Z"
+      "lastUpdated": "2026-08-30T05:43:09.654Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/007-cli-codex-tone-of-voice",
@@ -2641,7 +2706,7 @@
         "opus",
         "observable"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.387Z"
+      "lastUpdated": "2026-08-30T05:43:09.665Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/008-cli-opencode-creation",
@@ -2661,7 +2726,7 @@
         "let",
         "assistant"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.388Z"
+      "lastUpdated": "2026-08-30T05:43:09.681Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/009-cli-testing-playbooks",
@@ -2681,7 +2746,7 @@
         "testing",
         "playbooks"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.395Z"
+      "lastUpdated": "2026-08-30T05:43:09.693Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/010-cli-opencode-providers",
@@ -2700,7 +2765,7 @@
         "name",
         "across"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.398Z"
+      "lastUpdated": "2026-08-30T05:43:09.702Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/011-cli-skill-patterns",
@@ -2718,7 +2783,7 @@
         "intent",
         "orchestrate"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.399Z"
+      "lastUpdated": "2026-08-30T05:43:09.707Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/012-cli-skill-removal-mcp-clickup",
@@ -2728,7 +2793,7 @@
         "skill",
         "decommissioned"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.400Z"
+      "lastUpdated": "2026-08-30T05:43:09.725Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/013-cli-copilot-hallucination-caveat",
@@ -2748,7 +2813,7 @@
         "files",
         "like"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.401Z"
+      "lastUpdated": "2026-08-30T05:43:09.740Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/014-cli-copilot-deprecation-due-to-price-hike",
@@ -2769,7 +2834,7 @@
         "justified",
         "keeping"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.402Z"
+      "lastUpdated": "2026-08-30T05:43:09.761Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/015-cli-opencode-stdin-fix",
@@ -2788,7 +2853,7 @@
         "shell",
         "automation"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.403Z"
+      "lastUpdated": "2026-08-30T05:43:09.776Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/016-cli-devin-creation",
@@ -2808,7 +2873,7 @@
         "delegate",
         "tasks"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.405Z"
+      "lastUpdated": "2026-08-30T05:43:09.797Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/017-cli-devin-effectiveness-improvements",
@@ -2824,7 +2889,7 @@
         "improvement",
         "targets"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.406Z"
+      "lastUpdated": "2026-08-30T05:43:09.819Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality",
@@ -2844,7 +2909,7 @@
         "block",
         "systematic"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.485Z"
+      "lastUpdated": "2026-08-30T05:43:09.914Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/001-council-design",
@@ -2864,7 +2929,7 @@
         "code",
         "written"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.408Z"
+      "lastUpdated": "2026-08-30T05:43:09.831Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/002-eval-rig",
@@ -2886,7 +2951,7 @@
         "reproducible",
         "scores"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.418Z"
+      "lastUpdated": "2026-08-30T05:43:09.844Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/003-eval-loop",
@@ -2897,7 +2962,7 @@
         "design",
         "contract"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.420Z"
+      "lastUpdated": "2026-08-30T05:43:09.860Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/004-skill-uplift",
@@ -2917,7 +2982,7 @@
         "cli-devin",
         "dispatches"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.421Z"
+      "lastUpdated": "2026-08-30T05:43:09.869Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun",
@@ -2935,7 +3000,7 @@
         "rather",
         "files"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.422Z"
+      "lastUpdated": "2026-08-30T05:43:09.878Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
@@ -2951,7 +3016,7 @@
         "roughly",
         "swe"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.423Z"
+      "lastUpdated": "2026-08-30T05:43:09.889Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cross-model-validation",
@@ -2964,7 +3029,7 @@
         "signals",
         "swe"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.484Z"
+      "lastUpdated": "2026-08-30T05:43:09.908Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization",
@@ -2983,7 +3048,7 @@
         "small-model",
         "registry"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.515Z"
+      "lastUpdated": "2026-08-30T05:43:09.963Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/001-minimax-provider-integration",
@@ -3001,7 +3066,7 @@
         "minimax",
         "entry"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.487Z"
+      "lastUpdated": "2026-08-30T05:43:09.930Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
@@ -3017,7 +3082,7 @@
         "cli-opencode",
         "context-budget"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.510Z"
+      "lastUpdated": "2026-08-30T05:43:09.942Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
@@ -3037,7 +3102,7 @@
         "recommendation",
         "unvalidated"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.512Z"
+      "lastUpdated": "2026-08-30T05:43:09.951Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
@@ -3055,7 +3120,7 @@
         "minimaxapikey",
         "minimax-m2"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.514Z"
+      "lastUpdated": "2026-08-30T05:43:09.959Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization",
@@ -3076,7 +3141,7 @@
         "plan",
         "minimax-coding-plan"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.520Z"
+      "lastUpdated": "2026-08-30T05:43:09.998Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
@@ -3091,7 +3156,7 @@
         "framework",
         "documented"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.516Z"
+      "lastUpdated": "2026-08-30T05:43:09.970Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
@@ -3113,7 +3178,7 @@
         "agent",
         "general"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.517Z"
+      "lastUpdated": "2026-08-30T05:43:09.979Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research",
@@ -3131,7 +3196,7 @@
         "variant",
         "unverified"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.518Z"
+      "lastUpdated": "2026-08-30T05:43:09.988Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark",
@@ -3150,7 +3215,7 @@
         "drives",
         "cli-opencode"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.520Z"
+      "lastUpdated": "2026-08-30T05:43:09.995Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation",
@@ -3172,7 +3237,7 @@
         "runtime",
         "directory"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.539Z"
+      "lastUpdated": "2026-08-30T05:43:10.050Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
@@ -3193,7 +3258,7 @@
         "tests",
         "capability"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.522Z"
+      "lastUpdated": "2026-08-30T05:43:10.009Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
@@ -3211,7 +3276,7 @@
         "left",
         "orphaned"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.524Z"
+      "lastUpdated": "2026-08-30T05:43:10.018Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/003-cli-gemini-full-purge",
@@ -3231,7 +3296,7 @@
         "audit",
         "maps"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.526Z"
+      "lastUpdated": "2026-08-30T05:43:10.031Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication",
@@ -3252,7 +3317,7 @@
         "deferred",
         "host"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.539Z"
+      "lastUpdated": "2026-08-30T05:43:10.047Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation",
@@ -3271,7 +3336,7 @@
         "hooks",
         "retired"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.558Z"
+      "lastUpdated": "2026-08-30T05:43:10.099Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/001-canonical-rehome-and-ci-gate",
@@ -3289,7 +3354,7 @@
         "output-verification",
         "confidence-scoring-rubric"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.541Z"
+      "lastUpdated": "2026-08-30T05:43:10.057Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/002-runtime-code-and-executor-removal",
@@ -3307,7 +3372,7 @@
         "permission",
         "validation"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.542Z"
+      "lastUpdated": "2026-08-30T05:43:10.066Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
@@ -3325,7 +3390,7 @@
         "across",
         "json"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.543Z"
+      "lastUpdated": "2026-08-30T05:43:10.074Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/004-docs-agents-governance-removal",
@@ -3347,7 +3412,7 @@
         "agents",
         "claude"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.543Z"
+      "lastUpdated": "2026-08-30T05:43:10.082Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/005-historical-record-reference-sweep",
@@ -3363,7 +3428,7 @@
         "state",
         "eval"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.546Z"
+      "lastUpdated": "2026-08-30T05:43:10.088Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/022-cli-devin-deprecation/006-delete-skill-directory-and-verify",
@@ -3383,7 +3448,7 @@
         "whole",
         "deprecation"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.546Z"
+      "lastUpdated": "2026-08-30T05:43:10.097Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support",
@@ -3404,7 +3469,7 @@
         "available",
         "first-class"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.568Z"
+      "lastUpdated": "2026-08-30T05:43:10.145Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/001-model-registration",
@@ -3424,7 +3489,7 @@
         "registered",
         "anywhere"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.559Z"
+      "lastUpdated": "2026-08-30T05:43:10.106Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/002-framework-bakeoff",
@@ -3442,7 +3507,7 @@
         "rcaf",
         "status"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.560Z"
+      "lastUpdated": "2026-08-30T05:43:10.112Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/003-promote-results",
@@ -3460,7 +3525,7 @@
         "benchmarks",
         "2026-06-15-prompt-framework-kimi-k2-7"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.562Z"
+      "lastUpdated": "2026-08-30T05:43:10.120Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/004-discriminating-bakeoff",
@@ -3482,7 +3547,7 @@
         "coding",
         "model"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.563Z"
+      "lastUpdated": "2026-08-30T05:43:10.126Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/005-filename-underscore-alignment",
@@ -3501,7 +3566,7 @@
         "skills",
         "mcp-open-design"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.564Z"
+      "lastUpdated": "2026-08-30T05:43:10.134Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/006-broad-scope-timeout-caveat",
@@ -3522,7 +3587,7 @@
         "broad",
         "large-repo"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.565Z"
+      "lastUpdated": "2026-08-30T05:43:10.141Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/024-glm-5-2-support",
@@ -3544,7 +3609,7 @@
         "opencode",
         "auth"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.574Z"
+      "lastUpdated": "2026-08-30T05:43:10.191Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/024-glm-5-2-support/001-model-registration",
@@ -3562,7 +3627,7 @@
         "operator",
         "registered"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.569Z"
+      "lastUpdated": "2026-08-30T05:43:10.154Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/024-glm-5-2-support/002-framework-bakeoff",
@@ -3578,7 +3643,7 @@
         "craft",
         "status"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.571Z"
+      "lastUpdated": "2026-08-30T05:43:10.161Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/024-glm-5-2-support/003-promote-results",
@@ -3596,7 +3661,7 @@
         "benchmarks",
         "run-label"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.571Z"
+      "lastUpdated": "2026-08-30T05:43:10.166Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/024-glm-5-2-support/004-discriminating-bakeoff",
@@ -3614,7 +3679,7 @@
         "still",
         "guess"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.572Z"
+      "lastUpdated": "2026-08-30T05:43:10.176Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/024-glm-5-2-support/005-operational-caveats",
@@ -3634,7 +3699,7 @@
         "thinking",
         "preservation"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.573Z"
+      "lastUpdated": "2026-08-30T05:43:10.184Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/024-glm-5-2-support/006-vision-frontend-input",
@@ -3653,7 +3718,7 @@
         "vision-to-code",
         "work"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.574Z"
+      "lastUpdated": "2026-08-30T05:43:10.189Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/025-cli-codex-deprecation",
@@ -3673,7 +3738,7 @@
         "wants",
         "deprecated"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.577Z"
+      "lastUpdated": "2026-08-30T05:43:10.197Z"
     },
     {
       "specFolder": "hooks/001-hook-docs-relocation",
@@ -3947,7 +4012,7 @@
         "cursor",
         "devin"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.630Z"
+      "lastUpdated": "2026-08-28T18:20:36.833Z"
     },
     {
       "specFolder": "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup",
@@ -4894,7 +4959,7 @@
         "compat",
         "lacks"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.854Z"
+      "lastUpdated": "2026-08-28T16:31:49.181Z"
     },
     {
       "specFolder": "hooks/008-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency",
@@ -4913,7 +4978,7 @@
         "flag",
         "appeared"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.856Z"
+      "lastUpdated": "2026-08-28T19:02:41.869Z"
     },
     {
       "specFolder": "hooks/009-goal-isolation",
@@ -5348,6 +5413,25 @@
         "only"
       ],
       "lastUpdated": "2026-08-17T15:47:52.949Z"
+    },
+    {
+      "specFolder": "hooks/013-pi-cache-affinity-compat",
+      "description": "The `pi-cache-optimizer` extension flags every OpenRouter `openai-completions` model whose merged compat lacks `sendSessionAffinityHeaders`",
+      "keywords": [
+        "pi-cache-optimizer",
+        "extension",
+        "flags",
+        "every",
+        "openrouter",
+        "openai-completions",
+        "model",
+        "whose",
+        "merged",
+        "compat",
+        "lacks",
+        "sendsessionaffinityheaders"
+      ],
+      "lastUpdated": "2026-08-30T05:43:10.214Z"
     },
     {
       "specFolder": "mcp-tooling/007-mcp-tooling-parent",
@@ -7178,6 +7262,214 @@
       "lastUpdated": "2026-08-23T17:57:38.254Z"
     },
     {
+      "specFolder": "mcp-tooling/016-code-mode-node-resolution",
+      "description": "Six host configurations launch the `codemode` MCP server with `/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`",
+      "keywords": [
+        "six",
+        "host",
+        "configurations",
+        "launch",
+        "codemode",
+        "mcp",
+        "server",
+        "users",
+        "michelkerkmeester",
+        "nvm",
+        "versions",
+        "node",
+        "v24",
+        "bin"
+      ],
+      "lastUpdated": "2026-08-28T18:08:53.501Z"
+    },
+    {
+      "specFolder": "mcp-tooling/016-code-mode-node-resolution/001-resolution-contract",
+      "description": "The requirement is published in two places already: the server manifest declares `engines.node` as `>=24.0.0 <25.0.0`, and a postinstall check warns",
+      "keywords": [
+        "requirement",
+        "published",
+        "two",
+        "places",
+        "already",
+        "server",
+        "manifest",
+        "declares",
+        "engines",
+        "node",
+        "postinstall",
+        "check",
+        "warns"
+      ],
+      "lastUpdated": "2026-08-28T17:30:23.193Z"
+    },
+    {
+      "specFolder": "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim",
+      "description": "Host configurations currently name an interpreter directly, which is why they had to name an absolute one",
+      "keywords": [
+        "host",
+        "configurations",
+        "currently",
+        "name",
+        "interpreter",
+        "directly",
+        "absolute",
+        "one"
+      ],
+      "lastUpdated": "2026-08-28T17:37:21.874Z"
+    },
+    {
+      "specFolder": "mcp-tooling/016-code-mode-node-resolution/003-host-config-cutover",
+      "description": "Nineteen server registrations span six configuration files",
+      "keywords": [
+        "nineteen",
+        "server",
+        "registrations",
+        "span",
+        "six",
+        "configuration",
+        "files"
+      ],
+      "lastUpdated": "2026-08-28T17:58:31.755Z"
+    },
+    {
+      "specFolder": "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
+      "description": "Two install scripts write MCP registrations, so a fresh install would reintroduce whatever shape they encode regardless of what the cutover fixed",
+      "keywords": [
+        "two",
+        "install",
+        "scripts",
+        "write",
+        "mcp",
+        "registrations",
+        "fresh",
+        "reintroduce",
+        "whatever",
+        "shape",
+        "encode",
+        "regardless",
+        "cutover"
+      ],
+      "lastUpdated": "2026-08-28T18:08:12.592Z"
+    },
+    {
+      "specFolder": "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening",
+      "description": "The packet shipped a resolver whose search-path branch cannot return a candidate on a real host",
+      "keywords": [
+        "packet",
+        "shipped",
+        "resolver",
+        "whose",
+        "search-path",
+        "branch",
+        "cannot",
+        "return",
+        "candidate",
+        "real",
+        "host"
+      ],
+      "lastUpdated": "2026-08-29T09:57:59.973Z"
+    },
+    {
+      "specFolder": "mcp-tooling/017-mcp-magicpath",
+      "description": "MagicPath has no MCP server",
+      "keywords": [
+        "magicpath",
+        "mcp",
+        "server"
+      ],
+      "lastUpdated": "2026-08-29T12:01:02.522Z"
+    },
+    {
+      "specFolder": "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof",
+      "description": "Every manual this repository has ever registered is `calltemplatetype: \"mcp\"`",
+      "keywords": [
+        "every",
+        "manual",
+        "repository",
+        "ever",
+        "registered",
+        "calltemplatetype",
+        "mcp"
+      ],
+      "lastUpdated": "2026-08-29T17:21:20.535Z"
+    },
+    {
+      "specFolder": "mcp-tooling/017-mcp-magicpath/002-manual-and-auth",
+      "description": "The probe proved a transport, not a surface",
+      "keywords": [
+        "probe",
+        "proved",
+        "transport",
+        "surface"
+      ],
+      "lastUpdated": "2026-08-29T17:21:20.535Z"
+    },
+    {
+      "specFolder": "mcp-tooling/017-mcp-magicpath/003-skill-packet",
+      "description": "A registered manual is reachable but not discoverable",
+      "keywords": [
+        "registered",
+        "manual",
+        "reachable",
+        "discoverable"
+      ],
+      "lastUpdated": "2026-08-29T17:21:20.537Z"
+    },
+    {
+      "specFolder": "mcp-tooling/017-mcp-magicpath/004-hub-integration",
+      "description": "A packet nothing routes to is a document, not a capability",
+      "keywords": [
+        "packet",
+        "nothing",
+        "routes",
+        "document",
+        "capability"
+      ],
+      "lastUpdated": "2026-08-29T17:21:20.534Z"
+    },
+    {
+      "specFolder": "mcp-tooling/017-mcp-magicpath/005-playbook-and-verification",
+      "description": "Four phases will each have proven their own piece",
+      "keywords": [
+        "four",
+        "phases",
+        "proven",
+        "own",
+        "piece"
+      ],
+      "lastUpdated": "2026-08-29T17:21:20.538Z"
+    },
+    {
+      "specFolder": "mcp-tooling/017-mcp-magicpath/006-design-authority",
+      "description": "The judgment MagicPath facts invite now has an owner that is always loaded",
+      "keywords": [
+        "judgment",
+        "magicpath",
+        "owner",
+        "loaded",
+        "design"
+      ],
+      "lastUpdated": "2026-08-29T17:36:54.559Z"
+    },
+    {
+      "specFolder": "mcp-tooling/018-code-mode-variable-prefixes",
+      "description": "Five of the fourteen manuals registered in this repository's Code Mode configuration never reached the server",
+      "keywords": [
+        "five",
+        "fourteen",
+        "manuals",
+        "registered",
+        "repository",
+        "code",
+        "mode",
+        "configuration",
+        "never",
+        "reached",
+        "server"
+      ],
+      "lastUpdated": "2026-08-29T14:33:53.772Z"
+    },
+    {
       "specFolder": "mcp-tooling/z_archive/001-mcp-coco-integration",
       "description": "OpenCode had no semantic code search capability",
       "keywords": [
@@ -7187,7 +7479,7 @@
         "search",
         "capability"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.545Z"
+      "lastUpdated": "2026-08-30T05:43:10.228Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/002-mcp-testing-playbooks",
@@ -7206,7 +7498,7 @@
         "testing",
         "playbook"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.546Z"
+      "lastUpdated": "2026-08-30T05:43:10.233Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer",
@@ -7227,7 +7519,7 @@
         "figma",
         "mcp"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.555Z"
+      "lastUpdated": "2026-08-30T05:43:10.259Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent",
@@ -7244,7 +7536,7 @@
         "public",
         "repo"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.548Z"
+      "lastUpdated": "2026-08-30T05:43:10.240Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent",
@@ -7262,7 +7554,7 @@
         "234k",
         "markdown"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.550Z"
+      "lastUpdated": "2026-08-30T05:43:10.246Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal",
@@ -7281,7 +7573,7 @@
         "mcp",
         "agent"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.552Z"
+      "lastUpdated": "2026-08-30T05:43:10.251Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation",
@@ -7300,7 +7592,7 @@
         "66e1e87",
         "766206b"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.553Z"
+      "lastUpdated": "2026-08-30T05:43:10.257Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/004-mcp-click-up-task-management",
@@ -7312,7 +7604,7 @@
         "opencode",
         "skills"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.556Z"
+      "lastUpdated": "2026-08-30T05:43:10.265Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/005-nested-mcp-readme-sync",
@@ -7336,7 +7628,7 @@
         "tool",
         "sets"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.557Z"
+      "lastUpdated": "2026-08-30T05:43:10.270Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/006-mcp-skill-install-doctor-standardization",
@@ -7349,7 +7641,7 @@
         "shared",
         "shape"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.559Z"
+      "lastUpdated": "2026-08-30T05:43:10.281Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent",
@@ -7377,7 +7669,7 @@
         "path",
         "undecided"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.562Z"
+      "lastUpdated": "2026-08-29T15:04:31.432Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/002-architecture-decision",
@@ -7396,7 +7688,7 @@
         "contract",
         "taxonomy"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.563Z"
+      "lastUpdated": "2026-08-29T15:04:31.419Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/003-scaffold-hub",
@@ -7411,7 +7703,7 @@
         "content",
         "relocation"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.564Z"
+      "lastUpdated": "2026-08-29T15:04:31.414Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/004-onboard-implement",
@@ -7432,7 +7724,7 @@
         "monolithic",
         "sk-code"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.597Z"
+      "lastUpdated": "2026-08-29T15:04:31.421Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/005-foldin-review",
@@ -7452,7 +7744,7 @@
         "sk-code-review",
         "identity"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.599Z"
+      "lastUpdated": "2026-08-29T15:04:31.404Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/006-build-remaining-modes",
@@ -7472,7 +7764,7 @@
         "57-line",
         "placeholders"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.601Z"
+      "lastUpdated": "2026-08-29T15:04:31.424Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/007-advisor-and-integration",
@@ -7491,7 +7783,7 @@
         "old",
         "paths"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.604Z"
+      "lastUpdated": "2026-08-29T15:04:31.408Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/008-routing-benchmark-and-review",
@@ -7504,7 +7796,7 @@
         "reviewed",
         "family"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.606Z"
+      "lastUpdated": "2026-08-29T15:04:31.391Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/009-cutover-and-rollout",
@@ -7518,7 +7810,7 @@
         "cuts",
         "release"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.608Z"
+      "lastUpdated": "2026-08-29T15:04:31.448Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/010-plugin-tui-fix",
@@ -7535,7 +7827,7 @@
         "warn",
         "error"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.609Z"
+      "lastUpdated": "2026-08-29T15:04:31.442Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/011-hub-canon",
@@ -7553,7 +7845,7 @@
         "2-tier",
         "shape"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.612Z"
+      "lastUpdated": "2026-08-29T15:04:31.435Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/012-spec-kit-relocation",
@@ -7570,7 +7862,7 @@
         "code",
         "surface"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.614Z"
+      "lastUpdated": "2026-08-29T15:04:31.416Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure",
@@ -7589,7 +7881,7 @@
         "verify",
         "review"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.616Z"
+      "lastUpdated": "2026-08-29T15:04:31.412Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/014-close-out-and-tail",
@@ -7611,7 +7903,7 @@
         "tests",
         "pre-fold"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.618Z"
+      "lastUpdated": "2026-08-29T15:04:31.402Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/015-sk-design-canon-alignment",
@@ -7632,7 +7924,7 @@
         "failures",
         "five-mode"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.619Z"
+      "lastUpdated": "2026-08-29T15:04:31.441Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/016-sk-code-content-coherence",
@@ -7647,7 +7939,7 @@
         "content-incoherent",
         "phase"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.621Z"
+      "lastUpdated": "2026-08-29T15:04:31.447Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/017-canon-hardening",
@@ -7667,7 +7959,7 @@
         "bundlerules",
         "vocabulary"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.624Z"
+      "lastUpdated": "2026-08-29T15:04:31.426Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/018-deep-loop-canon-alignment",
@@ -7684,7 +7976,7 @@
         "invariant",
         "failures"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.626Z"
+      "lastUpdated": "2026-08-29T15:04:31.437Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/019-benchmarks-and-promotion",
@@ -7704,7 +7996,7 @@
         "baselines",
         "parent-skill-check"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.627Z"
+      "lastUpdated": "2026-08-29T15:04:31.439Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/020-surface-packet-rename",
@@ -7726,7 +8018,7 @@
         "animation",
         "while"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.629Z"
+      "lastUpdated": "2026-08-29T15:04:31.406Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline",
@@ -7745,7 +8037,7 @@
         "load",
         "prompt"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.631Z"
+      "lastUpdated": "2026-08-29T15:04:31.410Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/022-collapse-to-four-subskills",
@@ -7768,7 +8060,7 @@
         "code-webflow",
         "code-animation"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.633Z"
+      "lastUpdated": "2026-08-29T15:04:31.444Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research",
@@ -7788,7 +8080,7 @@
         "carry",
         "day-to-day"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.636Z"
+      "lastUpdated": "2026-08-29T15:04:31.395Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
@@ -7808,7 +8100,7 @@
         "smartrouting",
         "resourcemap"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.638Z"
+      "lastUpdated": "2026-08-29T15:04:31.423Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/025-code-quality-and-shared-research",
@@ -7829,7 +8121,7 @@
         "correct",
         "clean"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.644Z"
+      "lastUpdated": "2026-08-29T15:04:31.428Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation",
@@ -7847,7 +8139,7 @@
         "produced",
         "ranked"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.645Z"
+      "lastUpdated": "2026-08-29T15:04:31.393Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/027-code-opencode-refinement-research",
@@ -7867,7 +8159,7 @@
         "tree",
         "skills"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.654Z"
+      "lastUpdated": "2026-08-29T15:04:31.398Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation",
@@ -7884,7 +8176,7 @@
         "documentation",
         "asset"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.656Z"
+      "lastUpdated": "2026-08-29T15:04:31.419Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode",
@@ -7904,7 +8196,7 @@
         "quickreference",
         "trio"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.735Z"
+      "lastUpdated": "2026-08-29T15:04:31.362Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/001-research",
@@ -7922,7 +8214,7 @@
         "machine-readable",
         "smart"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.661Z"
+      "lastUpdated": "2026-08-29T15:12:05.992Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/002-standard-docs",
@@ -7943,7 +8235,7 @@
         "nothing",
         "authored"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.662Z"
+      "lastUpdated": "2026-08-29T15:04:31.385Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/003-surface-routing",
@@ -7964,7 +8256,7 @@
         "phase",
         "nothing"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.678Z"
+      "lastUpdated": "2026-08-29T15:04:31.368Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard",
@@ -7983,7 +8275,7 @@
         "drift-guard",
         "vitest"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.679Z"
+      "lastUpdated": "2026-08-29T15:04:31.365Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
@@ -8006,7 +8298,7 @@
         "python",
         "verifiers"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.680Z"
+      "lastUpdated": "2026-08-29T15:04:31.387Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup",
@@ -8020,7 +8312,7 @@
         "gate",
         "green"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.714Z"
+      "lastUpdated": "2026-08-29T15:04:31.382Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references",
@@ -8036,7 +8328,7 @@
         "styleguide",
         "quickreference"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.720Z"
+      "lastUpdated": "2026-08-29T15:04:31.388Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references",
@@ -8053,7 +8345,7 @@
         "javascript",
         "qualitystandards"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.721Z"
+      "lastUpdated": "2026-08-29T15:04:31.389Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references",
@@ -8068,7 +8360,7 @@
         "lines",
         "largest"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.723Z"
+      "lastUpdated": "2026-08-29T15:04:31.383Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references",
@@ -8083,7 +8375,7 @@
         "largest",
         "debuggingworkflows"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.723Z"
+      "lastUpdated": "2026-08-29T15:04:31.369Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged",
@@ -8100,7 +8392,7 @@
         "hygiene",
         "scope"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.724Z"
+      "lastUpdated": "2026-08-29T15:04:31.386Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup",
@@ -8117,7 +8409,7 @@
         "router",
         "contract"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.725Z"
+      "lastUpdated": "2026-08-29T15:04:31.367Z"
     },
     {
       "specFolder": "sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates",
@@ -8136,25 +8428,7 @@
         "contract",
         "baseline"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.726Z"
-    },
-    {
-      "specFolder": "sk-doc/032-split-doc-template-alignment",
-      "description": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the",
-      "keywords": [
-        "conform",
-        "hyphenated",
-        "total",
-        "mechanically-sliced",
-        "reference",
-        "asset",
-        "files",
-        "sk-code",
-        "code-opencode",
-        "code-webflow",
-        "code-quality"
-      ],
-      "lastUpdated": "2026-08-19T09:47:40.185Z"
+      "lastUpdated": "2026-08-29T15:04:31.364Z"
     },
     {
       "specFolder": "sk-code/003-content-quality-remediation",
@@ -8172,7 +8446,7 @@
         "review",
         "outside"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.854Z"
+      "lastUpdated": "2026-08-29T15:12:06.555Z"
     },
     {
       "specFolder": "sk-code/004-code-conformance-alignment",
@@ -8191,7 +8465,7 @@
         "blockers",
         "canonical"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.861Z"
+      "lastUpdated": "2026-08-29T15:04:31.717Z"
     },
     {
       "specFolder": "sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair",
@@ -8208,7 +8482,7 @@
         "nothing",
         "noticed"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.855Z"
+      "lastUpdated": "2026-08-29T15:04:31.719Z"
     },
     {
       "specFolder": "sk-code/004-code-conformance-alignment/002-comment-hygiene-durable-why",
@@ -8229,7 +8503,7 @@
         "paths",
         "adr"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.856Z"
+      "lastUpdated": "2026-08-29T15:04:31.720Z"
     },
     {
       "specFolder": "sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep",
@@ -8250,7 +8524,7 @@
         "wide",
         "immediately"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.857Z"
+      "lastUpdated": "2026-08-29T15:04:31.726Z"
     },
     {
       "specFolder": "sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair",
@@ -8273,7 +8547,7 @@
         "files",
         "work"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.858Z"
+      "lastUpdated": "2026-08-29T15:04:31.722Z"
     },
     {
       "specFolder": "sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming",
@@ -8294,7 +8568,7 @@
         "cannot",
         "mechanically"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.860Z"
+      "lastUpdated": "2026-08-29T15:04:31.724Z"
     },
     {
       "specFolder": "sk-code/005-dist-staleness-rebuild-on-drift",
@@ -8315,7 +8589,7 @@
         "across",
         "sessions"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.861Z"
+      "lastUpdated": "2026-08-29T15:12:05.973Z"
     },
     {
       "specFolder": "sk-code/006-dist-guard-skip-unprovisioned",
@@ -8334,7 +8608,290 @@
         "checkout",
         "bare"
       ],
-      "lastUpdated": "2026-08-15T14:40:56.862Z"
+      "lastUpdated": "2026-08-29T15:12:05.972Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface",
+      "description": "Code work on this plugin resolves to the `UNKNOWN` surface",
+      "keywords": [
+        "code",
+        "work",
+        "plugin",
+        "resolves",
+        "unknown",
+        "surface"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.727Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/001-surface-design-plan",
+      "description": "`sk-code-obsidian` cannot be authored correctly on the first attempt without first grounding every",
+      "keywords": [
+        "sk-code-obsidian",
+        "cannot",
+        "authored",
+        "correctly",
+        "first",
+        "attempt",
+        "without",
+        "grounding",
+        "every"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.740Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/002-repo-convention-audit",
+      "description": "A surface packet that describes conventions the tree does not have is worse than none: it reads as",
+      "keywords": [
+        "surface",
+        "packet",
+        "describes",
+        "conventions",
+        "tree",
+        "worse",
+        "none",
+        "reads"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.738Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/003-hub-wiring",
+      "description": "Before this phase, `sk-code`'s router had no `OBSIDIAN` surface",
+      "keywords": [
+        "phase",
+        "sk-code",
+        "router",
+        "obsidian",
+        "surface"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.738Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/004-skill-core",
+      "description": "`sk-code-obsidian/` exists only as a `.gitkeep`",
+      "keywords": [
+        "sk-code-obsidian",
+        "exists",
+        "only",
+        "gitkeep"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.732Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/005-references-stack",
+      "description": "`sk-code-obsidian/SKILL.md` (phase `004-skill-core`) names twelve references in its §2 REFERENCE",
+      "keywords": [
+        "sk-code-obsidian",
+        "skill",
+        "phase",
+        "004-skill-core",
+        "names",
+        "twelve",
+        "references",
+        "reference"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.743Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/006-assets-checklists",
+      "description": "`sk-code-obsidian/SKILL.md` §4 already advertises on-demand checklists (`assets/.md`), and",
+      "keywords": [
+        "sk-code-obsidian",
+        "skill",
+        "already",
+        "advertises",
+        "on-demand",
+        "checklists",
+        "assets"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.742Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/007-manual-testing-playbook",
+      "description": "Before this phase, `sk-code-obsidian/` had no `manual-testing-playbook/` at all — `../goal.md` §6",
+      "keywords": [
+        "phase",
+        "sk-code-obsidian",
+        "manual-testing-playbook",
+        "goal"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.736Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/008-scanners-and-gates",
+      "description": "`002-repo-convention-audit/audit.json` measured the plugin's target conventions as entirely",
+      "keywords": [
+        "002-repo-convention-audit",
+        "audit",
+        "json",
+        "measured",
+        "plugin",
+        "target",
+        "conventions",
+        "entirely"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.741Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/009-banners-and-folder-docs",
+      "description": "Phase 008 built `scan-folder-docs.mjs`, which reported 19 violations against the tree: every source",
+      "keywords": [
+        "phase",
+        "scan-folder-docs",
+        "mjs",
+        "reported",
+        "violations",
+        "against",
+        "tree",
+        "every",
+        "source"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.729Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/010-kebab-rename",
+      "description": "Phase 008 built `scan-naming.mjs`, which measured the plugin tree at 235 of 248 scanned files",
+      "keywords": [
+        "phase",
+        "scan-naming",
+        "mjs",
+        "measured",
+        "plugin",
+        "tree",
+        "scanned",
+        "files"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.735Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/011-changelog-and-verification",
+      "description": "Ten phases landed a new surface packet, its hub wiring, and a set of source conventions applied to",
+      "keywords": [
+        "ten",
+        "phases",
+        "landed",
+        "new",
+        "surface",
+        "packet",
+        "hub",
+        "wiring",
+        "set",
+        "source",
+        "conventions",
+        "applied"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.733Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/012-doc-template-conformance",
+      "description": "Phase 011 closed the packet's first ten phases with a live gate re-run, but named two phases still",
+      "keywords": [
+        "phase",
+        "closed",
+        "packet",
+        "first",
+        "ten",
+        "phases",
+        "live",
+        "gate",
+        "re-run",
+        "named",
+        "two",
+        "still"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.731Z"
+    },
+    {
+      "specFolder": "sk-code/007-sk-code-obsidian-surface/013-surface-reality-conformance",
+      "description": "Phase 010 renamed 235 files across the plugin tree to enforce kebab-case, and every plugin-side gate",
+      "keywords": [
+        "phase",
+        "renamed",
+        "files",
+        "across",
+        "plugin",
+        "tree",
+        "enforce",
+        "kebab-case",
+        "every",
+        "plugin-side",
+        "gate"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.745Z"
+    },
+    {
+      "specFolder": "sk-code/008-sk-code-mobile-cli-mode",
+      "description": "Code work on `apps/pi-remote-web/` detects a generic frontend surface and does not auto-load this",
+      "keywords": [
+        "code",
+        "work",
+        "apps",
+        "pi-remote-web",
+        "detects",
+        "generic",
+        "frontend",
+        "surface",
+        "auto-load"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.747Z"
+    },
+    {
+      "specFolder": "sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan",
+      "description": "This phase **plans, but does not build**, a new mode under the `sk-code` parent hub, purely for Mobile-CLI app work (`apps/pi-remote-web/` and its",
+      "keywords": [
+        "phase",
+        "plans",
+        "new",
+        "mode",
+        "sk-code",
+        "parent",
+        "hub",
+        "purely",
+        "mobile-cli",
+        "app",
+        "work",
+        "apps",
+        "pi-remote-web"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.750Z"
+    },
+    {
+      "specFolder": "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership",
+      "description": "Decision packet answering whether the Mobile CLI verification tooling in scripts/ (token-identity, the *-cdp render gates, naming/scan-*,",
+      "keywords": [
+        "decision",
+        "packet",
+        "answering",
+        "whether",
+        "mobile",
+        "cli",
+        "verification",
+        "tooling",
+        "scripts",
+        "token-identity",
+        "cdp",
+        "render",
+        "gates",
+        "naming",
+        "scan"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.751Z"
+    },
+    {
+      "specFolder": "sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment",
+      "description": "Seven docs in the `sk-code-mobile-cli` skill lag the `sk-create-skill` v4 asset, reference, and readme",
+      "keywords": [
+        "seven",
+        "docs",
+        "sk-code-mobile-cli",
+        "skill",
+        "lag",
+        "sk-create-skill",
+        "asset",
+        "reference",
+        "readme"
+      ],
+      "lastUpdated": "2026-08-29T15:04:31.748Z"
     },
     {
       "specFolder": "sk-code/z_archive/001-sk-code-review-creation",
@@ -9704,6 +10261,20 @@
       "lastUpdated": "2026-08-20T21:11:52.017Z"
     },
     {
+      "specFolder": "sk-communication/003-visual-explanation-lane",
+      "description": "`sk-communication` adapts an explanation on exactly one axis: register",
+      "keywords": [
+        "sk-communication",
+        "adapts",
+        "explanation",
+        "exactly",
+        "one",
+        "axis",
+        "register"
+      ],
+      "lastUpdated": "2026-08-28T05:17:18.757Z"
+    },
+    {
       "specFolder": "sk-design/001-design-foundations",
       "description": "The shipped foundations mode defines the static visual system for the sk-design family, but its packet was absent from git and memory",
       "keywords": [
@@ -10933,7 +11504,7 @@
         "whether",
         "rust"
       ],
-      "lastUpdated": "2026-08-15T14:40:57.840Z"
+      "lastUpdated": "2026-08-29T15:04:32.590Z"
     },
     {
       "specFolder": "sk-design/012-sk-design-program/001-research/004-hallmark-design-skill-research",
@@ -12968,6 +13539,57 @@
       "lastUpdated": "2026-08-20T19:00:24.365Z"
     },
     {
+      "specFolder": "sk-design/017-design-skill",
+      "description": "Root packet for the sk-design authoring skill and the surfaces that route to it, phased by delivery.",
+      "keywords": [
+        "root",
+        "packet",
+        "sk-design",
+        "authoring",
+        "skill",
+        "surfaces",
+        "route",
+        "phased",
+        "delivery"
+      ],
+      "lastUpdated": "2026-08-28T16:24:15.217Z"
+    },
+    {
+      "specFolder": "sk-design/017-design-skill/001-skill-build",
+      "description": "Agents building UI in this repo have no source of design values, so they invent them: 17px padding, a hand-picked hex, a 400ms transition because 400",
+      "keywords": [
+        "agents",
+        "repo",
+        "source",
+        "design",
+        "values",
+        "invent",
+        "them",
+        "17px",
+        "padding",
+        "hand-picked",
+        "hex",
+        "400ms",
+        "transition",
+        "because"
+      ],
+      "lastUpdated": "2026-08-28T16:24:15.215Z"
+    },
+    {
+      "specFolder": "sk-design/017-design-skill/002-agent-alignment",
+      "description": "The `design` agent was written when extraction was the only surviving design capability",
+      "keywords": [
+        "design",
+        "agent",
+        "written",
+        "extraction",
+        "only",
+        "surviving",
+        "capability"
+      ],
+      "lastUpdated": "2026-08-28T16:24:15.216Z"
+    },
+    {
       "specFolder": "sk-doc/014-sk-doc-parent",
       "description": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management,",
       "keywords": [
@@ -12981,7 +13603,7 @@
         "document-quality",
         "management"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.605Z"
+      "lastUpdated": "2026-08-29T12:13:21.025Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/001-research-and-canon",
@@ -12993,7 +13615,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.410Z"
+      "lastUpdated": "2026-08-29T12:13:20.917Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/002-architecture-decision",
@@ -13005,7 +13627,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.411Z"
+      "lastUpdated": "2026-08-29T12:13:20.920Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/003-hub-scaffold",
@@ -13017,7 +13639,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.412Z"
+      "lastUpdated": "2026-08-29T12:13:20.923Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/004-shared-backbone",
@@ -13029,7 +13651,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.412Z"
+      "lastUpdated": "2026-08-29T12:13:20.928Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/005-create-skill",
@@ -13041,7 +13663,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.413Z"
+      "lastUpdated": "2026-08-29T12:13:20.936Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/006-create-readme",
@@ -13053,7 +13675,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.413Z"
+      "lastUpdated": "2026-08-29T12:13:20.941Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/007-create-agent",
@@ -13065,7 +13687,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.421Z"
+      "lastUpdated": "2026-08-29T12:13:20.946Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/008-create-feature-catalog",
@@ -13077,7 +13699,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.423Z"
+      "lastUpdated": "2026-08-29T12:13:20.949Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/009-create-manual-testing-playbook",
@@ -13089,7 +13711,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.423Z"
+      "lastUpdated": "2026-08-29T12:13:20.952Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/010-create-benchmark",
@@ -13101,7 +13723,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.424Z"
+      "lastUpdated": "2026-08-29T12:13:20.955Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/010-subskill-doc-review",
@@ -13119,7 +13741,7 @@
         "creation-guideline",
         "skillcreation"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.443Z"
+      "lastUpdated": "2026-08-28T16:24:15.220Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/011-create-changelog",
@@ -13131,7 +13753,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.443Z"
+      "lastUpdated": "2026-08-29T12:13:20.960Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/011-smart-router-alignment",
@@ -13155,7 +13777,7 @@
         "parent",
         "hubs"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.444Z"
+      "lastUpdated": "2026-08-28T16:24:15.222Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/012-doc-quality",
@@ -13167,7 +13789,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.444Z"
+      "lastUpdated": "2026-08-29T12:13:20.963Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/012-quality-control-rename",
@@ -13187,7 +13809,7 @@
         "flag",
         "rather"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.445Z"
+      "lastUpdated": "2026-08-28T16:24:15.225Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/013-command-rebinding",
@@ -13199,7 +13821,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.446Z"
+      "lastUpdated": "2026-08-29T12:13:20.967Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/013-shared-refs-reorg",
@@ -13219,7 +13841,7 @@
         "generic",
         "cross-packet"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.447Z"
+      "lastUpdated": "2026-08-28T16:24:15.227Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/014-advisor-and-skill-graph",
@@ -13231,7 +13853,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.448Z"
+      "lastUpdated": "2026-08-29T12:13:20.972Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/014-markdown-agent-sync",
@@ -13249,7 +13871,7 @@
         "cite",
         "sk-doc"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.448Z"
+      "lastUpdated": "2026-08-28T16:24:15.229Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/015-commands-refresh",
@@ -13268,7 +13890,7 @@
         "yamls",
         "cited"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.450Z"
+      "lastUpdated": "2026-08-28T16:24:15.231Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/015-external-refs-and-facades",
@@ -13280,7 +13902,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.451Z"
+      "lastUpdated": "2026-08-29T12:13:20.975Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/016-routing-benchmark",
@@ -13292,7 +13914,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.451Z"
+      "lastUpdated": "2026-08-29T12:13:20.981Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/017-cutover-and-closeout",
@@ -13304,7 +13926,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.452Z"
+      "lastUpdated": "2026-08-29T12:13:20.985Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/018-swimlane-revert",
@@ -13322,7 +13944,7 @@
         "validator",
         "counted"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.453Z"
+      "lastUpdated": "2026-08-28T16:24:15.233Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/019-create-command-alignment",
@@ -13340,7 +13962,7 @@
         "create-flowchart",
         "bound"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.454Z"
+      "lastUpdated": "2026-08-28T16:24:15.236Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/020-command-agent-template-conformance",
@@ -13354,7 +13976,7 @@
         "fail",
         "validatedocument"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.455Z"
+      "lastUpdated": "2026-08-28T16:24:15.238Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/021-flatten-asset-subfolders",
@@ -13375,7 +13997,7 @@
         "packet",
         "domain"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.456Z"
+      "lastUpdated": "2026-08-28T16:24:15.240Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/022-parent-skill-logic-review",
@@ -14089,7 +14711,7 @@
         "creation",
         "references"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.699Z"
+      "lastUpdated": "2026-08-29T12:13:21.061Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility",
@@ -14124,7 +14746,7 @@
         "command",
         "reliably"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.702Z"
+      "lastUpdated": "2026-08-29T12:13:21.070Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/007-optional-ocr-adapter",
@@ -14178,7 +14800,7 @@
         "structure",
         "voice"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.706Z"
+      "lastUpdated": "2026-08-29T12:13:21.078Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/009-cmd-create-changelog-and-releases",
@@ -14190,7 +14812,7 @@
         "files",
         "stops"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.707Z"
+      "lastUpdated": "2026-08-29T12:13:21.088Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/009-create-diff-command",
@@ -14229,7 +14851,7 @@
         "remain",
         "over-soft"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.713Z"
+      "lastUpdated": "2026-08-28T16:24:15.242Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/010-fluid-responsive-report",
@@ -14268,7 +14890,7 @@
         "scaffolding",
         "user"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.837Z"
+      "lastUpdated": "2026-08-29T12:13:21.098Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/001-standards-templates-config",
@@ -14290,7 +14912,7 @@
         "treat",
         "anchor"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.727Z"
+      "lastUpdated": "2026-08-28T16:24:15.244Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal",
@@ -14310,7 +14932,7 @@
         "anchor",
         "links"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.728Z"
+      "lastUpdated": "2026-08-28T16:24:15.246Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal",
@@ -14325,7 +14947,7 @@
         "name",
         "html"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.729Z"
+      "lastUpdated": "2026-08-28T16:24:15.248Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/004-verification-reconciliation",
@@ -14344,7 +14966,7 @@
         "anchor",
         "scaffolding"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.730Z"
+      "lastUpdated": "2026-08-29T12:13:21.096Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements",
@@ -14361,7 +14983,7 @@
         "categories",
         "system-skill-advisor"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.847Z"
+      "lastUpdated": "2026-08-29T12:13:21.113Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/001-template-improvements",
@@ -14378,7 +15000,7 @@
         "categories",
         "system-skill-advisor"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.838Z"
+      "lastUpdated": "2026-08-29T12:13:21.105Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/002-mechanical-sweep",
@@ -14531,7 +15153,7 @@
         "prefix",
         "001-feature-name"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.993Z"
+      "lastUpdated": "2026-08-29T12:13:21.118Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
@@ -14551,7 +15173,7 @@
         "self-path",
         "root-doc"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.848Z"
+      "lastUpdated": "2026-08-28T16:24:15.250Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit",
@@ -14569,7 +15191,7 @@
         "manualtestingplaybook",
         "across"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.854Z"
+      "lastUpdated": "2026-08-28T16:24:15.253Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
@@ -14584,7 +15206,7 @@
         "snippets",
         "files"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.857Z"
+      "lastUpdated": "2026-08-28T16:24:15.255Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
@@ -14603,7 +15225,7 @@
         "mcp",
         "playbook-only"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.859Z"
+      "lastUpdated": "2026-08-28T16:24:15.258Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/006-reference-sweep-validation-guard",
@@ -14624,7 +15246,7 @@
         "numbered",
         "paths"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.861Z"
+      "lastUpdated": "2026-08-28T16:24:15.261Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
@@ -14649,7 +15271,7 @@
         "deleted",
         "snippet"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.862Z"
+      "lastUpdated": "2026-08-28T16:24:15.263Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization",
@@ -14670,7 +15292,7 @@
         "problem-first",
         "opener"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.117Z"
+      "lastUpdated": "2026-08-29T12:13:21.121Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/001-readme-template-and-standard",
@@ -14691,7 +15313,7 @@
         "table",
         "human"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.999Z"
+      "lastUpdated": "2026-08-28T16:24:15.265Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
@@ -14712,7 +15334,7 @@
         "delegatable",
         "agents"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.007Z"
+      "lastUpdated": "2026-08-28T16:24:15.267Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/003-cli-codex-readme",
@@ -14727,7 +15349,7 @@
         "entry",
         "point"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.010Z"
+      "lastUpdated": "2026-08-28T16:24:15.269Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme",
@@ -14748,7 +15370,7 @@
         "version",
         "skill"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.021Z"
+      "lastUpdated": "2026-08-28T16:24:15.270Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme",
@@ -14769,7 +15391,7 @@
         "skill",
         "version"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.037Z"
+      "lastUpdated": "2026-08-28T16:24:15.272Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme",
@@ -14786,7 +15408,7 @@
         "entry",
         "point"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.053Z"
+      "lastUpdated": "2026-08-28T16:24:15.274Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/013-mcp-click-up-readme",
@@ -14804,7 +15426,7 @@
         "entry",
         "point"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.060Z"
+      "lastUpdated": "2026-08-28T16:24:15.276Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme",
@@ -14821,7 +15443,7 @@
         "entry",
         "point"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.068Z"
+      "lastUpdated": "2026-08-28T16:24:15.277Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
@@ -14843,7 +15465,7 @@
         "wrong",
         "five"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.073Z"
+      "lastUpdated": "2026-08-28T16:24:15.279Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
@@ -14865,7 +15487,7 @@
         "mode-count",
         "drift"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.079Z"
+      "lastUpdated": "2026-08-28T16:24:15.280Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/021-system-code-graph-readme",
@@ -14880,7 +15502,7 @@
         "entry",
         "point"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.086Z"
+      "lastUpdated": "2026-08-28T16:24:15.282Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/022-system-skill-advisor-readme",
@@ -14895,7 +15517,7 @@
         "entry",
         "point"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.091Z"
+      "lastUpdated": "2026-08-28T16:24:15.283Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/023-system-spec-kit-readme",
@@ -14915,7 +15537,7 @@
         "footer",
         "pervasive"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.114Z"
+      "lastUpdated": "2026-08-28T16:24:15.285Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/024-skills-index-readme",
@@ -14933,7 +15555,7 @@
         "miscategorizes",
         "system-code-graph"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.116Z"
+      "lastUpdated": "2026-08-28T16:24:15.286Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/015-multi-file-boundary-dividers",
@@ -16070,22 +16692,6 @@
       "lastUpdated": "2026-08-16T18:06:00.677Z"
     },
     {
-      "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/005-sk-prompt",
-      "description": "The authored hub cannot be represented by treating every zero-signal request as a defer",
-      "keywords": [
-        "authored",
-        "hub",
-        "cannot",
-        "represented",
-        "treating",
-        "every",
-        "zero-signal",
-        "request",
-        "defer"
-      ],
-      "lastUpdated": "2026-08-16T18:06:00.680Z"
-    },
-    {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc",
       "description": "Compile the authored sk-doc documentation hub into the frozen router contract, exercise its exact ordered bundle and negative outcomes through the",
       "keywords": [
@@ -16780,6 +17386,21 @@
         "migrate"
       ],
       "lastUpdated": "2026-08-22T10:41:33.694Z"
+    },
+    {
+      "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint",
+      "description": "Commit `790c3dfc1c5` added a machine-checkable stdin-redirect rule to five `cli-` packet",
+      "keywords": [
+        "commit",
+        "790c3dfc1c5",
+        "machine-checkable",
+        "stdin-redirect",
+        "rule",
+        "five",
+        "cli",
+        "packet"
+      ],
+      "lastUpdated": "2026-08-29T20:55:45.056Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program",
@@ -22847,24 +23468,6 @@
       "lastUpdated": "2026-08-15T14:41:01.765Z"
     },
     {
-      "specFolder": "sk-doc/039-sk-communication-skill",
-      "description": "The portable CLI communication-projection capability lived only as a package under `packages/cli-communication-projection/`, so the skill advisor",
-      "keywords": [
-        "portable",
-        "cli",
-        "communication-projection",
-        "capability",
-        "lived",
-        "only",
-        "package",
-        "packages",
-        "cli-communication-projection",
-        "skill",
-        "advisor"
-      ],
-      "lastUpdated": "2026-08-15T14:41:01.826Z"
-    },
-    {
       "specFolder": "sk-doc/028-sk-create-diagram",
       "description": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of",
       "keywords": [
@@ -23204,7 +23807,7 @@
         "structured",
         "files"
       ],
-      "lastUpdated": "2026-08-15T14:41:02.038Z"
+      "lastUpdated": "2026-08-28T16:31:49.195Z"
     },
     {
       "specFolder": "sk-doc/030-skill-upgrade-conversion-path",
@@ -23237,6 +23840,305 @@
         "active"
       ],
       "lastUpdated": "2026-08-17T08:29:24.179Z"
+    },
+    {
+      "specFolder": "sk-doc/032-split-doc-template-alignment",
+      "description": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the",
+      "keywords": [
+        "conform",
+        "hyphenated",
+        "total",
+        "mechanically-sliced",
+        "reference",
+        "asset",
+        "files",
+        "sk-code",
+        "code-opencode",
+        "code-webflow",
+        "code-quality"
+      ],
+      "lastUpdated": "2026-08-29T15:04:55.418Z"
+    },
+    {
+      "specFolder": "sk-doc/033-mobile-cli-template-alignment",
+      "description": "The `sk-code-mobile-cli` packet no longer conforms to the templates and contracts that `sk-doc` owns",
+      "keywords": [
+        "sk-code-mobile-cli",
+        "packet",
+        "longer",
+        "conforms",
+        "templates",
+        "contracts",
+        "sk-doc",
+        "owns"
+      ],
+      "lastUpdated": "2026-08-28T05:57:57.579Z"
+    },
+    {
+      "specFolder": "sk-doc/034-surface-playbook-expansion",
+      "description": "Give the two sk-code SURFACE playbooks the coverage breadth of the sk-doc corpus without leaving the operator-scenario contract they already passed.",
+      "keywords": [
+        "give",
+        "two",
+        "sk-code",
+        "surface",
+        "playbooks",
+        "coverage",
+        "breadth",
+        "sk-doc",
+        "corpus",
+        "without",
+        "leaving",
+        "operator-scenario",
+        "contract",
+        "already",
+        "passed"
+      ],
+      "lastUpdated": "2026-08-29T15:12:27.047Z"
+    },
+    {
+      "specFolder": "sk-doc/035-command-template-conformance",
+      "description": "Audit .opencode/commands/{design,rewrite,prompt} against the sk-doc/sk-create-command contract and fix the confirmed defects: a missing mandatory",
+      "keywords": [
+        "audit",
+        "opencode",
+        "commands",
+        "design",
+        "rewrite",
+        "prompt",
+        "against",
+        "sk-doc",
+        "sk-create-command",
+        "contract",
+        "confirmed",
+        "defects",
+        "missing",
+        "mandatory"
+      ],
+      "lastUpdated": "2026-08-29T15:12:26.536Z"
+    },
+    {
+      "specFolder": "sk-doc/036-agent-template-conformance",
+      "description": "Audit all 12 agents across every runtime against sk-doc/sk-create-agent's Canonical Frontmatter and Required Body Shape, fix the confirmed defects,",
+      "keywords": [
+        "audit",
+        "agents",
+        "across",
+        "every",
+        "runtime",
+        "against",
+        "sk-doc",
+        "sk-create-agent",
+        "canonical",
+        "frontmatter",
+        "required",
+        "body",
+        "shape",
+        "confirmed",
+        "defects"
+      ],
+      "lastUpdated": "2026-08-29T15:12:28.325Z"
+    },
+    {
+      "specFolder": "sk-doc/037-playbook-family-remediation",
+      "description": "Manual testing playbooks are the only executable statement of what each skill package promises an operator",
+      "keywords": [
+        "manual",
+        "testing",
+        "playbooks",
+        "only",
+        "executable",
+        "statement",
+        "skill",
+        "package",
+        "promises",
+        "operator"
+      ],
+      "lastUpdated": "2026-08-29T15:12:26.969Z"
+    },
+    {
+      "specFolder": "sk-doc/037-playbook-family-remediation/001-sk-code-family",
+      "description": "Five dirty roots in the sk-code family carried 586 operator-scenario violations, the largest single class being a grading vocabulary the validator",
+      "keywords": [
+        "five",
+        "dirty",
+        "roots",
+        "sk-code",
+        "family",
+        "carried",
+        "operator-scenario",
+        "violations",
+        "largest",
+        "single",
+        "class",
+        "grading",
+        "vocabulary",
+        "validator"
+      ],
+      "lastUpdated": "2026-08-29T15:12:26.975Z"
+    },
+    {
+      "specFolder": "sk-doc/037-playbook-family-remediation/002-cli-and-mcp-transports",
+      "description": "Fourteen transport playbook roots carried 2,158 operator-scenario violations, and one of the defects found there was in the grader rather than in any",
+      "keywords": [
+        "fourteen",
+        "transport",
+        "playbook",
+        "roots",
+        "carried",
+        "operator-scenario",
+        "violations",
+        "one",
+        "defects",
+        "found",
+        "grader",
+        "rather"
+      ],
+      "lastUpdated": "2026-08-29T15:12:26.972Z"
+    },
+    {
+      "specFolder": "sk-doc/037-playbook-family-remediation/003-deep-loop-and-spec-kit",
+      "description": "Eight roots including the fleet's largest, where two of the biggest counts turned out to be single-cause defects and four remediation agents died",
+      "keywords": [
+        "eight",
+        "roots",
+        "including",
+        "fleet",
+        "largest",
+        "two",
+        "biggest",
+        "counts",
+        "turned",
+        "single-cause",
+        "defects",
+        "four",
+        "remediation",
+        "agents",
+        "died"
+      ],
+      "lastUpdated": "2026-08-29T15:12:26.977Z"
+    },
+    {
+      "specFolder": "sk-doc/037-playbook-family-remediation/004-fail-closed-graduation",
+      "description": "Empty the grandfather list that made ten parent packages non-blocking, name all 41 cleaned roots in a fail-closed allowlist, and assert in CI that",
+      "keywords": [
+        "empty",
+        "grandfather",
+        "list",
+        "ten",
+        "parent",
+        "packages",
+        "non-blocking",
+        "name",
+        "cleaned",
+        "roots",
+        "fail-closed",
+        "allowlist",
+        "assert"
+      ],
+      "lastUpdated": "2026-08-29T15:12:26.973Z"
+    },
+    {
+      "specFolder": "sk-doc/038-authoring-hardening",
+      "description": "Manual testing playbooks across the skill fleet had drifted to roughly 2,600 contract violations, and no build ever failed",
+      "keywords": [
+        "manual",
+        "testing",
+        "playbooks",
+        "across",
+        "skill",
+        "fleet",
+        "drifted",
+        "roughly",
+        "contract",
+        "violations",
+        "ever",
+        "failed"
+      ],
+      "lastUpdated": "2026-08-29T15:12:28.307Z"
+    },
+    {
+      "specFolder": "sk-doc/038-authoring-hardening/001-template-conformance-gaps",
+      "description": "Two authoring templates omitted the element their own SKILL.md contract required, so every artifact generated from them inherited the omission; a",
+      "keywords": [
+        "two",
+        "authoring",
+        "templates",
+        "omitted",
+        "element",
+        "own",
+        "skill",
+        "contract",
+        "required",
+        "every",
+        "artifact",
+        "them",
+        "inherited",
+        "omission"
+      ],
+      "lastUpdated": "2026-08-29T15:04:56.564Z"
+    },
+    {
+      "specFolder": "sk-doc/038-authoring-hardening/002-validator-false-positives",
+      "description": "The playbook validator scanned raw markdown for links without excluding fenced code, so ordinary bracket-index call syntax in a code sample was",
+      "keywords": [
+        "playbook",
+        "validator",
+        "scanned",
+        "raw",
+        "markdown",
+        "links",
+        "without",
+        "excluding",
+        "fenced",
+        "code",
+        "ordinary",
+        "bracket-index",
+        "call",
+        "syntax",
+        "sample"
+      ],
+      "lastUpdated": "2026-08-29T15:04:56.566Z"
+    },
+    {
+      "specFolder": "sk-doc/038-authoring-hardening/003-per-root-enforcement",
+      "description": "A fleet validator run could report success over playbook roots it never opened, so a sub-package could carry hundreds of violations behind a green",
+      "keywords": [
+        "fleet",
+        "validator",
+        "run",
+        "report",
+        "success",
+        "playbook",
+        "roots",
+        "never",
+        "opened",
+        "sub-package",
+        "carry",
+        "hundreds",
+        "violations",
+        "behind",
+        "green"
+      ],
+      "lastUpdated": "2026-08-29T15:04:56.563Z"
+    },
+    {
+      "specFolder": "sk-doc/039-sk-communication-skill",
+      "description": "The portable CLI communication-projection capability lived only as a package under `packages/cli-communication-projection/`, so the skill advisor",
+      "keywords": [
+        "portable",
+        "cli",
+        "communication-projection",
+        "capability",
+        "lived",
+        "only",
+        "package",
+        "packages",
+        "cli-communication-projection",
+        "skill",
+        "advisor"
+      ],
+      "lastUpdated": "2026-08-29T15:12:26.948Z"
     },
     {
       "specFolder": "sk-doc/z_archive/001-sk-doc-rename",
@@ -23990,7 +24892,7 @@
         "every",
         "one"
       ],
-      "lastUpdated": "2026-08-15T14:41:02.185Z"
+      "lastUpdated": "2026-08-28T18:20:36.834Z"
     },
     {
       "specFolder": "sk-git/016-git-action-advisory-hook",
@@ -24342,6 +25244,22 @@
         "checkout"
       ],
       "lastUpdated": "2026-08-21T14:16:44.595Z"
+    },
+    {
+      "specFolder": "sk-git/027-remote-push-approval",
+      "description": "Only approved branches reach origin, and no session can create a remote branch on its own.",
+      "keywords": [
+        "only",
+        "approved",
+        "branches",
+        "reach",
+        "origin",
+        "session",
+        "remote",
+        "branch",
+        "own"
+      ],
+      "lastUpdated": "2026-08-29T20:38:30.259Z"
     },
     {
       "specFolder": "sk-git/z_archive/001-sk-git-github-mcp-integration",
@@ -24729,6 +25647,188 @@
         "interactive"
       ],
       "lastUpdated": "2026-08-15T14:41:02.306Z"
+    },
+    {
+      "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion",
+      "description": "`sk-prompt` carries two workflow packets behind one advisor identity, but only one of them is a prompt-engineering workflow",
+      "keywords": [
+        "sk-prompt",
+        "carries",
+        "two",
+        "workflow",
+        "packets",
+        "behind",
+        "one",
+        "advisor",
+        "identity",
+        "only",
+        "them",
+        "prompt-engineering"
+      ],
+      "lastUpdated": "2026-08-28T12:07:35.595Z"
+    },
+    {
+      "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/001-baseline-capture",
+      "description": "The teardown deliberately reds several gates before it fixes them, and two of the routing metrics are already sitting exactly at their CI ceilings",
+      "keywords": [
+        "teardown",
+        "deliberately",
+        "reds",
+        "several",
+        "gates",
+        "them",
+        "two",
+        "routing",
+        "metrics",
+        "already",
+        "sitting",
+        "exactly",
+        "ceilings"
+      ],
+      "lastUpdated": "2026-08-28T12:07:35.589Z"
+    },
+    {
+      "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/002-models-packet-deletion",
+      "description": "The sk-prompt-models packet is not documentation: its model-profiles.json is read at runtime by two parallel scorer implementations and enforced by a",
+      "keywords": [
+        "sk-prompt-models",
+        "packet",
+        "documentation",
+        "model-profiles",
+        "json",
+        "read",
+        "runtime",
+        "two",
+        "parallel",
+        "scorer",
+        "implementations",
+        "enforced"
+      ],
+      "lastUpdated": "2026-08-28T12:07:35.590Z"
+    },
+    {
+      "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/003-routing-baseline-recapture",
+      "description": "The ratchet pins exact counts and the corpus files are sha256-pinned, so a deliberate capability removal reds two gates that are working correctly",
+      "keywords": [
+        "ratchet",
+        "pins",
+        "exact",
+        "counts",
+        "corpus",
+        "files",
+        "sha256-pinned",
+        "deliberate",
+        "capability",
+        "removal",
+        "reds",
+        "two",
+        "gates",
+        "working",
+        "correctly"
+      ],
+      "lastUpdated": "2026-08-28T12:07:35.591Z"
+    },
+    {
+      "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/004-card-sync-guard-rewrite",
+      "description": "The guard ran four structural checks; two of them read the deleted model registry directly and now crash with a FileNotFoundError before reporting",
+      "keywords": [
+        "guard",
+        "ran",
+        "four",
+        "structural",
+        "checks",
+        "two",
+        "them",
+        "read",
+        "deleted",
+        "model",
+        "registry",
+        "directly",
+        "now",
+        "crash",
+        "filenotfounderror",
+        "reporting"
+      ],
+      "lastUpdated": "2026-08-28T12:07:35.592Z"
+    },
+    {
+      "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/005-cli-orchestration-repoint",
+      "description": "The CLI executor hub carried 46 references into the deleted packet across 20 files",
+      "keywords": [
+        "cli",
+        "executor",
+        "hub",
+        "carried",
+        "references",
+        "deleted",
+        "packet",
+        "across",
+        "files"
+      ],
+      "lastUpdated": "2026-08-28T12:07:35.592Z"
+    },
+    {
+      "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/006-standalone-conversion",
+      "description": "With one workflow packet left, the hub shape is pure overhead: four authored routing files, a stage-two router document and a nested packet directory",
+      "keywords": [
+        "one",
+        "workflow",
+        "packet",
+        "left",
+        "hub",
+        "shape",
+        "pure",
+        "overhead",
+        "four",
+        "authored",
+        "routing",
+        "files",
+        "stage-two",
+        "router",
+        "document",
+        "nested",
+        "directory"
+      ],
+      "lastUpdated": "2026-08-28T12:07:35.593Z"
+    },
+    {
+      "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/007-compiled-routing-withdrawal",
+      "description": "Compiled routing serves six parent hubs from a promoted closure with a per-hub activation fence",
+      "keywords": [
+        "compiled",
+        "routing",
+        "serves",
+        "six",
+        "parent",
+        "hubs",
+        "promoted",
+        "closure",
+        "per-hub",
+        "activation",
+        "fence"
+      ],
+      "lastUpdated": "2026-08-28T12:07:35.594Z"
+    },
+    {
+      "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/008-docs-and-final-gate",
+      "description": "The framework document carried a hard rule requiring consultation of the deleted packet before any small-model dispatch, and several catalogs still",
+      "keywords": [
+        "framework",
+        "document",
+        "carried",
+        "hard",
+        "rule",
+        "requiring",
+        "consultation",
+        "deleted",
+        "packet",
+        "small-model",
+        "dispatch",
+        "several",
+        "catalogs",
+        "still"
+      ],
+      "lastUpdated": "2026-08-28T12:07:35.595Z"
     },
     {
       "specFolder": "sk-prompt/z_archive/001-sk-prompt-initial-creation",
@@ -27742,7 +28842,7 @@
         "solves",
         "hard"
       ],
-      "lastUpdated": "2026-08-26T08:43:15.631Z"
+      "lastUpdated": "2026-08-28T20:37:12.536Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture",
@@ -30519,7 +31619,7 @@
         "sessions",
         "code"
       ],
-      "lastUpdated": "2026-08-19T19:14:44.686Z"
+      "lastUpdated": "2026-08-29T15:04:24.244Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding",
@@ -31291,7 +32391,7 @@
         "mode",
         "cutover"
       ],
-      "lastUpdated": "2026-08-17T08:29:24.528Z"
+      "lastUpdated": "2026-08-28T18:20:36.835Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover",
@@ -31700,7 +32800,7 @@
         "jsonl",
         "pure"
       ],
-      "lastUpdated": "2026-08-25T07:32:12.987Z"
+      "lastUpdated": "2026-08-27T19:20:26.512Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/014-gateway-alignment-review",
@@ -31718,7 +32818,7 @@
         "deep-research",
         "deep-review"
       ],
-      "lastUpdated": "2026-08-25T18:52:22.572Z"
+      "lastUpdated": "2026-08-27T19:20:26.514Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
@@ -31732,7 +32832,7 @@
         "source",
         "registry"
       ],
-      "lastUpdated": "2026-08-25T20:28:54.174Z"
+      "lastUpdated": "2026-08-27T19:20:26.515Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review",
@@ -31772,7 +32872,194 @@
         "system-deep-loop",
         "runtime"
       ],
-      "lastUpdated": "2026-08-26T09:26:48.558Z"
+      "lastUpdated": "2026-08-27T19:20:26.518Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/018-pre-existing-test-triage",
+      "description": "The 017 remediation established a clean whole-suite gate but left 10 pre-existing test failures untouched — they were failing before any of that work",
+      "keywords": [
+        "remediation",
+        "established",
+        "clean",
+        "whole-suite",
+        "gate",
+        "left",
+        "pre-existing",
+        "test",
+        "failures",
+        "untouched",
+        "failing",
+        "work"
+      ],
+      "lastUpdated": "2026-08-27T19:20:26.518Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation",
+      "description": "Packet 018 triaged the ten pre-existing runtime test failures and fixed the one that was cleanly correct",
+      "keywords": [
+        "packet",
+        "triaged",
+        "ten",
+        "pre-existing",
+        "runtime",
+        "test",
+        "failures",
+        "one",
+        "cleanly",
+        "correct"
+      ],
+      "lastUpdated": "2026-08-27T19:20:26.530Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment",
+      "description": "`dependency-seams` had two assertions failing — that `better-sqlite3`/`zod`/`tsx` resolve from the runtime's own `nodemodules`, and that the `tsx`",
+      "keywords": [
+        "dependency-seams",
+        "two",
+        "assertions",
+        "failing",
+        "better-sqlite3",
+        "zod",
+        "tsx",
+        "resolve",
+        "runtime",
+        "own",
+        "nodemodules"
+      ],
+      "lastUpdated": "2026-08-27T19:20:26.522Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/002-command-rollout-mode-resolution",
+      "description": "The compiled command contracts for `deep/review`, `deep/research`, and `deep/ai-council` are stale — their source digest no longer matches the",
+      "keywords": [
+        "compiled",
+        "command",
+        "contracts",
+        "deep",
+        "review",
+        "research",
+        "ai-council",
+        "stale",
+        "source",
+        "digest",
+        "longer",
+        "matches"
+      ],
+      "lastUpdated": "2026-08-27T19:20:26.527Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+      "description": "The deep-loop runtime is 19 `.ts` files with zero `.js` files; each `.cjs` entrypoint re-execs itself under the tsx loader (`--import <tsx>`), which",
+      "keywords": [
+        "deep-loop",
+        "runtime",
+        "files",
+        "zero",
+        "cjs",
+        "entrypoint",
+        "re-execs",
+        "itself",
+        "tsx",
+        "loader",
+        "import"
+      ],
+      "lastUpdated": "2026-08-27T19:20:26.533Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
+      "description": "Packet 020 fixed the tsx-loader crash and added a `DEEPLOOPREPOROOT` override, but left the containment half of the operator's catch-22 unconfirmed",
+      "keywords": [
+        "packet",
+        "tsx-loader",
+        "crash",
+        "deeploopreporoot",
+        "override",
+        "left",
+        "containment",
+        "half",
+        "operator",
+        "catch-22",
+        "unconfirmed"
+      ],
+      "lastUpdated": "2026-08-27T19:20:26.538Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
+      "description": "The deep/ commands (`review`, `research`, `ai-council`, `alignment`) open with a Phase-0 dispatch-context gate whose block reads \"⛔ DIRECT INVOCATION",
+      "keywords": [
+        "deep",
+        "commands",
+        "review",
+        "research",
+        "ai-council",
+        "alignment",
+        "open",
+        "phase-0",
+        "dispatch-context",
+        "gate",
+        "whose",
+        "block",
+        "reads",
+        "direct",
+        "invocation"
+      ],
+      "lastUpdated": "2026-08-27T19:20:26.541Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch",
+      "description": "Every deep/ command (`review`, `research`, `ai-council`, `alignment`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `command-benchmark`)",
+      "keywords": [
+        "every",
+        "deep",
+        "command",
+        "review",
+        "research",
+        "ai-council",
+        "alignment",
+        "agent-improvement",
+        "model-benchmark",
+        "skill-benchmark",
+        "command-benchmark"
+      ],
+      "lastUpdated": "2026-08-27T19:20:26.548Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing",
+      "description": "The single-executor path of the auto loop YAMLs (`deep-review-auto`, `deep-research-auto`, `deep-alignment-auto`) dispatches per iteration via",
+      "keywords": [
+        "single-executor",
+        "path",
+        "auto",
+        "loop",
+        "yamls",
+        "deep-review-auto",
+        "deep-research-auto",
+        "deep-alignment-auto",
+        "dispatches",
+        "per",
+        "iteration",
+        "via"
+      ],
+      "lastUpdated": "2026-08-27T19:20:26.553Z"
+    },
+    {
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment",
+      "description": "The operator asked to fully deprecate the `deep-alignment` deep-loop mode — command, agent, code, and README references",
+      "keywords": [
+        "operator",
+        "asked",
+        "fully",
+        "deprecate",
+        "deep-alignment",
+        "deep-loop",
+        "mode",
+        "command",
+        "agent",
+        "code",
+        "readme",
+        "references"
+      ],
+      "lastUpdated": "2026-08-27T22:04:02.106Z"
     },
     {
       "specFolder": "system-deep-loop/037-graph-engineering",
@@ -42181,7 +43468,7 @@
         "long-lived",
         "mcp"
       ],
-      "lastUpdated": "2026-08-15T14:41:08.490Z"
+      "lastUpdated": "2026-08-29T12:13:22.069Z"
     },
     {
       "specFolder": "system-speckit/000-rust-backend-rewrite-research/001-research",
@@ -42201,7 +43488,7 @@
         "nuanced",
         "backend"
       ],
-      "lastUpdated": "2026-08-15T14:41:08.489Z"
+      "lastUpdated": "2026-08-29T12:13:22.067Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization",
@@ -55871,7 +57158,7 @@
         "references",
         "metadata"
       ],
-      "lastUpdated": "2026-08-15T14:41:13.663Z"
+      "lastUpdated": "2026-08-29T12:13:22.479Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/001-release-cleanup/015-manual-playbook-execution-sweep",
@@ -56643,7 +57930,7 @@
         "already-tested",
         "feature"
       ],
-      "lastUpdated": "2026-08-15T14:41:13.775Z"
+      "lastUpdated": "2026-08-28T16:31:49.201Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/002-speckit-memory/029-residual-correctness",
@@ -57433,7 +58720,7 @@
         "selection",
         "edge"
       ],
-      "lastUpdated": "2026-08-15T14:41:13.990Z"
+      "lastUpdated": "2026-08-29T12:13:22.511Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning",
@@ -57521,7 +58808,7 @@
         "multiplier",
         "composite"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.001Z"
+      "lastUpdated": "2026-08-29T12:13:22.519Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/005-llm-judge-scorer",
@@ -57538,7 +58825,7 @@
         "composite",
         "score"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.003Z"
+      "lastUpdated": "2026-08-29T12:13:22.522Z"
     },
     {
       "specFolder": "system-speckit/028-memory-search-intelligence/003-spec-data-quality/004-novel-research",
@@ -59042,7 +60329,7 @@
         "unresolved",
         "costs"
       ],
-      "lastUpdated": "2026-08-29T12:14:36.490Z"
+      "lastUpdated": "2026-08-30T04:17:56.036Z"
     },
     {
       "specFolder": "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization",
@@ -59062,7 +60349,7 @@
         "against",
         "system-speckit"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.733Z"
+      "lastUpdated": "2026-08-30T04:11:48.811Z"
     },
     {
       "specFolder": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
@@ -59076,7 +60363,36 @@
         "documents",
         "owned"
       ],
-      "lastUpdated": "2026-08-29T12:13:37.251Z"
+      "lastUpdated": "2026-08-30T04:17:56.035Z"
+    },
+    {
+      "specFolder": "system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance",
+      "description": "Two defects surfaced during this packet's review, both pre-dating it",
+      "keywords": [
+        "two",
+        "defects",
+        "surfaced",
+        "packet",
+        "review",
+        "pre-dating"
+      ],
+      "lastUpdated": "2026-08-30T04:17:56.018Z"
+    },
+    {
+      "specFolder": "system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure",
+      "description": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
+      "keywords": [
+        "phase",
+        "moved",
+        "acceptance",
+        "criteria",
+        "acceptance-criteria",
+        "repointed",
+        "advisory",
+        "total",
+        "document"
+      ],
+      "lastUpdated": "2026-08-30T04:17:56.026Z"
     },
     {
       "specFolder": "system-speckit/034-plan-preflight-nested-packet-resolution",
@@ -59117,8 +60433,11 @@
     },
     {
       "specFolder": "system-speckit/036-spec-doc-template-reduction",
-      "description": "Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility",
+      "description": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and",
       "keywords": [
+        "phased",
+        "decomposition",
+        "tracks",
         "reduce",
         "optimize",
         "spec-kit",
@@ -59131,26 +60450,24 @@
         "bloat",
         "better",
         "historic",
-        "context",
-        "small-model",
-        "legibility"
+        "context"
       ],
-      "lastUpdated": "2026-08-26T05:33:55.479Z"
+      "lastUpdated": "2026-08-30T05:16:40.330Z"
     },
     {
       "specFolder": "system-speckit/036-spec-doc-template-reduction/001-analysis",
-      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "description": "The 13 spec-kit manifest templates contain measured duplication and context waste",
       "keywords": [
-        "broken",
-        "missing",
-        "inefficient",
-        "sentences",
-        "describing",
-        "specific",
-        "pain",
-        "point"
+        "spec-kit",
+        "manifest",
+        "templates",
+        "contain",
+        "measured",
+        "duplication",
+        "context",
+        "waste"
       ],
-      "lastUpdated": "2026-08-26T06:37:20.709Z"
+      "lastUpdated": "2026-08-29T12:13:22.583Z"
     },
     {
       "specFolder": "system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge",
@@ -59172,33 +60489,28 @@
         "rows",
         "duplicate"
       ],
-      "lastUpdated": "2026-08-26T11:13:46.453Z"
+      "lastUpdated": "2026-08-29T12:13:22.585Z"
     },
     {
       "specFolder": "system-speckit/036-spec-doc-template-reduction/003-template-dedup",
-      "description": "`decision-record.md.tmpl` duplicates its whole ADR skeleton across the L3 and L3+ blocks — 138 byte-identical lines differing only in frontmatter",
+      "description": "`decision-record.md.tmpl` already shares its ADR skeleton across the L3 and L3+ blocks",
       "keywords": [
         "decision-record",
         "tmpl",
-        "duplicates",
-        "whole",
+        "already",
+        "shares",
         "adr",
         "skeleton",
         "across",
-        "blocks",
-        "byte-identical",
-        "lines",
-        "differing",
-        "only",
-        "frontmatter"
+        "blocks"
       ],
-      "lastUpdated": "2026-08-26T07:56:35.034Z"
+      "lastUpdated": "2026-08-29T12:13:22.587Z"
     },
     {
       "specFolder": "system-speckit/036-spec-doc-template-reduction/004-continuity-single-source",
-      "description": "The ~20-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary — ~227 near-identical lines per L2",
+      "description": "The ~16-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary, about 80 near-identical lines across",
       "keywords": [
-        "20-line",
+        "16-line",
         "memory",
         "continuity",
         "yaml",
@@ -59209,11 +60521,12 @@
         "tasks",
         "checklist",
         "implementation-summary",
+        "about",
         "near-identical",
         "lines",
-        "per"
+        "across"
       ],
-      "lastUpdated": "2026-08-26T07:57:14.709Z"
+      "lastUpdated": "2026-08-29T12:13:22.590Z"
     },
     {
       "specFolder": "system-speckit/036-spec-doc-template-reduction/005-comment-extraction",
@@ -59237,7 +60550,7 @@
         "notes",
         "survive"
       ],
-      "lastUpdated": "2026-08-26T07:57:55.762Z"
+      "lastUpdated": "2026-08-29T12:13:22.595Z"
     },
     {
       "specFolder": "system-speckit/036-spec-doc-template-reduction/006-verify-rollout",
@@ -59257,12 +60570,82 @@
         "packet",
         "fleet"
       ],
-      "lastUpdated": "2026-08-26T07:58:31.654Z"
+      "lastUpdated": "2026-08-29T12:13:22.596Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/007-lazy-addon-docs",
+      "description": "Spec Kit currently lacks manifest-registered templates for structured before-and-after comparisons, chronological timelines, and forward-looking",
+      "keywords": [
+        "spec",
+        "kit",
+        "currently",
+        "lacks",
+        "manifest-registered",
+        "templates",
+        "structured",
+        "before-and-after",
+        "comparisons",
+        "chronological",
+        "timelines",
+        "forward-looking"
+      ],
+      "lastUpdated": "2026-08-27T20:20:54.404Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/008-plan-and-contract-optimization",
+      "description": "The manifest declares `implementation-summary.md` in `requiredCoreDocs` for every numbered level, including Level 1 at",
+      "keywords": [
+        "manifest",
+        "declares",
+        "implementation-summary",
+        "requiredcoredocs",
+        "every",
+        "numbered",
+        "level",
+        "including"
+      ],
+      "lastUpdated": "2026-08-27T20:20:59.358Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
+      "description": "The former `templates/manifest/` directory mixed required core templates, optional add-ons, packet-type templates, the contract manifest, and",
+      "keywords": [
+        "former",
+        "templates",
+        "manifest",
+        "directory",
+        "mixed",
+        "required",
+        "core",
+        "optional",
+        "add-ons",
+        "packet-type",
+        "contract"
+      ],
+      "lastUpdated": "2026-08-27T20:21:04.342Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
+      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "keywords": [
+        "broken",
+        "missing",
+        "inefficient",
+        "sentences",
+        "describing",
+        "specific",
+        "pain",
+        "point"
+      ],
+      "lastUpdated": "2026-08-30T05:16:40.516Z"
     },
     {
       "specFolder": "system-speckit/037-decisions-memory-redesign",
-      "description": "Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill",
+      "description": "This phased decomposition tracks Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and",
       "keywords": [
+        "phased",
+        "decomposition",
+        "tracks",
         "deprecate",
         "constitutional",
         "memory",
@@ -59272,10 +60655,9 @@
         "notes",
         "system",
         "integrated",
-        "spec",
-        "skill"
+        "spec"
       ],
-      "lastUpdated": "2026-08-26T05:34:11.096Z"
+      "lastUpdated": "2026-08-29T12:13:22.655Z"
     },
     {
       "specFolder": "system-speckit/037-decisions-memory-redesign/001-analysis",
@@ -59290,7 +60672,7 @@
         "pain",
         "point"
       ],
-      "lastUpdated": "2026-08-26T06:37:20.721Z"
+      "lastUpdated": "2026-08-29T12:13:22.611Z"
     },
     {
       "specFolder": "system-speckit/037-decisions-memory-redesign/002-active-decisions-design",
@@ -59311,7 +60693,7 @@
         "chooses",
         "call"
       ],
-      "lastUpdated": "2026-08-26T15:19:15.752Z"
+      "lastUpdated": "2026-08-29T12:13:22.620Z"
     },
     {
       "specFolder": "system-speckit/037-decisions-memory-redesign/003-deprecation-mechanics",
@@ -59330,7 +60712,7 @@
         "still",
         "pull"
       ],
-      "lastUpdated": "2026-08-26T15:22:18.342Z"
+      "lastUpdated": "2026-08-29T12:13:22.627Z"
     },
     {
       "specFolder": "system-speckit/037-decisions-memory-redesign/004-rehome-rules-content",
@@ -59352,7 +60734,7 @@
         "cites",
         "rule"
       ],
-      "lastUpdated": "2026-08-26T15:20:49.416Z"
+      "lastUpdated": "2026-08-29T12:13:22.645Z"
     },
     {
       "specFolder": "system-speckit/037-decisions-memory-redesign/005-advisor-integration",
@@ -59366,7 +60748,7 @@
         "every",
         "turn"
       ],
-      "lastUpdated": "2026-08-26T15:19:53.054Z"
+      "lastUpdated": "2026-08-29T12:13:22.650Z"
     },
     {
       "specFolder": "system-speckit/037-decisions-memory-redesign/006-verify-rollout",
@@ -59387,7 +60769,235 @@
         "blast",
         "radius"
       ],
-      "lastUpdated": "2026-08-26T08:01:12.088Z"
+      "lastUpdated": "2026-08-29T12:13:22.654Z"
+    },
+    {
+      "specFolder": "system-speckit/038-skills-state-consolidation",
+      "description": "Seven hidden state directories sit directly under `.opencode/skills/`: advisor, authority, completion-sentinel, goal, loop-guard,",
+      "keywords": [
+        "seven",
+        "hidden",
+        "state",
+        "directories",
+        "sit",
+        "directly",
+        "opencode",
+        "skills",
+        "advisor",
+        "authority",
+        "completion-sentinel",
+        "goal",
+        "loop-guard"
+      ],
+      "lastUpdated": "2026-08-28T09:06:37.514Z"
+    },
+    {
+      "specFolder": "system-speckit/039-derived-repair-automation",
+      "description": "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did.",
+      "keywords": [
+        "repair",
+        "spec-packet",
+        "validation",
+        "failures",
+        "recomputable",
+        "repository",
+        "state",
+        "refuse",
+        "ones",
+        "record",
+        "work",
+        "person"
+      ],
+      "lastUpdated": "2026-08-29T12:13:22.658Z"
+    },
+    {
+      "specFolder": "system-speckit/040-validation-gate-coherence",
+      "description": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet",
+      "keywords": [
+        "completion",
+        "gate",
+        "return",
+        "same",
+        "verdict",
+        "whatever",
+        "environment",
+        "stop",
+        "counting",
+        "one",
+        "fault",
+        "several",
+        "times",
+        "remove",
+        "checks",
+        "packet"
+      ],
+      "lastUpdated": "2026-08-29T14:45:18.958Z"
+    },
+    {
+      "specFolder": "system-speckit/041-validation-reduction",
+      "description": "The completion gate fails roughly two thirds of the live corpus, and the",
+      "keywords": [
+        "completion",
+        "gate",
+        "fails",
+        "roughly",
+        "two",
+        "thirds",
+        "live",
+        "corpus"
+      ],
+      "lastUpdated": "2026-08-29T19:49:09.224Z"
+    },
+    {
+      "specFolder": "system-speckit/041-validation-reduction/001-warnings-stop-blocking",
+      "description": "Strict mode decides which rules run; it stops deciding what a warning means.",
+      "keywords": [
+        "strict",
+        "mode",
+        "decides",
+        "rules",
+        "run",
+        "stops",
+        "deciding",
+        "warning",
+        "means"
+      ],
+      "lastUpdated": "2026-08-29T17:26:18.086Z"
+    },
+    {
+      "specFolder": "system-speckit/041-validation-reduction/002-tracks-are-not-packets",
+      "description": "A track directory stops being graded as though it were a packet.",
+      "keywords": [
+        "track",
+        "directory",
+        "stops",
+        "graded",
+        "though",
+        "packet"
+      ],
+      "lastUpdated": "2026-08-29T17:39:27.716Z"
+    },
+    {
+      "specFolder": "system-speckit/041-validation-reduction/003-scaffold-parity",
+      "description": "A packet created with no human input stops failing validation the moment it exists.",
+      "keywords": [
+        "packet",
+        "human",
+        "input",
+        "stops",
+        "failing",
+        "validation",
+        "moment",
+        "exists"
+      ],
+      "lastUpdated": "2026-08-29T17:49:09.444Z"
+    },
+    {
+      "specFolder": "system-speckit/041-validation-reduction/004-stop-grading-prose-shape",
+      "description": "Documents stop being diffed against templates that change weekly; anchors are checked for what actually reads them.",
+      "keywords": [
+        "documents",
+        "stop",
+        "diffed",
+        "against",
+        "templates",
+        "change",
+        "weekly",
+        "anchors",
+        "checked",
+        "actually",
+        "reads",
+        "them"
+      ],
+      "lastUpdated": "2026-08-29T18:28:19.252Z"
+    },
+    {
+      "specFolder": "system-speckit/041-validation-reduction/005-framework-doc-matches-behaviour",
+      "description": "Two validation claims in the always-loaded framework document are corrected to match measured behaviour.",
+      "keywords": [
+        "two",
+        "validation",
+        "claims",
+        "always-loaded",
+        "framework",
+        "document",
+        "corrected",
+        "match",
+        "measured",
+        "behaviour"
+      ],
+      "lastUpdated": "2026-08-29T19:49:09.222Z"
+    },
+    {
+      "specFolder": "system-speckit/042-nested-goal-template-addon",
+      "description": "An operator sets one session objective, and whatever they set is frozen at that moment",
+      "keywords": [
+        "operator",
+        "sets",
+        "one",
+        "session",
+        "objective",
+        "whatever",
+        "set",
+        "frozen",
+        "moment"
+      ],
+      "lastUpdated": "2026-08-30T04:17:56.142Z"
+    },
+    {
+      "specFolder": "system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template",
+      "description": "There is no goal document anywhere in the documentation-level contract",
+      "keywords": [
+        "goal",
+        "document",
+        "anywhere",
+        "documentation-level",
+        "contract"
+      ],
+      "lastUpdated": "2026-08-30T04:17:56.135Z"
+    },
+    {
+      "specFolder": "system-speckit/042-nested-goal-template-addon/002-durable-slice-validator",
+      "description": "Nothing checks a goal document",
+      "keywords": [
+        "nothing",
+        "checks",
+        "goal",
+        "document"
+      ],
+      "lastUpdated": "2026-08-30T04:17:56.113Z"
+    },
+    {
+      "specFolder": "system-speckit/042-nested-goal-template-addon/003-runtime-neutral-goal-dispatch",
+      "description": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
+      "keywords": [
+        "speckit",
+        "commands",
+        "already",
+        "offer",
+        "set",
+        "session",
+        "goal",
+        "calls",
+        "one",
+        "runtime",
+        "tool",
+        "name"
+      ],
+      "lastUpdated": "2026-08-30T04:17:56.054Z"
+    },
+    {
+      "specFolder": "system-speckit/042-nested-goal-template-addon/004-parent-set-string-playbook",
+      "description": "Nothing dereferences a path inside a goal string",
+      "keywords": [
+        "nothing",
+        "dereferences",
+        "path",
+        "inside",
+        "goal",
+        "string"
+      ],
+      "lastUpdated": "2026-08-30T04:17:56.141Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch",

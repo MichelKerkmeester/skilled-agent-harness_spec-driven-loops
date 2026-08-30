@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research"
+    packet_pointer: "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research"
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored phase-002 task list"

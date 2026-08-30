@@ -28,7 +28,6 @@ const SYNOPSIS_SOURCE_DOCS = [
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'decision-record.md',
   'implementation-summary.md',
   path.join('research', 'research.md'),

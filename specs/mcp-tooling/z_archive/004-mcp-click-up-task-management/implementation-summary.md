@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/004-mcp-click-up-task-management"
+    packet_pointer: "mcp-tooling/z_archive/004-mcp-click-up-task-management"
     last_updated_at: "2026-05-31T00:00:00Z"
     last_updated_by: "operator"
     recent_action: "Closed spec — skill shipped, memory saved"

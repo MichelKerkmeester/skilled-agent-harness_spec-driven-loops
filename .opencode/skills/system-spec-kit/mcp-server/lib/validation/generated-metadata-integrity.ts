@@ -12,7 +12,7 @@ import path from 'node:path';
 
 import { graphMetadataSchema } from '../graph/graph-metadata-schema.js';
 import { perFolderDescriptionSchema } from '../description/description-schema.js';
-import { computeSourceFingerprintForFolder, parseCompletionPct, hasOpenTaskItems } from '../graph/graph-metadata-parser.js';
+import { SOURCE_FINGERPRINT_DOCSET, computeSourceFingerprintForFolder, parseCompletionPct, hasOpenTaskItems } from '../graph/graph-metadata-parser.js';
 import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
 
 export const GENERATED_METADATA_INTEGRITY_RULE = 'GENERATED_METADATA_INTEGRITY' as const;
@@ -154,6 +154,18 @@ function assertSourceFingerprint(
       code: 'SOURCE_FINGERPRINT_MISSING',
       message: 'source_fingerprint is absent while the generator-hardening rollout expects a persisted fingerprint',
     });
+    return;
+  }
+
+  // A digest only means something against the document set it was computed over.
+  // When a document joins or leaves that set, every stored digest stops matching at
+  // once - not because any packet changed, but because the toolchain did. Comparing
+  // across generations would fail thousands of untouched packets and force a repo-wide
+  // repair before anything validated again, so a stale generation is skipped here and
+  // refreshed by the next save or repair.
+  const rawDocset = derived ? derived.source_fingerprint_docset : undefined;
+  const storedDocset = typeof rawDocset === 'number' ? rawDocset : null;
+  if (storedDocset !== SOURCE_FINGERPRINT_DOCSET) {
     return;
   }
 

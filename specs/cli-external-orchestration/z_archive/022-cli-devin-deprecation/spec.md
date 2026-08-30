@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/022-cli-devin-deprecation"
+    packet_pointer: "cli-external-orchestration/z_archive/022-cli-devin-deprecation"
     last_updated_at: "2026-06-08T00:00:00Z"
     last_updated_by: "deep-context-host"
     recent_action: "All 6 phases complete and deep-reviewed"

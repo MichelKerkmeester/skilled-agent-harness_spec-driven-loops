@@ -1,14 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-speckit/042-nested-goal-template-addon/004-parent-set-string-playbook",
-  "description": "parent set string playbook",
+  "description": "Nothing dereferences a path inside a goal string",
   "keywords": [
-    "parent",
-    "set",
-    "string",
-    "playbook"
+    "nothing",
+    "dereferences",
+    "path",
+    "inside",
+    "goal",
+    "string"
   ],
-  "lastUpdated": "2026-08-29T20:10:40.831Z",
+  "lastUpdated": "2026-08-30T04:17:56.141Z",
   "specId": "004",
   "folderSlug": "parent-set-string-playbook",
   "parentChain": [

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/003-mcp-figma-transfer/003-mcp-figma-skill-removal"
+    packet_pointer: "mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal"
     last_updated_at: "2026-05-05T12:30:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Tasks doc contract normalized"

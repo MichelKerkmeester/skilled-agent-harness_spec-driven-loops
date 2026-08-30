@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/017-cli-devin-effectiveness-improvements"
+    packet_pointer: "cli-external-orchestration/z_archive/017-cli-devin-effectiveness-improvements"
     last_updated_at: "2026-05-16T05:50:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded stub"
@@ -33,7 +33,7 @@ _memory:
 ## Metadata
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | cli-external-orchestration/017-cli-devin-effectiveness-improvements |
+| **Spec Folder** | 017-cli-devin-effectiveness-improvements |
 | **Phase** | 105 |
 | **Completed** | TBD |
 | **Level** | 1 |

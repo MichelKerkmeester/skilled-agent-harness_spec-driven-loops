@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "tasks"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/021-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication"
+    packet_pointer: "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication"
     last_updated_at: "2026-06-08T19:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded completed task ledger for Gemini runtime+model eradication"

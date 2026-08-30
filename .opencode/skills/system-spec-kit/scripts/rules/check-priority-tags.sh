@@ -9,7 +9,7 @@ set -euo pipefail
 # Rule: PRIORITY_TAGS
 # Severity: warning
 # Description: Validates verification items have priority context (P0/P1/P2 headers or inline tags).
-#              Only runs for Level 2+ (when a merged or legacy checklist exists)
+#              Only runs for Level 2+ (when the merged verification section exists)
 
 # ───────────────────────────────────────────────────────────────
 # 1. INITIALIZATION
@@ -29,23 +29,18 @@ run_check() {
     local numeric_level="${level//[^0-9]/}"
     if [[ "$numeric_level" -lt 2 ]]; then
         RULE_STATUS="skip"
-        RULE_MESSAGE="Skipped (Level 1 - no checklist required)"
+        RULE_MESSAGE="Skipped (Level 1 - no verification section required)"
         return
     fi
     
-    local checklist="$folder/checklist.md"
-    local source_name="checklist.md"
-    local merged_tasks=false
+    local checklist="$folder/tasks.md"
+    local source_name="tasks.md"
+    local merged_tasks=true
 
-    if [[ ! -f "$checklist" ]]; then
-        checklist="$folder/tasks.md"
-        source_name="tasks.md"
-        if [[ ! -f "$checklist" ]] || ! grep -q '<!-- ANCHOR:protocol -->' "$checklist" 2>/dev/null; then
-            RULE_STATUS="skip"
-            RULE_MESSAGE="Skipped (merged verification section and checklist.md not found)"
-            return
-        fi
-        merged_tasks=true
+    if [[ ! -f "$checklist" ]] || ! grep -q '<!-- ANCHOR:protocol -->' "$checklist" 2>/dev/null; then
+        RULE_STATUS="skip"
+        RULE_MESSAGE="Skipped (merged verification section not found)"
+        return
     fi
 
 # ───────────────────────────────────────────────────────────────

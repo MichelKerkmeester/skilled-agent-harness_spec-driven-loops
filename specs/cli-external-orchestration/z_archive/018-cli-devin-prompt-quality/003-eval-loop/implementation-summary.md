@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/003-eval-loop"
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/003-eval-loop"
     last_updated_at: "2026-05-16T23:11:42Z"
     last_updated_by: "main_agent"
     recent_action: "Shipped 6-iter loop; winner v-004-rcaf-medium"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 113-cli-devin-prompt-quality/003-eval-loop |
+| **Spec Folder** | 003-eval-loop |
 | **Completed** | 2026-05-16 |
 | **Level** | 3 |
 | **Outcome** | BUDGET EXHAUSTED at iter 6 (no early convergence; 5 seeded + 1 mutation explored) |

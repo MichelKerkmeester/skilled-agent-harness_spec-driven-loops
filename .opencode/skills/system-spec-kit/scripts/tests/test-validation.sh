@@ -806,21 +806,11 @@ if begin_category "Negative Tests (should FAIL)"; then
     run_test "Empty folder (all L1 files missing)" "001-empty-folder" "fail"
     run_test "Missing plan.md (L1)" "032-missing-plan" "fail"
     run_test "Missing tasks.md (L1)" "035-missing-tasks" "fail"
-    run_test "Level 2 missing checklist.md" "027-level2-missing-checklist" "fail"
     run_test "Level 3 missing decision-record.md" "028-level3-missing-decision" "fail"
     run_test "Missing required header fails" "055-template-missing-header" "fail"
     run_test "Reordered required header fails" "056-template-reordered-header" "fail"
     run_test "Missing required anchor fails" "057-template-missing-anchor" "fail"
     run_test "Reordered required anchor fails" "058-template-reordered-anchor" "fail"
-    run_test "Checklist H1 mismatch fails" "059-checklist-h1-invalid" "fail"
-    run_test "Checklist CHK format mismatch fails" "060-checklist-chk-format-invalid" "fail"
-fi
-
-# ─────────────────────────────────────────────────────────────────
-# PRIORITY_TAGS EDGE CASE TESTS
-# ─────────────────────────────────────────────────────────────────
-if begin_category "Priority Tags Edge Cases"; then
-    run_test "Legacy bare priority format now fails" "060-checklist-chk-format-invalid" "fail"
 fi
 
 # ─────────────────────────────────────────────────────────────────

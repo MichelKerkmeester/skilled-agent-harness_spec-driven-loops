@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/023-kimi-k2-7-code-support/006-broad-scope-timeout-caveat"
+    packet_pointer: "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/006-broad-scope-timeout-caveat"
     last_updated_at: "2026-06-17T11:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Documented k2.7 over-exploration/timeout caveat + fixed stale k2.6 refs"

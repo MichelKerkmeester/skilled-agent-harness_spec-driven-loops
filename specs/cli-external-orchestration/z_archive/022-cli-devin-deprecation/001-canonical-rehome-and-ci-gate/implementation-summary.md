@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/022-cli-devin-deprecation/001-canonical-rehome-and-ci-gate"
+    packet_pointer: "cli-external-orchestration/z_archive/022-cli-devin-deprecation/001-canonical-rehome-and-ci-gate"
     last_updated_at: "2026-06-08T17:38:17.105Z"
     last_updated_by: "deprecation-host"
     recent_action: "Phase 1 implementation complete"

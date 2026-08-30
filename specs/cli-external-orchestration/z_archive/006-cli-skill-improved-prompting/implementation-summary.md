@@ -11,7 +11,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/006-cli-skill-improved-prompting"
+    packet_pointer: "cli-external-orchestration/z_archive/006-cli-skill-improved-prompting"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled frontmatter (repo-wide gap fill)"
@@ -60,7 +60,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 043-cli-skill-improved-prompting |
+| **Spec Folder** | 006-cli-skill-improved-prompting |
 | **Completed** | 2026-04-11 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

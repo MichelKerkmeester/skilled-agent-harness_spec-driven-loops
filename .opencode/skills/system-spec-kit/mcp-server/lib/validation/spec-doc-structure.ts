@@ -190,7 +190,6 @@ const OPTIONAL_CONTINUITY_DOCS = new Set([
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'acceptance-criteria.md',
   'handover.md',
   'debug-delegation.md',
@@ -212,9 +211,6 @@ function collectDocuments(folder: string, level: string): DocumentRecord[] {
     'resource-map.md',
     'context-index.md',
   ]);
-  if (fs.existsSync(path.join(folder, 'checklist.md'))) {
-    contractDocs.add('checklist.md');
-  }
   if (fs.existsSync(path.join(folder, 'acceptance-criteria.md'))) {
     contractDocs.add('acceptance-criteria.md');
   }

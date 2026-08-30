@@ -8,7 +8,7 @@ set -euo pipefail
 
 # Rule: EVIDENCE_CITED
 # Severity: warning
-# Description: Checks that completed P0/P1 checklist and task items cite
+# Description: Checks that completed P0/P1 task items cite
 #              substantive evidence, not only evidence-shaped labels.
 #
 # A second checkbox on the same line is no longer treated
@@ -86,7 +86,11 @@ check_completed_item_evidence() {
 
     local normalized_item
     normalized_item="$(printf '%s' "$item_text" | tr '\n' ' ' | sed -E 's/^[[:space:]]*-[[:space:]]\[[xX]\][[:space:]]*//; s/[[:space:]]+/ /g; s/^[[:space:]]+|[[:space:]]+$//g')"
-    if [[ "$source_label" == "tasks.md" && ! "$normalized_item" =~ ^T[0-9]{3}([[:space:]]|$) ]]; then
+    # The merged tasks document carries both work items and verification items, so
+    # both id shapes are held to the evidence standard. Checking only T-ids was safe
+    # while verification lived in its own document; once it moved here, that test
+    # would have exempted every CHK item from evidence - silently, and everywhere.
+    if [[ ! "$normalized_item" =~ ^(T|CHK-)[0-9]{3}([[:space:]]|$) ]]; then
         return 0
     fi
 
@@ -114,12 +118,11 @@ run_check() {
 
     local -a evidence_files=()
 
-    [[ -f "$folder/checklist.md" ]] && evidence_files+=("checklist.md")
     [[ -f "$folder/tasks.md" ]] && evidence_files+=("tasks.md")
 
     if [[ ${#evidence_files[@]} -eq 0 ]]; then
         RULE_STATUS="skip"
-        RULE_MESSAGE="No checklist.md or tasks.md"
+        RULE_MESSAGE="No tasks.md"
         return 0
     fi
 
@@ -205,11 +208,11 @@ run_check() {
 
     if [[ $missing_count -eq 0 ]]; then
         RULE_STATUS="pass"
-        RULE_MESSAGE="All completed P0/P1 checklist/task items have substantive evidence"
+        RULE_MESSAGE="All completed P0/P1 task items have substantive evidence"
     else
         RULE_STATUS="warn"
         RULE_MESSAGE="Found ${missing_count} completed item(s) without evidence"
-        RULE_REMEDIATION="Add evidence with a concrete file:line, command/output, numeric result, or named test/tool to completed P0/P1 checklist/task items."
+        RULE_REMEDIATION="Add evidence with a concrete file:line, command/output, numeric result, or named test/tool to completed P0/P1 task items."
     fi
 }
 

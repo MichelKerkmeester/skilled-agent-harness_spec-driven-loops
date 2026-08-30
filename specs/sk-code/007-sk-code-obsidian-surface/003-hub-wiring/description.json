@@ -1,19 +1,15 @@
 {
   "level": "1",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/003-hub-wiring",
-  "description": "Wire the OBSIDIAN surface into the live sk-code hub — mode-registry.json, hub-router.json, stack-detection.md, and the generated leaf-manifest.json — so a plugin prompt bundles sk-code-obsidian instead of deferring.",
+  "description": "Before this phase, `sk-code`'s router had no `OBSIDIAN` surface",
   "keywords": [
-    "wire",
-    "obsidian",
-    "surface",
-    "live",
+    "phase",
     "sk-code",
-    "hub",
-    "mode-registry.json",
-    "hub-router.json",
-    "stack-detection.md"
+    "router",
+    "obsidian",
+    "surface"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.738Z",
   "specId": "003",
   "folderSlug": "hub-wiring",
   "parentChain": [

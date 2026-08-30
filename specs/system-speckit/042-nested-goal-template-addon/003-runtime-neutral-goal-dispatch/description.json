@@ -1,14 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-speckit/042-nested-goal-template-addon/003-runtime-neutral-goal-dispatch",
-  "description": "runtime neutral goal dispatch",
+  "description": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
   "keywords": [
-    "runtime",
-    "neutral",
+    "speckit",
+    "commands",
+    "already",
+    "offer",
+    "set",
+    "session",
     "goal",
-    "dispatch"
+    "calls",
+    "one",
+    "runtime",
+    "tool",
+    "name"
   ],
-  "lastUpdated": "2026-08-29T20:10:40.830Z",
+  "lastUpdated": "2026-08-30T04:17:56.054Z",
   "specId": "003",
   "folderSlug": "runtime-neutral-goal-dispatch",
   "parentChain": [

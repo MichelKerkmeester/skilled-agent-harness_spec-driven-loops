@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/003-mcp-figma-transfer/002-public-figma-agent"
+    packet_pointer: "mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent"
     last_updated_at: "2026-05-05T12:30:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Tasks doc contract normalized"

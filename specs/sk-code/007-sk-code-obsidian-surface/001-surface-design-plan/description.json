@@ -1,19 +1,19 @@
 {
   "level": "1",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/001-surface-design-plan",
-  "description": "Design, against the live sk-code hub contract, of the sk-code-obsidian read-only SURFACE evidence packet — registry entry, router wiring, OBSIDIAN detection branch, reference map, and build-packet handoff. Plan only; authors no skill file.",
+  "description": "`sk-code-obsidian` cannot be authored correctly on the first attempt without first grounding every",
   "keywords": [
-    "design",
-    "against",
-    "live",
-    "sk-code",
-    "hub",
-    "contract",
     "sk-code-obsidian",
-    "read-only",
-    "surface"
+    "cannot",
+    "authored",
+    "correctly",
+    "first",
+    "attempt",
+    "without",
+    "grounding",
+    "every"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.740Z",
   "specId": "001",
   "folderSlug": "surface-design-plan",
   "parentChain": [

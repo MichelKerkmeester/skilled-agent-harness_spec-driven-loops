@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "spec"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/021-cli-gemini-deprecation/003-cli-gemini-full-purge"
+    packet_pointer: "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/003-cli-gemini-full-purge"
     last_updated_at: "2026-06-08T18:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored Level 3 spec for cli-gemini executor purge"

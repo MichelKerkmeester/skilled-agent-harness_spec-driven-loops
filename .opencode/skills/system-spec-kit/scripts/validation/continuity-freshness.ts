@@ -19,7 +19,6 @@ const COMPLETION_DOCS = [
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'decision-record.md',
   'implementation-summary.md',
   'handover.md',
@@ -229,15 +228,9 @@ function isCompletionStatus(status: string | null): boolean {
   return /\b(?:complete|completed|done|shipped|implemented)\b/i.test(status ?? '');
 }
 
-function hasChecklistEvidenceClaim(basename: string, content: string): boolean {
-  return basename === 'checklist.md'
-    && /^\s*-\s+\[[xX]\].*(?:\[EVIDENCE:|\|\s*Evidence:|[✓✔☑✅]|\((?:verified|tested|confirmed)\)|\[DEFERRED:)/im.test(content);
-}
-
 function hasCompletionClaim(basename: string, content: string, fields: ContinuityFields): boolean {
   return fields.completionPct === 100
-    || isCompletionStatus(fields.status)
-    || hasChecklistEvidenceClaim(basename, content);
+    || isCompletionStatus(fields.status);
 }
 
 function collectCompletionCandidates(specFolderPath: string): CompletionCandidate[] {

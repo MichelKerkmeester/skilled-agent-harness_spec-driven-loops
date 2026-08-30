@@ -6,7 +6,6 @@
     "plan.md.tmpl": "v2.2",
     "tasks.md.tmpl": "v2.2",
     "implementation-summary.md.tmpl": "v2.2",
-    "checklist.md.tmpl": "v2.2",
     "decision-record.md.tmpl": "v2.2",
     "phase-parent.spec.md.tmpl": "v2.2",
     "review.spec.md.tmpl": "v2.2",
@@ -80,12 +79,6 @@
     },
     "implementation-summary.md": {
       "template": "implementation-summary.md.tmpl",
-      "owner": "author",
-      "creationTrigger": "scaffold",
-      "absenceBehavior": "hard-error"
-    },
-    "checklist.md": {
-      "template": "checklist.md.tmpl",
       "owner": "author",
       "creationTrigger": "scaffold",
       "absenceBehavior": "hard-error"
@@ -566,7 +559,6 @@
       },
       "requiredAddonDocs": [],
       "optionalAddonDocs": [
-        "checklist.md",
         "acceptance-criteria.md"
       ],
       "lazyAddonDocs": [
@@ -824,48 +816,6 @@
             "3+"
           ]
         },
-        "checklist.md": {
-          "protocol": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "pre-impl": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "code-quality": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "testing": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "security": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "docs": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "file-org": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "summary": [
-            "2",
-            "3",
-            "3+"
-          ]
-        },
         "before-after.md": {
           "metadata": [
             "1",
@@ -1103,7 +1053,6 @@
       },
       "requiredAddonDocs": [],
       "optionalAddonDocs": [
-        "checklist.md",
         "acceptance-criteria.md"
       ],
       "lazyAddonDocs": [
@@ -1413,72 +1362,6 @@
             "3+"
           ]
         },
-        "checklist.md": {
-          "protocol": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "pre-impl": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "code-quality": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "testing": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "security": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "docs": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "file-org": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "summary": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "arch-verify": [
-            "3",
-            "3+"
-          ],
-          "perf-verify": [
-            "3",
-            "3+"
-          ],
-          "deploy-ready": [
-            "3",
-            "3+"
-          ],
-          "compliance-verify": [
-            "3",
-            "3+"
-          ],
-          "docs-verify": [
-            "3",
-            "3+"
-          ],
-          "sign-off": [
-            "3",
-            "3+"
-          ]
-        },
         "decision-record.md": {
           "adr-001": [
             "1",
@@ -1724,7 +1607,6 @@
       },
       "requiredAddonDocs": [],
       "optionalAddonDocs": [
-        "checklist.md",
         "acceptance-criteria.md"
       ],
       "lazyAddonDocs": [
@@ -2043,72 +1925,6 @@
             "3+"
           ],
           "governance-summary": [
-            "3+"
-          ]
-        },
-        "checklist.md": {
-          "protocol": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "pre-impl": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "code-quality": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "testing": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "security": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "docs": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "file-org": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "summary": [
-            "2",
-            "3",
-            "3+"
-          ],
-          "arch-verify": [
-            "3",
-            "3+"
-          ],
-          "perf-verify": [
-            "3",
-            "3+"
-          ],
-          "deploy-ready": [
-            "3",
-            "3+"
-          ],
-          "compliance-verify": [
-            "3",
-            "3+"
-          ],
-          "docs-verify": [
-            "3",
-            "3+"
-          ],
-          "sign-off": [
-            "3",
             "3+"
           ]
         },

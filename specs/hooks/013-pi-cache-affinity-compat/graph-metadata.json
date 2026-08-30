@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/013-pi-cache-affinity-compat",
+  "spec_folder": "hooks/013-pi-cache-affinity-compat",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "openrouter session affinity compat",
+      "pi-cache-optimizer warning",
+      "sendSessionAffinityHeaders override",
+      "glm-5.3-flash affinity",
+      "stats tmp sweep"
+    ],
+    "key_topics": [
+      "pi-cache-optimizer",
+      "openrouter",
+      "session-affinity",
+      "models.json",
+      "compat"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "Code_Environment/Public/.pi/models.json"
+    ],
+    "entities": [],
+    "causal_summary": "The `pi-cache-optimizer` extension flags every OpenRouter `openai-completions` model whose merged compat lacks `sendSessionAffinityHeaders`",
+    "created_at": "2026-08-29T17:40:45Z",
+    "last_save_at": "2026-08-29T18:11:52.182Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aab40d9941d2d00cda0e07105b8aebb042dbbef17079f4ea575d8486032df3fa",
+    "source_doc_hashes": {
+      "spec.md": "b176c8fde246ae8e90520f2c7db646ce912f9bb13897d9f542444316bdb27e47",
+      "plan.md": "b9e0037c89bb77a0b25a82246a66cd17473e9a2135805d561d5538ec394b845f",
+      "tasks.md": "b09683a22069a06ba176404d3dbbd8bd3d8c39dbd73c6ac39e70139608e51116",
+      "implementation-summary.md": "05244e01aa1755863f26c605b3b83b9198f614a2bbf19c532b22fbf878741d78"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

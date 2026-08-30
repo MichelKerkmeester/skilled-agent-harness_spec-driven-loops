@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard",
   "description": "The parent hub keeps a union projection of every child's routing map, enforced by a drift-guard vitest",
   "keywords": [
@@ -15,7 +16,7 @@
     "drift-guard",
     "vitest"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.679Z",
+  "lastUpdated": "2026-08-29T15:04:31.365Z",
   "specId": "004",
   "folderSlug": "parent-union-drift-guard",
   "parentChain": [
@@ -23,6 +24,5 @@
     "002-rust-standards-for-code-opencode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

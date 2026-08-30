@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "mcp-tooling/018-code-mode-variable-prefixes",
   "description": "Five of the fourteen manuals registered in this repository's Code Mode configuration never reached the server",
   "keywords": [
@@ -14,13 +15,12 @@
     "reached",
     "server"
   ],
-  "lastUpdated": "2026-08-29T14:20:41.588Z",
+  "lastUpdated": "2026-08-29T14:33:53.772Z",
   "specId": "018",
   "folderSlug": "code-mode-variable-prefixes",
   "parentChain": [
     "mcp-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

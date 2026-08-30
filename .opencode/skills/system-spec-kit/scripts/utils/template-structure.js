@@ -96,7 +96,6 @@ const DOC_TEMPLATE_NAMES = {
   'plan.md': 'plan.md.tmpl',
   'tasks.md': 'tasks.md.tmpl',
   'implementation-summary.md': 'implementation-summary.md.tmpl',
-  'checklist.md': 'checklist.md.tmpl',
   'acceptance-criteria.md': 'acceptance-criteria.md.tmpl',
   'decision-record.md': 'decision-record.md.tmpl',
   'goal.md': 'goal.md.tmpl',
@@ -751,10 +750,6 @@ function loadTemplateContractForDocument(level, basename, documentPath, template
   const baseContract = loadTemplateContract(level, basename, templatesRoot);
   if (!baseContract.supported || !documentPath) {
     return baseContract;
-  }
-
-  if (basename === 'tasks.md' && fs.existsSync(path.join(path.dirname(documentPath), 'checklist.md'))) {
-    return makeLegacyTasksContract(baseContract);
   }
 
   if (basename !== 'spec.md') {

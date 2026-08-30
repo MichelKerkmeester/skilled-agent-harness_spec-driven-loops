@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/004-skill-uplift"
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/004-skill-uplift"
     last_updated_at: "2026-05-17T00:30:00Z"
     last_updated_by: "main_agent"
     recent_action: "Shipped cli-devin v1-0-5-0 with RCAF defaults"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 113-cli-devin-prompt-quality/004-skill-uplift |
+| **Spec Folder** | 004-skill-uplift |
 | **Completed** | 2026-05-17 |
 | **Level** | 3 |
 | **Synthesis consumed** | `../003-eval-loop/synthesis.md` (winner v-004-rcaf-medium @ 0.5796) |

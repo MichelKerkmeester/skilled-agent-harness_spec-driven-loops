@@ -42,7 +42,7 @@ const EXEC_MAX_BUFFER_BYTES = 2 * 1024 * 1024;
 // makes the whole surface a full no-op: no filesystem probe, no script exec.
 const DISABLED_ENV = 'SYSTEM_SPECKIT_COMPLETION_DISABLED';
 
-// Canonical-doc presence infers the spec level: checklist.md raises Level 1 to
+// Canonical-doc presence infers the spec level: decision-record.md raises to
 // 2, decision-record.md (or its dashed variant) raises it further to 3. This
 // mirrors the repo's own Level 1/2/3 documentation-depth convention rather than
 // re-deriving it from LOC or any other heuristic.
@@ -50,7 +50,6 @@ const CANONICAL_DOC_FILENAMES = Object.freeze({
   spec: 'spec.md',
   plan: 'plan.md',
   tasks: 'tasks.md',
-  checklist: 'checklist.md',
   decisionRecord: 'decision-record.md',
   implementationSummary: 'implementation-summary.md',
 });

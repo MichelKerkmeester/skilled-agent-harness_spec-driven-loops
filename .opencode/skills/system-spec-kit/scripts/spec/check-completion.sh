@@ -438,21 +438,17 @@ ${NC}\n"
 main() {
     parse_args "$@"
 
-    local checklist_file="$FOLDER_PATH/checklist.md"
+    local checklist_file="$FOLDER_PATH/tasks.md"
 
-    if [[ ! -f "$checklist_file" ]]; then
-        if [[ -f "$FOLDER_PATH/tasks.md" ]] && grep -q '<!-- ANCHOR:protocol -->' "$FOLDER_PATH/tasks.md" 2>/dev/null; then
-            checklist_file="$FOLDER_PATH/tasks.md"
+    if [[ ! -f "$checklist_file" ]] || ! grep -q '<!-- ANCHOR:protocol -->' "$checklist_file" 2>/dev/null; then
+        if $JSON_MODE; then
+            echo '{"error": "verification section not found", "folder": "'"$FOLDER_PATH"'"}'
         else
-            if $JSON_MODE; then
-                echo '{"error": "verification checklist not found", "folder": "'"$FOLDER_PATH"'"}'
-            else
-                echo -e "${YELLOW}⚠${NC} No verification checklist found in $FOLDER_PATH"
-                echo "  This may be a Level 1 spec (verification checklist not required)."
-                echo "  Add the merged verification section to tasks.md for Level 2+ enforcement."
-            fi
-            exit 0
+            echo -e "${YELLOW}⚠${NC} No verification section found in $FOLDER_PATH"
+            echo "  This may be a Level 1 spec (verification section not required)."
+            echo "  Add the merged verification section to tasks.md for Level 2+ enforcement."
         fi
+        exit 0
     fi
 
     count_checklist_items "$checklist_file"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark"
+    packet_pointer: "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored phase-004 plan"

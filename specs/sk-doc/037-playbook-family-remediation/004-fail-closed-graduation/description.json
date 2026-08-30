@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/037-playbook-family-remediation/004-fail-closed-graduation",
   "description": "Empty the grandfather list that made ten parent packages non-blocking, name all 41 cleaned roots in a fail-closed allowlist, and assert in CI that",
   "keywords": [
@@ -16,7 +17,7 @@
     "allowlist",
     "assert"
   ],
-  "lastUpdated": "2026-08-29T11:52:57.681Z",
+  "lastUpdated": "2026-08-29T15:12:26.973Z",
   "specId": "004",
   "folderSlug": "fail-closed-graduation",
   "parentChain": [
@@ -24,6 +25,5 @@
     "037-playbook-family-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

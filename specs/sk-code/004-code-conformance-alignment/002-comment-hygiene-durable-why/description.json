@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/004-code-conformance-alignment/002-comment-hygiene-durable-why",
   "description": "The governing standard states verbatim that ephemeral-artifact pointers in code comments are a HARD-BLOCK gate, naming spec paths and ADR,",
   "keywords": [
@@ -17,7 +18,7 @@
     "paths",
     "adr"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.856Z",
+  "lastUpdated": "2026-08-29T15:04:31.720Z",
   "specId": "002",
   "folderSlug": "comment-hygiene-durable-why",
   "parentChain": [
@@ -25,6 +26,5 @@
     "004-code-conformance-alignment"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

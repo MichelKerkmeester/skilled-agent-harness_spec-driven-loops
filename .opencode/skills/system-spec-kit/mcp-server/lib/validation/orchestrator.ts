@@ -77,7 +77,6 @@ const OPTIONAL_CONTINUITY_DOCS = new Set([
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'handover.md',
   'debug-delegation.md',
   'research/research.md',
@@ -87,7 +86,7 @@ const OPTIONAL_CONTINUITY_DOCS = new Set([
 ]);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
 const REQUIRED_SCALAR_FRONTMATTER_FIELDS = ['title', 'description', 'importance_tier', 'contextType'];
-const SCALAR_FRONTMATTER_DOCS = ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md', 'implementation-summary.md'];
+const SCALAR_FRONTMATTER_DOCS = ['spec.md', 'plan.md', 'tasks.md', 'decision-record.md', 'implementation-summary.md'];
 // Named in the report so a verdict can be attributed to what produced it.
 const ENGINE_NAME = 'orchestrator';
 const CHECKLIST_H1_PREFIX = '# Verification Checklist:';
@@ -218,7 +217,6 @@ function detectLevel(folder: string): SpecKitLevel {
     if (tableLevel) return normalizeLevel(tableLevel);
   }
   if (fs.existsSync(path.join(folder, 'decision-record.md'))) return '3';
-  if (fs.existsSync(path.join(folder, 'checklist.md'))) return '2';
   const tasksPath = path.join(folder, 'tasks.md');
   if (fs.existsSync(tasksPath) && fs.readFileSync(tasksPath, 'utf8').includes('<!-- ANCHOR:protocol -->')) return '2';
   return '1';
@@ -473,7 +471,7 @@ function lifecycleRequiredDocsForLevel(level: SpecKitLevel): string[] {
 const STARTED_WORK_ITEM_RE = /^[ \t]*[-*] \[[xX]\]/mu;
 
 function hasStartedWork(folder: string): boolean {
-  for (const docName of ['checklist.md', 'tasks.md']) {
+  for (const docName of ['tasks.md']) {
     const content = readIfExists(path.join(folder, docName));
     if (content && STARTED_WORK_ITEM_RE.test(content)) return true;
   }
@@ -714,19 +712,18 @@ function validateAnchorIntegrity(folder: string, level: SpecKitLevel): Validatio
 }
 
 function validatePriorityTags(folder: string): ValidationEntry {
-  const legacyChecklist = readIfExists(path.join(folder, 'checklist.md'));
   const tasks = readIfExists(path.join(folder, 'tasks.md'));
-  const checklist = legacyChecklist ?? (tasks ? extractMergedVerification(tasks) : null);
-  const sourceName = legacyChecklist ? 'checklist.md' : 'tasks.md';
-  if (!checklist) return entry('PRIORITY_TAGS', 'pass', 'No checklist found');
-  const findings = checklist
+  const verification = tasks ? extractMergedVerification(tasks) : null;
+  const sourceName = 'tasks.md';
+  if (!verification) return entry('PRIORITY_TAGS', 'pass', 'No verification section found');
+  const findings = verification
     .split(/\r?\n/u)
     .map((line, index) => ({ line, index: index + 1 }))
     .filter(({ line }) => /^-\s+\[[ xX]\]/u.test(line) && !/\*{0,2}CHK-[A-Za-z0-9-]+\*{0,2}\s+\[P[012]\]/u.test(line))
     .map(({ line, index }) => `${sourceName}:${index}: ${line.trim().slice(0, 120)}`);
   return findings.length === 0
-    ? entry('PRIORITY_TAGS', 'pass', legacyChecklist ? 'Checklist priority tags use CHK-* [P*] format' : 'Verification checklist priority tags use CHK-* [P*] format')
-    : entry('PRIORITY_TAGS', 'warn', `${findings.length} ${legacyChecklist ? 'checklist' : 'verification'} item(s) have non-standard priority tags`, findings);
+    ? entry('PRIORITY_TAGS', 'pass', 'Verification priority tags use CHK-* [P*] format')
+    : entry('PRIORITY_TAGS', 'warn', `${findings.length} verification item(s) have non-standard priority tags`, findings);
 }
 
 function extractMergedVerification(content: string): string | null {

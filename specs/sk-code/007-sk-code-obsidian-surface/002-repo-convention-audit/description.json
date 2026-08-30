@@ -1,19 +1,18 @@
 {
   "level": "1",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/002-repo-convention-audit",
-  "description": "Measure the plugin tree's real naming, comment, folder-doc and stylesheet conventions, and the gate baselines every later phase is judged against.",
+  "description": "A surface packet that describes conventions the tree does not have is worse than none: it reads as",
   "keywords": [
-    "measure",
-    "plugin",
+    "surface",
+    "packet",
+    "describes",
+    "conventions",
     "tree",
-    "real",
-    "naming",
-    "comment",
-    "folder-doc",
-    "stylesheet",
-    "conventions"
+    "worse",
+    "none",
+    "reads"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.738Z",
   "specId": "002",
   "folderSlug": "repo-convention-audit",
   "parentChain": [

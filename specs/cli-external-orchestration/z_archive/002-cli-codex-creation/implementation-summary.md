@@ -22,7 +22,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 005-cli-codex-creation |
+| **Spec Folder** | 002-cli-codex-creation |
 | **Completed** | 2026-03-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

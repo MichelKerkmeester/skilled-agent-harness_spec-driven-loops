@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/016-cli-devin-creation"
+    packet_pointer: "cli-external-orchestration/z_archive/016-cli-devin-creation"
     last_updated_at: "2026-05-15T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Ship initial release"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 104-cli-devin-creation |
+| **Spec Folder** | 016-cli-devin-creation |
 | **Completed** | 2026-05-15 |
 | **Level** | 2 |
 | **Branch** | main (no feature branch, per operator policy) |
