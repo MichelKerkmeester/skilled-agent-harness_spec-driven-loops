@@ -1,5 +1,5 @@
 ---
-title: "...c/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control/plan]"
+title: "Implementation Plan: create-quality-control resource names"
 description: "Execution plan for the create-quality-control reference rename/reference closure."
 trigger_phrases:
   - "create-quality-control resource implementation plan"

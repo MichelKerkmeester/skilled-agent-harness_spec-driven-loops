@@ -1,5 +1,5 @@
 ---
-title: "...ontext-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability/tasks]"
+title: "Tasks: MCP Stress-Cycle Doc Cleanup"
 description: "Six-task list driving the 6 P2 advisory closures from the 011 deep-review."
 trigger_phrases:
   - "001-fix-mcp-stress-cycle-doc-observability"

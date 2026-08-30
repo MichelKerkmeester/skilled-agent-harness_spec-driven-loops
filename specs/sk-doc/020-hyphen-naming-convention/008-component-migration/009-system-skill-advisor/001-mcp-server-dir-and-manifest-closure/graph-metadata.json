@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The advisor runtime is rooted at mcpserver/, and the current surface also contains the non-Python directories",
     "created_at": "2026-07-14T15:18:07Z",
-    "last_save_at": "2026-08-30T07:19:48.710Z",
+    "last_save_at": "2026-08-30T08:04:31.360Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b0276d89ed7e3e6ce1488097e27d7f61bcc69597a89ae0b979834d7528a8589f",
+    "source_fingerprint": "sha256:dc9fa948dfdfc3313161391d6044eadb351861ac9a665d157fe9b9e013342882",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "cba804a1d9b1cce8286095f9a3320c8999358880ea4b8d69a6d80362a9cec077",
-      "plan.md": "a7771025337c8cd06eb7e0809120e9726d30b12782f9770ad235738a175144b3",
-      "tasks.md": "88852abcb6e90c438719c36be4f33df303b46f796b95969a2b98d88225fcc5bd",
-      "decision-record.md": "7736b6feae3bcf1d5cf5063db14c29cc7f0a784286f0bee385b209ba3d937182"
+      "spec.md": "ed6bf3f147232ec7983497ae29e692ff8b709c55a61423a81b8a4d8638d97432",
+      "plan.md": "93645fa53c9a3a7f9f8b1a066643e0edc99c95e2fc4a396205d0013f11bccc03",
+      "tasks.md": "a5ce6ff0780d14bdd6d004d399ea3d9060a4bb79e65083bdb5e6d2f0ea61d9b3",
+      "decision-record.md": "8786dbca05e3c5d9cb7d508360c3414660d8e5d3da101851746e1d3759bb1848"
     },
     "last_active_child_id": null,
     "last_active_at": null

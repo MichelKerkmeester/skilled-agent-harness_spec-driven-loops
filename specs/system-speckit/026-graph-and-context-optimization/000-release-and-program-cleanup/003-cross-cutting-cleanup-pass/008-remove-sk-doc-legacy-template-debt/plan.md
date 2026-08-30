@@ -1,5 +1,5 @@
 ---
-title: "...imization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt/plan]"
+title: "Implementation Plan: sk-doc Legacy Template Debt Cleanup"
 description: "Batched remediation plan for older spec docs flagged by the sk-doc template alignment audit. The work computes protected exclusions first, then applies additive continuity, anchor, template-source, and low-risk metadata fixes."
 trigger_phrases:
   - "008-remove-sk-doc-legacy-template-debt plan"

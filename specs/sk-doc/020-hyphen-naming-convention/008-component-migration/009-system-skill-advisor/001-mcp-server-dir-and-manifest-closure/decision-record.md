@@ -1,5 +1,5 @@
 ---
-title: "...-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure/decision-record]"
+title: "Decision Record: MCP server directory and manifest closure"
 description: "Phase-specific decisions for moving the system-skill-advisor MCP package boundary to kebab-case while preserving Python, generated, lockfile, test-magic, and tool-mandated names and closing all live entrypoint references atomically."
 trigger_phrases:
   - "mcp-server directory decision record"

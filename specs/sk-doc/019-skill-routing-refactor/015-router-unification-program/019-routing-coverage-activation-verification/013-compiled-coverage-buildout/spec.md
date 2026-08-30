@@ -1,5 +1,5 @@
 ---
-title: "...ctor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/spec]"
+title: "Feature Specification: Compiled-Routing Coverage Build-Out & Genuine Default-On"
 description: "Build full compiled-router coverage for the thin/stale hubs (sk-code, cli-external-orchestration, mcp-tooling, sk-prompt, then sk-doc/system-deep-loop post-remint) so compiled routing matches legacy on every scenario, fix two over-detection bugs, re-mint two stale manifests, then stage the per-hub default-on flip."
 trigger_phrases:
   - "compiled routing coverage buildout"

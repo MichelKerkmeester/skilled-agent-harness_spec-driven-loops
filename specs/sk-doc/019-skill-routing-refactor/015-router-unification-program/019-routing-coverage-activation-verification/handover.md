@@ -1,5 +1,5 @@
 ---
-title: "...-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/handover]"
+title: "Handover: Routing Coverage, Activation & Verification (015)"
 description: "Detailed resume state for the 015 program — the verified P0-foundation reframing, per-child status, the resume ladder, and the exact next action. Companion to goal.md (the standing goal) and 001-research/review-v1.md (the authoring contract)."
 trigger_phrases:
   - "doc"

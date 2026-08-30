@@ -1,5 +1,5 @@
 ---
-title: "...014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling/tasks]"
+title: "Tasks: de-numbering snippet filenames migration tooling"
 description: "Task breakdown for authoring the deterministic, dry-runnable rename engine for the 111 in-scope snippet filenames."
 trigger_phrases:
   - "014"

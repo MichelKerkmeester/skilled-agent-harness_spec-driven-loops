@@ -1,5 +1,5 @@
 ---
-title: "...0-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging/implementation-summary]"
+title: "Implementation Summary: create-skill scaffolding and packaging"
 description: "Create-skill scaffolds, package validation, templates and tests now enforce kebab-case generated filesystem names while preserving declared interpreter and tool names."
 trigger_phrases:
   - "create-skill implementation summary"

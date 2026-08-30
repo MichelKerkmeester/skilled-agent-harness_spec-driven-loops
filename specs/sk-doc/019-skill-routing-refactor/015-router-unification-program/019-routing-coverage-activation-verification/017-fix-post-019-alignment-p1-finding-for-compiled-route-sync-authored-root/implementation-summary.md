@@ -1,5 +1,5 @@
 ---
-title: "...tion-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/implementation-summary]"
+title: "Implementation Summary: Compiled-Route Sync Authored-Root Repair"
 description: "Live delivery record for reproducible compiled-route closure promotion with bound rollback, conflict-safe activation reconciliation, and verified seven-hub serving."
 trigger_phrases:
   - "compiled route sync repair summary"

@@ -73,13 +73,13 @@
         "source": "derived"
       },
       {
-        "name": "Claude Code",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude Code, and Codex scenarios. This phase renames those playbook filesystem names, updates active references, and preserves scenario IDs, frontmatter fields, and test meaning.",
     "created_at": "2026-07-14T15:17:38Z",
-    "last_save_at": "2026-08-30T07:19:34.920Z",
+    "last_save_at": "2026-08-30T08:04:26.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d381e6b46625793aad90eb0e7bf4d3f9361455e33816d5fe3eb636ac715cc989",
+    "source_fingerprint": "sha256:b88a70f1c65a14db4260d661a0c85ae392f82b6bf57e053b310562e671d37d00",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "9f3e6ff3a4e37edb245915f50b18808e92f0aff35b5ca03ca4c8ccac10358a7a",
-      "plan.md": "378024d1e327e894c9e1a6e7807b8f98d2727e9526758ba61dbe0a7ef15ca991",
-      "tasks.md": "3cf07e11ea7a056e9e37f57f44ad3ee389b8b5e795c4da9dfa5921f133b07580",
-      "decision-record.md": "3d02a46d5740a98aa414a92bc218a904edcb533f486ed9ccd7efe9ee37e5fa27"
+      "spec.md": "55fd0a3e8c26d7021921bb0101e07c381fbb1a909b6a7744448fba3f7867785d",
+      "plan.md": "a59a9008feb0a9717dab31fa92826d6145f7483eea3c612d7ad5ebdd06fe2f2a",
+      "tasks.md": "387db3b673e2dcdfed87462caaef3e1b66d78f1662bf6d653066d13801bafba4",
+      "decision-record.md": "88c45f3795ba8946392ec6869058350695e5c0c9409411d37c4b596f2e9944f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

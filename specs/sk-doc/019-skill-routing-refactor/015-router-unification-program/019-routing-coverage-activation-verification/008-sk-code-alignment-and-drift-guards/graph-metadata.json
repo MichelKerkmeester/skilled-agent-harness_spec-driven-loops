@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
     "created_at": "2026-07-20T21:51:40.268Z",
-    "last_save_at": "2026-08-30T07:19:05.453Z",
+    "last_save_at": "2026-08-30T08:04:14.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:64eb77c4134a25a74267b80deb646e1693c49506fcd9d1e0cbfa53cd35bc103c",
+    "source_fingerprint": "sha256:09465c9e5105bc21e8277aa2c1be9f9b217803df3dc63eff65473b950fcb92c5",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f502375b480dc6830bf91ca5febdbe7407ab31dd12da0ca2ea4d989026bbaa9e",
-      "plan.md": "305d673d988e551c318ab58b747ff1a566d2e20389490108d56efa84e6c033b6",
-      "tasks.md": "46c42218889fb5004b04996bb3737de1303342389ca816c68dac5dbead1a09cd",
-      "implementation-summary.md": "96074d23d5eeb6be99209009c506a247930290e07cc97137ae862b24bc088cdb"
+      "spec.md": "15432f17085964845022d9c34065963e5c16c8b61974f63f641bf6bb6a92d016",
+      "plan.md": "efac94677d71b3b24684a622ec5f8b79922e027f28c166a68c62b57ee88e04cf",
+      "tasks.md": "858d91fbcf2c53f63ea150bb1fc65631d7116631e3afff45a8928a8f6214a2b2",
+      "implementation-summary.md": "f14c0be4101f9919cf10f40ec8308c80250ae349067c499da00ee1cdd29b6b0b"
     },
     "last_active_child_id": null,
     "last_active_at": null

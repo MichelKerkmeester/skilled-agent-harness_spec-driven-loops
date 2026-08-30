@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The rerank sidecar launcher still had two P1 process-boundary risks: F15 owner-token publication could leave a partially written or race-observed token, and F49 spawned the sidecar with blanket parent environment inheritance",
     "created_at": "2026-05-23T06:45:25Z",
-    "last_save_at": "2026-08-30T07:16:32.554Z",
+    "last_save_at": "2026-08-30T08:04:46.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80ad3390b76dd3cbbfc7ad08ea10321d03e565a8ac8bcb8961a42efd2e665fcb",
+    "source_fingerprint": "sha256:c30e25d57460510c0fcf5061fcd676a55c8cd481741c24d79d92af70796f67cb",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "20b192f4f3136302f0d860dcc0bb38e0b5311b1f7999a8d3e2893e5e4769383b",
-      "plan.md": "b12712baf0ad141ab8b657306850de3cda031e99d6fc038b39fa9e2274f257df",
-      "tasks.md": "8306c337a30553d360be2c19411b1bd1c096ba39873a8b2325fc9a891106fff9",
-      "decision-record.md": "3f68e60bb57bbb48996d2c00399efe1e64c34c9b1fd13a42a943d569d3a49333",
-      "implementation-summary.md": "b99b98ae52dffd6b84de9a58deaaa05172d19615f829a4d412acbb026ae61a9c"
+      "spec.md": "2ed7543f6199fbc30877631cdb377825d720cdf710be4311dde8734db0251df4",
+      "plan.md": "5dbe8bdf5f341c85f275f35513db0b8248f7c674ea34ff3251326293a91a3f92",
+      "tasks.md": "a5a2b2b2ec7ab2a96750d22dc8ac24d9d8f5d954963f6e1c21355539ab1810e3",
+      "decision-record.md": "d7eb0aeddcc50cd9b4bde21b3272e632dbc4e5408143cb8e76349c7088fae089",
+      "implementation-summary.md": "4b421d47c18be82109c54e871c06c807a0c5b8e1d99894ff8b3499d97e7bf98a"
     },
     "last_active_child_id": null,
     "last_active_at": null

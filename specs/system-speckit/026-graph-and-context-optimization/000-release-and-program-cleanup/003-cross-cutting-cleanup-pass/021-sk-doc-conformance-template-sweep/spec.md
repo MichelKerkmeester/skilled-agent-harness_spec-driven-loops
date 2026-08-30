@@ -1,5 +1,5 @@
 ---
-title: "...timization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/spec]"
+title: "Feature Specification: sk-doc Conformance Sweep and Template Cleanup"
 description: "Multiple sk-doc-governed surfaces have drifted from canonical format and the templates folder needs legacy cleanup; this packet runs a coordinated conformance sweep so sk-doc remains the single source-of-truth for documentation shape."
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep"

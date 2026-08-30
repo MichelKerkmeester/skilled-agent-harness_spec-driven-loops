@@ -1,5 +1,5 @@
 ---
-title: "...tion/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank/spec]"
+title: "Spec: fp16 cross-encoder weights on MPS"
 description: "Cut Qwen3-Reranker-0.6B's memory footprint roughly in half by loading weights in fp16 instead of fp32. Packet 007 OOM'd at 50-doc batches; packet 008 caps batches at 10; this packet tries a third lever — the weights themselves — so the same batch size fits more comfortably on Apple Silicon MPS. Adds RERANK_TORCH_DTYPE env var to the sidecar."
 trigger_phrases:
   - "009 fp16 rerank"

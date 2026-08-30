@@ -1,5 +1,5 @@
 ---
-title: "...ng-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/plan]"
+title: "Implementation Plan: Compiled-Route Sync Authored-Root Repair"
 description: "Trace the renumbered authored closure, stage it beside the serving root, verify it without spec reads, and atomically publish it with rollback retained."
 trigger_phrases:
   - "compiled route sync repair plan"

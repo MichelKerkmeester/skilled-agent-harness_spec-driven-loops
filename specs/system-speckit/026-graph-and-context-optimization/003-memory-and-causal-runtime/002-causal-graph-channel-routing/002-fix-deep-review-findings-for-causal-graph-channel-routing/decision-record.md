@@ -1,5 +1,5 @@
 ---
-title: "...ntime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record]"
+title: "Decision Record: 002 Deep-Review Remediation"
 description: "Architecture decisions for closing 3 P1 and 39 P2 findings from the 2026-05-11 deep review."
 trigger_phrases:
   - "ntime"

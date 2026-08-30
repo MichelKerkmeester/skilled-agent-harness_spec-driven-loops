@@ -1,5 +1,5 @@
 ---
-title: "...tor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/tasks]"
+title: "Tasks: Compiled-Routing Coverage Build-Out & Genuine Default-On"
 description: "Task breakdown mirroring the 6-part plan: sk-code pilot, replicate to thin hubs, fix over-detection bugs, re-mint and build sk-doc/system-deep-loop, stage the flip, verify the fleet."
 trigger_phrases:
   - "compiled routing coverage tasks"

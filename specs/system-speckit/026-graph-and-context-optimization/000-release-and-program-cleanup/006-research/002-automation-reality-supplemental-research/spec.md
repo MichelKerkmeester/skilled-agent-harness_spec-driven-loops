@@ -1,5 +1,5 @@
 ---
-title: "...-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research/spec]"
+title: "Research Charter: Automation Reality Supplemental — Continuation of 012"
 description: "5-iter supplemental deep research extending 012's automation reality map. Deepens the 4 P1 aspirational findings via adversarial Hunter→Skeptic→Referee, probes under-covered surfaces (deep-loop graph, CCC + eval + ablation, validator auto-fire), and outputs a sequenced remediation backlog (packets 031-035)."
 trigger_phrases:
   - "002-automation-reality-supplemental-research"

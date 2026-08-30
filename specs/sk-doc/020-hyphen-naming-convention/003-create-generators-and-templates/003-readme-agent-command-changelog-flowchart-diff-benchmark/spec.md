@@ -1,5 +1,5 @@
 ---
-title: "...ming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark/spec]"
+title: "Feature Specification: README, agent, command, changelog, flowchart, diff, and benchmark generators (020 phase 003 child 003)"
 description: "Seven create-* workflow packets still carry output examples and path rules that can produce underscore names. Their generated files and directories must use kebab-case, with README/SKILL/tool contracts and Python exemptions preserved."
 trigger_phrases:
   - "readme agent command benchmark generator naming"

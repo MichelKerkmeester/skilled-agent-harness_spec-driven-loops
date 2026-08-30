@@ -1,5 +1,5 @@
 ---
-title: "...-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs/plan]"
+title: "Implementation Plan: Rerank reaper env knobs and operator docs"
 description: "Extend the rerank sidecar launcher allowlist and update operator-facing docs for the completed reaper lifecycle."
 trigger_phrases:
   - "rerank reaper env plan"

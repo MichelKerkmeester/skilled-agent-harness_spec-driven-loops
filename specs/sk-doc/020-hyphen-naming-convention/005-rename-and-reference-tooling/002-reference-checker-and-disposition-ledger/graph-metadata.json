@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The migration needs a whole-repository checker that follows every mapped path through code, docs, configs, registries, and symlinks, while recording a disposition for every rename and dynamic require, source, or glob site.",
     "created_at": "2026-07-14T15:16:48Z",
-    "last_save_at": "2026-08-30T07:19:12.899Z",
+    "last_save_at": "2026-08-30T08:04:21.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:486b276eefb807fac44c4275406f7fd65c748d012344f21a48442d7b32200706",
+    "source_fingerprint": "sha256:10ecc442f65d0b89ab6bc02971403a8f17fbbf2b15058b2596b4197843aec7d8",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f4e24e8551f69be6da98d4d976c7fe0fd0d937a91eda8e238edcc9182ba4ef74",
-      "plan.md": "61a9d7b5da6eb929349979f014949ab2eb912abbe068cafc03de21b20acb3fea",
-      "tasks.md": "43496c60384dcd0857fcf690861912532c498e9c967250d53ed524b01f2fe1f0",
-      "decision-record.md": "d01b16a8ba6d92f520f0c91ecc4b6b40f7cc69ab5d019a191dab4c02d1fda9c1",
-      "implementation-summary.md": "dd1142373a53e6fcff635a48333a93ecd7a18adb5e3fed8b263778e92b59f73b"
+      "spec.md": "eeeeb66f69006457ee4b2be0c5a8f07dc2dae3a8d869d7a78a35c6e7f2b75c99",
+      "plan.md": "b48904ac3b5c58cf16d6dea08ee4606a03accaeccccf52d194df99b65ed1f92a",
+      "tasks.md": "65b717a0a45e92950db2ad360748569868b312563691508f0d6419a1b2562966",
+      "decision-record.md": "2fefe799279256eb1cf220933d4218b5dfaea80852a79083ce1fc3a79e62c30c",
+      "implementation-summary.md": "f957f0b023bbb9bf68e4b1ec4b1d1e70c85cc8e946f787b38c6cdce745bbca7b"
     },
     "last_active_child_id": null,
     "last_active_at": null

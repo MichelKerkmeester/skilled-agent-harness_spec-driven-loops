@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The cli-opencode component has snake_case reference and asset filenames, including permissions-matrix examples/schema and prompt assets, with active links from SKILL.md, README.md, and JSON path values. This phase renames those local filesystem names and closes their references while preserving tool contracts and delegated playbook ownership.",
     "created_at": "2026-07-14T15:17:36Z",
-    "last_save_at": "2026-08-30T07:19:33.780Z",
+    "last_save_at": "2026-08-30T08:04:25.672Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ad1b6dffd5df527ed4689e49a6c951bc3e91c519a7183b4a0ce30c8789feffe7",
+    "source_fingerprint": "sha256:893b3b45d3f947c99065e196bbe1cb5374bb3dfd4b7d6884342887ce7fde65ed",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "a34923899fbb68cfb9619ed67f44816fa06cee1bcb7f1331d9c4c197a631e3b6",
       "plan.md": "8b90f6ce8cd261888fd2ecb91cb4559489426c8ac528112ea9e4f39727e8b4d5",
       "tasks.md": "633d494ad784d5527e60348b9980c962cf076ad0292d18618f1ba1df80d16916",
-      "decision-record.md": "f99846a857e1c37fa32d4f106b1dd68340caafce4a749f16854829791fa2d549"
+      "decision-record.md": "3c0ad86f8e2c2059c10b1fdabb001c47c0089936c4e39e1b791658cec6bdbd7f"
     },
     "last_active_child_id": null,
     "last_active_at": null

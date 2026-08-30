@@ -1,5 +1,5 @@
 ---
-title: "...se-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-3/research]"
+title: "codex 3 — research"
 description: "The audit findings are not one isolated stale-doc failure. They cluster into five root causes: hand-maintained MCP contracts, metadata ownership split across save/backfill/catal..."
 trigger_phrases:
   - "and"

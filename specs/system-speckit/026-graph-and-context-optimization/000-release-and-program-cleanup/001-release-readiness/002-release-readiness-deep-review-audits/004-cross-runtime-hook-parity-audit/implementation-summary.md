@@ -1,5 +1,5 @@
 ---
-title: "...elease-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit/implementation-summary]"
+title: "Implementation Summary: Cross-Runtime Hook Parity Audit"
 description: "The audit packet now records release-readiness findings for cross-runtime hook parity and distinguishes direct hook smoke evidence from missing normal-shell live verdicts."
 trigger_phrases:
   - "045-005-cross-runtime-hook-parity-audit"

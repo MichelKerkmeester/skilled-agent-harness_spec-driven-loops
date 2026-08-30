@@ -1,5 +1,5 @@
 ---
-title: "...5-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/decision-record]"
+title: "Decision Record: v1.0.4 Full-Matrix Stress Test Design"
 description: "Level 3 design decisions for the full-matrix v1.0.4 stress test: scope, matrix abstraction, scoring, harness architecture, executor reachability, and comparability."
 trigger_phrases:
   - "full matrix decision record"

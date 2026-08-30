@@ -1,5 +1,5 @@
 ---
-title: "...d-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/spec]"
+title: "Feature Specification: 002 Deep-Review Remediation for 012 Causal Graph Channel Routing"
 description: "Close 3 P1 and 39 P2 findings from the 2026-05-11 10-iteration deep review (cli-opencode + deepseek/deepseek-v4-pro) of 012/001-deliver-causal-graph-channel-routing-mvp. Tier-1 wires invalidateEntityDensityCache + fixes resource-map drift; Tier-2 ships ~19 code/test polish items; Tier-3 cleans graph-metadata.json + doc-staleness."
 trigger_phrases:
   - "002-fix-deep-review-findings-for-causal-graph-channel-routing"

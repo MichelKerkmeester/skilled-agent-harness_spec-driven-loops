@@ -1,5 +1,5 @@
 ---
-title: "...k-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook/plan]"
+title: "Implementation Plan: system-skill-advisor manual testing playbook"
 description: "Rename the manual-testing-playbook root, nine categories, and 48 files with a complete path map, repair catalog and operator links, and prove scenario identity and discovery parity."
 trigger_phrases:
   - "manual testing playbook implementation plan"

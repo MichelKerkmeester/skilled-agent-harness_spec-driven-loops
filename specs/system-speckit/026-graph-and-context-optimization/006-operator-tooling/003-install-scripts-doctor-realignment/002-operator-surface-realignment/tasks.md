@@ -1,5 +1,5 @@
 ---
-title: "...text-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment/tasks]"
+title: "Tasks: Phase 1: operator-surface-realignment"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

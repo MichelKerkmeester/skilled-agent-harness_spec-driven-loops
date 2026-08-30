@@ -1,5 +1,5 @@
 ---
-title: "...unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption/plan]"
+title: "Implementation Plan: Compiled Routing Flag Propagation & Effective Consumption"
 description: "Planned build sequence for un-stripping SPECKIT_COMPILED_ROUTING in both child-env allowlists and un-dropping the compiled decision through the native brief builder, the OpenCode bridge rebuild, the CLI subprocess interface, and the hook render — with manifest-fingerprint cache invalidation and e2e propagation/consumption tests. Additive, byte-identical to legacy, reversible; depends on 002."
 trigger_phrases:
   - "compiled routing flag propagation plan"

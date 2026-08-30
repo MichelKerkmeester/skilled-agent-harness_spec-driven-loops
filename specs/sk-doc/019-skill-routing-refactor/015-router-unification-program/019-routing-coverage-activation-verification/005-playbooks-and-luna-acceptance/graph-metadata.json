@@ -104,6 +104,12 @@
         "source": "derived"
       },
       {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Routing Playbooks",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -129,12 +135,6 @@
       },
       {
         "name": "Live Lane",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Ship",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the standard authoring template omits typed manifest gold (CF-PB-1)",
     "created_at": "2026-07-20T21:51:32.363Z",
-    "last_save_at": "2026-08-30T07:19:04.391Z",
+    "last_save_at": "2026-08-30T08:04:13.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e904e684514a65552c8ddab4704b7027e3955b4f8bd5ecaf327ceb4dccbe71e",
+    "source_fingerprint": "sha256:9f845a27648a296942a71efee708d74abd724f805855915a7bccc3dfb3b14a27",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "6764f543e66d6359ff44b3176415d6351561cddd0a364b3113544d10a4d39448",
-      "plan.md": "5f073307790a02a5d9a141d216df69610ee515637925d866c5febc5c0169f5c6",
-      "tasks.md": "1f09caf8f9c54e5a46dc7a38bb39515339be129daced67d31be6dff21f38e4df",
-      "implementation-summary.md": "75ecec2596b4e5a4ef3bb76a2724d63f574559e334c1d820ee8a15281c549f2a"
+      "spec.md": "2517f7b1bb6d33ab87feb6af57904a3b1c2fb385bf136cfcb5d84b8831ef5fe2",
+      "plan.md": "aab5b1a5205d51accfb85a36774584f542aa94476f82efce3b2e544f24b20907",
+      "tasks.md": "9121f6ca59657212d86a2cb82bdd6f4adcd1a3a31d0d2b42f2367f5bfb5fc7ab",
+      "implementation-summary.md": "912a7fd61ad344b67cdcd4fa6d8154c6c5aa30340658f2060e0773e51a9fd200"
     },
     "last_active_child_id": null,
     "last_active_at": null

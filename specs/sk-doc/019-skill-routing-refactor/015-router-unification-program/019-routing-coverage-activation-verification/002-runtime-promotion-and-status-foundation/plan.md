@@ -1,5 +1,5 @@
 ---
-title: "...er-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation/plan]"
+title: "Implementation Plan: Runtime Promotion & Status Foundation (P0)"
 description: "Planned build sequence for the compiled-routing P0 foundation: promote the resolver/engine/activation/bundle closure to a stable runtime path, split eligibility from the engine-dispatch table, ship the per-hub status probe and wire it into advisor_status and session_bootstrap, document and tri-state the flag, add stderr breadcrumbs, and add a durable no-spec-import CI rule — all behind the still-off flag, byte-identical to legacy, with a named rollback per step and the frozen scorer never edited."
 trigger_phrases:
   - "runtime promotion status foundation plan"

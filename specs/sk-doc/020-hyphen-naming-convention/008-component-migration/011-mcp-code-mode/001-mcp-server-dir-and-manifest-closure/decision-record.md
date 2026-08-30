@@ -1,5 +1,5 @@
 ---
-title: "...-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure/decision-record]"
+title: "Decision Record: mcp-server path closure (020 component 011 phase 001)"
 description: "The design choices for moving the embedded mcp_server directory to mcp-server without changing Python exemptions, tool-mandated package filenames, package identifiers, or the Node entrypoint contract."
 trigger_phrases:
   - "mcp-server path decision record"

@@ -1,5 +1,5 @@
 ---
-title: "...-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference/implementation-summary]"
+title: "Implementation Summary: Semantic Relation Inference"
 description: "Added the two deferred OPT-IN collectors to backfillRelationInference: a similarity 'supports' collector reading only the cached memory_index.related_memories column (threshold 75, top K<=5, strength ~0.35) and a 'contradicts' collector from structural memory_lineage.superseded_by_memory_id (strength ~0.3). Both default false, run inside the existing transaction, emit created_by='auto' edges through insertEdgesBatch, and inherit the dryRun-default + bounded safety. Wired through schema/types/handler; honest hint updated. Tests green; tsc clean; deploy pending."
 trigger_phrases:
   - "graph"

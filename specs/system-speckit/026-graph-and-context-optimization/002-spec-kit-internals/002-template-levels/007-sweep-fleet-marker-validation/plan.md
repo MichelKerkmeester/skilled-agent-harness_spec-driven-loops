@@ -1,5 +1,5 @@
 ---
-title: "...026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation/plan]"
+title: "Implementation Plan: fleet-marker-validation-sweep"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

@@ -1,5 +1,5 @@
 ---
-title: "...imization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/tasks]"
+title: "Tasks: sk-doc Conformance Sweep and Template Cleanup"
 description: "Numbered task list mapped to plan.md Tier 1-4 sub-phases; cli-codex parallel dispatches enumerated per wave."
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep tasks"

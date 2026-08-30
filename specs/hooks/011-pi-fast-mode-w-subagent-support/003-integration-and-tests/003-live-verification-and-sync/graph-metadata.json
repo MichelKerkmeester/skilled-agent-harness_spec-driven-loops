@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Source and package tests cannot prove real TUI/RPC status delivery, custom-footer coexistence, or a child Pi session inheriting the preference",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-30T07:18:56.780Z",
+    "last_save_at": "2026-08-30T08:04:09.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:587883d41f4379f3b14dce4fa0f32f2699820474ad8ccb957f700bcf6df354ca",
+    "source_fingerprint": "sha256:31b6d719694f9e3f45f4090ba8380889315e683c7a4e520723793013c979e20c",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "0372204fb2191d51713da6dc1530ecdaadbd9b79c162b886d3f1ffd4627b53f3",
       "plan.md": "3722bb249fc68f28752bec022737ac57e4f1580cc7d44c84bdd27a38f1afdd03",
       "tasks.md": "540accd4f80acbf6ffe46e58e9932554245a0fe6f04d8ea922b4836fdb7f3eca",
-      "implementation-summary.md": "e73d3c31ab4db68119eb3b0f5ec4e1bfe41b7759709bad630f464e2073a5758a"
+      "implementation-summary.md": "25fce6ea016c9f5de76ba0c26a0d2f6a002e2134d308bcb9920d3464d9a30ab6"
     },
     "last_active_child_id": null,
     "last_active_at": null

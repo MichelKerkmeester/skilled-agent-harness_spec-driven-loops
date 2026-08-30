@@ -1,5 +1,5 @@
 ---
-title: "...h-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/plan]"
+title: "Implem [system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/plan]"
 description: "4-wave implementation plan: Wave A infrastructure primitives (20h), Wave B cluster consumers (30h parallel 3 lanes), Wave C rollout + sweeps (15h), Wave D P2 maintainability (40h deferrable). Critical path ~60h / 6 working days."
 trigger_phrases:
   - "017 phase 017 plan"

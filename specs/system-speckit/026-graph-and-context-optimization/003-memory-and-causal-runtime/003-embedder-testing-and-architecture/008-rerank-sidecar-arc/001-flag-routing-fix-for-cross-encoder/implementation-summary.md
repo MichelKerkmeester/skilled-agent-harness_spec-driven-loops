@@ -1,5 +1,5 @@
 ---
-title: "...bedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder/implementation-summary]"
+title: "Implementation Summary: Flag-routing fix for cross-encoder HTTP local provider"
 description: "Implemented Stage 3 reranker flag precedence so SPECKIT_CROSS_ENCODER wins over RERANKER_LOCAL, with helper hardening, regression tests, docs updates, and verification evidence."
 trigger_phrases:
   - "001 implementation summary"

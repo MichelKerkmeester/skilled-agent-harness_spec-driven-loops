@@ -1,5 +1,5 @@
 ---
-title: "...ement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation/spec]"
+title: "Feature Specification: Spec-Folder Control-Metadata Reconciliation"
 description: "Remediation sub-phase of the 027 fresh+regression deep-review: 8 findings (5 P1) in this subsystem, each carried as a task with its registry recommendation. Scaffold only — no fixes applied."
 trigger_phrases:
   - "ement"

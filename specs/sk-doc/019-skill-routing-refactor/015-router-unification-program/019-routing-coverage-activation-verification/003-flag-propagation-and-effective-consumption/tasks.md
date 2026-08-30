@@ -1,5 +1,5 @@
 ---
-title: "...nification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption/tasks]"
+title: "Tasks: Compiled Routing Flag Propagation & Effective Consumption"
 description: "Planned task breakdown mapping the flag-propagation and decision-consumption work to REQ-001 through REQ-008."
 trigger_phrases:
   - "compiled routing flag propagation tasks"

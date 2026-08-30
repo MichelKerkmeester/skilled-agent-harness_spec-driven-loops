@@ -1,5 +1,5 @@
 ---
-title: "...-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption/decision-record]"
+title: "Decision Record: Compiled Routing Flag Propagation & Effective Consumption"
 description: "Three decisions governing how the compiled decision is threaded to an agent boundary: thread a top-level metadata.compiledRouteSummary rather than the full object across brief surfaces, consume 002's serving-state fingerprint for cache invalidation rather than recomputing, and render the 4-action outcome as an additive brief line rather than a structured field."
 trigger_phrases:
   - "compiled routing consumption decision record"

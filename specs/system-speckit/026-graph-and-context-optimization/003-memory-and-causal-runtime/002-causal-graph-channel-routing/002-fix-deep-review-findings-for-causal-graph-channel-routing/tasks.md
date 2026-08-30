@@ -1,5 +1,5 @@
 ---
-title: "...-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/tasks]"
+title: "Tasks: 002 Deep-Review Remediation"
 description: "21 batches across 4 tiers, each one cli-codex dispatch. Update as each batch lands."
 trigger_phrases:
   - "causal"

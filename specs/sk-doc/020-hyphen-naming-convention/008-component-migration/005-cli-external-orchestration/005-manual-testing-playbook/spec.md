@@ -1,5 +1,5 @@
 ---
-title: "...020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook/spec]"
+title: "Feature Specification: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
 description: "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude Code, and Codex scenarios. This phase renames those playbook filesystem names, updates active references, and preserves scenario IDs, frontmatter fields, and test meaning."
 trigger_phrases:
   - "cli-external manual playbook kebab-case"

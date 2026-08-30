@@ -1,5 +1,5 @@
 ---
-title: "...p-loop/035-command-surface-benchmark/012-command-improvement-research/research/lineages/gpt56-sol-high-fast/research]"
+title: "gpt56 sol high fast — research"
 description: "The dominant defect is not that individual commands ignore a complete canon. The canon itself duplicates behavioral truth across a normative skill, two templates, router prose, ..."
 trigger_phrases:
   - "loop"

@@ -1,5 +1,5 @@
 ---
-title: "...-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/plan]"
+title: "Implementation Plan: reference checker and disposition ledger (020 phase 005.002)"
 description: "Implementation plan for a read-only whole-repository reference checker: enumerate tracked files and symlinks, resolve code and path-valued references, classify dynamic sites, and validate a complete disposition ledger against the semantic rename map."
 trigger_phrases:
   - "reference checker implementation plan"

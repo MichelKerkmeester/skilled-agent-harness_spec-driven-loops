@@ -1,5 +1,5 @@
 ---
-title: "...-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/implementation-summary]"
+title: "Implementation Summary: Phase 1 cli-external-orchestration README rewrite"
 description: "The cli-external-orchestration README now opens purpose-first with a one-line pitch and a problem-first overview, carries all six mode pointers and the routing facts, and versioned at 1.3.0.0 with a changelog entry."
 trigger_phrases:
   - "implementation summary"

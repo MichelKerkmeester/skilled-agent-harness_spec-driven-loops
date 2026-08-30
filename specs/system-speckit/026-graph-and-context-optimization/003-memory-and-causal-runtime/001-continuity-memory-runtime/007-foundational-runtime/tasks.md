@@ -1,5 +1,5 @@
 ---
-title: "...-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/tasks]"
+title: "Tasks [system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/tasks]"
 description: "27 tasks across 4 waves (A=5, B=9, C=5, D=8). Full acceptance criteria with finding crosswalk. Status tracking per task. Evidence citations pending implementation."
 trigger_phrases:
   - "017 tasks"

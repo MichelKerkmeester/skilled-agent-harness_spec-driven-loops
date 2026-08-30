@@ -1,5 +1,5 @@
 ---
-title: "...naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook/decision-record]"
+title: "Decision Record: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
 description: "Design decisions for the four-tree playbook rename: keep one ownership map across hub and CLI components, rename path segments without changing scenario contracts, and resolve references against the final tree."
 trigger_phrases:
   - "cli-external manual playbook decision record"

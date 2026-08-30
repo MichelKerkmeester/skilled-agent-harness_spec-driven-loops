@@ -1,5 +1,5 @@
 ---
-title: "...ix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs/implementation-summary]"
+title: "Implementation Summary"
 description: "The rerank sidecar launcher now forwards the approved reaper knobs, and the skill docs explain normal cleanup without operator guesswork."
 trigger_phrases:
   - "rerank reaper env handoff"

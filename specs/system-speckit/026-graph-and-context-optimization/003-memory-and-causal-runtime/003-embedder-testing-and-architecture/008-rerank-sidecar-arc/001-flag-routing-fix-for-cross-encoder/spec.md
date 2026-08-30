@@ -1,5 +1,5 @@
 ---
-title: "...sal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder/spec]"
+title: "Feature Specification: Flag-routing fix for cross-encoder HTTP local provider"
 description: "Separate SPECKIT_CROSS_ENCODER from RERANKER_LOCAL so the HTTP local-provider path in cross-encoder.ts is actually reachable. Today setting SPECKIT_CROSS_ENCODER=true is necessary but not sufficient; RERANKER_LOCAL=true activates the no-op local-reranker.ts shim which shadows the HTTP cross-encoder dispatch in stage3-rerank.ts:400. Prerequisite for arc phases 002-005."
 trigger_phrases:
   - "speckit_cross_encoder routing"

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Phase 001 of the numbered-prefix deprecation. Update the two authoritative sk-doc convention skills (create-feature-catalog, create-manual-testing-playbook), their asset templates, and the /create:* command generators so the documented canonical category-folder name is the bare descriptive slug, not NN--slug. Ordering is documented as owned by the root index table. Docs-only phase — no folders are renamed here; it removes the mandate that would otherwise re-introduce numbers.",
     "created_at": "2026-07-10T18:51:12.648Z",
-    "last_save_at": "2026-08-30T07:16:14.375Z",
+    "last_save_at": "2026-08-30T08:04:09.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6b0c8f7b0bec45b90a87f82cd5f38a6bf2b64501cd92cf0c035194c571079cc6",
+    "source_fingerprint": "sha256:cfa76e74792a8e0d01053ed6cf7dd7786b80ae3687b9d36bc7d8e363831341e0",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "6e441af45bf6f914fc625dc20e72322baea96fbc86bcddde7bdd9e6864979b35",
-      "plan.md": "9a443edcdb6d6c1bee72b0aed5f701c3fbda2403b44f5f6bf6d5b005124c15e8",
-      "tasks.md": "4c56af14ffa7495db0eff7aaf45b2fa66d571d924cff1075052e3e1aeee202d8",
-      "implementation-summary.md": "54d341a9b7f5db2bd67df85ba6b32d13bb3419b7cccc0da5f2195df33be59803"
+      "spec.md": "81ebd69b06eb4060c21451d3e7dedef603096a6524ddf80fc97011c9416cf62c",
+      "plan.md": "fb6b2d2b809ef0b3b734f4c84bb546ee5f11f938f5f1fed89da7545ccd3bf760",
+      "tasks.md": "ef25d7830122ed3f0e00eee272739fc3741e9c321b32049f7784b48695d94f37",
+      "implementation-summary.md": "5649e032321f299b87b99325310752ae958f82cab526301e4fe2d3b7133c2736"
     },
     "last_active_child_id": null,
     "last_active_at": null

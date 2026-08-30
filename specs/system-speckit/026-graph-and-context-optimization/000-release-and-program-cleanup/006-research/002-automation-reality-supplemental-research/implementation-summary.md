@@ -1,5 +1,5 @@
 ---
-title: "...ion/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research/implementation-summary]"
+title: "Implementation Summary: Automation Reality Supplemental Research"
 description: "Implementation summary for the supplemental automation reality research packet — 5-iter continuation of 012."
 trigger_phrases:
   - "013 automation supplemental implementation summary"

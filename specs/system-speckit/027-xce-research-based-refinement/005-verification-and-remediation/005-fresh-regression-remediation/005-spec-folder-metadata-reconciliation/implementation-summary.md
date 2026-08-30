@@ -1,5 +1,5 @@
 ---
-title: "...tion-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation/implementation-summary]"
+title: "Implementation Summary: Spec-Folder Control-Metadata Reconciliation"
 description: "Planning-only status for this remediation sub-phase: 8 findings carried as tasks; no fixes applied yet."
 trigger_phrases:
   - "tion"

@@ -1,5 +1,5 @@
 ---
-title: "...doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/tasks]"
+title: "Tasks: reference checker and disposition ledger (020 phase 005.002)"
 description: "Tasks for the whole-repository checker and ledger: enumerate scan coverage, resolve typed path references, disposition dynamic sites, validate map-row completeness, and fail on empty or unresolved scans."
 trigger_phrases:
   - "reference checker tasks"

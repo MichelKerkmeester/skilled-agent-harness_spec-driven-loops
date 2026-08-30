@@ -1,5 +1,5 @@
 ---
-title: "...ing-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark/tasks]"
+title: "Tasks: README, agent, command, changelog, flowchart, diff, and benchmark generators (020 phase 003 child 003)"
 description: "Tasks for aligning seven create-* workflow families with semantic kebab-case output names and verifying each family in a temporary target."
 trigger_phrases:
   - "create workflow artifact naming tasks"

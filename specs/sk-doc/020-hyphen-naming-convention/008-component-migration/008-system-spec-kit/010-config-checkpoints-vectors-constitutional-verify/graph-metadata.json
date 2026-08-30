@@ -167,7 +167,7 @@
     ],
     "causal_summary": "This verify-only phase audits the runtime agent directories and adjacent system-spec-kit config, checkpoint, vector, and constitutional surfaces for permitted snake_case filesystem names. The pinned inventory has zero rename candidates in the three runtime agent directories; generated/vector/checkpoint artifacts and tool-mandated names retain their exempt disposition.",
     "created_at": "2026-07-14T15:18:04Z",
-    "last_save_at": "2026-08-30T07:19:47.252Z",
+    "last_save_at": "2026-08-30T08:04:30.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -175,12 +175,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:5237d410c2d2695012c7ea5da1b2c02ca17c11a85316cdd396636dc8a5da8828",
+    "source_fingerprint": "sha256:8938adf2ff3ed4124ecedc8261b50240708801722a312e5d28446a9773d32c24",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a27461402d0011db52835aac5d77188a67bfd04a4653281b02ac4976445aecc7",
-      "plan.md": "100b7cfa20662d6fd3f2325393513fa2530dcda596e4ca96039b2bc5a9ee9509",
-      "tasks.md": "e54fc4b1b744adb31f15236ea4b2ef7662d777493bc7840a7d1594c4e1a1aecc"
+      "spec.md": "241b796d3506bc0246a2c1daea61a73d8d013b196745ac08c23e304df375c53f",
+      "plan.md": "a3bdab6a31a8df7619c34f2c5c288419ba3bde35f95fba9a920fc5110c1c9058",
+      "tasks.md": "1a4ff27745f6e763b80be6cb5aa1de51fd516810a1ae8f55748c49d384220fc8"
     },
     "last_active_child_id": null,
     "last_active_at": null

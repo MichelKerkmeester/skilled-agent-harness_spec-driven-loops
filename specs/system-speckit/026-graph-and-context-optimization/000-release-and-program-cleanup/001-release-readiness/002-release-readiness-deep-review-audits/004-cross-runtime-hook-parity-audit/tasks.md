@@ -1,5 +1,5 @@
 ---
-title: "...ram-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit/tasks]"
+title: "Tasks: Cross-Runtime Hook Parity Release-Readiness Audit"
 description: "Completed task ledger for the Level 2 read-only deep-review packet."
 trigger_phrases:
   - "045-005-cross-runtime-hook-parity-audit"

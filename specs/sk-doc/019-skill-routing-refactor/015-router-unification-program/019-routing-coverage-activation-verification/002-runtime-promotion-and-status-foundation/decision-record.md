@@ -1,5 +1,5 @@
 ---
-title: "...ion-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation/decision-record]"
+title: "Decision Record: Runtime Promotion & Status Foundation"
 description: "Five decisions governing the compiled-routing P0 foundation: bind the parent ADR-003 and promote the full runtime closure out of the spec tree, split manifest-derived eligibility from the HUB_CHILD engine-dispatch table, ship a stable per-hub status JSON contract, tri-state the flag with an empty default-on cohort, and add a durable no-spec-import rule."
 trigger_phrases:
   - "runtime promotion status foundation decisions"

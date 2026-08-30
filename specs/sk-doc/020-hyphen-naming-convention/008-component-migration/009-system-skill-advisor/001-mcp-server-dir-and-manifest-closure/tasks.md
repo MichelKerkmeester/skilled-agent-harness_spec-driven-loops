@@ -1,5 +1,5 @@
 ---
-title: "...hen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure/tasks]"
+title: "Tasks: MCP server directory and manifest closure"
 description: "Concrete tasks for the system-skill-advisor package-boundary rename, manifest/entrypoint closure, exemption preservation, and runtime verification."
 trigger_phrases:
   - "mcp-server closure tasks"

@@ -73,12 +73,6 @@
         "source": "derived"
       },
       {
-        "name": "Spec Kit",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -92,6 +86,12 @@
       },
       {
         "name": "Readiness Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -157,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Runtime Hook Parity Audit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -173,17 +179,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The release-readiness program needs a runtime-by-runtime truth check for Spec Kit hook delivery",
     "created_at": "2026-04-29T20:30:00.000Z",
-    "last_save_at": "2026-08-30T07:16:25.190Z",
+    "last_save_at": "2026-08-30T08:04:38.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58075e632b7581fc5fd77197a87584fb16a1caecc7fbab5ede04a1f7c9c252e7",
+    "source_fingerprint": "sha256:610c473ea87c30ecc7f4e14e657a669820642a24956c4563d9331c1d4aa0b01c",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e4be3374e645da3579ae16bf7a5b87e275c4b4e91f7a5e44104dfea787b70af4",
-      "plan.md": "c22266c506712e319e87d1d3b03feabbc4599f152441e27d5f3643cd5e86381d",
-      "tasks.md": "7cedecdd57f8f8bd4a2890e88c5879ccace5a32c93a2a9425cc27cc8daddba82",
-      "implementation-summary.md": "f27aaf158aabb5992859bd959ac15e4a9d1d0cb8aee7faf0fc47746e5c95b587"
+      "spec.md": "10d61aa2ae7772ec324cdbf9d4ed7a9c76c583606de23f6a905fb9aa6b0e3665",
+      "plan.md": "0f61f46883a4a9f680bcf8943b1d3794649f82f823787e5ec247cebd25e1ab3e",
+      "tasks.md": "93d83af81d6e64ccb747eba5635cb9608ae686380aa97102d9965838c10d5b69",
+      "implementation-summary.md": "d37f728866cbf2865fa6c69838a72ffe65c4de2f0460534a9ee1a765a04b37e0"
     },
     "last_active_child_id": null,
     "last_active_at": null

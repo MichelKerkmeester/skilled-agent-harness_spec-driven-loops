@@ -178,7 +178,7 @@
     ],
     "causal_summary": "Packet 007 found that Qwen3-Reranker-0.6B on MPS OOMs in attention forwards at spec-memory's default 50-doc batch size — Metal tried to allocate a 76 GB MTLBuffer",
     "created_at": "2026-05-23T11:55:15.622Z",
-    "last_save_at": "2026-08-30T07:16:32.116Z",
+    "last_save_at": "2026-08-30T08:07:28.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -187,13 +187,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e41471472fc4a047d1224f0e7651c0e4b8e55dc0961852a4733c5cc0eb73390",
+    "source_fingerprint": "sha256:b24f24b2a6b0e76a1bec272d2d12a82a3a49ab460e8e1996bd9ecec98cf5820b",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3f0a2da4c70d0d49b4248230fab8b8a476ab9ceb597593d5d1a6eacad94fcb5e",
-      "plan.md": "fe3a46d10b74eb477da338b398d3e6ca258c8beb1d4deb2f11856bea92afd664",
-      "tasks.md": "573700c8421074beeedebd7f6bea05b987d2fb2aaee672d95ed9610d28d65e6a",
-      "implementation-summary.md": "b2118fd9af4717468c5ef94d322b9e29311f52d7576abc0b54d793e1fe473a99"
+      "spec.md": "f8729a51f0cef29287d231f3964952dfc85abe8c7bc1f27347540fbe49ad0b0a",
+      "plan.md": "3df0dbe8988a917f4b08852f459308f38d3f9db5179fde414b28ca15b09516fc",
+      "tasks.md": "e8cd8054075db9129755aba50d2ee4f24778020c8a3b422bd70fc455286d643d",
+      "implementation-summary.md": "f53c074c47530babe7428ee1fb4ae442c695e24dd4452f73956acbd910ba3fda"
     },
     "last_active_child_id": null,
     "last_active_at": null

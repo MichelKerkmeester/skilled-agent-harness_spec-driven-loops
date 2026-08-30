@@ -1,5 +1,5 @@
 ---
-title: "...c/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog/plan]"
+title: "Implementation Plan: create-feature-catalog resource names"
 description: "Execution plan for the create-feature-catalog asset and reference rename/reference closure."
 trigger_phrases:
   - "create-feature-catalog resource implementation plan"

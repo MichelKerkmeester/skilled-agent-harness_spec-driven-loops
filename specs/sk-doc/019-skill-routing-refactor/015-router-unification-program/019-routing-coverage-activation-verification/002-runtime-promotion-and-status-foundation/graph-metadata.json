@@ -121,6 +121,12 @@
         "source": "derived"
       },
       {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Runtime Promotion",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -151,19 +157,13 @@
         "source": "derived"
       },
       {
-        "name": "The Lane",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Begin Phase",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Begin Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The compiled router is shipped but held inert",
     "created_at": "2026-07-20T21:51:24.395Z",
-    "last_save_at": "2026-08-30T07:19:03.364Z",
+    "last_save_at": "2026-08-30T08:04:12.079Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:601531c5a9faa524589085dc70afb5a22fb8eedb4fa5130f49917b8c97c0739b",
+    "source_fingerprint": "sha256:30afad595064632eeee2aa4d0b6f4ed3cfc4b4ec5297e3cb1d7a534c9db48255",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "7549d10d21e0225db56a7e7a053d7ac30f9c8b1c823b8516477ade31ec8e493d",
-      "plan.md": "037da934776ba32279b9c2a0d3542e68f6163363889c80f37b1af866eb2a7062",
-      "tasks.md": "154aa857ffc4dc4e5d02b3a691f0aecfbfe5f820c77898a4ad4c2d752d51f112",
-      "decision-record.md": "d562afb84124389b50cb25f2317ada1ddccacf5c5284cc6745e04b64a33e38be",
-      "implementation-summary.md": "fe9a3799b2d5f5310c169938b97ab3b17e9a14fec9eb5069e71b7d6e1dae03bb"
+      "spec.md": "04da9a10082b559b02469c89149c97e9dce424f954097d62436c540c2a334b0c",
+      "plan.md": "210877132a4912489dcfd61da32c7b8bfe4c44c9aa75dd0ca8a5b4c847697c3e",
+      "tasks.md": "d2a478c5a24433329c553e72aa5bda1d511484d1504c74e71d0cbac348d91ee4",
+      "decision-record.md": "3d0966187b456dbb6881301d56c9964c878d09f7ce31954fc3bc301bebeba923",
+      "implementation-summary.md": "2f60e783e0d44b8be41571d92cb2992a9170d7cf59543f4f952928982d1e379d"
     },
     "last_active_child_id": null,
     "last_active_at": null

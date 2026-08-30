@@ -1,5 +1,5 @@
 ---
-title: "...er-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4/implementation-summary]"
+title: "Implementation Summary: Compiled Routing Staged Activation Cutover (P4)"
 description: "SUPERSEDED by 013-compiled-coverage-buildout. Execution record for the terminal P4 cutover attempt: the coverage-closure join gate was GREEN, but the real Lane C compiled-routing parity run classified the first hub, sk-prompt, as legacy-fallback-drifted (5/5 rows red), so stop-on-first-failure correctly halted the staged flip before any mutation. That drift was a parity-harness classification bug plus thin compiled coverage on 4 hubs, both root-caused and fixed in 013. As of commit 7dfffa0c93, all 7 hubs are compiled-serving (0 drift each) and DEFAULT_ON_HUBS lists all 7 in both resolver copies."
 trigger_phrases:
   - "compiled routing p4 cutover controller implemented"

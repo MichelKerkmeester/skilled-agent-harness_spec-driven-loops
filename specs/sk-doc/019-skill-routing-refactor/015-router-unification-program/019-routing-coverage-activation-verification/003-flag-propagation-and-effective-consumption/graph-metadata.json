@@ -100,6 +100,12 @@
         "source": "derived"
       },
       {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Compiled Routing",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -130,18 +136,6 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Begin Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -149,6 +143,12 @@
       },
       {
         "name": "Compiled Routing Flag Propagation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "With the flag on and a hub compiled-serving, `SPECKITCOMPILEDROUTING` today changes zero routing decisions AND surfaces nothing, for two structural reasons this phase is scoped to fix:",
     "created_at": "2026-07-20T21:51:27.075Z",
-    "last_save_at": "2026-08-30T07:19:03.700Z",
+    "last_save_at": "2026-08-30T08:04:12.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31337cb74215785d5c7d9b5a8171e256edf7b260201ddbe71377bb0ecd8accad",
+    "source_fingerprint": "sha256:a0141d93c48fccb146a46d9f95e3e1194709c2e15d0632873885d36f3bedaa25",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3c0b99fc360b81cbc04830b69642be37e0cf4fb51ec24a2bc58e364835f84f80",
-      "plan.md": "c153e742b4ad655521fa28c134dd27ef01b2bf83a12a9af56b89e6d34fc66e20",
-      "tasks.md": "acf405a9700123309a7f9287b43cf85574dc900ca055a7d3a95ec63df4483a1b",
-      "decision-record.md": "df539272368f48066ec1cd5198e57d6d5fe0cc3d1fec025460c6873e44e27cf4",
-      "implementation-summary.md": "76b3476dd9c6ba155aba1f5ab74e37dd5599ddf2a10e8fa44e46acce4598f667"
+      "spec.md": "a6092d771c8436548b3689020b48acb86881e13fd45d2dcb77f87a869641e1c7",
+      "plan.md": "03600d871342c6fbe713d66672c933f9fdbf217e3bf607c5df0756184c5e12ac",
+      "tasks.md": "95fe9485c87a4854a9beed374ea56f7ea28fed4708645f3e4ed827790882023e",
+      "decision-record.md": "94745aa26d637cead4f5df97bcf7b5f6690ea30e4c8700f3e8403df2dee428e5",
+      "implementation-summary.md": "78ea7d3ac6086c466fd5f0f8ff90c2c11f34a199af9b0c2af47734e260218ea2"
     },
     "last_active_child_id": null,
     "last_active_at": null

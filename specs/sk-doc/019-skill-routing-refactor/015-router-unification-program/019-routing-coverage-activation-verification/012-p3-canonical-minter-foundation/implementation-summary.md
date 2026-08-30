@@ -1,5 +1,5 @@
 ---
-title: "...ation-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation/implementation-summary]"
+title: "Implementation Summary: P3 Canonical Manifest Minter Foundation"
 description: "Implemented-state record for the shared initial minter, exact freshness predicate, additive status visibility, sync preservation, and zero-routing-delta evidence."
 trigger_phrases:
   - "canonical minter implementation summary"

@@ -1,5 +1,5 @@
 ---
-title: "...-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/decision-record]"
+title: "Decision Record: Compiled-Route Closure Promotion Topology"
 description: "Architecture decision for preserving a stable serving root while following the current authored phase topology safely."
 trigger_phrases:
   - "compiled route promotion decision"

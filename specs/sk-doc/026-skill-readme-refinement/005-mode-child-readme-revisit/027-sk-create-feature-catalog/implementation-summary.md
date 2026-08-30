@@ -1,5 +1,5 @@
 ---
-title: "...k-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/implementation-summary]"
+title: "Implementation Summary: Phase 027 sk-create-feature-catalog README revisit"
 description: "Closeout record for the create-feature-catalog README purpose-first rewrite, version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 027 implementation summary"

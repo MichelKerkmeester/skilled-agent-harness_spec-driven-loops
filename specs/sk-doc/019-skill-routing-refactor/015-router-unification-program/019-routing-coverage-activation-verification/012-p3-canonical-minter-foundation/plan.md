@@ -1,5 +1,5 @@
 ---
-title: ".../015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation/plan]"
+title: "Implementation Plan: P3 Canonical Manifest Minter Foundation"
 description: "Implementation plan for a shared initial manifest minter, exact freshness predicate, status integration, and sync durability. The plan wraps the existing generic 006 compiler and preserves legacy serving behavior."
 trigger_phrases:
   - "implement canonical manifest minter"

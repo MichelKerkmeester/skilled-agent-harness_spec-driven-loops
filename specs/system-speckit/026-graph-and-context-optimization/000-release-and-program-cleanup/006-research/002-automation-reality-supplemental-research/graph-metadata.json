@@ -204,7 +204,7 @@
     ],
     "causal_summary": "012's 7-iteration deep research produced a 50-row automation reality map (14 auto / 14 half / 18 manual / 4 P1 aspirational) but stopped on `maxiterations` with newInfoRatio=0.18 — STILL ABOVE the 0.10 convergence threshold",
     "created_at": "2026-04-29T14:35:00.000Z",
-    "last_save_at": "2026-08-30T07:16:28.092Z",
+    "last_save_at": "2026-08-30T08:07:26.427Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e5e8908994ea25b660944e6f4e49f4dc5ccdf12625054ee7a6732df84a6b6472",
+    "source_fingerprint": "sha256:98f72782c9c6c3a2cb25083c8e914f505ee6b5309cbda0f6c7e2c345e0dbf908",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a20fdee987ae66f4570b2387961044b5b12f23ea7a335739cf386e5707af5493",
-      "plan.md": "a070d191b01ff7d8e81af27c5d8b0311a364ebefbf914a850a88152ac08d0507",
-      "tasks.md": "0d4ce290914c2f3e1ae0cb3628e3c3aa141bea964f138f1648f0dcd0c45a9dfb",
-      "implementation-summary.md": "92527e9022f6f2677c52298ac00b3a139db338e013d1dec8a2ce00f44041fd1a",
+      "spec.md": "7748847d62163d13438caf67de62e29ee34eb70b10d25a7c810edd0ed490ae08",
+      "plan.md": "cce0bd5ff8a6d4b8135ca93bd20d6fab4deab1fc02d13b1436d523b286c110dd",
+      "tasks.md": "ea2d57238c8b447ce15eee216976ad498f93520964c90e2bc0d37f9ca31f3277",
+      "implementation-summary.md": "bd80a4f2863ca6be5a82a4e0dbfe005a77b8180deca5242c71afb27f24ee5a6a",
       "resource-map.md": "0049cf43d82b37b44ac2932fc78d216a53f169f65919343d05e00a6341d0a889"
     },
     "last_active_child_id": null,

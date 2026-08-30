@@ -1,5 +1,5 @@
 ---
-title: "...026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/implementation-summary]"
+title: "Implementation Summary: Substrate stress-harness hardening"
 description: "Final state of the three harness fixes; full stress suite green (24 files / 87 tests)."
 trigger_phrases:
   - "substrate harness implementation summary"

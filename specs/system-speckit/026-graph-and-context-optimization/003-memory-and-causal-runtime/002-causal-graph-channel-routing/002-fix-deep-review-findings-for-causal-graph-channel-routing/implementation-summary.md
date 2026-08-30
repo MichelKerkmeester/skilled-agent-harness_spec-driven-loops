@@ -1,5 +1,5 @@
 ---
-title: "...02-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/implementation-summary]"
+title: "Implementation Summary: 002 Deep-Review Remediation"
 description: "Closing synthesis for the 3 P1 + 39 P2 findings. Every finding is CLOSED with evidence."
 trigger_phrases:
   - "causal"

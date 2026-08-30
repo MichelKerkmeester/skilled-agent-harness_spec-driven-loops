@@ -1,5 +1,5 @@
 ---
-title: "...26-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation/tasks]"
+title: "Tasks: fleet-marker-validation-sweep"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

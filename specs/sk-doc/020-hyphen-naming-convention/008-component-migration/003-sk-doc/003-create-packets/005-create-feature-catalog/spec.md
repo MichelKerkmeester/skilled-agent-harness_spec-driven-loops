@@ -1,5 +1,5 @@
 ---
-title: "...c/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog/spec]"
+title: "Feature Specification: create-feature-catalog resource names"
 description: "The create-feature-catalog packet contains snake_case asset template filenames and a shared pitfalls reference. This phase renames those non-exempt resources to kebab-case and updates packet-local path references without changing catalog schema fields or feature identifiers."
 trigger_phrases:
   - "create-feature-catalog resource naming"

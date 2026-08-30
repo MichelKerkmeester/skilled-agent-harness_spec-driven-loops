@@ -1,5 +1,5 @@
 ---
-title: "...s-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/implementation-summary]"
+title: "Implementation Summary: v1.0.4 Full-Matrix Stress Test Design"
 description: "Design phase complete for the full-matrix v1.0.4 stress test. The packet defines the feature/executor/scenario matrix, rubric, harness-extension recommendation, execution task ledger, and DQI gates without running any stress cells."
 trigger_phrases:
   - "030 full matrix design complete"

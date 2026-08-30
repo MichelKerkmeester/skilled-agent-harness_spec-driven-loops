@@ -1,5 +1,5 @@
 ---
-title: "...speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test/spec]"
+title: "Sandbox Mutation Test Doc"
 description: 'title: "Sandbox Mutation Test Doc"'
 trigger_phrases:
   - "sandbox mutation test"

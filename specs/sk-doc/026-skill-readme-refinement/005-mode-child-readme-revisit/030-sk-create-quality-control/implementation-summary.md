@@ -1,5 +1,5 @@
 ---
-title: "...k-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/implementation-summary]"
+title: "Implementation Summary: Phase 030 sk-create-quality-control README revisit"
 description: "Closeout record for the quality-control README purpose-first rewrite, version alignment, changelog entry and validation."
 trigger_phrases:
   - "phase 030 implementation summary"

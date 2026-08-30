@@ -1,5 +1,5 @@
 ---
-title: "...timization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/plan]"
+title: "Implementation Plan: sk-doc Conformance Sweep and Template Cleanup"
 description: "Tiered execution plan: Tier 1 foundation, Tier 2 parallel cli-codex content rewrites, Tier 3 deterministic renames + path sweep, Tier 4 validation."
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep plan"

@@ -1,5 +1,5 @@
 ---
-title: "...cation-program/019-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance/implementation-summary]"
+title: "Implementation Summary: Compiled-Routing Playbooks — Scenario Matrix & LUNA-High Acceptance"
 description: "Implemented. The 7-hub compiled-routing scenario matrix, its evidence contract, the non-frozen content/topology validators, the evidence-gated cutover executor, and the two-plane LUNA-High acceptance stage are built and verified. The full seven-hub follow-up was rerun with real gpt-5.6-luna-high dispatch (a Claude parent runtime, no self-invocation guard) and archived under luna-high-real-20260721-073315: 13/14 live rows PASS, 1 real FAIL (mcp-tooling's holdout routed to mcp-mobbin instead of gold mcp-refero), zero SKIPs."
 trigger_phrases:
   - "compiled routing playbook implementation summary"

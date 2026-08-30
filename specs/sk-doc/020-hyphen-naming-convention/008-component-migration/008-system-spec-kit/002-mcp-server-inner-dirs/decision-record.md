@@ -1,5 +1,5 @@
 ---
-title: "...c/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs/decision-record]"
+title: "Decision Record: MCP-server inner directories (020 subtree 008 phase 002)"
 description: "Design decisions for semantic inner-directory targets and test-support discovery preservation."
 trigger_phrases:
   - "mcp-server inner-directory decisions"

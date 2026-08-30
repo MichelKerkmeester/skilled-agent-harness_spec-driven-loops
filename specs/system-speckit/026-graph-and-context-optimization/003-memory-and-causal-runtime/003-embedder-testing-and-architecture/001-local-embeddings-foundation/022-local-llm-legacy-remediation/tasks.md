@@ -1,5 +1,5 @@
 ---
-title: "...runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/tasks]"
+title: "Tasks: Local-LLM legacy remediation (post-021 review)"
 description: "Per-batch task list with acceptance checks; one cli-codex dispatch per batch + final re-review."
 trigger_phrases:
   - "022 tasks"

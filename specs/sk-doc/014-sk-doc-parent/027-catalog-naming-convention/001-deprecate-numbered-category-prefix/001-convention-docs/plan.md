@@ -1,5 +1,5 @@
 ---
-title: "...-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs/plan]"
+title: "Plan: drop the NN-- category-name mandate"
 description: "Edit the two sk-doc convention skills, their templates, and the /create:* generators to make the bare slug canonical and document index-owned ordering."
 trigger_phrases:
   - "doc"

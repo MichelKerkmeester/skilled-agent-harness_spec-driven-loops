@@ -1,5 +1,5 @@
 ---
-title: "...-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/spec]"
+title: "Feature Specification: Local-LLM legacy remediation (post-021 review)"
 description: "Remediation packet executing 5 batched fixes for the residue surfaced by sibling packet 021's deep-review. User clarified Q1=A (auto-cascade Voyage→OpenAI→llama-cpp→hf-local is the intended ship state, so 014/017's narrative is wrong) and Q2=yes (Voyage auto-pick on key is intentional). This packet (a) corrects 014/017 narrative, (b) purges old model-name defaults (Nomic, MiniLM, 384d → EmbeddingGemma 768d), (c) replaces hardcoded context-index.sqlite paths, (d) purges rejected-ONNX residue, (e) regenerates feature catalogs/playbooks/test fixtures."
 trigger_phrases:
   - "local-llm legacy remediation"

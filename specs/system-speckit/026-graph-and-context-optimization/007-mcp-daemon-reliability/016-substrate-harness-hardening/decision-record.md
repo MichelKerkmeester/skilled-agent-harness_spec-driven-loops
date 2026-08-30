@@ -1,5 +1,5 @@
 ---
-title: "...peckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record]"
+title: "Decision Record: Substrate stress-harness hardening"
 description: "ADRs for process-start-time identity, run-id TSV with EPERM fallback, and maintainer-mode INDEX-scan suppression."
 trigger_phrases:
   - "substrate harness adr"

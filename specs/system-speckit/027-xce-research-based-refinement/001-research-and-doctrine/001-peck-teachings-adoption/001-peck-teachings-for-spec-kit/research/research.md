@@ -1,5 +1,5 @@
 ---
-title: "...arch-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research]"
+title: "research — research"
 description: "The planned phases are sound and the proposed sequencing (T3 → T4 → T2, T1 deferred) is correct. Research sharpened each phase with concrete, evidence-backed refinements and sur..."
 trigger_phrases:
   - "arch"

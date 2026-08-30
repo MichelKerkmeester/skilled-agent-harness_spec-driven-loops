@@ -1,5 +1,5 @@
 ---
-title: ".../006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment/implementation-summary]"
+title: "Implementation Summary: CORE operator-surface realignment"
 description: "Realigned the system-spec-kit install guide + scripts and the /doctor command surface (both .opencode and .claude mirrors) to post-CocoIndex + post-116 reality; both route validators pass the now-functional F2 gate."
 trigger_phrases:
   - "operator surface realignment"

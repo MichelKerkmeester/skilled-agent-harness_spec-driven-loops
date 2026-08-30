@@ -1,5 +1,5 @@
 ---
-title: "...gram-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit/plan]"
+title: "Implementation Plan: Cross-Runtime Hook Parity Release-Readiness Audit"
 description: "Read-only audit plan for runtime hook parity across Claude, Codex, Copilot, Gemini, and OpenCode. The plan checks source behavior, documented contracts, latest hook-test evidence, and release-readiness implications."
 trigger_phrases:
   - "045-005-cross-runtime-hook-parity-audit"

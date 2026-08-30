@@ -1,5 +1,5 @@
 ---
-title: "...zation/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/handover]"
+title: "Handover: sk-doc Conformance Sweep and Template Cleanup"
 description: "Cross-session handover for packet 040. Captures final state, validation evidence, and the small set of pre-existing strict-mode warnings documented as out-of-scope."
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep handover"

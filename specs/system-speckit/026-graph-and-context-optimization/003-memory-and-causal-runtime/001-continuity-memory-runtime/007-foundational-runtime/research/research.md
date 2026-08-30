@@ -1,5 +1,5 @@
 ---
-title: "...d-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/research]"
+title: "research — research"
 description: "This document is the canonical narrative synthesis of the 50-iteration research run. It is intended for future consumers (Phase 017 planners, remediation engineers, cross-phase ..."
 trigger_phrases:
   - "ptimization"

@@ -100,6 +100,12 @@
         "source": "derived"
       },
       {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Compiled Routing",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -125,12 +131,6 @@
       },
       {
         "name": "Purpose Specify",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The parent goal wants compiled routing to be \"the effective default.\" Naively that reads as a one-line flip of `SPECKITCOMPILEDROUTING` from off to on",
     "created_at": "2026-07-20T21:44:54.891Z",
-    "last_save_at": "2026-08-30T07:19:06.444Z",
+    "last_save_at": "2026-08-30T08:04:16.269Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60d88e1b5adbf01dd870e87b979a3eb7ff8d8ca4e85acf034b82042bc0cd46d6",
+    "source_fingerprint": "sha256:2205a57504644f0a55cf6e89814c82329e1fb1fd148ac9bd3988d40c424015f0",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "02f4d839f030843bc7dd912f8a1fa5c8d240c29809882abdbefda3cd3f1809cb",
-      "plan.md": "ce8a5af3c212944fd747cd2e049068ee5da1b379a338f7fdcf081310db13ed17",
-      "tasks.md": "732d9741d2716e6ec1eb9726189267c1200c66dcd4e221fd03c25d1e6f14c28e",
-      "decision-record.md": "77fc239eda25d81d13a2af5fa227649758c1b540cca99ba9065ae3cd399cccd7",
-      "implementation-summary.md": "35822fa66ba83a5dfecfb642d3b70f63b625647c7918688ed26f38319cd72a82"
+      "spec.md": "fe120e388562bed7894c2d22a1bc83d42a4d840fcc20ec37f439bff3cc7bbce3",
+      "plan.md": "8c4dd2e02f22a590a7874294467736dcd4d142d227c55748dbc7151e57bd455e",
+      "tasks.md": "0bef397accde8d58ea9833a05fce1958245d2945e798cd6bf695ae379d43ab7f",
+      "decision-record.md": "d542005cf8a1b1eeba803a3923803e0dfb8bdd902a8a33bbfeb8ed00ce49fa03",
+      "implementation-summary.md": "d9c5c37471b1299e9ae2e06fd1d2a1370c6ccdb37a799e5ac4a668e6eb08de78"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "...5-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/plan]"
+title: "Implementation Plan: Rollback, Audit Integrity & Non-Hub Policy"
 description: "How activate-hub.cjs gains --rollback, flip-serving.cjs's stale serving-prior guard and ambiguous fence-advance are fixed, both drivers gain append-only audit history, and the non-hub policy plus P2 canary naming and the routingRecommendation field fix land — behind the still-off SPECKIT_COMPILED_ROUTING flag, without disturbing the seven already-activated hubs."
 trigger_phrases:
   - "rollback audit integrity plan"

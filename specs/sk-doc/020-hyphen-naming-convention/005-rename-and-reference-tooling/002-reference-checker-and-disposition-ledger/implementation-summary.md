@@ -1,5 +1,5 @@
 ---
-title: "...ming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/implementation-summary]"
+title: "Implementation Summary: reference checker and disposition ledger (020 phase 005.002)"
 description: "The checker now turns the rename engine's semantic map into a complete CAS-ready reference ledger without writing to the scanned repository."
 trigger_phrases:
   - "reference checker implementation"

@@ -1,5 +1,5 @@
 ---
-title: ".../020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure/spec]"
+title: "Feature Specification: mcp-server directory and manifest closure (020 component 011 phase 001)"
 description: "The skill stores its embedded Node MCP server under mcp_server, and installers, diagnostics, guides, and generated metadata refer to that path. This phase moves the permitted directory name to mcp-server while preserving package-lock.json, tool-mandated filenames, package metadata, and the dist/index.js entrypoint."
 trigger_phrases:
   - "mcp-server directory closure"

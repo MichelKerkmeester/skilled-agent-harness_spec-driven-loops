@@ -1,5 +1,5 @@
 ---
-title: "...-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards/spec]"
+title: "Feature Specification: sk-code Alignment & Drift Guards"
 description: "Makes the code-opencode RESOURCE_MAP equality gate real — code-opencode/SKILL.md currently attributes the guard to verify_alignment_drift.py, which is markdown-blind by construction; the real guard is sk-code-router-sync.vitest.ts, uncross-referenced. Adds a qualifiedIdToLeaf bidirectional bijection test between compiled targetQualifiedIds and the RESOURCE_MAP, unifies sk-code's three disjoint drift guards behind one run-all-drift-guards.sh entry point, and extends the runtime request contract with surfaceBundle composite-routing context. Publishes the single code-opencode alignment-authority interface (CF-SC-5) that later 015 children consume. Implemented and committed in a1cdb65d90; never edits the frozen scorer trio."
 trigger_phrases:
   - "sk-code alignment drift guards"

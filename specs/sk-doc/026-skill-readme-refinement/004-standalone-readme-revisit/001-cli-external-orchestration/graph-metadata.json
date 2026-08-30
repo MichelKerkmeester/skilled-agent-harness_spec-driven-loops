@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The cli-external-orchestration README still carries the older tabular reference-card style: a dense AT A GLANCE table, a feature-heavy pitch blockquote and numbered sections that read as an inventory of dispatch surfaces",
     "created_at": "2026-08-04T08:34:34.992Z",
-    "last_save_at": "2026-08-30T07:20:17.745Z",
+    "last_save_at": "2026-08-30T08:04:35.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:903fd4a223c93b26e7525f4ed1546306bd9cf58777bc22632916efd835a5feb8",
+    "source_fingerprint": "sha256:392bb62ea72a910787683530f72161a541c9ad7017e8b72f9d6a2e03dc52473b",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "3b6d5e22a869c6ca31daefd348fd4e1c9306a70f09cdacbecbb6e48d23d66a27",
       "plan.md": "c6b23d23370dde70fcab1a74a64ea2cd603b3fafe02a56af9b04981dce792629",
       "tasks.md": "2fdd5e3f9cde86f66388776d62e3f6045f1a8e8602684c73d4b5ce2084a38d20",
-      "implementation-summary.md": "5c2d39520f78409ef9d1762438111b7795603dcd5ab44034835477f2229eddf8"
+      "implementation-summary.md": "3ac3b62c228311abd7656c5719e13b4d8bf9e9fc1b82b66a7bcffc0b680ecb73"
     },
     "last_active_child_id": null,
     "last_active_at": null

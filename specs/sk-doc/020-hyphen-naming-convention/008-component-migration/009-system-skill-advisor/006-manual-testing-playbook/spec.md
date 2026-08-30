@@ -1,5 +1,5 @@
 ---
-title: "...k-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook/spec]"
+title: "Feature Specification: system-skill-advisor manual testing playbook"
 description: "Rename the manual_testing_playbook root, nine category directories, and 48 scenario/index files to kebab-case, update every catalog and documentation link, and preserve scenario IDs and operator contracts."
 trigger_phrases:
   - "system-skill-advisor manual testing playbook"

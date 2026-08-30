@@ -1,5 +1,5 @@
 ---
-title: "...oc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance/implementation-summary]"
+title: "Implementation Summary: Per-Mode Naming Conformance"
 description: "Implemented one shared authored-name kebab checker, wired every generating mode to a conformance step, scoped legacy-sensitive catalog guards to new content, and reconciled remaining mode documentation to the filesystem-naming canon."
 trigger_phrases:
   - "per-mode conformance summary"

@@ -1,5 +1,5 @@
 ---
-title: "...-local-embeddings-foundation/022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/decision-record]"
+title: "embedding worker diagnostic — decision record"
 description: "Proposed"
 trigger_phrases:
   - "local"

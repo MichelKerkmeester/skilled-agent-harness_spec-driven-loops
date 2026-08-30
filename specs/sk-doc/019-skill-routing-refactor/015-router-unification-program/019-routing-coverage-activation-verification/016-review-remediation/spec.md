@@ -1,5 +1,5 @@
 ---
-title: "...ing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/spec]"
+title: "Feature Specification: Compiled-Routing Deep-Review Remediation"
 description: "Fix all confirmed findings from the two GPT-5.6 deep reviews (LUNA xhigh + SOL high) of the 013 compiled-routing landing: refresh-manifest concurrency race, cutover-parity gate mishandling clarify/reject, sk-doc preview-to-review over-route, authored-closure drift for 4 hubs, cohort duplication plus stale flag telemetry, and packet completion-metadata reconciliation."
 trigger_phrases:
   - "compiled routing review remediation"

@@ -1,5 +1,5 @@
 ---
-title: "...c/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/implementation-summary]"
+title: "Implementation Summary: command asset emitters"
 description: "Create command assets now request, derive and display canonical kebab-case output paths while their current source filenames and schema keys remain stable."
 trigger_phrases:
   - "create command asset emitter implementation"

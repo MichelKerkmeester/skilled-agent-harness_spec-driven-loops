@@ -1,5 +1,5 @@
 ---
-title: "...skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/001-research/plan]"
+title: "Implementation Plan: Routing Coverage — Deep Research"
 description: "How the 25-iteration deep-research loop investigated enable-by-default activation and the four named coverage gaps across four models, and how the fresh-Opus synthesis, Sonnet adversarial verification, and orchestrator reconciliation turned 143 raw findings into the authoring brief for children 002-011."
 trigger_phrases:
   - "routing coverage research plan"

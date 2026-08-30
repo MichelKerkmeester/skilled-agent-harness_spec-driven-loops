@@ -1,5 +1,5 @@
 ---
-title: "...ting-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/tasks]"
+title: "Tasks: Compiled-Routing Feature Catalogs"
 description: "Planned task breakdown for the catalog-topology decision, per-hub leaf authoring, the two canonical-surface extensions, and phase-gated wording verification."
 trigger_phrases:
   - "compiled routing catalogs tasks"

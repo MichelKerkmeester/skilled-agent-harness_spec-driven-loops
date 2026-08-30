@@ -1,5 +1,5 @@
 ---
-title: "...ing-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/decision-record]"
+title: "Decision Record: system-code-graph MCP server directory and manifest closure"
 description: "Phase-specific decisions for moving the system-code-graph MCP package boundary to kebab-case while preserving Python, generated, lockfile, test-magic, and tool-mandated names and closing all live entrypoint references atomically."
 trigger_phrases:
   - "system-code-graph mcp-server decision record"

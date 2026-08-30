@@ -115,6 +115,12 @@
         "source": "derived"
       },
       {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Canonical Manifest Minter Foundation",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -140,12 +146,6 @@
       },
       {
         "name": "Phase Context The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The seven current activation manifests were produced by fixed per-hub build harnesses",
     "created_at": "2026-07-21T04:50:51Z",
-    "last_save_at": "2026-08-30T07:19:06.771Z",
+    "last_save_at": "2026-08-30T08:04:16.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2cf241677773c535a28a39d08a4dbd3b6cbb1b7756b55d86caeaacece12e8c21",
+    "source_fingerprint": "sha256:628f3631bddff587dece8b10b7dd1501e1a18e397a65e30b2a672f7473ee5b86",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "edd9e4703ffd285f80571e4bbcc21c8d88785cc6d23dad3c4f2865fa4b97f689",
-      "plan.md": "19746379ca2019e12396baa73f8cd18f3dfbcadceb4956f3a8eedac0933a8ceb",
-      "tasks.md": "75cf98fa9796444fd10a9ed200fe01e59025bb6d15718f0f961eb80544e69ccc",
-      "decision-record.md": "2f242d1cb6c43fcf9ca862ef6ad9a9764876e45b4580f88406ec94618e877124",
-      "implementation-summary.md": "f327b0e0482a1295ff55fd90029e42c9702d9a6c0bd1f472faabd583ce06b9d1"
+      "spec.md": "6c58c1d62a1f76ffc2ffd2d393c29bf4c5edb6ee91ceb6951065ec46b5913459",
+      "plan.md": "379b9006e6067e4da27fdf4ed4e86934705592a04eb4f7fa0d7ccef030e0ccd9",
+      "tasks.md": "4070b0e5645927a964b502af02b7156cf77f1b953026f2ae57dbe3399a66e210",
+      "decision-record.md": "d42a8a1ae61a04fda8fc6378f9dadd780d7089372cf8c03779c843bd6be57a31",
+      "implementation-summary.md": "407d02aa6689223afe9b9c924ac92eb2d774ab2ace9b2e3a1f06a9d2b40387b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

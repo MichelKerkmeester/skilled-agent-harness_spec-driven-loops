@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The system-code-graph runtime is rooted at mcpserver/, with pluginbridges/ and stresstest/ as ordinary direct",
     "created_at": "2026-07-14T15:18:13Z",
-    "last_save_at": "2026-08-30T07:19:51.902Z",
+    "last_save_at": "2026-08-30T08:04:32.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:bcf071617a04d7d06f6c8b35b026e656667faa265eaddf45efdba2026b350f0e",
+    "source_fingerprint": "sha256:099bf39e868756f4bfdaf76c71574fe999fa657e95b5841a9e440bc26e679748",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "416343c1eed8d75866efa21e998f96d7723946b896cc694b25c04fb85aea53dd",
-      "plan.md": "ee5f6deba8c89503362ec8afb746f483630e92a6c9e7db6be8801362aae81dd5",
-      "tasks.md": "1f9e3ab5317e7faf46feb600dae27052befe1757ab03a30111fc1a1e5f27650a",
-      "decision-record.md": "a404df7e93bfb2b3264a0a6066d7777737a7ca98e5cd90a11bf60e936e320c74"
+      "spec.md": "197a47acd7def016763fbadd693cc91c246a93de5599a7fa808b848e7a3639cb",
+      "plan.md": "4ccef9f19f271169c665a07f73257177106772690252c63274b75bfb32b3b1a9",
+      "tasks.md": "f739528ad006bbb43fd700638698ad248452e04b43267c3025e5336cd9b0ed04",
+      "decision-record.md": "4f05956a3ebf4eb4f611d20fcb888916cb1203f39498878ec4c0dcb0b4dedb5a"
     },
     "last_active_child_id": null,
     "last_active_at": null

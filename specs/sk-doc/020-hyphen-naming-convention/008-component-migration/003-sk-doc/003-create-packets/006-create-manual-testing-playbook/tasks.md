@@ -1,5 +1,5 @@
 ---
-title: "...hen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook/tasks]"
+title: "Tasks: create-manual-testing-playbook resource names"
 description: "Concrete execution and verification tasks for the create-manual-testing-playbook resource naming phase."
 trigger_phrases:
   - "create playbook resource tasks"

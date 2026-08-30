@@ -1,5 +1,5 @@
 ---
-title: "...-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs/spec]"
+title: "Spec: drop the NN-- category-name mandate from the sk-doc convention"
 description: "Phase 001 of the numbered-prefix deprecation. Update the two authoritative sk-doc convention skills (create-feature-catalog, create-manual-testing-playbook), their asset templates, and the /create:* command generators so the documented canonical category-folder name is the bare descriptive slug, not NN--slug. Ordering is documented as owned by the root index table. Docs-only phase — no folders are renamed here; it removes the mandate that would otherwise re-introduce numbers."
 trigger_phrases:
   - "drop nn category mandate"

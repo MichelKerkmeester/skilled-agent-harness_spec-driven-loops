@@ -1,5 +1,5 @@
 ---
-title: "...esting-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge/implementation-summary]"
+title: "Summary: 016/002/007 Auto-Embedder Selection + llama-cpp Purge"
 description: "Implementation summary and commit handoff for bootstrap auto-selection and llama-cpp purge."
 trigger_phrases:
   - "016/002/007 summary"

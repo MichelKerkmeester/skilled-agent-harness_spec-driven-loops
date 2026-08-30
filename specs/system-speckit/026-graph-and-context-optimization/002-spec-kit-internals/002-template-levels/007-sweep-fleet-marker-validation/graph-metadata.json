@@ -79,13 +79,13 @@
         "source": "derived"
       },
       {
-        "name": "Initialized Level",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Initialized Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-02T08:52:26Z",
-    "last_save_at": "2026-08-30T07:16:29.365Z",
+    "last_save_at": "2026-08-30T08:07:26.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca9794ea902f224fb2ffb86e81d6939f3266d98e2ec48eca133195a2778577bc",
+    "source_fingerprint": "sha256:5d8abb716baa8dc9f9aeca03992ccf5b1b3f08d56d4ccc17821e5d393072fe6e",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "afdb001f6bbab5a225100c8cabc0e58982df62c6cf7260a59832aca73fd72669",
-      "plan.md": "cdf90431c6a22158a6cc0a4f9aca6c674e29878660ec158d806fdfe69fd8cfc1",
-      "tasks.md": "41cfb0f6cc8c12166cceec23d5628fc01c247754b9947a28cecf66f203668416",
-      "decision-record.md": "e3b1696163803cb2cd0bf89fc07ae3fe8d8ed3057206559b40eac6fe54c792bf",
-      "implementation-summary.md": "bbfa4a77694da10c672fc79ec857f091ca3c3b4e433f89d50ad756a1a0bf1895"
+      "spec.md": "0cb5011a4277d5b102e7e0e4797ef995de2fc30a624606856532280291a39a11",
+      "plan.md": "e1e4aa4f5e35b489825bfed5cc409f0d6b5def3d5f84255281c0de38d8f560f2",
+      "tasks.md": "4358b46ed34a2f2b35cb4fb57b727d4cce5ee8ce984c25da2136262281a423a7",
+      "decision-record.md": "6ac4251b79d640c3e886a8985b9b73ca9535ec79c685da5331d52516432208d1",
+      "implementation-summary.md": "c17eccb262c66dcae690ce023dc27bd30b80b6559cf6c7d1ab71e66872ad7b08"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "...refactor/015-router-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4/tasks]"
+title: "Tasks: Compiled Routing Staged Activation Cutover (P4)"
 description: "Planned task breakdown mapping the P4 cutover controller to REQ-001 through REQ-009: prove the coverage-closure join gate, run the per-hub five-check stop-on-first-failure loop with atomic rewrites and cohort advances, reconcile the shared create-skill templates, and drill the =0 and activate --rollback reverts."
 trigger_phrases:
   - "compiled routing p4 cutover tasks"

@@ -1,5 +1,5 @@
 ---
-title: "...020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode/decision-record]"
+title: "Decision Record: cli-opencode component naming (020 phase 005.002)"
 description: "Design decisions for the cli-opencode rename: use an explicit local reference/asset map, rewrite path-valued schema consumers without changing data keys, and keep playbook/scripts/history ownership separate."
 trigger_phrases:
   - "cli-opencode naming decision record"

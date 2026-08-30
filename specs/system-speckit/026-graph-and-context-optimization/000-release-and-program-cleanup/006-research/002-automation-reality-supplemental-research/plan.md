@@ -1,5 +1,5 @@
 ---
-title: "...-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research/plan]"
+title: "Implementation Plan: Automation Reality Supplemental Research"
 description: "Plan for 5-iteration supplemental research extending 012's automation reality map with deep-loop graph + CCC + eval + ablation + validator auto-fire coverage and adversarial 4-P1 retest."
 trigger_phrases:
   - "013 automation supplemental plan"

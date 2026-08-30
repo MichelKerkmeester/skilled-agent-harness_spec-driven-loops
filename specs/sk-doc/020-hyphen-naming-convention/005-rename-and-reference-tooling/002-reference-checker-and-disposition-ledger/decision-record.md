@@ -1,5 +1,5 @@
 ---
-title: "...phen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/decision-record]"
+title: "Decision Record: reference checker and disposition ledger (020 phase 005.002)"
 description: "Design decisions for complete reference verification: a manifest-driven resolver matrix, a ledger schema that covers map entries and dynamic sites, path-value boundaries, read-only scanning, and fail-closed completeness semantics."
 trigger_phrases:
   - "reference checker decisions"

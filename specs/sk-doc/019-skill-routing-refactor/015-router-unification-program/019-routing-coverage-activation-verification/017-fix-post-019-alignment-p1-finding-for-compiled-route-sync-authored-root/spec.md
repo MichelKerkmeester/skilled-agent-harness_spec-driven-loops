@@ -1,5 +1,5 @@
 ---
-title: "...ng-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/spec]"
+title: "Feature Specification: Compiled-Route Sync Authored-Root Repair"
 description: "Restore reproducible compiled-route closure checks after the router implementation tree was flattened and renumbered. Keep the stable serving root while synchronizing the current authored internal topology atomically and preserving routing parity."
 trigger_phrases:
   - "compiled route sync authored root"

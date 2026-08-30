@@ -1,5 +1,5 @@
 ---
-title: "...ion/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank/tasks]"
+title: "Tasks: fp16 cross-encoder weights on MPS"
 description: "Tasks for sidecar dtype handler + OOM smoke + bench + verdict."
 trigger_phrases:
   - "009 fp16 tasks"

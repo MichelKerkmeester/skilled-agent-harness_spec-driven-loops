@@ -1,5 +1,5 @@
 ---
-title: "...m/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption/implementation-summary]"
+title: "Implementation Summary: Compiled Routing Flag Propagation & Effective Consumption"
 description: "Completion record for the flag-propagation and effective-consumption phase. Implemented and committed in a1cdb65d90 behind the still-off SPECKIT_COMPILED_ROUTING flag: the flag added to both CHILD_ENV_ALLOWLIST sets and the compiled decision threaded through the native brief, the CLI subprocess interface, and the hook render. Routing stays byte-identical to legacy; the staged default-on cutover stays operator-gated (P4/011)."
 trigger_phrases:
   - "compiled routing flag propagation implementation summary"

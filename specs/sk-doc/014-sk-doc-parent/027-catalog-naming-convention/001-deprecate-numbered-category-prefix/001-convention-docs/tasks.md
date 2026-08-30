@@ -1,5 +1,5 @@
 ---
-title: "...doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs/tasks]"
+title: "Tasks: drop the NN-- category-name mandate"
 description: "Task breakdown for the convention-doc de-numbering pass."
 trigger_phrases:
   - "doc"

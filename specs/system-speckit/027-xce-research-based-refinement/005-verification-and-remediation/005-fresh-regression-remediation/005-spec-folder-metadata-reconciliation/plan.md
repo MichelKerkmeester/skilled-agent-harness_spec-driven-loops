@@ -1,5 +1,5 @@
 ---
-title: "...ement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation/plan]"
+title: "Implementation Plan: Spec-Folder Control-Metadata Reconciliation"
 description: "Approach for remediating this sub-phase's 8 deep-review findings: confirm-then-fix each cited location, validate.sh --strict --recursive; description↔graph parity. Scaffold only."
 trigger_phrases:
   - "ement"

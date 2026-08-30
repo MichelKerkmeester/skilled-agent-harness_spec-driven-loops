@@ -1,5 +1,5 @@
 ---
-title: "...k-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement/decision-record]"
+title: "Decision Record: system-deep-loop deep-improvement names (020 phase 007/006)"
 description: "L2 design decisions for the deep-improvement multi-lane naming phase, including Python/package boundaries, generated artifacts, shared loop-host closure, and benchmark ownership."
 trigger_phrases:
   - "system-deep-loop improvement decisions"

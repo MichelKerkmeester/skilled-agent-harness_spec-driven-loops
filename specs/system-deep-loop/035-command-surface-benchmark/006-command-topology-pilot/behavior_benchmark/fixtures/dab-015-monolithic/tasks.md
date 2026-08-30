@@ -1,5 +1,5 @@
 ---
-title: "...p-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/tasks]"
+title: "dab 015 monolithic — tasks"
 description: "tasks document for dab-015-monolithic."
 trigger_phrases:
   - "loop"

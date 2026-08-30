@@ -84,13 +84,13 @@
         "source": "derived"
       },
       {
-        "name": "Begin Phase",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Begin Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -180,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "Implemented Stage",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Implemented Phase",
+        "name": "Implemented Stage",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "spec-memory has two reranker entry points and the flag contract between them shadows the path we actually want to use:",
     "created_at": "2026-05-23T11:55:15.601Z",
-    "last_save_at": "2026-08-30T07:16:31.667Z",
+    "last_save_at": "2026-08-30T08:07:27.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:28c08216186d6b2a1ddaa12f73c47c0e6165740e4886f97d832cbd58a13339c5",
+    "source_fingerprint": "sha256:51717d0f2723d64afba4cb94fbd00abb2947be98a3774dd6b85e61efd84b4d19",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a94383f581975e2b0e062dbba11bba39cb056b6d105053be4e865b571d568ee1",
-      "plan.md": "5601e02d1bcf02bf4db276af1ccb860ef0365102372ba00f8b4d4588b4916284",
-      "tasks.md": "4c425fe4aa5dbd815d277b6c264275d8cb70b7212cd1872c12f30a5dbe5592c1",
-      "implementation-summary.md": "0b4a70f7c67a18c839b074df3a7c18bc3bc9b49b42e84bf5e09f67e589302e1b"
+      "spec.md": "f27b84a85fd4a747afdd7bf078c6544d336174c89f9f464540de0811b3e59103",
+      "plan.md": "6ea949e0e6750f49082e10c7c0a0224c312eac5f95be45eb3d68003efd82ae83",
+      "tasks.md": "93569bc018e51f98327e090b5a063ef5e6a7aac09ca9b3dcb4580f74f57da21b",
+      "implementation-summary.md": "af7ee42a8e24ba63c78102559e856a09532ba7ea9b7ba05576f6398ae7846606"
     },
     "last_active_child_id": null,
     "last_active_at": null

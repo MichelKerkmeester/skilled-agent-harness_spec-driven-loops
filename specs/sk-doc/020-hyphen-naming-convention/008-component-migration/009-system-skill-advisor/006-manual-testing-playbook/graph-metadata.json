@@ -173,7 +173,7 @@
     ],
     "causal_summary": "The advisor manual-testing tree uses the snakecase root manualtestingplaybook, nine snakecase category",
     "created_at": "2026-07-14T15:18:10Z",
-    "last_save_at": "2026-08-30T07:19:50.454Z",
+    "last_save_at": "2026-08-30T08:04:31.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -181,12 +181,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:0163231888c75324bb9e6b6f498dcc72a1bb90928e78ea485e7c8b1f65d266fa",
+    "source_fingerprint": "sha256:93c144ca74d30132db371484b1bea73d379abe8ba4a7671df3a5dfa57429c68d",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d8091232c198bae4dd8f704e77ac3dd92563bdcc83a96ddc288cd6a217c60052",
-      "plan.md": "f5123e1dbeeecc13fc22b24c8a4db5503a6295cf8d2ba347edf75c85e0413d67",
-      "tasks.md": "006049b39283626bea2480453cd3e9959617576fe9aabefd2c8b82c66e78e31f"
+      "spec.md": "332ee2be9b178c743fb7d48be94b5f7bb0abfe0f8307885d2b1c54aec31b96d4",
+      "plan.md": "b68d019c0a704aa0f3ea7f0ee450ff45dbfe3a2604f0cc070d1076468b460718",
+      "tasks.md": "e361f69a916051b18312a68b61f9d3a82776a9ac0096e00fd6f15c7be0a05220"
     },
     "last_active_child_id": null,
     "last_active_at": null

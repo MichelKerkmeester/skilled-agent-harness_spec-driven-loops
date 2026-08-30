@@ -1,5 +1,5 @@
 ---
-title: "...ctor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c/tasks]"
+title: "Tasks: Benchmark — Compiled Lane C Parity"
 description: "Task breakdown for the non-frozen compiled-routing-parity harness, its two orchestrator hooks, the shape bridge, the vacuous-parity guard, and the flag-state/verdict-substate matrices. Not yet started."
 trigger_phrases:
   - "compiled lane c parity tasks"

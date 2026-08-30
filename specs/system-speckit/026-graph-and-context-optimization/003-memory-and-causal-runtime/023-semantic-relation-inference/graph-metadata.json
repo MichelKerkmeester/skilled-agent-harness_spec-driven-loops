@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Packet 021's backfill only promotes two structural signals (spec-document chains + lineage predecessor links) into typed edges",
     "created_at": "2026-06-04T13:30:00Z",
-    "last_save_at": "2026-08-30T07:16:33.437Z",
+    "last_save_at": "2026-08-30T08:04:47.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ecf332092089ee33b621bd5f1395c8c2e2cf7dfbecd9edf3a9b0ec2961a2d7ff",
+    "source_fingerprint": "sha256:946915da5094bd9258fb0dcc10890aa04af6cc044c8415d47fe3f676ac32c63c",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "c4cf4930c5a96c2c46eb87e5a9b51809e95d8bb20d4630f9ea1972d35f9c4584",
       "plan.md": "a6b2ae96f956ca01d9d375ce92af361500c59569840038bef05eaef5cf41f0fd",
-      "tasks.md": "dd9b4847b4850cc148e675c2473f6f32fa355618e05f4fab032476f9e3b1b1dd",
-      "decision-record.md": "bd3ad5e6f6dad9302edbefe5717ab0bbb3c64696a9009439501d0b7e316c14ba",
-      "implementation-summary.md": "fce17152b682e97f0e9b7d0b0f31243e8a2b38a1b17752847f8a615837d6e8a8"
+      "tasks.md": "15e41cdf95d0595aab31e8ea121a88d7ed89c8eac65966d97c1b1e7abcd575bf",
+      "decision-record.md": "842a7ec8cce66bbc18d396de9b6db89c4a5bdb49bd07f0de6afd88b03da5e356",
+      "implementation-summary.md": "fe8e10824e06f3d4fb10f3cd89122d0598ee992a10546e97ca84a5ed651d65cc"
     },
     "last_active_child_id": null,
     "last_active_at": null

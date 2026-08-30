@@ -1,5 +1,5 @@
 ---
-title: "...h-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/spec]"
+title: "Featur [system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/spec]"
 description: "Merged packet covering the foundational runtime arc: 50-iter research charter (ex-016) plus 27 remediation tasks across 4 Phase-017 sub-phases. Five sub-phases merged into implementation-summary.md §Sub-phase summaries."
 trigger_phrases:
   - "foundational runtime remediation"

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The feature-catalog and manual-testing-playbook generators still describe and emit underscore roots, categories, and artifact files. They must emit kebab-case output only after phase 002's bounded consumer tolerance can resolve the new names without a silent readme downgrade.",
     "created_at": "2026-07-14T15:16:45Z",
-    "last_save_at": "2026-08-30T07:19:10.744Z",
+    "last_save_at": "2026-08-30T08:04:19.587Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b275f4f0955c391f062f99f212aa4667d67b908ab5df2259a11a1c072a411138",
+    "source_fingerprint": "sha256:c84b88f539400eebc315d1a3ca2cc1e428e0bd338fb553fce424b53717643888",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "6703735a63ebd6fa60d98f0658d5b2d4c57bb0e77d606c75cbf4f972cafbc3c3",
       "plan.md": "21c503318d940e800bfcfe226fb41acb903ed6a59b7895e0d26e10cef85bb0d6",
       "tasks.md": "b453ab2c57b1e576e0c53846894e88c293fc23fb23463320018dbcda28c13999",
-      "implementation-summary.md": "040d1973b0ed7e03da83cb79711c9b4a16f194951bd3ce796165333420a82e38"
+      "implementation-summary.md": "04718183ee0a0f6c98af59c4173002308924c99a145e396f482397359d3dc780"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "...ng-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/tasks]"
+title: "Tasks: Compiled-Routing Deep-Review Remediation"
 description: "Task breakdown for the four remediation workstreams; test-first per fix, verify invariants after each."
 trigger_phrases:
   - "refactor"

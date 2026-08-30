@@ -1,5 +1,5 @@
 ---
-title: "...ing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/plan]"
+title: "Implementation Plan: Compiled-Routing Deep-Review Remediation"
 description: "Four workstreams remediating the eight confirmed deep-review findings: routing-semantics parity (F005, F002), manifest publication plus authored closure (F001, F007), cohort single-source plus telemetry (DOC-3, F006), and packet evidence reconciliation (DOC-1, DOC-2)."
 trigger_phrases:
   - "ing"

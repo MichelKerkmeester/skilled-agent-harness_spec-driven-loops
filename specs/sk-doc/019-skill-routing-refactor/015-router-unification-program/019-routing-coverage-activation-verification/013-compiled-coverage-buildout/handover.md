@@ -1,5 +1,5 @@
 ---
-title: ".../015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/handover]"
+title: "013 compiled coverage buildout — handover"
 description: "_Worktree .worktrees/0089-sk-doc-default-routing-cutover (branch sk-doc/0089-default-routing-cutover). Merge to v4 is OPERATOR-GATED. Companions: goal-coverage-buildout.md, comp..."
 trigger_phrases:
   - "015"

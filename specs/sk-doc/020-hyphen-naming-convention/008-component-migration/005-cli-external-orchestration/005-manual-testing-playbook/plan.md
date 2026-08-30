@@ -1,5 +1,5 @@
 ---
-title: "...020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook/plan]"
+title: "Implementation Plan: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
 description: "Implementation plan for the four cli-external-orchestration playbook trees: build a complete directory/file map, rename scenario paths in dependency order, update links, and prove scenario and frontmatter parity."
 trigger_phrases:
   - "cli-external manual playbook implementation plan"

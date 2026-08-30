@@ -1,5 +1,5 @@
 ---
-title: "...c/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control/spec]"
+title: "Feature Specification: create-quality-control resource names"
 description: "The create-quality-control packet contains snake_case transformation, validation, and workflow reference filenames. This phase converts those non-exempt resources to kebab-case and updates packet-local references while preserving the shared quality-control contract and tool-mandated names."
 trigger_phrases:
   - "create-quality-control resource naming"

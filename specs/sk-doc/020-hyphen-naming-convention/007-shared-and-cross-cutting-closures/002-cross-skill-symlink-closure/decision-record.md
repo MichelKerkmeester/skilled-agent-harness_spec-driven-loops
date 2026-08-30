@@ -1,5 +1,5 @@
 ---
-title: "...c/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/decision-record]"
+title: "Decision Record: atomic cross-skill symlink closures (020 phase 007 child 002)"
 description: "Decision record for treating a symlink target, every link-node, relative target string, and dependent path reference as one atomic dependency closure during the kebab-case filesystem-name program."
 trigger_phrases:
   - "atomic symlink decision"

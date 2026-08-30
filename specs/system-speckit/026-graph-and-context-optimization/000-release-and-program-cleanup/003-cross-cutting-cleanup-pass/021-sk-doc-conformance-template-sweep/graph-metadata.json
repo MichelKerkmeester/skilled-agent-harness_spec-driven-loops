@@ -187,13 +187,13 @@
         "source": "derived"
       },
       {
-        "name": "Architecture Decision Records",
+        "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Decision Record",
+        "name": "Architecture Decision Records",
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The user spotted format drift in two cited manualtestingplaybook examples (`system-spec-kit/mcpserver/skilladvisor/` and `.../codegraph/`)",
     "created_at": "2026-05-18T08:15:53.141Z",
-    "last_save_at": "2026-08-30T07:16:26.174Z",
+    "last_save_at": "2026-08-30T08:04:39.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +212,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:8f0217180cac28e78a6783eb1e6b39399ec0e534c790700a3d4bdc910fe23272",
+    "source_fingerprint": "sha256:e37b13aa46d772f280eb21bc037a8a1fa3131f94812d5c6314becf20a9879864",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a60e7b0fd484eb4c107af87e07728c83ddea5c3dc5dabc80a1c9d50e8754e2af",
-      "plan.md": "ed30d9e702065ec1bc50ac46c8a7639d5c8483f964f827a1bfbced3a102b3cf6",
-      "tasks.md": "3bc0636152f18e385370ac17f6f5b26ee0d6a090de0a6c014145807a17e295cc",
-      "decision-record.md": "e3a7ce92c4578d6fa08c6ae3af6a0cf1054a22964fc2f8d561033944d767648c",
-      "implementation-summary.md": "cbfb89c5b230e6d50f74902d6bf3294a89a8328eca6c7e0964bfd410cf2baffc",
-      "handover.md": "c18c8ffd70d283a088320d0559d4c173eb6fbb2850b403a6e8be2861ac98f4e9"
+      "spec.md": "da1ec8591953761bbbd6c84c986c56396c96373435cfe1032c36ebd32bb22bec",
+      "plan.md": "63e51fd824cfe21a1e3e66d746d7223023c927e9be1876a93c5f422f4c773933",
+      "tasks.md": "b6e58f86cdc319c224a17b2029e2f99d09de56a2bad778719da01138a4b71636",
+      "decision-record.md": "16c7dbcdb6a09f618cb698c96e42105be0408925422dd2a3f866c7f53acfb688",
+      "implementation-summary.md": "1cb8edd6afdca867b4ab1ead7d9e464c04e1f1406d564bceecc8c29bffcec526",
+      "handover.md": "e55202bbda05fb40848312a9215061366f22004c178fe0f873ad07dfe3fa3c2e"
     },
     "last_active_child_id": null,
     "last_active_at": null

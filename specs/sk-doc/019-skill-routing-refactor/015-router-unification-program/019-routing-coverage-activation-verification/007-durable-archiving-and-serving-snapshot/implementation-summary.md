@@ -1,5 +1,5 @@
 ---
-title: "...ogram/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/implementation-summary]"
+title: "Implementation Summary: Durable Archiving & Serving-Snapshot"
 description: "Completion record for durable compiled-routing archiving. Commit 2a39ecb9a0 delivered the fail-closed <hub>/benchmark/compiled-routing/ convention, serving-snapshot schema and renderer, report rendering, repo-relative provenance, execution context, and all seven benchmark indexes. The append-only transition ledger was intentionally assigned to sibling 010 and later landed in a1cdb65d90. No hub or repository default was changed; the frozen scorer trio remained byte-identical."
 trigger_phrases:
   - "durable archiving implementation summary"

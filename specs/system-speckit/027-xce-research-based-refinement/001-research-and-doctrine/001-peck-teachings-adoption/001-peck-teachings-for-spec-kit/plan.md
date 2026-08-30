@@ -1,5 +1,5 @@
 ---
-title: "...research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/plan]"
+title: "Implementation Plan: Analysis of peck framework teachings applicable to system-spec-kit"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

@@ -1,5 +1,5 @@
 ---
-title: "...5-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/spec]"
+title: "Feature Specification: Rollback, Audit Integrity & Non-Hub Policy"
 description: "Closes the rollback/audit integrity holes in the activation and serving-flip drivers (activate-hub.cjs has no --rollback; flip-serving.cjs's serving-prior guard is first-flip-only and its fence epoch advances identically on rollback and forward-flip with no persisted direction; both audit files are plain overwrites, losing re-mint history), states an explicit non-hub single-skill-router ineligibility policy with negative fixtures, and names the P2 canary profile/owner/window/thresholds/rollback-trigger plus the routingRecommendation field-collision fix. Implemented and committed in a1cdb65d90; never edits the frozen scorer trio; touches an already-shipped sibling driver additively."
 trigger_phrases:
   - "rollback audit integrity non-hub policy"

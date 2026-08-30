@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deep-improvement packet has 22 underscore-bearing directory families and 250 underscore-bearing files across three improvement lanes, benchmark assets, playbooks, references, and scripts. This phase renames the in-scope authored names to kebab-case, repairs the shared loop-host and benchmark path closure, and protects Python files, package directories, generated output, and data contracts.",
     "created_at": "2026-07-14T15:17:52Z",
-    "last_save_at": "2026-08-30T07:19:41.770Z",
+    "last_save_at": "2026-08-30T08:04:28.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:fdf2a61e33621a7ef9ed67dcfba011e35f1def4638f84fb9a33f89dba7e7e736",
+    "source_fingerprint": "sha256:e1f68f3c019dc1102cc595c34996216633f5f17d9afec3af825a158b974eebaf",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "2757327f1f37efc0f67e9b0de91f9057aae7a571be5701973fcead093450598e",
       "plan.md": "2e37510ee34f279e216bfdaacbbde2c0b6feadabe6b308aa189c0cbdf789b212",
       "tasks.md": "28f5883befeee4f25fd57271991e72497ccb70affa5eb52c7b393eb9cf7657fb",
-      "decision-record.md": "4028754ab3940b7f2f07f8441034b90025b0f2de1d2a39895d183f0d91ca10b9"
+      "decision-record.md": "934fbbaa3fd5ff3223ca3504595d15e1a9eac45d6849fcd58f478ae48ca07f9e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "...g-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/tasks]"
+title: "Tasks: Compiled-Route Sync Authored-Root Repair"
 description: "Implementation and verification tasks for safe closure tracing and atomic promotion after source-tree renumbering."
 trigger_phrases:
   - "compiled route sync repair tasks"

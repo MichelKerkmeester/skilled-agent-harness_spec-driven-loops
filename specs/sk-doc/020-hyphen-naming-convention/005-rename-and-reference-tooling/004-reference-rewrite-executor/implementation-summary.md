@@ -1,5 +1,5 @@
 ---
-title: ".../020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary]"
+title: "Implementation Summary: static reference-rewrite executor (020 phase 005.004)"
 description: "The executor now converts accepted ledger sites and an explicit semantic map into deterministic SCC rewrite plans with blob-hash compare-and-swap, fixture-only apply and journaled rollback."
 trigger_phrases:
   - "reference rewrite executor implementation"

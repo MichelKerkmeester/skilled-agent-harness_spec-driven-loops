@@ -1,5 +1,5 @@
 ---
-title: "...ctor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/plan]"
+title: "Implementation Plan: Compiled-Routing Coverage Build-Out & Genuine Default-On"
 description: "Phased plan: sk-code pilot build-out, replicate to cli-external-orchestration/mcp-tooling/sk-prompt, fix 2 over-detection bugs, re-mint and build sk-doc/system-deep-loop, stage the default-on flip, verify the fleet."
 trigger_phrases:
   - "compiled routing coverage plan"

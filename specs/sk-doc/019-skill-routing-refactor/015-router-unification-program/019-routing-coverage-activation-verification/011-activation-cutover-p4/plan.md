@@ -1,5 +1,5 @@
 ---
-title: "...-refactor/015-router-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4/plan]"
+title: "Implementation Plan: Compiled Routing Staged Activation Cutover (P4)"
 description: "Planned delivery sequence for the terminal P4 cutover: prove the P3 coverage-closure join gate, then advance the effective default one hub at a time in ascending blast-radius order under a five-check stop-on-first-failure gate, atomically rewriting each hub's directive and catalog and advancing its cohort default, reconciling the shared create-skill templates at fleet completion, with =0 and activate --rollback as the proven rollbacks and the frozen scorer pinned throughout."
 trigger_phrases:
   - "compiled routing p4 cutover plan"

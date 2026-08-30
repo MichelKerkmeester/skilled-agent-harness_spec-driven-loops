@@ -1,5 +1,5 @@
 ---
-title: "...kill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/001-research/tasks]"
+title: "Tasks: Routing Coverage — Deep Research"
 description: "Task breakdown for the 25-iteration deep-research loop across four models and the fresh-Opus synthesis, Sonnet adversarial verification, and orchestrator reconciliation that produced the 002-011 authoring brief."
 trigger_phrases:
   - "routing coverage research tasks"

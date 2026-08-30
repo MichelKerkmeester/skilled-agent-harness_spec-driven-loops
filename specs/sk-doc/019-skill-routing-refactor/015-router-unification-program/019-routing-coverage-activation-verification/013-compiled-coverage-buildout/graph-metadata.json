@@ -172,13 +172,13 @@
         "source": "derived"
       },
       {
-        "name": "Should Phase",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Should Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A real parity run (`SPECKITCOMPILEDROUTING=1`, route-gold on) shows the compiled router mechanism works and is byte-identical to legacy on covered prompts, but compiled routing coverage was only built out for sk-design",
     "created_at": "2026-07-21T09:34:21.815Z",
-    "last_save_at": "2026-08-30T07:19:07.144Z",
+    "last_save_at": "2026-08-30T08:04:17.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,15 +215,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:779066017fc3e6e6967d84c80735d045fda0ab4914d8e12b5765b790f8344bbe",
+    "source_fingerprint": "sha256:d3193b6d547ce3ccf78d1a9bef09cf7c3719a3e9c273a7b2648a63953dce42f2",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "5460a3bb2909a554abe6f8716b2c0c016b6f2b7f48458bc0aca851be1dd67503",
-      "plan.md": "9fa5c5f36345d2026b1b211f18f2e8f9a645a70f10d1deef1b2c33b1682c8f88",
-      "tasks.md": "6fbb4e17aead332da9a8b4365d95d50477ecb782618e4f792e523b2242c09f36",
-      "decision-record.md": "3af7247d8fafe6c727095387bd87fef62b071dabff0b449b4b8aaedfe903d72b",
-      "implementation-summary.md": "e5a2ccefe4f59ec68fe9e63dd44f3727c6bf0f93b3d0892f1be850560da69b86",
-      "handover.md": "2e67d57c9fce0c73d0a2011518837dc341e3a3fc350a18be76aaf5e3e1594f58"
+      "spec.md": "8025703a4e05fb57682bbdb239ca5e67d95060466cc7df862c01ca7aed95be50",
+      "plan.md": "de98c6ee1725551a4803f4c8b1bb34adc8e8ce895984a87dd67aa071ea452ad0",
+      "tasks.md": "77ffe00823fc9fab5576a39399d82c70bb59ebc0c3d585ff89111546e79c5f4f",
+      "decision-record.md": "846abaf5fb962cd71b62f31cd1c5aee87ab850c5c2896b8e3af7b7311c40ca8f",
+      "implementation-summary.md": "82f22a7eb156f4ef17447a68ba2053b09c417614d4100369ba1cc97e0f3df89f",
+      "handover.md": "b1461bb13edb2e127b7f43675cd2f35298619edc805abd61016610456ca2b199"
     },
     "last_active_child_id": null,
     "last_active_at": null

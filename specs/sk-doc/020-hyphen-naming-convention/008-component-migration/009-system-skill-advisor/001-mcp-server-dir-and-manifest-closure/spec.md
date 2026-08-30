@@ -1,5 +1,5 @@
 ---
-title: "...phen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure/spec]"
+title: "Feature Specification: MCP server directory and manifest closure"
 description: "Rename the system-skill-advisor MCP package root and permitted non-Python package-layout directories to kebab-case, then update the manifest, launcher, build, and documentation path closure atomically."
 trigger_phrases:
   - "system-skill-advisor mcp-server directory"

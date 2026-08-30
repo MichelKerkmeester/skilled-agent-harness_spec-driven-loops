@@ -1,5 +1,5 @@
 ---
-title: "...-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/tasks]"
+title: "Tasks: Rollback, Audit Integrity & Non-Hub Policy"
 description: "Task breakdown for activate-hub.cjs --rollback, the flip-serving.cjs serving-prior and fence-direction fixes, append-only audit history, the non-hub policy, the P2 canary naming, and the routingRecommendation field fix (Planned)."
 trigger_phrases:
   - "rollback audit integrity tasks"

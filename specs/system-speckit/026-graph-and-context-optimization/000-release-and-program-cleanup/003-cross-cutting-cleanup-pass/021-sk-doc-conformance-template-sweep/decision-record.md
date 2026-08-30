@@ -1,5 +1,5 @@
 ---
-title: "...000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/decision-record]"
+title: "Decision Record: sk-doc Conformance Sweep and Template Cleanup"
 description: "Architecture Decision Records (ADRs) for the sk-doc conformance sweep — phase-040 collision, skill_advisor reclassification, canonical full remediation, templates/changelog alignment, execution model, stay-on-main."
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep decisions"

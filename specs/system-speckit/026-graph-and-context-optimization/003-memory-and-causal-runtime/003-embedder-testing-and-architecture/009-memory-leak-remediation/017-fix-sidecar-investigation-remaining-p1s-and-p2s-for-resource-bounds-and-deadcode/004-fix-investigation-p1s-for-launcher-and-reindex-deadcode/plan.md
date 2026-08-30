@@ -1,5 +1,5 @@
 ---
-title: "...aining-p1s-and-p2s-for-resource-bounds-and-deadcode/004-fix-investigation-p1s-for-launcher-and-reindex-deadcode/plan]"
+title: "Implementation Plan: Launcher and Reindex P1 Finding Closure"
 description: "Surgical CommonJS and TypeScript edits for F15, F49, and F105 with focused fixture coverage."
 trigger_phrases:
   - "arc 010 003 004 implementation plan"

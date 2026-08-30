@@ -1,5 +1,5 @@
 ---
-title: "...aming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure/decision-record]"
+title: "Decision Record: MCP-server directory and manifest closure (020 subtree 008 phase 001)"
 description: "Design decisions for the package-root rename and its npm workspace, lockfile, manifest, and entrypoint closure."
 trigger_phrases:
   - "mcp-server closure decisions"

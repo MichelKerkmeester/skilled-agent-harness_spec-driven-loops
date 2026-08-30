@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The /create:* auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched.",
     "created_at": "2026-07-14T15:16:46Z",
-    "last_save_at": "2026-08-30T07:19:11.448Z",
+    "last_save_at": "2026-08-30T08:04:20.526Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1bbda1bebba279fcb4f673e1c9fae5f6cbe2b8eb736024d07b17d3a43645d181",
+    "source_fingerprint": "sha256:5d145d1f17195a346627e8baf69802c5c4e7dd2b1f737a64beb006981d4ceafd",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "483e41e460f4220b767042c8ce863df6cfecf1f677e49843aaf1ada694564095",
       "plan.md": "c5b838fb234138b759adb9aa67b8817cf35cf5c739d562219925a00db7e56d1b",
       "tasks.md": "8031f495d6db0fd24a036e77b578ad06bc697d4cfec5b53bbaa19d63342e7f8d",
-      "implementation-summary.md": "a4e183ac3127f793f23ee67eb5c4e087b13afebafc5f0f9353d1520737d10a2e"
+      "implementation-summary.md": "bbfce8b1b75ac1949beb2ae3fe59f24712acfbf63fd564db22e4816742eada4b"
     },
     "last_active_child_id": null,
     "last_active_at": null

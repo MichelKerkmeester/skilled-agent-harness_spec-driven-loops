@@ -1,5 +1,5 @@
 ---
-title: "...phen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook/plan]"
+title: "Implementation Plan: create-manual-testing-playbook resource names"
 description: "Execution plan for the create-manual-testing-playbook asset and reference rename/reference closure."
 trigger_phrases:
   - "create playbook resource implementation plan"

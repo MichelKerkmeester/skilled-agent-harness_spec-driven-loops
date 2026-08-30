@@ -1,5 +1,5 @@
 ---
-title: "...phen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure/plan]"
+title: "Implementation Plan: MCP server directory and manifest closure"
 description: "Use an explicit package-boundary rename map, update the advisor's path consumers as one dependency-closed change, preserve tool and Python exemptions, and verify the renamed package through build, launcher, bridge, and discovery checks."
 trigger_phrases:
   - "mcp-server directory implementation plan"

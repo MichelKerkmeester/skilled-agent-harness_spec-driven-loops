@@ -1,5 +1,5 @@
 ---
-title: "...actor/015-router-unification-program/019-routing-coverage-activation-verification/009-sk-doc-template-alignment/spec]"
+title: "Feature Specification: sk-doc Template Alignment"
 description: "Corrects sk-doc's feature-catalog and playbook templates against their live enforcement code: removes the false claim that catalog trigger_phrases drive skill-advisor routing (the harvester's HARVEST_SUBDIRS excludes feature-catalog dirs), makes the playbook topology validator quote-tolerant, expands the 2-value test-type taxonomy to a 12-value canonical set matching the live corpus, ships a strict package validator (router + 7-hub root-leaf bijection, source-path existence, taxonomy), and adds both create-skill parent templates to the P4 lockstep directive set so they cannot drift from the seven hub SKILL.md directives. Planning-only; depends on 002; never edits the frozen scorer trio."
 trigger_phrases:
   - "sk-doc template alignment"

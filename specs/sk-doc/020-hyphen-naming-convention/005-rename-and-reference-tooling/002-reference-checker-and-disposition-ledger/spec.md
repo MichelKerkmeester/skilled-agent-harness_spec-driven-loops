@@ -1,5 +1,5 @@
 ---
-title: "...-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/spec]"
+title: "Feature Specification: reference checker and disposition ledger (020 phase 005.002)"
 description: "The migration needs a whole-repository checker that follows every mapped path through code, docs, configs, registries, and symlinks, while recording a disposition for every rename and dynamic require, source, or glob site."
 trigger_phrases:
   - "whole-repo reference checker"

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The create-skill scaffolder and package checks must keep generated skill roots, packets, resource paths, and package names in kebab-case. Python implementation filenames remain exempt; the names those scripts produce do not.",
     "created_at": "2026-07-14T15:16:44Z",
-    "last_save_at": "2026-08-30T07:19:10.322Z",
+    "last_save_at": "2026-08-30T08:04:19.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d0bd3279c2907ef8e49ec2b5c5c4f3f58d524401c121a7071add074639059f6",
+    "source_fingerprint": "sha256:c396988159bd57401ab859b9a1416633576d8a2d4bf24d82e6035d102433f013",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "ce000daeaf52e0c71243ea407b1a6ed7b4801a19847f0c0b01b98579077a9596",
       "plan.md": "352526fb941c739baeac9c1224c152fb4cb1823cc7853033241d2f4e567218b2",
       "tasks.md": "bcf29a6dddd28133b8266f0450cc2a4e7df21e5783db19040e2f476e958fb102",
-      "implementation-summary.md": "893fbf0cd6214d101b21b97248ef78947d8c373ce0af70e87ef651694bec7f42"
+      "implementation-summary.md": "dc4cc223eac6a6f868ecafa0456e1b6f676beab09ed9c05a9bf5d8c2c3cfb5f2"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The sk-doc template alignment audit on the last 40 commits scanned 384 documentation files and surfaced 93 MISALIGN-HIGH + 177 MISALIGN-MEDIUM",
     "created_at": "2026-04-29T11:05:00.000Z",
-    "last_save_at": "2026-08-30T07:16:25.707Z",
+    "last_save_at": "2026-08-30T08:07:25.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68f561d4a6194bc911d3b49965706c0f7f30e76b8d9fa6040dbf68d4427c66ad",
+    "source_fingerprint": "sha256:4ce42fdc6a30382c503ceb70f1c3525499ee439b455ea46cbbe03fca8e218b08",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a4f53e8888c3544eb1f6988bb458739f4eeaa9822fe3120565841c7be0ebb8b6",
-      "plan.md": "f2ed884813569ae6a17fc3040bbe00ccc020bf31cda86469599e4bdb9323db2a",
-      "tasks.md": "689096a4a87e454d05edff0d5c99fe49be7ad2915c7e6c3182e8b60adc1a193f",
-      "implementation-summary.md": "42384ddfed4867f0a2db67924a4579167be275ea3c79eff07a2a48fda6895591"
+      "spec.md": "0ec6f0e4c41b4d8016fef0f472051021a732f806be1b5635161261f7e4d766e9",
+      "plan.md": "bc442dda2650f18650cd37577cb4ffcee1fddd32bc084295a524956caa21ebf5",
+      "tasks.md": "10037822f7ca2e25cf6831b7b78248bb4e5e5bdcb883d89a8cbc7a597fd29ca8",
+      "implementation-summary.md": "cb27c527ed4139f64d227fca8d5c642777517dd6a435a416fcd90f08b8e2de13"
     },
     "last_active_child_id": null,
     "last_active_at": null

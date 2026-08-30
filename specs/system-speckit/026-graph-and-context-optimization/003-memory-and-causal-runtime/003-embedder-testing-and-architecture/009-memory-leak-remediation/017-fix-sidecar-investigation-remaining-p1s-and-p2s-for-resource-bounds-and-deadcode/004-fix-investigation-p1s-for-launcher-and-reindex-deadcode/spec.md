@@ -1,5 +1,5 @@
 ---
-title: "...aining-p1s-and-p2s-for-resource-bounds-and-deadcode/004-fix-investigation-p1s-for-launcher-and-reindex-deadcode/spec]"
+title: "Spec: Launcher and Reindex P1 Finding Closure"
 description: "Level 2 packet closing F15, F49, and F105 across ensure-rerank-sidecar.cjs and reindex.ts."
 trigger_phrases:
   - "arc 010 003 004 launcher reindex p1"

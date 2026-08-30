@@ -1,5 +1,5 @@
 ---
-title: "...context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research/tasks]"
+title: "Tasks: Automation Reality Supplemental Research"
 description: "Task tracker for 5-iteration supplemental automation research extending 012's baseline."
 trigger_phrases:
   - "013 automation supplemental tasks"

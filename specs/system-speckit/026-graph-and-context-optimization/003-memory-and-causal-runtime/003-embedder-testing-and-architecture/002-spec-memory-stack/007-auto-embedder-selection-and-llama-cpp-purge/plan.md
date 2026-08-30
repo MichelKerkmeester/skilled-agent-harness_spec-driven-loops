@@ -1,5 +1,5 @@
 ---
-title: "...ime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge/plan]"
+title: "Plan: 016/002/007 Auto-Embedder Selection + llama-cpp Purge"
 description: "5-phase implementation plan for the auto-selection precedence chain and llama-cpp surface purge"
 trigger_phrases:
   - "016/002/007 plan"

@@ -1,5 +1,5 @@
 ---
-title: "...k-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites/spec]"
+title: "Feature Specification: MCP-server consumer rewrites (020 subtree 008 phase 003)"
 description: "Renaming the MCP package and its inner directories changes path-valued references across the skill, sibling skills, scripts, manifests, hooks, and documentation. This phase rewrites every consumer and import/config path without renaming exempt Python targets or changing the @spec-kit/mcp-server package identity."
 trigger_phrases:
   - "mcp-server consumer rewrites"

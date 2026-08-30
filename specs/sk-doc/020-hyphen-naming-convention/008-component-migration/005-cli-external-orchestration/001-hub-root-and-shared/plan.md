@@ -1,5 +1,5 @@
 ---
-title: "...doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared/plan]"
+title: "Implementation Plan: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
 description: "Implementation plan for the cli-external-orchestration root/shared boundary: capture the live root census, protect exact router contracts, apply only owned path mappings, and keep playbook and benchmark ownership delegated."
 trigger_phrases:
   - "cli-external hub root implementation plan"

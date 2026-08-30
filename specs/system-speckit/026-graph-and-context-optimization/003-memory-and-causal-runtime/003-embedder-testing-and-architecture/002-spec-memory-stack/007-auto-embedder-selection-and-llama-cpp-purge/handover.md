@@ -1,5 +1,5 @@
 ---
-title: "...003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge/handover]"
+title: "Handover: 016/002/007 — pre-compaction state snapshot 2026-05-18 21:50 PM"
 description: "Session handover capturing all in-flight work, recent commits, hard constraints, and the next safe action. Read this FIRST after any compaction event; do not assume the compaction summary's implied next steps."
 trigger_phrases:
   - "016/002/007 handover"

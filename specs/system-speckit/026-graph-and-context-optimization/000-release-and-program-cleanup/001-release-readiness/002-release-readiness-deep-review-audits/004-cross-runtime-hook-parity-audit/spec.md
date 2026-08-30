@@ -1,5 +1,5 @@
 ---
-title: "...gram-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit/spec]"
+title: "Feature Specification: Cross-Runtime Hook Parity Release-Readiness Audit"
 description: "Deep-review angle 5 audits Claude, Codex, Copilot, Gemini, and OpenCode hook parity for release readiness. The packet is read-only against hook source/config surfaces and writes only this Level 2 audit packet."
 trigger_phrases:
   - "045-005-cross-runtime-hook-parity-audit"

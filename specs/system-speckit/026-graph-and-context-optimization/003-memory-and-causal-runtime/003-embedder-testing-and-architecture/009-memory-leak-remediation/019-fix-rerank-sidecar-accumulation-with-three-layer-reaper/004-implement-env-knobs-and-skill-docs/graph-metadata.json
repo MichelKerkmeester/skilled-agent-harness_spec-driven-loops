@@ -110,13 +110,13 @@
         "source": "derived"
       },
       {
-        "name": "Use Level",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Use Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The rerank sidecar reaper implementation exists in the app and launchers, but the shell launcher still needs to forward the approved reaper controls through its explicit env allowlist",
     "created_at": "2026-05-23T07:59:05Z",
-    "last_save_at": "2026-08-30T07:16:32.974Z",
+    "last_save_at": "2026-08-30T08:07:28.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fd1e15befc9a18bbef0c46ec2126dc0d3c40bb2c066b40ac9e147054bb9e96cd",
+    "source_fingerprint": "sha256:460df3c9c9c45e45183fee416f54368125bd638dc05e614046f32907f975f388",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "0471ae84b2fa04641dc1ea179da3b1e9820362cb570d97e8f3fac031c3c8f74d",
-      "plan.md": "b634bfed29dc56ee48a58d620f90b0155d4edfbc9add03152539a19a9008e56b",
-      "tasks.md": "2be66db47890c3376b8482f5365fb8184fea8280ff05f274e8237814ea3f1f55",
-      "implementation-summary.md": "0dfb05d1cc416921321e9dbd2784e411223773b2a5a23e3cf392bc08f8367144"
+      "spec.md": "c09af15985bf5fa20b11eb42f868b440c200e24df6ad1e6c99c42944e05498c6",
+      "plan.md": "8129ccfaf385feaac49761cfc54172488d6a0a48a7d3d7af4e9891c27180d4b7",
+      "tasks.md": "c37d25eb4c2fc3ac7559cc7b8634c1b116032de754ba7fe4d2d6a4a4e99f7e0a",
+      "implementation-summary.md": "70fcde9276b71261cc163a4363c8b70f2266daebf85d5a52e51285ca90be3da0"
     },
     "last_active_child_id": null,
     "last_active_at": null

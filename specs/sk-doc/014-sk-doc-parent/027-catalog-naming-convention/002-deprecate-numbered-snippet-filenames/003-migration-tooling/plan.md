@@ -1,5 +1,5 @@
 ---
-title: ".../014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling/plan]"
+title: "Plan: deterministic dry-run rename engine for numbered snippet filenames"
 description: "Author one deterministic rename engine (dry-run default), adapted from the proven 108 denumber-snippets.cjs, that enumerates the scoped 111 in-scope snippet files across 9 packets, aborts on collision, derives+injects the stage: field for the 63 R/H/N-structured files, sweeps the 3 hub-routing root-index tables, and corrects 108's stale 999-sk-doc-parent deny-list bug against the current 014-sk-doc-parent path."
 trigger_phrases:
   - "014"

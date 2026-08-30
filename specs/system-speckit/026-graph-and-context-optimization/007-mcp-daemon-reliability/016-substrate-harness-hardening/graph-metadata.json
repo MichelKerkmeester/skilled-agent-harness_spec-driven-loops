@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The substrate stress harness reclassifies a connection failure as a tolerated SKIP whenever a live PID is found in a daemon's single-writer lease",
     "created_at": "2026-05-31T10:01:17.891Z",
-    "last_save_at": "2026-08-30T07:16:34.760Z",
+    "last_save_at": "2026-08-30T08:07:30.006Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +209,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:05c9df7cf1c64cb5dabf6c7f3c6524df6a129d932bfc0c166e536ccd1e2eea06",
+    "source_fingerprint": "sha256:8f104a409657e38defe60eda08925505c84011bdc7261398f579657e7b98e519",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "02ef831b5acd51060318480afb3692199de32b3c1b7c193999ef282e8d3c56e9",
       "plan.md": "52d03bde0f71d9ffe76879cb7b881291b0ab26ccf204e53ca20adf208e3b49a2",
       "tasks.md": "65b841ece97b13c1766613926a465491ceb0c8e16cb392f6cb46e89fe5388bb5",
-      "decision-record.md": "b82fae10ced53c649f5be42e38c6bacb1f281dcbe9c5a50ee5a8451fd6f7f3ed",
-      "implementation-summary.md": "b962cc1c9b0f7e4208bea0e71497f6a3038c106ed53388eb52dcedb6200587e0",
-      "research/research.md": "321d46f563acdc168b2322b143f142888d1df079ed0c7f209b051e4b0dd511f4"
+      "decision-record.md": "2b1c4305885bd1df33d9f5681fed9ab465441c1d4a048c4ef17235f413c88a65",
+      "implementation-summary.md": "8d0ddd92f93dfd24d83f19cb9adec70d4145d1d445f3ff6d90bdf2e13afdbe18",
+      "research/research.md": "3740c733cf2360442836544af4beeacb71051809fd0fb51de62f64c852462f33"
     },
     "last_active_child_id": null,
     "last_active_at": null

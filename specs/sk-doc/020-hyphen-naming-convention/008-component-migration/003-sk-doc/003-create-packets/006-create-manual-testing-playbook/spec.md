@@ -1,5 +1,5 @@
 ---
-title: "...phen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook/spec]"
+title: "Feature Specification: create-manual-testing-playbook resource names"
 description: "The create-manual-testing-playbook packet contains snake_case template and prompt-voice resource filenames. This phase converts those non-exempt names to kebab-case and updates packet-local links while preserving playbook schema fields and scenario identifiers."
 trigger_phrases:
   - "create-manual-testing-playbook resource naming"

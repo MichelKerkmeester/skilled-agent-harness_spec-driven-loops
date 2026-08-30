@@ -1,5 +1,5 @@
 ---
-title: "...kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference/decision-record]"
+title: "Decision Record: Semantic Relation Inference"
 description: "Architectural decisions for the two deferred OPT-IN collectors: reading the cached related_memories column instead of a live vector scan; driving contradicts from structural supersession instead of embedding similarity; and the opt-in default-off posture that keeps the recovered production DB safe."
 trigger_phrases:
   - "semantic relation inference decision"

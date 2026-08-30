@@ -1,5 +1,5 @@
 ---
-title: "...inement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/implementation-summary]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"

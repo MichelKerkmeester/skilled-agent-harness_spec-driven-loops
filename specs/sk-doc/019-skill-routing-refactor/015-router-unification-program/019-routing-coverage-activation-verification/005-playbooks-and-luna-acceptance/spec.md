@@ -1,5 +1,5 @@
 ---
-title: "...r/015-router-unification-program/019-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance/spec]"
+title: "Feature Specification: Compiled-Routing Playbooks — Scenario Matrix & LUNA-High Acceptance"
 description: "Build the 7-hub compiled-routing scenario matrix (one per eligible hub, selected by distinct route shape) with a full evidence contract (compiledRoute, serving-status, flag, fallback-cause, manifest-digest, model, reasoning-effort), strict non-frozen scenario/topology validators, and a non-frozen cutover playbook executor; then a separate two-plane LUNA-HIGH live acceptance stage (openai/gpt-5.6-luna, variant high) that classifies transport timeout as SKIP, never FAIL, and reserves at least one gold-bearing held-out paraphrase per hub. Depends on the still-Planned 002-runtime-promotion-and-status-foundation and 004-benchmark-compiled-lane-c; this packet is Planned, not yet implemented. The frozen load-playbook-scenarios.cjs loader and the other two frozen scorer files stay byte-identical throughout; every new validator and the executor are non-frozen; every gate names a rollback."
 trigger_phrases:
   - "compiled routing playbook scenario matrix"

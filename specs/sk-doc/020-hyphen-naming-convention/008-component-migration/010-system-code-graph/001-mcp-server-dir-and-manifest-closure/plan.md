@@ -1,5 +1,5 @@
 ---
-title: "...-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/plan]"
+title: "Implementation Plan: system-code-graph MCP server directory and manifest closure"
 description: "Use an explicit package-boundary rename map, update the code-graph path consumers as one dependency-closed change, preserve Python/tool/generated/test exemptions, and verify the renamed package through build, launcher, plugin, and discovery checks."
 trigger_phrases:
   - "system-code-graph mcp-server implementation plan"

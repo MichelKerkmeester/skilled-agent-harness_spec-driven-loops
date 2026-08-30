@@ -1,5 +1,5 @@
 ---
-title: ".../020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control/tasks]"
+title: "Tasks: create-quality-control resource names"
 description: "Concrete execution and verification tasks for the create-quality-control resource naming phase."
 trigger_phrases:
   - "create-quality-control resource tasks"

@@ -1,5 +1,5 @@
 ---
-title: "...uter-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/decision-record]"
+title: "Decision Record: Compiled-Routing Coverage Build-Out & Genuine Default-On"
 description: "ADR-001: Path 1 (build full compiled-routing coverage) chosen over Path 2 (byte-identical via legacy fallback) and Path 3 (hold), per operator directive of no concessions."
 trigger_phrases:
   - "compiled routing coverage decision"

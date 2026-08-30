@@ -1,5 +1,5 @@
 ---
-title: ".../020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog/tasks]"
+title: "Tasks: create-feature-catalog resource names"
 description: "Concrete execution and verification tasks for the create-feature-catalog resource naming phase."
 trigger_phrases:
   - "create-feature-catalog resource tasks"

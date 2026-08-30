@@ -1,5 +1,5 @@
 ---
-title: "...r-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation/tasks]"
+title: "Tasks: Runtime Promotion & Status Foundation (P0)"
 description: "Task breakdown for the P0 foundation (REQ-001 through REQ-009: closure promotion, eligibility/engine split, status probe, ENV entry, tri-state flag, breadcrumbs, and the durable no-spec-import rule), reconciled to the implemented+committed state (landed in 4153cbebd8)."
 trigger_phrases:
   - "runtime promotion status foundation tasks"

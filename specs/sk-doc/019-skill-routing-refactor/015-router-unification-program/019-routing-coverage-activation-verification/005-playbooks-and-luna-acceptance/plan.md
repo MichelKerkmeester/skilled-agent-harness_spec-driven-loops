@@ -1,5 +1,5 @@
 ---
-title: "...r/015-router-unification-program/019-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance/plan]"
+title: "Implementation Plan: Compiled-Routing Playbooks — Scenario Matrix & LUNA-High Acceptance"
 description: "How the 7-hub compiled-routing scenario matrix, its evidence contract, the non-frozen validators/executor, and the two-plane LUNA-High acceptance stage will be built, consuming 002's status probe and 004's compiled-parity evidence without re-deriving either."
 trigger_phrases:
   - "compiled routing playbook plan"

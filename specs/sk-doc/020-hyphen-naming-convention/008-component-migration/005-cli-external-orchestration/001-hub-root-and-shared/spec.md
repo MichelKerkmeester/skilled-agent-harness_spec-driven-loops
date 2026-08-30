@@ -1,5 +1,5 @@
 ---
-title: "...doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared/spec]"
+title: "Feature Specification: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
 description: "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary. This phase records ownership and renames only hub/shared-owned authored names without crossing delegated playbook or benchmark scope."
 trigger_phrases:
   - "cli-external hub root kebab-case"

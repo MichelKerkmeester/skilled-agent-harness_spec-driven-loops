@@ -1,5 +1,5 @@
 ---
-title: "...ining-p1s-and-p2s-for-resource-bounds-and-deadcode/004-fix-investigation-p1s-for-launcher-and-reindex-deadcode/tasks]"
+title: "Tasks: Launcher and Reindex P1 Finding Closure"
 description: "Task list for F15, F49, and F105 closure in arc 010/003/004."
 trigger_phrases:
   - "arc 010 003 004 tasks"

@@ -1,5 +1,5 @@
 ---
-title: "...se-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-2/research]"
+title: "codex 2 — research"
 description: "The common root cause is contract drift across independently maintained surfaces: human docs, public MCP schemas, runtime schemas, handlers, generated metadata, background proce..."
 trigger_phrases:
   - "and"

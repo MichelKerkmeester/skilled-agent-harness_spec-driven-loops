@@ -1,5 +1,5 @@
 ---
-title: "...ease-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/implementation-summary]"
+title: "Implementation Summary: sk-doc Conformance Sweep and Template Cleanup"
 description: "Pre-implementation placeholder. Filled post-Tier-4 with final state, evidence, and lessons learned."
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep implementation"

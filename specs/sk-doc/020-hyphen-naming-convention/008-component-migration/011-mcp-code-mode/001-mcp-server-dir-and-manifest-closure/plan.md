@@ -1,5 +1,5 @@
 ---
-title: ".../020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure/plan]"
+title: "Implementation Plan: mcp-server directory and manifest closure (020 component 011 phase 001)"
 description: "Rename the embedded mcp_server directory to mcp-server through a semantic, dependency-closed path map. Update installer, doctor, guide, metadata, and entrypoint references together while leaving Python, lockfile, tool-mandated, and package identifier contracts intact."
 trigger_phrases:
   - "mcp-server closure implementation plan"

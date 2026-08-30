@@ -1,5 +1,5 @@
 ---
-title: "...uting-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/spec]"
+title: "Feature Specification: Compiled-Routing Feature Catalogs"
 description: "Plan seven hub-root feature catalogs (or a centralized system-skill-advisor alternative) carrying one compiled-routing leaf each, the extension of the existing system-spec-kit feature-flag-governance catalog and the system-skill-advisor advisor-recommend entry, phase-gated wording (opt-in/additive pre-cutover, default-on + kill-switch atomically at P4), and strict sequencing after the 002 resolver-promotion foundation lands."
 trigger_phrases:
   - "compiled routing feature catalogs"

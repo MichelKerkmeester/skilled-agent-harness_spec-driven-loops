@@ -1,5 +1,5 @@
 ---
-title: "...015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation/tasks]"
+title: "Tasks: P3 Canonical Manifest Minter Foundation"
 description: "Execution tasks for the shared initial minter, exact freshness predicate, status integration, sync preservation, and byte-identical safety evidence."
 trigger_phrases:
   - "canonical minter tasks"

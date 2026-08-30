@@ -1,5 +1,5 @@
 ---
-title: "...-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/spec]"
+title: "Spec: v1.0.4 Full-Matrix Stress Test Design"
 description: "Design-only Level 3 packet for the full v1.0.4 stress matrix across system-spec-kit feature surfaces and CLI executors. This packet freezes the corpus design, rubric, harness-extension approach, executor matrix, and future execution task ledger without running the stress matrix."
 trigger_phrases:
   - "030-clean-infrastructure-full-matrix-stress-design"

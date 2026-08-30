@@ -1,5 +1,5 @@
 ---
-title: "...d-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank/implementation-summary]"
+title: "Implementation Summary: fp16 cross-encoder weights on MPS"
 description: "PRE-IMPLEMENTATION stub. Will be filled with Phase C-D bench + verdict."
 trigger_phrases:
   - "009 fp16 summary"

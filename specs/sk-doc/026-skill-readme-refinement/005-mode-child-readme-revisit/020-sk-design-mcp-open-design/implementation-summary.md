@@ -1,5 +1,5 @@
 ---
-title: "...k-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/020-sk-design-mcp-open-design/implementation-summary]"
+title: "Implementation Summary: Phase 020 sk-design-mcp-open-design README revisit"
 description: "Closeout record for the open-design MCP README purpose-first rewrite, version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 020 implementation summary"

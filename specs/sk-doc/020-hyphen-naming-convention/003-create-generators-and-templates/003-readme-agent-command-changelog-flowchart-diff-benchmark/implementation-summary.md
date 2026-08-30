@@ -1,5 +1,5 @@
 ---
-title: "...3-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark/implementation-summary]"
+title: "Implementation Summary: create generator output naming"
 description: "Seven create-* generator families now emit kebab-case filesystem names while keeping source templates, runtime package directories, version files and tool-owned names unchanged."
 trigger_phrases:
   - "create generator naming implementation"

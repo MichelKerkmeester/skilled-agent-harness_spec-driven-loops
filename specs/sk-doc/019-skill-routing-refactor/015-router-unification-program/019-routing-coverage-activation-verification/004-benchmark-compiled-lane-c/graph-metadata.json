@@ -97,6 +97,12 @@
         "source": "derived"
       },
       {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Compiled Lane",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -122,12 +128,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Lane C never exercises the compiled routing path, and it fits in two non-frozen files (CF-BM-1)",
     "created_at": "2026-07-20T21:51:29.784Z",
-    "last_save_at": "2026-08-30T07:19:04.052Z",
+    "last_save_at": "2026-08-30T08:04:13.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0c88dfeaf919149c85e4e3edc9e654bcabbab101827c97d73636427f07f95f0",
+    "source_fingerprint": "sha256:016e7e639fb5160389183405a041abaf8bdef5637fe19c68c30395f31180af23",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "63d120a1011f5e9caaf55e27c5233547321da5c48898f8c12cd5505ea968772f",
-      "plan.md": "3407e852dffa205bc4bb21d3561a4976206ab47c083d1f8e3c3857ce98e3448b",
-      "tasks.md": "e523e8b88fe0c553524884181923f1e63674731487e555ed4c70826581a78eaf",
-      "implementation-summary.md": "ca483cadbd19ec0bd0eca8ba50917d7484335dd9cffba80718fdf62622afe2a3"
+      "spec.md": "a9feed3b91a1299fa766c0d7b424b0e07e01af5e25d7512af8d110d450bd8c83",
+      "plan.md": "8c8cc6954112fd5395043c01c1f90cd5fce8b56e4a7432c74ebbc09cc2145552",
+      "tasks.md": "16aebb92542238611cb8e3bb9235e5176e849ca9a7da0b3ca2b110b0039efb38",
+      "implementation-summary.md": "8859fd9ccf039780360f911bddc3d542992732c7aa84840b3cb50149cabc625c"
     },
     "last_active_child_id": null,
     "last_active_at": null

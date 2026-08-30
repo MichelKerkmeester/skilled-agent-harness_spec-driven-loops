@@ -1,5 +1,5 @@
 ---
-title: "...cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/tasks]"
+title: "Tasks: v1.0.4 Full-Matrix Stress Test Execution Phase"
 description: "Future execution-phase task ledger for the full-matrix stress test. These tasks are not executed by this design packet."
 trigger_phrases:
   - "full matrix stress tasks"

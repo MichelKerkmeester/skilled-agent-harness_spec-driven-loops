@@ -1,5 +1,5 @@
 ---
-title: "...-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook/tasks]"
+title: "Tasks: system-skill-advisor manual testing playbook"
 description: "Concrete tasks for the manual-testing-playbook root, category, and scenario rename, path-link repair, and scenario parity verification."
 trigger_phrases:
   - "manual testing playbook tasks"

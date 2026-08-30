@@ -1,5 +1,5 @@
 ---
-title: "...context-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability/plan]"
+title: "Implementation Plan: MCP Stress-Cycle Doc Cleanup"
 description: "Single-batch doc cleanup. No runtime code touched. Each REQ is one file edit or one sidecar creation."
 trigger_phrases:
   - "001-fix-mcp-stress-cycle-doc-observability"

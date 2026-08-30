@@ -1,5 +1,5 @@
 ---
-title: "...remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs/tasks]"
+title: "Tasks: Rerank reaper env knobs and operator docs"
 description: "Task list for launcher env allowlist, skill docs, README docs, and verification handoff."
 trigger_phrases:
   - "rerank reaper tasks"

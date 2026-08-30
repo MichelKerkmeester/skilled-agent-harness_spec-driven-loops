@@ -1,5 +1,5 @@
 ---
-title: "...on/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability/implementation-summary]"
+title: "Implementation Summary: MCP Stress-Cycle Doc/Observability Cleanup"
 description: "Closed the 6 P2 advisories from the 011 MCP runtime stress-remediation deep review with documentation reconciliation and a replayable v1.0.2 rubric sidecar."
 trigger_phrases:
   - "001-fix-mcp-stress-cycle-doc-observability"

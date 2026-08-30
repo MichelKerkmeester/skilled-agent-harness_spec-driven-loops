@@ -1,5 +1,5 @@
 ---
-title: "...-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/implementation-summary]"
+title: "Implementation Summary: Existing-README Cleanup"
 description: "Triaged the audit to a verified real-work list, then a six-agent Sonnet swarm surgically repaired 64 older skill/code READMEs (real stale-path refs traced to their moved targets plus missing OVERVIEW sections), left the false positives alone, and deleted the approved stale duplicate."
 trigger_phrases:
   - "existing readme cleanup summary"

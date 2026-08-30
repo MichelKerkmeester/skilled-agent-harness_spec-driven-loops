@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The prior v1.0.4 run was scoped honestly but narrowly",
     "created_at": "2026-04-29T11:40:34.000Z",
-    "last_save_at": "2026-08-30T07:16:27.618Z",
+    "last_save_at": "2026-08-30T08:04:40.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:655483bfafed5bbdd0fa4274b0b6a881ea3c154c43b6f3deb1938363ae0346e2",
+    "source_fingerprint": "sha256:c8bd5467c24e07c5ec9fe34fe5d722e407c198ef9b69b236a7efd47bea2e4242",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "bbdfea590c255e40df1f3baf4d8c39ab80014bba9653abf0fff9d4ffb2cc2555",
-      "plan.md": "f74599761162b846eb46f6cfa05c241bed7f545e85fe7b6962ae2e366265079d",
-      "tasks.md": "5cd0aa7f0dc6385bcdd59781ce9476d610b1135fb8de4db8fe220537cbc3da85",
-      "decision-record.md": "ecfda8be8d94ad022afb5d298928b1b3bf29f10e1973f8025a1b6d0ab965040e",
-      "implementation-summary.md": "458235f7b5aad137d9d7cb3beda77521e4f4d690e058c919e1c91a33f5112e15"
+      "spec.md": "a0e6e266b98bdb6d61b5ee27b19853c5c4eb2130e21ed7fe86b4e7bb41d54217",
+      "plan.md": "04ac7397c1cd391d5079fda69bbe683ca412279bf1cad0fdabe5ff8a2d9d4d8b",
+      "tasks.md": "f0b7219de462cc75a77a8c2e9bb1704212d7299f02a0cfa3b5171de4b9b53700",
+      "decision-record.md": "e40654ca46f1b251aea4117b8df28b91a9ec5f3426459becc3eb721199843281",
+      "implementation-summary.md": "01f864e142977178ef5fbdba2b1c437a1b2656534ccece022db26d2c113637f3"
     },
     "last_active_child_id": null,
     "last_active_at": null

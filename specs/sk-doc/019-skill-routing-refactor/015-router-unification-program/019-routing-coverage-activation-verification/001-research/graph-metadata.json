@@ -91,6 +91,12 @@
         "source": "derived"
       },
       {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Routing Coverage",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -116,12 +122,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The compiled skill-router is shipped but inert",
     "created_at": "2026-07-20T21:22:58.681Z",
-    "last_save_at": "2026-08-30T07:19:03.026Z",
+    "last_save_at": "2026-08-30T08:04:11.624Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:075dc75a5fbdea60ef9fb50e5f0275c6bd0b82901c9100a4da954e5ec8ab2094",
+    "source_fingerprint": "sha256:f865980fb627a2fcb7280b243300cfa29520e2fc3ed8cc91407e7eb6609898ff",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f5d4c866191d72c51a20679b1a5519223ac7b576e962557708a94b3149c9895b",
-      "plan.md": "fe79365dee00a645aec0e410285bb725379d11b3fd6126ed88469fcc46d7444c",
-      "tasks.md": "3a269075de824c5427fcc35f065b8fcce92bc36e22ab577c7261c8ffde73c7b5",
-      "implementation-summary.md": "ab40e3f638044b5aaea32d3f82f060a69dbcd195388221d0100e7df4fd9fedfa"
+      "spec.md": "0cb0d68a303e507955cba22d962466bd3c21f683499104a6b5fded742ea38992",
+      "plan.md": "e0f1750442852ff921cae2ef825a6a55afb914d0b469fe89f2cd25f195e9309d",
+      "tasks.md": "f938813a714e607f185fd478ef2bedbbf8885dceb86106df0525da9c829eb937",
+      "implementation-summary.md": "fd53bce21d76c5dfe256c6333294180fae8f983a8302adabf052f0594b267297"
     },
     "last_active_child_id": null,
     "last_active_at": null

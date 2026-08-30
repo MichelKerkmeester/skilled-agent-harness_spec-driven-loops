@@ -1,5 +1,5 @@
 ---
-title: "...se-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/research]"
+title: "codex 1 — research"
 description: "The common root cause is contract governance drift. The audit findings are not one isolated stale-doc episode; they show repeated divergence between public MCP schemas, runtime ..."
 trigger_phrases:
   - "and"

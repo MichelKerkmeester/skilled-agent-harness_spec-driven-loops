@@ -1,5 +1,5 @@
 ---
-title: "...hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/tasks]"
+title: "Tasks: system-code-graph MCP server directory and manifest closure"
 description: "Concrete tasks for the code-graph package-boundary rename, manifest/entrypoint closure, exemption preservation, and runtime verification."
 trigger_phrases:
   - "system-code-graph mcp-server closure tasks"

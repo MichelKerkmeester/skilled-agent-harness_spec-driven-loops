@@ -1,5 +1,5 @@
 ---
-title: "...hen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/implementation-summary]"
+title: "Implementation Summary: fixture corpus and dry-run verification (020 phase 005.003)"
 description: "The migration tooling now has a deterministic disposable fixture corpus that proves semantic rename, reference checking and reference rewrite behavior without changing the real worktree."
 trigger_phrases:
   - "fixture corpus implementation"

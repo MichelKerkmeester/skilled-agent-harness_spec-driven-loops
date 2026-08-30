@@ -1,5 +1,5 @@
 ---
-title: "...mization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/implementation-summary]"
+title: "007 foundational runtime — implementation summary"
 description: "Phase 017 complete: 25 commits shipped to main closing all 10 original review P1 findings + 9 new segment-2 P1 findings + 10 P2 refactors. Verdict: CONDITIONAL → PASS. Headline: H-56-1 canonical save metadata no-op eliminated. Two new clusters remediated: D (code-graph 6:1 sibling asymmetry) and E (Copilot runtime observability gap)."
 trigger_phrases:
   - "017 implementation summary"

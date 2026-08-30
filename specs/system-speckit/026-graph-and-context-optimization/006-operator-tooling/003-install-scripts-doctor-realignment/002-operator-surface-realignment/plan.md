@@ -1,5 +1,5 @@
 ---
-title: "...ntext-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment/plan]"
+title: "Implementation Plan: Phase 1: operator-surface-realignment"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

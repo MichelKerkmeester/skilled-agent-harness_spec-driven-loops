@@ -1,5 +1,5 @@
 ---
-title: "...ase-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt/implementation-summary]"
+title: "Implementation Summary: sk-doc Legacy Template Debt Cleanup"
 description: "Closed eligible HIGH sk-doc template-alignment debt and reduced explicit MED findings through additive spec-doc remediations."
 trigger_phrases:
   - "013-skdoc legacy template cleanup summary"

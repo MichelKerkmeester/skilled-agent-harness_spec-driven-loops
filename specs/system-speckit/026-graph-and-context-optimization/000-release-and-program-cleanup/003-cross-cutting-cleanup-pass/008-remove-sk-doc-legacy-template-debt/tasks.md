@@ -1,5 +1,5 @@
 ---
-title: "...mization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt/tasks]"
+title: "Tasks: sk-doc Legacy Template Debt Cleanup"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "013-skdoc legacy template cleanup tasks"

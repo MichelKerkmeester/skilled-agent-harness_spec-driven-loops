@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The mcp-obsidian README pilot proved the standard for mode skill READMEs: narrative, purpose-first documents in the Human Voice Rules, validated by the sk-doc README validator",
     "created_at": "2026-08-04T08:34:50.001Z",
-    "last_save_at": "2026-08-30T07:20:33.642Z",
+    "last_save_at": "2026-08-30T08:04:37.531Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e2d5dc4c55e9c2bca4f86877eaad4388b14dfdf9622eef9b9c8d34cfa1d1f48",
+    "source_fingerprint": "sha256:01b356bdd302011db7a34f7b3a11a504b1bed58456370cbb5ad9aad14efe0ba4",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "50612ff69a567c778dd6f56c73008b2a19dfe71118505b15cf9d23adcbfd73cb",
       "plan.md": "1a9e95e92d57dae40682470e8b1283153fc450473d38f3a20c0f5c86da9a5785",
       "tasks.md": "7b33d8db7091220e1debe4cb31a51be0ac7e0d29d8665e818d80bedbc5590655",
-      "implementation-summary.md": "e0fe94837ff1ea9430204f749bc3d212d326c7281793897daa67b4130f4dae4a"
+      "implementation-summary.md": "ad36d443e9d8f5220cdacfea74bc1e797e6c7d46520afd81b36a3d9dd6eecfd4"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "...-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/spec]"
+title: "Feature Specification: system-code-graph MCP server directory and manifest closure"
 description: "Rename the system-code-graph MCP package root and permitted non-Python direct layout directories to kebab-case, then update the launcher, CLI, build, test, plugin, configuration, and documentation path closure atomically."
 trigger_phrases:
   - "system-code-graph mcp-server directory"
