@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance"
-    last_updated_at: "2026-08-29T00:00:00Z"
+    last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Restored the level-upgrade path and cleared the vocabulary invariance"
     next_safe_action: "None; both defects are fixed and verified"
@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh"
     session_dedup:
-      fingerprint: "sha256:a54c5a9b6027e4e09bf63827a265b4705ec8a442aaae45959adf3998645b4b54"
+      fingerprint: "sha256:5b17aa0d3d539efad40bbe23b7ea5859a44ed6431b97eeb5dbb1c1a110e6e8ec"
       session_id: "2026-08-29-033-003-restore-level-upgrade"
       parent_session_id: null
     completion_pct: 100

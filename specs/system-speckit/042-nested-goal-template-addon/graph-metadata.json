@@ -207,7 +207,7 @@
     ],
     "causal_summary": "An operator sets one session objective, and whatever they set is frozen at that moment",
     "created_at": "2026-08-29T17:39:40Z",
-    "last_save_at": "2026-08-30T04:14:26.668Z",
+    "last_save_at": "2026-08-30T04:18:09.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,9 +215,9 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:f8f41270d70bc605108723211299be2e47d49212bf118117f3d9da600b56b805",
+    "source_fingerprint": "sha256:c370d0aeab9d184ae9c77de68ab4eeb3bcd14e50b2d95e854d062019dda6e7b1",
     "source_doc_hashes": {
-      "spec.md": "1f37f19cf5222a18435e8f7dd824c45e2632f78075906156853e75f8fb25d6f1",
+      "spec.md": "774485ff3e823c808221394789132c9ecd9603ef8d2556953e23b369df24dc7a",
       "research/research.md": "ace2291925f302fc0732524cecd51440e501cc389863663222f1b0f658afb081",
       "resource-map.md": "2ce377a03c562fc3e106677d0839f1dae5d3d3fe279daa1588cfca2f3aef75cc"
     },
