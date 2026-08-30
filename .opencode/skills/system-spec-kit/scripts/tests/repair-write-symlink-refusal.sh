@@ -23,20 +23,20 @@ expect() {
     else FAIL=$((FAIL+1)); printf '  FAIL  %-50s want=%s got=%s\n' "$name" "$want" "$got"; fi
 }
 
-# Exercises the same open flags the repair write uses.
+# Imports the repair script's own write function. An earlier version of this
+# suite reimplemented the open flags inline, so it passed against a script that
+# had no such protection at all - a test that proves its own copy works proves
+# nothing about the code that ships.
 run_probe() {
-    node --input-type=module -e "
-import fs from 'node:fs';
-const target = process.argv[1];
-let fd;
-try {
-  fd = fs.openSync(target, fs.constants.O_WRONLY | fs.constants.O_TRUNC | fs.constants.O_NOFOLLOW);
-} catch (error) {
-  process.stdout.write(error && (error.code === 'ELOOP' || error.code === 'EMLINK') ? 'refused' : 'error');
-  process.exit(0);
-}
-try { fs.writeFileSync(fd, 'REPAIRED'); process.stdout.write('wrote'); } finally { fs.closeSync(fd); }
-" "$1" 2>/dev/null
+    # Passed by environment, not argv: the script only runs its sweep when
+    # invoked as a command, and it decides that by comparing its own URL against
+    # argv[1]. Handing it the script path there would look like direct
+    # invocation and trigger a full repair run inside the test.
+    SPECKIT_PROBE_SCRIPT="$SCRIPT" SPECKIT_PROBE_TARGET="$1" node --input-type=module -e "
+const { writeExistingFileNoFollow } = await import(process.env.SPECKIT_PROBE_SCRIPT);
+try { writeExistingFileNoFollow(process.env.SPECKIT_PROBE_TARGET, 'REPAIRED'); process.stdout.write('wrote'); }
+catch (error) { process.stdout.write(/symlink/i.test(error?.message ?? '') ? 'refused' : 'error'); }
+" 2>/dev/null
 }
 
 echo "CASE                                               RESULT"

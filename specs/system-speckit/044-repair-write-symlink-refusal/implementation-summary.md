@@ -81,17 +81,42 @@ That is the same trade-off the graph-metadata write boundary settled the same wa
 | Normal destination | Written, content replaced |
 | Destination swapped to a symlink | Refused |
 | The symlink's target | Unchanged |
-| `scripts/tests/repair-write-symlink-refusal.sh` | 5/5 |
+| `scripts/tests/repair-write-symlink-refusal.sh` | 5/5, against the shipped function |
+| Negative control | Protection removed: 2 failures, victim file overwritten |
 | Repair script end to end | `node mcp-server/scripts/repair-graph-metadata.mjs --dry-run` reports 366 candidates, 0 remaining, writes nothing |
 <!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:incident -->
+## What the first attempt got wrong
+
+The first commit of this packet shipped the documentation and the test but not
+the fix. A review lineage running concurrently reverted ten paths it considered
+outside its write scope — including this script and this packet — and the commit
+captured that reverted state. The push therefore claimed a change it did not
+contain.
+
+The test did not catch it, because the test had reimplemented the open flags
+inline instead of calling the shipped function. It proved its own copy worked
+and said nothing about the code that ships, so it passed against a script with
+no protection at all.
+
+Both are fixed. The suite imports the function the script exports, and the
+script now runs its sweep only when invoked as a command so importing it is
+side-effect free. The control that was missing is now run: with the protection
+removed the suite fails on the symlink case, reporting the victim file
+overwritten.
+<!-- /ANCHOR:incident -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A symlink already in place before the scan is skipped, not reported.** The walk drops it silently, as it did before; this change only closes the gap between that decision and the write.
-2. **The resume containment gap remains open by decision**, with the measurement above as the reason.
+1. **A test that reimplements what it checks proves nothing.** The first version of this suite did exactly that and passed on unfixed code; it now imports the shipped function and is pinned by a negative control.
+2. **A symlink already in place before the scan is skipped, not reported.** The walk drops it silently, as it did before; this change only closes the gap between that decision and the write.
+3. **The resume containment gap remains open by decision**, with the measurement above as the reason.
 <!-- /ANCHOR:limitations -->
 
 ---
