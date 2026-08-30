@@ -13,20 +13,10 @@
 #     validate.sh against selected fixtures; the registry remains the
 #     authoritative full rule inventory.
 #
-# DIRECT ISOLATED RULE SCRIPTS:
-#   1. check-ai-protocols.sh
-#   2. check-anchors.sh
-#   3. check-complexity.sh
-#   4. check-evidence.sh
-#   5. check-files.sh
-#   6. check-folder-naming.sh
-#   7. check-level-match.sh
-#   8. check-level.sh
-#   9. check-placeholders.sh
-#  10. check-priority-tags.sh
-#  11. check-section-counts.sh
-#  12. check-sections.sh
-#  13. check-template-headers.sh
+# Rule scripts are exercised in isolation by the "Individual Rule:" categories
+# below. That list is the inventory; a numbered copy of it here went stale
+# across two rounds of rule deletions and named four scripts that no longer
+# exist.
 #
 # COMPATIBILITY: bash 3.2+ (macOS default)
 
@@ -662,70 +652,6 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
     unset -f run_check 2>/dev/null || true
 }
 
-run_evidence_item_disposition_test() {
-    local name="$1"
-    local fixture="$2"
-    local selector="$3"
-    local expected_disposition="$4"
-
-    local test_entry="[$CURRENT_CATEGORY] $name"
-    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
-${test_entry}"; else TEST_LIST="$test_entry"; fi
-
-    if [[ "$LIST_ONLY" = true ]]; then return; fi
-    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
-    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
-
-    local start_time fixture_path checklist_path item_text line line_number missing_count actual
-    start_time=$(get_time_ms)
-    fixture_path="$FIXTURES/$fixture"
-    checklist_path="$fixture_path/checklist.md"
-    item_text=""
-    line_number=0
-    missing_count=0
-    actual="missing"
-
-    if [[ -f "$checklist_path" ]]; then
-        while IFS= read -r line || [[ -n "$line" ]]; do
-            ((line_number++)) || true
-            if [[ "$line" == *"$selector"* ]]; then
-                item_text="$line"
-                break
-            fi
-        done < "$checklist_path"
-    fi
-
-    if [[ -n "$item_text" && "$item_text" == *"$expected_disposition"* ]]; then
-        RULE_DETAILS=()
-        source "$RULES_DIR/check-evidence.sh"
-        check_completed_item_evidence "checklist.md" "$line_number" "P0" "$item_text"
-        if [[ "$missing_count" -eq 0 ]]; then
-            actual="pass"
-        else
-            actual="warn"
-        fi
-    fi
-
-    local end_time elapsed time_display
-    end_time=$(get_time_ms)
-    elapsed=$((end_time - start_time))
-    time_display=$(format_time "$elapsed")
-    CURRENT_CAT_TIME=$((CURRENT_CAT_TIME + elapsed))
-    TOTAL_TIME=$((TOTAL_TIME + elapsed))
-
-    if [[ "$actual" = "pass" ]]; then
-        echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
-        PASSED=$((PASSED + 1))
-        CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
-    else
-        echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
-        echo -e "  ${RED}Expected:${NC} recognized item with $expected_disposition disposition, ${RED}Got:${NC} $actual"
-        FAILED=$((FAILED + 1))
-        CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
-    fi
-
-    unset -f run_check 2>/dev/null || true
-}
 
 run_status_classifier_test() {
     local name="$1"
@@ -985,32 +911,7 @@ if begin_category "Metadata Parse Errors"; then
     run_malformed_metadata_test "Malformed generated metadata emits a warning"
 fi
 
-if begin_category "Individual Rule: EVIDENCE_CITED (check-evidence.sh)"; then
-    run_isolated_rule_test "All evidence present" "check-evidence.sh" "010-valid-evidence" "pass" 2
-    run_isolated_rule_test "All 5 patterns recognized" "check-evidence.sh" "016-evidence-all-patterns" "pass" 2
-    run_isolated_rule_test "Case-insensitive tags" "check-evidence.sh" "017-evidence-case-variations" "pass" 2
-    run_isolated_rule_test "Checkmark formats" "check-evidence.sh" "018-evidence-checkmark-formats" "pass" 2
-    run_evidence_item_disposition_test "Lowercase x checkmark has evidence disposition" "018-evidence-checkmark-formats" "Lowercase x checkmark" "[Evidence:"
-    run_evidence_item_disposition_test "Uppercase X checkmark has evidence disposition" "018-evidence-checkmark-formats" "Uppercase X checkmark" "[Evidence:"
-    run_isolated_rule_test "P2 items exempt" "check-evidence.sh" "019-evidence-p2-exempt" "pass" 2
-    run_isolated_rule_test "Wrong suffix (warn)" "check-evidence.sh" "020-evidence-wrong-suffix" "warn" 2
-    run_isolated_rule_test "Missing evidence (warn)" "check-evidence.sh" "031-missing-evidence" "warn" 2
-    run_isolated_rule_test "Unindented later prose is not item evidence" "check-evidence.sh" "074-evidence-unindented-prose" "warn" 2
-    run_isolated_rule_test "Indented continuation is item evidence" "check-evidence.sh" "075-evidence-indented-continuation" "pass" 2
-    run_isolated_rule_test "Short deferred reason is not substantive" "check-evidence.sh" "076-evidence-short-deferred" "warn" 2
-fi
 
-if begin_category "Individual Rule: PRIORITY_TAGS (check-priority-tags.sh)"; then
-    run_isolated_rule_test "Valid P0/P1/P2 tags" "check-priority-tags.sh" "009-valid-priority-tags" "pass" 2
-    run_isolated_rule_test "Inline tags [P0]/[P1]" "check-priority-tags.sh" "041-priority-inline-tags" "pass" 2
-    run_isolated_rule_test "Mixed headers + inline" "check-priority-tags.sh" "043-priority-mixed-format" "pass" 2
-    run_isolated_rule_test "Context reset after header" "check-priority-tags.sh" "040-priority-context-reset" "pass" 2
-    run_isolated_rule_test "Lowercase headers (warn)" "check-priority-tags.sh" "042-priority-lowercase" "warn" 2
-    # Note: P3/P4 items have valid context from headers, so rule passes
-    run_isolated_rule_test "P3/P4 tags (context present)" "check-priority-tags.sh" "044-priority-p3-invalid" "pass" 2
-    # Note: Items have priority context from headers
-    run_isolated_rule_test "Items with context" "check-priority-tags.sh" "021-invalid-priority-tags" "pass" 2
-fi
 
 if begin_category "Individual Rule: LEVEL_DECLARED (check-level.sh)"; then
     # Note: LEVEL_METHOD is set by orchestrator, in isolation it's always "inferred"

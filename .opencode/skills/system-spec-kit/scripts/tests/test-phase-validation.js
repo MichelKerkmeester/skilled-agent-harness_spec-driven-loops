@@ -331,14 +331,6 @@ function testPhaseValidationFixtures() {
     assertEqual(result.phaseCount, fixture.phase_names.length, `${scenario}: phaseCount matches fixture`);
     assertTrue(Array.isArray(result.phases), `${scenario}: phases[] present in JSON output`);
 
-    if (fixture.broken_links) {
-      const phaseLinkResult = (result.results || []).find((entry) => entry.rule === 'PHASE_LINKS');
-      assertTrue(
-        !!phaseLinkResult && phaseLinkResult.status === 'warn',
-        `${scenario}: PHASE_LINKS emits warning`
-      );
-    }
-
     if (fixture.empty_child) {
       assertTrue(result.summary.errors > 0, `${scenario}: empty child produces validation errors`);
     }

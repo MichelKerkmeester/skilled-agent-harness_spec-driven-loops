@@ -713,34 +713,6 @@ function validateAnchorIntegrity(folder: string, level: SpecKitLevel): Validatio
     : entry('ANCHORS_VALID', 'error', `${findings.length} anchor integrity issue(s) found`, findings);
 }
 
-function validatePriorityTags(folder: string): ValidationEntry {
-  const legacyChecklist = readIfExists(path.join(folder, 'checklist.md'));
-  const tasks = readIfExists(path.join(folder, 'tasks.md'));
-  const checklist = legacyChecklist ?? (tasks ? extractMergedVerification(tasks) : null);
-  const sourceName = legacyChecklist ? 'checklist.md' : 'tasks.md';
-  if (!checklist) return entry('PRIORITY_TAGS', 'pass', 'No checklist found');
-  const findings = checklist
-    .split(/\r?\n/u)
-    .map((line, index) => ({ line, index: index + 1 }))
-    .filter(({ line }) => /^-\s+\[[ xX]\]/u.test(line) && !/\*{0,2}CHK-[A-Za-z0-9-]+\*{0,2}\s+\[P[012]\]/u.test(line))
-    .map(({ line, index }) => `${sourceName}:${index}: ${line.trim().slice(0, 120)}`);
-  return findings.length === 0
-    ? entry('PRIORITY_TAGS', 'pass', legacyChecklist ? 'Checklist priority tags use CHK-* [P*] format' : 'Verification checklist priority tags use CHK-* [P*] format')
-    : entry('PRIORITY_TAGS', 'warn', `${findings.length} ${legacyChecklist ? 'checklist' : 'verification'} item(s) have non-standard priority tags`, findings);
-}
-
-function extractMergedVerification(content: string): string | null {
-  const startMarker = '<!-- ANCHOR:protocol -->';
-  const start = content.indexOf(startMarker);
-  if (start === -1) return null;
-  const signOffEndMarker = '<!-- /ANCHOR:sign-off -->';
-  const summaryEndMarker = '<!-- /ANCHOR:summary -->';
-  const endMarker = content.indexOf(signOffEndMarker, start) !== -1 ? signOffEndMarker : summaryEndMarker;
-  const end = content.indexOf(endMarker, start);
-  if (end === -1) return null;
-  return content.slice(start, end + endMarker.length);
-}
-
 function extractSessionIds(content: string): { sessionIds: string[]; parentSessionIds: string[] } {
   const sessionIds: string[] = [];
   const parentSessionIds: string[] = [];
@@ -957,7 +929,6 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   entries.push(validatePlaceholders(folder, level));
   entries.push(validateTemplateSource(folder, level));
   entries.push(validateAnchorIntegrity(folder, level));
-  entries.push(validatePriorityTags(folder));
   entries.push(validateFrontmatterBasics(folder, level));
   entries.push(validateSpecDocRule(folder, level, 'FRONTMATTER_MEMORY_BLOCK'));
   entries.push(validateSpecDocRule(folder, level, 'SPEC_DOC_SUFFICIENCY'));

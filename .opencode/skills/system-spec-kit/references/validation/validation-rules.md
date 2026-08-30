@@ -52,11 +52,8 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `FILE_EXISTS`        | ERROR    | All levels    | Required files present for documentation level |
 | `PLACEHOLDER_FILLED` | ERROR    | Core files    | No unfilled template placeholders              |
 | `LEVEL_DECLARED`     | INFO     | spec.md       | Level explicitly stated in metadata            |
-| `PRIORITY_TAGS`      | WARNING  | checklist.md  | P0/P1/P2 priority tags properly formatted      |
-| `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
 | `AC_COVERAGE`        | INFO     | checklist.md  | Advisory acceptance-criteria traceability scan (on by default) |
 | `AC_CLOSURE`         | ERROR    | acceptance-criteria.md | Closure gate for Levels 2/3/3+: unmet criteria block a completion claim, waivers must cite a real ADR |
-| `GOAL_SHAPE`         | WARN     | goal.md | Present-file shape check: durable and log separable, a phase parent binds children that exist, durable slice within a pasteable budget |
 | `CONTINUITY_FRESHNESS` | WARNING | completion claims | Opt-in strict-only completion freshness check |
 | `ANCHORS_VALID`      | ERROR    | spec docs + memory/*.md | ANCHOR pairs properly opened and closed  |
 | `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
@@ -64,33 +61,8 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `COMPLEXITY_MATCH`   | WARNING  | All levels    | Content metrics match declared level           |
 | `AI_PROTOCOLS`       | ERROR    | Level 3/3+    | AI execution protocols present                 |
 | `LEVEL_MATCH`        | ERROR    | All files     | Level consistent across all spec files         |
-| `SECTION_COUNTS`     | WARNING  | All levels    | Section counts within expected ranges          |
-| `PHASE_LINKS`        | WARNING  | Phased specs  | Parent-child phase references valid            |
-| `PHASE_PARENT_CONTENT` | WARNING | Phase parents | Phase-parent `spec.md` avoids consolidation/migration narratives |
-| `CURRENT_STATE_DISCIPLINE` | INFO | implementation summaries | Long-lived summaries avoid migration-history narratives |
-| `SCOPE_ADHERENCE`    | WARNING  | change-set (opt-in) | Advises when a supplied change-set exceeds spec.md "Files to Change" |
 
-> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (46 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, SCOPE_ADHERENCE, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
-
-### GOAL_SHAPE
-
-`GOAL_SHAPE` checks a packet's goal document when it has one. It is registered at WARN severity and runs by default; set `SPECKIT_GOAL_SHAPE=false` to opt out.
-
-**Scope:** present-file. A packet with no goal document produces no finding at all, so the rule never reaches a packet that did not opt in.
-
-**Why a durable budget exists:** the durable slice is what an operator pastes into a session objective, and every runtime goal surface caps what it will hold. A slice that will not fit is silently truncated, and the tail is where the completion criteria live.
-
-**Budgets, measured rather than guessed:** the template's own instructional prose occupies 738 characters at a leaf level and 1,276 at a phase parent, because a parent additionally carries its binding block. The default budgets are `SPECKIT_GOAL_DURABLE_MAX` at 2000 for a leaf and `SPECKIT_GOAL_DURABLE_MAX_PHASE` at 3000 for a parent, both inside the smallest documented runtime cap with room for the wrapper an operator adds. The whole slice is measured; deciding which prose counts as boilerplate would drift every time the template does.
-
-**Findings:**
-
-| Condition | Reported |
-|---|---|
-| No goal document | nothing; the rule is a no-op |
-| Missing durable, log, or completion heading | the directive cannot be told from the log, or nothing states when the packet is done |
-| Phase parent with no binding block | its children's goals are unreachable |
-| Binding lists a child path that does not exist | that path, by name |
-| Durable slice over budget | the measured size against the budget |
+> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
 
 ### AC_CLOSURE
 
@@ -135,20 +107,6 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `SPECKIT_AC_COVERAGE` | `true` | Runs the advisory validation scan by default; set to `false` to opt out. |
 | `SPECKIT_AC_COVERAGE_ENFORCE` | `false` | Reserved promotion switch; current rule remains INFO/advisory. |
 | `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | Sets the advisory coverage floor, clamped to `[0,1]`. |
-
-### Scope Adherence (opt-in change-set audit)
-
-`SCOPE_ADHERENCE` is a no-op unless a change-set is supplied. It compares changed paths against the packet's `spec.md` "Files to Change" section and warns (never errors) on out-of-scope files.
-
-**Rule ID:** `SCOPE_ADHERENCE`  
-**Severity:** WARNING (advisory)  
-**Default:** Inactive. Provide a change-set via the env contract below to activate.  
-**Packet docs:** a packet's own canonical documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `resource-map.md`, `handover.md`, `description.json`, `graph-metadata.json`) are always in-scope and never flagged.
-
-| Env var | Effect |
-| --- | --- |
-| `SYSTEM_SCOPE_CHANGED_FILES` | Whitespace/newline-separated repo-relative changed paths to audit directly (takes precedence). |
-| `SYSTEM_SCOPE_BASE` | A git ref; when `SYSTEM_SCOPE_CHANGED_FILES` is empty, the change-set is `git diff --name-only <SYSTEM_SCOPE_BASE>`. |
 
 ### Non-Breaking Completion Freshness Rollout
 
@@ -269,66 +227,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path sp
 
 ---
 
-## 4. PHASE_PARENT_CONTENT
-
-**Severity:** WARNING (advisory; does not block validation pass)
-**Description:** When a spec folder qualifies as a phase parent, its `spec.md` must avoid migration-history narratives. The phase-parent surface is a control file of children plus root purpose; consolidation, merge, or rename history rots fast and creates the very hallucination surface the lean trio policy was designed to eliminate.
-
-**Detection:** Runs only when `is_phase_parent($folder)` returns true. Skips automatically on regular spec folders, phase children, and any folder that lacks NNN-named populated children.
-
-**Forbidden tokens** (case-insensitive scan, code-fence + HTML-comment aware):
-
-```
-consolidat[a-z]*    # consolidate, consolidated, consolidation
-merged from
-renamed from
-collapsed
-[0-9]+→[0-9]+       # arrow-style narrative ("29→9 phases")
-reorganization
-```
-
-The scanner skips matches inside fenced code blocks (triple-backtick) and inside HTML comment blocks (`<!-- -->`), so legitimate examples in templates and reference docs do not trigger the rule.
-
-**Required content (mirrored from `templates/packet-types/phase-parent.spec.md.tmpl`):** root purpose, sub-phase control file, what needs done. Migration history goes in an optional `context-index.md` rendered from `templates/packet-types/context-index.md.tmpl`.
-
-**Implementation:** `.opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh`. Registered as `PHASE_PARENT_CONTENT` in `scripts/lib/validator-registry.json` (severity: warn, category: authored_template).
-
-### How to Fix
-
-Move any flagged narrative to `context-index.md` (create the file if it does not exist; the template carries Author Instructions explaining when to use it). Replace the parent's narrative with a sub-phase control file table linking each phase folder to its focus and current status.
-
----
-
-## 5. CURRENT_STATE_DISCIPLINE
-
-**Severity:** INFO  
-**Description:** Advises when `implementation-summary.md` includes migration-history narrative. Canonical summaries should describe what exists now and the verification that proves it, while historical movement belongs in deliberately historical surfaces.
-
-**Detection:** Scans only `implementation-summary.md`. It does not scan `decision-record.md`, changelogs, or context indexes because those documents are allowed to preserve decision and migration history. It also does not scan ordinary `spec.md` files in this rollout.
-
-**Flagged tokens** (case-insensitive scan, code-fence + HTML-comment aware):
-
-```
-merged from
-renamed from
-collapsed
-reorganization
-renumbered from
-migrated from
-[0-9]+→[0-9]+       # arrow-style migration narrative
-```
-
-The broader `consolidat[a-z]*` token remains limited to the phase-parent rule because phrases such as "consolidated findings" can be legitimate current-state prose in summaries.
-
-**Implementation:** `.opencode/skills/system-spec-kit/scripts/rules/check-current-state-discipline.sh`. Registered as `CURRENT_STATE_DISCIPLINE` in `scripts/lib/validator-registry.json` (severity: info, category: authored_template).
-
-### How to Fix
-
-Rewrite the summary so it states the current delivered behavior, the files changed, and the validation evidence. Move migration history to a decision record, changelog, context index, or source control history.
-
----
-
-## 6. PLACEHOLDER_FILLED
+## 4. PLACEHOLDER_FILLED
 
 **Severity:** ERROR  
 **Description:** Detects unfilled template placeholders that should be replaced with actual content.
@@ -383,7 +282,7 @@ Replace placeholder text with actual content:
 2. Replace `[YOUR_VALUE_HERE: description]` with the actual value
 3. Remove the entire `[...]` block, not just the inner text
 
-## 7. LEVEL_DECLARED
+## 5. LEVEL_DECLARED
 
 **Severity:** INFO  
 **Description:** Checks if the documentation level is explicitly declared in spec.md metadata.
@@ -427,166 +326,7 @@ Add the Level field to your spec.md metadata table:
 
 ---
 
-## 8. PRIORITY_TAGS
-
-**Severity:** WARNING  
-**Description:** Validates that checklist items use proper P0/P1/P2 priority tagging format.
-
-### Priority Definitions
-
-| Priority | Meaning       | Deferral Rules                             |
-| -------- | ------------- | ------------------------------------------ |
-| **P0**   | HARD BLOCKER  | Must complete, cannot defer                |
-| **P1**   | Must complete | Can defer only with explicit user approval |
-| **P2**   | Can defer     | Can defer without approval                 |
-
-### Recognized Formats
-
-**Section Headers (preferred):**
-```markdown
-## P0 - Critical Items
-
-- [ ] Item one
-- [ ] Item two
-
-## P1 - Required Items
-
-- [ ] Item three
-```
-
-**Inline Tags:**
-```markdown
-- [ ] [P0] This is a critical item
-- [ ] [P1] This must be done
-- [ ] [P2] This can be deferred
-```
-
-### Context Reset Behavior
-
-Priority tags apply to items **until the next priority header or end of file**:
-
-```markdown
-## P0 - Critical
-
-- [ ] Item A          ← P0 (from header)
-- [ ] Item B          ← P0 (from header)
-
-## P1 - Required
-
-- [ ] Item C          ← P1 (context reset)
-- [ ] [P0] Item D     ← P0 (inline override)
-- [ ] Item E          ← P1 (back to header context)
-```
-
-### Examples
-
-✅ **Pass:**
-```markdown
-## P0 - Blockers
-
-- [x] Database migration complete
-- [ ] API endpoints deployed
-
-## P1 - Required
-
-- [ ] Documentation updated
-```
-
-⚠️ **Warning (no priority context):**
-```markdown
-## Tasks
-
-- [ ] Do something      ← No priority assigned
-- [ ] Do another thing  ← No priority assigned
-```
-
-### How to Fix
-
-Add priority headers or inline tags to all checklist items:
-
-1. Group items under `## P0`, `## P1`, `## P2` headers, OR
-2. Add inline tags: `- [ ] [P1] Task description`
-
----
-
-## 9. EVIDENCE_CITED
-
-**Severity:** WARNING  
-**Description:** Validates that non-P2 checklist items include evidence citations to support claims.
-
-### Why Evidence Matters
-
-Evidence citations:
-- Prevent "works on my machine" claims
-- Enable verification by reviewers
-- Create audit trail for decisions
-- Support future debugging
-
-### Recognized Evidence Patterns
-
-| Pattern              | Description              | Example                          |
-| -------------------- | ------------------------ | -------------------------------- |
-| `[Source: ...]`      | General source citation  | `[Source: API docs v2.1]`        |
-| `[File: ...]`        | File path reference      | `[File: src/auth.ts:45-67]`      |
-| `[Test: ...]`        | Test execution reference | `[Test: npm run test:auth]`      |
-| `[Commit: ...]`      | Git commit reference     | `[Commit: abc1234]`              |
-| `[Screenshot: ...]`  | Visual evidence          | `[Screenshot: ./evidence/login.png]` |
-
-### Priority Exemptions
-
-| Priority | Evidence Required | Rationale                          |
-| -------- | ----------------- | ---------------------------------- |
-| **P0**   | YES               | Critical items need strong proof   |
-| **P1**   | YES               | Required items need verification   |
-| **P2**   | NO (exempt)       | Deferrable items may be incomplete |
-
-### Examples
-
-✅ **Pass:**
-```markdown
-## P0 - Critical
-
-- [x] Auth flow working [Test: npm run test:auth - all 12 passing]
-- [x] Database migrated [Commit: abc1234]
-
-## P1 - Required
-
-- [x] Docs updated [File: docs/api.md]
-
-## P2 - Optional
-
-- [ ] Refactor utils      ← No evidence needed (P2 exempt)
-```
-
-⚠️ **Warning:**
-```markdown
-## P0 - Critical
-
-- [x] Auth flow working   ← WARNING: No evidence cited
-```
-
-### Case Sensitivity
-
-Evidence patterns are **case-insensitive**:
-- `[Source: ...]` ✓
-- `[source: ...]` ✓
-- `[SOURCE: ...]` ✓
-
-### How to Fix
-
-Add evidence to non-P2 items:
-
-```markdown
-## Before
-- [x] Feature implemented
-
-## After
-- [x] Feature implemented [Test: npm test - 15/15 passing]
-```
-
----
-
-## 10. ANCHORS_VALID
+## 6. ANCHORS_VALID
 
 **Severity:** ERROR  
 **Description:** Validates that generated continuity artifacts and other indexed support docs use proper ANCHOR format with matching open/close pairs.
@@ -671,7 +411,7 @@ Content here...
 
 ---
 
-## 11. FOLDER_NAMING
+## 7. FOLDER_NAMING
 
 **Severity:** ERROR
 **Description:** Validates that the spec folder follows the `###-short-name` naming convention.
@@ -715,7 +455,7 @@ mv specs/Feature specs/001-feature
 
 ---
 
-## 12. FRONTMATTER_VALID
+## 8. FRONTMATTER_VALID
 
 **Severity:** ERROR
 **Description:** Validates YAML frontmatter structure and required semantic values across the major spec documents.
@@ -771,7 +511,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path sp
 
 ---
 
-## 13. COMPLEXITY_MATCH
+## 9. COMPLEXITY_MATCH
 
 **Severity:** WARNING
 **Description:** Validates that declared complexity level matches actual content metrics (user stories, phases, tasks).
@@ -818,7 +558,7 @@ Either adjust the declared level or modify content to match:
 
 ---
 
-## 14. AI_PROTOCOLS
+## 10. AI_PROTOCOLS
 
 **Severity:** ERROR
 **Description:** Validates that Level 3 and 3+ specs include AI execution protocol sections for agent guidance. For Level 3+, missing protocol components are reported as errors.
@@ -882,7 +622,7 @@ cat .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
 
 ---
 
-## 15. LEVEL_MATCH
+## 11. LEVEL_MATCH
 
 **Severity:** ERROR
 **Description:** Validates that the declared level is consistent across all spec folder files and required files exist.
@@ -937,133 +677,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path sp
 
 ---
 
-## 16. SECTION_COUNTS
-
-**Severity:** WARNING
-**Description:** Validates that section counts are within expected ranges for the declared documentation level.
-
-### Expected Minimums by Level
-
-| Level | spec.md H2s | plan.md H2s | Requirements | Acceptance Scenarios |
-| ----- | ----------- | ----------- | ------------ | -------------------- |
-| 1     | 5           | 4           | 3            | 2                    |
-| 2     | 8           | 6           | 5            | 4                    |
-| 3/3+  | 10          | 8           | 8            | 6                    |
-
-### Detection Patterns
-
-| Metric               | Pattern                          |
-| -------------------- | -------------------------------- |
-| H2 sections          | Lines starting with `## `        |
-| Requirements         | `REQ-FUNC-`, `REQ-DATA-`, `REQ-` |
-| Acceptance Scenarios | `**Given**` blocks               |
-
-### Examples
-
-**Warning (sparse for Level 2):**
-```
-Level: 2
-spec.md: 4 sections (expected 8)
-plan.md: 3 sections (expected 6)
-Requirements: 2 (expected 5)
-Scenarios: 1 (expected 4)
-```
-
-### How to Fix
-
-Either expand content or reduce declared level:
-
-1. **Add sections:** Fill in missing spec sections (Problem Statement, Requirements, etc.)
-2. **Add requirements:** Define more `REQ-FUNC-###` identifiers
-3. **Add scenarios:** Write more `**Given**/**When**/**Then**` acceptance tests
-4. **Reduce level:** If spec is intentionally minimal, declare Level 1
-
----
-
-## 17. PHASE_LINKS
-
-**Severity:** WARNING
-**Description:** Validates the integrity of parent-child phase relationships in phase-decomposed spec folders.
-
-### When Active
-
-This rule only applies when a spec folder contains numbered child folders (matching `[0-9][0-9][0-9]-*/` pattern) that represent phases. Standard (non-phased) spec folders skip this rule entirely.
-
-### Checks Performed
-
-| Check | Severity | Description |
-|-------|----------|-------------|
-| Phase Documentation Map | WARNING | Parent spec.md should contain a Phase Documentation Map section |
-| Child back-reference | WARNING | Direct-child spec.md should include a metadata table with Parent Spec, Predecessor, and Successor references |
-| Child folder naming | ERROR | Phase child folders must follow `###-name/` naming convention |
-| Status consistency | WARNING | Phase status in parent map should match child spec.md status |
-
-### Examples
-
-**Pass (complete phase links):**
-```
-specs/042-payment-system/
-├── spec.md                     # Contains Phase Documentation Map
-│                                 with entries for 009, 010, and 011
-├── 009-session-capturing/
-├── 010-phase-links/
-│   └── spec.md                 # Includes metadata table with Parent Spec,
-│                               # Predecessor, and Successor links
-└── 011-skill-alignment/
-    └── spec.md                 # Includes metadata table with Parent Spec,
-                                # Predecessor, and Successor links
-```
-
-**Warning (missing map):**
-```
-specs/042-payment-system/
-├── spec.md                     # No Phase Documentation Map section
-├── 009-session-capturing/
-├── 010-phase-links/            ← WARNING: parent has no phase map
-└── 011-skill-alignment/
-```
-
-**Warning (missing back-reference):**
-```
-specs/042-payment-system/010-phase-links/
-└── spec.md                     # No metadata table with Parent Spec,
-                                # Predecessor, and Successor references
-                                   ← WARNING: no phase navigation back-reference
-```
-
-### How to Fix
-
-**Add Phase Documentation Map to parent spec.md:**
-```markdown
-## Phase Documentation Map
-
-| Phase | Folder | Status | Description |
-|-------|--------|--------|-------------|
-| 9 | `009-session-capturing/` | done | Session capture and handoff flow |
-| 10 | `010-phase-links/` | active | Phase-link validation guidance |
-| 11 | `011-skill-alignment/` | draft | Skill alignment follow-up work |
-```
-
-**Add phase navigation metadata table to child spec.md:**
-```markdown
-| Field | Value |
-|-------|-------|
-| **Parent Spec** | `../spec.md` |
-| **Predecessor** | `../009-session-capturing/spec.md` |
-| **Successor** | `../011-skill-alignment/spec.md` |
-```
-
-### Recursive Validation
-
-To validate phase links across parent and all children:
-
-```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/042-payment-system/ --recursive
-```
-
----
-
-## 18. CONFIGURATION
+## 12. CONFIGURATION
 
 ### Environment Variables
 
@@ -1096,7 +710,7 @@ SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh
 
 ---
 
-## 19. RELATED RESOURCES
+## 13. RELATED RESOURCES
 
 ### Reference Files
 

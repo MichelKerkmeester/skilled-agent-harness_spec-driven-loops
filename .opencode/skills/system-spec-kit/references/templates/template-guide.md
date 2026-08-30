@@ -1141,7 +1141,7 @@ Validate all phases recursively from the parent:
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-parent-feature/ --recursive
 ```
 
-This validates the parent and each child phase folder independently, plus checks cross-references (PHASE_LINKS rule).
+This validates the parent and each child phase folder independently.
 
 ### Full Documentation
 

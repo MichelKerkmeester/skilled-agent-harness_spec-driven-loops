@@ -169,9 +169,6 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 
   x SPEC_DOC_SUFFICIENCY: 1 spec_doc_sufficiency issue(s) found
   x GENERATED_METADATA_INTEGRITY: Generated metadata integrity found 1 violation(s) (enforced)
-  ! EVIDENCE_CITED: Found 15 completed item(s) without evidence
-  ! PHASE_LINKS: 1 phase link issue(s) found
-  ! PHASE_PARENT_CONTENT: Phase parent spec.md contains migration-history token(s)
   ! AI_PROTOCOL: AI protocol incomplete (1/4 components)
 
   Summary: Errors: 2  Warnings: 4

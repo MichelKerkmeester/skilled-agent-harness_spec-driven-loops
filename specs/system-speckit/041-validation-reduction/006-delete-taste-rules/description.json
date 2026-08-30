@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/041-validation-reduction/006-delete-taste-rules",
+  "description": "Remove the rules that no code path and no downstream workflow reads, so that",
+  "keywords": [
+    "remove",
+    "rules",
+    "code",
+    "path",
+    "downstream",
+    "workflow",
+    "reads"
+  ],
+  "lastUpdated": "2026-08-30T06:20:22.419Z",
+  "specId": "006",
+  "folderSlug": "delete-taste-rules",
+  "parentChain": [
+    "system-speckit",
+    "041-validation-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

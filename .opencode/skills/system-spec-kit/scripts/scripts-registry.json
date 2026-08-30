@@ -292,24 +292,6 @@
       "version": "1.0.0"
     },
     {
-      "name": "check-priority-tags",
-      "path": "scripts/rules/check-priority-tags.sh",
-      "type": "bash",
-      "description": "PRIORITY_TAGS rule - validates checklist items have P0/P1/P2 context",
-      "severity": "warning",
-      "essential": false,
-      "version": "1.0.0"
-    },
-    {
-      "name": "check-evidence",
-      "path": "scripts/rules/check-evidence.sh",
-      "type": "bash",
-      "description": "EVIDENCE_CITED rule - checks completed P0/P1 items have evidence",
-      "severity": "warning",
-      "essential": false,
-      "version": "1.0.0"
-    },
-    {
       "name": "check-placeholders",
       "path": "scripts/rules/check-placeholders.sh",
       "type": "bash",
@@ -352,15 +334,6 @@
       "description": "LEVEL_MATCH rule - validates level consistency across all spec folder files",
       "severity": "error",
       "essential": true,
-      "version": "1.0.0"
-    },
-    {
-      "name": "check-phase-links",
-      "path": "scripts/rules/check-phase-links.sh",
-      "type": "bash",
-      "description": "PHASE_LINKS rule - validates phase folder cross-references and link integrity",
-      "severity": "warning",
-      "essential": false,
       "version": "1.0.0"
     },
     {

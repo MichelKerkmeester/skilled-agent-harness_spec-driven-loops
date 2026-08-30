@@ -659,52 +659,6 @@ ${test_entry}"
     fi
 }
 
-run_evidence_rule_test() {
-    local name="$1"
-    local fixture="$2"
-    local expect="$3"
-
-    local test_entry="[$CURRENT_CATEGORY] $name"
-    if [[ -n "$TEST_LIST" ]]; then
-        TEST_LIST="${TEST_LIST}
-${test_entry}"
-    else
-        TEST_LIST="$test_entry"
-    fi
-
-    if [[ "$LIST_ONLY" = true ]]; then return; fi
-    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
-    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
-
-    local fixture_path="$FIXTURES/$fixture"
-    local start_time
-    start_time=$(get_time_ms)
-
-    RULE_NAME="" RULE_STATUS="pass" RULE_MESSAGE="" RULE_DETAILS=() RULE_REMEDIATION=""
-    source "$SCRIPT_DIR/../rules/check-evidence.sh"
-    run_check "$fixture_path" 2
-
-    local end_time elapsed time_display
-    end_time=$(get_time_ms)
-    elapsed=$((end_time - start_time))
-    time_display=$(format_time "$elapsed")
-    CURRENT_CAT_TIME=$((CURRENT_CAT_TIME + elapsed))
-    TOTAL_TIME=$((TOTAL_TIME + elapsed))
-
-    if [[ "$RULE_STATUS" = "$expect" ]]; then
-        echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
-        PASSED=$((PASSED + 1))
-        CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
-    else
-        echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
-        echo -e "  ${RED}Expected:${NC} $expect, ${RED}Got:${NC} $RULE_STATUS"
-        echo -e "  ${DIM}Rule: $RULE_NAME | Message: $RULE_MESSAGE${NC}"
-        FAILED=$((FAILED + 1))
-        CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
-    fi
-
-    unset -f run_check 2>/dev/null || true
-}
 
 # ───────────────────────────────────────────────────────────────
 # 5. PARSE ARGUMENTS
@@ -817,29 +771,12 @@ if begin_category "Negative Tests (should FAIL)"; then
 fi
 
 # ─────────────────────────────────────────────────────────────────
-# PRIORITY_TAGS EDGE CASE TESTS
-# ─────────────────────────────────────────────────────────────────
-if begin_category "Priority Tags Edge Cases"; then
-    run_test "Legacy bare priority format now fails" "060-checklist-chk-format-invalid" "fail"
-fi
-
-# ─────────────────────────────────────────────────────────────────
 # ANCHOR EDGE CASE TESTS
 # ─────────────────────────────────────────────────────────────────
 if begin_category "Anchor Edge Cases"; then
     run_test "Compliant anchor order passes" "053-template-compliant-level2" "pass"
     run_test "Missing required anchor fails" "057-template-missing-anchor" "fail" "ANCHORS_VALID"
     run_test "Reordered required anchor fails" "058-template-reordered-anchor" "fail" "ANCHORS_VALID"
-fi
-
-# ─────────────────────────────────────────────────────────────────
-# EVIDENCE_CITED EDGE CASE TESTS
-# ─────────────────────────────────────────────────────────────────
-if begin_category "Evidence Edge Cases"; then
-    run_test "Compliant evidence citations pass" "053-template-compliant-level2" "pass"
-    run_evidence_rule_test "Unindented later prose is not item evidence" "074-evidence-unindented-prose" "warn"
-    run_evidence_rule_test "Indented continuation is item evidence" "075-evidence-indented-continuation" "pass"
-    run_evidence_rule_test "Short deferred reason is not substantive" "076-evidence-short-deferred" "warn"
 fi
 
 # ─────────────────────────────────────────────────────────────────

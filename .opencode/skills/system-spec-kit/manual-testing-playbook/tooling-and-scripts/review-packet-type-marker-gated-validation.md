@@ -93,7 +93,6 @@ Spec Folder Validation v3.0.0
 + TEMPLATE_SOURCE: Template source headers present
 + TEMPLATE_HEADERS: Template headers match in 1 file(s)
 + ANCHORS_VALID: Template anchors match in 1 file(s)
-+ PRIORITY_TAGS: No checklist found
 + FRONTMATTER_VALID: Frontmatter continuity basics present
 + FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
 + SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
@@ -102,12 +101,8 @@ Spec Folder Validation v3.0.0
 + GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
 + COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
 + SCAFFOLD_NEVER_TOUCHED: Spec status is 'Research Complete', not Complete; scaffold markers are allowed
-+ EVIDENCE_CITED: No checklist.md (Level 1 or missing)
 + AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
 + TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
-+ PHASE_LINKS: No phase folders detected (non-phased spec)
-+ PHASE_PARENT_CONTENT: Not a phase parent; content-discipline scan skipped
-+ CURRENT_STATE_DISCIPLINE: implementation-summary.md avoids migration-history tokens
 + AI_PROTOCOL: AI protocol check not applicable for Level 1
 ! COMPLEXITY_MATCH: Content metrics may not match declared Level 1
 + FOLDER_NAMING: Folder name '010-dark-flag-validation' follows naming convention
@@ -115,7 +110,6 @@ Spec Folder Validation v3.0.0
 + GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
 ! DESCRIPTION_SHAPE: description.json has 1 shape error(s)
 + NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
-+ LINKS_VALID: Wikilink validation skipped (set SPECKIT_VALIDATE_LINKS=true to enable)
 ! SECTION_COUNTS: Section counts below expectations for Level review
 + SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
 + CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder

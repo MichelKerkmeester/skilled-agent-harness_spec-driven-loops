@@ -557,20 +557,11 @@ get_suggestion_for_rule() {
         LEVEL_DECLARED|LEVEL)
             echo "Add a Level row to the spec.md metadata table: | **Level** | 1 | (or 2, 3, 3+)"
             ;;
-        PRIORITY_TAGS|PRIORITY)
-            echo "Tag tasks with [P0], [P1], or [P2] priority markers. Remove invalid priority tags."
-            ;;
-        EVIDENCE_CITED|EVIDENCE)
-            echo "Add evidence to completed P0/P1 items: [SOURCE: file:line], [TESTED:], [VERIFIED:], etc."
-            ;;
         ANCHORS_VALID|ANCHORS)
             echo "Fix memory file anchors: ensure each <!-- anchor:id --> has a matching <!-- /anchor:id -->."
             ;;
         TOC_POLICY|TOC)
             echo "Add or update the Table of Contents using the spec-kit TOC format with anchor links."
-            ;;
-        PHASE_LINKS|LINKS_VALID|LINKS)
-            echo "Fix broken relative links. Check that all referenced files exist."
             ;;
         *)
             echo "Review the rule documentation and the failing file. No automated fix available for $rule."

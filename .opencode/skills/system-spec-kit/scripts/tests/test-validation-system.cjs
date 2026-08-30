@@ -7,22 +7,12 @@
 'use strict';
 
 // JavaScript-based tests for the SpecKit validation system.
-// Covers all 13 validation rules without requiring bash execution.
 //
-// RULES TESTED:
-//   1. FILE_EXISTS         - Required files for each level
-//   2. FOLDER_NAMING       - ###-short-name convention
-//   3. FRONTMATTER_VALID   - YAML frontmatter structure
-//   4. PLACEHOLDER_FILLED  - Unfilled placeholder detection
-//   5. ANCHORS_VALID       - Memory file anchor pairs
-//   6. EVIDENCE_CITED      - Evidence on P0/P1 items
-//   7. PRIORITY_TAGS       - P0/P1/P2 format validation
-//   8. SECTIONS_PRESENT    - Required markdown sections
-//   9. LEVEL_DECLARED      - Explicit vs inferred levels
-//  10. AI_PROTOCOL         - AI execution protocol sections
-//  11. LEVEL_MATCH         - Cross-file level consistency
-//  12. SECTION_COUNTS      - Section count ranges
-//  13. COMPLEXITY_MATCH    - Content metrics vs level
+// The suites below are the inventory; an earlier hand-maintained list of rule
+// names here outlived two rounds of rule deletions and told the reader the
+// suite covered checks that no longer existed. The registry is the only
+// authority on which rules exist, and testRuleScriptsExist compares this
+// suite against it.
 //
 // Run with: node test-validation-system.cjs
 //
@@ -931,271 +921,6 @@ Consequences content.
 }
 
 /* ─────────────────────────────────────────────────────────────
-   9. PRIORITY_TAGS RULE TESTS
-────────────────────────────────────────────────────────────────
-*/
-
-async function testPriorityTagsRule() {
-  startSuite('Rule: PRIORITY_TAGS');
-
-  try {
-    // Test valid priority header format
-    const validPriorityHeaders = `# Checklist
-
-## P0 - Critical
-
-- [ ] Item 1
-
-## P1 - Required
-
-- [ ] Item 2
-
-## P2 - Optional
-
-- [ ] Item 3
-`;
-
-    const hasP0Header = /^#{1,3}\s+P0/m.test(validPriorityHeaders);
-    const hasP1Header = /^#{1,3}\s+P1/m.test(validPriorityHeaders);
-    const hasP2Header = /^#{1,3}\s+P2/m.test(validPriorityHeaders);
-
-    if (hasP0Header && hasP1Header && hasP2Header) {
-      pass('Valid priority headers', 'P0, P1, P2 headers found');
-    } else {
-      fail('Valid priority headers', `P0: ${hasP0Header}, P1: ${hasP1Header}, P2: ${hasP2Header}`);
-    }
-
-    // Test inline priority tags
-    const inlineTags = `# Checklist
-
-- [ ] [P0] Critical item
-- [ ] [P1] Required item
-- [ ] [P2] Optional item
-`;
-
-    const hasInlineP0 = /\[P0\]/.test(inlineTags);
-    const hasInlineP1 = /\[P1\]/.test(inlineTags);
-    const hasInlineP2 = /\[P2\]/.test(inlineTags);
-
-    if (hasInlineP0 && hasInlineP1 && hasInlineP2) {
-      pass('Valid inline priority tags', '[P0], [P1], [P2] found');
-    } else {
-      fail('Valid inline priority tags', 'Missing inline tags');
-    }
-
-    // Test mixed format (headers + inline)
-    const mixedFormat = `# Checklist
-
-## P0 - Critical
-
-- [ ] Item from header context
-- [ ] [P1] Override to P1
-
-## P1 - Required
-
-- [ ] Item from P1 header
-`;
-
-    const hasMixedP0 = /^#{1,3}\s+P0/m.test(mixedFormat);
-    const hasMixedInlineP1 = /\[P1\]/.test(mixedFormat);
-
-    if (hasMixedP0 && hasMixedInlineP1) {
-      pass('Mixed priority format', 'Headers and inline tags coexist');
-    } else {
-      fail('Mixed priority format', 'Mixed format not detected');
-    }
-
-    // Test lowercase priority headers (should warn)
-    const lowercasePriority = `# Checklist
-
-## p0 - critical
-
-- [ ] Item
-`;
-
-    const hasLowercaseP0 = /^#{1,3}\s+p0/mi.test(lowercasePriority);
-    const hasUppercaseP0 = /^#{1,3}\s+P0/m.test(lowercasePriority);
-
-    if (hasLowercaseP0 && !hasUppercaseP0) {
-      pass('Lowercase priority detection', 'Lowercase p0 detected (should warn)');
-    } else {
-      fail('Lowercase priority detection', 'Detection issue');
-    }
-
-    // Test invalid priority levels (P3, P4)
-    const invalidPriority = `# Checklist
-
-## P3 - Invalid
-
-- [ ] Item
-`;
-
-    const hasP3 = /^#{1,3}\s+P3/m.test(invalidPriority);
-    const hasValidPriority = /^#{1,3}\s+P[012]/m.test(invalidPriority);
-
-    if (hasP3 && !hasValidPriority) {
-      pass('Invalid P3 priority detection', 'P3 detected, no valid priorities');
-    } else {
-      skip('Invalid P3 priority detection', 'Detection varies by implementation');
-    }
-
-    // Test items without priority context
-    const noPriorityContext = `# Checklist
-
-## Tasks
-
-- [ ] Item without priority context
-- [ ] Another item
-`;
-
-    const hasPrioritySection = /^#{1,3}\s+P[012]/m.test(noPriorityContext);
-    const hasInlinePriority = /\[P[012]\]/.test(noPriorityContext);
-
-    if (!hasPrioritySection && !hasInlinePriority) {
-      pass('No priority context detection', 'Items lack priority context');
-    } else {
-      fail('No priority context detection', 'Unexpected priority found');
-    }
-
-  } catch (error) {
-    fail('PRIORITY_TAGS Rule', error.message);
-  }
-
-  endSuite();
-}
-
-/* ─────────────────────────────────────────────────────────────
-   10. EVIDENCE_CITED RULE TESTS
-────────────────────────────────────────────────────────────────
-*/
-
-async function testEvidenceRule() {
-  startSuite('Rule: EVIDENCE_CITED');
-
-  try {
-    // Test all 5 evidence patterns
-    const evidencePatterns = [
-      { pattern: '[Source: API docs v2.1]', name: 'Source citation' },
-      { pattern: '[File: src/auth.ts:45-67]', name: 'File reference' },
-      { pattern: '[Test: npm run test:auth]', name: 'Test reference' },
-      { pattern: '[Commit: abc1234]', name: 'Commit reference' },
-      { pattern: '[Screenshot: ./evidence/login.png]', name: 'Screenshot reference' },
-    ];
-
-    for (const { pattern, name } of evidencePatterns) {
-      const evidenceRegex = /\[(Source|File|Test|Commit|Screenshot):\s*[^\]]+\]/i;
-
-      if (evidenceRegex.test(pattern)) {
-        pass(`Evidence pattern: ${name}`, `Matched: ${pattern.slice(0, 40)}`);
-      } else {
-        fail(`Evidence pattern: ${name}`, 'Pattern not matched');
-      }
-    }
-
-    // Test case-insensitive evidence matching
-    const caseVariations = [
-      '[source: API docs]',
-      '[SOURCE: API docs]',
-      '[Source: API docs]',
-      '[file: path/to/file]',
-      '[FILE: path/to/file]',
-    ];
-
-    let allCasesMatch = true;
-    for (const variation of caseVariations) {
-      if (!/\[(source|file|test|commit|screenshot):\s*[^\]]+\]/i.test(variation)) {
-        allCasesMatch = false;
-        break;
-      }
-    }
-
-    if (allCasesMatch) {
-      pass('Case-insensitive evidence matching', 'All case variations matched');
-    } else {
-      fail('Case-insensitive evidence matching', 'Some variations failed');
-    }
-
-    // Test P2 items exempt from evidence
-    const p2Exempt = `# Checklist
-
-## P2 - Optional
-
-- [x] Completed without evidence
-`;
-
-    const isP2Section = /^#{1,3}\s+P2/m.test(p2Exempt);
-    const hasCompletedItem = /\[[xX]\]/.test(p2Exempt);
-    const hasEvidence = /\[(Source|File|Test|Commit|Screenshot):\s*[^\]]+\]/i.test(p2Exempt);
-
-    if (isP2Section && hasCompletedItem && !hasEvidence) {
-      pass('P2 items exempt from evidence', 'P2 completed items need no evidence');
-    } else {
-      fail('P2 items exempt from evidence', 'Exemption not applied');
-    }
-
-    // Test P0/P1 items require evidence
-    const p0NeedsEvidence = `# Checklist
-
-## P0 - Critical
-
-- [x] Completed without evidence
-`;
-
-    const isP0Section = /^#{1,3}\s+P0/m.test(p0NeedsEvidence);
-    const p0Completed = /\[[xX]\]/.test(p0NeedsEvidence);
-    const p0HasEvidence = /\[(Source|File|Test|Commit|Screenshot):\s*[^\]]+\]/i.test(p0NeedsEvidence);
-
-    if (isP0Section && p0Completed && !p0HasEvidence) {
-      pass('P0 missing evidence detection', 'P0 completed item lacks evidence (should warn)');
-    } else {
-      fail('P0 missing evidence detection', 'Detection issue');
-    }
-
-    // Test valid P0 with evidence
-    const p0WithEvidence = `# Checklist
-
-## P0 - Critical
-
-- [x] Auth flow working [Test: npm run test:auth - all 12 passing]
-`;
-
-    const validP0Evidence = /\[[xX]\].*\[(Source|File|Test|Commit|Screenshot):/i.test(p0WithEvidence);
-
-    if (validP0Evidence) {
-      pass('P0 with valid evidence', 'Evidence correctly attached');
-    } else {
-      fail('P0 with valid evidence', 'Evidence not detected on same line');
-    }
-
-    // Test checkmark format variations
-    const checkmarkFormats = [
-      '- [x] Task done',
-      '- [X] Task done',
-      '- [\u2713] Task done', // Unicode checkmark
-      '- [\u2714] Task done', // Heavy checkmark
-    ];
-
-    let checkmarksDetected = 0;
-    for (const format of checkmarkFormats) {
-      if (/\[[xX\u2713\u2714]\]/.test(format)) {
-        checkmarksDetected++;
-      }
-    }
-
-    if (checkmarksDetected === checkmarkFormats.length) {
-      pass('Checkmark format variations', `All ${checkmarksDetected} formats detected`);
-    } else {
-      fail('Checkmark format variations', `Only ${checkmarksDetected}/${checkmarkFormats.length} detected`);
-    }
-
-  } catch (error) {
-    fail('EVIDENCE_CITED Rule', error.message);
-  }
-
-  endSuite();
-}
-
-/* ─────────────────────────────────────────────────────────────
    11. EXIT CODE BEHAVIOR TESTS
 ────────────────────────────────────────────────────────────────
 */
@@ -1683,8 +1408,6 @@ async function main() {
     await testPlaceholderRule();
     await testAnchorsRule();
     await testSectionsPresentRule();
-    await testPriorityTagsRule();
-    await testEvidenceRule();
     await testExitCodeBehavior();
     await testJsonOutputMode();
     await testCrossReferenceValidation();
@@ -1770,8 +1493,6 @@ module.exports = {
   testPlaceholderRule,
   testAnchorsRule,
   testSectionsPresentRule,
-  testPriorityTagsRule,
-  testEvidenceRule,
   testExitCodeBehavior,
   testJsonOutputMode,
   testCrossReferenceValidation,

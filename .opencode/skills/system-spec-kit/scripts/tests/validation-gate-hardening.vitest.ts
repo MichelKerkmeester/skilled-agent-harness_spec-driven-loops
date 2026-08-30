@@ -206,55 +206,6 @@ describe('validation gate hardening', () => {
     expect(runValidate(planned, 'SCAFFOLD_NEVER_TOUCHED').code).toBe(0);
   });
 
-  it('requires substantive evidence in checklist and task items', () => {
-    const workspace = makeWorkspace();
-    const bare = createPacket(workspace, 'system-speckit/995-bare-evidence', {
-      checklist: '- [x] CHK-001 [P0] Environment variables override config file [EVIDENCE: tested]\n',
-      tasks: '- [x] T031 `validate.sh` run on spec folder [Evidence: PASSED]\n',
-    });
-    const prose = createPacket(workspace, 'system-speckit/994-prose-evidence', {
-      checklist: [
-        '- [x] CHK-001 [P0] Code passes typecheck -- `npm run typecheck` exits 0 and reports `25 passed (25)` in validator-hardening.vitest.ts:42.',
-        '  Continued evidence line cites validate.sh output: Errors: 0 Warnings: 0.',
-      ].join('\n'),
-      tasks: '- [x] T001 [P0] Fixture validates -- validation-gate-hardening.vitest.ts:200 asserts the command output includes 25/25 passing.\n',
-    });
-    const bareResult = runValidate(bare, 'EVIDENCE_CITED');
-    expect(bareResult.code).toBe(0);
-    expect(bareResult.stdout).toContain('Found 2 completed item(s) without evidence');
-
-    const proseResult = runValidate(prose, 'EVIDENCE_CITED');
-    expect(proseResult.code).toBe(0);
-    expect(proseResult.stdout).toContain('substantive evidence');
-  });
-
-  it('closes the bare-filename loophole while keeping filename:linenum and DEFERRED markers correct', () => {
-    // Regression coverage: closes a false-negative/false-positive pair in
-    // the evidence-substance checker.
-    //  - a bare filename mention (no linenum, no other evidence signal) alone
-    //    must no longer count as evidence (was the loophole);
-    //  - filename:linenum is untouched and must still pass;
-    //  - a genuine [DEFERRED: ...] reason must now pass without needing to look
-    //    evidence-shaped (was the regression);
-    //  - a trivial [DEFERRED: tbd] placeholder must still fail.
-    const workspace = makeWorkspace();
-    const folder = createPacket(workspace, 'system-speckit/992-evidence-fixes', {
-      checklist: [
-        '- [x] CHK-001 [P0] Update memory-search.ts routing table with new query logic',
-        '- [x] CHK-002 [P0] Update memory-search.ts:42 routing table with new query logic',
-        '- [x] CHK-003 [P0] Deferred pending decision [DEFERRED: blocked on operator decision]',
-        '- [x] CHK-004 [P0] Deferred with only a placeholder reason attached here [DEFERRED: tbd]',
-      ].join('\n'),
-    });
-    const result = runValidate(folder, 'EVIDENCE_CITED');
-    expect(result.code).toBe(0);
-    expect(result.stdout).toContain('Found 2 completed item(s) without evidence');
-    expect(result.stdout).toContain('CHK-001');
-    expect(result.stdout).toContain('CHK-004');
-    expect(result.stdout).not.toContain('CHK-002');
-    expect(result.stdout).not.toContain('CHK-003');
-  });
-
   it('strict-pass freshness sweep is report-only and reports malformed validate output', () => {
     const workspace = makeRepoWorkspace();
     const folder = createPacket(workspace, 'system-speckit/993-sweep-target', {

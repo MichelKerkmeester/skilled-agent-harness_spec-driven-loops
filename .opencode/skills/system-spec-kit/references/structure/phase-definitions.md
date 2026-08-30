@@ -118,7 +118,7 @@ specs/###-parent-feature/
 
 **Detection rule (single source of truth):** A spec folder is a phase parent iff (a) it has at least one direct child matching `^[0-9]{3}-[a-z0-9-]+$` AND (b) at least one such child has `spec.md` OR `description.json`. The shell helper `is_phase_parent()` (in `.opencode/skills/system-spec-kit/scripts/lib/shell-common.sh`) and the ESM JS helper `isPhaseParent()` (in `.opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js`) both implement this contract; they MUST agree on every input. The validator's phase-parent branches in `check-files.sh`, `check-level-match.sh`, `check-anchors.sh`, `check-section-counts.sh`, and `check-template-headers.sh` skip Level-N expectations when this returns true.
 
-**Parent template:** New phase decompositions via `create.sh --phase --phases N --phase-names a,b,c` scaffold the parent from `templates/packet-types/phase-parent.spec.md.tmpl` and each child through the manifest-backed Level contract. The lean template carries an inline content-discipline comment listing FORBIDDEN narrative tokens (consolidation, merge, migration history) and REQUIRED content (root purpose, sub-phase control file, what needs done). The `PHASE_PARENT_CONTENT` validator enforces this advisory.
+**Parent template:** New phase decompositions via `create.sh --phase --phases N --phase-names a,b,c` scaffold the parent from `templates/packet-types/phase-parent.spec.md.tmpl` and each child through the manifest-backed Level contract. The lean template carries an inline content-discipline comment listing FORBIDDEN narrative tokens (consolidation, merge, migration history) and REQUIRED content (root purpose, sub-phase control file, what needs done). This is a template convention rather than a validated rule.
 
 **Tolerant migration policy:** Legacy phase parents that retain heavy docs (e.g. `026-graph-and-context-optimization/`) continue to validate without churn. Soft deprecation of legacy heavy docs is a separate follow-on packet.
 
@@ -228,19 +228,6 @@ Phase 3 (Frontend) depends on:
 
 ## 5. VALIDATION
 
-### PHASE_LINKS Rule
-
-The `PHASE_LINKS` validation rule checks the integrity of parent-child phase relationships:
-
-| Check | Severity | Description |
-|-------|----------|-------------|
-| Parent has Phase Documentation Map | WARNING | Parent spec.md should list all child phases |
-| Child has parent back-reference | WARNING | Child spec.md metadata should reference parent |
-| Child has predecessor reference | WARNING | Direct-child spec.md should reference predecessor phase |
-| Child has successor reference | WARNING | Direct-child spec.md should reference successor phase (except last) |
-| Phase folder naming | ERROR | Child folders must follow `###-name/` convention |
-| Phase status consistency | WARNING | Parent map status should match child spec.md status |
-
 ### Recursive Validation
 
 When validating a phased spec folder, use recursive mode:
@@ -252,7 +239,6 @@ When validating a phased spec folder, use recursive mode:
 This validates:
 1. The parent spec folder against its declared level
 2. Each child phase folder against its declared level
-3. Cross-references between parent and children (PHASE_LINKS)
 
 ---
 
@@ -261,7 +247,7 @@ This validates:
 ### Reference Files
 - [sub-folder-versioning.md](./sub-folder-versioning.md) - Sequential versioning within spec folders (distinct from parallel phase decomposition)
 - level specifications reference - Complete Level 1-3+ requirements and progressive enhancement model
-- [validation-rules.md](../validation/validation-rules.md) - Validation rules including PHASE_LINKS
+- [validation-rules.md](../validation/validation-rules.md) - Validation rules reference
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator (includes phase commands, validation, and semantic memory context preservation)
