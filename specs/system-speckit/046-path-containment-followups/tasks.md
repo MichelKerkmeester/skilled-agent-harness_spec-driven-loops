@@ -47,8 +47,8 @@ contextType: "general"
 - [ ] T004 [P0] Carry the scan-time observation forward to the write
 - [ ] T005 [P0] Compare handle identity after opening, and refuse on mismatch
 - [ ] T006 [P0] Refuse rather than fall back when identity cannot be established
-- [ ] T007 [P1] Remove the root source measured to change no outcome
-- [ ] T008 [P1] Add the containment case that pins what defeats the guard
+- [x] T007 [P1] Remove the root source measured to change no outcome — suite 8/8 after, 4/8 with the guard neutered
+- [x] T008 [P1] Add the containment case that pins what defeats the guard
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -59,7 +59,7 @@ contextType: "general"
 - [ ] T009 [P0] Directory swap is refused and the victim file is byte-identical
 - [ ] T010 [P0] A legitimate repair inside a real symlinked track still succeeds
 - [ ] T011 [P0] Final-component swap is still refused
-- [ ] T012 [P1] Containment suite passes with one root source
+- [x] T012 [P1] Containment suite passes with one root source
 - [ ] T013 [P1] Correct the predecessor packets' records where they overstate what is bounded
 <!-- /ANCHOR:phase-3 -->
 

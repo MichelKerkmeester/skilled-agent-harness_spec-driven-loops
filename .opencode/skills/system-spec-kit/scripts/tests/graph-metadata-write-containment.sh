@@ -9,7 +9,10 @@
 # Two directions matter and they pull against each other:
 #
 #   Too loose - a path is accepted because it merely looks spec-shaped, so a
-#   caller writes outside the workspace entirely.
+#   caller writes outside the workspace entirely. A case can also be too loose
+#   by never reaching the check: a destination whose parent does not exist is
+#   refused for that reason alone, and asserting "refused" there passes with no
+#   guard at all.
 #
 #   Too strict - membership is measured on the canonicalized path, which places
 #   every symlinked track in a sibling repository outside all roots and refuses
@@ -58,8 +61,11 @@ expect "spec-shaped path outside the workspace" "refused" "$(attempt "$OUTSIDE/s
     && { FAIL=$((FAIL+1)); echo "  FAIL  refusal still created the file"; } \
     || { PASS=$((PASS+1)); printf '  ok    %-52s %s\n' "refusal leaves no file behind" "clean"; }
 
-# Traversal that lands outside after resolution.
-expect "traversal escaping the workspace" "refused" "$(attempt "$REPO/specs/../../escape/specs/graph-metadata.json")"
+# Traversal that lands outside after resolution. The destination directory has to
+# exist, or the write refuses on a broken parent long before membership is
+# tested - which is a case that passes with the guard deleted entirely.
+ESCAPE_REL="$(python3 -c 'import os,sys; print(os.path.relpath(sys.argv[1], sys.argv[2]))' "$OUTSIDE/specs/999-outside" "$REPO/specs")"
+expect "traversal escaping the workspace" "refused" "$(attempt "$REPO/specs/$ESCAPE_REL/graph-metadata.json")"
 
 # A real in-repo destination must still be writable.
 PROBE_DIR="$REPO/specs/system-speckit"

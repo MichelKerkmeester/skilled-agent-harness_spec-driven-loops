@@ -58,8 +58,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-002 | REQ-001 | Given the same case run against the pre-change code, When it runs, Then it writes through — so the new case fails without the fix | [negative control output] | Unmet | - |
 | AC-003 | REQ-001 | Given the final component replaced by a symlink, When the write runs, Then it is still refused | `scripts/tests/repair-write-symlink-refusal.sh` | Unmet | - |
 | AC-004 | REQ-001 | Given a legitimate repair target inside a symlinked sibling-repository track, When the write runs, Then it succeeds | [a real track exercised, not a fixture] | Unmet | - |
-| AC-005 | REQ-002 | Given the containment guard reduced to one root source, When the suite runs, Then it passes unchanged | `scripts/tests/graph-metadata-write-containment.sh` | Unmet | - |
-| AC-006 | REQ-003 | Given a destination with a directory named `.opencode` beside it, When a write is attempted, Then the suite records that it succeeds, so the guard's limit is pinned rather than described | [the case, asserting the permissive outcome] | Unmet | - |
+| AC-005 | REQ-002 | Given the containment guard reduced to one root source, When the suite runs, Then it passes unchanged | `scripts/tests/graph-metadata-write-containment.sh` 8/8, and 4/8 with the guard neutered | Met | - |
+| AC-006 | REQ-003 | Given a destination with a directory named `.opencode` beside it, When a write is attempted, Then the suite records that it succeeds, so the guard's limit is pinned rather than described | `scripts/tests/graph-metadata-write-containment.sh` case "another workspace, anchored on .opencode" | Met | - |
 
 ### Status values
 
