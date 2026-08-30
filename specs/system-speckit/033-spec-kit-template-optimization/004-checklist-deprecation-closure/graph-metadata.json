@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
     "created_at": "2026-08-29T20:32:46Z",
-    "last_save_at": "2026-08-30T04:15:40.628Z",
+    "last_save_at": "2026-08-30T04:17:35.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d69eb3f57a646df35e7cfb211b771a4ccce807e9433eead6ef3d813307bb4865",
+    "source_fingerprint": "sha256:bcaa0b225465d9f614936f64798345c39e45aa414cae9b512159bdb24a09a548",
     "source_doc_hashes": {
       "spec.md": "924593419fc7b898e35c07968bbec3942ca13d03c41db8bf69fba28d2c258049",
       "plan.md": "d5b3345d7f74cec733ab6171d934e60709615aa872f72266d5f1d596e250b660",
       "tasks.md": "751176c24bcec8bac8606ed33a864d66b1fcea2b6fd34de359f18cd403830593",
-      "implementation-summary.md": "7fda0b759f7c82c82993c6cfd89232953009e2f1ed6201d67d484ce70ba7891f"
+      "implementation-summary.md": "2bca55a55c17aefbdd49f4b9dd557f6b4736122442d56e1ca01bc3af4a19e1c6"
     },
     "last_active_child_id": null,
     "last_active_at": null
