@@ -34,6 +34,12 @@ WORK="$(mktemp -d)"
 # exit - including an interrupt. Removing only the temporary directory would
 # leave a forged generation marker and a probe line committed into real docs.
 restore_packet() {
+    # Put the reference packet back as it was, on any exit path.
+    # Args:
+    #   none
+    # Returns:
+    #   0 always
+
     [[ -f "$WORK/original-gm.json" ]] && cp "$WORK/original-gm.json" "$PACKET/graph-metadata.json"
     [[ -f "$WORK/spec.md" ]] && cp "$WORK/spec.md" "$PACKET/spec.md"
     rm -rf "$WORK"
@@ -53,14 +59,32 @@ cp "$PACKET/graph-metadata.json" "$WORK/gm.json"
 restore() { cp "$WORK/gm.json" "$PACKET/graph-metadata.json"; cp "$WORK/spec.md" "$PACKET/spec.md"; }
 
 mismatches() {
+    # Count fingerprint-mismatch findings for the reference packet.
+    # Args:
+    #   none
+    # Returns:
+    #   Prints the count
+
     bash "$VALIDATE" "$PACKET" --strict 2>&1 | grep -c 'SOURCE_FINGERPRINT_MISMATCH'
 }
 
 missing_marker() {
+    # Count missing-marker findings for the reference packet.
+    # Args:
+    #   none
+    # Returns:
+    #   Prints the count
+
     bash "$VALIDATE" "$PACKET" --strict 2>&1 | grep -c 'SOURCE_FINGERPRINT_DOCSET_MISSING'
 }
 
 set_generation() {
+    # Force the stored generation marker to a chosen value.
+    # Args:
+    #   $1 - Integer to store, or the literal "none" to remove the field
+    # Returns:
+    #   0 on success
+
     python3 - "$PACKET/graph-metadata.json" "$1" <<'PY'
 import json, sys
 path, value = sys.argv[1], sys.argv[2]
@@ -74,6 +98,14 @@ PY
 }
 
 expect() {
+    # Compare one observed result against its expectation and tally the outcome.
+    # Args:
+    #   $1 - Case name
+    #   $2 - Expected value
+    #   $3 - Observed value
+    # Returns:
+    #   0 always; increments PASS or FAIL
+
     local name="$1" want="$2" got="$3"
     if [[ "$got" == "$want" ]]; then PASS=$((PASS+1)); printf '  ok    %-52s %s\n' "$name" "$got"
     else FAIL=$((FAIL+1)); printf '  FAIL  %-52s want=%s got=%s\n' "$name" "$want" "$got"; fi

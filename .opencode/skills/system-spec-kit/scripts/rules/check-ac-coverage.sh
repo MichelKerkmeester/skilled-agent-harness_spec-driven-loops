@@ -182,6 +182,12 @@ _ac_count_total() {
 # A waived or superseded criterion needs no file:line: the decision record it
 # names is what carries it, and AC_CLOSURE is what verifies that record exists.
 _ac_analyze_canonical() {
+    # Read the criteria table once, returning both the row count and the coverage.
+    # Args:
+    #   $1 - Path to acceptance-criteria.md
+    # Returns:
+    #   Prints a tab-separated row: rows, covered, malformed, malformed-ids
+
     local ac_file="$1"
     awk '
         function norm(v) {

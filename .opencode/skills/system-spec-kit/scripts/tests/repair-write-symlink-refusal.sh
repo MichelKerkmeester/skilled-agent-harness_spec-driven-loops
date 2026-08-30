@@ -18,6 +18,14 @@ if [[ ! -f "$SCRIPT" ]]; then echo "SKIP: repair script absent"; exit 0; fi
 WORK="$(mktemp -d)"; trap 'rm -rf "$WORK"' EXIT
 
 expect() {
+    # Compare one observed result against its expectation and tally the outcome.
+    # Args:
+    #   $1 - Case name
+    #   $2 - Expected value
+    #   $3 - Observed value
+    # Returns:
+    #   0 always; increments PASS or FAIL
+
     local name="$1" want="$2" got="$3"
     if [[ "$got" == "$want" ]]; then PASS=$((PASS+1)); printf '  ok    %-50s %s\n' "$name" "$got"
     else FAIL=$((FAIL+1)); printf '  FAIL  %-50s want=%s got=%s\n' "$name" "$want" "$got"; fi
@@ -31,6 +39,13 @@ expect() {
 # device and inode the scan recorded for that candidate. Without it the write
 # has only the path, which is the thing an attacker gets to change.
 run_probe() {
+    # Attempt one repair write through the shipped function.
+    # Args:
+    #   $1 - Destination path to write
+    #   $2 - Scan-time identity as "dev:ino" (optional; omitted means the write has only the path)
+    # Returns:
+    #   Prints "wrote", "refused", or "error"
+    #
     # Passed by environment, not argv: the script only runs its sweep when
     # invoked as a command, and it decides that by comparing its own URL against
     # argv[1]. Handing it the script path there would look like direct

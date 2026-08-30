@@ -39,6 +39,12 @@ DOC_LEVEL=1  # Default to Level 1 (Baseline)
 # mode DOC_LEVEL carries the parent's own marker rather than a level, so that
 # case falls back to the baseline.
 child_doc_level() {
+    # Resolve the level a phase child should be scaffolded at.
+    # Args:
+    #   none - reads DOC_LEVEL from the caller's environment
+    # Returns:
+    #   Prints the requested level, or 1 when DOC_LEVEL names a mode rather than a level
+
     case "$DOC_LEVEL" in
         1|2|3|3+) printf '%s' "$DOC_LEVEL" ;;
         *) printf '1' ;;

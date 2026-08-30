@@ -128,6 +128,17 @@ function graphFiles(root) {
 // is measured, and it has to be the same object the scan classified. That is
 // the only check the filesystem cannot invalidate between the two moments,
 // because it describes the file rather than the way to reach it.
+/**
+ * Overwrite an existing file, refusing anything that is not the object the scan classified.
+ *
+ * @param {string} filePath - Destination path, expected to already exist
+ * @param {string} content - Replacement content
+ * @param {{dev: number, ino: number}} [expectedIdentity] - Device and inode recorded when the
+ *   scan classified this candidate. Omitted only by callers that never scanned.
+ * @returns {void}
+ * @throws {Error} If the final component is a symlink, or the opened handle is a different
+ *   object than the one described by `expectedIdentity`.
+ */
 export function writeExistingFileNoFollow(filePath, content, expectedIdentity) {
   let fd;
   try {

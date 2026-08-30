@@ -626,6 +626,13 @@ find_insert_point() {
 # documents without re-assembling this one produced a level-2 packet that could
 # not cite anything.
 upgrade_tasks() {
+    # Append the verification region to tasks.md when raising a packet's level.
+    # Args:
+    #   $1 - Level being upgraded from
+    #   $2 - Level being upgraded to
+    # Returns:
+    #   0 always; a missing document or fragment warns rather than failing the upgrade
+
     local from_level="$1"
     local to_level="$2"
     local tasks_file="$SPEC_FOLDER/tasks.md"

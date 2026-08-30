@@ -37,6 +37,13 @@ mkdir -p "$OUTSIDE/specs/999-outside"
 # roots from the process as well as from the destination, and every case that
 # runs from the repository conflates the two.
 attempt() {
+    # Attempt one graph-metadata write and report whether the guard allowed it.
+    # Args:
+    #   $1 - Destination path to write
+    #   $2 - Working directory for the caller (default: the repository root)
+    # Returns:
+    #   Prints "wrote" or "refused"; leaves no file behind on refusal
+
     ( cd "${2:-$REPO}" && node -e "
 const { writeGraphMetadataFile } = require(process.argv[1]);
 try {
@@ -47,6 +54,14 @@ try {
 }
 
 expect() {
+    # Compare one observed result against its expectation and tally the outcome.
+    # Args:
+    #   $1 - Case name
+    #   $2 - Expected value
+    #   $3 - Observed value
+    # Returns:
+    #   0 always; increments PASS or FAIL
+
     local name="$1" want="$2" got="$3"
     if [[ "$got" == "$want" ]]; then PASS=$((PASS+1)); printf '  ok    %-52s %s\n' "$name" "$got"
     else FAIL=$((FAIL+1)); printf '  FAIL  %-52s want=%s got=%s\n' "$name" "$want" "$got"; fi
