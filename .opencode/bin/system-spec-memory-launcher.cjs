@@ -589,6 +589,20 @@ function startOwnerLeaseHeartbeat(ownerPid = process.pid) {
   const ttlMs = Number.isFinite(lease?.ttlMs) && lease.ttlMs > 0 ? lease.ttlMs : 60000;
   const intervalMs = Math.max(1000, Math.floor(ttlMs / 2));
   ownerLeaseHeartbeatTimer = setInterval(() => {
+    if (shouldAbortRelaunchOnFire({
+      shuttingDown: launcherShutdownInProgress,
+      currentPpid: process.ppid,
+      initialPpid: LAUNCHER_INITIAL_PPID,
+    })) {
+      log('owner runtime gone; shutting down launcher from lease heartbeat');
+      clearOwnerLeaseHeartbeat();
+      void shutdownLauncherForSignal('SIGTERM').catch((error) => {
+        log(error.stack || error.message);
+        clearAllLeaseFiles();
+        process.exit(128);
+      });
+      return;
+    }
     if (refreshOwnerLeaseFile(ownerPid)) return;
     log('owner lease heartbeat refresh failed; shutting down launcher to preserve single ownership');
     clearOwnerLeaseHeartbeat();
@@ -599,6 +613,27 @@ function startOwnerLeaseHeartbeat(ownerPid = process.pid) {
     });
   }, intervalMs);
   ownerLeaseHeartbeatTimer.unref?.();
+}
+
+function installStdinCloseHandler(input = process.stdin, shutdown = () => shutdownLauncherForSignal('SIGTERM'), logger = log) {
+  let handled = false;
+  const onClose = () => {
+    if (handled) return;
+    handled = true;
+    logger('stdio peer closed; shutting down launcher');
+    void Promise.resolve(shutdown()).catch((error) => {
+      log(error.stack || error.message);
+      clearAllLeaseFiles();
+      process.exit(128);
+    });
+  };
+  input.once('end', onClose);
+  input.once('close', onClose);
+  input.resume?.();
+  return () => {
+    input.off('end', onClose);
+    input.off('close', onClose);
+  };
 }
 
 function ownsOwnerLeaseFile(ownerPid = process.pid) {
@@ -1730,6 +1765,7 @@ async function main() {
 
   try {
     installSignalHandlers();
+    installStdinCloseHandler();
     // Lease cleanup runs unconditionally regardless of child termination path.
     process.on('exit', clearAllLeaseFiles);
     refreshPaths();
@@ -1972,6 +2008,7 @@ module.exports = {
   resolveLauncherLogPath,
   shouldRotateLauncherLog,
   normalizeWatchdogGraceMs,
+  installStdinCloseHandler,
   parseProcessRows,
   processLiveness,
   reapProcessTreeGroups,

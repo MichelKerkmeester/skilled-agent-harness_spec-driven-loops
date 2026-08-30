@@ -26,10 +26,12 @@ _memory:
       session_id: "2026-08-30-orphan-daemon-reaping"
       parent_session_id: null
     completion_pct: 0
-    open_questions:
-      - "Autonomous termination at session start, or an operator-confirmed plan?"
+    open_questions: []
     answered_questions:
       - "Classification is not in scope; packet 035 settled it and it is already correct"
+      - "Operator chose autonomous termination at session start over an operator-confirmed plan; this reverses the README's non-destructive framing deliberately"
+      - "Session start is the trigger: it always runs, whereas a SIGKILLed session never reaches an end hook and that is exactly what produced the observed orphan"
+      - "Scope amended after implementation evidence: OpenCode hooks are implemented in .opencode/plugins/ and surfaced in the hooks tree by symlink, so the trigger belongs in the existing session-cleanup plugin rather than a new hook adapter"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 2: Orphan Daemon Reaping
@@ -120,7 +122,9 @@ Make an orphaned launcher terminate itself, and give the sweep that already iden
 | `.opencode/bin/system-spec-memory-launcher.cjs` | Modify | Exit on stdin close; evaluate the orphan predicate on the existing heartbeat timer |
 | `.opencode/bin/lib/model-server-supervision.cjs` | Modify | Make `isRespawnLockStale()` treat an orphaned holder as stale |
 | `.opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts` | Modify | Add the guarded apply path the README records as absent |
-| `.opencode/hooks/` session lifecycle | Create | Invoke the sweep so classification can act |
+| `.opencode/plugins/session-cleanup.js` | Modify | Invoke the sweep at session start, behind the kill switch; it already runs bounded startup guards |
+| `.opencode/hooks/<concern>/opencode/` symlink | Create | Surface the plugin in the concern index, following the existing hub pattern |
+| `.opencode/skills/system-spec-kit/mcp-server/tests/` | Create | Live-parent safety test and kill-switch test |
 | `.opencode/skills/system-spec-kit/scripts/ops/README.md` | Modify | Update the "no live apply command exists" statement once one exists |
 <!-- /ANCHOR:scope -->
 
@@ -141,9 +145,10 @@ Make an orphaned launcher terminate itself, and give the sweep that already iden
 
 | ID | Requirement |
 |----|-------------|
-| REQ-004 | The sweep has an apply path, guarded by the decision recorded in open questions |
+| REQ-004 | The sweep terminates orphans autonomously at session start, and never signals anything it cannot prove is an orphan |
 | REQ-005 | Something invokes the sweep on a defined lifecycle event |
 | REQ-006 | `ops/README.md` no longer states that no apply command exists once one does |
+| REQ-007 | The autonomous sweep has a documented kill switch, matching every other auto-behaviour in this repository |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -228,8 +233,6 @@ Make an orphaned launcher terminate itself, and give the sweep that already iden
 
 ## 10. OPEN QUESTIONS
 
-- Should the apply path terminate autonomously at session start, or emit a plan for operator confirmation? The README's non-destructive framing is deliberate; reversing it is a decision, not a detail.
-- Which lifecycle event should invoke the sweep — session start, session end, or both?
 - Should the same treatment extend to the other launchers (skill advisor, code mode), or stay scoped to spec-memory for now?
 <!-- /ANCHOR:questions -->
 

@@ -82,9 +82,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase authored and validated | Done | `validate.sh --strict` RESULT: PASSED, Errors: 0; 7 AC rows Unmet |
-| Negative control captured | Pending | — |
-| Launcher self-exit | Pending | — |
-| Sweep apply path and trigger | Pending | — |
+| Negative control captured | Done | fixture orphan survived, lock stayed valid, sweep declined |
+| Launcher self-exit | Done | stdin close plus orphan predicate on the existing heartbeat |
+| Sweep apply path and trigger | Done | ownership-checked apply at session start, kill switch documented |
 
 ### Deviations and findings
 

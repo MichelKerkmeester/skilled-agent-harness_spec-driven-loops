@@ -37,9 +37,9 @@ Nothing here needs new classification logic. The work is to attach triggers to c
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- The autonomous-versus-confirmed apply question is answered
-- The lifecycle event that invokes the sweep is chosen
-- Phase 001 has landed
+- Apply mode: autonomous termination, operator-decided
+- Trigger: session start
+- Phase 001 is implemented and committed (validation deferred to the integration branch)
 
 ### Definition of Done
 - A deliberately orphaned launcher terminates on its own

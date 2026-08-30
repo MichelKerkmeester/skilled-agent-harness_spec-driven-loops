@@ -350,6 +350,18 @@ function shouldAbortRelaunchOnFire({ shuttingDown, currentPpid, initialPpid } = 
   return Boolean(shuttingDown) || currentPpid !== initialPpid || currentPpid === 1;
 }
 
+function readProcessParentPid(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return null;
+  const result = spawnSync('ps', ['-o', 'ppid=', '-p', String(pid)], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: parsePositiveInteger(process.env.SPECKIT_PS_PROBE_TIMEOUT_MS, 2000),
+  });
+  if (result.error || result.status !== 0) return null;
+  const parentPid = Number.parseInt(String(result.stdout || '').trim(), 10);
+  return Number.isInteger(parentPid) && parentPid > 0 ? parentPid : null;
+}
+
 function refreshDescendantSnapshot(childPid, runner = defaultProcessRowsRunner, options = {}) {
   const snapshot = Array.isArray(options.snapshotPids) ? options.snapshotPids : [];
   const rows = resolveProcessTreeRows(childPid, runner);
@@ -702,14 +714,24 @@ function isRespawnLockStale(raw, options = {}) {
   }
   const pid = parsed && parsed.pid;
   const hasPid = Number.isInteger(pid) && pid > 0;
-  if (hasPid && liveness(pid) === 'dead') return true;
+  const ownerLiveness = hasPid ? liveness(pid) : 'unknown';
+  if (hasPid && ownerLiveness === 'dead') return true;
   // A live demand listener deliberately holds this lock across its whole bind + idle-listener
   // window, which can exceed RESPAWN_LOCK_STALE_MS. Bound staleness to listener liveness: only let the
   // wall-clock age expire the lock when the recorded owner is NOT confirmably alive (absent/invalid pid,
   // or an EPERM-opaque pid we cannot prove is ours). If the owner pid is alive, it still owns the lock —
   // never reclaim it from under a live owner on age alone.
-  if (hasPid && liveness(pid) === 'alive') return false;
   const startedAtMs = parsed && parsed.startedAt ? Date.parse(parsed.startedAt) : NaN;
+  if (hasPid && ownerLiveness === 'alive') {
+    const parentPid = typeof options.parentPid === 'number'
+      ? options.parentPid
+      : typeof options.getParentPid === 'function'
+        ? options.getParentPid(pid)
+        : readProcessParentPid(pid);
+    const orphanGraceMs = typeof options.orphanGraceMs === 'number' ? options.orphanGraceMs : staleMs;
+    if (parentPid === 1 && Number.isFinite(startedAtMs) && nowMs - startedAtMs > orphanGraceMs) return true;
+    return false;
+  }
   if (Number.isFinite(startedAtMs) && nowMs - startedAtMs > staleMs) return true;
   return false;
 }
@@ -1497,6 +1519,7 @@ module.exports = {
   MODEL_SERVER_DEMAND_STATUS,
   maintenanceMarkerPath,
   readMaintenanceMarker,
+  readProcessParentPid,
   shouldAdoptDespiteProbe,
   acquireModelServerRespawnLockFile,
   acquireRespawnLockFileAt,

@@ -105,7 +105,7 @@ and findings belong here.
 |------|-------|----------|
 | Packet scaffolded and authored | Done | 5 folders, `validate.sh --strict` RESULT: PASSED, Errors: 0 |
 | 001-production-db-isolation | Done | guard reachable from all three entry points; drift check proven non-vacuous |
-| 002-orphan-daemon-reaping | Pending | — |
+| 002-orphan-daemon-reaping | Done | orphan reaped and lock released; live-parent and connected-peer both refused |
 | 003-test-hang-containment | Pending | — |
 | 004-live-follow-log-hygiene | Pending | — |
 

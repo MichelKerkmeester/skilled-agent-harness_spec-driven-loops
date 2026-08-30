@@ -130,7 +130,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child plan.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-production-db-isolation/ | Make the production-DB guard unbypassable from any vitest entry point | Complete |
-| 2 | 002-orphan-daemon-reaping/ | Give the existing orphan classification an apply path and a trigger | Pending |
+| 2 | 002-orphan-daemon-reaping/ | Give the existing orphan classification an apply path and a trigger | Complete |
 | 3 | 003-test-hang-containment/ | Bound a hung run and make it name its own open handle | Pending |
 | 4 | 004-live-follow-log-hygiene/ | Log on state change and cap follower log growth | Pending |
 

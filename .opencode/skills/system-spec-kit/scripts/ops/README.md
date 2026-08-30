@@ -37,7 +37,7 @@ Supported classes are `index-drift`, `session-ambiguity`, `ledger-mismatch`, and
 - `heal-*.sh` scripts run class-specific detect, repair, and verify flows.
 - `ops-common.sh` provides shared retry, logging, and escalation helpers.
 - `process-memory-harness.ts` captures process/RSS/swap/wired snapshots used by arc 009 memory evidence.
-- `process-sweep.ts` emits non-destructive termination plans from exact ownership evidence; no live apply command exists.
+- `process-sweep.ts` emits dry-run plans and an ownership-checked `apply` sweep. The apply command is invoked at session start and can be disabled with `SPECKIT_SESSION_START_ORPHAN_SWEEP=off`.
 
 ---
 
@@ -65,7 +65,7 @@ python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignmen
 | `heal-telemetry-drift.sh` | Remediation workflow for telemetry drift failures |
 | `runbook.sh` | Class listing, runbook display, and drill orchestration |
 | `process-memory-harness.ts` | Process inventory, memory snapshot and exact-identity classification helper |
-| `process-sweep.ts` | Dry-run sweep planner; emits `eligibleForTermination` evidence but never sends signals |
+| `process-sweep.ts` | Dry-run planner plus an apply path that signals only aged, exactly owned orphan launchers with no live parent or connected socket peer |
 
 Arc 009 lifecycle helper map:
 

@@ -11,6 +11,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { spawn, spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import {
   appendFileSync,
   copyFileSync,
@@ -28,6 +29,7 @@ import { fileURLToPath } from 'node:url';
 const PLUGIN_ROOT = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(PLUGIN_ROOT, '..', '..');
 const CLEANUP_SCRIPT = join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh');
+const PROCESS_SWEEP_SCRIPT = join(REPO_ROOT, '.opencode/skills/system-spec-kit/scripts/dist/ops/process-sweep.js');
 const GUARD_SCRIPTS = [
   { path: join(REPO_ROOT, '.opencode/bin/worktree-guard.sh'), args: [] },
   { path: join(REPO_ROOT, '.opencode/bin/check-git-hooks.sh'), args: [] },
@@ -41,6 +43,8 @@ const DEFAULT_LOG_PATH = join(
 const DEFAULT_LOG_MAX_BYTES = 10 * 1024 * 1024;
 const PROCESS_TIMEOUT_MS = 8000;
 const MAX_CAPTURE_BYTES = 4096;
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -54,6 +58,11 @@ function positiveInteger(value, fallback) {
 function boundedText(value) {
   if (value === undefined || value === null) return '';
   return String(value).replaceAll('\0', '').trim().slice(0, MAX_CAPTURE_BYTES);
+}
+
+function isSweepDisabled(env = process.env) {
+  const value = env.SPECKIT_SESSION_START_ORPHAN_SWEEP;
+  return value !== undefined && ['0', 'false', 'no', 'off'].includes(String(value).trim().toLowerCase());
 }
 
 function appendPluginLog(logPath, maxBytes, detail) {
@@ -98,6 +107,13 @@ function appendPluginLog(logPath, maxBytes, detail) {
  * @returns {Promise<Object>} Hooks object for the OpenCode plugin loader.
  */
 export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
+  if (!isHookEnabled('session-cleanup')) {
+    return {
+      async event() {},
+      async 'experimental.chat.system.transform'() {},
+      async dispose() {},
+    };
+  }
   const projectDir = input.worktree || input.directory || REPO_ROOT;
   const runSync = overrides.spawnSync || spawnSync;
   const runAsync = overrides.spawn || spawn;
@@ -140,6 +156,31 @@ export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
     return result;
   }
 
+  function runProcess(command, args, operation, env = process.env) {
+    let result;
+    try {
+      result = runSync(command, args, {
+        cwd: projectDir,
+        encoding: 'utf8',
+        env,
+        maxBuffer: MAX_CAPTURE_BYTES * 2,
+        stdio: 'pipe',
+        timeout: PROCESS_TIMEOUT_MS,
+      }) || {};
+    } catch (error) {
+      writeDiagnostic(`[session-cleanup] ${operation} launch failed: ${error?.message || error}`);
+      return {};
+    }
+
+    if (result.error || result.signal
+      || (typeof result.status === 'number' && result.status !== 0)) {
+      const reason = result.error?.message
+        || `status=${result.status ?? 'none'} signal=${result.signal ?? 'none'}`;
+      writeDiagnostic(`[session-cleanup] ${operation} failed: ${reason}`);
+    }
+    return result;
+  }
+
   function runStartupGuards(sessionId) {
     if (guardedSessions.has(sessionId)) return;
     guardedSessions.add(sessionId);
@@ -161,6 +202,17 @@ export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
     }
     for (const entry of GUARD_SCRIPTS) {
       const result = runScript(entry.path, `guard ${entry.path}`, entry.args);
+      const output = boundedText(`${result.stdout || ''}\n${result.stderr || ''}`);
+      if (output) warnings.push(output);
+    }
+    if (isSweepDisabled()) {
+      warnings.push('[session-cleanup] orphan daemon sweep skipped: kill-switch-disabled');
+    } else {
+      const result = runProcess(
+        process.execPath,
+        [PROCESS_SWEEP_SCRIPT, 'apply'],
+        'orphan daemon sweep',
+      );
       const output = boundedText(`${result.stdout || ''}\n${result.stderr || ''}`);
       if (output) warnings.push(output);
     }
