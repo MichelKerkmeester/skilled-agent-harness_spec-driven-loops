@@ -49,8 +49,8 @@ removed when it stops earning its load. This mode owns all three.
 
 - `references/decision-tests.md` — whether the request may become a rule at all. Always first.
 - `references/rule-anatomy.md` — what a rule must contain, what varies, the length bands.
-- `references/creation-standards.md` — quality bar above the structural floor.
-- `references/agents-md-integration.md` — the wiring that makes a rule reachable.
+- `references/creation-standards.md` — five reader tests deciding whether a well-formed rule is worth loading.
+- `references/agents-md-integration.md` — the three wiring points, and the create, revise and retire orderings.
 - `assets/repo-rule-template.md` — the blank for a new rule.
 - `assets/repo-rules-router-template.md` — the prerequisite, when no router exists.
 
@@ -62,7 +62,7 @@ removed when it stops earning its load. This mode owns all three.
 | CONDITIONAL | The request survived the tests | `rule-anatomy.md`, `assets/repo-rule-template.md` |
 | CONDITIONAL | The target repository has no router | `assets/repo-rules-router-template.md` |
 | CONDITIONAL | Wiring an accepted rule | `agents-md-integration.md` |
-| ON_DEMAND | Quality review of a draft | `creation-standards.md` |
+| CONDITIONAL | A draft exists and is being finished or reviewed | `creation-standards.md` |
 
 ### Smart Router Pseudocode
 
@@ -105,20 +105,22 @@ Unknown intent falls back to `CREATE`, which runs the tests and refuses safely.
 2. **On refusal**, name the test that failed and where the content goes instead — the tests' section 5 maps every refusal to a destination. Stop here. This is the common outcome.
 3. **Check the destination exists.** No `REPO RULES.md` in the target repository means no rule can load; emit the router from `assets/repo-rules-router-template.md` first.
 4. **Fill `assets/repo-rule-template.md`.** Ten fixed elements, open numbered body, aim under 160 lines.
-5. **Wire it**: a trigger row and an index row in the router, and a pointer from the `AGENTS.md` section it governs.
-6. **Verify**: frontmatter parses, dividers equal numbered sections, every link resolves, no trigger phrase collides with another rule.
+5. **Run `references/creation-standards.md` against the draft.** Structure is checkable and is not the bar; a rule can pass every assertion and be worth nobody's context.
+6. **Wire it**: a trigger row and an index row in the router, and a pointer from the `AGENTS.md` section it governs.
+7. **Verify**: frontmatter parses, dividers equal numbered sections, every link resolves, no trigger phrase collides with another rule.
 
 ### Revise
 
-Same tests — a rule that no longer passes them should be retired, not patched. Then edit,
-bump `version`, and re-verify. If the change alters when the rule fires, the router's
-trigger row changes with it.
+Run the decision tests again first — a rule that no longer passes them should be retired,
+not patched. Then edit, and if the change alters *when* the rule fires, change the trigger
+row in the same edit or the router lies silently. Bump `version`. Full ordering and the
+`version` convention: `references/agents-md-integration.md` §4.
 
 ### Retire
 
-Delete the file, remove both router rows, and remove the pointer from the governed
-section. A rule removed but still listed is worse than one left in place. Record why it
-went, so it is not re-proposed.
+Pointer first, then index row, then trigger row, then the file — create inverted, so no
+intermediate state leaves a row pointing at nothing. Record why it went. Do not archive;
+git holds the history. Full ordering: `references/agents-md-integration.md` §5.
 
 ---
 
@@ -130,7 +132,7 @@ went, so it is not re-proposed.
 - Emit the router first when the target repository has none.
 - Quote `title` and `description` in frontmatter; both routinely contain a colon.
 - Keep dividers equal to numbered sections.
-- Name, in every numbered section, the failure it prevents.
+- Make clear, in every numbered section, what goes wrong without it — in the section's substance if not in a dedicated line.
 
 **Forbidden**
 
@@ -142,7 +144,7 @@ went, so it is not re-proposed.
 
 **Escalate**
 
-- The request needs an `AGENTS.md` change beyond a pointer.
+- The request needs an `AGENTS.md` change beyond a pointer, or a widening of the router's scope statement.
 - Two existing rules disagree, and the new rule would have to pick a side.
 - The proposal fails a test but the operator wants it anyway — that is their call to make explicitly, not one to infer.
 

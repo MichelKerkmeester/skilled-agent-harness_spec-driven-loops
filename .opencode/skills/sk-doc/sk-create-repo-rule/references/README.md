@@ -16,8 +16,9 @@ version: 1.0.0.0
 |------|------|
 | [`decision-tests.md`](decision-tests.md) | **First, always.** Four gates deciding whether a request may become a rule at all. Most requests stop here |
 | [`rule-anatomy.md`](rule-anatomy.md) | After the tests pass. What a rule must contain, what may vary, and the length bands |
-| `creation-standards.md` | Authored by a later phase — do's and don'ts above the structural floor |
-| `agents-md-integration.md` | Authored by a later phase — the wiring a generated rule needs to be reachable |
+| [`creation-standards.md`](creation-standards.md) | Before finishing a draft. Five reader tests deciding whether a well-formed rule is worth loading |
+| [`agents-md-integration.md`](agents-md-integration.md) | At the wiring step, and on every revise or retire. The three wiring points, the interruption-safe orderings, and the `AGENTS.md` boundary |
 
-The order matters. `rule-anatomy.md` answers *how a rule should read*, which only becomes
-a question once `decision-tests.md` has said the rule may exist.
+The order matters, and it is the order of the questions: may this exist, what must it
+contain, is it worth loading. `decision-tests.md` refuses most requests before the other
+two become relevant.

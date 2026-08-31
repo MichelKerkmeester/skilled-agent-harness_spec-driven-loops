@@ -1,0 +1,1 @@
+../../../.opencode/commands/create/repo-rule.md

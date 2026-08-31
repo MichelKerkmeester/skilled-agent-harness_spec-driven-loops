@@ -34,9 +34,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the router's current trigger-row, index-row and rule-file counts as the self-consistency baseline
-- [ ] T002 Read the wiring of all eight shipped rules: trigger row, index row, governed-section pointer
-- [ ] T003 Read both phase-1 scope-statement widenings and what triggered each
+- [x] T001 Record the router's current trigger-row, index-row and rule-file counts as the self-consistency baseline
+- [x] T002 Read the wiring of all eight shipped rules: trigger row, index row, governed-section pointer
+- [x] T003 Read both phase-1 scope-statement widenings and what triggered each
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,13 +44,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Contract the three wiring points, each with what is lost when skipped
-- [ ] T005 Write the create path in the order phase 1 used: file, rows, pointer
-- [ ] T006 Write the scope-statement check that runs before a trigger row is added
-- [ ] T007 Write the revise path, including when a changed firing condition forces the trigger row to change
-- [ ] T008 State `version` behaviour across all three paths
-- [ ] T009 Write the retire path as the inverse, ordered pointer-rows-file so an interruption leaves inert rather than broken state
-- [ ] T010 State the `AGENTS.md` boundary: pointer is mechanical, anything else escalates
+- [x] T004 Contract the three wiring points, each with what is lost when skipped
+- [x] T005 Write the create path in the order phase 1 used: file, rows, pointer
+- [x] T006 Write the scope-statement check that runs before a trigger row is added
+- [x] T007 Write the revise path, including when a changed firing condition forces the trigger row to change
+- [x] T008 State `version` behaviour across all three paths
+- [x] T009 Write the retire path as the inverse, ordered pointer-rows-file so an interruption leaves inert rather than broken state
+- [x] T010 State the `AGENTS.md` boundary: pointer is mechanical, anything else escalates
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,11 +58,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Dry-run create against a shipped rule; confirm it reproduces the actual wiring
-- [ ] T012 Dry-run retire against a shipped rule on paper; confirm row count still equals file count and every link resolves
-- [ ] T013 Replay both phase-1 widenings against the scope check; both must be caught
-- [ ] T014 Replace the `SKILL.md` deferral notes with pointers to this contract
-- [ ] T015 Run `validate.sh <this folder> --strict` and record `RESULT: PASSED`
+- [x] T011 Dry-run create against a shipped rule; confirm it reproduces the actual wiring
+- [x] T012 Dry-run retire against a shipped rule on paper; confirm row count still equals file count and every link resolves
+- [x] T013 Replay both phase-1 widenings against the scope check; both must be caught
+- [x] T014 Replace the `SKILL.md` deferral notes with pointers to this contract
+- [x] T015 Run `validate.sh <this folder> --strict` and record `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -70,10 +70,10 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Retire dry-run leaves the router self-consistent
-- [ ] `scratch/` cleaned
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Retire dry-run leaves the router self-consistent
+- [x] `scratch/` cleaned
 <!-- /ANCHOR:completion -->
 
 ---
@@ -107,9 +107,9 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Predecessor phase closed and its outputs available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Predecessor phase closed and its outputs available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -117,10 +117,10 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Every path is interruptible at a step boundary without leaving a dangling reference
-- [ ] CHK-011 [P0] No path edits `AGENTS.md` beyond a pointer
-- [ ] CHK-012 [P1] Retire is stated as the inverse of create, not written separately
-- [ ] CHK-013 [P1] The router's scope statement is referenced, not copied
+- [x] CHK-010 [P0] Every path is interruptible at a step boundary without leaving a dangling reference
+- [x] CHK-011 [P0] No path edits `AGENTS.md` beyond a pointer
+- [x] CHK-012 [P1] Retire is stated as the inverse of create, not written separately
+- [x] CHK-013 [P1] The router's scope statement is referenced, not copied
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -128,10 +128,10 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Retire dry-run recorded, with counts before and after
-- [ ] CHK-022 [P1] Both phase-1 widenings replayed against the scope check
-- [ ] CHK-023 [P1] Interruption states enumerated for all three paths
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Retire dry-run recorded, with counts before and after
+- [x] CHK-022 [P1] Both phase-1 widenings replayed against the scope check
+- [x] CHK-023 [P1] Interruption states enumerated for all three paths
 <!-- /ANCHOR:testing -->
 
 ---
@@ -141,13 +141,13 @@ contextType: "implementation"
 
 Retire has no precedent, which makes it the defect-prone path.
 
-- [ ] CHK-FIX-001 [P0] Finding class recorded: `class-of-bug` - a wiring contract that leaves dangling references
-- [ ] CHK-FIX-002 [P0] Producer inventory: all eight rules' wirings read, no sampling
-- [ ] CHK-FIX-003 [P0] Consumer inventory: the router and `AGENTS.md` are the consumers; both read-only this phase
-- [ ] CHK-FIX-004 [P0] Not applicable - no security surface
-- [ ] CHK-FIX-005 [P1] Matrix axes: 3 paths x 3 wiring points x interrupted/complete
-- [ ] CHK-FIX-006 [P1] Not applicable - no process-wide state
-- [ ] CHK-FIX-007 [P1] Evidence pinned to the landing commit
+- [x] CHK-FIX-001 [P0] Finding class recorded: `class-of-bug` - a wiring contract that leaves dangling references
+- [x] CHK-FIX-002 [P0] Producer inventory: all eight rules' wirings read, no sampling
+- [x] CHK-FIX-003 [P0] Consumer inventory: the router and `AGENTS.md` are the consumers; both read-only this phase
+- [x] CHK-FIX-004 [P0] Not applicable - no security surface
+- [x] CHK-FIX-005 [P1] Matrix axes: 3 paths x 3 wiring points x interrupted/complete
+- [x] CHK-FIX-006 [P1] Not applicable - no process-wide state
+- [x] CHK-FIX-007 [P1] Evidence pinned to the landing commit
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -155,9 +155,9 @@ Retire has no precedent, which makes it the defect-prone path.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No secrets in the contract
-- [ ] CHK-031 [P0] Not applicable - nothing executes this phase
-- [ ] CHK-032 [P0] No path can modify a hard blocker or a gate in `AGENTS.md`
+- [x] CHK-030 [P0] No secrets in the contract
+- [x] CHK-031 [P0] Not applicable - nothing executes this phase
+- [x] CHK-032 [P0] No path can modify a hard blocker or a gate in `AGENTS.md`
 <!-- /ANCHOR:security -->
 
 ---
@@ -165,9 +165,9 @@ Retire has no precedent, which makes it the defect-prone path.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks/acceptance-criteria synchronized
-- [ ] CHK-041 [P1] `SKILL.md` no longer says the mechanics are deferred
-- [ ] CHK-042 [P1] Parent Phase Documentation Map updated from Pending
+- [x] CHK-040 [P1] Spec/plan/tasks/acceptance-criteria synchronized
+- [x] CHK-041 [P1] `SKILL.md` no longer says the mechanics are deferred
+- [x] CHK-042 [P1] Parent Phase Documentation Map updated from Pending
 <!-- /ANCHOR:docs -->
 
 ---
@@ -175,8 +175,8 @@ Retire has no precedent, which makes it the defect-prone path.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -186,11 +186,11 @@ Retire has no precedent, which makes it the defect-prone path.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | [ ]/12 |
-| P1 Items | 11 | [ ]/11 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 0 | [ ]/0 |
 
-**Verification Date**: pending
+**Verification Date**: 2026-08-31
 <!-- /ANCHOR:summary -->
 
 ---

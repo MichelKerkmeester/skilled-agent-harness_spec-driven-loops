@@ -1,0 +1,90 @@
+# ─────────────────────────────────────────────────────────────────
+# CREATE REPO RULE — AUTO MODE
+# ─────────────────────────────────────────────────────────────────
+role: Repo Rule Author
+purpose: Create, revise or retire a repo-local rule and wire it into REPO RULES.md
+action: Run the decision tests, then author or unwire, then verify
+operating_mode:
+  workflow: linear
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+
+skill_reference:
+  skill: sk-doc
+  mode: sk-create-repo-rule
+  skill_md: .opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md
+  references:
+    decision_tests: .opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
+    anatomy: .opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md
+    standards: .opencode/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
+    integration: .opencode/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
+  templates:
+    rule: .opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md
+    router: .opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md
+
+user_inputs:
+  request: "[REQUEST] - what the rule should bind, in the user's words. REQUIRED."
+  operation: "[create|revise|retire] - default create."
+  rule_name: "[RULE_NAME] - required for revise and retire."
+
+workflow:
+
+  phase_gate:
+    purpose: Decide whether this may be a rule at all
+    steps:
+      step_load_tests:
+        action: "Load decision-tests.md. This runs on EVERY path including retire."
+      step_run_tests:
+        action: "Apply all four tests in order: always-loaded, scope boundary, four-part refusal, restraint"
+        on_fail:
+          action: "Report the failed test and the destination its section 5 names. HALT."
+          note: "This is the common outcome, not an error."
+
+  phase_prepare:
+    purpose: Ensure the destination exists
+    steps:
+      step_check_router:
+        action: "Check for REPO RULES.md in the target repository"
+        if_absent:
+          action: "Emit the router from the router template first. It is a prerequisite, not the deliverable."
+
+  phase_author:
+    purpose: Produce or amend the rule
+    steps:
+      step_fill_template:
+        action: "Fill the rule template. Ten fixed elements; aim under 160 lines, 250 is the ceiling."
+      step_apply_standards:
+        action: "Run creation-standards.md against the draft. Structure is checkable and is not the bar."
+
+  phase_wire:
+    purpose: Make the rule reachable
+    steps:
+      step_scope_check:
+        action: "Confirm REPO RULES.md section 4 In admits this rule BEFORE adding a trigger row"
+        on_fail:
+          action: "HALT. Widening the scope statement is an operator decision, not a mode action."
+      step_wire:
+        action: "Apply the ordering in agents-md-integration.md for the selected operation"
+        note: "create writes the file first; retire removes the pointer first. Never leave a row pointing at a missing file."
+
+  phase_verify:
+    purpose: Prove the result
+    steps:
+      step_verify:
+        verify:
+          - "frontmatter parses as YAML"
+          - "dividers equal numbered sections"
+          - "trigger rows, index rows and rule files are the same count"
+          - "every link resolves"
+          - "no trigger phrase collides with another rule"
+
+rules:
+  required:
+    - "Run the decision tests before authoring, on every path"
+    - "Emit the router first when the target repository has none"
+    - "Quote title and description in frontmatter"
+  forbidden:
+    - "Editing AGENTS.md beyond adding or removing a pointer"
+    - "Widening the router scope statement without an operator decision"
+    - "Writing a rule that must bind when no trigger fires"

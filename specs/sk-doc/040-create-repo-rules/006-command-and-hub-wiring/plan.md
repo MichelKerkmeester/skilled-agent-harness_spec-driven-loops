@@ -38,14 +38,14 @@ Four registration files plus a command with three assets is exactly the shape wh
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases 3-5 closed, so the mode has something worth routing to
-- [ ] Baseline counts recorded for all four registries
+- [x] Phases 3-5 closed, so the mode has something worth routing to
+- [x] Baseline counts recorded for all four registries
 
 ### Definition of Done
-- [ ] The command resolves in both runtime directories
-- [ ] All four registries name the mode, verified by read-back
-- [ ] Every registry still parses as JSON
-- [ ] Docs updated (spec/plan/tasks/acceptance-criteria)
+- [x] The command resolves in both runtime directories
+- [x] All four registries name the mode, verified by read-back
+- [x] Every registry still parses as JSON
+- [x] Docs updated (spec/plan/tasks/acceptance-criteria)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -98,15 +98,15 @@ Required inventories:
 `tasks.md` owns task state (T001-T014).
 
 ### Phase 1: Baseline
-- [ ] Counts and md5s recorded for all four registries and both command directories
+- [x] Counts and md5s recorded for all four registries and both command directories
 
 ### Phase 2: Author and register
-- [ ] Command authored through `sk-create-command`
-- [ ] Four registries edited, each matching its own existing entry shape
-- [ ] Mirror symlink created
+- [x] Command authored through `sk-create-command`
+- [x] Four registries edited, each matching its own existing entry shape
+- [x] Mirror symlink created
 
 ### Phase 3: Verify
-- [ ] Every registry parsed and read back; counts compared; the mirror followed
+- [x] Every registry parsed and read back; counts compared; the mirror followed
 <!-- /ANCHOR:phases -->
 
 ---
@@ -185,8 +185,8 @@ Baseline counts --> Author command --> Register x4 --> Mirror --> Verify all
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] md5 and entry counts recorded for all four registries
-- [ ] Sibling entry shapes read, so the edit matches the file's conventions
+- [x] md5 and entry counts recorded for all four registries
+- [x] Sibling entry shapes read, so the edit matches the file's conventions
 
 ### Rollback Procedure
 1. `git checkout` the four registries - other modes depend on them, so they revert first

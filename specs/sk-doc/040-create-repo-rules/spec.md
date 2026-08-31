@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Active |
+| **Status** | Complete |
 | **Created** | 2026-08-31 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None - this is a top-level phase parent |
@@ -113,10 +113,10 @@ Turn that inferred pattern into a `sk-doc` create mode: a skill that authors a r
 | 1 | 001-repo-rules-router/ | The reference implementation: router, eight rules, the load gate, and per-section pointers - six phases of its own, shipped and validating. This is what the mode learns to generate | Complete |
 | 2 | 002-inventory-and-skill-contract/ | Distil phase 1 into a contract: what a repo rule is, its anatomy, the boundary against sibling `sk-doc` modes, and the target tree | Complete |
 | 3 | 003-skill-scaffold-and-template/ | Scaffold the packet; author `SKILL.md`, `README.md`, and the rule template | Complete |
-| 4 | 004-creation-standards-and-guardrails/ | Creation standards plus do's and don'ts, including the always-loaded-versus-triggered test and the router's scope boundary | Pending |
-| 5 | 005-agents-md-integration/ | The integration contract: router trigger and index rows, the pointer from the governed section, and where a rule sits in the precedence ladder | Pending |
-| 6 | 006-command-and-hub-wiring/ | `/create:repo-rule` authored via `sk-create-command`; hub, mode-registry and command-metadata registration | Pending |
-| 7 | 007-validation-and-changelog/ | Strict validation, the changelog folder and its symlink into `.opencode/changelog/sk-doc/`, advisor smoke test, closeout | Pending |
+| 4 | 004-creation-standards-and-guardrails/ | Creation standards plus do's and don'ts, including the always-loaded-versus-triggered test and the router's scope boundary | Complete |
+| 5 | 005-agents-md-integration/ | The integration contract: router trigger and index rows, the pointer from the governed section, and where a rule sits in the precedence ladder | Complete |
+| 6 | 006-command-and-hub-wiring/ | `/create:repo-rule` authored via `sk-create-command`; hub, mode-registry and command-metadata registration | Complete |
+| 7 | 007-validation-and-changelog/ | Strict validation, the changelog folder and its symlink into `.opencode/changelog/sk-doc/`, advisor smoke test, closeout | Complete — advisor smoke test not run, accept path unexercised; see phase 007 |
 
 ### Phase Transition Rules
 

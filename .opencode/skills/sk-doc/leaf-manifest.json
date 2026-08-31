@@ -309,6 +309,19 @@
       ],
       "packet": "sk-create-skill",
       "workflowMode": "sk-create-skill-parent"
+    },
+    {
+      "leaves": [
+        "assets/repo-rule-template.md",
+        "assets/repo-rules-router-template.md",
+        "references/README.md",
+        "references/agents-md-integration.md",
+        "references/creation-standards.md",
+        "references/decision-tests.md",
+        "references/rule-anatomy.md"
+      ],
+      "packet": "sk-create-repo-rule",
+      "workflowMode": "sk-create-repo-rule"
     }
   ],
   "resourceContractVersion": 1

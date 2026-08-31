@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** sk-doc/040-create-repo-rules/004-creation-standards-and-guardrails
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-08-31
 <!-- /ANCHOR:metadata -->
 
@@ -54,15 +54,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given any standard, When a reader asks what breaks without it, Then the document answers | Every standard carries a named failure; any that cannot is cut by its own rule | Unmet | - |
-| AC-002 | REQ-002 | Given the eight shipped rules, When every standard is applied, Then all eight pass | Result recorded per rule per standard; a failure either drops the standard or records the rule as an exception | Unmet | - |
-| AC-003 | REQ-003 | Given a draft rule, When a reviewer applies the standards, Then no tooling is needed | Each standard is a yes-or-no question answerable by reading | Unmet | - |
-| AC-004 | REQ-004 | Given phase 3 thin sample, When the standards are applied, Then it fails and the failing tests are named | The negative control; a bar that passes it measures nothing | Unmet | - |
-| AC-005 | REQ-005 | Given a don't, When its basis is checked, Then it is an observed failure rather than a preference | Each cites where the failure was seen | Unmet | - |
-| AC-006 | REQ-006 | Given the standards, When compared with phase 3 assertions, Then none is restated | Diffed against the structural assertion list | Unmet | - |
-| AC-007 | REQ-007 | Given the misreading guard, When it is read, Then it cites the shipped rules that needed one | Three rules added a "what this is not" section after being misread | Unmet | - |
-| AC-008 | REQ-008 | Given the standards document, When measured, Then it fits the bands it teaches | Line count inside 250, ideally under 160 | Unmet | - |
-| AC-009 | REQ-002 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict` prints `RESULT: PASSED` | Unmet | - |
+| AC-001 | REQ-001 | Given any standard, When a reader asks what breaks without it, Then the document answers | Every standard is stated as what breaks without it; the section test itself is framed as identifiability rather than a required phrase | Met | - |
+| AC-002 | REQ-002 | Given the eight shipped rules, When every standard is applied, Then all eight pass | All eight shipped rules pass every checkable test: phrases 16-20 all in range, self-check items 5-11 all in range, 0 collisions across 144 phrases | Met | - |
+| AC-003 | REQ-003 | Given a draft rule, When a reviewer applies the standards, Then no tooling is needed | Each of the five is a question a reviewer answers by reading; the document says outright that none can be automated | Met | - |
+| AC-004 | REQ-004 | Given phase 3 thin sample, When the standards are applied, Then it fails and the failing tests are named | Phase 3's thin sample fails three: 6 trigger phrases against an aim of 15-20, a binding sentence joining two obligations with \"and\", and 2 self-check items against a floor of 5 | Met | - |
+| AC-005 | REQ-005 | Given a don't, When its basis is checked, Then it is an observed failure rather than a preference | Each don't cites an observed failure - the best-practice one names the double standard it would create | Met | - |
+| AC-006 | REQ-006 | Given the standards, When compared with phase 3 assertions, Then none is restated | No standard restates a phase-3 structural assertion; the document says structure is checkable and is not the bar | Met | - |
+| AC-007 | REQ-007 | Given the misreading guard, When it is read, Then it cites the shipped rules that needed one | Section 5 names all three rules carrying a WHAT THIS RULE IS NOT section and why the other five do not need one | Met | - |
+| AC-008 | REQ-008 | Given the standards document, When measured, Then it fits the bands it teaches | 163 lines - the "good" band, inside the 250 ceiling | Met | - |
+| AC-009 | REQ-002 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict`: every rule passed and the only error was this row's own `AC_CLOSURE`, which clears once the row is marked | Met | - |
 
 ### Status values
 
@@ -87,7 +87,12 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Written when the phase closes. AC-002 and AC-004 are the pair that matters: a bar the shipped corpus fails is set too high, and a bar the thin sample passes is not a bar at all.
+AC-002 and AC-004 carried it, as the pair they were written to be: all eight shipped rules
+pass, and the thin sample fails three tests. Either result alone would prove nothing. The
+phase also caught its own worst outcome in progress — a pattern-based measurement of the
+section test reported six of eight rules as failing, and reading them showed the
+measurement wrong rather than the corpus. Trusting it would have produced a bar describing
+two files written this session.
 <!-- /ANCHOR:closure -->

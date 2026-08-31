@@ -38,14 +38,14 @@ Six phases of structural checks have not answered whether the mode works. Run it
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases 3-6 closed, so there is a reachable mode
-- [ ] The borderline refusal case chosen before the accept case, so it is not picked to be easy
+- [x] Phases 3-6 closed, so there is a reachable mode
+- [x] The borderline refusal case chosen before the accept case, so it is not picked to be easy
 
 ### Definition of Done
-- [ ] Both exercise outputs kept as evidence
-- [ ] The changelog symlink followed to a real directory
-- [ ] Recursive validation passes for the parent and all seven children
-- [ ] Any defect found is attributed to its owning phase, not patched here
+- [x] Both exercise outputs kept as evidence
+- [x] The changelog symlink followed to a real directory
+- [x] Recursive validation passes for the parent and all seven children
+- [x] Any defect found is attributed to its owning phase, not patched here
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -95,14 +95,14 @@ Required inventories:
 `tasks.md` owns task state (T001-T014).
 
 ### Phase 1: Exercise
-- [ ] Borderline refusal case chosen and run; the refusal must name a test and a destination
-- [ ] Accept case run end to end; output checked against structure and standards
+- [x] Borderline refusal case chosen and run; the refusal must name a test and a destination
+- [x] Accept case run end to end; output checked against structure and standards
 
 ### Phase 2: Changelog
-- [ ] Version file written, then the symlink created and followed
+- [x] Version file written, then the symlink created and followed
 
 ### Phase 3: Close
-- [ ] Recursive validation, reconciliation, and an honest report including anything the exercise found
+- [x] Recursive validation, reconciliation, and an honest report including anything the exercise found
 <!-- /ANCHOR:phases -->
 
 ---
@@ -180,8 +180,8 @@ Choose refusal --> Run refusal --> Run accept --> Changelog --> Symlink --> Recu
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Corpus md5 captured, so the exercise provably wrote nothing into `repo-rules/`
-- [ ] The refusal case chosen and written down before either run
+- [x] Corpus md5 captured, so the exercise provably wrote nothing into `repo-rules/`
+- [x] The refusal case chosen and written down before either run
 
 ### Rollback Procedure
 1. Remove the symlink and the changelog version file

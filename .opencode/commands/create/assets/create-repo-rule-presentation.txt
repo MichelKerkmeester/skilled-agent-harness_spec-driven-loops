@@ -1,0 +1,49 @@
+# PRESENTATION CONTRACT — /create:repo-rule
+# User-facing wording only. No routing logic.
+
+## CONSOLIDATED SETUP PROMPT (:confirm and no-suffix)
+
+  What should the rule bind?
+    Describe the behaviour you want, or the failure that keeps happening.
+
+  Operation:  A) create (default)   B) revise   C) retire
+  Mode:       A) auto   B) confirm
+
+## DECISION-TEST REPORT
+
+  Ran 4 tests: always-loaded · scope boundary · four-part refusal · restraint
+
+  PASSED  -> proceeding to author
+  REFUSED -> failed: {test}
+             {why}
+             belongs in: {destination}
+
+## REFUSAL WORDING
+
+  A refusal is a useful answer, not a dead end. Always name both the test and
+  the destination. Never refuse without saying where the content should go.
+
+  Most requests are refused. That is the design.
+
+## SUCCESS OUTPUT
+
+  Rule written : repo-rules/{name}.md   ({lines} lines, {band})
+  Wired        : trigger row · index row · pointer in AGENTS.md {section}
+  Verified     : frontmatter parses · dividers={n} sections={n} · links {n}/{n}
+                 no trigger-phrase collisions
+
+## RETIRE OUTPUT
+
+  Removed      : pointer -> index row -> trigger row -> file
+  Router now   : {files} files · {trigger} trigger rows · {index} index rows
+  Reason recorded: {reason}
+
+## FAILURE OUTPUT
+
+  Scope statement does not admit this rule.
+  Widening it is an operator decision. Stopping here.
+
+## NEXT STEPS
+
+  Review the rule, then commit. The rule loads on its trigger from the next
+  session; nothing reloads it in this one.

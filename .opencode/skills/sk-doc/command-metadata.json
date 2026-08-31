@@ -391,5 +391,53 @@
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
+  },
+  {
+    "command": "/create:repo-rule",
+    "ownerMode": "sk-create-repo-rule",
+    "description": "Create, revise or retire a repo rule under repo-rules/, wired into REPO RULES.md. :auto/:confirm.",
+    "argumentHint": "<what the rule should bind> [create|revise|retire] [--rule <name>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want a repo-local rule that binds before an action, or I want to change or remove one.",
+      "ownedSignals": [
+        "create a repo rule",
+        "add a project rule",
+        "retire a repo rule",
+        "wire a rule into REPO RULES.md"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-repo-rule",
+        "resource": ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "action": "load the repo-rule authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-repo-rule",
+        "resource": ".opencode/commands/create/assets/create-repo-rule-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable constrains what may be done before an action \u2014 a rule loaded by a trigger table.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/create:skill",
+          "when": "Prefer the skill command when the deliverable teaches how to accomplish something rather than constraining how it is done."
+        },
+        {
+          "sibling": "/create:command",
+          "when": "Prefer the command command when the deliverable is a slash command rather than a rule."
+        }
+      ]
+    }
   }
 ]

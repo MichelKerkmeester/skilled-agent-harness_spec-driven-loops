@@ -38,14 +38,17 @@
       "closure",
       "plan"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/refusal-case.md",
+      "scratch/exercise-record.md"
     ],
     "entities": [
       {
@@ -73,9 +76,27 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "refusal-case.md",
+        "kind": "doc",
+        "path": "scratch/refusal-case.md",
+        "source": "derived"
+      },
+      {
+        "name": "exercise-record.md",
+        "kind": "doc",
+        "path": "scratch/exercise-record.md",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Six phases have produced a contract, a packet, two templates, a quality bar, a lifecycle contract and a registered command - and not one of them has been used",
     "created_at": "2026-08-31T11:33:12Z",
-    "last_save_at": "2026-08-31T13:01:51.088Z",
+    "last_save_at": "2026-08-31T13:40:08.508Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +206,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:30eb86ac75b1e5d572415e3d4a02a5ac36306b869e05912dcbef376fdbaeff50",
+    "source_fingerprint": "sha256:257c374a2f333945454e2720abee086725f8b25d91c87bd913e7bb10c43348cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d48a403c17adc849c95283265e6ae1a0eea0d7d54e0f5af5d6e8351fd719522",
-      "plan.md": "3c7754152ee786b59b0ea22b6746555daea0dc198a5d96edc8a6fe1de9c1e0d6",
-      "tasks.md": "d8a40106d84db9cf7a7fae51093d780a338c9ce3b2b676cb512facb09be95329",
-      "implementation-summary.md": "8685f6d8efdf4a239f0918faf5c45a083f8692929fe382745b320e78b0b0a8cd"
+      "spec.md": "68f3394f11677df93657f85dc0bc5d48c57ff1d7656fea3777de6916cfe17959",
+      "plan.md": "c86ee0f85c08377aea72ff3e57b285f2959c2c49b042c28acbe4cebc79c8f977",
+      "tasks.md": "e5956c96765147b6c1118e93491ec7f6fbeef2e1203fb1e484c0ed1e4e5034bb",
+      "decision-record.md": "fc265e1c0b35de6e069f5c49d574dc5542d91863c1f0106b84dca46d0130ce4e",
+      "implementation-summary.md": "e08f38c8cb593701141f33f5c369afc5131da772b65a85bbd86228e7820f7bae"
     },
     "last_active_child_id": null,
     "last_active_at": null

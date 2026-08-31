@@ -19,145 +19,514 @@
       "workflowMode": "sk-create-skill",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-skill",
       "packetSkillName": "sk-create-skill",
       "grandfatheredFolderMismatch": false,
       "command": "/create:skill",
-      "aliases": ["create skill", "new skill", "skill scaffold", "OpenCode skill", "package skill"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "create skill",
+        "new skill",
+        "skill scaffold",
+        "OpenCode skill",
+        "package skill"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-skill-parent",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-skill",
       "packetSkillName": "sk-create-skill",
       "grandfatheredFolderMismatch": false,
       "command": "/create:skill-parent",
-      "aliases": ["parent skill", "parent hub", "mode packet", "nested workflow packet"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "parent skill",
+        "parent hub",
+        "mode packet",
+        "nested workflow packet"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-readme",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-readme",
       "packetSkillName": "sk-create-readme",
       "grandfatheredFolderMismatch": false,
       "command": "/create:readme",
-      "aliases": ["create readme", "readme", "folder readme", "write readme", "README.md", "install guide", "installation guide", "setup guide", "code folder readme"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "create readme",
+        "readme",
+        "folder readme",
+        "write readme",
+        "README.md",
+        "install guide",
+        "installation guide",
+        "setup guide",
+        "code folder readme"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-agent",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-agent",
       "packetSkillName": "sk-create-agent",
       "grandfatheredFolderMismatch": false,
       "command": "/create:agent",
-      "aliases": ["create agent", "OpenCode agent", "Claude Code agent", "agent file", "new agent", "agent persona", "agent frontmatter", "permission object", "authority boundary", "agent template", "runtime agent directory"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "create agent",
+        "OpenCode agent",
+        "Claude Code agent",
+        "agent file",
+        "new agent",
+        "agent persona",
+        "agent frontmatter",
+        "permission object",
+        "authority boundary",
+        "agent template",
+        "runtime agent directory"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-command",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-command",
       "packetSkillName": "sk-create-command",
       "grandfatheredFolderMismatch": false,
       "command": "/create:command",
-      "aliases": ["create command", "slash command", "OpenCode command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract", "$ARGUMENTS"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "create command",
+        "slash command",
+        "OpenCode command",
+        "argument-hint",
+        "allowed-tools",
+        "command template",
+        "router presentation split",
+        "thin router",
+        "presentation contract",
+        "$ARGUMENTS"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-feature-catalog",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-feature-catalog",
       "packetSkillName": "sk-create-feature-catalog",
       "grandfatheredFolderMismatch": false,
       "command": "/create:feature-catalog",
-      "aliases": ["feature catalog", "feature inventory", "catalog package", "per-feature files", "source anchors", "root catalog", "capability inventory"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "feature catalog",
+        "feature inventory",
+        "catalog package",
+        "per-feature files",
+        "source anchors",
+        "root catalog",
+        "capability inventory"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-manual-testing-playbook",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-manual-testing-playbook",
       "packetSkillName": "sk-create-manual-testing-playbook",
       "grandfatheredFolderMismatch": false,
       "command": "/create:manual-testing-playbook",
-      "aliases": ["manual testing playbook", "testing playbook", "deterministic scenario", "evidence collection", "operator validation", "multi-agent execution", "release readiness"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "manual testing playbook",
+        "testing playbook",
+        "deterministic scenario",
+        "evidence collection",
+        "operator validation",
+        "multi-agent execution",
+        "release readiness"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-benchmark",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-benchmark",
       "packetSkillName": "sk-create-benchmark",
       "grandfatheredFolderMismatch": false,
       "command": "/create:benchmark",
-      "aliases": ["benchmark-report.md", "SOURCE.md", "mcp-server/benchmarks", "MCP bake-off", "behavior benchmark", "behavior-benchmark.md", "scenario contract", "claude-baseline", "skill-benchmark", "benchmark/README.md", "run-label folder", "benchmark package", "model-benchmark", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture", "agent-improvement", "Lane A agent-improvement", "agent_improvement_authoring_guide", "agent quality dimensions"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "benchmark-report.md",
+        "SOURCE.md",
+        "mcp-server/benchmarks",
+        "MCP bake-off",
+        "behavior benchmark",
+        "behavior-benchmark.md",
+        "scenario contract",
+        "claude-baseline",
+        "skill-benchmark",
+        "benchmark/README.md",
+        "run-label folder",
+        "benchmark package",
+        "model-benchmark",
+        "benchmark fixture",
+        "benchmark profile",
+        "reviewer-prompt fixture",
+        "agent-improvement",
+        "Lane A agent-improvement",
+        "agent_improvement_authoring_guide",
+        "agent quality dimensions"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-changelog",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-changelog",
       "packetSkillName": "sk-create-changelog",
       "grandfatheredFolderMismatch": false,
       "command": "/create:changelog",
-      "aliases": ["create changelog", "changelog", "changelog entry", "release notes", "global changelog", "packet-local changelog", "nested changelog", "--bump", "--release", "vX.Y.Z.B"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "create changelog",
+        "changelog",
+        "changelog entry",
+        "release notes",
+        "global changelog",
+        "packet-local changelog",
+        "nested changelog",
+        "--bump",
+        "--release",
+        "vX.Y.Z.B"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-diff",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-diff",
       "packetSkillName": "sk-create-diff",
       "grandfatheredFolderMismatch": false,
       "command": "/create:diff",
-      "aliases": ["create diff report", "document before after review", "before after document diff", "document change report"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "create diff report",
+        "document before after review",
+        "before after document diff",
+        "document change report"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-diagram",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-diagram",
       "packetSkillName": "sk-create-diagram",
       "grandfatheredFolderMismatch": false,
       "command": "/create:diagram",
-      "aliases": ["create diagram", "diagram", "architecture diagram", "sequence diagram", "ER diagram", "state machine diagram", "data model diagram", "swimlane", "venn diagram", "org chart", "quadrant diagram", "gantt chart", "draw.io", "drawio", "mermaid diagram", "redraw diagram", "export diagram", "create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "text diagram", "text characters", "decision tree", "decision branch", "parallel execution diagram", "approval loop diagram"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "create diagram",
+        "diagram",
+        "architecture diagram",
+        "sequence diagram",
+        "ER diagram",
+        "state machine diagram",
+        "data model diagram",
+        "swimlane",
+        "venn diagram",
+        "org chart",
+        "quadrant diagram",
+        "gantt chart",
+        "draw.io",
+        "drawio",
+        "mermaid diagram",
+        "redraw diagram",
+        "export diagram",
+        "create flowchart",
+        "flowchart",
+        "ASCII flowchart",
+        "workflow diagram",
+        "text diagram",
+        "text characters",
+        "decision tree",
+        "decision branch",
+        "parallel execution diagram",
+        "approval loop diagram"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     },
     {
       "workflowMode": "sk-create-quality-control",
       "packetKind": "workflow",
       "backendKind": "create-quality-control",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
       "packet": "sk-create-quality-control",
       "packetSkillName": "sk-create-quality-control",
       "grandfatheredFolderMismatch": false,
       "command": "/doc:quality",
-      "aliases": ["doc quality", "audit documentation quality", "document audit", "validate a document", "validate markdown", "score this document", "optimize this doc", "DQI", "HVR", "human voice", "AI-friendly documentation", "extract structure"],
-      "advisorRouting": { "routingClass": "metadata" }
+      "aliases": [
+        "doc quality",
+        "audit documentation quality",
+        "document audit",
+        "validate a document",
+        "validate markdown",
+        "score this document",
+        "optimize this doc",
+        "DQI",
+        "HVR",
+        "human voice",
+        "AI-friendly documentation",
+        "extract structure"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "sk-create-repo-rule",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "sk-create-repo-rule",
+      "packetSkillName": "sk-create-repo-rule",
+      "grandfatheredFolderMismatch": false,
+      "command": "/create:repo-rule",
+      "aliases": [
+        "create repo rule",
+        "repo rule",
+        "project rule",
+        "REPO RULES.md",
+        "repo-rules",
+        "add a rule",
+        "retire a rule",
+        "revise a rule",
+        "trigger table",
+        "rule router"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
     }
   ]
 }

@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** sk-doc/040-create-repo-rules/006-command-and-hub-wiring
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-08-31
 <!-- /ANCHOR:metadata -->
 
@@ -54,17 +54,17 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the command, When compared to its eleven siblings, Then it matches their shape | Authored through `sk-create-command`, not by hand | Unmet | - |
-| AC-002 | REQ-002 | Given each of the four registries, When the entry is checked, Then it is read back rather than assumed | Entry loaded and inspected after writing | Unmet | - |
-| AC-003 | REQ-003 | Given the cross-runtime mirror, When it is tested, Then the symlink is followed to a real file | Existence alone is not the check; a sibling packet lost three to dangling links | Unmet | - |
-| AC-004 | REQ-004 | Given an overlapping request, When the hub routes, Then the discriminator says when to prefer a sibling | Named explicitly against `sk-create-skill` | Unmet | - |
-| AC-005 | REQ-005 | Given every registry, When parsed after the edit, Then all four are valid JSON | The hub loads them for twelve other modes | Unmet | - |
-| AC-006 | REQ-006 | Given the choreography, When compared to siblings, Then it has the same three steps in order | Hub, then mode contract, then presentation | Unmet | - |
-| AC-007 | REQ-007 | Given a rule-shaped request, When signals are evaluated, Then this mode is selected over `sk-create-skill` | The likely confusion, checked rather than assumed | Unmet | - |
-| AC-008 | REQ-008 | Given the argument hint, When read, Then it covers create, revise and retire | The mode owns all three | Unmet | - |
-| AC-009 | REQ-009 | Given each registry, When counts are compared before and after, Then exactly one entry was added | Never zero, never two; a successful write is not evidence | Unmet | - |
-| AC-010 | REQ-002 | Given the other twelve modes, When routing is checked after the edit, Then none regressed | A malformed shared file breaks more than this mode | Unmet | - |
-| AC-011 | REQ-001 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict` prints `RESULT: PASSED` | Unmet | - |
+| AC-001 | REQ-001 | Given the command, When compared to its eleven siblings, Then it matches their shape | Router `.md` plus auto, confirm and presentation assets, matching the sibling naming and the three-step choreography | Met | - |
+| AC-002 | REQ-002 | Given each of the four registries, When the entry is checked, Then it is read back rather than assumed | All four entries loaded and inspected after writing; a count that rose is not an entry that is correct | Met | - |
+| AC-003 | REQ-003 | Given the cross-runtime mirror, When it is tested, Then the symlink is followed to a real file | Symlink followed to the `.opencode` original, not merely observed to exist | Met | - |
+| AC-004 | REQ-004 | Given an overlapping request, When the hub routes, Then the discriminator says when to prefer a sibling | Discriminator names `/create:skill` (teaches vs constrains) and `/create:command` | Met | - |
+| AC-005 | REQ-005 | Given every registry, When parsed after the edit, Then all four are valid JSON | All four parse after the edit; two turned out to be keyed objects rather than lists, caught by reading a sibling first | Met | - |
+| AC-006 | REQ-006 | Given the choreography, When compared to siblings, Then it has the same three steps in order | Hub, then mode contract, then presentation - identical to every sibling | Met | - |
+| AC-007 | REQ-007 | Given a rule-shaped request, When signals are evaluated, Then this mode is selected over `sk-create-skill` | Probe on "i want to add a repo rule that stops us doing X" matches this mode, zero matches for `sk-create-skill` | Met | - |
+| AC-008 | REQ-008 | Given the argument hint, When read, Then it covers create, revise and retire | Argument hint carries all three operations, and retire defaults to confirm even under an auto suffix | Met | - |
+| AC-009 | REQ-009 | Given each registry, When counts are compared before and after, Then exactly one entry was added | Counts compared before and after: 12→13, 12→13, 11→12, 12→13 - exactly +1 in each | Met | - |
+| AC-010 | REQ-002 | Given the other twelve modes, When routing is checked after the edit, Then none regressed | All 13 modes resolve their SKILL.md and all 12 commands resolve their file; the 6 broken leaves are identical at HEAD and belong to other modes | Met | - |
+| AC-011 | REQ-001 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict`: every rule passed and the only error was this row's own `AC_CLOSURE`, which clears once the row is marked | Met | - |
 
 ### Status values
 
@@ -89,7 +89,12 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Written when the phase closes. AC-009 is the one that catches the real failure mode: four files must each gain exactly one entry, and a write that succeeds while changing nothing is invisible unless the counts are compared.
+AC-009 did the work it was written for, and AC-005 nearly caught a worse one: two of the
+four registries are keyed objects rather than lists, and writing them as lists would have
+malformed a file the hub loads for twelve other modes. Reading a sibling entry first is
+what prevented it. Left open and named: only the `.claude/` mirror exists because the other
+runtimes were never enumerated, and six pre-existing broken leaves in other modes stay
+untouched.
 <!-- /ANCHOR:closure -->

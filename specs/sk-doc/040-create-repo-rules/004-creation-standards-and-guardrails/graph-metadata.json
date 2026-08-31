@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -187,15 +187,15 @@
         "source": "derived"
       },
       {
-        "name": "No Written",
-        "kind": "proper_noun",
+        "name": "phase",
+        "kind": "key_phrase",
         "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 3 generated a rule that passed all eleven structural assertions and is thin: two sections, one obligation, nothing a reader would change their behaviour over",
     "created_at": "2026-08-31T11:33:10Z",
-    "last_save_at": "2026-08-31T13:01:48.528Z",
+    "last_save_at": "2026-08-31T13:27:51.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1f212645545668a31da1189aa54225d86ecbe360a970cb8dcfd7e9d6c807834",
+    "source_fingerprint": "sha256:63e866dd9c3e962d69e2c602996ab7ef56de82d1fd0c5ed128ad989284a87ae0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db3d2c0a09eaae84073f9bd99761e661025ef046d13033babc95d5abe6a923b0",
-      "plan.md": "4dff8bc9bb52aad493aa2618146540ce723decdf733821c718097f9ef94275c8",
-      "tasks.md": "379624b980ec139b9d2624ee64e56ea2873e704f911f13b8f4dfeaae1cbf1db2",
-      "implementation-summary.md": "78c2b1b9a7ba7d0f067e82f30f4223dc9e6114cbf0043b897e6980e59c9fa713"
+      "spec.md": "db9905839ad3e756f7198f500346b20762f274c1a7d49c0374308933e8366e5e",
+      "plan.md": "99933d4cf1a7f6132af2ab2c841551f680cc537b996cb4ce4152deaace96bd84",
+      "tasks.md": "3b2479e285cbea236468e52ebfb5356d07bb4a0509782e938eed730d0994ff6f",
+      "implementation-summary.md": "af992142d4eec564d0f59a429dbe9bb9afa86e6954f4403c220319672f57dd6d"
     },
     "last_active_child_id": null,
     "last_active_at": null

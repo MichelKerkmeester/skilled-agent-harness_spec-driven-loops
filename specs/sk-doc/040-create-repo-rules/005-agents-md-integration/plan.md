@@ -39,13 +39,13 @@ Read what phase 1 actually did eight times, write it as a create path, then deri
 
 ### Definition of Ready
 - [x] Phase 1's wiring inspectable across eight rules and two scope widenings
-- [ ] The router's current row and file counts recorded, as the self-consistency baseline
+- [x] The router's current row and file counts recorded, as the self-consistency baseline
 
 ### Definition of Done
-- [ ] All three wiring points contracted with what is lost by skipping each
-- [ ] Retire dry-run leaves the router self-consistent
-- [ ] No path can touch `AGENTS.md` beyond a pointer
-- [ ] Docs updated (spec/plan/tasks/acceptance-criteria)
+- [x] All three wiring points contracted with what is lost by skipping each
+- [x] Retire dry-run leaves the router self-consistent
+- [x] No path can touch `AGENTS.md` beyond a pointer
+- [x] Docs updated (spec/plan/tasks/acceptance-criteria)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,15 +94,15 @@ Required inventories:
 `tasks.md` owns task state (T001-T013).
 
 ### Phase 1: Derive create
-- [ ] Read the wiring of all eight shipped rules; record the three points and the order used
+- [x] Read the wiring of all eight shipped rules; record the three points and the order used
 
 ### Phase 2: Derive revise and retire
-- [ ] Revise: what changes when the firing condition changes, and what happens to `version`
-- [ ] Retire: create inverted, ordered so every interruption is safe
+- [x] Revise: what changes when the firing condition changes, and what happens to `version`
+- [x] Retire: create inverted, ordered so every interruption is safe
 
 ### Phase 3: Dry-run and wire
-- [ ] Dry-run retire against a shipped rule on paper; confirm the router stays self-consistent
-- [ ] Replace the `SKILL.md` deferral notes
+- [x] Dry-run retire against a shipped rule on paper; confirm the router stays self-consistent
+- [x] Replace the `SKILL.md` deferral notes
 <!-- /ANCHOR:phases -->
 
 ---
@@ -179,8 +179,8 @@ Phase 1 wirings --> Create path --> Retire path (inverted) --> Dry-run --> Wire 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Router row and file counts recorded as the baseline
-- [ ] Confirmed nothing in this phase executes against a real router
+- [x] Router row and file counts recorded as the baseline
+- [x] Confirmed nothing in this phase executes against a real router
 
 ### Rollback Procedure
 1. `git checkout` the contract and the two hooks

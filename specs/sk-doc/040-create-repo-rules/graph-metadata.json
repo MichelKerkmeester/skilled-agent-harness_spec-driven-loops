@@ -40,6 +40,7 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      ".opencode/commands/create/repo-rule.md",
       ".opencode/skills/sk-doc/mode-registry.json",
       ".opencode/skills/sk-doc/hub-router.json",
       ".opencode/skills/sk-doc/command-metadata.json"
@@ -49,6 +50,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "repo-rule.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/repo-rule.md",
         "source": "derived"
       },
       {
@@ -108,18 +115,18 @@
     ],
     "causal_summary": "This repository now has a working repo-rules layer: a trigger-table router, eight rule files, a mandatory load gate, and per-section pointers from the always-loaded document into each rule that governs it",
     "created_at": "2026-08-31T11:33:07Z",
-    "last_save_at": "2026-08-31T12:49:26.214Z",
+    "last_save_at": "2026-08-31T13:41:06.699Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2cb24f78412f1651e6e10f6a5523e088e0dfb2f549e5eaf4149669c9470ca669",
+    "source_fingerprint": "sha256:d13db917022cc559f03e884a376dc399034e08a308d534ff4abcbcd68b255737",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "82d1dae6601ef2a25b350f3f77004a2bca242b5de750e7ffc5b78c0bb24a10db"
+      "spec.md": "922fadbc1bc3d0d783644158d48b3977505f24c9637646d894f10ec0f77d2b15"
     },
-    "last_active_child_id": "sk-doc/040-create-repo-rules/007-validation-and-changelog",
-    "last_active_at": null
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-31T13:41:06.699Z"
   }
 }

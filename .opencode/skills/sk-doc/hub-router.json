@@ -146,6 +146,15 @@
       "resources": [
         "sk-create-quality-control/SKILL.md"
       ]
+    },
+    "sk-create-repo-rule": {
+      "weight": 4,
+      "classes": [
+        "create-repo-rule-aliases"
+      ],
+      "resources": [
+        "sk-create-repo-rule/SKILL.md"
+      ]
     }
   },
   "vocabularyClasses": {
@@ -364,6 +373,24 @@
         "flag",
         "model's budget",
         "trim"
+      ]
+    },
+    "create-repo-rule-aliases": {
+      "keywords": [
+        "create repo rule",
+        "new repo rule",
+        "add a repo rule",
+        "project rule",
+        "repo-local rule",
+        "REPO RULES.md",
+        "repo-rules",
+        "rule file",
+        "trigger table",
+        "rule router",
+        "retire a rule",
+        "revise a rule",
+        "we should always",
+        "stop doing"
       ]
     }
   }

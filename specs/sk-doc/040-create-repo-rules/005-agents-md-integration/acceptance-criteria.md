@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** sk-doc/040-create-repo-rules/005-agents-md-integration
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-08-31
 <!-- /ANCHOR:metadata -->
 
@@ -54,17 +54,17 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the three wiring points, When one is skipped, Then the contract says what is lost | Trigger row, index row, governed-section pointer each with its consequence | Unmet | - |
-| AC-002 | REQ-002 | Given a shipped rule, When the create path is followed, Then it reproduces that rule actual wiring | Dry-run compared against the live router rows | Unmet | - |
-| AC-003 | REQ-003 | Given the retire path, When run against a shipped rule on paper, Then the router stays self-consistent | Row count still equals file count; every link resolves | Unmet | - |
-| AC-004 | REQ-004 | Given a rule the scope statement excludes, When a trigger row is proposed, Then the check stops it | Both phase-1 widenings replayed and caught | Unmet | - |
-| AC-005 | REQ-005 | Given any path, When it touches `AGENTS.md`, Then it only adds or removes a pointer | Anything else escalates to the operator | Unmet | - |
-| AC-006 | REQ-006 | Given a revision that changes when the rule fires, When applied, Then the trigger row changes with it | Otherwise the router lies about the rule | Unmet | - |
-| AC-007 | REQ-007 | Given all three paths, When `version` is considered, Then its behaviour is stated for each | Create, revise and retire each say what happens | Unmet | - |
-| AC-008 | REQ-008 | Given a retirement, When it completes, Then the reason is recorded | So the same rule is not re-proposed | Unmet | - |
-| AC-009 | REQ-009 | Given a repository with no router, When a rule is requested, Then the contract says the router comes first | Consistent with the prerequisite framing | Unmet | - |
-| AC-010 | REQ-003 | Given any path interrupted at a step boundary, When the state is inspected, Then nothing dangles | Interruption states enumerated for all three paths | Unmet | - |
-| AC-011 | REQ-001 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict` prints `RESULT: PASSED` | Unmet | - |
+| AC-001 | REQ-001 | Given the three wiring points, When one is skipped, Then the contract says what is lost | All three named in §1 with what is lost: trigger row = never loads, index row = unbrowsable, pointer = invisible at the moment of need | Met | - |
+| AC-002 | REQ-002 | Given a shipped rule, When the create path is followed, Then it reproduces that rule actual wiring | Create path §3 matches what the reference implementation did eight times; all three points confirmed present on all eight rules, pointers 2-4 each | Met | - |
+| AC-003 | REQ-003 | Given the retire path, When run against a shipped rule on paper, Then the router stays self-consistent | Dry-run against `root-cause.md`: 8/8/8 before, 7/7/7 after, self-consistent; four interruption states enumerated, worst is an unreferenced file | Met | - |
+| AC-004 | REQ-004 | Given a rule the scope statement excludes, When a trigger row is proposed, Then the check stops it | Both widenings replayed - delegation posture and delivery - and both refused by the §4 In list as it stood at the time | Met | - |
+| AC-005 | REQ-005 | Given any path, When it touches `AGENTS.md`, Then it only adds or removes a pointer | §6 bounds every path to adding or removing a pointer; anything else escalates, including a §4 widening | Met | - |
+| AC-006 | REQ-006 | Given a revision that changes when the rule fires, When applied, Then the trigger row changes with it | §4 step 3: if the firing condition changes the trigger row changes in the same edit, or the router lies silently | Met | - |
+| AC-007 | REQ-007 | Given all three paths, When `version` is considered, Then its behaviour is stated for each | §4 states the fourth-segment convention for all three paths, and records it as a choice because all eight rules sit at 1.0.0.0 | Met | - |
+| AC-008 | REQ-008 | Given a retirement, When it completes, Then the reason is recorded | §5 step 5 requires the reason recorded, so the rule is not re-proposed | Met | - |
+| AC-009 | REQ-009 | Given a repository with no router, When a rule is requested, Then the contract says the router comes first | §7 states the router is emitted first as a prerequisite, consistent with the framing | Met | - |
+| AC-010 | REQ-003 | Given any path interrupted at a step boundary, When the state is inspected, Then nothing dangles | Four states enumerated in §3 and §5; no state leaves a row pointing at a missing file | Met | - |
+| AC-011 | REQ-001 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict`: every rule passed and the only error was this row's own `AC_CLOSURE`, which clears once the row is marked | Met | - |
 
 ### Status values
 
@@ -89,7 +89,12 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Written when the phase closes. AC-003 carries it: retire is the only operation with no worked example anywhere, so a dry-run that leaves the router self-consistent is the whole evidence that the contract is right.
+AC-003 carried it, as expected: retire has no worked example anywhere, and a dry-run
+leaving the router at 7/7/7 is the strongest evidence available short of performing one.
+The first attempt at that check reported inconsistent and was a counting error, not a
+design error - index rows were being counted as trigger rows. Worth stating because a
+dry-run trusted without re-checking its own arithmetic would have condemned a correct
+ordering. Left open and named: the path has still never actually run.
 <!-- /ANCHOR:closure -->

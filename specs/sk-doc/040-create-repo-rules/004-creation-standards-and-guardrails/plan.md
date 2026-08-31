@@ -42,10 +42,10 @@ Derive the bar from what the corpus already does, then prove it in both directio
 - [x] The thin sample exists as the negative fixture
 
 ### Definition of Done
-- [ ] Every standard names its failure
-- [ ] All eight shipped rules pass every standard
-- [ ] The thin sample fails, with the failing tests named
-- [ ] Docs updated (spec/plan/tasks/acceptance-criteria)
+- [x] Every standard names its failure
+- [x] All eight shipped rules pass every standard
+- [x] The thin sample fails, with the failing tests named
+- [x] Docs updated (spec/plan/tasks/acceptance-criteria)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,14 +94,14 @@ Required inventories:
 `tasks.md` owns task state (T001-T010).
 
 ### Phase 1: Derive
-- [ ] Candidate standards read out of the corpus, each with a failure named
+- [x] Candidate standards read out of the corpus, each with a failure named
 
 ### Phase 2: Validate
-- [ ] Every candidate checked against all eight rules; failures either drop the standard or record an exception
-- [ ] The thin sample run against the survivors
+- [x] Every candidate checked against all eight rules; failures either drop the standard or record an exception
+- [x] The thin sample run against the survivors
 
 ### Phase 3: Wire
-- [ ] Document written, reference router and `SKILL.md` updated
+- [x] Document written, reference router and `SKILL.md` updated
 <!-- /ANCHOR:phases -->
 
 ---
@@ -178,8 +178,8 @@ Thin sample -----------------------------------------> Negative control
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Corpus md5 captured
-- [ ] The thin sample preserved unedited
+- [x] Corpus md5 captured
+- [x] The thin sample preserved unedited
 
 ### Rollback Procedure
 1. `git checkout` the standards document and the two hooks

@@ -34,9 +34,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record entry counts and md5s for all four registries
-- [ ] T002 Read a sibling entry in each registry, so the new entry matches that file's shape rather than an imposed one
-- [ ] T003 Confirm phases 3-5 are closed - registering an unfinished mode makes it reachable and wrong
+- [x] T001 Record entry counts and md5s for all four registries
+- [x] T002 Read a sibling entry in each registry, so the new entry matches that file's shape rather than an imposed one
+- [x] T003 Confirm phases 3-5 are closed - registering an unfinished mode makes it reachable and wrong
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,13 +44,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Author `/create:repo-rule` through `sk-create-command`: router `.md` plus auto, confirm and presentation assets
-- [ ] T005 Cover create, revise and retire in the argument hint, since the mode owns all three
-- [ ] T006 Add the `mode-registry.json` entry with its tool surface and command binding
-- [ ] T007 Add `hub-router.json` signals that separate this mode from `sk-create-skill`
-- [ ] T008 Add the `command-metadata.json` entry: description, argument hint, user intent, three-step choreography, discriminator
-- [ ] T009 Add the `leaf-manifest.json` mode entry
-- [ ] T010 Create the `.claude/commands/create/repo-rule.md` mirror symlink
+- [x] T004 Author `/create:repo-rule` through `sk-create-command`: router `.md` plus auto, confirm and presentation assets
+- [x] T005 Cover create, revise and retire in the argument hint, since the mode owns all three
+- [x] T006 Add the `mode-registry.json` entry with its tool surface and command binding
+- [x] T007 Add `hub-router.json` signals that separate this mode from `sk-create-skill`
+- [x] T008 Add the `command-metadata.json` entry: description, argument hint, user intent, three-step choreography, discriminator
+- [x] T009 Add the `leaf-manifest.json` mode entry
+- [x] T010 Create the `.claude/commands/create/repo-rule.md` mirror symlink
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,12 +58,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Parse all four registries; any failure blocks, because the hub loads them for twelve other modes
-- [ ] T012 Compare entry counts: exactly one new entry per registry, never zero, never two
-- [ ] T013 Read each new entry back and inspect it, rather than trusting the write
-- [ ] T014 Follow the mirror symlink to a real file
-- [ ] T015 Confirm a rule-shaped request selects this mode rather than `sk-create-skill`
-- [ ] T016 Run `validate.sh <this folder> --strict` and record `RESULT: PASSED`
+- [x] T011 Parse all four registries; any failure blocks, because the hub loads them for twelve other modes
+- [x] T012 Compare entry counts: exactly one new entry per registry, never zero, never two
+- [x] T013 Read each new entry back and inspect it, rather than trusting the write
+- [x] T014 Follow the mirror symlink to a real file
+- [x] T015 Confirm a rule-shaped request selects this mode rather than `sk-create-skill`
+- [x] T016 Run `validate.sh <this folder> --strict` and record `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -71,10 +71,10 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The other twelve modes still route
-- [ ] `scratch/` cleaned
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The other twelve modes still route
+- [x] `scratch/` cleaned
 <!-- /ANCHOR:completion -->
 
 ---
@@ -108,9 +108,9 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Predecessor phase closed and its outputs available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Predecessor phase closed and its outputs available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -118,10 +118,10 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The command was authored through `sk-create-command`, not by hand
-- [ ] CHK-011 [P0] Every registry parses after the edit
-- [ ] CHK-012 [P1] Each entry matches its file's existing shape and ordering conventions
-- [ ] CHK-013 [P1] The discriminator names when to prefer a sibling command
+- [x] CHK-010 [P0] The command was authored through `sk-create-command`, not by hand
+- [x] CHK-011 [P0] Every registry parses after the edit
+- [x] CHK-012 [P1] Each entry matches its file's existing shape and ordering conventions
+- [x] CHK-013 [P1] The discriminator names when to prefer a sibling command
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -129,10 +129,10 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Count delta is exactly one in every registry
-- [ ] CHK-022 [P0] The mirror was followed, not merely observed to exist
-- [ ] CHK-023 [P1] Routing checked against the likely confusion, `sk-create-skill`
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Count delta is exactly one in every registry
+- [x] CHK-022 [P0] The mirror was followed, not merely observed to exist
+- [x] CHK-023 [P1] Routing checked against the likely confusion, `sk-create-skill`
 <!-- /ANCHOR:testing -->
 
 ---
@@ -142,13 +142,13 @@ contextType: "implementation"
 
 The defect class is a partial registration, which fails in a way that looks like a routing bug rather than a missing entry.
 
-- [ ] CHK-FIX-001 [P0] Finding class recorded as `cross-consumer`: four files must agree or routing breaks
-- [ ] CHK-FIX-002 [P0] Producer inventory: a sibling entry read in each of the four registries
-- [ ] CHK-FIX-003 [P0] Consumer inventory: the hub loads all four for twelve other modes; each parsed after editing
-- [ ] CHK-FIX-004 [P0] Not applicable - no security, path or parser surface in the entries themselves
-- [ ] CHK-FIX-005 [P1] Matrix axes: 4 registries x (parses, count rose, entry readable)
-- [ ] CHK-FIX-006 [P1] Not applicable - no process-wide state
-- [ ] CHK-FIX-007 [P1] Evidence pinned to the landing commit
+- [x] CHK-FIX-001 [P0] Finding class recorded as `cross-consumer`: four files must agree or routing breaks
+- [x] CHK-FIX-002 [P0] Producer inventory: a sibling entry read in each of the four registries
+- [x] CHK-FIX-003 [P0] Consumer inventory: the hub loads all four for twelve other modes; each parsed after editing
+- [x] CHK-FIX-004 [P0] Not applicable - no security, path or parser surface in the entries themselves
+- [x] CHK-FIX-005 [P1] Matrix axes: 4 registries x (parses, count rose, entry readable)
+- [x] CHK-FIX-006 [P1] Not applicable - no process-wide state
+- [x] CHK-FIX-007 [P1] Evidence pinned to the landing commit
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -156,9 +156,9 @@ The defect class is a partial registration, which fails in a way that looks like
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No secrets in the command or any registry entry
-- [ ] CHK-031 [P0] The mode's declared tool surface matches what `SKILL.md` allows - no widening at registration
-- [ ] CHK-032 [P1] The mirror symlink points inside the repository
+- [x] CHK-030 [P0] No secrets in the command or any registry entry
+- [x] CHK-031 [P0] The mode's declared tool surface matches what `SKILL.md` allows - no widening at registration
+- [x] CHK-032 [P1] The mirror symlink points inside the repository
 <!-- /ANCHOR:security -->
 
 ---
@@ -166,9 +166,9 @@ The defect class is a partial registration, which fails in a way that looks like
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks/acceptance-criteria synchronized
-- [ ] CHK-041 [P1] The argument hint documents create, revise and retire
-- [ ] CHK-042 [P1] Parent Phase Documentation Map updated from Pending
+- [x] CHK-040 [P1] Spec/plan/tasks/acceptance-criteria synchronized
+- [x] CHK-041 [P1] The argument hint documents create, revise and retire
+- [x] CHK-042 [P1] Parent Phase Documentation Map updated from Pending
 <!-- /ANCHOR:docs -->
 
 ---
@@ -176,8 +176,8 @@ The defect class is a partial registration, which fails in a way that looks like
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -187,11 +187,11 @@ The defect class is a partial registration, which fails in a way that looks like
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | [ ]/12 |
-| P1 Items | 11 | [ ]/11 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 0 | [ ]/0 |
 
-**Verification Date**: pending
+**Verification Date**: 2026-08-31
 <!-- /ANCHOR:summary -->
 
 ---

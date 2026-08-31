@@ -34,9 +34,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Capture the corpus md5, so the exercise provably writes nothing into `repo-rules/`
-- [ ] T002 Choose the borderline refusal case and write it down BEFORE choosing the accept case
-- [ ] T003 Confirm phases 3-6 closed and the mode is reachable
+- [x] T001 Capture the corpus md5, so the exercise provably writes nothing into `repo-rules/`
+- [x] T002 Choose the borderline refusal case and write it down BEFORE choosing the accept case
+- [x] T003 Confirm phases 3-6 closed and the mode is reachable
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,13 +44,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Run the refusal case; confirm the output names the failed test and the destination
-- [ ] T005 Run the accept case end to end; keep the produced rule as evidence
-- [ ] T006 Check the produced rule against the phase-3 structural assertions
-- [ ] T007 Check it against the phase-4 standards, which is the harder bar
-- [ ] T008 Attempt the advisor smoke test; if the advisor is unreachable, record it as not run
-- [ ] T009 Write `changelog/v1.0.0.0.md` to the changelog mode's format
-- [ ] T010 Create `.opencode/changelog/sk-doc/create-repo-rule`, matching the sibling naming
+- [x] T004 Run the refusal case; confirm the output names the failed test and the destination
+- [x] T005 Run the accept case end to end; keep the produced rule as evidence
+- [x] T006 Check the produced rule against the phase-3 structural assertions
+- [x] T007 Check it against the phase-4 standards, which is the harder bar
+- [x] T008 Attempted the advisor smoke test — unreachable, recorded as NOT RUN
+- [x] T009 Write `changelog/v1.0.0.0.md` to the changelog mode's format
+- [x] T010 Create `.opencode/changelog/sk-doc/create-repo-rule`, matching the sibling naming
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,11 +58,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Follow the symlink to a real directory containing the version file
-- [ ] T012 Confirm the corpus is unchanged
-- [ ] T013 Run `validate.sh --recursive --strict` on the parent; take the first RESULT per folder
-- [ ] T014 Reconcile the parent: phase map, status, and completion claims agreeing
-- [ ] T015 Report the verdict honestly, including any defect found and the phase it belongs to
+- [x] T011 Follow the symlink to a real directory containing the version file
+- [x] T012 Confirm the corpus is unchanged
+- [x] T013 Run `validate.sh --recursive --strict` on the parent; take the first RESULT per folder
+- [x] T014 Reconcile the parent: phase map, status, and completion claims agreeing
+- [x] T015 Report the verdict honestly, including any defect found and the phase it belongs to
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -70,10 +70,10 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Both exercise outputs kept, whatever the verdict
-- [ ] `scratch/` cleaned
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Both exercise outputs kept, whatever the verdict
+- [x] `scratch/` cleaned
 <!-- /ANCHOR:completion -->
 
 ---
@@ -107,9 +107,9 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Predecessor phase closed and its outputs available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Predecessor phase closed and its outputs available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -117,10 +117,10 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No defect found by the exercise is patched in this phase
-- [ ] CHK-011 [P0] The refusal case was chosen before the accept case
-- [ ] CHK-012 [P1] The changelog matches the format its siblings use
-- [ ] CHK-013 [P1] The symlink name matches the sibling convention
+- [x] CHK-010 [P0] No defect found by the exercise is patched in this phase
+- [x] CHK-011 [P0] The refusal case was chosen before the accept case
+- [x] CHK-012 [P1] The changelog matches the format its siblings use
+- [x] CHK-013 [P1] The symlink name matches the sibling convention
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -128,10 +128,10 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Recursive validation passes for the parent and all seven children
-- [ ] CHK-022 [P0] The symlink was followed, not merely created
-- [ ] CHK-023 [P1] A check that could not run is recorded as not run
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Recursive validation passes for the parent and all seven children
+- [x] CHK-022 [P0] The symlink was followed, not merely created
+- [x] CHK-023 [P1] A check that could not run is recorded as not run
 <!-- /ANCHOR:testing -->
 
 ---
@@ -141,13 +141,13 @@ contextType: "implementation"
 
 The defect class at closeout is certifying something that was never used.
 
-- [ ] CHK-FIX-001 [P0] Any defect found is classed and attributed to its owning phase
-- [ ] CHK-FIX-002 [P0] Producer inventory: both exercise paths run, not one
-- [ ] CHK-FIX-003 [P0] Consumer inventory: the corpus checked unchanged after both runs
-- [ ] CHK-FIX-004 [P0] Not applicable - no security surface
-- [ ] CHK-FIX-005 [P1] Matrix axes: 2 paths x (structure, standards, refusal naming)
-- [ ] CHK-FIX-006 [P1] Not applicable - no process-wide state
-- [ ] CHK-FIX-007 [P1] Evidence pinned to the landing commit
+- [x] CHK-FIX-001 [P0] Any defect found is classed and attributed to its owning phase
+- [x] CHK-FIX-002 [P0] Producer inventory: both exercise paths run, not one
+- [x] CHK-FIX-003 [P0] Consumer inventory: the corpus checked unchanged after both runs
+- [x] CHK-FIX-004 [P0] Not applicable - no security surface
+- [x] CHK-FIX-005 [P1] Matrix axes: 2 paths x (structure, standards, refusal naming)
+- [x] CHK-FIX-006 [P1] Not applicable - no process-wide state
+- [x] CHK-FIX-007 [P1] Evidence pinned to the landing commit
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -155,9 +155,9 @@ The defect class at closeout is certifying something that was never used.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No secrets in the changelog or the exercise outputs
-- [ ] CHK-031 [P0] The symlink points inside the repository
-- [ ] CHK-032 [P1] The exercise wrote nothing outside this phase folder and the mode's changelog
+- [x] CHK-030 [P0] No secrets in the changelog or the exercise outputs
+- [x] CHK-031 [P0] The symlink points inside the repository
+- [x] CHK-032 [P1] The exercise wrote nothing outside this phase folder and the mode's changelog
 <!-- /ANCHOR:security -->
 
 ---
@@ -165,9 +165,9 @@ The defect class at closeout is certifying something that was never used.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks/acceptance-criteria synchronized
-- [ ] CHK-041 [P1] Parent status, phase map and completion claims agree
-- [ ] CHK-042 [P1] The verdict on the mode is stated plainly, including if it is unfavourable
+- [x] CHK-040 [P1] Spec/plan/tasks/acceptance-criteria synchronized
+- [x] CHK-041 [P1] Parent status, phase map and completion claims agree
+- [x] CHK-042 [P1] The verdict on the mode is stated plainly, including if it is unfavourable
 <!-- /ANCHOR:docs -->
 
 ---
@@ -175,8 +175,8 @@ The defect class at closeout is certifying something that was never used.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -186,11 +186,11 @@ The defect class at closeout is certifying something that was never used.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | [ ]/12 |
-| P1 Items | 11 | [ ]/11 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 0 | [ ]/0 |
 
-**Verification Date**: pending
+**Verification Date**: 2026-08-31
 <!-- /ANCHOR:summary -->
 
 ---

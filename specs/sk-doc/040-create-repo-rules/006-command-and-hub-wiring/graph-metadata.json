@@ -39,13 +39,16 @@
       "files"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      ".claude/commands/create/repo-rule.md",
+      ".opencode/commands/create/repo-rule.md",
+      ".opencode/commands/create/assets/create-repo-rule-presentation.txt",
       ".opencode/skills/sk-doc/mode-registry.json",
       ".opencode/skills/sk-doc/hub-router.json",
       ".opencode/skills/sk-doc/command-metadata.json",
@@ -80,6 +83,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "repo-rule.md",
+        "kind": "doc",
+        "path": ".claude/commands/create/repo-rule.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-repo-rule-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/assets/create-repo-rule-presentation.txt",
         "source": "derived"
       },
       {
@@ -183,23 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Closure Gate",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The packet is complete and unreachable",
     "created_at": "2026-08-31T11:33:11Z",
-    "last_save_at": "2026-08-31T13:01:49.362Z",
+    "last_save_at": "2026-08-31T13:34:00.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e16442ab23b1ad18e46110b553fed8810e49e5fd98eaef6d15ad3e59f39e02e9",
+    "source_fingerprint": "sha256:aca29b0b9836cf24635b2369fb6756391109fc71c9c3c232231f9d9b6753fc9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a27043583dcd9b46eb68412e76d3a68c10e7e5e4fb03e85e284e3a206c5f8fbe",
-      "plan.md": "da264ddd2cef4ab2c53cc0263e22af9722cb7b53d62644e2c62926bbb487fd75",
-      "tasks.md": "b5ca4e6aeba8a5fdd37f8f11b674834bafb7eeb56967f47df6680f4d6eb41c6c",
-      "implementation-summary.md": "f23df4360338fbc791d38dfeb24a3817728d0df08a3dba869c548f845fbb5cca"
+      "spec.md": "47dd9c22cb7792b56f0e612428ed6171767188a78978656ed5884a153302295a",
+      "plan.md": "07d00197a91c8203fc1540585c658232266b342f03c3249e064ba3a55a188d04",
+      "tasks.md": "46c067856a95c962ac400f83e0f223dd1269bd536fe368ea936b109d0a252ff9",
+      "implementation-summary.md": "7898ac7cb0185e2637eefaf1ba590aa901e220dbc243c786992da164c12221bd"
     },
     "last_active_child_id": null,
     "last_active_at": null
