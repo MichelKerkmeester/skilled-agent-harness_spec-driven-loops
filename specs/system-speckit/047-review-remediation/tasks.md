@@ -63,6 +63,7 @@ contextType: "general"
 - [x] T013 Live dry-run against the real process table — three eligible, including the shared memory daemon, on an unconfigured host
 - [x] T014 Make termination opt-in in both the sweep and the session-start plugin; rebuild the owning package and confirm the compiled CLI carries it
 - [x] T015 Add a guard proving an unconfigured host never reaches the apply command
+- [x] T016 Resolve the dry-run question — real apply predicate against the real process table with a recording stub: signals nothing; the ownership gate refuses all three, and every process stayed alive
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -108,6 +108,20 @@ The rest were read and deliberately not fixed:
 - `P2-005` (rotation can lose the older copy) — one retained generation is what the phase specified. Two rapid rotations discarding the oldest is the retention policy behaving as designed.
 - `P2-001` (wall-clock grace vs NTP), `P2-004` (CRC32 lock-key collisions), `P2-006` (lock TOCTOU), `P2-003` (default timeout tuning), `P2-008` (symlinked dirname in the root walk) — all real, all low-consequence relative to their fix cost. Each would widen this packet past the finding that motivated it.
 
+### The dry-run finding, resolved
+
+The live dry-run flagged three processes as eligible, including the shared memory daemon holding the production database. Running the real apply predicate against the real process table — with a recording stub in place of the signal, so nothing could be terminated — showed it signals nothing at all:
+
+    WOULD SIGNAL: []
+    15372  ownership-evidence-unavailable
+    74254  ownership-evidence-unavailable
+    76554  ownership-evidence-unavailable
+    18939  classification-not-reapable
+
+The ownership-evidence gate is what protects the daemon: no valid owner lease means no termination, however orphaned the process looks from the outside. The plan stage is deliberately permissive and the apply stage is strict, and that split is doing its job.
+
+This means the opt-in default was defence in depth rather than a rescue. It stays, because a feature that begins terminating daemons on every host the moment it ships is wrong independently of whether its gates happen to hold — but the gates did hold, and claiming otherwise would overstate what was found.
+
 ### Other
 
 These fixes postdate the review's terminal pass, so they are unreviewed by the loop that motivated them, and their controls are mine — the exact pattern the review caught. A future pass should treat this packet as unaudited.
