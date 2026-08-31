@@ -1,5 +1,5 @@
 ---
-title: "Rule: Hub routing"
+title: "Rule: Skill hub routing"
 description: "A parent hub projects one advisor identity and routes in two stages. A nested mode registered on one surface is not reachable, and a per-hub gate run without its hub argument reports on a hub you did not touch."
 trigger_phrases:
   - "hub routing"
@@ -24,10 +24,10 @@ contextType: reference
 version: 1.0.0.0
 ---
 
-# Rule: Hub routing
+# Rule: Skill hub routing
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load it before wiring, rewiring or removing a mode in a parent-hub skill, or before reporting that one routes. It sits in the routing carve-out of section 4: verifying wiring you changed is In, selecting a route is not.
-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 > Tier `normal`, unlike its peers: they fire on everyday work, this one only while creating or maintaining a skill.
 
 ## Fires when
@@ -48,7 +48,7 @@ A mode is routable only when every surface carries it, and registration is the f
 
 ## 1. THE TWO STAGES
 
-The advisor scores the **hub**. Most nested modes are `routingClass: "metadata"` — resolved by hub membership, with no advisor entry of their own — and a second skill-shaped `graph-metadata.json` below the root is rejected. A minority are not: `lexical` and `alias-fold` modes carry their own advisor entries and projection maps, and `command-bridge` modes route by command surface. **Read the class before assuming which path applies**, because the surfaces differ.
+The advisor scores the **hub**. Most nested modes are `routingClass: "metadata"`, resolved by hub membership, with no advisor entry of their own, and a second skill-shaped `graph-metadata.json` below the root is rejected. A minority are not: `lexical` and `alias-fold` modes carry their own advisor entries and projection maps, and `command-bridge` modes route by command surface. **Read the class before assuming which path applies** because the surfaces differ.
 
 So routing runs in two stages, and each can pass while the other is broken:
 
@@ -57,7 +57,7 @@ So routing runs in two stages, and each can pass while the other is broken:
 | One | the advisor, reading the hub's `graph-metadata.json` | the hub |
 | Two | the hub's `hub-router.json` and root `ROUTER.md` | the mode, then its leaves |
 
-Two consequences follow. A `metadata` mode's vocabulary reaches the advisor **only** through the hub's `graph-metadata.json`; a `lexical` or `alias-fold` mode also needs its projection maps and scorer entries. And a stage-one hit with no stage-two intent, or the reverse, means the two disagree about the same phrasing — fix both sides, not the one that happens to be failing.
+Two consequences follow. A `metadata` mode's vocabulary reaches the advisor **only** through the hub's `graph-metadata.json`; a `lexical` or `alias-fold` mode also needs its projection maps and scorer entries. And a stage-one hit with no stage-two intent, or the reverse, means the two disagree about the same phrasing, fix both sides, not the one that happens to be failing.
 
 **The failure this prevents:** concluding the advisor is broken because it does not surface a nested mode by name. It is not broken. It was never going to.
 
@@ -96,7 +96,7 @@ Then replay both stages with a real request for the mode, rather than trusting e
 
 ## 4. KEEP THE ALIAS NARROW
 
-An alias earns its place by catching a request for **this** mode. A term that also matches unrelated work — `rule file`, `config`, `template` — captures traffic the hub cannot serve, and the misroute surfaces only when someone types it.
+An alias earns its place by catching a request for **this** mode. A term that also matches unrelated work (`rule file`, `config`, `template`) captures traffic the hub cannot serve, and the misroute surfaces only when someone types it.
 
 Replay each new alias against a plausible out-of-domain phrase before shipping it.
 
@@ -104,7 +104,7 @@ Replay each new alias against a plausible out-of-domain phrase before shipping i
 
 ## 5. WHERE THE DETAIL LIVES
 
-This rule is a pointer, deliberately. It carries the discipline; the mechanics belong to the skills that own them. That split is what keeps it inside the carve-out — a section here telling you which route to pick would put the rule out of bounds.
+This rule is a pointer, deliberately. It carries the discipline; the mechanics belong to the skills that own them. That split is what keeps it inside the carve-out, a section here telling you which route to pick would put the rule out of bounds.
 
 | Question | Read |
 |----------|------|

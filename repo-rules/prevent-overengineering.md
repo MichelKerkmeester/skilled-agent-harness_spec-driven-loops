@@ -1,5 +1,5 @@
 ---
-title: "Rule: Overengineering"
+title: "Rule: Prevent overengineering"
 description: "Build the smallest thing that solves the stated problem; take a costlier move only by naming what fails at the cheaper one."
 trigger_phrases:
   - "restraint ladder"
@@ -27,10 +27,10 @@ contextType: reference
 version: 1.0.0.0
 ---
 
-# Rule: Overengineering
+# Rule: Prevent overengineering
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before the first write of anything new.
-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when
 
@@ -53,11 +53,11 @@ exists today.
 ## 1. THE REVERSAL-COST ORDER
 
 Start at the cheapest move every time. **Take a costlier one only by writing the sentence
-that says what fails at the cheaper one** — in the response, not just in your head.
+that says what fails at the cheaper one** in the response, not just in your head.
 
 | Move | Cost when wrong |
 |------|-----------------|
-| **Build nothing** — existing behavior already meets the requirement | zero |
+| **Build nothing** existing behavior already meets the requirement | zero |
 | Change a value, constant, or config that exists | one line to revert |
 | Extend an existing function or module in place | contained to one unit |
 | Add a new function beside the existing ones | one new symbol to learn |
@@ -68,16 +68,14 @@ that says what fails at the cheaper one** — in the response, not just in your 
 > **This orders moves by what being wrong costs, and it is deliberately not the numbered
 > rung ladder.** For code, `AGENTS.md` §3 names
 > `sk-code/shared/references/universal/code-quality-standards.md` §1 as the authoritative
-> rungs, and that ladder orders *solution sources* — standard library, then native
+> rungs, and that ladder orders *solution sources*, standard library, then native
 > platform, then an installed dependency. Two orderings, two axes, one authority: cite
 > rung numbers from that file, and cite moves by name from this one. Naming a "rung 2"
 > here would mean something different there, which is exactly the confusion this section
 > stopped causing.
 
 Building nothing is not a formality: a surprising share of requests are already satisfied
-by code that exists, and reading first is what reveals it. The sentence, written out —
-
-> "Extending `parseConfig` in place fails, because the CLI and the daemon call it with
+by code that exists, and reading first is what reveals it. The sentence, written out, > "Extending `parseConfig` in place fails, because the CLI and the daemon call it with
 > incompatible defaults today, so the change breaks the daemon. Adding a new function
 > beside it."
 
@@ -94,7 +92,7 @@ After reading the existing code, before the first edit:
    its climbing sentence.
 2. **What does it touch?** If the change can break a caller or a shared contract, name
    the owning module, one real caller (`file:line`), and the contract that must not
-   break. No real caller means the change is smaller than you think — or the code
+   break. No real caller means the change is smaller than you think, or the code
    should not exist either.
 
 ---
@@ -139,7 +137,7 @@ path, or the degraded path only when you can name the environment that needs it.
 case" is not an environment.
 
 **Dependencies.** Prefer what the project has. A new one is the costliest move in §1,
-needs its climbing sentence, and takes the `blast-radius.md` pass too — installing
+needs its climbing sentence, and takes the `blast-radius.md` pass too, installing
 mutates the environment.
 
 ---

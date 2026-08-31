@@ -51,7 +51,7 @@ Every one of these is 9/9. A generated rule that omits any is not a rule of this
 | Frontmatter | Six keys, one order: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | 9/9, exactly one distinct key order across the corpus |
 | Title line | `# Rule: <Subject>` | 9/9 |
 | Routed-from line | `> Routed from [REPO RULES.md](../REPO%20RULES.md). <when to load>.` | 9/9 |
-| Subordination line | `> Expands AGENTS.md, never overrides it — where they appear to disagree, AGENTS.md wins and this file is wrong. Say so.` | 9/9, verbatim |
+| Subordination line | `> Expands AGENTS.md, never overrides it. Where they appear to disagree, AGENTS.md wins and this file is wrong. Say so.` | 9/9, verbatim |
 | `## Fires when` | Unnumbered; a bullet list of actions, not topics | 9/9 |
 | `## The rule` | Unnumbered; exactly one bold binding sentence, then at most a short gloss | 9/9 |
 | Numbered body | `## N. ALL CAPS TITLE`, sequential from 1 | 9/9, all uppercase outside backticks |
@@ -95,11 +95,11 @@ Measured against the shipped set:
 
 | File | Lines | Band |
 |------|-------|------|
-| `hub-routing.md` | 127 | preferred |
+| `skill-hub-routing.md` | 127 | preferred |
 | `uncertainty-and-honesty.md` | 145 | preferred |
 | `blast-radius.md` | 154 | preferred |
-| `root-cause.md` | 159 | preferred |
-| `overengineering.md` | 164 | good |
+| `root-cause-and-debugging.md` | 159 | preferred |
+| `prevent-overengineering.md` | 164 | good |
 | `scope-discipline.md` | 164 | good |
 | `evidence-and-proof.md` | 209 | at the limit |
 | `communication.md` | 219 | at the limit |

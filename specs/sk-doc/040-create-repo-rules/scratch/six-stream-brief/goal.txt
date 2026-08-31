@@ -1,0 +1,62 @@
+GOAL: six sk-doc specs.
+STOP. Before any other tool call, read this file in full; it is binding and you
+cannot do this work correctly without it:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-doc/040-create-repo-rules/scratch/six-stream-brief/goal-rules.txt
+It carries the git prohibitions, the per-stream file ownership that keeps four
+concurrent agents from corrupting each other, and the validation traps.
+Wave A parallel: 1,2,3,4. Wave B after 1-4: 5,6.
+Numbers: 1=039 2=041 3=042 4=043 5=044 6=045 under specs/sk-doc/<NNN-short-name>/.
+Repo: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+(1) sk-create-with-human-voice
+New sk-doc mode packet that APPLIES the Human Voice Rules. Concise but effective:
+the mode is the workflow, not a second copy of the standard.
+LEAVE sk-doc/shared/references/hvr-rules.md WHERE IT IS and reference it. 611 files
+carry that path, 563 of them frozen spec docs, plus a spec-kit golden snapshot.
+Moving it falsifies history and breaks the spec-kit test suite. If you judge a move
+correct anyway, say so and stop rather than doing it.
+Land the mode on every surface in sk-create-skill/references/parent-skill/
+parent-skills-nested-packets.md section 7 (11 rows; row 10 applies only to a
+non-metadata routingClass, and sk-doc declares none today). Command mirrors are
+generated: follow each runtime's SYNC.md, do not hand-create. Registered is not routed.
+Precedent: sk-create-repo-rule, sk-create-diagram.
+Gate: doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-doc green, 6b included.
+Today it is 13 modes, 0 warnings. ALWAYS pass the hub path; a bare call silently
+reports on system-deep-loop instead.
+
+(2) sk-create-quality-control: integration, utilisation, usefulness
+Is it routed to, used, worth its size? Find real consumers (grep, leaf-manifest,
+ROUTER.md, commands). Does its workflow duplicate validators that already run?
+Recommend keep / shrink / fold into a sibling, with evidence, then implement.
+
+(3) sk-doc shared/ audit
+Same treatment for shared/references and shared/assets. shared/scripts is
+propose-only (see rules). Some items likely belong elsewhere: a repo rule, an
+existing mode, or deletion. Measure real consumers first. No orphan survives
+unnoticed. Implement what you own.
+
+(4) repo-rules router + rule-set optimisation
+Analyse assets/repo-rules-router-template.md and repo-rules/*.md. Optimise routing,
+cut bloat, but never delete matching vocabulary: the trigger table IS the match
+surface and its rows are long on purpose. Study skill smart routing (hub-router.json,
+ROUTER.md INTENT_SIGNALS/RESOURCE_MAP, advisor scorer) and port what transfers.
+Invariants: trigger rows = index rows = rule files; dividers = numbered sections;
+zero phrase collisions; links resolve; section 4 scope wording is load-bearing.
+A prior analysis found the router is NOT where cost lives (7.4KB loaded once vs
+AGENTS.md 51.6KB every turn). Beat that with measurements or agree explicitly.
+
+(5) ROUTER.md alignment, AFTER 1-4
+Apply the hub-root deltas streams 2 and 3 recorded, regenerate leaf-manifest once,
+then confirm sk-doc's ROUTER.md matches every registered mode: INTENT_SIGNALS and
+RESOURCE_MAP equal-key, every leaf resolves, FULL_INVENTORY complete, no new intent
+stealing a sibling's traffic. Replay each mode with
+deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/sk-doc
+--task "<real request>". Then run
+system-skill-advisor/mcp-server/scripts/skill_advisor_regression.py with its fixture
+set and require the metrics byte-identical to the baseline you captured first.
+
+(6) sk-communication adopts the new mode, AFTER 1-4
+Make sk-communication and its related commands consume the mode from (1) instead of
+carrying or duplicating voice guidance. Route, do not copy. Update the commands'
+routers, assets and presentation contracts, and keep every command valid:
+sk-doc/shared/scripts/validate_document.py <cmd>.md --type command

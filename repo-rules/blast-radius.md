@@ -26,7 +26,7 @@ version: 1.0.0.0
 # Rule: Blast radius and reversibility
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before the action, not after it.
-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when
 
@@ -64,14 +64,14 @@ you write it, and it tells the operator what they are approving.
 
 Two traps sit in the middle tier and behave like the bottom one:
 
-- **Overwriting an untracked or ignored file** is irreversible — git holds no copy.
+- **Overwriting an untracked or ignored file** is irreversible, git holds no copy.
   Look at the target before writing over it, always.
 - **Sending is publishing.** Content that reaches an external service may be cached,
   logged, or indexed even if you delete it a second later.
 
 The tiers cut both ways. The bottom tier says stop and ask; **the top tier says decide
 and move on.** A change that reverts in one line does not earn a paragraph of
-deliberation, a comparison table, or a question to the operator — deliberating costs
+deliberation, a comparison table, or a question to the operator, deliberating costs
 more than being wrong would. Pick the option you would defend, mark the spot if the
 choice is non-obvious, and keep going.
 
@@ -83,7 +83,7 @@ Both are miscalibrations against the same scale.
 
 ## 3. THE ROLLBACK SENTENCE
 
-Before any tier-2 or tier-3 action, write it out: **"To undo this: ___"** — the command,
+Before any tier-2 or tier-3 action, write it out: **"To undo this: ___"** the command,
 the backup path, the revert commit, the down migration. If you cannot complete that
 sentence with something real, **you are not ready to act**; that is the finding, and it
 goes to the operator.
@@ -104,13 +104,13 @@ Before changing anything shared, enumerate what was built against the old shape:
 - Deployed servers and running processes still on the old code.
 - Installed clients, SDKs, and other repositories that pin this interface.
 - Caches, queues, and in-flight messages holding the old format.
-- **Persisted data written by the old code** — the most-missed one, because it outlives
+- **Persisted data written by the old code** the most-missed one, because it outlives
   every process.
 - Saved configuration, environment files, and CI definitions.
 - Documentation and examples that will now be wrong.
 
 Name the ones that exist here. "No other callers" is a claim under
-`evidence-and-proof.md` — grep for it, do not assume it.
+`evidence-and-proof.md`, grep for it, do not assume it.
 
 ---
 
@@ -130,7 +130,7 @@ different jobs and the operator means one of them:
 Inventory every location that applies, then **keep ordinary removal scoped to the
 surface that was asked for**. Do not rewrite history, branches, or reflogs to "finish
 the job" until the rollback is written and the operator has approved that specific
-destructive step. If a secret was committed, say so plainly — rotation is the real
+destructive step. If a secret was committed, say so plainly, rotation is the real
 remedy and it is the operator's to run.
 
 ---

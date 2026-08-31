@@ -1,0 +1,35 @@
+BINDING RULES. Read before touching anything.
+
+GIT. The tree is DIRTY and shared by every stream. Never stash, reset, restore,
+checkout or `git add -A`. Never push. Never create a branch. Commit only the exact
+paths you own, or leave it uncommitted and say so.
+
+OWNERSHIP. Wave A writes concurrently. Ignoring this corrupts the run.
+- Stream 1 alone edits sk-doc hub-root files: mode-registry.json, hub-router.json,
+  ROUTER.md, SKILL.md, README.md, graph-metadata.json, description.json,
+  leaf-manifest.json, leaf-aliases.json.
+- Streams 2 and 3 write only inside their own packet dirs. Record any hub-root
+  change you need as text in your spec; stream 5 applies it.
+- Stream 4 alone edits REPO RULES.md, AGENTS.md and repo-rules/*.
+- Nobody moves or deletes anything under shared/scripts/. It is symlinked from
+  sk-doc/scripts/ and a live post-edit hook hard-codes a path into it, so a move
+  breaks every agent mid-run. Propose only.
+- leaf-manifest.json is generated. Regenerate with
+  sk-create-skill/scripts/generate-leaf-manifest.cjs; a hand-edit fails 10b-byte-drift.
+
+VALIDATE.
+NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/scripts/spec/validate.sh" <folder> --strict
+Require an explicit "RESULT: PASSED"; a stale build exits 3 printing nothing.
+A phased packet recurses into its children, so the FIRST RESULT line is the verdict
+for the folder you asked about, not the last.
+After any doc edit: spec/repair-derived.cjs --folder <f> --apply
+
+CONDUCT.
+- Capture baselines into your own spec folder BEFORE editing. Never stash to compare.
+- Verify every claim by running it. A finding is a hypothesis until reproduced.
+- Prove any new gate with a negative control: break it, watch it fail, restore it.
+- "Change nothing" is a legitimate outcome. Write the spec and the evidence anyway.
+- No em dashes in any authored file.
+- HALT and report rather than proceed when: a gate you did not touch turns red, your
+  finding contradicts another stream's premise, or the fix needs a file you do not own.
+- Report what you did NOT do, and why.

@@ -18,7 +18,7 @@
 
 #### The Four Laws — HARD BLOCKERS (cannot be overridden)
 
-> Expanded by [`scope-discipline.md`](repo-rules/scope-discipline.md) (Law 2), [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md) (Law 3), and [`root-cause.md`](repo-rules/root-cause.md) (Law 4).
+> Expanded by [`scope-discipline.md`](repo-rules/scope-discipline.md) (Law 2), [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md) (Law 3), and [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md) (Law 4).
 
 1. **READ FIRST** — Never edit a file without reading it first. Understand context before modifying.
 2. **SCOPE LOCK** — Only modify files explicitly in scope. **NO** "cleaning up" or "improving" adjacent code. Scope in `spec.md` is FROZEN.
@@ -47,7 +47,7 @@ Never embed ephemeral artifact labels (spec paths, packet/phase numbers, ADR/REQ
 
 #### Halt Conditions — Stop and Report
 
-> Expanded by [`root-cause.md`](repo-rules/root-cause.md).
+> Expanded by [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md).
 
 Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 - Target file missing, or the Edit tool reports "string not found"
@@ -111,7 +111,7 @@ Skills are on-demand domain expertise invoked through Gate 2 (§2): when the adv
 
 **Advisor metadata placement.** These filenames also name spec-folder continuity metadata (§6) under a completely separate schema — never the same file, never interchangeable. At a skill root, `graph-metadata.json` is the advisor identity file and is required at BOTH parent-hub and standalone roots; `description.json`, `mode-registry.json`, and `hub-router.json` are **hub-only** (forbidden on a standalone root). None of them live at a mode/packet or `shared/` sublevel. Full contract (per-class required/forbidden matrix, key schemas, hub doctrine, and the `ci-skill-root-metadata.cjs` fleet audit): `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
 
-**A parent hub projects one advisor identity, and its modes route in two stages.** The advisor scores the hub; the hub's `hub-router.json` and root `ROUTER.md` then pick the mode and its leaves. Most nested modes carry `advisorRouting.routingClass: "metadata"` — resolved by hub membership, with no advisor entry of their own — so their vocabulary reaches the advisor only through the hub's `graph-metadata.json`. A minority do not: `lexical` and `alias-fold` modes get their own advisor entries and projection maps, and `command-bridge` routes by command surface instead. Check the class before assuming which applies. **Never report a mode as routed because a registry entry exists — check both stages, against the hub you actually changed.** Surface list and the class table: `parent-skills-nested-packets.md`, expanded by [`hub-routing.md`](repo-rules/hub-routing.md).
+**A parent hub projects one advisor identity, and its modes route in two stages.** The advisor scores the hub; the hub's `hub-router.json` and root `ROUTER.md` then pick the mode and its leaves. Most nested modes carry `advisorRouting.routingClass: "metadata"` — resolved by hub membership, with no advisor entry of their own — so their vocabulary reaches the advisor only through the hub's `graph-metadata.json`. A minority do not: `lexical` and `alias-fold` modes get their own advisor entries and projection maps, and `command-bridge` routes by command surface instead. Check the class before assuming which applies. **Never report a mode as routed because a registry entry exists — check both stages, against the hub you actually changed.** Surface list and the class table: `parent-skills-nested-packets.md`, expanded by [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md).
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS
 Trigger-phrase routing ("deep-research", "deep-review", ":auto", "iterations", "convergence") and state-machine discipline (no manual `/tmp` state, no direct `@deep-research` / `@deep-review` Task dispatch, no skipping `deep-research-state.jsonl` / `deltas/` / `logs/`) are enforced by Gate 2 (Skill Advisor at ≥ 0.8) plus the `/deep:research` and `/deep:review` mode-packet SKILL.md invariants (the deep modes are packets under `system-deep-loop/`, not standalone skills). The two tiebreakers below are NOT covered there:
@@ -171,7 +171,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 #### Execution Behavior
 
-> Expanded by [`scope-discipline.md`](repo-rules/scope-discipline.md) (plan before acting), [`overengineering.md`](repo-rules/overengineering.md) (the pre-write pass), and [`root-cause.md`](repo-rules/root-cause.md) (debugging and iteration).
+> Expanded by [`scope-discipline.md`](repo-rules/scope-discipline.md) (plan before acting), [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md) (the pre-write pass), and [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md) (debugging and iteration).
 
 **Planning & Approach:**
 - **Plan before acting** on multi-step work. Decide which files to read first, which tools to use, and how the result will be verified before making changes.
@@ -199,7 +199,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 #### Quality Principles
 
-> Expanded by [`overengineering.md`](repo-rules/overengineering.md).
+> Expanded by [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md).
 
 - **Solve the stated problem, at the smallest size that solves it** — reuse existing patterns, cite evidence with sources, and let the pre-write pass above decide whether new code is warranted at all
 - **Prefer available project tools** — add a dependency only when the scoped result requires it
@@ -210,7 +210,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 #### Restraint Signals
 
-> Expanded by [`overengineering.md`](repo-rules/overengineering.md).
+> Expanded by [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md).
 
 One table, not a checklist to recite. Each row is a signal the work is drifting off the stated problem; the response is what to do, not a line to say.
 
@@ -230,7 +230,7 @@ One table, not a checklist to recite. Each row is a signal the work is drifting 
 
 ### Proof Standards
 
-> Expanded by [`hub-routing.md`](repo-rules/hub-routing.md) for claims about routing you have wired: a registry entry is not proof a request reaches the mode.
+> Expanded by [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md) for claims about routing you have wired: a registry entry is not proof a request reaches the mode.
 
 > Expanded by [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md).
 
@@ -404,7 +404,7 @@ If implementation evidence conflicts with the approved spec, route the stop thro
 
 #### Escalation
 
-> Expanded by [`root-cause.md`](repo-rules/root-cause.md) (stuck on a failure) and [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) (stuck on a contradiction).
+> Expanded by [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md) (stuck on a failure) and [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) (stuck on a contradiction).
 
 Confidence stays <80% after two failed attempts → ask with 2-3 options. Blockers beyond control → escalate with evidence and proposed next step.
 

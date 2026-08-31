@@ -30,22 +30,22 @@ version: 1.0.0.0
 # Rule: Delegation and orchestration
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before work leaves your hands.
-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when
 
-- About to **decide whether** to hand work to another runtime at all — the cost question
+- About to **decide whether** to hand work to another runtime at all, the cost question
   comes before the briefing question, and this file used to fire only after it.
 - About to hand work to another runtime: a CLI executor, a sub-agent, a fan-out lineage, a deep loop.
 - About to compose the prompt that a delegate will act on.
 - About to accept, quote, or act on what a delegate returned.
-- About to answer a judgment question — "is this the right design", "is this rule needed", "which approach is better" — from your own reading alone.
+- About to answer a judgment question, "is this the right design", "is this rule needed", "which approach is better", from your own reading alone.
 
 ## The rule
 
 **When you hand work to another runtime you become its orchestrator, not its author:
 brief it with evidence and a frozen scope, and judge what comes back against the
-repository — no single model's verdict, the delegate's or your own, closes a question.**
+repository, no single model's verdict, the delegate's or your own, closes a question.**
 
 Orchestrating is a posture, not a ceremony. It means you own the decomposition, the
 brief, and the verdict, and the delegate owns exactly one bounded piece of work.
@@ -61,18 +61,18 @@ The moment you delegate, three of your jobs change and one appears.
 | You read the code | You decide what the delegate must read, and say so |
 | You hold the scope in your head | You write the scope down, because the delegate cannot see your head |
 | Your uncertainty is visible to you | The delegate's confidence tells you nothing about its accuracy |
-| — | You now own a verification step that did not exist before |
+|, | You now own a verification step that did not exist before |
 
 Before any of that, one check: **is delegating cheaper than doing it?** A dispatch costs
 a brief, a wait, and a verification pass. Work you could finish in the time it takes to
-write the brief is work you should finish — see [`overengineering.md`](overengineering.md).
+write the brief is work you should finish, see [`prevent-overengineering.md`](prevent-overengineering.md).
 This is the first question, not a caveat at the end.
 
 The failure this prevents: dispatching as though the delegate were you with more time.
 It is not. It has no memory of this session, and no access to what you already ruled out.
 
 > **One lens, stated as such.** The claims in this file about how models behave under a
-> vague brief are judgment from limited observation, not measurement — the disclosure
+> vague brief are judgment from limited observation, not measurement, the disclosure
 > §4 and §6 require of every judgment claim, applied here. What would change them:
 > a run where a deliberately underspecified brief returned findings as well-grounded as
 > a specified one.
@@ -85,14 +85,14 @@ Four things, in order. None is optional, and the first is a hard rule elsewhere.
 
 1. **Read the executor's own contract.** `AGENTS.md` Dispatch Rules require reading
    `cli-external-orchestration/cli-X/SKILL.md` before composing any `cli-X` prompt.
-   This file does not repeat what those documents say, and neither should you — a
+   This file does not repeat what those documents say, and neither should you, a
    dispatch flag copied into prose goes stale the next time the CLI changes.
 2. **Bind the write authority.** Say where the delegate may write before it starts.
    A delegate given the repository is a delegate that will eventually edit something
    nobody reviewed.
 3. **Freeze the scope in the brief itself.** See [`scope-discipline.md`](scope-discipline.md).
    Scope you did not write down is scope the delegate will infer, and it will infer wider.
-4. **State the shape of an acceptable answer.** Not the answer — the shape. A file list,
+4. **State the shape of an acceptable answer.** Not the answer, the shape. A file list,
    a table with named columns, a verdict plus citations. "Investigate X" returns an essay.
 
 ---
@@ -118,12 +118,12 @@ restatement of the brief's own assumptions, and reads as corroboration.
 
 A delegate's output is a hypothesis. So is yours.
 
-For a **factual** question — does this symbol exist, does this test pass, what does this
-file say — one delegate is enough, because the repository can settle it and you will
+For a **factual** question, does this symbol exist, does this test pass, what does this
+file say, one delegate is enough, because the repository can settle it and you will
 check.
 
-For a **judgment** question — is this abstraction warranted, is this rule needed, which
-of two designs is better — one lens is not a finding. Do one of these, and say which:
+For a **judgment** question, is this abstraction warranted, is this rule needed, which
+of two designs is better, one lens is not a finding. Do one of these, and say which:
 
 - **Diverge the lens:** ask a second model family, or the same question framed against
   the opposite conclusion.
@@ -139,7 +139,7 @@ opinion twice.
 ## 5. WHAT COMES BACK IS UNVERIFIED
 
 A delegate reporting `COMPLETE` has reported a claim about itself. See
-[`evidence-and-proof.md`](evidence-and-proof.md) §7 — a finding is a hypothesis until
+[`evidence-and-proof.md`](evidence-and-proof.md) §7, a finding is a hypothesis until
 something you ran confirms it. Three checks before you quote a return:
 
 - **Does the citation resolve?** Open one of them. A fabricated `file:line` is the
@@ -153,7 +153,7 @@ confidence attached and none of your verification.
 
 **When a check fails, there is a next step and it is not silence.** A return that fails
 verification is not discarded and not quoted. Re-dispatch with the brief corrected for
-what the failure revealed, or record the failure as the finding — a delegate that could
+what the failure revealed, or record the failure as the finding, a delegate that could
 not answer is evidence about the question. What you may not do is drop it, because the
 next reader cannot tell an unasked question from an unanswerable one.
 
@@ -163,7 +163,7 @@ in whatever artifact owns the work. A verified return with no record of the veri
 is indistinguishable, later, from an unverified one.
 
 **When two delegates disagree, do not average them.** Disagreement means the question was
-underspecified or the evidence is genuinely thin. Find which, and say which — a tally is
+underspecified or the evidence is genuinely thin. Find which, and say which, a tally is
 not a finding.
 
 ---
@@ -183,7 +183,7 @@ supports, in a session where checking would have cost one dispatch.
 ## 7. SCOPE TRAVELS WITH THE WORK
 
 The delegate inherits your frozen scope and cannot widen it. If it comes back having
-fixed something adjacent, that is not a bonus — it is an unreviewed change, and it goes
+fixed something adjacent, that is not a bonus, it is an unreviewed change, and it goes
 back out or gets raised as an amendment. Widening scope is the operator's call, and
 delegating did not transfer that.
 
@@ -196,12 +196,11 @@ defect report; it is the same sentence as "not my code", which
 ## 8. WHAT THIS RULE IS NOT
 
 - **Not a mandate to delegate.** A dispatch that costs more than doing the work is a
-  restraint failure — see [`overengineering.md`](overengineering.md). Most tasks are
+  restraint failure, see [`prevent-overengineering.md`](prevent-overengineering.md). Most tasks are
   cheaper done directly.
 - **Not permission to defer the verdict.** The orchestrator decides. A delegate that
   returns three options has returned three options, not a decision.
-- **Not a routing document.** Which skill, which agent, which command, which flags —
-  all of that belongs to `AGENTS.md` and the skills it routes to. This file governs
+- **Not a routing document.** Which skill, which agent, which command, which flags, all of that belongs to `AGENTS.md` and the skills it routes to. This file governs
   the posture, not the plumbing.
 - **Not about human collaboration.** It addresses machine delegation. The parts that
   generalize do so by accident, not by design.
@@ -215,7 +214,7 @@ defect report; it is the same sentence as "not my code", which
 - [ ] The brief does not contain the conclusion I expect.
 - [ ] Write authority was bound before the delegate started, not corrected after.
 - [ ] For every judgment claim I am about to repeat, I diverged the lens, grounded it, or escalated it.
-- [ ] I opened every citation I am about to repeat, not a sample — one resolved citation
+- [ ] I opened every citation I am about to repeat, not a sample, one resolved citation
       proves nothing about the others, and §5 says why that matters.
 - [ ] The paths the delegate touched match the paths I authorized.
 - [ ] Where I answered from my own reading alone, I said so and said what would change it.

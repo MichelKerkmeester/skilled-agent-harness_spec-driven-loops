@@ -95,7 +95,7 @@ A self-check that mirrors the section titles is a table of contents with checkbo
 tells a reader what the rule contains, which they can see, instead of what they must have
 done, which is the point.
 
-Observed range is 5-11 items, and it does not track section count: `overengineering.md`
+Observed range is 5-11 items, and it does not track section count: `prevent-overengineering.md`
 has 6 sections and 5 items; `delegation-and-orchestration.md` has 9 sections and 11. The
 number follows the obligations, not the structure.
 
@@ -113,7 +113,7 @@ all three are rules whose surface reading permits *less* work:
 
 | Rule | The misreading it refuses |
 |------|---------------------------|
-| `overengineering.md` | "build less" becoming licence to under-deliver frozen scope |
+| `prevent-overengineering.md` | "build less" becoming licence to under-deliver frozen scope |
 | `delegation-and-orchestration.md` | "orchestrate it" becoming licence to delegate everything |
 | `communication.md` | "match length to the question" becoming licence to omit what the reader needs |
 

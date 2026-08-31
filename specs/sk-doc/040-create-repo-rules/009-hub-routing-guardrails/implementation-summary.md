@@ -71,7 +71,7 @@ Concise and deliberately pointer-shaped: it carries the discipline, and the mech
 | File | Action | Purpose |
 |------|--------|---------|
 | `AGENTS.md` | Modified | The one-identity, two-stage clause and the pointer to the rule |
-| `repo-rules/hub-routing.md` | Created | 125-line rule firing on the wiring action |
+| `repo-rules/skill-hub-routing.md` | Created | 125-line rule firing on the wiring action |
 | `REPO RULES.md` | Modified | Trigger row and index row; counts stay 9/9/9 |
 | `parent-skills-nested-packets.md` | Modified | Section 7 checklist; later sections renumbered |
 | `parent-skill-check.cjs` | Modified | Check 6b and the no-argument notice |

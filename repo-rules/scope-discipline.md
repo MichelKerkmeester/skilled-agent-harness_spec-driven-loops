@@ -28,7 +28,7 @@ version: 1.0.0.0
 # Rule: Scope discipline
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before touching anything you were not asked to touch.
-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when
 
@@ -65,12 +65,12 @@ Law 2 freezes the scope; this section never widens it, it only says how to read 
 Inside the frozen scope these are the *same* change, not adjacent ones:
 
 - The files named in the request, or the ones it unambiguously implies.
-- **Direct callers the change would break** — a change that leaves the tree broken is
+- **Direct callers the change would break** a change that leaves the tree broken is
   not finished.
 - The test covering the behavior you changed.
 - Imports, type signatures, and generated files that mechanically follow.
 
-Anything else is adjacent and goes to §4 — including a caller the change does *not* break.
+Anything else is adjacent and goes to §4, including a caller the change does *not* break.
 
 ---
 
@@ -92,12 +92,12 @@ You will find real problems outside scope. Finding them is good; fixing them sil
 is not.
 
 1. **Stop.** Do not edit it.
-2. **Record it** in one line: `file:line — what is wrong — why it is out of scope`.
+2. **Record it** in one line: `file:line, what is wrong, why it is out of scope`.
 3. **Finish the in-scope work.**
-4. **Report it in close-out**, as a separate list from what you changed.
+4. **Report it in close-out** as a separate list from what you changed.
 
 Fold it in only if the operator says so, or if leaving it makes the in-scope change
-incorrect — in which case it was never adjacent, it was a caller, and §2 covers it.
+incorrect, in which case it was never adjacent, it was a caller, and §2 covers it.
 
 ---
 
@@ -106,7 +106,7 @@ incorrect — in which case it was never adjacent, it was a caller, and §2 cove
 The protocol is `AGENTS.md` §1 PLAN-WORKFLOW LOCK, a hard blocker that outranks this
 file. Read it there. This section deliberately does not restate it: a hard blocker
 copied into a tier-3 document reads as though an operator instruction could outrank it.
-What this file adds is the adjacent case — a frozen **scope** you believe is wrong.
+What this file adds is the adjacent case, a frozen **scope** you believe is wrong.
 
 ---
 
@@ -124,9 +124,9 @@ The operator decides.
 incomplete work, no asking permission to continue an approved, in-scope step. Two
 things are worth stating in scope terms:
 
-- **When one part is genuinely blocked, finish every other part in full**, then say
+- **When one part is genuinely blocked, finish every other part in full** then say
   explicitly what you left out and why. Scaling the work down is the operator's call.
-- Proceeding without asking never waives a **mandatory wait** — Gate 3, a
+- Proceeding without asking never waives a **mandatory wait** Gate 3, a
   PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, the remote-push
   go-ahead, and every `blast-radius.md` stop-for-yes still block.
 
@@ -138,8 +138,8 @@ Scope you have not thought through is scope you will discover mid-edit, which is
 drift starts. Before the first change on any multi-step work, decide three things and
 say them:
 
-1. **Which files you will read first.** Reading first is `overengineering.md` §2's
-   pre-write pass, and it is not repeated here — but *which* files is a scope decision,
+1. **Which files you will read first.** Reading first is `prevent-overengineering.md` §2's
+   pre-write pass, and it is not repeated here, but *which* files is a scope decision,
    because the set you read is the set you will feel entitled to change.
 2. **Which tools or commands will do the work.** Naming them up front is what catches
    the case where the plan needs something outside the frozen scope, while it is still
@@ -148,7 +148,7 @@ say them:
    what belongs here is that a change with no named check is a change with no defined
    edge, and an undefined edge is where "while I was in there" gets in.
 
-Three sentences is a plan. The failure this prevents is not disorganization — it is the
+Three sentences is a plan. The failure this prevents is not disorganization, it is the
 mid-task realization that the work needs a file nobody scoped, discovered at the moment
 when editing it feels easier than asking.
 

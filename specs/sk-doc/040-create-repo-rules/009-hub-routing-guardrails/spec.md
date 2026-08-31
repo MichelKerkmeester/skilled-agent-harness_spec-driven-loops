@@ -49,7 +49,7 @@ This is **Phase 9** of the create-repo-rule packet, and the only phase whose sub
 **Deliverables**:
 - One clause in `AGENTS.md` stating the one-identity model and the two stages.
 - A ten-surface checklist in `parent-skills-nested-packets.md`.
-- `repo-rules/hub-routing.md`, wired into the router.
+- `repo-rules/skill-hub-routing.md`, wired into the router.
 - Check 6b plus a loud no-argument notice in `parent-skill-check.cjs`.
 - The three mode rows that make 6b green fleet-wide.
 
@@ -91,7 +91,7 @@ Someone wiring a mode can name every surface it must land on, knows the advisor 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `AGENTS.md` | Modify | One clause: one advisor identity per hub, two-stage routing, and the claim it forbids |
-| `repo-rules/hub-routing.md` | Create | The rule that fires on the wiring action and points at the detail |
+| `repo-rules/skill-hub-routing.md` | Create | The rule that fires on the wiring action and points at the detail |
 | `REPO RULES.md` | Modify | Its trigger row and index row |
 | `parent-skills-nested-packets.md` | Modify | Section 7: the ten-surface checklist and the verification commands |
 | `parent-skill-check.cjs` | Modify | Check 6b, plus an explicit notice when no hub argument is given |
