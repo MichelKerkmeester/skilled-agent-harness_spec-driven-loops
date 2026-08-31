@@ -1,0 +1,116 @@
+{
+  "topic": "Review: specs/system-speckit/045-daemon-and-test-harness-hardening",
+  "sessionId": "2026-08-31-auto-deep-review-045",
+  "parentSessionId": null,
+  "lineageMode": "resume",
+  "generation": 1,
+  "continuedFromRun": 4,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-speckit/045-daemon-and-test-harness-hardening",
+  "createdAt": "2026-08-31T00:00:00Z",
+  "status": "complete",
+  "releaseReadinessState": "conditional",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900,
+    "configDir": null
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/045-daemon-and-test-harness-hardening",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "resource_map": {
+    "emit": true,
+    "present": false
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "stopPolicy": "max-iterations"
+}

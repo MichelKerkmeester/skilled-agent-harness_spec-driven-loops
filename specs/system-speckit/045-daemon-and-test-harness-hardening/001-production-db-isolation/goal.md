@@ -58,11 +58,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 2. COMPLETION CRITERIA
 
-- [ ] Runs started from `scripts/`, `mcp-server/` and the skill root each resolve a throwaway database directory
-- [ ] A run that targets the production directory fails closed with a named error instead of opening it
-- [ ] A recorded pre-fix negative control shows the old path resolving to the production directory
-- [ ] A drift check fails when a vitest config globs `mcp-server/tests/**` without the isolation setup
-- [ ] Full suite run shows no new failures against the recorded baseline
+- [x] Runs started from `scripts/`, `mcp-server/` and the skill root each resolve a throwaway database directory
+- [x] A run that targets the production directory fails closed with a named error instead of opening it
+- [x] A recorded pre-fix negative control shows the old path resolving to the production directory
+- [x] A drift check fails when a vitest config globs `mcp-server/tests/**` without the isolation setup
+- [x] Full suite run shows no new failures against the recorded baseline
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,6 +82,7 @@ and findings belong here.
 | Implementation | Done | 3 files changed; 3 tests pass; all three entry points resolve a throwaway dir |
 | Negative control captured | Done | pre-fix `scripts/` run resolved the production dir |
 | Configs reconciled | Done | root config shares the mcp-server `setupFiles` |
+| Criteria verified | Done | all three entry points resolve a throwaway dir; negative control fails closed after the fix |
 | Resolver fails closed | Done | `ProductionDatabaseResolutionError`; drift check proven non-vacuous |
 
 ### Deviations and findings

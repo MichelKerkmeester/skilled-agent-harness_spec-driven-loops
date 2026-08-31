@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
-  "spec_folder": "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
-  "parent_id": "system-speckit/045-daemon-and-test-harness-hardening",
+  "packet_id": "cli-external-orchestration/059-dispatch-surface-truthfulness",
+  "spec_folder": "cli-external-orchestration/059-dispatch-surface-truthfulness",
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,49 +11,43 @@
   },
   "derived": {
     "trigger_phrases": [
-      "production db isolation",
-      "vitest setupFiles bypass",
-      "context-index.sqlite guard",
-      "isolateProductionDatabase",
-      "production db isolation plan",
-      "vitest config reconcile",
-      "fail closed resolver",
-      "production db isolation tasks",
-      "packet goal",
-      "durable directive",
-      "completion criteria",
-      "goal binding"
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary",
+      "impl summary core"
     ],
     "key_topics": [
-      "production",
-      "isolation",
-      "vitest",
-      "setupfiles",
-      "bypass",
-      "context-index",
-      "sqlite",
-      "guard",
-      "isolateproductiondatabase",
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
       "plan",
-      "config",
-      "reconcile"
+      "tasks",
+      "summary",
+      "impl",
+      "four-iteration"
     ],
-    "importance_tier": "important",
-    "status": "draft",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/vitest.config.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/vitest.config.ts",
-      ".opencode/skills/system-spec-kit/mcp-server/tests/_support/vitest-setup.ts",
-      "shared/paths.ts",
-      "mcp-server/tests/production-db-isolation.vitest.ts",
-      "mcp-server/vitest.config.ts",
-      "tests/_support/vitest-setup.ts",
-      "tests/production-db-isolation.vitest.ts"
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".opencode/commands/deep/assets/deep-review-presentation.txt",
+      ".opencode/commands/deep/assets/compiled/deep-review.contract.md"
     ],
     "entities": [
       {
@@ -75,39 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "goal.md",
-        "kind": "doc",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/vitest.config.ts",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "vitest-setup.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/tests/_support/vitest-setup.ts",
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
         "source": "derived"
       },
       {
-        "name": "paths.ts",
-        "kind": "code",
-        "path": "shared/paths.ts",
-        "source": "derived"
-      },
-      {
-        "name": "production-db-isolation.vitest.ts",
-        "kind": "test",
-        "path": "mcp-server/tests/production-db-isolation.vitest.ts",
+        "name": "deep-review.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
         "source": "derived"
       },
       {
@@ -117,31 +99,31 @@
         "source": "derived"
       },
       {
-        "name": "Production Database Isolation",
+        "name": "Dispatch Surface Truthfulness",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Handoff Criteria",
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Daemon Lifecycle",
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -159,19 +141,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Defence",
+        "name": "Clean Architecture",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,27 +181,38 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "`mcp-server/vitest.config.ts` loads `tests/support/vitest-setup.ts`, whose `isolateProductionDatabase()` exists to stop a test opening the live memory database",
-    "created_at": "2026-08-30T09:55:25Z",
-    "last_save_at": "2026-08-31T04:07:50.731Z",
+    "causal_summary": "A four-iteration review was dispatched and sat at 0.0% CPU for 7 hours 40 minutes, producing 39 bytes of output and no artifacts",
+    "created_at": "2026-08-31T03:09:18Z",
+    "last_save_at": "2026-08-31T03:13:27.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:beac370b92368753f90a7b276a727d385e074bb3d0c8e6da61e2643f652a16c0",
+    "source_fingerprint": "sha256:55e9d22e5dd33c5098746a696af49b77086385b0f60fc9b9679e3eb7d9911aa4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "af60d83a277b291c86de311eea63b92bbd1d3c34e09186b0cacb7a2011fe7571",
-      "plan.md": "d45763a90e98d0340cc2100d2c2dcf0fabf150fd8c7ea149d3f6ae157c5c394e",
-      "tasks.md": "0bdd4a45dbdb3785fd1b4c6efda90a682146525431fe84242848dc18dcfde29c",
-      "implementation-summary.md": "c9096111441698d98893bd34ddeb11b1bff5a528751d6a928e50f940d51418a4"
+      "spec.md": "b3bf35acf27296c778b2739180570788da77a7a59e33ac399c2290cc2de3bbaa",
+      "plan.md": "92e81f11d535cfe2d64a604d77529a90b4b32b9fc9a02006e42e751b269094b8",
+      "tasks.md": "b75d5c4ec92229648aca43e378e0807a4304fa573f02e9b841e5f98ab29e076b",
+      "implementation-summary.md": "8e6bf38ec7138a2fb1281dc813de647fed8c3ad6dc15b4573e3a7591b7a9ddf3"
     },
     "last_active_child_id": null,
     "last_active_at": null

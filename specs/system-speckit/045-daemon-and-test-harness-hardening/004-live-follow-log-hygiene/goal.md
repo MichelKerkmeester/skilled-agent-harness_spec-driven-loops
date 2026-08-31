@@ -58,10 +58,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 2. COMPLETION CRITERIA
 
-- [ ] A divergence held across many poll intervals produces one log entry
-- [ ] Clearing and re-entering the condition produces a second entry
-- [ ] A long-running follower's log stays within the cap
-- [ ] The per-checkout pid lock and single-follower guarantee are unaffected by rotation
+- [x] A divergence held across many poll intervals produces one log entry
+- [x] Clearing and re-entering the condition produces a second entry
+- [x] A long-running follower's log stays within the cap
+- [x] The per-checkout pid lock and single-follower guarantee are unaffected by rotation
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,6 +80,7 @@ and findings belong here.
 | Phase authored and validated | Done | `validate.sh --strict` RESULT: PASSED, Errors: 0 |
 | Cap policy decided | Done | size-based, one retained generation |
 | State-change logging | Done | 4 entries -> 1 across a held divergence |
+| Criteria verified | Done | held divergence 4 entries -> 1; re-entry produced a second; cap held with `.1` retained; pid lock intact |
 | Cap or rotation | Done | cap held; pid lock undisturbed |
 
 ### Deviations and findings

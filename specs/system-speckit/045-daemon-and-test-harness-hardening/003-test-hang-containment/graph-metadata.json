@@ -198,7 +198,7 @@
     ],
     "causal_summary": "On 2026-08-30 three vitest trees were killed after 2h35m, 3h41m and 4h12m, each holding roughly 96% of a core",
     "created_at": "2026-08-30T09:55:28Z",
-    "last_save_at": "2026-08-30T18:56:42.618Z",
+    "last_save_at": "2026-08-31T04:07:53.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3fbc5f3efe42b5ebce8f23933290f6c3e7dc90faeac2dafcf78ebb5729ed0169",
+    "source_fingerprint": "sha256:2d09a37ec03c4b2805f7c1c361d32231a45b83546ba0ae3f6de10270e820a89a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4c4ec08d5205f7b437a6895476c7b6d04b10f8ebcb8da00d6946737867b0220c",

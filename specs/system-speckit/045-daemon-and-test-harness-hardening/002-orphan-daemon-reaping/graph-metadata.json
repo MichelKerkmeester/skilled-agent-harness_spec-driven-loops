@@ -203,7 +203,7 @@
     ],
     "causal_summary": "An orphaned `system-spec-memory-launcher.cjs` survived at `ppid 1` for 2 days 14 hours with dangling stdio pipes and no child server",
     "created_at": "2026-08-30T09:55:27Z",
-    "last_save_at": "2026-08-30T18:31:45.094Z",
+    "last_save_at": "2026-08-31T04:07:52.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77f9adf2e6f4e92654a8e89fef482945a5b444b0fb4fc13264f3ed84e27f74c8",
+    "source_fingerprint": "sha256:a2e4384ab3bf9a6d5ed14a7e62a9ac7f472ecfd3b354d41b345363486ec3f061",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f6bbf1838d86fe3a2e3ddb582cfec1125779c00473cba092216e355118f8dff1",

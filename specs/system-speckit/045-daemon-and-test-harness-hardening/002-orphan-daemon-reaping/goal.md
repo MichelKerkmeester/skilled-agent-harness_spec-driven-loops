@@ -59,13 +59,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 2. COMPLETION CRITERIA
 
-- [ ] A launcher whose stdio peer closes exits rather than persisting
-- [ ] A launcher reparented to init terminates within one heartbeat interval
-- [ ] A respawn lock held by an orphaned process is reclaimable by another session
-- [ ] The sweep has a guarded apply path and a lifecycle event invokes it
-- [ ] A launcher with a live parent is never signalled, proven by a dedicated safety test
-- [ ] `ops/README.md` no longer states that no live apply command exists
-- [ ] Every row in `acceptance-criteria.md` is Met, Waived or Superseded
+- [x] A launcher whose stdio peer closes exits rather than persisting
+- [x] A launcher reparented to init terminates within one heartbeat interval
+- [x] A respawn lock held by an orphaned process is reclaimable by another session
+- [x] The sweep has a guarded apply path and a lifecycle event invokes it
+- [x] A launcher with a live parent is never signalled, proven by a dedicated safety test
+- [x] `ops/README.md` no longer states that no live apply command exists
+- [x] Every row in `acceptance-criteria.md` is Met, Waived or Superseded
 <!-- /ANCHOR:completion -->
 
 ---
@@ -84,6 +84,7 @@ and findings belong here.
 | Phase authored and validated | Done | `validate.sh --strict` RESULT: PASSED, Errors: 0; 7 AC rows Unmet |
 | Negative control captured | Done | fixture orphan survived, lock stayed valid, sweep declined |
 | Launcher self-exit | Done | stdin close plus orphan predicate on the existing heartbeat |
+| Criteria verified | Done | fixture reaped, lock released, live-parent and connected-peer refused, kill switch honoured |
 | Sweep apply path and trigger | Done | ownership-checked apply at session start, kill switch documented |
 
 ### Deviations and findings
