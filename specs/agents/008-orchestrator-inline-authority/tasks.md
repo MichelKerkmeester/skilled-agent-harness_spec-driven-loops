@@ -44,11 +44,11 @@ contextType: "general"
 ## Phase 2: Implementation
 
 - [x] T003 Grant write capability in each dialect — a tool list, a permission block, a sandbox mode, and a tool array
-- [x] T004 Replace the prose bound: small fixes are permitted where dispatching would cost more than the work; anything with design content, breadth, or its own verification burden stays delegated
+- [x] T004 Replace the prose bound: small fixes are permitted where dispatching would cost more than the work, judged by cost rather than by a listed shape; work with design content or its own verification burden stays delegated
 - [x] T005 Amend the caller gate so a direct operator invocation satisfies it, with the packet and frozen scope stated in the return
 - [x] T006 Correct the obsolete subagent type to the one this runtime actually registers
 - [x] T007 Rename the phantom agent in the nesting examples to the real built-in rather than deleting the examples
-- [x] T008 Reword the bound from a single inline fix to small fixes, so the permission is not read as one-per-task
+- [x] T008 Reword the bound: plural rather than one-per-task, and stated as a cost judgment rather than an enumerated list of permitted edit shapes
 - [x] T009 Correct the same phantom agent name in the prompt-improver copies, leaving its integration identifier untouched
 <!-- /ANCHOR:phase-2 -->
 

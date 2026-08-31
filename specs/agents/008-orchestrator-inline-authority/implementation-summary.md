@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The orchestrator can now write, in all four runtime dialects, each saying the same thing in its own syntax: a tool list in `.claude/agents/orchestrate.md`, a permission block in `.opencode/agents/orchestrate.md`, `sandbox_mode` in `.codex/agents/orchestrate.toml`, and a tool array in `.pi/agents/orchestrate.md`. The prose that previously forbade direct execution now permits a small inline fix where dispatching would cost a fresh agent reloading context the orchestrator already holds, and keeps everything with design content, real breadth, or its own verification burden delegated.
+The orchestrator can now write, in all four runtime dialects, each saying the same thing in its own syntax: a tool list in `.claude/agents/orchestrate.md`, a permission block in `.opencode/agents/orchestrate.md`, `sandbox_mode` in `.codex/agents/orchestrate.toml`, and a tool array in `.pi/agents/orchestrate.md`. The prose that previously forbade direct execution now permits small fixes where dispatching would cost more than the work, and asks the orchestrator to judge that by cost rather than against a list of permitted edit shapes — an enumerated list invites the reading that anything unlisted is forbidden, which is the opposite of the intent.
 
 The caller gate in `.claude/agents/code.md` — and its three siblings under `.opencode/`, `.codex/` and `.pi/` — now treats a direct operator invocation as satisfying it. The gate was built to stop an agent dispatching without an orchestrator's brief; an operator asking directly is not that failure, and refusing them inverted the repository's own precedence. A direct invocation must state the packet and frozen scope in its return, so the missing brief stays visible.
 

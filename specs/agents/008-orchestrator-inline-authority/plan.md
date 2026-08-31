@@ -94,7 +94,7 @@ Required inventories:
 Map every authored copy and its dialect, because the roster checker verifies presence and not content — an edit to one runtime would otherwise pass unnoticed while three others kept the old contract.
 
 ### Phase 2: Implementation
-Grant write capability in each dialect, replace the prose bound with one that permits small fixes and keeps everything larger delegated, amend the caller gate, and correct the obsolete subagent type and phantom agent name.
+Grant write capability in each dialect, replace the prose bound with one that permits small fixes judged by cost and keeps work with design content or its own verification burden delegated, amend the caller gate, and correct the obsolete subagent type and phantom agent name.
 
 ### Phase 3: Verification
 Confirm each edit reached exactly the copies it should and none it should not, and that no phantom reference survives.

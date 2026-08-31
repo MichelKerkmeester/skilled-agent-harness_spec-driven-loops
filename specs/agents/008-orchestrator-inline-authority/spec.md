@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Let the orchestrator make small inline fixes instead of paying a fresh dispatch for a one-line change, and let a direct operator invocation satisfy the leaf caller-gate
+# Feature Specification: Orchestrator Inline Authority
 
 <!-- SPECKIT_LEVEL: 2 -->
 ---
@@ -52,7 +52,7 @@ Let the orchestrator do work whose delegation would cost more than the work, wit
 ## 3. SCOPE
 
 ### In Scope
-- Grant the orchestrator write capability in all four authored dialects, bounded in prose to small inline fixes
+- Grant the orchestrator write capability in all four authored dialects, bounded in prose to small fixes judged by cost
 - Let a direct operator invocation satisfy the code agent's caller gate
 - Correct the obsolete subagent type and the phantom agent name in the nesting examples
 
@@ -109,7 +109,7 @@ Let the orchestrator do work whose delegation would cost more than the work, wit
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | The orchestrator becomes author and reviewer of its own work | High | The grant is bounded in prose to small inline fixes; anything with design content, breadth, or its own verification burden stays delegated |
+| Risk | The orchestrator becomes author and reviewer of its own work | High | The grant is bounded in prose to small fixes judged by cost; work with design content, breadth, or its own verification burden stays delegated |
 | Risk | An edit reaches one runtime and not the others | High | Four independently-authored copies were edited together and verified by symmetry, because the roster checker validates presence only and would stay green on drift |
 | Risk | Loosening the caller gate hides a missing brief | Med | A direct invocation must state the packet and frozen scope in its return, so the absent brief is visible rather than assumed |
 <!-- /ANCHOR:risks -->
