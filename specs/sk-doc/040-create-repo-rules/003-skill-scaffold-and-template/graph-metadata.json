@@ -11,41 +11,43 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "acceptance criteria",
-      "closure gate"
+      "skill scaffold",
+      "rule template",
+      "router template",
+      "mode packet",
+      "template reproduces a shipped rule",
+      "scaffold plan",
+      "rule template authoring",
+      "structural parity check",
+      "contract not corpus",
+      "scaffold tasks",
+      "template authoring",
+      "structural parity"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
+      "skill",
+      "scaffold",
+      "rule",
       "template",
-      "spec",
-      "core",
-      "implementation",
+      "router",
+      "mode",
+      "packet",
+      "reproduces",
+      "shipped",
       "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "authoring",
+      "structural"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/README.md"
     ],
     "entities": [
       {
@@ -79,7 +81,25 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Scaffold",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,12 +129,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,7 +141,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Scaffold",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,25 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -169,19 +177,13 @@
         "source": "derived"
       },
       {
+        "name": "Closure Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -193,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Phase 2 produced a contract nothing can execute",
     "created_at": "2026-08-31T11:33:09Z",
-    "last_save_at": "2026-08-31T11:37:30.730Z",
+    "last_save_at": "2026-08-31T12:49:29.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3c32959e3522566fbcb91d9278e75603c7ea937e450b282f49b6022ddf6caba",
+    "source_fingerprint": "sha256:565d6f9c7fd2d45166f0b71e54d968f75a86846652f8c795bcae862312caeb00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3481bfbfd217beafff29045b6adc3b0dfb7c6e380fa3bc374e1075f5f8e50d4b",
-      "plan.md": "3197a831d406bfb1dba223e5652119e406a72af0b73af2cba30a671b7588a940",
-      "tasks.md": "178f9f3938d06fff49604165795ef292a0e071d04c78c6bcfae2c07ee2b89b0e",
-      "implementation-summary.md": "f889fd19d49a3aa16a9ff1f2e7030217ec23425c056c7809fd51e7608686079b"
+      "spec.md": "1b2562857d2047bc4b9c406be423ee18947a2eaac75c5442ed4712fa47a4a203",
+      "plan.md": "0e60e810501ccbf94cade9e67340eba1fd734302b95f920fc676095180fa67d6",
+      "tasks.md": "3aaac898c198a04980027d8475e3ecd19643aa1ba22bf512367ea9a6e64eb30d",
+      "implementation-summary.md": "4e042a8abd646a473ccb0d27f0d72883962785bb7edac01a3c64fd2faad99de9"
     },
     "last_active_child_id": null,
     "last_active_at": null

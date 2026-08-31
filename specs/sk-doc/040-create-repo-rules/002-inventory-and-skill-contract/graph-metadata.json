@@ -11,41 +11,43 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "acceptance criteria",
-      "closure gate"
+      "repo rule anatomy",
+      "skill contract",
+      "rule inventory",
+      "always-loaded versus triggered",
+      "mode boundary",
+      "rule inventory plan",
+      "anatomy contract",
+      "decision test recovery",
+      "element traceability",
+      "inventory tasks",
+      "anatomy derivation",
+      "traceability audit"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "repo",
+      "rule",
+      "anatomy",
+      "skill",
+      "contract",
+      "inventory",
+      "always-loaded",
+      "versus",
+      "triggered",
+      "mode",
+      "boundary",
+      "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/inventory.py",
+      "scratch/refusal-reproduction.md"
     ],
     "entities": [
       {
@@ -79,7 +81,25 @@
         "source": "derived"
       },
       {
+        "name": "inventory.py",
+        "kind": "file",
+        "path": "scratch/inventory.py",
+        "source": "derived"
+      },
+      {
+        "name": "refusal-reproduction.md",
+        "kind": "doc",
+        "path": "scratch/refusal-reproduction.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Contract",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,12 +129,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,7 +141,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Inventory",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,25 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -169,19 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Closure Gate",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
+        "name": "Phase Documentation Map",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -193,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The eight rule files agree on a shape, and no document states it",
     "created_at": "2026-08-31T11:33:08Z",
-    "last_save_at": "2026-08-31T11:37:30.394Z",
+    "last_save_at": "2026-08-31T12:35:25.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7c69ef2b2aa7cdf086390934c6d52dc0c13ad8fdbca43953532feeeb290dd8d8",
+    "source_fingerprint": "sha256:69cdba005a2b30c979fbdae32c3a09237a77ac5b76779e034ef8ece6ee0df3a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "655765c3331f1e850755c5caec5fa8644b9095ba3e4c9e05eb06af715f7b266a",
-      "plan.md": "79daba1ffa1f1f0593db384b99dbeddf8ec126bfabba36d4ae8ec55cd37eb297",
-      "tasks.md": "2ebf41afc4ac67fd3e2862ae839f981f10a12351a9396fe928d065a8e3aef61f",
-      "implementation-summary.md": "a04945847a5a94185065865e723c118dbe56f0d6164a95b10279d4396d8b1453"
+      "spec.md": "1497f7ccf299fe5b506650e7063523f420f9baac3b2a638890874a74e564c28c",
+      "plan.md": "5de0ab2619ab1520d55d90aa4fd63ba629297fb65f07aab05f2107fae55f4796",
+      "tasks.md": "fab383c89fad7b8a0c6b912d1b80ab081ce68e6f71acfe7d186aeedf074fe51f",
+      "implementation-summary.md": "40d6a9084eaa451d6585ddd6cc4729510d4c9de7a395f08ad9f22f89f2e827d4"
     },
     "last_active_child_id": null,
     "last_active_at": null

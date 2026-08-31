@@ -1,16 +1,16 @@
 ---
-title: "Tasks: Phase 6: command-and-hub-wiring [template:level-2/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 6: Command and Hub Wiring"
+description: "Ordered tasks for making the mode reachable: baseline every registry, author the command through sk-create-command, add exactly one entry per registry matching each file own shape, mirror into the second runtime, then verify by parse, count delta, read-back and followed symlink."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "registration tasks"
+  - "command authoring"
+  - "count delta check"
+  - "symlink verification"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 6: command-and-hub-wiring
+# Tasks: Phase 6: Command and Hub Wiring
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [ ] T001 Record entry counts and md5s for all four registries
+- [ ] T002 Read a sibling entry in each registry, so the new entry matches that file's shape rather than an imposed one
+- [ ] T003 Confirm phases 3-5 are closed - registering an unfinished mode makes it reachable and wrong
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [ ] T004 Author `/create:repo-rule` through `sk-create-command`: router `.md` plus auto, confirm and presentation assets
+- [ ] T005 Cover create, revise and retire in the argument hint, since the mode owns all three
+- [ ] T006 Add the `mode-registry.json` entry with its tool surface and command binding
+- [ ] T007 Add `hub-router.json` signals that separate this mode from `sk-create-skill`
+- [ ] T008 Add the `command-metadata.json` entry: description, argument hint, user intent, three-step choreography, discriminator
+- [ ] T009 Add the `leaf-manifest.json` mode entry
+- [ ] T010 Create the `.claude/commands/create/repo-rule.md` mirror symlink
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +58,12 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T011 Parse all four registries; any failure blocks, because the hub loads them for twelve other modes
+- [ ] T012 Compare entry counts: exactly one new entry per registry, never zero, never two
+- [ ] T013 Read each new entry back and inspect it, rather than trusting the write
+- [ ] T014 Follow the mirror symlink to a real file
+- [ ] T015 Confirm a rule-shaped request selects this mode rather than `sk-create-skill`
+- [ ] T016 Run `validate.sh <this folder> --strict` and record `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,7 +73,8 @@ contextType: "general"
 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] The other twelve modes still route
+- [ ] `scratch/` cleaned
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +84,9 @@ contextType: "general"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Closure Gate**: See `acceptance-criteria.md`
+- **Command authoring mode**: `.opencode/skills/sk-doc/sk-create-command/`
+- **The mode being registered**: `.opencode/skills/sk-doc/sk-create-repo-rule/`
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -100,7 +110,7 @@ contextType: "general"
 
 - [ ] CHK-001 [P0] Requirements documented in spec.md
 - [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [ ] CHK-003 [P1] Predecessor phase closed and its outputs available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,10 +118,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [ ] CHK-010 [P0] The command was authored through `sk-create-command`, not by hand
+- [ ] CHK-011 [P0] Every registry parses after the edit
+- [ ] CHK-012 [P1] Each entry matches its file's existing shape and ordering conventions
+- [ ] CHK-013 [P1] The discriminator names when to prefer a sibling command
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -120,9 +130,9 @@ contextType: "general"
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [ ] CHK-021 [P0] Count delta is exactly one in every registry
+- [ ] CHK-022 [P0] The mirror was followed, not merely observed to exist
+- [ ] CHK-023 [P1] Routing checked against the likely confusion, `sk-create-skill`
 <!-- /ANCHOR:testing -->
 
 ---
@@ -130,13 +140,15 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+The defect class is a partial registration, which fails in a way that looks like a routing bug rather than a missing entry.
+
+- [ ] CHK-FIX-001 [P0] Finding class recorded as `cross-consumer`: four files must agree or routing breaks
+- [ ] CHK-FIX-002 [P0] Producer inventory: a sibling entry read in each of the four registries
+- [ ] CHK-FIX-003 [P0] Consumer inventory: the hub loads all four for twelve other modes; each parsed after editing
+- [ ] CHK-FIX-004 [P0] Not applicable - no security, path or parser surface in the entries themselves
+- [ ] CHK-FIX-005 [P1] Matrix axes: 4 registries x (parses, count rose, entry readable)
+- [ ] CHK-FIX-006 [P1] Not applicable - no process-wide state
+- [ ] CHK-FIX-007 [P1] Evidence pinned to the landing commit
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -144,9 +156,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [ ] CHK-030 [P0] No secrets in the command or any registry entry
+- [ ] CHK-031 [P0] The mode's declared tool surface matches what `SKILL.md` allows - no widening at registration
+- [ ] CHK-032 [P1] The mirror symlink points inside the repository
 <!-- /ANCHOR:security -->
 
 ---
@@ -154,9 +166,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [ ] CHK-040 [P1] Spec/plan/tasks/acceptance-criteria synchronized
+- [ ] CHK-041 [P1] The argument hint documents create, revise and retire
+- [ ] CHK-042 [P1] Parent Phase Documentation Map updated from Pending
 <!-- /ANCHOR:docs -->
 
 ---
@@ -175,11 +187,11 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 12 | [ ]/12 |
+| P1 Items | 11 | [ ]/11 |
+| P2 Items | 0 | [ ]/0 |
 
-**Verification Date**: 2026-08-31
+**Verification Date**: pending
 <!-- /ANCHOR:summary -->
 
 ---

@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "acceptance criteria",
-      "closure gate"
+      "command wiring",
+      "hub registration",
+      "mode registry",
+      "create repo-rule command",
+      "cross-runtime mirror",
+      "wiring plan",
+      "four registration files",
+      "read back verification",
+      "mirror symlink",
+      "registration tasks",
+      "command authoring",
+      "count delta check"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
+      "command",
+      "wiring",
+      "hub",
+      "registration",
+      "mode",
+      "registry",
+      "repo-rule",
+      "cross-runtime",
+      "mirror",
       "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "four",
+      "files"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -45,7 +45,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/command-metadata.json",
+      ".opencode/skills/sk-doc/leaf-manifest.json"
     ],
     "entities": [
       {
@@ -79,7 +83,37 @@
         "source": "derived"
       },
       {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Wiring",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,12 +143,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,7 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Delegate",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,25 +173,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -169,33 +191,15 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Closure Gate",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The packet is complete and unreachable",
     "created_at": "2026-08-31T11:33:11Z",
-    "last_save_at": "2026-08-31T11:37:31.067Z",
+    "last_save_at": "2026-08-31T13:01:49.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +209,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c754037e7a245ea44bb0f95beddf3542f2ad62c56481b3da2ede3ca29259384d",
+    "source_fingerprint": "sha256:e16442ab23b1ad18e46110b553fed8810e49e5fd98eaef6d15ad3e59f39e02e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "988d570d742db3fdfad3f1e6f7a7323642108a7b83a2ada285aa107b4f9844ee",
-      "plan.md": "a3b54ad848035e277e12b10c0c3b366e62815d7f1279dfdf443d475a16c38dfa",
-      "tasks.md": "1e60f9579f0704ea6cab01dcd2bb69b86afc6155851d0a3e3562ab702be4c993",
+      "spec.md": "a27043583dcd9b46eb68412e76d3a68c10e7e5e4fb03e85e284e3a206c5f8fbe",
+      "plan.md": "da264ddd2cef4ab2c53cc0263e22af9722cb7b53d62644e2c62926bbb487fd75",
+      "tasks.md": "b5ca4e6aeba8a5fdd37f8f11b674834bafb7eeb56967f47df6680f4d6eb41c6c",
       "implementation-summary.md": "f23df4360338fbc791d38dfeb24a3817728d0df08a3dba869c548f845fbb5cca"
     },
     "last_active_child_id": null,

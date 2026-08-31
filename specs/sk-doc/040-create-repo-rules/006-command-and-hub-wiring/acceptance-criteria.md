@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 6: command-and-hub-wiring"
+title: "Acceptance Criteria: Phase 6: Command and Hub Wiring"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-command-and-hub-wiring"
+    packet_pointer: "sk-doc/040-create-repo-rules/006-command-and-hub-wiring"
     last_updated_at: "2026-08-31T11:33:12Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Authored the closure gate for command and hub wiring"
+    next_safe_action: "Record registry baselines, then read a sibling entry in each"
     blockers: []
     key_files: []
     session_dedup:
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 6: command-and-hub-wiring
+# Acceptance Criteria: Phase 6: Command and Hub Wiring
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
 
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-doc/040-create-repo-rules/006-command-and-hub-wiring
+**Level:** 2
+**Status:** Draft
 **Date:** 2026-08-31
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,17 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the command, When compared to its eleven siblings, Then it matches their shape | Authored through `sk-create-command`, not by hand | Unmet | - |
+| AC-002 | REQ-002 | Given each of the four registries, When the entry is checked, Then it is read back rather than assumed | Entry loaded and inspected after writing | Unmet | - |
+| AC-003 | REQ-003 | Given the cross-runtime mirror, When it is tested, Then the symlink is followed to a real file | Existence alone is not the check; a sibling packet lost three to dangling links | Unmet | - |
+| AC-004 | REQ-004 | Given an overlapping request, When the hub routes, Then the discriminator says when to prefer a sibling | Named explicitly against `sk-create-skill` | Unmet | - |
+| AC-005 | REQ-005 | Given every registry, When parsed after the edit, Then all four are valid JSON | The hub loads them for twelve other modes | Unmet | - |
+| AC-006 | REQ-006 | Given the choreography, When compared to siblings, Then it has the same three steps in order | Hub, then mode contract, then presentation | Unmet | - |
+| AC-007 | REQ-007 | Given a rule-shaped request, When signals are evaluated, Then this mode is selected over `sk-create-skill` | The likely confusion, checked rather than assumed | Unmet | - |
+| AC-008 | REQ-008 | Given the argument hint, When read, Then it covers create, revise and retire | The mode owns all three | Unmet | - |
+| AC-009 | REQ-009 | Given each registry, When counts are compared before and after, Then exactly one entry was added | Never zero, never two; a successful write is not evidence | Unmet | - |
+| AC-010 | REQ-002 | Given the other twelve modes, When routing is checked after the edit, Then none regressed | A malformed shared file breaks more than this mode | Unmet | - |
+| AC-011 | REQ-001 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict` prints `RESULT: PASSED` | Unmet | - |
 
 ### Status values
 
@@ -79,8 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** No
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+Written when the phase closes. AC-009 is the one that catches the real failure mode: four files must each gain exactly one entry, and a write that succeeds while changing nothing is invisible unless the counts are compared.
 <!-- /ANCHOR:closure -->

@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 5: agents-md-integration"
+title: "Acceptance Criteria: Phase 5: Integration and Lifecycle Contract"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-agents-md-integration"
+    packet_pointer: "sk-doc/040-create-repo-rules/005-agents-md-integration"
     last_updated_at: "2026-08-31T11:33:11Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Authored the closure gate for integration and lifecycle contract"
+    next_safe_action: "Record the router baseline counts, then read the eight wirings"
     blockers: []
     key_files: []
     session_dedup:
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 5: agents-md-integration
+# Acceptance Criteria: Phase 5: Integration and Lifecycle Contract
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
 
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-doc/040-create-repo-rules/005-agents-md-integration
+**Level:** 2
+**Status:** Draft
 **Date:** 2026-08-31
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,17 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the three wiring points, When one is skipped, Then the contract says what is lost | Trigger row, index row, governed-section pointer each with its consequence | Unmet | - |
+| AC-002 | REQ-002 | Given a shipped rule, When the create path is followed, Then it reproduces that rule actual wiring | Dry-run compared against the live router rows | Unmet | - |
+| AC-003 | REQ-003 | Given the retire path, When run against a shipped rule on paper, Then the router stays self-consistent | Row count still equals file count; every link resolves | Unmet | - |
+| AC-004 | REQ-004 | Given a rule the scope statement excludes, When a trigger row is proposed, Then the check stops it | Both phase-1 widenings replayed and caught | Unmet | - |
+| AC-005 | REQ-005 | Given any path, When it touches `AGENTS.md`, Then it only adds or removes a pointer | Anything else escalates to the operator | Unmet | - |
+| AC-006 | REQ-006 | Given a revision that changes when the rule fires, When applied, Then the trigger row changes with it | Otherwise the router lies about the rule | Unmet | - |
+| AC-007 | REQ-007 | Given all three paths, When `version` is considered, Then its behaviour is stated for each | Create, revise and retire each say what happens | Unmet | - |
+| AC-008 | REQ-008 | Given a retirement, When it completes, Then the reason is recorded | So the same rule is not re-proposed | Unmet | - |
+| AC-009 | REQ-009 | Given a repository with no router, When a rule is requested, Then the contract says the router comes first | Consistent with the prerequisite framing | Unmet | - |
+| AC-010 | REQ-003 | Given any path interrupted at a step boundary, When the state is inspected, Then nothing dangles | Interruption states enumerated for all three paths | Unmet | - |
+| AC-011 | REQ-001 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict` prints `RESULT: PASSED` | Unmet | - |
 
 ### Status values
 
@@ -79,8 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** No
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+Written when the phase closes. AC-003 carries it: retire is the only operation with no worked example anywhere, so a dry-run that leaves the router self-consistent is the whole evidence that the contract is right.
 <!-- /ANCHOR:closure -->

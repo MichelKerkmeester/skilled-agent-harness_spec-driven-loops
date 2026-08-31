@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "acceptance criteria",
-      "closure gate"
+      "agents md integration",
+      "wiring contract",
+      "router rows",
+      "retire a rule",
+      "revise a rule",
+      "rule lifecycle",
+      "wiring contract plan",
+      "retire path derivation",
+      "scope statement check",
+      "interruptible ordering",
+      "wiring tasks",
+      "retire derivation"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
+      "agents",
+      "integration",
+      "wiring",
+      "contract",
+      "router",
+      "rows",
+      "retire",
+      "rule",
+      "revise",
+      "lifecycle",
       "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "path"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -45,7 +45,8 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md"
     ],
     "entities": [
       {
@@ -79,7 +80,19 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle Contract",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,12 +122,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,25 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -169,19 +170,13 @@
         "source": "derived"
       },
       {
+        "name": "Closure Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -191,11 +186,17 @@
         "kind": "proper_noun",
         "path": "acceptance-criteria.md",
         "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "A rule file that nothing points at is inert: the router's trigger table is the only thing that loads one, and the pointer from the governed `AGENTS.md` section is the only thing that makes it findable at the moment of need",
     "created_at": "2026-08-31T11:33:10Z",
-    "last_save_at": "2026-08-31T11:37:31.421Z",
+    "last_save_at": "2026-08-31T13:01:48.910Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +206,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44c3886a22ebd16217a5542086b4c1bbc37ec42b3fdc54ef3e2ce58c5232179b",
+    "source_fingerprint": "sha256:da0c669f29bb5df7bb615b110a7e72b08b43eb5ae9b72ff01565c4c7c62acf07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9847bf5c154999a772d4bad2a4b45c0046e1dd41f8fd7f03dbab351ac157b997",
-      "plan.md": "f388dcaae63776610f014475bf0c14610abb49cea82f6a3215f136e3e755ec56",
-      "tasks.md": "ecc7220b3a857d8dbbae2f978eff2a1845f2d8b571248719467a3e9e914c4831",
+      "spec.md": "6c88454d2edd48cfb9c43f8f0db597a9435aa122bb43b5b62e95102d567ded1e",
+      "plan.md": "d20fc1341719e60901e594480cd0ebded98daa0ffb6fddf0897381803718c500",
+      "tasks.md": "25292f3cd28e99be1e0664e1307bf195baac36b2d7837c650ee011320cc1d3b4",
       "implementation-summary.md": "b0f199a3f24e657916831f4ff7bb327733bf89b7cf40f901f6becc8f81a43f61"
     },
     "last_active_child_id": null,

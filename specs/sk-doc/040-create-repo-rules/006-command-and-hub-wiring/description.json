@@ -1,18 +1,13 @@
 {
   "level": "2",
   "specFolder": "sk-doc/040-create-repo-rules/006-command-and-hub-wiring",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "The packet is complete and unreachable",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "packet",
+    "complete",
+    "unreachable"
   ],
-  "lastUpdated": "2026-08-31T11:33:12.736Z",
+  "lastUpdated": "2026-08-31T12:59:54.074Z",
   "specId": "006",
   "folderSlug": "command-and-hub-wiring",
   "parentChain": [

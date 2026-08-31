@@ -1,0 +1,284 @@
+[
+  {
+    "file": "REPO RULES.md",
+    "frontmatter": false,
+    "fm_keys": [],
+    "trigger_phrases": 0,
+    "numbered_sections": 4,
+    "numbered_all_upper": true,
+    "unnumbered_sections": [],
+    "has_fires_when": false,
+    "has_the_rule": false,
+    "has_selfcheck": false,
+    "selfcheck_items": 0,
+    "dividers": 4,
+    "routed_from_line": false,
+    "expands_agents_line": false,
+    "xrefs": [
+      "repo-rules/blast-radius.md",
+      "repo-rules/communication.md",
+      "repo-rules/delegation-and-orchestration.md",
+      "repo-rules/evidence-and-proof.md",
+      "repo-rules/overengineering.md",
+      "repo-rules/root-cause.md",
+      "repo-rules/scope-discipline.md",
+      "repo-rules/uncertainty-and-honesty.md"
+    ],
+    "lines": 79,
+    "bytes": 6161
+  },
+  {
+    "file": "blast-radius.md",
+    "frontmatter": true,
+    "fm_keys": [
+      "title",
+      "description",
+      "trigger_phrases",
+      "importance_tier",
+      "contextType",
+      "version"
+    ],
+    "trigger_phrases": 16,
+    "numbered_sections": 7,
+    "numbered_all_upper": true,
+    "unnumbered_sections": [
+      "Fires when",
+      "The rule"
+    ],
+    "has_fires_when": true,
+    "has_the_rule": true,
+    "has_selfcheck": true,
+    "selfcheck_items": 7,
+    "dividers": 7,
+    "routed_from_line": true,
+    "expands_agents_line": true,
+    "xrefs": [
+      "../REPO%20RULES.md"
+    ],
+    "lines": 154,
+    "bytes": 6687
+  },
+  {
+    "file": "communication.md",
+    "frontmatter": true,
+    "fm_keys": [
+      "title",
+      "description",
+      "trigger_phrases",
+      "importance_tier",
+      "contextType",
+      "version"
+    ],
+    "trigger_phrases": 20,
+    "numbered_sections": 11,
+    "numbered_all_upper": true,
+    "unnumbered_sections": [
+      "Fires when",
+      "The rule"
+    ],
+    "has_fires_when": true,
+    "has_the_rule": true,
+    "has_selfcheck": true,
+    "selfcheck_items": 8,
+    "dividers": 11,
+    "routed_from_line": true,
+    "expands_agents_line": true,
+    "xrefs": [
+      "../REPO%20RULES.md",
+      "evidence-and-proof.md",
+      "overengineering.md",
+      "uncertainty-and-honesty.md"
+    ],
+    "lines": 219,
+    "bytes": 9284
+  },
+  {
+    "file": "delegation-and-orchestration.md",
+    "frontmatter": true,
+    "fm_keys": [
+      "title",
+      "description",
+      "trigger_phrases",
+      "importance_tier",
+      "contextType",
+      "version"
+    ],
+    "trigger_phrases": 20,
+    "numbered_sections": 9,
+    "numbered_all_upper": true,
+    "unnumbered_sections": [
+      "Fires when",
+      "The rule"
+    ],
+    "has_fires_when": true,
+    "has_the_rule": true,
+    "has_selfcheck": true,
+    "selfcheck_items": 11,
+    "dividers": 9,
+    "routed_from_line": true,
+    "expands_agents_line": true,
+    "xrefs": [
+      "../REPO%20RULES.md",
+      "evidence-and-proof.md",
+      "overengineering.md",
+      "scope-discipline.md"
+    ],
+    "lines": 224,
+    "bytes": 10618
+  },
+  {
+    "file": "evidence-and-proof.md",
+    "frontmatter": true,
+    "fm_keys": [
+      "title",
+      "description",
+      "trigger_phrases",
+      "importance_tier",
+      "contextType",
+      "version"
+    ],
+    "trigger_phrases": 17,
+    "numbered_sections": 12,
+    "numbered_all_upper": true,
+    "unnumbered_sections": [
+      "Fires when",
+      "The rule"
+    ],
+    "has_fires_when": true,
+    "has_the_rule": true,
+    "has_selfcheck": true,
+    "selfcheck_items": 11,
+    "dividers": 12,
+    "routed_from_line": true,
+    "expands_agents_line": true,
+    "xrefs": [
+      "../REPO%20RULES.md"
+    ],
+    "lines": 209,
+    "bytes": 8783
+  },
+  {
+    "file": "overengineering.md",
+    "frontmatter": true,
+    "fm_keys": [
+      "title",
+      "description",
+      "trigger_phrases",
+      "importance_tier",
+      "contextType",
+      "version"
+    ],
+    "trigger_phrases": 20,
+    "numbered_sections": 6,
+    "numbered_all_upper": true,
+    "unnumbered_sections": [
+      "Fires when",
+      "The rule"
+    ],
+    "has_fires_when": true,
+    "has_the_rule": true,
+    "has_selfcheck": true,
+    "selfcheck_items": 5,
+    "dividers": 6,
+    "routed_from_line": true,
+    "expands_agents_line": true,
+    "xrefs": [
+      "../REPO%20RULES.md"
+    ],
+    "lines": 164,
+    "bytes": 6943
+  },
+  {
+    "file": "root-cause.md",
+    "frontmatter": true,
+    "fm_keys": [
+      "title",
+      "description",
+      "trigger_phrases",
+      "importance_tier",
+      "contextType",
+      "version"
+    ],
+    "trigger_phrases": 17,
+    "numbered_sections": 8,
+    "numbered_all_upper": true,
+    "unnumbered_sections": [
+      "Fires when",
+      "The rule"
+    ],
+    "has_fires_when": true,
+    "has_the_rule": true,
+    "has_selfcheck": true,
+    "selfcheck_items": 6,
+    "dividers": 8,
+    "routed_from_line": true,
+    "expands_agents_line": true,
+    "xrefs": [
+      "../REPO%20RULES.md"
+    ],
+    "lines": 159,
+    "bytes": 6254
+  },
+  {
+    "file": "scope-discipline.md",
+    "frontmatter": true,
+    "fm_keys": [
+      "title",
+      "description",
+      "trigger_phrases",
+      "importance_tier",
+      "contextType",
+      "version"
+    ],
+    "trigger_phrases": 18,
+    "numbered_sections": 9,
+    "numbered_all_upper": true,
+    "unnumbered_sections": [
+      "Fires when",
+      "The rule"
+    ],
+    "has_fires_when": true,
+    "has_the_rule": true,
+    "has_selfcheck": true,
+    "selfcheck_items": 6,
+    "dividers": 9,
+    "routed_from_line": true,
+    "expands_agents_line": true,
+    "xrefs": [
+      "../REPO%20RULES.md"
+    ],
+    "lines": 164,
+    "bytes": 6519
+  },
+  {
+    "file": "uncertainty-and-honesty.md",
+    "frontmatter": true,
+    "fm_keys": [
+      "title",
+      "description",
+      "trigger_phrases",
+      "importance_tier",
+      "contextType",
+      "version"
+    ],
+    "trigger_phrases": 16,
+    "numbered_sections": 7,
+    "numbered_all_upper": true,
+    "unnumbered_sections": [
+      "Fires when",
+      "The rule"
+    ],
+    "has_fires_when": true,
+    "has_the_rule": true,
+    "has_selfcheck": true,
+    "selfcheck_items": 6,
+    "dividers": 7,
+    "routed_from_line": true,
+    "expands_agents_line": true,
+    "xrefs": [
+      "../REPO%20RULES.md"
+    ],
+    "lines": 145,
+    "bytes": 5822
+  }
+]

@@ -1,18 +1,17 @@
 {
   "level": "2",
   "specFolder": "sk-doc/040-create-repo-rules/002-inventory-and-skill-contract",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "The eight rule files agree on a shape, and no document states it",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "eight",
+    "rule",
+    "files",
+    "agree",
+    "shape",
+    "document",
+    "states"
   ],
-  "lastUpdated": "2026-08-31T11:33:09.262Z",
+  "lastUpdated": "2026-08-31T12:35:24.922Z",
   "specId": "002",
   "folderSlug": "inventory-and-skill-contract",
   "parentChain": [

@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "acceptance criteria",
-      "closure gate"
+      "creation standards",
+      "rule quality bar",
+      "dos and donts",
+      "worth loading",
+      "well-formed but thin",
+      "standards plan",
+      "quality bar derivation",
+      "negative control",
+      "eight rule check",
+      "standards tasks",
+      "eight rule validation",
+      "misreading guard"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "creation",
+      "standards",
+      "rule",
+      "quality",
+      "bar",
+      "dos",
+      "donts",
+      "worth",
+      "loading",
+      "well-formed",
+      "thin",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -85,6 +85,12 @@
         "source": "derived"
       },
       {
+        "name": "Creation Standards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,12 +115,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -127,7 +127,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Derive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Derive",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,25 +145,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -169,19 +163,13 @@
         "source": "derived"
       },
       {
+        "name": "Closure Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -191,11 +179,23 @@
         "kind": "proper_noun",
         "path": "acceptance-criteria.md",
         "source": "derived"
+      },
+      {
+        "name": "The Verification",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Written",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Phase 3 generated a rule that passed all eleven structural assertions and is thin: two sections, one obligation, nothing a reader would change their behaviour over",
     "created_at": "2026-08-31T11:33:10Z",
-    "last_save_at": "2026-08-31T11:37:31.721Z",
+    "last_save_at": "2026-08-31T13:01:48.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a753151007a70b4414785c45bc252f9ee23e4ed1656ae41d87ca5cdefe0ef0f",
+    "source_fingerprint": "sha256:d1f212645545668a31da1189aa54225d86ecbe360a970cb8dcfd7e9d6c807834",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "478a187d52fbf2ed4eb2e2bbd6ce75b8a44f39b7ee46b354b575ed42e0625f66",
-      "plan.md": "0f1d9667f3beb07e8c0a41ec9114d252ec1c8623e55d5719b5ada9abc0dda8a4",
-      "tasks.md": "2a99f57f3326173ef79ed12bbeb051ac5b3388cbabf4e39a0382efab5e1c3b18",
+      "spec.md": "db3d2c0a09eaae84073f9bd99761e661025ef046d13033babc95d5abe6a923b0",
+      "plan.md": "4dff8bc9bb52aad493aa2618146540ce723decdf733821c718097f9ef94275c8",
+      "tasks.md": "379624b980ec139b9d2624ee64e56ea2873e704f911f13b8f4dfeaae1cbf1db2",
       "implementation-summary.md": "78c2b1b9a7ba7d0f067e82f30f4223dc9e6114cbf0043b897e6980e59c9fa713"
     },
     "last_active_child_id": null,

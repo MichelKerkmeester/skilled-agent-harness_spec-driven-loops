@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 7: validation-and-changelog"
+title: "Acceptance Criteria: Phase 7: Validation, Changelog and Closeout"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-validation-and-changelog"
+    packet_pointer: "sk-doc/040-create-repo-rules/007-validation-and-changelog"
     last_updated_at: "2026-08-31T11:33:13Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Authored the closure gate for validation, changelog and closeout"
+    next_safe_action: "Choose the borderline refusal case and write it down first"
     blockers: []
     key_files: []
     session_dedup:
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 7: validation-and-changelog
+# Acceptance Criteria: Phase 7: Validation, Changelog and Closeout
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
 
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-doc/040-create-repo-rules/007-validation-and-changelog
+**Level:** 2
+**Status:** Draft
 **Date:** 2026-08-31
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,18 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the mode, When it is exercised, Then both an accept and a refusal were run and kept | Two outputs retained as evidence regardless of verdict | Unmet | - |
+| AC-002 | REQ-002 | Given the refused request, When the output is read, Then it names the failed test and the destination | A bare refusal is not a useful answer | Unmet | - |
+| AC-003 | REQ-003 | Given the changelog symlink, When it is tested, Then it resolves to the packet changelog directory | Followed, not merely created | Unmet | - |
+| AC-004 | REQ-004 | Given the parent packet, When the gate runs recursively, Then the parent and all seven children pass | First `RESULT:` line per folder | Unmet | - |
+| AC-005 | REQ-005 | Given a defect found by the exercise, When it is handled, Then it is attributed to its owning phase | A closeout that patches earlier work hides where the defect came from | Unmet | - |
+| AC-006 | REQ-006 | Given a plain-language rule request, When the advisor routes it, Then it reaches this mode | If the advisor is unreachable, recorded as not run rather than passed | Unmet | - |
+| AC-007 | REQ-007 | Given the changelog, When compared to siblings, Then it matches their format | Written to the changelog mode format | Unmet | - |
+| AC-008 | REQ-008 | Given the produced rule, When judged, Then it passes the phase-4 standards and not only the structural floor | The harder of the two bars | Unmet | - |
+| AC-009 | REQ-009 | Given the packet documents, When read together, Then none contradicts another about state | Parent status, phase map and completion claims agree | Unmet | - |
+| AC-010 | REQ-010 | Given the verdict, When reported, Then it is honest including if the mode is not worth using | Seven phases of sunk cost is not a reason to recommend a tool | Unmet | - |
+| AC-011 | REQ-001 | Given the corpus, When the exercise finishes, Then `repo-rules/` is unchanged | Unless an operator decision ships the exercise rule | Unmet | - |
+| AC-012 | REQ-004 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict` prints `RESULT: PASSED` | Unmet | - |
 
 ### Status values
 
@@ -79,8 +90,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** No
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+Written when the phase closes. AC-001 and AC-010 decide whether this is a closure or a ceremony: the packet closes on two observed runs, and the verdict is reported as it came out rather than as the phase count would suggest.
 <!-- /ANCHOR:closure -->

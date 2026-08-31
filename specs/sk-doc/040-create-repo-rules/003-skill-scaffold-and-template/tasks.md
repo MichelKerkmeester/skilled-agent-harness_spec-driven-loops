@@ -1,16 +1,16 @@
 ---
-title: "Tasks: Phase 3: skill-scaffold-and-template [template:level-2/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 3: Skill Scaffold and Templates"
+description: "Ordered tasks for scaffolding the mode packet and authoring both templates from the phase-2 contract rather than from a shipped rule, then proving the result by generating a real rule and running the same structural assertions the shipped corpus passes."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+  - "scaffold tasks"
+  - "template authoring"
+  - "structural parity"
+  - "generated sample"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 3: skill-scaffold-and-template
+# Tasks: Phase 3: Skill Scaffold and Templates
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Inspect three sibling nested modes to confirm what a mode root carries - no `description.json`, no `graph-metadata.json`
+- [x] T002 Capture md5 baselines for the corpus and the hub registration files, so non-disturbance is provable
+- [x] T003 Scaffold the tree from `target-tree.md`, honouring all four deferrals
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Seed `references/` with the two contract documents that govern generation
+- [x] T005 Write `references/README.md` routing decision-tests first, anatomy second
+- [x] T006 Author `assets/repo-rule-template.md` from the anatomy contract, corpus unopened
+- [x] T007 Author `assets/repo-rules-router-template.md` from the router's measured structure
+- [x] T008 Author `SKILL.md` to the `sk-create-skill` section contract, decision tests as step 1
+- [x] T009 Give `SKILL.md` create, revise and retire routes, since a rule is revisable
+- [x] T010 Author `README.md` for a reader outside the workflow
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +58,12 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T011 Generate a real rule from the template
+- [x] T012 Run the corpus assertions against the generated rule and a shipped rule, and compare
+- [x] T013 Confirm the tree matches `target-tree.md` and all four deferrals are absent
+- [x] T014 Confirm the corpus and the hub registration files are unchanged
+- [x] T015 Confirm every packet document parses as YAML
+- [x] T016 Run `validate.sh <this folder> --strict` and record `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +71,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Structural parity demonstrated, not asserted
+- [x] `scratch/` holds only the generated sample used as evidence
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +84,10 @@ contextType: "general"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Closure Gate**: See `acceptance-criteria.md`
+- **Contract consumed**: `../002-inventory-and-skill-contract/`
+- **Packet built**: `.opencode/skills/sk-doc/sk-create-repo-rule/`
+- **Scaffold contract followed**: `.opencode/skills/sk-doc/sk-create-skill/`
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -98,9 +109,10 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P0] Sibling mode root inspected rather than assumed
+- [x] CHK-004 [P1] Baselines captured before the first write
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,10 +120,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Templates authored from the contract, not copied from a shipped rule
+- [x] CHK-011 [P0] `SKILL.md` runs the decision tests before authoring on every path
+- [x] CHK-012 [P1] Nothing scaffolded that the target tree defers
+- [x] CHK-013 [P1] `SKILL.md` points at the decision tests rather than embedding them
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -119,10 +131,10 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Generated rule passes all 11 assertions a shipped rule passes
+- [x] CHK-022 [P1] Both templates covered: rule and router
+- [x] CHK-023 [P1] Corpus and hub confirmed unchanged
 <!-- /ANCHOR:testing -->
 
 ---
@@ -130,13 +142,15 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+The defect class this phase guards against is a template that reproduces the corpus by copying it, which would hide a wrong contract until first real use.
+
+- [x] CHK-FIX-001 [P0] Finding class recorded as `class-of-bug`: a contract that cannot generate is a contract defect, not one template's problem
+- [x] CHK-FIX-002 [P0] Producer inventory: three sibling mode roots inspected before assuming the packet shape
+- [x] CHK-FIX-003 [P0] Consumer inventory: none exist - nothing routes to the mode until phase 6; recorded rather than skipped
+- [x] CHK-FIX-004 [P0] Not applicable - no security, path, parser or redaction surface
+- [x] CHK-FIX-005 [P1] Matrix axes listed: 2 templates x 5 element classes
+- [x] CHK-FIX-006 [P1] Not applicable - no process-wide state is read
+- [x] CHK-FIX-007 [P1] Evidence pinned to the commit that lands this phase
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -144,9 +158,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No secrets in any packet document
+- [x] CHK-031 [P0] Not applicable - the packet is documents; nothing executes
+- [x] CHK-032 [P1] `SKILL.md` forbids editing `AGENTS.md` beyond a pointer, so the mode cannot weaken a gate
 <!-- /ANCHOR:security -->
 
 ---
@@ -154,9 +168,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks/acceptance-criteria synchronized
+- [x] CHK-041 [P1] `SKILL.md` names the revise and retire routes even though their mechanics are deferred
+- [x] CHK-042 [P1] Parent Phase Documentation Map updated from Pending
 <!-- /ANCHOR:docs -->
 
 ---
@@ -175,9 +189,9 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 11 | 11/11 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-08-31
 <!-- /ANCHOR:summary -->

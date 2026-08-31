@@ -1,18 +1,15 @@
 {
   "level": "2",
   "specFolder": "sk-doc/040-create-repo-rules/003-skill-scaffold-and-template",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "Phase 2 produced a contract nothing can execute",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "phase",
+    "produced",
+    "contract",
+    "nothing",
+    "execute"
   ],
-  "lastUpdated": "2026-08-31T11:33:10.088Z",
+  "lastUpdated": "2026-08-31T12:49:28.823Z",
   "specId": "003",
   "folderSlug": "skill-scaffold-and-template",
   "parentChain": [

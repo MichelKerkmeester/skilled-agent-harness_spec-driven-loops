@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
+      "validation and closeout",
+      "changelog symlink",
+      "advisor smoke test",
+      "end to end exercise",
+      "packet closure",
+      "closeout plan",
+      "borderline refusal",
+      "closeout tasks",
+      "exercise the mode",
+      "recursive validation",
       "acceptance criteria",
       "closure gate"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "validation",
+      "closeout",
+      "changelog",
+      "symlink",
+      "advisor",
+      "smoke",
+      "test",
+      "end",
+      "exercise",
+      "packet",
+      "closure",
+      "plan"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -109,7 +109,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement Six",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,7 +127,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Six",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Exercise",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,21 +145,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Two",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -163,7 +157,19 @@
         "source": "derived"
       },
       {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Closure Gate",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -181,21 +187,15 @@
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Six phases have produced a contract, a packet, two templates, a quality bar, a lifecycle contract and a registered command - and not one of them has been used",
     "created_at": "2026-08-31T11:33:12Z",
-    "last_save_at": "2026-08-31T11:37:29.659Z",
+    "last_save_at": "2026-08-31T13:01:51.088Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3de5e95c5c78ec8f8f6cdb5615e04cc26a6c42f108de74c7f29cf24cc88ba37d",
+    "source_fingerprint": "sha256:30eb86ac75b1e5d572415e3d4a02a5ac36306b869e05912dcbef376fdbaeff50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1a06b5d2725dcd75b3de3a734385690c3699f2e5c4feef10a76b83a9d6814787",
-      "plan.md": "ab9ed6587f8c89c736f7908f6e3f37aa1bd6d5e83b71db5c726eb4d27b541e80",
-      "tasks.md": "d8df8ba7f68b9e6e6807fa1ea5c27f20ebf0f32abbeed431e665e6c75ebb9788",
+      "spec.md": "5d48a403c17adc849c95283265e6ae1a0eea0d7d54e0f5af5d6e8351fd719522",
+      "plan.md": "3c7754152ee786b59b0ea22b6746555daea0dc198a5d96edc8a6fe1de9c1e0d6",
+      "tasks.md": "d8a40106d84db9cf7a7fae51093d780a338c9ce3b2b676cb512facb09be95329",
       "implementation-summary.md": "8685f6d8efdf4a239f0918faf5c45a083f8692929fe382745b320e78b0b0a8cd"
     },
     "last_active_child_id": null,

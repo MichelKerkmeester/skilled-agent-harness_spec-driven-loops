@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 4: creation-standards-and-guardrails"
+title: "Acceptance Criteria: Phase 4: Creation Standards and Guardrails"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "acceptance criteria"
@@ -10,11 +10,11 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-creation-standards-and-guardrails"
+    packet_pointer: "sk-doc/040-create-repo-rules/004-creation-standards-and-guardrails"
     last_updated_at: "2026-08-31T11:33:10Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Authored the closure gate for creation standards and guardrails"
+    next_safe_action: "Capture the corpus baseline, then derive candidate standards"
     blockers: []
     key_files: []
     session_dedup:
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
-# Acceptance Criteria: Phase 4: creation-standards-and-guardrails
+# Acceptance Criteria: Phase 4: Creation Standards and Guardrails
 
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
 
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-doc/040-create-repo-rules/004-creation-standards-and-guardrails
+**Level:** 2
+**Status:** Draft
 **Date:** 2026-08-31
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given any standard, When a reader asks what breaks without it, Then the document answers | Every standard carries a named failure; any that cannot is cut by its own rule | Unmet | - |
+| AC-002 | REQ-002 | Given the eight shipped rules, When every standard is applied, Then all eight pass | Result recorded per rule per standard; a failure either drops the standard or records the rule as an exception | Unmet | - |
+| AC-003 | REQ-003 | Given a draft rule, When a reviewer applies the standards, Then no tooling is needed | Each standard is a yes-or-no question answerable by reading | Unmet | - |
+| AC-004 | REQ-004 | Given phase 3 thin sample, When the standards are applied, Then it fails and the failing tests are named | The negative control; a bar that passes it measures nothing | Unmet | - |
+| AC-005 | REQ-005 | Given a don't, When its basis is checked, Then it is an observed failure rather than a preference | Each cites where the failure was seen | Unmet | - |
+| AC-006 | REQ-006 | Given the standards, When compared with phase 3 assertions, Then none is restated | Diffed against the structural assertion list | Unmet | - |
+| AC-007 | REQ-007 | Given the misreading guard, When it is read, Then it cites the shipped rules that needed one | Three rules added a "what this is not" section after being misread | Unmet | - |
+| AC-008 | REQ-008 | Given the standards document, When measured, Then it fits the bands it teaches | Line count inside 250, ideally under 160 | Unmet | - |
+| AC-009 | REQ-002 | Given this phase folder, When the packet gate runs, Then the spec docs validate | `validate.sh` on this folder with `--strict` prints `RESULT: PASSED` | Unmet | - |
 
 ### Status values
 
@@ -79,8 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** No
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+Written when the phase closes. AC-002 and AC-004 are the pair that matters: a bar the shipped corpus fails is set too high, and a bar the thin sample passes is not a bar at all.
 <!-- /ANCHOR:closure -->
