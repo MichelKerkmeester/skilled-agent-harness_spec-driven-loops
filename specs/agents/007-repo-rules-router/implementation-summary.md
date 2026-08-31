@@ -88,7 +88,7 @@ The other five: `scope-discipline.md` (three drifts, adjacent-defect protocol, p
 | `repo-rules/root-cause.md` | Created | Diagnostic loop, repeat-without-new-evidence stop, seam naming (151 lines) |
 | `repo-rules/uncertainty-and-honesty.md` | Created | Confidence-band behavior, UNKNOWN, contradiction halt (110 lines) |
 | `specs/agents/007-repo-rules-router/*` | Created | Level 2 packet: spec, plan, tasks, acceptance criteria, this summary |
-| `AGENTS.md` | Modified (+3 lines) | Pointer strengthened from a passive "apply conventions" bullet into a load instruction with a checkable trigger, plus a top-block statement of the two-tier split, a Self-Check line, and a §10 row |
+| `AGENTS.md` | Modified (+14 lines) | `GATE 5: REPO RULES LOAD [HARD] BLOCK` in §2, plus a top-block statement of the two-tier split, a §3 pointer, a Self-Check line, and a §10 row |
 
 ### Post-review revision
 
@@ -148,7 +148,9 @@ Verification was four mechanical checks plus a read-through, all run from the fi
 
 1. **Nothing enforces the rules.** The trigger is a document instruction, not a hook or a validator. A runtime that never reads `AGENTS.md` §3 never reaches any of this. Mitigated only by writing triggers on checkable actions; not solved.
 2. **No per-stack conventions.** `REPO RULES.md` conventionally also carries lint commands, build gates and framework idioms. None are established for this repository, and inventing them would break the rule in `overengineering.md`. The router has room for them when they exist.
-3. **The reference fires by instruction, not by mechanism.** The pointer now appears in four places — the top architecture block, the §3 bullet, the pre-response Self-Check, and §10 — and says READ rather than "apply". It stays conditional ("when the repository has one") because `AGENTS.md` is a shared template other repositories read through a symlink, so it must remain correct where no `REPO RULES.md` exists. Nothing enforces the read.
+3. **The load is now a gate, but nothing enforces the gate.** `GATE 5: REPO RULES LOAD` is a HARD BLOCK in §2, sitting after Gate 4 so Gate 2 and its tiebreakers stay contiguous, and it fires on the first write of a session. Both documents state the same split — the gate binds the **load**, while the loaded rules stay at precedence level 3 — so a mandatory read can never be misread as promoting rule content above `AGENTS.md`. What remains true is that gates in this framework are prompt-time discipline: no hook or validator checks that Gate 5 ran.
+
+4. **The reference fires by instruction, not by mechanism.** The pointer now appears in four places — the top architecture block, the §3 bullet, the pre-response Self-Check, and §10 — and says READ rather than "apply". It stays conditional ("when the repository has one") because `AGENTS.md` is a shared template other repositories read through a symlink, so it must remain correct where no `REPO RULES.md` exists. Nothing enforces the read.
 4. **MCP daemons were unavailable this session.** Spec Kit Memory and Skill Advisor both timed out, so Gate 1 trigger matching and post-save semantic indexing did not run. Packet docs authored and validated normally; the continuity fingerprint is the scaffold placeholder and would be refreshed by a `/memory:save` once the daemon is reachable.
 <!-- /ANCHOR:limitations -->
 

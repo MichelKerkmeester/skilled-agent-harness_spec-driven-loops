@@ -58,7 +58,7 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 - `/repo-rules/uncertainty-and-honesty.md` — confidence-band behavior, UNKNOWN, never-invent list, truth over agreement, contradiction halt, self-correction.
 
 ### Out of Scope
-- **Editing `AGENTS.md` beyond the `REPO RULES.md` reference itself** — the operator later scoped in strengthening that pointer, which is now done (+3 net lines). Every other part of the always-loaded document stays untouched.
+- **Editing `AGENTS.md` beyond the `REPO RULES.md` reference and its gate** — the operator scoped in strengthening the pointer, then promoting the load to a mandatory gate (GATE 5, +14 net lines total). Every other part of the always-loaded document stays untouched.
 - **Skill routing, workflow selection, spec-folder mechanics, agent dispatch, MCP routing** - the operator excluded skill-related content; these are owned by `AGENTS.md` §2/§5/§6/§9 and must have exactly one home.
 - **Prose-style communication rules** (`AGENTS.md` §8 Writing) - they govern how a reply reads, not how the AI thinks or acts. Honest close-out, which *is* an action, is carried in `evidence-and-proof.md` §10, beside the receipts rules it depends on.
 - **Per-stack conventions** (lint commands, build gates, framework idioms) - none are established for this repository yet, and inventing them would violate the very rule in `overengineering.md`.
@@ -75,6 +75,7 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 | `repo-rules/blast-radius.md` | Create | Reversibility, rollback sentence, persistence boundaries |
 | `repo-rules/root-cause.md` | Create | Diagnostic loop, repeat-without-new-evidence stop, seam naming |
 | `repo-rules/uncertainty-and-honesty.md` | Create | Confidence-band behavior, UNKNOWN, contradiction halt |
+| `AGENTS.md` | Modify | GATE 5 (repo rules load), top-block split statement, §3 pointer, Self-Check line, §10 row |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -100,6 +101,7 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 | REQ-007 | The router states a precedence ladder making clear that no rule file relaxes an `AGENTS.md` hard blocker. |
 | REQ-008 | Rules that compose across files cross-reference each other by filename rather than restating the other rule. |
 | REQ-009 | The over-engineering rule explicitly states what it is *not*, so restraint cannot be read as licence to under-deliver frozen scope. |
+| REQ-010 | Loading `REPO RULES.md` is a mandatory §2 gate, and both documents state that the gate binds the load rather than promoting the loaded rules above `AGENTS.md`. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -113,6 +115,7 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 - **SC-001**: A runtime following `AGENTS.md` §3 finds a real file at `REPO RULES.md` and can select the governing rule from the trigger table without reading any rule file it does not need.
 - **SC-002**: The six rule files together carry expanded treatment of every compressed operating-discipline row in `AGENTS.md` §2, §3, §4, and §7 that concerns thinking and acting, and none of the skill-routing rows.
 - **SC-003**: Adding a seventh rule requires exactly two edits — a new file plus two router rows — with no change to any existing rule file.
+- **SC-004**: The rules fire from a gate rather than from a buried bullet, and no reading of either document can conclude that a rule file outranks `AGENTS.md`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

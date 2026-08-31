@@ -1,8 +1,8 @@
 # REPO RULES
 
-Repo-local operating rules for this repository. `AGENTS.md` §3 binds you to this
-document; this document routes you to the one rule file that governs what you are
-about to do.
+Repo-local operating rules for this repository. `AGENTS.md` **Gate 5 (§2)** makes
+reading this document mandatory before your first write of the session; this document
+then routes you to the one rule file that governs what you are about to do.
 
 **This file is a router, not a rulebook.** It holds no rules of its own. Match your
 situation in the trigger table, open that file, follow it. Everything else stays
@@ -33,6 +33,10 @@ unread.
 
 A rule file may tighten `AGENTS.md`. None of them relaxes a HARD BLOCK, and none
 authorizes an action `AGENTS.md` forbids.
+
+Gate 5 does not change that. It makes the **load** mandatory — reading this document
+and the rule file it names is a hard block. What you load stays at level 3: the
+obligation to read is tier 1, the content is not.
 
 ---
 

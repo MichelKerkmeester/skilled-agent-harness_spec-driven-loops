@@ -67,6 +67,8 @@ contextType: "implementation"
 - [x] T018 Complete packet docs and reconcile completion metadata across spec / plan / tasks / acceptance-criteria / implementation-summary
 - [x] T019 Apply an independent review: verify all 10 findings against `AGENTS.md`, fix 4 contradictions, remove 5 duplications, close the task-specific-proof gap
 - [x] T020 Strengthen the `AGENTS.md` `REPO RULES.md` reference: top-block split statement, §3 load instruction, Self-Check line, §10 row (+3 net lines), keeping every mention conditional so the shared template stays correct where no `REPO RULES.md` exists
+- [x] T021 Promote the load to `GATE 5: REPO RULES LOAD [HARD] BLOCK` in §2, placed after Gate 4 so Gate 2 and its tiebreakers stay contiguous; shrink the §3 bullet to a pointer so the gate is the single owner of the mechanics
+- [x] T022 State the load-versus-content split at both ends — `AGENTS.md` GATE 5 and the `REPO RULES.md` precedence section — so a mandatory load cannot be read as promoting rule content above `AGENTS.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---

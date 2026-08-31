@@ -8,7 +8,7 @@
 
 **Universal Framework:** Code work routes through the `sk-code` skill, which auto-detects the active surface and loads its patterns and verification; unrecognized surfaces trigger a disambiguation question. Detection markers and per-surface patterns live in `.opencode/skills/sk-code/SKILL.md` §2 Smart Routing.
 
-**Repo-Local Layer:** This document is shared across repositories, so anything belonging to ONE repository lives beside it in that repository's root `REPO RULES.md` — a router to per-rule documents under `repo-rules/`. When the working repository has one, READ it before your first write of the session. Its rules bind exactly as this document's do; where the two appear to disagree, this document wins.
+**Repo-Local Layer:** This document is shared across repositories, so anything belonging to ONE repository lives beside it in that repository's root `REPO RULES.md` — a router to per-rule documents under `repo-rules/`. Gate 5 (§2) makes reading it mandatory before your first write, where the repository has one. Its rules bind exactly as this document's do; where the two appear to disagree, this document wins.
 
 **The Iron Law:** NO completion claims without running stack-appropriate verification.
 
@@ -108,6 +108,16 @@ Trigger-phrase routing ("deep-research", "deep-review", ":auto", "iterations", "
 - **Executor CLI ≠ skill route.** "Use cli-opencode gpt-5.5 high" is the HOW — it still runs INSIDE the skill's workflow. Never let the executor name override the skill-owned route.
 - **Skill advisor ambiguity.** When `command-spec-kit` matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins. The CLI executor is a tool inside the command's workflow, not a replacement for it.
 
+#### GATE 5: REPO RULES LOAD [HARD] BLOCK
+Trigger: the FIRST write of the session, in any repository whose root holds a `REPO RULES.md`. Read-only turns never fire it, and a repository without that file has nothing to load — this document alone governs there.
+1. Open the repository's root `REPO RULES.md`.
+2. Match **the action you are about to take** against its trigger table — the action, never the topic of the request.
+3. LOAD the one rule file it names, and follow it. Two triggers fire → load both. No trigger matches → nothing loads, and you do not go looking for a rule to apply.
+- Loading means reading. A rule you named but did not open does not satisfy this, and a rule already in context is not re-read. That load is a Read, not a Gate Action, so on a file-modification request it queues behind Gate 3 like any other tool call.
+- **This gate binds the LOAD, not the loaded content.** The obligation to read is mandatory; what you read stays below this document and below a live operator instruction, exactly as `REPO RULES.md`'s own precedence ladder states. A rule file never relaxes a hard blocker — where the two appear to disagree, this document wins, the rule file is wrong, and you say so rather than following it.
+- Output: `REPO RULES: [rule file loaded]`, or `REPO RULES: no trigger matched`, or `REPO RULES: none in this repository`
+- Skip: the §6 exemption class only (a few characters in one file). Any new behavior, API, or control flow loads the rule.
+
 #### CONSOLIDATED QUESTION PROTOCOL
 Consolidate multiple questions into a SINGLE prompt before any analysis or tool calls — never split across messages. **Bypass phrases:** "skip context" / "fresh start" / "skip memory" / [skip] for memory loading; Level 1 tasks skip completion verification.
 
@@ -152,7 +162,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 - **Define proof before implementation.** Convert acceptance criteria into observable checks and identify the authoritative final gate before changing files.
 - **Use a research-first approach.** Read the actual code, docs, and local instructions first; prefer surgical edits over broad rewrites.
 - **Make one pre-write pass before adding code.** Two questions, in order. *Does this need to exist?* — walk the restraint ladder, cheapest rung first: not at all, then a simpler existing thing, then the minimum that works. Concluding "unnecessary" never licenses a cut; implement the frozen scope AND raise the amendment in the same response. *What does it touch?* — when the change can break a caller or a shared contract, name the owning module, one real caller, and the contract that must not break, before the first edit. Both questions need what already exists to be read first, which is why this is a post-read reflex and not a planning ritual. Authoritative rungs: `sk-code/shared/references/universal/code-quality-standards.md` §1.
-- **Read `REPO RULES.md` before your first write, in any repository that has one.** It is a router, not a rulebook: match the action you are about to take against its trigger table, then load the one rule file it names. Applying it means LOADING it — a rule you named but did not read does not satisfy this, exactly as with Gate 2. What it carries is repo-local: thinking and acting discipline (restraint, scope, evidence, blast radius, diagnosis, honesty) alongside verification commands and local contracts, all binding exactly as this document's rules do.
+- **Repo-local rules load at Gate 5 (§2), before your first write.** What `REPO RULES.md` carries is repo-local: thinking and acting discipline — restraint, scope, evidence, blast radius, diagnosis, honesty — alongside verification commands and local contracts, all binding exactly as this document's rules do, and below them on conflict. The gate owns the mechanics; do not re-derive them here.
 
 **Ownership & Completion:**
 - **Take responsibility for issues encountered during execution.** Do not dodge ownership with phrases like `not caused by my changes` or `pre-existing issue`; work toward the fix.
@@ -276,7 +286,7 @@ Trigger: "save context", "save memory", `/memory:save`
 - [ ] File modification? Asked spec folder question?
 - [ ] Skill routing verified?
 - [ ] First code or `.md` write? Routed per the Gate 2 artifact trigger and LOADED what it resolved?
-- [ ] Repository has a `REPO RULES.md`? Matched the action in its trigger table and LOADED the rule file it names?
+- [ ] Passed Gate 5? Repository has a `REPO RULES.md` → matched the action in its trigger table and LOADED the rule file it names?
 - [ ] Saving memory? Using `generate-context.js` (not Write tool)?
 - [ ] Aligned with ORIGINAL request? No scope drift?
 - [ ] Claiming completion? `checklist.md` verified?
@@ -445,7 +455,7 @@ Any agent writing authored spec-folder docs MUST use contract-backed templates a
 | **Resume prior work** | `/speckit:resume` → rebuild via the continuity ladder (`handover.md` → `_memory.continuity` → canonical spec docs) |
 | **New spec folder** | Gate 3 Option B → research (Task tool) → evidence-based plan → approval → implement |
 | **Code work** | `sk-code` → smart router auto-detects the stack → implement → quality gate → debug → verify |
-| **Repo-local rules** | `REPO RULES.md` (when the repo has one) → match the action in its trigger table → load the one `repo-rules/*.md` it names |
+| **Repo-local rules** | Gate 5 → `REPO RULES.md` (when the repo has one) → match the action in its trigger table → load the one `repo-rules/*.md` it names |
 | **Design reference extraction** | `sk-design-md-generator` (measure a live site's CSS into a v3 Style Reference DESIGN.md); `mcp-figma` transport for Figma sources → build via `sk-code` |
 | **Research / exploration** | `memory_match_triggers()` → `memory_context()` (unified) or `memory_search()` (targeted) |
 | **Git workflow** | `sk-git` → worktree / commit / finish (PR); see §5 Git Workspace Safety |
