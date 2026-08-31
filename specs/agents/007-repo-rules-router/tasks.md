@@ -34,7 +34,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Read `AGENTS.md` end to end and outline its ten sections (`AGENTS.md`)
-- [x] T002 Locate every existing reference to `REPO RULES.md` and classify each as consumer or third-party mention (`AGENTS.md:153`, `.opencode/skills/sk-code/sk-code-obsidian/references/*.md`)
+- [x] T002 Locate every existing reference to `REPO RULES.md` and classify each as consumer or third-party mention (`AGENTS.md` §3, `.opencode/skills/sk-code/sk-code-obsidian/references/*.md`)
 - [x] T003 Select the compressed operating-discipline rows worth expanding, excluding all skill-routing, workflow, spec-mechanics, agent-dispatch and MCP content
 - [x] T004 Scaffold the Level 2 packet and relocate it to the `agents` track (`specs/agents/007-repo-rules-router/`)
 <!-- /ANCHOR:phase-1 -->
@@ -112,7 +112,7 @@ contextType: "implementation"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md — REQ-001…REQ-009
 - [x] CHK-002 [P0] Technical approach defined in plan.md — router + leaves, §3
-- [x] CHK-003 [P1] Dependencies identified and available — `AGENTS.md:153` confirmed; both MCP daemons recorded as unavailable this session
+- [x] CHK-003 [P1] Dependencies identified and available — `AGENTS.md` §3 confirmed; both MCP daemons recorded as unavailable this session
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -144,7 +144,7 @@ contextType: "implementation"
 
 - [x] CHK-FIX-001 [P0] Finding class — N/A, this packet fixes no defect; it creates a file an existing instruction already points at
 - [x] CHK-FIX-002 [P0] Same-class producer inventory — `grep -rn "REPO RULES" . --include=*.md`, 5 hits, all classified in `plan.md` Affected Surfaces
-- [x] CHK-FIX-003 [P0] Consumer inventory — one real consumer (`AGENTS.md:153`), unchanged; four third-party-scoped mentions, not consumers
+- [x] CHK-FIX-003 [P0] Consumer inventory — one real consumer (`AGENTS.md` §3), unchanged; four third-party-scoped mentions, not consumers
 - [x] CHK-FIX-004 [P0] Adversarial table tests — N/A, no path handling, parsing, redaction or security surface
 - [x] CHK-FIX-005 [P1] Matrix axes — N/A, single axis (rule file), six rows, all authored
 - [x] CHK-FIX-006 [P1] Hostile env variant — N/A, no process-wide state read

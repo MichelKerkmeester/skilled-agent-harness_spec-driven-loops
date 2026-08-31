@@ -128,7 +128,7 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 | Risk | Duplication drift: a rule restates an `AGENTS.md` rule, then the two diverge | Med — two contradictory sources of truth | Rule files expand *how* to apply; the router's precedence ladder makes `AGENTS.md` authoritative on conflict |
 | Risk | Nothing loads the rules, because the trigger is a document instruction rather than a hook | Med — rules exist but never fire | Triggers are written on the *action* about to be taken, which is what an agent can actually match before acting |
 | Risk | The rule set itself over-engineers — more rules than the repo earns | Low | Six files, each replacing an existing compressed `AGENTS.md` row; no rule invented for a problem this repo has not had |
-| Dependency | `AGENTS.md` §3 pointer to `REPO RULES.md` | Rules are unreachable if that bullet is removed | Pointer verified present at `AGENTS.md:153`; not modified by this packet |
+| Dependency | `AGENTS.md` §3 pointer to `REPO RULES.md` | Rules are unreachable if that bullet is removed | Pointer verified present in `AGENTS.md` §3; later strengthened and gated by this packet |
 <!-- /ANCHOR:risks -->
 
 ---

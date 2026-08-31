@@ -32,7 +32,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Router location: root `REPO RULES.md` (settled by the existing `AGENTS.md:153` pointer)"
+      - "Router location: root `REPO RULES.md` (settled by the existing `AGENTS.md` §3 pointer)"
       - "Rule set: six leaves, thinking/acting only, skills excluded (operator, 2026-08-31)"
       - "`AGENTS.md` left unmodified — the pointer already binds"
 ---
@@ -80,15 +80,19 @@ The other five: `scope-discipline.md` (three drifts, adjacent-defect protocol, p
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `REPO RULES.md` | Created | Router: loading protocol, precedence ladder, trigger table, index, scope statement (74 lines) |
-| `repo-rules/overengineering.md` | Created | Restraint ladder, pre-write pass, the two net-new signals, per-domain restraints (144 lines) |
-| `repo-rules/scope-discipline.md` | Created | Frozen scope, adjacent defects, amendments (128 lines) |
-| `repo-rules/evidence-and-proof.md` | Created | Claim tiers, command evidence, baselines, shape-specific proof, final-state proof, close-out (169 lines) |
-| `repo-rules/blast-radius.md` | Created | Reversibility, rollback sentence, persistence boundaries (132 lines) |
-| `repo-rules/root-cause.md` | Created | Diagnostic loop, repeat-without-new-evidence stop, seam naming (151 lines) |
-| `repo-rules/uncertainty-and-honesty.md` | Created | Confidence-band behavior, UNKNOWN, contradiction halt (110 lines) |
+| `REPO RULES.md` | Created | Router: loading protocol, precedence ladder, trigger table, index, scope statement (61 lines) |
+| `repo-rules/overengineering.md` | Created | Restraint ladder, pre-write pass, the two net-new signals, per-domain restraints (107 lines) |
+| `repo-rules/scope-discipline.md` | Created | Frozen scope, adjacent defects, amendments (97 lines) |
+| `repo-rules/evidence-and-proof.md` | Created | Claim tiers, command evidence, baselines, shape-specific proof, final-state proof, close-out (136 lines) |
+| `repo-rules/blast-radius.md` | Created | Reversibility, rollback sentence, persistence boundaries (104 lines) |
+| `repo-rules/root-cause.md` | Created | Diagnostic loop, repeat-without-new-evidence stop, seam naming (117 lines) |
+| `repo-rules/uncertainty-and-honesty.md` | Created | Confidence-band behavior, UNKNOWN, contradiction halt (81 lines) |
 | `specs/agents/007-repo-rules-router/*` | Created | Level 2 packet: spec, plan, tasks, acceptance criteria, this summary |
 | `AGENTS.md` | Modified (+14 lines) | `GATE 5: REPO RULES LOAD [HARD] BLOCK` in §2, plus a top-block statement of the two-tier split, a §3 pointer, a Self-Check line, and a §10 row |
+
+### Compression pass
+
+A later pass cut the rule set from 912 lines to 703 (**−22.9%**) with no rule, mechanism, table row or self-check item removed — verified by comparing heading, table-row and checkbox counts against the previous revision, all six files identical on every count. Two structural changes did most of it: the five-line bounding blockquote became two, and the decorative `---` rules between sections went, since headings already separate them. The rest was prose tightening. One instruction was genuinely lost mid-pass and restored on audit: "measure under stated conditions" in the baselines section.
 
 ### Post-review revision
 
@@ -102,7 +106,7 @@ The same pass removed five verbatim duplications of always-loaded text — the c
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Read `AGENTS.md` end to end first, then classified every existing `REPO RULES.md` reference to find out whether anything real consumed the name — one true consumer (`AGENTS.md:153`), four mentions scoped to a different repository's copy inside `sk-code`. That is what settled the router's location without a question: the path was already named, so choosing anything else would have left the live pointer dangling.
+Read `AGENTS.md` end to end first, then classified every existing `REPO RULES.md` reference to find out whether anything real consumed the name — one true consumer (`AGENTS.md` §3), four mentions scoped to a different repository's copy inside `sk-code`. That is what settled the router's location without a question: the path was already named, so choosing anything else would have left the live pointer dangling.
 
 Selection of the six rules came from a pass over `AGENTS.md` §2, §3, §4 and §7 looking for rows that are correct but have no room to say *how* to apply them, minus everything skill-, workflow-, spec- and dispatch-related per the operator's exclusion. Router and leaves were authored against that one selection decision, so the trigger table and the `Fires when` blocks could not drift apart.
 
@@ -116,7 +120,7 @@ Verification was four mechanical checks plus a read-through, all run from the fi
 
 | Decision | Why |
 |----------|-----|
-| Root `REPO RULES.md`, not `repo-rules/README.md` | `AGENTS.md:153` already names that exact path. Any other location leaves the live pointer dangling and needs an `AGENTS.md` edit to fix. |
+| Root `REPO RULES.md`, not `repo-rules/README.md` | `AGENTS.md` §3 already names that exact path. Any other location leaves the live pointer dangling and needs an `AGENTS.md` edit to fix. |
 | Router holds zero rule text | A rule change then touches exactly one file, and a seventh rule costs one new file plus two router rows. |
 | Trigger on the action, not the topic | An agent can match "about to delete" against its own next tool call. It cannot reliably match "this is risky". |
 | Expand `AGENTS.md`, never relocate from it | Moving a rule out creates a window where it lives in neither place. The rows stay authoritative; the leaves say how to apply them. |

@@ -24,7 +24,7 @@ contextType: "implementation"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown doctrine; no executable surface |
-| **Framework** | `AGENTS.md` behavior framework (§3 pointer at `AGENTS.md:153`) |
+| **Framework** | `AGENTS.md` behavior framework (§3 pointer at `AGENTS.md` §3) |
 | **Storage** | Flat files: root `REPO RULES.md` + `repo-rules/*.md` |
 | **Testing** | Link resolution, git-ignore check, `validate.sh --strict` on the packet |
 
@@ -40,7 +40,7 @@ contextType: "implementation"
 ### Definition of Ready
 - [x] Problem statement clear and scope documented (`spec.md` §2-§3)
 - [x] Success criteria measurable (`spec.md` §5, `acceptance-criteria.md`)
-- [x] Dependency identified: `AGENTS.md:153` pointer confirmed present and unmodified
+- [x] Dependency identified: `AGENTS.md` §3 pointer confirmed present and unmodified
 
 ### Definition of Done
 - [x] All acceptance criteria met (`acceptance-criteria.md` all rows `Met`)
@@ -95,7 +95,7 @@ Not a bug fix. The inventory below is retained because this packet creates a fil
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `AGENTS.md:153` | Consumer — instructs runtimes to apply `REPO RULES.md` | unchanged | `grep -n "REPO RULES" AGENTS.md` → single hit at 153, wording already conditional |
+| `AGENTS.md` §3 | Consumer — instructs runtimes to apply `REPO RULES.md` | unchanged | `grep -n "REPO RULES" AGENTS.md` → 7 hits after this packet, every one conditional |
 | `.opencode/skills/sk-code/sk-code-obsidian/references/*.md` | Mentions `REPO RULES.md` of a *different* repository (the Obsidian plugin repo) | not a consumer | `grep -rn "REPO RULES" .opencode/` → 2 hits, both scoped to `<plugin-repo>` |
 | `specs/sk-code/007-.../plan.md`, `tasks.md` | Historical references to another repo's file | not a consumer | same grep; both under `specs/`, both third-party-scoped |
 | `.gitignore` | Could silently exclude the new paths | unchanged | `git check-ignore -v` on the new paths → exit 1 (no match) |
@@ -150,7 +150,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `AGENTS.md` §3 pointer | Internal | Green — verified at `AGENTS.md:153` | Rules become unreachable; they would need an explicit load instruction elsewhere |
+| `AGENTS.md` §3 pointer | Internal | Green — verified at `AGENTS.md` §3 | Rules become unreachable; they would need an explicit load instruction elsewhere |
 | `system-spec-kit` `create.sh` / `validate.sh` | Internal tooling | Green | Packet docs would need hand-scaffolding from the templates |
 | Spec Kit Memory MCP / Skill Advisor MCP | Internal tooling | **Red — both timed out this session** | Gate 1 trigger matching and post-save indexing unavailable; packet docs still author and validate normally |
 <!-- /ANCHOR:dependencies -->
