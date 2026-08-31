@@ -450,30 +450,30 @@ Any agent writing authored spec-folder docs MUST use contract-backed templates a
 
 ### Quick Reference: Common Workflows
 
-| Task | Flow |
-| ---- | ---- |
-| **Resume prior work** | `/speckit:resume` → rebuild via the continuity ladder (`handover.md` → `_memory.continuity` → canonical spec docs) |
-| **New spec folder** | Gate 3 Option B → research (Task tool) → evidence-based plan → approval → implement |
-| **Code work** | `sk-code` → smart router auto-detects the stack → implement → quality gate → debug → verify |
-| **Repo-local rules** | Gate 5 → `REPO RULES.md` (when the repo has one) → match the action in its trigger table → load the one `repo-rules/*.md` it names |
-| **Design reference extraction** | `sk-design-md-generator` (measure a live site's CSS into a v3 Style Reference DESIGN.md); `mcp-figma` transport for Figma sources → build via `sk-code` |
-| **Research / exploration** | `memory_match_triggers()` → `memory_context()` (unified) or `memory_search()` (targeted) |
-| **Git workflow** | `sk-git` → worktree / commit / finish (PR); see §5 Git Workspace Safety |
-| **Prompt improvement** | `sk-prompt`, dispatched by `/prompt:improve` |
-| **Markdown writing** | `@markdown` or `/create:*` → `sk-doc` template → write |
-| **Documentation quality** | `sk-doc` → classify → template → validate → DQI score |
-| **Phase workflow** | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → decompose → plan first child |
-| **Context retrieval** | `@context` (one-shot); `/deep:research` and `/deep:review` carry bounded snapshots |
-| **Deep research** | `/deep:research` → loop → convergence → synthesize → memory save |
-| **Deep review** | `/deep:review` → loop → convergence → `review-report.md` → memory save |
-| **Deep AI Council** | `/deep:ai-council` → deliberate → critique → converge → artifacts → gate |
-| **Deep improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement` |
-| **Claim completion** | Final-State Verification → `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
-| **Save context** | `/memory:save`, or compose JSON → `generate-context.js` |
-| **End session** | `/memory:save` → `handover.md` update → continuation prompt |
-| **Memory DB admin** | `/memory:manage` → stats, health, cleanup, retention, validate, ingest |
-| **Analysis / evaluation** | `/memory:search` → preflight, causal graph, ablation, dashboard, history |
-| **Doctor surface** | `/doctor <target>` diagnostics/repairs; `/doctor:mcp install/debug`; `/doctor:update` |
+| Task                              | Flow                                                                                                                                                    |
+| -----------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Resume prior work**             | `/speckit:resume` → rebuild via the continuity ladder (`handover.md` → `_memory.continuity` → canonical spec docs)                                      |
+| **New spec folder**               | Gate 3 Option B → research (Task tool) → evidence-based plan → approval → implement                                                                     |
+| **Code work**                     | `sk-code` → smart router auto-detects the stack → implement → quality gate → debug → verify                                                             |
+| **Repo-local rules**              | Gate 5 → `REPO RULES.md` (when the repo has one) → match the action in its trigger table → load the one `repo-rules/*.md` it names                      |
+| **Design reference extraction**   | `sk-design-md-generator` (measure a live site's CSS into a v3 Style Reference DESIGN.md); `mcp-figma` transport for Figma sources → build via `sk-code` |
+| **Research / exploration**        | `memory_match_triggers()` → `memory_context()` (unified) or `memory_search()` (targeted)                                                                |
+| **Git workflow**                  | `sk-git` → worktree / commit / finish (PR); see §5 Git Workspace Safety                                                                                 |
+| **Prompt improvement**            | `sk-prompt`, dispatched by `/prompt:improve`                                                                                                            |
+| **Markdown writing**              | `@markdown` or `/create:*` → `sk-doc` template → write                                                                                                  |
+| **Documentation quality**         | `sk-doc` → classify → template → validate → DQI score                                                                                                   |
+| **Phase workflow**                | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → decompose → plan first child                                                         |
+| **Context retrieval**             | `@context` (one-shot); `/deep:research` and `/deep:review` carry bounded snapshots                                                                      |
+| **Deep research**                 | `/deep:research` → loop → convergence → synthesize → memory save                                                                                        |
+| **Deep review**                   | `/deep:review` → loop → convergence → `review-report.md` → memory save                                                                                  |
+| **Deep AI Council**               | `/deep:ai-council` → deliberate → critique → converge → artifacts → gate                                                                                |
+| **Deep improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement`                                           |
+| **Claim completion**              | Final-State Verification → `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata                                              |
+| **Save context**                  | `/memory:save`, or compose JSON → `generate-context.js`                                                                                                 |
+| **End session**                   | `/memory:save` → `handover.md` update → continuation prompt                                                                                             |
+| **Memory DB admin**               | `/memory:manage` → stats, health, cleanup, retention, validate, ingest                                                                                  |
+| **Analysis / evaluation**         | `/memory:search` → preflight, causal graph, ablation, dashboard, history                                                                                |
+| **Doctor surface**                | `/doctor <target>` diagnostics/repairs; `/doctor:mcp install/debug`; `/doctor:update`                                                                   |
 
 #### Operational Mandates
 
