@@ -58,10 +58,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 2. COMPLETION CRITERIA
 
-- [ ] A deliberately hung run terminates at its bound rather than persisting
-- [ ] That run's output names the handle retaining the process
-- [ ] The healthy full suite completes inside the bound with the margin recorded
-- [ ] A baseline duration is recorded so a future slowdown is visible rather than mysterious
+- [x] A deliberately hung run terminates at its bound rather than persisting
+- [x] That run's output names the handle retaining the process
+- [x] The healthy full suite completes inside the bound with the margin recorded
+- [x] A baseline duration is recorded so a future slowdown is visible rather than mysterious
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,6 +80,7 @@ and findings belong here.
 | Phase authored and validated | Done | `validate.sh --strict` RESULT: PASSED, Errors: 0 |
 | Baseline measured | Done | runtime, bound and margin logged per invocation |
 | Reproduction built | Done | leaked timer persisted pre-fix, named no handle |
+| Criteria verified | Done | 1200ms bound -> exit 124 'terminating process group'; generous bound -> 9 passed, margin 178907ms; reporter named `Timeout` |
 | Bound and hang reporting applied | Done | exit 124 at the bound; reporter named `Timeout` |
 
 ### Deviations and findings

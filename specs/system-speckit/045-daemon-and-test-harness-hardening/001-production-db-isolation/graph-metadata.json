@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`mcp-server/vitest.config.ts` loads `tests/support/vitest-setup.ts`, whose `isolateProductionDatabase()` exists to stop a test opening the live memory database",
     "created_at": "2026-08-30T09:55:25Z",
-    "last_save_at": "2026-08-30T18:30:37.227Z",
+    "last_save_at": "2026-08-31T04:07:50.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a32e55a3fa187bd54230e227d342f540bdae9350e244a9bd4992c9562234cd67",
+    "source_fingerprint": "sha256:beac370b92368753f90a7b276a727d385e074bb3d0c8e6da61e2643f652a16c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "af60d83a277b291c86de311eea63b92bbd1d3c34e09186b0cacb7a2011fe7571",

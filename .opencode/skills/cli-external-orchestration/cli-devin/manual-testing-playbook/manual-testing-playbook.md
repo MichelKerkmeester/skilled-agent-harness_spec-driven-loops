@@ -95,7 +95,7 @@ Coverage note (2026-07-27): The scenarios are grounded in Devin 3000.2.17, with 
 3. Scenario execution requires the operator to have completed `devin auth login`; this interactive OAuth step is not automated by the playbook and does not block authoring or packet validation.
 4. Run outside Devin: `env | grep -E '(^|_)DEVIN_'` must not show `DEVIN_PROJECT_DIR`, and the process ancestry must not be a Devin session.
 5. The repo dispatch convention is `devin --permission-mode bypass`; use `--permission-mode dangerous` only when the scenario explicitly requires the canonical value rather than the alias.
-6. Valid permission values are `normal` (alias `auto`, default), `accept-edits`, `dangerous` (aliases `yolo`, `bypass`), and `autonomous` only with `--sandbox`. The help text's `smart` entry is intentionally tested as a documentation/runtime mismatch; do not treat `smart` as valid.
+6. Valid permission values, verified by probe against `devin 3000.6.7`: `normal` (alias `auto`, default), `accept-edits`, `smart`, `dangerous` (aliases `yolo`, `bypass`), and `autonomous` (requires `--sandbox`). Every recorded result about a permission value is scoped to the version that produced it: `smart` was rejected at 3000.2.17 and is accepted at 3000.6.7, so a scenario asserting either outcome must name its version. Re-probe after a CLI upgrade rather than trusting this line — `devin --permission-mode <value> --prompt-file /nonexistent` exits 2 on a rejected value and 1 on an accepted one.
 7. Any scenario that changes `.devin/hooks.v1.json`, `.devin/skills/`, or another live config MUST create and use an isolated temporary workspace. The repository's real configuration and symlinks are never test fixtures.
 
 ---

@@ -100,4 +100,29 @@ describe('production database isolation', () => {
       ['fixture/vitest.config.ts', "include: ['mcp-server/tests/**']"],
     ])).toEqual(['fixture/vitest.config.ts']);
   });
+
+  it('still detects a test context when the environment markers are absent', async () => {
+    const saved = {
+      VITEST: process.env.VITEST,
+      NODE_ENV: process.env.NODE_ENV,
+      SPECKIT_TEST: process.env.SPECKIT_TEST,
+    };
+    delete process.env.VITEST;
+    delete process.env.NODE_ENV;
+    delete process.env.SPECKIT_TEST;
+    try {
+      // A worker that lost the environment must not read as production; the runner marker is
+      // what keeps the isolation guard armed across that gap.
+      const paths = await import('../../shared/paths.ts');
+      // With every environment marker stripped, resolution must still land on a throwaway dir
+      // rather than the production directory — the runner marker keeps the guard armed.
+      const resolved = paths.resolveDatabaseDir();
+      expect(resolved).not.toMatch(/mcp-server[/\\]database$/);
+      expect(typeof (globalThis as Record<string, unknown>).__vitest_worker__).not.toBe('undefined');
+    } finally {
+      if (saved.VITEST !== undefined) process.env.VITEST = saved.VITEST;
+      if (saved.NODE_ENV !== undefined) process.env.NODE_ENV = saved.NODE_ENV;
+      if (saved.SPECKIT_TEST !== undefined) process.env.SPECKIT_TEST = saved.SPECKIT_TEST;
+    }
+  });
 });

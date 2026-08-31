@@ -82,12 +82,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] No vitest entry point resolves the production database directory, from any working directory
-- [ ] An orphaned launcher terminates and releases its respawn lock with no operator action
-- [ ] A hung suite dies within its bound and names the handle retaining it
-- [ ] A held divergence emits one log entry, and the follower log cannot grow unbounded
-- [ ] Each phase has a recorded negative control: failure reproduced before, guard firing after
-- [ ] `validate.sh <packet> --strict --recursive` reports Errors: 0 across all five folders
+- [x] No vitest entry point resolves the production database directory, from any working directory
+- [x] An orphaned launcher terminates and releases its respawn lock with no operator action
+- [x] A hung suite dies within its bound and names the handle retaining it
+- [x] A held divergence emits one log entry, and the follower log cannot grow unbounded
+- [x] Each phase has a recorded negative control: failure reproduced before, guard firing after
+- [x] `validate.sh <packet> --strict --recursive` reports Errors: 0 across all five folders
 <!-- /ANCHOR:completion -->
 
 ---
@@ -107,6 +107,7 @@ and findings belong here.
 | 001-production-db-isolation | Done | guard reachable from all three entry points; drift check proven non-vacuous |
 | 002-orphan-daemon-reaping | Done | orphan reaped and lock released; live-parent and connected-peer both refused |
 | 003-test-hang-containment | Done | exit 124 at the bound; reporter names the handle |
+| All completion criteria verified | Done | four phase negative controls recorded; `validate.sh --strict` Errors: 0 across all five folders |
 | 004-live-follow-log-hygiene | Done | 4 entries -> 1 held; cap with one retained generation |
 
 ### Deviations and findings

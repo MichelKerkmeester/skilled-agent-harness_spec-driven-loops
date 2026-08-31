@@ -1,0 +1,936 @@
+{
+  "sessionId": "2026-08-31-auto-deep-review-045",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Orphan-sweep kill switch bypassable via the library surface",
+      "file": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "confirmed",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Orphan-sweep kill switch remains bypassable through the library surface",
+      "file": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "confirmed",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Orphan-sweep kill switch bypassable via the library surface",
+      "file": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "grep -n \"isSweepEnabled|applySweep|SPECKIT_SESSION_START_ORPHAN_SWEEP\" process-sweep.ts shows env var read once at line 394, exported applySweep at line 232 without the same guard",
+      "affectedSurfaceHints": [
+        "process-sweep library API",
+        "session-cleanup plugin",
+        "CLI entry point",
+        "kill switch contract"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "confirmed",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        },
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "P1-002",
+        "P1-003",
+        "P1-004",
+        "P1-005"
+      ]
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Plan-time parent-pid gate leaves freshly-orphaned daemons alive",
+      "file": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "line": 201,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "confirmed",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Plan-time parent-pid gate leaves freshly orphaned daemons alive",
+      "file": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "line": 201,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "confirmed",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Plan-time parent-pid gate leaves freshly-orphaned daemons alive (false-negative window)",
+      "file": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "grep -n \"row.ppid|live-parent-preserved\" process-sweep.ts shows the gate at line 203 is the only consumer of plan-time ppid inside applyCandidate; the apply-time fresh re-check at line 215-216 only fires if the plan-time gate already passed",
+      "affectedSurfaceHints": [
+        "applyCandidate gate ordering",
+        "plan-vs-apply snapshot freshness",
+        "orphan reaper correctness"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "cli-devin still contains a contradictory permission-mode authority",
+      "file": ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 42,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Phase 3 completion claims lack a tracked negative-control artifact",
+      "file": "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md",
+      "line": 58,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "Phase 4 completion claims lack a tracked follower negative-control artifact",
+      "file": "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md",
+      "line": 58,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "new",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Wall-clock grace window vulnerable to NTP adjustment",
+      "file": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "grep -n \"Date.now|Date.parse|monotonic|process.hrtime|performance.now\" process-sweep.ts — no monotonic clock usage",
+      "affectedSurfaceHints": [
+        "age-check time source",
+        "NTP-aware deployments"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "Apply-time socket-peer check passes empty socketPath, broadens the filter to ALL sockets",
+      "file": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Two call sites — line 152 (evidence build) and line 219 (apply re-check) — only the latter passes empty string",
+      "affectedSurfaceHints": [
+        "socket-peer re-check semantics"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "run-tests.mjs hardcoded 10-minute default timeout is excessive for the mcp-server lane",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/scripts/run-tests.mjs",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "One DEFAULT_TEST_RUN_TIMEOUT_MS constant, one env-var override, no per-lane tuning at lines 51-55",
+      "affectedSurfaceHints": [
+        "test-bound timeout policy",
+        "lane selector map",
+        "Ctrl-C responsiveness"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-004",
+      "severity": "P2",
+      "title": "git-live-follow.sh LOCK_KEY uses CRC32 truncation only — collision risk in large worktree fleets",
+      "file": ".opencode/bin/git-live-follow.sh",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "One LOCK_KEY derivation, one use site (lines 84-85)",
+      "affectedSurfaceHints": [
+        "lock key derivation",
+        "multi-worktree deployments"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-005",
+      "severity": "P2",
+      "title": "git-live-follow.sh log rotation mv-then-truncate can lose the only historical copy",
+      "file": ".opencode/bin/git-live-follow.sh",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "One rotation function, two call sites (lines 116, 195). No size cap on .log.1; no second historical tier",
+      "affectedSurfaceHints": [
+        "log rotation policy",
+        "diagnostic completeness"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-006",
+      "severity": "P2",
+      "title": "git-live-follow.sh lock acquisition has TOCTOU race between check and write",
+      "file": ".opencode/bin/git-live-follow.sh",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "One lock_held, one acquire_lock, no atomic primitive at lines 125-142",
+      "affectedSurfaceHints": [
+        "lock acquisition atomicity",
+        "SessionStart startup race"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007",
+      "severity": "P2",
+      "title": "paths.ts isTestContext is env-only; a vitest worker without env inheritance silently loses isolation",
+      "file": ".opencode/skills/system-spec-kit/shared/paths.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": "Single check site at line 67-71; relied upon by assertDatabaseIsolation at line 95",
+      "affectedSurfaceHints": [
+        "test context detection",
+        "production DB isolation",
+        "vitest worker env propagation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-008",
+      "severity": "P2",
+      "title": "paths.ts workspace-root walk uses symlinked dirname; symlinked deployment can mislead root resolution",
+      "file": ".opencode/skills/system-spec-kit/shared/paths.ts",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "One findUp call site at line 102; relies on string comparison at line 75",
+      "affectedSurfaceHints": [
+        "workspace root resolution",
+        "symlinked deployments"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "confirmed",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        },
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "P1-002",
+        "P1-003",
+        "P1-004",
+        "P1-005"
+      ]
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding",
+      "file": null,
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": "confirmed",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        },
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [
+        "P1-002",
+        "P1-003",
+        "P1-004",
+        "P1-005"
+      ]
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 10,
+    "P2": 8
+  },
+  "openFindingsCount": 18,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "completion_evidence_gap",
+      "kill_switch_bypass",
+      "log_state_transition_regression",
+      "permission_enum_drift",
+      "stale_parent_classification"
+    ],
+    "ruledOut": [
+      "ancestor/self/unknown-owner process termination",
+      "bind-mount and symlink identity defeat",
+      "completion_evidence_gap",
+      "fast-forward merge/reset clobbering",
+      "packet 058 core authority drift"
+    ],
+    "deferred": [
+      "advisory_carry_forward"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "kill_switch_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_parent_classification": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "permission_enum_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "completion_evidence_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "log_state_transition_regression": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "ancestor/self/unknown-owner process termination": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "bind-mount and symlink identity defeat": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "fast-forward merge/reset clobbering": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "packet 058 core authority drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "P2-001 through P2-008 advisory carry-forwards": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "advisory_carry_forward": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 4,
+      "id": "SL-004-006",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-strategy.md"
+      ],
+      "bugClass": "advisory_carry_forward",
+      "disposition": "deferred",
+      "rationale": "No new evidence justifies escalation.",
+      "evidenceRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/review/deep-review-strategy.md"
+      ],
+      "reason": "P2 carry-forward policy."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 4,
+      "id": "SL-004-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md"
+      ],
+      "bugClass": "completion_evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "Durable log entries and reconciled criteria close the original claim.",
+      "evidenceRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84"
+      ],
+      "reason": "Goal-log measurements are present and consistent with source behavior."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md"
+      ],
+      "bugClass": "completion_evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "Durable log entries and reconciled criteria close the original claim.",
+      "evidenceRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84"
+      ],
+      "reason": "Goal-log measurements are present and consistent with source behavior."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 4,
+      "id": "SL-004-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md"
+      ],
+      "bugClass": "completion_evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "Durable log entries and reconciled criteria close the original claim.",
+      "evidenceRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61-84"
+      ],
+      "proof": "Goal-log measurements are present and consistent with source behavior."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md"
+      ],
+      "bugClass": "completion_evidence_gap",
+      "disposition": "ruled_out",
+      "rationale": "Durable log entries and reconciled criteria close the original claim.",
+      "evidenceRefs": [
+        "specs/system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:61-84"
+      ],
+      "proof": "Goal-log measurements are present and consistent with source behavior."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "kill_switch_bypass",
+      "stale_parent_classification",
+      "permission_enum_drift",
+      "completion_evidence_gap",
+      "log_state_transition_regression"
+    ],
+    "covered": [
+      "kill_switch_bypass",
+      "stale_parent_classification",
+      "permission_enum_drift",
+      "completion_evidence_gap",
+      "log_state_transition_regression"
+    ],
+    "ruledOut": [
+      "ancestor/self/unknown-owner process termination",
+      "bind-mount and symlink identity defeat",
+      "fast-forward merge/reset clobbering",
+      "packet 058 core authority drift"
+    ],
+    "deferred": [
+      "P2-001 through P2-008 advisory carry-forwards"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
