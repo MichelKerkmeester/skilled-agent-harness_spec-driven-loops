@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-08-31T06:37:55Z"
     last_updated_by: "claude-code"
     recent_action: "Granted bounded inline authority and opened the caller gate to operators"
-    next_safe_action: "Decide whether the phantom agent name in prompt-improver is worth a follow-up"
+    next_safe_action: "Push the agent-contract changes to the release branches"
     blockers: []
     key_files: []
     session_dedup:
@@ -92,7 +92,7 @@ No obsolete subagent type and no phantom agent reference survives in any orchest
 
 The boundary on the orchestrator's new capability is prose, not a permission. A missing tool refuses; a sentence persuades. If the orchestrator drifts into being the implementer, this is where it will show, and the fix would be to withdraw the tools rather than to write a firmer sentence.
 
-The same phantom agent name survives in the prompt-improver definition — four occurrences across its copies. Real, adjacent, and deliberately left for its own change.
+The phantom agent name was also corrected in the prompt-improver definition across its four copies, after the operator brought it into scope. Its `INT-CALLER-GENERAL` integration identifier was deliberately left alone: that is an ID, not an agent name, and renaming it would break cross-references for a cosmetic gain.
 
 The roster checker still cannot detect content drift between runtime copies. Everything here depended on catching that by hand.
 <!-- /ANCHOR:limitations -->

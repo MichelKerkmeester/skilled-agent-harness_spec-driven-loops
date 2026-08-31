@@ -57,7 +57,7 @@ Let the orchestrator do work whose delegation would cost more than the work, wit
 - Correct the obsolete subagent type and the phantom agent name in the nesting examples
 
 ### Out of Scope
-- The same phantom agent name in the prompt-improver definition — real, four occurrences, and adjacent rather than in this ask
+- Nothing further; the phantom agent name in the prompt-improver definition was brought into scope by the operator and fixed
 - Any change to what the orchestrator delegates for genuine implementation work
 - The roster mirror checker's presence-only semantics, which is a separate finding
 

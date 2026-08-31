@@ -71,7 +71,7 @@ Use these IDs when a recommendation depends on an integration point.
 
 | ID | Surface | Contract |
 | --- | --- | --- |
-| `INT-CALLER-GENERAL` | `@general` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
+| `INT-CALLER-GENERAL` | `@general-purpose` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
 | `INT-CMD-PROMPT-IMPROVER` | `/prompt-improve` via `.opencode/commands/prompt-improve.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
 | `INT-SKILL-PROMPT-IMPROVER` | `.opencode/skills/sk-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
 | `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
@@ -87,7 +87,7 @@ Use these IDs when a recommendation depends on an integration point.
 
 | Agent | Integration ID | Purpose |
 | ----- | -------------- | ------- |
-| `@general` | `INT-CALLER-GENERAL` | Primary caller/orchestrator that may dispatch this specialist for a prompt package |
+| `@general-purpose` | `INT-CALLER-GENERAL` | Primary caller/orchestrator that may dispatch this specialist for a prompt package |
 
 ### Commands
 
@@ -240,7 +240,7 @@ task_type: <generation|review|research|edit|analyze>   # optional
 target_cli: <claude-code|codex|copilot>         # optional
 complexity_hint: <1-10>                                # optional
 constraints: <policy, output, or audience constraints> # optional
-caller_agent: <@general|other caller>           # optional
+caller_agent: <@general-purpose|other caller>           # optional
 command_surface: </prompt-improve|other command>       # optional
 skill_context: <skills to preserve or cite>            # optional
 mcp_tools: <caller-supplied MCP tool names>            # optional
@@ -380,7 +380,7 @@ Fix verification gaps first
 │  └─► 3. Validate boundaries, integrations, edge cases, and CLEAR        │
 │                                                                         │
 │  INTEGRATIONS                                                           │
-│  ├─► Callers: @general                                                  │
+│  ├─► Callers: @general-purpose                                                  │
 │  ├─► Command: /prompt-improve                                   │
 │  ├─► Skills: sk-prompt, sk-doc                                          │
 │  └─► Tool constraints: target_cli and caller-supplied mcp_tools         │

@@ -54,7 +54,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the orchestrator, When it faces a one-line fix, Then it can apply it without a dispatch | Write capability present in all four dialects | Met | - |
+| AC-001 | REQ-001 | Given the orchestrator, When it faces small fixes, Then it can apply them without a dispatch | Write capability present in all four dialects | Met | - |
 | AC-002 | REQ-001 | Given a change with design content or breadth, When the orchestrator considers it, Then it still delegates | Prose bound names the threshold explicitly | Met | - |
 | AC-003 | REQ-002 | Given an operator invoking the code agent directly, When it starts, Then it proceeds and states packet and frozen scope | Gate amended in all four copies | Met | - |
 | AC-004 | REQ-003 | Given the dispatch protocol, When it names a subagent type, Then that type exists in this runtime | No obsolete type remains | Met | - |
