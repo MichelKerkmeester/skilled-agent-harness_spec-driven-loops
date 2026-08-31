@@ -198,9 +198,16 @@ function applyCandidate(
   nowMs: number,
   startupGraceMs: number,
 ): { applied: boolean; reason?: string } {
-  if (row.classification !== 'orphaned-project-daemon') return { applied: false, reason: 'classification-not-reapable' };
+  // The inventory snapshot is a plan-time observation, and a parent can die between the scan
+  // and this decision. Reading the parent again here is what lets a daemon orphaned mid-sweep
+  // be collected on the same pass instead of surviving until the next one. Every other gate
+  // below still has to pass, so re-reading only ever widens the candidate set by processes
+  // that are genuinely parentless right now.
+  const freshParentPid = opts.getParentPid ? opts.getParentPid(row.pid) : readProcessParentPid(row.pid);
+  const reapableNow = row.classification === 'orphaned-project-daemon'
+    || (row.classification === 'project-daemon' && freshParentPid === 1);
+  if (!reapableNow) return { applied: false, reason: 'classification-not-reapable' };
   if (!hasKnownProjectIdentity(row)) return { applied: false, reason: 'unknown-owner-refused' };
-  if (row.ppid !== 1) return { applied: false, reason: 'live-parent-preserved' };
   const evidence = opts.evidenceByPid?.get(row.pid) ?? readOwnershipEvidence(row);
   const evidenceError = validateOwnershipEvidence(row, evidence);
   if (!evidence || evidenceError) return { applied: false, reason: evidenceError ?? 'ownership-evidence-unavailable' };
@@ -212,8 +219,7 @@ function applyCandidate(
   }
   const ageMs = nowMs - Math.max(evidence.ownerLeaseStartedAtMs, evidence.processStartedAtMs);
   if (ageMs <= startupGraceMs) return { applied: false, reason: 'startup-grace-active' };
-  const parentPid = opts.getParentPid ? opts.getParentPid(row.pid) : readProcessParentPid(row.pid);
-  if (parentPid !== 1) return { applied: false, reason: parentPid === null ? 'parent-evidence-unavailable' : 'live-parent-preserved' };
+  if (freshParentPid !== 1) return { applied: false, reason: freshParentPid === null ? 'parent-evidence-unavailable' : 'live-parent-preserved' };
   const socketPeerConnected = opts.getSocketPeerConnected
     ? opts.getSocketPeerConnected(row.pid, evidence)
     : readSocketPeerConnected(row.pid, '');
@@ -243,10 +249,13 @@ export function applySweep(inventory: Inventory, opts: ApplySweepOptions): Sweep
     result.reason = 'inventory-unavailable';
     return result;
   }
-  if (opts.enabled === false) {
-    result.reason = 'kill-switch-disabled';
+  // Absent is not permission. A caller reaching this function without stating a decision gets
+  // the safe one, because the cost of wrongly terminating a live session's daemon is far higher
+  // than the cost of skipping a sweep.
+  if (opts.enabled !== true) {
+    result.reason = opts.enabled === false ? 'kill-switch-disabled' : 'enable-decision-absent';
     for (const row of plan.rows.filter((candidate) => candidate.classification === 'orphaned-project-daemon')) {
-      result.skipped.push({ pid: row.pid, reason: 'kill-switch-disabled' });
+      result.skipped.push({ pid: row.pid, reason: result.reason });
     }
     return result;
   }
@@ -254,7 +263,10 @@ export function applySweep(inventory: Inventory, opts: ApplySweepOptions): Sweep
   const nowMs = typeof opts.nowMs === 'number' ? opts.nowMs : Date.now();
   const startupGraceMs = typeof opts.startupGraceMs === 'number' ? opts.startupGraceMs : DEFAULT_STARTUP_GRACE_MS;
   for (const row of plan.rows) {
-    if (row.classification !== 'orphaned-project-daemon') continue;
+    // A daemon whose parent died between the scan and now still reads as parented here, so
+    // narrowing the loop to the snapshot's verdict would skip exactly the process this sweep
+    // exists to collect. Let the per-candidate gates re-derive it from fresh evidence.
+    if (row.classification !== 'orphaned-project-daemon' && row.classification !== 'project-daemon') continue;
     const outcome = applyCandidate(row, opts, nowMs, startupGraceMs);
     if (outcome.applied) {
       result.appliedPids.push(row.pid);

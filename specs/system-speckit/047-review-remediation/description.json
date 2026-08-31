@@ -1,0 +1,35 @@
+{
+  "specFolder": "system-speckit/047-review-remediation",
+  "description": "Close the three P1 findings that survived four deep-review iterations: a fail-open kill switch, a plan-time parent gate that skips newly orphaned daem",
+  "keywords": [
+    "close",
+    "three",
+    "findings",
+    "survived",
+    "four",
+    "deep-review",
+    "iterations",
+    "fail-open",
+    "kill",
+    "switch",
+    "plan-time",
+    "parent",
+    "gate",
+    "skips",
+    "newly",
+    "orphaned",
+    "daemons",
+    "contradictory",
+    "permission-mode",
+    "precondition"
+  ],
+  "lastUpdated": "2026-08-31T04:50:04.768Z",
+  "specId": "047",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

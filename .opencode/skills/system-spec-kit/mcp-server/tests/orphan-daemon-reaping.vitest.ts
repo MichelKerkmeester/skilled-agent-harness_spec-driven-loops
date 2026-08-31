@@ -216,6 +216,7 @@ describe('orphan daemon reaping', () => {
 
     const signals: number[] = [];
     const result = applySweep(inventory, {
+      enabled: true,
       selfPid: process.pid,
       nowMs,
       startupGraceMs: 1000,
@@ -245,6 +246,7 @@ describe('orphan daemon reaping', () => {
     const inventory = fixtureInventory(pid, process.pid, launcherPath, 999999);
     const signals: number[] = [];
     const result = applySweep(inventory, {
+      enabled: true,
       selfPid: process.pid,
       nowMs,
       startupGraceMs: 1000,
@@ -262,7 +264,10 @@ describe('orphan daemon reaping', () => {
       classification: 'project-daemon',
       eligibleForTermination: false,
     });
-    expect(result.skipped).toEqual([]);
+    // A live-parented daemon is now evaluated and explicitly refused rather than filtered out
+    // before evaluation. Asserting the recorded reason is stronger than asserting silence: it
+    // proves the refusal was a decision, not an omission.
+    expect(result.skipped).toEqual([{ pid, reason: 'classification-not-reapable' }]);
     expect(signals).toEqual([]);
     expect(isAlive(pid)).toBe(true);
   });
@@ -277,6 +282,7 @@ describe('orphan daemon reaping', () => {
     const inventory = fixtureInventory(pid, 1);
     const signals: number[] = [];
     const result = applySweep(inventory, {
+      enabled: true,
       selfPid: process.pid,
       nowMs,
       startupGraceMs: 1000,
@@ -366,5 +372,61 @@ describe('orphan daemon reaping', () => {
     const output: { system?: string[] } = { system: [] };
     await hooks['experimental.chat.system.transform']({ sessionID: 'switch-session' }, output);
     expect(output.system?.join('\n')).toContain('kill-switch-disabled');
+  });
+
+  // Two regression guards for defects a multi-model review found in the first cut of this
+  // sweep. Both are decision-only: a synthetic inventory row plus injected callbacks, so no
+  // real process is ever signalled.
+
+  it('refuses to apply when the enable decision is omitted rather than defaulting to execute', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'sweep-failclosed-'));
+    const pid = 424242;
+    const nowMs = Date.now();
+    const signals: number[] = [];
+    const result = applySweep(fixtureInventory(pid, 1), {
+      selfPid: process.pid,
+      nowMs,
+      startupGraceMs: 1000,
+      evidenceByPid: new Map([[pid, fixtureEvidence(dir, pid, nowMs)]]),
+      getParentPid: () => 1,
+      getSocketPeerConnected: () => false,
+      getProcessStartTimeMs: () => nowMs - 600001,
+      signal: (candidatePid) => {
+        signals.push(candidatePid);
+        return true;
+      },
+      // `enabled` deliberately omitted: an caller that forgets the switch must not terminate.
+    });
+
+    expect(signals).toEqual([]);
+    expect(result.appliedPids).toEqual([]);
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('reaps a daemon whose parent died after the inventory snapshot was taken', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'sweep-latereap-'));
+    const pid = 424243;
+    const nowMs = Date.now();
+    const signals: number[] = [];
+    // Inventory saw a live parent; by apply time that parent is gone. Fresh evidence, not the
+    // snapshot, must decide — otherwise a daemon orphaned mid-sweep is never collected.
+    const result = applySweep(fixtureInventory(pid, 99991), {
+      enabled: true,
+      selfPid: process.pid,
+      nowMs,
+      startupGraceMs: 1000,
+      evidenceByPid: new Map([[pid, fixtureEvidence(dir, pid, nowMs)]]),
+      getParentPid: () => 1,
+      getSocketPeerConnected: () => false,
+      getProcessStartTimeMs: () => nowMs - 600001,
+      signal: (candidatePid) => {
+        signals.push(candidatePid);
+        return true;
+      },
+    });
+
+    expect(signals).toEqual([pid]);
+    expect(result.appliedPids).toEqual([pid]);
+    rmSync(dir, { recursive: true, force: true });
   });
 });
