@@ -1,0 +1,146 @@
+# Rule: Root cause and debugging
+
+> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load when something is red.
+
+---
+
+## Fires when
+
+- Anything fails: a test, a build, a check, a runtime error, a wrong output.
+- You are on the second attempt at the same fix.
+- You are about to add a special case, a retry, a sleep, a broadened `catch`, or a
+  loosened assertion to make a symptom go away.
+- A check is failing and you are tempted to call it a flake, an infra problem, or
+  pre-existing.
+
+## The rule
+
+**Fix the producer, not the symptom. Every fix names the mechanism that caused the
+failure.**
+
+If you cannot say *why* it broke in one sentence, you have not found the cause —
+you have found a place where the symptom stops appearing.
+
+---
+
+## 1. The loop
+
+1. **Reproduce the exact symptom**, safely. Not a similar one. The same failure,
+   the same message.
+2. **Read the whole error.** The top line names where it surfaced. The cause is
+   usually the innermost frame in code you control, and the message is usually
+   literal — read what it actually says before theorizing.
+3. **Locate the producer** — the code that created the bad value or state, not the
+   code that choked on it.
+4. **Trace to the consumers.** Anything else reading that producer has the same bug
+   whether or not it has surfaced yet.
+5. **Fix at the source.**
+6. **Re-run the same check that failed**, then the whole gate.
+
+Step 1 is not optional. If you cannot reproduce it, you cannot prove you fixed it,
+and you should say that instead of claiming a fix. (See the negative control in
+`evidence-and-proof.md`.)
+
+---
+
+## 2. Symptom-fix smells
+
+Each of these is evidence you are patching at the wrong place:
+
+| Smell | What it is really telling you |
+|-------|-------------------------------|
+| A special case for one caller | The seam between the module and that caller is wrong |
+| A retry around a deterministic operation | You do not know why it fails, and now it fails five times |
+| A `sleep` | A real ordering or lifecycle bug, now timing-dependent |
+| A broadened `catch` or a bare `except` | The failure is now silent and the wrong answer ships |
+| A widened type or an added `any` | The type was right; the value is wrong |
+| Changing the expected value to match the actual | You just wrote down the bug as the specification |
+| A default that papers over a missing value | The producer never set it, and now nobody will find out |
+
+---
+
+## 3. The two-attempt rule
+
+**If a second attempt fails without producing new evidence, stop patching at the
+failure site.**
+
+Do not repeat the same guess with a variation. Instead:
+
+1. **Restate the problem one level up** — at the interface, the data flow, or the
+   module boundary rather than the line.
+2. **Inspect the interface that actually exists.** Read the signature, the type, the
+   schema, the docs, the caller. Most repeated failures are a wrong assumption about
+   an API, not a wrong line of code.
+3. **Try once from the new framing.**
+
+Verify that commands, flags, paths, and APIs exist before relying on them. When an
+option turns out to be unsupported, read the available interface and change the
+approach — do not run the same command again with a different spelling.
+
+### Naming the seam
+
+When a fix only works by special-casing a caller, the boundary is in the wrong
+place. Say so explicitly: **name the seam and the files a seam fix would touch**,
+then ask. `scope-discipline.md` still binds — editing outside scope needs a yes,
+and "the real fix is over there" does not grant it.
+
+---
+
+## 4. Never make a check pass by weakening it
+
+Not a fix, in any circumstance:
+
+- Skipping, disabling, quarantining, or deleting a failing test.
+- Loosening an assertion until it passes.
+- Excluding the failing file from the linter, the type checker, or the matcher.
+- Committing an empty change or re-triggering a run to get a different roll.
+
+If a test is genuinely wrong, that is a finding to raise with evidence, not a line
+to edit on your way past.
+
+## 5. "Flake" is a conclusion, not a starting hypothesis
+
+It needs evidence. Only two things support it:
+
+- The same check passed on this exact input before, or
+- The run died before any test body executed — checkout, install, runner loss.
+
+Absent one of those, treat the failure as real. One re-run to confirm, at most. A
+second failure is a bug.
+
+---
+
+## 6. Ownership
+
+"Pre-existing." "Not caused by my changes." "Environment issue." These may be true
+and they are never a stopping point. Diagnose far enough to know which it is, say
+what you found, and then decide with the operator what to do about it. A failure
+you walked past is a failure you shipped.
+
+---
+
+## 7. When you are stuck — escalation format
+
+After the two-attempt rule has run out, escalate once, in this shape:
+
+1. **Symptom** — the exact error, verbatim.
+2. **What I tried** — each attempt and the evidence it produced (not just what it
+   was).
+3. **What that rules out** — the hypotheses now eliminated.
+4. **Options** — two or three, with the trade-off of each.
+5. **Recommendation** — one, and why.
+
+A stuck report without evidence per attempt is a request for someone else to start
+from zero.
+
+---
+
+## 8. Self-check
+
+- [ ] I reproduced the exact symptom before changing anything.
+- [ ] I can state the mechanism in one sentence.
+- [ ] The fix is at the producer, not at the place the symptom surfaced.
+- [ ] I checked the other consumers of that producer.
+- [ ] No test, assertion, or check was weakened to get green.
+- [ ] If I called it a flake, I have one of the two pieces of evidence.
+- [ ] I re-ran the failing check *and* the whole gate.
