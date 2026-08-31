@@ -19,7 +19,7 @@ trigger_phrases:
   - "advisor does not surface"
   - "routing class metadata"
   - "refactoring a skill"
-importance_tier: important
+importance_tier: normal
 contextType: reference
 version: 1.0.0.0
 ---
@@ -28,6 +28,7 @@ version: 1.0.0.0
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load it before wiring, rewiring or removing a mode in a parent-hub skill, or before reporting that one routes. It sits in the routing carve-out of section 4: verifying wiring you changed is In, selecting a route is not.
 > Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+> Tier `normal`, unlike its peers: they fire on everyday work, this one only while creating or maintaining a skill.
 
 ## Fires when
 

@@ -43,7 +43,7 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 | Location                    | Path/URL                                                                            |
 | --------------------------- | ----------------------------------------------------------------------------------- |
 | **Public Release (local)**  | `~/your-project/`                                                                   |
-| **Public Release (GitHub)** | https://github.com/MichelKerkmeester/skilled-harness__spec-driven-agent-loops |
+| **Public Release (GitHub)** | https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops |
 
 ---
 
@@ -208,9 +208,9 @@ EOF
 | ------------------ | --------------------------------------------------------------------------------------------------------- |
 | **Version**        | v3.6.0.0                                                                                                  |
 | **Release Date**   | 2026-06-18                                                                                                |
-| **GitHub**         | https://github.com/MichelKerkmeester/skilled-harness__spec-driven-agent-loops                       |
-| **Latest Release** | https://github.com/MichelKerkmeester/skilled-harness__spec-driven-agent-loops/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/skilled-harness__spec-driven-agent-loops/releases/tag/v3.6.0.0 |
+| **GitHub**         | https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops                       |
+| **Latest Release** | https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/latest       |
+| **Release Notes**  | https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/releases/tag/v3.6.0.0 |
 
 ### Release Notes
 

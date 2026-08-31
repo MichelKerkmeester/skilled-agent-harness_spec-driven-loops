@@ -345,6 +345,8 @@ INTENT_SIGNALS = {
     "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
+    "OBSIDIAN_PLUGIN": {"weight": 4, "keywords": ["obsidian plugin", "note database plugin", "plugin data layer", "db class naming", "obsidian plugin conventions"]},
+    "MOBILE_CLI": {"weight": 4, "keywords": ["mobile cli", "pi remote", "svelte design system", "mobile cli conventions", "editability guardrails"]},
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
 }
 
@@ -581,6 +583,18 @@ RESOURCE_MAP = {
         "sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md",
         "sk-code-opencode/references/shell/quick-reference/template-variables-and-loops.md",
         "sk-code-opencode/references/shell/quick-reference/functions-strings-and-checklist.md",
+    ],
+    "OBSIDIAN_PLUGIN": [
+        "sk-code-obsidian/references/obsidian-plugin-api.md",
+        "sk-code-obsidian/references/data-layer.md",
+        "sk-code-obsidian/references/db-class-naming.md",
+        "sk-code-obsidian/references/comment-grammar.md"
+    ],
+    "MOBILE_CLI": [
+        "sk-code-mobile-cli/references/conventions/conventions.md",
+        "sk-code-mobile-cli/references/design-system/component-tokens.md",
+        "sk-code-mobile-cli/references/conventions/editability-guardrails.md",
+        "sk-code-mobile-cli/references/conventions/comment-grammar.md"
     ],
     "RUST": [
         "sk-code-opencode/references/rust/style-guide/overview-and-file-header.md",

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Wiring a nested mode into a parent hub had no single description of what \"done\" means",
     "created_at": "2026-08-31T14:06:06Z",
-    "last_save_at": "2026-08-31T16:34:05.118Z",
+    "last_save_at": "2026-08-31T17:24:06.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edbe2feac8537063ee23770c05038ce6c2f84f0dde494d8da56ea1ab86f120ca",
+    "source_fingerprint": "sha256:12ac8fc7addefe5a84d34ae14af6bdf10fffdf1181c7d1dc5a2db216473199e5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d8322848a524a48ebf3a1646cda283f1f61192471e7b4567f44424bfa888c1ec",
       "plan.md": "2df6bcacfdad7853d7e9c2222e66f114c517c93c727dd0a1231643cd4293562f",
       "tasks.md": "38df7baf93c93a77153bffe45b43792a4f40b30705a5414faa9ecbf8ca6988a0",
-      "implementation-summary.md": "f86441d613895189d250706760b971f0bdc8196216df3126b4023824f02c1254"
+      "implementation-summary.md": "99ddc4614bab9062b1463153df3efc9dd8324cf85f0a32d84305bb8dd098aed4"
     },
     "last_active_child_id": null,
     "last_active_at": null

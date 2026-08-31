@@ -51,7 +51,10 @@
     "design-tokens",
     "ink-on-parchment",
     "svelte",
-    "sveltekit"
+    "sveltekit",
+    "sk-code-obsidian",
+    "obsidian plugin",
+    "mobile cli"
   ],
   "lastUpdated": "2026-08-19T00:00:00Z"
 }

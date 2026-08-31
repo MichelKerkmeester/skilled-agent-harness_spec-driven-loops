@@ -130,10 +130,9 @@ The new rule was authored through `sk-create-repo-rule` itself, running its four
 ## Known Limitations
 
 1. **6b asserts presence in the mode table, not accuracy or reachability.** It is deliberately row-level rather than first-cell, because four modes across two hubs are legitimately documented inside a neighbouring row's prose and first-cell matching reported those correct hubs as broken. The cost is that any mention within a row satisfies it.
-2. **`sk-code-obsidian` and `sk-code-mobile-cli` pass 6b and are still unreachable.** Both carry a hub SKILL.md row and no vocabulary in `graph-metadata.json`, `ROUTER.md` or `description.json`; a request for either routes to a different hub. The gap is pre-existing and outside this phase's scope, but it is named in the checklist and the rule so a green gate is not read as integration.
-3. **The scope statement was widened, deliberately and for the third time.** Section 4 now carries a routing carve-out: verifying wiring you changed is In, selecting a route stays Out. The operator made that call after the boundary question was raised rather than absorbed. The two references that recorded the count as two were reconciled in the same change, and both now warn that a fourth widening admitting selection would dissolve the boundary.
-4. **`parent-skill-check-root-router.test.cjs` is red.** It fails identically with this change stashed, so it is pre-existing and untouched here.
-5. **Three hub aliases stay deliberately broad.** `we should always`, `stop doing` and `trigger table` match request shapes the hub genuinely serves.
+2. **Three hub aliases stay deliberately broad.** `we should always`, `stop doing` and `trigger table` match request shapes the hub genuinely serves, and the decision tests refuse the ones that do not qualify.
+
+Two limitations recorded here earlier are now closed. `sk-code-obsidian` and `sk-code-mobile-cli` were named in their hub's table and reachable by nothing; both now carry plugin-source vocabulary in `graph-metadata.json`, a stage-two intent with resolving leaves, and `description.json` keywords. The vocabulary is scoped to plugin source rather than vault operations, so `mcp-tooling` keeps every note-management query it owned: measured before and after, vault queries are byte-identical while plugin-source queries moved from `mcp-tooling` first to `sk-code` first. And `parent-skill-check-root-router.test.cjs` was red because its active-router fixture predated the RRC-009 prose-section rule; the fixture now carries the two sections the contract requires, and both suites pass.
 <!-- /ANCHOR:limitations -->
 
 ---
