@@ -48,8 +48,15 @@ codes: 0=all ok, 2=some failed, 3=all failed.
 The driver also carries an optional per-lineage progress-heartbeat gauge.
 `startLineageProgressHeartbeat` emits periodic progress events at the configured cadence so a
 long-running lineage stays operator-readable. The cadence comes from the
-`progressHeartbeatSeconds` config field, whose committed default is 0 (disabled), so the
-gauge is opt-in. The recommended production cadence is 30 seconds.
+`progressHeartbeatSeconds` config field, whose committed default is **60 seconds**, so the
+gauge is on unless a caller sets it to 0.
+
+That default is load-bearing rather than cosmetic. The heartbeat appends to the
+orchestrator's own ledgers *while a lineage is dispatched*, which is what makes those
+files change inside every containment window — the reason they are named as
+orchestrator-owned exemptions rather than left to be attributed to whichever leaf was
+running. Reading this default as "opt-in, therefore usually absent" is what made that
+failure look impossible on a single-lineage run.
 
 ---
 

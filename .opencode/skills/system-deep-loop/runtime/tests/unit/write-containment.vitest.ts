@@ -713,3 +713,86 @@ function dirtySorted(arr: DirtyPathEntry[]): string[] {
 function dirtyPathIncluded(arr: DirtyPathEntry[], targetPath: string): boolean {
   return arr.some((e) => e.path === targetPath);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ORCHESTRATOR-OWNED LEDGERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * The supervisor appends to its own run ledgers while a leaf is dispatched, and those
+ * files sit above every leaf's artifact dir. A tree diff cannot tell that append from a
+ * leaf's write, so without an exemption the leaf is failed for its supervisor's
+ * bookkeeping — and because the ledgers are committed, the revert restores them from
+ * HEAD and erases the live record of the run.
+ *
+ * The second case is the one that keeps the exemption honest: a neighbour that merely
+ * shares a prefix with an exempted name must stay guarded, so the exemption can never be
+ * widened by choosing a filename.
+ */
+describe('write-containment — orchestrator-owned ledgers are not the leaf’s violation', () => {
+  function ledgerRepo(): { root: string; artifactDir: string; ledger: string } {
+    const root = makeRepo();
+    const reviewDir = join(root, 'specs/demo/review');
+    const artifactDir = join(reviewDir, 'lineages/leaf');
+    mkdirSync(artifactDir, { recursive: true });
+    const ledger = join(reviewDir, 'orchestration-status.log');
+    writeFileSync(ledger, '{"event":"started","label":"prior-run"}\n');
+    writeFileSync(join(artifactDir, 'iter-001.md'), 'ORIGINAL\n');
+    commitAll(root, 'test: seed a committed orchestration ledger');
+    return { root, artifactDir, ledger };
+  }
+
+  it('does not fail a contained leaf when the supervisor appends to a tracked ledger', () => {
+    const { root, artifactDir, ledger } = ledgerRepo();
+    const pre = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      unattributablePaths: [ledger],
+    });
+
+    // The supervisor's heartbeat lands mid-dispatch; the leaf writes only inside its own dir.
+    writeFileSync(ledger, '{"event":"started","label":"prior-run"}\n{"event":"progress"}\n');
+    writeFileSync(join(artifactDir, 'iter-002.md'), 'LEAF OUTPUT\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      unattributablePaths: [ledger],
+      preDispatchDirtyPaths: pre,
+      iteration: 1,
+      label: 'leaf',
+    });
+
+    expect(result.violations).toEqual([]);
+    // The revert is the real damage, so assert the supervisor's row survived on disk.
+    expect(readFileSync(ledger, 'utf8')).toContain('"event":"progress"');
+  });
+
+  it('still fails a leaf that writes a neighbour sharing the exempted ledger’s prefix', () => {
+    const { root, artifactDir, ledger } = ledgerRepo();
+    const decoy = `${ledger}.bak`;
+    writeFileSync(decoy, 'SEEDED\n');
+    commitAll(root, 'test: seed a tracked neighbour of the ledger');
+
+    const pre = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      unattributablePaths: [ledger],
+    });
+    writeFileSync(decoy, 'LEAF FORGED THIS\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      unattributablePaths: [ledger],
+      preDispatchDirtyPaths: pre,
+      iteration: 1,
+      label: 'leaf',
+    });
+
+    expect(result.violations.map((v) => v.path)).toEqual([
+      'specs/demo/review/orchestration-status.log.bak',
+    ]);
+    expect(readFileSync(decoy, 'utf8')).toBe('SEEDED\n');
+  });
+});

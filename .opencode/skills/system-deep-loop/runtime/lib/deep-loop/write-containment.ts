@@ -19,7 +19,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { appendFileSync, mkdirSync, realpathSync } from 'node:fs';
-import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -70,6 +70,27 @@ export interface ContainmentOptions {
    * outside both this leaf's dir and these exclusions stays fully guarded.
    */
   unattributableDirs?: string[];
+  /**
+   * Individual files that the ORCHESTRATOR writes while this leaf is dispatched.
+   *
+   * The parent appends to its own run ledgers on a timer for the whole life of a
+   * dispatch, and those files sit one level above every leaf's artifact dir. A
+   * tree diff cannot tell the parent's append from the leaf's, so the leaf gets
+   * blamed for its own supervisor's bookkeeping. That is fatal rather than
+   * cosmetic once those ledgers are committed: the revert restores them from
+   * HEAD, which erases the live record of the run in progress — the guard
+   * destroying the very evidence it exists to protect.
+   *
+   * Matched as WHOLE PATHS, never as prefixes. A sibling that merely starts with
+   * an exempted name (`<ledger>.bak`) stays guarded, so the exemption cannot be
+   * widened by choosing a filename.
+   *
+   * Kept separate from `unattributableDirs` even though that list's matcher
+   * happens to accept exact paths today. Naming a file in a field called `Dirs`
+   * would make the exemption depend on an incidental branch, and a later move to
+   * prefix-only matching would silently reinstate this failure.
+   */
+  unattributablePaths?: string[];
   env?: NodeJS.ProcessEnv;
 }
 
@@ -269,7 +290,11 @@ function realpathSafe(p: string): string {
  */
 function resolveArtifactScope(
   opts: ContainmentOptions,
-): { artifactRelPosix: string; unattributableRelPosix: string[] } | null {
+): {
+  artifactRelPosix: string;
+  unattributableRelPosix: string[];
+  unattributableFileRelPosix: string[];
+} | null {
   const toplevel = resolveGitToplevel(opts.repoRoot, opts.env);
   if (!toplevel) return null;
   const repoReal = realpathSafe(opts.repoRoot);
@@ -289,12 +314,33 @@ function resolveArtifactScope(
     if (rel === artifactRelPosix) continue;
     unattributableRelPosix.push(rel);
   }
-  return { artifactRelPosix, unattributableRelPosix };
+
+  // The file itself is resolved through its PARENT directory, because an exempted
+  // ledger legitimately does not exist yet on a packet's first run and realpath on
+  // a missing path would drop the exemption exactly when it is first needed.
+  const unattributableFileRelPosix: string[] = [];
+  for (const file of opts.unattributablePaths ?? []) {
+    const resolvedFile = join(realpathSafe(dirname(file)), basename(file));
+    const rel = toPosix(relative(repoReal, resolvedFile));
+    if (!rel || rel.startsWith('..') || isAbsolute(rel)) continue;
+    unattributableFileRelPosix.push(rel);
+  }
+  return { artifactRelPosix, unattributableRelPosix, unattributableFileRelPosix };
 }
 
-/** True when the path belongs to a directory whose writes cannot be attributed to this leaf. */
-function isUnattributable(repoRelativePath: string, unattributableRelPosix: string[]): boolean {
+/**
+ * True when a path's writes cannot be attributed to this leaf.
+ *
+ * Directories match themselves and everything beneath them; files match only
+ * themselves, so exempting a ledger never exempts its neighbours.
+ */
+function isUnattributable(
+  repoRelativePath: string,
+  unattributableRelPosix: string[],
+  unattributableFileRelPosix: string[] = [],
+): boolean {
   const p = toPosix(repoRelativePath);
+  if (unattributableFileRelPosix.some((file) => p === file)) return true;
   return unattributableRelPosix.some((dir) => p === dir || p.startsWith(`${dir}/`));
 }
 
@@ -340,7 +386,7 @@ export function snapshotOutOfScopeDirtyPaths(opts: ContainmentOptions): DirtyPat
   const entries = readStatusEntries({ repoRoot: opts.repoRoot, env: opts.env });
   const out: DirtyPathEntry[] = [];
   for (const entry of entries) {
-    if (isUnattributable(entry.path, scope.unattributableRelPosix)) continue;
+    if (isUnattributable(entry.path, scope.unattributableRelPosix, scope.unattributableFileRelPosix)) continue;
     if (!isInsideArtifact(entry.path, scope.artifactRelPosix)) {
       const entryPath = toPosix(entry.path);
       // Hash every dirty path on disk, tracked or not: an untracked baseline entry left
@@ -373,7 +419,7 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
   for (const entry of entries) {
     const p = toPosix(entry.path);
     if (isInsideArtifact(p, scope.artifactRelPosix)) continue;
-    if (isUnattributable(p, scope.unattributableRelPosix)) continue;
+    if (isUnattributable(p, scope.unattributableRelPosix, scope.unattributableFileRelPosix)) continue;
     if (preMap.has(p)) {
       const preHash = preMap.get(p) || '';
       if (!preHash) continue;

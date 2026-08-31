@@ -2276,6 +2276,17 @@ async function main() {
   const lineagesDir = path.join(baseArtifactDir, 'lineages');
   const ledgerPath = path.join(baseArtifactDir, 'orchestration-status.log');
   const summaryPath = path.join(baseArtifactDir, 'orchestration-summary.json');
+  // This process appends to its own ledgers throughout every lineage's dispatch —
+  // a heartbeat on a timer, plus each start and settle. They sit above every
+  // lineage dir, so a tree diff attributes the supervisor's own bookkeeping to
+  // whichever leaf happened to be running, and once these files are committed the
+  // revert restores them from HEAD and erases the record of the run in progress.
+  // Named as whole paths so a neighbour sharing a prefix stays guarded.
+  const orchestratorOwnedPaths = [
+    ledgerPath,
+    summaryPath,
+    observabilityPathForLedger(ledgerPath),
+  ];
   // Repo root for write containment, resolved once for the whole run: the working
   // directory, unless an operator pins DEEP_LOOP_REPO_ROOT or the artifact tree
   // resolves into a different worktree via symlink. Every lineage lives under the
@@ -2648,6 +2659,7 @@ async function main() {
           repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
           unattributableDirs: containmentUnattributableDirs,
+          unattributablePaths: orchestratorOwnedPaths,
         })
         : [];
 
@@ -2716,6 +2728,7 @@ async function main() {
           repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
           unattributableDirs: containmentUnattributableDirs,
+          unattributablePaths: orchestratorOwnedPaths,
           preDispatchDirtyPaths,
           iteration: attempt,
           label: lineage.label,
