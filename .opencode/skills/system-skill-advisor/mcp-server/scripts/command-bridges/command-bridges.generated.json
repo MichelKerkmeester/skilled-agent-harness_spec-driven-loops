@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 17,
+    "commandMetadata": 19,
     "allowList": 8,
-    "generated": 25,
+    "generated": 27,
     "typescriptActive": 6,
     "pythonActive": 16
   },
@@ -233,6 +233,21 @@
       }
     },
     {
+      "id": "command-create-repo-rule",
+      "command": "/create:repo-rule",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-repo-rule",
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
       "id": "command-create-skill",
       "command": "/create:skill",
       "skillId": "sk-doc",
@@ -260,6 +275,21 @@
       "command": "/create:skill-parent",
       "skillId": "sk-doc",
       "ownerMode": "sk-create-skill-parent",
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "id": "command-create-with-human-voice",
+      "command": "/create:with-human-voice",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-with-human-voice",
       "source": ".opencode/skills/sk-doc/command-metadata.json",
       "runtime": {
         "typescript": {

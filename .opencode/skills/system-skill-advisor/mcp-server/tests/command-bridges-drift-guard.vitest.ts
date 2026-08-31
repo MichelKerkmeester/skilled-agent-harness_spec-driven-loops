@@ -126,7 +126,11 @@ describe('command-bridges drift guard', () => {
     expect(typescriptActive).toEqual(handAuthored);
     expect(generated.entries.filter((entry) => entry.runtime?.typescript.enabled)).toHaveLength(6);
     expect(generated.entries.filter((entry) => entry.runtime?.python.enabled)).toHaveLength(16);
-    expect([6, 28]).toContain(COMMAND_BRIDGES.length);
+    // Derived, not literal. This was a hardcoded total and went stale twice: once
+    // when a hub deprecation removed commands, once when new ones were added. The
+    // export may alias either the active subset or the whole inventory, so accept
+    // either, but measure both from the generated file rather than a magic number.
+    expect([typescriptActive.length, inventoryIds.length]).toContain(COMMAND_BRIDGES.length);
   });
 
   it('preserves the Python bridge records, order, and owner normalization byte-for-byte', () => {

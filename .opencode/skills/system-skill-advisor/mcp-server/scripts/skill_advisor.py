@@ -2436,6 +2436,15 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-create-diff",
         "routing_enabled": False,
     },
+    "command-create-repo-rule": {
+        "description": "",
+        "slash_markers": ["/create:repo-rule"],
+        "inventory_id": "command-create-repo-rule",
+        "command": "/create:repo-rule",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-repo-rule",
+        "routing_enabled": False,
+    },
     "command-create-skill-parent": {
         "description": "",
         "slash_markers": ["/create:skill-parent"],
@@ -2443,6 +2452,15 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/create:skill-parent",
         "skill_id": "sk-doc",
         "owner_mode": "sk-create-skill-parent",
+        "routing_enabled": False,
+    },
+    "command-create-with-human-voice": {
+        "description": "",
+        "slash_markers": ["/create:with-human-voice"],
+        "inventory_id": "command-create-with-human-voice",
+        "command": "/create:with-human-voice",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-with-human-voice",
         "routing_enabled": False,
     },
     "command-deep-ai-council": {

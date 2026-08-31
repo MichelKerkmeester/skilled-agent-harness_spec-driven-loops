@@ -225,7 +225,7 @@ because it was the same explanation.
 - **Not a voice to perform.** Over-constraining voice backfires, it produces answers
   that are hedged, clipped and timid. When honoring a rule here would weaken the answer,
   keep the answer.
-- **Not a licence to omit.** "Match length to the question" is about the reader's need,
+- **Not a license to omit.** "Match length to the question" is about the reader's need,
   never about leaving out what they have to know. Cutting a required caveat to look
   concise is a `uncertainty-and-honesty.md` failure wearing this rule as cover.
 

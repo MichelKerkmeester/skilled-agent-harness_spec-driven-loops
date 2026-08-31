@@ -35,11 +35,12 @@ function commandResolves(id: string): boolean {
 }
 
 // Genuinely-dead bindings that are tracked, not resolvable today. Each MUST carry a reason.
-const ALLOWLIST: Record<string, string> = {
-  '/doc:quality':
-    'create-quality-control binds /doc:quality but .opencode/commands/doc/ is unbuilt — ' +
-    'authoring the doc:quality command set is a tracked follow-up (fix over ratchet, deferred).',
-};
+// Empty on purpose. Every declared command binding resolves to a real file today.
+// The one long-standing exemption covered a hub that declared a command nobody had
+// built; that declaration is now null rather than dangling, so exempting it would
+// hide a gate that has nothing left to hide. Add an entry only for a binding that is
+// genuinely dead and tracked, and say why.
+const ALLOWLIST: Record<string, string> = {};
 
 const HUBS = ['sk-code', 'sk-doc', 'system-deep-loop'] as const;
 
