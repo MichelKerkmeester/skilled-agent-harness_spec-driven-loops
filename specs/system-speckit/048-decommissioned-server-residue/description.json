@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-decommissioned-server-residue",
+  "description": "Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered",
+  "keywords": [
+    "commit",
+    "7673da6bc24",
+    "decommissioned",
+    "sequential",
+    "thinking",
+    "mcp",
+    "server",
+    "deleted",
+    "install",
+    "guide",
+    "installer",
+    "script",
+    "unregistered"
+  ],
+  "lastUpdated": "2026-08-31T13:40:52.893Z",
+  "specId": "048",
+  "folderSlug": "decommissioned-server-residue",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

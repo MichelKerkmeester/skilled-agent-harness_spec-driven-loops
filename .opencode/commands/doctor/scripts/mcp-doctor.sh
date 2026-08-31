@@ -13,7 +13,7 @@
 #   --json              Output machine-readable JSON
 #   --fix               Attempt auto-repair for failures
 #   --server <name>     Diagnose a single server only
-#                       Names: system-spec-memory, system_skill_advisor, code_mode, sequential_thinking
+#                       Names: system-spec-memory, system_skill_advisor, code_mode
 #   --root <path>       Override project root
 #
 # Exit Codes:
@@ -47,7 +47,7 @@ Options:
   --json              Output machine-readable JSON
   --fix               Attempt auto-repair for failures
   --server <name>     Diagnose a single server only
-                      Names: system-spec-memory, system_skill_advisor, code_mode, sequential_thinking
+                      Names: system-spec-memory, system_skill_advisor, code_mode
   --root <path>       Override project root
 
 Exit Codes:
@@ -59,7 +59,6 @@ Servers Checked:
   system-spec-memory       Spec Kit Memory (Node.js MCP, SQLite + embeddings)
   system_skill_advisor      Skill Advisor (Node.js MCP, advisor_recommend + skill_graph_*)
   code_mode             Code Mode (Node.js MCP, TypeScript tool orchestration)
-  sequential_thinking   Sequential Thinking (npx MCP, structured reasoning)
 
 Config Files Scanned:
   opencode.json         OpenCode CLI
@@ -546,59 +545,6 @@ diagnose_system_skill_advisor() {
   fi
 }
 
-# ── Sequential Thinking ───────────────────────────────────────
-diagnose_sequential_thinking() {
-  local srv="sequential_thinking"
-
-  _log log_header "Sequential Thinking"
-
-  if [[ "$HAS_NODE" != true ]]; then
-    record_skip "$srv" "all" "Node.js not available"
-    _log log_skip "Node.js not available — skipping all checks"
-    return
-  fi
-
-  # Check 1: Node >= 20.11 (matches the global prerequisite gate and the npx-failure message below)
-  if node_version_at_least "20.11.0"; then
-    record_pass "$srv" "node_version" "Node.js $(node --version) (>= 20.11.0)"
-    _log log_pass "Node.js $(node --version) >= 20.11.0"
-  else
-    record_fail "$srv" "node_version" "Node.js $(node --version) < 20.11.0"
-    _log log_fail "Node.js $(node --version) is below required >=20.11.0"
-  fi
-
-  # Check 2: npx available
-  if check_command_exists npx; then
-    record_pass "$srv" "npx_available" "npx found"
-    _log log_pass "npx available"
-  else
-    record_fail "$srv" "npx_available" "npx not found"
-    _log log_fail "npx not found — install Node.js >=20.11.0"
-    return
-  fi
-
-  # Check 3: Package is cached/reachable (quick check — don't actually start the server)
-  # Just verify npx can resolve the package without running it
-  if npx -y --package @modelcontextprotocol/server-sequential-thinking node -e "console.log('ok')" >/dev/null 2>&1; then
-    record_pass "$srv" "package_reachable" "Package resolves via npx"
-    _log log_pass "Package resolves via npx"
-  else
-    record_warn "$srv" "package_reachable" "Package not cached — first use may be slow"
-    _log log_warn "Package not cached — first use may download (slow startup)"
-  fi
-
-  # Fix mode: pre-cache the package
-  if [[ "$FIX_MODE" == true ]]; then
-    if ! npx -y --package @modelcontextprotocol/server-sequential-thinking node -e "console.log('ok')" >/dev/null 2>&1; then
-      _log printf '\n  %sPre-caching package...%s\n' "$CYAN" "$NC"
-      npm cache clean --force 2>/dev/null || true
-      npx -y @modelcontextprotocol/server-sequential-thinking --help >/dev/null 2>&1 || true
-      record_pass "$srv" "fix_cache" "Cache refresh attempted"
-      _log log_info "Cache refresh attempted"
-    fi
-  fi
-}
-
 # ══════════════════════════════════════════════════════════════
 # CONFIG WIRING CHECK
 # ══════════════════════════════════════════════════════════════
@@ -611,7 +557,7 @@ detect_and_check_configs() {
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 
-  local -a servers=("system-spec-memory" "system_skill_advisor" "code_mode" "sequential_thinking")
+  local -a servers=("system-spec-memory" "system_skill_advisor" "code_mode")
 
   for cfg_entry in "${config_files[@]}"; do
     IFS='|' read -r cfg_path cfg_format cfg_label <<< "$cfg_entry"
@@ -646,7 +592,6 @@ detect_and_check_configs() {
 should_run "system-spec-memory"      && diagnose_system_spec_memory
 should_run "system_skill_advisor"    && diagnose_system_skill_advisor
 should_run "code_mode"            && diagnose_code_mode
-should_run "sequential_thinking"  && diagnose_sequential_thinking
 
 # Config wiring always runs (filtered by --server internally)
 detect_and_check_configs

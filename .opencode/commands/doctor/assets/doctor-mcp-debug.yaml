@@ -24,11 +24,11 @@ operating_mode:
 # ─────────────────────────────────────────────────────────────────
 mcp_debug_doctor_invariant: |
   MCP debug workflows run the mcp-doctor.sh diagnostic script against all
-  code-mode, sequential-thinking), cross-reference each failure with its
-  install guide, and apply guided repairs ONLY when --fix is passed AND the
-  user approves the proposed repair. No silent mutation: every config edit,
-  env change, or build step requires explicit per-server approval. Post-repair
-  re-verification is mandatory.
+  supported servers (spec-memory, skill-advisor, code-mode), cross-reference
+  each failure with its install guide, and apply guided repairs ONLY when
+  --fix is passed AND the user approves the proposed repair. No silent
+  mutation: every config edit, env change, or build step requires explicit
+  per-server approval. Post-repair re-verification is mandatory.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -42,7 +42,6 @@ upstream_assets:
     system-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
     system_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
     code_mode: ".opencode/install-guides/MCP - Code Mode.md"
-    sequential_thinking: ".opencode/install-guides/MCP - Sequential Thinking.md"
   scripts:
     diagnostic: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
     library: ".opencode/commands/doctor/scripts/mcp-doctor-lib.sh"
@@ -92,7 +91,6 @@ install_guides:
   system-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
   system_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
   code_mode: .opencode/install-guides/MCP - Code Mode.md
-  sequential_thinking: .opencode/install-guides/MCP - Sequential Thinking.md
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: CONFIG FILES
@@ -152,13 +150,6 @@ repair_actions:
     node_modules_missing:
       command: "cd .opencode/skills/mcp-code-mode/mcp-server && npm install"
       description: "Install node_modules"
-  sequential_thinking:
-    package_not_cached:
-      command: "npx -y @modelcontextprotocol/server-sequential-thinking --help"
-      description: "Pre-cache the npx package"
-    npm_cache_broken:
-      command: "npm cache clean --force"
-      description: "Clear npm cache and retry"
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -296,7 +287,6 @@ workflow:
       | Skill Advisor | {before} | {after} | {status} |
       | System Code Graph | {before} | {after} | {status} |
       | Code Mode | {before} | {after} | {status} |
-      | Sequential Thinking | {before} | {after} | {status} |
 
       **Config wiring:** {config_summary}
 

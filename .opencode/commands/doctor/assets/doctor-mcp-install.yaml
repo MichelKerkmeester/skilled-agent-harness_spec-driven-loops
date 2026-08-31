@@ -43,7 +43,6 @@ upstream_assets:
     system-spec-memory: ".opencode/install-guides/MCP - Spec Kit Memory.md"
     system_skill_advisor: ".opencode/skills/system-skill-advisor/INSTALL-GUIDE.md"
     code_mode: ".opencode/install-guides/MCP - Code Mode.md"
-    sequential_thinking: ".opencode/install-guides/MCP - Sequential Thinking.md"
   scripts:
     health_check: ".opencode/commands/doctor/scripts/mcp-doctor.sh"
   pass_policy:
@@ -95,7 +94,6 @@ install_guides:
   system-spec-memory: .opencode/install-guides/MCP - Spec Kit Memory.md
   system_skill_advisor: .opencode/skills/system-skill-advisor/INSTALL-GUIDE.md
   code_mode: .opencode/install-guides/MCP - Code Mode.md
-  sequential_thinking: .opencode/install-guides/MCP - Sequential Thinking.md
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: SERVER DEFINITIONS
@@ -166,17 +164,6 @@ servers:
       - "cd {skill_dir}/mcp-server && npm install && npm run build"
     extra_config:
       - { path: ".utcp_config.json", type: "file_exists", description: "UTCP config for external MCP servers" }
-
-  sequential_thinking:
-    label: "Sequential Thinking"
-    runtime: node
-    skill_dir: null
-    entry_point: null
-    health_checks:
-      - { probe: "npx -y --package @modelcontextprotocol/server-sequential-thinking node -e \"console.log('ok')\"", type: "command_succeeds" }
-    install_steps:
-      - "npx -y @modelcontextprotocol/server-sequential-thinking --help"
-    note: "npx-based server — no local install needed, just pre-cache"
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE: CLI-PRIMARY DESIGN SKILLS (not registered MCP servers)
@@ -249,7 +236,7 @@ workflow:
       - "If --server flag provided, validate server name"
       - "If --runtime flag provided, validate runtime name"
     prerequisite_matrix:
-      npx: { required_for: [sequential_thinking], check: "npx --version" }
+      npx: { required_for: [system-spec-memory], check: "npx --version" }  # tsc fallback_build
     on_missing_prereq:
       action: "WARN and skip affected servers, continue with others"
       hard_block: "If no prerequisites available at all, STATUS=FAIL"
@@ -274,7 +261,6 @@ workflow:
       | Skill Advisor | {status} | {detail} |
       | System Code Graph | {status} | {detail} |
       | Code Mode | {status} | {detail} |
-      | Sequential Thinking | {status} | {detail} |
     checkpoint:
       enabled: true
       prompt: |
@@ -368,7 +354,6 @@ workflow:
       | Skill Advisor | {before} | {after} | {action} |
       | System Code Graph | {before} | {after} | {action} |
       | Code Mode | {before} | {after} | {action} |
-      | Sequential Thinking | {before} | {after} | {action} |
 
       **Config wiring:** {config_summary}
 

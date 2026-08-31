@@ -68,7 +68,6 @@ MCP INSTALL ASSESSMENT
 | Skill Advisor | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
 | System Code Graph | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
 | Code Mode | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
-| Sequential Thinking | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
 ```
 
 ### Install Decision Prompt
@@ -103,7 +102,6 @@ MCP DEBUG FINDINGS
 | Skill Advisor | [PASS|WARN|FAIL] | [summary] |
 | System Code Graph | [PASS|WARN|FAIL] | [summary] |
 | Code Mode | [PASS|WARN|FAIL] | [summary] |
-| Sequential Thinking | [PASS|WARN|FAIL] | [summary] |
 ```
 
 ### Repair Decision Prompt
@@ -150,7 +148,6 @@ MCP Install - Final Report
 | Skill Advisor | [before] | [after] | [action] |
 | System Code Graph | [before] | [after] | [action] |
 | Code Mode | [before] | [after] | [action] |
-| Sequential Thinking | [before] | [after] | [action] |
 
 Config wiring: [config_summary]
 
@@ -173,7 +170,6 @@ MCP Doctor - Final Report
 | Skill Advisor | [before] | [after] | [status] |
 | System Code Graph | [before] | [after] | [status] |
 | Code Mode | [before] | [after] | [status] |
-| Sequential Thinking | [before] | [after] | [status] |
 
 Config wiring: [config_summary]
 Next Steps: [next_steps]

@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/048-decommissioned-server-residue",
+  "spec_folder": "system-speckit/048-decommissioned-server-residue",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "decommissioned server residue",
+      "sequential thinking doctor",
+      "mcp doctor stale server",
+      "spec residue cleanup",
+      "decommissioned server plan",
+      "mcp doctor removal plan",
+      "doctor baseline verification",
+      "decommissioned server tasks",
+      "doctor removal tasks",
+      "residue cleanup tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "decommissioned",
+      "server",
+      "residue",
+      "sequential",
+      "thinking",
+      "doctor",
+      "mcp",
+      "stale",
+      "spec",
+      "cleanup",
+      "plan",
+      "removal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+      ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
+      ".opencode/commands/doctor/assets/doctor-mcp-presentation.txt",
+      ".opencode/commands/doctor/scripts/README.md",
+      "specs/sk-doc/graph-metadata.json",
+      "specs/anobel.com/graph-metadata.json",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
+      "scripts/README.md",
+      ".codex/config.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-install.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-debug.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/assets/doctor-mcp-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequential Thinking",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Commit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered the server from `opencode.json`",
+    "created_at": "2026-08-31T13:24:32Z",
+    "last_save_at": "2026-08-31T13:41:00.489Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:436e09cb8eeb3dacc0b00bcffe8a0fcbbcf4eb43695dd0183be3afa28142c9d7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "825047dd53620278bb9b47a04b1dc6d637199394a450f0238237e30456fb2e1a",
+      "plan.md": "a87b9427ce842bcc3c6b9d6e4ba1c9102c14b5a60e449008723dbb4e68de79cc",
+      "tasks.md": "fb81993de76400ec1b44a878c94c8bd0fbd52456b281f4b9d85183535c1b2f56",
+      "implementation-summary.md": "7ab2b54286758b68c2962a33ba3fe94457359c5230a230096d61d6bd0ce14452"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
