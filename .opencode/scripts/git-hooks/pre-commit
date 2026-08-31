@@ -30,29 +30,8 @@ if [[ -z "$REPO_ROOT" ]]; then
   exit 0
 fi
 
-# --- Mass-deletion guard (blocking) ---
-# A staged snapshot that removes an unusually large number of tracked files is
-# almost always a stale-tree `git add -A` or a runaway deletion, not an intended
-# change — so refuse it here, before it becomes a commit, unless authorized.
-# Runs first because it is the cheapest and most catastrophic thing to catch.
-# Bypass: SPECKIT_ALLOW_MASS_DELETION=1 git commit ...
-MASS_DEL_GUARD="$REPO_ROOT/.opencode/scripts/git-hooks/lib/mass-deletion-guard.sh"
-if [[ -f "$MASS_DEL_GUARD" ]]; then
-  set +e
-  # shellcheck source=/dev/null
-  . "$MASS_DEL_GUARD" 2>/dev/null
-  _mass_guard_rc=$?
-  set -e
-  if [[ "$_mass_guard_rc" -ne 0 ]] || ! command -v mass_deletion_staged_count >/dev/null 2>&1 || ! command -v mass_deletion_verdict >/dev/null 2>&1 || ! command -v mass_deletion_report >/dev/null 2>&1; then
-    echo "WARNING [gate:mass-deletion]: guard unavailable; commit gate failed open." >&2
-  else
-    _mdg_deleted="$(mass_deletion_staged_count)"
-    if ! mass_deletion_verdict "$_mdg_deleted"; then
-      mass_deletion_report commit "$_mdg_deleted" "(staged deletions)"
-      exit 1
-    fi
-  fi
-fi
+# Mass-deletion guard: retained at pre-push only. A local commit is reversible with
+# git reset; a push reaches other machines and the live-branch autosync.
 
 # The doc-model reference validator moved to CI. It scanned the whole tree on every
 # commit for output that was advisory and could not block, which made it the single
@@ -155,7 +134,7 @@ fi
 if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
   MUTCLASS_GUARD="${REPO_ROOT}/.opencode/commands/doctor/scripts/check-mcp-mutation-class.sh"
   if [[ -f "$MUTCLASS_GUARD" ]] && git diff --cached --name-only --diff-filter=ACM \
-       | grep -Eq '^\.opencode/(skills/mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/doctor-mcp-install\.yaml)$'; then
+       | grep -Eq '^\.opencode/(skills/(mcp-tooling/)?mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/doctor-mcp-install\.yaml)$'; then
     if ! bash "$MUTCLASS_GUARD" "$REPO_ROOT"; then
       echo "" >&2
       echo "BLOCKED [gate:mcp-mutation-class]: MCP mutation-class contract failed (see FAIL lines above)." >&2
@@ -176,7 +155,11 @@ if [[ ! -f "$OWNERSHIP_LINT" && -d "${REPO_ROOT}/.opencode/skills/system-spec-ki
   echo "BLOCKED [gate:tool-ownership]: lint runner missing." >&2
   exit 1
 fi
-if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" && -f "$OWNERSHIP_LINT" ]]; then
+# Path-gated: the lint compares tool-schemas.ts against its generated map, so a commit
+# touching neither cannot drift them.
+if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" && -f "$OWNERSHIP_LINT" ]] \
+   && git diff --cached --name-only --diff-filter=ACMD \
+      | grep -qE '^\.opencode/skills/system-spec-kit/mcp-server/(tool-schemas\.ts|tests/fixtures/tool-ownership-map\.json)$'; then
   if ! node "$OWNERSHIP_LINT" >/dev/null; then
     echo "" >&2
     echo "BLOCKED [gate:tool-ownership]: drift detected." >&2
@@ -186,45 +169,7 @@ if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" && -f "$OWNERSHIP_LINT" ]]
   fi
 fi
 
-# --- Manual-testing-playbook operator contract (blocking) ---
-# Only checks roots that are BOTH on the fail-closed allowlist AND have staged changes,
-# so an ordinary commit pays nothing and a playbook edit is judged before it reaches CI.
-#
-# The staged list is materialised once rather than piped into `grep -q` per root. A
-# short-circuiting reader can leave the writer with SIGPIPE, and under `pipefail` that
-# failure status is indistinguishable from "no match" — which would skip the gate on
-# exactly the large commits it exists to catch. Reading a file cannot fail that way, and
-# it also drops one `git diff` invocation per allowlisted root.
-#
-# Bypass: SPECKIT_SKIP_PLAYBOOK_CONTRACT=1 git commit ...
-if [[ "${SPECKIT_SKIP_PLAYBOOK_CONTRACT:-0}" != "1" ]]; then
-  PB_PACKET="${REPO_ROOT}/.opencode/skills/sk-doc/sk-create-manual-testing-playbook"
-  PB_VALIDATOR="${PB_PACKET}/scripts/validate-playbook-package.cjs"
-  PB_ALLOWLIST="${PB_PACKET}/playbook-failclosed-allowlist.txt"
-  # This hook is installed globally, and .opencode is a symlink in sibling repos, so the
-  # validator resolves as "present" from a checkout it does not describe. Only run where
-  # the packet genuinely belongs to THIS repository.
-  if [[ -f "$PB_VALIDATOR" && -f "$PB_ALLOWLIST" && -d "${REPO_ROOT}/.opencode/skills/sk-doc" && ! -L "${REPO_ROOT}/.opencode" ]]; then
-    PB_STAGED="$(mktemp)"
-    git diff --cached --name-only --diff-filter=ACMD > "$PB_STAGED" || true
-    PB_FAILED=0
-    while IFS= read -r pb_root; do
-      [[ -z "$pb_root" || "$pb_root" == \#* ]] && continue
-      grep -q -- "^${pb_root}/" "$PB_STAGED" || continue
-      if ! node "$PB_VALIDATOR" --package "$pb_root" --repo-root "$REPO_ROOT" --strict >/tmp/pb-precommit.txt 2>&1; then
-        echo "" >&2
-        echo "BLOCKED [gate:playbook-contract]: $pb_root violates the operator-scenario contract." >&2
-        sed -n '1,40p' /tmp/pb-precommit.txt >&2
-        PB_FAILED=1
-      fi
-    done < "$PB_ALLOWLIST"
-    rm -f "$PB_STAGED"
-    if [[ "$PB_FAILED" -ne 0 ]]; then
-      echo "Fix the package. Do not remove its allowlist line to go green." >&2
-      echo "Bypass: SPECKIT_SKIP_PLAYBOOK_CONTRACT=1 git commit ..." >&2
-      exit 1
-    fi
-  fi
-fi
+# Manual-testing-playbook operator contract: enforced by CI only (pull request,
+# push to main, and a nightly cron), which is broader than this copy could be.
 
 exit 0

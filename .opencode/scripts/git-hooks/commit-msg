@@ -110,8 +110,6 @@ fi
 SUBJECT_LENGTH="${#SUBJECT}"
 if (( SUBJECT_LENGTH > 100 )); then
   ERRORS+=("Subject is ${SUBJECT_LENGTH} characters; maximum is 100.")
-elif (( SUBJECT_LENGTH > 80 )); then
-  WARNINGS+=("Subject is ${SUBJECT_LENGTH} characters; target 80 or fewer for readable git logs.")
 fi
 
 HAS_EXPLANATORY_BODY=0

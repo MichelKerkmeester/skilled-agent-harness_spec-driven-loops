@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Pre-push hook — independent safety and consistency gates run before origin:
 #
-#   1. Naming gate:      a brand-new remote branch must match the task-branch
 #                         grammar (updates to an existing remote branch are
 #                         always naming-exempt — migration tolerance for a
 #                         name that predates or falls outside the grammar).
@@ -20,7 +19,6 @@
 # the push CREATES a new remote branch — only the naming gate cares about
 # that distinction; the permission gate applies either way.
 #
-# Bypass naming only:     SPECKIT_SKIP_PREPUSH_NAMING=1 git push ...
 # Bypass permission only: SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...
 # Allowlist file:         .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt
 # Install: bash .opencode/scripts/install-git-hooks.sh
@@ -52,7 +50,7 @@ fi
 NAMING="$REPO_ROOT/.opencode/skills/sk-git/scripts/worktree-naming.sh"
 NAMING_AVAILABLE=1
 if [[ ! -f "$NAMING" ]]; then
-  echo "⚠️  pre-push: worktree-naming.sh not found at $NAMING — skipping naming + remote-push-permission gates." >&2
+  echo "⚠️  pre-push: worktree-naming.sh not found at $NAMING — skipping the remote-push-permission gate." >&2
   NAMING_AVAILABLE=0
 else
   # A broken validator must not suppress the independent metadata and test gates.
@@ -62,29 +60,15 @@ else
   _src_rc=$?
   set -e
   if [[ "$_src_rc" -ne 0 ]]; then
-    echo "⚠️  pre-push: failed to source worktree-naming.sh — skipping naming + remote-push-permission gates." >&2
+    echo "⚠️  pre-push: failed to source worktree-naming.sh — skipping the remote-push-permission gate." >&2
     NAMING_AVAILABLE=0
-  elif ! command -v is_valid_branch >/dev/null 2>&1 || ! command -v is_wrapper_branch >/dev/null 2>&1 || ! command -v is_remote_push_allowlisted >/dev/null 2>&1; then
-    echo "⚠️  pre-push: worktree-naming.sh loaded without its validators — skipping naming + remote-push-permission gates." >&2
+  elif ! command -v is_remote_push_allowlisted >/dev/null 2>&1; then
+    echo "⚠️  pre-push: worktree-naming.sh loaded without is_remote_push_allowlisted — skipping the remote-push-permission gate." >&2
     NAMING_AVAILABLE=0
   fi
 fi
 
-_expected_grammar() {
-  cat <<'GRAMMAR'
-    Expected new-branch grammar:
-      worktrees/NNN-<slug>    worktree-backed branch, e.g. worktrees/0041-fix-thing
-      branches/NNN-<slug>     dedicated branch with no worktree, e.g. branches/0003-external-dep
-        NNN  = 3-digit zero-padded number (001..999)
-        slug = lowercase kebab-case ([a-z0-9] segments joined by single hyphens)
-      skilled/vA.B.C.D        release branch, e.g. skilled/v4.0.0.0 (never gated)
-      backup/<anything>       safety ref; legal, not numbered, not a task branch
-      main                    reserved
-GRAMMAR
-}
 
-NAME_SKIP=0
-[[ "${SPECKIT_SKIP_PREPUSH_NAMING:-0}" = "1" ]] && NAME_SKIP=1
 
 REJECTED=0
 AUTOSYNC_LIVE_PUSH=0
@@ -142,51 +126,9 @@ while read -r _ local_sha remote_ref remote_sha; do
     skilled/v*) continue ;;
   esac
 
-  # ── Gate 1: naming (new branches only; updates keep migration tolerance) ──
-  if [[ "$NAMING_AVAILABLE" -eq 0 ]]; then
-    :
-  elif [[ "$is_autosync_live" -eq 1 ]]; then
-    : # The remote destination is the operator-selected live branch, not the wrapper source ref.
-  elif [[ "$NAME_SKIP" -eq 1 ]]; then
-    : # operator explicitly asked to skip naming for this push — Gate 2 still runs below
-  elif [[ "$is_new" -eq 0 ]]; then
-    if ! is_valid_branch "$branch_name"; then
-      echo "⚠️  pre-push: '$branch_name' does not match the task-branch naming grammar (update allowed — migration tolerance)." >&2
-    fi
-  else
-    branch_rc=0
-    is_valid_branch "$branch_name" || branch_rc=$?
-
-    if [[ "$branch_rc" -eq 2 ]]; then
-      echo "⚠️  pre-push: internal validator error for '$branch_name' — allowing push (fail-open)." >&2
-    elif is_wrapper_branch "$branch_name"; then
-      # The wrapper lane is a legal grammar name but its refs are local-only and
-      # machine-reaped; a brand-new push of one is always wrong. Checked before
-      # is_valid_branch so a legal wrapper name is still blocked as a new branch.
-      {
-        echo ""
-        echo "BLOCKED [gate:naming]: '$branch_name' is a launch-wrapper ref (work/<runtime>/<slug>)."
-        echo "Wrapper branches are local-only and machine-reaped — they must never be pushed as a feature branch."
-        _expected_grammar
-        echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
-        echo ""
-      } >&2
-      REJECTED=1
-      continue   # already rejected on naming — skip the permission gate for this ref
-    elif [[ "$branch_rc" -ne 0 ]]; then
-      # backup/* refs pass is_valid_branch, so they reach the permission gate
-      # below like any other new branch — legal name, still gated on permission.
-      {
-        echo ""
-        echo "BLOCKED [gate:naming]: new branch '$branch_name' does not match the task-branch naming grammar."
-        _expected_grammar
-        echo "Bypass (not recommended): SPECKIT_SKIP_PREPUSH_NAMING=1 git push ..."
-        echo ""
-      } >&2
-      REJECTED=1
-      continue   # already rejected on naming — skip the permission gate for this ref
-    fi
-  fi
+  # Naming gate removed: it never rejected a push the permission gate below would
+  # have allowed, and that gate is what asks a human before a new branch reaches
+  # origin. A wrapper ref is caught there too, as a new branch.
 
   # ── Gate 2: remote-push permission (every push, new or update) ──
   if [[ "$NAMING_AVAILABLE" -eq 0 ]]; then
@@ -275,13 +217,12 @@ if [[ "${SPECKIT_SKIP_PREPUSH_SKILL_GATE:-0}" != "1" ]]; then
           echo "AUTOSYNC BLOCKED [gate:skill-root-metadata]: generated or authored skill metadata is stale."
           echo "The hook cannot safely regenerate committed bytes after the commit already exists."
         else
-          echo "BLOCKED [gate:skill-root-metadata]: skill-root metadata gate failed for skills being pushed."
+          echo "WARNING [gate:skill-root-metadata]: skill-root metadata is stale for skills being pushed."
+          echo "Not blocking: CI enforces this on every push to main and skilled/v*."
         fi
         echo "Fix with:  node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
-        echo "Skip (partial push from a dirty tree only): SPECKIT_SKIP_PREPUSH_SKILL_GATE=1 git push ..."
         echo ""
       } >&2
-      exit 1
     fi
   fi
 fi
@@ -303,13 +244,12 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
     if ! node "$ROUTE_GUARD" >&2; then
       {
         echo ""
-        echo "BLOCKED [gate:compiled-routing]: a hub's routing manifest is stale or drifted."
+        echo "WARNING [gate:compiled-routing]: a hub's routing manifest is stale or drifted."
+        echo "Not blocking: CI enforces this on every push to main and skilled/v*."
         echo "Fix: refresh the hub, then resync its authored copy in the same change —"
         echo "     refreshing alone leaves the runtime and authored manifests disagreeing."
-        echo "Skip: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..."
         echo ""
       } >&2
-      exit 1
     fi
   fi
 fi
