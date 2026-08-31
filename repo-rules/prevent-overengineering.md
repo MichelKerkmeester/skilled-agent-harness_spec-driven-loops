@@ -57,7 +57,7 @@ that says what fails at the cheaper one** in the response, not just in your head
 
 | Move | Cost when wrong |
 |------|-----------------|
-| **Build nothing** existing behavior already meets the requirement | zero |
+| **Build nothing:** existing behavior already meets the requirement | zero |
 | Change a value, constant, or config that exists | one line to revert |
 | Extend an existing function or module in place | contained to one unit |
 | Add a new function beside the existing ones | one new symbol to learn |

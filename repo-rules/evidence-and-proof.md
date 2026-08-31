@@ -113,12 +113,12 @@ delta. An unmeasured performance claim is not a caveat, it is a fabrication.
 
 Three task shapes fail in ways the checks above do not catch:
 
-- **Filter or transform** enumerate every in-scope variant *first*, process each, then
+- **Filter or transform:** enumerate every in-scope variant *first*, process each, then
   rescan the whole surface for residue. The variants you never enumerated are the ones
   you missed, and a clean diff does not reveal an unprocessed input.
-- **Computed answer** derive it a second way, independently, before writing the number.
+- **Computed answer:** derive it a second way, independently, before writing the number.
   Re-reading your own arithmetic is not an independent derivation.
-- **Exact artifact** check filename, path, format and content shape directly. Having
+- **Exact artifact:** check filename, path, format and content shape directly. Having
   written it is not evidence it is there in the required shape.
 
 ---
@@ -126,7 +126,7 @@ Three task shapes fail in ways the checks above do not catch:
 ## 7. A FINDING IS A HYPOTHESIS
 
 A sub-agent's "COMPLETE", a reviewer's "P0", a linter's error, a bot's suggestion: each
-is a **claim to confirm against the real symptom** not a fact to act on. Acting on an
+is a **claim to confirm against the real symptom**, not a fact to act on. Acting on an
 unconfirmed finding produces a fix for a bug that was never there, plus a diff nobody
 can explain.
 
@@ -134,7 +134,7 @@ can explain.
 
 ## 8. PROOF PLAN BEFORE IMPLEMENTATION
 
-For anything with a machine-checkable outcome, **before changing files** convert the
+For anything with a machine-checkable outcome, **before changing files**, convert the
 acceptance criteria into 1–5 observable pass/fail checks. Each names the exact command
 or inspection, the exact path/filename/format expected, and the boundary case it exposes.
 
@@ -148,7 +148,7 @@ the standard.
 Before any completion claim:
 
 - [ ] Every required artifact exists **at its exact path** in the required format, verified by inspection, not by the fact that you wrote it.
-- [ ] The §8 proof plan and the authoritative gate both pass **from the final state** output and exit status read.
+- [ ] The §8 proof plan and the authoritative gate both pass **from the final state**, output and exit status read.
 - [ ] The scoped diff contains no task-created residue, no scratch files, no debug
       output, no unrelated file.
 - [ ] Any failing check keeps the completion claim blocked. Repair, or report the
@@ -160,10 +160,10 @@ Before any completion claim:
 
 Every substantive turn ends with an honest status. Four things, briefly:
 
-1. **What ran or was read, and what it returned** with the receipts from §1.
+1. **What ran or was read, and what it returned**, with the receipts from §1.
 2. **What is inferred** rather than observed.
 3. **What only the operator can verify.**
-4. **The state of the work** edited / committed / pushed / dirty, and which branch.
+4. **The state of the work:** edited / committed / pushed / dirty, and which branch.
    Four different states, routinely conflated.
 
 And plainly: **what is not done.** If tests fail, say so and show the output. If a step

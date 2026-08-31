@@ -1,7 +1,7 @@
 {
   "name": "sk-doc",
-  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to twelve nested workflow packets: sk-create-skill (+ sk-create-skill-parent), sk-create-readme (install guides folded), sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram (HTML/SVG diagrams and ASCII/markdown flowcharts, one output-format dial), sk-create-changelog, sk-create-diff (local before/after document reviews), and sk-create-quality-control (validate/score/optimize an existing doc). The universal sk-create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
-  "version": "2.0.1.0",
+  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to thirteen nested workflow packets: sk-create-skill (+ sk-create-skill-parent), sk-create-readme (install guides folded), sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram (HTML/SVG diagrams and ASCII/markdown flowcharts, one output-format dial), sk-create-changelog, sk-create-diff (local before/after document reviews), sk-create-repo-rule, sk-create-with-human-voice (apply or score prose against the Human Voice Rules, with a scope gate, a scanner that parses the standard at run time, and a re-scan after the rewrite), and sk-create-quality-control (validate/score/optimize an existing doc). The universal sk-create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
+  "version": "2.1.0.0",
   "importance_tier": "high",
   "keywords": [
     "sk-doc",
@@ -27,11 +27,21 @@
     "before after document diff",
     "document change report",
     "sk-create-repo-rule",
+    "sk-create-with-human-voice",
+    "human voice rules",
+    "apply human voice",
+    "rewrite in human voice",
+    "make this sound human",
+    "sounds ai-generated",
+    "remove ai tells",
+    "ai writing tells",
+    "voice pass",
+    "hvr",
     "sk-create-quality-control",
     "shared-backbone",
     "dqi",
     "human-voice",
     "sk-create-skill-parent"
   ],
-  "lastUpdated": "2026-08-13T00:00:00.000Z"
+  "lastUpdated": "2026-08-31T00:00:00.000Z"
 }

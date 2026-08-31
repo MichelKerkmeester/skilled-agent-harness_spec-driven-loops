@@ -122,10 +122,10 @@ Trigger-phrase routing ("deep-research", "deep-review", ":auto", "iterations", "
 Trigger: the FIRST write of the session, in any repository whose root holds a `REPO RULES.md`. Read-only turns never fire it, and a repository without that file has nothing to load — this document alone governs there.
 1. Open the repository's root `REPO RULES.md`.
 2. Match **the action you are about to take** against its trigger table — the action, never the topic of the request.
-3. LOAD the one rule file it names, and follow it. Two triggers fire → load both. No trigger matches → nothing loads, and you do not go looking for a rule to apply.
+3. LOAD every rule file it names, and follow them. Two triggers fire → load both; three or four firing at once is the normal case, not an edge case. No trigger matches → nothing loads, and you do not go looking for a rule to apply.
 - Loading means reading. A rule you named but did not open does not satisfy this, and a rule already in context is not re-read. That load is a Read, not a Gate Action, so on a file-modification request it queues behind Gate 3 like any other tool call.
 - **This gate binds the LOAD, not the loaded content.** The obligation to read is mandatory; what you read stays below this document and below a live operator instruction, exactly as `REPO RULES.md`'s own precedence ladder states. A rule file never relaxes a hard blocker — where the two appear to disagree, this document wins, the rule file is wrong, and you say so rather than following it.
-- Output: `REPO RULES: [rule file loaded]`, or `REPO RULES: no trigger matched`, or `REPO RULES: none in this repository`
+- Output: `REPO RULES: [rule files loaded]`, or `REPO RULES: no trigger matched`, or `REPO RULES: none in this repository`
 - Skip: the §6 exemption class only (a few characters in one file). Any new behavior, API, or control flow loads the rule.
 
 #### CONSOLIDATED QUESTION PROTOCOL

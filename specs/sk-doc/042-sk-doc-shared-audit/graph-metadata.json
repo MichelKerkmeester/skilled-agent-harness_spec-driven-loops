@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/042-sk-doc-shared-audit",
+  "spec_folder": "sk-doc/042-sk-doc-shared-audit",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc shared audit",
+      "shared references and assets audit",
+      "sk-doc shared orphans",
+      "shared backbone placement",
+      "quick-reference default resource",
+      "shared audit method",
+      "consumer measurement plan",
+      "sk-doc shared repair plan",
+      "shared placement decision",
+      "shared audit tasks",
+      "sk-doc shared repair tasks",
+      "shared verdict tasks"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "shared",
+      "audit",
+      "references",
+      "assets",
+      "orphans",
+      "backbone",
+      "placement",
+      "quick-reference",
+      "default",
+      "resource",
+      "method"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "shared/README.md",
+      ".opencode/skills/sk-doc/shared/references/frontmatter-versioning.md",
+      ".opencode/skills/sk-doc/shared/references/quick-reference.md",
+      ".opencode/skills/sk-doc/shared/references/core-standards.md",
+      ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+      ".opencode/skills/sk-doc/shared/README.md",
+      "repo-rules/communication.md",
+      ".opencode/skills/sk-doc/ROUTER.md",
+      ".opencode/skills/sk-doc/leaf-aliases.json",
+      "specs/sk-doc/042-sk-doc-shared-audit/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/042-sk-doc-shared-audit/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-versioning.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "core-standards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/core-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "filesystem-naming-convention.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-aliases.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-doc/shared/` accumulated a standards backbone over many packets without anyone re-asking whether each file still has consumers, still sits in the right place, and still tells the truth",
+    "created_at": "2026-08-31T19:49:30Z",
+    "last_save_at": "2026-08-31T20:01:16.442Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ed681f4bbef09b7d3008b6d3592ae159104e09672198146413415c5f4f292dde",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "154fd41307271700630b1275598d4f83fc4e15d9b7f393deb76e8fc32bedfda9",
+      "plan.md": "83e9998847f5dba104d24f50201a8abb682721c57c19caafaa0c7c6b5f52e47e",
+      "tasks.md": "466a8a5631e197a3cd129b6da617c053c5c4cdd811715b591f12391270350a70",
+      "implementation-summary.md": "bb976a2ec7122e06cf30bce396e35c8be18129574b1fbe713c9ef3804ad022a0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

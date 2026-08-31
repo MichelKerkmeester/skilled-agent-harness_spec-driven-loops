@@ -1,0 +1,55 @@
+commit 104d65f0018b34545183642b2b16a57b01198fb4
+Author: Michel Kerkmeester <michel.k@getbarter.com>
+Date:   Mon Aug 31 21:27:39 2026 +0200
+
+    refactor(repo-rules): rename three rules, ban the em dash, brief the next program
+    
+    Renames three rules so the filename says what the rule is about:
+    hub-routing to skill-hub-routing, root-cause to root-cause-and-debugging,
+    overengineering to prevent-overengineering. References, symlinks and titles
+    follow in the router, AGENTS.md, the authoring mode and the three downstream
+    repositories. The new names contain the old ones as substrings, so this was
+    checked for double-prefixing rather than assumed.
+    
+    Historical spec artifacts keep the old names. They record what was true when
+    they were written, and rewriting them would falsify that.
+    
+    Removes every em dash from the rule set and the router, 167 across four
+    repositories. A mechanical swap damaged six sentences, so those were repaired
+    by hand: five list-introducing dashes became colons or parentheses, and the
+    subordination line became two sentences rather than a three-comma splice. That
+    line is asserted verbatim by the anatomy contract, so the contract and the
+    template were corrected to match rather than left describing a line that no
+    longer exists.
+    
+    communication.md gains a punctuation section carrying the ban, with the
+    reasoning that a dash usually hides a decision the writer has not made, and a
+    pointer to the full Human Voice Rules standard in sk-doc rather than a copy.
+    
+    Adds the six-stream brief for the next program under scratch, split into a goal
+    and a binding rules file after a fresh review found the single-file version
+    would have had four concurrent agents writing the same nine hub-root files and
+    running a repo-global git stash on a shared dirty tree.
+    
+    Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+    Claude-Session: https://claude.ai/code/session_019ahF7gmhZy3Bo2bKRKK2i7
+
+ .../references/creation-standards.md               |  4 +-
+ .../sk-create-repo-rule/references/rule-anatomy.md |  8 +--
+ AGENTS.md                                          | 16 ++---
+ REPO RULES.md                                      | 30 ++++----
+ repo-rules/blast-radius.md                         | 14 ++--
+ repo-rules/communication.md                        | 81 ++++++++++++++--------
+ repo-rules/delegation-and-orchestration.md         | 41 ++++++-----
+ repo-rules/evidence-and-proof.md                   | 34 +++++----
+ ...erengineering.md => prevent-overengineering.md} | 20 +++---
+ .../{root-cause.md => root-cause-and-debugging.md} | 30 ++++----
+ repo-rules/scope-discipline.md                     | 24 +++----
+ .../{hub-routing.md => skill-hub-routing.md}       | 14 ++--
+ repo-rules/uncertainty-and-honesty.md              | 23 +++---
+ .../009-hub-routing-guardrails/graph-metadata.json | 14 ++--
+ .../implementation-summary.md                      |  2 +-
+ .../009-hub-routing-guardrails/spec.md             |  4 +-
+ .../scratch/six-stream-brief/goal-rules.txt        | 35 ++++++++++
+ .../scratch/six-stream-brief/goal.txt              | 62 +++++++++++++++++
+ 18 files changed, 286 insertions(+), 170 deletions(-)

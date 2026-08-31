@@ -2,17 +2,19 @@
 
 Repo-local operating rules. `AGENTS.md` **Gate 5 (§2)** makes reading this mandatory
 before your first write of the session; this document then routes you to the one rule
-file that governs what you are about to do. **It is a router, not a rulebook** it
+file that governs what you are about to do. **It is a router, not a rulebook:** it
 holds no rules of its own.
 
 ---
 
 ## 1. HOW TO USE THIS
 
-1. **Match on the action you are about to take** not the topic of the request.
+1. **Match on the action you are about to take**, not the topic of the request.
 2. **Load before the action.** A rule read afterwards is a post-mortem.
 3. **A file already in context is not re-read.**
-4. **Two triggers fire → load both.** They compose; the more specific wins on conflict.
+4. **Every trigger that fires is loaded, not just the first.** They compose; the more
+   specific wins on conflict. Three and four firing at once is the normal case, not an
+   edge case.
 5. **Nothing fires → `AGENTS.md` alone governs.** Do not hunt for a rule to apply.
 
 ### Precedence
@@ -20,7 +22,7 @@ holds no rules of its own.
 | Level | Source | Can be overridden? |
 |-------|--------|--------------------|
 | 1 | Every `AGENTS.md` §1 hard blocker, the Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene, and every mandatory gate in §2 | No |
-| 2 | An explicit, in-the-moment operator instruction |, it is the instruction |
+| 2 | An explicit, in-the-moment operator instruction | Not applicable, it is the instruction |
 | 3 | These rule files | Only by level 1 or 2 |
 | 4 | General judgment | By anything above |
 
@@ -83,7 +85,7 @@ posture: how to dispatch is theirs, how to think while dispatching is ours.
 
 **The routing carve-out, added deliberately as the third widening.** *Selecting* a
 route stays Out. *Verifying wiring you changed, and what you may claim about it*, is
-In, it is an evidence obligation whose subject happens to be routing. `skill-hub-routing.md`
+In; it is an evidence obligation whose subject happens to be routing. `skill-hub-routing.md`
 is the one rule on this side of that line, and it carries no route-selection guidance:
 the mechanics stay in the skills, and the rule points at them. A fourth widening that
 admits selection itself would dissolve the boundary; this one does not.

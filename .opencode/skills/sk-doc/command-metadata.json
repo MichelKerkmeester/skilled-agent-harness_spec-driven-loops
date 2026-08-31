@@ -439,5 +439,53 @@
         }
       ]
     }
+  },
+  {
+    "command": "/create:with-human-voice",
+    "ownerMode": "sk-create-with-human-voice",
+    "description": "Apply or score prose against the Human Voice Rules with a scope gate and a re-scan. :auto/:confirm.",
+    "argumentHint": "<file or passage> [apply|score] [--include-code] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want prose brought up to the Human Voice Rules, or told how far off it is.",
+      "ownedSignals": [
+        "make this sound human",
+        "it reads like AI wrote it",
+        "apply the human voice rules",
+        "score this against HVR"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-with-human-voice",
+        "resource": ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
+        "action": "load the voice-application mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-with-human-voice",
+        "resource": ".opencode/commands/create/assets/create-with-human-voice-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ],
+    "discriminator": {
+      "whenToUse": "Use this command when the deliverable is prose that has to read as a person wrote it, and the target already exists.",
+      "preferSiblingWhen": [
+        {
+          "sibling": "/doc:quality",
+          "when": "Prefer the document audit when the target needs structure, DQI and validator results rather than a voice pass."
+        },
+        {
+          "sibling": "/create:readme",
+          "when": "Prefer the README command when the document does not exist yet. Author it first, then run the voice pass over what came out."
+        }
+      ]
+    }
   }
 ]

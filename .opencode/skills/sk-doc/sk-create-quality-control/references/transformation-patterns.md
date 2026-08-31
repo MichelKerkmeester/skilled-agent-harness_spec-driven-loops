@@ -13,7 +13,7 @@ version: 1.8.0.1
 
 # Transformation Pattern Catalog
 
-The full before/after catalog for the 16 transformation patterns. `SKILL.md` §3 Step 3 names all 16 and tells you when to apply each; this file is the worked-example overflow — the concrete before/after code for every pattern. Load it only when you need the exact transform shape.
+The full before/after catalog for the 16 transformation patterns. `SKILL.md` §4 Step 3 names all 16 and tells you when to apply each; this file is the worked-example overflow — the concrete before/after code for every pattern. Load it only when you need the exact transform shape.
 
 For the surrounding procedure (heuristics, analysis workflow, README strategy, iteration), see [optimization.md](./optimization.md).
 

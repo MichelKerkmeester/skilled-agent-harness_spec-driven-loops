@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/043-repo-rules-router-audit",
+  "description": "repo-rules router and rule-set routing audit and optimisation",
+  "keywords": [
+    "repo-rules",
+    "router",
+    "rule-set",
+    "routing",
+    "audit",
+    "optimisation"
+  ],
+  "lastUpdated": "2026-08-31T19:47:34.972Z",
+  "specId": "043",
+  "folderSlug": "repo-rules-router-audit",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

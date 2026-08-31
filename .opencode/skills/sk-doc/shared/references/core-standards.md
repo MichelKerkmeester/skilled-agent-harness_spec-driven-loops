@@ -67,7 +67,6 @@ Numbered documents such as `NNN-name.md` use hyphens by default and conform to t
 |----------|---------|------|---------|
 | 1 | Exact filename | README → readme | `/any/path/README.md` |
 | 1 | Exact filename | SKILL → skill | `.opencode/skills/*/SKILL.md` |
-| 1 | Exact filename | llms.txt → llmstxt | `/any/path/llms.txt` |
 | 2 | Directory path | `.opencode/commands/**/*.md` → command | `.opencode/commands/deploy.md` |
 | 2 | Directory path | `knowledge/*.md` → knowledge | `knowledge/api.md` |
 | 2 | Directory path | `specs/**/*.md` → spec | `specs/042/spec.md` |
@@ -86,11 +85,17 @@ Numbered documents such as `NNN-name.md` use hyphens by default and conform to t
 |------|-------------|-------------|-------------|------------|--------|
 | README | Flexible | Optional; the current README template includes it | Optional | ❌ Never | No |
 | SKILL | Strict | Required | Required | ❌ Never | Yes |
-| llms.txt | Strict | Forbidden | N/A | ❌ Never | Yes |
 | Knowledge | Moderate | Forbidden | Required | ❌ Never | Yes |
 | Command | Strict | Required | Forbidden | ❌ Never | Yes |
 | Spec | Loose | Optional | Optional | ❌ Never | No |
 | Generic | Flexible | Optional | Optional | ❌ Never | No |
+
+`validate_document.py --type` accepts `readme`, `code_folder`, `skill`, `reference`, `asset`,
+`agent`, `command`, `install_guide`, `spec`, `changelog`, `playbook`, `playbook_feature` and
+`feature_catalog`. There is no `llmstxt` type and `template-rules.json` declares none, so an
+`llms.txt` is an authoring target governed by
+[llmstxt-templates.md](../assets/llmstxt-templates.md), not a validator-enforced document class.
+Authoring rules for it live in §7.
 
 **TOC Policy Summary**:
 - ❌ **NEVER** add a Table of Contents to any document type. Tables of Contents and `<!-- ANCHOR -->` navigation comments are not used in skill documentation.
@@ -255,7 +260,7 @@ Optional sections: Example Output, Notes, Troubleshooting
 H1 format: "# Command Title" (no subtitle)
 H2 format: "## N. SECTION-NAME" (numbered, ALL CAPS, NO decorative emoji)
 Quality target: Functional (clear and unambiguous)
-Template: assets/command/command-template.md
+Template: sk-create-command/assets/command-template.md
 
 # EMOJI POLICY: Commands use SEMANTIC emojis only
 # - H1: No decorative emoji, semantic allowed (🚨 for mandatory/blocking)
@@ -330,6 +335,3 @@ Format: Plain text navigation file for LLMs
 - [install-guide-template.md](../../sk-create-readme/assets/install-guide-template.md) - Install guide template
 - [llmstxt-templates.md](../assets/llmstxt-templates.md) - llms.txt with decision framework
 - [frontmatter-templates.md](../assets/frontmatter-templates.md) - Frontmatter by document type
-
-### Additional Resources
-- `document_style_guide.md` - Project-specific style guide (create if needed)

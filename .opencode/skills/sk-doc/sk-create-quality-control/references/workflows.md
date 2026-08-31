@@ -1,6 +1,6 @@
 ---
-title: Document Quality Workflows - Execution Modes (Mode 1)
-description: The four execution modes and mode selection for Mode 1 document-quality workflows, with a route map to the validation, enforcement, and example overflow.
+title: Document Quality Workflows - Execution Modes
+description: The four execution modes and mode selection for create-quality-control runs, with a route map to the validation, enforcement, and example overflow.
 trigger_phrases:
   - "document quality workflows"
   - "doc improvement modes"
@@ -11,9 +11,9 @@ contextType: implementation
 version: 1.8.0.20
 ---
 
-# Document Quality Workflows - Execution Modes (Mode 1)
+# Document Quality Workflows - Execution Modes
 
-The four execution modes and how to pick one, for Mode 1 (Document Quality) workflows. `SKILL.md` §2 Step 1 owns mode selection at runtime; this file is the overflow reference — the mode/script/phase/output mapping, plus a route map to the validation sequence, enforcement prompts, and worked examples.
+The four execution modes and how to pick one. `SKILL.md` §3 Step 1 owns mode selection at runtime and names these same four modes; this file is the overflow reference — the mode/script/phase/output mapping, plus a route map to the validation sequence, enforcement prompts, and worked examples.
 
 ---
 
@@ -31,7 +31,7 @@ Workflows define the execution patterns and operational modes for the markdown d
 
 > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
 
-**Scope Note**: This reference covers Mode 1 (Document Quality) workflows only. For other modes, see:
+**Scope Note**: This reference covers create-quality-control runs only. For other documentation work, see:
 Other documentation workflows are separate `sk-doc` packets rather than numbered modes in this reference: [skill creation](../../sk-create-skill/references/README.md), [diagrams and flowcharts](../../sk-create-diagram/README.md), [README and install guides](../../sk-create-readme/references/README.md), [manual testing playbooks](../../sk-create-manual-testing-playbook/references/README.md), and [feature catalogs](../../sk-create-feature-catalog/references/README.md). Benchmarks, changelogs, diffs, and the quality-control packet are likewise selected through `mode-registry.json`.
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
@@ -46,16 +46,16 @@ The playbook workflow assumes a root directory playbook plus required per-featur
 
 | Workflow | Phases | Command | Use When | Output |
 | --- | --- | --- | --- | --- |
-| **Script-assisted review** | 1+2 | `python ../shared/scripts/extract_structure.py` + AI eval | Critical docs (specs, skills, READMEs) | JSON output + qualitative assessment + recommendations |
-| **Structure checks** | 1 | `python ../shared/scripts/quick_validate.py` | File save, structural validation | Checklist results + fix list |
-| **Content optimization** | 2 | `python ../shared/scripts/extract_structure.py` + AI eval | Improve existing docs for AI | Recommendations for clarity + AI-friendliness |
-| **Audit snapshot** | 1 (JSON only) | `python ../shared/scripts/extract_structure.py` | Quality audit, no changes | JSON report for another agent |
+| **Report-only audit** | 1+2 | `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py` + AI eval | Default for `/doc:quality`; critical docs (specs, skills, READMEs) | JSON output + qualitative assessment + recommendations, no edits |
+| **Structure validation** | 1 | `python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py` | Readiness or blocking-issue questions, post-save checks | Checklist results + fix list |
+| **Content optimization** | 2 | `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py` + AI eval | Improve existing docs for AI | Recommendations for clarity + AI-friendliness |
+| **Batch snapshot** | 1 (JSON only) | `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py` per file | Assessing several docs at once, no changes | Per-file JSON report for another agent |
 
 **Mode selection**:
-- Creating new SKILL/Knowledge → Script-assisted review
-- Saving files → Structure checks
-- Improving README → Content optimization
-- Pre-release check → Structure checks + review
+- Auditing an existing SKILL/README/knowledge doc → Report-only audit
+- Answering "is this ready to ship" → Structure validation
+- Improving an existing README → Content optimization
+- Assessing a whole doc set → Batch snapshot
 
 ---
 

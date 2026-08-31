@@ -1,0 +1,902 @@
+### TASK: audit the documentation quality of this README
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-readme",
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [
+    "DOC_QUALITY"
+  ],
+  "resources": [
+    "shared/references/validation.md",
+    "sk-create-quality-control/references/workflows.md",
+    "shared/references/core-standards.md",
+    "shared/references/evergreen-packet-id-rule.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-readme",
+      "score": 4
+    },
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-readme",
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "readme",
+      "audit"
+    ],
+    "defaultApplied": false,
+    "deferReason": "ambiguous-multi-axis",
+    "backendKind": [
+      "template-scaffold",
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-readme",
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/validation.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/workflows.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/core-standards.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/evergreen-packet-id-rule.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+
+### TASK: score this document
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [],
+  "resources": [],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 8
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "score this document",
+      "score"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [],
+    "unresolved": []
+  }
+}
+
+### TASK: validate a document
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [],
+  "resources": [],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 8
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "validate a document",
+      "validate"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [],
+    "unresolved": []
+  }
+}
+
+### TASK: check the docs
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [
+    "DOC_QUALITY"
+  ],
+  "resources": [
+    "shared/references/validation.md",
+    "sk-create-quality-control/references/workflows.md",
+    "shared/references/core-standards.md",
+    "shared/references/evergreen-packet-id-rule.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "check"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/validation.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/workflows.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/core-standards.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/evergreen-packet-id-rule.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+
+### TASK: review the docs
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [
+    "DOC_QUALITY"
+  ],
+  "resources": [
+    "shared/references/validation.md",
+    "sk-create-quality-control/references/workflows.md",
+    "shared/references/core-standards.md",
+    "shared/references/evergreen-packet-id-rule.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "review"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/validation.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/workflows.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/core-standards.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/evergreen-packet-id-rule.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+
+### TASK: optimize this doc
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [
+    "OPTIMIZATION"
+  ],
+  "resources": [
+    "sk-create-quality-control/references/optimization.md",
+    "shared/assets/llmstxt-templates.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 8
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "optimize this doc",
+      "optimize"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/optimization.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "assets/llmstxt-templates.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+
+### TASK: audit the docs
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [
+    "DOC_QUALITY"
+  ],
+  "resources": [
+    "shared/references/validation.md",
+    "sk-create-quality-control/references/workflows.md",
+    "shared/references/core-standards.md",
+    "shared/references/evergreen-packet-id-rule.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "audit"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/validation.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/workflows.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/core-standards.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/evergreen-packet-id-rule.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+
+### TASK: run DQI on this file
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [],
+  "resources": [],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "dqi"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [],
+    "unresolved": []
+  }
+}
+
+### TASK: human voice review of this page
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [],
+  "resources": [],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 8
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "human voice",
+      "review"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [],
+    "unresolved": []
+  }
+}
+
+### TASK: create a readme
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-readme"
+  ],
+  "surfaceIntents": [
+    "README_CREATION"
+  ],
+  "resources": [
+    "sk-create-readme/references/README.md",
+    "sk-create-readme/assets/readme-template.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-readme",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-readme"
+    ],
+    "matchedAliases": [
+      "readme"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "template-scaffold"
+    ],
+    "packet": [
+      "sk-create-readme"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-readme",
+        "leafResourceId": "references/README.md"
+      },
+      {
+        "workflowMode": "sk-create-readme",
+        "leafResourceId": "assets/readme-template.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+
+### TASK: create a changelog entry
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-changelog"
+  ],
+  "surfaceIntents": [
+    "CHANGELOG"
+  ],
+  "resources": [
+    "shared/assets/changelog-template.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-changelog",
+      "score": 6
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-changelog"
+    ],
+    "matchedAliases": [
+      "changelog",
+      "changelog entry"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "template-scaffold"
+    ],
+    "packet": [
+      "sk-create-changelog"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-changelog",
+        "leafResourceId": "assets/changelog-template.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+
+### TASK: review this skill and harden it
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [],
+  "resources": [],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 8
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "review",
+      "harden"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [],
+    "unresolved": []
+  }
+}
+
+### TASK: check the feature catalog
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-feature-catalog",
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [
+    "FEATURE_CATALOG"
+  ],
+  "resources": [
+    "sk-create-feature-catalog/references/README.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-feature-catalog",
+      "score": 4
+    },
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-feature-catalog",
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "feature catalog",
+      "check"
+    ],
+    "defaultApplied": false,
+    "deferReason": "ambiguous-multi-axis",
+    "backendKind": [
+      "template-scaffold",
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-feature-catalog",
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-feature-catalog",
+        "leafResourceId": "references/README.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+
+### TASK: validate the command template
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control",
+    "sk-create-command"
+  ],
+  "surfaceIntents": [],
+  "resources": [],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    },
+    {
+      "intent": "sk-create-command",
+      "score": 3
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control",
+      "sk-create-command"
+    ],
+    "matchedAliases": [
+      "validate",
+      "command template"
+    ],
+    "defaultApplied": false,
+    "deferReason": "ambiguous-multi-axis",
+    "backendKind": [
+      "create-quality-control",
+      "template-scaffold"
+    ],
+    "packet": [
+      "sk-create-quality-control",
+      "sk-create-command"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [],
+    "unresolved": []
+  }
+}
+
+### TASK: audit the agent file
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-agent",
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [],
+  "resources": [],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-agent",
+      "score": 4
+    },
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-agent",
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "agent file",
+      "audit"
+    ],
+    "defaultApplied": false,
+    "deferReason": "ambiguous-multi-axis",
+    "backendKind": [
+      "template-scaffold",
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-agent",
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [],
+    "unresolved": []
+  }
+}
+
+### TASK: trim this document
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [
+    "OPTIMIZATION"
+  ],
+  "resources": [
+    "sk-create-quality-control/references/optimization.md",
+    "shared/assets/llmstxt-templates.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "trim"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/optimization.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "assets/llmstxt-templates.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+
+### TASK: flag the issues
+{
+  "parseable": true,
+  "intents": [
+    "sk-create-quality-control"
+  ],
+  "surfaceIntents": [
+    "DOC_QUALITY"
+  ],
+  "resources": [
+    "shared/references/validation.md",
+    "sk-create-quality-control/references/workflows.md",
+    "shared/references/core-standards.md",
+    "shared/references/evergreen-packet-id-rule.md"
+  ],
+  "missingResources": [],
+  "scores": [
+    {
+      "intent": "sk-create-quality-control",
+      "score": 4
+    }
+  ],
+  "routeTelemetry": {
+    "observed": true,
+    "source": "hub-router",
+    "workflowMode": [
+      "sk-create-quality-control"
+    ],
+    "matchedAliases": [
+      "flag"
+    ],
+    "defaultApplied": false,
+    "deferReason": null,
+    "backendKind": [
+      "create-quality-control"
+    ],
+    "packet": [
+      "sk-create-quality-control"
+    ]
+  },
+  "resourceContract": {
+    "resourceContractVersion": 1,
+    "pairs": [
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/validation.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/workflows.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/core-standards.md"
+      },
+      {
+        "workflowMode": "sk-create-quality-control",
+        "leafResourceId": "references/evergreen-packet-id-rule.md"
+      }
+    ],
+    "unresolved": []
+  }
+}
+

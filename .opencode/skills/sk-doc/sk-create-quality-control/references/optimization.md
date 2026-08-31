@@ -13,7 +13,7 @@ version: 1.8.0.17
 
 # Optimization Procedure - AI-Friendly Docs
 
-The procedure for converting reference-style documentation into question-answering format. `SKILL.md` §3 owns the executable optimization steps; this file is the overflow detail — the quality heuristics, the analysis workflow, the README priority strategy, the snippet checklist, and the iteration loop. The 16 transformation patterns each have a worked before/after example in the [transformation pattern catalog](./transformation-patterns.md).
+The procedure for converting reference-style documentation into question-answering format. `SKILL.md` §4 owns the executable optimization steps; this file is the overflow detail — the quality heuristics, the analysis workflow, the README priority strategy, the snippet checklist, and the iteration loop. The 16 transformation patterns each have a worked before/after example in the [transformation pattern catalog](./transformation-patterns.md).
 
 ---
 
@@ -86,7 +86,7 @@ These heuristics describe what “good” looks like. This skill does not comput
 
 ## 4. TRANSFORMATION PATTERNS
 
-The 16 patterns, with a worked before/after example for each, live in the [transformation pattern catalog](./transformation-patterns.md). `SKILL.md` §3 Step 3 lists all 16 by name and impact/effort so you can choose without opening the catalog; open the catalog when you need the exact transform shape.
+The 16 patterns, with a worked before/after example for each, live in the [transformation pattern catalog](./transformation-patterns.md). `SKILL.md` §4 Step 3 lists all 16 by name and impact/effort so you can choose without opening the catalog; open the catalog when you need the exact transform shape.
 
 Pattern quick-index (see catalog for code):
 

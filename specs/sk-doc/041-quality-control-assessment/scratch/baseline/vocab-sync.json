@@ -1,0 +1,1584 @@
+{
+  "familyPresent": true,
+  "projectionParsed": true,
+  "typedKeywordCount": 181,
+  "score": 0,
+  "driftDetected": true,
+  "verdict": "VOCAB-DRIFT",
+  "findings": [
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "create skill",
+      "detail": "sk-create-skill alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "new skill",
+      "detail": "sk-create-skill alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "skill scaffold",
+      "detail": "sk-create-skill alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "OpenCode skill",
+      "detail": "sk-create-skill alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "package skill",
+      "detail": "sk-create-skill alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "parent skill",
+      "detail": "sk-create-skill-parent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "parent hub",
+      "detail": "sk-create-skill-parent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "mode packet",
+      "detail": "sk-create-skill-parent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "nested workflow packet",
+      "detail": "sk-create-skill-parent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "create readme",
+      "detail": "sk-create-readme alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "readme",
+      "detail": "sk-create-readme alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "folder readme",
+      "detail": "sk-create-readme alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "write readme",
+      "detail": "sk-create-readme alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "README.md",
+      "detail": "sk-create-readme alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "install guide",
+      "detail": "sk-create-readme alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "installation guide",
+      "detail": "sk-create-readme alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "setup guide",
+      "detail": "sk-create-readme alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "code folder readme",
+      "detail": "sk-create-readme alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "create agent",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "OpenCode agent",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "Claude Code agent",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "agent file",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "new agent",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "agent persona",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "agent frontmatter",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "permission object",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "authority boundary",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "agent template",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "runtime agent directory",
+      "detail": "sk-create-agent alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "create command",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "slash command",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "OpenCode command",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "argument-hint",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "allowed-tools",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "command template",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "router presentation split",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "thin router",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "presentation contract",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "$ARGUMENTS",
+      "detail": "sk-create-command alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "feature catalog",
+      "detail": "sk-create-feature-catalog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "feature inventory",
+      "detail": "sk-create-feature-catalog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "catalog package",
+      "detail": "sk-create-feature-catalog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "per-feature files",
+      "detail": "sk-create-feature-catalog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "source anchors",
+      "detail": "sk-create-feature-catalog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "root catalog",
+      "detail": "sk-create-feature-catalog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "capability inventory",
+      "detail": "sk-create-feature-catalog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "manual testing playbook",
+      "detail": "sk-create-manual-testing-playbook alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "testing playbook",
+      "detail": "sk-create-manual-testing-playbook alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "deterministic scenario",
+      "detail": "sk-create-manual-testing-playbook alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "evidence collection",
+      "detail": "sk-create-manual-testing-playbook alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "operator validation",
+      "detail": "sk-create-manual-testing-playbook alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "multi-agent execution",
+      "detail": "sk-create-manual-testing-playbook alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "release readiness",
+      "detail": "sk-create-manual-testing-playbook alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "benchmark-report.md",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "SOURCE.md",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "mcp-server/benchmarks",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "MCP bake-off",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "behavior benchmark",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "behavior-benchmark.md",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "scenario contract",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "claude-baseline",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "skill-benchmark",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "benchmark/README.md",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "run-label folder",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "benchmark package",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "model-benchmark",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "benchmark fixture",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "benchmark profile",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "reviewer-prompt fixture",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "agent-improvement",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "Lane A agent-improvement",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "agent_improvement_authoring_guide",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "agent quality dimensions",
+      "detail": "sk-create-benchmark alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "create changelog",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "changelog",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "changelog entry",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "release notes",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "global changelog",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "packet-local changelog",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "nested changelog",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "--bump",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "--release",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "vX.Y.Z.B",
+      "detail": "sk-create-changelog alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "create diff report",
+      "detail": "sk-create-diff alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "document before after review",
+      "detail": "sk-create-diff alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "before after document diff",
+      "detail": "sk-create-diff alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "document change report",
+      "detail": "sk-create-diff alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "create diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "architecture diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "sequence diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "ER diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "state machine diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "data model diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "swimlane",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "venn diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "org chart",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "quadrant diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "gantt chart",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "draw.io",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "drawio",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "mermaid diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "redraw diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "export diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "create flowchart",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "flowchart",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "ASCII flowchart",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "workflow diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "text diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "text characters",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "decision tree",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "decision branch",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "parallel execution diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "approval loop diagram",
+      "detail": "sk-create-diagram alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "doc quality",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "audit documentation quality",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "document audit",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "validate a document",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "validate markdown",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "score this document",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "optimize this doc",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "DQI",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "HVR",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "human voice",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "AI-friendly documentation",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "extract structure",
+      "detail": "sk-create-quality-control alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "create repo rule",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "repo rule",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "project rule",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "REPO RULES.md",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "repo-rules",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "add a rule",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "retire a rule",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "revise a rule",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "trigger table",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    },
+    {
+      "class": "orphan-alias",
+      "severity": "P0",
+      "locus": "rule router",
+      "detail": "sk-create-repo-rule alias is not typed by the hub vocabulary"
+    }
+  ],
+  "orphanAliases": [
+    {
+      "mode": "sk-create-skill",
+      "phrase": "create skill",
+      "normalized": "create skill"
+    },
+    {
+      "mode": "sk-create-skill",
+      "phrase": "new skill",
+      "normalized": "new skill"
+    },
+    {
+      "mode": "sk-create-skill",
+      "phrase": "skill scaffold",
+      "normalized": "skill scaffold"
+    },
+    {
+      "mode": "sk-create-skill",
+      "phrase": "OpenCode skill",
+      "normalized": "opencode skill"
+    },
+    {
+      "mode": "sk-create-skill",
+      "phrase": "package skill",
+      "normalized": "package skill"
+    },
+    {
+      "mode": "sk-create-skill-parent",
+      "phrase": "parent skill",
+      "normalized": "parent skill"
+    },
+    {
+      "mode": "sk-create-skill-parent",
+      "phrase": "parent hub",
+      "normalized": "parent hub"
+    },
+    {
+      "mode": "sk-create-skill-parent",
+      "phrase": "mode packet",
+      "normalized": "mode packet"
+    },
+    {
+      "mode": "sk-create-skill-parent",
+      "phrase": "nested workflow packet",
+      "normalized": "nested workflow packet"
+    },
+    {
+      "mode": "sk-create-readme",
+      "phrase": "create readme",
+      "normalized": "create readme"
+    },
+    {
+      "mode": "sk-create-readme",
+      "phrase": "readme",
+      "normalized": "readme"
+    },
+    {
+      "mode": "sk-create-readme",
+      "phrase": "folder readme",
+      "normalized": "folder readme"
+    },
+    {
+      "mode": "sk-create-readme",
+      "phrase": "write readme",
+      "normalized": "write readme"
+    },
+    {
+      "mode": "sk-create-readme",
+      "phrase": "README.md",
+      "normalized": "readme.md"
+    },
+    {
+      "mode": "sk-create-readme",
+      "phrase": "install guide",
+      "normalized": "install guide"
+    },
+    {
+      "mode": "sk-create-readme",
+      "phrase": "installation guide",
+      "normalized": "installation guide"
+    },
+    {
+      "mode": "sk-create-readme",
+      "phrase": "setup guide",
+      "normalized": "setup guide"
+    },
+    {
+      "mode": "sk-create-readme",
+      "phrase": "code folder readme",
+      "normalized": "code folder readme"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "create agent",
+      "normalized": "create agent"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "OpenCode agent",
+      "normalized": "opencode agent"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "Claude Code agent",
+      "normalized": "claude code agent"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "agent file",
+      "normalized": "agent file"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "new agent",
+      "normalized": "new agent"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "agent persona",
+      "normalized": "agent persona"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "agent frontmatter",
+      "normalized": "agent frontmatter"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "permission object",
+      "normalized": "permission object"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "authority boundary",
+      "normalized": "authority boundary"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "agent template",
+      "normalized": "agent template"
+    },
+    {
+      "mode": "sk-create-agent",
+      "phrase": "runtime agent directory",
+      "normalized": "runtime agent directory"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "create command",
+      "normalized": "create command"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "slash command",
+      "normalized": "slash command"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "OpenCode command",
+      "normalized": "opencode command"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "argument-hint",
+      "normalized": "argument hint"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "allowed-tools",
+      "normalized": "allowed tools"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "command template",
+      "normalized": "command template"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "router presentation split",
+      "normalized": "router presentation split"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "thin router",
+      "normalized": "thin router"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "presentation contract",
+      "normalized": "presentation contract"
+    },
+    {
+      "mode": "sk-create-command",
+      "phrase": "$ARGUMENTS",
+      "normalized": "arguments"
+    },
+    {
+      "mode": "sk-create-feature-catalog",
+      "phrase": "feature catalog",
+      "normalized": "feature catalog"
+    },
+    {
+      "mode": "sk-create-feature-catalog",
+      "phrase": "feature inventory",
+      "normalized": "feature inventory"
+    },
+    {
+      "mode": "sk-create-feature-catalog",
+      "phrase": "catalog package",
+      "normalized": "catalog package"
+    },
+    {
+      "mode": "sk-create-feature-catalog",
+      "phrase": "per-feature files",
+      "normalized": "per feature files"
+    },
+    {
+      "mode": "sk-create-feature-catalog",
+      "phrase": "source anchors",
+      "normalized": "source anchors"
+    },
+    {
+      "mode": "sk-create-feature-catalog",
+      "phrase": "root catalog",
+      "normalized": "root catalog"
+    },
+    {
+      "mode": "sk-create-feature-catalog",
+      "phrase": "capability inventory",
+      "normalized": "capability inventory"
+    },
+    {
+      "mode": "sk-create-manual-testing-playbook",
+      "phrase": "manual testing playbook",
+      "normalized": "manual testing playbook"
+    },
+    {
+      "mode": "sk-create-manual-testing-playbook",
+      "phrase": "testing playbook",
+      "normalized": "testing playbook"
+    },
+    {
+      "mode": "sk-create-manual-testing-playbook",
+      "phrase": "deterministic scenario",
+      "normalized": "deterministic scenario"
+    },
+    {
+      "mode": "sk-create-manual-testing-playbook",
+      "phrase": "evidence collection",
+      "normalized": "evidence collection"
+    },
+    {
+      "mode": "sk-create-manual-testing-playbook",
+      "phrase": "operator validation",
+      "normalized": "operator validation"
+    },
+    {
+      "mode": "sk-create-manual-testing-playbook",
+      "phrase": "multi-agent execution",
+      "normalized": "multi agent execution"
+    },
+    {
+      "mode": "sk-create-manual-testing-playbook",
+      "phrase": "release readiness",
+      "normalized": "release readiness"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "benchmark-report.md",
+      "normalized": "benchmark report.md"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "SOURCE.md",
+      "normalized": "source.md"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "mcp-server/benchmarks",
+      "normalized": "mcp server/benchmarks"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "MCP bake-off",
+      "normalized": "mcp bake off"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "behavior benchmark",
+      "normalized": "behavior benchmark"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "behavior-benchmark.md",
+      "normalized": "behavior benchmark.md"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "scenario contract",
+      "normalized": "scenario contract"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "claude-baseline",
+      "normalized": "claude baseline"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "skill-benchmark",
+      "normalized": "skill benchmark"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "benchmark/README.md",
+      "normalized": "benchmark/readme.md"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "run-label folder",
+      "normalized": "run label folder"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "benchmark package",
+      "normalized": "benchmark package"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "model-benchmark",
+      "normalized": "model benchmark"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "benchmark fixture",
+      "normalized": "benchmark fixture"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "benchmark profile",
+      "normalized": "benchmark profile"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "reviewer-prompt fixture",
+      "normalized": "reviewer prompt fixture"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "agent-improvement",
+      "normalized": "agent improvement"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "Lane A agent-improvement",
+      "normalized": "lane a agent improvement"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "agent_improvement_authoring_guide",
+      "normalized": "agent_improvement_authoring_guide"
+    },
+    {
+      "mode": "sk-create-benchmark",
+      "phrase": "agent quality dimensions",
+      "normalized": "agent quality dimensions"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "create changelog",
+      "normalized": "create changelog"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "changelog",
+      "normalized": "changelog"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "changelog entry",
+      "normalized": "changelog entry"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "release notes",
+      "normalized": "release notes"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "global changelog",
+      "normalized": "global changelog"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "packet-local changelog",
+      "normalized": "packet local changelog"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "nested changelog",
+      "normalized": "nested changelog"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "--bump",
+      "normalized": "bump"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "--release",
+      "normalized": "release"
+    },
+    {
+      "mode": "sk-create-changelog",
+      "phrase": "vX.Y.Z.B",
+      "normalized": "vx.y.z.b"
+    },
+    {
+      "mode": "sk-create-diff",
+      "phrase": "create diff report",
+      "normalized": "create diff report"
+    },
+    {
+      "mode": "sk-create-diff",
+      "phrase": "document before after review",
+      "normalized": "document before after review"
+    },
+    {
+      "mode": "sk-create-diff",
+      "phrase": "before after document diff",
+      "normalized": "before after document diff"
+    },
+    {
+      "mode": "sk-create-diff",
+      "phrase": "document change report",
+      "normalized": "document change report"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "create diagram",
+      "normalized": "create diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "diagram",
+      "normalized": "diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "architecture diagram",
+      "normalized": "architecture diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "sequence diagram",
+      "normalized": "sequence diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "ER diagram",
+      "normalized": "er diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "state machine diagram",
+      "normalized": "state machine diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "data model diagram",
+      "normalized": "data model diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "swimlane",
+      "normalized": "swimlane"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "venn diagram",
+      "normalized": "venn diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "org chart",
+      "normalized": "org chart"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "quadrant diagram",
+      "normalized": "quadrant diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "gantt chart",
+      "normalized": "gantt chart"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "draw.io",
+      "normalized": "draw.io"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "drawio",
+      "normalized": "drawio"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "mermaid diagram",
+      "normalized": "mermaid diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "redraw diagram",
+      "normalized": "redraw diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "export diagram",
+      "normalized": "export diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "create flowchart",
+      "normalized": "create flowchart"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "flowchart",
+      "normalized": "flowchart"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "ASCII flowchart",
+      "normalized": "ascii flowchart"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "workflow diagram",
+      "normalized": "workflow diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "text diagram",
+      "normalized": "text diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "text characters",
+      "normalized": "text characters"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "decision tree",
+      "normalized": "decision tree"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "decision branch",
+      "normalized": "decision branch"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "parallel execution diagram",
+      "normalized": "parallel execution diagram"
+    },
+    {
+      "mode": "sk-create-diagram",
+      "phrase": "approval loop diagram",
+      "normalized": "approval loop diagram"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "doc quality",
+      "normalized": "doc quality"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "audit documentation quality",
+      "normalized": "audit documentation quality"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "document audit",
+      "normalized": "document audit"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "validate a document",
+      "normalized": "validate a document"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "validate markdown",
+      "normalized": "validate markdown"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "score this document",
+      "normalized": "score this document"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "optimize this doc",
+      "normalized": "optimize this doc"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "DQI",
+      "normalized": "dqi"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "HVR",
+      "normalized": "hvr"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "human voice",
+      "normalized": "human voice"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "AI-friendly documentation",
+      "normalized": "ai friendly documentation"
+    },
+    {
+      "mode": "sk-create-quality-control",
+      "phrase": "extract structure",
+      "normalized": "extract structure"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "create repo rule",
+      "normalized": "create repo rule"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "repo rule",
+      "normalized": "repo rule"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "project rule",
+      "normalized": "project rule"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "REPO RULES.md",
+      "normalized": "repo rules.md"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "repo-rules",
+      "normalized": "repo rules"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "add a rule",
+      "normalized": "add a rule"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "retire a rule",
+      "normalized": "retire a rule"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "revise a rule",
+      "normalized": "revise a rule"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "trigger table",
+      "normalized": "trigger table"
+    },
+    {
+      "mode": "sk-create-repo-rule",
+      "phrase": "rule router",
+      "normalized": "rule router"
+    }
+  ],
+  "aliasCollisions": [],
+  "ownershipDrift": [],
+  "untypedKeywords": [
+    "sk-doc",
+    "documentation",
+    "markdown",
+    "authoring",
+    "mode-registry",
+    "hub-router",
+    "workflowmode",
+    "packetkind",
+    "sk-create-skill",
+    "sk-create-readme",
+    "sk-create-agent",
+    "sk-create-command",
+    "sk-create-feature-catalog",
+    "sk-create-manual-testing-playbook",
+    "sk-create-benchmark",
+    "sk-create-diagram",
+    "sk-create-changelog",
+    "sk-create-diff",
+    "sk-create-repo-rule",
+    "sk-create-quality-control",
+    "shared-backbone",
+    "create-quality-control-pipeline"
+  ],
+  "untypedKeywordRate": 0.9565217391304348,
+  "phantomTypedKeywords": [
+    "SKILL.md scaffold",
+    "agent and paired",
+    "audit",
+    "capabilities",
+    "check",
+    "create sk-",
+    "data flow diagram",
+    "editorial diagram",
+    "entity relationship diagram",
+    "flag",
+    "front-page overview",
+    "getting our project running",
+    "harden",
+    "high-level diagram",
+    "hub versus standalone skill class",
+    "leaf-manifest config aliases required",
+    "medallion diagram",
+    "model's budget",
+    "new repo rule",
+    "optimize",
+    "paired /create",
+    "playbook system",
+    "quality bar",
+    "radar chart",
+    "repo rule file",
+    "repo-local rule",
+    "retire a repo rule",
+    "reusable capability",
+    "reusable helper",
+    "review",
+    "revise a repo rule",
+    "running from scratch",
+    "score",
+    "self-contained HTML diagram",
+    "since the last version",
+    "sk-skill",
+    "skill metadata drift gate",
+    "skill root metadata contract",
+    "starter reference docs",
+    "stop doing",
+    "swimlane diagram",
+    "trim",
+    "validate",
+    "validation rules",
+    "we should always",
+    "which json files does a skill need"
+  ],
+  "triggerPhraseCoverage": 0.7142857142857143
+}

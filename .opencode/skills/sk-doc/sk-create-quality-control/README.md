@@ -20,7 +20,7 @@ version: 1.0.1.1
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Auditing, scoring and optionally improving an existing markdown document's structure and voice |
-| **Invoke with** | `/doc:quality`, "doc quality", "score this document", "DQI", "HVR" |
+| **Invoke with** | "doc quality", "score this document", "DQI", "HVR" (the reserved `/doc:quality` command is not built yet) |
 | **Works on** | Any existing markdown file already in the repo: README, `SKILL.md`, command doc, spec doc, reference |
 | **Produces** | A DQI score and band with the blocking/warning/recommendation issue list behind it, plus a targeted edit to that one file only when you ask |
 
@@ -40,12 +40,12 @@ A document either reads well to the person who wrote it or it does not. A self-a
 
 ## 3. QUICK START
 
-**Step 1: Invoke it.** Run `/doc:quality`. Read `SKILL.md` directly for the full contract.
+**Step 1: Invoke it.** Ask for a doc-quality audit, score or validation of a named file and `sk-doc` routes here. Read `SKILL.md` directly for the full contract.
 
 **Step 2: Run the primary workflow.**
 
 ```bash
-python .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md
 ```
 
 You get a JSON report with the detected document type, structural metrics, checklist results, DQI score and quality band.
@@ -53,7 +53,7 @@ You get a JSON report with the detected document type, structural metrics, check
 **Step 3: Verify before you rely on it.**
 
 ```bash
-python .opencode/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py README.md --type readme
 ```
 
 Expected: zero blocking issues before the document counts as ready.
@@ -126,9 +126,9 @@ A: The packet escalates instead of editing. Product claims and policy text, plus
 
 | Check | How to run it |
 |---|---|
-| Structure and DQI | `python .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>` returns metrics, checklist results, DQI score and band |
-| Format validation | `python .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type <type>` reports zero blocking issues |
-| Filename case (non-scored) | `python .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` reports `PASS` or `FAIL`, plus an exemption outcome where the naming rules do not apply |
+| Structure and DQI | `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>` returns metrics, checklist results, DQI score and band |
+| Format validation | `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type <type>` reports zero blocking issues |
+| Filename case (non-scored) | `python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` reports `PASS` or `FAIL`, plus an exemption outcome where the naming rules do not apply |
 
 ---
 

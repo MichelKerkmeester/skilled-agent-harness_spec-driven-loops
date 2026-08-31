@@ -1,5 +1,5 @@
 ---
-title: Validation and Enforcement Operations - Mode 1
+title: Validation and Enforcement Operations
 description: Validation touchpoints, enforcement approval-prompt templates, phase chaining, and troubleshooting for document-quality runs.
 trigger_phrases:
   - "validation integration workflow"
@@ -13,7 +13,7 @@ version: 1.8.0.1
 
 # Validation and Enforcement Operations
 
-How a create-quality-control run validates and enforces standards: the validation touchpoints, the enforcement approval prompts, how phases chain, and what to do when a run breaks. `SKILL.md` §2-§4 owns the executable steps; this file is the overflow detail — the manual validation sequence, the approval-prompt wording, the phase-chaining logic, and troubleshooting.
+How a create-quality-control run validates and enforces standards: the validation touchpoints, the enforcement approval prompts, how phases chain, and what to do when a run breaks. `SKILL.md` §3-§5 owns the executable steps; this file is the overflow detail — the manual validation sequence, the approval-prompt wording, the phase-chaining logic, and troubleshooting.
 
 For execution modes see [workflows.md](./workflows.md). For worked command recipes see [workflow-examples.md](./workflow-examples.md).
 
@@ -31,20 +31,21 @@ This file covers how a create-quality-control run validates and enforces standar
 
 **Pre-Delivery Format Validation** (MANDATORY for READMEs):
 - **When**: Before claiming completion on any README
-- **Script**: `python ../shared/scripts/validate_document.py <file>`
+- **Script**: `python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file>`
 - **Action**: Check H2 format and required sections
 - **Blocking**: Yes - exit code 1 blocks delivery
 - **Auto-fix**: Use `--fix` for safe issues
 
 **Post-Write Validation Pattern** (manual):
-- **When**: After Write/Edit operations on `.md` files
-- **Script**: `python ../shared/scripts/quick_validate.py <path>`
-- **Action**: Validate authored names against lowercase kebab-case; do not convert hyphens to underscores
+- **When**: After Write/Edit operations inside a skill or mode packet
+- **Script**: `python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <skill-or-packet-directory>`
+- **Action**: Check the directory's `SKILL.md` frontmatter and structure. It takes a directory, not a file, and errors with `SKILL.md not found` on a file path.
 - **Blocking**: No (logs only)
+- **Filename case**: a separate checker. Run `python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>` for lowercase kebab-case conformance; do not convert hyphens to underscores.
 
 **Pre-Submit Quality Pattern** (manual):
 - **When**: Before finalizing documentation
-- **Script**: `python ../shared/scripts/extract_structure.py <file>`
+- **Script**: `python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>`
 - **Action**: Structure validation + AI-assisted quality assessment
 - **Blocking**: Recommend blocking on critical violations
 
@@ -52,15 +53,15 @@ This file covers how a create-quality-control run validates and enforces standar
 ```
 User saves file
     ↓
-Run: python ../shared/scripts/validate_document.py <file>  ← NEW: Format validation
+Run: python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file>  ← NEW: Format validation
     ├─ Exit 0 → Continue
     └─ Exit 1 → Fix blocking errors → Re-run
     ↓
-Run: python ../shared/scripts/quick_validate.py <path>
+Run: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <path>
     ↓
 Review output, fix issues
     ↓
-Run: python ../shared/scripts/extract_structure.py <file>
+Run: python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>
     ├─ Safe violations → Fix manually → Re-run
     └─ Critical violations → Address before proceeding
 ```
@@ -69,7 +70,7 @@ Run: python ../shared/scripts/extract_structure.py <file>
 
 ## 3. ENFORCEMENT WORKFLOWS
 
-> **Note**: These are manual workflow patterns for the AI agent to follow when violations are detected. They are not automated scripts. `SKILL.md` §4 lists the fix steps; the approval-prompt templates below are the wording to surface to the user.
+> **Note**: These are manual workflow patterns for the AI agent to follow when violations are detected. They are not automated scripts. `SKILL.md` §5 lists the fix steps; the approval-prompt templates below are the wording to surface to the user.
 
 ### Structural enforcement flag
 
@@ -193,7 +194,7 @@ Phase 3: AI provides recommendations
 | JSON parse error | Invalid markdown structure | Check for unclosed code blocks or frontmatter |
 | Wrong type detected | File location mismatch | Check document type detection in JSON output |
 | Checklist failures | Structure issues | Review checklist results in JSON, fix violations |
-| Validation not running | Environment difference | Apply checks manually (see Section 1) |
+| Validation not running | Environment difference | Apply checks manually (see section 2) |
 | Safe fix not applied | Permission issue | Check file permissions |
 
 ---

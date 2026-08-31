@@ -61,7 +61,7 @@ The moment you delegate, three of your jobs change and one appears.
 | You read the code | You decide what the delegate must read, and say so |
 | You hold the scope in your head | You write the scope down, because the delegate cannot see your head |
 | Your uncertainty is visible to you | The delegate's confidence tells you nothing about its accuracy |
-|, | You now own a verification step that did not exist before |
+| Nothing corresponds | You now own a verification step that did not exist before |
 
 Before any of that, one check: **is delegating cheaper than doing it?** A dispatch costs
 a brief, a wait, and a verification pass. Work you could finish in the time it takes to
@@ -118,12 +118,12 @@ restatement of the brief's own assumptions, and reads as corroboration.
 
 A delegate's output is a hypothesis. So is yours.
 
-For a **factual** question, does this symbol exist, does this test pass, what does this
-file say, one delegate is enough, because the repository can settle it and you will
+For a **factual** question (does this symbol exist, does this test pass, what does this
+file say), one delegate is enough, because the repository can settle it and you will
 check.
 
-For a **judgment** question, is this abstraction warranted, is this rule needed, which
-of two designs is better, one lens is not a finding. Do one of these, and say which:
+For a **judgment** question (is this abstraction warranted, is this rule needed, which
+of two designs is better), one lens is not a finding. Do one of these, and say which:
 
 - **Diverge the lens:** ask a second model family, or the same question framed against
   the opposite conclusion.

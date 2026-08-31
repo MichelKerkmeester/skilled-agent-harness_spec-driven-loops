@@ -2,14 +2,14 @@
 name: sk-create-quality-control
 description: Validate, score, and optionally improve existing markdown via structure extraction, DQI scoring, HVR review, and validation gates.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.1
+version: 1.0.2.0
 ---
 
 # Doc Quality (quality)
 
 `create-quality-control` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It evaluates markdown, extracts structure, computes Document Quality Index evidence, applies Human Voice Rules, and, only when explicitly requested, edits the same target document to improve structure, clarity and AI-friendliness.
 
-This packet is invoked by `/doc:quality`. The command is report-only by default.
+Reach this packet through `sk-doc` hub routing on a doc-quality request. `/doc:quality` is the command id `mode-registry.json` reserves for it, but no `.opencode/commands/doc/` file exists yet, so the slash command cannot be typed today; it is tracked as a dead binding in the advisor's command-binding gate. Whichever way the packet is entered, the run is report-only unless the user explicitly asks for edits.
 
 ---
 
@@ -21,7 +21,7 @@ Use this workflow when the request involves:
 - Auditing an existing markdown document for structure, clarity, quality or publish readiness.
 - Running `/doc:quality` on a README, SKILL.md, command doc, knowledge file, spec doc or generic markdown file.
 - Extracting document structure before deciding what to improve.
-- Computing or interpreting a DQI score from `../shared/scripts/extract_structure.py`.
+- Computing or interpreting a DQI score from `.opencode/skills/sk-doc/shared/scripts/extract_structure.py`.
 - Applying HVR voice checks for AI-pattern cleanup, direct language and natural writing.
 - Optimizing existing documentation for AI assistants, question-answering format or practical usage examples.
 - Validating an edited markdown document before handoff.
@@ -154,7 +154,7 @@ Do not edit in report-only mode. If the user asks for edits after a report-only 
 Run structure extraction and treat its output as the source of truth for structure, metrics, checklist results and DQI.
 
 ```bash
-python ../shared/scripts/extract_structure.py <file>
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>
 ```
 
 `extract_structure.py` takes only the file path. It always prints its full analysis as JSON to stdout and auto-detects the document type from path and content, so there are no flags to pass here. The `--json` and `--type readme|skill|reference|asset|agent|command|install_guide|spec|changelog` options belong to `validate_document.py` (the validation step below), not the extractor.
@@ -181,13 +181,13 @@ Use this order:
 For READMEs, run format validation before claiming completion:
 
 ```bash
-python ../shared/scripts/validate_document.py <file>
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file>
 ```
 
 For folder or packet checks, run quick validation:
 
 ```bash
-python ../shared/scripts/quick_validate.py <path>
+python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <path>
 ```
 
 If validation exits non-zero, fix blocking errors when edits are in scope, then re-run the failing command.
@@ -195,7 +195,7 @@ If validation exits non-zero, fix blocking errors when edits are in scope, then 
 Run the shared authored-name checker for the target path and report its result as a non-scored filename-case conformance signal:
 
 ```bash
-python ../shared/scripts/check_authored_name_kebab.py <file>
+python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <file>
 ```
 
 This signal does not change the DQI score or add a DQI component. It reports `PASS`, `FAIL`, or the canon exemption alongside the scored evidence.
@@ -336,19 +336,19 @@ After any Write/Edit operation on markdown:
 1. Run document validation when applicable.
 
 ```bash
-python ../shared/scripts/validate_document.py <file>
+python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file>
 ```
 
-2. Run quick validation for the file or containing packet/folder.
+2. Run quick validation for the containing packet or skill directory. `quick_validate.py` takes a directory and reads its `SKILL.md`; it errors on a file path.
 
 ```bash
-python ../shared/scripts/quick_validate.py <path>
+python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py <path>
 ```
 
 3. Re-run extraction.
 
 ```bash
-python ../shared/scripts/extract_structure.py <file>
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py <file>
 ```
 
 4. Compare pre-edit and post-edit results:
@@ -406,10 +406,10 @@ Escalate instead of guessing when required content needs source evidence that is
 
 1. Read the target document before judging or editing it.
 2. Treat `/doc:quality` as report-only unless the user explicitly asks for edits.
-3. Use `../shared/scripts/extract_structure.py` as the source of truth for structure, metrics, checklist results and DQI.
+3. Use `.opencode/skills/sk-doc/shared/scripts/extract_structure.py` as the source of truth for structure, metrics, checklist results and DQI.
 4. Use validation output to distinguish blockers, warnings and recommendations.
 5. Apply HVR voice review before final output.
-6. Validate edited documents with `../shared/scripts/validate_document.py` when applicable.
+6. Validate edited documents with `.opencode/skills/sk-doc/shared/scripts/validate_document.py` when applicable.
 7. Re-run `extract_structure.py` after edits to confirm the DQI and checklist state.
 8. Keep optimization scoped to the existing target document unless the user expands scope.
 9. Report residual risks when the document remains below the requested quality bar.
@@ -465,9 +465,9 @@ Use these only for deep overflow detail, edge cases, exhaustive templates and lo
 - `references/workflow-examples.md` - Worked command examples and batch/multi-file processing.
 - `references/optimization.md` - Optimization procedure: quality heuristics, analysis workflow, README strategy, checklist and iteration (externally cited entry file).
 - `references/transformation-patterns.md` - The 16 transformation patterns with worked before/after examples.
-- `../shared/scripts/extract_structure.py` - Structure extraction, metrics, checklist data and DQI.
-- `../shared/scripts/validate_document.py` - Pre-delivery document validation gate.
-- `../shared/scripts/quick_validate.py` - Fast validation for folders or skill packets.
-- `../shared/references/filesystem-naming-convention.md` - Structural naming authority and exemption boundary.
-- `../shared/references/validation.md` - DQI scoring, quality bands and gate interpretation.
-- `../shared/references/hvr-rules.md` - Human Voice Rules for natural documentation style.
+- `.opencode/skills/sk-doc/shared/scripts/extract_structure.py` - Structure extraction, metrics, checklist data and DQI.
+- `.opencode/skills/sk-doc/shared/scripts/validate_document.py` - Pre-delivery document validation gate.
+- `.opencode/skills/sk-doc/shared/scripts/quick_validate.py` - Fast validation for folders or skill packets.
+- `.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md` - Structural naming authority and exemption boundary.
+- `.opencode/skills/sk-doc/shared/references/validation.md` - DQI scoring, quality bands and gate interpretation.
+- `.opencode/skills/sk-doc/shared/references/hvr-rules.md` - Human Voice Rules for natural documentation style.

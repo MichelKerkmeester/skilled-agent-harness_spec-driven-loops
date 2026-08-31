@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.1.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,8 +21,8 @@ This is sk-doc's second-layer (surface) router, first-class at the hub root as
 `ROUTER.md`. The hub selects a workflow mode in [`hub-router.json`](hub-router.json)
 (sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command,
 sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark,
-sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule, or
-sk-create-quality-control);
+sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule,
+sk-create-with-human-voice, or sk-create-quality-control);
 this doc maps a request's documentation/authoring intent to the exact packet-local
 leaf resources that mode should load. Every path is either packet-qualified
 (`<packet>/references|assets/…`) or an authored shared-alias disk path (`shared/…`),
@@ -60,8 +60,12 @@ emits leaf paths, and this router never re-decides the mode.
 - **install-guide leaves** — the install-guide template and the readme README a
   request to author install / setup instructions loads. Fired by "install guide /
   setup instructions / how to install / running from scratch" requests.
-- **hvr leaves** — the HVR rules reference a request governed by the
-  hidden-variation rule loads. Fired by "hvr" requests.
+- **human-voice leaves** — the scope gate, the scoring method and the Human
+  Voice Rules standard a request to apply or score that standard loads. Fired
+  by "hvr / human voice rules / apply human voice / rewrite in human voice /
+  make this sound human / sounds ai-generated / remove ai tells" requests. The
+  scope gate is the always-loaded leaf, because deciding what a voice edit may
+  touch comes before deciding what to change.
 - **playbook leaves** — the manual-testing-playbook README a request to author a
   manual testing playbook loads. Fired by "playbook system / manual testing
   playbook / testing playbook" requests.
@@ -114,7 +118,7 @@ INTENT_SIGNALS = {
     "AGENT_COMMAND": {"weight": 4, "keywords": ["agent and paired", "paired /create", "@analyze agent"]},
     "FLOWCHART": {"weight": 4, "keywords": ["flowchart", "ascii", "text diagram", "text characters", "decision tree", "decision branch", "process diagram", "flow diagram", "diagram the", "as a diagram"]},
     "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide", "installation instructions", "setup instructions", "how to install", "setup steps", "getting it running", "getting our project running", "running from scratch"]},
-    "HVR": {"weight": 4, "keywords": ["hvr"]},
+    "HVR": {"weight": 4, "keywords": ["hvr", "human voice rules", "apply human voice", "rewrite in human voice", "make this sound human", "sounds ai-generated", "reads like ai wrote it", "reads like a machine wrote it", "remove ai tells", "ai writing tells", "voice pass", "de-ai the writing", "banned word check"]},
     "PLAYBOOK": {"weight": 4, "keywords": ["playbook system", "manual testing playbook", "testing playbook"]},
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview", "capabilities"]},
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc"]},
@@ -157,6 +161,9 @@ RESOURCE_MAP = {
         "sk-create-readme/references/README.md"
     ],
     "HVR": [
+        "sk-create-with-human-voice/references/scope-and-exemptions.md",
+        "sk-create-with-human-voice/references/scoring-and-verification.md",
+        "sk-create-with-human-voice/assets/voice-report-template.md",
         "shared/references/hvr-rules.md"
     ],
     "PLAYBOOK": [
@@ -286,6 +293,10 @@ RESOURCE_MAP = {
         "sk-create-repo-rule/references/creation-standards.md",
         "sk-create-repo-rule/references/decision-tests.md",
         "sk-create-repo-rule/references/rule-anatomy.md",
+        "sk-create-with-human-voice/assets/voice-report-template.md",
+        "sk-create-with-human-voice/references/README.md",
+        "sk-create-with-human-voice/references/scope-and-exemptions.md",
+        "sk-create-with-human-voice/references/scoring-and-verification.md",
         "sk-create-skill/assets/parent-skill/parent-skill-description-template.json",
         "sk-create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json",
         "sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",

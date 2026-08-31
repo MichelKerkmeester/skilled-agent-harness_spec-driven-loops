@@ -1,5 +1,5 @@
 ---
-title: Workflow Examples and Batch Processing - Mode 1
+title: Workflow Examples and Batch Processing
 description: Worked command examples and batch/multi-file extraction recipes for document-quality runs.
 trigger_phrases:
   - "doc quality command examples"
@@ -13,7 +13,7 @@ version: 1.8.0.1
 
 # Workflow Examples and Batch Processing
 
-Worked command recipes for common create-quality-control runs and batch/multi-file processing. These are copy-paste starting points; the executable workflow lives in `SKILL.md` §2.
+Worked command recipes for common create-quality-control runs and batch/multi-file processing. These are copy-paste starting points; the executable workflow lives in `SKILL.md` §3.
 
 For execution modes see [workflows.md](./workflows.md). For the validation sequence see [validation-and-enforcement.md](./validation-and-enforcement.md).
 
@@ -29,16 +29,16 @@ This file collects copy-paste command recipes for the create-quality-control wor
 
 **Example 1: New SKILL Creation**
 ```bash
-# 1. Create file
-mkdir .opencode/skills/my-skill
-cd .opencode/skills/my-skill
+# Run every command from the repository root.
 
-# 2. Write initial SKILL.md
-# (Run quick validation to check frontmatter)
-../shared/scripts/quick_validate.py .
+# 1. Create the skill directory and write its SKILL.md
+mkdir -p .opencode/skills/my-skill
+
+# 2. Check frontmatter and structure (takes the directory, not the file)
+python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/my-skill
 
 # 3. Extract structure for AI analysis
-../shared/scripts/extract_structure.py SKILL.md
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/skills/my-skill/SKILL.md
 # AI evaluates JSON output and provides quality assessment
 
 # Expected: No checklist failures, high AI-friendliness rating
@@ -47,7 +47,7 @@ cd .opencode/skills/my-skill
 **Example 2: README Optimization**
 ```bash
 # Extract current README structure
-../shared/scripts/extract_structure.py README.md
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py README.md
 
 # AI receives JSON with:
 # - Metrics (word count, heading depth, code ratio)
@@ -60,7 +60,7 @@ cd .opencode/skills/my-skill
 **Example 3: Pre-Commit Validation**
 ```bash
 # Extract spec structure for review
-../shared/scripts/extract_structure.py specs/042/spec.md
+python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py specs/<track>/<NNN-short-name>/spec.md
 
 # AI evaluates:
 # - Structure checklist results
@@ -77,15 +77,16 @@ cd .opencode/skills/my-skill
 # Extract structure from all spec files for batch analysis
 for file in $(find specs/ -name "spec.md"); do
   echo "=== $file ==="
-  ../shared/scripts/extract_structure.py "$file"
+  python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py "$file"
 done
 ```
 
 **Quick validation batch**:
 ```bash
-# Validate all skills in directory
-for skill in $(find .opencode/skills/ -maxdepth 1 -type d); do
-  ../shared/scripts/quick_validate.py "$skill" --json
+# Validate every skill root that actually carries a SKILL.md
+for skill in .opencode/skills/*/; do
+  [ -f "$skill/SKILL.md" ] || continue
+  python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py "$skill" --json
 done
 ```
 

@@ -13,7 +13,9 @@ trigger_phrases:
   - "feature catalog"
   - "conformance benchmark"
   - "peer adapter benchmark"
-version: 2.0.1.0
+  - "human voice rules"
+  - "make this sound human"
+version: 2.1.0.0
 ---
 
 # sk-doc
@@ -43,7 +45,7 @@ sk-doc makes structure the first gate so these problems never reach production. 
 
 ### What It Does
 
-sk-doc is the single specialist for documentation and OpenCode components. Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content. Beyond quality enforcement it scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships. It authors benchmark packages with deterministic conformance inputs for peer adapters, then builds ASCII flowcharts, five-phase install guides, feature catalogs that inventory current behavior and manual testing playbooks that prove it. Its sk-create-diff packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation.
+sk-doc is the single specialist for documentation and OpenCode components. Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content. Beyond quality enforcement it scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships. It authors benchmark packages with deterministic conformance inputs for peer adapters, then builds ASCII flowcharts, five-phase install guides, feature catalogs that inventory current behavior and manual testing playbooks that prove it. Its sk-create-diff packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation. Its sk-create-with-human-voice packet applies the Human Voice Rules to prose: a scope gate that names what a voice edit may not touch, a scanner that parses the standard at run time rather than carrying a copy, a judgment pass no scanner can perform, and a re-scan that proves the rewrite landed.
 
 It does not own code or spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns the spec-folder lifecycle together with memory and continuity. The two skills touch markdown but do not overlap: sk-doc judges document quality and system-spec-kit enforces the spec-packet contract.
 
@@ -170,7 +172,7 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 
 **Q: Which `/create:*` command do I use?**
 
-A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/create:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review.
+A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring. `/create:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review. `/create:repo-rule` for a repo-local rule wired into `REPO RULES.md`. `/create:with-human-voice` to apply or score the Human Voice Rules over prose.
 
 ---
 
@@ -197,6 +199,7 @@ The skill ships the checks that prove a document is ready.
 | [`references/hvr-rules.md`](shared/references/hvr-rules.md) | Human Voice Rules, the writing standard all output must pass |
 | [`references/validation.md`](shared/references/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |
 | [`references/core-standards.md`](shared/references/core-standards.md) | Filename conventions, heading rules and document-type requirements |
+| [`sk-create-with-human-voice/SKILL.md`](sk-create-with-human-voice/SKILL.md) | Applying the Human Voice Rules to prose: scope gate, mechanical pass, judgment pass, re-scan |
 | [`sk-create-quality-control/references/workflows.md`](sk-create-quality-control/references/workflows.md) | Execution workflows by mode and task type |
 | [`sk-create-quality-control/references/optimization.md`](sk-create-quality-control/references/optimization.md) | AI-friendly content transforms and the llms.txt format |
 | [`references/evergreen-packet-id-rule.md`](shared/references/evergreen-packet-id-rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |

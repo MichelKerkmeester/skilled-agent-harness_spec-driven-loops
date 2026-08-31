@@ -33,7 +33,7 @@ a file; the router is the index.
 
 Repo-local operating rules. `AGENTS.md` **Gate 5 (§2)** makes reading this mandatory
 before your first write of the session; this document then routes you to the one rule
-file that governs what you are about to do. **It is a router, not a rulebook** — it
+file that governs what you are about to do. **It is a router, not a rulebook:** it
 holds no rules of its own.
 
 ---
@@ -43,7 +43,9 @@ holds no rules of its own.
 1. **Match on the action you are about to take**, not the topic of the request.
 2. **Load before the action.** A rule read afterwards is a post-mortem.
 3. **A file already in context is not re-read.**
-4. **Two triggers fire → load both.** They compose; the more specific wins on conflict.
+4. **Every trigger that fires is loaded, not just the first.** They compose; the more
+   specific wins on conflict. Three and four firing at once is the normal case, not an
+   edge case.
 5. **Nothing fires → `AGENTS.md` alone governs.** Do not hunt for a rule to apply.
 
 ### Precedence
@@ -51,7 +53,7 @@ holds no rules of its own.
 | Level | Source | Can be overridden? |
 |-------|--------|--------------------|
 | 1 | Every `AGENTS.md` hard blocker and mandatory gate | No |
-| 2 | An explicit, in-the-moment operator instruction | — it is the instruction |
+| 2 | An explicit, in-the-moment operator instruction | Not applicable, it is the instruction |
 | 3 | These rule files | Only by level 1 or 2 |
 | 4 | General judgment | By anything above |
 
@@ -78,7 +80,7 @@ A rule file may tighten `AGENTS.md`. None relaxes a hard block or authorizes wha
 
 ## 4. SCOPE OF THIS DOCUMENT
 
-**In:** <what this rule set is for — the categories of discipline it carries.>
+**In:** <what this rule set is for, the categories of discipline it carries.>
 
 **Out:** <what it deliberately excludes, and which document owns each instead.>
 ```

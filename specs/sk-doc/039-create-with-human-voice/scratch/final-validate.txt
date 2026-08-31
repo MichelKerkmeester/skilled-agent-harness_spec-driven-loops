@@ -1,0 +1,49 @@
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-doc/039-create-with-human-voice
+  Level:  2
+  Engine: orchestrator
+
++ FILE_EXISTS: All required files present for Level 2
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ ANCHORS_VALID: Anchors well formed in 5 file(s)
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ MERGE_LEGALITY: No merge plan supplied; legality check skipped
++ CROSS_ANCHOR_CONTAMINATION: No routing payload supplied; contamination check skipped
++ POST_SAVE_FINGERPRINT: No post-save payload supplied; fingerprint check skipped
++ GRAPH_METADATA_PRESENT: Graph metadata checked
++ GENERATED_METADATA_INTEGRITY: Generated metadata passed schema, status-enum and path-prefix invariants
++ GENERATED_METADATA_DRIFT: Generated synopsis fields match the current docs
++ COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
++ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec
++ STATUS_CROSS_DOC_CONSISTENCY: status cross-doc check not applicable; one status is missing or unclassified
+    - spec.md Status=Complete classified=complete
+    - implementation-summary.md Status=<missing> classified=unknown
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_CLOSURE: AC_CLOSURE: 8/8 criteria met, waived or superseded; packet is closeable
++ TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
++ AI_PROTOCOL: AI protocol check not applicable for Level 2
+! COMPLEXITY_MATCH: Content metrics may not match declared Level 2
+    - Phases (0) below minimum (2) for Level 2
++ FOLDER_NAMING: Folder name '039-create-with-human-voice' follows naming convention
++ LEVEL_MATCH: Level consistent across all files (Level 2)
++ GRAPH_METADATA_CHILD_DRIFT: children_ids matches the on-disk phase children
++ GRAPH_METADATA_SHAPE: graph-metadata.json shape validation passed
++ METADATA_DISK_PATH_CONSISTENCY: Generated metadata paths match on-disk folder: sk-doc/039-create-with-human-voice
++ DESCRIPTION_SHAPE: description.json shape validation passed
++ NORMALIZER_LINT: No local normalizeScope*/getOptionalString declarations found outside allowed files
++ SPEC_DOC_INTEGRITY: Spec doc references, metadata, and handover targets resolve cleanly
++ CANONICAL_SAVE_ROOT_SPEC_REQUIRED: Canonical-save root-spec check not applicable to this folder
++ CANONICAL_SAVE_SOURCE_DOCS_REQUIRED: Canonical-save source-doc check not applicable to this folder
++ CANONICAL_SAVE_LINEAGE_REQUIRED: save_lineage is present for the refreshed graph metadata
++ CANONICAL_SAVE_PACKET_IDENTITY_NORMALIZED: Packet identity is normalized across continuity, description, and graph surfaces
++ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS: Description and graph freshness stay within the canonical-save slack window
++ CONTINUITY_FRESHNESS: Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled
+
+Summary: Errors: 0  Warnings: 1
+
+RESULT: PASSED

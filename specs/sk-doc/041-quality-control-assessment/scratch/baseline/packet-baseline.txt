@@ -1,0 +1,44 @@
+# QC packet baseline  2026-08-31T19:49:29Z
+
+## file sizes
+   68315 total
+   20401 .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md
+    9641 .opencode/skills/sk-doc/sk-create-quality-control/README.md
+    8696 .opencode/skills/sk-doc/sk-create-quality-control/references/optimization.md
+    7259 .opencode/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md
+    6637 .opencode/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md
+    5554 .opencode/skills/sk-doc/sk-create-quality-control/references/workflows.md
+    3804 .opencode/skills/sk-doc/sk-create-quality-control/references/README.md
+    2856 .opencode/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md
+    1669 .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.0.0.md
+    1170 .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.0.md
+     628 .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.1.md
+
+## DQI per file
+89 good readme  .opencode/skills/sk-doc/sk-create-quality-control/README.md
+95 excellent skill  .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md
+89 good changelog  .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.0.0.md
+89 good changelog  .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.0.md
+85 good changelog  .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.1.md
+82 good readme  .opencode/skills/sk-doc/sk-create-quality-control/references/README.md
+93 excellent reference  .opencode/skills/sk-doc/sk-create-quality-control/references/optimization.md
+72 acceptable reference  .opencode/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md
+90 excellent reference  .opencode/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md
+87 good reference  .opencode/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md
+93 excellent reference  .opencode/skills/sk-doc/sk-create-quality-control/references/workflows.md
+
+## validate_document per file
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/README.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.0.0.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.0.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.1.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/references/README.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/references/optimization.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md
+exit=0  .opencode/skills/sk-doc/sk-create-quality-control/references/workflows.md
+
+## quick_validate on packet dir
+✅ Skill is valid!

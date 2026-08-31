@@ -1,0 +1,340 @@
+# ─────────────────────────────────────────────────────────────────
+# CREATE WITH HUMAN VOICE — AUTO MODE
+# ─────────────────────────────────────────────────────────────────
+role: Voice Editor
+purpose: Apply the Human Voice Rules to prose, or score prose against them
+action: Gate the scope, scan, read, score, then edit and re-scan
+operating_mode:
+  workflow: linear
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+
+development_philosophy:
+  principle: Scope before findings, machine before reader, re-scan before done
+  approach: Gate -> Scan -> Judge -> Score -> Edit -> Re-scan -> Report
+  mandate: >-
+    A clean mechanical scan is not a clean document, and an apply run that reports only
+    its final number has proved nothing. Both statements are enforced, not advisory.
+
+skill_reference:
+  skill: sk-doc
+  mode: sk-create-with-human-voice
+  skill_md: .opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md
+  standard: .opencode/skills/sk-doc/shared/references/hvr-rules.md
+  references:
+    scope: .opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
+    scoring: .opencode/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md
+  templates:
+    report: .opencode/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md
+  scripts:
+    scan: .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py
+
+confidence_framework:
+  thresholds:
+    high:
+      range: 80-100%
+      action: Proceed with citable source
+    medium:
+      range: 40-79%
+      action: Proceed with caution, document assumptions
+    low:
+      range: 0-39%
+      action: STOP - Ask clarification with A/B/C options
+  scoring_weights:
+    target_resolution: 0.30
+    scope_boundary_clarity: 0.30
+    operation_certainty: 0.25
+    length_basis_fit: 0.15
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: Present options to user with current findings
+
+request_analysis_framework:
+  solution_flow:
+    - "Parse input: the target, the operation, and whether code spans are in scope"
+    - "Gate the scope and name every exempt span before reading for findings"
+    - "Run the mechanical scanner and read its exit status"
+    - "Read the mechanical findings as candidates, deciding word sense on each"
+    - "Run the judgment pass the scanner cannot perform"
+    - "Compute the score, or hard blockers plus density on a long target"
+    - "On apply: edit in-scope spans only, then re-scan and compare"
+  pre_change_validation:
+    items:
+      - "Every exempt span named, not silently skipped?"
+      - "Target confirmed as not being a document about the standard?"
+      - "Scanner exit status read, not assumed?"
+      - "Length basis chosen and stated?"
+      - "Confidence >=80%? (if not: ask)"
+    stop_conditions:
+      - Scanner exited 2
+      - Target is frozen, generated or byte-pinned and the operation is apply
+      - Any item unchecked
+    stop_action: STOP and report the blocker with the scanner output
+
+input_contract:
+  required:
+    - create_agent_verified
+    - target
+  optional:
+    - operation
+    - include_code
+
+user_inputs:
+  target: "[TARGET] - a file path, or the passage in full. REQUIRED."
+  operation: "[apply|score] - default score."
+  include_code: "[true|false] - scan code spans too. Default false."
+
+field_handling:
+  target:
+    validation: an existing path, or a non-empty passage
+    required: true
+  operation:
+    validation: "must be one of: apply, score"
+    default: score
+    note: >-
+      Never inferred as apply from wording alone under :auto. Apply rewrites the target in
+      place, so an inferred apply drops to interactive.
+  include_code:
+    validation: boolean
+    default: false
+    note: >-
+      Code, commands, identifiers and fenced samples are out of scope by default. Turning
+      this on is for scanning a sample deliberately, never for a normal voice pass.
+  defaults:
+    standard: .opencode/skills/sk-doc/shared/references/hvr-rules.md
+    publish_band: 85
+    revise_band: 70
+    long_document_lines: 400
+
+documentation_level:
+  default: Level 1 (Baseline)
+  required_files:
+    - spec.md
+    - plan.md
+    - tasks.md
+  note: >-
+    A voice pass over one target is Level 1 work. Escalate only when the run rewrites
+    several documents or changes the standard itself.
+
+context_loading:
+  trigger: During setup, non-interactive resolution before step 1
+  applies_when: >-
+    Always. The standard and the scope gate are both required before the first finding is
+    read, and neither can be inferred from the target.
+  auto_resolution:
+    default: >-
+      Load the standard and scope-and-exemptions.md. Read the target in full before judging
+      any span, because a quotation is only visible in context.
+    on_absent: >-
+      A missing standard stops the run. The scanner already refuses to report a clean scan
+      it did not perform, and the workflow reports that refusal rather than working around it.
+
+workflow_overview:
+  steps:
+    - id: step_1_scope_gate
+      purpose: Decide which spans the standard governs
+    - id: step_2_mechanical_scan
+      purpose: Settle the deterministic subset
+    - id: step_3_judgment_pass
+      purpose: Settle what no scanner can
+    - id: step_4_score
+      purpose: Compute the number under the precedence rule
+    - id: step_5_edit
+      purpose: Rewrite in-scope spans only, on apply
+    - id: step_6_rescan
+      purpose: Prove the rewrite landed
+    - id: step_7_report
+      purpose: Emit the result with both numbers and every exemption
+
+workflow:
+
+  step_1_scope_gate:
+    purpose: Decide which spans the standard governs
+    steps:
+      step_load_gate:
+        action: "Load scope-and-exemptions.md and the standard. Both load on every path."
+      step_classify:
+        action: "Read the target in full. Name every quoted, generated, frozen, byte-pinned or self-referential span."
+        on_fail:
+          action: "A target that is about the standard, including the standard itself, is reported as such and never given a bare score."
+      step_length_basis:
+        action: "Choose an absolute score, or hard blockers plus density past roughly 400 lines. State which."
+
+  step_2_mechanical_scan:
+    purpose: Settle the deterministic subset
+    steps:
+      step_scan:
+        action: "Run hvr_scan.py against the target and read its exit status"
+        command: "python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py {target}"
+        on_fail:
+          action: "Exit 2 means the standard could not be parsed. HALT and report. Never substitute a hand count."
+
+  step_3_judgment_pass:
+    purpose: Settle what no scanner can
+    steps:
+      step_sense_check:
+        action: "Decide word sense on every mechanical candidate. The literal sense of a listed term is not a defect."
+      step_read:
+        action: "Read for structure, sentence habits, content habits and voice, per the list the scanner prints"
+
+  step_4_score:
+    purpose: Compute the number
+    steps:
+      step_score:
+        action: "Apply the standard's precedence rule: one occurrence, one penalty, first match wins"
+        note: "Transitions cost a point only from the third use of the same word onward."
+
+  step_5_edit:
+    purpose: Rewrite, on apply only
+    steps:
+      step_edit:
+        action: "Fix hard blockers, then soft deductions, then judgment findings. Touch no exempt span."
+        on_fail:
+          action: "When removing a banned term would change what the sentence claims, keep the sentence and record an accepted exception."
+
+  step_6_rescan:
+    purpose: Prove the rewrite landed
+    steps:
+      step_rescan:
+        action: "Re-run hvr_scan.py on the edited target and capture the second set of numbers"
+        note: "Rewriting introduces new tells. This step is what catches them."
+
+  step_7_report:
+    purpose: Emit the outcome
+    steps:
+      step_report:
+        action: "Fill the report template, then emit the presentation block for the terminal state reached"
+
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+  critical_steps:
+    step_1_scope_gate:
+      enforcement: MUST name every exempt span before any finding is read
+      verification: Each exemption has a span, a class and a reason
+    step_2_mechanical_scan:
+      enforcement: MUST run the scanner and read its exit status
+      verification: The exit status is quoted, not assumed
+    step_6_rescan:
+      enforcement: MUST re-run the scanner after any edit
+      verification: Both sets of numbers appear in the report
+
+gate_logic:
+  hard:
+    H0_write_verified:
+      description: "Command Phase 0 verification must have passed"
+      fail_action: STOP and return to the command setup phase
+    H1_required_fields:
+      description: "A target is present"
+      fail_action: STOP and collect missing inputs
+    H2_scope_gated:
+      description: "Every exempt span is named before the first finding is read"
+      fail_action: STOP and run the scope gate
+    H3_scanner_ran:
+      description: "The scanner ran and its exit status was read"
+      fail_action: STOP. Exit 2 is a failure, never a clean pass
+    H4_rescan_on_apply:
+      description: "An apply run re-scanned and reports both numbers"
+      fail_action: STOP. A single after-score is an incomplete run
+  soft:
+    S1_length_basis:
+      description: "A target past roughly 400 lines reports density rather than an absolute score"
+      fail_action: Proceed with the basis stated
+    S2_exception_recorded:
+      description: "A kept banned term carries the reason it was kept"
+      fail_action: Proceed and record the reason
+
+circuit_breaker:
+  enabled: true
+  thresholds:
+    failures: 3
+    recovery_s: 60
+    success_to_close: 1
+  states:
+    CLOSED: normal operation
+    OPEN: skip optional steps, complete with warnings
+    HALF_OPEN: test single operation
+
+quality_standards:
+  scope_integrity:
+    minimum: No quotation, code sample, generated file or byte-pinned fixture changed
+    enforcement: Step 1 names them and step 5 leaves them alone
+  evidence:
+    minimum: Both scan numbers on any run that edited text
+    enforcement: Step 6 produces the second number before step 7 reports
+  honesty:
+    minimum: The judgment findings are answered by a reader, not implied by a clean scan
+    enforcement: Step 3 runs on every path, including a scan with zero findings
+
+autonomous_execution:
+  principle: Execute all steps without user approval gates
+  self_validation: Verify outputs at each step before proceeding
+  error_handling: Auto-fix where possible, escalate on hard failures
+  pause_conditions:
+    - Confidence drops below 40%
+    - The operation resolved to apply without the operator naming it explicitly alongside :auto
+    - The scanner exited 2
+    - The target is frozen, generated or byte-pinned and the operation is apply
+    - The standard and accuracy conflict on a load-bearing claim
+    - The target is a document about the standard
+
+completion_report:
+  owner: presentation-contract
+  note: >-
+    Result wording lives only in create-with-human-voice-presentation.txt. Render the block
+    named below for the terminal state reached; do not restate or reword it here.
+  render:
+    applied: "presentation section 7. SUCCESS OUTPUT (apply)"
+    scored: "presentation section 8. SCORE OUTPUT (score)"
+    failed: "presentation section 10. FAILURE OUTPUT"
+  status_lines:
+    applied: "STATUS=OK PATH={target} BEFORE={before_ceiling} AFTER={after_ceiling}"
+    scored: "STATUS=OK ACTION=scored CEILING={ceiling}"
+    failed: "STATUS=FAIL ERROR=\"{error_message}\""
+
+error_recovery:
+  scanner_exit_2:
+    action: Report that the standard could not be parsed and stop
+    fallback: Never substitute a hand count for a scan that did not run
+  target_out_of_scope:
+    action: Report the class the target falls under and stop
+    fallback: Offer a score-only run when the operation was apply
+  score_worse_after_edit:
+    action: Report both numbers as measured and name what got worse
+    fallback: Never hide a regression behind the after-number
+  banned_term_carries_the_meaning:
+    action: Keep the sentence and record an accepted exception with the reason
+    fallback: Escalate when the call belongs to the author
+  target_is_about_the_standard:
+    action: Report that the target lists the banned terms and give no bare score
+    fallback: Scan the prose sections only, and say which were excluded
+  write_failure:
+    action: Check permissions, retry once
+    fallback: Display the rewritten text for manual save
+
+termination:
+  after_step: 7
+  message: Voice workflow complete.
+  next_steps:
+    owner: presentation-contract
+    render: "presentation section 11. NEXT STEPS"
+
+rules:
+  required:
+    - "Gate the scope and record every exemption before reading for findings"
+    - "Run the mechanical pass before the judgment pass"
+    - "Re-run the scanner after any edit and report both numbers"
+    - "State the length basis whenever a number is quoted"
+  forbidden:
+    - "Changing what a sentence claims to satisfy a word ban"
+    - "Editing a quotation, a command, a generated file or a byte-pinned fixture"
+    - "Reporting a clean scan the scanner refused to produce"
+    - "Copying any part of the standard into this workflow or the packet"

@@ -1,0 +1,311 @@
+-file that governs what you are about to do. **It is a router, not a rulebook** — it
++file that governs what you are about to do. **It is a router, not a rulebook** it
+-1. **Match on the action you are about to take**, not the topic of the request.
++1. **Match on the action you are about to take** not the topic of the request.
+-| 1 | Every `AGENTS.md` §1 hard blocker — the Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene — and every mandatory gate in §2 | No |
+-| 2 | An explicit, in-the-moment operator instruction | — it is the instruction |
++| 1 | Every `AGENTS.md` §1 hard blocker, the Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene, and every mandatory gate in §2 | No |
++| 2 | An explicit, in-the-moment operator instruction |, it is the instruction |
+-while what you load stays at level 3 — the obligation to read is tier 1, the content
++while what you load stays at level 3, the obligation to read is tier 1, the content
+-| Add a file, module, class, interface, option, layer, or dependency · generalize something that works · write "flexible", "future-proof", "might need", "best practice" · add a test beyond the coverage floor | [`overengineering.md`](repo-rules/overengineering.md) | Whether this should exist at all, and at what size |
++| Add a file, module, class, interface, option, layer, or dependency · generalize something that works · write "flexible", "future-proof", "might need", "best practice" · add a test beyond the coverage floor | [`prevent-overengineering.md`](repo-rules/prevent-overengineering.md) | Whether this should exist at all, and at what size |
+-| Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch | [`root-cause.md`](repo-rules/root-cause.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
++| Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch | [`root-cause-and-debugging.md`](repo-rules/root-cause-and-debugging.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
+-| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed or integrated · quote a per-hub gate result | [`hub-routing.md`](repo-rules/hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
++| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed or integrated · quote a per-hub gate result | [`skill-hub-routing.md`](repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
+-| [Overengineering](repo-rules/overengineering.md) | Build the smallest thing that solves the stated problem; take a costlier move only by naming what fails at the cheaper one. |
+-| [Scope discipline](repo-rules/scope-discipline.md) | The requested scope is the deliverable — adjacent problems get named, not fixed. |
++| [Overengineering](repo-rules/prevent-overengineering.md) | Build the smallest thing that solves the stated problem; take a costlier move only by naming what fails at the cheaper one. |
++| [Scope discipline](repo-rules/scope-discipline.md) | The requested scope is the deliverable, adjacent problems get named, not fixed. |
+-| [Root cause](repo-rules/root-cause.md) | Fix the producer, not the symptom; every fix names the mechanism. |
++| [Root cause](repo-rules/root-cause-and-debugging.md) | Fix the producer, not the symptom; every fix names the mechanism. |
+-| [Hub routing](repo-rules/hub-routing.md) | A hub projects one advisor identity and routes in two stages; registered is not routed, and a gate run without its hub argument checks something else. |
++| [Hub routing](repo-rules/skill-hub-routing.md) | A hub projects one advisor identity and routes in two stages; registered is not routed, and a gate run without its hub argument checks something else. |
+-**In:** how to think and act — restraint, scope, evidence, risk, diagnosis, honesty,
++**In:** how to think and act, restraint, scope, evidence, risk, diagnosis, honesty,
+-of agent and CLI dispatch — which agent, which command, which model, which flags.
++of agent and CLI dispatch: which agent, which command, which model, which flags.
+-In — it is an evidence obligation whose subject happens to be routing. `hub-routing.md`
++In, it is an evidence obligation whose subject happens to be routing. `skill-hub-routing.md`
+-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
++> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+-- **Overwriting an untracked or ignored file** is irreversible — git holds no copy.
++- **Overwriting an untracked or ignored file** is irreversible, git holds no copy.
+-deliberation, a comparison table, or a question to the operator — deliberating costs
++deliberation, a comparison table, or a question to the operator, deliberating costs
+-Before any tier-2 or tier-3 action, write it out: **"To undo this: ___"** — the command,
++Before any tier-2 or tier-3 action, write it out: **"To undo this: ___"** the command,
+-- **Persisted data written by the old code** — the most-missed one, because it outlives
++- **Persisted data written by the old code** the most-missed one, because it outlives
+-`evidence-and-proof.md` — grep for it, do not assume it.
++`evidence-and-proof.md`, grep for it, do not assume it.
+-destructive step. If a secret was committed, say so plainly — rotation is the real
++destructive step. If a secret was committed, say so plainly, rotation is the real
++  - "em dash"
++  - "remove the dashes"
++  - "punctuation"
+-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
++> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+-- About to write any substantive reply — an answer, an explanation, a close-out, a status.
++- About to write any substantive reply, an answer, an explanation, a close-out, a status.
+-naturally. When a sentence stacks clauses, split it — nested qualification is where a
++naturally. When a sentence stacks clauses, split it, nested qualification is where a
+-hides emphasis — if every point is a bullet, no point is more important than any other.
++hides emphasis, if every point is a bullet, no point is more important than any other.
+-Plain words by default. Reserve exact names for the things that have them — languages,
+-frameworks, APIs, dependencies, commands — where precision is the point and a synonym
++Plain words by default. Reserve exact names for the things that have them, languages,
++frameworks, APIs, dependencies, commands, where precision is the point and a synonym
+-## 4. LENGTH
++## 4. PUNCTUATION THE READER TRIPS ON
++
++**Never use an em dash.** Replace it with a comma, a full stop or a colon, whichever the
++sentence actually wanted. A dash is usually hiding a decision you have not made: an aside
++that belongs in commas, a second sentence, or a list that belongs after a colon.
++
++Two more from the same family:
++
++- **No semicolon.** Two sentences, or a conjunction.
++- **No serial comma.** Drop it before the `and` or `or` that closes a list.
++
++**The failure this prevents:** dashes read as authored voice to a human and as a tell to a
++reader who has seen a lot of generated text. Either way they cost trust the content earned.
++
++This rule carries the ban because it fires on every substantive reply. The full standard,
++including the vocabulary and structural tells this one does not repeat, is
++[`hvr-rules.md`](../.opencode/skills/sk-doc/shared/references/hvr-rules.md) in `sk-doc`.
++Load it when writing a document rather than a reply.
++
++---
++
++## 5. LENGTH
+-## 5. CUT FILLER
++## 6. CUT FILLER
+-- **Empty openers** — "Great question", "Let me take a look", "I'll now".
+-- **Restated summaries** — repeating back what you just said, one abstraction level up.
+-- **Vague warnings** — "be careful with this", "this can be tricky", naming no failure.
++- **Empty openers** "Great question", "Let me take a look", "I'll now".
++- **Restated summaries** repeating back what you just said, one abstraction level up.
++- **Vague warnings** "be careful with this", "this can be tricky", naming no failure.
+-- **Corporate and marketing register** — "robust", "seamless", "leverage", "best-in-class".
+-- **Narrating the obvious** — announcing a tool call the reader can see the result of.
++- **Corporate and marketing register** "robust", "seamless", "leverage", "best-in-class".
++- **Narrating the obvious** announcing a tool call the reader can see the result of.
+-## 6. LEAD WITH THE RECOMMENDATION, BUT EARN IT
++## 7. LEAD WITH THE RECOMMENDATION, BUT EARN IT
+-If you cannot state the verdict yet, say that — a named uncertainty is a verdict about
++If you cannot state the verdict yet, say that, a named uncertainty is a verdict about
+-## 7. PRESENTING A RECOMMENDATION
++## 8. PRESENTING A RECOMMENDATION
+-could change the decision — a survey of options the reader will not take is work handed
++could change the decision, a survey of options the reader will not take is work handed
+-unnecessary work enters a plan unchallenged — [`overengineering.md`](overengineering.md)
++unnecessary work enters a plan unchallenged, [`prevent-overengineering.md`](prevent-overengineering.md)
+-## 8. ASK→DO FRAMING
++## 9. ASK→DO FRAMING
+-1. **ASK** — restate the request in your own words. A paraphrase back, not a question
++1. **ASK** restate the request in your own words. A paraphrase back, not a question
+-2. **DO** — state your approach in three to seven bullets.
+-3. **THEN** — ask only the one or two clarifying questions that would change the
++2. **DO** state your approach in three to seven bullets.
++3. **THEN** ask only the one or two clarifying questions that would change the
+-## 9. WHEN THE READER DID NOT FOLLOW
++## 10. WHEN THE READER DID NOT FOLLOW
+-"I don't follow", "what?", "too abstract", "in simple terms" — all the same signal, and
++"I don't follow", "what?", "too abstract", "in simple terms": all the same signal, and
+-it — §10 below does not waive that.
++it, §10 below does not waive that.
+-## 10. WHAT THIS RULE IS NOT
++## 11. WHAT THIS RULE IS NOT
+-- **Not a voice to perform.** Over-constraining voice backfires — it produces answers
++- **Not a voice to perform.** Over-constraining voice backfires, it produces answers
+-## 11. SELF-CHECK
++## 12. SELF-CHECK
++- [ ] No em dash, no semicolon, no serial comma.
+-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
++> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+-- About to **decide whether** to hand work to another runtime at all — the cost question
++- About to **decide whether** to hand work to another runtime at all, the cost question
+-- About to answer a judgment question — "is this the right design", "is this rule needed", "which approach is better" — from your own reading alone.
++- About to answer a judgment question, "is this the right design", "is this rule needed", "which approach is better", from your own reading alone.
+-repository — no single model's verdict, the delegate's or your own, closes a question.**
++repository, no single model's verdict, the delegate's or your own, closes a question.**
+-| — | You now own a verification step that did not exist before |
++|, | You now own a verification step that did not exist before |
+-write the brief is work you should finish — see [`overengineering.md`](overengineering.md).
++write the brief is work you should finish, see [`prevent-overengineering.md`](prevent-overengineering.md).
+-> vague brief are judgment from limited observation, not measurement — the disclosure
++> vague brief are judgment from limited observation, not measurement, the disclosure
+-   This file does not repeat what those documents say, and neither should you — a
++   This file does not repeat what those documents say, and neither should you, a
+-4. **State the shape of an acceptable answer.** Not the answer — the shape. A file list,
++4. **State the shape of an acceptable answer.** Not the answer, the shape. A file list,
+-For a **factual** question — does this symbol exist, does this test pass, what does this
+-file say — one delegate is enough, because the repository can settle it and you will
++For a **factual** question, does this symbol exist, does this test pass, what does this
++file say, one delegate is enough, because the repository can settle it and you will
+-For a **judgment** question — is this abstraction warranted, is this rule needed, which
+-of two designs is better — one lens is not a finding. Do one of these, and say which:
++For a **judgment** question, is this abstraction warranted, is this rule needed, which
++of two designs is better, one lens is not a finding. Do one of these, and say which:
+-[`evidence-and-proof.md`](evidence-and-proof.md) §7 — a finding is a hypothesis until
++[`evidence-and-proof.md`](evidence-and-proof.md) §7, a finding is a hypothesis until
+-what the failure revealed, or record the failure as the finding — a delegate that could
++what the failure revealed, or record the failure as the finding, a delegate that could
+-underspecified or the evidence is genuinely thin. Find which, and say which — a tally is
++underspecified or the evidence is genuinely thin. Find which, and say which, a tally is
+-fixed something adjacent, that is not a bonus — it is an unreviewed change, and it goes
++fixed something adjacent, that is not a bonus, it is an unreviewed change, and it goes
+-  restraint failure — see [`overengineering.md`](overengineering.md). Most tasks are
++  restraint failure, see [`prevent-overengineering.md`](prevent-overengineering.md). Most tasks are
+-- **Not a routing document.** Which skill, which agent, which command, which flags —
+-  all of that belongs to `AGENTS.md` and the skills it routes to. This file governs
++- **Not a routing document.** Which skill, which agent, which command, which flags, all of that belongs to `AGENTS.md` and the skills it routes to. This file governs
+-- [ ] I opened every citation I am about to repeat, not a sample — one resolved citation
++- [ ] I opened every citation I am about to repeat, not a sample, one resolved citation
+-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
++> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+-1. Capture the real starting numbers — pass/fail counts, timings, sizes — before
++1. Capture the real starting numbers, pass/fail counts, timings, sizes, before
+-- **Filter or transform** — enumerate every in-scope variant *first*, process each, then
++- **Filter or transform** enumerate every in-scope variant *first*, process each, then
+-- **Computed answer** — derive it a second way, independently, before writing the number.
++- **Computed answer** derive it a second way, independently, before writing the number.
+-- **Exact artifact** — check filename, path, format and content shape directly. Having
++- **Exact artifact** check filename, path, format and content shape directly. Having
+-A sub-agent's "COMPLETE", a reviewer's "P0", a linter's error, a bot's suggestion — each
+-is a **claim to confirm against the real symptom**, not a fact to act on. Acting on an
++A sub-agent's "COMPLETE", a reviewer's "P0", a linter's error, a bot's suggestion: each
++is a **claim to confirm against the real symptom** not a fact to act on. Acting on an
+-For anything with a machine-checkable outcome, **before changing files**, convert the
++For anything with a machine-checkable outcome, **before changing files** convert the
+-- [ ] Every required artifact exists **at its exact path** in the required format —
+-      verified by inspection, not by the fact that you wrote it.
+-- [ ] The §8 proof plan and the authoritative gate both pass **from the final state**,
+-      output and exit status read.
+-- [ ] The scoped diff contains no task-created residue — no scratch files, no debug
++- [ ] Every required artifact exists **at its exact path** in the required format, verified by inspection, not by the fact that you wrote it.
++- [ ] The §8 proof plan and the authoritative gate both pass **from the final state** output and exit status read.
++- [ ] The scoped diff contains no task-created residue, no scratch files, no debug
+-1. **What ran or was read, and what it returned** — with the receipts from §1.
++1. **What ran or was read, and what it returned** with the receipts from §1.
+-4. **The state of the work** — edited / committed / pushed / dirty, and which branch.
++4. **The state of the work** edited / committed / pushed / dirty, and which branch.
+-done and verified is stated plainly, without hedging — the hedging habit devalues the
++done and verified is stated plainly, without hedging, the hedging habit devalues the
+-is not one wrong sentence — it is a fix built on a wrong model, which fails in a way
++is not one wrong sentence, it is a fix built on a wrong model, which fails in a way
+-and expensive after it — the same asymmetry as §8's proof plan, one step earlier.
++and expensive after it, the same asymmetry as §8's proof plan, one step earlier.
+-title: "Rule: Overengineering"
++title: "Rule: Prevent overengineering"
+-# Rule: Overengineering
++# Rule: Prevent overengineering
+-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
++> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+-that says what fails at the cheaper one** — in the response, not just in your head.
++that says what fails at the cheaper one** in the response, not just in your head.
+-| **Build nothing** — existing behavior already meets the requirement | zero |
++| **Build nothing** existing behavior already meets the requirement | zero |
+-> rungs, and that ladder orders *solution sources* — standard library, then native
++> rungs, and that ladder orders *solution sources*, standard library, then native
+-by code that exists, and reading first is what reveals it. The sentence, written out —
+-
+-> "Extending `parseConfig` in place fails, because the CLI and the daemon call it with
++by code that exists, and reading first is what reveals it. The sentence, written out, > "Extending `parseConfig` in place fails, because the CLI and the daemon call it with
+-   break. No real caller means the change is smaller than you think — or the code
++   break. No real caller means the change is smaller than you think, or the code
+-needs its climbing sentence, and takes the `blast-radius.md` pass too — installing
++needs its climbing sentence, and takes the `blast-radius.md` pass too, installing
+-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
++> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+-If you cannot say *why* it broke in one sentence, you have not found the cause — you
++If you cannot say *why* it broke in one sentence, you have not found the cause, you
+-1. **Reproduce the exact symptom**, safely. Not a similar one — the same failure, the
++1. **Reproduce the exact symptom** safely. Not a similar one, the same failure, the
+-3. **Locate the producer** — the code that created the bad value or state, not the code
++3. **Locate the producer** the code that created the bad value or state, not the code
+-6. **Re-run the same check that failed**, then the whole gate.
++6. **Re-run the same check that failed** then the whole gate.
+-1. **Restate the problem one level up** — at the interface, the data flow, or the module
++1. **Restate the problem one level up** at the interface, the data flow, or the module
+-out unsupported, read the available interface and change approach — do not re-run the
++out unsupported, read the available interface and change approach, do not re-run the
+-wrong. Say so: **name the seam and the files a seam fix would touch**, then ask.
+-`scope-discipline.md` still binds — "the real fix is over there" does not grant a yes.
++wrong. Say so: **name the seam and the files a seam fix would touch** then ask.
++`scope-discipline.md` still binds, "the real fix is over there" does not grant a yes.
+-## 7. WHEN YOU ARE STUCK — ESCALATION FORMAT
++## 7. WHEN YOU ARE STUCK, ESCALATION FORMAT
+-1. **Symptom** — the exact error, verbatim.
+-2. **What I tried** — each attempt and the evidence it produced, not just what it was.
+-3. **What that rules out** — the hypotheses now eliminated.
+-4. **Options** — two or three, with the trade-off of each.
+-5. **Recommendation** — one, and why.
++1. **Symptom** the exact error, verbatim.
++2. **What I tried** each attempt and the evidence it produced, not just what it was.
++3. **What that rules out** the hypotheses now eliminated.
++4. **Options** two or three, with the trade-off of each.
++5. **Recommendation** one, and why.
+-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
++> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+-- **Direct callers the change would break** — a change that leaves the tree broken is
++- **Direct callers the change would break** a change that leaves the tree broken is
+-Anything else is adjacent and goes to §4 — including a caller the change does *not* break.
++Anything else is adjacent and goes to §4, including a caller the change does *not* break.
+-2. **Record it** in one line: `file:line — what is wrong — why it is out of scope`.
++2. **Record it** in one line: `file:line, what is wrong, why it is out of scope`.
+-4. **Report it in close-out**, as a separate list from what you changed.
++4. **Report it in close-out** as a separate list from what you changed.
+-incorrect — in which case it was never adjacent, it was a caller, and §2 covers it.
++incorrect, in which case it was never adjacent, it was a caller, and §2 covers it.
+-What this file adds is the adjacent case — a frozen **scope** you believe is wrong.
++What this file adds is the adjacent case, a frozen **scope** you believe is wrong.
+-- **When one part is genuinely blocked, finish every other part in full**, then say
++- **When one part is genuinely blocked, finish every other part in full** then say
+-- Proceeding without asking never waives a **mandatory wait** — Gate 3, a
++- Proceeding without asking never waives a **mandatory wait** Gate 3, a
+-1. **Which files you will read first.** Reading first is `overengineering.md` §2's
+-   pre-write pass, and it is not repeated here — but *which* files is a scope decision,
++1. **Which files you will read first.** Reading first is `prevent-overengineering.md` §2's
++   pre-write pass, and it is not repeated here, but *which* files is a scope decision,
+-Three sentences is a plan. The failure this prevents is not disorganization — it is the
++Three sentences is a plan. The failure this prevents is not disorganization, it is the
+-title: "Rule: Hub routing"
++title: "Rule: Skill hub routing"
+-# Rule: Hub routing
++# Rule: Skill hub routing
+-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
++> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+-The advisor scores the **hub**. Most nested modes are `routingClass: "metadata"` — resolved by hub membership, with no advisor entry of their own — and a second skill-shaped `graph-metadata.json` below the root is rejected. A minority are not: `lexical` and `alias-fold` modes carry their own advisor entries and projection maps, and `command-bridge` modes route by command surface. **Read the class before assuming which path applies**, because the surfaces differ.
++The advisor scores the **hub**. Most nested modes are `routingClass: "metadata"`, resolved by hub membership, with no advisor entry of their own, and a second skill-shaped `graph-metadata.json` below the root is rejected. A minority are not: `lexical` and `alias-fold` modes carry their own advisor entries and projection maps, and `command-bridge` modes route by command surface. **Read the class before assuming which path applies** because the surfaces differ.
+-Two consequences follow. A `metadata` mode's vocabulary reaches the advisor **only** through the hub's `graph-metadata.json`; a `lexical` or `alias-fold` mode also needs its projection maps and scorer entries. And a stage-one hit with no stage-two intent, or the reverse, means the two disagree about the same phrasing — fix both sides, not the one that happens to be failing.
++Two consequences follow. A `metadata` mode's vocabulary reaches the advisor **only** through the hub's `graph-metadata.json`; a `lexical` or `alias-fold` mode also needs its projection maps and scorer entries. And a stage-one hit with no stage-two intent, or the reverse, means the two disagree about the same phrasing, fix both sides, not the one that happens to be failing.
+-An alias earns its place by catching a request for **this** mode. A term that also matches unrelated work — `rule file`, `config`, `template` — captures traffic the hub cannot serve, and the misroute surfaces only when someone types it.
++An alias earns its place by catching a request for **this** mode. A term that also matches unrelated work (`rule file`, `config`, `template`) captures traffic the hub cannot serve, and the misroute surfaces only when someone types it.
+-This rule is a pointer, deliberately. It carries the discipline; the mechanics belong to the skills that own them. That split is what keeps it inside the carve-out — a section here telling you which route to pick would put the rule out of bounds.
++This rule is a pointer, deliberately. It carries the discipline; the mechanics belong to the skills that own them. That split is what keeps it inside the carve-out, a section here telling you which route to pick would put the rule out of bounds.
+-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
++> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+-**Never fabricate. Mark the confidence you actually have, and let the evidence — not the
+-operator's expectation — decide the answer.**
++**Never fabricate. Mark the confidence you actually have, and let the evidence, not the
++operator's expectation, decide the answer.**
+-one, state the assumption, proceed. If they lead somewhere materially different, ask —
+-consolidating every question into one message, before any analysis.
++one, state the assumption, proceed. If they lead somewhere materially different, ask, consolidating every question into one message, before any analysis.
+-**Never invent**, under any pressure to sound complete: file paths, line numbers,
++**Never invent** under any pressure to sound complete: file paths, line numbers,
+-work — not as a lecture, not as a reason to stop.
++work, not as a lecture, not as a reason to stop.
+-When two things that must both be true are not — spec versus code, requirement versus
+-requirement, doc versus observed behavior — **halt**. Do not pick one and build on it,
++When two things that must both be true are not, spec versus code, requirement versus
++requirement, doc versus observed behavior, **halt**. Do not pick one and build on it,
+-fix it and move on — no apology sequence, no account of how it happened, no running
++fix it and move on, no apology sequence, no account of how it happened, no running
+-**At a boundary: dense.** A handoff, a close-out, a decision point — verdict first, then
++**At a boundary: dense.** A handoff, a close-out, a decision point: verdict first, then
+-devalues the hedges that matter — the same erosion §3 describes for agreement.
++devalues the hedges that matter, the same erosion §3 describes for agreement.

@@ -1,0 +1,153 @@
+# PRESENTATION CONTRACT - /create:with-human-voice
+# User-facing wording only. No routing logic.
+
+## 1. Phase 0 Verification Display
+
+Run this automatic self-check before setup. This is not a user question.
+
+```text
+SELF-CHECK: Are you operating as the @markdown agent?
+
+Indicators:
+- Invoked with @markdown prefix
+- Template-first workflow capabilities are available
+- Voice scope-gate behavior is available
+- Human Voice Rules scan behavior is available
+
+If all indicators are present:
+- create_agent_verified = true
+- Continue to setup
+
+If any indicator is missing or uncertain:
+- Stop before loading workflow YAML
+- Display the hard-block message below
+```
+
+Hard-block message:
+
+```text
+BLOCKED: /create:with-human-voice requires the @markdown agent.
+
+The apply operation rewrites prose in place. Run it as @markdown so the scope
+gate and the re-scan are in force, and quoted, generated and byte-pinned spans
+stay untouched.
+
+Re-invoke as: @markdown /create:with-human-voice <target>
+```
+
+## 2. CONSOLIDATED SETUP PROMPT (:confirm and no-suffix)
+
+  What should the voice pass run against?
+    A file path, or paste the passage.
+
+  Operation:  A) score (default, never edits)   B) apply (edits in place)
+  Mode:       A) auto   B) confirm
+
+## 3. NON-INTERACTIVE SETUP (:auto)
+
+Under `:auto`, the setup prompt is skipped when the prompt body carries a
+pre-bound answers block. Honor every field present and resolve the rest from the
+defaults below. Missing a required field with no default stops the run.
+
+```text
+PRE-BOUND SETUP ANSWERS:
+  target: <path, or the passage in full>
+  operation: score
+  include_code: false
+  execution_mode: AUTONOMOUS
+```
+
+Default resolution table:
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+| --- | --- | --- | --- | --- |
+| `target` | Yes | Positional argument or marker `target` | none | Yes, when empty |
+| `operation` | Yes | `apply`/`score` token or marker | `score` | No |
+| `include_code` | No | `--include-code` or marker | `false` | No |
+| `execution_mode` | Yes | `:auto`, `:confirm`, or marker | `AUTONOMOUS` under `:auto` | No |
+
+Apply never runs unattended on an inferred operation. It rewrites the target in
+place, so it runs autonomously only when the operator wrote the `apply`
+operation and `:auto` together.
+
+## 4. SCOPE GATE REPORT
+
+  Scope gate: {in_scope_summary}
+
+  Exempt spans:
+    {span}  -  {class}  -  {why}
+
+  Nothing exempt is edited, and nothing exempt is scored.
+
+  A target that is ABOUT the standard, including the standard itself, is
+  reported as such and never given a bare score.
+
+## 5. SCAN TABLE
+
+  Mechanical scan ({before|after})
+
+    hard blockers          {n}
+    mechanical deductions  -{n}
+    mechanical ceiling     {n}/100
+
+  Not scored by the scanner: three-item enumeration, triple headers, setup
+  language, synonym cycling, false ranges, fragmented headers, copula
+  avoidance, significance inflation, generic conclusions, sentence rhythm,
+  personality. Those are the judgment pass.
+
+  A finding is a candidate, not a verdict. Word sense decides.
+
+## 6. CHECKPOINT DISPLAY (:confirm)
+
+  Step {n}/7 - {step_name}
+    {what this step produced}
+
+  A) approve   B) review   C) modify   D) abort
+
+  The scope gate is not a checkpoint. An out-of-scope target ends the run and
+  is reported, never offered for approval.
+
+## 7. SUCCESS OUTPUT (apply)
+
+  Target       : {path}
+  Length basis : {absolute score | hard blockers + density}
+  Before       : {hard} hard  -{deductions}  {ceiling}/100
+  After        : {hard} hard  -{deductions}  {ceiling}/100
+  Judgment     : {n} findings fixed, {n} left with reasons
+  Exemptions   : {n} recorded
+  Band         : {publish|revise|rewrite}
+
+  STATUS=OK PATH={path} BEFORE={before_ceiling} AFTER={after_ceiling}
+
+## 8. SCORE OUTPUT (score)
+
+  Target       : {path}
+  Length basis : {absolute score | hard blockers + density}
+  Mechanical   : {hard} hard  -{deductions}  {ceiling}/100
+  Judgment     : {n} findings a reader still owns
+  Exemptions   : {n} recorded
+  Band         : {publish|revise|rewrite}
+
+  Nothing was edited. Re-run with `apply` to act on this.
+
+  STATUS=OK ACTION=scored CEILING={ceiling}
+
+## 9. EXEMPTION WORDING
+
+  An exempt span is reported, never silently skipped. Name the span, the class
+  it falls under and why.
+
+  A banned word kept because removing it would change what the sentence claims
+  is an accepted exception, not a miss. Say what would have changed.
+
+## 10. FAILURE OUTPUT
+
+  The scanner could not read the standard, so no scan was performed.
+  A clean result is not reported from a standard that was never read.
+
+  STATUS=FAIL ERROR="{error_message}"
+
+## 11. NEXT STEPS
+
+  Read the judgment findings. Nothing in that list is machine-settled, and a
+  clean mechanical scan is not a clean document.

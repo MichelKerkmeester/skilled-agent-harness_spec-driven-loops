@@ -83,12 +83,20 @@ A filesystem rename must never alter a code identifier, a structured-data key, o
 
 ---
 
-## 7. RELATIONSHIP TO THE CLASSIFIER AND `core-standards.md`
+## 7. WHERE THE RULE IS ENFORCED
 
-`core-standards.md` §2 currently documents the legacy snake_case filename rule, which the `validate_document.py` classifier still applies. That rule and the classifier are reconciled to this kebab-case canon during the consumer-migration and generator phases of the naming program, under bounded dual-name tolerance so every intermediate state stays green. Until then, this document states the target; `core-standards.md` §2 carries a forward pointer here. This document is the single canonical source that later phases reference instead of restating ad-hoc rules.
+This document states the rule. Nothing in `validate_document.py` enforces it: that validator checks document structure, never filenames, so a file named `my_document.md` passes it. The enforcing gates are separate and all live in `shared/scripts/`:
+
+| Gate | Scope |
+|------|-------|
+| [`check_no_new_snake_case.py`](../scripts/check_no_new_snake_case.py) | Every in-scope filesystem name, whole-tree (`--all`) or changed-only (`--changed-since <ref>`). Exits 1 with offenders listed. |
+| [`check_authored_name_kebab.py`](../scripts/check_authored_name_kebab.py) | One authored basename or slug, delegating the exemption boundary above to `check_no_new_snake_case.py`. |
+| [`check_no_hyphenated_catalog_content.py`](../scripts/check_no_hyphenated_catalog_content.py) | Category folders and feature files under `feature-catalog/` and `manual-testing-playbook/`. |
+
+[`core-standards.md`](core-standards.md) §2 states the same kebab-case rule and points here for the full exemption boundary. The two agree; this document is the source and `core-standards.md` is the summary a document-authoring pass reads.
 
 ---
 
 ## 8. PROVENANCE
 
-This canon reverses the catalog/playbook underscore restyle recorded in `sk-doc/014-sk-doc-parent/027-catalog-naming-convention` (child `003`) and is governed by the `sk-doc/020-hyphen-naming-convention` program. The program decisions (bounded dual-name tolerance, dependency-closure batching, fresh-install worktree, exemption boundary) are recorded in that program's decision record.
+This canon replaced an earlier restyle that put catalog and playbook content on underscores, so both trees now match the hyphenated skill, agent, command and spec-folder names they sit beside. The migration decisions behind it (bounded dual-name tolerance, dependency-closure batching, a fresh-install worktree, and the exemption boundary in §3) are recorded in the decision record of the migration packet under `specs/sk-doc/`; this document carries the resulting rule, and §7 names the gates that hold it.

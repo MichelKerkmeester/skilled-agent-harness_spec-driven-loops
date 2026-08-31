@@ -1,0 +1,21 @@
+# post-fix command execution proof  2026-08-31T19:52:50Z
+
+## every distinct documented invocation, run verbatim with real arguments
+$ python3 .opencode/skills/sk-doc/shared/scripts/extract_structure.py .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md | head -c 60
+  exit=0  first-line: {
+$ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md
+  exit=0  first-line: 
+$ python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-quality-control/README.md --type readme
+  exit=0  first-line: 
+$ python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-quality-control
+  exit=0  first-line: ✅ Skill is valid!
+$ python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-quality-control --json
+  exit=0  first-line: {
+$ python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md
+  exit=0  first-line: PASS: authored artifact name is exempt: .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md
+$ SKDOC_ENFORCE_STRUCTURE=0 python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/skills/sk-doc/sk-create-quality-control/README.md --type readme
+  exit=0  first-line: 
+
+## workflow-examples batch recipe, executed
+$ for skill in .opencode/skills/*/; do [ -f "$skill/SKILL.md" ] || continue; quick_validate --json; done
+  ran on 14 skill roots, 0 nonzero exits

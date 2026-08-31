@@ -65,7 +65,7 @@ Law 2 freezes the scope; this section never widens it, it only says how to read 
 Inside the frozen scope these are the *same* change, not adjacent ones:
 
 - The files named in the request, or the ones it unambiguously implies.
-- **Direct callers the change would break** a change that leaves the tree broken is
+- **Direct callers the change would break:** a change that leaves the tree broken is
   not finished.
 - The test covering the behavior you changed.
 - Imports, type signatures, and generated files that mechanically follow.
@@ -124,9 +124,9 @@ The operator decides.
 incomplete work, no asking permission to continue an approved, in-scope step. Two
 things are worth stating in scope terms:
 
-- **When one part is genuinely blocked, finish every other part in full** then say
+- **When one part is genuinely blocked, finish every other part in full**, then say
   explicitly what you left out and why. Scaling the work down is the operator's call.
-- Proceeding without asking never waives a **mandatory wait** Gate 3, a
+- Proceeding without asking never waives a **mandatory wait:** Gate 3, a
   PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, the remote-push
   go-ahead, and every `blast-radius.md` stop-for-yes still block.
 

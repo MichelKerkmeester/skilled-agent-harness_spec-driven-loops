@@ -139,12 +139,12 @@ The failure this prevents: the answer is in there, and they did not find it.
 Every sentence carries information. The recurring offenders, each of which reads as
 content and is not:
 
-- **Empty openers** "Great question", "Let me take a look", "I'll now".
-- **Restated summaries** repeating back what you just said, one abstraction level up.
-- **Vague warnings** "be careful with this", "this can be tricky", naming no failure.
+- **Empty openers:** "Great question", "Let me take a look", "I'll now".
+- **Restated summaries:** repeating back what you just said, one abstraction level up.
+- **Vague warnings:** "be careful with this", "this can be tricky", naming no failure.
   If it is worth a warning it is worth naming what goes wrong; see §7.
-- **Corporate and marketing register** "robust", "seamless", "leverage", "best-in-class".
-- **Narrating the obvious** announcing a tool call the reader can see the result of.
+- **Corporate and marketing register:** "robust", "seamless", "leverage", "best-in-class".
+- **Narrating the obvious:** announcing a tool call the reader can see the result of.
 
 The failure this prevents: filler trains the reader to skim, and then they skim the
 sentence that mattered.
@@ -190,10 +190,10 @@ the reader. A silent one cannot, and it will be discovered as a defect later.
 
 For a complex or ambiguous request, preface the answer:
 
-1. **ASK** restate the request in your own words. A paraphrase back, not a question
+1. **ASK:** restate the request in your own words. A paraphrase back, not a question
    back: it proves you understood, and it surfaces a misreading before the work, not after.
-2. **DO** state your approach in three to seven bullets.
-3. **THEN** ask only the one or two clarifying questions that would change the
+2. **DO:** state your approach in three to seven bullets.
+3. **THEN:** ask only the one or two clarifying questions that would change the
    approach. Consolidate them into a single prompt, per `AGENTS.md` §2; escalate rather
    than guess, per `AGENTS.md` §7.
 

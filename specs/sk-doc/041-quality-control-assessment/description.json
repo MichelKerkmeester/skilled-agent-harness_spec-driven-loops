@@ -1,0 +1,24 @@
+{
+  "specFolder": "sk-doc/041-quality-control-assessment",
+  "description": "Assess whether the sk-create-quality-control mode is routed to, used, duplicated elsewhere, and worth its size.",
+  "keywords": [
+    "assess",
+    "whether",
+    "sk-create-quality-control",
+    "mode",
+    "routed",
+    "duplicated",
+    "elsewhere",
+    "worth",
+    "size"
+  ],
+  "lastUpdated": "2026-08-31T20:00:38.541Z",
+  "specId": "041",
+  "folderSlug": "quality-control-assessment",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

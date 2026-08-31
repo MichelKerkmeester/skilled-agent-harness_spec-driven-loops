@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/043-repo-rules-router-audit",
+  "spec_folder": "sk-doc/043-repo-rules-router-audit",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repo rules router audit",
+      "trigger table optimisation",
+      "rule set context cost",
+      "gate 5 load measurement",
+      "router smart routing transfer",
+      "gate 5 payload measurement",
+      "router transfer verdict",
+      "de-em-dash repair plan",
+      "trigger table match surface",
+      "repo rules invariants",
+      "repo rules audit tasks",
+      "punctuation repair tasks"
+    ],
+    "key_topics": [
+      "repo",
+      "rules",
+      "router",
+      "audit",
+      "trigger",
+      "table",
+      "optimisation",
+      "rule",
+      "set",
+      "context",
+      "cost",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/damage-provenance-diff.txt",
+      "scratch/invariant-check.cjs",
+      "repo-rules/blast-radius.md",
+      "repo-rules/communication.md",
+      "repo-rules/delegation-and-orchestration.md",
+      "repo-rules/evidence-and-proof.md",
+      "repo-rules/prevent-overengineering.md",
+      "repo-rules/root-cause-and-debugging.md",
+      "repo-rules/scope-discipline.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "damage-provenance-diff.txt",
+        "kind": "file",
+        "path": "scratch/damage-provenance-diff.txt",
+        "source": "derived"
+      },
+      {
+        "name": "invariant-check.cjs",
+        "kind": "file",
+        "path": "scratch/invariant-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "blast-radius.md",
+        "kind": "doc",
+        "path": "repo-rules/blast-radius.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "delegation-and-orchestration.md",
+        "kind": "doc",
+        "path": "repo-rules/delegation-and-orchestration.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": "repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "prevent-overengineering.md",
+        "kind": "doc",
+        "path": "repo-rules/prevent-overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "root-cause-and-debugging.md",
+        "kind": "doc",
+        "path": "repo-rules/root-cause-and-debugging.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-discipline.md",
+        "kind": "doc",
+        "path": "repo-rules/scope-discipline.md",
+        "source": "derived"
+      },
+      {
+        "name": "repo-rules-router-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `REPO RULES.md` router and its nine rule files were suspected of carrying avoidable",
+    "created_at": "2026-08-31T19:47:34Z",
+    "last_save_at": "2026-08-31T19:58:57.019Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d1c9db96128191230810f5f413329d642d30e6ebf10abc09c916aa84444719a5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9303c247532b0649f503aeec58323a4b9eb215ea37f794e03d093f540cf0ac79",
+      "plan.md": "f829d38d8c022b161fd60887fb68812b653c84b1087a8832d44bb1e29606026c",
+      "tasks.md": "61a6350733e13d248765e4539885d8023b52f11577d8a8e4fc7c154e69fea46e",
+      "implementation-summary.md": "dbf53bc4a690212b732c28e117b04c3a25c58503e825505c81e0230dfaccb5ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

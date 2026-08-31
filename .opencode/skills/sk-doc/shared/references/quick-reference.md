@@ -135,13 +135,14 @@ python scripts/package_skill.py skill-path        # Package skill
 - H1 without subtitle
 - Required sections: purpose, instructions
 - Recommended sections: contract, examples, notes
-- Template: `assets/command/command-template.md`
+- Template: `sk-create-command/assets/command-template.md`
 
-**llms.txt** (Moderate):
+**llms.txt** (authoring target, no validator type):
 - Plain text format (not markdown)
 - H1 project name with tagline
 - Sections: summary, features, docs links
-- Template: `assets/llmstxt-templates.md`
+- Template: `shared/assets/llmstxt-templates.md`
+- `validate_document.py` has no `llmstxt` type; review it by hand against the template
 
 ---
 
@@ -174,17 +175,7 @@ python scripts/package_skill.py skill-path        # Package skill
 ├── feature-catalog/
 ├── manual-testing-playbook/
 ├── benchmark/
-├── sk-create-skill/       # nested workflow packet
-├── sk-create-readme/
-├── sk-create-agent/
-├── sk-create-command/
-├── sk-create-feature-catalog/
-├── sk-create-manual-testing-playbook/
-├── sk-create-benchmark/
-├── sk-create-diagram/
-├── sk-create-changelog/
-├── sk-create-diff/
-├── sk-create-quality-control/
+├── sk-create-*/           # one nested workflow packet per registered mode
 ├── scripts/               # facade paths into shared and packet tooling
 └── shared/                # shared quality-control backbone
     ├── assets/
@@ -192,7 +183,15 @@ python scripts/package_skill.py skill-path        # Package skill
     └── scripts/
 ```
 
-The hub has no hub-root `references/` or `assets/` aggregation directories. Those resources live inside their owning packet or under `shared/`; consult `mode-registry.json` and the selected packet's `SKILL.md` for the active resource map.
+The registered mode set is not copied here, because a copy goes stale the next time a
+packet lands. `mode-registry.json` is the authoritative list and the hub `SKILL.md`
+mode table mirrors it under a `parent-skill-check` invariant; read either one.
+
+The hub has no hub-root `references/` or `assets/` aggregation directories. Those
+resources live inside their owning packet or under `shared/`, so a bare `assets/...`
+path never resolves. Every template path below is written packet-qualified for that
+reason; consult `mode-registry.json` and the selected packet's `SKILL.md` for the
+active resource map.
 
 ---
 
@@ -227,7 +226,7 @@ The hub has no hub-root `references/` or `assets/` aggregation directories. Thos
 ## 10. INSTALL GUIDE CREATION
 
 ### Template
-`assets/install-guide-template.md`
+`sk-create-readme/assets/install-guide-template.md`
 
 ### Required Sections (0-10)
 | # | Section | Required | Validation Gate |
@@ -291,10 +290,10 @@ The hub has no hub-root `references/` or `assets/` aggregation directories. Thos
 ### Companion: Feature Catalog Creation
 
 **Reference**
-`references/README.md`
+`sk-create-feature-catalog/references/README.md`
 
 **Template**
-`assets/feature-catalog/feature-catalog-template.md`
+`sk-create-feature-catalog/assets/feature-catalog-template.md`
 
 **Quick Steps**
 1. **Plan categories** -> Define the numbered capability sections and stable slugs
@@ -309,10 +308,10 @@ The hub has no hub-root `references/` or `assets/` aggregation directories. Thos
 ### Manual Testing Playbook
 
 **Reference**
-`references/README.md`
+`sk-create-manual-testing-playbook/references/README.md`
 
 ### Template
-`assets/testing_playbook/manual-testing-playbook-template.md`
+`sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md`
 
 ### Playbook Layout
 | File | Content |
@@ -357,7 +356,7 @@ Validation note: the current validator checks the root playbook and does not rec
 - [manual-testing-playbook-snippet-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md) - Per-feature snippet template
 
 ### Related Skills
-- `git-commit` - Git commit workflows
+- `sk-git` - Worktrees, conventional commits, PRs and merge/finish workflows
 - `system-spec-kit` - Context preservation and spec folder management
 
 ### External Resources

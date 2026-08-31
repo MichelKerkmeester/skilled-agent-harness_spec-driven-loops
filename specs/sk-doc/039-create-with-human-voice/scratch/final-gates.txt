@@ -1,0 +1,63 @@
+=== GATE 1: parent-skill-check ===
+INFO: Parent skill: .opencode/skills/sk-doc
+INFO: Resolved:     /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc
+INFO: Mode 5-9:     canon (FAIL)
+
+PASS: 1a: exactly one graph-metadata.json, located at the hub root
+PASS: 1b: hub skill_id "sk-doc" matches directory name
+PASS: 1c: hub family "sk-util" is in the allowed set
+PASS: 2a: no nested graph-metadata.json inside any packet or shared/
+PASS: 2b: no nested description.json inside any packet or shared/
+PASS: 3a: mode-registry.json exists and parses as JSON
+PASS: 3b: mode-registry.json declares 14 modes
+PASS: 3c: every mode packet resolves to an existing sub-directory
+PASS: 3d: every mode carries the hard discriminator (workflowMode + backendKind)
+PASS: 3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch
+PASS: 3d-name: every mode folder matches packetSkillName (or is grandfathered)
+PASS: 3d-name-frontmatter: all 14 packet SKILL.md frontmatter name(s) match packetSkillName
+PASS: 3d-files: every packet carries SKILL.md, README.md, and changelog/
+PASS: 3d-alias: all 146 aliases are unique across modes
+PASS: 3e: every mode has an advisorRouting block with a valid routingClass
+INFO: 3g: hub declares no surface packets
+INFO: 3f: hub declares no extensions (pure 2-tier)
+PASS: 3j: hub allowed-tools equals the union of mode tool surfaces
+INFO: 4a: hub declares no lexical/alias-fold modes — no advisor drift-guard required
+INFO: 4b: registry declares no lexical modes; nothing to cross-check against the advisor
+PASS: 5a: hub-router.json exists and parses as JSON
+PASS: 5b: routerSignals keys match the registry workflowMode set (14)
+PASS: 5c: all 15 referenced vocabulary classes are defined
+PASS: 5d: every router resource path resolves on disk
+PASS: 5e: routerPolicy.tieBreak covers every registered mode
+PASS: 5f: bundleRules reference real modes
+PASS: 5g: base router outcomes present (single, orderedBundle, defer)
+PASS: 5h: routerPolicy.defaultMode is null (surface-primary or no default)
+PASS: 5i: tieBreak orders workflow modes before surface/transport modes
+INFO: 5j: hub declares no command subworkflows
+PASS: 6a: every hub child directory is a registered packet or an allowlisted support dir
+PASS: 6b: every registered mode (14) appears in the hub SKILL.md mode table
+PASS: 7a: all changelog entries are real files (no symlinks)
+PASS: 8a: description.json present with the required fields
+PASS: 8b: description.json carries no registry-owned duplicate keys
+PASS: 9a: manual-testing-playbook/ present
+PASS: 9b: benchmark/ baseline present
+PASS: 10a-manifest-source: resourceContractVersion declared and leaf-manifest.json is present, readable, and well-formed
+PASS: 10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte
+PASS: 10c-target-collision: no duplicate composite keys; every committed leaf resolves to a disk file or a declared alias
+PASS: 10d-reachability: all 14 manifest mode(s) reach back to a registered mode and vice versa
+PASS: 11a-class: root metadata conforms to class H (declares the complete mode-registry + hub-router pair)
+PASS: 12a-router-contract: root ROUTER.md conforms to the two-state contract (active)
+
+─────────────────────────────────────────────────────────────────
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+EXIT=0
+
+=== GATE 2: package_skill --check --strict ===
+🔍 Validating skill: sk-create-with-human-voice
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+==================================================
+Result: PASS
+EXIT=0

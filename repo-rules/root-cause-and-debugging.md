@@ -52,12 +52,12 @@ have found a place where the symptom stops appearing.
    same message.
 2. **Read the whole error.** The top line names where it surfaced; the cause is usually
    the innermost frame in code you control, and the message is usually literal.
-3. **Locate the producer** the code that created the bad value or state, not the code
+3. **Locate the producer:** the code that created the bad value or state, not the code
    that choked on it.
 4. **Trace to the consumers.** Anything else reading that producer has the same bug,
    surfaced or not.
 5. **Fix at the source.**
-6. **Re-run the same check that failed** then the whole gate.
+6. **Re-run the same check that failed**, then the whole gate.
 
 Step 1 is not optional. If you cannot reproduce it you cannot prove you fixed it, and
 you should say so instead of claiming a fix (see the negative control in
@@ -89,7 +89,7 @@ here is repetition without new evidence, not a fixed count.
 
 Do not repeat the same guess with a variation. Instead:
 
-1. **Restate the problem one level up** at the interface, the data flow, or the module
+1. **Restate the problem one level up:** at the interface, the data flow, or the module
    boundary rather than the line.
 2. **Inspect the interface that actually exists.** Read the signature, type, schema,
    docs, caller. Most repeated failures are a wrong assumption about an API, not a wrong
@@ -101,7 +101,7 @@ out unsupported, read the available interface and change approach, do not re-run
 same command with a different spelling.
 
 **Naming the seam.** When a fix only works by special-casing a caller, the boundary is
-wrong. Say so: **name the seam and the files a seam fix would touch** then ask.
+wrong. Say so: **name the seam and the files a seam fix would touch**, then ask.
 `scope-discipline.md` still binds, "the real fix is over there" does not grant a yes.
 
 ---
@@ -138,11 +138,11 @@ then decide with the operator. A failure you walked past is a failure you shippe
 
 Once repetition has replaced evidence and the retry budget is spent, escalate once:
 
-1. **Symptom** the exact error, verbatim.
-2. **What I tried** each attempt and the evidence it produced, not just what it was.
-3. **What that rules out** the hypotheses now eliminated.
-4. **Options** two or three, with the trade-off of each.
-5. **Recommendation** one, and why.
+1. **Symptom:** the exact error, verbatim.
+2. **What I tried:** each attempt and the evidence it produced, not just what it was.
+3. **What that rules out:** the hypotheses now eliminated.
+4. **Options:** two or three, with the trade-off of each.
+5. **Recommendation:** one, and why.
 
 A stuck report without evidence per attempt asks someone else to start from zero.
 

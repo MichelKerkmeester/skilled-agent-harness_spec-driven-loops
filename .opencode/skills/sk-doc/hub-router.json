@@ -17,6 +17,7 @@
       "sk-create-diff",
       "sk-create-diagram",
       "sk-create-repo-rule",
+      "sk-create-with-human-voice",
       "sk-create-quality-control"
     ],
     "outcomes": {
@@ -155,6 +156,15 @@
       ],
       "resources": [
         "sk-create-repo-rule/SKILL.md"
+      ]
+    },
+    "sk-create-with-human-voice": {
+      "weight": 4,
+      "classes": [
+        "create-with-human-voice-aliases"
+      ],
+      "resources": [
+        "sk-create-with-human-voice/SKILL.md"
       ]
     }
   },
@@ -394,6 +404,22 @@
         "revise a rule",
         "we should always",
         "stop doing"
+      ]
+    },
+    "create-with-human-voice-aliases": {
+      "keywords": [
+        "human voice rules",
+        "apply human voice",
+        "rewrite in human voice",
+        "make this sound human",
+        "sounds ai-generated",
+        "reads like ai wrote it",
+        "remove ai tells",
+        "ai writing tells",
+        "voice pass",
+        "de-ai the writing",
+        "reads like a machine wrote it",
+        "banned word check"
       ]
     }
   }

@@ -1,0 +1,27 @@
+trigger rows: 9
+index rows: 9
+rule files: 9 blast-radius.md, communication.md, delegation-and-orchestration.md, evidence-and-proof.md, prevent-overengineering.md, root-cause-and-debugging.md, scope-discipline.md, skill-hub-routing.md, uncertainty-and-honesty.md
+router links: 18 broken: 0 
+rule links: 21 broken: 0
+AGENTS.md repo-rules links: 27 unique: 9 broken: 0 
+  blast-radius.md: 16 phrases
+  communication.md: 23 phrases
+  delegation-and-orchestration.md: 20 phrases
+  evidence-and-proof.md: 17 phrases
+  prevent-overengineering.md: 20 phrases
+  root-cause-and-debugging.md: 17 phrases
+  scope-discipline.md: 18 phrases
+  skill-hub-routing.md: 17 phrases
+  uncertainty-and-honesty.md: 16 phrases
+total trigger phrases: 164 unique: 164
+EXACT collisions: 0
+  ../REPO RULES.md: dividers=4 numberedSections=4 bytes=7471
+  blast-radius.md: dividers=7 numberedSections=7 bytes=6666
+  communication.md: dividers=12 numberedSections=12 bytes=10305
+  delegation-and-orchestration.md: dividers=9 numberedSections=9 bytes=10606
+  evidence-and-proof.md: dividers=12 numberedSections=12 bytes=8729
+  prevent-overengineering.md: dividers=6 numberedSections=6 bytes=6936
+  root-cause-and-debugging.md: dividers=8 numberedSections=8 bytes=6214
+  scope-discipline.md: dividers=9 numberedSections=9 bytes=6496
+  skill-hub-routing.md: dividers=6 numberedSections=6 bytes=6767
+  uncertainty-and-honesty.md: dividers=7 numberedSections=7 bytes=5791

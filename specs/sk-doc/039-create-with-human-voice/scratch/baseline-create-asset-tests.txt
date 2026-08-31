@@ -1,0 +1,49 @@
+E.FF.........
+======================================================================
+ERROR: test_emitter_contract_tokens (test_emitted_name_contract.EmittedNameContractTest)
+Check canonical emitted names and reject known legacy output rules.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/create/assets/tests/test_emitted_name_contract.py", line 49, in test_emitter_contract_tokens
+    content = (ASSET_ROOT / filename).read_text(encoding="utf-8")
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1256, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1242, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/pathlib.py", line 1110, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/create/assets/create_agent_auto.yaml'
+
+======================================================================
+FAIL: test_root_yaml_assets_parse (test_emitted_name_contract.EmittedNameContractTest)
+Require every root workflow asset to remain valid YAML.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/create/assets/tests/test_emitted_name_contract.py", line 41, in test_root_yaml_assets_parse
+    self.assertEqual(len(yaml_paths), 22)
+AssertionError: 24 != 22
+
+======================================================================
+FAIL: test_source_asset_filenames_remain_stable (test_emitted_name_contract.EmittedNameContractTest)
+Keep current underscore source assets stable until their rename phase.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/commands/create/assets/tests/test_emitted_name_contract.py", line 36, in test_source_asset_filenames_remain_stable
+    self.assertEqual(actual, self.contract["sourceAssetFilenames"])
+AssertionError: Lists differ: ['create-agent-auto.yaml', 'create-agent-confirm.[1155 chars]txt'] != ['create_agent_auto.yaml', 'create_agent_confirm.[1061 chars]txt']
+
+First differing element 0:
+'create-agent-auto.yaml'
+'create_agent_auto.yaml'
+
+First list contains 3 additional elements.
+First extra element 33:
+'create-skill-parent-confirm.yaml'
+
+Diff is 3941 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.098s
+
+FAILED (failures=2, errors=1)
+AUTO_FILES=18 CONFIRM_FILES=18 ZERO_NON_EXEMPT_UNDERSCORES=1

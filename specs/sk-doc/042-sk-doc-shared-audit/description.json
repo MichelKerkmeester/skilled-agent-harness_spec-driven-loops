@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-doc/042-sk-doc-shared-audit",
+  "description": "Audit sk-doc shared references and assets for integration, utilisation and usefulness",
+  "keywords": [
+    "audit",
+    "sk-doc",
+    "shared",
+    "references",
+    "assets",
+    "integration",
+    "utilisation",
+    "usefulness"
+  ],
+  "lastUpdated": "2026-08-31T19:49:30.518Z",
+  "specId": "042",
+  "folderSlug": "sk-doc-shared-audit",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

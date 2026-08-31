@@ -47,7 +47,9 @@
     "changelog",
     "repo-rule",
     "document-diff",
-    "create-quality-control"
+    "create-quality-control",
+    "human-voice",
+    "writing-standards"
   ],
   "intent_signals": [
     "create skill",
@@ -75,7 +77,15 @@
     "document change report",
     "validate document",
     "score document quality",
-    "optimize documentation"
+    "optimize documentation",
+    "apply human voice",
+    "rewrite in human voice",
+    "make this sound human",
+    "sounds ai-generated",
+    "reads like ai wrote it",
+    "remove ai tells",
+    "human voice rules",
+    "voice pass"
   ],
   "derived": {
     "trigger_phrases": [
@@ -99,7 +109,13 @@
       "add a repo rule",
       "doc quality",
       "validate markdown",
-      "dqi score"
+      "dqi score",
+      "human voice rules",
+      "apply human voice",
+      "make this sound human",
+      "sounds ai-generated",
+      "remove ai tells",
+      "voice pass"
     ],
     "key_topics": [
       "documentation",
@@ -115,12 +131,15 @@
       "document-diff",
       "repo-rules-router",
       "component-creation",
-      "templates"
+      "templates",
+      "human-voice-rules",
+      "voice-application"
     ],
     "intent_signals": [
       "create an OpenCode component (skill/agent/command)",
       "author a doc package (readme/catalog/playbook/benchmark/flowchart/changelog/diff)",
-      "validate/score/optimize an existing document"
+      "validate/score/optimize an existing document",
+      "apply or score prose against the Human Voice Rules"
     ],
     "key_files": [
       ".opencode/skills/sk-doc/SKILL.md",
@@ -133,6 +152,7 @@
       ".opencode/skills/sk-doc/sk-create-changelog/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-diff/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
       ".opencode/skills/sk-doc/shared/scripts/extract_structure.py"
     ],
@@ -186,6 +206,12 @@
         "source": "derived"
       },
       {
+        "name": "sk-create-with-human-voice",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "validate_document",
         "kind": "script",
         "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
@@ -198,7 +224,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to twelve nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
+    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to thirteen nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-with-human-voice, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
     "source_docs": [
       "SKILL.md",
       "README.md",
@@ -209,7 +235,8 @@
       "sk-create-quality-control/SKILL.md",
       "sk-create-changelog/SKILL.md",
       "sk-create-diff/SKILL.md",
-      "sk-create-repo-rule/SKILL.md"
+      "sk-create-repo-rule/SKILL.md",
+      "sk-create-with-human-voice/SKILL.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
     "last_updated_at": "2026-08-31T00:00:00Z"

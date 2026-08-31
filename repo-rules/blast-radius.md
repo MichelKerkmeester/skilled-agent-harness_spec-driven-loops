@@ -64,7 +64,7 @@ you write it, and it tells the operator what they are approving.
 
 Two traps sit in the middle tier and behave like the bottom one:
 
-- **Overwriting an untracked or ignored file** is irreversible, git holds no copy.
+- **Overwriting an untracked or ignored file** is irreversible; git holds no copy.
   Look at the target before writing over it, always.
 - **Sending is publishing.** Content that reaches an external service may be cached,
   logged, or indexed even if you delete it a second later.
@@ -83,7 +83,7 @@ Both are miscalibrations against the same scale.
 
 ## 3. THE ROLLBACK SENTENCE
 
-Before any tier-2 or tier-3 action, write it out: **"To undo this: ___"** the command,
+Before any tier-2 or tier-3 action, write it out: **"To undo this: ___"**; the command,
 the backup path, the revert commit, the down migration. If you cannot complete that
 sentence with something real, **you are not ready to act**; that is the finding, and it
 goes to the operator.
@@ -104,7 +104,7 @@ Before changing anything shared, enumerate what was built against the old shape:
 - Deployed servers and running processes still on the old code.
 - Installed clients, SDKs, and other repositories that pin this interface.
 - Caches, queues, and in-flight messages holding the old format.
-- **Persisted data written by the old code** the most-missed one, because it outlives
+- **Persisted data written by the old code:** the most-missed one, because it outlives
   every process.
 - Saved configuration, environment files, and CI definitions.
 - Documentation and examples that will now be wrong.

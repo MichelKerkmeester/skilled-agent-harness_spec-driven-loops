@@ -18,7 +18,7 @@ Every in-scope skill documentation file carries a 4-part `version: X.Y.Z.W` fiel
 
 ---
 
-## 1. SCOPE
+## 1. OVERVIEW AND SCOPE
 
 ### In scope (MUST carry `version`)
 
@@ -144,4 +144,5 @@ Every major equals the owning skill's major — always low.
 ## 9. RELATED RESOURCES
 
 - [frontmatter-templates.md](../assets/frontmatter-templates.md) — frontmatter by document type (carries the per-class `version` rows)
-- Engine: `scripts/frontmatter-version.*` — the deterministic compute/insert/verify tool that implements this standard
+- Engine: [`frontmatter-version.mjs`](../scripts/frontmatter-version.mjs), the deterministic compute/insert/verify tool that implements this standard
+- Corpus gate: [`check-frontmatter-versions.sh`](../scripts/check-frontmatter-versions.sh), the CI wrapper that runs the engine in `gate` mode

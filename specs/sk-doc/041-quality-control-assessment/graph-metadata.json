@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/041-quality-control-assessment",
+  "spec_folder": "sk-doc/041-quality-control-assessment",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-quality-control assessment",
+      "doc quality mode usefulness",
+      "quality control mode keep shrink fold",
+      "041-quality-control-assessment",
+      "quality control assessment plan",
+      "doc quality mode audit plan",
+      "quality control assessment tasks",
+      "doc quality mode audit tasks",
+      "quality control assessment summary",
+      "doc quality mode keep and repair"
+    ],
+    "key_topics": [
+      "sk-create-quality-control",
+      "assessment",
+      "doc",
+      "quality",
+      "mode",
+      "usefulness",
+      "control",
+      "keep",
+      "shrink",
+      "fold",
+      "041-quality-control-assessment",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-quality-control/README.md",
+      ".opencode/skills/sk-doc/sk-create-quality-control/references/workflows.md",
+      ".opencode/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md",
+      ".opencode/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md",
+      ".opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.2.0.md",
+      "scratch/baseline/vocab-sync.json",
+      "scratch/baseline/router-replay.txt",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts",
+      "scratch/post-fix-command-proof.txt",
+      "scratch/baseline/packet-baseline.txt",
+      "scratch/after.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-quality-control/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-quality-control/references/workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "validation-and-enforcement.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-examples.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.2.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "vocab-sync.json",
+        "kind": "config",
+        "path": "scratch/baseline/vocab-sync.json",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.txt",
+        "kind": "file",
+        "path": "scratch/baseline/router-replay.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-binding-existence.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/command-binding-existence.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-fix-command-proof.txt",
+        "kind": "file",
+        "path": "scratch/post-fix-command-proof.txt",
+        "source": "derived"
+      },
+      {
+        "name": "packet-baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline/packet-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Interpret Quality Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-agent",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Answer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Assess whether the sk-create-quality-control mode is routed to, used, duplicated elsewhere, and worth its size. It is routed to more than any sibling, used as a route target by two of them, duplicates nothing, and is the second smallest packet in the hub. What was actually broken is that every command it documented failed at the shell and every reference pointed at the wrong SKILL.md section. Keep the mode; repair its executable surface.",
+    "created_at": "2026-08-31T20:01:08.484Z",
+    "last_save_at": "2026-08-31T20:01:08.484Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:431f39a820b3f083323a7295120fe29d8f128d98a1c3d60ffc4099949ca8191a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8a7e5f11fadf174a0236229b6ae7a36420190de1b55ae5ec157256e0864c3010",
+      "plan.md": "0a4ed604871c05c8a9ea50e4d39df10d070d051cbaf4718ff5e15371a8ee3c08",
+      "tasks.md": "aba51d533fdcbb1cc3749c3be8d40b0dd32ab658fdc235af5efbfbf7c738ccc4",
+      "implementation-summary.md": "17ce42f2318b705137402df9772b85aa73cdd59214550a830a0ad8385eec71d8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

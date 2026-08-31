@@ -322,6 +322,16 @@
       ],
       "packet": "sk-create-skill",
       "workflowMode": "sk-create-skill-parent"
+    },
+    {
+      "leaves": [
+        "assets/voice-report-template.md",
+        "references/README.md",
+        "references/scope-and-exemptions.md",
+        "references/scoring-and-verification.md"
+      ],
+      "packet": "sk-create-with-human-voice",
+      "workflowMode": "sk-create-with-human-voice"
     }
   ],
   "resourceContractVersion": 1

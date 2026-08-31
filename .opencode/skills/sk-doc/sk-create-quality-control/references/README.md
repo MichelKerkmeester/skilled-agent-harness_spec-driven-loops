@@ -34,7 +34,7 @@ Load the file that matches the current task:
 | **Optimization procedure** — quality heuristics, analysis workflow, README priority strategy, snippet checklist, iteration loop | [optimization.md](./optimization.md) | The user asked to improve/optimize an existing doc for AI-friendliness |
 | **Transformation pattern catalog** — the 16 patterns with worked before/after code | [transformation-patterns.md](./transformation-patterns.md) | You need the exact before/after shape for a specific pattern |
 
-> `workflows.md` and `optimization.md` are the two externally cited entry files (the `/doc:quality` command and the `sk-doc` hub README point at them). They stay as the route/entry files for their concern; their overflow lives in the siblings above.
+> `workflows.md` and `optimization.md` are the two externally cited entry files (the hub's `ROUTER.md` maps them to the `DOC_QUALITY` and `OPTIMIZATION` intents, and the `sk-doc` hub README points at them). They stay as the route/entry files for their concern; their overflow lives in the siblings above.
 
 ---
 

@@ -1,0 +1,32 @@
+## DQI after (baseline shown by baseline/packet-baseline.txt)
+  89 good  .opencode/skills/sk-doc/sk-create-quality-control/README.md
+  95 excellent  .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md
+  89 good  .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.0.0.md
+  89 good  .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.0.md
+  85 good  .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.1.md
+  82 good  .opencode/skills/sk-doc/sk-create-quality-control/references/README.md
+  93 excellent  .opencode/skills/sk-doc/sk-create-quality-control/references/optimization.md
+  72 acceptable  .opencode/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md
+  90 excellent  .opencode/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md
+  89 good  .opencode/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md
+  93 excellent  .opencode/skills/sk-doc/sk-create-quality-control/references/workflows.md
+
+## validate_document after
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/README.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.0.0.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.0.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/changelog/v1.0.1.1.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/references/README.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/references/optimization.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md
+  exit=0 .opencode/skills/sk-doc/sk-create-quality-control/references/workflows.md
+
+## quick_validate packet
+✅ Skill is valid!
+## frontmatter version gate (sk-doc)
+[gate] 279 files | ok=278  skip-no-frontmatter=1
+## byte total after
+   69714

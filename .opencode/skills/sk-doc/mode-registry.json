@@ -6,7 +6,7 @@
   "discriminator": {
     "workflowMode": "Public hub/mode key; stable identity used by the hub router and this registry.",
     "packetKind": "Axis discriminator: workflow for all sk-doc packets (no surface packets).",
-    "backendKind": "template-scaffold for the create-* document generators; create-quality-control for the validate/score/optimize-existing-doc workflow."
+    "backendKind": "template-scaffold for the create-* document generators and for the voice-application mode; create-quality-control for the validate/score/optimize-existing-doc workflow."
   },
   "advisorRoutingContract": {
     "routingClass": "metadata = resolved by hub membership (default for all sk-doc modes); command-bridge = reached only via its command, never advisor-scored. No lexical/alias-fold modes (avoids the advisor-projection extension + CI drift-guard).",
@@ -523,6 +523,45 @@
         "revise a rule",
         "trigger table",
         "rule router"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "sk-create-with-human-voice",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "sk-create-with-human-voice",
+      "packetSkillName": "sk-create-with-human-voice",
+      "grandfatheredFolderMismatch": false,
+      "command": "/create:with-human-voice",
+      "aliases": [
+        "human voice rules",
+        "apply human voice",
+        "rewrite in human voice",
+        "make this sound human",
+        "sounds ai-generated",
+        "reads like ai wrote it",
+        "remove ai tells",
+        "ai writing tells",
+        "voice pass",
+        "de-ai the writing"
       ],
       "advisorRouting": {
         "routingClass": "metadata"
