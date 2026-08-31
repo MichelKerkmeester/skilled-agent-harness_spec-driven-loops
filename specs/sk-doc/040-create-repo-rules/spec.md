@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/040-create-repo-rules"
+    packet_pointer: "sk-doc/040-create-repo-rules"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Scaffolded the seven-phase decomposition around the reference implementation"
@@ -117,6 +117,8 @@ Turn that inferred pattern into a `sk-doc` create mode: a skill that authors a r
 | 5 | 005-agents-md-integration/ | The integration contract: router trigger and index rows, the pointer from the governed section, and where a rule sits in the precedence ladder | Complete |
 | 6 | 006-command-and-hub-wiring/ | `/create:repo-rule` authored via `sk-create-command`; hub, mode-registry and command-metadata registration | Complete |
 | 7 | 007-validation-and-changelog/ | Strict validation, the changelog folder and its symlink into `.opencode/changelog/sk-doc/`, advisor smoke test, closeout | Complete — advisor smoke test not run, accept path unexercised; see phase 007 |
+| 8 | 008-conformance-playbook-and-readme/ | sk-create-skill conformance audit and fix, the ten-scenario manual testing playbook, the README rewritten to HVR, then review-driven remediation of the command package and hub discoverability | Complete |
+| 9 | 009-hub-routing-guardrails/ | The generalization: hub routing stated in the always-loaded document, a ten-surface checklist, check 6b, and a concise repo rule | Complete |
 
 ### Phase Transition Rules
 
@@ -136,6 +138,8 @@ Turn that inferred pattern into a `sk-doc` create mode: a skill that authors a r
 | 005-agents-md-integration | 006-command-and-hub-wiring | A generated rule has a documented path into the router and the always-loaded document | The contract reproduces the wiring phase 1 performed by hand |
 | 006-command-and-hub-wiring | 007-validation-and-changelog | `/create:repo-rule` exists with its YAML pair and is registered in the hub | Command resolves in both runtime directories; hub entries present |
 | 007-validation-and-changelog | — | The mode validates, the changelog is symlinked, and the advisor routes to it | `validate.sh --recursive --strict`; symlink resolves; advisor smoke test |
+| 007-validation-and-changelog | 008-conformance-playbook-and-readme | The mode exists and validates, so it can be audited, tested and documented | Playbook validator PASS fail-closed with 0 violations; README valid as a readme |
+| 008-conformance-playbook-and-readme | 009-hub-routing-guardrails | Reviewing phase 8 surfaced a failure class no guardrail covered | Check 6b green on five hubs, proven by negative control; advisor regression unchanged |
 <!-- /ANCHOR:phase-map -->
 
 ---

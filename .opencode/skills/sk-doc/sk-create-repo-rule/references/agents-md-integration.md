@@ -46,10 +46,12 @@ The shipped set hit this twice, and both times the row was written before anyone
   **Out**. The router would have routed to a rule it declared out of bounds.
 - Moving communication down while §4 said nothing about how a reply reads.
 
-Both were caught and the boundary was widened deliberately. **A third widening to admit
-routing would dissolve the boundary the set exists to hold** — if the scope statement
-excludes it, that is a refusal, not a paperwork problem. The mode does not widen §4
-unilaterally; that is an operator decision.
+All three were caught and the boundary was widened deliberately each time, the third
+being the narrow routing carve-out that admits verifying wiring you changed while still
+refusing route selection. **A fourth widening that admitted selection itself would
+dissolve the boundary the set exists to hold** — if the scope statement excludes a
+proposal, that is a refusal, not a paperwork problem. The mode does not widen §4
+unilaterally; that is an operator decision, and each of the three was one.
 
 ---
 

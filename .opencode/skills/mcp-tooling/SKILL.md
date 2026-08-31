@@ -30,6 +30,7 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 | **mcp-figma** _(transport)_ | transport | Drive Figma Desktop from the terminal via `figma-ds-cli` — document mutation lands in Figma Desktop (local writes limited to explicit-path exports per the registry's workspaceWrites clarifier), always paired with `sk-design-md-generator` for a measured Style Reference | `mcp-tooling/mcp-figma/` |
 | **mcp-refero** _(transport)_ | transport | Search real-app UI design references via the Refero MCP (Code Mode, read-only) — screens, flows, styles; always paired with `sk-design-md-generator` for a measured Style Reference | `mcp-tooling/mcp-refero/` |
 | **mcp-mobbin** _(transport)_ | transport | App/screen/flow design research via the Mobbin MCP (Code Mode, read-only) — mobile UX patterns from real apps; always paired with `sk-design-md-generator` for a measured Style Reference | `mcp-tooling/mcp-mobbin/` |
+| **mcp-magicpath** _(transport)_ | transport | Component, project, team, design-system and canvas lookup via the `magicpath-ai` Node CLI over Code Mode's UTCP cli transport (read-only; its provider ships no MCP server) | `mcp-tooling/mcp-magicpath/` |
 
 ### When NOT to Use
 

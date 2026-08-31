@@ -236,9 +236,18 @@ function manifestCompositePairs(manifestObject) {
 }
 
 function main() {
-  const argTarget = process.argv[2] || DEFAULT_TARGET;
+  const explicitTarget = process.argv[2];
+  const argTarget = explicitTarget || DEFAULT_TARGET;
   const target = path.isAbsolute(argTarget) ? argTarget : path.resolve(REPO_ROOT, argTarget);
   const basename = path.basename(target);
+
+  // A per-hub gate reporting on a hub the caller did not name reads exactly like success.
+  // Say so loudly rather than letting a green result describe the wrong subject.
+  if (!explicitTarget) {
+    console.log(`${yellow('NOTE')}: no hub given, defaulting to ${DEFAULT_TARGET}.`);
+    console.log(`${yellow('NOTE')}: this result describes THAT hub only. Pass a hub path to check another.`);
+    console.log('');
+  }
 
   info(`Parent skill: ${argTarget}`);
   info(`Resolved:     ${target}`);
@@ -998,6 +1007,43 @@ function main() {
     pass('6a: every hub child directory is a registered packet or an allowlisted support dir');
   } else {
     softFail(`6a: child director(ies) neither registered as a packet nor allowlisted: [${unregistered.join(', ')}]`);
+  }
+
+  // 6b: the hub SKILL.md is the fallback discovery surface when the advisor is
+  // unreachable. A mode registered but absent from its mode table is invisible
+  // to a reader. Scoped to hubs that actually document modes in a table: a hub
+  // with no table is a different, pre-existing state, not a per-mode gap.
+  //
+  // Deliberately row-level, not first-cell. Several hubs document a mode inside
+  // a neighbouring row's prose (sk-create-skill-parent, agent-improvement), and
+  // first-cell matching would report those correct hubs as broken. The cost is
+  // that any mention within a row satisfies the check, so this asserts presence
+  // in the table and nothing about accuracy or reachability.
+  const hubSkillPath = path.join(target, 'SKILL.md');
+  if (!fs.existsSync(hubSkillPath)) {
+    info('6b: no hub SKILL.md to reconcile');
+  } else {
+    // Fenced blocks are examples, not the contract. A mode named only inside one
+    // is not listed for a reader scanning the table.
+    let fenced = false;
+    const hubSkillRows = fs.readFileSync(hubSkillPath, 'utf8')
+      .split('\n')
+      .filter((line) => {
+        if (/^\s*```/.test(line)) { fenced = !fenced; return false; }
+        return !fenced && line.trimStart().startsWith('|');
+      });
+    if (hubSkillRows.length === 0) {
+      info('6b: hub SKILL.md documents no modes in a table; per-mode reconciliation skipped');
+    } else {
+      // Word-boundary match so a longer neighbouring id cannot satisfy a shorter one.
+      const named = (m) => hubSkillRows.some((r) => new RegExp(`(^|[^A-Za-z0-9_-])${m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^A-Za-z0-9_-]|$)`).test(r));
+      const undocumented = [...registryModeSet].filter((m) => !named(m));
+      if (undocumented.length === 0) {
+        pass(`6b: every registered mode (${registryModeSet.size}) appears in the hub SKILL.md mode table`);
+      } else {
+        softFail(`6b: mode(s) registered but absent from the hub SKILL.md mode table: [${undocumented.join(', ')}]`);
+      }
+    }
   }
 
   // ───────────────────────────────────────────────────────────────

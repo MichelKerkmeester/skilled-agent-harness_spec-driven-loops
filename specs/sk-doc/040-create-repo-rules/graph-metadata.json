@@ -10,7 +10,9 @@
     "sk-doc/040-create-repo-rules/004-creation-standards-and-guardrails",
     "sk-doc/040-create-repo-rules/005-agents-md-integration",
     "sk-doc/040-create-repo-rules/006-command-and-hub-wiring",
-    "sk-doc/040-create-repo-rules/007-validation-and-changelog"
+    "sk-doc/040-create-repo-rules/007-validation-and-changelog",
+    "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
+    "sk-doc/040-create-repo-rules/009-hub-routing-guardrails"
   ],
   "manual": {
     "depends_on": [],
@@ -115,18 +117,18 @@
     ],
     "causal_summary": "This repository now has a working repo-rules layer: a trigger-table router, eight rule files, a mandatory load gate, and per-section pointers from the always-loaded document into each rule that governs it",
     "created_at": "2026-08-31T11:33:07Z",
-    "last_save_at": "2026-08-31T13:41:06.699Z",
+    "last_save_at": "2026-08-31T16:07:09.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d13db917022cc559f03e884a376dc399034e08a308d534ff4abcbcd68b255737",
+    "source_fingerprint": "sha256:59843392a56206adf6db7a4fd570ec2c586915f407f3ea2c65453e1763057558",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "922fadbc1bc3d0d783644158d48b3977505f24c9637646d894f10ec0f77d2b15"
+      "spec.md": "c3f377a57ecee62a3ed659e9e37c33a0642b1311d956e90a41205912855351d6"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
     "last_active_at": "2026-08-31T13:41:06.699Z"
   }
 }

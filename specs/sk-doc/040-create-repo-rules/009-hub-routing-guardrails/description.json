@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/040-create-repo-rules/009-hub-routing-guardrails",
+  "description": "Phase 1: conformance-playbook-and-readme",
+  "keywords": [
+    "phase",
+    "conformance-playbook-and-readme"
+  ],
+  "lastUpdated": "2026-08-31T14:06:07.834Z",
+  "specId": "008",
+  "folderSlug": "conformance-playbook-and-readme",
+  "parentChain": [
+    "sk-doc",
+    "040-create-repo-rules"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

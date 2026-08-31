@@ -209,7 +209,68 @@ If the request needs both, register the workflow first and attach surfaces throu
 
 ---
 
-## 7. CHANGELOG AND NAMING POLICIES
+## 7. ADDING A MODE TO AN EXISTING HUB
+
+Sections 1 and 2 describe authoring a hub. Adding a mode to one that already ships is a
+different act with its own failure: the mode looks registered, every validator is green,
+and it is still unreachable. Registering a packet is the first surface, not the only one.
+
+**A mode is integrated when every surface that applies to its class carries it. Not before.**
+
+Check `advisorRouting.routingClass` first. Most modes are `metadata` and skip row 10; a `lexical` or `alias-fold` mode is advisor-visible by name and needs it.
+
+| # | Surface | File | What breaks when it is missed |
+|---|---------|------|-------------------------------|
+| 1 | Packet registration | `mode-registry.json` | Nothing routes at all |
+| 2 | Stage-one signals | `hub-router.json` `routerSignals` | The hub never selects the mode |
+| 3 | Stage-one tie-break | `hub-router.json` `routerPolicy.tieBreak` | `parent-skill-check` 5e fails: tieBreak must be an exact permutation of the registry |
+| 4 | Stage-two intent | root `ROUTER.md` `INTENT_SIGNALS` + `RESOURCE_MAP` | The mode is selected but loads no leaves. Keys must stay equal |
+| 5 | Stage-two inventory | root `ROUTER.md` `FULL_INVENTORY`, **where the hub defines one** | The full-toolkit intent silently omits the mode. Only `sk-doc` carries this block today; skip it on a hub without one |
+| 6 | Advisor vocabulary | hub `graph-metadata.json` | **The advisor never surfaces the hub for this mode's requests.** The only path in, since the mode gets no advisor entry of its own |
+| 7 | Human-facing contract | hub `SKILL.md` mode table and packet count | An agent that loads the hub cannot see the mode. This is the runtime's fallback discovery surface when the advisor is unreachable |
+| 8 | Doctor metadata | hub `description.json` keywords and description | The mode is missing from the hub's advertised surface |
+| 9 | Leaf manifest | `leaf-manifest.json` | Regenerate rather than hand-edit; a stale manifest fails `10b-byte-drift` |
+| 10 | Projection maps and scorer, **for a non-`metadata` mode only** | `skill_advisor.py`, the scorer alias groups, the hub's `legacyAliases` | A `lexical` or `alias-fold` mode is advisor-visible by name, so it needs its own entries. A `metadata` mode needs none of this. A drift guard covers the maps |
+| 11 | Command mirrors | `.codex/prompts/`, `.pi/prompts/`, `.cursor/commands/`, `.claude/commands/` | The command is unreachable from those runtimes. Run each sync script; do not hand-create |
+
+**A green gate is not integration.** `parent-skill-check` covers rows 1-3, 9 and 11. Row 7 is covered by
+check 6b, which asserts the mode is *named in the table* and nothing more. Rows 4, 5, 6, 8 and 10 have no gate:
+a hub can pass every check with a mode that no request can reach. Two shipped examples today are
+`sk-code-obsidian` and `sk-code-mobile-cli`, both named in their hub's table with no vocabulary in
+`graph-metadata.json`, `ROUTER.md` or `description.json` — a request for either routes to a different hub.
+
+### Verify against the hub you changed
+
+```bash
+node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/<hub>
+```
+
+**Always pass the hub path.** The check is per-hub, and a bare invocation reports on
+whichever hub it defaults to — a green result that describes a hub you did not touch reads
+exactly like success.
+
+Then replay both stages, because each can pass while the other is broken:
+
+```bash
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs \
+  --skill .opencode/skills/<hub> --task "<a real request for the new mode>"
+python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "<same request>" --threshold 0.5
+```
+
+A stage-one hit with `surfaceIntents: []`, or a stage-two hit with `intents: [NONE]`, means
+the two stages disagree about the same phrasing. Fix the vocabulary on both sides rather
+than the side that happens to be failing.
+
+### Keep the alias narrow
+
+An alias earns its place by catching a request for **this** mode. A term that also matches
+unrelated work (`rule file`, `config`, `template`) captures traffic the hub cannot serve, and
+the misroute only shows up once someone types it. Replay each new alias against a plausible
+out-of-domain phrase before shipping it.
+
+---
+
+## 8. CHANGELOG AND NAMING POLICIES
 
 Changelog policy:
 
@@ -241,7 +302,7 @@ Companion file policy:
 
 ---
 
-## 8. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md) - published router and registry schema details for parent hubs.
 - [parent-skill-root-router-template.md](../../assets/parent-skill/parent-skill-root-router-template.md) - root `ROUTER.md` stage-two authoring template.

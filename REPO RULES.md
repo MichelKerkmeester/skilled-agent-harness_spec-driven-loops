@@ -43,6 +43,7 @@ is not.
 | Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch | [`root-cause.md`](repo-rules/root-cause.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
 | Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true | [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
 | Write any substantive reply · present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · the reader says they did not follow | [`communication.md`](repo-rules/communication.md) | How a reply reads: sentence shape, length, filler, verdict-first order, Ask→Do framing |
+| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed or integrated · quote a per-hub gate result | [`hub-routing.md`](repo-rules/hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
 
 ---
 
@@ -58,6 +59,7 @@ is not.
 | [Root cause](repo-rules/root-cause.md) | Fix the producer, not the symptom; every fix names the mechanism. |
 | [Uncertainty and honesty](repo-rules/uncertainty-and-honesty.md) | Never fabricate; mark the confidence you actually have. |
 | [Communication](repo-rules/communication.md) | Write so the reader can act after one pass: one idea per sentence, verdict first, nothing that does not carry information. |
+| [Hub routing](repo-rules/hub-routing.md) | A hub projects one advisor identity and routes in two stages; registered is not routed, and a gate run without its hub argument checks something else. |
 
 Each file expands `AGENTS.md` and is bounded by it: where a rule file appears to
 permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wrong.
@@ -67,8 +69,8 @@ permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wr
 ## 4. SCOPE OF THIS DOCUMENT
 
 **In:** how to think and act — restraint, scope, evidence, risk, diagnosis, honesty,
-the posture to hold when work is handed to another runtime, and how the resulting reply
-reads. Delivery joined the list when `AGENTS.md` §8 moved down; it is the one rule here
+the posture to hold when work is handed to another runtime, how the resulting reply
+reads, and what you may claim about wiring you have changed. Delivery joined the list when `AGENTS.md` §8 moved down; it is the one rule here
 whose trigger is every substantive reply rather than a specific action, and §8 keeps the
 two clauses that must bind even when nothing loads.
 
@@ -77,3 +79,10 @@ of agent and CLI dispatch — which agent, which command, which model, which fla
 Those belong to `AGENTS.md` §2 and the skills it routes to, and are deliberately
 absent here so each has exactly one place to change. The line is between plumbing and
 posture: how to dispatch is theirs, how to think while dispatching is ours.
+
+**The routing carve-out, added deliberately as the third widening.** *Selecting* a
+route stays Out. *Verifying wiring you changed, and what you may claim about it*, is
+In — it is an evidence obligation whose subject happens to be routing. `hub-routing.md`
+is the one rule on this side of that line, and it carries no route-selection guidance:
+the mechanics stay in the skills, and the rule points at them. A fourth widening that
+admits selection itself would dissolve the boundary; this one does not.
