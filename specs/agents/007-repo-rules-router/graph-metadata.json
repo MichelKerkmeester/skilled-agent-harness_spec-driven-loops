@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`AGENTS.md` §3 tells every runtime to \"apply project-specific conventions from `REPO RULES.md` … when the repository has one\", and that file does not exist here — the only other references to it are two `sk-code` docs pointing at a different repository's copy",
+    "causal_summary": "`AGENTS.md` §3 tells every runtime to \"apply project-specific conventions from `REPO RULES.md` … when the repository has one\", and that file does not exist here — the only other references to it are four `sk-code`-scoped docs pointing at a different repository's copy",
     "created_at": "2026-08-31T03:30:40Z",
-    "last_save_at": "2026-08-31T03:42:46.977Z",
+    "last_save_at": "2026-08-31T03:55:58.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63e5d2cd1edd34efad1339f077e6d3900e328f7b7243a0916023efd34f1c542b",
+    "source_fingerprint": "sha256:a49fe4313b77ec25a02d9fb3d9bcf432c20532a10ef963931f4aff5efaef73da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b212d345454d8070246dda362d85996ac8fca5a6c0264846a75e22ab5b5ffb8c",
+      "spec.md": "c95902e724c4e3fea8f3fc5488139780af27ac3b7a7e8c3dd0cdb2f2426f5fed",
       "plan.md": "5e9417b51dda7a832b56d77447a7e0aa1ecc41268d37d5da2d7b2bdab6517b0a",
       "tasks.md": "1c2389899f7d5835f8fa491c0cfe6e2360055ce2621cc767bc94294e367aadad",
-      "implementation-summary.md": "d94276e776eecadcb79478f36894490d210c55235f068d05d9770e4db0ebd307"
+      "implementation-summary.md": "6c7ce93c6fa8b075ebe608641599eda290be13bda92fa7d00f673fecdea967ff"
     },
     "last_active_child_id": null,
     "last_active_at": null

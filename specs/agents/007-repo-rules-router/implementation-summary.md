@@ -50,6 +50,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-repo-rules-router |
+| **Status** | Complete |
 | **Completed** | 2026-08-31 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -88,6 +89,12 @@ The other five: `scope-discipline.md` (three drifts, adjacent-defect protocol, p
 | `repo-rules/uncertainty-and-honesty.md` | Created | Confidence bands, UNKNOWN, contradiction halt, close-out (137 lines) |
 | `specs/agents/007-repo-rules-router/*` | Created | Level 2 packet: spec, plan, tasks, acceptance criteria, this summary |
 | `AGENTS.md` | **Unchanged** | Its §3 pointer already binds `REPO RULES.md`; SCOPE LOCK held |
+
+### Post-review revision
+
+A fresh reviewer with no session context audited the result and found one defect class wearing four hats: the leaves had been written as free-standing doctrine rather than as expansions bounded by a tier-1 document, so wherever the leaf author held an opinion it silently outranked `AGENTS.md`. Three leaves handed an agent permission `AGENTS.md` withholds — a pushed commit sat in the reversible tier against the fresh-go-ahead push policy, a "two-attempt rule" invented a retry count `AGENTS.md` explicitly says does not govern debugging, and a default-allow scope list widened Law 2 — while the router's own precedence table named two of the three §1 hard blockers. All four are fixed, and every leaf now opens with a bounding line stating that `AGENTS.md` wins wherever the two appear to disagree, so the class cannot recur silently.
+
+The same pass removed five verbatim duplications of always-loaded text — the confidence table, six restraint-signal rows, the test-quality paragraph, the plan-deviation protocol and the finishing bullets — each a drift pair waiting to diverge, and each exactly what the prior bloat audit exists to prevent. It also closed one real gap: `AGENTS.md` §4's task-specific proof patterns had been dropped, so nothing told an agent to enumerate every variant before transforming, or to derive a computed answer a second way.
 <!-- /ANCHOR:what-built -->
 
 ---

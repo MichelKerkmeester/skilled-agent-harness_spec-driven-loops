@@ -2,6 +2,9 @@
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before touching anything
 > you were not asked to touch.
+>
+> This file expands `AGENTS.md`; it never overrides it. Where it appears to permit
+> something `AGENTS.md` restricts, `AGENTS.md` wins and this file is wrong — say so.
 
 ---
 
@@ -36,9 +39,10 @@ of the ask you deliver*.
 
 ---
 
-## 2. What is in scope by default
+## 2. What counts as "explicitly in scope"
 
-Without asking, you may change:
+Law 2 freezes the scope and this section never widens it — it only says how to read
+it. Inside the frozen scope, these are the *same* change, not adjacent ones:
 
 - The files named in the request, or the ones the request unambiguously implies.
 - **Direct callers that the change would break** — a change that leaves the tree
@@ -46,6 +50,9 @@ Without asking, you may change:
 - The test that covers the behavior you changed.
 - Imports, type signatures, and generated files that mechanically follow from the
   above.
+
+Anything not on this list is adjacent and goes to §4 — including a caller the change
+does *not* break.
 
 ## 3. What always needs a yes first
 
@@ -77,23 +84,14 @@ covers it.
 
 ## 5. Deviating from an approved plan
 
-An approved plan is frozen the way scope is frozen. Before substituting anything —
-a different approach, a manual step in place of a named tool or procedure, a
-different file than the one the plan points at:
+An approved plan is frozen the way scope is frozen — but the protocol for deviating
+from one is `AGENTS.md` §1 PLAN-WORKFLOW LOCK, a hard blocker that outranks this
+file. Read it there. Nothing here softens it, and this section deliberately does not
+restate it, because a hard blocker copied into a tier-3 document reads as though an
+operator instruction could outrank it.
 
-1. **Verify, don't assume.** Read the thing the plan names and test the friction
-   you believe it has against what it actually says. Most assumed friction is not
-   there.
-2. **If it genuinely blocks the task** — you cannot comply — state the deviation
-   and get approval: *"the plan says X, I propose Y because Z."* Wait.
-3. **If it does not block but is wrong for this case** — you can comply, it is just
-   a bad fit — **follow it for this task, and name the fix in the same response**:
-   the file to change, the rule, and the one-line replacement.
-4. **Never silently hand-roll a substitute.**
-
-The difference between (2) and (3) is whether you *can* comply, not how wrong it
-feels. A silent workaround leaves the next run to rediscover the same friction from
-scratch.
+What this file adds is only the adjacent case: a frozen **scope** you believe is
+wrong. That is §6.
 
 ---
 
@@ -108,15 +106,16 @@ operator decides. Scaling the work down is never your call.
 
 ## 7. Finishing
 
-- **Partial delivery is not a stopping point.** Do not present half the work as a
-  "good stopping point", a "natural checkpoint", or "future work" while a safe path
-  forward exists.
+`AGENTS.md` §3 Ownership & Completion already binds: no early stop, no "natural
+checkpoint" on incomplete work, and no asking permission to continue an approved,
+in-scope step. One thing is worth stating in scope terms:
+
 - **When one part is genuinely blocked, finish every other part in full**, then say
-  explicitly what you left out and why.
-- **Do not ask permission to continue** an already-approved, in-scope step. "Should
-  I keep going?" on clear work wastes a turn. This never waives a mandatory wait —
-  a stop-for-yes in `blast-radius.md`, or an approval this rule requires, still
-  blocks.
+  explicitly what you left out and why. Scaling the work down is the operator's
+  call, never yours.
+- Proceeding without asking never waives a **mandatory wait** — Gate 3, a
+  PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, the remote-push
+  go-ahead, and every `blast-radius.md` stop-for-yes still block.
 
 ---
 
@@ -124,8 +123,6 @@ operator decides. Scaling the work down is never your call.
 
 - [ ] Every file in my diff is in scope by §2, or has an explicit yes.
 - [ ] Adjacent defects I found are recorded and reported, not fixed.
-- [ ] I did not substitute anything the plan named without reading it first.
-- [ ] If I deviated, I said so in the same response, with the file and the rule.
 - [ ] Everything asked for is delivered, or explicitly listed as not delivered with
       a reason.
 - [ ] No formatting or cleanup noise is riding along with the real change.

@@ -2,6 +2,9 @@
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before the first write of
 > anything new.
+>
+> This file expands `AGENTS.md`; it never overrides it. Where it appears to permit
+> something `AGENTS.md` restricts, `AGENTS.md` wins and this file is wrong — say so.
 
 ---
 
@@ -75,19 +78,13 @@ smaller than you think — or the caller does not exist and neither should the c
 
 ## 3. Signals and responses
 
-Each row is a signal that the work has drifted off the stated problem. The response
-column is what to *do*, not a phrase to recite.
+The Restraint Signals table in `AGENTS.md` §3 still binds and is not repeated here.
+These are the two signals it does not carry:
 
 | Signal | What it usually means | Do this |
 |--------|----------------------|---------|
-| "for flexibility", "future-proof", "might need" | an abstraction no current requirement earns | Build for the actual requirement. Note the hypothetical in close-out if it is worth tracking at all. |
-| "could be slow", "might bottleneck" | a cost asserted without measurement | Measure, then report baseline and delta — or leave it alone. |
-| "best practice", "always should" | a pattern imported without checking fit | Name the specific bug, cost, or user problem it prevents *here*, or drop it. |
-| "while we're here", "also add", "might as well" | work outside the frozen scope | Record it separately. See `scope-discipline.md`. |
-| "let's DRY this up" across two instances | similarity mistaken for sameness | Two is a coincidence. Wait for the third. |
 | A config option "so we can change it later" | a decision deferred into a permanent branch | Hardcode it. See §4. |
 | A wrapper that only forwards arguments | indirection with no behavior | Call the thing directly. |
-| The fix works only where the bug surfaced | the symptom was treated, not the cause | Trace to the producer. See `root-cause.md`. |
 
 ---
 
@@ -111,12 +108,9 @@ into a silent wrong answer. Let unhandleable failures propagate.
 the layer above already guarantees. A null check on something that is never null
 tells the next reader it *is* sometimes null, and they will code around a ghost.
 
-**Tests.** The coverage floor comes first and this rule never waives it: happy path
-plus one edge case per public surface. **Above that floor, a new test earns its
-place only by failing for one real reason no current test catches.** Do not add a
-test per branch, re-assert the framework or the language, or mirror the
-implementation line for line. Changed behavior gets coverage; unchanged behavior
-does not get new tests.
+**Tests.** The coverage floor and the earns-its-place bar are `AGENTS.md` §3. Nothing
+here relaxes either; the ladder above applies to test code the same way it applies to
+the code under test.
 
 **Performance.** No speculative optimization. Measure under stated conditions,
 report baseline and delta, or leave the code alone.
@@ -136,9 +130,6 @@ Restraint constrains *how much you build*, never *how much you deliver*.
   the same response.
 - **Not a reason to skip real error handling.** A failure mode that happens is not
   speculative.
-- **Not an excuse to skip the coverage floor.**
-- **Not a reason to leave the work half-finished.** A smaller solution still has to
-  be a complete one.
 
 ---
 
@@ -146,10 +137,8 @@ Restraint constrains *how much you build*, never *how much you deliver*.
 
 Before the first write of anything new:
 
-- [ ] I read the existing code before deciding this must exist.
 - [ ] I named the rung and wrote the climbing sentence for every rung above 0.
 - [ ] Every new option, abstraction, and dependency has a caller that needs it
       **today**.
-- [ ] No new test exists that does not fail for a reason no other test catches.
 - [ ] Nothing here is justified only by a future that has not been asked for.
 - [ ] If I judged part of the scope unnecessary, I built it anyway and said so.

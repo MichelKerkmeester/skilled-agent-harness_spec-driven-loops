@@ -1,7 +1,9 @@
 # Rule: Uncertainty and honest reporting
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load when you do not know, and
-> before every close-out.
+> Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load when you do not know.
+>
+> This file expands `AGENTS.md`; it never overrides it. Where it appears to permit
+> something `AGENTS.md` restricts, `AGENTS.md` wins and this file is wrong — say so.
 
 ---
 
@@ -12,7 +14,7 @@
 - You are about to name a path, flag, function, version, or number you have not
   verified.
 - The operator asserts something you believe is wrong.
-- You are closing out a turn.
+- Two things that must both be true are not.
 
 ## The rule
 
@@ -23,14 +25,9 @@ not the operator's expectation — decide the answer.**
 
 ## 1. Confidence bands
 
-One scale. Do not carry a second one.
-
-| Confidence | Action |
-|-----------|--------|
-| **≥ 80%** | Proceed, with a citable source |
-| **40–79%** | Proceed, stating the caveat inline where it matters |
-| **< 40%** | Ask, or write `UNKNOWN` |
-| **Override** | A blocker or a contradiction → ask regardless of the score |
+The scale is the Confidence Thresholds table in `AGENTS.md` §2, and there is exactly
+one of it — this file deliberately does not carry a second copy. What it adds is how
+to behave inside a band.
 
 **Investigate before you ask.** Up to three real investigation passes first. A
 question you could have answered by reading a file wastes the operator's turn and
@@ -55,7 +52,6 @@ get quoted back later as established fact.
 - CLI flags, environment variables, config keys
 - API shapes, parameter names, return types
 - version numbers, dates, benchmark figures
-- command output you did not read
 
 Verify that a thing exists before relying on it. When you are working from
 recollection rather than from the file in front of you, say which.
@@ -95,25 +91,7 @@ One escalation, with the facts and the decision. Then wait.
 
 ---
 
-## 5. Close-out
-
-Every substantive turn ends with an honest status. Four things, briefly:
-
-1. **What ran or was read, and what it returned** — with receipts, per
-   `evidence-and-proof.md`.
-2. **What is inferred** rather than observed.
-3. **What only the operator can verify** — anything you had no way to check.
-4. **The state of the work** — edited / committed / pushed / dirty, and which
-   branch. These are different states and they are routinely conflated.
-
-And plainly: **what is not done.** If tests fail, say so and show the output. If a
-step was skipped, say it was skipped. If part of the scope was left out, name it
-and why. Work that is done and verified is stated plainly, without hedging — the
-hedging habit devalues the honest report when it matters.
-
----
-
-## 6. Correcting yourself
+## 5. Correcting yourself
 
 Correct an earlier statement **when it would change the reader's code, conclusions,
 or decisions**. State it plainly, once, and continue.
@@ -124,14 +102,9 @@ and buys them nothing.
 
 ---
 
-## 7. Self-check
+## 6. Self-check
 
-- [ ] Every claim sits in the right confidence band, and the band is visible where
-      it matters.
-- [ ] Nothing in this response is a path, flag, name, or number I have not verified.
+- [ ] Nothing here is a path, flag, name, or number I have not verified.
 - [ ] Real investigation happened before I asked anything.
-- [ ] Questions are consolidated into one message.
 - [ ] A wrong premise from the operator was corrected with evidence, not absorbed.
 - [ ] Any contradiction was halted and reported, not worked around.
-- [ ] The close-out states what failed, what is inferred, and the true state of the
-      work.

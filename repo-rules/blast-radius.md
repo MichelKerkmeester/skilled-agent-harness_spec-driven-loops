@@ -2,6 +2,9 @@
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before the action, not
 > after it.
+>
+> This file expands `AGENTS.md`; it never overrides it. Where it appears to permit
+> something `AGENTS.md` restricts, `AGENTS.md` wins and this file is wrong — say so.
 
 ---
 
@@ -39,8 +42,8 @@ one-way before you write it, and it tells the operator what they are approving.
 | Tier | Examples | What it needs |
 |------|----------|---------------|
 | **Trivially reversible** | Working-tree edit to a tracked file; a new untracked file; a local commit | Proceed |
-| **Reversible with effort** | Pushed commit; a migration with a working down step; a generated artifact that can be regenerated; an installed dependency | Say what undoing costs, then proceed |
-| **Irreversible** | Sent message, comment, or email; published package or release; deleted remote data; overwritten untracked file; rewritten shared history; force-push; an external call with side effects; a destructive migration with no down step | **Written rollback + explicit yes, first** |
+| **Reversible with effort** | A migration with a working down step; a generated artifact that can be regenerated; an installed dependency | Say what undoing costs, then proceed |
+| **Irreversible** | Sent message, comment, or email; published package or release; deleted remote data; overwritten untracked file; rewritten shared history; force-push; **any push to a remote branch that is not release or reserved**; an external call with side effects; a destructive migration with no down step | **Written rollback + explicit yes, first** |
 
 Two traps sit in the middle tier and behave like the bottom one:
 
@@ -65,7 +68,9 @@ Then, at tier 3, **stop and wait for a yes.** Not "I'll proceed unless you objec
 Wait.
 
 **Approval does not transfer.** A yes for one destructive action does not cover the
-next one, a later one of the same kind, or a wider version of the same one.
+next one, a later one of the same kind, or a wider version of the same one. A push to
+a non-allowlisted remote branch is tier 3 for exactly this reason: it needs a fresh,
+in-the-moment yes, and a yes for an earlier push is not one.
 
 ---
 
@@ -118,8 +123,7 @@ rollback. Prefer what the project already has.
 
 ## 7. Self-check
 
-- [ ] I opened with a stakes read.
-- [ ] I placed the action on the reversibility ladder.
+- [ ] I placed the action on the reversibility ladder and said so.
 - [ ] I looked at the target before deleting or overwriting it.
 - [ ] The rollback sentence is written and concrete.
 - [ ] For tier 3, I have an explicit, in-the-moment yes for *this* action.

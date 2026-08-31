@@ -2,6 +2,9 @@
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before making any claim
 > that someone will act on.
+>
+> This file expands `AGENTS.md`; it never overrides it. Where it appears to permit
+> something `AGENTS.md` restricts, `AGENTS.md` wins and this file is wrong — say so.
 
 ---
 
@@ -12,8 +15,8 @@
 - You are about to report a result, a number, a file path, or command output.
 - A tool, a sub-agent, or a reviewer reports success or a finding, and you are
   about to act on it.
-- You are about to write an acceptance-criteria row, a checklist tick, or a
-  completion summary.
+- You are about to write a completion summary, or tick anything off as done.
+- You are closing out a turn.
 
 ## The rule
 
@@ -89,7 +92,22 @@ fabrication.
 
 ---
 
-## 6. A finding is a hypothesis
+## 6. Shape-specific proof
+
+Three task shapes have a proof that generalizes, and each fails in a way the checks
+above do not catch:
+
+- **Filter or transform** — enumerate every in-scope variant *first*, process each,
+  then rescan the whole surface for residue. The variants you never enumerated are
+  the ones you missed, and a clean diff does not reveal an unprocessed input.
+- **Computed answer** — derive it a second way, independently, before you write the
+  number. Re-reading your own arithmetic is not an independent derivation.
+- **Exact artifact** — check the filename, path, format and content shape directly.
+  Having written it is not evidence it is there in the required shape.
+
+---
+
+## 7. A finding is a hypothesis
 
 A sub-agent's "COMPLETE", a reviewer's "P0", a linter's error, a bot's suggestion —
 each is a **claim to confirm against the real symptom**, not a fact to act on.
@@ -98,7 +116,7 @@ was never there, plus a diff nobody can explain.
 
 ---
 
-## 7. Proof plan before implementation
+## 8. Proof plan before implementation
 
 For anything with a machine-checkable outcome, **before changing files**, convert
 the acceptance criteria into 1–5 observable pass/fail checks. Each names:
@@ -110,13 +128,13 @@ the acceptance criteria into 1–5 observable pass/fail checks. Each names:
 Deciding what would count as proof *after* you have the result is how the result
 becomes the standard.
 
-## 8. Final-state proof
+## 9. Final-state proof
 
 Before any completion claim:
 
 - [ ] Every required artifact exists **at its exact path** and matches the required
       format — verified by inspection, not by the fact that you wrote it.
-- [ ] The proof plan from §7 and the authoritative gate both pass **from the final
+- [ ] The proof plan from §8 and the authoritative gate both pass **from the final
       state**, and you read the output and the exit status.
 - [ ] The scoped diff or status contains no task-created residue — no scratch
       files, no debug output, no unrelated file.
@@ -125,11 +143,27 @@ Before any completion claim:
 
 ---
 
-## 9. Self-check
+## 10. Close-out
+
+Every substantive turn ends with an honest status. Four things, briefly:
+
+1. **What ran or was read, and what it returned** — with the receipts from §1.
+2. **What is inferred** rather than observed.
+3. **What only the operator can verify** — anything you had no way to check.
+4. **The state of the work** — edited / committed / pushed / dirty, and which
+   branch. These are four different states and they are routinely conflated.
+
+And plainly: **what is not done.** If tests fail, say so and show the output. If a
+step was skipped, say it was skipped. If part of the scope was left out, name it and
+why. Work that is done and verified is stated plainly, without hedging — the hedging
+habit devalues the honest report when it matters.
+
+---
+
+## 11. Self-check
 
 - [ ] Every load-bearing sentence is marked OBSERVED, DERIVED, or INFERRED.
 - [ ] I read the output and exit status of every command I am citing.
 - [ ] I checked the green run against the four failure modes in §3.
 - [ ] I have a before-number for every "no regressions" and every performance claim.
-- [ ] I confirmed each external finding before acting on it.
-- [ ] Nothing in my summary is a number, path, or output I did not observe.
+- [ ] The close-out says what failed and what is inferred, not only what worked.

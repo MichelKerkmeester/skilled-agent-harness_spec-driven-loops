@@ -1,6 +1,9 @@
 # Rule: Root cause and debugging
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load when something is red.
+>
+> This file expands `AGENTS.md`; it never overrides it. Where it appears to permit
+> something `AGENTS.md` restricts, `AGENTS.md` wins and this file is wrong — say so.
 
 ---
 
@@ -59,10 +62,11 @@ Each of these is evidence you are patching at the wrong place:
 
 ---
 
-## 3. The two-attempt rule
+## 3. When an attempt repeats
 
-**If a second attempt fails without producing new evidence, stop patching at the
-failure site.**
+**If an attempt repeats without producing new evidence, stop patching at the failure
+site.** How many local retries you get before that point is set outside this file;
+what triggers the stop here is repetition without new evidence, not a fixed count.
 
 Do not repeat the same guess with a variation. Instead:
 
@@ -121,7 +125,8 @@ you walked past is a failure you shipped.
 
 ## 7. When you are stuck — escalation format
 
-After the two-attempt rule has run out, escalate once, in this shape:
+Once repetition has replaced evidence and the retry budget is spent, escalate once,
+in this shape:
 
 1. **Symptom** — the exact error, verbatim.
 2. **What I tried** — each attempt and the evidence it produced (not just what it
@@ -139,8 +144,8 @@ from zero.
 
 - [ ] I reproduced the exact symptom before changing anything.
 - [ ] I can state the mechanism in one sentence.
-- [ ] The fix is at the producer, not at the place the symptom surfaced.
-- [ ] I checked the other consumers of that producer.
+- [ ] The fix is at the producer, not where the symptom surfaced, and I checked that
+      producer's other consumers.
 - [ ] No test, assertion, or check was weakened to get green.
 - [ ] If I called it a flake, I have one of the two pieces of evidence.
 - [ ] I re-ran the failing check *and* the whole gate.
