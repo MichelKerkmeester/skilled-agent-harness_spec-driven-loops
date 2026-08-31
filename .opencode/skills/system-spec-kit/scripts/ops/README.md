@@ -37,7 +37,7 @@ Supported classes are `index-drift`, `session-ambiguity`, `ledger-mismatch`, and
 - `heal-*.sh` scripts run class-specific detect, repair, and verify flows.
 - `ops-common.sh` provides shared retry, logging, and escalation helpers.
 - `process-memory-harness.ts` captures process/RSS/swap/wired snapshots used by arc 009 memory evidence.
-- `process-sweep.ts` emits dry-run plans and an ownership-checked `apply` sweep. The apply command is invoked at session start and can be disabled with `SPECKIT_SESSION_START_ORPHAN_SWEEP=off`.
+- `process-sweep.ts` emits dry-run plans and an ownership-checked `apply` sweep. The apply command is invoked at session start and can be disabled with `SPECKIT_SESSION_START_ORPHAN_SWEEP=off`. The apply sweep is OPT-IN: it does nothing unless `SPECKIT_SESSION_START_ORPHAN_SWEEP` is explicitly set to an on value, because an autonomous killer that runs by default is a surprise on every machine that has not configured it.
 
 ---
 

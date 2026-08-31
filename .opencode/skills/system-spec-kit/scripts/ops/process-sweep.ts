@@ -80,10 +80,14 @@ const DEFAULT_STARTUP_GRACE_MS = 300000;
 const OWNER_LEASE_FILE_NAME = '.spec-memory-owner.json';
 const LAUNCHER_PATH_SUFFIX = '.opencode/bin/system-spec-memory-launcher.cjs';
 
+// Terminating processes is opt-in, not opt-out. An unset variable used to mean "sweep", so a
+// machine that had never heard of this feature would begin killing daemons the moment it
+// shipped. Requiring an explicit yes costs one line of config and removes a whole class of
+// surprise; the same reasoning applies at the apply boundary, which also refuses on absence.
 function isSweepEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
   const value = env[ORPHAN_SWEEP_KILL_SWITCH];
-  if (value === undefined) return true;
-  return !['0', 'false', 'no', 'off'].includes(value.trim().toLowerCase());
+  if (value === undefined) return false;
+  return ['1', 'true', 'yes', 'on'].includes(value.trim().toLowerCase());
 }
 
 function readProcessParentPid(pid: number): number | null {

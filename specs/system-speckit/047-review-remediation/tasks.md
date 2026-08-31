@@ -60,6 +60,9 @@ contextType: "general"
 - [x] T010 Playbook contract validator PASS, violations 0; comment hygiene clean
 - [x] T011 Fix the one fail-open P2: isolation no longer depends on environment inheritance alone
 - [x] T012 Read and judge the remaining seven P2s — two are not defects, five are real but not worth the widening
+- [x] T013 Live dry-run against the real process table — three eligible, including the shared memory daemon, on an unconfigured host
+- [x] T014 Make termination opt-in in both the sweep and the session-start plugin; rebuild the owning package and confirm the compiled CLI carries it
+- [x] T015 Add a guard proving an unconfigured host never reaches the apply command
 <!-- /ANCHOR:phase-3 -->
 
 ---

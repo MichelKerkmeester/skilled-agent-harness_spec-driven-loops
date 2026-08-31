@@ -324,6 +324,9 @@ describe('orphan daemon reaping', () => {
   });
 
   it('invokes the ownership-checked sweep at session start', async () => {
+    // The sweep is opt-in, so a machine that wants it says so. This mirrors a configured host;
+    // the unconfigured case is covered by the test below, which expects no apply at all.
+    vi.stubEnv('SPECKIT_SESSION_START_ORPHAN_SWEEP', 'on');
     const fixture = spawnFixture(false);
     await waitFor(() => existsSync(join(fixture.dir, 'state.json')));
     const { default: sessionCleanupPlugin } = await import('../../../../plugins/session-cleanup.js');
@@ -345,6 +348,24 @@ describe('orphan daemon reaping', () => {
       command: process.execPath,
       args: [expect.stringContaining('.opencode/skills/system-spec-kit/scripts/dist/ops/process-sweep.js'), 'apply'],
     });
+  });
+
+  it('does not invoke the apply command on a host that never opted in', async () => {
+    vi.stubEnv('SPECKIT_SESSION_START_ORPHAN_SWEEP', undefined as unknown as string);
+    const { default: sessionCleanupPlugin } = await import('../../../../plugins/session-cleanup.js');
+    const calls: Array<{ command: string; args: string[] }> = [];
+    const hooks = await sessionCleanupPlugin(
+      { worktree: process.cwd() },
+      {
+        spawn: () => ({ once: () => undefined, unref: () => undefined }),
+        spawnSync: (command: string, args: string[]) => {
+          calls.push({ command, args });
+          return { status: 0, stdout: '{"rows":[]}', stderr: '' };
+        },
+      },
+    );
+    await hooks['experimental.chat.system.transform']({ sessionID: 'unconfigured' }, { system: [] });
+    expect(calls.some((c) => c.args?.includes('apply'))).toBe(false);
   });
 
   it('reports the sweep kill switch without invoking the apply command', async () => {

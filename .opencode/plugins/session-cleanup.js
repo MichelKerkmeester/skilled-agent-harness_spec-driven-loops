@@ -60,9 +60,12 @@ function boundedText(value) {
   return String(value).replaceAll('\0', '').trim().slice(0, MAX_CAPTURE_BYTES);
 }
 
+// Opt-in, matching the sweep itself: absent means do not run. A session that never configured
+// this must not start terminating daemons because the feature landed.
 function isSweepDisabled(env = process.env) {
   const value = env.SPECKIT_SESSION_START_ORPHAN_SWEEP;
-  return value !== undefined && ['0', 'false', 'no', 'off'].includes(String(value).trim().toLowerCase());
+  if (value === undefined) return true;
+  return !['1', 'true', 'yes', 'on'].includes(String(value).trim().toLowerCase());
 }
 
 function appendPluginLog(logPath, maxBytes, detail) {

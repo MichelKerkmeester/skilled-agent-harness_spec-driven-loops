@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-speckit/047-review-remediation"
     last_updated_at: "2026-08-31T04:50:04Z"
     last_updated_by: "claude-code"
-    recent_action: "Closed three P1 findings and the one fail-open P2"
-    next_safe_action: "Push to the release branches"
+    recent_action: "Closed the P1 set and made termination opt-in at the operator layer"
+    next_safe_action: "Verify what apply does with the shared memory daemon before enabling the sweep anywhere"
     blockers: []
     key_files: []
     session_dedup:
@@ -50,6 +50,8 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
+Terminating is now opt-in at the operator layer too. An unset switch previously meant "sweep", so any machine that had never heard of this feature would begin terminating daemons the moment it shipped. A live dry-run made that concrete: three processes were flagged eligible, one of them the shared memory daemon holding the production database open, on a host that had configured nothing. Both the sweep and the session-start plugin now require an explicit on value.
+
 The sweep now requires an explicit enable decision. It previously tested for an explicit disable, so an omitted decision meant execute — a process-killer defaulting to kill. An omission and a deliberate disable are reported distinctly, because one is a caller bug and the other is an operator choice.
 
 Reapability is now derived from parent evidence read at decision time. The snapshot's verdict no longer excludes a candidate before evaluation, so a daemon orphaned between the scan and the decision is collected on that pass instead of surviving to the next. Every other gate — ownership, start-time match, startup grace, socket peer — is unchanged and still has to pass, so re-reading only ever admits processes that are genuinely parentless now.
@@ -79,6 +81,8 @@ The cli-devin playbook precondition is version-scoped and agrees with the audit 
 
 <!-- ANCHOR:verification -->
 ## Verification
+
+The opt-in flip was verified against the compiled CLI, not just the source, after rebuilding the package that owns it — the first rebuild targeted the wrong package and left the old default in place, which would have made a green test meaningless. 16 tests pass, including a new guard asserting that a host which never opted in never reaches the apply command.
 
 Both code fixes rest on a control observed failing first: pre-fix, the omitted-decision case signalled and the parent-died case returned an empty `appliedPids`. Post-fix both pass, and 14 tests are green across the two phase suites.
 
