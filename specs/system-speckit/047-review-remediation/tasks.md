@@ -58,6 +58,8 @@ contextType: "general"
 - [x] T008 Live-parent safety holds — no signal, process alive, and the refusal now carries a recorded reason
 - [x] T009 Two pre-existing tests that relied on the fail-open default were made explicit rather than left passing by accident
 - [x] T010 Playbook contract validator PASS, violations 0; comment hygiene clean
+- [x] T011 Fix the one fail-open P2: isolation no longer depends on environment inheritance alone
+- [x] T012 Read and judge the remaining seven P2s — two are not defects, five are real but not worth the widening
 <!-- /ANCHOR:phase-3 -->
 
 ---

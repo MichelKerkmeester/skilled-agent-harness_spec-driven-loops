@@ -65,9 +65,15 @@ function fallbackResolvedPath(label: 'package root' | 'database dir'): string {
 }
 
 function isTestContext(): boolean {
-  return process.env.VITEST === 'true'
+  if (process.env.VITEST === 'true'
     || process.env.NODE_ENV === 'test'
-    || process.env.SPECKIT_TEST === 'true';
+    || process.env.SPECKIT_TEST === 'true') {
+    return true;
+  }
+  // Environment alone is not a reliable signal: a worker spawned without inheriting it would
+  // read as production and quietly resolve the live database. The runner's own in-process
+  // marker survives that gap, so an env hole cannot silently disable the isolation guard.
+  return typeof (globalThis as Record<string, unknown>).__vitest_worker__ !== 'undefined';
 }
 
 function isProductionDatabaseDir(resolvedPath: string): boolean {
