@@ -1,0 +1,28 @@
+### PATH RESOLUTION of every reference this stream added   2026-08-31T20:24:18Z
+
+-- absolute repo paths cited in the two commands and SKILL.md --
+OK   .opencode/skills/sk-doc/shared/references/hvr-rules.md
+OK   .opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
+OK   .opencode/skills/sk-communication/SKILL.md
+OK   .opencode/skills/sk-communication/references/visual-explanation.md
+OK   .opencode/skills/sk-communication/cli-communication-projection/src/config/local-provider.ts
+OK   .opencode/skills/sk-communication/cli-communication-projection/src/runtime/external-cli-projection.ts
+
+-- relative links from .opencode/skills/sk-communication/SKILL.md --
+OK   ../sk-doc/shared/references/hvr-rules.md -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/shared/references/hvr-rules.md
+OK   ../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
+
+-- section headings the new text names, proven present in the standard --
+50:## 2. VOICE DIRECTIVES
+106:## 3. PUNCTUATION STANDARDS
+299:## 5. VOICE PERSONALITY
+426:## 9. PRE-PUBLISH CHECKLIST
+
+-- section 3 heading "The Wording Standard" present in sk-communication SKILL.md --
+207:### The Wording Standard
+-- and it sits under section 3 --
+### The Pipeline
+### Invariants Each Subsystem Upholds
+### The Two Presentation Tiers
+### The Wording Standard
+### Verification

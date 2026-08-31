@@ -204,6 +204,21 @@ Consume it through the package's subpath exports (`@portable-cli/communication-p
 - **full-projection** — only a client-owned or headless path that owns a complete message AND an atomic render decision may claim a full 1:1 rewrite.
 - **safe-native** — a constrained native surface may only append, use a sidecar, or show original-only. It never claims 1:1 parity, and it never suppresses the original before a validated replacement exists.
 
+### The Wording Standard
+
+"Plain English" is not defined in this skill. It is the Human Voice Rules at [`../sk-doc/shared/references/hvr-rules.md`](../sk-doc/shared/references/hvr-rules.md), and the workflow that applies them is the `sk-create-with-human-voice` mode under `sk-doc`. Every rewrite path here routes to that standard instead of carrying a private rubric, so a change to the standard reaches the projection lane with no edit to a command.
+
+Two parts of the standard are excluded, and a projection that honors them has damaged the message it was carrying:
+
+| Excluded | Why |
+|---|---|
+| `VOICE PERSONALITY` | It asks for opinions, mixed feeling and controlled imperfection in writing you own. A projection carries someone else's message, so a reaction the original never held is a fidelity failure rather than a voice improvement. |
+| The scoring bands of `PRE-PUBLISH CHECKLIST` | Nothing in either lane is a document being published. There is no file, no score and no publish threshold. |
+
+Everything else binds, under the invariants in section 4. Where dropping a banned word would change what the original claimed, the word stays and the claim wins. That precedence is the standard's own, at [`../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`](../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md), which also carries the spans a rewrite may never touch: a quotation, an error string, a command, a path or an identifier.
+
+Lane B writes new prose rather than carrying a message, so the first exclusion above does not reach it. Its one deliberate departure from the standard is recorded in `references/visual-explanation.md` section 3.
+
 ### Verification
 
 Run the package's authoritative gate from the package directory: `npm run check` (typecheck, build, tests, import smoke). Test files run serially so latency benchmarks measure without contention.
@@ -228,6 +243,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 - Never treat a shared wire protocol as proof of model capability, privacy, retention, or fidelity — require dated evidence and fail closed on unknown.
 - Never count a safe-native result toward a full-projection 1:1 claim.
 - Never authorize a release on provisional or LLM-judge evaluation evidence; the release gate requires a human-certified non-inferiority result.
+- Never write a voice or tone rubric into a command, an asset or a presentation contract here. The standard has one home and this skill routes to it, so a second copy drifts from the first the moment either is edited.
 
 ### ⚠️ ESCALATE IF
 
@@ -250,6 +266,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 ### Related Skills
 
+- `sk-doc` → `sk-create-with-human-voice`, which owns the Human Voice Rules workflow this skill's rewrites are held to. The standard is at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, the scope gate at that mode's `references/scope-and-exemptions.md`, and its `scripts/hvr_scan.py` scans a file rather than a live reply, so it audits this skill's own documents and never a projection in flight.
 - `sk-code` — builds and verifies integration code against the package.
 - `sk-design-md-generator` — extracts a measured Style Reference (design tokens from a live source).
 - `sk-git` — worktree, commits, and PR for the integration.
@@ -278,6 +295,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 ### Related Workflows
 
+- `sk-doc` → `sk-create-with-human-voice` owns the wording standard both lanes are rewritten to, and section 3 records the two parts of it that a projection excludes.
 - `sk-code` builds and verifies integration code against this package.
 - `sk-design-md-generator` extracts a measured Style Reference from a live source.
 - `sk-git` handles the worktree, commits, and PR when integrating.

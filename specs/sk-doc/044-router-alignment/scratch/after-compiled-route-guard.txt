@@ -1,0 +1,8 @@
+  cli-external-orchestration  fresh
+  mcp-tooling                 stale-manifest
+  sk-code                     stale-manifest
+  sk-doc                      stale-manifest
+  system-deep-loop            fresh
+
+3 hub(s) need attention.
+Re-mint: mcp-tooling, sk-code, sk-doc

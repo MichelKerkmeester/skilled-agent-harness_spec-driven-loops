@@ -1,0 +1,77 @@
+### AFTER hvr_scan.py (rerun following the em-dash repair), same five surfaces, same order as the baseline
+2026-08-31T20:24:05Z
+
+--- .opencode/commands/rewrite/response.md ---
+HVR SCAN: .opencode/commands/rewrite/response.md
+  x1    first@26    hard   punctuation            —
+  x8    first@18    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          1
+  mechanical deductions:  -5
+  mechanical ceiling:     95/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality
+EXIT=1
+
+--- .opencode/commands/rewrite/response-by-external-agent.md ---
+HVR SCAN: .opencode/commands/rewrite/response-by-external-agent.md
+  x5    first@61    hard   punctuation            —
+  x4    first@146   hard   punctuation            ;
+  x1    first@161   soft2  soft-deduction         actionable
+  x4    first@7     soft1  soft-deduction         do
+  x29   first@34    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          9
+  mechanical deductions:  -51
+  mechanical ceiling:     49/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality
+EXIT=1
+
+--- .opencode/commands/rewrite/explain-visually.md ---
+HVR SCAN: .opencode/commands/rewrite/explain-visually.md
+  x7    first@9     hard   punctuation            —
+  x4    first@49    hard   punctuation            ;
+  x4    first@79    soft1  soft-deduction         do
+  x1    first@181   soft1  soft-deduction         actually
+  x1    first@86    soft1  soft-deduction         make
+  x1    first@103   soft1  soft-deduction         put
+  x15   first@19    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          11
+  mechanical deductions:  -62
+  mechanical ceiling:     38/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality
+EXIT=1
+
+--- .opencode/skills/sk-communication/SKILL.md ---
+HVR SCAN: .opencode/skills/sk-communication/SKILL.md
+  x27   first@20    hard   punctuation            —
+  x25   first@12    hard   punctuation            ;
+  x2    first@29    soft1  soft-deduction         do
+  x2    first@12    soft1  soft-deduction         make
+  x33   first@12    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          52
+  mechanical deductions:  -264
+  mechanical ceiling:     0/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality
+EXIT=1
+
+--- .opencode/skills/sk-communication/references/visual-explanation.md ---
+HVR SCAN: .opencode/skills/sk-communication/references/visual-explanation.md
+  x6    first@51    hard   punctuation            ;
+  x5    first@39    hard   punctuation            —
+  x1    first@24    soft1  soft-deduction         actually
+  x1    first@62    soft1  soft-deduction         do
+  x1    first@63    soft1  soft-deduction         put
+  x9    first@16    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          11
+  mechanical deductions:  -58
+  mechanical ceiling:     42/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality
+EXIT=1

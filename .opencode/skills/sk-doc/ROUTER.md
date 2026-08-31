@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.0
+version: 1.2.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -41,8 +41,10 @@ emits leaf paths, and this router never re-decides the mode.
 - **doc-quality leaves** — the validation rules, core standards, evergreen
   packet-id rule, and the quality-control workflow a request to validate, audit,
   or score documentation against sk-doc standards loads. Fired by "documentation
-  quality / validate documentation / review the docs / audit the docs / pass
-  review" requests.
+  quality / validate documentation / validate a document / score this document /
+  DQI / document audit / review the docs / audit the docs / pass review"
+  requests. The scoring phrases mirror `hub-router.json`, so a request that
+  reaches the quality mode at stage one also reaches its leaves at stage two.
 - **optimization leaves** — the optimization reference and the llms.txt templates
   a request to compress, trim, or token-optimize a doc, or emit a machine-readable
   index loads. Fired by "optimize / token efficiency / llms.txt / reduce tokens /
@@ -51,9 +53,26 @@ emits leaf paths, and this router never re-decides the mode.
   readme / reference templates a request to scaffold or author a new skill loads.
   Fired by "create a skill / skill.md scaffold / resource_map wiring / package a
   capability" requests.
-- **agent-command leaves** — the agent and command READMEs and templates a
-  request to author a paired agent plus a `/create` command loads. Fired by
-  "agent and paired / paired /create / @analyze agent" requests.
+- **parent-hub leaves.** The nested-packet contract, the hub-router schema and
+  the four parent-hub templates a request to build or rewire a parent hub loads.
+  Fired by "parent hub / parent skill / mode packet / nested workflow packet /
+  mode-registry.json / hub-router.json" requests, the file names spelled in full
+  so a bare "hub router" in an unrelated sentence does not fire it. This is the leaf set for the
+  `sk-create-skill-parent` mode, which shares the `sk-create-skill` packet but
+  not its leaves: a plain skill request must not pull the hub templates.
+- **agent-creation leaves.** The agent README and agent template a request to
+  scaffold an OpenCode agent loads. Fired by "create an agent / new agent /
+  agent frontmatter / permission object / @analyze agent" requests.
+- **command-creation leaves.** The command README and command template a
+  request to scaffold a slash command loads. Fired by "create a command / slash
+  command / argument-hint / allowed-tools / thin router" requests.
+- **agent-command leaves.** Both packets' READMEs and templates a request to
+  author an agent together with its paired `/create` command loads. Fired only
+  by the two paired phrases, "agent and paired" and "paired /create", which no
+  single-artifact request carries. The paired intent stays separate rather than
+  being expressed as the union of the two above, because the router keeps only
+  intents within one point of the top score: a paired request that also names
+  the agent would otherwise drop the command half.
 - **flowchart leaves** — the simple-workflow and decision-tree ASCII patterns a
   request to diagram a flow as ASCII / text characters loads. Fired by
   "flowchart / ascii / text diagram / decision tree / process diagram" requests.
@@ -112,10 +131,13 @@ dual-reads to a canonical typed pair through `leaf-manifest.json` or the hub's
 
 ```python
 INTENT_SIGNALS = {
-    "DOC_QUALITY": {"weight": 4, "keywords": ["documentation quality", "doc quality", "validate documentation", "validation rules", "fail sk-doc standards", "review the docs", "review the documentation", "check the docs", "check the documentation", "audit the docs", "review bar", "quality bar", "flag", "meet our standards", "pass review"]},
+    "DOC_QUALITY": {"weight": 4, "keywords": ["documentation quality", "doc quality", "validate documentation", "validate a document", "validate this document", "validate markdown", "validation rules", "score this document", "score this doc", "dqi", "document audit", "fail sk-doc standards", "review the docs", "review the documentation", "check the docs", "check the documentation", "audit the docs", "review bar", "quality bar", "flag", "meet our standards", "pass review"]},
     "OPTIMIZATION": {"weight": 4, "keywords": ["optimize", "token efficiency", "llms.txt", "llmstxt", "reduce tokens", "fewer tokens", "trim", "compress the doc", "slim down", "model's budget", "machine-readable index"]},
     "SKILL_CREATION": {"weight": 4, "keywords": ["sk-skill", "create a new sk", "create sk-", "skill.md scaffold", "skill.md and starter", "resource_map wiring", "new skill", "create a skill", "build a skill", "author a skill", "scaffold a skill", "reusable capability", "reusable helper", "starter reference docs", "new capability", "capability module", "package a capability"]},
-    "AGENT_COMMAND": {"weight": 4, "keywords": ["agent and paired", "paired /create", "@analyze agent"]},
+    "PARENT_HUB": {"weight": 4, "keywords": ["parent hub", "parent skill", "mode packet", "mode packets", "nested packet", "nested workflow packet", "mode-registry.json", "hub-router.json"]},
+    "AGENT_CREATION": {"weight": 4, "keywords": ["create an agent", "create agent", "new agent", "author an agent", "scaffold an agent", "agent file", "agent persona", "agent frontmatter", "agent template", "permission object", "authority boundary", "@analyze agent"]},
+    "COMMAND_CREATION": {"weight": 4, "keywords": ["create a command", "create command", "slash command", "new slash command", "author a command", "scaffold a command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract"]},
+    "AGENT_COMMAND": {"weight": 4, "keywords": ["agent and paired", "paired /create"]},
     "FLOWCHART": {"weight": 4, "keywords": ["flowchart", "ascii", "text diagram", "text characters", "decision tree", "decision branch", "process diagram", "flow diagram", "diagram the", "as a diagram"]},
     "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide", "installation instructions", "setup instructions", "how to install", "setup steps", "getting it running", "getting our project running", "running from scratch"]},
     "HVR": {"weight": 4, "keywords": ["hvr", "human voice rules", "apply human voice", "rewrite in human voice", "make this sound human", "sounds ai-generated", "reads like ai wrote it", "reads like a machine wrote it", "remove ai tells", "ai writing tells", "voice pass", "de-ai the writing", "banned word check"]},
@@ -145,6 +167,22 @@ RESOURCE_MAP = {
         "sk-create-skill/assets/skill/skill-md-template.md",
         "sk-create-skill/assets/skill/skill-readme-template.md",
         "sk-create-skill/assets/skill/skill-reference-template.md"
+    ],
+    "PARENT_HUB": [
+        "sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+        "sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+        "sk-create-skill/assets/parent-skill/parent-skill-registry-template.json",
+        "sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+        "sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md"
+    ],
+    "AGENT_CREATION": [
+        "sk-create-agent/references/README.md",
+        "sk-create-agent/assets/agent-template.md"
+    ],
+    "COMMAND_CREATION": [
+        "sk-create-command/references/README.md",
+        "sk-create-command/assets/command-template.md"
     ],
     "AGENT_COMMAND": [
         "sk-create-agent/references/README.md",

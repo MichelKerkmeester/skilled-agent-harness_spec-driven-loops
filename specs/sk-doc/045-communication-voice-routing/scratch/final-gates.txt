@@ -1,0 +1,50 @@
+### RESIDUE RESCAN + FINAL GATES   2026-08-31T20:24:35Z
+
+=== A. residue: the four HVR-derived rubric bullets, anywhere live (excl specs/, .worktrees/, node_modules, .git) ===
+REPO RULES.md:63:| [Communication](repo-rules/communication.md) | Write so the reader can act after one pass: one idea per sentence, verdict first, nothing that does not carry information. |
+repo-rules/communication.md:3:description: "Write so the reader can act after one pass: one idea per sentence, verdict first, nothing that does not carry information."
+repo-rules/communication.md:5:  - "one idea per sentence"
+repo-rules/communication.md:51:**Write so the reader can act after one pass: one idea per sentence, the verdict first,
+repo-rules/communication.md:73:**One idea per sentence.** Short, declarative, subject-verb-object where that reads
+specs/sk-communication/002-sk-communication-triggers/002-rewrite-response/plan.md:33:Author one root slash command, `/rewrite-response`, that instructs the active AI to re-render its own most recent reply in sk-communication plain English, in-context, with no model call and no file writes. Distill the self-contained rubric from the package's `COPY_EDITING_INSTRUCTION` and the sk-communication plain-English standard. Mirror the command into the Claude and Cursor runtimes.
+specs/sk-communication/002-sk-communication-triggers/scratch/dispatch-cmd1-rewrite-response.md:19:THE REWRITE RUBRIC — make it SELF-CONTAINED inside the command so it needs no package at runtime. Distill it from the authentic projection rubric: the package constant `COPY_EDITING_INSTRUCTION` in `.opencode/skills/sk-communication/cli-communication-projection/src/config/local-provider.ts` ("Rewrite only the [target] message in plain English. Output only the rewrite."; temperature 0.2; copyEditingScope 'assistant-message-only'; protected-spans/1.0.0), plus the plain-English standard in `.opencode/skills/sk-communication/SKILL.md`. Concretely the rubric is: one idea per sentence; plain words; cut filler and hedging; keep meaning and every technical token exact; calm, low-embellishment tone; output only the rewritten reply.
+specs/sk-communication/002-sk-communication-triggers/002-rewrite-response/tasks.md:49:- [x] T-002 Author `.opencode/commands/rewrite-response.md` to template with the self-contained rubric, `--show-original` flag, and structured status.
+specs/sk-communication/002-sk-communication-triggers/002-rewrite-response/implementation-summary.md:59:Authored by a cli-devin Gemini 3.7 Flash HIGH agent under the markdown persona, following the sk-create-command template. The self-contained rubric was distilled from the package constant `COPY_EDITING_INSTRUCTION` and the sk-communication plain-English standard. The orchestrator verified the result independently and created the runtime mirrors.
+specs/agents/003-communication-quality/implementation-summary.md:54:A dedicated, self-contained section with three subsections and a closing caveat: **Writing** (one idea per sentence / SVO; atomic paragraphs; plain words with progressive jargon disclosure; cut filler; vary the rhythm; match length to the question; lead-with-the-recommendation-but-earn-it), **Recommendations & Honesty** (recommend one approach + trade-off; separate required from optional; name the specific failure a best practice prevents; state assumptions when evidence is missing), and **Turn Framing** (the Ask→Do frame for complex or ambiguous requests). It links only to §1 and §7 — no reference to `.codex` — and closes with "these shape delivery, not rigor — over-constraining voice backfires."
+specs/agents/003-communication-quality/plan.md:79:- **Writing**: one idea per sentence / SVO; atomic paragraphs; plain words + progressive jargon disclosure; lead-with-recommendation-but-don't-commit-early.
+specs/system-deep-loop/037-graph-engineering/context/agent-swarms/src/lib/promptLibrary.ts:169:- One idea per sentence. One step per numbered item.
+specs/system-speckit/000-release/CHANGELOG-v4.0.0.0.md:407:Every runtime now finds its cross-runtime communication rules in one place. A new Communication Quality section spells out how answers should be written — one idea per sentence, a recommendation that has to earn itself, the request restated before diving in — rather than leaving those standards scattered or implicit. The deeper Codex voice spec was reconciled with four additive edits so the two documents agree, and only the genuinely new craft was lifted from the source; roughly seventy percent of it was already covered, and covered more thoroughly, elsewhere.
+specs/system-speckit/000-release/003-deep-research-synthesis/research/research.md:26:The root AGENTS.md gains a dedicated Communication Quality section so every runtime finds the cross-runtime voice rules in one place; the former §8 and §9 become §9 and §10. Drafted from practitioner commentary, only genuinely net-new craft principles were lifted — one idea per sentence, atomic paragraphs, progressive jargon disclosure, lead-with-the-recommendation-but-earn-it, and the Ask→Do framing for ambiguous requests — since the deeper Codex voice spec already covered the rest. That spec was then reconciled with four small additive edits so the two files stay in agreement rather than drift, deliberately importing one-idea/SVO/atomic but not "keep it short," which would contradict Codex's existing medium-length rhythm. For framework users this means consistent communication rules across every runtime and no more conflicting guidance; the change is additive, with nothing removed.
+specs/system-speckit/000-release/003-deep-research-synthesis/research/iterations/iteration-001.md:8:The root AGENTS.md gains a dedicated Communication Quality section so every runtime finds the cross-runtime voice rules in one place; the former §8 and §9 become §9 and §10. Drafted from practitioner commentary, only genuinely net-new craft principles were lifted — one idea per sentence, atomic paragraphs, progressive jargon disclosure, lead-with-the-recommendation-but-earn-it, and the Ask→Do framing for ambiguous requests — since the deeper Codex voice spec already covered the rest. That spec was then reconciled with four small additive edits so the two files stay in agreement rather than drift, deliberately importing one-idea/SVO/atomic but not "keep it short," which would contradict Codex's existing medium-length rhythm. For framework users this means consistent communication rules across every runtime and no more conflicting guidance; the change is additive, with nothing removed.
+specs/system-speckit/z_archive/019-readme-and-summary-with-hvr/context/Rules - Human Voice - v0.101.md:65:    directive: "Focus on clarity. One idea per sentence when possible."
+specs/sk-doc/026-skill-readme-refinement/handover.md:44:| Human Voice Rules | No em dashes, no semicolons, no Oxford commas, no banned words, no forced three-item groups, active voice, "you" address, one idea per sentence. |
+specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/implementation-summary.md:50:`skill-readme-template.md` moved 1.9.0.0 to 1.10.0.0 with six changes. The Why This Skill Exists guidance and scaffold now ask for a three-to-six-sentence problem narrative with a worked example in a deletable comment (S1). The capability section pattern gained a prose lead-in requirement and an analogy license (S2). The HOW IT WORKS row and scaffold promote a small ASCII connection diagram from optional to expected for multi-step skills, with a diagram stub (S3). An optional Why It Matters value beat was added to the section model and the OVERVIEW scaffold (S4). A Writing Rule now permits a narrative hook after the pitch while AT A GLANCE stays the first numbered section (S5). A Writing Rule clarifies that one idea per sentence governs clarity, not length (S6). Two validation-checklist rows were added so a thin README fails the author self-check.
+specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/spec.md:59:Revise both templates so the default output is descriptive and narrative in the root README voice while the Human Voice Rules stay intact. Raise the prose ceilings, require a problem narrative with a worked example, add a prose lead-in to the capability section, promote the architecture diagram from optional to expected for multi-step skills, add an optional value beat, permit a short narrative hook after the pitch and clarify that "one idea per sentence" governs clarity rather than sentence length.
+specs/sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/spec.md:120:| REQ-006 | HVR clarified on sentence length | A writing rule states that one idea per sentence governs clarity, not length, and that a descriptive multi-clause sentence is allowed when it reads naturally aloud. The banned forms stay unchanged |
+(no lines above = no live copy of the rubric outside its one home)
+
+=== B. the reroute is present in both commands ===
+.opencode/commands/rewrite/response.md:1
+.opencode/commands/rewrite/response-by-external-agent.md:1
+
+=== C. .claude mirrors still resolve to the edited files ===
+response -> ../../../.opencode/commands/rewrite/response.md
+  identical
+response-by-external-agent -> ../../../.opencode/commands/rewrite/response-by-external-agent.md
+  identical
+explain-visually -> ../../../.opencode/commands/rewrite/explain-visually.md
+  identical
+
+=== D. validate_document.py --type command, final state ===
+✅ VALID: .opencode/commands/rewrite/response.md
+Total issues: 0
+✅ VALID: .opencode/commands/rewrite/response-by-external-agent.md
+Total issues: 0
+✅ VALID: .opencode/commands/rewrite/explain-visually.md
+Total issues: 1
+
+=== E. package_skill.py --check --strict, final state ===
+✅ Skill is valid!
+
+==================================================
+Result: PASS

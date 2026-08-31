@@ -1,0 +1,16 @@
+OK   [H] cli-external-orchestration
+OK   [S] mcp-code-mode
+OK   [H] mcp-tooling
+OK   [H] sk-code
+OK   [S] sk-communication
+OK   [S] sk-design
+OK   [S] sk-design-md-generator
+OK   [H] sk-doc
+OK   [S] sk-git
+OK   [S] sk-prompt
+OK   [S] sk-vision
+OK   [H] system-deep-loop
+OK   [S] system-skill-advisor
+OK   [S] system-spec-kit
+
+checked=14 passed=14 failed=0 fixed=0

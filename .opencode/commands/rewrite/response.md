@@ -66,15 +66,15 @@ Execute the following steps in order:
   - Identifiers (variable names, function names, classes, parameter names)
   - Literal string quotes and configuration keys
 
-### Step 4: Apply In-Context Plain-English Rubric
+### Step 4: Apply The Voice Standard
 
-- Transform the target assistant message according to the self-contained rubric:
-  - **Assistant-only scope**: Rewrite only the text of the most recent assistant message. Do not rewrite user prompts or historical turns.
-  - **One idea per sentence**: Break compound or convoluted sentences into single, clear thoughts.
-  - **Plain vocabulary**: Replace dense jargon, passive constructions, and bureaucratic phrasing with direct, natural language.
-  - **Cut filler and hedging**: Remove throat-clearing preambles, excessive disclaimers, and unnecessary conversational padding.
-  - **Preserve exact meaning**: Retain every factual statement, logical relationship, instruction, and conclusion without distortion.
-  - **Calm, low-embellishment tone**: Use a neutral, objective, and clear presentation.
+- Load the standard. This file does not restate it:
+  - `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists. This is what "plain English" means in this repository.
+  - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`, the scope gate. A reply to a user is in scope. A quotation, an error string or a cited source carried inside that reply is not.
+  - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the two parts of the standard a projection excludes and the reason.
+- Rewrite the target under that standard. Three projection constraints override it wherever they collide:
+  - **Assistant-only scope**: Rewrite only the text of the most recent assistant message. Never a user prompt, never an earlier turn.
+  - **Preserve exact meaning**: Every factual statement, logical relationship, instruction and conclusion survives. The original author's claims are the accuracy baseline, so a hedge they meant stays even where the standard prefers certainty.
   - **Exact span fidelity**: Re-insert every protected span identified in Step 3 exactly as originally written.
 
 ### Step 5: Render Projection and Return Status
@@ -146,4 +146,5 @@ STATUS=NOOP REASON="no prior assistant message"
 - **In-Context Execution:** Execution is performed entirely by the active AI model within the existing conversation context. No external APIs or local model processes are invoked.
 - **Display-Only Projection:** This command does not write files to disk or modify canonical transcript records. It only presents a rewritten projection in the immediate turn output.
 - **Scope Restriction:** Scope is strictly confined to the single most recent assistant message.
+- **Standard By Reference:** The wording standard is the Human Voice Rules in `sk-doc`, read at invocation rather than copied into this file. A change to the standard reaches this command with no edit here, and the same standard governs every other rewrite path in the repository.
 - **Protected Span Integrity:** All code blocks, identifiers, commands, paths, and numerical values must match the original message byte-for-byte.

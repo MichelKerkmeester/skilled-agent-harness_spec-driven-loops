@@ -34,7 +34,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **sk-create-diff** | Produce a local, Git-free before/after review of an edited document (text/Markdown/HTML/DOCX/text-PDF) as a self-contained HTML report | `sk-create-diff/` | — (routes via aliases) |
 | **sk-create-repo-rule** | Create, revise or retire a repo-local rule under `repo-rules/` and wire it into `REPO RULES.md` (four decision tests refuse most requests) | `sk-create-repo-rule/` | `/create:repo-rule` |
 | **sk-create-with-human-voice** | Apply the Human Voice Rules to prose, or score prose against them, with a scope gate and a re-scan | `sk-create-with-human-voice/` | `/create:with-human-voice` |
-| **sk-create-quality-control** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `sk-create-quality-control/` | `/doc:quality` |
+| **sk-create-quality-control** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `sk-create-quality-control/` | (routes via aliases) |
 
 ### When NOT to Use
 - Code implementation, tests, or debugging — use `sk-code`.
@@ -57,7 +57,7 @@ Routing is **registry-driven at runtime and packet-authored at source** in two s
 
 ### Surface Router — per-intent leaf sets
 
-Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (document quality, optimization, skill/agent/command creation, flowcharts, install guides, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, and the explicit full-toolkit intent), the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub UNKNOWN fallback, never a silent default). Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+Stage 2 of routing lives in `ROUTER.md` at the hub root, next to `SKILL.md` and `README.md`. It defines the per-intent leaf model (document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, flowcharts, install guides, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, repo rules, and the explicit full-toolkit intent), the machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse, and the how-to-read rules (dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub UNKNOWN fallback, never a silent default). Every `RESOURCE_MAP` path is packet-qualified or an authored shared-alias disk path, and each converts to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
 `ROUTER.md` stays a separate document on purpose: the router-replay contract resolves the hub's mode from `hub-router.json` and reads the leaf sets from the surface document — the machine block must not move into `SKILL.md` (the replay would treat it as the hub's own router and lose the mode projection) or into `hub-router.json` (schema handoff-ambiguity rule). The `shared/` backbone stays the universal sk-create-quality-control source; the surface router only selects leaves.
 
@@ -73,7 +73,7 @@ REGISTRY = SKILL_ROOT / "mode-registry.json"
 HUB_ROUTER = SKILL_ROOT / "hub-router.json"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-with-human-voice, or sk-create-quality-control work",
+    "Confirm whether this is sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-with-human-voice, or sk-create-quality-control work",
     "Confirm the target document or component being authored, scaffolded, or reviewed",
     "Provide the available inputs: existing doc, source material, or scaffold parameters",
     "Confirm the validation expectations before completion (DQI/HVR scoring, validate.sh, or packet-specific checks)",
@@ -103,7 +103,8 @@ classify the request to one or more workflowMode values using hub-router.json
   (dominant authoring/quality intent; a command like /create:agent resolves directly)
 
 if confidence is low, intent is contradictory, or routerPolicy.defaultMode is null and no mode wins:
-  load_if_available("shared/references/quick-reference.md", seen)
+  for resource in hub_router.routerPolicy.defaultResource:   # the ordered defer set, never hardcoded here
+    load_if_available(resource, seen)
   return UNKNOWN_FALLBACK with disambiguation_checklist = UNKNOWN_FALLBACK_CHECKLIST
 
 for each resolved workflowMode:

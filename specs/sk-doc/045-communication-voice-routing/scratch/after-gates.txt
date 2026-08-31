@@ -1,0 +1,35 @@
+### AFTER-EDIT GATES  2026-08-31T20:23:32Z
+
+=== 1. validate_document.py --type command (3 commands) ===
+--- response.md ---
+
+✅ VALID: .opencode/commands/rewrite/response.md
+Document type: command
+Total issues: 0
+EXIT=0
+--- response-by-external-agent.md ---
+
+✅ VALID: .opencode/commands/rewrite/response-by-external-agent.md
+Document type: command
+Total issues: 0
+EXIT=0
+--- explain-visually.md ---
+
+✅ VALID: .opencode/commands/rewrite/explain-visually.md
+Document type: command
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [command_description_over_soft_target] Description is 123 chars, exceeds soft target of 110. Project total budget is ~5,600 chars (default 8,000 minus built-ins); trim per .opencode/skills/sk-doc/shared/assets/frontmatter-templates.md § 'Description Budget & Trim Style'.
+EXIT=0
+
+=== 2. package_skill.py --check --strict ===
+🔍 Validating skill: sk-communication
+(strict mode)
+==================================================
+
+✅ Skill is valid!
+
+==================================================
+Result: PASS
+EXIT=0

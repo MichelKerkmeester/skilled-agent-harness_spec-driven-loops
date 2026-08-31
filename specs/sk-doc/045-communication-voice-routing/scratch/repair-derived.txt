@@ -1,0 +1,8 @@
+### repair-derived.cjs  2026-08-31T20:28:48Z
+
+inspected=1 repaired=0 failed=0
+
+Not repairable here — these record work someone did, and only they can write them:
+      1  FRONTMATTER_MEMORY_BLOCK
+      1  GRAPH_METADATA_PRESENT
+EXIT=0

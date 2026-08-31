@@ -1,0 +1,30 @@
+### METADATA GENERATION  2026-08-31T20:29:05Z
+=== generate-description ===
+description.json created in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-doc/045-communication-voice-routing
+EXIT=0
+
+=== backfill-graph-metadata ===
+{
+  "dryRun": false,
+  "scope": "scoped",
+  "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs",
+  "totalSpecFolders": 1,
+  "created": 1,
+  "refreshed": 0,
+  "changed": 1,
+  "existing": 0,
+  "lineageStamped": 0,
+  "skipped": [],
+  "failed": [],
+  "reviewFlags": [
+    {
+      "specFolder": "sk-doc/045-communication-voice-routing",
+      "flags": [
+        "prose_relationship_hints"
+      ]
+    }
+  ],
+  "drift": [],
+  "pruneCandidates": []
+}
+EXIT=0

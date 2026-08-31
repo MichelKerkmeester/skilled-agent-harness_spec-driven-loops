@@ -1,0 +1,41 @@
++(eval):5> date -u +%Y-%m-%dT%H:%M:%SZ
++(eval):5> git rev-parse --short HEAD
++(eval):5> echo '### BASELINE captured 2026-08-31T20:17:40Z at HEAD 60212f5292'
+### BASELINE captured 2026-08-31T20:17:40Z at HEAD 60212f5292
++(eval):6> echo
+
++(eval):7> echo '=== 1. validate_document.py --type command (3 commands) ==='
+=== 1. validate_document.py --type command (3 commands) ===
++(eval):8> f=response
++(eval):9> echo '--- response.md ---'
+--- response.md ---
++(eval):10> python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/commands/rewrite/response.md --type command
+
+✅ VALID: .opencode/commands/rewrite/response.md
+Document type: command
+Total issues: 0
++(eval):11> echo 'EXIT=0'
+EXIT=0
++(eval):8> f=response-by-external-agent
++(eval):9> echo '--- response-by-external-agent.md ---'
+--- response-by-external-agent.md ---
++(eval):10> python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/commands/rewrite/response-by-external-agent.md --type command
+
+✅ VALID: .opencode/commands/rewrite/response-by-external-agent.md
+Document type: command
+Total issues: 0
++(eval):11> echo 'EXIT=0'
+EXIT=0
++(eval):8> f=explain-visually
++(eval):9> echo '--- explain-visually.md ---'
+--- explain-visually.md ---
++(eval):10> python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py .opencode/commands/rewrite/explain-visually.md --type command
+
+✅ VALID: .opencode/commands/rewrite/explain-visually.md
+Document type: command
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [command_description_over_soft_target] Description is 123 chars, exceeds soft target of 110. Project total budget is ~5,600 chars (default 8,000 minus built-ins); trim per .opencode/skills/sk-doc/shared/assets/frontmatter-templates.md § 'Description Budget & Trim Style'.
++(eval):11> echo 'EXIT=0'
+EXIT=0

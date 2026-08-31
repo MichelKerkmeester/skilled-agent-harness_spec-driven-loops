@@ -1,0 +1,144 @@
+### SCOPED DIFF  2026-08-31T20:24:53Z
+
+=== files this stream changed ===
+ M .opencode/commands/rewrite/response-by-external-agent.md
+ M .opencode/commands/rewrite/response.md
+ M .opencode/skills/sk-communication/SKILL.md
+ M .opencode/skills/sk-communication/references/visual-explanation.md
+?? specs/sk-doc/045-communication-voice-routing/
+
+=== diffstat ===
+ .../commands/rewrite/response-by-external-agent.md    | 13 +++++++------
+ .opencode/commands/rewrite/response.md                | 19 ++++++++++---------
+ .opencode/skills/sk-communication/SKILL.md            | 18 ++++++++++++++++++
+ .../sk-communication/references/visual-explanation.md |  2 ++
+ 4 files changed, 37 insertions(+), 15 deletions(-)
+
+=== full diff ===
+diff --git a/.opencode/commands/rewrite/response-by-external-agent.md b/.opencode/commands/rewrite/response-by-external-agent.md
+index 2f8938ec29..00bb6c0657 100644
+--- a/.opencode/commands/rewrite/response-by-external-agent.md
++++ b/.opencode/commands/rewrite/response-by-external-agent.md
+@@ -133,12 +133,12 @@ Execute the following steps in order:
+ 
+ #### Branch A: Native In-Context Engine (`native`)
+ - No environment variable modification is required (no external or local model process runs).
+-- Apply the plain-English projection rubric directly in-context to the target text:
+-  - **One idea per sentence**: Break compound or convoluted phrasing into single, clear statements.
+-  - **Plain vocabulary**: Replace dense jargon, passive constructions, and bureaucratic phrasing with direct, natural language.
+-  - **Cut filler and hedging**: Remove throat-clearing preambles, excessive disclaimers, and unnecessary conversational padding.
+-  - **Preserve exact meaning**: Retain every factual statement, logical relationship, instruction, and conclusion without distortion.
+-  - **Calm, low-embellishment tone**: Use a neutral, objective, and clear presentation.
++- Load the wording standard. This file does not restate it:
++  - `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists.
++  - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`, the scope gate: which spans of the target a rewrite may touch, and which it carries rather than owns.
++  - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the two parts of the standard a projection excludes and the reason.
++- Rewrite the resolved target text in-context under that standard. Two projection constraints override it wherever they collide:
++  - **Preserve exact meaning**: Every factual statement, logical relationship, instruction and conclusion survives. The original author's claims are the accuracy baseline, so a hedge they meant stays even where the standard prefers certainty.
+   - **Exact span fidelity**: Re-insert every protected span identified in Step 2 byte-for-byte.
+ - Proceed to Step 4 to display the result.
+ 
+@@ -246,4 +246,5 @@ STATUS=OK
+ - **Guaranteed Cleanup:** `COMMUNICATION_PROJECTION_ENABLED` is scoped strictly to the child subprocess execution and ceases to exist immediately upon exit, even during errors or cancellations.
+ - **Pipeline Routing (Branch B):** The external-cli path runs through the package's `external-cli-project` entrypoint, so every cli-* rewrite passes the same privacy routing, fidelity validation, and exact-original fallback as the local provider path. A denied route, dispatch failure, or rejected rewrite returns the byte-exact original.
+ - **Supported External CLIs:** The six supported external CLI skills are `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, and `cli-pi`.
++- **The Standard Reaches Branch A Only:** Branches B and C hand the target to another model under the package's own one-line copy-editing instruction, `COPY_EDITING_INSTRUCTION` in `src/config/local-provider.ts` and `src/runtime/external-cli-projection.ts`. That instruction is a compiled package constant carried in the versioned prompt profile, so it is changed under the package gate rather than from a command file. An external or local rewrite is therefore held to fidelity validation and the exact-original fallback, not to the Human Voice Rules.
+ - **Preload Requirement:** The executing agent must read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` prior to external dispatch.
+diff --git a/.opencode/commands/rewrite/response.md b/.opencode/commands/rewrite/response.md
+index 9ddf93cb3c..06a32b5aca 100644
+--- a/.opencode/commands/rewrite/response.md
++++ b/.opencode/commands/rewrite/response.md
+@@ -66,15 +66,15 @@ Execute the following steps in order:
+   - Identifiers (variable names, function names, classes, parameter names)
+   - Literal string quotes and configuration keys
+ 
+-### Step 4: Apply In-Context Plain-English Rubric
+-
+-- Transform the target assistant message according to the self-contained rubric:
+-  - **Assistant-only scope**: Rewrite only the text of the most recent assistant message. Do not rewrite user prompts or historical turns.
+-  - **One idea per sentence**: Break compound or convoluted sentences into single, clear thoughts.
+-  - **Plain vocabulary**: Replace dense jargon, passive constructions, and bureaucratic phrasing with direct, natural language.
+-  - **Cut filler and hedging**: Remove throat-clearing preambles, excessive disclaimers, and unnecessary conversational padding.
+-  - **Preserve exact meaning**: Retain every factual statement, logical relationship, instruction, and conclusion without distortion.
+-  - **Calm, low-embellishment tone**: Use a neutral, objective, and clear presentation.
++### Step 4: Apply The Voice Standard
++
++- Load the standard. This file does not restate it:
++  - `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists. This is what "plain English" means in this repository.
++  - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`, the scope gate. A reply to a user is in scope. A quotation, an error string or a cited source carried inside that reply is not.
++  - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the two parts of the standard a projection excludes and the reason.
++- Rewrite the target under that standard. Three projection constraints override it wherever they collide:
++  - **Assistant-only scope**: Rewrite only the text of the most recent assistant message. Never a user prompt, never an earlier turn.
++  - **Preserve exact meaning**: Every factual statement, logical relationship, instruction and conclusion survives. The original author's claims are the accuracy baseline, so a hedge they meant stays even where the standard prefers certainty.
+   - **Exact span fidelity**: Re-insert every protected span identified in Step 3 exactly as originally written.
+ 
+ ### Step 5: Render Projection and Return Status
+@@ -146,4 +146,5 @@ STATUS=NOOP REASON="no prior assistant message"
+ - **In-Context Execution:** Execution is performed entirely by the active AI model within the existing conversation context. No external APIs or local model processes are invoked.
+ - **Display-Only Projection:** This command does not write files to disk or modify canonical transcript records. It only presents a rewritten projection in the immediate turn output.
+ - **Scope Restriction:** Scope is strictly confined to the single most recent assistant message.
++- **Standard By Reference:** The wording standard is the Human Voice Rules in `sk-doc`, read at invocation rather than copied into this file. A change to the standard reaches this command with no edit here, and the same standard governs every other rewrite path in the repository.
+ - **Protected Span Integrity:** All code blocks, identifiers, commands, paths, and numerical values must match the original message byte-for-byte.
+diff --git a/.opencode/skills/sk-communication/SKILL.md b/.opencode/skills/sk-communication/SKILL.md
+index 9452b5c9eb..d3cf481beb 100644
+--- a/.opencode/skills/sk-communication/SKILL.md
++++ b/.opencode/skills/sk-communication/SKILL.md
+@@ -204,6 +204,21 @@ Consume it through the package's subpath exports (`@portable-cli/communication-p
+ - **full-projection** — only a client-owned or headless path that owns a complete message AND an atomic render decision may claim a full 1:1 rewrite.
+ - **safe-native** — a constrained native surface may only append, use a sidecar, or show original-only. It never claims 1:1 parity, and it never suppresses the original before a validated replacement exists.
+ 
++### The Wording Standard
++
++"Plain English" is not defined in this skill. It is the Human Voice Rules at [`../sk-doc/shared/references/hvr-rules.md`](../sk-doc/shared/references/hvr-rules.md), and the workflow that applies them is the `sk-create-with-human-voice` mode under `sk-doc`. Every rewrite path here routes to that standard instead of carrying a private rubric, so a change to the standard reaches the projection lane with no edit to a command.
++
++Two parts of the standard are excluded, and a projection that honors them has damaged the message it was carrying:
++
++| Excluded | Why |
++|---|---|
++| `VOICE PERSONALITY` | It asks for opinions, mixed feeling and controlled imperfection in writing you own. A projection carries someone else's message, so a reaction the original never held is a fidelity failure rather than a voice improvement. |
++| The scoring bands of `PRE-PUBLISH CHECKLIST` | Nothing in either lane is a document being published. There is no file, no score and no publish threshold. |
++
++Everything else binds, under the invariants in section 4. Where dropping a banned word would change what the original claimed, the word stays and the claim wins. That precedence is the standard's own, at [`../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`](../sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md), which also carries the spans a rewrite may never touch: a quotation, an error string, a command, a path or an identifier.
++
++Lane B writes new prose rather than carrying a message, so the first exclusion above does not reach it. Its one deliberate departure from the standard is recorded in `references/visual-explanation.md` section 3.
++
+ ### Verification
+ 
+ Run the package's authoritative gate from the package directory: `npm run check` (typecheck, build, tests, import smoke). Test files run serially so latency benchmarks measure without contention.
+@@ -228,6 +243,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
+ - Never treat a shared wire protocol as proof of model capability, privacy, retention, or fidelity — require dated evidence and fail closed on unknown.
+ - Never count a safe-native result toward a full-projection 1:1 claim.
+ - Never authorize a release on provisional or LLM-judge evaluation evidence; the release gate requires a human-certified non-inferiority result.
++- Never write a voice or tone rubric into a command, an asset or a presentation contract here. The standard has one home and this skill routes to it, so a second copy drifts from the first the moment either is edited.
+ 
+ ### ⚠️ ESCALATE IF
+ 
+@@ -250,6 +266,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
+ 
+ ### Related Skills
+ 
++- `sk-doc` → `sk-create-with-human-voice`, which owns the Human Voice Rules workflow this skill's rewrites are held to. The standard is at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, the scope gate at that mode's `references/scope-and-exemptions.md`, and its `scripts/hvr_scan.py` scans a file rather than a live reply, so it audits this skill's own documents and never a projection in flight.
+ - `sk-code` — builds and verifies integration code against the package.
+ - `sk-design-md-generator` — extracts a measured Style Reference (design tokens from a live source).
+ - `sk-git` — worktree, commits, and PR for the integration.
+@@ -278,6 +295,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
+ 
+ ### Related Workflows
+ 
++- `sk-doc` → `sk-create-with-human-voice` owns the wording standard both lanes are rewritten to, and section 3 records the two parts of it that a projection excludes.
+ - `sk-code` builds and verifies integration code against this package.
+ - `sk-design-md-generator` extracts a measured Style Reference from a live source.
+ - `sk-git` handles the worktree, commits, and PR when integrating.
+diff --git a/.opencode/skills/sk-communication/references/visual-explanation.md b/.opencode/skills/sk-communication/references/visual-explanation.md
+index fb30afa3be..8c20275f78 100644
+--- a/.opencode/skills/sk-communication/references/visual-explanation.md
++++ b/.opencode/skills/sk-communication/references/visual-explanation.md
+@@ -78,6 +78,8 @@ How much background to assume.
+ 
+ **The rule that binds all three levels:** simplification applies to *words*, never to *facts*. Depth changes vocabulary, framing, and how much is shown. It never changes a value, an identifier, a path, or the truth of a claim. A `novice` answer may be incomplete; it may not be wrong.
+ 
++**Where this departs from the voice standard.** The prose this lane writes is held to the Human Voice Rules at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, with one documented exception. That standard caps analogies at one per concept and places them after the technical statement. The `novice` level inverts both on purpose, leading with a familiar analogy in place of the precise term, because a reader with no background has nothing for the technical statement to attach to. The exception is scoped to `novice`. At `expert` and `plain` the standard applies as written.
++
+ ---
+ 
+ ## 4. PROTECTED SPANS

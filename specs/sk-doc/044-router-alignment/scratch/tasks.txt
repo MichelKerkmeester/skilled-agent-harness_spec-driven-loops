@@ -1,0 +1,33 @@
+# One realistic request per registered mode (14), in registry order
+create a skill for parsing our webhook payloads
+build a parent hub skill with nested mode packets
+write a readme for the analytics service
+create an agent that reviews pull requests
+create a slash command that runs the deploy script
+build a feature catalog for the billing module
+author a manual testing playbook for the release
+create a benchmark for the new model
+write the changelog for this release
+produce a before and after document diff of the onboarding page
+draw an ascii flowchart of the signup flow
+add a repo rule that bans force pushes
+rewrite this page in human voice, it reads like ai wrote it
+audit documentation quality of this reference and score it
+# Collision probes recorded by stream 2 (041 section 6.1)
+score this document
+validate the command template
+audit the agent file
+check the feature catalog
+audit the documentation quality of this README
+hvr
+# Additional sibling-theft probes
+optimize this doc for fewer tokens
+show the full sk-doc toolkit
+write an install guide for getting our project running
+# Out-of-domain probes for the new intents (skill-hub-routing.md section 4)
+create an agent-based rate limiter for the api
+add a slash to the file path template
+build a parent process supervisor
+write a mode packet of C code
+review the hub router config for our load balancer
+what does the presentation contract of our sales deck look like

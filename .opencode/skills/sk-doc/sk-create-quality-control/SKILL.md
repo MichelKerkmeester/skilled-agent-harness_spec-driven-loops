@@ -9,7 +9,7 @@ version: 1.0.2.0
 
 `create-quality-control` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It evaluates markdown, extracts structure, computes Document Quality Index evidence, applies Human Voice Rules, and, only when explicitly requested, edits the same target document to improve structure, clarity and AI-friendliness.
 
-Reach this packet through `sk-doc` hub routing on a doc-quality request. `/doc:quality` is the command id `mode-registry.json` reserves for it, but no `.opencode/commands/doc/` file exists yet, so the slash command cannot be typed today; it is tracked as a dead binding in the advisor's command-binding gate. Whichever way the packet is entered, the run is report-only unless the user explicitly asks for edits.
+Reach this packet through `sk-doc` hub routing on a doc-quality request. It carries no slash command: `mode-registry.json` declares `"command": null`, no `.opencode/commands/doc/` file exists in any runtime, and `/doc:quality` survives only as historical vocabulary in this packet's trigger list and in the advisor's command-binding allowlist. Whichever way the packet is entered, the run is report-only unless the user explicitly asks for edits.
 
 ---
 

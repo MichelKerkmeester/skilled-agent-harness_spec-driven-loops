@@ -1,0 +1,18 @@
+{
+  "hubId": "sk-doc",
+  "servingAuthority": "legacy",
+  "shadowOnly": false,
+  "selectedPolicy": {
+    "generation": 5
+  },
+  "effectivePolicyHash": "5019693e1e35a4b1351f9e164183e32ce4257890d52f45c863b314c03dc39043",
+  "fenceEpoch": 4,
+  "manifestFingerprint": "63a2b3d027fe083bad138580d5e1fef17a239d4dacbc5b349e74a353ca70cbd4",
+  "causeCode": "stale-manifest",
+  "manifestFreshness": {
+    "manifestValid": true,
+    "fresh": false,
+    "causeCode": "stale-manifest",
+    "currentPolicyHash": "cfe75b055ec4d929ad61394700449355b2ca8103f1765adf486b89b1242c4bf2"
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/045-communication-voice-routing",
+  "spec_folder": "sk-doc/045-communication-voice-routing",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-communication voice routing",
+      "rewrite command voice rubric",
+      "projection plain english standard",
+      "hvr adoption sk-communication",
+      "voice guidance deduplication",
+      "voice routing plan",
+      "rubric deduplication method",
+      "projection standard adoption plan",
+      "keep versus reroute test",
+      "voice routing tasks",
+      "sk-communication reroute tasks",
+      "rubric removal tasks"
+    ],
+    "key_topics": [
+      "sk-communication",
+      "voice",
+      "routing",
+      "rewrite",
+      "command",
+      "rubric",
+      "projection",
+      "plain",
+      "english",
+      "standard",
+      "hvr",
+      "adoption"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/SKILL.md",
+      ".opencode/commands/rewrite/response.md",
+      ".opencode/commands/rewrite/response-by-external-agent.md",
+      ".opencode/skills/sk-communication/references/visual-explanation.md",
+      "repo-rules/communication.md",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+      "scratch/baseline-validate-commands.txt",
+      "scratch/baseline-package-skill.txt",
+      "scratch/baseline-hvr-selftest.txt",
+      "scratch/baseline-hvr-targets.txt",
+      "scratch/baseline-git-and-level.txt",
+      "scratch/after-gates.txt",
+      "scratch/after-hvr-targets.txt",
+      "scratch/final-gates.txt",
+      "scratch/path-resolution.txt",
+      "scratch/scoped-diff.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "response.md",
+        "kind": "doc",
+        "path": ".opencode/commands/rewrite/response.md",
+        "source": "derived"
+      },
+      {
+        "name": "response-by-external-agent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/rewrite/response-by-external-agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "visual-explanation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/references/visual-explanation.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-validate-commands.txt",
+        "kind": "file",
+        "path": "scratch/baseline-validate-commands.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-package-skill.txt",
+        "kind": "file",
+        "path": "scratch/baseline-package-skill.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-hvr-selftest.txt",
+        "kind": "file",
+        "path": "scratch/baseline-hvr-selftest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-hvr-targets.txt",
+        "kind": "file",
+        "path": "scratch/baseline-hvr-targets.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-git-and-level.txt",
+        "kind": "file",
+        "path": "scratch/baseline-git-and-level.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-gates.txt",
+        "kind": "file",
+        "path": "scratch/after-gates.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-hvr-targets.txt",
+        "kind": "file",
+        "path": "scratch/after-hvr-targets.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-gates.txt",
+        "kind": "file",
+        "path": "scratch/final-gates.txt",
+        "source": "derived"
+      },
+      {
+        "name": "path-resolution.txt",
+        "kind": "file",
+        "path": "scratch/path-resolution.txt",
+        "source": "derived"
+      },
+      {
+        "name": "scoped-diff.txt",
+        "kind": "file",
+        "path": "scratch/scoped-diff.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Language Removal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-communication` rewrites agent output into \"plain English\" and never says what that means",
+    "created_at": "2026-08-31T20:29:05.884Z",
+    "last_save_at": "2026-08-31T20:29:23.090Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:868026880ba5b904f1a6f67349ab3d77d6d9316be68efba92fe7943592d4eda8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "63abf290c9a16d20bb08d71ec00b1e3ab4b7e161141e8b9c997dcaffa985e6d2",
+      "plan.md": "7f5db308075662948e19c8534d7705ef0c0d7aa8f9de9ff078b9f1725d3ce2e8",
+      "tasks.md": "26646d666c5781d8a34c167568aa1fd901aead91ea402e88fb92f902370a64c9",
+      "implementation-summary.md": "8db8e9d07eb3f3f86ceb8b2c9071408ebd72ce096ccf61f08453d0e04460283d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,8 @@
+ RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  22:18:25
+   Duration  88ms (transform 14ms, setup 13ms, import 8ms, tests 2ms, environment 0ms)
+

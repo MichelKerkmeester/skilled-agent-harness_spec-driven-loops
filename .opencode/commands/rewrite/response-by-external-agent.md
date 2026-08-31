@@ -133,12 +133,12 @@ Execute the following steps in order:
 
 #### Branch A: Native In-Context Engine (`native`)
 - No environment variable modification is required (no external or local model process runs).
-- Apply the plain-English projection rubric directly in-context to the target text:
-  - **One idea per sentence**: Break compound or convoluted phrasing into single, clear statements.
-  - **Plain vocabulary**: Replace dense jargon, passive constructions, and bureaucratic phrasing with direct, natural language.
-  - **Cut filler and hedging**: Remove throat-clearing preambles, excessive disclaimers, and unnecessary conversational padding.
-  - **Preserve exact meaning**: Retain every factual statement, logical relationship, instruction, and conclusion without distortion.
-  - **Calm, low-embellishment tone**: Use a neutral, objective, and clear presentation.
+- Load the wording standard. This file does not restate it:
+  - `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists.
+  - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`, the scope gate: which spans of the target a rewrite may touch, and which it carries rather than owns.
+  - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the two parts of the standard a projection excludes and the reason.
+- Rewrite the resolved target text in-context under that standard. Two projection constraints override it wherever they collide:
+  - **Preserve exact meaning**: Every factual statement, logical relationship, instruction and conclusion survives. The original author's claims are the accuracy baseline, so a hedge they meant stays even where the standard prefers certainty.
   - **Exact span fidelity**: Re-insert every protected span identified in Step 2 byte-for-byte.
 - Proceed to Step 4 to display the result.
 
@@ -246,4 +246,5 @@ STATUS=OK
 - **Guaranteed Cleanup:** `COMMUNICATION_PROJECTION_ENABLED` is scoped strictly to the child subprocess execution and ceases to exist immediately upon exit, even during errors or cancellations.
 - **Pipeline Routing (Branch B):** The external-cli path runs through the package's `external-cli-project` entrypoint, so every cli-* rewrite passes the same privacy routing, fidelity validation, and exact-original fallback as the local provider path. A denied route, dispatch failure, or rejected rewrite returns the byte-exact original.
 - **Supported External CLIs:** The six supported external CLI skills are `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-opencode`, and `cli-pi`.
+- **The Standard Reaches Branch A Only:** Branches B and C hand the target to another model under the package's own one-line copy-editing instruction, `COPY_EDITING_INSTRUCTION` in `src/config/local-provider.ts` and `src/runtime/external-cli-projection.ts`. That instruction is a compiled package constant carried in the versioned prompt profile, so it is changed under the package gate rather than from a command file. An external or local rewrite is therefore held to fidelity validation and the exact-original fallback, not to the Human Voice Rules.
 - **Preload Requirement:** The executing agent must read `.opencode/skills/cli-external-orchestration/<cli-skill>/SKILL.md` prior to external dispatch.

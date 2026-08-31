@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/045-communication-voice-routing",
+  "description": "`sk-communication` rewrites agent output into \"plain English\" and never says what that means",
+  "keywords": [
+    "sk-communication",
+    "rewrites",
+    "agent",
+    "output",
+    "plain",
+    "english",
+    "never",
+    "says",
+    "means"
+  ],
+  "lastUpdated": "2026-08-31T20:29:22.810Z",
+  "specId": "045",
+  "folderSlug": "communication-voice-routing",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

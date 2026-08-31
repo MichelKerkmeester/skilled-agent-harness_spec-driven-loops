@@ -1,0 +1,44 @@
+### FINAL-STATE PROOF  2026-08-31T20:29:38Z  HEAD=60212f5292
+
+=== 1. every authored spec doc, dogfooded ===
+implementation-summary.md                                  hard=0
+plan.md                                                    hard=0
+spec.md                                                    hard=0
+tasks.md                                                   hard=0
+
+=== 2. command validator, final state ===
+response.md                      ✅ VALID: .opencode/commands/rewrite/response.md Total issues: 0 
+response-by-external-agent.md    ✅ VALID: .opencode/commands/rewrite/response-by-external-agent.md Total issues: 0 
+explain-visually.md              ✅ VALID: .opencode/commands/rewrite/explain-visually.md Total issues: 1 
+
+=== 3. package check, final state ===
+✅ Skill is valid!
+Result: PASS
+
+=== 4. spec gate, final state ===
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+
+=== 5. touched-surface hard blockers vs baseline ===
+response.md                                                    hard=1
+response-by-external-agent.md                                  hard=9
+explain-visually.md                                            hard=11
+SKILL.md                                                       hard=52
+visual-explanation.md                                          hard=11
+  baseline was: 1, 9, 11, 52, 11
+
+=== 6. scoped git status: only files this stream owns ===
+ M .opencode/commands/rewrite/response-by-external-agent.md
+ M .opencode/commands/rewrite/response.md
+ M .opencode/skills/sk-communication/SKILL.md
+ M .opencode/skills/sk-communication/references/visual-explanation.md
+ M .opencode/skills/sk-doc/ROUTER.md
+ M .opencode/skills/sk-doc/SKILL.md
+ M .opencode/skills/sk-doc/command-metadata.json
+ M .opencode/skills/sk-doc/hub-router.json
+ M .opencode/skills/sk-doc/mode-registry.json
+ M .opencode/skills/sk-doc/sk-create-quality-control/README.md
+ M .opencode/skills/sk-doc/sk-create-quality-control/SKILL.md
+?? specs/sk-doc/044-router-alignment/
+--- untracked new folder ---
+?? specs/sk-doc/045-communication-voice-routing/

@@ -478,8 +478,8 @@
       "whenToUse": "Use this command when the deliverable is prose that has to read as a person wrote it, and the target already exists.",
       "preferSiblingWhen": [
         {
-          "sibling": "/doc:quality",
-          "when": "Prefer the document audit when the target needs structure, DQI and validator results rather than a voice pass."
+          "sibling": "sk-create-quality-control",
+          "when": "Prefer the document audit mode, which the hub reaches by routing rather than by a command, when the target needs structure, DQI and validator results rather than a voice pass."
         },
         {
           "sibling": "/create:readme",

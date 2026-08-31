@@ -1,0 +1,31 @@
+### BASELINE hvr_scan.py — scanner self-test then targets
+captured 2026-08-31T20:17:52Z at HEAD 60212f5292
+
+=== SCANNER SELF-TEST (negative control: dirty fixture must report 6 hard, exit 1) ===
+HVR SCAN: .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-dirty.md
+  x1    first@8     hard   punctuation            ;
+  x1    first@8     hard   word-blocker           delve
+  x1    first@8     hard   phrase-blocker         it's important to
+  x1    first@10    hard   word-blocker           leverage
+  x1    first@8     hard   word-blocker           robust
+  x1    first@8     hard   word-blocker           tapestry
+  x1    first@10    soft2  soft-deduction         pivotal
+  x1    first@12    soft1  soft-deduction         perhaps
+  x1    first@10    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          6
+  mechanical deductions:  -33
+  mechanical ceiling:     67/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality
+EXIT=1
+
+=== SCANNER SELF-TEST (clean fixture must report nothing, exit 0) ===
+HVR SCAN: .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-clean.md
+  no mechanical findings
+
+  hard blockers:          0
+  mechanical deductions:  -0
+  mechanical ceiling:     100/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality
+EXIT=0

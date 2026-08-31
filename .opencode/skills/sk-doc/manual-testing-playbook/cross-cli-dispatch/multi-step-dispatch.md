@@ -76,7 +76,7 @@ Sequential dispatch can leak context from one turn into the next or reset too ag
 
 ```text
 DO NOT execute the work below. INSTEAD describe (in your response):
-1. Which sk-doc intent the router would select for EACH of the 3 inputs in sequence (pick from RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG)
+1. Which sk-doc intent the router would select for EACH of the 3 inputs in sequence (pick from RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FULL_INVENTORY)
 2. Which references/ and assets/ files each invocation's intent would CONDITIONAL-load
 3. Whether the router is expected to maintain session-context (e.g. skill name 'sk-foo' carried across turns) and how that affects intent stability
 

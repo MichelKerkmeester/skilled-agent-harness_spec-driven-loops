@@ -1,0 +1,2706 @@
+{
+  "create a skill for parsing our webhook payloads": {
+    "parseable": true,
+    "intents": [
+      "sk-create-skill"
+    ],
+    "surfaceIntents": [
+      "SKILL_CREATION"
+    ],
+    "resources": [
+      "sk-create-skill/references/skill/creation-workflow.md",
+      "sk-create-skill/assets/skill/skill-md-template.md",
+      "sk-create-skill/assets/skill/skill-readme-template.md",
+      "sk-create-skill/assets/skill/skill-reference-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-skill",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-skill"
+      ],
+      "matchedAliases": [
+        "create a skill"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-skill"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/skill/creation-workflow.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-md-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-readme-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-reference-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "build a parent hub skill with nested mode packets": {
+    "parseable": true,
+    "intents": [
+      "sk-create-skill-parent"
+    ],
+    "surfaceIntents": [
+      "PARENT_HUB"
+    ],
+    "resources": [
+      "sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      "sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+      "sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+      "sk-create-skill/assets/parent-skill/parent-skill-registry-template.json",
+      "sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+      "sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-skill-parent",
+        "score": 8
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-skill-parent"
+      ],
+      "matchedAliases": [
+        "parent hub",
+        "mode packet"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-skill"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/parent-skill/parent-skills-nested-packets.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/parent-skill/parent-hub-router-schema.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-hub-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-registry-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-hub-router-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-root-router-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "write a readme for the analytics service": {
+    "parseable": true,
+    "intents": [
+      "sk-create-readme"
+    ],
+    "surfaceIntents": [
+      "README_CREATION"
+    ],
+    "resources": [
+      "sk-create-readme/references/README.md",
+      "sk-create-readme/assets/readme-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-readme",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-readme"
+      ],
+      "matchedAliases": [
+        "readme"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-readme"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "assets/readme-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "create an agent that reviews pull requests": {
+    "parseable": true,
+    "intents": [
+      "sk-create-agent"
+    ],
+    "surfaceIntents": [
+      "AGENT_CREATION"
+    ],
+    "resources": [
+      "sk-create-agent/references/README.md",
+      "sk-create-agent/assets/agent-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-agent",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-agent"
+      ],
+      "matchedAliases": [
+        "create an agent"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-agent"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "assets/agent-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "create a slash command that runs the deploy script": {
+    "parseable": true,
+    "intents": [
+      "sk-create-command"
+    ],
+    "surfaceIntents": [
+      "COMMAND_CREATION"
+    ],
+    "resources": [
+      "sk-create-command/references/README.md",
+      "sk-create-command/assets/command-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-command",
+        "score": 3
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-command"
+      ],
+      "matchedAliases": [
+        "slash command"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-command"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "assets/command-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "build a feature catalog for the billing module": {
+    "parseable": true,
+    "intents": [
+      "sk-create-feature-catalog"
+    ],
+    "surfaceIntents": [
+      "FEATURE_CATALOG"
+    ],
+    "resources": [
+      "sk-create-feature-catalog/references/README.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-feature-catalog",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-feature-catalog"
+      ],
+      "matchedAliases": [
+        "feature catalog"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-feature-catalog"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-feature-catalog",
+          "leafResourceId": "references/README.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "author a manual testing playbook for the release": {
+    "parseable": true,
+    "intents": [
+      "sk-create-manual-testing-playbook"
+    ],
+    "surfaceIntents": [
+      "PLAYBOOK"
+    ],
+    "resources": [
+      "sk-create-manual-testing-playbook/references/README.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-manual-testing-playbook",
+        "score": 8
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-manual-testing-playbook"
+      ],
+      "matchedAliases": [
+        "manual testing playbook",
+        "testing playbook"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-manual-testing-playbook"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-manual-testing-playbook",
+          "leafResourceId": "references/README.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "create a benchmark for the new model": {
+    "parseable": true,
+    "intents": [
+      "sk-create-benchmark"
+    ],
+    "surfaceIntents": [
+      "BENCHMARK"
+    ],
+    "resources": [
+      "sk-create-benchmark/references/shared/README.md",
+      "sk-create-benchmark/references/shared/worked-example.md",
+      "sk-create-benchmark/assets/shared/benchmark-report-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-benchmark",
+        "score": 3
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-benchmark"
+      ],
+      "matchedAliases": [
+        "create a benchmark"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-benchmark"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/shared/README.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/shared/worked-example.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/shared/benchmark-report-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "write the changelog for this release": {
+    "parseable": true,
+    "intents": [
+      "sk-create-changelog"
+    ],
+    "surfaceIntents": [
+      "CHANGELOG"
+    ],
+    "resources": [
+      "shared/assets/changelog-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-changelog",
+        "score": 3
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-changelog"
+      ],
+      "matchedAliases": [
+        "changelog"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-changelog"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-changelog",
+          "leafResourceId": "assets/changelog-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "produce a before and after document diff of the onboarding page": {
+    "parseable": true,
+    "intents": [
+      "sk-create-diff"
+    ],
+    "surfaceIntents": [
+      "DIFF"
+    ],
+    "resources": [
+      "sk-create-diff/references/README.md",
+      "sk-create-diff/references/workflow.md",
+      "sk-create-diff/references/worked-example.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-diff",
+        "score": 3
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-diff"
+      ],
+      "matchedAliases": [
+        "document diff"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-diff"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "references/workflow.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "references/worked-example.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "draw an ascii flowchart of the signup flow": {
+    "parseable": true,
+    "intents": [
+      "sk-create-diagram"
+    ],
+    "surfaceIntents": [
+      "FLOWCHART"
+    ],
+    "resources": [
+      "sk-create-diagram/assets/ascii-patterns/simple-workflow.md",
+      "sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-diagram",
+        "score": 6
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-diagram"
+      ],
+      "matchedAliases": [
+        "flowchart",
+        "ascii flowchart"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-diagram"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/ascii-patterns/simple-workflow.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/ascii-patterns/decision-tree-flow.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "add a repo rule that bans force pushes": {
+    "parseable": true,
+    "intents": [
+      "sk-create-repo-rule"
+    ],
+    "surfaceIntents": [
+      "REPO_RULE"
+    ],
+    "resources": [
+      "sk-create-repo-rule/references/decision-tests.md",
+      "sk-create-repo-rule/references/rule-anatomy.md",
+      "sk-create-repo-rule/references/creation-standards.md",
+      "sk-create-repo-rule/references/agents-md-integration.md",
+      "sk-create-repo-rule/assets/repo-rule-template.md",
+      "sk-create-repo-rule/assets/repo-rules-router-template.md",
+      "sk-create-repo-rule/references/README.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-repo-rule",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-repo-rule"
+      ],
+      "matchedAliases": [
+        "add a repo rule"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-repo-rule"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/decision-tests.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/rule-anatomy.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/creation-standards.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/agents-md-integration.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "assets/repo-rule-template.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "assets/repo-rules-router-template.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/README.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "rewrite this page in human voice, it reads like ai wrote it": {
+    "parseable": true,
+    "intents": [
+      "sk-create-quality-control",
+      "sk-create-with-human-voice"
+    ],
+    "surfaceIntents": [
+      "HVR"
+    ],
+    "resources": [
+      "sk-create-with-human-voice/references/scope-and-exemptions.md",
+      "sk-create-with-human-voice/references/scoring-and-verification.md",
+      "sk-create-with-human-voice/assets/voice-report-template.md",
+      "shared/references/hvr-rules.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-quality-control",
+        "score": 4
+      },
+      {
+        "intent": "sk-create-with-human-voice",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-quality-control",
+        "sk-create-with-human-voice"
+      ],
+      "matchedAliases": [
+        "human voice",
+        "reads like ai wrote it"
+      ],
+      "defaultApplied": false,
+      "deferReason": "ambiguous-multi-axis",
+      "backendKind": [
+        "create-quality-control",
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-quality-control",
+        "sk-create-with-human-voice"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "references/scope-and-exemptions.md"
+        },
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "references/scoring-and-verification.md"
+        },
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "assets/voice-report-template.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/hvr-rules.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "audit documentation quality of this reference and score it": {
+    "parseable": true,
+    "intents": [
+      "sk-create-quality-control"
+    ],
+    "surfaceIntents": [
+      "DOC_QUALITY"
+    ],
+    "resources": [
+      "shared/references/validation.md",
+      "sk-create-quality-control/references/workflows.md",
+      "shared/references/core-standards.md",
+      "shared/references/evergreen-packet-id-rule.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-quality-control",
+        "score": 12
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-quality-control"
+      ],
+      "matchedAliases": [
+        "audit documentation quality",
+        "score",
+        "audit"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "create-quality-control"
+      ],
+      "packet": [
+        "sk-create-quality-control"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/validation.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/workflows.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/core-standards.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/evergreen-packet-id-rule.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "score this document": {
+    "parseable": true,
+    "intents": [
+      "sk-create-quality-control"
+    ],
+    "surfaceIntents": [
+      "DOC_QUALITY"
+    ],
+    "resources": [
+      "shared/references/validation.md",
+      "sk-create-quality-control/references/workflows.md",
+      "shared/references/core-standards.md",
+      "shared/references/evergreen-packet-id-rule.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-quality-control",
+        "score": 8
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-quality-control"
+      ],
+      "matchedAliases": [
+        "score this document",
+        "score"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "create-quality-control"
+      ],
+      "packet": [
+        "sk-create-quality-control"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/validation.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/workflows.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/core-standards.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/evergreen-packet-id-rule.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "validate the command template": {
+    "parseable": true,
+    "intents": [
+      "sk-create-quality-control",
+      "sk-create-command"
+    ],
+    "surfaceIntents": [
+      "COMMAND_CREATION"
+    ],
+    "resources": [
+      "sk-create-command/references/README.md",
+      "sk-create-command/assets/command-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-quality-control",
+        "score": 4
+      },
+      {
+        "intent": "sk-create-command",
+        "score": 3
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-quality-control",
+        "sk-create-command"
+      ],
+      "matchedAliases": [
+        "validate",
+        "command template"
+      ],
+      "defaultApplied": false,
+      "deferReason": "ambiguous-multi-axis",
+      "backendKind": [
+        "create-quality-control",
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-quality-control",
+        "sk-create-command"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "assets/command-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "audit the agent file": {
+    "parseable": true,
+    "intents": [
+      "sk-create-agent",
+      "sk-create-quality-control"
+    ],
+    "surfaceIntents": [
+      "AGENT_CREATION"
+    ],
+    "resources": [
+      "sk-create-agent/references/README.md",
+      "sk-create-agent/assets/agent-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-agent",
+        "score": 4
+      },
+      {
+        "intent": "sk-create-quality-control",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-agent",
+        "sk-create-quality-control"
+      ],
+      "matchedAliases": [
+        "agent file",
+        "audit"
+      ],
+      "defaultApplied": false,
+      "deferReason": "ambiguous-multi-axis",
+      "backendKind": [
+        "template-scaffold",
+        "create-quality-control"
+      ],
+      "packet": [
+        "sk-create-agent",
+        "sk-create-quality-control"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "assets/agent-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "check the feature catalog": {
+    "parseable": true,
+    "intents": [
+      "sk-create-feature-catalog",
+      "sk-create-quality-control"
+    ],
+    "surfaceIntents": [
+      "FEATURE_CATALOG"
+    ],
+    "resources": [
+      "sk-create-feature-catalog/references/README.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-feature-catalog",
+        "score": 4
+      },
+      {
+        "intent": "sk-create-quality-control",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-feature-catalog",
+        "sk-create-quality-control"
+      ],
+      "matchedAliases": [
+        "feature catalog",
+        "check"
+      ],
+      "defaultApplied": false,
+      "deferReason": "ambiguous-multi-axis",
+      "backendKind": [
+        "template-scaffold",
+        "create-quality-control"
+      ],
+      "packet": [
+        "sk-create-feature-catalog",
+        "sk-create-quality-control"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-feature-catalog",
+          "leafResourceId": "references/README.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "audit the documentation quality of this README": {
+    "parseable": true,
+    "intents": [
+      "sk-create-readme",
+      "sk-create-quality-control"
+    ],
+    "surfaceIntents": [
+      "DOC_QUALITY"
+    ],
+    "resources": [
+      "shared/references/validation.md",
+      "sk-create-quality-control/references/workflows.md",
+      "shared/references/core-standards.md",
+      "shared/references/evergreen-packet-id-rule.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-readme",
+        "score": 4
+      },
+      {
+        "intent": "sk-create-quality-control",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-readme",
+        "sk-create-quality-control"
+      ],
+      "matchedAliases": [
+        "readme",
+        "audit"
+      ],
+      "defaultApplied": false,
+      "deferReason": "ambiguous-multi-axis",
+      "backendKind": [
+        "template-scaffold",
+        "create-quality-control"
+      ],
+      "packet": [
+        "sk-create-readme",
+        "sk-create-quality-control"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/validation.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/workflows.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/core-standards.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/evergreen-packet-id-rule.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "hvr": {
+    "parseable": true,
+    "intents": [
+      "sk-create-quality-control",
+      "sk-create-with-human-voice"
+    ],
+    "surfaceIntents": [
+      "HVR"
+    ],
+    "resources": [
+      "sk-create-with-human-voice/references/scope-and-exemptions.md",
+      "sk-create-with-human-voice/references/scoring-and-verification.md",
+      "sk-create-with-human-voice/assets/voice-report-template.md",
+      "shared/references/hvr-rules.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-quality-control",
+        "score": 4
+      },
+      {
+        "intent": "sk-create-with-human-voice",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-quality-control",
+        "sk-create-with-human-voice"
+      ],
+      "matchedAliases": [
+        "hvr"
+      ],
+      "defaultApplied": false,
+      "deferReason": "ambiguous-multi-axis",
+      "backendKind": [
+        "create-quality-control",
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-quality-control",
+        "sk-create-with-human-voice"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "references/scope-and-exemptions.md"
+        },
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "references/scoring-and-verification.md"
+        },
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "assets/voice-report-template.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/hvr-rules.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "optimize this doc for fewer tokens": {
+    "parseable": true,
+    "intents": [
+      "sk-create-quality-control"
+    ],
+    "surfaceIntents": [
+      "OPTIMIZATION"
+    ],
+    "resources": [
+      "sk-create-quality-control/references/optimization.md",
+      "shared/assets/llmstxt-templates.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-quality-control",
+        "score": 8
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-quality-control"
+      ],
+      "matchedAliases": [
+        "optimize this doc",
+        "optimize"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "create-quality-control"
+      ],
+      "packet": [
+        "sk-create-quality-control"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/optimization.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "assets/llmstxt-templates.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "show the full sk-doc toolkit": {
+    "parseable": true,
+    "intents": [],
+    "surfaceIntents": [
+      "FULL_INVENTORY"
+    ],
+    "resources": [
+      "sk-create-agent/assets/agent-template.md",
+      "sk-create-agent/references/README.md",
+      "sk-create-agent/references/agent-vs-skill-vs-command.md",
+      "sk-create-agent/references/common-pitfalls.md",
+      "sk-create-agent/references/permission-design.md",
+      "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
+      "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md",
+      "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
+      "sk-create-benchmark/assets/model-benchmark/model-benchmark-code-task-fixture-template.md",
+      "sk-create-benchmark/assets/model-benchmark/model-benchmark-pattern-fixture-template.md",
+      "sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md",
+      "sk-create-benchmark/assets/shared/benchmark-report-template.md",
+      "sk-create-benchmark/assets/shared/source-template.md",
+      "sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md",
+      "sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md",
+      "sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md",
+      "sk-create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md",
+      "sk-create-benchmark/references/shared/README.md",
+      "sk-create-benchmark/references/shared/case-studies.md",
+      "sk-create-benchmark/references/shared/pitfalls.md",
+      "sk-create-benchmark/references/shared/worked-example.md",
+      "sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
+      "shared/assets/changelog-template.md",
+      "sk-create-changelog/references/README.md",
+      "sk-create-changelog/references/topology-edge-cases.md",
+      "sk-create-changelog/references/version-bump-rules.md",
+      "sk-create-changelog/references/worked-examples.md",
+      "sk-create-command/assets/command-contract.json",
+      "sk-create-command/assets/command-contract.schema.json",
+      "sk-create-command/assets/command-presentation-template.md",
+      "sk-create-command/assets/command-router-template.md",
+      "sk-create-command/assets/command-template.md",
+      "sk-create-command/references/README.md",
+      "sk-create-command/references/argument-hints-and-modes.md",
+      "sk-create-command/references/common-pitfalls.md",
+      "sk-create-command/references/router-presentation-split.md",
+      "sk-create-command/references/worked-example.md",
+      "sk-create-diff/assets/fixtures/README.md",
+      "sk-create-diff/assets/fixtures/onboarding-after.md",
+      "sk-create-diff/assets/fixtures/onboarding-before.md",
+      "sk-create-diff/references/README.md",
+      "sk-create-diff/references/accessibility-contract.md",
+      "sk-create-diff/references/capabilities-and-fidelity.md",
+      "sk-create-diff/references/cli-reference.md",
+      "sk-create-diff/references/worked-example.md",
+      "sk-create-diff/references/workflow.md",
+      "sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+      "sk-create-feature-catalog/assets/feature-catalog-template.md",
+      "sk-create-feature-catalog/references/README.md",
+      "sk-create-feature-catalog/references/common-pitfalls.md",
+      "sk-create-feature-catalog/references/examples.md",
+      "sk-create-diagram/assets/ascii-patterns/approval-workflow-loops.md",
+      "sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md",
+      "sk-create-diagram/assets/ascii-patterns/parallel-execution.md",
+      "sk-create-diagram/assets/ascii-patterns/simple-workflow.md",
+      "sk-create-diagram/assets/ascii-patterns/system-architecture-swimlane.md",
+      "sk-create-diagram/assets/ascii-patterns/user-onboarding.md",
+      "sk-create-diagram/references/ascii-format/README.md",
+      "sk-create-diagram/references/ascii-format/notation-and-validator.md",
+      "sk-create-diagram/references/ascii-format/pattern-selection.md",
+      "sk-create-diagram/references/ascii-format/worked-example.md",
+      "sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+      "sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+      "sk-create-manual-testing-playbook/references/README.md",
+      "sk-create-manual-testing-playbook/references/common-pitfalls.md",
+      "sk-create-manual-testing-playbook/references/examples.md",
+      "sk-create-manual-testing-playbook/references/prompt-voice.md",
+      "shared/assets/llmstxt-templates.md",
+      "shared/references/core-standards.md",
+      "shared/references/evergreen-packet-id-rule.md",
+      "shared/references/hvr-rules.md",
+      "shared/references/validation.md",
+      "sk-create-quality-control/references/README.md",
+      "sk-create-quality-control/references/optimization.md",
+      "sk-create-quality-control/references/transformation-patterns.md",
+      "sk-create-quality-control/references/validation-and-enforcement.md",
+      "sk-create-quality-control/references/workflow-examples.md",
+      "sk-create-quality-control/references/workflows.md",
+      "sk-create-readme/assets/install-guide-template.md",
+      "sk-create-readme/assets/readme-code-template.md",
+      "sk-create-readme/assets/readme-template.md",
+      "sk-create-readme/references/README.md",
+      "sk-create-readme/references/install-guide/quality-and-standards.md",
+      "sk-create-readme/references/install-guide/section-examples.md",
+      "sk-create-readme/references/readme/quality-and-checklist.md",
+      "sk-create-readme/references/readme/types-and-voice.md",
+      "sk-create-readme/references/readme/writing-patterns.md",
+      "sk-create-repo-rule/assets/repo-rule-template.md",
+      "sk-create-repo-rule/assets/repo-rules-router-template.md",
+      "sk-create-repo-rule/references/README.md",
+      "sk-create-repo-rule/references/agents-md-integration.md",
+      "sk-create-repo-rule/references/creation-standards.md",
+      "sk-create-repo-rule/references/decision-tests.md",
+      "sk-create-repo-rule/references/rule-anatomy.md",
+      "sk-create-with-human-voice/assets/voice-report-template.md",
+      "sk-create-with-human-voice/references/README.md",
+      "sk-create-with-human-voice/references/scope-and-exemptions.md",
+      "sk-create-with-human-voice/references/scoring-and-verification.md",
+      "sk-create-skill/assets/parent-skill/parent-skill-description-template.json",
+      "sk-create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json",
+      "sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+      "sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+      "sk-create-skill/assets/parent-skill/parent-skill-registry-template.json",
+      "sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md",
+      "sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
+      "sk-create-skill/assets/parent-skill/scaffold/packet-skill-scaffold.md",
+      "sk-create-skill/assets/skill/skill-asset-template.md",
+      "sk-create-skill/assets/skill/skill-md-template.md",
+      "sk-create-skill/assets/skill/skill-procedure-template.md",
+      "sk-create-skill/assets/skill/skill-readme-template.md",
+      "sk-create-skill/assets/skill/skill-reference-template.md",
+      "sk-create-skill/assets/skill/skill-scaffold-template.md",
+      "sk-create-skill/assets/skill/skill-smart-router.md",
+      "sk-create-skill/references/README.md",
+      "sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+      "sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      "sk-create-skill/references/shared/common-pitfalls.md",
+      "sk-create-skill/references/shared/overview.md",
+      "sk-create-skill/references/shared/validation-and-packaging.md",
+      "sk-create-skill/references/skill/creation-workflow.md",
+      "sk-create-skill/references/skill/examples-and-maintenance.md"
+    ],
+    "missingResources": [],
+    "scores": [],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": null,
+      "matchedAliases": [],
+      "defaultApplied": false,
+      "deferReason": "no-mode-scored",
+      "backendKind": [],
+      "packet": []
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "assets/agent-template.md"
+        },
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "references/agent-vs-skill-vs-command.md"
+        },
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "references/common-pitfalls.md"
+        },
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "references/permission-design.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/behavior-benchmark/behavior-benchmark-baseline-template.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/behavior-benchmark/behavior-benchmark-index-template.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/behavior-benchmark/behavior-benchmark-scenario-template.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/model-benchmark/model-benchmark-code-task-fixture-template.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/model-benchmark/model-benchmark-pattern-fixture-template.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/model-benchmark/model-benchmark-profile-template.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/shared/benchmark-report-template.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/shared/source-template.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "assets/skill-benchmark/skill-benchmark-readme-template.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/agent-improvement/agent-improvement-authoring-guide.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/behavior-benchmark/behavior-benchmark-guide.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/model-benchmark/model-benchmark-fixture-guide.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/shared/README.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/shared/case-studies.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/shared/pitfalls.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/shared/worked-example.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/skill-benchmark/serving-snapshot-schema.md"
+        },
+        {
+          "workflowMode": "sk-create-benchmark",
+          "leafResourceId": "references/skill-benchmark/skill-benchmark-storage-guide.md"
+        },
+        {
+          "workflowMode": "sk-create-changelog",
+          "leafResourceId": "assets/changelog-template.md"
+        },
+        {
+          "workflowMode": "sk-create-changelog",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-changelog",
+          "leafResourceId": "references/topology-edge-cases.md"
+        },
+        {
+          "workflowMode": "sk-create-changelog",
+          "leafResourceId": "references/version-bump-rules.md"
+        },
+        {
+          "workflowMode": "sk-create-changelog",
+          "leafResourceId": "references/worked-examples.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "assets/command-contract.json"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "assets/command-contract.schema.json"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "assets/command-presentation-template.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "assets/command-router-template.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "assets/command-template.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "references/argument-hints-and-modes.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "references/common-pitfalls.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "references/router-presentation-split.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "references/worked-example.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/ascii-patterns/approval-workflow-loops.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/ascii-patterns/decision-tree-flow.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/ascii-patterns/parallel-execution.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/ascii-patterns/simple-workflow.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/ascii-patterns/system-architecture-swimlane.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/ascii-patterns/user-onboarding.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-architecture.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-bar.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-data-flow.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-dp-integration.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-dp-security-matrix.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-er.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-flowchart.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-gantt.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-high-level.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-import-drawio.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-import-mermaid.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-it-state.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-layers.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-line.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-loop-terminal.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-loop.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-medallion.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-nested.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-org-chart.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-process.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-pyramid.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-quadrant-consultant.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-quadrant.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-radar.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-scatter.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-sequence-oauth-dark.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-sequence-oauth-full.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-sequence-oauth.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-sequence.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-state.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-swimlane.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-timeline.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-tree.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/examples/example-venn.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/icons.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/templates/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/templates/template-dark.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/templates/template-full.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/templates/template-terminal.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "assets/templates/template.html"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/ascii-format/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/ascii-format/notation-and-validator.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/ascii-format/pattern-selection.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/ascii-format/worked-example.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/foundations/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/foundations/onboarding.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/foundations/output-spec.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/foundations/style-guide.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/import-export/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/import-export/export.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/import-export/import-drawio.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/import-export/import-mermaid.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/primitives/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/primitives/primitive-annotation.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/primitives/primitive-icons.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/primitives/primitive-sketchy.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/primitives/primitive-terminal.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-architecture.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-bar.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-data-flow.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-dp-integration.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-dp-security-matrix.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-er.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-flowchart.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-gantt.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-high-level.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-it-state.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-layers.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-line.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-loop.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-medallion.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-nested.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-org-chart.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-process.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-pyramid.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-quadrant.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-radar.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-scatter.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-sequence.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-state.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-swimlane.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-timeline.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-tree.md"
+        },
+        {
+          "workflowMode": "sk-create-diagram",
+          "leafResourceId": "references/types/type-venn.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "assets/fixtures/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "assets/fixtures/onboarding-after.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "assets/fixtures/onboarding-before.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "references/accessibility-contract.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "references/capabilities-and-fidelity.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "references/cli-reference.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "references/worked-example.md"
+        },
+        {
+          "workflowMode": "sk-create-diff",
+          "leafResourceId": "references/workflow.md"
+        },
+        {
+          "workflowMode": "sk-create-feature-catalog",
+          "leafResourceId": "assets/feature-catalog-snippet-template.md"
+        },
+        {
+          "workflowMode": "sk-create-feature-catalog",
+          "leafResourceId": "assets/feature-catalog-template.md"
+        },
+        {
+          "workflowMode": "sk-create-feature-catalog",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-feature-catalog",
+          "leafResourceId": "references/common-pitfalls.md"
+        },
+        {
+          "workflowMode": "sk-create-feature-catalog",
+          "leafResourceId": "references/examples.md"
+        },
+        {
+          "workflowMode": "sk-create-manual-testing-playbook",
+          "leafResourceId": "assets/manual-testing-playbook-snippet-template.md"
+        },
+        {
+          "workflowMode": "sk-create-manual-testing-playbook",
+          "leafResourceId": "assets/manual-testing-playbook-template.md"
+        },
+        {
+          "workflowMode": "sk-create-manual-testing-playbook",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-manual-testing-playbook",
+          "leafResourceId": "references/common-pitfalls.md"
+        },
+        {
+          "workflowMode": "sk-create-manual-testing-playbook",
+          "leafResourceId": "references/examples.md"
+        },
+        {
+          "workflowMode": "sk-create-manual-testing-playbook",
+          "leafResourceId": "references/prompt-voice.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "assets/llmstxt-templates.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/core-standards.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/evergreen-packet-id-rule.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/hvr-rules.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/optimization.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/transformation-patterns.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/validation-and-enforcement.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/validation.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/workflow-examples.md"
+        },
+        {
+          "workflowMode": "sk-create-quality-control",
+          "leafResourceId": "references/workflows.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "assets/install-guide-template.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "assets/readme-code-template.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "assets/readme-template.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "references/install-guide/quality-and-standards.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "references/install-guide/section-examples.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "references/readme/quality-and-checklist.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "references/readme/types-and-voice.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "references/readme/writing-patterns.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "assets/repo-rule-template.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "assets/repo-rules-router-template.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/agents-md-integration.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/creation-standards.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/decision-tests.md"
+        },
+        {
+          "workflowMode": "sk-create-repo-rule",
+          "leafResourceId": "references/rule-anatomy.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-command-metadata-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-description-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-graph-metadata-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-hub-router-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-hub-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-leaf-aliases-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-readme-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-registry-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-root-router-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/scaffold/hub-skill-scaffold.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/scaffold/packet-skill-scaffold.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-asset-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-graph-metadata-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-leaf-manifest-config-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-md-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-procedure-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-readme-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-reference-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-scaffold-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-smart-router.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/skill/skill-sync-manifest-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/parent-skill/compiled-routing-architecture.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/parent-skill/compiled-routing-lockstep-surfaces.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/parent-skill/parent-hub-router-schema.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/parent-skill/parent-skills-nested-packets.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/shared/advisor-index-handoff.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/shared/common-pitfalls.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/shared/overview.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/shared/skill-root-metadata-contract.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/shared/validation-and-packaging.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/skill/creation-workflow.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/skill/examples-and-maintenance.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/skill/upgrading-a-skill-to-v4.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/parent-skill-command-metadata-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/parent-skill-description-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/parent-skill-graph-metadata-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/parent-skill-hub-router-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/parent-skill-hub-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/parent-skill-leaf-aliases-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/parent-skill-readme-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/parent-skill-registry-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/parent-skill-root-router-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/scaffold/hub-skill-scaffold.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/parent-skill/scaffold/packet-skill-scaffold.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-asset-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-graph-metadata-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-leaf-manifest-config-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-md-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-procedure-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-readme-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-reference-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-scaffold-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-smart-router.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "assets/skill/skill-sync-manifest-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/parent-skill/compiled-routing-architecture.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/parent-skill/compiled-routing-lockstep-surfaces.json"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/parent-skill/parent-hub-router-schema.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/parent-skill/parent-skills-nested-packets.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/shared/advisor-index-handoff.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/shared/common-pitfalls.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/shared/overview.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/shared/skill-root-metadata-contract.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/shared/validation-and-packaging.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/skill/creation-workflow.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/skill/examples-and-maintenance.md"
+        },
+        {
+          "workflowMode": "sk-create-skill-parent",
+          "leafResourceId": "references/skill/upgrading-a-skill-to-v4.md"
+        },
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "assets/voice-report-template.md"
+        },
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "references/scope-and-exemptions.md"
+        },
+        {
+          "workflowMode": "sk-create-with-human-voice",
+          "leafResourceId": "references/scoring-and-verification.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "write an install guide for getting our project running": {
+    "parseable": true,
+    "intents": [
+      "sk-create-readme"
+    ],
+    "surfaceIntents": [
+      "INSTALL_GUIDE"
+    ],
+    "resources": [
+      "sk-create-readme/assets/install-guide-template.md",
+      "sk-create-readme/references/README.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-readme",
+        "score": 8
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-readme"
+      ],
+      "matchedAliases": [
+        "install guide",
+        "getting our project running"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-readme"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "assets/install-guide-template.md"
+        },
+        {
+          "workflowMode": "sk-create-readme",
+          "leafResourceId": "references/README.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "create an agent-based rate limiter for the api": {
+    "parseable": true,
+    "intents": [
+      "sk-create-agent"
+    ],
+    "surfaceIntents": [
+      "AGENT_CREATION"
+    ],
+    "resources": [
+      "sk-create-agent/references/README.md",
+      "sk-create-agent/assets/agent-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-agent",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-agent"
+      ],
+      "matchedAliases": [
+        "create an agent"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-agent"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-agent",
+          "leafResourceId": "assets/agent-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "add a slash to the file path template": {
+    "parseable": true,
+    "intents": [],
+    "surfaceIntents": [],
+    "resources": [],
+    "missingResources": [],
+    "scores": [],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": null,
+      "matchedAliases": [],
+      "defaultApplied": false,
+      "deferReason": "no-mode-scored",
+      "backendKind": [],
+      "packet": []
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [],
+      "unresolved": []
+    }
+  },
+  "build a parent process supervisor": {
+    "parseable": true,
+    "intents": [],
+    "surfaceIntents": [],
+    "resources": [],
+    "missingResources": [],
+    "scores": [],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": null,
+      "matchedAliases": [],
+      "defaultApplied": false,
+      "deferReason": "no-mode-scored",
+      "backendKind": [],
+      "packet": []
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [],
+      "unresolved": []
+    }
+  },
+  "write a mode packet of C code": {
+    "parseable": true,
+    "intents": [
+      "sk-create-skill-parent"
+    ],
+    "surfaceIntents": [
+      "PARENT_HUB"
+    ],
+    "resources": [
+      "sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      "sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+      "sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+      "sk-create-skill/assets/parent-skill/parent-skill-registry-template.json",
+      "sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",
+      "sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-skill-parent",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-skill-parent"
+      ],
+      "matchedAliases": [
+        "mode packet"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-skill"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/parent-skill/parent-skills-nested-packets.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "references/parent-skill/parent-hub-router-schema.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-hub-template.md"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-registry-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-hub-router-template.json"
+        },
+        {
+          "workflowMode": "sk-create-skill",
+          "leafResourceId": "assets/parent-skill/parent-skill-root-router-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  "review the hub router config for our load balancer": {
+    "parseable": true,
+    "intents": [
+      "sk-create-quality-control"
+    ],
+    "surfaceIntents": [],
+    "resources": [],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-quality-control",
+        "score": 4
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-quality-control"
+      ],
+      "matchedAliases": [
+        "review"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "create-quality-control"
+      ],
+      "packet": [
+        "sk-create-quality-control"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [],
+      "unresolved": []
+    }
+  },
+  "what does the presentation contract of our sales deck look like": {
+    "parseable": true,
+    "intents": [
+      "sk-create-command"
+    ],
+    "surfaceIntents": [
+      "COMMAND_CREATION"
+    ],
+    "resources": [
+      "sk-create-command/references/README.md",
+      "sk-create-command/assets/command-template.md"
+    ],
+    "missingResources": [],
+    "scores": [
+      {
+        "intent": "sk-create-command",
+        "score": 3
+      }
+    ],
+    "routeTelemetry": {
+      "observed": true,
+      "source": "hub-router",
+      "workflowMode": [
+        "sk-create-command"
+      ],
+      "matchedAliases": [
+        "presentation contract"
+      ],
+      "defaultApplied": false,
+      "deferReason": null,
+      "backendKind": [
+        "template-scaffold"
+      ],
+      "packet": [
+        "sk-create-command"
+      ]
+    },
+    "resourceContract": {
+      "resourceContractVersion": 1,
+      "pairs": [
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "references/README.md"
+        },
+        {
+          "workflowMode": "sk-create-command",
+          "leafResourceId": "assets/command-template.md"
+        }
+      ],
+      "unresolved": []
+    }
+  }
+}

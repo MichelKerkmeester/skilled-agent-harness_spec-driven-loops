@@ -1,0 +1,124 @@
+{
+  "dataset": ".opencode/skills/system-skill-advisor/mcp-server/scripts/fixtures/skill-advisor-regression-cases.jsonl",
+  "mode": "both",
+  "runner": "both",
+  "runners_exercised": [
+    "inprocess",
+    "subprocess"
+  ],
+  "thresholds": {
+    "confidence": 0.8,
+    "uncertainty": 0.35,
+    "min_top1_accuracy": 0.92,
+    "max_command_bridge_fp_rate": 0.05,
+    "min_p0_pass_rate": 1.0
+  },
+  "metrics": {
+    "total_cases": 92,
+    "passed_cases": 88,
+    "failed_cases": 4,
+    "pass_rate": 0.9565,
+    "p0_total": 24,
+    "p0_passed": 24,
+    "p0_pass_rate": 1.0,
+    "top1_cases": 82,
+    "top1_accuracy": 1.0,
+    "command_bridge_eval_cases": 72,
+    "command_bridge_fp": 0,
+    "command_bridge_fp_rate": 0.0
+  },
+  "gates": {
+    "top1_accuracy": true,
+    "command_bridge_fp_rate": true,
+    "p0_pass_rate": true,
+    "all_cases_passed": false,
+    "total_cases": true
+  },
+  "overall_pass": false,
+  "failures": [
+    {
+      "id": "P1-PHRASE-002",
+      "priority": "P1",
+      "prompt": "5d scoring",
+      "runner": "inprocess",
+      "confidence_only": false,
+      "expect_result": true,
+      "expected_top_any": [
+        "sk-deep-agent-improvement"
+      ],
+      "expected_kind": "skill",
+      "top": null,
+      "passed": false,
+      "checks": {
+        "result_ok": false,
+        "top_ok": true,
+        "kind_ok": true
+      },
+      "allow_command_bridge": false,
+      "non_slash": true
+    },
+    {
+      "id": "P1-PHRASE-005",
+      "priority": "P1",
+      "prompt": "dynamic profile",
+      "runner": "inprocess",
+      "confidence_only": false,
+      "expect_result": true,
+      "expected_top_any": [
+        "sk-deep-agent-improvement"
+      ],
+      "expected_kind": "skill",
+      "top": null,
+      "passed": false,
+      "checks": {
+        "result_ok": false,
+        "top_ok": true,
+        "kind_ok": true
+      },
+      "allow_command_bridge": false,
+      "non_slash": true
+    },
+    {
+      "id": "P1-PHRASE-002",
+      "priority": "P1",
+      "prompt": "5d scoring",
+      "runner": "subprocess",
+      "confidence_only": false,
+      "expect_result": true,
+      "expected_top_any": [
+        "sk-deep-agent-improvement"
+      ],
+      "expected_kind": "skill",
+      "top": null,
+      "passed": false,
+      "checks": {
+        "result_ok": false,
+        "top_ok": true,
+        "kind_ok": true
+      },
+      "allow_command_bridge": false,
+      "non_slash": true
+    },
+    {
+      "id": "P1-PHRASE-005",
+      "priority": "P1",
+      "prompt": "dynamic profile",
+      "runner": "subprocess",
+      "confidence_only": false,
+      "expect_result": true,
+      "expected_top_any": [
+        "sk-deep-agent-improvement"
+      ],
+      "expected_kind": "skill",
+      "top": null,
+      "passed": false,
+      "checks": {
+        "result_ok": false,
+        "top_ok": true,
+        "kind_ok": true
+      },
+      "allow_command_bridge": false,
+      "non_slash": true
+    }
+  ]
+}

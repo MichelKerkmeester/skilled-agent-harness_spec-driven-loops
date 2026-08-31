@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/044-router-alignment",
+  "description": "Wave A landed a fourteenth `sk-doc` mode and three audits, each of which recorded a",
+  "keywords": [
+    "wave",
+    "landed",
+    "fourteenth",
+    "sk-doc",
+    "mode",
+    "three",
+    "audits",
+    "recorded"
+  ],
+  "lastUpdated": "2026-08-31T20:36:51.288Z",
+  "specId": "044",
+  "folderSlug": "router-alignment",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

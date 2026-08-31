@@ -1,0 +1,5 @@
+### SIZE DELTA  2026-08-31T20:27:54Z
+.opencode/commands/rewrite/response.md                                     5828 ->     6429  (+601)
+.opencode/commands/rewrite/response-by-external-agent.md                  12974 ->    13811  (+837)
+.opencode/skills/sk-communication/SKILL.md                                17612 ->    20104  (+2492)
+.opencode/skills/sk-communication/references/visual-explanation.md         5139 ->     5725  (+586)

@@ -26,6 +26,7 @@
       "defer": "unclear or contradictory intent asks for disambiguation"
     },
     "defaultResource": [
+      "ROUTER.md",
       "shared/references/quick-reference.md"
     ],
     "bundleRules": [
@@ -197,7 +198,11 @@
         "skill root metadata contract",
         "leaf-manifest config aliases required",
         "hub versus standalone skill class",
-        "skill metadata drift gate"
+        "skill metadata drift gate",
+        "create a skill",
+        "build a skill",
+        "author a skill",
+        "scaffold a skill"
       ]
     },
     "create-skill-parent-aliases": {
@@ -237,7 +242,10 @@
         "authority boundary",
         "agent template",
         "runtime agent directory",
-        "agent and paired"
+        "agent and paired",
+        "create an agent",
+        "author an agent",
+        "scaffold an agent"
       ]
     },
     "create-command-aliases": {
@@ -300,7 +308,10 @@
         "agent-improvement",
         "Lane A agent-improvement",
         "agent_improvement_authoring_guide",
-        "agent quality dimensions"
+        "agent quality dimensions",
+        "create a benchmark",
+        "author a benchmark",
+        "benchmark suite"
       ]
     },
     "create-changelog-aliases": {
@@ -323,7 +334,10 @@
         "create diff report",
         "document before after review",
         "before after document diff",
-        "document change report"
+        "document change report",
+        "document diff",
+        "doc diff",
+        "before and after diff"
       ]
     },
     "create-diagram-aliases": {
@@ -419,7 +433,8 @@
         "voice pass",
         "de-ai the writing",
         "reads like a machine wrote it",
-        "banned word check"
+        "banned word check",
+        "hvr"
       ]
     }
   }

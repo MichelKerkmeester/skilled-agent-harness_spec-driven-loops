@@ -470,7 +470,7 @@
       "packet": "sk-create-quality-control",
       "packetSkillName": "sk-create-quality-control",
       "grandfatheredFolderMismatch": false,
-      "command": "/doc:quality",
+      "command": null,
       "aliases": [
         "doc quality",
         "audit documentation quality",

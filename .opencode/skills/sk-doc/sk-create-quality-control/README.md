@@ -20,7 +20,7 @@ version: 1.0.1.1
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Auditing, scoring and optionally improving an existing markdown document's structure and voice |
-| **Invoke with** | "doc quality", "score this document", "DQI", "HVR" (the reserved `/doc:quality` command is not built yet) |
+| **Invoke with** | "doc quality", "score this document", "DQI", "HVR" (hub routing only; the packet declares no slash command) |
 | **Works on** | Any existing markdown file already in the repo: README, `SKILL.md`, command doc, spec doc, reference |
 | **Produces** | A DQI score and band with the blocking/warning/recommendation issue list behind it, plus a targeted edit to that one file only when you ask |
 

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/044-router-alignment",
+  "spec_folder": "sk-doc/044-router-alignment",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc router alignment",
+      "ROUTER.md intent signals resource map parity",
+      "replay every registered mode",
+      "doc quality dead command binding",
+      "hub router default resource",
+      "router alignment plan",
+      "replay before and after",
+      "byte identical advisor regression",
+      "plan core",
+      "router alignment tasks",
+      "replay baseline tasks",
+      "hub root delta tasks"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "router",
+      "alignment",
+      "intent",
+      "signals",
+      "resource",
+      "map",
+      "parity",
+      "replay",
+      "every",
+      "registered",
+      "mode"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "repo-rules/skill-hub-routing.md",
+      ".opencode/skills/sk-doc/ROUTER.md",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/sk-doc/command-metadata.json",
+      ".opencode/skills/sk-doc/leaf-manifest.json",
+      ".opencode/skills/sk-doc/sk-create-quality-control/SKILL.md",
+      "scratch/align-check.cjs",
+      "scratch/after-replay.md",
+      "scratch/reg.json",
+      "scratch/baseline/reg-baseline.json",
+      "scratch/tasks.txt",
+      "scratch/baseline/replay.md",
+      "specs/sk-doc/039-create-with-human-voice/spec.md",
+      "specs/sk-doc/041-quality-control-assessment/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-hub-routing.md",
+        "kind": "doc",
+        "path": "repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "align-check.cjs",
+        "kind": "file",
+        "path": "scratch/align-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "after-replay.md",
+        "kind": "doc",
+        "path": "scratch/after-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "reg.json",
+        "kind": "config",
+        "path": "scratch/reg.json",
+        "source": "derived"
+      },
+      {
+        "name": "reg-baseline.json",
+        "kind": "config",
+        "path": "scratch/baseline/reg-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.txt",
+        "kind": "file",
+        "path": "scratch/tasks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "replay.md",
+        "kind": "doc",
+        "path": "scratch/baseline/replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Wave",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Wave A landed a fourteenth `sk-doc` mode and three audits, each of which recorded a",
+    "created_at": "2026-08-31T20:37:06.842Z",
+    "last_save_at": "2026-08-31T20:38:05.979Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b5f1afefe846ac60733e27f9d06dd1f34d19652fc1568e3529e03ff3088cc391",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "55c654bf084f78980c53a1f115efdb0b212a23bf3124aae3f725817e3613d1cc",
+      "plan.md": "68a311808e313e237552372f143e43a60a3325e89588e9e0fc115052de43f6e3",
+      "tasks.md": "b39a6f060d9bc93db2fbf2897df9265dc47634e11c5561112079927b5b96abc1",
+      "implementation-summary.md": "c9db1162ac33ce885b8c286b9bc6fc7624bd0db6bd947d53c39c6ce1bc75c68e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

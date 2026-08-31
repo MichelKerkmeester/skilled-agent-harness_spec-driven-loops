@@ -78,6 +78,8 @@ How much background to assume.
 
 **The rule that binds all three levels:** simplification applies to *words*, never to *facts*. Depth changes vocabulary, framing, and how much is shown. It never changes a value, an identifier, a path, or the truth of a claim. A `novice` answer may be incomplete; it may not be wrong.
 
+**Where this departs from the voice standard.** The prose this lane writes is held to the Human Voice Rules at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, with one documented exception. That standard caps analogies at one per concept and places them after the technical statement. The `novice` level inverts both on purpose, leading with a familiar analogy in place of the precise term, because a reader with no background has nothing for the technical statement to attach to. The exception is scoped to `novice`. At `expert` and `plain` the standard applies as written.
+
 ---
 
 ## 4. PROTECTED SPANS

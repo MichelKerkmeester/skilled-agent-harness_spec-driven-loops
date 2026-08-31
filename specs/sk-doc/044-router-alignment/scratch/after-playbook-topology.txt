@@ -1,0 +1,34 @@
+PASS  SD-018  agent-dispatch/markdown-agent-cli-claude-code.md  pairs=1  mode=sk-create-changelog
+PASS  SD-020  agent-dispatch/markdown-agent-cli-opencode.md  pairs=1  mode=sk-create-changelog
+PASS  SD-CR-001  compiled-routing/bundle-rules-compiled-routing.md  pairs=4  mode=sk-create-skill
+PASS  SD-011  cross-cli-dispatch/large-prompt-stress.md  pairs=4  mode=sk-create-skill
+PASS  SD-012  cross-cli-dispatch/multi-step-dispatch.md  pairs=9  mode=sk-create-skill → sk-create-quality-control → sk-create-changelog
+PASS  SD-010  cross-cli-dispatch/short-prompt-baseline.md  pairs=1  mode=sk-create-changelog
+PASS  SD-H04  holdout/changelog-natural.md  pairs=1  mode=sk-create-changelog
+PASS  SD-H02  holdout/doc-quality-natural.md  pairs=4  mode=sk-create-quality-control
+PASS  SD-H05  holdout/flowchart-natural.md  pairs=2  mode=sk-create-diagram
+PASS  SD-H09  holdout/ind-changelog.md  pairs=1  mode=sk-create-changelog
+PASS  SD-H07  holdout/ind-doc-quality.md  pairs=4  mode=sk-create-quality-control
+PASS  SD-H13  holdout/ind-feature-catalog.md  pairs=1  mode=sk-create-feature-catalog
+PASS  SD-H10  holdout/ind-flowchart.md  pairs=2  mode=sk-create-diagram
+PASS  SD-H12  holdout/ind-install-guide.md  pairs=2  mode=sk-create-readme
+PASS  SD-H11  holdout/ind-optimization.md  pairs=2  mode=sk-create-quality-control
+PASS  SD-H08  holdout/ind-readme.md  pairs=2  mode=sk-create-readme
+PASS  SD-H06  holdout/ind-skill-creation.md  pairs=4  mode=sk-create-skill
+PASS  SD-H03  holdout/readme-natural.md  pairs=2  mode=sk-create-readme
+PASS  SD-H01  holdout/skill-creation-natural.md  pairs=4  mode=sk-create-skill
+PASS  SD-003  intent-detection/agent-command.md  pairs=4  mode=sk-create-agent+sk-create-command
+PASS  SD-001  intent-detection/doc-quality.md  pairs=4  mode=sk-create-quality-control
+PASS  SD-016  intent-detection/optimization.md  pairs=2  mode=sk-create-quality-control
+PASS  SD-002  intent-detection/skill-creation.md  pairs=4  mode=sk-create-skill
+PASS  SD-005  resource-loading/assets-only.md  pairs=2  mode=sk-create-diagram
+PASS  SD-006  resource-loading/mixed-references-assets.md  pairs=2  mode=sk-create-readme
+PASS  SD-004  resource-loading/references-global-only.md  pairs=1  mode=sk-create-quality-control
+PASS  SD-015  token-cost-baseline/max-load.md  pairs=8  mode=sk-create-agent+sk-create-benchmark+sk-create-changelog+sk-create-command+sk-create-diff+sk-create-feature-catalog+sk-create-diagram+sk-create-manual-testing-playbook+sk-create-quality-control+sk-create-readme+sk-create-skill+sk-create-skill-parent
+PASS  SD-014  token-cost-baseline/medium-load.md  pairs=4  mode=sk-create-skill
+PASS  SD-013  token-cost-baseline/minimal-load.md  pairs=1  mode=sk-create-quality-control
+PASS  SD-007  unknown-fallback/ambiguous-multi-intent.md  pairs=6  mode=sk-create-quality-control+sk-create-diagram
+PASS  SD-009  unknown-fallback/disambiguation-required.md  pairs=2  mode=sk-create-feature-catalog+sk-create-manual-testing-playbook
+PASS  SD-008  unknown-fallback/no-keyword-match.md  pairs=0  mode=UNKNOWN
+
+verdict=PASS valid=32 blocked=0 unenrolled=0 total=32

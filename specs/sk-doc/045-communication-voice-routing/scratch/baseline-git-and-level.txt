@@ -1,0 +1,30 @@
+### BASELINE git state + level recommendation
+captured 2026-08-31T20:18:09Z at HEAD 60212f5292
+
+=== git status of paths this stream owns ===
+?? specs/sk-doc/045-communication-voice-routing/
+(empty above = clean before my edits)
+
+=== recommend-level.sh ===
+ERROR: Unknown option: --risk
+Use --help for usage information
+EXIT=0
+
+=== recommend-level.sh --loc 90 --files 4 (rerun with valid flags) ===
+
+Recommended Level: 0 (Quick)
+Score: 18/100 | Confidence: 90%
+
+Breakdown:
+- LOC (90): +12 points
+- Files (4): +6 points
+- API changes: +0 points
+- Auth changes: +0 points
+- DB changes: +0 points
+- Architectural: +0 points
+
+Phase Recommendation:
+- Phase Score: 0/50 (threshold: 25)
+- Recommended: NO
+
+EXIT=0
