@@ -94,7 +94,7 @@ workflow:
 
           **Skill**: {skill}
           **Outputs dir**: {outputs_dir}
-          **Trace mode**: {trace_mode} (router = deterministic CI gate; live = playbook corpus via cli-opencode)
+          **Trace mode**: {trace_mode} (router = deterministic CI gate; live = playbook corpus via cli-opencode or --executor=codex; browser scenarios via bdg)
           **Fixtures dir**: {fixtures_dir}
           **Advisor probe**: {advisor_mode}
 

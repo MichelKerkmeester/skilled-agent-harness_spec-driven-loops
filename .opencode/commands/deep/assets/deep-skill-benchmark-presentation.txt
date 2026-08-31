@@ -72,7 +72,7 @@ Lane C of the `deep-improvement` skill. Benchmarks whether a skill is well-struc
 - **D4**: usefulness ablation (opt-in, approximate).
 - **D5**: structural hard gate (must pass; blocks a clean verdict when it fails).
 
-Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically. Mode B (live playbook) dispatches a skill's own `manual_testing_playbook` corpus through `cli-opencode`; it is advisory, and the gated verdict stays router mode plus the D5 hard gate.
+Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically. Mode B (live playbook) dispatches a skill's own `manual_testing_playbook` corpus through a live executor; it is advisory, and the gated verdict stays router mode plus the D5 hard gate. Live transports are `cli-opencode` (default) and `codex` via `--executor=codex`; browser scenarios route to the `bdg` executor. cli-cursor, cli-devin and cli-pi are deliberately excluded — this lane scores skill activation from the executor's STRUCTURED tool-use event stream, which only opencode and codex emit (`dispatchScenario` in `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs`).
 
 ## 3. Results Display
 

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/039-executor-availability-docs",
+  "spec_folder": "system-deep-loop/039-executor-availability-docs",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "summary",
+      "impl summary core"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan",
+      "tasks",
+      "summary",
+      "impl",
+      "every"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/deep-research-presentation.txt",
+      ".opencode/commands/deep/assets/deep-review-presentation.txt",
+      ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
+      ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
+      ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
+      ".opencode/commands/deep/assets/deep-model-benchmark-presentation.txt",
+      ".opencode/commands/deep/assets/deep-agent-improvement-presentation.txt",
+      ".opencode/commands/deep/assets/deep-skill-benchmark-presentation.txt",
+      ".opencode/commands/deep/assets/deep-skill-benchmark-confirm.yaml",
+      ".opencode/commands/deep/skill-benchmark.md",
+      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+      ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep-ai-council.contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-review-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-model-benchmark-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-model-benchmark-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-agent-improvement-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-agent-improvement-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-skill-benchmark-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/deep/assets/deep-skill-benchmark-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-skill-benchmark-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-skill-benchmark-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/skill-benchmark.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-ai-council.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
+    "created_at": "2026-08-31T08:33:25Z",
+    "last_save_at": "2026-08-31T08:36:53.703Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:18e60e2e261f8a10ab2efe00f2edd8d1aa62eaee2cae5d6d2e06145135e2f2de",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "92752ca80b22532e9bb9893f55a95b7684fccf5be24b2eec3815e2244d60b317",
+      "plan.md": "9f2b949eff3ed309c4631a3ab670e3fe74d1ceb4934dccf3627465cfa605d099",
+      "tasks.md": "0243f484d2c004c4033bfac182ff15d386f811ce242f20a05b4e90393d3e8ccb",
+      "implementation-summary.md": "1494673e43f56f584d3bacf4ece67cc99b9f8be38b202e5c875e2caa5e0f2410"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

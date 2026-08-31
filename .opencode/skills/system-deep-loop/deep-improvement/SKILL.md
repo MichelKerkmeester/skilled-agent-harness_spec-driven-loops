@@ -248,7 +248,7 @@ Full dispatcher, scorer, promotion-path, and hardening-rationale detail: `refere
 ## 6. HOW IT WORKS (Multi-Iteration Methodology)
 For multi-iter evaluation sweeps, a mixed-executor split plus an adjudication pass gives better breadth, better synthesis, and less noise than a single-executor run.
 
-- **Mixed-executor 8+2 split**: run breadth iterations on a breadth executor (e.g. cli-opencode or cli-opencode with a fast model) and synthesis iterations on a synthesis executor (e.g. cli-opencode gpt-5.5). For a 10-iter sweep, that is iters 1-8 breadth and iters 9-10 synthesis.
+- **Mixed-executor 8+2 split**: run breadth iterations on a breadth executor (e.g. cli-pi or cli-cursor with a fast model) and synthesis iterations on a synthesis executor (e.g. cli-opencode gpt-5.5). For a 10-iter sweep, that is iters 1-8 breadth and iters 9-10 synthesis.
 - **Adjudication iter**: insert a false-positive filter pass before the synthesis iterations (typically the iter-7 mark) so only confirmed findings carry forward. In validation this delivers a 90%+ false-positive reduction, with one pass dropping 9 false-positive and 4 outdated items to take a 20-item queue down to 7.
 
 See `references/model-benchmark/mixed-executor-methodology.md` for the split mechanics, adjudication details, and the full validation evidence.

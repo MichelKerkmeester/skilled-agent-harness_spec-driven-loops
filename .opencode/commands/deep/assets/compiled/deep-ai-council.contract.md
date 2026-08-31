@@ -12,7 +12,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-presentation.txt",
-      "sha256": "53484e369599b3c484ae222c5a56af7ae903c93404975d2831aa1b081c9f0143",
+      "sha256": "110ee6b749bcfa60072ae80a03256d1f9a0241363c6fef67d5e31f8051e0c116",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
-      "sha256": "262390bb9e9a3e71b024c108dd0ec8af06e7ff7776da97429cdb2ff9f632a7d6",
+      "sha256": "ded0f808b8d61fdf9d122427cfad7026e5c1bdd5b1d2fc06f964cfe505370467",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
-      "sha256": "eeb4acad7e33e8ea9278e13edffb8fa008b7202725143521e1e10966cb6ca7cd",
+      "sha256": "10cbb9befb02a199d5792d014835bc457f16b32b5b4696db81ceb2d54a168c52",
       "section": "full"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "c33aed69e4fe3c8181cc772f1a37413ad1bcc5a1d53962bce84c153506d77636",
+      "sha256": "38a263848cb72d8414f8307cbe0443b8e7a0f7a3c971af7a486bdb5753424ffe",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".opencode/agents/ai-council.md",
-      "sha256": "edb0522d7cda5cddb65c87f2f1c0cd706d685539368994e66a6244143d037c8e",
+      "sha256": "122af0747895edf6f621313c50dc469667a4913c94712a16679ed6701c1c8382",
       "section": "full"
     },
     {
@@ -146,7 +146,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "329e81c5117c94ed809d7877cdace5a65a17911035d928f9daf51ec8710813db"
+  "compiledBodyDigest": "016d653be2e8173562471d3a4dad1614500559507b6872a3907c71484b99e261"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:ai-council
@@ -253,7 +253,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.20
   executor:
     mode: in-cli  # in-cli | external-cli
-    cli: active-runtime  # active-runtime | cli-opencode | cli-claude-code
+    cli: native  # native | cli-opencode | cli-cursor | cli-devin | cli-pi (alias `opencode` -> `cli-opencode`). cli-codex and cli-claude-code are REJECTED as council seats; `resolveExecutorKind` in `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` is authoritative
     model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
     reasoning: ""  # optional reasoning effort or variant
     service_tier: ""  # optional, executor-specific
@@ -283,7 +283,7 @@ Rules:
 | `saturation_threshold` | Y | flag `--saturation`, marker `saturation_threshold`, or default | `0.20` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or `saturation_threshold` | `0.20` | N |
 | `executor.mode` | Y | flag `--executor-mode`, marker `executor.mode`, or default | `in-cli` | N |
-| `executor.cli` | Y | flag `--executor`, marker `executor.cli`, or active runtime | `active-runtime` | N |
+| `executor.cli` | Y | flag `--executor`, marker `executor.cli`, or active runtime | `native` | N |
 | `executor.model` | N | flag `--model`, marker `executor.model`, or executor default | none | N |
 | `executor.reasoning` | N | flag `--reasoning-effort`, marker `executor.reasoning`, or executor default | none | N |
 | `executor.service_tier` | N | flag `--service-tier`, marker `executor.service_tier`, or executor default | none | N |
@@ -325,12 +325,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --executor-mode=<in-cli|external-cli> -> executor.mode
-   |-- --executor=<active-runtime|cli-opencode|cli-claude-code> -> executor.cli
+   |-- --executor=<native|cli-opencode|cli-cursor|cli-devin|cli-pi> -> executor.cli
    |-- --model=<id> -> executor.model
    |-- --reasoning-effort=<level> -> executor.reasoning
    |-- --service-tier=<tier> -> executor.service_tier
    |-- --executor-timeout=<seconds> -> executor.timeout
-   +-- Defaults: max_rounds_per_topic=3, max_topics_per_session=5, saturation_threshold=0.20, convergenceThreshold=0.20, executor.mode=in-cli, executor.cli=active-runtime, executor.timeout=900
+   +-- Defaults: max_rounds_per_topic=3, max_topics_per_session=5, saturation_threshold=0.20, convergenceThreshold=0.20, executor.mode=in-cli, executor.cli=native, executor.timeout=900
 
    Cost guard preview:
    - max_rounds = max_topics_per_session * max_rounds_per_topic
@@ -364,9 +364,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      Change any values?
 
    Q4. Executor (optional, press enter for default):
-     A) Active runtime / in-cli (default) - use the current runtime's council seats.
+     A) Active runtime / in-cli (default, config token `native`) - use the current runtime's council seats.
      B) cli-opencode - one external OpenCode round.
-     C) cli-claude-code - one external Claude Code round.
+     C) cli-cursor - one external Cursor round.
+     D) cli-devin - one external Devin round.
+     E) cli-pi - one external Pi round.
+     cli-codex and cli-claude-code are NOT council seat executors and are rejected at resolve time; use /deep:review or /deep:research for codex- or Claude-Code-backed loops. cli-cursor, cli-devin and cli-pi enforce a model allowlist (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`).
 
    Reply format examples:
    - `"runtime boundary strategy, A, A"`
@@ -386,7 +389,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - max_topics_per_session = [from Q3 or flag or default 5]
    - saturation_threshold = [from Q3 or flag or default 0.20]
    - convergenceThreshold = [from Q3 or flag or saturation_threshold or default 0.20]
-   - executor config = [CLI flags, compact reply, config file, or default active-runtime]
+   - executor config = [CLI flags, compact reply, config file, or default `native`]
 
 9. SET STATUS: PASSED
 

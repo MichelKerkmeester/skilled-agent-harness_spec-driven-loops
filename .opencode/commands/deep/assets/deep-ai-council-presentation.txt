@@ -38,7 +38,7 @@ PRE-BOUND SETUP ANSWERS:
   convergenceThreshold: 0.20
   executor:
     mode: in-cli  # in-cli | external-cli
-    cli: active-runtime  # active-runtime | cli-opencode | cli-claude-code
+    cli: native  # native | cli-opencode | cli-cursor | cli-devin | cli-pi (alias `opencode` -> `cli-opencode`). cli-codex and cli-claude-code are REJECTED as council seats; `resolveExecutorKind` in `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs` is authoritative
     model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
     reasoning: ""  # optional reasoning effort or variant
     service_tier: ""  # optional, executor-specific
@@ -68,7 +68,7 @@ Rules:
 | `saturation_threshold` | Y | flag `--saturation`, marker `saturation_threshold`, or default | `0.20` | N |
 | `convergenceThreshold` | Y | flag `--convergence`, marker `convergenceThreshold`, or `saturation_threshold` | `0.20` | N |
 | `executor.mode` | Y | flag `--executor-mode`, marker `executor.mode`, or default | `in-cli` | N |
-| `executor.cli` | Y | flag `--executor`, marker `executor.cli`, or active runtime | `active-runtime` | N |
+| `executor.cli` | Y | flag `--executor`, marker `executor.cli`, or active runtime | `native` | N |
 | `executor.model` | N | flag `--model`, marker `executor.model`, or executor default | none | N |
 | `executor.reasoning` | N | flag `--reasoning-effort`, marker `executor.reasoning`, or executor default | none | N |
 | `executor.service_tier` | N | flag `--service-tier`, marker `executor.service_tier`, or executor default | none | N |
@@ -102,12 +102,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
    |-- --executor-mode=<in-cli|external-cli> -> executor.mode
-   |-- --executor=<active-runtime|cli-opencode|cli-claude-code> -> executor.cli
+   |-- --executor=<native|cli-opencode|cli-cursor|cli-devin|cli-pi> -> executor.cli
    |-- --model=<id> -> executor.model
    |-- --reasoning-effort=<level> -> executor.reasoning
    |-- --service-tier=<tier> -> executor.service_tier
    |-- --executor-timeout=<seconds> -> executor.timeout
-   +-- Defaults: max_rounds_per_topic=3, max_topics_per_session=5, saturation_threshold=0.20, convergenceThreshold=0.20, executor.mode=in-cli, executor.cli=active-runtime, executor.timeout=900
+   +-- Defaults: max_rounds_per_topic=3, max_topics_per_session=5, saturation_threshold=0.20, convergenceThreshold=0.20, executor.mode=in-cli, executor.cli=native, executor.timeout=900
 
    Cost guard preview:
    - max_rounds = max_topics_per_session * max_rounds_per_topic
@@ -141,9 +141,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      Change any values?
 
    Q4. Executor (optional, press enter for default):
-     A) Active runtime / in-cli (default) - use the current runtime's council seats.
+     A) Active runtime / in-cli (default, config token `native`) - use the current runtime's council seats.
      B) cli-opencode - one external OpenCode round.
-     C) cli-claude-code - one external Claude Code round.
+     C) cli-cursor - one external Cursor round.
+     D) cli-devin - one external Devin round.
+     E) cli-pi - one external Pi round.
+     cli-codex and cli-claude-code are NOT council seat executors and are rejected at resolve time; use /deep:review or /deep:research for codex- or Claude-Code-backed loops. cli-cursor, cli-devin and cli-pi enforce a model allowlist (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`).
 
    Reply format examples:
    - `"runtime boundary strategy, A, A"`
@@ -163,7 +166,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - max_topics_per_session = [from Q3 or flag or default 5]
    - saturation_threshold = [from Q3 or flag or default 0.20]
    - convergenceThreshold = [from Q3 or flag or saturation_threshold or default 0.20]
-   - executor config = [CLI flags, compact reply, config file, or default active-runtime]
+   - executor config = [CLI flags, compact reply, config file, or default `native`]
 
 9. SET STATUS: PASSED
 
