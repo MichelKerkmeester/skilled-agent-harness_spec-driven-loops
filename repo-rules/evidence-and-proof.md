@@ -1,3 +1,29 @@
+---
+title: "Rule: Evidence and proof"
+description: "A claim is only as strong as the observation behind it; distinguish observed from derived from inferred."
+trigger_phrases:
+  - "observed derived inferred"
+  - "how a green run lies"
+  - "exit 0 with no output"
+  - "negative control"
+  - "watch it fail first"
+  - "baseline before no regressions"
+  - "a finding is a hypothesis"
+  - "the sub-agent said complete"
+  - "the tool reported success"
+  - "claiming done"
+  - "final-state proof"
+  - "proof plan before implementation"
+  - "reason from data not memory"
+  - "the doc disagrees with the code"
+  - "honest close-out"
+  - "committed pushed dirty"
+  - "what only the operator can verify"
+importance_tier: important
+contextType: reference
+version: 1.0.0.0
+---
+
 # Rule: Evidence and proof
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before making any claim someone will act on.

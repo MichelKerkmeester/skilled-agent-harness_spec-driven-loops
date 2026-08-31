@@ -41,6 +41,32 @@ Master the critical naming pattern to avoid the #1 most common Code Mode error.
 
 ## 2. COMMON MISTAKES
 
+### Mistake 0: Assuming Every Manual Is an `mcp` Manual
+
+Read the manual's `call_template_type` in `.utcp_config.json` before deriving any name.
+The prefixing rule this document describes applies to **`mcp` manuals only**.
+
+| `call_template_type` | Callable form | Example |
+|----------------------|---------------|---------|
+| `mcp` | `{manual}.{manual}_{tool}` — the prefix is added | `aside.aside_repl()` |
+| `cli` | `{manual}.{tool}` — the manual declares its own tool names, so there is nothing to prefix | `magicpath.info()` |
+
+**❌ Wrong** — double-prefixing a `cli` manual:
+```typescript
+await magicpath.magicpath_info({});   // throws
+```
+
+**✅ Correct:**
+```typescript
+await magicpath.info({});
+```
+
+**Why this one is missed.** Nearly every registered manual is `mcp`, so the exception is
+invisible until it throws — and a wrong assumption here propagates into every example an
+author writes afterwards. Check the type; do not infer it from the majority.
+
+---
+
 ### Mistake 1: Missing Manual Prefix
 
 **❌ Wrong:**

@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-repo-rules-router/006-always-loaded-routing-compression",
+  "description": "Four sections of the always-loaded document were suspected of being routing content that had outgrown its value: the Gate 2 artifact trigger, the",
+  "keywords": [
+    "four",
+    "sections",
+    "always-loaded",
+    "document",
+    "suspected",
+    "routing",
+    "content",
+    "outgrown",
+    "value",
+    "gate",
+    "artifact",
+    "trigger"
+  ],
+  "lastUpdated": "2026-08-31T11:11:59.291Z",
+  "specId": "006",
+  "folderSlug": "always-loaded-routing-compression",
+  "parentChain": [
+    "agents",
+    "007-repo-rules-router"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

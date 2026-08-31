@@ -18,6 +18,8 @@
 
 #### The Four Laws — HARD BLOCKERS (cannot be overridden)
 
+> Expanded by [`scope-discipline.md`](repo-rules/scope-discipline.md) (Law 2), [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md) (Law 3), and [`root-cause.md`](repo-rules/root-cause.md) (Law 4).
+
 1. **READ FIRST** — Never edit a file without reading it first. Understand context before modifying.
 2. **SCOPE LOCK** — Only modify files explicitly in scope. **NO** "cleaning up" or "improving" adjacent code. Scope in `spec.md` is FROZEN.
 3. **VERIFY** — Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
@@ -26,6 +28,8 @@
 Law 4 blocks forward progress and completion while a check is failing. A failing check may enter the bounded remediation loop in Section 3, but the hard stop remains until the authoritative gate passes.
 
 #### PLAN-WORKFLOW LOCK — HARD BLOCKER (cannot be overridden)
+
+> Deviating from an approved plan is expanded by [`scope-discipline.md`](repo-rules/scope-discipline.md); the hard block itself is not overridable by any rule file.
 
 When an approved plan names a specific workflow, command, agent or skill (e.g., `/deep:research`, `@ai-council`, `sk-code`), that named workflow is **FROZEN like scope**.
 
@@ -42,6 +46,8 @@ When an approved plan names a specific workflow, command, agent or skill (e.g., 
 Never embed ephemeral artifact labels (spec paths, packet/phase numbers, ADR/REQ/task/finding ids) in code comments; keep the durable WHY.
 
 #### Halt Conditions — Stop and Report
+
+> Expanded by [`root-cause.md`](repo-rules/root-cause.md).
 
 Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 - Target file missing, or the Edit tool reports "string not found"
@@ -80,6 +86,8 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 4. Below the proceed bar → INVESTIGATE (max 3 iterations) → ESCALATE per §7.
 
 #### Confidence Thresholds
+
+> Expanded by [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md).
 
 | Confidence   | Action                                       |
 | --------------| ----------------------------------------------|
@@ -135,6 +143,8 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 ##### Core Principles
 
+> Registers are expanded by [`communication.md`](repo-rules/communication.md); blast radius by [`blast-radius.md`](repo-rules/blast-radius.md).
+
 1. **Spend lavishly where confirmation is cheapest to skip.** The expensive failures hide in the gap between green and reality, and between a doc and the truth.
 
 2. **Two registers:**
@@ -144,6 +154,8 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 3. **Follow the brief's intent, not just its letter;** when you deviate, record why. An undocumented deviation is the sin, not the deviation.
 
 ##### Blast-Radius Management
+
+> Expanded by [`blast-radius.md`](repo-rules/blast-radius.md).
 
 - **Match effort to blast-radius.** Open non-trivial work with stakes read ("low-blast, reversible" / "high-blast: touches auth + data").
 - **Name the rollback, stop for yes** — Before delete/overwrite/migrate/deploy/send, write how to undo and wait for confirmation.
@@ -156,6 +168,8 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 **Flow:** Parse request → Read files first → Analyze → Design simplest solution → Validate → Execute
 
 #### Execution Behavior
+
+> Expanded by [`scope-discipline.md`](repo-rules/scope-discipline.md) (plan before acting), [`overengineering.md`](repo-rules/overengineering.md) (the pre-write pass), and [`root-cause.md`](repo-rules/root-cause.md) (debugging and iteration).
 
 **Planning & Approach:**
 - **Plan before acting** on multi-step work. Decide which files to read first, which tools to use, and how the result will be verified before making changes.
@@ -183,6 +197,8 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 
 #### Quality Principles
 
+> Expanded by [`overengineering.md`](repo-rules/overengineering.md).
+
 - **Solve the stated problem, at the smallest size that solves it** — reuse existing patterns, cite evidence with sources, and let the pre-write pass above decide whether new code is warranted at all
 - **Prefer available project tools** — add a dependency only when the scoped result requires it
 - **Require fallbacks only for real constraints** — add a no-install path only when the target execution environment cannot rely on dependency installation
@@ -191,6 +207,8 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 - **Truth over agreement** — correct user misconceptions with evidence; never agree for conversational flow
 
 #### Restraint Signals
+
+> Expanded by [`overengineering.md`](repo-rules/overengineering.md).
 
 One table, not a checklist to recite. Each row is a signal the work is drifting off the stated problem; the response is what to do, not a line to say.
 
@@ -209,6 +227,8 @@ One table, not a checklist to recite. Each row is a signal the work is drifting 
 ## 4. ✅ VERIFICATION & COMPLETION
 
 ### Proof Standards
+
+> Expanded by [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md).
 
 ##### Verification Standards
 
@@ -234,6 +254,8 @@ One table, not a checklist to recite. Each row is a signal the work is drifting 
 ### 🔒 POST-EXECUTION GATES
 
 #### FINAL-STATE VERIFICATION [HARD] BLOCK
+
+> Expanded by [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md).
 Trigger: Before claiming a machine-state task is done or that its output works.
 1. Confirm every required artifact exists at the exact path and matches the required format.
 2. Rerun the objective proof plan and the authoritative workspace gate from the final state. Read the output and exit status.
@@ -306,50 +328,45 @@ Trigger: "save context", "save memory", `/memory:save`
 
 ##### Git Workspace Safety
 
-| Rule | Requirement |
-|------|-------------|
-| **Ask-first worktree vs. branch** | The AI must NEVER autonomously decide between creating a git worktree and working on the current branch. When a git workspace trigger fires (new feature, worktree, isolated workspace), ask the operator to explicitly choose **A) Create a git worktree** or **B) Work on current branch**, then wait for that choice before proceeding. |
-| **Branch naming** | sk-git owns branch and worktree naming: worktree-backed work and dedicated worktree-less branches each live in their own sequentially numbered namespace so names stay unique and legible, while release and reserved branches sit outside them. sk-git holds the exact grammar. |
-| **Allocate, never count** | The next number is issued only by sk-git's allocator, under a lock. Never hand-count existing worktrees or branches, or hand-pick a number, to guess the next one. |
-| **No direct branch creation** | Never create a branch with `git branch`, `git checkout -b`, or `git switch -c`. Branches are created only through sk-git's worktree and dedicated-branch commands. |
+> Publishing and reversibility are expanded by [`blast-radius.md`](repo-rules/blast-radius.md); `sk-git` owns the mechanics.
+
+| Rule                                                         | Requirement                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------| -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Ask-first worktree vs. branch**                            | The AI must NEVER autonomously decide between creating a git worktree and working on the current branch. When a git workspace trigger fires (new feature, worktree, isolated workspace), ask the operator to explicitly choose **A) Create a git worktree** or **B) Work on current branch**, then wait for that choice before proceeding.                                                                                              |
+| **Branch naming**                                            | sk-git owns branch and worktree naming: worktree-backed work and dedicated worktree-less branches each live in their own sequentially numbered namespace so names stay unique and legible, while release and reserved branches sit outside them. sk-git holds the exact grammar.                                                                                                                                                        |
+| **Allocate, never count**                                    | The next number is issued only by sk-git's allocator, under a lock. Never hand-count existing worktrees or branches, or hand-pick a number, to guess the next one.                                                                                                                                                                                                                                                                      |
+| **No direct branch creation**                                | Never create a branch with `git branch`, `git checkout -b`, or `git switch -c`. Branches are created only through sk-git's worktree and dedicated-branch commands.                                                                                                                                                                                                                                                                      |
 | **Ask before every push to a non-allowlisted remote branch** | Local branch and worktree creation stays unrestricted, but `origin` only ever receives release and reserved branches plus anything sk-git's allowlist permits, without asking. Every other push — new branch or update — needs a fresh, in-the-moment go-ahead; an explicit user push instruction counts as that go-ahead, a prior approval for an earlier push does not. sk-git documents the allowlist and the one-invocation bypass. |
-| **Live-sync in the main checkout** | sk-git can auto-publish commits to the live branch, safely reconcile clean local drift at session start, and auto-follow the live branch. Each leg has a documented disable flag. See sk-git for the flags and the model. |
-| **Git hooks enforce these rules** | The push policy and live-sync are not just conventions: sk-git installs and verifies git hooks that back them — a pre-push hook is the technical backstop for the remote-push policy, and commit-time and session-start hooks drive the live-sync legs. sk-git owns installing, checking, and disabling them. |
+| **Live-sync in the main checkout**                           | sk-git can auto-publish commits to the live branch, safely reconcile clean local drift at session start, and auto-follow the live branch. Each leg has a documented disable flag. See sk-git for the flags and the model.                                                                                                                                                                                                               |
+| **Git hooks enforce these rules**                            | The push policy and live-sync are not just conventions: sk-git installs and verifies git hooks that back them — a pre-push hook is the technical backstop for the remote-push policy, and commit-time and session-start hooks drive the live-sync legs. sk-git owns installing, checking, and disabling them.                                                                                                                           |
 
 #### Code Search Decision Tree
 
-Routing for each search need is in the decision tree below
+Match the need to a capability. Tool names differ per runtime — use whatever that runtime exposes for the capability, and verify it exists before relying on it.
 
-| Need | Use |
-| ------| -----|
-| Exact text / token / symbol | **Grep** — `rg -n "<pattern>" <path>` |
-| Known file or path | **Glob** |
-| Concept, intent, "how does X work", or unfamiliar code | **Grep** for likely vocabulary → **Glob** to map the surrounding tree → **Read** to confirm. Widen the pattern rather than trusting a single hit |
-| Bug or exact failure | **Grep** the exact error or symbol, identify callers and consumers, then **Read** the responsible files before editing |
+| Need | Capability |
+|------|-----------|
+| Exact text, token, or symbol | Content search (`Grep`, or `rg -n "<pattern>" <path>`) |
+| Known file or path | Path match (`Glob`, or `find`) |
+| Concept, intent, "how does X work", or unfamiliar code | Content search for likely vocabulary → path match to map the surrounding tree → read to confirm. **Widen the pattern rather than trusting a single hit** |
 
 #### Terminal Command Discipline
 
 - Use non-interactive commands and disable pagers. Never open an interactive editor from an automated session.
-- Follow the Grep, Glob, and Read routes above for workspace discovery and inspection. Terminal commands do not override specialized tool routing.
+- Follow the capability routes above for workspace discovery and inspection. Terminal commands do not override specialized tool routing.
 - Verify that commands, flags, APIs, and paths exist before relying on them. If an option is unsupported, inspect the available interface and change the command instead of repeating the guess.
 - Treat dependency installation as the scoped mutation defined under Blast-Radius Management; verify need and authority before running it.
 - Start long-running builds or downloads only after prerequisites, scope, and mutation gates pass. Read the final output and exit status.
 
 ### MCP Tool Routing
 
-**Two systems:**
+**Two systems.** Native MCP servers are registered per runtime (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`) and called directly. Code Mode manuals are registered in `.utcp_config.json` and called through `call_tool_chain()`. Read the config for the current roster; a list written here goes stale between commits.
 
-1. **Native MCP** (`opencode.json`) - Direct tools, called natively. Three servers registered — Spec Kit Memory (`system-spec-memory`), Skill Advisor (`system_skill_advisor`), and Code Mode. Enumerate their tools at runtime rather than from a count written here; counts drift between commits and nobody re-checks them.
+The Spec Kit Memory and Skill Advisor daemons also expose daemon-backed CLI front doors over the same tool surfaces. These are additive IPC clients, not separate servers and not replacements for the registered MCP transports.
 
-   The Spec Kit Memory and Skill Advisor daemons also have daemon-backed CLI front doors over the same tool surfaces. These CLIs are additive IPC clients, not separate MCP servers and not replacements for the registered MCP transports.
+**Enumerate at runtime, never from a written list.** `search_tools()`, `list_tools()` and `tool_info()` are the discovery surface. Naming is transport-dependent — `mcp-code-mode/references/naming-convention.md` owns the prefixing rules and the `cli`-manual exception.
 
-   Registration is uniform across runtimes: `opencode.json`, `.claude/mcp.json` (shared with Cursor) and `.codex/config.toml` each carry the same three servers (Spec Kit Memory, Skill Advisor, Code Mode). The former Sequential Thinking server has been decommissioned.
-
-2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - **Naming is transport-dependent — read the manual's `call_template_type` before calling it.** An `mcp` manual wraps a server whose tools Code Mode prefixes: `{manual}.{manual}_{tool}`, e.g. `aside.aside_repl()`. A `cli` manual declares its own tool names, so there is nothing to prefix: `{manual}.{tool}`, e.g. `magicpath.info()` — `magicpath.magicpath_info()` throws. Nearly every manual is `mcp`, which is exactly why the exception is missed and why guessing it wrong scales: one wrong assumption propagates into every example an author writes.
-   - **Verify, do not assume:** enumerate a manual's real callables at runtime — `search_tools()`, `list_tools()` and `tool_info()` are the in-repo discovery surface — rather than deriving a name from either pattern.
-   - **Registration is not availability.** A manual whose package or credential is missing contributes no tools and raises no error — the only symptom is a shorter list. Enumerate at runtime; never promise a manual from the config is live.
-   - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
+**Registration is not availability.** A manual whose package or credential is missing contributes no tools and raises no error — the only symptom is a shorter list. Never promise that a manual named in the config is live.
 
 ---
 
@@ -375,11 +392,15 @@ One rule stays here because it is prompt-time discipline no script enforces: **b
 
 #### Logic-Sync Protocol
 
+> Expanded by [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md).
+
 On contradiction (Spec vs Code, conflicting requirements) → HALT → Report "LOGIC-SYNC REQUIRED: [Fact A] contradicts [Fact B]" → Ask "Which truth prevails?"
 
 If implementation evidence conflicts with the approved spec, route the stop through an amendment decision rather than a workaround. Escalate once with the conflicting facts, a one-sentence root cause when known, and the decision needed.
 
 #### Escalation
+
+> Expanded by [`root-cause.md`](repo-rules/root-cause.md) (stuck on a failure) and [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) (stuck on a contradiction).
 
 Confidence stays <80% after two failed attempts → ask with 2-3 options. Blockers beyond control → escalate with evidence and proposed next step.
 
@@ -387,41 +408,17 @@ Confidence stays <80% after two failed attempts → ask with 2-3 options. Blocke
 
 ## 8. 🗣️ COMMUNICATION QUALITY
 
-> How responses read to the user. These rules shape delivery — they complement §3 "Two registers" and §7, and never soften the honesty and verification standards elsewhere in this document.
+**How a reply reads is governed by [`repo-rules/communication.md`](repo-rules/communication.md), and it fires on every substantive reply** — not only on complex ones. Load it before answering: sentence and paragraph shape, plain words, length, filler, verdict-first ordering, how to present a recommendation, the Ask→Do framing for an ambiguous request, and what to do when the reader says they did not follow.
 
-#### Writing
-
-- **One idea per sentence** — short, declarative, Subject-Verb-Object where it reads naturally. Split nested clauses into separate sentences rather than stacking them.
-- **Atomic paragraphs** — each chunk stands on its own. A point should not require reading the whole reply to land.
-- **Plain words by default** — reserve exact names for languages, frameworks, APIs, and dependencies. Introduce unavoidable jargon one term at a time, not in a wall.
-- **Cut filler** — no empty openers, restated summaries, vague warnings, or corporate/marketing language. Every sentence should carry information.
-- **Vary the rhythm** — vary sentence and paragraph length; prefer prose when a bulleted list would fragment a single point.
-- **Match length to the question** — a first answer rarely needs pages. Don't open with a wall of text when a few lines resolve it.
-- **Lead with the recommendation, but earn it** — state the verdict first, yet reach it by analysis. Do not optimize for early commitment; front-loading a conclusion must never bias which conclusion you reach. (Refines §3 "verdict first, then receipts.")
-
-#### Recommendations & Honesty
-
-- **Recommend one approach** — name the main trade-off; mention an alternative only when it could change the decision.
-- **Separate required from optional** — mark must-do work distinctly from nice-to-have.
-- **Name the failure a best practice prevents** — never cite a best practice, guardrail, or extra layer without stating the specific bug, cost, or user problem it avoids. No abstract "best practice."
-- **State assumptions when evidence is missing** — make the assumption visible instead of guessing silently.
-- **When the reader signals they did not understand, change modality, not volume** — "I don't follow", "what?", "too abstract" all count; re-explaining at greater length rarely helps. Route to `sk-communication`: `/rewrite:response` for plainer wording, `/rewrite:explain-visually` for a diagram at a chosen depth. That skill is held off advisor routing on purpose, so this rule is the only thing that reaches it — and the closing caveat below does not waive it.
-
-#### Turn Framing — Ask→Do
-
-For a complex or ambiguous request, preface the answer:
-
-1. **ASK** — restate the request in your own words (a paraphrase back, not a question back).
-2. **DO** — state your approach in 3-7 bullets.
-3. **THEN** — ask only the 1-2 clarifying questions that would change the approach (consolidate per §2 Consolidated Question Protocol; escalate per §7).
-
-> These shape delivery, not rigor. Over-constraining voice backfires — it makes answers hedged and timid. When honoring a rule here would weaken the answer, keep the answer.
+Two things stay here because they bind regardless of what loads. **Delivery never softens rigor** — no rule about how a reply reads may weaken a claim, a caveat, or a verification standard from §4. And **voice is not a performance**: over-constraining it produces hedged, timid answers, so when honoring a delivery rule would weaken the answer, keep the answer.
 
 ---
 
 ## 9. 🤖 AGENT ROUTING
 
 ### Agent Routing
+
+> The posture to hold when delegating is expanded by [`delegation-and-orchestration.md`](repo-rules/delegation-and-orchestration.md); routing itself stays here.
 
 When using the orchestrate agent or Task tool for complex multi-step workflows, route to specialized agents.
 
@@ -450,34 +447,38 @@ Any agent writing authored spec-folder docs MUST use contract-backed templates a
 
 ### Quick Reference: Common Workflows
 
-| Task                              | Flow                                                                                                                                                    |
-| -----------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Resume prior work**             | `/speckit:resume` → rebuild via the continuity ladder (`handover.md` → `_memory.continuity` → canonical spec docs)                                      |
-| **New spec folder**               | Gate 3 Option B → research (Task tool) → evidence-based plan → approval → implement                                                                     |
-| **Code work**                     | `sk-code` → smart router auto-detects the stack → implement → quality gate → debug → verify                                                             |
-| **Repo-local rules**              | Gate 5 → `REPO RULES.md` (when the repo has one) → match the action in its trigger table → load the one `repo-rules/*.md` it names                      |
-| **Design reference extraction**   | `sk-design-md-generator` (measure a live site's CSS into a v3 Style Reference DESIGN.md); `mcp-figma` transport for Figma sources → build via `sk-code` |
-| **Research / exploration**        | `memory_match_triggers()` → `memory_context()` (unified) or `memory_search()` (targeted)                                                                |
-| **Git workflow**                  | `sk-git` → worktree / commit / finish (PR); see §5 Git Workspace Safety                                                                                 |
-| **Prompt improvement**            | `sk-prompt`, dispatched by `/prompt:improve`                                                                                                            |
-| **Markdown writing**              | `@markdown` or `/create:*` → `sk-doc` template → write                                                                                                  |
-| **Documentation quality**         | `sk-doc` → classify → template → validate → DQI score                                                                                                   |
-| **Phase workflow**                | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → decompose → plan first child                                                         |
-| **Context retrieval**             | `@context` (one-shot); `/deep:research` and `/deep:review` carry bounded snapshots                                                                      |
-| **Deep research**                 | `/deep:research` → loop → convergence → synthesize → memory save                                                                                        |
-| **Deep review**                   | `/deep:review` → loop → convergence → `review-report.md` → memory save                                                                                  |
-| **Deep AI Council**               | `/deep:ai-council` → deliberate → critique → converge → artifacts → gate                                                                                |
-| **Deep improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement`                                           |
-| **Claim completion**              | Final-State Verification → `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata                                              |
-| **Save context**                  | `/memory:save`, or compose JSON → `generate-context.js`                                                                                                 |
-| **End session**                   | `/memory:save` → `handover.md` update → continuation prompt                                                                                             |
-| **Memory DB admin**               | `/memory:manage` → stats, health, cleanup, retention, validate, ingest                                                                                  |
-| **Analysis / evaluation**         | `/memory:search` → preflight, causal graph, ablation, dashboard, history                                                                                |
-| **Doctor surface**                | `/doctor <target>` diagnostics/repairs; `/doctor:mcp install/debug`; `/doctor:update`                                                                   |
+Entry points only. Where a Flow column is present it names an order that is not obvious from the command itself; where it is absent, the command's own documentation is the authority and repeating it here only creates a second copy to go stale.
+
+| Task | Entry point | Order that matters |
+|------|-------------|--------------------|
+| **Resume prior work** | `/speckit:resume` | The continuity ladder: `handover.md` → `_memory.continuity` → canonical spec docs |
+| **New spec folder** | Gate 3 Option B | research → evidence-based plan → approval → implement |
+| **Code work** | `sk-code` | implement → quality gate → debug → verify |
+| **Repo-local rules** | Gate 5 → `REPO RULES.md` | match the action in the trigger table → load the one `repo-rules/*.md` it names |
+| **Design reference extraction** | `sk-design-md-generator`; `mcp-figma` for Figma sources | measure → build via `sk-code` |
+| **Research / exploration** | `memory_match_triggers()` | then `memory_context()` (unified) or `memory_search()` (targeted) |
+| **Git workflow** | `sk-git` | worktree → commit → finish (PR); see §5 Git Workspace Safety |
+| **Prompt improvement** | `/prompt:improve` → `sk-prompt` | — |
+| **Markdown writing** | `@markdown` or `/create:*` | route through `sk-doc` for the template before writing |
+| **Documentation quality** | `sk-doc` | classify → template → validate → DQI score |
+| **Phase workflow** | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` | decompose → plan first child |
+| **Context retrieval** | `@context` (one-shot) | `/deep:research` and `/deep:review` carry their own bounded snapshots |
+| **Deep research** | `/deep:research` | loop → convergence → synthesize → memory save |
+| **Deep review** | `/deep:review` | loop → convergence → `review-report.md` → memory save |
+| **Deep AI Council** | `/deep:ai-council` | deliberate → critique → converge → artifacts → gate |
+| **Improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` | — |
+| **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
+| **Save context** | `/memory:save`, or compose JSON → `generate-context.js` | — |
+| **End session** | `/memory:save` | → `handover.md` update → continuation prompt |
+| **Memory DB admin** | `/memory:manage` | — |
+| **Analysis / evaluation** | `/memory:search` | — |
+| **Doctor surface** | `/doctor <target>`; `/doctor:mcp install\|debug`; `/doctor:update` | — |
 
 #### Operational Mandates
 
 ##### Documentation & Honesty
+
+> Expanded by [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md).
 | Mandate                  | Details                                                |
 | --------------------------| --------------------------------------------------------|
 | **Never fabricate**      | Use "UNKNOWN" when uncertain                           |
@@ -486,12 +487,16 @@ Any agent writing authored spec-folder docs MUST use contract-backed templates a
 
 ##### Dispatch Rules
 
+> The posture a dispatch requires is expanded by [`delegation-and-orchestration.md`](repo-rules/delegation-and-orchestration.md); the CLI contracts stay here.
+
 | Rule                  | Requirement                                                                                                           |
 | -----------------------| -----------------------------------------------------------------------------------------------------------------------|
 | **CLI dispatch**      | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first.  |
 | **Agent I/O pointer** | Optional dispatch headers documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`. |
 
 ##### Communication
+
+> Expanded by [`communication.md`](repo-rules/communication.md).
 
 - **At a fork, lead with your recommendation** and alternatives weighed, grounded in project data.
 - **Close substantive turns with honest status:** what ran/read and result, what's inferred, what only user can verify; committed vs pushed vs dirty.

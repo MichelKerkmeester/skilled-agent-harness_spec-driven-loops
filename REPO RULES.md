@@ -42,6 +42,7 @@ is not.
 | Delete, overwrite, migrate, deploy, publish, send, install · force-push or rewrite history · change a shared contract · touch auth, data, or config | [`blast-radius.md`](repo-rules/blast-radius.md) | Reversibility, the rollback sentence, when to stop for a yes |
 | Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch | [`root-cause.md`](repo-rules/root-cause.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
 | Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true | [`uncertainty-and-honesty.md`](repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
+| Write any substantive reply · present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · the reader says they did not follow | [`communication.md`](repo-rules/communication.md) | How a reply reads: sentence shape, length, filler, verdict-first order, Ask→Do framing |
 
 ---
 
@@ -56,6 +57,7 @@ is not.
 | [Blast radius](repo-rules/blast-radius.md) | Size effort to what the change can break; no irreversible step without a named rollback and a yes. |
 | [Root cause](repo-rules/root-cause.md) | Fix the producer, not the symptom; every fix names the mechanism. |
 | [Uncertainty and honesty](repo-rules/uncertainty-and-honesty.md) | Never fabricate; mark the confidence you actually have. |
+| [Communication](repo-rules/communication.md) | Write so the reader can act after one pass: one idea per sentence, verdict first, nothing that does not carry information. |
 
 Each file expands `AGENTS.md` and is bounded by it: where a rule file appears to
 permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wrong.
@@ -65,7 +67,10 @@ permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wr
 ## 4. SCOPE OF THIS DOCUMENT
 
 **In:** how to think and act — restraint, scope, evidence, risk, diagnosis, honesty,
-and the posture to hold when work is handed to another runtime.
+the posture to hold when work is handed to another runtime, and how the resulting reply
+reads. Delivery joined the list when `AGENTS.md` §8 moved down; it is the one rule here
+whose trigger is every substantive reply rather than a specific action, and §8 keeps the
+two clauses that must bind even when nothing loads.
 
 **Out:** skill routing, workflow selection, spec-folder mechanics, and the *mechanics*
 of agent and CLI dispatch — which agent, which command, which model, which flags.

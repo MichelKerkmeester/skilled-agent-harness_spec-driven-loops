@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-repo-rules-router/005-communication-rule-and-cross-references",
+  "description": "Two problems, one cause",
+  "keywords": [
+    "two",
+    "problems",
+    "one",
+    "cause"
+  ],
+  "lastUpdated": "2026-08-31T10:30:28.032Z",
+  "specId": "005",
+  "folderSlug": "communication-rule-and-cross-references",
+  "parentChain": [
+    "agents",
+    "007-repo-rules-router"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

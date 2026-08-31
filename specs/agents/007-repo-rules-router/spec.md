@@ -219,6 +219,8 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 | 2 | 002-delegation-orchestration-rule/ | Seventh rule file: delegating work to another CLI runtime or agent requires the orchestrate posture, not a single model's opinion | Complete |
 | 3 | 003-disposition-and-gap-research/ | 5-iteration deep-research pass on rule-set gaps, `AGENTS.md` changes, and what the retired Fable governor disposition is worth as a rule | Complete |
 | 4 | 004-research-adoption/ | Adopt phase 3's ranked verdict: create, edit, or explicitly decline each recommendation | Complete |
+| 5 | 005-communication-rule-and-cross-references/ | Move `AGENTS.md` §8 into an eighth rule file, and give every `AGENTS.md` section that has a governing rule a pointer to it | Complete |
+| 6 | 006-always-loaded-routing-compression/ | Compress the three routing sections of `AGENTS.md` on an independent review, and retire the decommissioned MCP server from the skill that still documented it | Complete |
 
 ### Phase Transition Rules
 
@@ -234,5 +236,9 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 | 001-header-format-and-dividers | 002-delegation-orchestration-rule | Every numbered header in the seven governance files is uppercase, every numbered section is divider-separated, and no rule sentence changed | `grep -cE '^## [0-9]+\. [A-Z0-9 ,\`'"'"'-]+$'` equals the numbered-header count per file; `git diff --word-diff` shows heading-line and blank-line changes only |
 | 002-delegation-orchestration-rule | 003-disposition-and-gap-research | `repo-rules/delegation-and-orchestration.md` exists in the phase-1 format, and the router's trigger table and index both link to it | Link resolves on disk; router row count rises from 6 to 7 in both tables |
 | 003-disposition-and-gap-research | 004-research-adoption | 5 iterations recorded in `research/deep-research-state.jsonl`, and `research/research.md` carries a ranked recommendation list where every item is accept, decline, or defer | Iteration count read from the state log; each recommendation names the file it would change |
-| 004-research-adoption | — | Every phase-3 recommendation has a recorded disposition, and every accepted one is implemented and validated | `validate.sh --recursive --strict` on the parent returns `RESULT: PASSED` for all folders |
+| 004-research-adoption | 005-communication-rule-and-cross-references | Every phase-3 recommendation has a recorded disposition, and every accepted one is implemented and validated | `validate.sh --recursive --strict` on the parent returns `RESULT: PASSED` for all folders |
+| 005-communication-rule-and-cross-references | 006-always-loaded-routing-compression | `AGENTS.md` §8 is a pointer, `repo-rules/communication.md` carries what it held, and every `AGENTS.md` section with a governing rule names that rule | Section-8 line count drops from 34 to a pointer; a pointer audit finds no section with a governing rule that fails to name it |
+| 006-always-loaded-routing-compression | — | The four routing candidates are dispositioned on independent evidence, no dead command or decommissioned server is named anywhere outside `specs/`, and every surviving reference resolves | Byte delta measured against the prior commit; command and link resolution sweeps return clean |
+| 004-research-adoption | 005-communication-rule-and-cross-references | [Criteria TBD] | [Verification TBD] |
+| 005-communication-rule-and-cross-references | 006-always-loaded-routing-compression | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->

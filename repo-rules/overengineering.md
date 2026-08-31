@@ -1,3 +1,32 @@
+---
+title: "Rule: Overengineering"
+description: "Build the smallest thing that solves the stated problem; take a costlier move only by naming what fails at the cheaper one."
+trigger_phrases:
+  - "restraint ladder"
+  - "reversal cost order"
+  - "does this need to exist"
+  - "build nothing"
+  - "future proof"
+  - "might need it later"
+  - "flexible"
+  - "best practice"
+  - "while we're here"
+  - "premature abstraction"
+  - "DRY it up"
+  - "two is not a pattern"
+  - "speculative optimization"
+  - "add a config option"
+  - "add a dependency"
+  - "feature flag"
+  - "new abstraction layer"
+  - "pre-write pass"
+  - "climbing sentence"
+  - "fallback for a constraint that does not exist"
+importance_tier: important
+contextType: reference
+version: 1.0.0.0
+---
+
 # Rule: Overengineering
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before the first write of anything new.

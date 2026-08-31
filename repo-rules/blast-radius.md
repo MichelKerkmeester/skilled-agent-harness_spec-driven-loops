@@ -1,3 +1,28 @@
+---
+title: "Rule: Blast radius and reversibility"
+description: "Size effort to what the change can break; no irreversible step without a named rollback and a yes."
+trigger_phrases:
+  - "reversibility ladder"
+  - "rollback sentence"
+  - "stakes read"
+  - "stop for a yes"
+  - "irreversible"
+  - "force push"
+  - "rewrite history"
+  - "delete overwrite migrate deploy"
+  - "sending is publishing"
+  - "overwriting an untracked file"
+  - "persistence boundaries"
+  - "who still speaks the old contract"
+  - "installing is a mutation"
+  - "reversible decisions are cheap"
+  - "decision velocity"
+  - "name the rollback first"
+importance_tier: important
+contextType: reference
+version: 1.0.0.0
+---
+
 # Rule: Blast radius and reversibility
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before the action, not after it.

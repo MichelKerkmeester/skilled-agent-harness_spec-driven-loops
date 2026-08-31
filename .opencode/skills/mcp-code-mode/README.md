@@ -39,7 +39,7 @@ Code Mode replaces that upfront load with progressive disclosure. The AI sees on
 
 Code Mode is the execution engine that all the other `mcp-*` skills build on. It wraps every external MCP tool behind a single `call_tool_chain` call that runs TypeScript in a sandboxed V8 isolate. You search for tools with `search_tools`, confirm the callable signature with `tool_info`, write your tool calls inside a `call_tool_chain({ code: "..." })` block and return structured results. The four core tools are `search_tools`, `list_tools`, `tool_info` and `call_tool_chain`. Auxiliary runtime tools such as `register_manual` and `get_required_keys_for_tool` handle dynamic server registration and credential checks, keeping the context about 98% smaller than a full upfront schema load.
 
-Code Mode does not reach native MCP servers registered in `opencode.json`. Spec Kit Memory, Skill Advisor, Sequential Thinking and Code Graph are called directly. Code Mode is also not for local file operations. Its boundary is `.utcp_config.json` tools only.
+Code Mode does not reach native MCP servers registered in `opencode.json`. Spec Kit Memory, Skill Advisor and Code Graph are called directly. Code Mode is also not for local file operations. Its boundary is `.utcp_config.json` tools only.
 
 ### The Tool Surface
 
@@ -142,7 +142,7 @@ Code Mode prefixes every environment variable with the manual name from `.utcp_c
 
 Reach for Code Mode whenever you need to call an external MCP tool: ClickUp for task management, Figma for design files, MyService for CMS operations, Notion for documentation, Chrome DevTools for browser automation or any other server registered in `.utcp_config.json`. Reach for it too when you need to chain several of those tools into a single workflow.
 
-Skip Code Mode for native MCP tools in `opencode.json` (Spec Kit Memory, Skill Advisor, Sequential Thinking, Code Graph), for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
+Skip Code Mode for native MCP tools in `opencode.json` (Spec Kit Memory, Skill Advisor, Code Graph), for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
 
 ### Related Skills
 
@@ -175,7 +175,7 @@ All three MCP tool skills below nest under the `mcp-tooling` parent hub as workf
 
 A: Use `call_tool_chain` for every tool registered in `.utcp_config.json`. Call native MCP tools from `opencode.json` directly. File operations (Read, Write, Edit, Grep, Glob, Bash) always go direct. The boundary is simple: if the tool exists because of an entry in `.utcp_config.json`, it goes through Code Mode.
 
-**Q: Why does `list_tools()` not show Sequential Thinking, Spec Kit Memory, Skill Advisor or Code Graph?**
+**Q: Why does `list_tools()` not show Spec Kit Memory, Skill Advisor or Code Graph?**
 
 A: Those are native MCP tools in `opencode.json`. Code Mode discovery tools only see what is registered in `.utcp_config.json`. Native MCP tools are called directly by their function name and never appear in Code Mode tool listings.
 

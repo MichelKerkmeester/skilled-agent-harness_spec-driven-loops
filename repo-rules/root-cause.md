@@ -1,3 +1,29 @@
+---
+title: "Rule: Root cause and debugging"
+description: "Fix the producer, not the symptom; every fix names the mechanism that caused the failure."
+trigger_phrases:
+  - "fix the producer not the symptom"
+  - "name the mechanism"
+  - "symptom fix smells"
+  - "special case"
+  - "add a retry"
+  - "add a sleep"
+  - "broadened catch"
+  - "loosen the assertion"
+  - "never weaken a check"
+  - "make the red green"
+  - "it's a flake"
+  - "infra problem"
+  - "pre-existing failure"
+  - "not caused by my change"
+  - "second attempt at the same fix"
+  - "level up to the seam"
+  - "stuck escalation format"
+importance_tier: important
+contextType: reference
+version: 1.0.0.0
+---
+
 # Rule: Root cause and debugging
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load when something is red.

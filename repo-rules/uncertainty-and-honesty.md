@@ -1,3 +1,28 @@
+---
+title: "Rule: Uncertainty and honest reporting"
+description: "Never fabricate; mark the confidence you actually have and halt on a contradiction."
+trigger_phrases:
+  - "confidence bands"
+  - "UNKNOWN is a real answer"
+  - "I'm uncertain about this"
+  - "truth over agreement"
+  - "correct the operator"
+  - "don't agree for conversational flow"
+  - "contradiction halt"
+  - "logic sync"
+  - "two things that must both be true"
+  - "plausible guess"
+  - "never fabricate"
+  - "never invent a value"
+  - "correcting yourself"
+  - "two registers"
+  - "when to qualify"
+  - "hedge that changes nothing"
+importance_tier: important
+contextType: reference
+version: 1.0.0.0
+---
+
 # Rule: Uncertainty and honest reporting
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load when you do not know.

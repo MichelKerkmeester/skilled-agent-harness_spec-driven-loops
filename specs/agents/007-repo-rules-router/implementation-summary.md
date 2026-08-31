@@ -163,6 +163,7 @@ restated here:
 | 002 | Added the seventh rule, `delegation-and-orchestration.md`, and corrected the router's scope statement, which had excluded agent dispatch outright | `002-delegation-orchestration-rule/implementation-summary.md` |
 | 003 | Ran five research iterations on a DeepSeek V4 Flash Max executor over the rule set, `AGENTS.md`, and the retired governor directive | `003-disposition-and-gap-research/research/research.md` |
 | 004 | Verified and dispositioned all ten recommendations; six rule files gained a section, one lost a contradicting table, `AGENTS.md` was untouched | `004-research-adoption/adoption-decisions.md` |
+| 005 | Moved `AGENTS.md` §8 into an eighth rule and gave every governed section a pointer to the rule that expands it | `005-communication-rule-and-cross-references/implementation-summary.md` |
 
 **What the packet's own claims look like after this.** SC-003 said a seventh rule should
 cost exactly two router edits and no change to an existing rule file. The rows held; the
@@ -170,8 +171,9 @@ scope statement did not, and phase 2 records that as an amendment rather than a 
 error. NFR-C01's claim that the always-loaded surface grows by zero lines still holds -
 `AGENTS.md` gained GATE 5 in the baseline and nothing since.
 
-The rule set is seven files. It gained one and subtracted a table, which is the shape a
-review should produce.
+The rule set is eight files. It gained two, subtracted a table, and the always-loaded
+document is ten lines longer than it started — section 8 shrank by 26 and eighteen
+pointers cost 36. Discoverability was bought with lines, not saved with them.
 <!-- /ANCHOR:phased-extension -->
 
 <!-- ANCHOR:limitations -->

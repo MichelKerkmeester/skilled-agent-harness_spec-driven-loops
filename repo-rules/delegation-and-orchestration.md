@@ -1,3 +1,32 @@
+---
+title: "Rule: Delegation and orchestration"
+description: "Delegating makes you the orchestrator; brief with evidence, and no single model verdict closes a question."
+trigger_phrases:
+  - "orchestrate posture"
+  - "one model is one opinion"
+  - "second lens"
+  - "diverge the lens"
+  - "the brief carries evidence"
+  - "don't put the conclusion in the brief"
+  - "accepting a return"
+  - "the delegate said complete"
+  - "verify the citation"
+  - "scope travels with the work"
+  - "bind write authority"
+  - "read the executor contract"
+  - "delegate or not"
+  - "cheaper to just do it"
+  - "repair loop for a failed check"
+  - "two delegates disagree"
+  - "fan out lineage"
+  - "sub-agent"
+  - "CLI executor"
+  - "deep loop"
+importance_tier: important
+contextType: reference
+version: 1.0.0.0
+---
+
 # Rule: Delegation and orchestration
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before work leaves your hands.

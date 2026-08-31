@@ -37,7 +37,6 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 - ❌ File discovery (use Glob tool)
 - ❌ Bash commands (use Bash tool)
 - ❌ Continuity recovery (use `/speckit:resume` first; only use native Spec Kit Memory tools after `handover.md -> _memory.continuity -> spec docs` has been exhausted)
-- ❌ Sequential Thinking (call `sequential_thinking_sequentialthinking()` directly - **NATIVE MCP**)
 
 > See Section 4 for details on Native MCP vs Code Mode distinction.
 
@@ -54,7 +53,6 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 ---
 
 ## 2. SMART ROUTING
-
 
 ### Resource Loading Levels
 
@@ -273,10 +271,9 @@ Full multi-tool examples live in [references/workflows.md](references/workflows.
 **IMPORTANT**: Code Mode only accesses tools in `.utcp_config.json`. Native MCP tools are NOT accessed through Code Mode.
 
 **1. Native MCP** (`opencode.json`) - Direct tools (call directly, NOT through Code Mode):
-- **Sequential Thinking**: `sequential_thinking_sequentialthinking()`
 - **Spec Kit continuity + memory**: `/speckit:resume` for recovery; native Spec Kit Memory tools such as `session_bootstrap()`, `session_resume()`, `memory_context()`, and `memory_search()` when canonical packet sources need deeper support
 - **Code Mode server**: The Code Mode tool itself
-- **Note**: Some AI environments have built-in extended thinking capabilities that may supersede Sequential Thinking MCP.
+- **Note**: Some AI environments have built-in extended thinking capabilities, which is why the former Sequential Thinking server was decommissioned rather than replaced.
 
 **2. Code Mode MCP** (`.utcp_config.json`) - External tools accessed through Code Mode:
 - **MCP Config**: `.utcp_config.json` (project root)
@@ -287,7 +284,7 @@ Full multi-tool examples live in [references/workflows.md](references/workflows.
 ### How to Discover Available Code Mode Tools
 
 **These discovery methods ONLY work for Code Mode tools in `.utcp_config.json`**
-**They do NOT show Sequential Thinking (which is in `.mcp.json`)**
+**They show only Code Mode manuals — never a natively registered MCP server**
 
 **Step 1: Check Configuration**
 ```typescript
@@ -296,8 +293,8 @@ Full multi-tool examples live in [references/workflows.md](references/workflows.
 // Each object has a "name" field (this is the manual name)
 // Check "disabled" field - if true, server is not active
 
-// NOTE: Sequential Thinking is NOT in this file
-// Sequential Thinking is in .mcp.json and called directly
+// NOTE: natively registered MCP servers are NOT in this file;
+// they are called directly, never through Code Mode
 ```
 
 **Step 2: Use Progressive Discovery**
@@ -318,7 +315,7 @@ const info = await tool_info({
 
 // NOTE: These discovery tools are part of Code Mode
 // They only show tools configured in .utcp_config.json
-// Sequential Thinking will NOT appear in these results
+// Natively registered MCP servers will NOT appear in these results
 ```
 
 ### Critical Naming Convention (Code Mode Tools Only)
@@ -326,12 +323,6 @@ const info = await tool_info({
 **See Section 3: Critical Naming Pattern for the complete guide.**
 
 **Quick reminder**: `{manual_name}.{manual_name}_{tool_name}` (e.g., `myservice.myservice_sites_list()`)
-
-**Sequential Thinking Exception**:
-- NOT in `.utcp_config.json` - uses native MCP tools
-- Call directly: `sequential_thinking_sequentialthinking()`
-- Does NOT use `call_tool_chain()`
-- Sequential Thinking MCP provides structured reasoning for complex multi-step problems.
 
 ### Configuration Structure
 
@@ -358,9 +349,9 @@ See [env-template.md](assets/env-template.md) for complete examples.
 
 ### How to Check Active Code Mode Servers
 
-**IMPORTANT**: This only shows Code Mode servers in `.utcp_config.json`, NOT Sequential Thinking
+**IMPORTANT**: This only shows Code Mode manuals in `.utcp_config.json`, never a natively registered server
 
-Run `list_tools()` through Code Mode and group returned names by the prefix before the first dot. Sequential Thinking is native MCP and will not appear.
+Run `list_tools()` through Code Mode and group returned names by the prefix before the first dot. Natively registered servers will not appear.
 
 ---
 

@@ -1,3 +1,30 @@
+---
+title: "Rule: Scope discipline"
+description: "The requested scope is the deliverable; adjacent problems get named, not fixed."
+trigger_phrases:
+  - "frozen scope"
+  - "scope lock"
+  - "scope drift"
+  - "out of scope"
+  - "in scope"
+  - "while I was in there"
+  - "noticed in passing"
+  - "adjacent defect"
+  - "adjacent code cleanup"
+  - "touch a file outside the ask"
+  - "rename reformat delete"
+  - "deviate from the approved plan"
+  - "amendment over absorption"
+  - "plan before acting"
+  - "what needs a yes first"
+  - "no early stop"
+  - "natural checkpoint"
+  - "good stopping point"
+importance_tier: important
+contextType: reference
+version: 1.0.0.0
+---
+
 # Rule: Scope discipline
 
 > Routed from [`REPO RULES.md`](../REPO%20RULES.md). Load before touching anything you were not asked to touch.
