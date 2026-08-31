@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Thirteen blocking gates across three hooks",
     "created_at": "2026-08-31T02:55:45Z",
-    "last_save_at": "2026-08-31T03:00:23.672Z",
+    "last_save_at": "2026-08-31T03:30:31.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:993dcc44baa24a169cba602504c4c0441c4c1191a1f716abbc4c3a8b0ec9597e",
+    "source_fingerprint": "sha256:cebc0ebc0c9440efef49f269ea3a2da0d5f7ba76e4bd87f20e058bf0ffb3f5b0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65f22056240fb6c5f7a706308066da981a1f699f54074c8a2a6c5ca62c4fb46d",
+      "spec.md": "653e6efabcee69c99376b15242f33a40b5f1305621dbfcd82d8b9bc2d215c7d8",
       "plan.md": "7c16c2e594e92bf299c4c9f777e357556ecefc6af764f9c631921e177e8d2003",
       "tasks.md": "08ba4d0398cc9d9db47cdd1cf7e2eb56db44ef0f244d2e32b8cc1c5a5f79d7f9",
-      "implementation-summary.md": "ec9a806b2cbd6f5283ced0d24d6663435ab98334d450215dd125f63cc83ee1e5"
+      "implementation-summary.md": "44c0168b0e59bc82ca10b338479cdc2ae446c391990b3b50613aa526b72892a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

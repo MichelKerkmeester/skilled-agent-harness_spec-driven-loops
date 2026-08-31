@@ -59,9 +59,11 @@ Thirteen blocking gates across three hooks. Three independent reviews measured t
 repository's history rather than against intuition, and the count turned out to be the least
 interesting thing about them.
 
-**Three gates were not working as believed.** The emergency off-switch is documented in the
-config file as `MK_GIT_COMMIT_HOOKS_DISABLED`, but the shell resolver only ever constructs
-`SYSTEM_<CONCERN>_DISABLED` and carries no alias table, so uncommenting that line did nothing.
+**Two gates were not working as believed, and a third defect was not in the repository.** The
+machine-local `hook-flags.env` is written in an older `MK_` dialect the shell resolver never
+constructs, so every switch in it was inert — but the tracked example already used the correct
+`SYSTEM_` prefix, so the drift was between a gitignored file and its template, with nothing
+comparing them.
 The MCP mutation gate's trigger is anchored one path segment deep; a hub reorganisation moved
 nineteen of twenty-one guarded scripts a level below what it can match, so it reported green on a
 surface it never looked at. The tool-ownership lint had no path trigger at all, running on every
@@ -97,8 +99,9 @@ its concern.
 - A force-push guard. `git push --force` is unguarded and neither branch is protected, which is
   the one genuinely irreversible operation — the operator declined to add a guard, and adding one
   unasked would be a different change than the one requested.
-- The three gates whose CI is `pull_request`-only. Their workflows have effectively never run,
-  so cutting them would delete enforcement rather than move it.
+- The three gates whose CI is `pull_request`-only. That is narrower than push coverage, but those
+  workflows do run — they last fired on 2026-08-29 — so the gates are redundancy, kept as cheap
+  diff-scoped duplication rather than as sole enforcement.
 
 ### Files to Change
 
@@ -204,6 +207,6 @@ its concern.
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- The three `pull_request`-only workflows still never run. Either give them a `push:` trigger or accept that their gates are the sole enforcement.
+- The three `pull_request`-only workflows cover pull requests only. A `push:` trigger would make their local gates cuttable; leaving them narrow keeps the duplication.
 - Nothing guards a force-push, and neither branch is protected. Declined here; still true.
 <!-- /ANCHOR:questions -->
