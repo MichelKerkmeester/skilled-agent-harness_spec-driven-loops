@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,7 +21,8 @@ This is sk-doc's second-layer (surface) router, first-class at the hub root as
 `ROUTER.md`. The hub selects a workflow mode in [`hub-router.json`](hub-router.json)
 (sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command,
 sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark,
-sk-create-diagram, sk-create-changelog, sk-create-diff, or sk-create-quality-control);
+sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule, or
+sk-create-quality-control);
 this doc maps a request's documentation/authoring intent to the exact packet-local
 leaf resources that mode should load. Every path is either packet-qualified
 (`<packet>/references|assets/…`) or an authored shared-alias disk path (`shared/…`),
@@ -80,6 +81,12 @@ emits leaf paths, and this router never re-decides the mode.
 - **diff leaves** — the diff README, workflow, and worked example a request to
   produce a before/after document diff loads. Fired by "document diff / before
   and after diff / visual document diff" requests.
+- **repo-rule leaves** — the four decision tests, the rule anatomy contract, the
+  creation standards, the wiring contract, the rule and router templates, and the
+  packet reference map a
+  request to add, change, or remove a repo-local rule loads. Fired by "repo rule /
+  project rule / REPO RULES.md / trigger table / retire a repo rule" requests. Most such
+  requests end in a refusal, so `decision-tests.md` is the always-loaded leaf.
 - **full-inventory leaves** — the entire sk-doc toolkit. `FULL_INVENTORY` is the
   single explicit full-toolkit intent; no other intent enumerates the whole hub.
   Fired only by an explicit "show the full sk-doc toolkit / everything sk-doc
@@ -114,6 +121,7 @@ INTENT_SIGNALS = {
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version"]},
     "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "model benchmark", "skill benchmark"]},
     "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff"]},
+    "REPO_RULE": {"weight": 4, "keywords": ["repo rule", "repo-rules", "repo rules", "project rule", "repo rule file", "REPO RULES.md", "trigger table", "rule router", "retire a rule", "retire a repo rule", "revise a rule", "revise a repo rule", "add a repo rule", "always-loaded rule", "rule that binds"]},
     "FULL_INVENTORY": {"weight": 4, "keywords": ["full sk-doc toolkit", "all templates", "show the full", "entire toolkit", "everything sk-doc offers"]},
 }
 
@@ -173,6 +181,15 @@ RESOURCE_MAP = {
         "sk-create-diff/references/README.md",
         "sk-create-diff/references/workflow.md",
         "sk-create-diff/references/worked-example.md"
+    ],
+    "REPO_RULE": [
+        "sk-create-repo-rule/references/decision-tests.md",
+        "sk-create-repo-rule/references/rule-anatomy.md",
+        "sk-create-repo-rule/references/creation-standards.md",
+        "sk-create-repo-rule/references/agents-md-integration.md",
+        "sk-create-repo-rule/assets/repo-rule-template.md",
+        "sk-create-repo-rule/assets/repo-rules-router-template.md",
+        "sk-create-repo-rule/references/README.md"
     ],
     "FULL_INVENTORY": [
         "sk-create-agent/assets/agent-template.md",
@@ -262,6 +279,13 @@ RESOURCE_MAP = {
         "sk-create-readme/references/readme/quality-and-checklist.md",
         "sk-create-readme/references/readme/types-and-voice.md",
         "sk-create-readme/references/readme/writing-patterns.md",
+        "sk-create-repo-rule/assets/repo-rule-template.md",
+        "sk-create-repo-rule/assets/repo-rules-router-template.md",
+        "sk-create-repo-rule/references/README.md",
+        "sk-create-repo-rule/references/agents-md-integration.md",
+        "sk-create-repo-rule/references/creation-standards.md",
+        "sk-create-repo-rule/references/decision-tests.md",
+        "sk-create-repo-rule/references/rule-anatomy.md",
         "sk-create-skill/assets/parent-skill/parent-skill-description-template.json",
         "sk-create-skill/assets/parent-skill/parent-skill-graph-metadata-template.json",
         "sk-create-skill/assets/parent-skill/parent-skill-hub-router-template.json",

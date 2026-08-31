@@ -1,7 +1,41 @@
 # PRESENTATION CONTRACT — /create:repo-rule
 # User-facing wording only. No routing logic.
 
-## CONSOLIDATED SETUP PROMPT (:confirm and no-suffix)
+## 1. Phase 0 Verification Display
+
+Run this automatic self-check before setup. This is not a user question.
+
+```text
+SELF-CHECK: Are you operating as the @markdown agent?
+
+Indicators:
+- Invoked with @markdown prefix
+- Template-first workflow capabilities are available
+- Repo-rule decision-test behavior is available
+- REPO RULES.md router wiring behavior is available
+
+If all indicators are present:
+- create_agent_verified = true
+- Continue to setup
+
+If any indicator is missing or uncertain:
+- Stop before loading workflow YAML
+- Display the hard-block message below
+```
+
+Hard-block message:
+
+```text
+BLOCKED: /create:repo-rule requires the @markdown agent.
+
+This command authors a rule file, edits REPO RULES.md, and adds a pointer to the
+always-loaded document. Run it as @markdown so the template-first workflow and
+the decision tests are in force.
+
+Re-invoke as: @markdown /create:repo-rule <what the rule should bind>
+```
+
+## 2. CONSOLIDATED SETUP PROMPT (:confirm and no-suffix)
 
   What should the rule bind?
     Describe the behaviour you want, or the failure that keeps happening.
@@ -9,7 +43,36 @@
   Operation:  A) create (default)   B) revise   C) retire
   Mode:       A) auto   B) confirm
 
-## DECISION-TEST REPORT
+## 3. NON-INTERACTIVE SETUP (:auto)
+
+Under `:auto`, the setup prompt is skipped when the prompt body carries a
+pre-bound answers block. Honor every field present and resolve the rest from the
+defaults below. Missing a required field with no default stops the run.
+
+```text
+PRE-BOUND SETUP ANSWERS:
+  request: <what the rule should bind, in the user's words>
+  operation: create
+  rule_name: <kebab-name>
+  target_repo: .
+  execution_mode: AUTONOMOUS
+```
+
+Default resolution table:
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+| --- | --- | --- | --- | --- |
+| `request` | Yes | Positional argument or marker `request` | none | Yes, when empty |
+| `operation` | Yes | `create`/`revise`/`retire` token or marker | `create` | No |
+| `rule_name` | Conditional | `--rule` or marker; required for revise and retire | none | Yes, for revise and retire |
+| `target_repo` | No | Marker `target_repo` | repository root | No |
+| `execution_mode` | Yes | `:auto`, `:confirm`, or marker | `AUTONOMOUS` under `:auto` | No |
+
+Retire never runs unattended on an inferred operation. It deletes a rule file and
+strips two router rows, so it runs autonomously only when the operator wrote the
+`retire` operation and `:auto` together.
+
+## 4. DECISION-TEST REPORT
 
   Ran 4 tests: always-loaded · scope boundary · four-part refusal · restraint
 
@@ -18,32 +81,58 @@
              {why}
              belongs in: {destination}
 
-## REFUSAL WORDING
+## 5. REFUSAL WORDING
 
   A refusal is a useful answer, not a dead end. Always name both the test and
   the destination. Never refuse without saying where the content should go.
 
   Most requests are refused. That is the design.
 
-## SUCCESS OUTPUT
+## 6. CHECKPOINT DISPLAY (:confirm)
+
+  Step {n}/6 — {step_name}
+    {what this step produced}
+
+  A) approve   B) review   C) modify   D) abort
+
+  The decision gate is not a checkpoint. A refusal there ends the run and is
+  reported, never offered for approval.
+
+## 7. SUCCESS OUTPUT
 
   Rule written : repo-rules/{name}.md   ({lines} lines, {band})
   Wired        : trigger row · index row · pointer in AGENTS.md {section}
   Verified     : frontmatter parses · dividers={n} sections={n} · links {n}/{n}
                  no trigger-phrase collisions
 
-## RETIRE OUTPUT
+  STATUS=OK PATH=repo-rules/{name}.md
+
+## 8. RETIRE OUTPUT
 
   Removed      : pointer -> index row -> trigger row -> file
   Router now   : {files} files · {trigger} trigger rows · {index} index rows
   Reason recorded: {reason}
 
-## FAILURE OUTPUT
+  STATUS=OK ACTION=retired
+
+## 9. REFUSED OUTPUT
+
+  Failed test  : {test}
+  Reason       : {why}
+  Belongs in   : {destination}
+
+  Nothing was written. This is the designed outcome for most requests.
+
+  STATUS=OK ACTION=refused TEST={test}
+
+## 10. FAILURE OUTPUT
 
   Scope statement does not admit this rule.
   Widening it is an operator decision. Stopping here.
 
-## NEXT STEPS
+  STATUS=FAIL ERROR="{error_message}"
+
+## 11. NEXT STEPS
 
   Review the rule, then commit. The rule loads on its trigger from the next
   session; nothing reloads it in this one.

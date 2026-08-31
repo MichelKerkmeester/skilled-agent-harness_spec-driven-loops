@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
+  "spec_folder": "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
+  "parent_id": "sk-doc/040-create-repo-rules",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "closure"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/README.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+      ".opencode/commands/create/repo-rule.md",
+      ".opencode/commands/create/assets/create-repo-rule-presentation.txt",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/sk-doc/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repo-rule.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/repo-rule.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-repo-rule-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/assets/create-repo-rule-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mode shipped without a manual testing playbook, so nothing recorded how an operator confirms it behaves correctly",
+    "created_at": "2026-08-31T14:06:06Z",
+    "last_save_at": "2026-08-31T15:51:58.746Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6f7198436660bf3013a88a74680297671c898b66ad6846a75060be93115b721f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3e799cd8aedaf400bc257b914031f1459978f57b8b8e26b611d5e664df0cf23e",
+      "plan.md": "c9e9cac7b5c338ce04458c5d9c487488f405f08f7c75947ec33e4db1776e3b29",
+      "tasks.md": "22f06d72e0c9d23478ae12e55284c870a3f927e0a685553d8a4c19a6356e199b",
+      "implementation-summary.md": "40ce9373e7631757b7d405f730129881b6e74d408c8fdc2028ad984a657da0f4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

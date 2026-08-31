@@ -5,10 +5,30 @@ role: Repo Rule Author
 purpose: Create, revise or retire a repo-local rule and wire it into REPO RULES.md
 action: Run the decision tests, then author or unwire, then verify
 operating_mode:
-  workflow: linear
+  workflow: sequential_6_step
   workflow_compliance: MANDATORY
   workflow_execution: interactive
-  approvals: per_phase
+  approvals: step_by_step
+  tracking: progressive_task_checklists
+  validation: checkpoint_based
+  description: >-
+    Executes the 6-step repo-rule workflow with an approval gate after each step that
+    produces something a user can inspect. A decision-gate refusal is reported and ends
+    the run; it is never offered for approval.
+
+checkpoint_options:
+  approve: Continue to next step
+  review: Show detailed output from this step
+  modify: Allow user to adjust outputs before proceeding
+  abort: Cancel workflow with STATUS=CANCELLED
+  skip: Skip optional step (only for non-critical steps)
+
+development_philosophy:
+  principle: Refuse first, author rarely
+  approach: Test -> Refuse or Prepare -> Author -> Wire -> Verify
+  mandate: >-
+    Most invocations end in a refusal and that is the designed outcome. A refusal that
+    names its failed test and destination is a successful run, not a failed one.
 
 skill_reference:
   skill: sk-doc
@@ -23,15 +43,133 @@ skill_reference:
     rule: .opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md
     router: .opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md
 
+confidence_framework:
+  thresholds:
+    high:
+      range: 80-100%
+      action: Proceed with citable source
+    medium:
+      range: 40-79%
+      action: Proceed with caution, document assumptions
+    low:
+      range: 0-39%
+      action: STOP - Ask clarification with A/B/C options
+  scoring_weights:
+    named_failure_clarity: 0.35
+    existing_owner_certainty: 0.25
+    scope_boundary_fit: 0.25
+    target_repo_resolution: 0.15
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: Present options to user with current findings
+
+request_analysis_framework:
+  solution_flow:
+    - "Parse input: the behaviour requested, the operation, and the target repository"
+    - "Run the four decision tests in order and stop at the first failure"
+    - "Resolve the destination: confirm REPO RULES.md exists or emit it"
+    - "Author: fill the template, then apply the five reader standards"
+    - "Wire: scope check, then the ordering for the selected operation"
+    - "Verify: structure, counts, links and phrase collisions"
+  pre_change_validation:
+    items:
+      - "All four decision tests answered, not asserted?"
+      - "No existing rule already owns this subject?"
+      - "Scope statement admits the subject?"
+      - "Target repository has a router, or one was emitted?"
+      - "Confidence >=80%? (if not: ask)"
+    stop_conditions:
+      - Any decision test failed
+      - Scope statement excludes the subject
+      - Any item unchecked
+    stop_action: STOP and report the failed test with its destination
+
+input_contract:
+  required:
+    - create_agent_verified
+    - request
+  optional:
+    - operation
+    - rule_name
+    - target_repo
+
 user_inputs:
   request: "[REQUEST] - what the rule should bind, in the user's words. REQUIRED."
   operation: "[create|revise|retire] - default create."
   rule_name: "[RULE_NAME] - required for revise and retire."
+  target_repo: "[TARGET_REPO] - marker-only, default the current repository root."
+
+field_handling:
+  request:
+    validation: non-empty; the behaviour to bind or the failure that keeps happening
+    required: true
+  operation:
+    validation: "must be one of: create, revise, retire"
+    default: create
+  rule_name:
+    validation: kebab-case, matches an existing file under repo-rules/ for revise and retire
+    required_when: operation is revise or retire
+    note: >-
+      Never inferred from the request text for retire. A wrong name deletes the wrong rule,
+      so an unresolved rule_name stops the run.
+  target_repo:
+    validation: a directory that exists
+    default: repository root
+    note: Resolved only from a PRE-BOUND SETUP ANSWERS marker; there is no flag for it.
+  defaults:
+    rules_dir: repo-rules/
+    router: REPO RULES.md
+    preferred_max_lines: 160
+    ceiling_lines: 250
+
+documentation_level:
+  default: Level 1 (Baseline)
+  required_files:
+    - spec.md
+    - plan.md
+    - tasks.md
+  note: >-
+    A single rule file plus two router rows is Level 1 work. Escalate only when the run
+    also changes the scope statement or touches more than one repository.
+
+context_loading:
+  trigger: During setup, non-interactive resolution before step 1
+  applies_when: >-
+    The target repository already has a REPO RULES.md, so the existing rule set, its trigger
+    rows and its scope statement are the context every decision test is answered against.
+  auto_resolution:
+    default: >-
+      Read the router's trigger table, index and scope statement, plus the frontmatter of every
+      file under repo-rules/, before running the tests. Test 3 part 2 and the trigger-phrase
+      collision check are both unanswerable without the whole set.
+    on_absent: No router means no prior set. Emit the router first, then treat the set as empty.
+
+workflow_overview:
+  steps:
+    - id: step_1_decision_gate
+      purpose: Decide whether this may be a rule at all
+    - id: step_2_prepare_destination
+      purpose: Ensure a router exists so a rule can load
+    - id: step_3_author
+      purpose: Fill the template and apply the reader standards
+    - id: step_4_wire
+      purpose: Scope-check, then apply the ordering for the operation
+    - id: step_5_verify
+      purpose: Prove structure, counts, links and phrase uniqueness
+    - id: step_6_report
+      purpose: Emit the refusal, authored, revised or retired outcome
 
 workflow:
 
-  phase_gate:
+  step_1_decision_gate:
     purpose: Decide whether this may be a rule at all
+    checkpoint: Show the four test answers. A refusal ends the run here without a checkpoint.
     steps:
       step_load_tests:
         action: "Load decision-tests.md. This runs on EVERY path including retire."
@@ -41,24 +179,27 @@ workflow:
           action: "Report the failed test and the destination its section 5 names. HALT."
           note: "This is the common outcome, not an error."
 
-  phase_prepare:
+  step_2_prepare_destination:
     purpose: Ensure the destination exists
+    checkpoint: Show whether a router was found or emitted, and its path.
     steps:
       step_check_router:
         action: "Check for REPO RULES.md in the target repository"
         if_absent:
           action: "Emit the router from the router template first. It is a prerequisite, not the deliverable."
 
-  phase_author:
+  step_3_author:
     purpose: Produce or amend the rule
+    checkpoint: Show the drafted rule, its line count and band, and the five standards verdicts.
     steps:
       step_fill_template:
         action: "Fill the rule template. Ten fixed elements; aim under 160 lines, 250 is the ceiling."
       step_apply_standards:
         action: "Run creation-standards.md against the draft. Structure is checkable and is not the bar."
 
-  phase_wire:
+  step_4_wire:
     purpose: Make the rule reachable
+    checkpoint: Show the quoted scope clause, then the exact trigger row, index row and pointer to be added.
     steps:
       step_scope_check:
         action: "Confirm REPO RULES.md section 4 In admits this rule BEFORE adding a trigger row"
@@ -68,8 +209,9 @@ workflow:
         action: "Apply the ordering in agents-md-integration.md for the selected operation"
         note: "create writes the file first; retire removes the pointer first. Never leave a row pointing at a missing file."
 
-  phase_verify:
+  step_5_verify:
     purpose: Prove the result
+    checkpoint: Show the structural counts and the link and collision results.
     steps:
       step_verify:
         verify:
@@ -79,12 +221,135 @@ workflow:
           - "every link resolves"
           - "no trigger phrase collides with another rule"
 
+  step_6_report:
+    purpose: Emit the outcome
+    checkpoint: Show the rendered outcome block before it is emitted.
+    steps:
+      step_report:
+        action: "Emit the outcome using the completion_report template for the reached terminal state"
+
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+  critical_steps:
+    step_1_decision_gate:
+      enforcement: MUST run all four tests before any drafting
+      verification: Each test has a recorded answer, not an assertion that it passed
+    step_4_wire:
+      enforcement: MUST run the scope check before adding any router row
+      verification: The excluding or admitting clause is quoted from REPO RULES.md section 4
+    step_5_verify:
+      enforcement: MUST confirm counts match before reporting success
+      verification: Trigger rows, index rows and rule files are equal
+
+gate_logic:
+  hard:
+    H0_write_verified:
+      description: "Command Phase 0 verification must have passed"
+      fail_action: STOP and return to the command setup phase
+    H1_required_fields:
+      description: "A request is present, and rule_name is present for revise or retire"
+      fail_action: STOP and collect missing inputs
+    H2_decision_tests:
+      description: "All four decision tests must pass before anything is written"
+      fail_action: STOP, name the failed test and its destination, and report a refusal
+    H3_router_exists:
+      description: "A REPO RULES.md must exist before a rule is written"
+      fail_action: Emit the router from the template first, then continue
+    H4_scope_admits:
+      description: "The router scope statement must admit the subject before a trigger row is added"
+      fail_action: STOP and escalate. Widening the scope statement is an operator decision
+  soft:
+    S1_length_band:
+      description: "A draft over 200 lines should say why it needs the room"
+      fail_action: Proceed with rationale recorded
+    S2_cross_references:
+      description: "Sideways links between rules default to zero"
+      fail_action: Proceed and record the reason for any link added
+
+circuit_breaker:
+  enabled: true
+  thresholds:
+    failures: 3
+    recovery_s: 60
+    success_to_close: 1
+  states:
+    CLOSED: normal operation
+    OPEN: skip optional steps, complete with warnings
+    HALF_OPEN: test single operation
+
+quality_standards:
+  structural_integrity:
+    minimum: All ten fixed elements present, dividers equal numbered sections
+    enforcement: Step 5 verifies before any success is reported
+  reader_value:
+    minimum: All five creation standards answered by reading the draft
+    enforcement: Step 3 applies them before the rule is wired
+  router_consistency:
+    minimum: Trigger rows, index rows and rule files are equal
+    enforcement: Step 5 recounts after every create or retire
+
+interactive_execution:
+  principle: Pause after each step that produces an inspectable result
+  checkpoint_display: "presentation section 6. CHECKPOINT DISPLAY"
+  user_override: User can override any automated decision at a checkpoint
+  non_negotiable:
+    - A decision-test refusal ends the run. It is reported, never offered for approval
+    - The scope check cannot be overridden at a checkpoint. Widening the scope statement is a separate operator decision
+    - Retire always displays the affected rows and file before removing anything
+
+completion_report:
+  owner: presentation-contract
+  note: >-
+    Result wording lives only in create-repo-rule-presentation.txt. Render the block named
+    below for the terminal state reached; do not restate or reword it here.
+  render:
+    authored: "presentation section 7. SUCCESS OUTPUT"
+    refused: "presentation section 9. REFUSED OUTPUT"
+    retired: "presentation section 8. RETIRE OUTPUT"
+    failed: "presentation section 10. FAILURE OUTPUT"
+  status_lines:
+    authored: "STATUS=OK PATH={rule_path}"
+    refused: "STATUS=OK ACTION=refused TEST={failed_test}"
+    retired: "STATUS=OK ACTION=retired"
+    failed: "STATUS=FAIL ERROR=\"{error_message}\""
+
+error_recovery:
+  no_router_in_target:
+    action: Emit the router from the router template, then continue
+    fallback: Report the missing target repository path and stop
+  scope_statement_excludes:
+    action: HALT and escalate to the operator with the excluding clause quoted
+    fallback: Never widen the scope statement autonomously
+  trigger_phrase_collision:
+    action: Propose a replacement phrase and re-check it against every rule file
+    fallback: Ask the operator to choose the phrasing
+  draft_over_length_band:
+    action: Remove a section rather than compressing every line
+    fallback: Report the band and ask whether the room is justified
+  count_mismatch_after_wire:
+    action: Re-apply the ordering step that was missed, then recount
+    fallback: Report which of files, trigger rows and index rows disagree
+  write_failure:
+    action: Check permissions, retry once
+    fallback: Display the drafted rule for manual save
+
+termination:
+  after_step: 6
+  message: Repo rule workflow complete.
+  next_steps:
+    owner: presentation-contract
+    render: "presentation section 11. NEXT STEPS"
+
 rules:
   required:
     - "Run the decision tests before authoring, on every path"
     - "Emit the router first when the target repository has none"
     - "Quote title and description in frontmatter"
+    - "Name the failed test and the destination on every refusal"
   forbidden:
     - "Editing AGENTS.md beyond adding or removing a pointer"
     - "Widening the router scope statement without an operator decision"
     - "Writing a rule that must bind when no trigger fires"
+    - "Reporting a refusal as a failure"

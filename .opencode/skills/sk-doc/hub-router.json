@@ -16,6 +16,7 @@
       "sk-create-changelog",
       "sk-create-diff",
       "sk-create-diagram",
+      "sk-create-repo-rule",
       "sk-create-quality-control"
     ],
     "outcomes": {
@@ -384,9 +385,11 @@
         "repo-local rule",
         "REPO RULES.md",
         "repo-rules",
-        "rule file",
+        "repo rule file",
         "trigger table",
         "rule router",
+        "retire a repo rule",
+        "revise a repo rule",
         "retire a rule",
         "revise a rule",
         "we should always",

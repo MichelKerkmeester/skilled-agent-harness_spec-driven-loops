@@ -1,6 +1,6 @@
 ---
 name: sk-doc
-description: "Documentation & OpenCode-component authoring parent hub: routes to eleven workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, HTML/SVG diagrams and ASCII flowcharts, changelogs, and local before/after document reviews, plus a sk-create-quality-control mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
+description: "Documentation & OpenCode-component authoring parent hub: routes to twelve workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, HTML/SVG diagrams and ASCII flowcharts, changelogs, repo rules, and local before/after document reviews, plus a sk-create-quality-control mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 2.0.1.0
 metadata:
@@ -8,11 +8,11 @@ metadata:
   family: sk-util
 ---
 
-<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-quality-control, shared-backbone, create-quality-control-pipeline -->
+<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-quality-control, shared-backbone, create-quality-control-pipeline -->
 
 # Documentation Authoring Hub (sk-doc)
 
-One advisor identity, eleven workflow packets, one shared sk-create-quality-control backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting sk-create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
+One advisor identity, twelve workflow packets, one shared sk-create-quality-control backbone. `sk-doc` is the parent hub for documentation and OpenCode-component authoring. It holds NO per-packet logic: it routes by `workflowMode` through `mode-registry.json`, and each packet keeps its own contract in its nested folder. The cross-cutting sk-create-quality-control pipeline (validators, global standards, frontmatter/llms/template assets) lives once in `shared/` and is consumed by every packet.
 
 ---
 
@@ -32,6 +32,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **sk-create-diagram** | Generate an HTML/SVG technical diagram (27 types) or a validated ASCII/markdown flowchart via `--output-format` | `sk-create-diagram/` | `/create:diagram` |
 | **sk-create-changelog** | Author a global or packet-local changelog entry (version bump + topology-aware placement) | `sk-create-changelog/` | `/create:changelog` |
 | **sk-create-diff** | Produce a local, Git-free before/after review of an edited document (text/Markdown/HTML/DOCX/text-PDF) as a self-contained HTML report | `sk-create-diff/` | — (routes via aliases) |
+| **sk-create-repo-rule** | Create, revise or retire a repo-local rule under `repo-rules/` and wire it into `REPO RULES.md` (four decision tests refuse most requests) | `sk-create-repo-rule/` | `/create:repo-rule` |
 | **sk-create-quality-control** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `sk-create-quality-control/` | `/doc:quality` |
 
 ### When NOT to Use
@@ -128,7 +129,7 @@ This hub does **not** use keyed resource discovery (`references/<key>/` or `asse
 sk-doc/
   SKILL.md               # this routing hub (no per-packet logic)
   ROUTER.md              # stage-two surface router (authoring intent -> leaf sets)
-  mode-registry.json     # the eleven-packet discriminator + advisorRouting (single source of truth)
+  mode-registry.json     # the twelve-packet discriminator + advisorRouting (single source of truth)
   hub-router.json        # router signals + vocabulary classes
   description.json       # hub advisor descriptor
   graph-metadata.json    # the ONE advisor identity for the whole skill
@@ -170,7 +171,7 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 
 ## 5. REFERENCES
 
-- Registry: `mode-registry.json` (eleven packets; `packetKind: workflow`).
+- Registry: `mode-registry.json` (twelve packets; `packetKind: workflow`).
 - Hub router: `hub-router.json` (signals + vocabulary classes).
 - Surface router: `ROUTER.md` (authoring intent to packet-local leaf sets).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.

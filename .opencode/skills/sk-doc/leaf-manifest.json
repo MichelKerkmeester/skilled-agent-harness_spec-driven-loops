@@ -232,6 +232,19 @@
     },
     {
       "leaves": [
+        "assets/repo-rule-template.md",
+        "assets/repo-rules-router-template.md",
+        "references/README.md",
+        "references/agents-md-integration.md",
+        "references/creation-standards.md",
+        "references/decision-tests.md",
+        "references/rule-anatomy.md"
+      ],
+      "packet": "sk-create-repo-rule",
+      "workflowMode": "sk-create-repo-rule"
+    },
+    {
+      "leaves": [
         "assets/parent-skill/parent-skill-command-metadata-template.json",
         "assets/parent-skill/parent-skill-description-template.json",
         "assets/parent-skill/parent-skill-graph-metadata-template.json",
@@ -309,19 +322,6 @@
       ],
       "packet": "sk-create-skill",
       "workflowMode": "sk-create-skill-parent"
-    },
-    {
-      "leaves": [
-        "assets/repo-rule-template.md",
-        "assets/repo-rules-router-template.md",
-        "references/README.md",
-        "references/agents-md-integration.md",
-        "references/creation-standards.md",
-        "references/decision-tests.md",
-        "references/rule-anatomy.md"
-      ],
-      "packet": "sk-create-repo-rule",
-      "workflowMode": "sk-create-repo-rule"
     }
   ],
   "resourceContractVersion": 1

@@ -2,7 +2,7 @@
 name: sk-create-repo-rule
 description: Author, revise or retire a repo rule from a user's request, with the decision tests that refuse most of them.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 <!-- Keywords: create-repo-rule, /create:repo-rule, repo rule, REPO RULES.md, repo-rules, rule file, trigger table, rule router, operating discipline, always-loaded versus triggered -->
@@ -31,15 +31,15 @@ removed when it stops earning its load. This mode owns all three.
 - Someone describes a recurring failure and asks how to stop it happening again.
 - An existing rule needs changing because it no longer matches how the work is done.
 - A rule needs retiring because nothing it prevents still happens.
-- A repository needs a `REPO RULES.md` router because it has none.
+- A repository needs a rule router because it has none.
 
 ### When NOT to Use
 
-- **It teaches how to do something** → `sk-create-skill`. A skill is capability; a rule is constraint.
-- **It must bind on every turn** → it belongs in `AGENTS.md`, not behind a trigger. This is decision test 1 and it is the most common refusal.
-- **It is routing** — which skill, which command, which agent, which flags → `AGENTS.md` and the skills it routes to.
-- **It is one line, not a cluster** → a section inside an existing rule.
-- **A sibling `sk-doc` mode already produces it** → README, changelog, command, catalog, playbook, diagram all have owners.
+- **It teaches how to do something.** A skill is capability, a rule is constraint. Route to the skill-authoring mode.
+- **It must bind on every turn.** Content that holds when no trigger fires belongs in the always-loaded document, not behind a trigger. This is decision test 1 and the most common refusal.
+- **It is routing.** Which skill, which command, which agent, which flags. The always-loaded document and the skills it routes to own that.
+- **It is one line, not a cluster.** A single row is a section inside an existing rule.
+- **A sibling mode already produces it.** README, changelog, command, catalog, playbook and diagram all have owners.
 
 ---
 
@@ -66,34 +66,92 @@ removed when it stops earning its load. This mode owns all three.
 
 ### Smart Router Pseudocode
 
-```python
-INTENT_SIGNALS = {
-    "CREATE":  {"weight": 5, "keywords": ["add a rule", "new repo rule", "make a rule", "we should always", "stop doing"]},
-    "REVISE":  {"weight": 4, "keywords": ["update the rule", "change the rule", "the rule is wrong", "rule is out of date"]},
-    "RETIRE":  {"weight": 4, "keywords": ["remove the rule", "retire", "delete the rule", "no longer applies"]},
-    "ROUTER":  {"weight": 3, "keywords": ["no repo rules", "set up repo rules", "REPO RULES.md", "first rule"]},
-}
+The canonical resilient router discovers resources at call time, guards and loads only
+what exists, scores the four operations, and returns a disambiguation checklist rather
+than silently loading nothing:
 
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/decision-tests.md"
+
+INTENT_MODEL = {
+    "CREATE": {"weight": 5, "keywords": ["add a rule", "new repo rule", "make a rule", "we should always", "stop doing"]},
+    "REVISE": {"weight": 4, "keywords": ["update the rule", "change the rule", "the rule is wrong", "rule is out of date"]},
+    "RETIRE": {"weight": 4, "keywords": ["remove the rule", "retire", "delete the rule", "no longer applies"]},
+    "ROUTER": {"weight": 3, "keywords": ["no repo rules", "set up repo rules", "REPO RULES.md", "first rule"]},
+}
 RESOURCE_MAP = {
     "CREATE": ["references/decision-tests.md", "references/rule-anatomy.md", "assets/repo-rule-template.md"],
     "REVISE": ["references/rule-anatomy.md", "references/agents-md-integration.md"],
     "RETIRE": ["references/agents-md-integration.md"],
     "ROUTER": ["assets/repo-rules-router-template.md"],
 }
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the behaviour to bind, or the failure that keeps happening",
+    "Confirm the operation: create, revise or retire",
+    "Confirm the target repository and whether it already has a REPO RULES.md",
+]
 
-def route(request):
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def load_if_available(relative_path, inventory, loaded, seen) -> None:
+    guarded = _guard_in_skill(relative_path)
+    if guarded in inventory and guarded not in seen:
+        load(guarded)
+        loaded.append(guarded)
+        seen.add(guarded)
+
+def score_intents(request) -> dict:
+    text = request.text.lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for kw in cfg["keywords"]:
+            if kw in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def route_repo_rule_request(request):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+
     # The tests load on every path including RETIRE, because "should this exist"
     # and "should this still exist" are the same four questions.
-    load("references/decision-tests.md")
-    intent = highest_scoring(INTENT_SIGNALS, request) or "CREATE"
+    load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+    scores = score_intents(request)
+
+    if max(scores.values() or [0]) < 3:                       # Tier 1: unclear scope
+        return {
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    intent = max(scores, key=scores.get)                      # Tier 2: happy path
     if target_repo_has_no_router():
-        load("assets/repo-rules-router-template.md")   # prerequisite, not the ask
-    for r in RESOURCE_MAP[intent]:
-        load_if_available(r)
-    return intent
+        load_if_available("assets/repo-rules-router-template.md", inventory, loaded, seen)
+    for resource in RESOURCE_MAP[intent]:
+        load_if_available(resource, inventory, loaded, seen)
+    return {"intent": intent, "resources": loaded}
 ```
 
-Unknown intent falls back to `CREATE`, which runs the tests and refuses safely.
+Unknown intent returns the disambiguation checklist with the tests already loaded, so the
+cheap refusal path stays available even when the operation is unclear.
 
 ---
 
@@ -126,27 +184,29 @@ git holds the history. Full ordering: `references/agents-md-integration.md` §5.
 
 ## 4. RULES
 
-**Required**
+### ✅ ALWAYS
 
-- Run the decision tests before authoring, on every path.
-- Emit the router first when the target repository has none.
-- Quote `title` and `description` in frontmatter; both routinely contain a colon.
-- Keep dividers equal to numbered sections.
-- Make clear, in every numbered section, what goes wrong without it — in the section's substance if not in a dedicated line.
+1. Run the decision tests before authoring, on every path including retire.
+2. Emit the router first when the target repository has none.
+3. Quote `title` and `description` in frontmatter; both routinely contain a colon.
+4. Keep dividers equal to numbered sections.
+5. Make clear, in every numbered section, what goes wrong without it — in the section's substance if not in a dedicated line.
+6. Name the failed test and the destination on every refusal.
 
-**Forbidden**
+### ⛔ NEVER
 
-- Writing a rule that must bind when no trigger fires. That is an `AGENTS.md` row.
-- Putting routing, skill selection, or dispatch mechanics into a rule.
-- Editing `AGENTS.md` beyond adding the pointer. The always-loaded document carries hard blockers; anything else is an operator decision.
-- Adding a rule because the set looks thin. The set is subject to its own `overengineering.md`.
-- Restating another rule instead of linking to it — though the default is no link at all.
+1. Write a rule that must bind when no trigger fires. That is an `AGENTS.md` row.
+2. Put routing, skill selection, or dispatch mechanics into a rule.
+3. Edit `AGENTS.md` beyond adding or removing a pointer. The always-loaded document carries hard blockers; anything else is an operator decision.
+4. Add a rule because the set looks thin. The set is subject to its own `overengineering.md`.
+5. Restate another rule instead of linking to it — though the default is no link at all.
+6. Report a refusal as a failure. It is the designed outcome for most requests.
 
-**Escalate**
+### ⚠️ ESCALATE IF
 
-- The request needs an `AGENTS.md` change beyond a pointer, or a widening of the router's scope statement.
-- Two existing rules disagree, and the new rule would have to pick a side.
-- The proposal fails a test but the operator wants it anyway — that is their call to make explicitly, not one to infer.
+1. The request needs an `AGENTS.md` change beyond a pointer, or a widening of the router's scope statement.
+2. Two existing rules disagree, and the new rule would have to pick a side.
+3. The proposal fails a test but the operator wants it anyway — that is their call to make explicitly, not one to infer.
 
 ---
 
