@@ -75,7 +75,7 @@ Capture the draft in full, the five per-standard verdicts as separate answers, t
 
 ### Optional Supplemental Checks
 
-Run the same gate against a shipped rule from `repo-rules/`. All five standards pass on all eight shipped rules, so a run that rejects one is measuring something other than the standard, and the measurement is wrong rather than the corpus.
+Run the same gate against a shipped rule from `repo-rules/`. All five standards pass on all nine shipped rules, so a run that rejects one is measuring something other than the standard, and the measurement is wrong rather than the corpus.
 
 ---
 

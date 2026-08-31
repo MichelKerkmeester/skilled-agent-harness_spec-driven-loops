@@ -97,21 +97,21 @@ shipped rules have it, and all three added it after someone misread the rule.>
 
 ## 1. WHAT IS NOT OPTIONAL
 
-Ten elements are universal across all eight shipped rules. A file missing any of them is
+Ten elements are universal across all nine shipped rules. A file missing any of them is
 not a rule of this set.
 
 | Element | Why it is fixed |
 |---------|-----------------|
-| Six-key frontmatter, in order | One key order across all eight; discovery depends on it |
-| `# Rule: <Subject>` | 8/8 |
-| Routed-from line | 8/8; it is how a reader knows where the file sits |
-| Subordination line, verbatim | 8/8; the rule declaring its own rank below `AGENTS.md` |
-| `## Fires when` | 8/8; unnumbered |
-| `## The rule` with one bold sentence | 8/8; unnumbered |
-| Uppercase numbered sections, sequential | 8/8 |
+| Six-key frontmatter, in order | One key order across all nine; discovery depends on it |
+| `# Rule: <Subject>` | 9/9 |
+| Routed-from line | 9/9; it is how a reader knows where the file sits |
+| Subordination line, verbatim | 9/9; the rule declaring its own rank below `AGENTS.md` |
+| `## Fires when` | 9/9; unnumbered |
+| `## The rule` with one bold sentence | 9/9; unnumbered |
+| Uppercase numbered sections, sequential | 9/9 |
 | One `---` per numbered section | 9/9 including the router — the strongest invariant in the corpus |
-| Closing `SELF-CHECK` | 8/8; always the last numbered section |
-| A resolving back-link to the router | 8/8 |
+| Closing `SELF-CHECK` | 9/9; always the last numbered section |
+| A resolving back-link to the router | 9/9 |
 
 ---
 

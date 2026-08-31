@@ -1,6 +1,6 @@
 ---
 title: "Rule Anatomy Contract"
-description: "The structure every repo rule carries, derived mechanically from the eight shipped files rather than asserted. Every MUST element is used by 8 of 8; every MAY element records why it varies; every divergence is classified as a permitted variant or a defect the contract forbids going forward."
+description: "The structure every repo rule carries, derived mechanically from the nine shipped files rather than asserted. Every MUST element is used by 9 of 9; every MAY element records why it varies; every divergence is classified as a permitted variant or a defect the contract forbids going forward."
 trigger_phrases:
   - "rule anatomy"
   - "repo rule structure"
@@ -44,23 +44,23 @@ This is why the mode owns changing and removing rules, not only creating them.
 
 ## 1. WHAT THE CORPUS AGREES ON
 
-Every one of these is 8/8. A generated rule that omits any is not a rule of this set.
+Every one of these is 9/9. A generated rule that omits any is not a rule of this set.
 
 | Element | Shape | Evidence |
 |---------|-------|----------|
-| Frontmatter | Six keys, one order: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | 8/8, exactly one distinct key order across the corpus |
-| Title line | `# Rule: <Subject>` | 8/8 |
-| Routed-from line | `> Routed from [REPO RULES.md](../REPO%20RULES.md). <when to load>.` | 8/8 |
-| Subordination line | `> Expands AGENTS.md, never overrides it — where they appear to disagree, AGENTS.md wins and this file is wrong. Say so.` | 8/8, verbatim |
-| `## Fires when` | Unnumbered; a bullet list of actions, not topics | 8/8 |
-| `## The rule` | Unnumbered; exactly one bold binding sentence, then at most a short gloss | 8/8 |
-| Numbered body | `## N. ALL CAPS TITLE`, sequential from 1 | 8/8, all uppercase outside backticks |
-| Divider discipline | One `---` per numbered section | 8/8 rules and the router — dividers equal numbered sections in all 9 files, with no exception |
-| Closing self-check | Final numbered section, titled `SELF-CHECK`, a `- [ ]` checklist | 8/8 |
-| Back-link | A resolving link to `../REPO%20RULES.md` | 8/8 |
+| Frontmatter | Six keys, one order: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | 9/9, exactly one distinct key order across the corpus |
+| Title line | `# Rule: <Subject>` | 9/9 |
+| Routed-from line | `> Routed from [REPO RULES.md](../REPO%20RULES.md). <when to load>.` | 9/9 |
+| Subordination line | `> Expands AGENTS.md, never overrides it — where they appear to disagree, AGENTS.md wins and this file is wrong. Say so.` | 9/9, verbatim |
+| `## Fires when` | Unnumbered; a bullet list of actions, not topics | 9/9 |
+| `## The rule` | Unnumbered; exactly one bold binding sentence, then at most a short gloss | 9/9 |
+| Numbered body | `## N. ALL CAPS TITLE`, sequential from 1 | 9/9, all uppercase outside backticks |
+| Divider discipline | One `---` per numbered section | 9/9 rules and the router — dividers equal numbered sections in all 10 files, with no exception |
+| Closing self-check | Final numbered section, titled `SELF-CHECK`, a `- [ ]` checklist | 9/9 |
+| Back-link | A resolving link to `../REPO%20RULES.md` | 9/9 |
 
 **The strongest invariant is the divider rule.** Dividers equal numbered sections in all
-nine files including the router, with zero variance. It is the one structural property a
+ten files including the router, with zero variance. It is the one structural property a
 generator can assert without qualification.
 
 ---
@@ -75,7 +75,7 @@ These scale with the rule's subject. A generator sets no target for them.
 | Numbered sections | 6-12 | `uncertainty-and-honesty` needs 7; `evidence-and-proof` needs 12. Section count follows the subject |
 | Self-check items | 5-11 | One per obligation the body actually creates |
 | Total lines | 145-224 | Follows section count |
-| Inter-rule cross-references | 0-2 per file, 4 total across the set | Rules are more independent than the cross-reference doctrine implies. See section 4 |
+| Inter-rule cross-references | 0-5 per file, 10 links total across the set | Rules are more independent than the cross-reference doctrine implies. See section 4 |
 
 ---
 
@@ -95,6 +95,7 @@ Measured against the shipped set:
 
 | File | Lines | Band |
 |------|-------|------|
+| `hub-routing.md` | 127 | preferred |
 | `uncertainty-and-honesty.md` | 145 | preferred |
 | `blast-radius.md` | 154 | preferred |
 | `root-cause.md` | 159 | preferred |
@@ -104,7 +105,7 @@ Measured against the shipped set:
 | `communication.md` | 219 | at the limit |
 | `delegation-and-orchestration.md` | 224 | at the limit |
 
-**Three preferred, two good, three at the limit, none over.** The corpus fits, which is
+**Four preferred, two good, three at the limit, none over.** The corpus fits, which is
 what makes this a usable constraint rather than a number to be revised again.
 
 The three at the limit each absorbed content moved down from `AGENTS.md`, so their length
@@ -118,7 +119,7 @@ and should be looked at.
 
 ## 4. A SECOND FINDING: THE RULES ARE NEARLY INDEPENDENT
 
-The corpus carries **4 inter-rule cross-references in total** across 8 files. Every rule
+The corpus carries **10 cross-reference links in total, 7 distinct pairs**, across 9 files, and only 3 files carry any. Every rule
 links back to the router; almost none links sideways.
 
 That is a stronger result than the doctrine claimed. "Cross-reference rather than restate"
@@ -151,7 +152,7 @@ failure is invisible to a reader: it looks correct and only a parser objects.
 
 **`trigger_phrases` carry symptom vocabulary, not section titles.** The section titles are
 already greppable from the body; the phrases exist to catch someone who has the problem
-and does not know the rule's name. Measured: 144 phrases across 8 files, no duplicates,
+and does not know the rule's name. Measured: 161 phrases across 9 files, no duplicates,
 every phrase resolving to exactly one rule.
 
 ---

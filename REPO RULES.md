@@ -70,9 +70,10 @@ permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wr
 
 **In:** how to think and act — restraint, scope, evidence, risk, diagnosis, honesty,
 the posture to hold when work is handed to another runtime, how the resulting reply
-reads, and what you may claim about wiring you have changed. Delivery joined the list when `AGENTS.md` §8 moved down; it is the one rule here
-whose trigger is every substantive reply rather than a specific action, and §8 keeps the
-two clauses that must bind even when nothing loads.
+reads, and what you may claim about wiring you have changed. Delivery joined the list
+when `AGENTS.md` §8 moved down; it is the one rule here whose trigger is every
+substantive reply rather than a specific action, and §8 keeps the two clauses that
+must bind even when nothing loads.
 
 **Out:** skill routing, workflow selection, spec-folder mechanics, and the *mechanics*
 of agent and CLI dispatch — which agent, which command, which model, which flags.

@@ -83,7 +83,7 @@ nothing, which **looks like coverage**. Always leave the safer wreck.
 4. Bump `version`.
 5. Re-verify links and counts.
 
-**On `version`:** all eight shipped rules sit at `1.0.0.0`, so the corpus offers no
+**On `version`:** all nine shipped rules sit at `1.0.0.0`, so the corpus offers no
 evidence for a scheme. Use the fourth segment for any content change and leave the first
 three alone until something forces the question. **This is a choice, not a finding.**
 

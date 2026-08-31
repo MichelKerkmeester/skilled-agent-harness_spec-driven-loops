@@ -86,7 +86,7 @@ Four tests run before anything gets written. Reading them first tells you whethe
 awk 'NR==1&&/^---$/{fm=1;next} fm&&/^---$/{fm=0;next} /^## [0-9]+\./{s++} /^---$/{d++} END{print "sections="s, "dividers="d, "lines="NR}' repo-rules/<file>.md
 ```
 
-Sections and dividers match in all eight shipped rules and in the router. The command skips the frontmatter delimiters, so it reads the router correctly too. Lines at or under 160 is preferred, and over 250 means the rule needs splitting or cutting.
+Sections and dividers match in all nine shipped rules and in the router. The command skips the frontmatter delimiters, so it reads the router correctly too. Lines at or under 160 is preferred, and over 250 means the rule needs splitting or cutting.
 
 ---
 
@@ -136,8 +136,8 @@ Skip it when the request teaches a capability rather than constraining one, when
 | Your request was refused and you disagree | Most requests are refused by design, usually on test 1 | Read which test refused it. The destination it names is generally a better home than a new file |
 | A rule was written but never fires | It has a file and no trigger row, or the row describes a topic rather than an action | Check the router for a matching row, then check that the row lists actions you take |
 | The router points at a file that does not exist | A retirement removed the file before the row | Remove the row too, then run the count check in section 8. Rows and files must match |
-| A trigger phrase reaches the wrong rule | Two rules claim the same phrase | Sweep for duplicates. The set carries 144 phrases with zero collisions, so any duplicate is a defect |
-| `validate_document.py --type reference` calls a rule invalid | A repo rule has no Overview section by design, and that type requires one | Use the structural check in section 8. All eight shipped rules fail that document type for this same reason |
+| A trigger phrase reaches the wrong rule | Two rules claim the same phrase | Sweep for duplicates. The set carries 161 phrases with zero collisions, so any duplicate is a defect |
+| `validate_document.py --type reference` calls a rule invalid | A repo rule has no Overview section by design, and that type requires one | Use the structural check in section 8. All nine shipped rules fail that document type for this same reason |
 | The draft passes every check and still reads as filler | Structure is checkable and it is not the bar | Run the five reader tests in `creation-standards.md`. They need a person, not a script |
 
 ---
@@ -162,7 +162,7 @@ A: The router gets emitted first, from a template. No router means no rule can l
 
 **Q: How long should a rule be?**
 
-A: At or under 160 lines is preferred and most subjects fit. 161 to 200 is fine without comment. 201 to 250 is allowed when the rule can say why it needs the room. Over 250 means splitting it or cutting it. Three of the eight shipped rules sit at the limit, and each absorbed content moved down from `AGENTS.md`, so their length is explained rather than accidental.
+A: At or under 160 lines is preferred and most subjects fit. 161 to 200 is fine without comment. 201 to 250 is allowed when the rule can say why it needs the room. Over 250 means splitting it or cutting it. Three of the nine shipped rules sit at the limit, and each absorbed content moved down from `AGENTS.md`, so their length is explained rather than accidental.
 
 **Q: Is a refusal a dead end?**
 

@@ -230,6 +230,8 @@ One table, not a checklist to recite. Each row is a signal the work is drifting 
 
 ### Proof Standards
 
+> Expanded by [`hub-routing.md`](repo-rules/hub-routing.md) for claims about routing you have wired: a registry entry is not proof a request reaches the mode.
+
 > Expanded by [`evidence-and-proof.md`](repo-rules/evidence-and-proof.md).
 
 ##### Verification Standards

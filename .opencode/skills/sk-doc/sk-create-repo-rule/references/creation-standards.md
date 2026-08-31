@@ -1,6 +1,6 @@
 ---
 title: "Creation Standards: Is This Rule Worth Loading?"
-description: "The bar above the structural floor. A rule can pass every structural check and still be worth nobody's context; these five tests decide whether it earns the load, and each is met by all eight shipped rules."
+description: "The bar above the structural floor. A rule can pass every structural check and still be worth nobody's context; these five tests decide whether it earns the load, and each is met by all nine shipped rules."
 trigger_phrases:
   - "creation standards"
   - "is this rule worth loading"
@@ -19,8 +19,8 @@ version: 1.0.0.0
 is not enough — a rule can satisfy every structural assertion and say nothing a reader
 would change their behaviour over.
 
-These five tests are read out of what the eight shipped rules already do. Every one passes
-on all eight. Each is a question a reviewer answers by reading; none can be automated, and
+These five tests are read out of what the nine shipped rules already do. Every one passes
+on all nine. Each is a question a reviewer answers by reading; none can be automated, and
 that limit is the reason they live here rather than in the structural floor.
 
 ---
@@ -67,7 +67,7 @@ reader who has the problem and does not know the rule exists.
 
 **Two hard constraints:**
 
-- **No phrase may appear in two rules.** The set carries 144 phrases with zero collisions;
+- **No phrase may appear in two rules.** The set carries 161 phrases with zero collisions;
   a duplicate makes both rules unfindable by it.
 - **Aim for 15-20.** The observed range is 16-20. Fewer leaves the rule hard to reach;
   many more usually means section titles crept back in.
@@ -149,7 +149,7 @@ Each is an observed failure, not a preference.
 - **Not a gate on whether the rule may exist** — that is `decision-tests.md`, and it runs
   first. These standards assume the rule has already earned the right to be written.
 - **Not licence to hold a draft to a bar the corpus does not meet.** Every test here passes
-  on all eight shipped rules. A proposed sixth standard that they fail is a wrong standard.
+  on all nine shipped rules. A proposed sixth standard that they fail is a wrong standard.
 
 ---
 
