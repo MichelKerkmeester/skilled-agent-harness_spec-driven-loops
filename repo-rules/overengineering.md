@@ -19,43 +19,58 @@ The naming is the whole rule. "It's cleaner" is not a failure. "A future caller 
 is not a failure. A failure is something that breaks today, for a requirement that
 exists today.
 
-## 1. The restraint ladder
+---
 
-Start at rung 0 every time. **Climb one rung only by writing the sentence that says
-what fails at the rung below** — in the response, not just in your head.
+## 1. THE REVERSAL-COST ORDER
 
-| Rung | Move | Cost when wrong |
-|------|------|-----------------|
-| **0** | **Build nothing** — existing behavior already meets the requirement | zero |
-| **1** | Change a value, constant, or config that exists | one line to revert |
-| **2** | Extend an existing function or module in place | contained to one unit |
-| **3** | Add a new function beside the existing ones | one new symbol to learn |
-| **4** | Add a new file or module | a new place readers must look |
-| **5** | Add an abstraction, interface, or indirection layer | every future reader pays the hop |
-| **6** | Add a dependency | permanent supply-chain, version and trust surface |
+Start at the cheapest move every time. **Take a costlier one only by writing the sentence
+that says what fails at the cheaper one** — in the response, not just in your head.
 
-Rung 0 is not a formality: a surprising share of requests are already satisfied by code
-that exists, and reading first is what reveals it. The sentence, written out —
+| Move | Cost when wrong |
+|------|-----------------|
+| **Build nothing** — existing behavior already meets the requirement | zero |
+| Change a value, constant, or config that exists | one line to revert |
+| Extend an existing function or module in place | contained to one unit |
+| Add a new function beside the existing ones | one new symbol to learn |
+| Add a new file or module | a new place readers must look |
+| Add an abstraction, interface, or indirection layer | every future reader pays the hop |
+| Add a dependency | permanent supply-chain, version and trust surface |
 
-> "Rung 2 fails because `parseConfig` is called from the CLI and the daemon with
-> incompatible defaults today, so extending it in place breaks the daemon. Going to
-> rung 3."
+> **This orders moves by what being wrong costs, and it is deliberately not the numbered
+> rung ladder.** For code, `AGENTS.md` §3 names
+> `sk-code/shared/references/universal/code-quality-standards.md` §1 as the authoritative
+> rungs, and that ladder orders *solution sources* — standard library, then native
+> platform, then an installed dependency. Two orderings, two axes, one authority: cite
+> rung numbers from that file, and cite moves by name from this one. Naming a "rung 2"
+> here would mean something different there, which is exactly the confusion this section
+> stopped causing.
 
-If you cannot write that with a real symbol and a real caller in it, you are on the
-wrong rung.
+Building nothing is not a formality: a surprising share of requests are already satisfied
+by code that exists, and reading first is what reveals it. The sentence, written out —
 
-## 2. The pre-write pass
+> "Extending `parseConfig` in place fails, because the CLI and the daemon call it with
+> incompatible defaults today, so the change breaks the daemon. Adding a new function
+> beside it."
+
+If you cannot write that with a real symbol and a real caller in it, you are reaching
+past the move you can justify.
+
+---
+
+## 2. THE PRE-WRITE PASS
 
 After reading the existing code, before the first edit:
 
-1. **Does this need to exist?** Walk the ladder. Answer with a rung number and the
-   climbing sentence.
+1. **Does this need to exist?** Walk §1 in order. Answer by naming the move and writing
+   its climbing sentence.
 2. **What does it touch?** If the change can break a caller or a shared contract, name
    the owning module, one real caller (`file:line`), and the contract that must not
    break. No real caller means the change is smaller than you think — or the code
    should not exist either.
 
-## 3. Two signals `AGENTS.md` does not carry
+---
+
+## 3. TWO SIGNALS `AGENTS.md` DOES NOT CARRY
 
 Its Restraint Signals table binds and is not repeated here.
 
@@ -64,7 +79,9 @@ Its Restraint Signals table binds and is not repeated here.
 | A config option "so we can change it later" | a decision deferred into a permanent branch | Hardcode it (§4) |
 | A wrapper that only forwards arguments | indirection with no behavior | Call the thing directly |
 
-## 4. Specific restraints
+---
+
+## 4. SPECIFIC RESTRAINTS
 
 **Options.** Every option is a permanent branch in the code, a row in the docs, and an
 axis in the test matrix. Default to hardcoding. An option earns existence when **two
@@ -87,10 +104,18 @@ applies to test code exactly as to the code under test.
 **Performance.** No speculative optimization. Measure under stated conditions and report
 baseline and delta, or leave it alone.
 
-**Dependencies.** Prefer what the project has. A new one is rung 6, needs its climbing
-sentence, and takes the `blast-radius.md` pass too — installing mutates the environment.
+**Fallbacks.** A second code path for a constraint the target environment does not
+actually have is an untested branch that will rot. Add the no-install path, the offline
+path, or the degraded path only when you can name the environment that needs it. "In
+case" is not an environment.
 
-## 5. What this rule is NOT
+**Dependencies.** Prefer what the project has. A new one is the costliest move in §1,
+needs its climbing sentence, and takes the `blast-radius.md` pass too — installing
+mutates the environment.
+
+---
+
+## 5. WHAT THIS RULE IS NOT
 
 Restraint constrains *how much you build*, never *how much you deliver*.
 
@@ -99,9 +124,12 @@ Restraint constrains *how much you build*, never *how much you deliver*.
 - **Not a reason to skip real error handling.** A failure mode that happens is not
   speculative.
 
-## 6. Self-check
+---
 
-- [ ] Named the rung and wrote the climbing sentence for every rung above 0.
+## 6. SELF-CHECK
+
+- [ ] Named the move and wrote the climbing sentence for every move past "build nothing".
 - [ ] Every new option, abstraction and dependency has a caller that needs it **today**.
 - [ ] Nothing is justified only by a future nobody asked for.
 - [ ] If I judged part of the scope unnecessary, I built it anyway and said so.
+- [ ] Any fallback path I added names the environment that requires it.

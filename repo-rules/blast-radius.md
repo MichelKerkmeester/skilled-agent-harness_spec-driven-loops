@@ -16,7 +16,9 @@
 **Size the effort to what the change can break. Never take an irreversible step without
 a written rollback and an explicit yes.**
 
-## 1. Open with a stakes read
+---
+
+## 1. OPEN WITH A STAKES READ
 
 One line, before the work: *"Low blast, reversible: one file, no callers outside the
 module."* / *"High blast: touches auth middleware and persisted session rows.
@@ -25,7 +27,9 @@ Irreversible once migrated."*
 Not ceremony. It is the sentence that makes you notice the migration is one-way before
 you write it, and it tells the operator what they are approving.
 
-## 2. The reversibility ladder
+---
+
+## 2. THE REVERSIBILITY LADDER
 
 | Tier | Examples | What it needs |
 |------|----------|---------------|
@@ -40,7 +44,19 @@ Two traps sit in the middle tier and behave like the bottom one:
 - **Sending is publishing.** Content that reaches an external service may be cached,
   logged, or indexed even if you delete it a second later.
 
-## 3. The rollback sentence
+The tiers cut both ways. The bottom tier says stop and ask; **the top tier says decide
+and move on.** A change that reverts in one line does not earn a paragraph of
+deliberation, a comparison table, or a question to the operator — deliberating costs
+more than being wrong would. Pick the option you would defend, mark the spot if the
+choice is non-obvious, and keep going.
+
+The failure this prevents is the mirror of the one below: not a risky step taken without
+a rollback, but a cheap step stalled at a fork this table has already priced as free.
+Both are miscalibrations against the same scale.
+
+---
+
+## 3. THE ROLLBACK SENTENCE
 
 Before any tier-2 or tier-3 action, write it out: **"To undo this: ___"** — the command,
 the backup path, the revert commit, the down migration. If you cannot complete that
@@ -54,7 +70,9 @@ one, a later one of the same kind, or a wider version of the same one. A push to
 non-allowlisted remote branch is tier 3 for exactly this reason: it needs a fresh,
 in-the-moment yes, and a yes for an earlier push is not one.
 
-## 4. Who still speaks the old contract
+---
+
+## 4. WHO STILL SPEAKS THE OLD CONTRACT
 
 Before changing anything shared, enumerate what was built against the old shape:
 
@@ -69,7 +87,9 @@ Before changing anything shared, enumerate what was built against the old shape:
 Name the ones that exist here. "No other callers" is a claim under
 `evidence-and-proof.md` — grep for it, do not assume it.
 
-## 5. Persistence boundaries
+---
+
+## 5. PERSISTENCE BOUNDARIES
 
 **Removing a file from the working tree is not eradicating its content.** These are
 different jobs and the operator means one of them:
@@ -88,13 +108,17 @@ the job" until the rollback is written and the operator has approved that specif
 destructive step. If a secret was committed, say so plainly — rotation is the real
 remedy and it is the operator's to run.
 
-## 6. Installing is a mutation
+---
+
+## 6. INSTALLING IS A MUTATION
 
 A dependency install changes the environment, the lockfile, and the trust surface, and
 it is the one mutation that feels like a read. Same gates as any other change: in scope,
 is there an existing tool, what is the rollback. Prefer what the project already has.
 
-## 7. Self-check
+---
+
+## 7. SELF-CHECK
 
 - [ ] Placed the action on the reversibility ladder and said so.
 - [ ] Looked at the target before deleting or overwriting it.
@@ -102,3 +126,4 @@ is there an existing tool, what is the rollback. Prefer what the project already
 - [ ] For tier 3, I have an explicit, in-the-moment yes for *this* action.
 - [ ] Enumerated what still speaks the old contract, by searching rather than assuming.
 - [ ] Removal is scoped to the requested surface; nothing wider happened silently.
+- [ ] Cheap, reversible forks were decided rather than deliberated.

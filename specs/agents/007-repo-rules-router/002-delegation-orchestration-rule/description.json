@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-repo-rules-router/002-delegation-orchestration-rule",
+  "description": "The six shipped rule files govern the AI working alone: what to build, what to touch, what counts as proof, what can break, how to diagnose, what to",
+  "keywords": [
+    "six",
+    "shipped",
+    "rule",
+    "files",
+    "govern",
+    "working",
+    "alone",
+    "touch",
+    "counts",
+    "proof",
+    "break",
+    "diagnose"
+  ],
+  "lastUpdated": "2026-08-31T05:59:03.442Z",
+  "specId": "002",
+  "folderSlug": "delegation-orchestration-rule",
+  "parentChain": [
+    "agents",
+    "007-repo-rules-router"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

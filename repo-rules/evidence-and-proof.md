@@ -16,7 +16,9 @@
 **A claim is only as strong as the observation behind it. Every load-bearing claim
 carries its receipt, or is explicitly labeled as inferred.**
 
-## 1. Three tiers
+---
+
+## 1. THREE TIERS
 
 | Tier | Meaning | How it must appear |
 |------|---------|--------------------|
@@ -27,7 +29,9 @@ carries its receipt, or is explicitly labeled as inferred.**
 Prose that mixes the three without marking them reads as if all of it were observed.
 That is how a confident summary certifies work nobody checked.
 
-## 2. Command evidence
+---
+
+## 2. COMMAND EVIDENCE
 
 **A command counts as evidence only after its output and exit status have been read.**
 Not launched. Not assumed. Read.
@@ -41,7 +45,9 @@ Not launched. Not assumed. Read.
 - Run focused checks during repair; before claiming completion **re-run the whole
   authoritative gate**. A focused pass is not a gate pass.
 
-## 3. The four ways a green run lies
+---
+
+## 3. THE FOUR WAYS A GREEN RUN LIES
 
 1. **It did not run.** Stale build, refused start, missing binary, guard clause, crashed
    before the first test body.
@@ -52,14 +58,18 @@ Not launched. Not assumed. Read.
 4. **It asserted nothing.** A test with no assertion, a mocked subject, an auto-updated
    snapshot, an empty parametrization.
 
-## 4. The negative control
+---
+
+## 4. THE NEGATIVE CONTROL
 
 **Before the fix, reproduce the exact failing symptom with the exact check you will use
 to prove the fix.** Then the same check proves the change. A check that passed before
 your change and passes after it proves nothing about your change. If reproducing is
 unsafe, say so and name what you used instead.
 
-## 5. Baselines
+---
+
+## 5. BASELINES
 
 "No regressions" is a comparison, and a comparison needs a before.
 
@@ -71,7 +81,9 @@ unsafe, say so and name what you used instead.
 Same for any performance claim: measure under stated conditions, report baseline and
 delta. An unmeasured performance claim is not a caveat, it is a fabrication.
 
-## 6. Shape-specific proof
+---
+
+## 6. SHAPE-SPECIFIC PROOF
 
 Three task shapes fail in ways the checks above do not catch:
 
@@ -83,14 +95,18 @@ Three task shapes fail in ways the checks above do not catch:
 - **Exact artifact** — check filename, path, format and content shape directly. Having
   written it is not evidence it is there in the required shape.
 
-## 7. A finding is a hypothesis
+---
+
+## 7. A FINDING IS A HYPOTHESIS
 
 A sub-agent's "COMPLETE", a reviewer's "P0", a linter's error, a bot's suggestion — each
 is a **claim to confirm against the real symptom**, not a fact to act on. Acting on an
 unconfirmed finding produces a fix for a bug that was never there, plus a diff nobody
 can explain.
 
-## 8. Proof plan before implementation
+---
+
+## 8. PROOF PLAN BEFORE IMPLEMENTATION
 
 For anything with a machine-checkable outcome, **before changing files**, convert the
 acceptance criteria into 1–5 observable pass/fail checks. Each names the exact command
@@ -99,7 +115,9 @@ or inspection, the exact path/filename/format expected, and the boundary case it
 Deciding what would count as proof *after* you have the result is how the result becomes
 the standard.
 
-## 9. Final-state proof
+---
+
+## 9. FINAL-STATE PROOF
 
 Before any completion claim:
 
@@ -112,7 +130,9 @@ Before any completion claim:
 - [ ] Any failing check keeps the completion claim blocked. Repair, or report the
       blocker with its evidence. There is no third option.
 
-## 10. Close-out
+---
+
+## 10. CLOSE-OUT
 
 Every substantive turn ends with an honest status. Four things, briefly:
 
@@ -127,10 +147,37 @@ was skipped, say it was skipped. If scope was left out, name it and why. Work th
 done and verified is stated plainly, without hedging — the hedging habit devalues the
 honest report when it matters.
 
-## 11. Self-check
+---
+
+## 11. REASON FROM DATA, NOT FROM MEMORY
+
+Everything above is about proving a claim after the fact. This is about where the claim
+came from. Two habits produce most of the claims that then need retracting:
+
+**Reasoning from what the code probably does.** You have read this pattern a hundred
+times, so you know what `resolveConfig` returns. Open it. The cost of being wrong here
+is not one wrong sentence — it is a fix built on a wrong model, which fails in a way
+that looks like a different bug.
+
+**Reasoning from what a document says the code does.** A README, a spec, a comment, and
+a prior implementation summary are all claims about the code by someone who is not the
+code. They are excellent for finding *where* to look and worthless as the final word on
+*what happens*. Where a doc and the code disagree, the code wins and the doc is now a
+defect.
+
+Before the change, run the checks that decide whether it is the right change at all:
+does something simpler already do this, what does it cost at runtime, who maintains it
+after you, and is any of it outside the frozen scope. These are cheap before the edit
+and expensive after it — the same asymmetry as §8's proof plan, one step earlier.
+
+---
+
+## 12. SELF-CHECK
 
 - [ ] Every load-bearing sentence is marked OBSERVED, DERIVED, or INFERRED.
 - [ ] I read the output and exit status of every command I am citing.
 - [ ] Checked the green run against the four failure modes in §3.
 - [ ] A before-number exists for every "no regressions" and performance claim.
 - [ ] The close-out says what failed and what is inferred, not only what worked.
+- [ ] Every claim about behavior came from the code or a command, not from memory or a doc.
+- [ ] Where a document and the code disagreed, I said so rather than trusting the document.

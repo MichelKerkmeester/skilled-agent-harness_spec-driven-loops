@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "agents/007-repo-rules-router",
   "description": "`AGENTS.md` §3 tells every runtime to \"apply project-specific conventions from `REPO RULES.md` … when the repository has one\", and that file does not",
   "keywords": [
@@ -15,13 +16,12 @@
     "one",
     "file"
   ],
-  "lastUpdated": "2026-08-31T03:40:37.793Z",
+  "lastUpdated": "2026-08-31T06:45:43.097Z",
   "specId": "007",
   "folderSlug": "repo-rules-router",
   "parentChain": [
     "agents"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

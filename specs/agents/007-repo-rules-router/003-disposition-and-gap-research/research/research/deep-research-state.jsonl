@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":1,"run":1,"status":"insight","newInfoRatio":0.85,"ruledOut":[],"timestamp":"2026-08-31T06:09:32.519Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"insight","newInfoRatio":0.55,"ruledOut":[],"timestamp":"2026-08-31T06:16:07.892Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"insight","newInfoRatio":0.6,"ruledOut":[],"timestamp":"2026-08-31T06:22:08.730Z"}
+{"type":"iteration","iteration":4,"run":4,"status":"insight","newInfoRatio":0.55,"ruledOut":[],"timestamp":"2026-08-31T06:31:40.985Z"}
+{"type":"iteration","iteration":5,"run":5,"status":"insight","newInfoRatio":0.6,"ruledOut":[],"timestamp":"2026-08-31T06:35:57.797Z"}

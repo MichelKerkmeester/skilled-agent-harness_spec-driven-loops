@@ -16,7 +16,9 @@
 **The requested scope is the deliverable. Do not narrow it, widen it, or transform it.
 Adjacent problems get named, not fixed.**
 
-## 1. The three drifts
+---
+
+## 1. THE THREE DRIFTS
 
 | Drift | What it looks like | Why it costs |
 |-------|-------------------|--------------|
@@ -28,7 +30,9 @@ Narrowing is the most common and least visible, because it is easy to mistake fo
 restraint. Restraint governs *how much you build*, never *how much of the ask you
 deliver*.
 
-## 2. What counts as "explicitly in scope"
+---
+
+## 2. WHAT COUNTS AS "EXPLICITLY IN SCOPE"
 
 Law 2 freezes the scope; this section never widens it, it only says how to read it.
 Inside the frozen scope these are the *same* change, not adjacent ones:
@@ -41,7 +45,9 @@ Inside the frozen scope these are the *same* change, not adjacent ones:
 
 Anything else is adjacent and goes to §4 — including a caller the change does *not* break.
 
-## 3. What always needs a yes first
+---
+
+## 3. WHAT ALWAYS NEEDS A YES FIRST
 
 - Adding a dependency.
 - Creating a file outside the area the request named.
@@ -51,7 +57,9 @@ Anything else is adjacent and goes to §4 — including a caller the change does
 - Rewriting git history, force-pushing, or touching branches and reflogs.
 - Anything in `blast-radius.md`'s irreversible tier.
 
-## 4. The adjacent-defect protocol
+---
+
+## 4. THE ADJACENT-DEFECT PROTOCOL
 
 You will find real problems outside scope. Finding them is good; fixing them silently
 is not.
@@ -64,20 +72,26 @@ is not.
 Fold it in only if the operator says so, or if leaving it makes the in-scope change
 incorrect — in which case it was never adjacent, it was a caller, and §2 covers it.
 
-## 5. Deviating from an approved plan
+---
+
+## 5. DEVIATING FROM AN APPROVED PLAN
 
 The protocol is `AGENTS.md` §1 PLAN-WORKFLOW LOCK, a hard blocker that outranks this
 file. Read it there. This section deliberately does not restate it: a hard blocker
 copied into a tier-3 document reads as though an operator instruction could outrank it.
 What this file adds is the adjacent case — a frozen **scope** you believe is wrong.
 
-## 6. Amendment over absorption
+---
+
+## 6. AMENDMENT OVER ABSORPTION
 
 Do not quietly build what you think was meant. Build what was specified, and in the
 same response say what is wrong, what you would change it to, and what it would cost.
 The operator decides.
 
-## 7. Finishing
+---
+
+## 7. FINISHING
 
 `AGENTS.md` §3 Ownership & Completion binds: no early stop, no "natural checkpoint" on
 incomplete work, no asking permission to continue an approved, in-scope step. Two
@@ -89,9 +103,35 @@ things are worth stating in scope terms:
   PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, the remote-push
   go-ahead, and every `blast-radius.md` stop-for-yes still block.
 
-## 8. Self-check
+---
+
+## 8. PLAN BEFORE ACTING
+
+Scope you have not thought through is scope you will discover mid-edit, which is where
+drift starts. Before the first change on any multi-step work, decide three things and
+say them:
+
+1. **Which files you will read first.** Reading first is `overengineering.md` §2's
+   pre-write pass, and it is not repeated here — but *which* files is a scope decision,
+   because the set you read is the set you will feel entitled to change.
+2. **Which tools or commands will do the work.** Naming them up front is what catches
+   the case where the plan needs something outside the frozen scope, while it is still
+   cheap to raise.
+3. **How the result will be verified.** `evidence-and-proof.md` §8 owns the proof plan;
+   what belongs here is that a change with no named check is a change with no defined
+   edge, and an undefined edge is where "while I was in there" gets in.
+
+Three sentences is a plan. The failure this prevents is not disorganization — it is the
+mid-task realization that the work needs a file nobody scoped, discovered at the moment
+when editing it feels easier than asking.
+
+---
+
+## 9. SELF-CHECK
 
 - [ ] Every file in my diff is in scope by §2, or has an explicit yes.
 - [ ] Adjacent defects are recorded and reported, not fixed.
 - [ ] Everything asked for is delivered, or listed as not delivered with a reason.
 - [ ] No formatting or cleanup noise rides along with the real change.
+- [ ] I named the files, the tools, and the check before the first edit.
+- [ ] Nothing entered the plan that was not in the frozen scope.

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-repo-rules-router/004-research-adoption",
+  "description": "Phase 3 returns a ranked list from a single executor family running five iterations",
+  "keywords": [
+    "phase",
+    "returns",
+    "ranked",
+    "list",
+    "single",
+    "executor",
+    "family",
+    "running",
+    "five",
+    "iterations"
+  ],
+  "lastUpdated": "2026-08-31T06:45:26.947Z",
+  "specId": "004",
+  "folderSlug": "research-adoption",
+  "parentChain": [
+    "agents",
+    "007-repo-rules-router"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

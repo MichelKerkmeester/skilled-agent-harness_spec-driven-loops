@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-repo-rules-router/003-disposition-and-gap-research",
+  "description": "Three things are unverified about the rule set",
+  "keywords": [
+    "three",
+    "things",
+    "unverified",
+    "about",
+    "rule",
+    "set"
+  ],
+  "lastUpdated": "2026-08-31T06:39:34.389Z",
+  "specId": "003",
+  "folderSlug": "disposition-and-gap-research",
+  "parentChain": [
+    "agents",
+    "007-repo-rules-router"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

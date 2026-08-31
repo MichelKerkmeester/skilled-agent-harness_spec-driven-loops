@@ -205,3 +205,34 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 - **Prior restraint work**: See `../006-restraint-and-routing-gates/spec.md`
 - **Prior bloat baseline**: See `../004-agents-md-bloat-audit/`
 <!-- /ANCHOR:related-docs -->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, verification, decisions, continuity) live inside the phase children.
+>
+> **Baseline (phase 0, shipped):** the router, the six thinking-discipline rule files, and `AGENTS.md` GATE 5 were built and closed before this decomposition. That work is documented by this parent's own `plan.md`, `tasks.md`, `acceptance-criteria.md`, and `implementation-summary.md`, which are retained under the tolerant-migration policy for legacy phase parents. The children below extend that baseline; none of them re-do it.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-header-format-and-dividers/ | Uppercase every numbered section header and insert a `---` divider between numbered sections across `REPO RULES.md` and the six rule files | Complete |
+| 2 | 002-delegation-orchestration-rule/ | Seventh rule file: delegating work to another CLI runtime or agent requires the orchestrate posture, not a single model's opinion | Complete |
+| 3 | 003-disposition-and-gap-research/ | 5-iteration deep-research pass on rule-set gaps, `AGENTS.md` changes, and what the retired Fable governor disposition is worth as a rule | Complete |
+| 4 | 004-research-adoption/ | Adopt phase 3's ranked verdict: create, edit, or explicitly decline each recommendation | Complete |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-header-format-and-dividers | 002-delegation-orchestration-rule | Every numbered header in the seven governance files is uppercase, every numbered section is divider-separated, and no rule sentence changed | `grep -cE '^## [0-9]+\. [A-Z0-9 ,\`'"'"'-]+$'` equals the numbered-header count per file; `git diff --word-diff` shows heading-line and blank-line changes only |
+| 002-delegation-orchestration-rule | 003-disposition-and-gap-research | `repo-rules/delegation-and-orchestration.md` exists in the phase-1 format, and the router's trigger table and index both link to it | Link resolves on disk; router row count rises from 6 to 7 in both tables |
+| 003-disposition-and-gap-research | 004-research-adoption | 5 iterations recorded in `research/deep-research-state.jsonl`, and `research/research.md` carries a ranked recommendation list where every item is accept, decline, or defer | Iteration count read from the state log; each recommendation names the file it would change |
+| 004-research-adoption | — | Every phase-3 recommendation has a recorded disposition, and every accepted one is implemented and validated | `validate.sh --recursive --strict` on the parent returns `RESULT: PASSED` for all folders |
+<!-- /ANCHOR:phase-map -->

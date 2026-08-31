@@ -3,7 +3,12 @@
   "packet_id": "agents/007-repo-rules-router",
   "spec_folder": "agents/007-repo-rules-router",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "agents/007-repo-rules-router/001-header-format-and-dividers",
+    "agents/007-repo-rules-router/002-delegation-orchestration-rule",
+    "agents/007-repo-rules-router/003-disposition-and-gap-research",
+    "agents/007-repo-rules-router/004-research-adoption"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -39,7 +44,7 @@
       "cause"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -51,7 +56,12 @@
       "repo-rules/evidence-and-proof.md",
       "repo-rules/blast-radius.md",
       "repo-rules/root-cause.md",
-      "repo-rules/uncertainty-and-honesty.md"
+      "repo-rules/uncertainty-and-honesty.md",
+      "001-header-format-and-dividers/implementation-summary.md",
+      "002-delegation-orchestration-rule/implementation-summary.md",
+      "003-disposition-and-gap-research/research/research.md",
+      "004-research-adoption/adoption-decisions.md",
+      "repo-rules/delegation-and-orchestration.md"
     ],
     "entities": [
       {
@@ -121,6 +131,18 @@
         "source": "derived"
       },
       {
+        "name": "adoption-decisions.md",
+        "kind": "doc",
+        "path": "004-research-adoption/adoption-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "delegation-and-orchestration.md",
+        "kind": "doc",
+        "path": "repo-rules/delegation-and-orchestration.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -185,23 +207,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`AGENTS.md` §3 tells every runtime to \"apply project-specific conventions from `REPO RULES.md` … when the repository has one\", and that file does not exist here — the only other references to it are four `sk-code`-scoped docs pointing at a different repository's copy",
     "created_at": "2026-08-31T03:30:40Z",
-    "last_save_at": "2026-08-31T04:54:07.383Z",
+    "last_save_at": "2026-08-31T06:45:48.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,15 +221,15 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ca221fa78eb2f6041638f1614e88baeeb4f84f0968ab896ee01709ac53e7b02",
+    "source_fingerprint": "sha256:443ad10f279d4367a62cc04cf6228b2c6f1a9c5ab8f5d46f074b7ce92c0d3742",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "506bf18ca87f34d620b1c3a2602120108cd6ae62075e5dd30c0dc1aa5b7af079",
+      "spec.md": "5dd92a774da6449c38d0c8cbe4fbbb64edb814bebc45401e667cbabafa372af9",
       "plan.md": "a466ec4fabcec3a3f4d517053f0cfbd4f7ed7d2c5b69667089f1fb5b3c06a1c4",
       "tasks.md": "cdb26351987b6c0ade78f8ac8ac990164d3833a7777143a703f23fccd4ee0c26",
-      "implementation-summary.md": "ad75c415058306f2cdbfb16647eb207c888fbcd2e534e1c2fa171918d36824de"
+      "implementation-summary.md": "4ba6876b2cc3ccbec2c50cb435198223d872a7edd7f5830efe2a6ef3d75ac4d0"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "agents/007-repo-rules-router/004-research-adoption",
     "last_active_at": null
   }
 }

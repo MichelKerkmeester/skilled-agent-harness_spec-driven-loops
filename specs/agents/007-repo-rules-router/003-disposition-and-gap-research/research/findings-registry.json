@@ -1,0 +1,547 @@
+{
+  "sessionId": "research-007-003-f6e29a99",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-rq1-does-the-shipped-repo-rules-set-expand-every-thinking-and-acting-row-in-agen",
+      "inboxId": null,
+      "text": "RQ1: Does the shipped repo-rules set expand every thinking-and-acting row in `AGENTS.md` sections 2, 3, 4 and 7, and which rows are still compressed with nowhere to expand?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-rq2-which-agents-md-rows-should-move-down-into-a-rule-file-and-which-must-stay-b",
+      "inboxId": null,
+      "text": "RQ2: Which `AGENTS.md` rows should move down into a rule file, and which must stay because they are hard blockers, gates, or routing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-rq3-separating-container-from-content-does-the-disposition-carried-by-the-per-tu",
+      "inboxId": null,
+      "text": "RQ3: Separating container from content, does the disposition carried by the per-turn governor directive retired in commit `4477a9f1` earn a rule file, a section in an existing file, or nothing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-rq4-which-further-repo-rules-are-warranted-which-plausible-sounding-ones-are-not",
+      "inboxId": null,
+      "text": "RQ4: Which further repo rules are warranted, which plausible-sounding ones are not, and what is the subtraction candidate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-rq5-what-does-repo-rules-delegation-and-orchestration-md-get-wrong-overstate-or-",
+      "inboxId": null,
+      "text": "RQ5: What does `repo-rules/delegation-and-orchestration.md` get wrong, overstate, or leave uncovered?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-rq1-does-the-shipped-repo-rules-set-expand-every-thinking-and-acting-row-in-agen",
+      "inboxId": null,
+      "text": "RQ1: Does the shipped repo-rules set expand every thinking-and-acting row in `AGENTS.md` sections 2, 3, 4 and 7, and which rows are still compressed with nowhere to expand?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-rq2-which-agents-md-rows-should-move-down-into-a-rule-file-and-which-must-stay-b",
+      "inboxId": null,
+      "text": "RQ2: Which `AGENTS.md` rows should move down into a rule file, and which must stay because they are hard blockers, gates, or routing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-rq3-separating-container-from-content-does-the-disposition-carried-by-the-per-tu",
+      "inboxId": null,
+      "text": "RQ3: Separating container from content, does the disposition carried by the per-turn governor directive retired in commit `4477a9f1` earn a rule file, a section in an existing file, or nothing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-rq4-which-further-repo-rules-are-warranted-which-plausible-sounding-ones-are-not",
+      "inboxId": null,
+      "text": "RQ4: Which further repo rules are warranted, which plausible-sounding ones are not, and what is the subtraction candidate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-rq5-what-does-repo-rules-delegation-and-orchestration-md-get-wrong-overstate-or-",
+      "inboxId": null,
+      "text": "RQ5: What does `repo-rules/delegation-and-orchestration.md` get wrong, overstate, or leave uncovered?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "RQ3: container-versus-content verdict for the retired governor directive",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ5: critique of `delegation-and-orchestration.md` as shipped (F4's largest",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ4: warranted vs not-warranted further rules + the subtraction candidate",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ2: which rows should move down into a rule file, which must stay (hard",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ5: critique of `delegation-and-orchestration.md` — thin anchor note (O4).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ4: host assignment for the 8 gaps (section-additions to 3–4 existing files vs",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ4: host assignment for the 8 gaps (section-additions to 3–4 existing files",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "RQ5: critique of `delegation-and-orchestration.md` as shipped (thin single anchor",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "RQ1: Does the shipped repo-rules set expand every thinking-and-acting row in `AGENTS.md` sections 2, 3, 4 and 7, and which rows are still compressed with nowhere to expand?",
+    "RQ2: Which `AGENTS.md` rows should move down into a rule file, and which must stay because they are hard blockers, gates, or routing?",
+    "RQ3: Separating container from content, does the disposition carried by the per-turn governor directive retired in commit `4477a9f1` earn a rule file, a section in an existing file, or nothing?",
+    "RQ4: Which further repo rules are warranted, which plausible-sounding ones are not, and what is the subtraction candidate?",
+    "RQ5: What does `repo-rules/delegation-and-orchestration.md` get wrong, overstate, or leave uncovered?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-9-delegation-and-orchestration-md-the-whole-posture-doctrine-1-posture",
+      "text": "**`delegation-and-orchestration.md` — the whole posture doctrine** (§1 posture",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-20-o1-real-overengineering-md-1-defines-a-rung-ladder-while-agents-md-l164",
+      "text": "**O1 (real):** `overengineering.md` §1 defines a rung ladder, while AGENTS.md L164",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-21-o2-real-gate-4-l106-109-is-classified-here-as-design-excluded-via",
+      "text": "**O2 (real):** Gate 4 (L106–109) is classified here as design-excluded via",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-22-o3-real-scope-discipline-md-5-deliberately-refuses-to-restate",
+      "text": "**O3 (real):** `scope-discipline.md` §5 deliberately refuses to restate",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-23-o4-real-all-seven-rule-files-open-with-a-fires-when-trigger-and-close",
+      "text": "**O4 (real):** All seven rule files open with a \"Fires when\" trigger and close",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-24-o5-real-1-hard-blockers-four-laws-plan-workflow-lock-comment-hygiene",
+      "text": "**O5 (real):** §1 hard blockers (Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene,",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-blast-radius-md-2-reversibility-ladder-tiers-l149-gives-only-the-principle",
+      "text": "`blast-radius.md` §2 Reversibility Ladder tiers (L149 gives only the principle).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-blast-radius-md-3-approval-does-not-transfer-expands-5-l315-git-push",
+      "text": "`blast-radius.md` §3 \"approval does not transfer\" expands §5 L315 (git push",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-19-delegation-and-orchestration-md-2-1-cites-9-dispatch-rules-l491",
+      "text": "`delegation-and-orchestration.md` §2.1 cites §9 Dispatch Rules (L491).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-evidence-and-proof-md-10-close-out-expands-agents-md-9-l497-close",
+      "text": "`evidence-and-proof.md` §10 close-out expands AGENTS.md §9 L497 (\"close",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-overengineering-md-1-rung-ladder-see-o1-3-s-two-extra-signals-config",
+      "text": "`overengineering.md` §1 rung ladder (see O1), §3's two extra signals (config",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-root-cause-md-2-symptom-fix-smells-table-closest-hook-l205-4-never-weaken",
+      "text": "`root-cause.md` §2 Symptom-Fix Smells table (closest hook: L205), §4 never weaken",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-scope-discipline-md-1-three-drifts-table-widening-and-transforming-are",
+      "text": "`scope-discipline.md` §1 Three Drifts table (widening and transforming are",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-uncertainty-and-honesty-md-2-expands-9-never-fabricate-mandate-l483",
+      "text": "`uncertainty-and-honesty.md` §2 expands §9 \"Never fabricate\" mandate (L483).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-uncertainty-and-honesty-md-3-operator-reaffirms-instruction-clause-5",
+      "text": "`uncertainty-and-honesty.md` §3 operator-reaffirms-instruction clause, §5",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-every-rule-file-s-self-check-section-a-new-artifact-form-agents-md-4-s",
+      "text": "Every rule file's SELF-CHECK section — a new artifact form; AGENTS.md §4's",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-fallbacks-only-for-real-constraints-3-l188",
+      "text": "Fallbacks only for real constraints (§3, L188)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-frequent-self-checks-3-l179",
+      "text": "Frequent self-checks (§3, L179)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-plan-before-acting-3-l161",
+      "text": "Plan before acting (§3, L161)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-reason-from-actual-data-3-l180",
+      "text": "Reason from actual data (§3, L180)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-research-first-approach-3-l163",
+      "text": "Research-first approach (§3, L163)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-two-registers-3-l140-142",
+      "text": "Two registers (§3, L140–142)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-verify-with-checks-3-l190",
+      "text": "Verify with checks (§3, L190)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-violation-recovery-2-l124-126",
+      "text": "Violation Recovery (§2, L124–126)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-o1-real-only-one-of-the-8-gaps-lives-outside-3-violation-recovery-2",
+      "text": "**O1 (real):** Only one of the 8 gaps lives outside §3 (Violation Recovery, §2);",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-o2-real-3-s-four-adjacent-pairs-plan-before-acting-research-first-l161-163",
+      "text": "**O2 (real):** §3's four adjacent pairs (plan-before-acting/research-first L161–163;",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-o3-real-the-must-stay-set-is-18-row-groups-spanning-every-section-1-7-the",
+      "text": "**O3 (real):** The must-stay set is 18 row-groups spanning every section 1–7; the",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-o4-real-l491-is-delegation-and-orchestration-md-s-only-agents-md-anchor",
+      "text": "**O4 (real):** L491 is `delegation-and-orchestration.md`'s only AGENTS.md anchor —",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-o1-real-the-retirement-rationale-and-the-always-loaded-vs-triggered",
+      "text": "**O1 (real):** The retirement rationale and the always-loaded-vs-triggered",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-o2-real-the-decision-marker-is-a-code-comment-convention-and-sits",
+      "text": "**O2 (real):** The `// DECISION:` marker is a code-comment convention and sits",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-agents-md-l164-verbatim-authoritative-rungs-sk-code-shared-references-universal-",
+      "text": "**`AGENTS.md` L164 (verbatim):** \"Authoritative rungs: `sk-code/shared/references/universal/code-quality-standards.md` §1.\"",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-locus-a-overengineering-md-1-the-restraint-ladder-7-rungs-ordered-by",
+      "text": "**Locus A — `overengineering.md` §1:** \"THE RESTRAINT LADDER\", 7 rungs ordered by",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-locus-b-code-quality-standards-md-1-design-restraint-ladder-pre-write",
+      "text": "**Locus B — `code-quality-standards.md` §1:** \"Design Restraint Ladder (pre-write)\",",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-o1-real-the-two-ladder-loci-differ-in-taxonomy-cost-when-wrong-vs",
+      "text": "**O1 (real):** The two ladder loci differ in taxonomy (cost-when-wrong vs",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-o2-real-5-of-7-files-gain-sections-root-cause-md-and",
+      "text": "**O2 (real):** 5 of 7 files gain sections; `root-cause.md` and",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-o3-real-governor-clauses-1-2-reason-about-the-problem-lead-with-the",
+      "text": "**O3 (real):** Governor clauses 1–2 (reason about the problem; lead with the",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-2-1-s-citation-of-agents-md-9-dispatch-rules-l491-is-verbatim-accurate",
+      "text": "§2.1's citation of `AGENTS.md` §9 Dispatch Rules L491 is verbatim accurate:",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-5-check-3-read-the-state-it-wrote-not-the-story-it-told-is-the-doctrine",
+      "text": "§5 check 3 (\"read the state it wrote, not the story it told\") is the doctrine",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-5-s-chain-to-evidence-and-proof-md-7-a-finding-is-a-hypothesis-resolves",
+      "text": "§5's chain to `evidence-and-proof.md` §7 (\"a finding is a hypothesis\") resolves;",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-o1-every-incentive-to-return-something-that-looks-like-an-answer-1-and",
+      "text": "**O1 — \"every incentive to return something that looks like an answer\" (§1) and",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-o2-agreement-between-two-runs-of-the-same-model-is-not-corroboration-it",
+      "text": "**O2 — \"Agreement between two runs of the same model is not corroboration. It",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-o3-none-is-optional-and-the-first-is-a-hard-rule-elsewhere-2-is",
+      "text": "**O3 — \"None is optional, and the first is a hard rule elsewhere\" (§2) is",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-11-u1-no-repair-loop-for-failed-verification-5-names-three-checks-but",
+      "text": "**U1 — No repair loop for failed verification.** §5 names three checks but",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-12-u2-no-multi-delegate-conflict-doctrine-fires-when-names-a-fan-out",
+      "text": "**U2 — No multi-delegate conflict doctrine.** \"Fires when\" names \"a fan-out",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-13-u3-the-paper-trail-is-one-sided-5-requires-reading-the-delegate-s-state",
+      "text": "**U3 — The paper trail is one-sided.** §5 requires reading the delegate's state;",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-14-u4-returns-from-work-it-did-not-dispatch-are-uncovered-transcript-reads",
+      "text": "**U4 — Returns from work it did not dispatch are uncovered.** Transcript reads,",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-15-u5-no-cost-of-verification-proportionality-5-s-checks-applied-to-every",
+      "text": "**U5 — No cost-of-verification proportionality.** §5's checks applied to every",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-16-u6-the-4-escalation-path-is-undefined-if-it-is-genuinely-a-preference",
+      "text": "**U6 — The §4 escalation path is undefined.** \"If it is genuinely a preference,",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-17-u7-structural-the-thinnest-anchor-in-the-set-iter-2-o4-confirmed-the",
+      "text": "**U7 — Structural: the thinnest anchor in the set (iter 2 O4 confirmed).** The",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-w1-a-verification-step-that-did-not-exist-before-1-posture-table-is",
+      "text": "**W1 — \"a verification step that did not exist before\" (§1 posture table) is",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-w2-the-4-factual-judgment-binary-has-a-loophole-for-a-factual-question",
+      "text": "**W2 — the §4 factual/judgment binary has a loophole.** \"For a factual question",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-w3-the-file-fires-after-the-delegation-decision-never-before-it-fires",
+      "text": "**W3 — the file fires after the delegation decision, never before it.** \"Fires",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-w4-bullet-4-of-fires-when-promises-a-solo-judgment-rule-the-file-half",
+      "text": "**W4 — bullet 4 of \"Fires when\" promises a solo-judgment rule the file half",
+      "addedAtIteration": 5,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 8,
+    "keyFindings": 53,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.6,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/agents/007-repo-rules-router/003-disposition-and-gap-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

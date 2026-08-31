@@ -147,6 +147,33 @@ Verification was four mechanical checks plus a read-through, all run from the fi
 
 ---
 
+---
+
+<!-- ANCHOR:phased-extension -->
+## Phased Extension (2026-08-31)
+
+The baseline this document describes - the router, six rule files, and `AGENTS.md`
+GATE 5 - shipped first and is unchanged by what followed. The packet was then decomposed
+into four children, and their work is documented in their own folders rather than
+restated here:
+
+| Phase | What it did | Where the evidence lives |
+|-------|-------------|--------------------------|
+| 001 | Uppercased 50 numbered headers and inserted section dividers across the seven governance files, with a filtered diff proving no rule sentence changed | `001-header-format-and-dividers/implementation-summary.md` |
+| 002 | Added the seventh rule, `delegation-and-orchestration.md`, and corrected the router's scope statement, which had excluded agent dispatch outright | `002-delegation-orchestration-rule/implementation-summary.md` |
+| 003 | Ran five research iterations on a DeepSeek V4 Flash Max executor over the rule set, `AGENTS.md`, and the retired governor directive | `003-disposition-and-gap-research/research/research.md` |
+| 004 | Verified and dispositioned all ten recommendations; six rule files gained a section, one lost a contradicting table, `AGENTS.md` was untouched | `004-research-adoption/adoption-decisions.md` |
+
+**What the packet's own claims look like after this.** SC-003 said a seventh rule should
+cost exactly two router edits and no change to an existing rule file. The rows held; the
+scope statement did not, and phase 2 records that as an amendment rather than a rounding
+error. NFR-C01's claim that the always-loaded surface grows by zero lines still holds -
+`AGENTS.md` gained GATE 5 in the baseline and nothing since.
+
+The rule set is seven files. It gained one and subtracted a table, which is the shape a
+review should produce.
+<!-- /ANCHOR:phased-extension -->
+
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 

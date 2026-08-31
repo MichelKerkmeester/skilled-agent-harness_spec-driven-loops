@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-repo-rules-router/004-research-adoption",
+  "spec_folder": "agents/007-repo-rules-router/004-research-adoption",
+  "parent_id": "agents/007-repo-rules-router",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research adoption",
+      "recommendation disposition",
+      "rule set reconciliation",
+      "agents md amendment",
+      "packet closure",
+      "adoption plan",
+      "disposition table",
+      "operator approval batch",
+      "packet reconciliation",
+      "recursive validation",
+      "adoption tasks",
+      "approval batching"
+    ],
+    "key_topics": [
+      "research",
+      "adoption",
+      "recommendation",
+      "disposition",
+      "rule",
+      "set",
+      "reconciliation",
+      "agents",
+      "amendment",
+      "packet",
+      "closure",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "repo-rules/evidence-and-proof.md",
+      "repo-rules/uncertainty-and-honesty.md",
+      "repo-rules/scope-discipline.md",
+      "repo-rules/blast-radius.md",
+      "repo-rules/overengineering.md",
+      "repo-rules/delegation-and-orchestration.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": "repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "uncertainty-and-honesty.md",
+        "kind": "doc",
+        "path": "repo-rules/uncertainty-and-honesty.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-discipline.md",
+        "kind": "doc",
+        "path": "repo-rules/scope-discipline.md",
+        "source": "derived"
+      },
+      {
+        "name": "blast-radius.md",
+        "kind": "doc",
+        "path": "repo-rules/blast-radius.md",
+        "source": "derived"
+      },
+      {
+        "name": "overengineering.md",
+        "kind": "doc",
+        "path": "repo-rules/overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "delegation-and-orchestration.md",
+        "kind": "doc",
+        "path": "repo-rules/delegation-and-orchestration.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Adoption",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Set Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 3 returns a ranked list from a single executor family running five iterations",
+    "created_at": "2026-08-31T05:37:24Z",
+    "last_save_at": "2026-08-31T06:46:04.734Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e55fccbc21cc64b75b3a58cc619d17b79fb695e766dbc15f29dc74d6573a6471",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a250dfa9c53c7a91a26f9aa13063c5d3eb10f27e95008435189ff51263ca8719",
+      "plan.md": "c3155eb568ec3c070beb1e4c05cf213b5798346818bca698e741894d36d0c234",
+      "tasks.md": "0130b801e2748f80fcb4ee46202ba2131ec4f086ff38afd26977bad0362326c7",
+      "implementation-summary.md": "7080d86b569bb8eac5e4d5f7b0b7e65891b6e306a0f433f2f8c2fe3caca6cf7d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

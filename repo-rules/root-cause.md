@@ -18,7 +18,9 @@ failure.**
 If you cannot say *why* it broke in one sentence, you have not found the cause — you
 have found a place where the symptom stops appearing.
 
-## 1. The loop
+---
+
+## 1. THE LOOP
 
 1. **Reproduce the exact symptom**, safely. Not a similar one — the same failure, the
    same message.
@@ -35,7 +37,9 @@ Step 1 is not optional. If you cannot reproduce it you cannot prove you fixed it
 you should say so instead of claiming a fix (see the negative control in
 `evidence-and-proof.md`).
 
-## 2. Symptom-fix smells
+---
+
+## 2. SYMPTOM-FIX SMELLS
 
 Each is evidence you are patching in the wrong place:
 
@@ -49,7 +53,9 @@ Each is evidence you are patching in the wrong place:
 | Changing the expected value to match the actual | You just wrote the bug down as the specification |
 | A default that papers over a missing value | The producer never set it, and now nobody will find out |
 
-## 3. When an attempt repeats
+---
+
+## 3. WHEN AN ATTEMPT REPEATS
 
 **If an attempt repeats without producing new evidence, stop patching at the failure
 site.** How many local retries you get is set outside this file; what triggers the stop
@@ -72,7 +78,9 @@ same command with a different spelling.
 wrong. Say so: **name the seam and the files a seam fix would touch**, then ask.
 `scope-discipline.md` still binds — "the real fix is over there" does not grant a yes.
 
-## 4. Never make a check pass by weakening it
+---
+
+## 4. NEVER MAKE A CHECK PASS BY WEAKENING IT
 
 Not a fix, in any circumstance: skipping, disabling, quarantining or deleting a failing
 test; loosening an assertion until it passes; excluding the failing file from the linter,
@@ -82,19 +90,25 @@ different roll.
 If a test is genuinely wrong, that is a finding to raise with evidence, not a line to
 edit on your way past.
 
-## 5. "Flake" is a conclusion, not a starting hypothesis
+---
+
+## 5. "FLAKE" IS A CONCLUSION, NOT A STARTING HYPOTHESIS
 
 Only two things support it: the same check passed on this exact input before, or the run
 died before any test body executed (checkout, install, runner loss). Absent one of those,
 treat the failure as real. One re-run to confirm, at most; a second failure is a bug.
 
-## 6. Ownership
+---
+
+## 6. OWNERSHIP
 
 "Pre-existing." "Not caused by my changes." "Environment issue." These may be true and
 are never a stopping point. Diagnose far enough to know which it is, say what you found,
 then decide with the operator. A failure you walked past is a failure you shipped.
 
-## 7. When you are stuck — escalation format
+---
+
+## 7. WHEN YOU ARE STUCK — ESCALATION FORMAT
 
 Once repetition has replaced evidence and the retry budget is spent, escalate once:
 
@@ -106,7 +120,9 @@ Once repetition has replaced evidence and the retry budget is spent, escalate on
 
 A stuck report without evidence per attempt asks someone else to start from zero.
 
-## 8. Self-check
+---
+
+## 8. SELF-CHECK
 
 - [ ] Reproduced the exact symptom before changing anything.
 - [ ] I can state the mechanism in one sentence.
