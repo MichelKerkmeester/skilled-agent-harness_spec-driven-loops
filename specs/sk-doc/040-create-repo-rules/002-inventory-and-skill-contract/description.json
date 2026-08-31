@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/040-create-repo-rules/002-inventory-and-skill-contract",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-08-31T11:33:09.262Z",
+  "specId": "002",
+  "folderSlug": "inventory-and-skill-contract",
+  "parentChain": [
+    "sk-doc",
+    "040-create-repo-rules"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/040-create-repo-rules/001-repo-rules-router/003-disposition-and-gap-research",
+  "spec_folder": "sk-doc/040-create-repo-rules/001-repo-rules-router/003-disposition-and-gap-research",
+  "parent_id": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repo rules gap research",
+      "fable governor disposition",
+      "governor directive retirement",
+      "agents md rule expansion",
+      "deep research five iterations",
+      "deep research plan",
+      "five iteration loop",
+      "max iterations stop policy",
+      "write containment",
+      "ranked recommendations",
+      "deep research tasks",
+      "iteration binding"
+    ],
+    "key_topics": [
+      "repo",
+      "rules",
+      "gap",
+      "research",
+      "fable",
+      "governor",
+      "disposition",
+      "directive",
+      "retirement",
+      "agents",
+      "rule",
+      "expansion"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/deep-research-strategy.md",
+      "research/research-questions.md",
+      "research/deep-research-config.json",
+      "research/research/deep-research-state.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-questions.md",
+        "kind": "doc",
+        "path": "research/research-questions.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Set Gap Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three things are unverified about the rule set",
+    "created_at": "2026-08-31T05:37:23Z",
+    "last_save_at": "2026-08-31T11:37:33.818Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:3f41f1a4f2016268eed95b5969d2a74c4faad4793c2165efb0859c592a752e2e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2b0386f22eb1f42c187c75555481749aad68f190bdc3b5f61cc544cc51e123a5",
+      "plan.md": "7f60d935b316d11ea857360ef96a392599df2a1d440f30d3d7f11ce51c6f4b1b",
+      "tasks.md": "3c5e1ab54f47a6eabed3f3f5c3d7c580bdfef55d8d74cca3fdddad2f328526f3",
+      "implementation-summary.md": "32c59824644c9c2bf53ebf6e6219213a7c7bf65e20ccf0c848767adfce87867d",
+      "research/research.md": "00877549461bdadae4f73ebae3106a1b3c5c3a330ee1bdb6409537960d64d199"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

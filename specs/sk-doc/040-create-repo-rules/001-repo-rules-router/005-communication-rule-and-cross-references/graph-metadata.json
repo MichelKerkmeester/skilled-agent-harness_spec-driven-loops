@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references",
+  "spec_folder": "sk-doc/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references",
+  "parent_id": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "communication rule",
+      "agents md section 8",
+      "repo rule pointers",
+      "per-section cross references",
+      "eighth rule file",
+      "communication rule plan",
+      "section 8 reduction",
+      "pointer insertion",
+      "broad trigger design",
+      "line accounting",
+      "communication rule tasks",
+      "pointer coverage audit"
+    ],
+    "key_topics": [
+      "communication",
+      "rule",
+      "agents",
+      "section",
+      "repo",
+      "pointers",
+      "per-section",
+      "cross",
+      "references",
+      "eighth",
+      "file",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "repo-rules/communication.md",
+      "repo-rules/uncertainty-and-honesty.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "uncertainty-and-honesty.md",
+        "kind": "doc",
+        "path": "repo-rules/uncertainty-and-honesty.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Communication Rule",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Section Rule Pointers",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Router",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Closure Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "Comment Hygiene",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "Violation Recovery",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two problems, one cause",
+    "created_at": "2026-08-31T10:21:19Z",
+    "last_save_at": "2026-08-31T11:37:33.492Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:41b2b9a51111c03dcfcf1b14543bd2777a7d16f8bc331ee5fbf61846fd4b1a14",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "93781d7133d97f9fdaa11234fc80980189d308a2d24e712a36e6c40dad88b5b5",
+      "plan.md": "45bf0d47f56de133672ea544d4ebca30e3ffe1aa767712d75e09665f32f979ca",
+      "tasks.md": "32dfc513bc7547482dbbeeddaac13873e8989227d07303a4bec50e1222d04496",
+      "implementation-summary.md": "20a2e7f1dcbdb8d831900e2ce3a4aa026f493802a067ce25f5d901ddf52659e6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

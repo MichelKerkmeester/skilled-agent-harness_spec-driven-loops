@@ -9,7 +9,8 @@
     "agents/004-agents-md-bloat-audit",
     "agents/005-git-workspace-repo-agnostic",
     "agents/003-communication-quality",
-    "agents/006-restraint-and-routing-gates"
+    "agents/006-restraint-and-routing-gates",
+    "agents/007-orchestrator-inline-authority"
   ],
   "manual": {
     "depends_on": [],

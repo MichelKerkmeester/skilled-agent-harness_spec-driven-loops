@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references",
+  "description": "Two problems, one cause",
+  "keywords": [
+    "two",
+    "problems",
+    "one",
+    "cause"
+  ],
+  "lastUpdated": "2026-08-31T11:33:46.026Z",
+  "specId": "005",
+  "folderSlug": "communication-rule-and-cross-references",
+  "parentChain": [
+    "sk-doc",
+    "040-create-repo-rules",
+    "001-repo-rules-router"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -25,7 +25,8 @@
     "sk-doc/019-hyphen-naming-convention",
     "sk-doc/999-create-diff-mode",
     "sk-doc/z_archive",
-    "sk-doc/021-benchmark-naming-and-playbook-results"
+    "sk-doc/021-benchmark-naming-and-playbook-results",
+    "sk-doc/040-create-repo-rules"
   ],
   "manual": {
     "depends_on": [],

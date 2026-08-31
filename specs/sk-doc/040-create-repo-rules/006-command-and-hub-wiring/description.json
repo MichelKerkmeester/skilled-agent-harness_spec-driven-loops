@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/040-create-repo-rules/006-command-and-hub-wiring",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-08-31T11:33:12.736Z",
+  "specId": "006",
+  "folderSlug": "command-and-hub-wiring",
+  "parentChain": [
+    "sk-doc",
+    "040-create-repo-rules"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

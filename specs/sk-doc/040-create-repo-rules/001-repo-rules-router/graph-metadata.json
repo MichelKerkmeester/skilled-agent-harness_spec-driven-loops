@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+  "spec_folder": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+  "parent_id": "sk-doc/040-create-repo-rules",
+  "children_ids": [
+    "sk-doc/040-create-repo-rules/001-repo-rules-router/001-header-format-and-dividers",
+    "sk-doc/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule",
+    "sk-doc/040-create-repo-rules/001-repo-rules-router/003-disposition-and-gap-research",
+    "sk-doc/040-create-repo-rules/001-repo-rules-router/004-research-adoption",
+    "sk-doc/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references",
+    "sk-doc/040-create-repo-rules/001-repo-rules-router/006-always-loaded-routing-compression"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repo rules",
+      "repo-rules router",
+      "overengineering rule",
+      "restraint ladder",
+      "blast radius rule",
+      "root cause rule",
+      "evidence and proof",
+      "repo rules plan",
+      "rule snippet architecture",
+      "router precedence ladder",
+      "on-demand doctrine",
+      "repo rules tasks"
+    ],
+    "key_topics": [
+      "repo",
+      "rules",
+      "repo-rules",
+      "router",
+      "overengineering",
+      "rule",
+      "restraint",
+      "ladder",
+      "blast",
+      "radius",
+      "root",
+      "cause"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "repo-rules/overengineering.md",
+      "repo-rules/scope-discipline.md",
+      "repo-rules/evidence-and-proof.md",
+      "repo-rules/blast-radius.md",
+      "repo-rules/root-cause.md",
+      "repo-rules/uncertainty-and-honesty.md",
+      "001-header-format-and-dividers/implementation-summary.md",
+      "002-delegation-orchestration-rule/implementation-summary.md",
+      "003-disposition-and-gap-research/research/research.md",
+      "004-research-adoption/adoption-decisions.md",
+      "005-communication-rule-and-cross-references/implementation-summary.md",
+      "repo-rules/delegation-and-orchestration.md",
+      "repo-rules/communication.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "overengineering.md",
+        "kind": "doc",
+        "path": "repo-rules/overengineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-discipline.md",
+        "kind": "doc",
+        "path": "repo-rules/scope-discipline.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-and-proof.md",
+        "kind": "doc",
+        "path": "repo-rules/evidence-and-proof.md",
+        "source": "derived"
+      },
+      {
+        "name": "blast-radius.md",
+        "kind": "doc",
+        "path": "repo-rules/blast-radius.md",
+        "source": "derived"
+      },
+      {
+        "name": "root-cause.md",
+        "kind": "doc",
+        "path": "repo-rules/root-cause.md",
+        "source": "derived"
+      },
+      {
+        "name": "uncertainty-and-honesty.md",
+        "kind": "doc",
+        "path": "repo-rules/uncertainty-and-honesty.md",
+        "source": "derived"
+      },
+      {
+        "name": "adoption-decisions.md",
+        "kind": "doc",
+        "path": "004-research-adoption/adoption-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "delegation-and-orchestration.md",
+        "kind": "doc",
+        "path": "repo-rules/delegation-and-orchestration.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Rules Router",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Discipline Rule Snippets",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Router",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`AGENTS.md` §3 tells every runtime to \"apply project-specific conventions from `REPO RULES.md` … when the repository has one\", and that file does not exist here — the only other references to it are four `sk-code`-scoped docs pointing at a different repository's copy",
+    "created_at": "2026-08-31T03:30:40Z",
+    "last_save_at": "2026-08-31T11:37:29.999Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:159827e185b007510772ee65aa1f70f2d28a85838a808e1f02a356107d084cfd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1b652db265618ff2a223777fc0605fd4e7b1cff38628a95fedcaf2d485cc8255",
+      "plan.md": "a466ec4fabcec3a3f4d517053f0cfbd4f7ed7d2c5b69667089f1fb5b3c06a1c4",
+      "tasks.md": "5a3378dda352c4693e9d30de87c923ee34290ab1ccff7b4a1cf7688c6bffea40",
+      "implementation-summary.md": "4048f057d4037436ef62991001d9fbe30398775333b03eb8e1d4afb1ed4ed018"
+    },
+    "last_active_child_id": "sk-doc/040-create-repo-rules/001-repo-rules-router/004-research-adoption",
+    "last_active_at": null
+  }
+}

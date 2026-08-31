@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/040-create-repo-rules",
+  "spec_folder": "sk-doc/040-create-repo-rules",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/040-create-repo-rules/001-repo-rules-router",
+    "sk-doc/040-create-repo-rules/002-inventory-and-skill-contract",
+    "sk-doc/040-create-repo-rules/003-skill-scaffold-and-template",
+    "sk-doc/040-create-repo-rules/004-creation-standards-and-guardrails",
+    "sk-doc/040-create-repo-rules/005-agents-md-integration",
+    "sk-doc/040-create-repo-rules/006-command-and-hub-wiring",
+    "sk-doc/040-create-repo-rules/007-validation-and-changelog"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "040-create-repo-rules",
+      "phase parent"
+    ],
+    "key_topics": [
+      "040-create-repo-rules",
+      "phase",
+      "parent",
+      "repository",
+      "now",
+      "working",
+      "repo-rules",
+      "layer",
+      "trigger-table",
+      "router",
+      "eight",
+      "rule"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/command-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Turn",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This repository now has a working repo-rules layer: a trigger-table router, eight rule files, a mandatory load gate, and per-section pointers from the always-loaded document into each rule that governs it",
+    "created_at": "2026-08-31T11:33:07Z",
+    "last_save_at": "2026-08-31T11:37:29.314Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b4e03717163b477b4834d17a22ccf74b4b97483e1523dbc1b5be75e791e011ac",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ef1d149651a38290beeba4fe7120b050c1ad19020241d31314ee423e956dfdf2"
+    },
+    "last_active_child_id": "sk-doc/040-create-repo-rules/007-validation-and-changelog",
+    "last_active_at": null
+  }
+}

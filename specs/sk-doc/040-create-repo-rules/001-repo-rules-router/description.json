@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+  "description": "`AGENTS.md` §3 tells every runtime to \"apply project-specific conventions from `REPO RULES.md` … when the repository has one\", and that file does not",
+  "keywords": [
+    "agents",
+    "tells",
+    "every",
+    "runtime",
+    "apply",
+    "project-specific",
+    "conventions",
+    "repo",
+    "rules",
+    "repository",
+    "one",
+    "file"
+  ],
+  "lastUpdated": "2026-08-31T11:37:28.957Z",
+  "specId": "001",
+  "folderSlug": "repo-rules-router",
+  "parentChain": [
+    "sk-doc",
+    "040-create-repo-rules"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

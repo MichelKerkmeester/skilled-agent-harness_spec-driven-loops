@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/004-research-adoption",
+  "description": "Phase 3 returns a ranked list from a single executor family running five iterations",
+  "keywords": [
+    "phase",
+    "returns",
+    "ranked",
+    "list",
+    "single",
+    "executor",
+    "family",
+    "running",
+    "five",
+    "iterations"
+  ],
+  "lastUpdated": "2026-08-31T11:33:46.025Z",
+  "specId": "004",
+  "folderSlug": "research-adoption",
+  "parentChain": [
+    "sk-doc",
+    "040-create-repo-rules",
+    "001-repo-rules-router"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

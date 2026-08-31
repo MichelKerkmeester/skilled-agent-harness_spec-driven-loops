@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/003-disposition-and-gap-research",
+  "description": "Three things are unverified about the rule set",
+  "keywords": [
+    "three",
+    "things",
+    "unverified",
+    "about",
+    "rule",
+    "set"
+  ],
+  "lastUpdated": "2026-08-31T11:34:15.856Z",
+  "specId": "003",
+  "folderSlug": "disposition-and-gap-research",
+  "parentChain": [
+    "sk-doc",
+    "040-create-repo-rules",
+    "001-repo-rules-router"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

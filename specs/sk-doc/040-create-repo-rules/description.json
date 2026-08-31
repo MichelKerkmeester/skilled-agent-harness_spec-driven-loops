@@ -1,0 +1,30 @@
+{
+  "level": "phase",
+  "specFolder": "sk-doc/040-create-repo-rules",
+  "description": "This repository now has a working repo-rules layer: a trigger-table router, eight rule files, a mandatory load gate, and per-section pointers from the",
+  "keywords": [
+    "repository",
+    "now",
+    "working",
+    "repo-rules",
+    "layer",
+    "trigger-table",
+    "router",
+    "eight",
+    "rule",
+    "files",
+    "mandatory",
+    "load",
+    "gate",
+    "per-section",
+    "pointers"
+  ],
+  "lastUpdated": "2026-08-31T11:35:53.577Z",
+  "specId": "040",
+  "folderSlug": "create-repo-rules",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
