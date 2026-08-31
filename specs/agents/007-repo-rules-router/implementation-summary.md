@@ -74,21 +74,21 @@ Each leaf has the same four-part shape: `Fires when` (the actions that trigger i
 
 `overengineering.md` is the one the operator asked for by name. Its centre is a seven-rung restraint ladder from *build nothing* to *add a dependency*, with one hard condition: you may climb a rung only by writing the sentence that says what fails at the rung below, with a real symbol and a real caller in it. "It's cleaner" is not a failure; "a future caller might" is not a failure. Around that sit the pre-write pass, an expanded signal table, per-domain restraints for options, abstraction, error handling, defensive checks, tests, performance and dependencies, and a section stating what restraint is *not* — so it can never be read as licence to deliver less than the frozen scope.
 
-The other five: `scope-discipline.md` (three drifts, adjacent-defect protocol, plan-deviation protocol, amendment over absorption), `evidence-and-proof.md` (observed/derived/inferred tiers, the four ways a green run lies, negative controls, baselines), `blast-radius.md` (stakes read, reversibility ladder, the rollback sentence, persistence boundaries), `root-cause.md` (the diagnostic loop, symptom-fix smells, the two-attempt rule, seam naming), and `uncertainty-and-honesty.md` (confidence bands, UNKNOWN, contradiction halts, honest close-out).
+The other five: `scope-discipline.md` (three drifts, adjacent-defect protocol, plan-deviation protocol, amendment over absorption), `evidence-and-proof.md` (observed/derived/inferred tiers, the four ways a green run lies, negative controls, baselines), `blast-radius.md` (stakes read, reversibility ladder, the rollback sentence, persistence boundaries), `root-cause.md` (the diagnostic loop, symptom-fix smells, the repeat-without-new-evidence stop, seam naming), and `uncertainty-and-honesty.md` (confidence-band behavior, UNKNOWN, contradiction halts).
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `REPO RULES.md` | Created | Router: loading protocol, precedence ladder, trigger table, index, scope statement (71 lines) |
-| `repo-rules/overengineering.md` | Created | Restraint ladder, pre-write pass, signal table, per-domain restraints (155 lines) |
-| `repo-rules/scope-discipline.md` | Created | Frozen scope, adjacent defects, plan deviation, amendments (131 lines) |
-| `repo-rules/evidence-and-proof.md` | Created | Claim tiers, command evidence, baselines, final-state proof (135 lines) |
-| `repo-rules/blast-radius.md` | Created | Reversibility, rollback sentence, persistence boundaries (128 lines) |
-| `repo-rules/root-cause.md` | Created | Diagnostic loop, two-attempt rule, seam naming (146 lines) |
-| `repo-rules/uncertainty-and-honesty.md` | Created | Confidence bands, UNKNOWN, contradiction halt, close-out (137 lines) |
+| `REPO RULES.md` | Created | Router: loading protocol, precedence ladder, trigger table, index, scope statement (74 lines) |
+| `repo-rules/overengineering.md` | Created | Restraint ladder, pre-write pass, the two net-new signals, per-domain restraints (144 lines) |
+| `repo-rules/scope-discipline.md` | Created | Frozen scope, adjacent defects, amendments (128 lines) |
+| `repo-rules/evidence-and-proof.md` | Created | Claim tiers, command evidence, baselines, shape-specific proof, final-state proof, close-out (169 lines) |
+| `repo-rules/blast-radius.md` | Created | Reversibility, rollback sentence, persistence boundaries (132 lines) |
+| `repo-rules/root-cause.md` | Created | Diagnostic loop, repeat-without-new-evidence stop, seam naming (151 lines) |
+| `repo-rules/uncertainty-and-honesty.md` | Created | Confidence-band behavior, UNKNOWN, contradiction halt (110 lines) |
 | `specs/agents/007-repo-rules-router/*` | Created | Level 2 packet: spec, plan, tasks, acceptance criteria, this summary |
-| `AGENTS.md` | **Unchanged** | Its §3 pointer already binds `REPO RULES.md`; SCOPE LOCK held |
+| `AGENTS.md` | Modified (+3 lines) | Pointer strengthened from a passive "apply conventions" bullet into a load instruction with a checkable trigger, plus a top-block statement of the two-tier split, a Self-Check line, and a §10 row |
 
 ### Post-review revision
 
@@ -122,7 +122,7 @@ Verification was four mechanical checks plus a read-through, all run from the fi
 | Expand `AGENTS.md`, never relocate from it | Moving a rule out creates a window where it lives in neither place. The rows stay authoritative; the leaves say how to apply them. |
 | `AGENTS.md` left unmodified | The §3 pointer is already conditional and already fires. Editing an always-loaded 483-line document for no functional gain is exactly what SCOPE LOCK exists to prevent. |
 | Six rules, not ten | Every leaf replaces an existing compressed `AGENTS.md` row. No rule was invented for a problem this repository has not had — which is the rule `overengineering.md` itself states. |
-| Prose-style communication excluded | The operator scoped this to how the AI thinks and acts. `AGENTS.md` §8 governs how a reply reads. Honest close-out, which is an action, is carried in `uncertainty-and-honesty.md` §5. |
+| Prose-style communication excluded | The operator scoped this to how the AI thinks and acts. `AGENTS.md` §8 governs how a reply reads. Honest close-out, which is an action, is carried in `evidence-and-proof.md` §10. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -148,7 +148,7 @@ Verification was four mechanical checks plus a read-through, all run from the fi
 
 1. **Nothing enforces the rules.** The trigger is a document instruction, not a hook or a validator. A runtime that never reads `AGENTS.md` §3 never reaches any of this. Mitigated only by writing triggers on checkable actions; not solved.
 2. **No per-stack conventions.** `REPO RULES.md` conventionally also carries lint commands, build gates and framework idioms. None are established for this repository, and inventing them would break the rule in `overengineering.md`. The router has room for them when they exist.
-3. **`AGENTS.md` §3 still says "when the repository has one".** Now that it does, the pointer could be strengthened to a named load. Deferred to the operator rather than absorbed — `AGENTS.md` was outside this packet's frozen scope.
+3. **The reference fires by instruction, not by mechanism.** The pointer now appears in four places — the top architecture block, the §3 bullet, the pre-response Self-Check, and §10 — and says READ rather than "apply". It stays conditional ("when the repository has one") because `AGENTS.md` is a shared template other repositories read through a symlink, so it must remain correct where no `REPO RULES.md` exists. Nothing enforces the read.
 4. **MCP daemons were unavailable this session.** Spec Kit Memory and Skill Advisor both timed out, so Gate 1 trigger matching and post-save semantic indexing did not run. Packet docs authored and validated normally; the continuity fingerprint is the scaffold placeholder and would be refreshed by a `/memory:save` once the daemon is reachable.
 <!-- /ANCHOR:limitations -->
 

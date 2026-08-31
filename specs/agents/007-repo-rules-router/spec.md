@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Repo Rules Router and Thinking-Discipline Rule Snippets"
-description: "AGENTS.md §3 binds every runtime to a REPO RULES.md that does not exist in this repository, and the operating discipline it would hold — restraint, scope, evidence, blast radius, root cause, honesty — is compressed into single table rows inside a 483-line always-loaded document. This packet creates the missing router and six expanded rule snippets under /repo-rules."
+description: "AGENTS.md §3 binds every runtime to a REPO RULES.md that does not exist in this repository, and the operating discipline it would hold — restraint, scope, evidence, blast radius, root cause, honesty — is compressed into single table rows inside a 483-line always-loaded document (now 487). This packet creates the missing router and six expanded rule snippets under /repo-rules."
 trigger_phrases:
   - "repo rules"
   - "repo-rules router"
@@ -37,7 +37,7 @@ contextType: "specification"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`AGENTS.md` §3 tells every runtime to "apply project-specific conventions from `REPO RULES.md` … when the repository has one", and that file does not exist here — the only other references to it are four `sk-code`-scoped docs pointing at a *different* repository's copy. So the hook is live and the target is empty. At the same time, the operating discipline that hook was meant to carry is compressed to its smallest survivable form inside `AGENTS.md`: over-engineering restraint is a seven-row signal table (§3), proof standards are a seven-row table (§4), blast-radius management is five bullets (§3), debugging is four bullets (§3), and confidence handling is a four-row table (§2). Each row is a correct rule with no room to say *how* to apply it, and `AGENTS.md` cannot expand them without growing an always-loaded 483-line document.
+`AGENTS.md` §3 tells every runtime to "apply project-specific conventions from `REPO RULES.md` … when the repository has one", and that file does not exist here — the only other references to it are four `sk-code`-scoped docs pointing at a *different* repository's copy. So the hook is live and the target is empty. At the same time, the operating discipline that hook was meant to carry is compressed to its smallest survivable form inside `AGENTS.md`: over-engineering restraint is a seven-row signal table (§3), proof standards are a seven-row table (§4), blast-radius management is five bullets (§3), debugging is four bullets (§3), and confidence handling is a four-row table (§2). Each row is a correct rule with no room to say *how* to apply it, and `AGENTS.md` cannot expand them without growing the always-loaded document, which this packet extended by only 3 net lines.
 
 ### Purpose
 Give the repository a real `REPO RULES.md` that behaves as a router — trigger table in, one rule file out — backed by six expanded, on-demand rule snippets under `/repo-rules/` covering how the AI thinks and acts, so the compressed rows in `AGENTS.md` have somewhere to expand without inflating what loads every turn.
@@ -54,13 +54,13 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 - `/repo-rules/scope-discipline.md` — the three drifts, default in-scope set, always-ask set, adjacent-defect protocol, plan-deviation protocol, amendment over absorption.
 - `/repo-rules/evidence-and-proof.md` — observed/derived/inferred tiers, command-evidence rules, the four ways a green run lies, negative control, baselines, finding-as-hypothesis, proof plan, final-state proof.
 - `/repo-rules/blast-radius.md` — stakes read, reversibility ladder, the rollback sentence, old-contract consumers, persistence boundaries, install-as-mutation.
-- `/repo-rules/root-cause.md` — the diagnostic loop, symptom-fix smells, the two-attempt rule, seam naming, never-weaken-a-check, flake evidence, ownership, escalation format.
-- `/repo-rules/uncertainty-and-honesty.md` — confidence bands, UNKNOWN, never-invent list, truth over agreement, contradiction halt, close-out, self-correction.
+- `/repo-rules/root-cause.md` — the diagnostic loop, symptom-fix smells, the repeat-without-new-evidence stop, seam naming, never-weaken-a-check, flake evidence, ownership, escalation format.
+- `/repo-rules/uncertainty-and-honesty.md` — confidence-band behavior, UNKNOWN, never-invent list, truth over agreement, contradiction halt, self-correction.
 
 ### Out of Scope
-- **Editing `AGENTS.md`** — its §3 bullet already binds this document into the loading path, so no edit is needed and SCOPE LOCK keeps the always-loaded doc untouched.
+- **Editing `AGENTS.md` beyond the `REPO RULES.md` reference itself** — the operator later scoped in strengthening that pointer, which is now done (+3 net lines). Every other part of the always-loaded document stays untouched.
 - **Skill routing, workflow selection, spec-folder mechanics, agent dispatch, MCP routing** - the operator excluded skill-related content; these are owned by `AGENTS.md` §2/§5/§6/§9 and must have exactly one home.
-- **Prose-style communication rules** (`AGENTS.md` §8 Writing) - they govern how a reply reads, not how the AI thinks or acts. Honest close-out, which *is* an action, is carried in `uncertainty-and-honesty.md` §5.
+- **Prose-style communication rules** (`AGENTS.md` §8 Writing) - they govern how a reply reads, not how the AI thinks or acts. Honest close-out, which *is* an action, is carried in `evidence-and-proof.md` §10, beside the receipts rules it depends on.
 - **Per-stack conventions** (lint commands, build gates, framework idioms) - none are established for this repository yet, and inventing them would violate the very rule in `overengineering.md`.
 - **Enforcement tooling** - no validator, hook, or CI check for rule-file conformance.
 
@@ -73,8 +73,8 @@ Give the repository a real `REPO RULES.md` that behaves as a router — trigger 
 | `repo-rules/scope-discipline.md` | Create | Frozen scope, adjacent defects, plan deviation, amendments |
 | `repo-rules/evidence-and-proof.md` | Create | Claim tiers, command evidence, baselines, final-state proof |
 | `repo-rules/blast-radius.md` | Create | Reversibility, rollback sentence, persistence boundaries |
-| `repo-rules/root-cause.md` | Create | Diagnostic loop, two-attempt rule, seam naming |
-| `repo-rules/uncertainty-and-honesty.md` | Create | Confidence bands, UNKNOWN, contradiction halt, close-out |
+| `repo-rules/root-cause.md` | Create | Diagnostic loop, repeat-without-new-evidence stop, seam naming |
+| `repo-rules/uncertainty-and-honesty.md` | Create | Confidence-band behavior, UNKNOWN, contradiction halt |
 <!-- /ANCHOR:scope -->
 
 ---

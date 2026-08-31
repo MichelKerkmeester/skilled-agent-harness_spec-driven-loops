@@ -49,7 +49,7 @@ contextType: "implementation"
 - [x] T007 [P] Author the scope-discipline rule: three drifts, default scope, always-ask set, adjacent-defect protocol, plan deviation, amendment (`repo-rules/scope-discipline.md`)
 - [x] T008 [P] Author the evidence rule: claim tiers, command evidence, four ways a green run lies, negative control, baselines, proof plan, final-state proof (`repo-rules/evidence-and-proof.md`)
 - [x] T009 [P] Author the blast-radius rule: stakes read, reversibility ladder, rollback sentence, old-contract consumers, persistence boundaries (`repo-rules/blast-radius.md`)
-- [x] T010 [P] Author the root-cause rule: diagnostic loop, symptom smells, two-attempt rule, seam naming, flake evidence, escalation format (`repo-rules/root-cause.md`)
+- [x] T010 [P] Author the root-cause rule: diagnostic loop, symptom smells, repeat-without-new-evidence stop, seam naming, flake evidence, escalation format (`repo-rules/root-cause.md`)
 - [x] T011 [P] Author the uncertainty rule: confidence bands, UNKNOWN, never-invent list, truth over agreement, contradiction halt, close-out (`repo-rules/uncertainty-and-honesty.md`)
 - [x] T012 Cross-link composing rules by filename rather than restating them (`repo-rules/*.md`)
 <!-- /ANCHOR:phase-2 -->
@@ -65,6 +65,8 @@ contextType: "implementation"
 - [x] T016 Confirm all six leaves carry the four required sections — `fires=1 rule=1 selfcheck=1` for each
 - [x] T017 Run `validate.sh <folder> --strict` and require an explicit `RESULT: PASSED` — PASSED, exit 0, 0 errors 0 warnings, after repairing derived metadata and generating `description.json`
 - [x] T018 Complete packet docs and reconcile completion metadata across spec / plan / tasks / acceptance-criteria / implementation-summary
+- [x] T019 Apply an independent review: verify all 10 findings against `AGENTS.md`, fix 4 contradictions, remove 5 duplications, close the task-specific-proof gap
+- [x] T020 Strengthen the `AGENTS.md` `REPO RULES.md` reference: top-block split statement, §3 load instruction, Self-Check line, §10 row (+3 net lines), keeping every mention conditional so the shared template stays correct where no `REPO RULES.md` exists
 <!-- /ANCHOR:phase-3 -->
 
 ---
