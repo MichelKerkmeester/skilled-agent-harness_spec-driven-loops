@@ -25,7 +25,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 This package tests the existing-document workflow. It checks that the mode reads the target first, extracts structure before claiming a DQI score, separates blockers from warnings and recommendations, applies HVR after structural review and edits only when the user asks for an optimization.
 
-Coverage is split into five scenarios across two categories. Three scenarios cover audit and validation. Two cover optimization and evidence boundaries.
+Coverage is split into six scenarios across two categories. Four scenarios cover audit and validation. Two cover optimization and evidence boundaries.
 
 ### Realistic Test Model
 
@@ -136,7 +136,7 @@ Wave planning keeps read-only audit work separate from authorized optimization w
 
 ---
 
-## 7. AUDIT AND VALIDATION (`QC-001..QC-003`)
+## 7. AUDIT AND VALIDATION (`QC-001..QC-003, QC-006`)
 
 ### QC-001 | Run a report-only audit
 
@@ -201,6 +201,27 @@ Desired user-visible outcome: the request reaches the skill-creation workflow wi
 
 ---
 
+### QC-006 | Assess a batch snapshot
+
+#### Description
+
+Verify that the batch snapshot mode assesses multiple existing documents and reports separate extraction-backed results for each file.
+
+#### Scenario Contract
+
+Prompt: `Assess these two existing markdown files in batch snapshot mode. Extract each file, report its type, DQI, blockers and top recommendations, and do not edit either file.`
+
+The mode should select batch snapshot, extract every requested file and summarize each file's type, DQI, blockers and top recommendations. It should not edit either target.
+
+Desired user-visible outcome: one batch report with a separate evidence-backed entry for each requested file.
+
+#### Test Execution
+
+> **Feature File:** [QC-006](audit-and-validation/assess-batch-snapshot.md)
+> **Catalog:** no feature-catalog entry applies to this package.
+
+---
+
 ## 8. OPTIMIZATION AND VOICE (`QC-004..QC-005`)
 
 ### QC-004 | Optimize only when asked
@@ -249,7 +270,7 @@ Desired user-visible outcome: an evidence-based report or an explicit unknown st
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `extract_structure.py` | Detected type, structure metrics, checklist results, DQI score, quality band and surfaced questions | QC-001 and QC-005 |
+| `extract_structure.py` | Detected type, structure metrics, checklist results, DQI score, quality band and surfaced questions | QC-001, QC-005 and QC-006 |
 | `quick_validate.py` | Packet or skill frontmatter and structure sanity checks | QC-002 and QC-004 |
 | `validate_document.py` | Document-format validation for README and other supported types | QC-004 |
 | `check_authored_name_kebab.py` | Non-scored authored filename case signal | QC-002 |
@@ -269,3 +290,4 @@ This package has no feature catalog. The root index below is the source of scena
 | QC-003 | Leave creation requests alone | AUDIT AND VALIDATION | [QC-003](audit-and-validation/leave-creation-requests-alone.md) |
 | QC-004 | Optimize only when asked | OPTIMIZATION AND VOICE | [QC-004](optimization-and-voice/optimize-only-when-asked.md) |
 | QC-005 | Require evidence for a DQI claim | OPTIMIZATION AND VOICE | [QC-005](optimization-and-voice/require-evidence-for-dqi.md) |
+| QC-006 | Assess a batch snapshot | AUDIT AND VALIDATION | [QC-006](audit-and-validation/assess-batch-snapshot.md) |

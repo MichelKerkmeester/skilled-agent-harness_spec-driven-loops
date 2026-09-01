@@ -1,14 +1,6 @@
 ---
 title: "FMB-003 -- Silent discovery drop"
 description: "This scenario validates the shared-budget diagnosis for `FMB-003`. Descriptions share one project-wide allowance, and going over it drops the longest entries from auto-discovery with no error at the point of failure."
-id: FMB-003
-stage: routing
-expected_intent: sk-create-frontmatter
-expected_resources:
-  - sk-create-frontmatter/assets/frontmatter-templates.md
-expected_leaf_resources:
-  - workflow_mode: sk-create-frontmatter
-    leaf_resource_id: assets/frontmatter-templates.md
 version: 1.0.0.0
 ---
 
@@ -38,7 +30,7 @@ Operators run the exact prompt and command sequence for `FMB-003` and confirm th
 - Expected execution process: `assets/frontmatter-templates.md` loads, the budget section is read for the project total rather than the per-skill target, the answer identifies the drop as silent and as applying to the longest entries, and the remedy is described as trimming across the project rather than editing the affected file.
 - Expected signals: the reply names the project total as a shared allowance, states that the longest entries are dropped and that skills stay explicitly invocable, and confirms that nothing warns at the point of failure. It does not conclude that the affected file's own description is too long without measuring it.
 - Desired user-visible outcome: the user learns the cost is shared, that their own file may be fine, and which check surfaces accumulated drift.
-- Pass/fail: PASS if the diagnosis names the shared project allowance and the silent drop of the longest entries; FAIL if the answer treats it as a per-file length rule, or asserts a cause with no reference to the budget table.
+- Pass/fail: PASS if the diagnosis names the shared project allowance and the silent drop of the longest entries. FAIL if the answer treats it as a per-file length rule, or asserts a cause with no reference to the budget table.
 
 ---
 
@@ -50,7 +42,7 @@ Operators run the exact prompt and command sequence for `FMB-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMB-003 | Silent discovery drop | Diagnose the silent drop as a shared project-budget breach rather than a per-file length problem | `One of our skills stopped showing up for the model, but it still works when I name it directly. Nothing errored. What happened?` | 1. `agent: Read the budget table in assets/frontmatter-templates.md and distinguish the per-skill target from the project total` -> 2. `agent: Match the reported symptom against the documented drop behavior` -> 3. `agent: State whether the affected file is necessarily the cause` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter` | Step 1: two different limits are named with their scopes. Step 2: the symptom is matched to the silent drop of the longest entries. Step 3: the answer is that it is not necessarily the affected file. Step 4: the validator passes, showing a per-file check cannot see this failure | The prompt as typed, the two limits quoted with their scopes, the diagnosis, the statement about which file is at fault, and the validator transcript with its exit status | PASS if the shared allowance and the silent drop are both named; FAIL if the diagnosis is a per-file length rule, or the affected file is blamed without measurement | 1. Confirm the project total was read, not just the per-skill target. 2. Check that the answer accounts for the skill still being invocable by name, which is the detail that identifies this failure. 3. Confirm the remedy is project-wide trimming rather than an edit to one file |
+| FMB-003 | Silent discovery drop | Diagnose the silent drop as a shared project-budget breach rather than a per-file length problem | `One of our skills stopped showing up for the model, but it still works when I name it directly. Nothing errored. What happened?` | 1. `agent: Read the budget table in assets/frontmatter-templates.md and distinguish the per-skill target from the project total` -> 2. `agent: Match the reported symptom against the documented drop behavior` -> 3. `agent: State whether the affected file is necessarily the cause` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter` | Step 1: two different limits are named with their scopes. Step 2: the symptom is matched to the silent drop of the longest entries. Step 3: the answer is that it is not necessarily the affected file. Step 4: the validator passes, showing a per-file check cannot see this failure | The prompt as typed, the two limits quoted with their scopes, the diagnosis, the statement about which file is at fault, and the validator transcript with its exit status | PASS if the shared allowance and the silent drop are both named. FAIL if the diagnosis is a per-file length rule, or the affected file is blamed without measurement | 1. Confirm the project total was read, not just the per-skill target. 2. Check that the answer accounts for the skill still being invocable by name, which is the detail that identifies this failure. 3. Confirm the remedy is project-wide trimming rather than an edit to one file |
 
 ### Commands
 

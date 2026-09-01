@@ -15,6 +15,7 @@ Canonical package artifacts:
 - `manual-testing-playbook.md`
 - `package-authoring/`
 - `operator-contract/`
+- `scenario-design/`
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into the owning skill's benchmark report folder. Use `SKIP` only with a specific sandbox or runtime blocker.
@@ -25,7 +26,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 This package tests whether the mode creates a reusable manual-validation corpus when the work needs one. It also tests the boundaries that keep a playbook from becoming a checklist, a benchmark-only corpus or a collection of sidecar policy files.
 
-Coverage is split into five scenarios across two categories. Three scenarios cover package authoring. Two cover the operator contract and result storage.
+Coverage is split into six scenarios across three categories. Three scenarios cover package authoring. Two cover the operator contract and result storage. One covers scenario design rules.
 
 ### Realistic Test Model
 
@@ -244,18 +245,41 @@ Desired user-visible outcome: the run folder contains the recorded outcome and t
 
 ---
 
-## 9. AUTOMATED TEST CROSS-REFERENCE
+## 9. SCENARIO DESIGN (`MTP-006..MTP-006`)
+
+### MTP-006 | Design a deterministic scenario
+
+#### Description
+
+Verify that the mode applies section 6 when it reviews deterministic steps, prompt quality, voice choice, allowed verdicts and prompt synchronization.
+
+#### Scenario Contract
+
+Prompt: `Review this draft scenario for deterministic steps, prompt quality, voice choice and synchronized prompt fields. Return PASS, FAIL or SKIP with a reason.`
+
+The mode should check exact prompts and commands, observable signals, evidence, binary verdict criteria and the natural-human or RCAF voice choice. It should compare the prompt in the scenario contract, the execution table and the root summary.
+
+Desired user-visible outcome: a verdict with a specific reason and evidence for every section 6 rule.
+
+#### Test Execution
+
+> **Feature File:** [MTP-006](scenario-design/design-a-deterministic-scenario.md)
+> **Catalog:** no feature-catalog entry applies to this package.
+
+---
+
+## 10. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `validate-playbook-package.cjs` | Operator-scenario structure, local links, IDs, root index membership and routing-gold exclusion | MTP-003 and MTP-004 |
+| `validate-playbook-package.cjs` | Operator-scenario structure, local links, IDs, root index membership and routing-gold exclusion | MTP-003, MTP-004 and MTP-006 |
 | `run-manual-playbook-scenario.cjs` | Durable manual outcome storage and evidence metadata | MTP-005 |
 
 The package validator does not execute the mode. It checks the authored scenario contract. The wrapper stores results after an operator runs a scenario.
 
 ---
 
-## 10. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 11. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 This package has no feature catalog. The root index below is the source of scenario membership.
 
@@ -266,3 +290,4 @@ This package has no feature catalog. The root index below is the source of scena
 | MTP-003 | Keep policy in the root | PACKAGE AUTHORING | [MTP-003](package-authoring/keep-policy-in-root.md) |
 | MTP-004 | Keep operator scenarios in scope | OPERATOR CONTRACT | [MTP-004](operator-contract/keep-operator-scenarios-in-scope.md) |
 | MTP-005 | Persist the scenario result | OPERATOR CONTRACT | [MTP-005](operator-contract/persist-scenario-result.md) |
+| MTP-006 | Design a deterministic scenario | SCENARIO DESIGN | [MTP-006](scenario-design/design-a-deterministic-scenario.md) |

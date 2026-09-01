@@ -31,13 +31,13 @@ The cost is worth stating plainly. Without the scalar the loader leaves `scenari
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`. Generated report Markdown is renderer-owned and never hand-authored.
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook covers the operator-visible surface of the `create-frontmatter` packet across three categories: field and class resolution, description budget, and version derivation. Each feature keeps its own ID and links to a dedicated feature file with the full execution contract. The operator validator computes the exact census from the walked tree; this document does not hand-maintain counts.
+This playbook covers the operator-visible surface of the `create-frontmatter` packet across three categories: field and class resolution, description budget, and version derivation. Each feature keeps its own ID and links to a dedicated feature file with the full execution contract. The operator validator computes the exact census from the walked tree. This document does not hand-maintain counts.
 
 Coverage note: every scenario is runnable today against the shipped `SKILL.md`, the field reference in `assets/`, and the versioning standard in `references/`. Ten scenarios are read-only. `FMC-001` writes one temporary document under the packet's `references/` directory so a real gate can read the block it authored, and recovery is deleting that file.
 
@@ -54,7 +54,7 @@ The consequence for grading: **a scenario that produces confident output with no
 
 ### Realistic Test Model
 
-1. A realistic user request is given to an orchestrator. Nobody asks for a frontmatter contract; they say a block was rejected, a skill stopped being found, or a version looks wrong.
+1. A realistic user request is given to an orchestrator. Nobody asks for a frontmatter contract. They say a block was rejected, a skill stopped being found, or a version looks wrong.
 2. The orchestrator decides whether to work locally, delegate to sub-agents, or invoke another CLI or runtime.
 3. The operator captures both the execution process and the user-visible outcome.
 4. The scenario passes only when the workflow is sound, the verification step ran, and the returned result would satisfy a real user.
@@ -75,7 +75,7 @@ The consequence for grading: **a scenario that produces confident output with no
 2. The document class under test is named before starting. The field set follows from the class, and a scenario run against an unnamed class is not gradeable.
 3. The packet's anchor inputs are recorded before starting: the `version` in `SKILL.md` and the highest filename version in `changelog/`. The anchor is the higher of the two, so a single reading of either one cannot be graded.
 4. The working tree is clean for the target paths, so any diff is attributable to the run.
-5. `node` and `python3` are on the path, and `git` history is present. The version scenarios read commit history; a shallow clone changes the numbers and makes the run a `SKIP` rather than a `FAIL`.
+5. `node` and `python3` are on the path, and `git` history is present. The version scenarios read commit history. A shallow clone changes the numbers and makes the run a `SKIP` rather than a `FAIL`.
 6. The one scenario that writes, `FMC-001`, MUST verify recovery is possible before execution. It creates one temporary document under the packet's `references/` directory and recovery is deleting it. No other scenario writes anything, and no scenario runs the versioning engine in `apply` mode.
 7. Operators note that `frontmatter-version.mjs compute` writes `frontmatter-version-manifest.csv` and `frontmatter-version-manifest.json` into the repository root unless `--manifest-out` is passed. Both are run residue and are removed before the scenario is graded.
 
@@ -104,7 +104,7 @@ A scenario whose evidence is an answer with no check attached cannot be graded, 
 - Bash commands shown as `bash: <command>`.
 - Agent prompts shown as `agent: <instruction>`. These scenarios are agent-driven, so a step is usually what an agent does: read a class row, apply a rule, author or decline to author a block.
 - `->` separates sequential steps.
-- Repo-relative paths are written as `.opencode/skills/sk-doc/sk-create-frontmatter/...`; the packet root means that directory wherever the packet is installed.
+- Repo-relative paths are written as `.opencode/skills/sk-doc/sk-create-frontmatter/...`. The packet root means that directory wherever the packet is installed.
 - Commands in this package avoid shell pipes so each step is a single deterministic invocation that survives being copied into a table cell.
 - `--skill` on the two shared-tier version tools takes a top-level skill directory name, so the value for this packet is `sk-doc` rather than `sk-create-frontmatter`. A run that passes the packet name discovers zero files and reports success over an empty set.
 
@@ -163,7 +163,7 @@ Release is releasable only when:
 
 ### Root-vs-Feature Rule
 
-Keep global verdict logic in the root playbook. Put feature-specific acceptance caveats in the matching per-feature files.
+Keep global verdict logic in the root playbook. Place feature-specific acceptance caveats in the matching per-feature files.
 
 ---
 
@@ -404,9 +404,29 @@ Desired user-visible outcome: the file is named, the skip is explained as intend
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `shared/scripts/quick_validate.py` | The packet `SKILL.md` only: field presence, `version` format, and the description soft target | Direct on the length half of `FMB-001` and `FMB-002`; it reads no other file, and it cannot tell a well-routed description from a badly trimmed one |
-| `shared/scripts/check-frontmatter-versions.sh` | Presence and format of `version` across every in-scope doc | Direct on `FMV-005`; it is a presence gate and never checks whether a version is the right one |
-| `sk-create-skill/scripts/package_skill.py` | Packet structure plus the resource-doc field set across the `references/` and `assets/` subtrees | Direct on `FMC-001` and `FMC-002`, and the only shipped gate that reads a reference block inside a mode packet; it checks that `importance_tier` and `contextType` are present and deliberately does not check their values |
-| `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly; it validates the playbook, not the contract the playbook tests |
+| `shared/scripts/quick_validate.py` | The packet `SKILL.md` only: field presence, `version` format, and the description soft target | Direct on the length half of `FMB-001` and `FMB-002`. It reads no other file, and it cannot tell a well-routed description from a badly trimmed one |
+| `shared/scripts/check-frontmatter-versions.sh` | Presence and format of `version` across every in-scope doc | Direct on `FMV-005`. It is a presence gate and never checks whether a version is the right one |
+| `sk-create-skill/scripts/package_skill.py` | Packet structure plus the resource-doc field set across the `references/` and `assets/` subtrees | Direct on `FMC-001` and `FMC-002`, and the only shipped gate that reads a reference block inside a mode packet. It checks that `importance_tier` and `contextType` are present and deliberately does not check their values |
+| `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly. It validates the playbook, not the contract the playbook tests |
 
-Note: `create-frontmatter` owns rules and not enforcement, so no automated suite decides the questions this playbook asks. The two shared-tier scripts above check presence and format; whether a field belongs to the class in hand, whether a trim kept its routing tokens, and whether an edit count was gated are all judgments, and this playbook is the operator-facing manual equivalent.
+Note: `create-frontmatter` owns rules and not enforcement, so no automated suite decides the questions this playbook asks. The two shared-tier scripts above check presence and format. Whether a field belongs to the class in hand, whether a trim kept its routing tokens, and whether an edit count was gated are all judgments, and this playbook is the operator-facing manual equivalent.
+
+---
+
+## 11. FEATURE CATALOG CROSS-REFERENCE INDEX
+
+This package has no feature catalog. The index below is the playbook catalog.
+
+| Feature ID | Feature Name | Category | Feature File |
+|---|---|---|---|
+| FMC-001 | Author a reference block | FIELD AND CLASS RESOLUTION | [FMC-001](field-and-class-resolution/author-a-reference-block.md) |
+| FMC-002 | Class row before field row | FIELD AND CLASS RESOLUTION | [FMC-002](field-and-class-resolution/class-row-before-field-row.md) |
+| FMC-003 | Out-of-scope class | FIELD AND CLASS RESOLUTION | [FMC-003](field-and-class-resolution/out-of-scope-class.md) |
+| FMB-001 | Trim an over-budget description | DESCRIPTION BUDGET | [FMB-001](description-budget/trim-an-over-budget-description.md) |
+| FMB-002 | Trim that loses routing tokens | DESCRIPTION BUDGET | [FMB-002](description-budget/trim-that-loses-routing-tokens.md) |
+| FMB-003 | Silent discovery drop | DESCRIPTION BUDGET | [FMB-003](description-budget/silent-discovery-drop.md) |
+| FMV-001 | Changelog-anchored derivation | VERSION DERIVATION | [FMV-001](version-derivation/changelog-anchored-derivation.md) |
+| FMV-002 | Numstat gate | VERSION DERIVATION | [FMV-002](version-derivation/numstat-gate.md) |
+| FMV-003 | Skip on differ | VERSION DERIVATION | [FMV-003](version-derivation/skip-on-differ.md) |
+| FMV-004 | Idempotent rerun | VERSION DERIVATION | [FMV-004](version-derivation/idempotent-rerun.md) |
+| FMV-005 | No frontmatter is skipped | VERSION DERIVATION | [FMV-005](version-derivation/no-frontmatter-is-skipped.md) |

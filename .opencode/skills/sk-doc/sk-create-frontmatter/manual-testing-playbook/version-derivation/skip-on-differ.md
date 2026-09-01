@@ -1,14 +1,6 @@
 ---
 title: "FMV-003 -- Skip on differ"
 description: "This scenario validates skip-on-differ for `FMV-003`. A human-set `version` that differs from the computed one is skipped and reported rather than silently overwritten, with `SKILL.md` as the one exception."
-id: FMV-003
-stage: routing
-expected_intent: sk-create-frontmatter
-expected_resources:
-  - sk-create-frontmatter/references/frontmatter-versioning.md
-expected_leaf_resources:
-  - workflow_mode: sk-create-frontmatter
-    leaf_resource_id: references/frontmatter-versioning.md
 version: 1.0.0.0
 ---
 
@@ -24,7 +16,7 @@ This scenario validates skip-on-differ for `FMV-003`. A `version` already presen
 
 ### Why This Matters
 
-A versioning pass is a bulk operation over a whole tree, and a bulk operation that overwrites deliberate values is how curated numbers quietly disappear. The standard's edge-case table gives the rule and the label the run reports: a present-and-differing version is a skip conflict, and only an explicit update flag rewrites it. The exception is written down rather than left to be inferred, and it is narrow: a `SKILL.md` whose version differs from its anchor is reconciled to the anchor, because the manifest version is the anchor of record and every child inherits from it. A run that treats the exception as general overwrites the whole tree; a run that treats it as absent leaves the anchor stale and every child derived from a value the skill has already moved past. Both produce a tree full of valid four-part versions.
+A versioning pass is a bulk operation over a whole tree, and a bulk operation that overwrites deliberate values is how curated numbers quietly disappear. The standard's edge-case table gives the rule and the label the run reports: a present-and-differing version is a skip conflict, and only an explicit update flag rewrites it. The exception is written down rather than left to be inferred, and it is narrow: a `SKILL.md` whose version differs from its anchor is reconciled to the anchor, because the manifest version is the anchor of record and every child inherits from it. A run that treats the exception as general overwrites the whole tree. A run that treats it as absent leaves the anchor stale and every child derived from a value the skill has already moved past. Both produce a tree full of valid four-part versions.
 
 ---
 
@@ -38,7 +30,7 @@ Operators run the exact prompt and command sequence for `FMV-003` and confirm th
 - Expected execution process: `references/frontmatter-versioning.md` loads, section 5 supplies the edge-case table, the engine is run in its read-only verify mode so nothing is written, the conflicting file is identified and reported, and the update flag is described as the deliberate override rather than applied.
 - Expected signals: the conflicting file is named with both versions, the outcome for it is reported as a skip rather than a rewrite, the update flag is named as the only override, and the `SKILL.md` exception is stated as narrow. No file changes.
 - Desired user-visible outcome: the conflicting file is named, the run is reported as skipped for it, and the override is described rather than used.
-- Pass/fail: PASS if the conflict is reported and nothing is written; FAIL if the hand-set version is overwritten, if the update flag is applied without being asked for, or if the manifest exception is stated as a general rule.
+- Pass/fail: PASS if the conflict is reported and nothing is written. FAIL if the hand-set version is overwritten, if the update flag is applied without being asked for, or if the manifest exception is stated as a general rule.
 
 ---
 
@@ -50,7 +42,7 @@ Operators run the exact prompt and command sequence for `FMV-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMV-003 | Skip on differ | Report a conflicting human-set version as skipped, and describe the override without using it | `Run the versioning over this skill. I hand-set one of these versions on purpose, so be careful.` | 1. `agent: Read references/frontmatter-versioning.md section 5 and quote the present-and-differs row` -> 2. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc` -> 3. `agent: Name any file whose stored version differs from the computed one, with both values` -> 4. `bash: git status --porcelain .opencode/skills/sk-doc` | Step 1: the row is quoted with its skip label. Step 2: the engine reports without writing. Step 3: the conflicting file is named with both versions. Step 4: empty output | The prompt as typed, the quoted row, the engine transcript with its exit status, the conflicting file with both versions, and the step 4 output | PASS if the conflict is reported and step 4 is empty; FAIL if anything is written, or the update flag is applied unasked | 1. Confirm the engine was run in a read-only mode, since the apply mode is the one that writes. 2. Check the exception was stated as applying to `SKILL.md` only. 3. Confirm the update flag was described rather than used, because using it is the failure the prompt sets up |
+| FMV-003 | Skip on differ | Report a conflicting human-set version as skipped, and describe the override without using it | `Run the versioning over this skill. I hand-set one of these versions on purpose, so be careful.` | 1. `agent: Read references/frontmatter-versioning.md section 5 and quote the present-and-differs row` -> 2. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc` -> 3. `agent: Name any file whose stored version differs from the computed one, with both values` -> 4. `bash: git status --porcelain .opencode/skills/sk-doc` | Step 1: the row is quoted with its skip label. Step 2: the engine reports without writing. Step 3: the conflicting file is named with both versions. Step 4: empty output | The prompt as typed, the quoted row, the engine transcript with its exit status, the conflicting file with both versions, and the step 4 output | PASS if the conflict is reported and step 4 is empty. FAIL if anything is written, or the update flag is applied unasked | 1. Confirm the engine was run in a read-only mode, since the apply mode is the one that writes. 2. Check the exception was stated as applying to `SKILL.md` only. 3. Confirm the update flag was described rather than used, because using it is the failure the prompt sets up |
 
 ### Commands
 
@@ -74,7 +66,7 @@ Capture the prompt exactly as typed, the edge-case row as quoted, the literal en
 
 ### Failure Triage
 
-1. Confirm the engine mode. Verify compares and reports; apply is the mode that writes. A scenario that ends with a diff has used the wrong one.
+1. Confirm the engine mode. Verify compares and reports. Apply is the mode that writes. A scenario that ends with a diff has used the wrong one.
 2. Check the exception statement. It applies to `SKILL.md` and to no other class, and generalizing it is the failure that overwrites a whole tree of curated numbers.
 3. Confirm the update flag was described rather than used. The prompt invites care, and applying the override in response to a request for care is the trap.
 4. If nothing was reported as conflicting, confirm there was a conflict to find. A clean tree produces the same silence as a run that never compared, and only the transcript distinguishes them.

@@ -201,6 +201,12 @@ You also stay accountable for what the delegate did. "The sub-agent wrote it" is
 defect report; it is the same sentence as "not my code", which
 [`evidence-and-proof.md`](evidence-and-proof.md) already refuses.
 
+**Do not stage what you did not read.** While a delegate is running, its edits are in the
+same working tree as yours, and `git add -A` cannot tell them apart. Committing that way
+publishes work you never reviewed under a message that does not describe it, and it lands
+on a delegate you explicitly told not to commit. Stage the paths you changed, by name.
+When a delegate's work belongs in the commit, read it first and say so in the message.
+
 ---
 
 ## 8. WHAT THIS RULE IS NOT

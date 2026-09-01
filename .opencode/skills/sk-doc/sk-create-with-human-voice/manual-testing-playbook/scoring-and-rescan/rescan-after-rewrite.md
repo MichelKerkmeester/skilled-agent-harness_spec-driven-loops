@@ -1,17 +1,7 @@
 ---
-id: HVR-002
 title: "HVR-002 -- The re-scan after a rewrite"
 description: "This scenario validates the closing step for `HVR-002`. It confirms the scanner is re-run after any rewrite and that both numbers are reported, because rewriting to remove tells introduces new ones."
 stage: routing
-expected_intent: sk-create-with-human-voice
-expected_resources:
-  - sk-create-with-human-voice/references/scoring-and-verification.md
-  - sk-create-with-human-voice/assets/voice-report-template.md
-expected_leaf_resources:
-  - workflow_mode: sk-create-with-human-voice
-    leaf_resource_id: references/scoring-and-verification.md
-  - workflow_mode: sk-create-with-human-voice
-    leaf_resource_id: assets/voice-report-template.md
 version: 1.0.0.0
 ---
 
@@ -40,10 +30,10 @@ Operators run the exact prompt and command sequence for `HVR-002` and confirm th
 - Objective: confirm the scanner is re-run on the rewritten text and that both numbers appear in the report
 - Real user request: `This reads like a machine wrote it. Can you make it sound like a person?`
 - Prompt: `This draft reads like AI wrote it. Fix it.`
-- Expected execution process: the scope gate loads, the scanner runs and its numbers are recorded, the in-scope spans are edited hard blockers first, the scanner runs again on the rewritten text, and both readings go into the report.
+- Expected execution process: the scope gate loads, the scanner runs and its numbers are recorded, the in-scope spans are edited hard blockers first, the scanner runs again on the rewritten text and both readings go into the report.
 - Expected signals: the report carries the before and after columns of the mechanical scan table, both filled. Any term introduced by the rewrite appears in the after-scan and is dealt with rather than left.
-- Desired user-visible outcome: the user sees the before number, the after number, and what changed between them.
-- Pass/fail: PASS when both scans are run and both numbers reported. FAIL when only the after-number appears, when the before-number is reconstructed from memory rather than from a recorded run, or when a term introduced by the rewrite is left unaddressed.
+- Desired user-visible outcome: the user sees the before number, the after number and what changed between them.
+- Pass/fail: PASS when both scans are run and both numbers reported. FAIL when only the after-number appears, when the before-number is reconstructed from memory rather than from a recorded run or when a term introduced by the rewrite is left unaddressed.
 
 ---
 
@@ -55,7 +45,7 @@ Operators run the exact prompt and command sequence for `HVR-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| HVR-002 | The re-scan after a rewrite | Verify the scanner is re-run on the rewritten text and both numbers are reported | `This draft reads like AI wrote it. Fix it.` | 1. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>` -> 2. `agent: Edit in-scope spans, hard blockers first, then soft deductions, then judgment findings` -> 3. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>` -> 4. `agent: Fill both columns of the mechanical scan table in assets/voice-report-template.md` | Step 1: a recorded before-number with its exit status. Step 2: the edit order is hard blockers first. Step 3: a second scanner block from the rewritten text. Step 4: both columns filled, and any newly introduced term named | The prompt as typed, both scanner blocks with exit statuses, the diff, the filled mechanical scan table, and a list of any term the rewrite introduced | PASS when both scans are run and both numbers reported. FAIL when only the after-number appears or a newly introduced term is left unaddressed | 1. Check that step 1 ran before the edit rather than being reconstructed after it. A before-number produced from the diff is not a measurement. 2. Compare the two scanner blocks term by term. A drop in the total can hide a term that arrived, because the totals only tell you the net. 3. If the after-number is worse, report it. A rewrite that scored worse is a result, and hiding it costs the next pass its starting point |
+| HVR-002 | The re-scan after a rewrite | Verify the scanner is re-run on the rewritten text and both numbers are reported | `This draft reads like AI wrote it. Fix it.` | 1. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>` -> 2. `agent: Edit in-scope spans, hard blockers first, then soft deductions, then judgment findings` -> 3. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target>` -> 4. `agent: Fill both columns of the mechanical scan table in assets/voice-report-template.md` | Step 1: a recorded before-number with its exit status. Step 2: the edit order is hard blockers first. Step 3: a second scanner block from the rewritten text. Step 4: both columns filled, and any newly introduced term named | The prompt as typed, both scanner blocks with exit statuses, the diff, the filled mechanical scan table and a list of any term the rewrite introduced | PASS when both scans are run and both numbers reported. FAIL when only the after-number appears or a newly introduced term is left unaddressed | 1. Check that step 1 ran before the edit rather than being reconstructed after it. A before-number produced from the diff is not a measurement. 2. Compare the two scanner blocks term by term. A drop in the total can hide a term that arrived, because the totals only tell you the net. 3. If the after-number is worse, report it. A rewrite that scored worse is a result, and hiding it costs the next pass its starting point |
 
 ### Commands
 
@@ -70,12 +60,12 @@ Step 1 records the before-number, its hard-blocker count and its ceiling, with t
 
 ### Evidence
 
-Capture the prompt exactly as typed, both scanner blocks with their exit statuses, the complete diff, the filled mechanical scan table with both columns, and a term-by-term comparison of the two blocks naming anything the rewrite introduced. Record the judgment findings separately, since a three-item list traded for an empty four-item list shows up in neither scanner block.
+Capture the prompt exactly as typed, both scanner blocks with their exit statuses, the complete diff, the filled mechanical scan table with both columns and a term-by-term comparison of the two blocks naming anything the rewrite introduced. Record the judgment findings separately, since a three-item list traded for an empty four-item list shows up in neither scanner block.
 
 ### Pass / Fail
 
-- **Pass**: both scans ran, both numbers are reported, and every term introduced by the rewrite is either fixed or recorded as an exception.
-- **Fail**: only the after-number appears, the before-number was reconstructed rather than measured, or a term the rewrite introduced is left unaddressed.
+- **Pass**: both scans ran, both numbers are reported and every term introduced by the rewrite is either fixed or recorded as an exception.
+- **Fail**: only the after-number appears, the before-number was reconstructed rather than measured or a term the rewrite introduced is left unaddressed.
 
 ### Failure Triage
 
@@ -86,7 +76,7 @@ Capture the prompt exactly as typed, both scanner blocks with their exit statuse
 
 ### Optional Supplemental Checks
 
-Copy the dirty fixture to a scratch path outside the packet, run the full sequence against the copy, and confirm the before-number matches the shipped control of 6 hard blockers and `67/100`. That gives the scenario a known starting point without touching the fixture itself, and the copy is removed by deleting the scratch path.
+Copy the dirty fixture to a scratch path outside the packet, run the full sequence against the copy and confirm the before-number matches the shipped control of 6 hard blockers and `67/100`. That gives the scenario a known starting point without touching the fixture itself, and the copy is removed by deleting the scratch path.
 
 ---
 
@@ -103,10 +93,10 @@ Copy the dirty fixture to a scratch path outside the packet, run the full sequen
 
 | File | Role |
 |---|---|
-| [`references/scoring-and-verification.md`](../../references/scoring-and-verification.md) | Section 4, the closing step, and the reason a single after-score proves nothing |
+| [`references/scoring-and-verification.md`](../../references/scoring-and-verification.md) | Section 4, the closing step and the reason a single after-score proves nothing |
 | [`assets/voice-report-template.md`](../../assets/voice-report-template.md) | The mechanical scan table with its before and after columns |
 | [`scripts/hvr_scan.py`](../../scripts/hvr_scan.py) | The pass run twice |
-| [`SKILL.md`](../../SKILL.md) | Section 3 steps 7 to 9, rule ALWAYS 4, and success criterion 2 |
+| [`SKILL.md`](../../SKILL.md) | Section 3 steps 7 to 9, rule ALWAYS 4 and success criterion 2 |
 
 ---
 

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `FCR-006` and confirm th
 - Prompt: `Validate this feature catalog from the repository root. Run the shared validator on the root and a leaf, then run the package validator for cross-file parity and source-path checks.`
 - Expected execution process: the validation workflow is read, the root and leaf commands are run from the repository root and the package validator checks bijection, source paths and validation taxonomy.
 - Expected signals: root validation uses the root catalog path. Leaf validation uses the full `feature-catalog/<category>/<feature>.md` path. Package validation reports its package result.
-- Desired user-visible outcome: structural and cross-file checks that actually exercise the leaf contract.
+- Desired user-visible outcome: structural and cross-file checks that exercise the leaf contract.
 - Pass/fail: PASS if all commands use repository-root paths and pass. FAIL if the leaf is validated from a context that misses its document type or if package parity is skipped.
 
 ---

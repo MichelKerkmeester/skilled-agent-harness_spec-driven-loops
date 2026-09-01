@@ -1,14 +1,6 @@
 ---
 title: "FMB-002 -- Trim that loses routing tokens"
 description: "This scenario validates the inverted budget case for `FMB-002`. A description trimmed under budget by deleting the skill name and mode suffixes is a failure even though the length check now passes."
-id: FMB-002
-stage: routing
-expected_intent: sk-create-frontmatter
-expected_resources:
-  - sk-create-frontmatter/assets/frontmatter-templates.md
-expected_leaf_resources:
-  - workflow_mode: sk-create-frontmatter
-    leaf_resource_id: assets/frontmatter-templates.md
 version: 1.0.0.0
 ---
 
@@ -38,7 +30,7 @@ Operators run the exact prompt and command sequence for `FMB-002` and confirm th
 - Expected execution process: `assets/frontmatter-templates.md` loads, the keep list is read before the length is judged, the proposed description is checked token by token against that list, the missing skill-name token and mode suffixes are identified, and the answer states that the length check passing is not the question.
 - Expected signals: the reply says the trim is a regression, names which keep-list tokens are missing, and proposes a longer description that is still inside the soft target. A reply that approves the trim on length alone is the failure this scenario exists to catch.
 - Desired user-visible outcome: the user is told the trim is a regression despite passing the length check, and which tokens have to come back.
-- Pass/fail: PASS if the trim is rejected with the missing keep-list tokens named; FAIL if the trim is approved because it is inside the target, or if the answer discusses length without checking the keep list at all.
+- Pass/fail: PASS if the trim is rejected with the missing keep-list tokens named. FAIL if the trim is approved because it is inside the target, or if the answer discusses length without checking the keep list at all.
 
 ---
 
@@ -50,7 +42,7 @@ Operators run the exact prompt and command sequence for `FMB-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMB-002 | Trim that loses routing tokens | Reject an under-budget trim that removed keep-list tokens, and name what has to come back | `I got the description down to 60 characters. Good enough?` | 1. `agent: Read the keep list in the description budget section before judging the length` -> 2. `agent: Check the proposed description token by token against the keep list` -> 3. `agent: State the verdict and propose a replacement inside the soft target` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter` | Step 1: the keep list is read first. Step 2: the missing skill-name token and mode suffixes are named. Step 3: the trim is rejected and a replacement is offered. Step 4: the validator runs clean on the packet as shipped, showing it reports length and nothing else | The prompt as typed, the proposed description, the keep-list check token by token, the verdict, the replacement, and the validator transcript | PASS if the trim is rejected with the missing tokens named; FAIL if it is approved on length, or if the keep list is never checked | 1. Check whether the keep list was read before or after the verdict; after is a rationalization. 2. Confirm the validator was not treated as the authority here, since it cannot see routing signal. 3. Re-read the packet README row that maps a trimmed description no longer routing to this exact cause |
+| FMB-002 | Trim that loses routing tokens | Reject an under-budget trim that removed keep-list tokens, and name what has to come back | `I got the description down to 60 characters. Good enough?` | 1. `agent: Read the keep list in the description budget section before judging the length` -> 2. `agent: Check the proposed description token by token against the keep list` -> 3. `agent: State the verdict and propose a replacement inside the soft target` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter` | Step 1: the keep list is read first. Step 2: the missing skill-name token and mode suffixes are named. Step 3: the trim is rejected and a replacement is offered. Step 4: the validator runs clean on the packet as shipped, showing it reports length and nothing else | The prompt as typed, the proposed description, the keep-list check token by token, the verdict, the replacement, and the validator transcript | PASS if the trim is rejected with the missing tokens named. FAIL if it is approved on length, or if the keep list is never checked | 1. Check whether the keep list was read before or after the verdict. Reading it after the verdict is a rationalization. 2. Confirm the validator was not treated as the authority here, since it cannot see routing signal. 3. Re-read the packet README row that maps a trimmed description no longer routing to this exact cause |
 
 ### Commands
 

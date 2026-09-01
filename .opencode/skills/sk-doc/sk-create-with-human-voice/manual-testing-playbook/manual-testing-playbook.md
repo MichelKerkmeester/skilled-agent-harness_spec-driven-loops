@@ -1,12 +1,12 @@
 ---
 title: "create-with-human-voice: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations, and per-feature validation files for the create-with-human-voice sk-doc workflow packet."
+description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations and per-feature validation files for the create-with-human-voice sk-doc workflow packet."
 version: 1.0.0.0
 ---
 
 # create-with-human-voice: Manual Testing Playbook
 
-This document combines the manual-validation contract for the `create-with-human-voice` workflow packet into a single reference. The root playbook is the operator directory, the review protocol and the orchestration guide: it explains how a realistic user-driven test is run, how evidence is captured, how a result is graded, and where each per-feature validation file lives. The per-feature files carry the execution contract for each scenario, including the user request, the agent-facing prompt, the command sequence, the source anchors and the validation criteria.
+This document combines the manual-validation contract for the `create-with-human-voice` workflow packet into a single reference. The root playbook is the operator directory, the review protocol and the orchestration guide: it explains how a realistic user-driven test is run, how evidence is captured, how a result is graded and where each per-feature validation file lives. The per-feature files carry the execution contract for each scenario, including the user request, the agent-facing prompt, the command sequence, the source anchors and the validation criteria.
 
 ---
 
@@ -23,19 +23,19 @@ This packet ships no `feature-catalog/`. Every scenario therefore records the ab
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned and never hand-authored.
 
 The sentence above is the package contract wording, carried verbatim from `sk-create-manual-testing-playbook`. Its semicolon is a hard blocker under the standard this packet owns. It stays, because the string is pinned by the contract rather than chosen here, which is the recorded-exemption case `references/scope-and-exemptions.md` section 3 calls text something else pins.
 
 ### Package shape
 
-Every per-feature file carries the benchmark loader's frontmatter gold: `id`, `stage`, `expected_intent`, `expected_resources` and the typed `expected_leaf_resources` pairs. Each one deliberately omits the `expected_workflow_mode` scalar. The package validator reads that scalar together with the typed pairs as the routing-gold signature and then excludes the file from the operator-scenario contract, so declaring it would leave every file in this package unchecked by the validator that owns it. The workflow mode is still recorded inside each typed pair and in every `expected_resources` prefix.
+Every per-feature file carries the plain operator-scenario frontmatter: `title`, `description`, `stage` and the four-part `version`. None of them carry a Lane C benchmark field (`id`, `expected_intent`, `expected_resources`, `expected_workflow_mode` or `expected_leaf_resources`). This package is not a skill-benchmark corpus, and any one of those fields would risk the routing-gold classification the package validator uses to exclude a file from the operator-scenario contract it owns.
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook covers the operator-visible surface of the `create-with-human-voice` packet across three categories: tell detection, the scope gate, and scoring with its re-scan. Each feature keeps its ID and links to a dedicated feature file carrying the full execution contract. The operator validator computes the census from the walked tree, so this document does not hand-maintain a count.
+This playbook covers the operator-visible surface of the `create-with-human-voice` packet across three categories: tell detection, the scope gate and scoring with its re-scan. Each feature keeps its ID and links to a dedicated feature file carrying the full execution contract. The operator validator computes the census from the walked tree, so this document does not hand-maintain a count.
 
 Coverage runs in both directions on purpose. Tell detection covers text the mode must flag. The scope gate covers text the mode must leave alone, which is the half a term-list scanner will never volunteer.
 
@@ -52,7 +52,7 @@ Exit 2 is a failure and never a pass. It means the scanner could not read the st
 ### Realistic Test Model
 
 1. A realistic user request is given to an orchestrator. Nobody asks for a term-list scan. They say a draft reads like a machine wrote it.
-2. The orchestrator decides whether to work locally, delegate to sub-agents, or invoke another CLI or runtime.
+2. The orchestrator decides whether to work locally, delegate to sub-agents or invoke another CLI or runtime.
 3. The operator captures the execution process and the user-visible outcome.
 4. The scenario passes only when the workflow is sound and the returned result would satisfy a real user.
 
@@ -132,7 +132,7 @@ Three rules override intuition in this package specifically:
 
 Scenario verdict:
 - `PASS`: all acceptance checks true
-- `FAIL`: expected behavior missing, contradictory output, or a critical check failed
+- `FAIL`: expected behavior missing, contradictory output or a critical check failed
 - `SKIP`: a specific sandbox or runtime blocker prevents execution, and each `SKIP` must name the blocker
 
 ### Feature Verdict Rules
@@ -153,7 +153,7 @@ Release is releasable only when:
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files.
 4. No unresolved blocking triage item remains.
 
-`SCOPE GATE` carries more weight than the other two categories. A missed tell costs a reader some polish. A voice edit inside a quotation, an error string or a byte-pinned fixture changes what a document claims, and the damage is silent.
+`SCOPE GATE` carries more weight than the other two categories. A missed tell costs a reader some polish. A voice edit inside a quotation, an error string or a byte-pinned fixture changes what a document claims and the damage is silent.
 
 ### Root-vs-Feature Rule
 
@@ -174,7 +174,7 @@ This section records wave planning and capacity guidance for the manual testing 
 3. Saturate the remaining worker slots.
 4. Pre-assign explicit scenario IDs and matching per-feature files to each wave before execution.
 5. Run the control pair from `references/scoring-and-verification.md` section 6 before wave one. Every scenario in this package quotes a scanner number, so a parser that has stopped reading the standard invalidates the whole run rather than one scenario.
-6. Run `SCOPE GATE` as the first wave. It is entirely read-only, it is the cheapest wave, and it decides whether the other two waves are measuring the right spans.
+6. Run `SCOPE GATE` as the first wave. It is entirely read-only, it is the cheapest wave and it decides whether the other two waves are measuring the right spans.
 7. Never run two scenarios against the same operator-supplied target at once. Both assert on `git status --porcelain` for that path, so neither result would be attributable.
 8. After each wave, save context and evidence, then begin the next wave.
 9. Record the utilization table, per-feature file references and evidence paths in the final report.
@@ -194,14 +194,14 @@ This section records wave planning and capacity guidance for the manual testing 
 ### HVT-001 | Hard blocker terms on the dirty fixture
 
 #### Description
-Verify the mechanical pass reports every hard blocker class the shipped dirty fixture carries, reports the matching arithmetic, and exits non-zero. Critical.
+Verify the mechanical pass reports every hard blocker class the shipped dirty fixture carries, reports the matching arithmetic and exits non-zero. Critical.
 
 #### Scenario Contract
 Prompt: `Run the human voice scan over the packet's dirty fixture and tell me what it finds.`
 
-The fixture is byte-pinned as a control. It reports 6 hard blockers, -33 mechanical deductions and a ceiling of 67/100, and the scanner exits 1. The same violations appear a second time inside a fenced block and an inline code span, and neither copy may appear in the output.
+The fixture is byte-pinned as a control. It reports 6 hard blockers, -33 mechanical deductions and a ceiling of 67/100 and the scanner exits 1. The same violations appear a second time inside a fenced block and an inline code span, and neither copy may appear in the output.
 
-Desired user-visible outcome: the user sees the findings grouped by class, the arithmetic, and the list of categories the run did not check.
+Desired user-visible outcome: the user sees the findings grouped by class, the arithmetic and the list of categories the run did not check.
 
 #### Test Execution
 > **Feature File:** [HVT-001](tell-detection/hard-blocker-terms.md)
@@ -217,9 +217,9 @@ Verify a mechanical finding is sense-checked before it is accepted, so the liter
 #### Scenario Contract
 Prompt: `The scanner flagged two occurrences of the same word in this file. Fix the writing.`
 
-The scanner reports both senses because it matches spelling. A run that edits both, or dismisses both, has treated the output as a verdict. The right result keeps one, changes the other, and records the kept one as an exception.
+The scanner reports both senses because it matches spelling. A run that edits both, or dismisses both, has treated the output as a verdict. The right result keeps one, changes the other and records the kept one as an exception.
 
-Desired user-visible outcome: the user gets one edit, one recorded exemption, and the reason each was decided that way.
+Desired user-visible outcome: the user gets one edit, one recorded exemption and the reason each was decided that way.
 
 #### Test Execution
 > **Feature File:** [HVT-002](tell-detection/word-sense-is-a-candidate.md)
@@ -268,7 +268,7 @@ Desired user-visible outcome: the user can see which spans were out of bounds an
 ### HVS-002 | Code and quotations stay untouched
 
 #### Description
-Verify a voice pass edits no code block, quotation, error string, command, generated file, released changelog entry or byte-pinned fixture, and that the masking behind the scanner's default is understood rather than assumed.
+Verify a voice pass edits no code block, quotation, error string, command, generated file, released changelog entry or byte-pinned fixture and that the masking behind the scanner's default is understood rather than assumed.
 
 #### Scenario Contract
 Prompt: `Clean up the writing in this document. It has a few code samples and an error message in it.`
@@ -293,7 +293,7 @@ Prompt: `Score the human voice rules reference against the human voice rules.`
 
 The target lists every blocked term, so the mechanical pass reports dozens of hard blockers. Quoting that number without saying what the target is turns a correct document into a failing one.
 
-Desired user-visible outcome: the user is told the target is self-referential, what the raw number is, and why it does not mean the document is bad.
+Desired user-visible outcome: the user is told the target is self-referential, what the raw number is and why it does not mean the document is bad.
 
 #### Test Execution
 > **Feature File:** [HVS-003](scope-gate/document-about-the-standard.md)
@@ -349,7 +349,7 @@ Prompt: `This draft reads like AI wrote it. Fix it.`
 
 A sentence that loses one banned word reaches for another, and a three-item list rewritten under pressure becomes a four-item list whose fourth item says nothing. A single after-score proves nothing about what the pass did.
 
-Desired user-visible outcome: the user sees the before number, the after number, and what changed between them.
+Desired user-visible outcome: the user sees the before number, the after number and what changed between them.
 
 #### Test Execution
 > **Feature File:** [HVR-002](scoring-and-rescan/rescan-after-rewrite.md)
@@ -361,7 +361,7 @@ Desired user-visible outcome: the user sees the before number, the after number,
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `scripts/hvr_scan.py` against the two shipped fixtures | The mechanical subset: punctuation bans, blocker words, phrase blockers, soft deductions, and the masking of code spans | Direct. `HVT-001` and `HVR-001` execute exactly this pair as the operator-facing control |
+| `scripts/hvr_scan.py` against the two shipped fixtures | The mechanical subset: punctuation bans, blocker words, phrase blockers, soft deductions and the masking of code spans | Direct. `HVT-001` and `HVR-001` execute exactly this pair as the operator-facing control |
 | `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly. It validates the playbook, not the workflow the playbook tests |
 
 The packet ships no automated test for the judgment pass, and none is possible: the eleven categories the scanner prints as unchecked are unchecked because a pattern cannot settle them. This playbook is the operator-facing equivalent for that half of the standard and does not claim to be more.

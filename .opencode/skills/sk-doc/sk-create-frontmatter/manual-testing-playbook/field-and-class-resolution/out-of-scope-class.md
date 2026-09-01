@@ -1,17 +1,6 @@
 ---
 title: "FMC-003 -- Out-of-scope class"
 description: "This scenario validates the out-of-scope decline for `FMC-003`. It focuses on a command or agent file, which the version standard places outside its scope explicitly, and on declining to add `version` with the clause quoted."
-id: FMC-003
-stage: routing
-expected_intent: sk-create-frontmatter
-expected_resources:
-  - sk-create-frontmatter/references/frontmatter-versioning.md
-  - sk-create-frontmatter/references/README.md
-expected_leaf_resources:
-  - workflow_mode: sk-create-frontmatter
-    leaf_resource_id: references/frontmatter-versioning.md
-  - workflow_mode: sk-create-frontmatter
-    leaf_resource_id: references/README.md
 version: 1.0.0.0
 ---
 
@@ -41,7 +30,7 @@ Operators run the exact prompt and command sequence for `FMC-003` and confirm th
 - Expected execution process: the request is about `version`, so `references/frontmatter-versioning.md` loads conditionally through `references/README.md`, section 1 is read before section 2, the out-of-scope table is found to name `.opencode/commands/*.md`, and no edit is made.
 - Expected signals: the reply declines, quotes the out-of-scope clause verbatim, and states that commands and agents are governed separately. No file under `.opencode/commands/` is modified.
 - Desired user-visible outcome: the user learns the field does not belong there, sees the clause that says so, and is told these files are governed separately.
-- Pass/fail: PASS if the request is declined with the clause quoted and nothing is written; FAIL if a `version` key is added, or the decline arrives as a paraphrase with no clause quoted.
+- Pass/fail: PASS if the request is declined with the clause quoted and nothing is written. FAIL if a `version` key is added, or the decline arrives as a paraphrase with no clause quoted.
 
 ---
 
@@ -53,7 +42,7 @@ Operators run the exact prompt and command sequence for `FMC-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMC-003 | Out-of-scope class | Decline to add `version` to an out-of-scope class with the excluding clause quoted | `Add the 4-part version field to my command file under .opencode/commands so it matches the skills.` | 1. `agent: Read references/frontmatter-versioning.md section 1 before reading section 2` -> 2. `agent: Quote the out-of-scope clause verbatim and name the affected paths` -> 3. `agent: State that these files are governed separately and make no edit` -> 4. `bash: git status --porcelain .opencode/commands` | Step 1: scope is read before format. Step 2: the clause is quoted, not summarized. Step 3: no edit is proposed. Step 4: empty output | The prompt as typed, the decline text, the quoted clause, and the step 4 output | PASS if steps 2 and 3 decline with the clause quoted and step 4 is empty; FAIL if a `version` key is added anywhere, or the clause is paraphrased | 1. Confirm section 1 was read before section 2, since a run that starts at the format rules has no scope information. 2. Check the clause is quoted rather than restated, because a paraphrase cannot be checked against the source. 3. Grep the standard for the install-guides row, which is the third out-of-scope path and is often dropped from the answer |
+| FMC-003 | Out-of-scope class | Decline to add `version` to an out-of-scope class with the excluding clause quoted | `Add the 4-part version field to my command file under .opencode/commands so it matches the skills.` | 1. `agent: Read references/frontmatter-versioning.md section 1 before reading section 2` -> 2. `agent: Quote the out-of-scope clause verbatim and name the affected paths` -> 3. `agent: State that these files are governed separately and make no edit` -> 4. `bash: git status --porcelain .opencode/commands` | Step 1: scope is read before format. Step 2: the clause is quoted, not summarized. Step 3: no edit is proposed. Step 4: empty output | The prompt as typed, the decline text, the quoted clause, and the step 4 output | PASS if steps 2 and 3 decline with the clause quoted and step 4 is empty. FAIL if a `version` key is added anywhere, or the clause is paraphrased | 1. Confirm section 1 was read before section 2, since a run that starts at the format rules has no scope information. 2. Check the clause is quoted rather than restated, because a paraphrase cannot be checked against the source. 3. Grep the standard for the install-guides row, which is the third out-of-scope path and is often dropped from the answer |
 
 ### Commands
 
@@ -80,7 +69,7 @@ Capture the prompt exactly as typed, the full decline text, the clause as quoted
 1. Confirm `references/frontmatter-versioning.md` was loaded at all. It is the conditional resource for every question about `version`, and without it the run has only the format pattern.
 2. Check the read order. A run that starts from the format section has the shape of a version and no idea which files may carry one.
 3. Confirm all three out-of-scope paths were named. Dropping the install-guides row is the common partial answer and shows the table was skimmed rather than read.
-4. If the field was added, check whether the run relied on the validators to catch it. They will not; the contract keeps `version` optional for commands, so the wrong key parses and passes.
+4. If the field was added, check whether the run relied on the validators to catch it. They will not. The contract keeps `version` optional for commands, so the wrong key parses and passes.
 
 ### Optional Supplemental Checks
 

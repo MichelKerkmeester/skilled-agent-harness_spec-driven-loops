@@ -1,14 +1,6 @@
 ---
 title: "FMV-001 -- Changelog-anchored derivation"
 description: "This scenario validates anchor derivation for `FMV-001`. The anchor is the higher of the manifest frontmatter version and the highest changelog filename version, compared as integer tuples rather than as strings."
-id: FMV-001
-stage: routing
-expected_intent: sk-create-frontmatter
-expected_resources:
-  - sk-create-frontmatter/references/frontmatter-versioning.md
-expected_leaf_resources:
-  - workflow_mode: sk-create-frontmatter
-    leaf_resource_id: references/frontmatter-versioning.md
 version: 1.0.0.0
 ---
 
@@ -38,7 +30,7 @@ Operators run the exact prompt and command sequence for `FMV-001` and confirm th
 - Expected execution process: the question is about `version`, so `references/frontmatter-versioning.md` loads, section 3 supplies the anchor formula, both inputs are read, the higher one is selected as integer tuples, and section 4 supplies the child rule of inherited major and minor, patch seeded zero, and build from the file's own gated edit count.
 - Expected signals: the reply names both anchor inputs with their values, states which one won, states that the comparison was made as integer tuples, and produces a four-part version whose major and minor match the anchor.
 - Desired user-visible outcome: the derived version, plus both inputs and which one won.
-- Pass/fail: PASS if both inputs are read, the comparison is stated, and the derived version follows the child rule; FAIL if only one input is read, if the comparison method is unstated, or if the answer is a version with no derivation behind it.
+- Pass/fail: PASS if both inputs are read, the comparison is stated, and the derived version follows the child rule. FAIL if only one input is read, if the comparison method is unstated, or if the answer is a version with no derivation behind it.
 
 ---
 
@@ -50,7 +42,7 @@ Operators run the exact prompt and command sequence for `FMV-001` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMV-001 | Changelog-anchored derivation | Derive a child version from the correct anchor after reading both inputs and comparing them as integer tuples | `What version should a new reference doc in this skill get?` | 1. `agent: Read references/frontmatter-versioning.md section 3 and state the anchor formula` -> 2. `agent: Read the SKILL.md frontmatter version and the highest changelog filename version` -> 3. `agent: Select the higher as integer tuples and apply the section 4 child rule` -> 4. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs compute --skill sk-doc --manifest-out scratch-fmv-001` | Step 1: the formula is quoted as a maximum of two inputs. Step 2: both values are reported. Step 3: the winner is named and the comparison is stated as integer tuples. Step 4: the engine's derived version for the packet's docs matches the hand derivation | The prompt as typed, both anchor inputs with their values, the winner and the comparison method, the derived version, the engine transcript, and confirmation the scratch manifest was removed | PASS if both inputs are read, the comparison is stated, and the hand derivation matches the engine; FAIL if one input is skipped, the comparison is unstated, or no engine run is shown | 1. Confirm both inputs were read; reading the manifest alone is the documented shortcut. 2. Check the comparison was tuple-based, which only shows up on a double-digit segment. 3. Confirm `--skill` was given a top-level skill name, since the packet name discovers zero files and reports success over an empty set |
+| FMV-001 | Changelog-anchored derivation | Derive a child version from the correct anchor after reading both inputs and comparing them as integer tuples | `What version should a new reference doc in this skill get?` | 1. `agent: Read references/frontmatter-versioning.md section 3 and state the anchor formula` -> 2. `agent: Read the SKILL.md frontmatter version and the highest changelog filename version` -> 3. `agent: Select the higher as integer tuples and apply the section 4 child rule` -> 4. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs compute --skill sk-doc --manifest-out scratch-fmv-001` | Step 1: the formula is quoted as a maximum of two inputs. Step 2: both values are reported. Step 3: the winner is named and the comparison is stated as integer tuples. Step 4: the engine's derived version for the packet's docs matches the hand derivation | The prompt as typed, both anchor inputs with their values, the winner and the comparison method, the derived version, the engine transcript, and confirmation the scratch manifest was removed | PASS if both inputs are read, the comparison is stated, and the hand derivation matches the engine. FAIL if one input is skipped, the comparison is unstated, or no engine run is shown | 1. Confirm both inputs were read. Reading the manifest alone is the documented shortcut. 2. Check the comparison was tuple-based, which only shows up on a double-digit segment. 3. Confirm `--skill` was given a top-level skill name, since the packet name discovers zero files and reports success over an empty set |
 
 ### Commands
 
@@ -77,7 +69,7 @@ Capture the prompt exactly as typed, both anchor inputs with their values and th
 1. Confirm both inputs were read. Reading the manifest alone is the documented shortcut and produces the right answer whenever the two happen to agree, which hides it.
 2. Check the comparison method. A string comparison is indistinguishable from a tuple comparison until a segment reaches double digits, so the method has to be stated rather than inferred from a correct result.
 3. Confirm the skill has a changelog directory at all. When it does not, the standard falls back to the frontmatter version and records the anchor source, and that fallback should be named rather than silently used.
-4. Check the `--skill` value. It takes a top-level skill directory name, so this packet resolves through `sk-doc`; passing the packet name discovers zero files and reports success over an empty set.
+4. Check the `--skill` value. It takes a top-level skill directory name, so this packet resolves through `sk-doc`. Passing the packet name discovers zero files and reports success over an empty set.
 
 ### Optional Supplemental Checks
 

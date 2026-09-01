@@ -24,7 +24,7 @@ The key negative checks keep the catalog trustworthy. A root row without a leaf 
 1. Run commands from the repository root.
 2. Read the target system docs, source files, tests and README before claiming a feature is shipped.
 3. Stabilize category names and feature slugs before writing cross-links.
-4. Keep the root catalog inventory-first. Put implementation truth in per-feature files.
+4. Keep the root catalog inventory-first. Place implementation truth in per-feature files.
 5. Use real source and validation paths. Do not freeze measured counts or dated snapshots in catalog prose.
 6. A `SKIP` verdict is valid only when a named sandbox or runtime blocker prevents the command from running.
 

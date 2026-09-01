@@ -1,14 +1,6 @@
 ---
 title: "FMV-002 -- Numstat gate"
 description: "This scenario validates the numstat gate for `FMV-002`. The build segment counts only commits whose own added-plus-deleted line count for that file is above zero, and the ungated count is three to five times too high."
-id: FMV-002
-stage: routing
-expected_intent: sk-create-frontmatter
-expected_resources:
-  - sk-create-frontmatter/references/frontmatter-versioning.md
-expected_leaf_resources:
-  - workflow_mode: sk-create-frontmatter
-    leaf_resource_id: references/frontmatter-versioning.md
 version: 1.0.0.0
 ---
 
@@ -38,7 +30,7 @@ Operators run the exact prompt and command sequence for `FMV-002` and confirm th
 - Expected execution process: `references/frontmatter-versioning.md` loads, section 4 supplies the real-edit-count rule, `git log --follow --numstat` is run for the single file, commits whose added-plus-deleted count for that file is zero are discarded, the surviving count becomes the build segment, and the ungated commit count is reported alongside it.
 - Expected signals: two numbers are reported, the gated one is the smaller, the gap is named, and the two documented inflators are given as the reason. The build segment is capped, and brand-new files with zero or one commit report zero.
 - Desired user-visible outcome: a gated count, the ungated count beside it, and the gap named.
-- Pass/fail: PASS if both counts are shown and the gated one is used; FAIL if only one number is produced, if the gate is described but not run, or if the ungated count is used as the build segment.
+- Pass/fail: PASS if both counts are shown and the gated one is used. FAIL if only one number is produced, if the gate is described but not run, or if the ungated count is used as the build segment.
 
 ---
 
@@ -50,7 +42,7 @@ Operators run the exact prompt and command sequence for `FMV-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMV-002 | Numstat gate | Produce a gated real edit count with the ungated count beside it and the gap named | `How many times has this file actually been edited? I need the build number for its version.` | 1. `agent: Read references/frontmatter-versioning.md section 4 and state the real edit count rule` -> 2. `bash: git log --follow --numstat -- .opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` -> 3. `agent: Count commits whose added-plus-deleted for this file is above zero, and count all commits separately` -> 4. `agent: Report both numbers, name the gap, and give the two documented inflators` | Step 1: the rule is quoted as a per-file line-count gate. Step 2: numstat rows are present for every commit. Step 3: two distinct counts. Step 4: the gated count is the smaller and the gap is explained | The prompt as typed, the rule as quoted, the full command transcript, both counts, the gap, and the two inflators named | PASS if both counts are shown and the gated one is used as the build segment; FAIL if one number is produced, the gate is described but never run, or the ungated count is used | 1. Check whether numstat rows were actually read, since `--follow` alone produces a commit list with no line counts. 2. Confirm zero-line commits were discarded rather than counted. 3. Compare the gated count against the engine's own derived build segment for the same file |
+| FMV-002 | Numstat gate | Produce a gated real edit count with the ungated count beside it and the gap named | `How many times has this file actually been edited? I need the build number for its version.` | 1. `agent: Read references/frontmatter-versioning.md section 4 and state the real edit count rule` -> 2. `bash: git log --follow --numstat -- .opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md` -> 3. `agent: Count commits whose added-plus-deleted for this file is above zero, and count all commits separately` -> 4. `agent: Report both numbers, name the gap, and give the two documented inflators` | Step 1: the rule is quoted as a per-file line-count gate. Step 2: numstat rows are present for every commit. Step 3: two distinct counts. Step 4: the gated count is the smaller and the gap is explained | The prompt as typed, the rule as quoted, the full command transcript, both counts, the gap, and the two inflators named | PASS if both counts are shown and the gated one is used as the build segment. FAIL if one number is produced, the gate is described but never run, or the ungated count is used | 1. Check whether numstat rows were read, since `--follow` alone produces a commit list with no line counts. 2. Confirm zero-line commits were discarded rather than counted. 3. Compare the gated count against the engine's own derived build segment for the same file |
 
 ### Commands
 

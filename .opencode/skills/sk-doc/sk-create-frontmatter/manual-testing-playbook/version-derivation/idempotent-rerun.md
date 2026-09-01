@@ -1,14 +1,6 @@
 ---
 title: "FMV-004 -- Idempotent rerun"
 description: "This scenario validates idempotency for `FMV-004`. Re-running the versioning over an already-versioned tree is a byte-level no-op, and a run that rewrites bytes is a failure even when every version string is correct."
-id: FMV-004
-stage: routing
-expected_intent: sk-create-frontmatter
-expected_resources:
-  - sk-create-frontmatter/references/frontmatter-versioning.md
-expected_leaf_resources:
-  - workflow_mode: sk-create-frontmatter
-    leaf_resource_id: references/frontmatter-versioning.md
 version: 1.0.0.0
 ---
 
@@ -38,7 +30,7 @@ Operators run the exact prompt and command sequence for `FMV-004` and confirm th
 - Expected execution process: `references/frontmatter-versioning.md` loads, the idempotency row and the line-wise editing rule in section 6 are read together, the engine is run in a read-only mode over an already-versioned tree, and `git status --porcelain` is used to show the tree unchanged.
 - Expected signals: the run reports every in-scope file as already correct, the working tree is unchanged, and the answer states that the assertion is byte-level and explains why value equality is not enough.
 - Desired user-visible outcome: a second run whose diff is empty, with the empty diff shown rather than claimed.
-- Pass/fail: PASS if the second run leaves the tree byte-identical and the empty diff is shown; FAIL if any file is rewritten, or if the answer asserts idempotency without producing the status output.
+- Pass/fail: PASS if the second run leaves the tree byte-identical and the empty diff is shown. FAIL if any file is rewritten, or if the answer asserts idempotency without producing the status output.
 
 ---
 
@@ -50,7 +42,7 @@ Operators run the exact prompt and command sequence for `FMV-004` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMV-004 | Idempotent rerun | Prove a second pass over a versioned tree is a byte-level no-op, with the empty diff shown | `I already ran the versioning yesterday. Is it safe to run it again?` | 1. `agent: Read the idempotency row and the line-wise editing rule in references/frontmatter-versioning.md` -> 2. `bash: git status --porcelain .opencode/skills/sk-doc` -> 3. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc` -> 4. `bash: git status --porcelain .opencode/skills/sk-doc` | Step 1: both rules are quoted. Step 2: baseline, empty for the target paths. Step 3: every in-scope file reports as correct. Step 4: identical to step 2 | The prompt as typed, both rules quoted, the two status outputs, the engine transcript with its exit status, and an explicit statement that the two status outputs match | PASS if steps 2 and 4 match and nothing was rewritten; FAIL if step 4 differs from step 2, or if no status output is produced | 1. Confirm a baseline was taken before the run, since a single status reading proves nothing. 2. Check whether the answer relied on version strings matching rather than on bytes matching. 3. Inspect `trigger_phrases` in one file for reflow, which is the specific corruption line-wise editing prevents |
+| FMV-004 | Idempotent rerun | Prove a second pass over a versioned tree is a byte-level no-op, with the empty diff shown | `I already ran the versioning yesterday. Is it safe to run it again?` | 1. `agent: Read the idempotency row and the line-wise editing rule in references/frontmatter-versioning.md` -> 2. `bash: git status --porcelain .opencode/skills/sk-doc` -> 3. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc` -> 4. `bash: git status --porcelain .opencode/skills/sk-doc` | Step 1: both rules are quoted. Step 2: baseline, empty for the target paths. Step 3: every in-scope file reports as correct. Step 4: identical to step 2 | The prompt as typed, both rules quoted, the two status outputs, the engine transcript with its exit status, and an explicit statement that the two status outputs match | PASS if steps 2 and 4 match and nothing was rewritten. FAIL if step 4 differs from step 2, or if no status output is produced | 1. Confirm a baseline was taken before the run, since a single status reading proves nothing. 2. Check whether the answer relied on version strings matching rather than on bytes matching. 3. Inspect `trigger_phrases` in one file for reflow, which is the specific corruption line-wise editing prevents |
 
 ### Commands
 
@@ -75,7 +67,7 @@ Capture the prompt exactly as typed, both quoted rules, the literal output of bo
 ### Failure Triage
 
 1. Confirm a baseline was taken. A status reading after the run, with nothing to compare it to, proves only that the tree is clean now.
-2. Check what was actually asserted. A run that compared version strings has checked value equality, which passes in the exact case this scenario exists to catch.
+2. Check what was asserted. A run that compared version strings has checked value equality, which passes in the exact case this scenario exists to catch.
 3. Inspect `trigger_phrases` in one affected file. A reflowed multi-line block sequence is the specific corruption the line-wise rule prevents, and it is visible in the diff rather than in the parsed values.
 4. If the diff is non-empty, identify whether the change is a version value or a reformat. They are different failures with different causes, and the standard treats the second as the reason the first rule exists.
 
