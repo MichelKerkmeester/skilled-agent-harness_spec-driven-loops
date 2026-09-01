@@ -75,7 +75,7 @@ expected_resources:
   - shared/assets/llmstxt-templates.md
   - shared/references/core-standards.md
   - shared/references/evergreen-packet-id-rule.md
-  - shared/references/hvr-rules.md
+  - sk-create-with-human-voice/references/hvr-rules.md
   - shared/references/validation.md
   - sk-create-quality-control/references/README.md
   - sk-create-quality-control/references/optimization.md

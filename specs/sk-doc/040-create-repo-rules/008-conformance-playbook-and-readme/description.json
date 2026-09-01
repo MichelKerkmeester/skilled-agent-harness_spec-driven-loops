@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
-  "description": "Phase 1: conformance-playbook-and-readme",
+  "description": "The mode shipped without a manual testing playbook, so nothing recorded how an operator confirms it behaves correctly",
   "keywords": [
-    "phase",
-    "conformance-playbook-and-readme"
+    "mode",
+    "shipped",
+    "without",
+    "manual",
+    "testing",
+    "playbook",
+    "nothing",
+    "recorded",
+    "operator",
+    "confirms",
+    "behaves",
+    "correctly"
   ],
-  "lastUpdated": "2026-08-31T14:06:07.834Z",
+  "lastUpdated": "2026-08-31T15:51:57.098Z",
   "specId": "008",
   "folderSlug": "conformance-playbook-and-readme",
   "parentChain": [
@@ -13,6 +24,5 @@
     "040-create-repo-rules"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,24 +1,21 @@
 {
+  "level": "2",
   "specFolder": "hooks/015-git-hook-gate-reduction",
-  "description": "Cut the git hook gates that guard nothing, fix the three that are broken or blind",
+  "description": "Thirteen blocking gates across three hooks",
   "keywords": [
-    "cut",
-    "git",
-    "hook",
+    "thirteen",
+    "blocking",
     "gates",
-    "guard",
-    "nothing",
+    "across",
     "three",
-    "broken",
-    "blind"
+    "hooks"
   ],
-  "lastUpdated": "2026-08-31T02:55:46.199Z",
+  "lastUpdated": "2026-08-31T03:30:12.763Z",
   "specId": "015",
   "folderSlug": "git-hook-gate-reduction",
   "parentChain": [
     "hooks"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

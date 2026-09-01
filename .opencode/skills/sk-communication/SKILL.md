@@ -206,7 +206,7 @@ Consume it through the package's subpath exports (`@portable-cli/communication-p
 
 ### The Wording Standard
 
-"Plain English" is not defined in this skill. It is the Human Voice Rules at [`../sk-doc/shared/references/hvr-rules.md`](../sk-doc/shared/references/hvr-rules.md), and the workflow that applies them is the `sk-create-with-human-voice` mode under `sk-doc`. Every rewrite path here routes to that standard instead of carrying a private rubric, so a change to the standard reaches the projection lane with no edit to a command.
+"Plain English" is not defined in this skill. It is the Human Voice Rules at [`../sk-doc/sk-create-with-human-voice/references/hvr-rules.md`](../sk-doc/sk-create-with-human-voice/references/hvr-rules.md), and the workflow that applies them is the `sk-create-with-human-voice` mode under `sk-doc`. Every rewrite path here routes to that standard instead of carrying a private rubric, so a change to the standard reaches the projection lane with no edit to a command.
 
 Two parts of the standard are excluded, and a projection that honors them has damaged the message it was carrying:
 
@@ -266,7 +266,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 ### Related Skills
 
-- `sk-doc` → `sk-create-with-human-voice`, which owns the Human Voice Rules workflow this skill's rewrites are held to. The standard is at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, the scope gate at that mode's `references/scope-and-exemptions.md`, and its `scripts/hvr_scan.py` scans a file rather than a live reply, so it audits this skill's own documents and never a projection in flight.
+- `sk-doc` → `sk-create-with-human-voice`, which owns the Human Voice Rules workflow this skill's rewrites are held to. The standard is at `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`, the scope gate at that mode's `references/scope-and-exemptions.md`, and its `scripts/hvr_scan.py` scans a file rather than a live reply, so it audits this skill's own documents and never a projection in flight.
 - `sk-code` — builds and verifies integration code against the package.
 - `sk-design-md-generator` — extracts a measured Style Reference (design tokens from a live source).
 - `sk-git` — worktree, commits, and PR for the integration.

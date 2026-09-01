@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/046-human-voice-standard-ownership",
+  "spec_folder": "sk-doc/046-human-voice-standard-ownership",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hvr standard ownership",
+      "move hvr-rules into the packet",
+      "human voice packet conformance",
+      "hvr scanner default rules path",
+      "sk-create-with-human-voice template alignment",
+      "hvr move implementation plan",
+      "repoint hvr consumers",
+      "leaf alias diskpath change",
+      "golden snapshot substitution",
+      "packet template conformance plan",
+      "hvr move tasks",
+      "repoint hvr references tasks"
+    ],
+    "key_topics": [
+      "hvr",
+      "standard",
+      "ownership",
+      "move",
+      "hvr-rules",
+      "packet",
+      "human",
+      "voice",
+      "conformance",
+      "scanner",
+      "default",
+      "rules"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "repo-rules/communication.md",
+      "templates/core/plan.md.tmpl",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+      ".opencode/skills/sk-doc/ROUTER.md",
+      ".opencode/skills/sk-doc/leaf-aliases.json",
+      ".opencode/skills/sk-doc/leaf-manifest.json",
+      ".opencode/skills/sk-doc/README.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+      "shared/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": "repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_scan.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-aliases.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Human Voice Rules standard lives at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`,",
+    "created_at": "2026-09-01T03:42:36Z",
+    "last_save_at": "2026-09-01T04:16:32.151Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3c80b40e2426e5ca51b9be113460e56b73378f253f9ca4cefcf5625979f8d269",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "342a11875b0272c816141b13b382ac61175e5cd46cae0bdae2c426e551be2de9",
+      "plan.md": "6d84fbd425788dc7ae862f6fa3bb1756e2b100e1a006b6f86e619ca7beeb3345",
+      "tasks.md": "de53ebf35743666a22f1d0825683f9a2a986b0c204a8a2cd2ad853cf214db0a9",
+      "implementation-summary.md": "2a7e565fcf97e61c3e8ca09ac9084965abffa3152734fd4f658c864809740447"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

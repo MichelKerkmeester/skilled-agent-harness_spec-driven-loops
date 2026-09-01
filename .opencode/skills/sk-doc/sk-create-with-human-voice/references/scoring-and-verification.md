@@ -8,8 +8,8 @@ trigger_phrases:
   - "re-scan after rewrite"
   - "mechanical versus judgment findings"
 importance_tier: important
-contextType: reference
-version: 1.0.0.0
+contextType: implementation
+version: 1.1.0.1
 ---
 
 # Voice Scoring And Verification
@@ -20,7 +20,27 @@ rewrite actually landed.
 
 ---
 
-## 1. TWO PASSES, IN THIS ORDER
+## 1. OVERVIEW
+
+### Purpose
+
+The standard sets the penalties. This document sets the order they are applied in, the
+arithmetic that stops one word being charged twice, and the check that proves a rewrite
+landed rather than only claiming it.
+
+### When to Use
+
+Load it once the scope gate has settled what may be touched, and before any number is
+computed or quoted.
+
+### Core Principle
+
+A single after-score proves nothing. The pass reports both numbers, or it reports that it
+did not measure.
+
+---
+
+## 2. TWO PASSES, IN THIS ORDER
 
 ### Pass One: Mechanical
 
@@ -33,7 +53,7 @@ reader who starts with judgment spends attention on rhythm while a hard blocker 
 unfixed on line 8.
 
 The scanner produces **candidates, not verdicts**. Every finding still needs the sense
-check from `scope-and-exemptions.md` section 3.
+check from `scope-and-exemptions.md` section 4.
 
 ### Pass Two: Judgment
 
@@ -49,7 +69,7 @@ result for a clean document.
 
 ---
 
-## 2. THE ARITHMETIC
+## 3. THE ARITHMETIC
 
 A document starts at 100. Findings subtract. The standard's precedence rule (its section
 5) settles what happens when one span matches several rules.
@@ -84,11 +104,11 @@ onward. The scanner implements this. A hand count usually gets it wrong.
 | Below 70 | Rewrite |
 
 For a document past roughly 400 lines, report the hard-blocker count and the deduction
-density instead. `scope-and-exemptions.md` section 4 says why.
+density instead. `scope-and-exemptions.md` section 5 says why.
 
 ---
 
-## 3. THE REWRITE IS NOT THE END
+## 4. THE REWRITE IS NOT THE END
 
 Rewriting to remove tells introduces new ones. A sentence rewritten to drop `leverage`
 reaches for `utilise`. A paragraph rewritten to drop a three-item list becomes a
@@ -103,7 +123,7 @@ changed anything at all.
 
 ---
 
-## 4. WORKED EXAMPLE
+## 5. WORKED EXAMPLE
 
 `sk-create-repo-rule/README.md` was written to this standard and reviewed before it
 shipped. Scanning it finds:
@@ -124,7 +144,7 @@ missed hard blocker costs more than a candidate the reader dismisses in a second
 
 ---
 
-## 5. VERIFYING THE SCANNER ITSELF
+## 6. VERIFYING THE SCANNER ITSELF
 
 The scanner reads its term lists from the standard, so a change to the standard's section
 headings can leave it parsing nothing. It fails closed on that: a parse thinner than the
@@ -148,9 +168,9 @@ every scan since is suspect.
 
 ---
 
-## 6. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 - [`../SKILL.md`](../SKILL.md) - the workflow that runs these passes.
 - [`scope-and-exemptions.md`](scope-and-exemptions.md) - what the passes are allowed to touch.
 - [`../assets/voice-report-template.md`](../assets/voice-report-template.md) - the shape of the result.
-- [`../../shared/references/hvr-rules.md`](../../shared/references/hvr-rules.md) - the penalties, the term lists and the pre-publish checklist.
+- [`hvr-rules.md`](hvr-rules.md) - the penalties, the term lists and the pre-publish checklist.

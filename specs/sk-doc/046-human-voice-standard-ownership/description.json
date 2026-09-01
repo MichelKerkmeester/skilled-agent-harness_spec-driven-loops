@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/046-human-voice-standard-ownership",
+  "description": "The Human Voice Rules standard lives at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`,",
+  "keywords": [
+    "human",
+    "voice",
+    "rules",
+    "standard",
+    "lives",
+    "opencode",
+    "skills",
+    "sk-doc",
+    "shared",
+    "references",
+    "hvr-rules"
+  ],
+  "lastUpdated": "2026-09-01T03:47:42.172Z",
+  "specId": "046",
+  "folderSlug": "human-voice-standard-ownership",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

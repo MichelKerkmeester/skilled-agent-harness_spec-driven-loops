@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/041-validation-reduction/009-retire-the-sweep",
   "description": "Make the gate block the thing it can fairly block: the packets a change",
   "keywords": [
@@ -9,7 +10,7 @@
     "packets",
     "change"
   ],
-  "lastUpdated": "2026-08-30T06:31:08.270Z",
+  "lastUpdated": "2026-08-30T14:07:48.070Z",
   "specId": "009",
   "folderSlug": "retire-the-sweep",
   "parentChain": [
@@ -17,6 +18,5 @@
     "041-validation-reduction"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,20 +1,21 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/039-create-with-human-voice",
-  "description": "Add the sk-create-with-human-voice mode packet to the sk-doc hub",
+  "description": "The Human Voice Rules are a 510-line linguistic standard at",
   "keywords": [
-    "sk-create-with-human-voice",
-    "mode",
-    "packet",
-    "sk-doc",
-    "hub"
+    "human",
+    "voice",
+    "rules",
+    "510-line",
+    "linguistic",
+    "standard"
   ],
-  "lastUpdated": "2026-08-31T19:48:50.889Z",
+  "lastUpdated": "2026-08-31T20:11:00.371Z",
   "specId": "039",
   "folderSlug": "create-with-human-voice",
   "parentChain": [
     "sk-doc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

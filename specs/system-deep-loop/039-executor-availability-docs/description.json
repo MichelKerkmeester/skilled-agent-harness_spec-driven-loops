@@ -1,25 +1,25 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/039-executor-availability-docs",
-  "description": "Correct the deep-loop command contracts to state the real per-command CLI executor sets",
+  "description": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
   "keywords": [
-    "correct",
-    "deep-loop",
-    "command",
-    "contracts",
-    "state",
-    "real",
-    "per-command",
-    "cli",
+    "every",
+    "deep",
+    "presentation",
+    "contract",
+    "documented",
     "executor",
-    "sets"
+    "field",
+    "native",
+    "cli-opencode",
+    "cli-claude-code"
   ],
-  "lastUpdated": "2026-08-31T08:33:26.108Z",
+  "lastUpdated": "2026-08-31T08:36:53.495Z",
   "specId": "039",
   "folderSlug": "executor-availability-docs",
   "parentChain": [
     "system-deep-loop"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

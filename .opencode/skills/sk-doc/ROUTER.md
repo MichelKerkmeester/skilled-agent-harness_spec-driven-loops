@@ -202,7 +202,7 @@ RESOURCE_MAP = {
         "sk-create-with-human-voice/references/scope-and-exemptions.md",
         "sk-create-with-human-voice/references/scoring-and-verification.md",
         "sk-create-with-human-voice/assets/voice-report-template.md",
-        "shared/references/hvr-rules.md"
+        "sk-create-with-human-voice/references/hvr-rules.md"
     ],
     "PLAYBOOK": [
         "sk-create-manual-testing-playbook/references/README.md"
@@ -307,7 +307,6 @@ RESOURCE_MAP = {
         "shared/assets/llmstxt-templates.md",
         "shared/references/core-standards.md",
         "shared/references/evergreen-packet-id-rule.md",
-        "shared/references/hvr-rules.md",
         "shared/references/validation.md",
         "sk-create-quality-control/references/README.md",
         "sk-create-quality-control/references/optimization.md",
@@ -333,6 +332,7 @@ RESOURCE_MAP = {
         "sk-create-repo-rule/references/rule-anatomy.md",
         "sk-create-with-human-voice/assets/voice-report-template.md",
         "sk-create-with-human-voice/references/README.md",
+        "sk-create-with-human-voice/references/hvr-rules.md",
         "sk-create-with-human-voice/references/scope-and-exemptions.md",
         "sk-create-with-human-voice/references/scoring-and-verification.md",
         "sk-create-skill/assets/parent-skill/parent-skill-description-template.json",

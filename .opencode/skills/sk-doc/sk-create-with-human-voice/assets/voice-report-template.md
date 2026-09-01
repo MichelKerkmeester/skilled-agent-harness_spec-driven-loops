@@ -6,20 +6,31 @@ trigger_phrases:
   - "hvr pass result"
   - "voice pass output shape"
 importance_tier: normal
-contextType: reference
-version: 1.0.0.0
+contextType: implementation
+version: 1.1.0.1
 ---
 
 # Voice Report Template
 
-Fill every row. A row with nothing to report says `None`, which is a finding in itself.
-A row you delete reads as a step you skipped.
+The fixed shape of a voice-pass result, filled in once per run.
 
-Drop the two after-columns on a `score` run, where nothing was edited.
+## 1. OVERVIEW
+
+### Purpose
+
+A voice pass is only as good as its record. This blank forces the pass to state what it
+was allowed to touch, what it measured before and after, what it declined, and what a
+reader still owns.
+
+### Usage
+
+Copy the block in section 2 and fill every row. A row with nothing to report says `None`,
+which is a finding in itself. A row you delete reads as a step you skipped. Drop the two
+after-columns on a `score` run, where nothing was edited.
 
 ---
 
-## 1. TEMPLATE
+## 2. TEMPLATE
 
 ```markdown
 **Target**
@@ -29,7 +40,7 @@ Drop the two after-columns on a `score` run, where nothing was edited.
 
 **Scope**
 - In scope: `<what the pass was allowed to touch>`
-- Exempt: `<span>` — `<class from scope-and-exemptions.md section 2>` — `<why>`
+- Exempt: `<span>` — `<class from scope-and-exemptions.md section 3>` — `<why>`
 - Exempt: `<span>` — `<class>` — `<why>`
 
 **Mechanical scan**
@@ -38,7 +49,7 @@ Drop the two after-columns on a `score` run, where nothing was edited.
 | Hard blockers | `<n>` | `<n>` |
 | Deductions | `-<n>` | `-<n>` |
 | Ceiling | `<n>/100` | `<n>/100` |
-- Source: `scripts/hvr_scan.py` against `shared/references/hvr-rules.md`
+- Source: `scripts/hvr_scan.py` against `references/hvr-rules.md`
 
 **Judgment findings**
 - `<structural, sentence-level, content or voice finding>` — `<fixed|left, with reason>`
@@ -53,7 +64,7 @@ Drop the two after-columns on a `score` run, where nothing was edited.
 
 ---
 
-## 2. WHY EACH ROW IS THERE
+## 3. WHY EACH ROW IS THERE
 
 **Length basis** stops an absolute score being quoted for a document too long to carry
 one. Say which measure you used before you quote a number from it.
@@ -73,7 +84,7 @@ handing back a list of what a reader still owns costs a line and saves a re-read
 
 ---
 
-## 3. RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [`../SKILL.md`](../SKILL.md) - the workflow that produces this report.
 - [`../references/scope-and-exemptions.md`](../references/scope-and-exemptions.md) - the classes the exempt rows cite.

@@ -470,4 +470,4 @@ Use these only for deep overflow detail, edge cases, exhaustive templates and lo
 - `.opencode/skills/sk-doc/shared/scripts/quick_validate.py` - Fast validation for folders or skill packets.
 - `.opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md` - Structural naming authority and exemption boundary.
 - `.opencode/skills/sk-doc/shared/references/validation.md` - DQI scoring, quality bands and gate interpretation.
-- `.opencode/skills/sk-doc/shared/references/hvr-rules.md` - Human Voice Rules for natural documentation style.
+- `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md` - Human Voice Rules for natural documentation style.

@@ -122,7 +122,7 @@ Human Voice Rules apply to all README content:
 - No banned words from the HVR reference.
 - Prefer active voice and direct verbs.
 
-Full reference: [`hvr-rules.md`](../../shared/references/hvr-rules.md).
+Full reference: [`hvr-rules.md`](../../sk-create-with-human-voice/references/hvr-rules.md).
 
 ---
 
@@ -309,4 +309,4 @@ A: [Short answer with a link when useful.]
 - [`SKILL.md`](../SKILL.md) - README workflow and reference map.
 - [`core-standards.md`](../../shared/references/core-standards.md) - Markdown formatting rules.
 - [`validation.md`](../../shared/references/validation.md) - Document validation and DQI scoring.
-- [`hvr-rules.md`](../../shared/references/hvr-rules.md) - Human Voice Rules.
+- [`hvr-rules.md`](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules.

@@ -134,7 +134,7 @@ Execute the following steps in order:
 #### Branch A: Native In-Context Engine (`native`)
 - No environment variable modification is required (no external or local model process runs).
 - Load the wording standard. This file does not restate it:
-  - `.opencode/skills/sk-doc/shared/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists.
+  - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`, the standard itself: voice directives, punctuation standards, structural patterns and the word lists.
   - `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md`, the scope gate: which spans of the target a rewrite may touch, and which it carries rather than owns.
   - `.opencode/skills/sk-communication/SKILL.md` section 3, "The Wording Standard", for the two parts of the standard a projection excludes and the reason.
 - Rewrite the resolved target text in-context under that standard. Two projection constraints override it wherever they collide:

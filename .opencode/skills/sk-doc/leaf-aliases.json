@@ -22,7 +22,7 @@
   {
     "workflowMode": "sk-create-quality-control",
     "leafResourceId": "references/hvr-rules.md",
-    "diskPath": "shared/references/hvr-rules.md"
+    "diskPath": "sk-create-with-human-voice/references/hvr-rules.md"
   },
   {
     "workflowMode": "sk-create-quality-control",

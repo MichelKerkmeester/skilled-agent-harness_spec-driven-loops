@@ -10,7 +10,7 @@ trigger_phrases:
   - "voice pass workflow"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # create-with-human-voice
@@ -27,7 +27,8 @@ version: 1.0.0.0
 | **Invoke with** | `/create:with-human-voice`, "make this sound human" or a direct read of `SKILL.md` |
 | **Works on** | A file, a passage, a reply, or a draft you are part way through |
 | **Produces** | An edited target plus a before and after report, or a report alone |
-| **Does not own** | The standard. That lives once in `shared/references/hvr-rules.md` and is referenced, never copied |
+| **Owns** | The standard at `references/hvr-rules.md`, and the workflow that applies it |
+| **Does not own** | The document-level audit. Structure, the Document Quality Index and the validators belong to `sk-create-quality-control` |
 
 ---
 
@@ -48,10 +49,10 @@ what a reader has to settle, how the arithmetic works, and what proof the pass p
 
 ### What It Does Not Do
 
-It does not restate the standard. Every rule, term and penalty stays in
-`shared/references/hvr-rules.md`, and this packet reads that file rather than shipping a
-second copy that drifts. The one thing worse than an unenforced standard is two versions
-of it disagreeing.
+It does not restate the standard. Every rule, term and penalty stays in the one file at
+`references/hvr-rules.md`, which the scanner reads at run time. No document in this packet
+carries a second copy, and no consumer elsewhere does either. The one thing worse than an
+unenforced standard is two versions of it disagreeing.
 
 It also does not own the document-level audit. Structure, the Document Quality Index and
 the validators belong to `sk-create-quality-control`. That mode audits a file end to end
@@ -149,11 +150,13 @@ writing.
 
 ## 7. FAQ
 
-**Q: Why not move the standard into this packet?**
+**Q: Why does the standard sit in this packet rather than the hub's shared tier?**
 
-A: Hundreds of files carry the current path, most of them frozen spec documents, plus a
-spec-kit golden snapshot. Moving it would rewrite history that already shipped and break a
-test suite, in exchange for a tidier folder. The packet references the path instead.
+A: Shared means every mode may reach it. Exactly one mode applies it, and one more reaches
+it through a declared alias, so the shared placement bought a hop and no reuse. The move
+repointed the live consumers, including the scanner, the hub router and the spec-kit
+templates. Frozen spec documents and released changelog entries kept the old path, because
+they record what was true when they were written.
 
 **Q: Does a clean scan mean the document passes?**
 
@@ -184,8 +187,8 @@ find nothing to mask.
 |---|---|---|
 | Dirty fixture | `python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-dirty.md` | 6 hard blockers, exit 1, and nothing reported from the fenced block or the inline code span |
 | Clean fixture | `python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-clean.md` | `no mechanical findings`, exit 0 |
-| Fails closed on a moved standard | `sed 's/^## 6\. HARD BLOCKER WORDS.*/## 6. RENAMED/' ../shared/references/hvr-rules.md > /tmp/broken.md && python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-dirty.md --rules /tmp/broken.md` | `parsed too thin`, exit 2 |
-| Survives renumbering | `sed 's/^## 6\. HARD BLOCKER/## 99. HARD BLOCKER/' ../shared/references/hvr-rules.md > /tmp/renum.md && python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-dirty.md --rules /tmp/renum.md` | 6 hard blockers, same as the real standard |
+| Fails closed on a moved standard | `sed 's/^## 6\. HARD BLOCKER WORDS.*/## 6. RENAMED/' references/hvr-rules.md > /tmp/broken.md && python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-dirty.md --rules /tmp/broken.md` | `parsed too thin`, exit 2 |
+| Survives renumbering | `sed 's/^## 6\. HARD BLOCKER/## 99. HARD BLOCKER/' references/hvr-rules.md > /tmp/renum.md && python3 scripts/hvr_scan.py scripts/tests/fixtures/voice-dirty.md --rules /tmp/renum.md` | 6 hard blockers, same as the real standard |
 | Packet contract | `python3 ../sk-create-skill/scripts/package_skill.py . --check --strict` | `Result: PASS` |
 
 Paths are relative to this packet directory.
@@ -201,4 +204,4 @@ Paths are relative to this packet directory.
 | [`references/scoring-and-verification.md`](./references/scoring-and-verification.md) | Pass order, precedence arithmetic, the bands, and the re-scan |
 | [`assets/voice-report-template.md`](./assets/voice-report-template.md) | The fixed shape of a voice-pass result |
 | [`scripts/hvr_scan.py`](./scripts/hvr_scan.py) | The mechanical pass |
-| [`../shared/references/hvr-rules.md`](../shared/references/hvr-rules.md) | The standard, owned elsewhere and referenced from here |
+| [`references/hvr-rules.md`](references/hvr-rules.md) | The standard itself, owned here and parsed at run time by the scanner |

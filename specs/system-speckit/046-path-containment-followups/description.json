@@ -1,27 +1,26 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/046-path-containment-followups",
-  "description": "Prove the repair write reaches the file the scan classified, and retire the containment branch that proves nothing",
+  "description": "Two packets closed on the same idea — prove membership rather than match a shape — and each left a",
   "keywords": [
+    "two",
+    "packets",
+    "closed",
+    "same",
+    "idea",
     "prove",
-    "repair",
-    "write",
-    "reaches",
-    "file",
-    "scan",
-    "classified",
-    "retire",
-    "containment",
-    "branch",
-    "proves",
-    "nothing"
+    "membership",
+    "rather",
+    "match",
+    "shape",
+    "left"
   ],
-  "lastUpdated": "2026-08-30T14:17:45.835Z",
+  "lastUpdated": "2026-08-30T15:16:38.016Z",
   "specId": "046",
   "folderSlug": "path-containment-followups",
   "parentChain": [
     "system-speckit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

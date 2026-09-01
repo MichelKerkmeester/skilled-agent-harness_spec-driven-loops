@@ -1,28 +1,26 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/059-dispatch-surface-truthfulness",
-  "description": "Remove the exhausted default model and correct the deep-loop executor roster so a dispatch surface cannot silently lie",
+  "description": "A four-iteration review was dispatched and sat at 0.0% CPU for 7 hours 40 minutes, producing 39 bytes of output and no artifacts",
   "keywords": [
-    "remove",
-    "exhausted",
-    "default",
-    "model",
-    "correct",
-    "deep-loop",
-    "executor",
-    "roster",
-    "dispatch",
-    "surface",
-    "cannot",
-    "silently",
-    "lie"
+    "four-iteration",
+    "review",
+    "dispatched",
+    "sat",
+    "cpu",
+    "hours",
+    "minutes",
+    "producing",
+    "bytes",
+    "output",
+    "artifacts"
   ],
-  "lastUpdated": "2026-08-31T03:09:18.226Z",
+  "lastUpdated": "2026-08-31T03:13:25.418Z",
   "specId": "059",
   "folderSlug": "dispatch-surface-truthfulness",
   "parentChain": [
     "cli-external-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

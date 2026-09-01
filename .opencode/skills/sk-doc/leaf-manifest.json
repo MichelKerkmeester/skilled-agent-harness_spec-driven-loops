@@ -327,6 +327,7 @@
       "leaves": [
         "assets/voice-report-template.md",
         "references/README.md",
+        "references/hvr-rules.md",
         "references/scope-and-exemptions.md",
         "references/scoring-and-verification.md"
       ],

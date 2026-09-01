@@ -120,24 +120,41 @@ function traceClosure(resolverPath, closureRoot = path.resolve(resolverPath, '..
   const priorFlag = process.env.SPECKIT_COMPILED_ROUTING;
   process.env.SPECKIT_COMPILED_ROUTING = '1';
   const resolved = {};
+  const reachableHubs = {};
   try {
     clearRequireCache(closureRoot);
     // eslint-disable-next-line global-require, import/no-dynamic-require
     const { resolveRoute } = require(resolverPath);
+    // resolveRoute answers a serve-time question: does this route match the
+    // generation the manifest already selected? A stale manifest makes that false,
+    // and a stale manifest is exactly what a rebuild exists to clear, so gating the
+    // build on it leaves the system unrecoverable. Track reachability separately:
+    // did the hub's compiled engine load and produce a route at all.
+    // eslint-disable-next-line global-require, import/no-dynamic-require
+    const { compiledRoute } = require(path.join(path.dirname(resolverPath), 'compiled-route.cjs'));
     for (const hub of HUBS) {
       let decision = null;
+      let reachable = false;
       for (const prompt of PROBES) {
         const route = resolveRoute(hub, prompt);
         if (route) decision = route;
+        if (!reachable) {
+          try {
+            if (compiledRoute(hub, prompt)) reachable = true;
+          } catch {
+            // engine genuinely broken for this hub; reachable stays false
+          }
+        }
       }
       resolved[hub] = decision;
+      reachableHubs[hub] = reachable;
     }
   } finally {
     if (priorFlag === undefined) delete process.env.SPECKIT_COMPILED_ROUTING;
     else process.env.SPECKIT_COMPILED_ROUTING = priorFlag;
     probe.restore();
   }
-  return { touched: probe.touched, resolved };
+  return { touched: probe.touched, resolved, reachableHubs };
 }
 
 function underRoot(root, abs) {
@@ -676,9 +693,9 @@ function verifyRoot(runtimeRoot, { emit = true, allowStaleManifests = false } = 
   if (!resolverPath || !fs.existsSync(resolverPath)) {
     throw new Error(`promoted resolver missing at ${resolverPath || 'no coherent layout'}; run the sync build first`);
   }
-  const { touched, resolved } = traceClosure(resolverPath, runtimeRoot);
+  const { touched, resolved, reachableHubs } = traceClosure(resolverPath, runtimeRoot);
   const specReads = [...touched].filter(underSpecs).sort();
-  const unresolved = HUBS.filter((h) => !resolved[h]);
+  const unresolved = HUBS.filter((h) => !reachableHubs[h]);
   const allowedStale = [];
   const blockedUnresolved = [];
   if (allowStaleManifests && unresolved.length > 0) {
@@ -743,13 +760,13 @@ function build({
   if (!fs.existsSync(authoredResolver)) {
     throw new Error(`authored resolver missing at ${authoredResolver}`);
   }
-  const { touched, resolved } = traceClosure(authoredResolver, sourceRoot);
+  const { touched, reachableHubs } = traceClosure(authoredResolver, sourceRoot);
   const closureFiles = [...touched]
     .filter((abs) => underRoot(sourceRoot, abs))
     .filter((abs) => { try { return fs.statSync(abs).isFile(); } catch { return false; } })
     .sort();
 
-  const unresolved = HUBS.filter((h) => !resolved[h]);
+  const unresolved = HUBS.filter((h) => !reachableHubs[h]);
   if (unresolved.length > 0) {
     throw new Error(`authored closure failed to resolve hubs: ${unresolved.join(', ')}`);
   }
@@ -982,12 +999,12 @@ function check({ sourceRoot = IMPL_ROOT } = {}) {
   if (!fs.existsSync(authoredResolver)) {
     throw new Error(`authored resolver missing at ${authoredResolver}`);
   }
-  const { touched, resolved } = traceClosure(authoredResolver, sourceRoot);
+  const { touched, reachableHubs } = traceClosure(authoredResolver, sourceRoot);
   const closureFiles = [...touched]
     .filter((abs) => underRoot(sourceRoot, abs))
     .filter((abs) => { try { return fs.statSync(abs).isFile(); } catch { return false; } })
     .sort();
-  const unresolved = HUBS.filter((h) => !resolved[h]);
+  const unresolved = HUBS.filter((h) => !reachableHubs[h]);
   if (unresolved.length > 0) {
     throw new Error(`authored closure failed to resolve hubs: ${unresolved.join(', ')}`);
   }

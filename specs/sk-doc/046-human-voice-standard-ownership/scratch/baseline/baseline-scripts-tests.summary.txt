@@ -1,0 +1,88 @@
+# spec-kit scripts test lane — baseline-scripts-tests
+
+ ❯ copyPacket scripts/tests/recursive-child-manifest.vitest.ts:36:26
+ ❯ scripts/tests/alignment-drift-fixture-preservation.vitest.ts (2 tests | 1 failed | 1 skipped) 6ms
+ ❯ scripts/tests/alignment-drift-fixture-preservation.vitest.ts:38:31
+ ❯ scripts/tests/backfill-prune-report-gate.vitest.ts (4 tests | 1 failed) 122ms
+ ❯ scripts/tests/backfill-prune-report-gate.vitest.ts:90:32
+ ❯ scripts/tests/check-source-dist-alignment-orphans.vitest.ts (6 tests | 1 failed | 1 skipped) 19ms
+ ❯ scripts/tests/check-source-dist-alignment-orphans.vitest.ts:100:27
+ ❯ scripts/tests/coverage-graph-cross-layer.vitest.ts (0 test)
+ ❯ scripts/tests/coverage-graph-cross-layer.vitest.ts:8:1
+ ❯ scripts/tests/coverage-graph-integration.vitest.ts (0 test)
+ ❯ scripts/tests/coverage-graph-integration.vitest.ts:21:1
+ ❯ scripts/tests/deep-review-auto-restart-contract.vitest.ts (2 tests | 1 failed) 27ms
+ ❯ scripts/tests/deep-review-auto-restart-contract.vitest.ts:45:26
+ ❯ scripts/tests/gate-3-classifier.vitest.ts (62 tests | 4 failed) 3452ms
+ ❯ scripts/tests/gate-3-classifier.vitest.ts:432:40
+ ❯ scripts/tests/gate-3-classifier.vitest.ts:473:40
+ ❯ scripts/tests/gate-3-classifier.vitest.ts:500:40
+ ❯ scripts/tests/gate-3-classifier.vitest.ts:512:40
+ ❯ scripts/tests/generate-context-cli-authority.vitest.ts (11 tests | 7 failed) 2806ms
+ ❯ scripts/tests/generate-context-cli-authority.vitest.ts:119:5
+ ❯ scripts/tests/generate-context-cli-authority.vitest.ts:146:5
+ ❯ scripts/tests/generate-context-cli-authority.vitest.ts:175:5
+ ❯ scripts/tests/generate-context-cli-authority.vitest.ts:212:5
+ ❯ scripts/tests/generate-context-cli-authority.vitest.ts:237:5
+ ❯ scripts/tests/generate-context-cli-authority.vitest.ts:63:5
+ ❯ scripts/tests/generate-context-cli-authority.vitest.ts:93:5
+ ❯ scripts/tests/graph-aware-stop.vitest.ts (4 tests | 4 failed) 81ms
+ ❯ scripts/tests/graph-aware-stop.vitest.ts:206:29
+ ❯ scripts/tests/graph-aware-stop.vitest.ts:226:29
+ ❯ scripts/tests/graph-aware-stop.vitest.ts:241:29
+ ❯ scripts/tests/graph-aware-stop.vitest.ts:262:29
+ ❯ scripts/tests/graph-convergence-parity.vitest.ts (0 test)
+ ❯ scripts/tests/graph-convergence-parity.vitest.ts:6:1
+ ❯ scripts/tests/graph-metadata-backfill.vitest.ts (7 tests | 2 failed | 1 skipped) 101ms
+ ❯ scripts/tests/graph-metadata-backfill.vitest.ts:181:47
+ ❯ scripts/tests/graph-metadata-backfill.vitest.ts:199:47
+ ❯ scripts/tests/import-policy-rules.vitest.ts (4 tests | 2 failed) 8ms
+ ❯ scripts/tests/import-policy-rules.vitest.ts:16:80
+ ❯ scripts/tests/import-policy-rules.vitest.ts:24:75
+ ❯ scripts/tests/migrate-generated-json.vitest.ts (13 tests | 1 failed) 490ms
+ ❯ scripts/tests/migrate-generated-json.vitest.ts:251:42
+ ❯ scripts/tests/multi-ai-council-mirror-parity.vitest.ts (1 test | 1 failed) 11ms
+ ❯ scripts/tests/multi-ai-council-mirror-parity.vitest.ts:71:37
+ ❯ scripts/tests/multi-ai-council-persist-artifacts.vitest.ts (8 tests | 4 failed) 183ms
+ ❯ scripts/tests/multi-ai-council-persist-artifacts.vitest.ts:151:20
+ ❯ scripts/tests/multi-ai-council-persist-artifacts.vitest.ts:180:5
+ ❯ scripts/tests/multi-ai-council-persist-artifacts.vitest.ts:61:27
+ ❯ scripts/tests/multi-ai-council-persist-artifacts.vitest.ts:88:27
+ ❯ scripts/tests/multi-ai-council-validator.vitest.ts (4 tests | 4 failed) 7210ms
+ ❯ scripts/tests/multi-ai-council-validator.vitest.ts:74:22
+ ❯ scripts/tests/nested-changelog.vitest.ts (2 tests | 1 failed) 35ms
+ ❯ scripts/tests/nested-changelog.vitest.ts:176:22
+ ❯ scripts/tests/phase-parent-pointer.vitest.ts (7 tests | 1 failed) 58ms
+ ❯ scripts/tests/phase-parent-pointer.vitest.ts:152:5
+ ❯ scripts/tests/recursive-child-manifest.vitest.ts (2 tests | 2 failed) 20ms
+ ❯ scripts/tests/recursive-child-manifest.vitest.ts:69:28
+ ❯ scripts/tests/recursive-child-manifest.vitest.ts:97:5
+ ❯ scripts/tests/repair-derived.vitest.ts (10 tests | 4 failed) 3190ms
+ ❯ scripts/tests/repair-derived.vitest.ts:125:27
+ ❯ scripts/tests/repair-derived.vitest.ts:139:27
+ ❯ scripts/tests/repair-derived.vitest.ts:186:27
+ ❯ scripts/tests/repair-derived.vitest.ts:97:19
+ ❯ scripts/tests/review-record-validation.vitest.ts (4 tests | 1 failed) 2517ms
+ ❯ scripts/tests/review-record-validation.vitest.ts:41:54
+ ❯ scripts/tests/review-reducer-fail-closed.vitest.ts (3 tests | 1 failed) 68ms
+ ❯ scripts/tests/review-reducer-fail-closed.vitest.ts:165:8
+ ❯ scripts/tests/scoped-backfill-boundary.vitest.ts (11 tests | 1 failed) 88ms
+ ❯ scripts/tests/scoped-backfill-boundary.vitest.ts:200:67
+ ❯ scripts/tests/session-enrichment.vitest.ts (16 tests | 3 failed | 3 skipped) 1056ms
+ ❯ scripts/tests/session-enrichment.vitest.ts:499:5
+ ❯ scripts/tests/session-enrichment.vitest.ts:529:7
+ ❯ scripts/tests/session-enrichment.vitest.ts:562:5
+ ❯ scripts/tests/session-isolation.vitest.ts (0 test)
+ ❯ scripts/tests/session-isolation.vitest.ts:6:1
+ ❯ scripts/tests/spec-root-registry.vitest.ts (2 tests | 1 failed) 15ms
+ ❯ scripts/tests/spec-root-registry.vitest.ts:27:26
+ ❯ scripts/tests/template-structure.vitest.ts (8 tests | 1 failed) 138ms
+ ❯ scripts/tests/template-structure.vitest.ts:46:49
+ ❯ scripts/tests/test-integration.vitest.ts (8 tests | 1 failed | 2 skipped) 262ms
+ ❯ scripts/tests/test-integration.vitest.ts:195:59
+ ❯ scripts/tests/validation-gate-hardening.vitest.ts (7 tests | 1 failed) 8679ms
+ ❯ scripts/tests/validation-gate-hardening.vitest.ts:205:65
+ ❯ validate scripts/tests/multi-ai-council-validator.vitest.ts:43:10
+
+ Test Files  29 failed | 111 passed | 5 skipped (146)
+      Tests  51 failed | 1230 passed | 46 skipped (1329)

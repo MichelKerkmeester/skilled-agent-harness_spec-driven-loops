@@ -3,12 +3,12 @@ id: SD-004
 title: 'HVR intent loads only references/hvr-rules.md'
 description: "This scenario validates HVR references-only resource loading for SD-004."
 stage: routing
-expected_intent: sk-create-quality-control
+expected_intent: sk-create-with-human-voice
 expected_resources:
-  - shared/references/hvr-rules.md
-expected_workflow_mode: sk-create-quality-control
+  - sk-create-with-human-voice/references/hvr-rules.md
+expected_workflow_mode: sk-create-with-human-voice
 expected_leaf_resources:
-  - workflow_mode: sk-create-quality-control
+  - workflow_mode: sk-create-with-human-voice
     leaf_resource_id: references/hvr-rules.md
 version: 1.8.0.6
 ---

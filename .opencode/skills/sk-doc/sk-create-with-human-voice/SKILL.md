@@ -2,7 +2,7 @@
 name: sk-create-with-human-voice
 description: Apply the Human Voice Rules to prose, or score prose against them, with a scope gate first and a re-scan after the rewrite.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 <!-- Keywords: create-with-human-voice, /create:with-human-voice, human voice rules, apply human voice, rewrite in human voice, make this sound human, sounds ai-generated, reads like ai wrote it, remove ai tells, ai writing tells, voice pass, hvr_scan -->
@@ -13,11 +13,11 @@ version: 1.0.0.0
 It takes prose you are writing or have written and brings it up to the Human Voice Rules,
 or reports how far off it is without touching a byte.
 
-**The standard is not here.** It lives once at
-[`../shared/references/hvr-rules.md`](../shared/references/hvr-rules.md), where hundreds
-of files across this repository already point. This packet owns the workflow that applies
-it: what may be touched, in what order, with what arithmetic, and how the result is
-proved. It never restates a rule the standard already carries.
+**The standard lives here and exists exactly once**, at
+[`references/hvr-rules.md`](references/hvr-rules.md). This packet owns both halves: the
+standard itself, and the workflow that applies it, meaning what may be touched, in what
+order, with what arithmetic, and how the result is proved. Nothing in this packet restates
+a rule the standard already carries, and no consumer holds a second copy.
 
 Keyword triggers: `human voice rules`, `apply human voice`, `rewrite in human voice`, `make this sound human`, `sounds ai-generated`, `reads like ai wrote it`, `remove ai tells`, `ai writing tells`, `voice pass`, `de-ai the writing`.
 
@@ -56,14 +56,14 @@ route here: `apply`, which edits, and `score`, which reports and does not.
 - `references/scoring-and-verification.md` - pass order, precedence arithmetic, bands, and the re-scan.
 - `assets/voice-report-template.md` - the shape of the result.
 - `scripts/hvr_scan.py` - the mechanical pass. Parses the standard at run time.
-- `../shared/references/hvr-rules.md` - the standard. Referenced, never copied.
+- `references/hvr-rules.md` - the standard. Referenced, never copied.
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 |-------|--------------|-----------|
 | ALWAYS | Every invocation | `references/scope-and-exemptions.md` |
-| ALWAYS | Every invocation | `../shared/references/hvr-rules.md` |
+| ALWAYS | Every invocation | `references/hvr-rules.md` |
 | CONDITIONAL | A score is being computed or quoted | `references/scoring-and-verification.md` |
 | CONDITIONAL | A result is being reported | `assets/voice-report-template.md` |
 
@@ -205,7 +205,7 @@ is what changes, never the checks.
 1. Change what a sentence claims to satisfy a word ban. Accuracy outranks the standard, and the exception gets recorded instead.
 2. Edit a quotation, an error string, a command, a generated file, a released changelog entry or a byte-pinned fixture.
 3. Score a document that is about the standard, including the standard itself, without saying that is what it is.
-4. Copy any part of `hvr-rules.md` into this packet, a sibling packet, a command asset or a repo rule. Reference the path.
+4. Copy any part of `references/hvr-rules.md` into another file, whether a sibling packet, a command asset or a repo rule. Reference the path.
 5. Report a clean scan the scanner refused to produce. Exit 2 is a failure, not a pass.
 6. Quote an absolute score for a document long enough that length alone drove it negative.
 
@@ -223,7 +223,7 @@ is what changes, never the checks.
 - Both scan numbers appear on any run that edited text.
 - No quotation, code sample, generated file or fixture changed.
 - The judgment findings are answered by a reader, not implied by a clean mechanical result.
-- Nothing from the standard was copied into this packet or anywhere else.
+- Nothing from the standard was copied into another file.
 
 ---
 
@@ -240,9 +240,8 @@ is what changes, never the checks.
 ## 7. REFERENCES
 
 Routed by [`references/README.md`](references/README.md). Load
-`references/scope-and-exemptions.md` first on every path. The standard itself stays at
-[`../shared/references/hvr-rules.md`](../shared/references/hvr-rules.md) and is never
-copied.
+`references/scope-and-exemptions.md` first on every path. The standard itself is
+[`references/hvr-rules.md`](references/hvr-rules.md), read rather than copied.
 
 ---
 
@@ -250,7 +249,7 @@ copied.
 
 | Resource | Purpose |
 |---|---|
-| [`../shared/references/hvr-rules.md`](../shared/references/hvr-rules.md) | The standard. Voice directives, punctuation bans, structural patterns, term lists, precedence and the pre-publish checklist |
+| [`references/hvr-rules.md`](references/hvr-rules.md) | The standard. Voice directives, punctuation bans, structural patterns, term lists, precedence and the pre-publish checklist |
 | [`README.md`](README.md) | What the mode does, why the scanner over-reports, and how to verify it |
 | [`scripts/hvr_scan.py`](scripts/hvr_scan.py) | The mechanical pass, parsed from the standard at run time |
 | [`../sk-create-quality-control/SKILL.md`](../sk-create-quality-control/SKILL.md) | The file-level audit whose HVR step this mode performs |

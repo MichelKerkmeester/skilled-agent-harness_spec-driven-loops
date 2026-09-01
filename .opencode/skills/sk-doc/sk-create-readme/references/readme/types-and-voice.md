@@ -90,4 +90,4 @@ Documents serving mixed audiences (newcomers through experts) use two writing vo
 - [writing-patterns.md](writing-patterns.md) - Per-section writing tips, analogy patterns and table patterns
 - [quality-and-checklist.md](quality-and-checklist.md) - Quality criteria and pre-publish checklist
 - [readme-template.md](../../assets/readme-template.md) - Fillable general README scaffold
-- [hvr-rules.md](../../../shared/references/hvr-rules.md) - Human Voice Rules
+- [hvr-rules.md](../../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules

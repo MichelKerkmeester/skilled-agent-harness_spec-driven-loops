@@ -262,4 +262,4 @@ node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/[
 - [`skill-readme-template.md`](../skill/skill-readme-template.md) - The standalone skill README template this hub template extends.
 - [`parent-skill-registry-template.json`](./parent-skill-registry-template.json) - The `mode-registry.json` scaffold the packet table mirrors.
 - [`parent-skill-hub-router-template.json`](./parent-skill-hub-router-template.json) - The `hub-router.json` scaffold the hub routes with.
-- [`hvr-rules.md`](../../../shared/references/hvr-rules.md) - The Human Voice Rules this template writes in.
+- [`hvr-rules.md`](../../../sk-create-with-human-voice/references/hvr-rules.md) - The Human Voice Rules this template writes in.

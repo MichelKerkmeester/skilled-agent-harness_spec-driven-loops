@@ -15,7 +15,7 @@ contextType: "general"
 # Before/After Record: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: before-after | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 > [One line: what this record compares and why it matters.]
 
@@ -108,7 +108,7 @@ _memory:
 # Decision Record: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
@@ -226,7 +226,7 @@ contextType: "general"
 # Roadmap: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: roadmap | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 > [One line: what this roadmap plans and over what horizon.]
 
@@ -288,7 +288,7 @@ contextType: "general"
 # Timeline: [NAME]
 
 <!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 > [One line: what this timeline tracks.]
 
@@ -357,7 +357,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
@@ -764,7 +764,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
@@ -1413,7 +1413,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
@@ -2236,7 +2236,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 

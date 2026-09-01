@@ -6,8 +6,9 @@
 """Scan prose for the deterministic Human Voice Rules findings.
 
 The term lists are PARSED from the standard at
-``.opencode/skills/sk-doc/shared/references/hvr-rules.md`` on every run. This
-file holds no copy of them. Edit the standard and the scanner follows.
+``.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`` on
+every run. This file holds no copy of them. Edit the standard and the scanner
+follows.
 
 What it covers: the findings a machine can settle without reading for meaning.
 Punctuation bans, the hard blocker words of section 6, the phrase blockers of
@@ -40,9 +41,9 @@ from pathlib import Path
 # 1. LOCATING THE STANDARD
 # ───────────────────────────────────────────────────────────────
 
-# scripts/ -> packet root -> sk-doc root -> shared/references/hvr-rules.md
+# scripts/ -> packet root -> references/hvr-rules.md
 DEFAULT_RULES_PATH = (
-    Path(__file__).resolve().parents[2] / "shared" / "references" / "hvr-rules.md"
+    Path(__file__).resolve().parents[1] / "references" / "hvr-rules.md"
 )
 
 SEVERITY_POINTS = {"hard": 5, "soft2": 2, "soft1": 1, "review": 0}

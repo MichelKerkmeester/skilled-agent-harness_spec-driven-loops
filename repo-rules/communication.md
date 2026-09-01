@@ -116,7 +116,7 @@ reader who has seen a lot of generated text. Either way they cost trust the cont
 
 This rule carries the ban because it fires on every substantive reply. The full standard,
 including the vocabulary and structural tells this one does not repeat, is
-[`hvr-rules.md`](../.opencode/skills/sk-doc/shared/references/hvr-rules.md) in `sk-doc`.
+[`hvr-rules.md`](../.opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md) in `sk-doc`.
 Load it when writing a document rather than a reply.
 
 ---

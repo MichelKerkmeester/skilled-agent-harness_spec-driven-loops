@@ -105,8 +105,8 @@ Apply these checks only to sections that fit the README audience and purpose.
 - [ ] No "not just X, but also Y" patterns
 - [ ] No exactly three-item inline lists. Use 2, 4 or 5 items (tables and bullet lists exempt).
 - [ ] No setup language ("Let's explore", "dive in", "when it comes to")
-- [ ] No banned words (see [hvr-rules.md](../../../shared/references/hvr-rules.md) Section 6)
-- [ ] No banned phrases (see [hvr-rules.md](../../../shared/references/hvr-rules.md) Section 7)
+- [ ] No banned words (see [hvr-rules.md](../../../sk-create-with-human-voice/references/hvr-rules.md) Section 6)
+- [ ] No banned phrases (see [hvr-rules.md](../../../sk-create-with-human-voice/references/hvr-rules.md) Section 7)
 - [ ] Active voice throughout. Direct address. Simple words.
 - [ ] "However" used max 2 times per file
 - [ ] Max 1 ellipsis per file
@@ -119,4 +119,4 @@ Apply these checks only to sections that fit the README audience and purpose.
 - [types-and-voice.md](types-and-voice.md) - README types, progressive disclosure and two-tier voice
 - [writing-patterns.md](writing-patterns.md) - Section writing tips and formatting patterns
 - [validation.md](../../../shared/references/validation.md) - Quality scoring (DQI)
-- [hvr-rules.md](../../../shared/references/hvr-rules.md) - Human Voice Rules
+- [hvr-rules.md](../../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules

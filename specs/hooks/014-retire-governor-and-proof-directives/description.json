@@ -1,23 +1,24 @@
 {
+  "level": "2",
   "specFolder": "hooks/014-retire-governor-and-proof-directives",
-  "description": "Retire the governor and proof-over-appearance directives from every runtime's prompt injection",
+  "description": "Three constant directives were appended to every advisor brief on every user turn, on every",
   "keywords": [
-    "retire",
-    "governor",
-    "proof-over-appearance",
+    "three",
+    "constant",
     "directives",
+    "appended",
     "every",
-    "runtime",
-    "prompt",
-    "injection"
+    "advisor",
+    "brief",
+    "user",
+    "turn"
   ],
-  "lastUpdated": "2026-08-30T18:28:13.614Z",
+  "lastUpdated": "2026-08-30T18:39:50.895Z",
   "specId": "014",
   "folderSlug": "retire-governor-and-proof-directives",
   "parentChain": [
     "hooks"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

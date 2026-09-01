@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 | File | Purpose |
 |---|---|
-| [`hvr_scan.py`](hvr_scan.py) | Scans prose for the deterministic Human Voice Rules findings. Parses its term lists out of `../../shared/references/hvr-rules.md` at run time and holds no copy of them |
+| [`hvr_scan.py`](hvr_scan.py) | Scans prose for the deterministic Human Voice Rules findings. Parses its term lists out of `../references/hvr-rules.md` at run time and holds no copy of them |
 | [`tests/fixtures/voice-dirty.md`](tests/fixtures/voice-dirty.md) | Carries one finding of each mechanical class, plus the same violations inside a fenced block and an inline code span that must not be reported |
 | [`tests/fixtures/voice-clean.md`](tests/fixtures/voice-clean.md) | Carries none |
 

@@ -102,7 +102,7 @@ When a skill has a headline strength, give it a named capability section inside 
 
 ## 4. HVR ENFORCEMENT
 
-Every README this template produces must pass the Human Voice Rules. The full ruleset lives at [`hvr-rules.md`](../../../shared/references/hvr-rules.md).
+Every README this template produces must pass the Human Voice Rules. The full ruleset lives at [`hvr-rules.md`](../../../sk-create-with-human-voice/references/hvr-rules.md).
 
 ### Banned Forms
 
@@ -362,5 +362,5 @@ The pilot README work distilled eight writing directives. Every directive has a 
 - [`creation-workflow.md`](../../references/skill/creation-workflow.md) - Skill creation workflow and lifecycle guidance.
 - [`skill-md-template.md`](./skill-md-template.md) - Runtime `SKILL.md` scaffold.
 - [`skill-reference-template.md`](./skill-reference-template.md) - Reference-file scaffold.
-- [`hvr-rules.md`](../../../shared/references/hvr-rules.md) - Human Voice Rules, the voice this template writes in.
+- [`hvr-rules.md`](../../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules, the voice this template writes in.
 - [`changelog-template.md`](../../../shared/assets/changelog-template.md) - Changelog entry format every skill release follows.

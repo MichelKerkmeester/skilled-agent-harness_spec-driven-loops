@@ -502,7 +502,7 @@ pre_publish_checklist:
 | Install Guide | `.opencode/skills/sk-doc/sk-create-readme/assets/install-guide-template.md` | Direct instructions, imperative mood |
 
 ### Standards
-- [core-standards.md](./core-standards.md) - Document formatting standards
+- [core-standards.md](../../shared/references/core-standards.md) - Document formatting standards
 - [sk-doc SKILL.md](../../SKILL.md) - Parent skill with HVR enforcement rules
 
 ### Creation Guides

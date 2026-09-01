@@ -112,4 +112,4 @@ The target sentence should remain true after packet renumbering.
 ### Standards
 
 - [core-standards.md](./core-standards.md) — document type rules and frontmatter conventions
-- [hvr-rules.md](./hvr-rules.md) — high-value content rules used by sk-doc validation
+- [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) — high-value content rules used by sk-doc validation

@@ -3,12 +3,12 @@ id: SD-013
 title: 'Floor token cost: minimal-keyword query, 1 reference load'
 description: "This scenario validates minimal-load HVR token-cost behavior for SD-013."
 stage: routing
-expected_intent: sk-create-quality-control
+expected_intent: sk-create-with-human-voice
 expected_resources:
-  - shared/references/hvr-rules.md
-expected_workflow_mode: sk-create-quality-control
+  - sk-create-with-human-voice/references/hvr-rules.md
+expected_workflow_mode: sk-create-with-human-voice
 expected_leaf_resources:
-  - workflow_mode: sk-create-quality-control
+  - workflow_mode: sk-create-with-human-voice
     leaf_resource_id: references/hvr-rules.md
 version: 1.8.0.6
 ---

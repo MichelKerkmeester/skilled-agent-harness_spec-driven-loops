@@ -21,7 +21,7 @@ skill_reference:
   skill: sk-doc
   mode: sk-create-with-human-voice
   skill_md: .opencode/skills/sk-doc/sk-create-with-human-voice/SKILL.md
-  standard: .opencode/skills/sk-doc/shared/references/hvr-rules.md
+  standard: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md
   references:
     scope: .opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
     scoring: .opencode/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md
@@ -108,7 +108,7 @@ field_handling:
       Code, commands, identifiers and fenced samples are out of scope by default. Turning
       this on is for scanning a sample deliberately, never for a normal voice pass.
   defaults:
-    standard: .opencode/skills/sk-doc/shared/references/hvr-rules.md
+    standard: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md
     publish_band: 85
     revise_band: 70
     long_document_lines: 400

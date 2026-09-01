@@ -1,25 +1,21 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/058-flag-enum-authority",
-  "description": "Correct the cli-devin flag-enum table and add a cross-CLI rule that --help is not the authoritative flag enum",
+  "description": "`devin --help` prints four `--permission-mode` values",
   "keywords": [
-    "correct",
-    "cli-devin",
-    "flag-enum",
-    "table",
-    "cross-cli",
-    "rule",
+    "devin",
     "help",
-    "authoritative",
-    "flag",
-    "enum"
+    "prints",
+    "four",
+    "permission-mode",
+    "values"
   ],
-  "lastUpdated": "2026-08-30T13:02:54.359Z",
+  "lastUpdated": "2026-08-30T14:13:19.933Z",
   "specId": "058",
   "folderSlug": "flag-enum-authority",
   "parentChain": [
     "cli-external-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

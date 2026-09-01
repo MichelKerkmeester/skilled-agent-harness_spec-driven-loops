@@ -1,18 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "On 2026-08-30 three vitest trees were killed after 2h35m, 3h41m and 4h12m, each holding roughly 96% of a core",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "three",
+    "vitest",
+    "trees",
+    "killed",
+    "2h35m",
+    "3h41m",
+    "4h12m",
+    "holding",
+    "roughly",
+    "core"
   ],
-  "lastUpdated": "2026-08-30T09:55:29.736Z",
+  "lastUpdated": "2026-08-30T18:56:28.482Z",
   "specId": "003",
   "folderSlug": "test-hang-containment",
   "parentChain": [

@@ -59,7 +59,7 @@ Load the file that matches the current task.
 
 ### Shared Standards
 - [core-standards.md](../../shared/references/core-standards.md) - Document formatting rules
-- [hvr-rules.md](../../shared/references/hvr-rules.md) - Human Voice Rules
+- [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules
 - [validation.md](../../shared/references/validation.md) - Quality scoring (DQI)
 
 ---

@@ -144,4 +144,4 @@ A: The packet escalates instead of editing. Product claims and policy text, plus
 | [`references/optimization.md`](./references/optimization.md) | Optimization procedure, heuristics and checklist |
 | [`references/transformation-patterns.md`](./references/transformation-patterns.md) | The 16 transformation patterns with worked before/after examples |
 | [`../shared/references/validation.md`](../shared/references/validation.md) | DQI bands and quality-gate interpretation |
-| [`../shared/references/hvr-rules.md`](../shared/references/hvr-rules.md) | Human Voice Rules for natural documentation style |
+| [`../sk-create-with-human-voice/references/hvr-rules.md`](../sk-create-with-human-voice/references/hvr-rules.md) | Human Voice Rules for natural documentation style |

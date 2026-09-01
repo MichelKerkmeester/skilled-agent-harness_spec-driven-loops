@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-08-30T05:47:43.398Z",
+  "generated": "2026-09-01T03:47:48.601Z",
   "folders": [
     {
       "specFolder": "agents/001-terminal-proof-discipline",
@@ -119,6 +119,25 @@
         "fires"
       ],
       "lastUpdated": "2026-08-29T14:08:52.376Z"
+    },
+    {
+      "specFolder": "agents/007-orchestrator-inline-authority",
+      "description": "The orchestrator held no write capability in any of its four runtime dialects, and its prose forbade direct execution outright",
+      "keywords": [
+        "orchestrator",
+        "held",
+        "write",
+        "capability",
+        "four",
+        "runtime",
+        "dialects",
+        "prose",
+        "forbade",
+        "direct",
+        "execution",
+        "outright"
+      ],
+      "lastUpdated": "2026-08-31T11:37:28.956Z"
     },
     {
       "specFolder": "cli-external-orchestration/026-cli-external-parent",
@@ -577,7 +596,7 @@
         "prompt-quality",
         "follow-ons"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.162Z"
+      "lastUpdated": "2026-08-30T14:07:46.289Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin",
@@ -593,7 +612,7 @@
         "cli",
         "existed"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.120Z"
+      "lastUpdated": "2026-08-30T14:07:46.192Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support",
@@ -606,7 +625,7 @@
         "executor",
         "kind"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.121Z"
+      "lastUpdated": "2026-08-30T14:07:46.201Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet",
@@ -623,7 +642,7 @@
         "standalone",
         "top-level"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.122Z"
+      "lastUpdated": "2026-08-30T14:07:46.215Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer",
@@ -642,7 +661,7 @@
         "enforce",
         "classify"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.125Z"
+      "lastUpdated": "2026-08-30T14:07:46.223Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota",
@@ -659,7 +678,7 @@
         "cli-opencode",
         "alternative"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.125Z"
+      "lastUpdated": "2026-08-30T14:07:46.226Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook",
@@ -678,7 +697,7 @@
         "canonical",
         "no-mocking"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.126Z"
+      "lastUpdated": "2026-08-30T14:07:46.238Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout",
@@ -696,7 +715,7 @@
         "rosters",
         "top-level"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.127Z"
+      "lastUpdated": "2026-08-30T14:07:46.243Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity",
@@ -715,7 +734,7 @@
         "claude",
         "opencode"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.128Z"
+      "lastUpdated": "2026-08-30T14:07:46.252Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration",
@@ -737,7 +756,7 @@
         "opencode",
         "already"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.129Z"
+      "lastUpdated": "2026-08-30T14:07:46.256Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog",
@@ -749,7 +768,7 @@
         "package",
         "today"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.130Z"
+      "lastUpdated": "2026-08-30T14:07:46.261Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes",
@@ -763,7 +782,7 @@
         "wrapper",
         "shape"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.131Z"
+      "lastUpdated": "2026-08-30T14:07:46.266Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening",
@@ -780,7 +799,7 @@
         "hardening",
         "gaps"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.132Z"
+      "lastUpdated": "2026-08-30T14:07:46.273Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler",
@@ -801,7 +820,7 @@
         "restored",
         "confirmed"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.133Z"
+      "lastUpdated": "2026-08-30T14:07:46.277Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix",
@@ -823,7 +842,7 @@
         "adapter",
         "layers"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.134Z"
+      "lastUpdated": "2026-08-30T14:07:46.280Z"
     },
     {
       "specFolder": "cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity",
@@ -843,7 +862,7 @@
         "working",
         "supported"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.135Z"
+      "lastUpdated": "2026-08-30T14:07:46.284Z"
     },
     {
       "specFolder": "cli-external-orchestration/030-cli-cursor-creation",
@@ -1746,7 +1765,7 @@
         "production",
         "implementation"
       ],
-      "lastUpdated": "2026-08-19T19:14:46.890Z"
+      "lastUpdated": "2026-08-30T14:07:46.290Z"
     },
     {
       "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
@@ -1766,7 +1785,7 @@
         "fails",
         "closed"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.258Z"
+      "lastUpdated": "2026-08-30T14:07:46.291Z"
     },
     {
       "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
@@ -1786,7 +1805,7 @@
         "reconciliation",
         "core"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.261Z"
+      "lastUpdated": "2026-08-30T14:07:46.292Z"
     },
     {
       "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/004-auth-and-tailnet-boundary",
@@ -1805,7 +1824,7 @@
         "remote",
         "api"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.262Z"
+      "lastUpdated": "2026-08-30T14:07:46.294Z"
     },
     {
       "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
@@ -1825,7 +1844,7 @@
         "offline",
         "read-only"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.267Z"
+      "lastUpdated": "2026-08-30T14:07:46.295Z"
     },
     {
       "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
@@ -1842,7 +1861,7 @@
         "remote",
         "mutation"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.277Z"
+      "lastUpdated": "2026-08-30T14:07:46.296Z"
     },
     {
       "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
@@ -1863,7 +1882,7 @@
         "mobile",
         "platforms"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.278Z"
+      "lastUpdated": "2026-08-30T14:07:46.297Z"
     },
     {
       "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
@@ -1883,7 +1902,7 @@
         "rollback",
         "documentation"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.279Z"
+      "lastUpdated": "2026-08-30T14:07:46.298Z"
     },
     {
       "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
@@ -1902,7 +1921,7 @@
         "staged",
         "release"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.280Z"
+      "lastUpdated": "2026-08-30T14:07:46.299Z"
     },
     {
       "specFolder": "cli-external-orchestration/042-improved-communication",
@@ -2574,6 +2593,49 @@
         "grok-4-6-low"
       ],
       "lastUpdated": "2026-08-29T18:18:30.650Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/058-codex-dispatch-scope-loosening",
+      "description": "Say what the runtime is for, and leave a legal path for what it is not for,",
+      "keywords": [
+        "say",
+        "runtime",
+        "leave",
+        "legal",
+        "path"
+      ],
+      "lastUpdated": "2026-08-30T14:07:46.308Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/058-flag-enum-authority",
+      "description": "`devin --help` prints four `--permission-mode` values",
+      "keywords": [
+        "devin",
+        "help",
+        "prints",
+        "four",
+        "permission-mode",
+        "values"
+      ],
+      "lastUpdated": "2026-08-30T14:13:19.933Z"
+    },
+    {
+      "specFolder": "cli-external-orchestration/059-dispatch-surface-truthfulness",
+      "description": "A four-iteration review was dispatched and sat at 0.0% CPU for 7 hours 40 minutes, producing 39 bytes of output and no artifacts",
+      "keywords": [
+        "four-iteration",
+        "review",
+        "dispatched",
+        "sat",
+        "cpu",
+        "hours",
+        "minutes",
+        "producing",
+        "bytes",
+        "output",
+        "artifacts"
+      ],
+      "lastUpdated": "2026-08-31T03:13:25.418Z"
     },
     {
       "specFolder": "cli-external-orchestration/z_archive/001-cli-gemini-creation",
@@ -3994,7 +4056,7 @@
         "index",
         "lane"
       ],
-      "lastUpdated": "2026-08-15T14:40:55.629Z"
+      "lastUpdated": "2026-08-30T14:07:46.309Z"
     },
     {
       "specFolder": "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation",
@@ -4012,7 +4074,7 @@
         "cursor",
         "devin"
       ],
-      "lastUpdated": "2026-08-28T18:20:36.833Z"
+      "lastUpdated": "2026-08-30T14:07:46.309Z"
     },
     {
       "specFolder": "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup",
@@ -5129,7 +5191,7 @@
         "ownership",
         "boundaries"
       ],
-      "lastUpdated": "2026-08-17T08:29:24.169Z"
+      "lastUpdated": "2026-08-30T14:07:46.367Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package",
@@ -5146,7 +5208,7 @@
         "environment",
         "installation"
       ],
-      "lastUpdated": "2026-08-16T12:33:16.361Z"
+      "lastUpdated": "2026-08-30T14:07:46.329Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline",
@@ -5166,7 +5228,7 @@
         "reviewed",
         "independently"
       ],
-      "lastUpdated": "2026-08-16T10:55:41.691Z"
+      "lastUpdated": "2026-08-30T14:07:46.320Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat",
@@ -5185,7 +5247,7 @@
         "new",
         "path"
       ],
-      "lastUpdated": "2026-08-16T12:16:19.172Z"
+      "lastUpdated": "2026-08-30T14:07:46.324Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates",
@@ -5199,7 +5261,7 @@
         "discover",
         "extension"
       ],
-      "lastUpdated": "2026-08-16T12:34:03.349Z"
+      "lastUpdated": "2026-08-30T14:07:46.327Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff",
@@ -5217,7 +5279,7 @@
         "fork-owned",
         "contract"
       ],
-      "lastUpdated": "2026-08-16T18:06:01.024Z"
+      "lastUpdated": "2026-08-30T14:07:46.345Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract",
@@ -5232,7 +5294,7 @@
         "fast-mode",
         "preference"
       ],
-      "lastUpdated": "2026-08-16T18:06:01.016Z"
+      "lastUpdated": "2026-08-30T14:07:46.334Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence",
@@ -5252,7 +5314,7 @@
         "explicitly",
         "supplied"
       ],
-      "lastUpdated": "2026-08-16T18:06:01.020Z"
+      "lastUpdated": "2026-08-30T14:07:46.338Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation",
@@ -5274,7 +5336,7 @@
         "local",
         "copied"
       ],
-      "lastUpdated": "2026-08-16T18:06:01.023Z"
+      "lastUpdated": "2026-08-30T14:07:46.343Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests",
@@ -5299,7 +5361,7 @@
         "child",
         "process"
       ],
-      "lastUpdated": "2026-08-17T08:29:24.168Z"
+      "lastUpdated": "2026-08-30T14:07:46.363Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite",
@@ -5321,7 +5383,7 @@
         "wired",
         "incorrectly"
       ],
-      "lastUpdated": "2026-08-17T08:29:24.163Z"
+      "lastUpdated": "2026-08-30T14:07:46.351Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition",
@@ -5337,7 +5399,7 @@
         "load-order",
         "ambiguity"
       ],
-      "lastUpdated": "2026-08-17T08:29:24.166Z"
+      "lastUpdated": "2026-08-30T14:07:46.356Z"
     },
     {
       "specFolder": "hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync",
@@ -5360,7 +5422,7 @@
         "inheriting",
         "preference"
       ],
-      "lastUpdated": "2026-08-17T08:29:24.168Z"
+      "lastUpdated": "2026-08-30T14:07:46.360Z"
     },
     {
       "specFolder": "hooks/012-pi-extension-playbooks",
@@ -5432,6 +5494,35 @@
         "sendsessionaffinityheaders"
       ],
       "lastUpdated": "2026-08-30T05:43:10.214Z"
+    },
+    {
+      "specFolder": "hooks/014-retire-governor-and-proof-directives",
+      "description": "Three constant directives were appended to every advisor brief on every user turn, on every",
+      "keywords": [
+        "three",
+        "constant",
+        "directives",
+        "appended",
+        "every",
+        "advisor",
+        "brief",
+        "user",
+        "turn"
+      ],
+      "lastUpdated": "2026-08-30T18:39:50.895Z"
+    },
+    {
+      "specFolder": "hooks/015-git-hook-gate-reduction",
+      "description": "Thirteen blocking gates across three hooks",
+      "keywords": [
+        "thirteen",
+        "blocking",
+        "gates",
+        "across",
+        "three",
+        "hooks"
+      ],
+      "lastUpdated": "2026-08-31T03:30:12.763Z"
     },
     {
       "specFolder": "mcp-tooling/007-mcp-tooling-parent",
@@ -8159,7 +8250,7 @@
         "tree",
         "skills"
       ],
-      "lastUpdated": "2026-08-29T15:04:31.398Z"
+      "lastUpdated": "2026-08-30T14:07:46.452Z"
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation",
@@ -8837,7 +8928,7 @@
     },
     {
       "specFolder": "sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan",
-      "description": "This phase **plans, but does not build**, a new mode under the `sk-code` parent hub, purely for Mobile-CLI app work (`apps/pi-remote-web/` and its",
+      "description": "This phase plans, but does not build, a new mode under the sk-code parent hub, purely for Mobile-CLI app work (apps/pi-remote-web/ and its siblings),",
       "keywords": [
         "phase",
         "plans",
@@ -8851,9 +8942,10 @@
         "app",
         "work",
         "apps",
-        "pi-remote-web"
+        "pi-remote-web",
+        "siblings"
       ],
-      "lastUpdated": "2026-08-29T15:04:31.750Z"
+      "lastUpdated": "2026-08-30T14:07:46.456Z"
     },
     {
       "specFolder": "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership",
@@ -10162,7 +10254,7 @@
         "chosen",
         "engine"
       ],
-      "lastUpdated": "2026-08-20T21:06:27.721Z"
+      "lastUpdated": "2026-08-30T14:07:46.460Z"
     },
     {
       "specFolder": "sk-communication/002-sk-communication-triggers/004-skill-and-mirrors",
@@ -11484,7 +11576,7 @@
         "routers",
         "resolves"
       ],
-      "lastUpdated": "2026-08-15T14:40:57.785Z"
+      "lastUpdated": "2026-08-30T14:07:46.465Z"
     },
     {
       "specFolder": "sk-design/012-sk-design-program/001-research/003-styles-database-rust-opportunities",
@@ -11657,7 +11749,7 @@
         "large",
         "styles"
       ],
-      "lastUpdated": "2026-08-15T14:40:57.954Z"
+      "lastUpdated": "2026-08-30T14:07:46.552Z"
     },
     {
       "specFolder": "sk-design/012-sk-design-program/002-style-database",
@@ -12112,7 +12204,7 @@
         "heuristics",
         "existing"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.033Z"
+      "lastUpdated": "2026-08-30T14:07:46.566Z"
     },
     {
       "specFolder": "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
@@ -12178,7 +12270,7 @@
         "commits",
         "skilled"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.144Z"
+      "lastUpdated": "2026-08-30T14:07:46.585Z"
     },
     {
       "specFolder": "sk-design/012-sk-design-program/005-reviews-and-remediation/003-remediation-program-review",
@@ -12536,7 +12628,7 @@
         "skill",
         "readme"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.236Z"
+      "lastUpdated": "2026-08-30T14:07:46.597Z"
     },
     {
       "specFolder": "sk-design/014-template-conformance/003-design-motion/002-references",
@@ -12799,7 +12891,7 @@
         "seed",
         "sample"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.304Z"
+      "lastUpdated": "2026-08-30T14:07:46.611Z"
     },
     {
       "specFolder": "sk-design/014-template-conformance/005-design-mcp-open-design",
@@ -13615,7 +13707,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-29T12:13:20.917Z"
+      "lastUpdated": "2026-08-30T14:07:46.660Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/002-architecture-decision",
@@ -13711,7 +13803,7 @@
         "parent-hub",
         "conversion"
       ],
-      "lastUpdated": "2026-08-29T12:13:20.952Z"
+      "lastUpdated": "2026-08-30T14:07:46.663Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/010-create-benchmark",
@@ -14099,7 +14191,7 @@
         "numbered-prefix",
         "deprecation"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.461Z"
+      "lastUpdated": "2026-08-30T14:07:46.676Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/002-validator-and-guard",
@@ -14182,7 +14274,7 @@
         "numbered-snippet-filename",
         "deprecation"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.469Z"
+      "lastUpdated": "2026-08-30T14:07:46.703Z"
     },
     {
       "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/004-execute-migration",
@@ -14602,7 +14694,7 @@
         "changelog",
         "entries"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.692Z"
+      "lastUpdated": "2026-08-30T14:07:46.714Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/003-validation-security-and-quality-gates",
@@ -14746,7 +14838,7 @@
         "command",
         "reliably"
       ],
-      "lastUpdated": "2026-08-29T12:13:21.070Z"
+      "lastUpdated": "2026-08-30T14:07:46.725Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/007-optional-ocr-adapter",
@@ -15039,7 +15131,7 @@
         "file",
         "content"
       ],
-      "lastUpdated": "2026-08-15T14:40:58.841Z"
+      "lastUpdated": "2026-08-30T14:07:46.730Z"
     },
     {
       "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
@@ -15892,7 +15984,7 @@
         "specific",
         "fires"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.333Z"
+      "lastUpdated": "2026-08-30T14:07:46.743Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research",
@@ -15912,7 +16004,7 @@
         "parent-hub",
         "frame"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.353Z"
+      "lastUpdated": "2026-08-30T14:07:46.752Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives",
@@ -16059,7 +16151,7 @@
         "acquisition",
         "execution"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.362Z"
+      "lastUpdated": "2026-08-30T14:07:46.753Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/008-trp-decomposition",
@@ -16961,7 +17053,7 @@
         "phased",
         "outcome"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.712Z"
+      "lastUpdated": "2026-08-30T14:07:46.842Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/001-research",
@@ -16972,7 +17064,7 @@
         "shipped",
         "inert"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.706Z"
+      "lastUpdated": "2026-08-30T08:03:49.982Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation",
@@ -16984,7 +17076,7 @@
         "held",
         "inert"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.789Z"
+      "lastUpdated": "2026-08-30T14:07:46.762Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption",
@@ -17004,7 +17096,7 @@
         "two",
         "structural"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.707Z"
+      "lastUpdated": "2026-08-30T14:07:46.782Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
@@ -17022,7 +17114,7 @@
         "files",
         "cf-bm-1"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.707Z"
+      "lastUpdated": "2026-08-30T08:03:50.344Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance",
@@ -17043,7 +17135,7 @@
         "noncritical",
         "status"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.707Z"
+      "lastUpdated": "2026-08-30T08:03:50.454Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs",
@@ -17060,7 +17152,7 @@
         "eligible",
         "hubs"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.708Z"
+      "lastUpdated": "2026-08-30T08:03:50.560Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot",
@@ -17080,7 +17172,7 @@
         "single",
         "artifact"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.708Z"
+      "lastUpdated": "2026-08-30T08:03:50.661Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
@@ -17095,7 +17187,7 @@
         "equality",
         "inert"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.708Z"
+      "lastUpdated": "2026-08-30T14:07:46.790Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/009-sk-doc-template-alignment",
@@ -17113,7 +17205,7 @@
         "consumes",
         "them"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.709Z"
+      "lastUpdated": "2026-08-30T08:03:50.861Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
@@ -17131,7 +17223,7 @@
         "activation",
         "program"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.709Z"
+      "lastUpdated": "2026-08-30T08:03:50.960Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4",
@@ -17150,7 +17242,7 @@
         "flip",
         "speckitcompiledrouting"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.710Z"
+      "lastUpdated": "2026-08-30T14:07:46.797Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation",
@@ -17164,7 +17256,7 @@
         "per-hub",
         "harnesses"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.710Z"
+      "lastUpdated": "2026-08-30T08:03:51.221Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout",
@@ -17184,7 +17276,7 @@
         "legacy",
         "covered"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.710Z"
+      "lastUpdated": "2026-08-30T14:07:46.812Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation",
@@ -17207,7 +17299,7 @@
         "landing",
         "packet"
       ],
-      "lastUpdated": "2026-08-16T18:06:00.711Z"
+      "lastUpdated": "2026-08-30T14:07:46.835Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
@@ -17224,7 +17316,7 @@
         "flattened",
         "renumbered"
       ],
-      "lastUpdated": "2026-08-15T14:40:59.845Z"
+      "lastUpdated": "2026-08-30T14:07:46.838Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/020-root-router-document-standard",
@@ -17574,7 +17666,7 @@
         "across",
         "repo"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.011Z"
+      "lastUpdated": "2026-08-30T14:07:46.845Z"
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout",
@@ -18643,7 +18735,7 @@
         "playbook",
         "content"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.352Z"
+      "lastUpdated": "2026-08-30T14:07:47.592Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census",
@@ -18657,7 +18749,7 @@
         "main",
         "checkout"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.801Z"
+      "lastUpdated": "2026-08-30T14:07:46.847Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope",
@@ -18675,7 +18767,7 @@
         "exemption",
         "boundary"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.802Z"
+      "lastUpdated": "2026-08-30T14:07:46.851Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration",
@@ -18696,7 +18788,7 @@
         "plus",
         "real"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.818Z"
+      "lastUpdated": "2026-08-30T14:07:46.860Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates",
@@ -18711,7 +18803,7 @@
         "filesystem",
         "names"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.840Z"
+      "lastUpdated": "2026-08-30T14:07:46.901Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging",
@@ -18731,7 +18823,7 @@
         "names",
         "kebab-case"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.826Z"
+      "lastUpdated": "2026-08-30T14:07:46.872Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators",
@@ -18749,7 +18841,7 @@
         "artifact",
         "files"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.829Z"
+      "lastUpdated": "2026-08-30T14:07:46.878Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark",
@@ -18768,11 +18860,11 @@
         "underscore",
         "names"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.836Z"
+      "lastUpdated": "2026-08-30T14:07:46.888Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters",
-      "description": "The `/create:*` auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths.",
+      "description": "The /create:* auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths.",
       "keywords": [
         "auto",
         "confirm",
@@ -18787,7 +18879,7 @@
         "underscore",
         "paths"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.839Z"
+      "lastUpdated": "2026-08-30T14:07:46.899Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard",
@@ -18800,7 +18892,7 @@
         "filesystem",
         "names"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.842Z"
+      "lastUpdated": "2026-08-30T14:07:46.907Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
@@ -18820,7 +18912,7 @@
         "disposition",
         "ledger"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.873Z"
+      "lastUpdated": "2026-08-30T14:07:46.944Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
@@ -18837,7 +18929,7 @@
         "source-to-target",
         "map"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.844Z"
+      "lastUpdated": "2026-08-30T14:07:46.915Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
@@ -18859,7 +18951,7 @@
         "while",
         "recording"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.860Z"
+      "lastUpdated": "2026-08-30T14:07:46.929Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
@@ -18877,7 +18969,7 @@
         "migration",
         "run"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.870Z"
+      "lastUpdated": "2026-08-30T14:07:46.940Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
@@ -18898,7 +18990,7 @@
         "in-file",
         "references"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.872Z"
+      "lastUpdated": "2026-08-30T14:07:46.943Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map",
@@ -18917,7 +19009,7 @@
         "pinned",
         "current"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.886Z"
+      "lastUpdated": "2026-08-30T14:07:46.957Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
@@ -18932,11 +19024,11 @@
         "component",
         "subtree"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.905Z"
+      "lastUpdated": "2026-08-30T14:07:46.995Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
-      "description": "Root-level and `.opencode` infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed",
+      "description": "Root-level and .opencode infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed",
       "keywords": [
         "root-level",
         "opencode",
@@ -18949,7 +19041,7 @@
         "exemption-aware",
         "reference-closed"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.889Z"
+      "lastUpdated": "2026-08-30T14:07:46.967Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure",
@@ -18972,7 +19064,7 @@
         "string",
         "executable"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.890Z"
+      "lastUpdated": "2026-08-30T14:07:46.983Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
@@ -18994,7 +19086,7 @@
         "closure",
         "rather"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.892Z"
+      "lastUpdated": "2026-08-30T14:07:46.991Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
@@ -19016,7 +19108,7 @@
         "already",
         "structurally"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.904Z"
+      "lastUpdated": "2026-08-30T14:07:46.994Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration",
@@ -19034,7 +19126,7 @@
         "self-contained",
         "dependency-closed"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.277Z"
+      "lastUpdated": "2026-08-30T14:07:47.569Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code",
@@ -19058,7 +19150,7 @@
         "modes",
         "read-only"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.932Z"
+      "lastUpdated": "2026-08-30T14:07:47.030Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared",
@@ -19079,7 +19171,7 @@
         "asset",
         "patterns"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.907Z"
+      "lastUpdated": "2026-08-30T14:07:47.003Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
@@ -19098,7 +19190,7 @@
         "manual-testing-playbook",
         "categories"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.917Z"
+      "lastUpdated": "2026-08-30T14:07:47.007Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality",
@@ -19116,7 +19208,7 @@
         "manualtestingplaybook",
         "qualitygate"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.921Z"
+      "lastUpdated": "2026-08-30T14:07:47.010Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review",
@@ -19136,7 +19228,7 @@
         "root",
         "benchmark"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.924Z"
+      "lastUpdated": "2026-08-30T14:07:47.013Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow",
@@ -19155,7 +19247,7 @@
         "assets",
         "manual-testing-playbook"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.926Z"
+      "lastUpdated": "2026-08-30T14:07:47.016Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook",
@@ -19171,7 +19263,7 @@
         "categories",
         "crossbrowserandperformancegates"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.927Z"
+      "lastUpdated": "2026-08-30T14:07:47.019Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark",
@@ -19193,7 +19285,7 @@
         "livefinal",
         "livemodeb"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.928Z"
+      "lastUpdated": "2026-08-30T14:07:47.021Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify",
@@ -19213,7 +19305,7 @@
         "affected",
         "surfaces"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.930Z"
+      "lastUpdated": "2026-08-30T14:07:47.024Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate",
@@ -19233,7 +19325,7 @@
         "missing",
         "exemption"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.932Z"
+      "lastUpdated": "2026-08-30T14:07:47.027Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design",
@@ -19257,7 +19349,7 @@
         "benchmark",
         "artifacts"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.969Z"
+      "lastUpdated": "2026-08-30T14:07:47.128Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared",
@@ -19279,7 +19371,7 @@
         "references",
         "cannot"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.934Z"
+      "lastUpdated": "2026-08-30T14:07:47.036Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface",
@@ -19299,7 +19391,7 @@
         "paths",
         "directly"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.936Z"
+      "lastUpdated": "2026-08-30T14:07:47.047Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations",
@@ -19319,7 +19411,7 @@
         "must",
         "remain"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.938Z"
+      "lastUpdated": "2026-08-30T14:07:47.049Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion",
@@ -19338,7 +19430,7 @@
         "operational",
         "guidance"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.940Z"
+      "lastUpdated": "2026-08-30T14:07:47.055Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit",
@@ -19357,7 +19449,7 @@
         "registry",
         "files"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.941Z"
+      "lastUpdated": "2026-08-30T14:07:47.065Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator",
@@ -19377,7 +19469,7 @@
         "guide",
         "private"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.954Z"
+      "lastUpdated": "2026-08-30T14:07:47.071Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design",
@@ -19397,7 +19489,7 @@
         "shell",
         "helper"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.955Z"
+      "lastUpdated": "2026-08-30T14:07:47.081Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog",
@@ -19418,7 +19510,7 @@
         "indexes",
         "link"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.959Z"
+      "lastUpdated": "2026-08-30T14:07:47.087Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook",
@@ -19437,7 +19529,7 @@
         "names",
         "underscores"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.960Z"
+      "lastUpdated": "2026-08-30T14:07:47.097Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark",
@@ -19456,7 +19548,7 @@
         "paths",
         "comparison"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.962Z"
+      "lastUpdated": "2026-08-30T14:07:47.106Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify",
@@ -19477,7 +19569,7 @@
         "version",
         "bump"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.965Z"
+      "lastUpdated": "2026-08-30T14:07:47.116Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate",
@@ -19499,7 +19591,7 @@
         "stale",
         "path"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.968Z"
+      "lastUpdated": "2026-08-30T14:07:47.127Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
@@ -19520,7 +19612,7 @@
         "canonical",
         "form"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.002Z"
+      "lastUpdated": "2026-08-30T14:07:47.222Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared",
@@ -19538,7 +19630,7 @@
         "filesystem",
         "names"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.972Z"
+      "lastUpdated": "2026-08-30T14:07:47.131Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
@@ -19558,7 +19650,7 @@
         "treated",
         "differently"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.974Z"
+      "lastUpdated": "2026-08-30T14:07:47.134Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
@@ -19576,7 +19668,7 @@
         "snakecase",
         "forms"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.991Z"
+      "lastUpdated": "2026-08-30T14:07:47.205Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill",
@@ -19595,7 +19687,7 @@
         "resource",
         "trees"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.976Z"
+      "lastUpdated": "2026-08-30T14:07:47.149Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme",
@@ -19609,7 +19701,7 @@
         "reference",
         "filenames"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.977Z"
+      "lastUpdated": "2026-08-30T14:07:47.156Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent",
@@ -19625,7 +19717,7 @@
         "agent",
         "documentation"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.979Z"
+      "lastUpdated": "2026-08-30T14:07:47.158Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command",
@@ -19640,7 +19732,7 @@
         "guidance",
         "filenames"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.981Z"
+      "lastUpdated": "2026-08-30T14:07:47.160Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog",
@@ -19656,7 +19748,7 @@
         "pitfalls",
         "reference"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.983Z"
+      "lastUpdated": "2026-08-30T14:07:47.163Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook",
@@ -19670,7 +19762,7 @@
         "resource",
         "filenames"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.985Z"
+      "lastUpdated": "2026-08-30T14:07:47.165Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark",
@@ -19686,7 +19778,7 @@
         "storage",
         "filenames"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.986Z"
+      "lastUpdated": "2026-08-30T14:07:47.167Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart",
@@ -19703,7 +19795,7 @@
         "authoring",
         "validation"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.987Z"
+      "lastUpdated": "2026-08-30T14:07:47.169Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog",
@@ -19723,7 +19815,7 @@
         "worked",
         "examples"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.988Z"
+      "lastUpdated": "2026-08-30T14:07:47.180Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff",
@@ -19742,7 +19834,7 @@
         "non-exempt",
         "name"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.989Z"
+      "lastUpdated": "2026-08-30T14:07:47.191Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control",
@@ -19757,7 +19849,7 @@
         "reference",
         "filenames"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.990Z"
+      "lastUpdated": "2026-08-30T14:07:47.201Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook",
@@ -19772,7 +19864,7 @@
         "filenames",
         "index"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.994Z"
+      "lastUpdated": "2026-08-30T14:07:47.212Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
@@ -19793,7 +19885,7 @@
         "surface",
         "currently"
       ],
-      "lastUpdated": "2026-08-15T14:41:00.996Z"
+      "lastUpdated": "2026-08-30T14:07:47.215Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify",
@@ -19815,7 +19907,7 @@
         "version",
         "bump"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.000Z"
+      "lastUpdated": "2026-08-30T14:07:47.218Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate",
@@ -19836,7 +19928,7 @@
         "surface",
         "kebab-clean"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.002Z"
+      "lastUpdated": "2026-08-30T14:07:47.221Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt",
@@ -19855,7 +19947,7 @@
         "prompt-improve",
         "prompt-models"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.021Z"
+      "lastUpdated": "2026-08-30T14:07:47.248Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared",
@@ -19876,7 +19968,7 @@
         "own",
         "phases"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.005Z"
+      "lastUpdated": "2026-08-30T14:07:47.226Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve",
@@ -19895,7 +19987,7 @@
         "paths",
         "repeated"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.007Z"
+      "lastUpdated": "2026-08-30T14:07:47.228Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models",
@@ -19915,7 +20007,7 @@
         "files",
         "named"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.009Z"
+      "lastUpdated": "2026-08-30T14:07:47.232Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook",
@@ -19935,7 +20027,7 @@
         "index",
         "references"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.012Z"
+      "lastUpdated": "2026-08-30T14:07:47.235Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark",
@@ -19951,7 +20043,7 @@
         "directories",
         "plus"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.015Z"
+      "lastUpdated": "2026-08-30T14:07:47.240Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify",
@@ -19970,7 +20062,7 @@
         "completed",
         "kebab-case"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.018Z"
+      "lastUpdated": "2026-08-30T14:07:47.245Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate",
@@ -19990,7 +20082,7 @@
         "within",
         "exemption"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.019Z"
+      "lastUpdated": "2026-08-30T14:07:47.247Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration",
@@ -20009,7 +20101,7 @@
         "manual-testing-playbook",
         "trees"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.043Z"
+      "lastUpdated": "2026-08-30T14:07:47.285Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared",
@@ -20030,7 +20122,7 @@
         "shared",
         "boundary"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.023Z"
+      "lastUpdated": "2026-08-30T14:07:47.251Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
@@ -20049,7 +20141,7 @@
         "assets",
         "active"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.026Z"
+      "lastUpdated": "2026-08-30T14:07:47.254Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code",
@@ -20066,7 +20158,7 @@
         "skill",
         "readme"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.028Z"
+      "lastUpdated": "2026-08-30T14:07:47.256Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex",
@@ -20083,7 +20175,7 @@
         "skill",
         "readme"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.030Z"
+      "lastUpdated": "2026-08-30T14:07:47.263Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook",
@@ -20102,7 +20194,7 @@
         "opencode",
         "claude"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.033Z"
+      "lastUpdated": "2026-08-30T14:07:47.273Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark",
@@ -20122,7 +20214,7 @@
         "surface",
         "fixtures"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.036Z"
+      "lastUpdated": "2026-08-30T14:07:47.279Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify",
@@ -20141,7 +20233,7 @@
         "record",
         "completed"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.040Z"
+      "lastUpdated": "2026-08-30T14:07:47.281Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate",
@@ -20160,7 +20252,7 @@
         "kebab-clean",
         "within"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.042Z"
+      "lastUpdated": "2026-08-30T14:07:47.284Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling",
@@ -20181,7 +20273,7 @@
         "packets",
         "manual-testing"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.062Z"
+      "lastUpdated": "2026-08-30T14:07:47.353Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared",
@@ -20202,7 +20294,7 @@
         "ownership",
         "explicitly"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.045Z"
+      "lastUpdated": "2026-08-30T14:07:47.292Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
@@ -20219,7 +20311,7 @@
         "uppercase",
         "underscored"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.048Z"
+      "lastUpdated": "2026-08-30T14:07:47.300Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up",
@@ -20238,7 +20330,7 @@
         "files",
         "reference"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.050Z"
+      "lastUpdated": "2026-08-30T14:07:47.306Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma",
@@ -20257,7 +20349,7 @@
         "underscored",
         "install"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.052Z"
+      "lastUpdated": "2026-08-30T14:07:47.312Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
@@ -20277,7 +20369,7 @@
         "scenario",
         "filenames"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.054Z"
+      "lastUpdated": "2026-08-30T14:07:47.318Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark",
@@ -20297,7 +20389,7 @@
         "only",
         "gitkeep"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.056Z"
+      "lastUpdated": "2026-08-30T14:07:47.331Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify",
@@ -20317,7 +20409,7 @@
         "hub",
         "component"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.057Z"
+      "lastUpdated": "2026-08-30T14:07:47.337Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate",
@@ -20338,7 +20430,7 @@
         "changelog",
         "phases"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.060Z"
+      "lastUpdated": "2026-08-30T14:07:47.348Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop",
@@ -20358,7 +20450,7 @@
         "manual-testing",
         "playbook"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.120Z"
+      "lastUpdated": "2026-08-30T14:07:47.401Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared",
@@ -20378,7 +20470,7 @@
         "rename",
         "damage"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.064Z"
+      "lastUpdated": "2026-08-30T14:07:47.364Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime",
@@ -20397,7 +20489,7 @@
         "scripts",
         "tests"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.067Z"
+      "lastUpdated": "2026-08-30T14:07:47.373Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research",
@@ -20415,7 +20507,7 @@
         "catalogs",
         "playbooks"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.070Z"
+      "lastUpdated": "2026-08-30T14:07:47.375Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review",
@@ -20434,7 +20526,7 @@
         "severity",
         "state"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.072Z"
+      "lastUpdated": "2026-08-30T14:07:47.381Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council",
@@ -20451,7 +20543,7 @@
         "paired",
         "feature-catalog"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.076Z"
+      "lastUpdated": "2026-08-30T14:07:47.384Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
@@ -20469,7 +20561,7 @@
         "lanes",
         "benchmark"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.079Z"
+      "lastUpdated": "2026-08-30T14:07:47.386Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment",
@@ -20487,7 +20579,7 @@
         "catalogs",
         "playbooks"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.083Z"
+      "lastUpdated": "2026-08-30T14:07:47.392Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook",
@@ -20504,7 +20596,7 @@
         "markdown",
         "files"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.088Z"
+      "lastUpdated": "2026-08-30T14:07:47.394Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark",
@@ -20520,7 +20612,7 @@
         "storage",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.093Z"
+      "lastUpdated": "2026-08-30T14:07:47.396Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify",
@@ -20542,7 +20634,7 @@
         "version",
         "bump"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.095Z"
+      "lastUpdated": "2026-08-30T14:07:47.399Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate",
@@ -20560,7 +20652,7 @@
         "child",
         "phases"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.096Z"
+      "lastUpdated": "2026-08-30T14:07:47.400Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
@@ -20581,7 +20673,7 @@
         "references",
         "assets"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.149Z"
+      "lastUpdated": "2026-08-30T14:07:47.428Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure",
@@ -20598,7 +20690,7 @@
         "kebab-case",
         "canonical"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.124Z"
+      "lastUpdated": "2026-08-30T14:07:47.404Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs",
@@ -20620,7 +20712,7 @@
         "test-support",
         "paths"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.125Z"
+      "lastUpdated": "2026-08-30T14:07:47.406Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites",
@@ -20642,7 +20734,7 @@
         "manifests",
         "hooks"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.129Z"
+      "lastUpdated": "2026-08-30T14:07:47.408Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree",
@@ -20665,7 +20757,7 @@
         "fixture",
         "names"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.133Z"
+      "lastUpdated": "2026-08-30T14:07:47.410Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples",
@@ -20684,7 +20776,7 @@
         "layouts",
         "including"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.135Z"
+      "lastUpdated": "2026-08-30T14:07:47.412Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
@@ -20705,7 +20797,7 @@
         "documentation",
         "curated"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.136Z"
+      "lastUpdated": "2026-08-30T14:07:47.414Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime",
@@ -20723,7 +20815,7 @@
         "typescript",
         "shared-package"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.139Z"
+      "lastUpdated": "2026-08-30T14:07:47.416Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
@@ -20741,7 +20833,7 @@
         "directories",
         "files"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.141Z"
+      "lastUpdated": "2026-08-30T14:07:47.419Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook",
@@ -20757,7 +20849,7 @@
         "directories",
         "scenario"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.142Z"
+      "lastUpdated": "2026-08-30T14:07:47.421Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
@@ -20777,7 +20869,7 @@
         "constitutional",
         "surfaces"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.143Z"
+      "lastUpdated": "2026-08-30T14:07:47.423Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
@@ -20796,7 +20888,7 @@
         "exemption",
         "boundary"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.146Z"
+      "lastUpdated": "2026-08-30T14:07:47.425Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate",
@@ -20816,7 +20908,7 @@
         "declared",
         "exemption"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.148Z"
+      "lastUpdated": "2026-08-30T14:07:47.427Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
@@ -20832,7 +20924,7 @@
         "still",
         "snakecase"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.162Z"
+      "lastUpdated": "2026-08-30T14:07:47.445Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
@@ -20849,7 +20941,7 @@
         "non-python",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.150Z"
+      "lastUpdated": "2026-08-30T14:07:47.430Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts",
@@ -20864,7 +20956,7 @@
         "dataset",
         "named"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.154Z"
+      "lastUpdated": "2026-08-30T14:07:47.433Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references",
@@ -20883,7 +20975,7 @@
         "graph",
         "hooks"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.155Z"
+      "lastUpdated": "2026-08-30T14:07:47.435Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
@@ -20900,7 +20992,7 @@
         "bridges",
         "reference"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.157Z"
+      "lastUpdated": "2026-08-30T14:07:47.437Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog",
@@ -20916,7 +21008,7 @@
         "seven",
         "category"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.158Z"
+      "lastUpdated": "2026-08-30T14:07:47.439Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook",
@@ -20931,7 +21023,7 @@
         "nine",
         "category"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.159Z"
+      "lastUpdated": "2026-08-30T14:07:47.440Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
@@ -20948,7 +21040,7 @@
         "expose",
         "version"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.160Z"
+      "lastUpdated": "2026-08-30T14:07:47.442Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate",
@@ -20967,7 +21059,7 @@
         "stale",
         "reference"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.162Z"
+      "lastUpdated": "2026-08-30T14:07:47.444Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
@@ -20985,7 +21077,7 @@
         "mcp",
         "package"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.176Z"
+      "lastUpdated": "2026-08-30T14:07:47.462Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
@@ -21000,7 +21092,7 @@
         "ordinary",
         "direct"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.164Z"
+      "lastUpdated": "2026-08-30T14:07:47.447Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts",
@@ -21015,7 +21107,7 @@
         "scripts",
         "doctor"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.166Z"
+      "lastUpdated": "2026-08-30T14:07:47.449Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references",
@@ -21030,7 +21122,7 @@
         "filenames",
         "databasepathpolicy"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.167Z"
+      "lastUpdated": "2026-08-30T14:07:47.451Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime",
@@ -21049,7 +21141,7 @@
         "files",
         "directory"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.169Z"
+      "lastUpdated": "2026-08-30T14:07:47.452Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
@@ -21065,7 +21157,7 @@
         "eight",
         "category"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.171Z"
+      "lastUpdated": "2026-08-30T14:07:47.454Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook",
@@ -21081,7 +21173,7 @@
         "nine",
         "category"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.172Z"
+      "lastUpdated": "2026-08-30T14:07:47.456Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
@@ -21097,7 +21189,7 @@
         "migration",
         "recorded"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.174Z"
+      "lastUpdated": "2026-08-30T14:07:47.458Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate",
@@ -21115,7 +21207,7 @@
         "rollup",
         "complete"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.175Z"
+      "lastUpdated": "2026-08-30T14:07:47.461Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode",
@@ -21131,7 +21223,7 @@
         "manual-playbook",
         "names"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.189Z"
+      "lastUpdated": "2026-08-30T14:07:47.482Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure",
@@ -21150,7 +21242,7 @@
         "refer",
         "path"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.177Z"
+      "lastUpdated": "2026-08-30T14:07:47.465Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts",
@@ -21165,7 +21257,7 @@
         "exemption",
         "boundary"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.179Z"
+      "lastUpdated": "2026-08-30T14:07:47.468Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets",
@@ -21181,7 +21273,7 @@
         "markdown",
         "filenames"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.180Z"
+      "lastUpdated": "2026-08-30T14:07:47.471Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
@@ -21202,7 +21294,7 @@
         "manual",
         "scenarios"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.182Z"
+      "lastUpdated": "2026-08-30T14:07:47.473Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
@@ -21219,7 +21311,7 @@
         "scenario",
         "files"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.183Z"
+      "lastUpdated": "2026-08-30T14:07:47.476Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify",
@@ -21238,7 +21330,7 @@
         "lock",
         "metadata"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.187Z"
+      "lastUpdated": "2026-08-30T14:07:47.478Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate",
@@ -21257,7 +21349,7 @@
         "changelog",
         "verification"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.188Z"
+      "lastUpdated": "2026-08-30T14:07:47.481Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git",
@@ -21279,7 +21371,7 @@
         "artifacts",
         "changelog"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.204Z"
+      "lastUpdated": "2026-08-30T14:07:47.500Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references",
@@ -21300,7 +21392,7 @@
         "surface",
         "fully"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.191Z"
+      "lastUpdated": "2026-08-30T14:07:47.485Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets",
@@ -21321,7 +21413,7 @@
         "surface",
         "fully"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.192Z"
+      "lastUpdated": "2026-08-30T14:07:47.488Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook",
@@ -21339,7 +21431,7 @@
         "committed",
         "skilled"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.194Z"
+      "lastUpdated": "2026-08-30T14:07:47.491Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
@@ -21358,7 +21450,7 @@
         "path",
         "pointers"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.199Z"
+      "lastUpdated": "2026-08-30T14:07:47.493Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify",
@@ -21378,7 +21470,7 @@
         "asset",
         "manual-playbook"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.201Z"
+      "lastUpdated": "2026-08-30T14:07:47.496Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate",
@@ -21401,7 +21493,7 @@
         "filesystem",
         "surface"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.203Z"
+      "lastUpdated": "2026-08-30T14:07:47.498Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
@@ -21424,7 +21516,7 @@
         "asset",
         "trees"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.228Z"
+      "lastUpdated": "2026-08-30T14:07:47.535Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace",
@@ -21440,7 +21532,7 @@
         "yaml",
         "createfeaturecatalogconfirm"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.207Z"
+      "lastUpdated": "2026-08-30T14:07:47.502Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace",
@@ -21459,7 +21551,7 @@
         "deepai-council",
         "body"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.209Z"
+      "lastUpdated": "2026-08-30T14:07:47.505Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace",
@@ -21477,7 +21569,7 @@
         "txt",
         "designinterfaceconfirm"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.210Z"
+      "lastUpdated": "2026-08-30T14:07:47.507Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace",
@@ -21494,7 +21586,7 @@
         "doctormcpinstall",
         "doctorskillgraphfreshness"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.213Z"
+      "lastUpdated": "2026-08-30T14:07:47.509Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
@@ -21511,7 +21603,7 @@
         "managepresentation",
         "savepresentation"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.215Z"
+      "lastUpdated": "2026-08-30T14:07:47.512Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
@@ -21531,7 +21623,7 @@
         "kebab-case",
         "rule"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.217Z"
+      "lastUpdated": "2026-08-30T14:07:47.516Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace",
@@ -21549,7 +21641,7 @@
         "txt",
         "speckitplanconfirm"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.219Z"
+      "lastUpdated": "2026-08-30T14:07:47.519Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids",
@@ -21568,7 +21660,7 @@
         "form",
         "kebab-case"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.222Z"
+      "lastUpdated": "2026-08-30T14:07:47.524Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets",
@@ -21589,7 +21681,7 @@
         "asset",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.224Z"
+      "lastUpdated": "2026-08-30T14:07:47.530Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
@@ -21610,7 +21702,7 @@
         "closure",
         "gate"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.228Z"
+      "lastUpdated": "2026-08-30T14:07:47.533Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents",
@@ -21624,7 +21716,7 @@
         "agents",
         "surface"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.275Z"
+      "lastUpdated": "2026-08-30T14:07:47.567Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/001-ai-council-verify",
@@ -21643,7 +21735,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.229Z"
+      "lastUpdated": "2026-08-30T14:07:47.538Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/002-code-verify",
@@ -21662,7 +21754,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.231Z"
+      "lastUpdated": "2026-08-30T14:07:47.540Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify",
@@ -21681,7 +21773,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.235Z"
+      "lastUpdated": "2026-08-30T14:07:47.543Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/004-debug-verify",
@@ -21700,7 +21792,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.236Z"
+      "lastUpdated": "2026-08-30T14:07:47.545Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/005-deep-alignment-verify",
@@ -21719,7 +21811,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.247Z"
+      "lastUpdated": "2026-08-30T14:07:47.547Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/006-deep-improvement-verify",
@@ -21738,7 +21830,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.248Z"
+      "lastUpdated": "2026-08-30T14:07:47.550Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/007-deep-research-verify",
@@ -21757,7 +21849,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.252Z"
+      "lastUpdated": "2026-08-30T14:07:47.552Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/008-deep-review-verify",
@@ -21776,7 +21868,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.254Z"
+      "lastUpdated": "2026-08-30T14:07:47.554Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/009-design-verify",
@@ -21795,7 +21887,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.260Z"
+      "lastUpdated": "2026-08-30T14:07:47.556Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify",
@@ -21814,7 +21906,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.261Z"
+      "lastUpdated": "2026-08-30T14:07:47.557Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/011-orchestrate-verify",
@@ -21833,7 +21925,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.264Z"
+      "lastUpdated": "2026-08-30T14:07:47.559Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/012-prompt-improver-verify",
@@ -21852,7 +21944,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.267Z"
+      "lastUpdated": "2026-08-30T14:07:47.561Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/013-review-verify",
@@ -21871,7 +21963,7 @@
         "agent",
         "directories"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.272Z"
+      "lastUpdated": "2026-08-30T14:07:47.563Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate",
@@ -21893,7 +21985,7 @@
         "surface",
         "in-scope"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.274Z"
+      "lastUpdated": "2026-08-30T14:07:47.565Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases",
@@ -21913,7 +22005,7 @@
         "compatibility",
         "paths"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.279Z"
+      "lastUpdated": "2026-08-30T14:07:47.572Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate",
@@ -21936,7 +22028,7 @@
         "rename",
         "history"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.282Z"
+      "lastUpdated": "2026-08-30T14:07:47.575Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout",
@@ -21956,7 +22048,7 @@
         "continues",
         "move"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.284Z"
+      "lastUpdated": "2026-08-30T14:07:47.578Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement",
@@ -21977,7 +22069,7 @@
         "gaps",
         "let"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.286Z"
+      "lastUpdated": "2026-08-30T14:07:47.580Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming",
@@ -21998,7 +22090,7 @@
         "three",
         "inconsistent"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.287Z"
+      "lastUpdated": "2026-08-30T14:07:47.583Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening",
@@ -22016,7 +22108,7 @@
         "docs",
         "gates"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.291Z"
+      "lastUpdated": "2026-08-30T14:07:47.590Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards",
@@ -22032,7 +22124,7 @@
         "lowercase",
         "files"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.289Z"
+      "lastUpdated": "2026-08-30T14:07:47.587Z"
     },
     {
       "specFolder": "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance",
@@ -22053,7 +22145,7 @@
         "checkgeneratedpaths",
         "blocking"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.291Z"
+      "lastUpdated": "2026-08-30T14:07:47.589Z"
     },
     {
       "specFolder": "sk-doc/021-benchmark-naming-and-playbook-results",
@@ -22064,7 +22156,7 @@
         "one",
         "cause"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.424Z"
+      "lastUpdated": "2026-08-30T14:07:47.593Z"
     },
     {
       "specFolder": "sk-doc/022-code-readme-coverage",
@@ -22101,7 +22193,7 @@
         "against",
         "source"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.430Z"
+      "lastUpdated": "2026-08-30T14:07:47.597Z"
     },
     {
       "specFolder": "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
@@ -22220,7 +22312,7 @@
         "them",
         "checked"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.445Z"
+      "lastUpdated": "2026-08-30T14:07:47.600Z"
     },
     {
       "specFolder": "sk-doc/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first",
@@ -22351,7 +22443,7 @@
         "refining",
         "shared"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.756Z"
+      "lastUpdated": "2026-08-30T14:07:47.807Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/001-readme-template-refinement",
@@ -22369,7 +22461,7 @@
         "mcp-obsidian",
         "pilot"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.493Z"
+      "lastUpdated": "2026-08-30T14:07:47.603Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template",
@@ -22382,7 +22474,7 @@
         "inconsistent",
         "shape"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.494Z"
+      "lastUpdated": "2026-08-30T14:07:47.605Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/003-creation-workflow-update",
@@ -22402,7 +22494,7 @@
         "refinement",
         "program"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.499Z"
+      "lastUpdated": "2026-08-30T14:07:47.607Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit",
@@ -22422,7 +22514,7 @@
         "refined",
         "template"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.527Z"
+      "lastUpdated": "2026-08-30T14:07:47.645Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration",
@@ -22442,7 +22534,7 @@
         "feature-heavy",
         "pitch"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.500Z"
+      "lastUpdated": "2026-08-30T14:07:47.609Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode",
@@ -22461,7 +22553,7 @@
         "table",
         "spine"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.503Z"
+      "lastUpdated": "2026-08-30T14:07:47.612Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling",
@@ -22484,7 +22576,7 @@
         "block",
         "short"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.505Z"
+      "lastUpdated": "2026-08-30T14:07:47.616Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code",
@@ -22502,7 +22594,7 @@
         "opencode",
         "routing"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.506Z"
+      "lastUpdated": "2026-08-30T14:07:47.619Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design",
@@ -22519,7 +22611,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.507Z"
+      "lastUpdated": "2026-08-30T14:07:47.624Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc",
@@ -22539,7 +22631,7 @@
         "set",
         "mcp-obsidian"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.507Z"
+      "lastUpdated": "2026-08-30T14:07:47.629Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git",
@@ -22560,7 +22652,7 @@
         "voice",
         "rules"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.508Z"
+      "lastUpdated": "2026-08-30T14:07:47.632Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt",
@@ -22580,7 +22672,7 @@
         "outcome",
         "tooling"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.509Z"
+      "lastUpdated": "2026-08-30T14:07:47.635Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop",
@@ -22596,7 +22688,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.511Z"
+      "lastUpdated": "2026-08-30T14:07:47.637Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor",
@@ -22616,7 +22708,7 @@
         "outcome",
         "delivers"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.526Z"
+      "lastUpdated": "2026-08-30T14:07:47.641Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit",
@@ -22636,7 +22728,7 @@
         "pilot",
         "standard"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.527Z"
+      "lastUpdated": "2026-08-30T14:07:47.644Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit",
@@ -22655,7 +22747,7 @@
         "refined",
         "template"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.748Z"
+      "lastUpdated": "2026-08-30T14:07:47.797Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code",
@@ -22672,7 +22764,7 @@
         "tabular",
         "reference-card"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.529Z"
+      "lastUpdated": "2026-08-30T14:07:47.648Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex",
@@ -22690,7 +22782,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.534Z"
+      "lastUpdated": "2026-08-30T14:07:47.650Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor",
@@ -22709,7 +22801,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.543Z"
+      "lastUpdated": "2026-08-30T14:07:47.653Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin",
@@ -22728,7 +22820,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.545Z"
+      "lastUpdated": "2026-08-30T14:07:47.656Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode",
@@ -22746,7 +22838,7 @@
         "tabular",
         "reference-card"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.546Z"
+      "lastUpdated": "2026-08-30T14:07:47.659Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi",
@@ -22765,7 +22857,7 @@
         "style",
         "predates"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.550Z"
+      "lastUpdated": "2026-08-30T14:07:47.662Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools",
@@ -22785,7 +22877,7 @@
         "style",
         "predates"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.555Z"
+      "lastUpdated": "2026-08-30T14:07:47.664Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/008-mcp-chrome-devtools",
@@ -22807,7 +22899,7 @@
         "voice",
         "rules"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.646Z"
+      "lastUpdated": "2026-08-30T14:07:47.668Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up",
@@ -22828,7 +22920,7 @@
         "predates",
         "pilot"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.648Z"
+      "lastUpdated": "2026-08-30T14:07:47.671Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma",
@@ -22850,7 +22942,7 @@
         "voice",
         "rules"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.649Z"
+      "lastUpdated": "2026-08-30T14:07:47.673Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/011-mcp-magnific",
@@ -22871,7 +22963,7 @@
         "predates",
         "pilot"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.651Z"
+      "lastUpdated": "2026-08-30T14:07:47.677Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/012-mcp-mobbin",
@@ -22892,7 +22984,7 @@
         "predates",
         "pilot"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.657Z"
+      "lastUpdated": "2026-08-30T14:07:47.680Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian",
@@ -22908,7 +23000,7 @@
         "skill",
         "readmes"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.659Z"
+      "lastUpdated": "2026-08-30T14:07:47.683Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero",
@@ -22928,7 +23020,7 @@
         "style",
         "predates"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.681Z"
+      "lastUpdated": "2026-08-30T14:07:47.687Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode",
@@ -22947,7 +23039,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.683Z"
+      "lastUpdated": "2026-08-30T14:07:47.690Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality",
@@ -22965,7 +23057,7 @@
         "pilot",
         "standard"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.685Z"
+      "lastUpdated": "2026-08-30T14:07:47.697Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/017-sk-code-review",
@@ -22983,7 +23075,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.688Z"
+      "lastUpdated": "2026-08-30T14:07:47.703Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow",
@@ -23003,7 +23095,7 @@
         "mcp-obsidian",
         "set"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.690Z"
+      "lastUpdated": "2026-08-30T14:07:47.710Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface",
@@ -23023,7 +23115,7 @@
         "style",
         "predates"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.693Z"
+      "lastUpdated": "2026-08-30T14:07:47.713Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/020-sk-design-mcp-open-design",
@@ -23045,7 +23137,7 @@
         "rules",
         "validated"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.694Z"
+      "lastUpdated": "2026-08-30T14:07:47.718Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator",
@@ -23058,7 +23150,7 @@
         "design",
         "artifacts"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.697Z"
+      "lastUpdated": "2026-08-30T14:07:47.722Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent",
@@ -23074,7 +23166,7 @@
         "phase",
         "measures"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.699Z"
+      "lastUpdated": "2026-08-30T14:07:47.731Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark",
@@ -23090,7 +23182,7 @@
         "pilot",
         "standard"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.701Z"
+      "lastUpdated": "2026-08-30T14:07:47.736Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog",
@@ -23108,7 +23200,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.705Z"
+      "lastUpdated": "2026-08-30T14:07:47.741Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command",
@@ -23129,7 +23221,7 @@
         "set",
         "mcp-obsidian"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.708Z"
+      "lastUpdated": "2026-08-30T14:07:47.746Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff",
@@ -23148,7 +23240,7 @@
         "register",
         "predates"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.710Z"
+      "lastUpdated": "2026-08-30T14:07:47.752Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog",
@@ -23168,7 +23260,7 @@
         "style",
         "predates"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.713Z"
+      "lastUpdated": "2026-08-30T14:07:47.755Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart",
@@ -23188,7 +23280,7 @@
         "style",
         "predates"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.716Z"
+      "lastUpdated": "2026-08-30T14:07:47.759Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook",
@@ -23205,7 +23297,7 @@
         "standard",
         "mcp-obsidian"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.718Z"
+      "lastUpdated": "2026-08-30T14:07:47.763Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control",
@@ -23227,7 +23319,7 @@
         "rules",
         "validated"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.723Z"
+      "lastUpdated": "2026-08-30T14:07:47.767Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme",
@@ -23247,7 +23339,7 @@
         "style",
         "glance"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.726Z"
+      "lastUpdated": "2026-08-30T14:07:47.770Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill",
@@ -23268,7 +23360,7 @@
         "pilot",
         "standard"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.730Z"
+      "lastUpdated": "2026-08-30T14:07:47.774Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve",
@@ -23289,7 +23381,7 @@
         "quick",
         "start"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.733Z"
+      "lastUpdated": "2026-08-30T14:07:47.777Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models",
@@ -23304,7 +23396,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.736Z"
+      "lastUpdated": "2026-08-30T14:07:47.781Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council",
@@ -23320,7 +23412,7 @@
         "pilot",
         "standard"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.738Z"
+      "lastUpdated": "2026-08-30T14:07:47.784Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment",
@@ -23338,7 +23430,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.740Z"
+      "lastUpdated": "2026-08-30T14:07:47.787Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
@@ -23356,7 +23448,7 @@
         "reference-card",
         "style"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.741Z"
+      "lastUpdated": "2026-08-30T14:07:47.790Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research",
@@ -23374,7 +23466,7 @@
         "pilot",
         "standard"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.745Z"
+      "lastUpdated": "2026-08-30T14:07:47.792Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review",
@@ -23393,7 +23485,7 @@
         "style",
         "predates"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.747Z"
+      "lastUpdated": "2026-08-30T14:07:47.796Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
@@ -23410,7 +23502,7 @@
         "rewrote",
         "every"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.750Z"
+      "lastUpdated": "2026-08-30T14:07:47.800Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet",
@@ -23432,7 +23524,7 @@
         "older",
         "documents"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.752Z"
+      "lastUpdated": "2026-08-30T14:07:47.803Z"
     },
     {
       "specFolder": "sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision",
@@ -23449,7 +23541,7 @@
         "against",
         "them"
       ],
-      "lastUpdated": "2026-08-15T14:41:01.754Z"
+      "lastUpdated": "2026-08-30T14:07:47.805Z"
     },
     {
       "specFolder": "sk-doc/027-playbook-snippet-template-migration",
@@ -24123,22 +24215,381 @@
       "lastUpdated": "2026-08-29T15:04:56.563Z"
     },
     {
-      "specFolder": "sk-doc/039-sk-communication-skill",
-      "description": "The portable CLI communication-projection capability lived only as a package under `packages/cli-communication-projection/`, so the skill advisor",
+      "specFolder": "sk-doc/039-create-with-human-voice",
+      "description": "The Human Voice Rules are a 510-line linguistic standard at",
       "keywords": [
-        "portable",
-        "cli",
-        "communication-projection",
-        "capability",
-        "lived",
-        "only",
-        "package",
-        "packages",
-        "cli-communication-projection",
-        "skill",
-        "advisor"
+        "human",
+        "voice",
+        "rules",
+        "510-line",
+        "linguistic",
+        "standard"
       ],
-      "lastUpdated": "2026-08-29T15:12:26.948Z"
+      "lastUpdated": "2026-08-31T20:11:00.371Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules",
+      "description": "This repository now has a working repo-rules layer: a trigger-table router, eight rule files, a mandatory load gate, and per-section pointers from the",
+      "keywords": [
+        "repository",
+        "now",
+        "working",
+        "repo-rules",
+        "layer",
+        "trigger-table",
+        "router",
+        "eight",
+        "rule",
+        "files",
+        "mandatory",
+        "load",
+        "gate",
+        "per-section",
+        "pointers"
+      ],
+      "lastUpdated": "2026-08-31T16:07:07.066Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router",
+      "description": "`AGENTS.md` §3 tells every runtime to \"apply project-specific conventions from `REPO RULES.md` … when the repository has one\", and that file does not",
+      "keywords": [
+        "agents",
+        "tells",
+        "every",
+        "runtime",
+        "apply",
+        "project-specific",
+        "conventions",
+        "repo",
+        "rules",
+        "repository",
+        "one",
+        "file"
+      ],
+      "lastUpdated": "2026-08-31T11:37:28.957Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/001-header-format-and-dividers",
+      "description": "The seven governance files carry 50 numbered `##` section headers written in sentence case (`## 1",
+      "keywords": [
+        "seven",
+        "governance",
+        "files",
+        "carry",
+        "numbered",
+        "section",
+        "headers",
+        "written",
+        "sentence",
+        "case"
+      ],
+      "lastUpdated": "2026-08-31T11:33:46.011Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/002-delegation-orchestration-rule",
+      "description": "The six shipped rule files govern the AI working alone: what to build, what to touch, what counts as proof, what can break, how to diagnose, what to",
+      "keywords": [
+        "six",
+        "shipped",
+        "rule",
+        "files",
+        "govern",
+        "working",
+        "alone",
+        "touch",
+        "counts",
+        "proof",
+        "break",
+        "diagnose"
+      ],
+      "lastUpdated": "2026-08-31T11:33:46.014Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/003-disposition-and-gap-research",
+      "description": "Three things are unverified about the rule set",
+      "keywords": [
+        "three",
+        "things",
+        "unverified",
+        "about",
+        "rule",
+        "set"
+      ],
+      "lastUpdated": "2026-08-31T11:34:15.856Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/004-research-adoption",
+      "description": "Phase 3 returns a ranked list from a single executor family running five iterations",
+      "keywords": [
+        "phase",
+        "returns",
+        "ranked",
+        "list",
+        "single",
+        "executor",
+        "family",
+        "running",
+        "five",
+        "iterations"
+      ],
+      "lastUpdated": "2026-08-31T11:33:46.025Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/005-communication-rule-and-cross-references",
+      "description": "Two problems, one cause",
+      "keywords": [
+        "two",
+        "problems",
+        "one",
+        "cause"
+      ],
+      "lastUpdated": "2026-08-31T11:33:46.026Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/001-repo-rules-router/006-always-loaded-routing-compression",
+      "description": "Four sections of the always-loaded document were suspected of being routing content that had outgrown its value: the Gate 2 artifact trigger, the",
+      "keywords": [
+        "four",
+        "sections",
+        "always-loaded",
+        "document",
+        "suspected",
+        "routing",
+        "content",
+        "outgrown",
+        "value",
+        "gate",
+        "artifact",
+        "trigger"
+      ],
+      "lastUpdated": "2026-08-31T11:33:46.029Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/002-inventory-and-skill-contract",
+      "description": "The eight rule files agree on a shape, and no document states it",
+      "keywords": [
+        "eight",
+        "rule",
+        "files",
+        "agree",
+        "shape",
+        "document",
+        "states"
+      ],
+      "lastUpdated": "2026-08-31T12:35:24.922Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/003-skill-scaffold-and-template",
+      "description": "Phase 2 produced a contract nothing can execute",
+      "keywords": [
+        "phase",
+        "produced",
+        "contract",
+        "nothing",
+        "execute"
+      ],
+      "lastUpdated": "2026-08-31T12:49:28.823Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/004-creation-standards-and-guardrails",
+      "description": "Phase 3 generated a rule that passed all eleven structural assertions and is thin: two sections, one obligation, nothing a reader would change their",
+      "keywords": [
+        "phase",
+        "rule",
+        "passed",
+        "eleven",
+        "structural",
+        "assertions",
+        "thin",
+        "two",
+        "sections",
+        "one",
+        "obligation",
+        "nothing",
+        "reader",
+        "change"
+      ],
+      "lastUpdated": "2026-08-31T13:27:29.054Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/005-agents-md-integration",
+      "description": "A rule file that nothing points at is inert: the router's trigger table is the only thing that loads one, and the pointer from the governed",
+      "keywords": [
+        "rule",
+        "file",
+        "nothing",
+        "points",
+        "inert",
+        "router",
+        "trigger",
+        "table",
+        "only",
+        "thing",
+        "loads",
+        "one",
+        "pointer",
+        "governed"
+      ],
+      "lastUpdated": "2026-08-31T13:30:27.002Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/006-command-and-hub-wiring",
+      "description": "The packet is complete and unreachable",
+      "keywords": [
+        "packet",
+        "complete",
+        "unreachable"
+      ],
+      "lastUpdated": "2026-08-31T13:33:31.490Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/007-validation-and-changelog",
+      "description": "Six phases have produced a contract, a packet, two templates, a quality bar, a lifecycle contract and a registered command - and not one of them has",
+      "keywords": [
+        "six",
+        "phases",
+        "produced",
+        "contract",
+        "packet",
+        "two",
+        "templates",
+        "quality",
+        "bar",
+        "lifecycle",
+        "registered",
+        "command",
+        "one",
+        "them"
+      ],
+      "lastUpdated": "2026-08-31T13:40:08.091Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme",
+      "description": "The mode shipped without a manual testing playbook, so nothing recorded how an operator confirms it behaves correctly",
+      "keywords": [
+        "mode",
+        "shipped",
+        "without",
+        "manual",
+        "testing",
+        "playbook",
+        "nothing",
+        "recorded",
+        "operator",
+        "confirms",
+        "behaves",
+        "correctly"
+      ],
+      "lastUpdated": "2026-08-31T15:51:57.098Z"
+    },
+    {
+      "specFolder": "sk-doc/040-create-repo-rules/009-hub-routing-guardrails",
+      "description": "Wiring a nested mode into a parent hub had no single description of what \"done\" means",
+      "keywords": [
+        "wiring",
+        "nested",
+        "mode",
+        "parent",
+        "hub",
+        "single",
+        "description",
+        "done",
+        "means"
+      ],
+      "lastUpdated": "2026-08-31T18:37:39.048Z"
+    },
+    {
+      "specFolder": "sk-doc/041-quality-control-assessment",
+      "description": "Assess whether the sk-create-quality-control mode is routed to, used, duplicated elsewhere, and worth its size.",
+      "keywords": [
+        "assess",
+        "whether",
+        "sk-create-quality-control",
+        "mode",
+        "routed",
+        "duplicated",
+        "elsewhere",
+        "worth",
+        "size"
+      ],
+      "lastUpdated": "2026-08-31T20:00:38.541Z"
+    },
+    {
+      "specFolder": "sk-doc/042-sk-doc-shared-audit",
+      "description": "Audit sk-doc shared references and assets for integration, utilisation and usefulness",
+      "keywords": [
+        "audit",
+        "sk-doc",
+        "shared",
+        "references",
+        "assets",
+        "integration",
+        "utilisation",
+        "usefulness"
+      ],
+      "lastUpdated": "2026-08-31T19:49:30.518Z"
+    },
+    {
+      "specFolder": "sk-doc/043-repo-rules-router-audit",
+      "description": "repo-rules router and rule-set routing audit and optimisation",
+      "keywords": [
+        "repo-rules",
+        "router",
+        "rule-set",
+        "routing",
+        "audit",
+        "optimisation"
+      ],
+      "lastUpdated": "2026-08-31T19:47:34.972Z"
+    },
+    {
+      "specFolder": "sk-doc/044-router-alignment",
+      "description": "Wave A landed a fourteenth `sk-doc` mode and three audits, each of which recorded a",
+      "keywords": [
+        "wave",
+        "landed",
+        "fourteenth",
+        "sk-doc",
+        "mode",
+        "three",
+        "audits",
+        "recorded"
+      ],
+      "lastUpdated": "2026-08-31T20:36:51.288Z"
+    },
+    {
+      "specFolder": "sk-doc/045-communication-voice-routing",
+      "description": "`sk-communication` rewrites agent output into \"plain English\" and never says what that means",
+      "keywords": [
+        "sk-communication",
+        "rewrites",
+        "agent",
+        "output",
+        "plain",
+        "english",
+        "never",
+        "says",
+        "means"
+      ],
+      "lastUpdated": "2026-08-31T20:29:22.810Z"
+    },
+    {
+      "specFolder": "sk-doc/046-human-voice-standard-ownership",
+      "description": "The Human Voice Rules standard lives at `.opencode/skills/sk-doc/shared/references/hvr-rules.md`,",
+      "keywords": [
+        "human",
+        "voice",
+        "rules",
+        "standard",
+        "lives",
+        "opencode",
+        "skills",
+        "sk-doc",
+        "shared",
+        "references",
+        "hvr-rules"
+      ],
+      "lastUpdated": "2026-09-01T03:47:42.172Z"
     },
     {
       "specFolder": "sk-doc/z_archive/001-sk-doc-rename",
@@ -27774,7 +28225,7 @@
         "over-activation",
         "negatives"
       ],
-      "lastUpdated": "2026-08-15T14:41:02.918Z"
+      "lastUpdated": "2026-08-30T14:07:47.809Z"
     },
     {
       "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/010-live-anti-overfit-lane",
@@ -27923,7 +28374,7 @@
         "only",
         "half-wired"
       ],
-      "lastUpdated": "2026-08-15T14:41:02.930Z"
+      "lastUpdated": "2026-08-30T14:07:47.812Z"
     },
     {
       "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/018-routed-nothing-efficiency-na",
@@ -28216,7 +28667,7 @@
         "returned",
         "fail"
       ],
-      "lastUpdated": "2026-08-15T14:41:02.960Z"
+      "lastUpdated": "2026-08-30T14:07:47.815Z"
     },
     {
       "specFolder": "system-deep-loop/032-deep-alignment-mode/014-skill-doc-template-conformance",
@@ -28371,7 +28822,7 @@
         "code",
         "deterministic"
       ],
-      "lastUpdated": "2026-08-15T14:41:03.098Z"
+      "lastUpdated": "2026-08-30T14:07:47.818Z"
     },
     {
       "specFolder": "system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter",
@@ -28486,13 +28937,22 @@
     },
     {
       "specFolder": "system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic",
-      "description": "Prompt setup contract",
+      "description": "The command may proceed only after the operator explicitly chooses both a save destination and an inline or agent dispatch mode.",
       "keywords": [
-        "prompt",
-        "setup",
-        "contract"
+        "command",
+        "proceed",
+        "only",
+        "operator",
+        "explicitly",
+        "chooses",
+        "save",
+        "destination",
+        "inline",
+        "agent",
+        "dispatch",
+        "mode"
       ],
-      "lastUpdated": "2026-08-15T14:41:03.118Z"
+      "lastUpdated": "2026-08-30T14:07:47.819Z"
     },
     {
       "specFolder": "system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout",
@@ -28634,7 +29094,7 @@
         "prioritized",
         "cross-model"
       ],
-      "lastUpdated": "2026-08-15T14:41:03.164Z"
+      "lastUpdated": "2026-08-30T14:07:47.824Z"
     },
     {
       "specFolder": "system-deep-loop/035-command-surface-benchmark/013-command-canon-remediation",
@@ -32818,7 +33278,7 @@
         "deep-research",
         "deep-review"
       ],
-      "lastUpdated": "2026-08-27T19:20:26.514Z"
+      "lastUpdated": "2026-08-30T14:07:47.833Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
@@ -32832,7 +33292,7 @@
         "source",
         "registry"
       ],
-      "lastUpdated": "2026-08-27T19:20:26.515Z"
+      "lastUpdated": "2026-08-30T14:07:47.836Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review",
@@ -32981,7 +33441,7 @@
         "catch-22",
         "unconfirmed"
       ],
-      "lastUpdated": "2026-08-27T19:20:26.538Z"
+      "lastUpdated": "2026-08-30T14:07:47.842Z"
     },
     {
       "specFolder": "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
@@ -33180,6 +33640,44 @@
         "alone"
       ],
       "lastUpdated": "2026-08-15T14:41:04.637Z"
+    },
+    {
+      "specFolder": "system-deep-loop/038-codex-lineage-auth-isolation",
+      "description": "A per-lineage CODEX_HOME isolates the credential file along with the session state, so every codex fan-out lineage authenticates as nobody and burns",
+      "keywords": [
+        "per-lineage",
+        "isolates",
+        "credential",
+        "file",
+        "along",
+        "session",
+        "state",
+        "every",
+        "codex",
+        "fan-out",
+        "lineage",
+        "authenticates",
+        "nobody",
+        "burns"
+      ],
+      "lastUpdated": "2026-08-30T18:13:17.668Z"
+    },
+    {
+      "specFolder": "system-deep-loop/039-executor-availability-docs",
+      "description": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
+      "keywords": [
+        "every",
+        "deep",
+        "presentation",
+        "contract",
+        "documented",
+        "executor",
+        "field",
+        "native",
+        "cli-opencode",
+        "cli-claude-code"
+      ],
+      "lastUpdated": "2026-08-31T08:36:53.495Z"
     },
     {
       "specFolder": "system-deep-loop/z_archive/001-sk-recursive-agent-loop",
@@ -36895,7 +37393,7 @@
         "offline",
         "tuning"
       ],
-      "lastUpdated": "2026-08-15T14:41:06.933Z"
+      "lastUpdated": "2026-08-30T14:07:47.877Z"
     },
     {
       "specFolder": "system-deep-loop/z_archive/022-sk-deep-research-evolution/010-sk-deep-research-review-improvement-2/001-runtime-truth-foundation",
@@ -43363,91 +43861,105 @@
     },
     {
       "specFolder": "system-speckit/000-release",
-      "description": "000-release — v4.0.0.0 Release Notes & README Refresh (Planning Capture)",
+      "description": "Gather every change between the last public GitHub release (v3.6.0.0, 2026-06-18) and the",
       "keywords": [
-        "000-release",
-        "release",
-        "notes",
-        "readme",
-        "refresh",
-        "planning",
-        "capture"
+        "gather",
+        "every",
+        "change",
+        "between",
+        "last",
+        "public",
+        "github",
+        "release"
       ],
-      "lastUpdated": "2026-08-15T17:50:32.738Z"
+      "lastUpdated": "2026-08-30T14:07:47.885Z"
     },
     {
       "specFolder": "system-speckit/000-release/001-context-pack",
-      "description": "Phase 001 — Context Pack (deterministic, $0)",
+      "description": "Build the seed every downstream worker consumes — a deterministic, model-free extraction of the",
       "keywords": [
-        "phase",
-        "context",
-        "pack",
-        "deterministic"
+        "seed",
+        "every",
+        "downstream",
+        "worker",
+        "consumes",
+        "deterministic",
+        "model-free",
+        "extraction"
       ],
-      "lastUpdated": "2026-08-15T17:50:32.704Z"
+      "lastUpdated": "2026-08-30T14:07:47.878Z"
     },
     {
       "specFolder": "system-speckit/000-release/002-per-packet-extraction",
-      "description": "Phase 002 — Per-Packet Extraction (cheap/free, parallel)",
+      "description": "Turn each packet's own shipped-truth doc into a normalized, user-facing release fragment —",
       "keywords": [
-        "phase",
-        "per-packet",
-        "extraction",
-        "cheap",
-        "free",
-        "parallel"
+        "turn",
+        "packet",
+        "own",
+        "shipped-truth",
+        "doc",
+        "normalized",
+        "user-facing",
+        "release",
+        "fragment"
       ],
-      "lastUpdated": "2026-08-15T17:50:32.705Z"
+      "lastUpdated": "2026-08-30T14:07:47.878Z"
     },
     {
       "specFolder": "system-speckit/000-release/003-deep-research-synthesis",
-      "description": "Phase 003 — Deep-Research Synthesis (seeded depth layer)",
+      "description": "Cross-cutting synthesis the per-packet spine can't produce: the through-line of the skill-model",
       "keywords": [
-        "phase",
-        "deep-research",
+        "cross-cutting",
         "synthesis",
-        "seeded",
-        "depth",
-        "layer"
+        "per-packet",
+        "spine",
+        "produce",
+        "through-line",
+        "skill-model"
       ],
-      "lastUpdated": "2026-08-15T17:50:32.734Z"
+      "lastUpdated": "2026-08-30T14:07:47.881Z"
     },
     {
       "specFolder": "system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment",
-      "description": "Advisor State-Containment — Deep Research (Investigation)",
+      "description": "The advisor (and other runtime writers) leak nested .opencode / .advisor-state directories into specs/.",
       "keywords": [
         "advisor",
-        "state-containment",
-        "deep",
-        "research",
-        "investigation"
+        "runtime",
+        "writers",
+        "leak",
+        "nested",
+        "opencode",
+        "advisor-state",
+        "directories",
+        "specs"
       ],
-      "lastUpdated": "2026-08-15T17:50:32.709Z"
+      "lastUpdated": "2026-08-30T14:07:47.879Z"
     },
     {
       "specFolder": "system-speckit/000-release/004-release-notes-reduce",
-      "description": "Phase 004 — Reduce → Release Notes (Opus, this session)",
+      "description": "Assemble the shipped, public-facing release-notes-v4.0.0.0.md.",
       "keywords": [
-        "phase",
-        "reduce",
-        "release",
-        "notes",
-        "opus",
-        "session"
+        "assemble",
+        "shipped",
+        "public-facing",
+        "release-notes-v4"
       ],
-      "lastUpdated": "2026-08-15T17:50:32.736Z"
+      "lastUpdated": "2026-08-30T14:07:47.881Z"
     },
     {
       "specFolder": "system-speckit/000-release/005-readme-update",
-      "description": "Phase 005 — Root README Update (Opus, surgical)",
+      "description": "Refresh the public root README.md to the v4 state — targeted edits, no regeneration.",
       "keywords": [
-        "phase",
+        "refresh",
+        "public",
         "root",
         "readme",
-        "opus",
-        "surgical"
+        "state",
+        "targeted",
+        "edits",
+        "regeneration"
       ],
-      "lastUpdated": "2026-08-15T17:50:32.736Z"
+      "lastUpdated": "2026-08-30T14:07:47.882Z"
     },
     {
       "specFolder": "system-speckit/000-rust-backend-rewrite-research",
@@ -43621,7 +44133,7 @@
         "hook",
         "delivery"
       ],
-      "lastUpdated": "2026-08-15T14:41:08.509Z"
+      "lastUpdated": "2026-08-30T14:07:47.888Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/005-mcp-tool-schema-governance-audit",
@@ -44090,7 +44602,7 @@
         "misalign-high",
         "misalign-medium"
       ],
-      "lastUpdated": "2026-08-15T14:41:08.606Z"
+      "lastUpdated": "2026-08-30T14:07:47.892Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation",
@@ -44367,7 +44879,7 @@
         "skilladvisor",
         "codegraph"
       ],
-      "lastUpdated": "2026-08-15T14:41:08.678Z"
+      "lastUpdated": "2026-08-30T14:07:47.896Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract",
@@ -44824,7 +45336,7 @@
         "holds",
         "independent"
       ],
-      "lastUpdated": "2026-08-15T14:41:08.785Z"
+      "lastUpdated": "2026-08-30T14:07:47.901Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/002-stress-test-pattern-documentation",
@@ -45104,7 +45616,7 @@
         "cli-copilot",
         "mutated"
       ],
-      "lastUpdated": "2026-08-15T14:41:09.603Z"
+      "lastUpdated": "2026-08-19T07:29:24.483Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/015-cocoindex-seed-telemetry-passthrough",
@@ -45381,7 +45893,7 @@
         "honestly",
         "narrowly"
       ],
-      "lastUpdated": "2026-08-15T14:41:09.646Z"
+      "lastUpdated": "2026-08-30T14:07:47.905Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion",
@@ -45530,7 +46042,7 @@
         "aspirational",
         "stopped"
       ],
-      "lastUpdated": "2026-08-15T14:41:09.681Z"
+      "lastUpdated": "2026-08-30T14:07:47.909Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/003-system-bug-improvement-research",
@@ -45788,7 +46300,7 @@
         "accuracy",
         "re-audit"
       ],
-      "lastUpdated": "2026-08-15T14:41:09.740Z"
+      "lastUpdated": "2026-08-30T14:07:47.914Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
@@ -45984,7 +46496,7 @@
         "heavily",
         "modified"
       ],
-      "lastUpdated": "2026-08-15T14:41:09.867Z"
+      "lastUpdated": "2026-08-30T08:03:54.619Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
@@ -46125,7 +46637,7 @@
         "distinct",
         "findings"
       ],
-      "lastUpdated": "2026-08-15T14:41:10.049Z"
+      "lastUpdated": "2026-08-30T08:03:54.784Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
@@ -46760,7 +47272,7 @@
         "pain",
         "point"
       ],
-      "lastUpdated": "2026-08-15T14:41:10.231Z"
+      "lastUpdated": "2026-08-30T14:07:47.925Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/008-archive-fleet-marker-validation-scaffold",
@@ -47029,7 +47541,7 @@
         "migrations",
         "completed"
       ],
-      "lastUpdated": "2026-08-15T14:41:10.310Z"
+      "lastUpdated": "2026-08-30T14:07:47.929Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/008-sk-deep-cli-runtime-execution",
@@ -47139,7 +47651,7 @@
         "release-blocking",
         "p1s"
       ],
-      "lastUpdated": "2026-08-15T14:41:10.342Z"
+      "lastUpdated": "2026-08-30T14:07:47.935Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture",
@@ -47592,7 +48104,7 @@
         "hasadvisories",
         "true"
       ],
-      "lastUpdated": "2026-08-15T14:41:10.500Z"
+      "lastUpdated": "2026-08-30T14:07:47.939Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review",
@@ -48302,7 +48814,7 @@
         "auto-selection",
         "bootstrap"
       ],
-      "lastUpdated": "2026-08-15T14:41:10.611Z"
+      "lastUpdated": "2026-08-30T08:03:55.478Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry",
@@ -49969,7 +50481,7 @@
         "actually",
         "want"
       ],
-      "lastUpdated": "2026-08-15T14:41:10.973Z"
+      "lastUpdated": "2026-08-30T08:07:25.514Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill",
@@ -50127,7 +50639,7 @@
         "tried",
         "allocate"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.006Z"
+      "lastUpdated": "2026-08-30T14:07:47.951Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune",
@@ -50690,7 +51202,7 @@
         "written",
         "race-observed"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.177Z"
+      "lastUpdated": "2026-08-30T14:07:47.955Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep",
@@ -50829,7 +51341,7 @@
         "approved",
         "controls"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.192Z"
+      "lastUpdated": "2026-08-30T14:07:47.960Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes",
@@ -51820,7 +52332,7 @@
         "typed",
         "edges"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.364Z"
+      "lastUpdated": "2026-08-30T14:07:47.965Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/024-launcher-lease-integration-test",
@@ -51893,7 +52405,7 @@
         "defects",
         "appear"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.373Z"
+      "lastUpdated": "2026-08-30T14:07:47.994Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
@@ -51962,7 +52474,7 @@
         "sandbox-blocked",
         "verification"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.381Z"
+      "lastUpdated": "2026-08-30T14:07:47.998Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-research-review",
@@ -52222,7 +52734,7 @@
         "pain",
         "point"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.464Z"
+      "lastUpdated": "2026-08-30T14:07:48.018Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/003-advisor-adjacent-116-realignment",
@@ -52806,7 +53318,7 @@
         "single-writer",
         "lease"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.533Z"
+      "lastUpdated": "2026-08-30T14:07:48.028Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard",
@@ -53144,7 +53656,7 @@
         "harder",
         "browse"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.757Z"
+      "lastUpdated": "2026-08-30T14:07:48.052Z"
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/z_archive/wave-2-merges/007-016-scaffold-skill",
@@ -54183,7 +54695,7 @@
         "contains",
         "teachings"
       ],
-      "lastUpdated": "2026-08-15T14:41:11.918Z"
+      "lastUpdated": "2026-08-30T08:34:17.443Z"
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates",
@@ -56420,14 +56932,15 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test",
-      "description": "Sandbox Mutation Test Doc",
+      "description": "title: \"Sandbox Mutation Test Doc\"",
       "keywords": [
+        "title",
         "sandbox",
         "mutation",
         "test",
         "doc"
       ],
-      "lastUpdated": "2026-08-15T14:41:12.539Z"
+      "lastUpdated": "2026-08-30T14:07:48.058Z"
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
@@ -56561,7 +57074,7 @@
         "task",
         "registry"
       ],
-      "lastUpdated": "2026-08-15T14:41:12.645Z"
+      "lastUpdated": "2026-08-30T14:07:48.064Z"
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
@@ -60452,7 +60965,7 @@
         "historic",
         "context"
       ],
-      "lastUpdated": "2026-08-30T05:16:40.330Z"
+      "lastUpdated": "2026-08-30T14:12:30.160Z"
     },
     {
       "specFolder": "system-speckit/036-spec-doc-template-reduction/001-analysis",
@@ -60626,18 +61139,61 @@
     },
     {
       "specFolder": "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
-      "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+      "description": "The merge that unified tasks and checklist recorded `Delete/retire` against `templates/addons/checklist.md.tmpl` and then kept it, along with its",
       "keywords": [
-        "broken",
-        "missing",
-        "inefficient",
-        "sentences",
-        "describing",
-        "specific",
-        "pain",
-        "point"
+        "merge",
+        "unified",
+        "tasks",
+        "checklist",
+        "recorded",
+        "delete",
+        "retire",
+        "against",
+        "templates",
+        "addons",
+        "tmpl",
+        "kept",
+        "along"
       ],
-      "lastUpdated": "2026-08-30T05:16:40.516Z"
+      "lastUpdated": "2026-08-30T08:55:22.095Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/011-checklist-reference-cleanup",
+      "description": "Finish the retirement: remove what pointed at the deleted document",
+      "keywords": [
+        "finish",
+        "retirement",
+        "remove",
+        "pointed",
+        "deleted",
+        "document"
+      ],
+      "lastUpdated": "2026-08-30T14:07:48.067Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+      "description": "The marker skips comparison on an absent value, and the field is optional, so almost nothing is",
+      "keywords": [
+        "marker",
+        "skips",
+        "comparison",
+        "absent",
+        "value",
+        "field",
+        "optional",
+        "almost",
+        "nothing"
+      ],
+      "lastUpdated": "2026-08-30T15:48:21.264Z"
+    },
+    {
+      "specFolder": "system-speckit/036-spec-doc-template-reduction/013-retirement-read-path-closure",
+      "description": "Phase 2: retirement-read-path-closure",
+      "keywords": [
+        "phase",
+        "retirement-read-path-closure"
+      ],
+      "lastUpdated": "2026-08-30T13:58:22.398Z"
     },
     {
       "specFolder": "system-speckit/037-decisions-memory-redesign",
@@ -60846,7 +61402,7 @@
         "live",
         "corpus"
       ],
-      "lastUpdated": "2026-08-29T19:49:09.224Z"
+      "lastUpdated": "2026-08-30T14:07:48.093Z"
     },
     {
       "specFolder": "system-speckit/041-validation-reduction/001-warnings-stop-blocking",
@@ -60929,6 +61485,47 @@
       "lastUpdated": "2026-08-29T19:49:09.222Z"
     },
     {
+      "specFolder": "system-speckit/041-validation-reduction/006-delete-taste-rules",
+      "description": "Remove the rules that no code path and no downstream workflow reads, so that",
+      "keywords": [
+        "remove",
+        "rules",
+        "code",
+        "path",
+        "downstream",
+        "workflow",
+        "reads"
+      ],
+      "lastUpdated": "2026-08-30T14:07:48.069Z"
+    },
+    {
+      "specFolder": "system-speckit/041-validation-reduction/009-retire-the-sweep",
+      "description": "Make the gate block the thing it can fairly block: the packets a change",
+      "keywords": [
+        "gate",
+        "block",
+        "thing",
+        "fairly",
+        "packets",
+        "change"
+      ],
+      "lastUpdated": "2026-08-30T14:07:48.070Z"
+    },
+    {
+      "specFolder": "system-speckit/041-validation-reduction/010-a-level-for-research",
+      "description": "Give a research record a level it can meet, and make the rules agree with the",
+      "keywords": [
+        "give",
+        "research",
+        "record",
+        "level",
+        "meet",
+        "rules",
+        "agree"
+      ],
+      "lastUpdated": "2026-08-30T14:07:48.082Z"
+    },
+    {
       "specFolder": "system-speckit/042-nested-goal-template-addon",
       "description": "An operator sets one session objective, and whatever they set is frozen at that moment",
       "keywords": [
@@ -60998,6 +61595,205 @@
         "string"
       ],
       "lastUpdated": "2026-08-30T04:17:56.141Z"
+    },
+    {
+      "specFolder": "system-speckit/043-workspace-path-containment",
+      "description": "`writeGraphMetadataFile` canonicalizes its destination, then asks a classifier whether the result may hold graph metadata",
+      "keywords": [
+        "writegraphmetadatafile",
+        "canonicalizes",
+        "destination",
+        "asks",
+        "classifier",
+        "whether",
+        "result",
+        "hold",
+        "graph",
+        "metadata"
+      ],
+      "lastUpdated": "2026-08-30T08:11:15.744Z"
+    },
+    {
+      "specFolder": "system-speckit/044-repair-write-symlink-refusal",
+      "description": "The repair script decides whether a candidate is a regular file while walking the tree, using the directory entry — which reports on the link itself,",
+      "keywords": [
+        "repair",
+        "script",
+        "decides",
+        "whether",
+        "candidate",
+        "regular",
+        "file",
+        "while",
+        "walking",
+        "tree",
+        "directory",
+        "entry",
+        "reports",
+        "link",
+        "itself"
+      ],
+      "lastUpdated": "2026-08-30T08:34:32.819Z"
+    },
+    {
+      "specFolder": "system-speckit/045-daemon-and-test-harness-hardening",
+      "description": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding",
+      "keywords": [
+        "live",
+        "process",
+        "sweep",
+        "found",
+        "leaked",
+        "processes",
+        "attributable",
+        "repository",
+        "system",
+        "skills",
+        "three",
+        "wedged",
+        "vitest",
+        "trees",
+        "holding"
+      ],
+      "lastUpdated": "2026-08-31T04:30:48.794Z"
+    },
+    {
+      "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
+      "description": "`mcp-server/vitest.config.ts` loads `tests/support/vitest-setup.ts`, whose `isolateProductionDatabase()` exists to stop a test opening the live memory",
+      "keywords": [
+        "mcp-server",
+        "vitest",
+        "config",
+        "loads",
+        "tests",
+        "support",
+        "vitest-setup",
+        "whose",
+        "isolateproductiondatabase",
+        "exists",
+        "stop",
+        "test",
+        "opening",
+        "live",
+        "memory"
+      ],
+      "lastUpdated": "2026-08-30T18:30:25.394Z"
+    },
+    {
+      "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
+      "description": "An orphaned `system-spec-memory-launcher.cjs` survived at `ppid 1` for 2 days 14 hours with dangling stdio pipes and no child server",
+      "keywords": [
+        "orphaned",
+        "system-spec-memory-launcher",
+        "cjs",
+        "survived",
+        "ppid",
+        "days",
+        "hours",
+        "dangling",
+        "stdio",
+        "pipes",
+        "child",
+        "server"
+      ],
+      "lastUpdated": "2026-08-30T18:31:32.912Z"
+    },
+    {
+      "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment",
+      "description": "On 2026-08-30 three vitest trees were killed after 2h35m, 3h41m and 4h12m, each holding roughly 96% of a core",
+      "keywords": [
+        "three",
+        "vitest",
+        "trees",
+        "killed",
+        "2h35m",
+        "3h41m",
+        "4h12m",
+        "holding",
+        "roughly",
+        "core"
+      ],
+      "lastUpdated": "2026-08-30T18:56:28.482Z"
+    },
+    {
+      "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene",
+      "description": "`git-live-follow.sh` emits its divergence warning as two unconditional `echo` statements inside the poll loop, which runs every 5 seconds by default",
+      "keywords": [
+        "git-live-follow",
+        "emits",
+        "divergence",
+        "warning",
+        "two",
+        "unconditional",
+        "echo",
+        "statements",
+        "inside",
+        "poll",
+        "loop",
+        "runs",
+        "every",
+        "seconds",
+        "default"
+      ],
+      "lastUpdated": "2026-08-30T18:56:28.483Z"
+    },
+    {
+      "specFolder": "system-speckit/046-path-containment-followups",
+      "description": "Two packets closed on the same idea — prove membership rather than match a shape — and each left a",
+      "keywords": [
+        "two",
+        "packets",
+        "closed",
+        "same",
+        "idea",
+        "prove",
+        "membership",
+        "rather",
+        "match",
+        "shape",
+        "left"
+      ],
+      "lastUpdated": "2026-08-30T15:16:38.016Z"
+    },
+    {
+      "specFolder": "system-speckit/047-review-remediation",
+      "description": "A four-iteration deep review of the daemon-hardening packet, run across three independent models, closed at CONDITIONAL with three P1 findings that",
+      "keywords": [
+        "four-iteration",
+        "deep",
+        "review",
+        "daemon-hardening",
+        "packet",
+        "run",
+        "across",
+        "three",
+        "independent",
+        "models",
+        "closed",
+        "conditional",
+        "findings"
+      ],
+      "lastUpdated": "2026-08-31T05:35:07.767Z"
+    },
+    {
+      "specFolder": "system-speckit/048-decommissioned-server-residue",
+      "description": "Commit `7673da6bc24` decommissioned the Sequential Thinking MCP server: it deleted the install guide, deleted the installer script, and unregistered",
+      "keywords": [
+        "commit",
+        "7673da6bc24",
+        "decommissioned",
+        "sequential",
+        "thinking",
+        "mcp",
+        "server",
+        "deleted",
+        "install",
+        "guide",
+        "installer",
+        "script",
+        "unregistered"
+      ],
+      "lastUpdated": "2026-08-31T13:40:52.893Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch",
@@ -61275,7 +62071,7 @@
         "skill",
         "commands"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.764Z"
+      "lastUpdated": "2026-08-30T14:07:48.096Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules",
@@ -61311,7 +62107,7 @@
         "pass",
         "silently"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.768Z"
+      "lastUpdated": "2026-08-30T14:07:48.098Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/002-modular-architecture",
@@ -61885,7 +62681,7 @@
         "issues",
         "medium"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.849Z"
+      "lastUpdated": "2026-08-30T14:07:48.106Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/050-security-doc-remediation",
@@ -61984,7 +62780,7 @@
         "opencode",
         "hook-less"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.857Z"
+      "lastUpdated": "2026-08-30T14:07:48.128Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/056-spec-kit-references-reorganization",
@@ -62772,7 +63568,7 @@
         "numbers",
         "cross-references"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.993Z"
+      "lastUpdated": "2026-08-30T14:07:48.137Z"
     },
     {
       "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/002-skill-speckit-alignment",
@@ -62792,7 +63588,7 @@
         "cross-references",
         "reflect"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.995Z"
+      "lastUpdated": "2026-08-30T14:07:48.138Z"
     },
     {
       "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/003-command-alignment",
@@ -62813,7 +63609,7 @@
         "capabilities",
         "specs"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.996Z"
+      "lastUpdated": "2026-08-30T14:07:48.139Z"
     },
     {
       "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/004-agent-alignment",
@@ -62836,7 +63632,7 @@
         "spec",
         "review"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.997Z"
+      "lastUpdated": "2026-08-30T14:07:48.141Z"
     },
     {
       "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/005-changelog-updates",
@@ -62855,7 +63651,7 @@
         "alignment",
         "work"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.998Z"
+      "lastUpdated": "2026-08-30T14:07:48.141Z"
     },
     {
       "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/006-global-readme-update",
@@ -62874,7 +63670,7 @@
         "references",
         "reflect"
       ],
-      "lastUpdated": "2026-08-15T14:41:14.999Z"
+      "lastUpdated": "2026-08-30T14:07:48.142Z"
     },
     {
       "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/007-github-release",
@@ -62889,7 +63685,7 @@
         "publicrelease",
         "conventions"
       ],
-      "lastUpdated": "2026-08-15T14:41:15.000Z"
+      "lastUpdated": "2026-08-30T14:07:48.143Z"
     },
     {
       "specFolder": "system-speckit/z_archive/014-memory-index-txt-support",
@@ -63457,7 +64253,7 @@
         "graph",
         "probe"
       ],
-      "lastUpdated": "2026-08-15T14:41:15.077Z"
+      "lastUpdated": "2026-08-30T14:07:48.148Z"
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/003-graph-augmented-retrieval",
@@ -65245,7 +66041,7 @@
         "remediation",
         "lanes"
       ],
-      "lastUpdated": "2026-08-15T14:41:15.459Z"
+      "lastUpdated": "2026-08-30T14:07:48.159Z"
     },
     {
       "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/021-ground-truth-id-remapping",

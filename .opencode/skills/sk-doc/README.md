@@ -196,7 +196,7 @@ The skill ships the checks that prove a document is ready.
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the mode rules |
 | [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: authoring intent to the exact leaf resources the selected mode loads |
 | [`references/quick-reference.md`](shared/references/quick-reference.md) | One-page command and gate cheat sheet |
-| [`references/hvr-rules.md`](shared/references/hvr-rules.md) | Human Voice Rules, the writing standard all output must pass |
+| [`sk-create-with-human-voice/references/hvr-rules.md`](sk-create-with-human-voice/references/hvr-rules.md) | Human Voice Rules, the writing standard all output must pass |
 | [`references/validation.md`](shared/references/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |
 | [`references/core-standards.md`](shared/references/core-standards.md) | Filename conventions, heading rules and document-type requirements |
 | [`sk-create-with-human-voice/SKILL.md`](sk-create-with-human-voice/SKILL.md) | Applying the Human Voice Rules to prose: scope gate, mechanical pass, judgment pass, re-scan |

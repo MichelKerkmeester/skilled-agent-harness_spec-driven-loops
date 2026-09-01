@@ -8,8 +8,8 @@ trigger_phrases:
   - "quoted text voice rewrite"
   - "generated file voice edit"
 importance_tier: important
-contextType: reference
-version: 1.0.0.0
+contextType: implementation
+version: 1.1.0.1
 ---
 
 # Voice Scope: What HVR Governs And What It Never Touches
@@ -22,7 +22,27 @@ not for the tooling around it. Drawing it is this mode's job.
 
 ---
 
-## 1. THE ONE QUESTION
+## 1. OVERVIEW
+
+### Purpose
+
+The Human Voice Rules govern prose an author chose. This gate decides which spans of a
+target are that, and which are text the document is only carrying, so a voice pass never
+edits what it has no authority over.
+
+### When to Use
+
+Run it before the first finding on every path, `apply` and `score` alike. Deciding what
+may be touched comes before deciding what to change, and before quoting any number.
+
+### Core Principle
+
+An exemption you did not record reads as an oversight, so the pass names every span it
+declined rather than silently skipping it.
+
+---
+
+## 2. THE ONE QUESTION
 
 **Did this document's author choose these words, and are they free to choose different
 ones?**
@@ -34,7 +54,7 @@ cases where getting it wrong is expensive enough to name.
 
 ---
 
-## 2. NEVER IN SCOPE
+## 3. NEVER IN SCOPE
 
 ### Text You Are Carrying, Not Writing
 
@@ -74,7 +94,7 @@ target is not a document about the standard before you trust a score.
 
 ---
 
-## 3. IN SCOPE, WITH A CAVEAT
+## 4. IN SCOPE, WITH A CAVEAT
 
 Documentation prose is the mode's home ground: READMEs, install guides, skill contracts,
 reference bodies, implementation summaries, decision rationale, replies to a user.
@@ -94,7 +114,7 @@ that mattered.
 
 ---
 
-## 4. THE LENGTH CAVEAT
+## 5. THE LENGTH CAVEAT
 
 The standard scores "a piece" starting at 100. That framing assumes an article, not a
 900-line reference. Long documents accumulate soft deductions by length alone and fall
@@ -106,7 +126,7 @@ used. An absolute score on a long document is a number nobody can act on.
 
 ---
 
-## 5. WHAT TO DO WITH AN EXEMPT SPAN
+## 6. WHAT TO DO WITH AN EXEMPT SPAN
 
 Leave it exactly as it is and say so. An exemption you did not record reads as an
 oversight, and the next pass re-flags it.
@@ -117,8 +137,8 @@ time someone runs the scanner.
 
 ---
 
-## 6. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 - [`../SKILL.md`](../SKILL.md) - the workflow this gate opens.
 - [`scoring-and-verification.md`](scoring-and-verification.md) - the arithmetic, and the re-check after a rewrite.
-- [`../../shared/references/hvr-rules.md`](../../shared/references/hvr-rules.md) - the standard itself. This mode never restates it.
+- [`hvr-rules.md`](hvr-rules.md) - the standard itself. This mode never restates it.

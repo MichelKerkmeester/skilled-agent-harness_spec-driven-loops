@@ -47,7 +47,7 @@ Load the file that matches the current task:
 ### Shared Backbone
 - [core-standards.md](../../shared/references/core-standards.md) - Document type detection and structural standards
 - [validation.md](../../shared/references/validation.md) - DQI bands and validation severity
-- [hvr-rules.md](../../shared/references/hvr-rules.md) - Human Voice Rules for natural documentation style
+- [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules for natural documentation style
 - [quick-reference.md](../../shared/references/quick-reference.md) - Command and quality-gate cheat sheet
 
 ### Scripts

@@ -480,5 +480,5 @@ The core workflow lives in this `SKILL.md`. Use these files only for deep overfl
 - `references/readme/` for extended README type, voice, writing-pattern and quality detail across three single-concern files.
 - `references/install-guide/` for extended install-guide section examples, platform config and quality standards across two single-concern files.
 - `../shared/references/core-standards.md` for shared document formatting rules.
-- `../shared/references/hvr-rules.md` for the full Human Voice Rules.
+- `../sk-create-with-human-voice/references/hvr-rules.md` for the full Human Voice Rules.
 - `../shared/references/evergreen-packet-id-rule.md` for current-state documentation rules.

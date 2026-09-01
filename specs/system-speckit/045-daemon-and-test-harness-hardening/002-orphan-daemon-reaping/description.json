@@ -1,18 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "An orphaned `system-spec-memory-launcher.cjs` survived at `ppid 1` for 2 days 14 hours with dangling stdio pipes and no child server",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "orphaned",
+    "system-spec-memory-launcher",
+    "cjs",
+    "survived",
+    "ppid",
+    "days",
+    "hours",
+    "dangling",
+    "stdio",
+    "pipes",
+    "child",
+    "server"
   ],
-  "lastUpdated": "2026-08-30T09:56:12.152Z",
+  "lastUpdated": "2026-08-30T18:31:32.912Z",
   "specId": "002",
   "folderSlug": "orphan-daemon-reaping",
   "parentChain": [
