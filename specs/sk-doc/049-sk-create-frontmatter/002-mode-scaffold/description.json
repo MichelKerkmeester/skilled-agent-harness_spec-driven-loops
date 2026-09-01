@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/049-sk-create-frontmatter/002-mode-scaffold",
+  "description": "Phase 2: mode-scaffold",
+  "keywords": [
+    "phase",
+    "mode-scaffold"
+  ],
+  "lastUpdated": "2026-09-01T08:42:57.868Z",
+  "specId": "002",
+  "folderSlug": "mode-scaffold",
+  "parentChain": [
+    "sk-doc",
+    "049-sk-create-frontmatter"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

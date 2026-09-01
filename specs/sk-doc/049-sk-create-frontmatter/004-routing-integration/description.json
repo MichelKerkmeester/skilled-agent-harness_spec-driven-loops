@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/049-sk-create-frontmatter/004-routing-integration",
+  "description": "Phase 4: routing-integration",
+  "keywords": [
+    "phase",
+    "routing-integration"
+  ],
+  "lastUpdated": "2026-09-01T08:42:59.969Z",
+  "specId": "004",
+  "folderSlug": "routing-integration",
+  "parentChain": [
+    "sk-doc",
+    "049-sk-create-frontmatter"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

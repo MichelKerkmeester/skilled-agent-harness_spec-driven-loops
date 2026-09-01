@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
+  "description": "Phase 6: verification-and-closeout",
+  "keywords": [
+    "phase",
+    "verification-and-closeout"
+  ],
+  "lastUpdated": "2026-09-01T08:43:02.072Z",
+  "specId": "006",
+  "folderSlug": "verification-and-closeout",
+  "parentChain": [
+    "sk-doc",
+    "049-sk-create-frontmatter"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

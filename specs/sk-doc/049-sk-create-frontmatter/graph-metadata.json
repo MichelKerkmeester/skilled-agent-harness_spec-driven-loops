@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/049-sk-create-frontmatter",
+  "spec_folder": "sk-doc/049-sk-create-frontmatter",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/049-sk-create-frontmatter/001-inventory-and-contract",
+    "sk-doc/049-sk-create-frontmatter/002-mode-scaffold",
+    "sk-doc/049-sk-create-frontmatter/003-content-migration",
+    "sk-doc/049-sk-create-frontmatter/004-routing-integration",
+    "sk-doc/049-sk-create-frontmatter/005-command-and-playbook",
+    "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-frontmatter mode",
+      "frontmatter contract ownership",
+      "frontmatter templates owning mode",
+      "frontmatter versioning mode"
+    ],
+    "key_topics": [
+      "sk-create-frontmatter",
+      "mode",
+      "frontmatter",
+      "contract",
+      "ownership",
+      "templates",
+      "owning",
+      "versioning",
+      "six",
+      "modes",
+      "emit",
+      "feature"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      ".opencode/skills/sk-doc/shared/assets/frontmatter-templates.md",
+      ".opencode/skills/sk-doc/shared/references/frontmatter-versioning.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/assets/frontmatter-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-versioning.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Six",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Frontmatter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six modes emit frontmatter",
+    "created_at": "2026-09-01T08:42:55Z",
+    "last_save_at": "2026-09-01T08:46:15.249Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:fb0d8f309ef5dec1b62baa3697eba9c5a78d9f6f0035b565db69531ef591b87c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1570e24e592097358d74b3f4843d62c66257c79ab8055cd042df996597043bd9"
+    },
+    "last_active_child_id": "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
+    "last_active_at": null
+  }
+}
