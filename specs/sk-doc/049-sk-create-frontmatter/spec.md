@@ -99,6 +99,9 @@ Frontmatter has an owner, and every producer cites that owner rather than a shar
 
 - Changing what the frontmatter contract says. This decomposition moves ownership, not rules.
   A change to the rules while they are moving would make both impossible to review.
+- The eight other sk-doc modes that carry no manual testing playbook. Three of thirteen have
+  one, which is a real gap and its own piece of work. Only the voice mode is picked up here,
+  and only because the authoring setup is already paid for by phase 005.
 - The other shared-tier files. Each was measured and found to be a convention with many
   producers and no owner, which is the case for staying shared. Frontmatter is different only
   because it is large enough and central enough to deserve a mode of its own.
@@ -131,7 +134,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 4 | 004-routing-integration/ | Registry, hub vocabulary, router intents, leaf manifest, advisor identity, canary coverage | Pending |
 | 5 | 005-command-and-playbook/ | The command surface, its workflow assets, and the mode's manual testing playbook | Pending |
 | 6 | 006-verification-and-closeout/ | Whole-fleet gates from the final state, and the packet's own closure | Pending |
+| 7 | 007-human-voice-playbook/ | The sibling voice mode has no playbook either, and the setup for authoring one is paid in phase 005 | Pending |
 
+| 7 | 007-human-voice-playbook/ | [Phase 7 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -148,6 +153,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 003-content-migration | 004-routing-integration | The spec lives in the mode, every consumer resolves, and no alias was added to make it work | A repo scan finds no surviving reference to the old path outside frozen history |
 | 004-routing-integration | 005-command-and-playbook | The mode is reachable in both routing stages, not merely registered | The advisor selects the hub, the hub router selects the mode, and the canary covers it with a single-route case |
 | 005-command-and-playbook | 006-verification-and-closeout | The playbook package validates and its scenarios load | The playbook package validator passes and the loader reports the authored scenario count |
+| 006-verification-and-closeout | 007-human-voice-playbook | The fleet is green, so a second playbook is authored against a settled tree | Every gate in the phase 006 sweep passes |
+| 006-verification-and-closeout | 007-human-voice-playbook | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

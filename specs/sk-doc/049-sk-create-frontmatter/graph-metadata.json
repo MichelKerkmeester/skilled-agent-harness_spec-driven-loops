@@ -9,7 +9,8 @@
     "sk-doc/049-sk-create-frontmatter/003-content-migration",
     "sk-doc/049-sk-create-frontmatter/004-routing-integration",
     "sk-doc/049-sk-create-frontmatter/005-command-and-playbook",
-    "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout"
+    "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
+    "sk-doc/049-sk-create-frontmatter/007-human-voice-playbook"
   ],
   "manual": {
     "depends_on": [],
@@ -102,16 +103,16 @@
     ],
     "causal_summary": "Six modes emit frontmatter",
     "created_at": "2026-09-01T08:42:55Z",
-    "last_save_at": "2026-09-01T08:46:15.249Z",
+    "last_save_at": "2026-09-01T10:25:06.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:fb0d8f309ef5dec1b62baa3697eba9c5a78d9f6f0035b565db69531ef591b87c",
+    "source_fingerprint": "sha256:eb82dce8e7ae9834c5c616b0706a14406901d6b6785c450f6e859ad2447f7629",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1570e24e592097358d74b3f4843d62c66257c79ab8055cd042df996597043bd9"
+      "spec.md": "ba76e6ce7c0803118e72781ae1c67e06f2225b8e5dd71099f4c61c0a56e84fab"
     },
     "last_active_child_id": "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
     "last_active_at": null
