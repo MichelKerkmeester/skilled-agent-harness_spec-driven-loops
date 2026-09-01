@@ -10,7 +10,6 @@ expected_resources:
   - references/data-layer.md
   - references/db-class-naming.md
   - references/stylesheet-ownership.md
-  - references/workflow-implement.md
 version: 1.0.0.0
 ---
 

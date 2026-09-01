@@ -563,7 +563,11 @@ describe('skill-advisor launcher orphan reaping fixtures', () => {
     const ownerPid = readLeasePid(workspace);
     expect(ownerPid).toEqual(expect.any(Number));
 
-    rmSync(workspace.root, { recursive: true, force: true });
+    // The launcher is deliberately still running and still writing its lease and
+    // runtime files under this root — that is the condition under test — so a
+    // single-pass recursive delete races it and dies on ENOTEMPTY whenever the
+    // launcher recreates an entry mid-walk. Retry until the removal wins.
+    rmSync(workspace.root, { recursive: true, force: true, maxRetries: 40, retryDelay: 25 });
     await terminatePidTree(ownerPid);
     await waitForExit(run.child, 5000).catch(() => undefined);
 

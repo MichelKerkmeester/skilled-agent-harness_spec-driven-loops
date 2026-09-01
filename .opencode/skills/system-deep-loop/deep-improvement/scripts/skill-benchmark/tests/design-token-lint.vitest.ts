@@ -36,30 +36,32 @@ function findingCodes(result: any): string[] {
   return result.findings.map((finding: any) => finding.code);
 }
 
-function expectDesignRoute(publicFixture: any, privateFixture: any): void {
+// sk-design was rebuilt as a standalone skill: it no longer projects a hub
+// router, so no prompt can route to a workflow mode there any more. The design
+// dispatch fixtures were minted against that retired hub, which makes them
+// frozen evidence rather than a live route expectation — the token lint below is
+// what still binds. This helper pins the retirement itself, so a sk-design that
+// silently regains hub routing fails here and forces the fixtures to be revisited.
+function expectNoHubRoute(publicFixture: any): void {
   const route = routeSkillResources({ skillRoot: SKDESIGN, taskText: publicFixture.public.prompt });
   expect(route.parseable).toBe(true);
-  expect(route.intents).toContain(privateFixture.expected.workflowMode);
-  // The hub reference-follows into the interface mode's own router and projects
-  // its leaf resources, so the routed set carries interface-mode leaves rather
-  // than the bare mode-pointer SKILL.md.
-  expect(route.resources.some((r: any) => r.startsWith('design-interface/'))).toBe(true);
-  expect(route.routeTelemetry.workflowMode).toContain(privateFixture.expected.workflowMode);
+  expect(route.intents).toEqual([]);
+  expect(route.routeTelemetry).toMatchObject({ observed: false, reason: 'no-hub-router' });
 }
 
 describe('design proof token lint — dispatch fixtures', () => {
-  it('accepts the faithful token and routes the prompt to sk-design', () => {
-    const { publicFixture, privateFixture } = loadPair('sk-design-dispatch', 'sk-design-dispatch-faithful-001');
-    expectDesignRoute(publicFixture, privateFixture);
+  it('accepts the faithful token even though sk-design no longer hub-routes', () => {
+    const { publicFixture } = loadPair('sk-design-dispatch', 'sk-design-dispatch-faithful-001');
+    expectNoHubRoute(publicFixture);
 
     const lint = lintDesignToken(publicFixture);
     expect(lint.verdict).toBe('valid');
     expect(lint.findings).toEqual([]);
   });
 
-  it('rejects a weakened token even when the route is sk-design', () => {
-    const { publicFixture, privateFixture } = loadPair('sk-design-dispatch', 'sk-design-dispatch-stripped-001');
-    expectDesignRoute(publicFixture, privateFixture);
+  it('rejects a weakened token on payload shape alone', () => {
+    const { publicFixture } = loadPair('sk-design-dispatch', 'sk-design-dispatch-stripped-001');
+    expectNoHubRoute(publicFixture);
 
     const lint = lintDesignToken(publicFixture);
     expect(lint.verdict).toBe('rejected');
@@ -71,9 +73,9 @@ describe('design proof token lint — dispatch fixtures', () => {
     const route = routeSkillResources({ skillRoot: SKDESIGN, taskText: publicFixture.public.prompt });
     expect(route.parseable).toBe(true);
     expect(route.intents).toEqual([]);
-    // sk-design carries no default mode, so a non-design prompt fails closed to a
-    // defer with no default applied — the correct negative-activation outcome.
-    expect(route.routeTelemetry.defaultApplied).toBe(false);
+    // With the hub retired there is no default mode left to apply, so the route
+    // fails closed on the absent router rather than on a silent default.
+    expect(route.routeTelemetry).toMatchObject({ observed: false, reason: 'no-hub-router' });
     for (const forbidden of privateFixture.expected.forbiddenWorkflowModes) {
       expect(route.intents).not.toContain(forbidden);
     }
@@ -85,7 +87,11 @@ describe('design proof token lint — dispatch fixtures', () => {
 });
 
 describe('design proof token lint — route-gold guard', () => {
-  it('keeps the existing sk-design hub route headline at 29 pass, 5 known gaps, 0 regressions', () => {
+  it('fails the route-gold gate loud when the hub a frozen corpus was minted against is retired', () => {
+    // The sk-design corpus was minted while sk-design was a parent hub. The hub
+    // was retired and the skill rebuilt as a standalone, so every route-applicable
+    // row now routes nowhere. The property under test is that the gate reports
+    // that as a regression instead of quietly scoring the corpus as green.
     const rows = loadPairs('sk-design').map(({ publicFixture, privateFixture }) => {
       const routerResult = routeSkillResources({ skillRoot: SKDESIGN, taskText: publicFixture.public.prompt });
       return scoreScenario({
@@ -108,9 +114,10 @@ describe('design proof token lint — route-gold guard', () => {
     const passed = routeRows.filter((row: any) => row.dims.hubRoute.pass).length;
 
     expect(routeRows).toHaveLength(34);
-    expect(passed).toBe(29);
+    expect(passed).toBe(0);
     expect(report.gate.hubRoute.knownGaps).toBe(5);
-    expect(report.gate.hubRoute.regressions).toBe(0);
-    expect(report.gate.hubRoute.failed).toBe(false);
+    expect(report.gate.hubRoute.regressions).toBe(29);
+    expect(report.gate.hubRoute.failed).toBe(true);
+    expect(report.gate.hubRoute.reason).toBe('route-gold regression');
   });
 });

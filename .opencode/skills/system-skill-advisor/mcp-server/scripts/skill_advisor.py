@@ -2018,15 +2018,24 @@ PHRASE_INTENT_BOOSTERS = {
     "/deep-agent-improvement": [("system-deep-loop", 3.2)],
     "sk-agent-improvement-loop": [("system-deep-loop", 3.0)],
     "/sk-agent-improvement-loop": [("system-deep-loop", 3.0)],
-    "5-dimension": [("system-deep-loop", 1.8)],
+    # A bare domain phrase is usually the ONLY evidence one of these anchors
+    # ever gets, so the anchor has to clear the routing floor on its own:
+    # confidence is 0.50 + score * 0.15 and Gate 2 routes at 0.80, i.e. a lone
+    # anchor needs score >= 2.0. Weighted below that, an anchor is inert on the
+    # very phrase it exists to route.
+    "5-dimension": [("system-deep-loop", 2.2)],
     "5-dimension agent scoring": [("system-deep-loop", 2.8)],
     "5-dimension evaluation": [("system-deep-loop", 2.8)],
     "5d agent scoring": [("system-deep-loop", 2.8)],
-    "5d scoring": [("system-deep-loop", 1.8)],
+    # "scoring" is also a prompt-framework intent token, so the same two words
+    # pay out to sk-prompt and drag the deep-loop anchor into a near-tie the
+    # margin calibration then penalizes. The bounded negative keeps the
+    # phrase's own words from funding the competitor it disambiguates against.
+    "5d scoring": [("system-deep-loop", 2.2), ("sk-prompt", -0.6)],
     "integration scanning": [("system-deep-loop", 2.6)],
     "integration scan": [("system-deep-loop", 2.2)],
     "dynamic profiling": [("system-deep-loop", 2.6)],
-    "dynamic profile": [("system-deep-loop", 1.6)],
+    "dynamic profile": [("system-deep-loop", 2.2)],
     "evaluate agent quality": [("system-deep-loop", 2.8)],
     "score agent dimensions": [("system-deep-loop", 2.8)],
     "agent integration surface": [("system-deep-loop", 2.6)],
@@ -3303,9 +3312,9 @@ def calculate_uncertainty(num_matches: int, has_intent_boost: bool, num_ambiguou
 
     Examples:
     - 5 matches, intent boost, 0 ambiguous: 0.15 (LOW - proceed)
-    - 3 matches, intent boost, 1 ambiguous: 0.35 (LOW - proceed)
-    - 1 match, no intent boost, 0 ambiguous: 0.55 (MEDIUM - verify)
-    - 1 match, no intent boost, 2 ambiguous: 0.75 (HIGH - clarify)
+    - 3 matches, intent boost, 1 ambiguous: 0.28 (LOW - proceed)
+    - 1 match, no intent boost, 0 ambiguous: 0.45 (MEDIUM - verify)
+    - 1 match, no intent boost, 2 ambiguous: 0.61 (HIGH - clarify)
     - 0 matches, no intent boost, 0 ambiguous: 0.85 (HIGH - clarify)
 
     Args:

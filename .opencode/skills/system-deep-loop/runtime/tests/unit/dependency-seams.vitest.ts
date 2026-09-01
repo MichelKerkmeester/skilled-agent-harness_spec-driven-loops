@@ -21,10 +21,13 @@ const skillsRoot = resolve(runtimeRoot, '..');
 // directory — the same vantage point the production lib files import from.
 const runtimeRequire = createRequire(resolve(runtimeRoot, 'lib', 'index.cjs'));
 
-// Versions system-spec-kit pins. The runtime must install the SAME versions so a
-// process that loads both skills' native better-sqlite3 binding stays ABI-safe.
+// Versions system-spec-kit pins, mirrored here. The runtime must install the SAME
+// versions so a process that loads both skills' native better-sqlite3 binding stays
+// ABI-safe. Raise these together with the sibling's package.json, never alone: the
+// binding is compiled per Node ABI, so a split between the two trees breaks loading
+// rather than degrading.
 const PINNED = {
-  'better-sqlite3': '12.10.0',
+  'better-sqlite3': '12.11.1',
   zod: '4.4.3',
   tsx: '4.22.4',
 } as const;

@@ -214,11 +214,11 @@ function testDualReadOfRealLegacyFixtureString() {
 // only through an authored alias entry, never through generic prefix
 // stripping of "../shared/".
 function testDualReadOfSharedAliasRequiresAuthoredEntry() {
-  const raw = '../shared/assets/changelog-template.md';
+  const raw = '../sk-create-changelog/assets/changelog-template.md';
   const noAlias = contract.dualReadLegacyResource({ raw, declaredModes: [], aliasEntries: [] });
   assert.equal(noAlias.ok, false, 'a shared-prefixed string must not resolve without an authored alias');
 
-  const aliasEntries = [{ workflowMode: 'create-changelog', leafResourceId: 'assets/changelog-template.md', diskPath: 'shared/assets/changelog-template.md' }];
+  const aliasEntries = [{ workflowMode: 'create-changelog', leafResourceId: 'assets/changelog-template.md', diskPath: 'sk-create-changelog/assets/changelog-template.md' }];
   const withAlias = contract.dualReadLegacyResource({ raw, declaredModes: [], aliasEntries });
   assert.equal(withAlias.ok, true);
   assert.deepEqual(withAlias.pair, { workflowMode: 'create-changelog', leafResourceId: 'assets/changelog-template.md' });

@@ -477,6 +477,24 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
 }
 
 /**
+ * Read the feature-file path out of an index-table cell.
+ *
+ * Authors write that cell three ways in a markdown table — bare, wrapped in a
+ * code span, or as a relative link — and a docs link-integrity gate actively
+ * pushes playbooks toward the link form. All three name the same file, so the
+ * loader normalizes rather than privileging one.
+ *
+ * @param {string} cell - Raw table-cell text between the surrounding pipes.
+ * @returns {string} The bare relative path to the per-feature file.
+ */
+function unwrapTableCellPath(cell) {
+  const text = String(cell || '').trim();
+  const link = /\]\(\s*([^)\s]+)\s*\)/.exec(text);
+  const raw = link ? link[1] : text;
+  return raw.replace(/^[`\s]+/, '').replace(/[`\s]+$/, '').trim();
+}
+
+/**
  * Parse the root index table mapping id -> {category, featureFile, critical}.
  *
  * @param {string} rootText - The root playbook markdown text.
@@ -487,13 +505,17 @@ function parseRootIndex(rootText) {
   const secStart = rootText.search(/##\s+\d+\.\s+FEATURE CATALOG CROSS-REFERENCE INDEX/i);
   const scope = secStart === -1 ? rootText : rootText.slice(secStart);
   for (const line of scope.split('\n')) {
-    // Row shape parsed below: | <category> | <AA-000> | `<feature-file>.md` | <Yes|No> |
-    const m = /^\|\s*([^|]+?)\s*\|\s*([A-Z]{2,4}-\d{3})\s*\|\s*`?([^|`]+?\.md)`?\s*\|\s*(Yes|No)\s*\|/.exec(line);
+    // Row shape parsed below: | <category> | <AA-000> | <feature-file cell> | <Yes|No> |
+    // The file cell is matched whole and unwrapped afterwards; a pattern that
+    // accepts only one of the three cell styles silently drops every row of an
+    // index authored in another style, and the playbook then falls through to
+    // the frontmatter-scan shape as if it had no index at all.
+    const m = /^\|\s*([^|]+?)\s*\|\s*([A-Z]{2,4}-\d{3})\s*\|([^|]*\.md[^|]*)\|\s*(Yes|No)\s*\|/.exec(line);
     if (m) {
       idx.push({
         categoryLabel: m[1].trim(),
         scenarioId: m[2],
-        featureFile: m[3].trim(),
+        featureFile: unwrapTableCellPath(m[3]),
         critical: /yes/i.test(m[4]),
       });
     }

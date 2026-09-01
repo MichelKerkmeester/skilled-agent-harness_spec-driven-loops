@@ -53,7 +53,7 @@ create-changelog is the `sk-doc` workflow behind `/create:changelog`. It resolve
 **Step 2: Read the shared format before writing.**
 
 ```bash
-cat .opencode/skills/sk-doc/shared/assets/changelog-template.md
+cat .opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
 ```
 
 You get the compact and expanded shapes, the spec-folder blockquote convention and the plain-category section vocabulary.
@@ -144,7 +144,7 @@ A: List every affected component in the report and write to the primary one by f
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the seven-step workflow and the versioning and topology rules |
-| [`../shared/assets/changelog-template.md`](../shared/assets/changelog-template.md) | Canonical compact and expanded entry format |
+| [`assets/changelog-template.md`](assets/changelog-template.md) | Canonical compact and expanded entry format |
 | [`references/README.md`](./references/README.md) | Overflow route map for deeper detail |
 | [`references/worked-examples.md`](./references/worked-examples.md) | Fully written global and packet-local entries |
 | [`references/version-bump-rules.md`](./references/version-bump-rules.md) | Concrete four-part version examples |

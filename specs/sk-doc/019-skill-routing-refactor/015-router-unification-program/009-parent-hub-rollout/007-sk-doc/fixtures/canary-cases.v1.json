@@ -191,7 +191,7 @@
     },
     {
       "id": "single-create-quality-control",
-      "prompt": "/doc:quality",
+      "prompt": "doc quality",
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedModes": [
@@ -203,6 +203,40 @@
         ],
         "expectedResources": [
           "sk-create-quality-control/SKILL.md"
+        ]
+      }
+    },
+    {
+      "id": "single-create-repo-rule",
+      "prompt": "/create:repo-rule",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-create-repo-rule"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-create-repo-rule"
+        ],
+        "expectedResources": [
+          "sk-create-repo-rule/SKILL.md"
+        ]
+      }
+    },
+    {
+      "id": "single-create-with-human-voice",
+      "prompt": "/create:with-human-voice",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-create-with-human-voice"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-create-with-human-voice"
+        ],
+        "expectedResources": [
+          "sk-create-with-human-voice/SKILL.md"
         ]
       }
     },

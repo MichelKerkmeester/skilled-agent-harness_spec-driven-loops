@@ -1,174 +1,171 @@
 {
   "sourceAssetFilenames": [
-    "create_agent_auto.yaml",
-    "create_agent_confirm.yaml",
-    "create_agent_presentation.txt",
-    "create_benchmark_auto.yaml",
-    "create_benchmark_confirm.yaml",
-    "create_benchmark_presentation.txt",
-    "create_changelog_auto.yaml",
-    "create_changelog_confirm.yaml",
-    "create_changelog_presentation.txt",
-    "create_command_auto.yaml",
-    "create_command_confirm.yaml",
-    "create_command_presentation.txt",
-    "create_diff_auto.yaml",
-    "create_diff_confirm.yaml",
-    "create_diff_presentation.txt",
-    "create_feature_catalog_auto.yaml",
-    "create_feature_catalog_confirm.yaml",
-    "create_feature_catalog_presentation.txt",
-    "create_flowchart_auto.yaml",
-    "create_flowchart_confirm.yaml",
-    "create_flowchart_presentation.txt",
-    "create_manual_testing_playbook_auto.yaml",
-    "create_manual_testing_playbook_confirm.yaml",
-    "create_manual_testing_playbook_presentation.txt",
-    "create_readme_auto.yaml",
-    "create_readme_confirm.yaml",
-    "create_readme_presentation.txt",
-    "create_skill_auto.yaml",
-    "create_skill_confirm.yaml",
-    "create_skill_parent_auto.yaml",
-    "create_skill_parent_confirm.yaml",
-    "create_skill_parent_presentation.txt",
-    "create_skill_presentation.txt"
+    "create-agent-auto.yaml",
+    "create-agent-confirm.yaml",
+    "create-agent-presentation.txt",
+    "create-benchmark-auto.yaml",
+    "create-benchmark-confirm.yaml",
+    "create-benchmark-presentation.txt",
+    "create-changelog-auto.yaml",
+    "create-changelog-confirm.yaml",
+    "create-changelog-presentation.txt",
+    "create-command-auto.yaml",
+    "create-command-confirm.yaml",
+    "create-command-presentation.txt",
+    "create-diagram-auto.yaml",
+    "create-diagram-confirm.yaml",
+    "create-diagram-presentation.txt",
+    "create-diff-auto.yaml",
+    "create-diff-confirm.yaml",
+    "create-diff-presentation.txt",
+    "create-feature-catalog-auto.yaml",
+    "create-feature-catalog-confirm.yaml",
+    "create-feature-catalog-presentation.txt",
+    "create-manual-testing-playbook-auto.yaml",
+    "create-manual-testing-playbook-confirm.yaml",
+    "create-manual-testing-playbook-presentation.txt",
+    "create-readme-auto.yaml",
+    "create-readme-confirm.yaml",
+    "create-readme-presentation.txt",
+    "create-repo-rule-auto.yaml",
+    "create-repo-rule-confirm.yaml",
+    "create-repo-rule-presentation.txt",
+    "create-skill-auto.yaml",
+    "create-skill-confirm.yaml",
+    "create-skill-parent-auto.yaml",
+    "create-skill-parent-confirm.yaml",
+    "create-skill-parent-presentation.txt",
+    "create-skill-presentation.txt",
+    "create-with-human-voice-auto.yaml",
+    "create-with-human-voice-confirm.yaml",
+    "create-with-human-voice-presentation.txt"
   ],
   "requiredTokens": {
-    "create_agent_auto.yaml": [
+    "create-agent-auto.yaml": [
       "Name for the agent in kebab-case",
       "[agent_path]/[agent_name].md"
     ],
-    "create_agent_confirm.yaml": [
+    "create-agent-confirm.yaml": [
       "Name for the agent in kebab-case",
       "[agent_path]/[agent_name].md"
     ],
-    "create_benchmark_auto.yaml": [
+    "create-benchmark-auto.yaml": [
       "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md"
     ],
-    "create_benchmark_confirm.yaml": [
+    "create-benchmark-confirm.yaml": [
       "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md"
     ],
-    "create_changelog_auto.yaml": [
+    "create-changelog-auto.yaml": [
       ".opencode/changelog/{primary_component}/v{next_version}.md"
     ],
-    "create_changelog_confirm.yaml": [
+    "create-changelog-confirm.yaml": [
       ".opencode/changelog/{primary_component}/v{next_version}.md"
     ],
-    "create_command_auto.yaml": [
+    "create-command-auto.yaml": [
       "Creates router .md plus -auto.yaml, -confirm.yaml, and -presentation.txt assets"
     ],
-    "create_command_confirm.yaml": [
+    "create-command-confirm.yaml": [
       "Creates router .md plus -auto.yaml, -confirm.yaml, and -presentation.txt assets"
     ],
-    "create_command_presentation.txt": [
+    "create-command-presentation.txt": [
       "<stem>-auto.yaml",
       "<stem>-confirm.yaml",
       "<stem>-presentation.txt"
     ],
-    "create_feature_catalog_auto.yaml": [
+    "create-feature-catalog-auto.yaml": [
       "feature-catalog/feature-catalog.md",
       "feature-catalog/category-name/feature-name.md"
     ],
-    "create_feature_catalog_confirm.yaml": [
+    "create-feature-catalog-confirm.yaml": [
       "feature-catalog/feature-catalog.md",
       "feature-catalog/category-name/feature-name.md"
     ],
-    "create_feature_catalog_presentation.txt": [
+    "create-feature-catalog-presentation.txt": [
       ".opencode/skills/system-spec-kit/feature-catalog"
     ],
-    "create_flowchart_auto.yaml": [
-      "non-exempt directory segments and filename stem use kebab-case"
-    ],
-    "create_flowchart_confirm.yaml": [
-      "non-exempt directory segments and filename stem use kebab-case"
-    ],
-    "create_flowchart_presentation.txt": [
-      "docs/workflows/example-flowchart.md"
-    ],
-    "create_manual_testing_playbook_auto.yaml": [
+    "create-manual-testing-playbook-auto.yaml": [
       "manual-testing-playbook/manual-testing-playbook.md",
       "manual-testing-playbook/category-name/scenario-name.md"
     ],
-    "create_manual_testing_playbook_confirm.yaml": [
+    "create-manual-testing-playbook-confirm.yaml": [
       "manual-testing-playbook/manual-testing-playbook.md",
       "manual-testing-playbook/category-name/scenario-name.md"
     ],
-    "create_manual_testing_playbook_presentation.txt": [
+    "create-manual-testing-playbook-presentation.txt": [
       ".opencode/skills/system-spec-kit/manual-testing-playbook"
     ],
-    "create_readme_auto.yaml": [
+    "create-readme-auto.yaml": [
       "example: \"mcp-semantic-search.md\"",
       "Non-exempt directory segments and the markdown filename stem must use kebab-case."
     ],
-    "create_readme_confirm.yaml": [
+    "create-readme-confirm.yaml": [
       "example: \"mcp-semantic-search.md\"",
       "Non-exempt directory segments and the markdown filename stem must use kebab-case."
     ],
-    "create_readme_presentation.txt": [
+    "create-readme-presentation.txt": [
       "install-guides/mcp-semantic-search.md"
     ],
-    "create_skill_auto.yaml": [
+    "create-skill-auto.yaml": [
       "filename_pattern: \"[topic]-workflow.md\"",
       "filename_pattern: \"quick-reference.md\""
     ],
-    "create_skill_confirm.yaml": [
+    "create-skill-confirm.yaml": [
       "filename_pattern: \"[topic]-workflow.md\"",
       "filename_pattern: \"quick-reference.md\""
     ],
-    "create_skill_parent_auto.yaml": [
+    "create-skill-parent-auto.yaml": [
       "manual-testing-playbook/"
     ],
-    "create_skill_parent_confirm.yaml": [
+    "create-skill-parent-confirm.yaml": [
       "manual-testing-playbook/"
     ]
   },
   "forbiddenTokens": {
-    "create_benchmark_auto.yaml": [
-      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md"
+    "create-benchmark-auto.yaml": [
+      "mcp_server/benchmarks/benchmark-YYYY-MM-DD/benchmark_report.md"
     ],
-    "create_benchmark_confirm.yaml": [
-      "mcp-server/benchmarks/benchmark-YYYY-MM-DD/benchmark-report.md"
+    "create-benchmark-confirm.yaml": [
+      "mcp_server/benchmarks/benchmark-YYYY-MM-DD/benchmark_report.md"
     ],
-    "create_command_auto.yaml": [
+    "create-command-auto.yaml": [
       "Creates router .md plus _auto.yaml"
     ],
-    "create_command_confirm.yaml": [
+    "create-command-confirm.yaml": [
       "Creates router .md plus _auto.yaml"
     ],
-    "create_feature_catalog_auto.yaml": [
+    "create-feature-catalog-auto.yaml": [
       "catalog_dirname: feature_catalog",
-      "feature-catalog/feature-catalog.md"
+      "feature_catalog/feature_catalog.md"
     ],
-    "create_feature_catalog_confirm.yaml": [
+    "create-feature-catalog-confirm.yaml": [
       "catalog_dirname: feature_catalog",
-      "feature-catalog/feature-catalog.md"
+      "feature_catalog/feature_catalog.md"
     ],
-    "create_manual_testing_playbook_auto.yaml": [
+    "create-manual-testing-playbook-auto.yaml": [
       "playbook_dirname: manual_testing_playbook",
-      "manual-testing-playbook/manual-testing-playbook.md"
+      "manual_testing_playbook/manual_testing_playbook.md"
     ],
-    "create_manual_testing_playbook_confirm.yaml": [
+    "create-manual-testing-playbook-confirm.yaml": [
       "playbook_dirname: manual_testing_playbook",
-      "manual-testing-playbook/manual-testing-playbook.md"
+      "manual_testing_playbook/manual_testing_playbook.md"
     ],
-    "create_readme_auto.yaml": [
+    "create-readme-auto.yaml": [
       "prefix: \"MCP -\""
     ],
-    "create_readme_confirm.yaml": [
+    "create-readme-confirm.yaml": [
       "prefix: \"MCP -\""
     ],
-    "create_skill_auto.yaml": [
+    "create-skill-auto.yaml": [
       "filename_rule: \"snake_case"
     ],
-    "create_skill_confirm.yaml": [
+    "create-skill-confirm.yaml": [
       "filename_rule: \"snake_case"
     ],
-    "create_skill_parent_auto.yaml": [
-      "Create the hub changelog/ and manual-testing-playbook/"
+    "create-skill-parent-auto.yaml": [
+      "Create the hub changelog/ and manual_testing_playbook/"
     ],
-    "create_skill_parent_confirm.yaml": [
-      "Create the hub changelog/ and manual-testing-playbook/"
+    "create-skill-parent-confirm.yaml": [
+      "Create the hub changelog/ and manual_testing_playbook/"
     ]
   },
   "emittedPaths": [

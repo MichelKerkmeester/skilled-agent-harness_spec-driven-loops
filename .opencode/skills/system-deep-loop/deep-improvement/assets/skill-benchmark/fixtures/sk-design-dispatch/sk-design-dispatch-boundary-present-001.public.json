@@ -49,7 +49,7 @@
           "expectedWorkflowMode": "sk-design-interface",
           "observedWorkflowMode": "sk-design-interface",
           "observedIntents": [
-            "interface"
+            "sk-design-interface"
           ]
         },
         "payloadDigests": {

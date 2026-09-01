@@ -92,6 +92,51 @@ RESOURCE_KEY_BY_MODE = {
     "sk-create-skill": "skill",
     "sk-create-skill-parent": "parent-skill",
 }
+
+INTENT_MODEL = {
+    "SKILL_PACKAGE": {"weight": 4, "keywords": ["create skill", "/create:skill", "new skill", "skill scaffold", "skill.md scaffold", "opencode skill", "sk-skill", "create sk-", "reusable capability", "reusable helper", "starter reference docs", "package skill"]},
+    "PARENT_HUB": {"weight": 4, "keywords": ["/create:skill-parent", "parent skill", "parent hub", "mode packet", "nested workflow packet", "mode-registry.json", "hub-router.json"]},
+}
+
+# The keyed selection below resolves to exactly these sets. Enumerating them keeps
+# the routed inventory legible to a reader and to the connectivity scan, which is
+# what catches a new reference that the keyed load silently picks up but no
+# documented route names.
+RESOURCE_MAP = {
+    "SKILL_PACKAGE": [
+        "references/shared/overview.md",
+        "references/shared/common-pitfalls.md",
+        "references/shared/validation-and-packaging.md",
+        "references/shared/advisor-index-handoff.md",
+        "references/shared/skill-root-metadata-contract.md",
+        "references/skill/creation-workflow.md",
+        "references/skill/examples-and-maintenance.md",
+        "references/skill/upgrading-a-skill-to-v4.md",
+        "assets/skill/skill-md-template.md",
+        "assets/skill/skill-readme-template.md",
+        "assets/skill/skill-reference-template.md",
+        "assets/skill/skill-asset-template.md",
+        "assets/skill/skill-procedure-template.md",
+        "assets/skill/skill-scaffold-template.md",
+        "assets/skill/skill-smart-router.md",
+        "assets/skill/skill-sync-manifest-template.md",
+    ],
+    "PARENT_HUB": [
+        "references/shared/overview.md",
+        "references/shared/common-pitfalls.md",
+        "references/shared/validation-and-packaging.md",
+        "references/shared/advisor-index-handoff.md",
+        "references/shared/skill-root-metadata-contract.md",
+        "references/parent-skill/parent-skills-nested-packets.md",
+        "references/parent-skill/parent-hub-router-schema.md",
+        "references/parent-skill/compiled-routing-architecture.md",
+        "assets/parent-skill/parent-skill-hub-template.md",
+        "assets/parent-skill/parent-skill-readme-template.md",
+        "assets/parent-skill/parent-skill-root-router-template.md",
+        "assets/parent-skill/scaffold/hub-skill-scaffold.md",
+        "assets/parent-skill/scaffold/packet-skill-scaffold.md",
+    ],
+}
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm whether the artifact is a standalone skill or parent hub",
     "Confirm the target skill folder and intended advisor identity",

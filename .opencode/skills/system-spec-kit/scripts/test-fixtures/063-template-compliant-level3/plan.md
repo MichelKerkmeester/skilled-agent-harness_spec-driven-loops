@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Template Compliant Level 3 Fixture [template:examples/level-3/plan.md]"
+title: "Implementation Plan: Template Compliant Level 3 Fixture"
 description: "Current-template Level 3 implementation plan fixture."
 trigger_phrases:
   - "fixture"

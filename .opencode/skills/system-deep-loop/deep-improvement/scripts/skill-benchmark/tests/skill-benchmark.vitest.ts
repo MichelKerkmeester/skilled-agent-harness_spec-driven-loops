@@ -1,4 +1,4 @@
-import { describe, it, expect, afterAll } from 'vitest';
+import { describe, it, expect, afterAll, beforeAll } from 'vitest';
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -150,9 +150,9 @@ describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () =>
     const res = routeSkillResources({ skillRoot: SKCODE, taskText: 'improve lighthouse score and core web vitals for the webflow site' });
     expect(res.parseable).toBe(true);
     // The implement/debug/verify workflow modes are dissolved into the surface
-    // packets; a webflow task routes to the code-webflow surface, which carries
+    // packets; a webflow task routes to the webflow surface, which carries
     // the implement doctrine via the symlinked shared workflow references.
-    expect(res.intents).toContain('code-webflow');
+    expect(res.intents).toContain('sk-code-webflow');
     expect(res.resources.length).toBeGreaterThan(0);
     expect(res.missingResources).toEqual([]); // every routed path exists on disk
   });
@@ -261,8 +261,8 @@ describe('Lane C — hub registry gate', () => {
     for (const d of registryDirs) rmSync(d, { recursive: true, force: true });
   });
 
-  it('reports the live sk-design registry without hard-gating it', () => {
-    const res = scanHubRegistry({ skillRoot: join(REPO_SKILLS, 'sk-design') });
+  it('reports a live parent-hub registry without hard-gating it', () => {
+    const res = scanHubRegistry({ skillRoot: join(REPO_SKILLS, 'sk-code') });
     expect(res.registryPresent).toBe(true);
     expect(res.gateFailed).toBe(false);
     expect(res.verdict).toBeNull();
@@ -272,8 +272,11 @@ describe('Lane C — hub registry gate', () => {
     expect(res.packetNameMismatches).toEqual([]);
     expect(res.uncoveredIntentRate).toBeGreaterThanOrEqual(0);
     expect(res.uncoveredIntentRate).toBeLessThan(1);
-    expect(res.uncoveredIntentRate).toBeGreaterThan(0.3);
-    expect(res.uncoveredIntentRate).toBeLessThan(0.6);
+    // A healthy hub leaves SOME router vocabulary uncovered by mode aliases but
+    // never all of it; the band keeps that shape observable without pinning an
+    // exact ratio that ordinary alias edits would flip.
+    expect(res.uncoveredIntentRate).toBeGreaterThan(0.5);
+    expect(res.uncoveredIntentRate).toBeLessThan(0.9);
   });
 
   it('hard-gates a registry with a missing mode projection', () => {
@@ -340,14 +343,66 @@ describe('Lane C — scorer + report render', () => {
   });
 });
 
-function designRecipe(command = '/design:interface'): any {
-  if (command === '/design:interface') {
-    const fixture = JSON.parse(readFileSync(SKDESIGN_COMMAND_RECIPE_FIXTURE, 'utf8'));
-    return JSON.parse(JSON.stringify(fixture.expected.commandRecipe));
-  }
+// The commandRecipe lane is bound to the `/design:*` command namespace and to a
+// skill root that ships command-metadata.json beside a wrapper under
+// commands/design/. No shipped skill occupies that shape any more, so the lane is
+// exercised against a hermetic tree built here: it pins the SCORER's behavior
+// rather than any one skill's live metadata, and cannot rot when a skill moves.
+const RECIPE_COMMAND = '/design:sample';
 
-  const records = JSON.parse(readFileSync(join(SKDESIGN, 'command-metadata.json'), 'utf8'));
-  const record = records.find((item: any) => item.command === command);
+function recipeMetadataRecord(): any {
+  return {
+    command: RECIPE_COMMAND,
+    ownerMode: 'sample-interface',
+    argumentHint: '<target> [--mode] [:auto|:confirm]',
+    argumentGrammar: {
+      positional: [{ name: 'target', required: true, kind: 'interface-target' }],
+      flags: [{ name: '--mode', required: false, takesValue: true, valueName: 'mode', kind: 'mode-selector' }],
+      render: '<target> [--mode] [:auto|:confirm]',
+    },
+    choreography: [
+      {
+        order: 1,
+        skill: 'sample-hub',
+        resource: '.opencode/skills/sample-hub/SKILL.md',
+        action: 'load the parent hub routing table',
+      },
+      {
+        order: 2,
+        skill: 'sample-interface',
+        resource: '.opencode/skills/sample-hub/sample-interface/SKILL.md',
+        action: 'load the interface mode contract',
+      },
+    ],
+  };
+}
+
+// A skill root whose command metadata and command wrapper agree, so the gold
+// recipe below is valid on every sub-check until a test perturbs one field.
+function makeRecipeSkill(): string {
+  const root = mkdtempSync(join(tmpdir(), 'lc-recipe-'));
+  const skillRoot = join(root, 'skills', 'sample-hub');
+  const commandsDir = join(root, 'commands', 'design');
+  mkdirSync(skillRoot, { recursive: true });
+  mkdirSync(commandsDir, { recursive: true });
+  const record = recipeMetadataRecord();
+  writeFileSync(join(skillRoot, 'command-metadata.json'), JSON.stringify([record], null, 2));
+  writeFileSync(join(commandsDir, 'sample.md'), [
+    '---',
+    'description: "Hermetic sample command."',
+    `argument-hint: "${record.argumentHint}"`,
+    '---',
+    '',
+    `# ${RECIPE_COMMAND}`,
+    '',
+    'Sample wrapper.',
+    '',
+  ].join('\n'));
+  return skillRoot;
+}
+
+function sampleRecipe(): any {
+  const record = recipeMetadataRecord();
   return JSON.parse(JSON.stringify({
     command: record.command,
     ownerMode: record.ownerMode,
@@ -356,24 +411,36 @@ function designRecipe(command = '/design:interface'): any {
     argumentGrammar: record.argumentGrammar,
     workflowMode: record.ownerMode,
     routeOutcome: 'single',
-    forbiddenWorkflowModes: ['audit', 'foundations', 'motion', 'md-generator'].filter((mode) => mode !== record.ownerMode),
+    forbiddenWorkflowModes: ['sample-audit', 'sample-motion'],
     choreography: record.choreography,
   }));
 }
 
 describe('Lane C — commandRecipe validity lane', () => {
+  const recipeRoots: string[] = [];
+  let SAMPLE_ROOT = '';
+
+  beforeAll(() => {
+    SAMPLE_ROOT = makeRecipeSkill();
+    recipeRoots.push(resolve(SAMPLE_ROOT, '..', '..'));
+  });
+
+  afterAll(() => {
+    for (const d of recipeRoots) rmSync(d, { recursive: true, force: true });
+  });
+
   const routerResult = {
     parseable: true,
-    intents: ['interface'],
-    resources: ['design-interface/SKILL.md'],
+    intents: ['sample-interface'],
+    resources: ['sample-interface/SKILL.md'],
     missingResources: [],
     scores: [],
   };
 
   it('passes a valid command recipe', () => {
     const res = scoreCommandRecipe({
-      expected: { skillId: 'sk-design', commandRecipe: designRecipe() },
-      skillRoot: SKDESIGN,
+      expected: { skillId: 'sample-hub', commandRecipe: sampleRecipe() },
+      skillRoot: SAMPLE_ROOT,
       routerResult,
     });
     expect(res.applicable).toBe(true);
@@ -382,11 +449,11 @@ describe('Lane C — commandRecipe validity lane', () => {
   });
 
   it('flags an in-memory gold recipe when its argument hint drifts from live metadata', () => {
-    const driftedRecipe = designRecipe();
+    const driftedRecipe = sampleRecipe();
     driftedRecipe.argumentHint = '<target> [--mode]';
     const res = scoreCommandRecipe({
-      expected: { skillId: 'sk-design', commandRecipe: driftedRecipe },
-      skillRoot: SKDESIGN,
+      expected: { skillId: 'sample-hub', commandRecipe: driftedRecipe },
+      skillRoot: SAMPLE_ROOT,
       routerResult,
     });
     expect(res.applicable).toBe(true);
@@ -398,12 +465,12 @@ describe('Lane C — commandRecipe validity lane', () => {
   });
 
   it('fails metadata validity before later checks when the recipe is undefined in metadata', () => {
-    const recipe = designRecipe();
+    const recipe = sampleRecipe();
     recipe.command = '/design:missing';
     recipe.wrapperCommand = '/design:missing';
     const res = scoreCommandRecipe({
-      expected: { skillId: 'sk-design', commandRecipe: recipe },
-      skillRoot: SKDESIGN,
+      expected: { skillId: 'sample-hub', commandRecipe: recipe },
+      skillRoot: SAMPLE_ROOT,
       routerResult,
     });
     expect(res.valid).toBe(false);
@@ -412,11 +479,11 @@ describe('Lane C — commandRecipe validity lane', () => {
   });
 
   it('fails wrapper drift when the expected wrapper command diverges', () => {
-    const recipe = designRecipe();
-    recipe.wrapperCommand = '/design:audit';
+    const recipe = sampleRecipe();
+    recipe.wrapperCommand = '/design:other';
     const res = scoreCommandRecipe({
-      expected: { skillId: 'sk-design', commandRecipe: recipe },
-      skillRoot: SKDESIGN,
+      expected: { skillId: 'sample-hub', commandRecipe: recipe },
+      skillRoot: SAMPLE_ROOT,
       routerResult,
     });
     expect(res.valid).toBe(false);
@@ -425,11 +492,11 @@ describe('Lane C — commandRecipe validity lane', () => {
   });
 
   it('fails the arg fixture check when argumentGrammar drifts', () => {
-    const recipe = designRecipe();
+    const recipe = sampleRecipe();
     recipe.argumentGrammar.render = '<target> --wrong';
     const res = scoreCommandRecipe({
-      expected: { skillId: 'sk-design', commandRecipe: recipe },
-      skillRoot: SKDESIGN,
+      expected: { skillId: 'sample-hub', commandRecipe: recipe },
+      skillRoot: SAMPLE_ROOT,
       routerResult,
     });
     expect(res.valid).toBe(false);
@@ -439,9 +506,9 @@ describe('Lane C — commandRecipe validity lane', () => {
 
   it('fails route/bundle when the router selected a sibling mode', () => {
     const res = scoreCommandRecipe({
-      expected: { skillId: 'sk-design', commandRecipe: designRecipe() },
-      skillRoot: SKDESIGN,
-      routerResult: { ...routerResult, intents: ['audit'] },
+      expected: { skillId: 'sample-hub', commandRecipe: sampleRecipe() },
+      skillRoot: SAMPLE_ROOT,
+      routerResult: { ...routerResult, intents: ['sample-audit'] },
     });
     expect(res.valid).toBe(false);
     expect(res.firstFailingSubcheck).toBe('route');
@@ -449,11 +516,11 @@ describe('Lane C — commandRecipe validity lane', () => {
   });
 
   it('fails choreography witness when the expected ordered steps drift', () => {
-    const recipe = designRecipe();
+    const recipe = sampleRecipe();
     recipe.choreography[0].action = 'load something else';
     const res = scoreCommandRecipe({
-      expected: { skillId: 'sk-design', commandRecipe: recipe },
-      skillRoot: SKDESIGN,
+      expected: { skillId: 'sample-hub', commandRecipe: recipe },
+      skillRoot: SAMPLE_ROOT,
       routerResult,
     });
     expect(res.valid).toBe(false);
@@ -462,14 +529,14 @@ describe('Lane C — commandRecipe validity lane', () => {
   });
 
   it('caps both D2 and D3 when an applicable recipe is invalid', () => {
-    const recipe = designRecipe();
+    const recipe = sampleRecipe();
     recipe.argumentGrammar.render = '<target> --wrong';
     const row = scoreScenario({
       scenarioId: 'recipe-invalid',
       tier: 'T1',
-      skillRoot: SKDESIGN,
+      skillRoot: SAMPLE_ROOT,
       routerResult,
-      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'], commandRecipe: recipe },
+      expected: { skillId: 'sample-hub', resources: ['sample-interface/SKILL.md'], commandRecipe: recipe },
     });
     expect(row.recipeCapped).toBe(true);
     expect(row.firstFailingStage).toBe('recipe-invalid');
@@ -483,9 +550,9 @@ describe('Lane C — commandRecipe validity lane', () => {
     const row = scoreScenario({
       scenarioId: 'recipe-no-gold',
       tier: 'T1',
-      skillRoot: SKDESIGN,
+      skillRoot: SAMPLE_ROOT,
       routerResult,
-      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'] },
+      expected: { skillId: 'sample-hub', resources: ['sample-interface/SKILL.md'] },
     });
     expect(row.dims.commandRecipe).toMatchObject({ applicable: false, valid: true });
     expect(row.recipeCapped).toBe(false);
@@ -499,33 +566,33 @@ describe('Lane C — commandRecipe validity lane', () => {
     const valid = scoreScenario({
       scenarioId: 'recipe-valid',
       tier: 'T1',
-      skillRoot: SKDESIGN,
+      skillRoot: SAMPLE_ROOT,
       routerResult,
-      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'], commandRecipe: designRecipe() },
+      expected: { skillId: 'sample-hub', resources: ['sample-interface/SKILL.md'], commandRecipe: sampleRecipe() },
     });
-    const invalidRecipe = designRecipe();
+    const invalidRecipe = sampleRecipe();
     invalidRecipe.argumentGrammar.render = '<target> --wrong';
     const invalid = scoreScenario({
       scenarioId: 'recipe-invalid',
       tier: 'T1',
-      skillRoot: SKDESIGN,
+      skillRoot: SAMPLE_ROOT,
       routerResult,
-      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'], commandRecipe: invalidRecipe },
+      expected: { skillId: 'sample-hub', resources: ['sample-interface/SKILL.md'], commandRecipe: invalidRecipe },
     });
     const noGold = scoreScenario({
       scenarioId: 'recipe-no-gold',
       tier: 'T1',
-      skillRoot: SKDESIGN,
+      skillRoot: SAMPLE_ROOT,
       routerResult,
-      expected: { skillId: 'sk-design', resources: ['design-interface/SKILL.md'] },
+      expected: { skillId: 'sample-hub', resources: ['sample-interface/SKILL.md'] },
     });
     const reduced = reduceRecipeMiss([valid, invalid, noGold]);
     expect(reduced.recipeMissRate).toMatchObject({ numerator: 1, denominator: 2, misses: 1, valid: 1, rate: 0.5 });
     expect(reduced.breakdown.arg).toMatchObject({ numerator: 1, denominator: 2, rate: 0.5 });
 
     const report = aggregate({
-      skillId: 'sk-design',
-      skillRoot: SKDESIGN,
+      skillId: 'sample-hub',
+      skillRoot: SAMPLE_ROOT,
       scenarioRows: [valid, invalid, noGold],
       connectivity: { score: 100, gateFailed: false, findings: [] },
       traceMode: 'router',

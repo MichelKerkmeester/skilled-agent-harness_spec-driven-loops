@@ -496,9 +496,18 @@ function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], s
   ));
 }
 
-function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
+function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
+  const skillId = skill.id;
   if (/\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/.test(promptLower)) {
     return false;
+  }
+  // The explainer floor exists to stop an ambiguous read-only question from
+  // routing anywhere. Naming the skill removes the ambiguity: the caller has
+  // already chosen, and a read-only verb does not undo that choice. Without
+  // this, an explicit request is answered with an abstention while the same
+  // sentence phrased with a write verb routes fine.
+  if (promptMentionsSkill(promptLower, skill)) {
+    return true;
   }
   if (skillId === 'sk-code' && /\b(compare|audit|review)\b/.test(promptLower)
     && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
@@ -701,7 +710,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       readOnlyExplainer,
       hasExplicitWorkflowSignal: explicitSignal,
       hasTaskIntent,
-      readOnlyRouteAllowed: readOnlyRouteAllowed(promptLower, skill.id),
+      readOnlyRouteAllowed: readOnlyRouteAllowed(promptLower, skill),
       derivedDominant,
       skillId: skill.id,
     });

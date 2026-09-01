@@ -31,14 +31,14 @@ class EmittedNameContractTest(unittest.TestCase):
         cls.contract = json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
 
     def test_source_asset_filenames_remain_stable(self) -> None:
-        """Keep current underscore source assets stable until their rename phase."""
+        """Keep the kebab-case source asset roster stable and consciously edited."""
         actual = sorted(path.name for path in ASSET_ROOT.iterdir() if path.is_file())
         self.assertEqual(actual, self.contract["sourceAssetFilenames"])
 
     def test_root_yaml_assets_parse(self) -> None:
         """Require every root workflow asset to remain valid YAML."""
         yaml_paths = sorted(ASSET_ROOT.glob("*.yaml"))
-        self.assertEqual(len(yaml_paths), 22)
+        self.assertEqual(len(yaml_paths), 26)
         for path in yaml_paths:
             with self.subTest(path=path.name):
                 yaml.safe_load(path.read_text(encoding="utf-8"))

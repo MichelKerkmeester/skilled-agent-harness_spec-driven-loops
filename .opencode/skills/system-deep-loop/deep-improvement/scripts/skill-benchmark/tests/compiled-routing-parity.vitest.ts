@@ -9,8 +9,8 @@ const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const REPO_ROOT = resolve(REPO_SKILLS, '..', '..');
 const ROLLOUT_ROOT = join(
   REPO_ROOT,
-  '.opencode', 'specs', 'sk-doc', '019-skill-routing-refactor', '020-router-unification-program',
-  '007-unified-refactor-implementation', '006-parent-hub-rollout',
+  'specs', 'sk-doc', '019-skill-routing-refactor', '015-router-unification-program',
+  '009-parent-hub-rollout',
 );
 
 const parity = require(join(SB, 'compiled-routing-parity.cjs'));
@@ -18,7 +18,7 @@ const { evaluateRouteGold } = require(join(SB, 'score-skill-benchmark.cjs'));
 const { renderReport } = require(join(SB, 'build-report.cjs'));
 const { resolveCompiledParity } = require(join(SB, 'run-skill-benchmark.cjs'));
 const { qualifiedIdToLeaf } = require(
-  join(REPO_SKILLS, 'sk-doc', 'create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs'),
+  join(REPO_SKILLS, 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs'),
 );
 
 const FROZEN_TRIO = ['router-replay.cjs', 'score-skill-benchmark.cjs', 'load-playbook-scenarios.cjs'];
@@ -37,10 +37,10 @@ afterAll(() => {
 // evaluator scores as a pass — the fixed point every status fixture perturbs.
 const PASS_SCENARIO = {
   scenarioId: 'T-fixture', classKind: 'routing', hasIntentGold: true,
-  expectedIntents: ['quality'], source: { shape: 'generic' },
+  expectedIntents: ['sk-code-quality'], source: { shape: 'generic' },
 };
 function legacyPassObserved() {
-  const observed = { observedIntents: ['quality'], observedResources: [] };
+  const observed = { observedIntents: ['sk-code-quality'], observedResources: [] };
   return { ...observed, routeGold: evaluateRouteGold({ scenario: PASS_SCENARIO, observed }) };
 }
 function target(workflowMode: string, packet: string, backend: string) {
@@ -77,7 +77,13 @@ describe('compiled-routing-parity: vacuous-parity guard', () => {
   const hubs = [...parity.loadEligibleHubs()];
 
   it('every live hub manifest reads servingAuthority: compiled', () => {
-    expect(hubs.length).toBe(7);
+    // The live topology is not a fixed number -- hubs have been dissolved and
+    // folded away -- so the non-vacuous guard pins the serving closure against
+    // the activation directory it must mirror rather than against a count that
+    // silently rots into a false pass.
+    const activated = readdirSync(parity.ACTIVATION_ROOT);
+    expect(hubs.length).toBeGreaterThan(0);
+    expect([...hubs].sort()).toEqual([...activated].sort());
     for (const hub of hubs) {
       const manifest = JSON.parse(readFileSync(join(parity.ACTIVATION_ROOT, hub, 'manifest.json'), 'utf8'));
       expect(manifest.servingAuthority).toBe('compiled');
@@ -97,7 +103,7 @@ describe('compiled-routing-parity: vacuous-parity guard', () => {
   it('a synthetic legacy manifest hard-fails vacuous, never match', () => {
     const res = parity.compiledParity(
       { scenario: PASS_SCENARIO, legacyObserved: legacyPassObserved(), skillRoot: join(REPO_SKILLS, 'sk-code'), skillId: 'sk-code' },
-      { readServingAuthority: () => 'legacy', compiledDecision: () => ({ action: 'route', targets: [target('quality', 'code-quality', 'surface-router')] }) },
+      { readServingAuthority: () => 'legacy', compiledDecision: () => ({ action: 'route', targets: [target('sk-code-quality', 'sk-code-quality', 'surface-router')] }) },
     );
     expect(res.status).toBe(parity.PARITY_STATUS.VACUOUS);
     expect(res.status).not.toBe(parity.PARITY_STATUS.MATCH);
@@ -128,13 +134,17 @@ describe('compiled-routing-parity: qualifiedIdToLeaf bijection', () => {
   };
 
   it('every compiled route-gold targetQualifiedId resolves against its destination hub leaf-manifest', () => {
-    let hubsChecked = 0;
+    // Coverage is asserted as a set against the live serving closure, not as a
+    // count: a rollout child that stops carrying route-gold must fail here
+    // rather than quietly shrink the corpus this guard walks.
+    const eligible = [...parity.loadEligibleHubs()].sort();
+    const hubsChecked = new Set<string>();
     let idsChecked = 0;
     for (const child of readdirSync(ROLLOUT_ROOT)) {
       const goldPath = join(ROLLOUT_ROOT, child, 'compiled', 'route-gold.typed.json');
       if (!existsSync(goldPath)) continue;
       const gold = JSON.parse(readFileSync(goldPath, 'utf8'));
-      hubsChecked += 1;
+      hubsChecked.add(child.replace(/^\d+-/, ''));
       for (const c of gold.cases || []) {
         for (const qid of c.targetQualifiedIds || []) {
           // A compiled target names its destination hub, which may differ from
@@ -146,7 +156,7 @@ describe('compiled-routing-parity: qualifiedIdToLeaf bijection', () => {
         }
       }
     }
-    expect(hubsChecked).toBeGreaterThanOrEqual(7);
+    expect([...hubsChecked].sort()).toEqual(eligible);
     expect(idsChecked).toBeGreaterThan(0);
   });
 
@@ -266,7 +276,7 @@ describe('compiled-routing-parity: per-scenario status fixtures', () => {
   it('match: compiled and legacy agree under the frozen evaluator', () => {
     const res = parity.compiledParity(
       { scenario: PASS_SCENARIO, legacyObserved: legacyPassObserved(), skillRoot, skillId: 'sk-code' },
-      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('quality', 'code-quality', 'surface-router')] }) },
+      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('sk-code-quality', 'sk-code-quality', 'surface-router')] }) },
     );
     expect(res.status).toBe(parity.PARITY_STATUS.MATCH);
   });
@@ -274,7 +284,7 @@ describe('compiled-routing-parity: per-scenario status fixtures', () => {
   it('drift: compiled routes to a different mode than legacy', () => {
     const res = parity.compiledParity(
       { scenario: PASS_SCENARIO, legacyObserved: legacyPassObserved(), skillRoot, skillId: 'sk-code' },
-      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('code-review', 'code-review', 'review-cache')] }) },
+      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('sk-code-review', 'sk-code-review', 'review-cache')] }) },
     );
     expect(res.status).toBe(parity.PARITY_STATUS.DRIFT);
   });
@@ -314,8 +324,8 @@ describe('compiled-routing-parity: per-scenario status fixtures', () => {
     let calls = 0;
     const spy = (args: any) => { calls += 1; return evaluateRouteGold(args); };
     const res = parity.compiledParity(
-      { scenario: PASS_SCENARIO, legacyObserved: { observedIntents: ['quality'], observedResources: [] }, skillRoot, skillId: 'sk-code' },
-      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('quality', 'code-quality', 'surface-router')] }), evaluate: spy },
+      { scenario: PASS_SCENARIO, legacyObserved: { observedIntents: ['sk-code-quality'], observedResources: [] }, skillRoot, skillId: 'sk-code' },
+      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('sk-code-quality', 'sk-code-quality', 'surface-router')] }), evaluate: spy },
     );
     expect(calls).toBe(2);
     expect(res.status).toBe(parity.PARITY_STATUS.MATCH);
@@ -348,14 +358,14 @@ describe('compiled-routing-parity: per-scenario status fixtures', () => {
   it('both sides failing the same pre-existing gold gap, under matching routing, is parity not drift', () => {
     // Parity is "compiled behaves identically to legacy" (same routing AND the
     // same gold outcome), decoupled from gold-achievability. Both compiled and
-    // legacy route to 'quality' (matching projection) and both fail the SAME
-    // authored gold (which expects 'code-review') -- compiled tracked legacy
-    // exactly, so this is match, not drift.
-    const wrongScenario = { ...PASS_SCENARIO, expectedIntents: ['code-review'] };
-    const wrongLegacy = { observedIntents: ['quality'], observedResources: [] };
+    // legacy route to 'sk-code-quality' (matching projection) and both fail the
+    // SAME authored gold (which expects 'sk-code-review') -- compiled tracked
+    // legacy exactly, so this is match, not drift.
+    const wrongScenario = { ...PASS_SCENARIO, expectedIntents: ['sk-code-review'] };
+    const wrongLegacy = { observedIntents: ['sk-code-quality'], observedResources: [] };
     const res = parity.compiledParity(
       { scenario: wrongScenario, legacyObserved: wrongLegacy, skillRoot, skillId: 'sk-code' },
-      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('quality', 'code-quality', 'surface-router')] }) },
+      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('sk-code-quality', 'sk-code-quality', 'surface-router')] }) },
     );
     expect(res.status).toBe(parity.PARITY_STATUS.MATCH);
     expect(res.compiledGoldPass).toBe(false);
@@ -366,14 +376,15 @@ describe('compiled-routing-parity: per-scenario status fixtures', () => {
   it('adversarial: a real misroute still drifts even when both sides fail gold identically', () => {
     // compiledGoldPass === legacyGoldPass (both false) alone must never be
     // sufficient for match -- firstDifference===null is a mandatory, separate
-    // conjunct. Compiled routes to 'code-review'; legacy routed to 'quality';
-    // neither matches the authored gold ('some-other-mode'), so the gold axis
-    // trivially agrees (both fail) while the routing axis genuinely disagrees.
+    // conjunct. Compiled routes to 'sk-code-review'; legacy routed to
+    // 'sk-code-quality'; neither matches the authored gold ('some-other-mode'),
+    // so the gold axis trivially agrees (both fail) while the routing axis
+    // genuinely disagrees.
     const wrongScenario = { ...PASS_SCENARIO, expectedIntents: ['some-other-mode'] };
-    const legacyObserved = { observedIntents: ['quality'], observedResources: [] };
+    const legacyObserved = { observedIntents: ['sk-code-quality'], observedResources: [] };
     const res = parity.compiledParity(
       { scenario: wrongScenario, legacyObserved, skillRoot, skillId: 'sk-code' },
-      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('code-review', 'code-review', 'review-cache')] }) },
+      { readServingAuthority: () => 'compiled', compiledDecision: () => ({ action: 'route', targets: [target('sk-code-review', 'sk-code-review', 'review-cache')] }) },
     );
     expect(res.compiledGoldPass).toBe(false);
     expect(res.legacyGoldPass).toBe(false);

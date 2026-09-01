@@ -4,7 +4,7 @@ title: 'Holdout — CHANGELOG via natural phrasing'
 description: "Routing-gold scenario SD-H04: Holdout — CHANGELOG via natural phrasing."
 expected_intent: sk-create-changelog
 expected_resources:
-  - shared/assets/changelog-template.md
+  - sk-create-changelog/assets/changelog-template.md
 expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog

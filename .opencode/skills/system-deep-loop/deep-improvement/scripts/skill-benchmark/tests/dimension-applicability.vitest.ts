@@ -15,7 +15,7 @@ const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const HARNESS = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
 const { run, augmentWithD4R } = require(join(HARNESS, 'run-skill-benchmark.cjs'));
 
-const CODE_OPENCODE = join(REPO_SKILLS, 'sk-code', 'code-opencode'); // advisor-invisible surface
+const CODE_OPENCODE = join(REPO_SKILLS, 'sk-code', 'sk-code-opencode'); // advisor-invisible surface
 const SK_CODE = join(REPO_SKILLS, 'sk-code'); // advisor-visible hub identity
 
 // The subject here is dimension-applicability REPORTING, not route conformance,

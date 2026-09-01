@@ -65,7 +65,10 @@ describe('command metadata dense e2e', () => {
       }
     }
 
-    expect(metadataCount).toBe(20);
+    // A census of every command declared across .opencode/skills/*/command-metadata.json,
+    // not a target: retiring or adding a command moves it, so recount the declarations
+    // and update this number rather than relaxing it.
+    expect(metadataCount).toBe(19);
   });
 
   it('resolves every hub and standalone leaf alias diskPath', () => {

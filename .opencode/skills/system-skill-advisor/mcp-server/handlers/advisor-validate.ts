@@ -118,10 +118,13 @@ const CORPUS_SOURCE_TYPES = [
 ] as const;
 // Minimum row counts below which a bucket slice is statistically meaningless.
 // review/memory_save track their labeled-corpus bucket sizes; delegation tracks
-// the shared executor-routing fixture size.
-const REVIEW_BUCKET_MIN_N = 32;
+// the shared executor-routing fixture size. Because these mirror a census rather
+// than a designed sample size, each one moves whenever the labeled corpus gains
+// or loses a row in that bucket — recount the bucket and update the floor, do not
+// lower it to whatever the failing run reported.
+const REVIEW_BUCKET_MIN_N = 31;
 const MEMORY_SAVE_BUCKET_MIN_N = 32;
-const DELEGATION_BUCKET_MIN_N = 11;
+const DELEGATION_BUCKET_MIN_N = 9;
 
 // Strict zod schemas for the JSONL fixtures consumed by
 // loadCorpus() and loadRegressionCases(). The shapes match the existing

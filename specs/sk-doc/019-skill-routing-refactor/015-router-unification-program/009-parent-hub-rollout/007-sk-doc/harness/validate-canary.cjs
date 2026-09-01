@@ -78,25 +78,34 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  // Re-pinned when the index-table cell pattern was widened to accept the markdown-link
+  // file cell the playbook-authoring template now emits.
+  'load-playbook-scenarios.cjs': 'c79aa057a68dba4577519e7fb207f359a15fd76154f3be1ee337f7104fa98f0f',
   'router-replay.cjs': '14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9',
   'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
 });
+// These attest the authored hub sources the compiler reads: the hub SKILL.md, both
+// routing-stage files, and one SKILL.md per registered packet. They are a drift
+// tripwire, not a freeze: a deliberate hub change refreshes them in the same commit.
+// Left stale, the canary reports the hub's own edits as corruption. The key set
+// mirrors what the loader collects, so adding a packet to the registry adds a row here.
 const AUTHORED_DIGESTS = Object.freeze({
-  'SKILL.md': '30553e20bcd0b23424a335575ceb2cbbc1b712098e4cdc9b64925231d505b7a6',
-  'hub-router.json': 'b8da3ec61618c323ac66ff9a2b2863db971a099ff761eef93241b98ffbf98eba',
-  'mode-registry.json': 'fe8097db0cebf545481e7fc823009a52dcfb5daf35014d1a280f97366dc5cfd1',
-  'packets/sk-create-agent/SKILL.md': '86a4aa72ae597cd0313a1d0d7e4790ea03f80c02c2999413e112349f511eda7f',
-  'packets/sk-create-benchmark/SKILL.md': 'e2b8f93301bb9d91c3116cb1c2e932cebfa7d980af9563c24b7124f6b1bdeaf8',
-  'packets/sk-create-changelog/SKILL.md': '540813a0323f902628c29e1f3bfabbd5fbd2213292955e1f28d6567ade32bdae',
+  'SKILL.md': 'a3a924ad32fb7f6c72e09e21c3705648b13c41dec420765a5da7d9a25031f21c',
+  'hub-router.json': '50a503a626eef4d4aeb243b52c639817e8771e22c8b6c42a9905f042fb32e92a',
+  'mode-registry.json': '3ae14af612a07d44234f5af97b1f5efda35ae8607e6ec61f0e02bb98030d200e',
+  'packets/sk-create-agent/SKILL.md': '4608c64691588311b935b62aaa138b1abc9b1b0499db4b107e730c8202d77c77',
+  'packets/sk-create-benchmark/SKILL.md': 'b686252ec99a6491f3f3f7d097b5af16ce03d859ece51bab63be4ae06f26ec05',
+  'packets/sk-create-changelog/SKILL.md': 'b335ad104e7ea5ab58665481bc271bae68321f879229f6225ab2eedb99a89d48',
   'packets/sk-create-command/SKILL.md': '176c3c62910ef1ef7b19bb260e4b0176c2ea82d975c34da72520ade9f2f57466',
-  'packets/sk-create-diff/SKILL.md': '4be80d8914ef927cdc27555c17292cef8de77d155f234fc989459016d05ac396',
-  'packets/sk-create-feature-catalog/SKILL.md': '88dde2adf676cbbe76b4684c14503b668d88e97dec05bdfe39848fc470a5dd8a',
-  'packets/sk-create-manual-testing-playbook/SKILL.md': '35d75124c12dc73035694b1bc3b14c9fca9f9c9c227018e0e87a0caeb2c16500',
-  'packets/sk-create-quality-control/SKILL.md': 'c547aa0e2cf27d0685e8e6af322dfa342bfb19754864b3d2af061d93160c5f63',
-  'packets/sk-create-readme/SKILL.md': 'd68c33d779ee74aaa877309f106edb98c2771fdbe14afc9f6c83580111ecfdea',
-  'packets/sk-create-skill/SKILL.md': 'b004dde0e12f462fd2b7879e22d84afa6b322b06cfa55b43a34ec05456cc9ebd',
   'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
+  'packets/sk-create-diff/SKILL.md': '4be80d8914ef927cdc27555c17292cef8de77d155f234fc989459016d05ac396',
+  'packets/sk-create-feature-catalog/SKILL.md': '2db3c1ee4718a75eeca01412f0b5b780e9f1924dd9e6f92fbb07c69085870b32',
+  'packets/sk-create-manual-testing-playbook/SKILL.md': '6687ca874c33acd1ef3113c575b49429b11f263856b03e06581d5c97297d4b9b',
+  'packets/sk-create-quality-control/SKILL.md': '8e7cce8a51b7aa7e4f631766f98051dc80a811be53716a093cf2bf1d9697c741',
+  'packets/sk-create-readme/SKILL.md': 'fa3c29373cd479e4845c4fc1ae9bfe02164ac2dd186cfd3590960b50e6679fc1',
+  'packets/sk-create-repo-rule/SKILL.md': '91b4f703076a71236a81576d2d04ef5ebeeef0af092ab5ea46cc1913a3a552f0',
+  'packets/sk-create-skill/SKILL.md': '844e2748234466aec72c5a9dfaacbb6b074cee158de13173b7d3813008355e35',
+  'packets/sk-create-with-human-voice/SKILL.md': '35dd7cd811aacc6dcbf4aa1b2c48a6ee62704fde680e0424c6389b166aa21dcf',
 });
 
 function readJson(filePath) {
@@ -190,10 +199,14 @@ function assertCompiled(snapshot) {
     assert.deepStrictEqual(schemaErrors(TYPED_GOLD_SCHEMA, row), []);
     assert.strictEqual(computeProjectionHash('TypedRouteGoldV1', row), row.projectionHash);
   });
-  assert.strictEqual(snapshot.policy.destinations.length, 12);
-  assert.strictEqual(snapshot.projectionGraph.rows.length, 12);
-  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => canonicalize(row.identityTuple))).size, 12);
-  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => row.packetRef)).size, 11);
+  // These track the hub's live topology, so registering or withdrawing a mode
+  // refreshes them in the same change. The invariant they encode is the gap between
+  // the two counts: every mode gets its own identity tuple, and modes outnumber
+  // packets because one packet backs more than one mode.
+  assert.strictEqual(snapshot.policy.destinations.length, 14);
+  assert.strictEqual(snapshot.projectionGraph.rows.length, 14);
+  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => canonicalize(row.identityTuple))).size, 14);
+  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => row.packetRef)).size, 13);
   assert.strictEqual(snapshot.policy.compositionRules.length, 5);
   assert.deepStrictEqual(snapshot.routingModel.bundleRules[0].targetWorkflowModes, [
     'sk-create-skill',
@@ -206,11 +219,33 @@ function assertCompiled(snapshot) {
   )));
   return {
     byteIdenticalRecompile: true,
-    destinationCount: 12,
-    distinctPacketCount: 11,
+    destinationCount: 14,
+    distinctPacketCount: 13,
     orderedBundleRules: 5,
     schemaValidation: 'pass',
   };
+}
+
+// A registered mode with no fixture case of its own is unreachable evidence: the
+// suite still passes while nothing ever proves that mode routes. Deriving the
+// expected set from the live registry rather than a written list is what makes
+// registering a mode without covering it fail here instead of going unnoticed.
+// Coverage counts only a case that actually resolved to a lone target, so a
+// fixture cannot claim a mode it does not really reach.
+function assertSingleRouteCoverage(rows) {
+  const registry = readJson(path.join(SKILL_ROOT, 'mode-registry.json'));
+  const covered = new Set(rows
+    .filter((row) => row.action === 'route' && row.selectionKind === 'single' && row.targets.length === 1)
+    .map((row) => row.targets[0]));
+  const uncovered = registry.modes
+    .map((mode) => mode.workflowMode)
+    .filter((workflowMode) => !covered.has(workflowMode));
+  assert.deepStrictEqual(
+    uncovered,
+    [],
+    `every registered mode needs a single-route case; uncovered: ${uncovered.join(', ')}`,
+  );
+  return registry.modes.length;
 }
 
 function runRouteCases(snapshot, fixture) {
@@ -257,6 +292,7 @@ function runRouteCases(snapshot, fixture) {
   assert.strictEqual(scoreRouteGoldReadOnly([corrupted]).verdicts[0].pass, false);
   return {
     falsifierRejected: true,
+    modesWithSingleRouteCase: assertSingleRouteCoverage(rows),
     realEvaluateRouteGoldRows: scorer.verdicts.length,
     realGreenRows: scorer.verdicts.filter((row) => row.pass).length,
     rows,

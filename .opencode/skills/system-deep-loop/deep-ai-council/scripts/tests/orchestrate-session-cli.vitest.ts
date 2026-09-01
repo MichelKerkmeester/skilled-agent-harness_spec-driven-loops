@@ -330,13 +330,13 @@ describe('deep-ai-council session CLI runner', () => {
       kind: 'cli-devin',
       model: 'swe',
       command: 'devin',
-      expectedArgs: (prompt: string) => ['-p', prompt, '--model', 'swe', '--permission-mode', 'auto'],
+      expectedArgs: (prompt: string) => ['-p', prompt, '--model', 'swe', '--permission-mode', 'auto', '--respect-workspace-trust', 'false'],
     },
     {
       kind: 'cli-pi',
-      model: 'deepseek-v4-pro',
+      model: 'deepseek-v4-flash',
       command: 'pi',
-      expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', prompt],
+      expectedArgs: (prompt: string) => ['-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', prompt],
     },
   ])('dispatches read-only %kind seats through the shared builder', async ({ kind, model, command, expectedArgs }) => {
     await withTempPacket(async (packetSpecFolder) => {

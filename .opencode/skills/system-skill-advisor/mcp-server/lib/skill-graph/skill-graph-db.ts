@@ -1203,6 +1203,10 @@ export async function refreshSkillEmbeddings(skillDir?: string): Promise<SkillEm
   return refreshSkillEmbeddingsLegacy(database, skillDir);
 }
 
+// A dead or wedged embedding backend fails every row for the same reason, so a
+// per-row retry buys nothing and costs one full request deadline each time.
+const EMBEDDING_BACKEND_OUTAGE_STREAK = 3;
+
 async function refreshSkillEmbeddingsViaAdapter(
   database: Database.Database,
   skillDir: string | undefined,
@@ -1243,6 +1247,11 @@ async function refreshSkillEmbeddingsViaAdapter(
   let embedded = 0;
   let skipped = 0;
   let failed = 0;
+  // Give up once the run has proved the backend, not the row, is the problem,
+  // and count the rows it never tried as failed so the result still reads as an
+  // outage rather than a healthy short scan.
+  let consecutiveFailures = 0;
+  let backendOutage: string | null = null;
 
   const rows = database.prepare(`
     SELECT n.id AS id,
@@ -1278,6 +1287,12 @@ async function refreshSkillEmbeddingsViaAdapter(
       continue;
     }
 
+    if (backendOutage !== null) {
+      failed++;
+      deleteEmbedding.run(row.id);
+      continue;
+    }
+
     const description = skillDescriptionForEmbedding(row.source_path).trim();
     if (!description) {
       deleteEmbedding.run(row.id);
@@ -1303,13 +1318,23 @@ async function refreshSkillEmbeddingsViaAdapter(
       }
       upsertEmbedding.run(row.id, encodeEmbedding(vector), modelId, contentHash);
       embedded++;
+      consecutiveFailures = 0;
     } catch (error: unknown) {
       failed++;
+      consecutiveFailures++;
       deleteEmbedding.run(row.id);
       const message = error instanceof Error ? error.message : String(error);
       const warning = `EMBEDDING-FAILED: ${row.id} (${message})`;
       warnings.push(warning);
       console.warn(`[skill-graph] ${warning}`);
+      if (consecutiveFailures >= EMBEDDING_BACKEND_OUTAGE_STREAK) {
+        backendOutage = message;
+        const outageWarning = `EMBEDDING-BACKEND-OUTAGE: stopped after ${consecutiveFailures}`
+          + ` consecutive failures (${message}); the remaining skills are counted as`
+          + ' failed and retried on the next refresh';
+        warnings.push(outageWarning);
+        console.warn(`[skill-graph] ${outageWarning}`);
+      }
     }
   }
 

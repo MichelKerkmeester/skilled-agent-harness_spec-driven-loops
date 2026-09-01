@@ -693,9 +693,14 @@ function verifyRoot(runtimeRoot, { emit = true, allowStaleManifests = false } = 
   if (!resolverPath || !fs.existsSync(resolverPath)) {
     throw new Error(`promoted resolver missing at ${resolverPath || 'no coherent layout'}; run the sync build first`);
   }
-  const { touched, resolved, reachableHubs } = traceClosure(resolverPath, runtimeRoot);
+  const { touched, resolved } = traceClosure(resolverPath, runtimeRoot);
   const specReads = [...touched].filter(underSpecs).sort();
-  const unresolved = HUBS.filter((h) => !reachableHubs[h]);
+  // A promoted root is judged on what it will actually serve, so this gate stays on
+  // the manifest-sensitive route rather than bare engine reachability. The compiled
+  // engine answers for a hub whose manifest is missing, malformed or invalid, so
+  // reachability alone would wave those through; only `resolved` distinguishes them.
+  // Genuine staleness is a separate case, sorted below by the status probe.
+  const unresolved = HUBS.filter((h) => !resolved[h]);
   const allowedStale = [];
   const blockedUnresolved = [];
   if (allowStaleManifests && unresolved.length > 0) {

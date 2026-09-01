@@ -82,34 +82,44 @@ DEFAULT_RESOURCE = [
 ]
 
 INTENT_SIGNALS = {
-    "IMPLEMENTATION":  {"weight": 1, "keywords": ["view renderer", "add renderer", "table renderer", "database view", "implement", "build", "new column type", "row pipeline"]},
-    "CODE_QUALITY":    {"weight": 1, "keywords": ["module banner", "section banner", "folder docs", "naming", "quality gate", "lint", "kebab-case", "comment grammar"]},
+    "IMPLEMENTATION":  {"weight": 1, "keywords": ["view renderer", "add renderer", "table renderer", "database view", "implement", "build", "new column type", "row pipeline", "screenshot scenario", "modal"]},
+    "CODE_QUALITY":    {"weight": 1, "keywords": ["module banner", "section banner", "folder docs", "folder-doc", "code.md", "naming", "rename", "fixture", "quality gate", "lint", "kebab-case", "comment grammar"]},
     "DEBUGGING":       {"weight": 1, "keywords": ["debug", "broken", "regression", "wrong render", "empty state bug", "pipeline diagnostics"]},
     "VERIFICATION":    {"weight": 1, "keywords": ["verify", "tsc --noEmit", "vitest", "screenshots:verify", "completion claim", "gate baseline"]},
-    "STACK_STANDARDS": {"weight": 1, "keywords": ["obsidian api", "itemview", "fileview", "workspaceleaf", "manifest.json", "esbuild", ".db-", "styles.css", "single stylesheet"]},
+    "STACK_STANDARDS": {"weight": 1, "keywords": ["obsidian api", "itemview", "fileview", "workspaceleaf", "manifest.json", "esbuild", ".db-", "styles.css", "single stylesheet", "isdesktoponly"]},
 }
 
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
         "references/view-renderer-architecture.md",
+        "references/data-layer.md",
         "references/db-class-naming.md",
         "references/stylesheet-ownership.md",
-        "assets/renderer-implementation-checklist.md",
+        "references/screenshot-harness.md",
+        "assets/fixture-authoring-checklist.md",
+        "assets/screenshot-coverage-checklist.md",
+        "assets/modal-coverage-checklist.md",
     ],
     "CODE_QUALITY": [
         "references/comment-grammar.md",
         "references/folder-docs.md",
-        "assets/comment-grammar-checklist.md",
+        "references/db-class-naming.md",
+        "references/stylesheet-ownership.md",
+        "references/standards/code-standards.md",
+        "assets/comment-banner-checklist.md",
         "assets/folder-docs-checklist.md",
+        "assets/db-class-rename-checklist.md",
+        "assets/fixture-authoring-checklist.md",
     ],
     "DEBUGGING": [
         "references/view-renderer-architecture.md",
+        "references/mobile-and-touch.md",
         "references/verification.md",
-        "assets/debug-checklist.md",
     ],
     "VERIFICATION": [
         "references/verification.md",
         "references/screenshot-harness.md",
+        "references/release/release-verification.md",
         "assets/verification-checklist.md",
     ],
     "STACK_STANDARDS": [
@@ -117,6 +127,7 @@ RESOURCE_MAP = {
         "references/stylesheet-ownership.md",
         "references/db-class-naming.md",
         "references/screenshot-harness.md",
+        "references/standards/platform-support.md",
     ],
 }
 ```

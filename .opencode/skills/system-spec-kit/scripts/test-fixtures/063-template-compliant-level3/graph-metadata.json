@@ -8,7 +8,11 @@
     "depends_on": [],
     "supersedes": [],
     "related_to": [
-      "053-template-compliant-level2"
+      {
+        "packet_id": "053-template-compliant-level2",
+        "reason": "Sibling template-compliance fixture at the adjacent documentation level",
+        "source": "manual"
+      }
     ]
   },
   "derived": {
@@ -28,12 +32,11 @@
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/spec.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md",
-      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/checklist.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/decision-record.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/implementation-summary.md"
     ],
     "entities": [],
-    "causal_summary": "Fixture metadata keeps strict Level 3 validator regression warnings at zero.",
+    "causal_summary": "Validator regression fixtures must remain valid as the template contract evolves",
     "created_at": "2026-06-11T00:00:00Z",
     "last_save_at": "2026-06-11T00:00:00Z",
     "save_lineage": "same_pass",
@@ -42,10 +45,10 @@
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/spec.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/plan.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/tasks.md",
-      ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/checklist.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/decision-record.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a48451d5fa60ea1262eb23926232e935e85699500e333879ab519ba3619b4f18"
+    "source_fingerprint": "sha256:e8de3726d7aa99637c6c5006d7a4d220d4afc3325844559d2e033db9a50e9f43",
+    "source_fingerprint_docset": 3
   }
 }

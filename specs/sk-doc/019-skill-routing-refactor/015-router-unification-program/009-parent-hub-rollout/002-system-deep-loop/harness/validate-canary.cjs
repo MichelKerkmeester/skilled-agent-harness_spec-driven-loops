@@ -97,13 +97,19 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  // Re-pinned when the index-table cell pattern was widened to accept the markdown-link
+  // file cell the playbook-authoring template now emits.
+  'load-playbook-scenarios.cjs': 'c79aa057a68dba4577519e7fb207f359a15fd76154f3be1ee337f7104fa98f0f',
   'router-replay.cjs': '14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9',
   'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
 });
+// These attest the hub source this canary was minted against. They are a drift
+// tripwire, not a freeze: a deliberate change to the hub refreshes them in the same
+// commit. Left stale, the canary reports the hub's own edits as corruption.
+// Re-pinned after the alignment mode was withdrawn from the hub.
 const AUTHORED_SOURCE_DIGESTS = Object.freeze({
-  'SKILL.md': '292b60eeae5e037b1af1c487ad666ece0331f922a5ffc1297369fd7c0ae8f43f',
-  'mode-registry.json': '8b6e6ae055b03a7c7c4da9c85a74e6564b04a5e40bcd03212079077b3365ac6d',
+  'SKILL.md': '38a263848cb72d8414f8307cbe0443b8e7a0f7a3c971af7a486bdb5753424ffe',
+  'mode-registry.json': '12cd354ffa65832fff12c248486279b2b410542d9294a7ca97fedcceeb4524dd',
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -175,6 +181,7 @@ function compileWithRegistry(registry, generation) {
     leafManifest: JSON.parse(bytes['leaf-manifest.json'].toString('utf8')),
     registry,
     skillMarkdown: bytes['SKILL.md'].toString('utf8'),
+    skillRoot: SKILL_ROOT,
     smartRoutingMarkdown: bytes['smart-routing.md'].toString('utf8'),
     sourceBytes: bytes,
   });
@@ -390,7 +397,10 @@ function assertCompiledArtifacts(snapshot) {
   assert.strictEqual(distinctPublicModes, registry.modes.length);
   assert.strictEqual(rows.length, registry.modes.length);
   const packetCount = new Set(registry.modes.map((mode) => mode.packet)).size;
-  assert.strictEqual(packetCount, 5);
+  // Tracks the hub's packet count, so withdrawing or adding a packet refreshes it here
+  // in the same change. The invariant that matters is the line below: modes outnumber
+  // packets, because several modes share one.
+  assert.strictEqual(packetCount, 4);
   assert.notStrictEqual(snapshot.policy.destinations.length, packetCount);
   assert.strictEqual(snapshot.policy.compositionRules.length, 0);
   assert.ok(snapshot.manifestResources.length > 0, 'compiled manifest identities are required');
@@ -446,6 +456,7 @@ function assertCompiledArtifacts(snapshot) {
       leafManifest: JSON.parse(liveBytes['leaf-manifest.json'].toString('utf8')),
       registry: mismatchedRegistry,
       skillMarkdown: liveBytes['SKILL.md'].toString('utf8'),
+      skillRoot: SKILL_ROOT,
       smartRoutingMarkdown: liveBytes['smart-routing.md'].toString('utf8'),
       sourceBytes: liveBytes,
     }),
@@ -517,9 +528,14 @@ function runCollapseFalsifiers(snapshot) {
     'SHARED_PACKET_COLLAPSE',
   );
 
+  // Break the exact contract the rule guards: review keeps its own runtime loop type.
+  // Falsify it on review itself rather than by colliding a second mode into review's
+  // packet, which the manifest-identity rule now rejects first and which tied the
+  // falsifier to whichever mode happened to sit elsewhere.
   const runtimeKey = clone(registry);
   const review = runtimeKey.modes.find((mode) => mode.workflowMode === 'review');
-  runtimeKey.modes.find((mode) => mode.workflowMode === 'alignment').packet = review.packet;
+  assert.ok(review, 'the runtime-key falsifier needs the review mode');
+  review.runtimeLoopType = 'research';
   assertThrowsCode(
     () => compileWithRegistry(runtimeKey, snapshot.policy.activationGeneration),
     TypeError,
@@ -547,7 +563,27 @@ function runCollapseFalsifiers(snapshot) {
 // 5. REAL-HUB ROUTE GOLD
 // ─────────────────────────────────────────────────────────────────────────────
 
+// A registered mode with no fixture case of its own is unreachable evidence: the
+// suite still passes while nothing ever proves that mode routes. Deriving the
+// expected set from the live registry rather than a written list is what makes
+// registering a mode without covering it fail here instead of going unnoticed.
+// Coverage counts only a case that actually resolved to a lone target, so a
+// fixture cannot claim a mode it does not really reach.
+function assertSingleRouteCoverage(covered) {
+  const registry = readJson(path.join(SKILL_ROOT, 'mode-registry.json'));
+  const uncovered = registry.modes
+    .map((mode) => mode.workflowMode)
+    .filter((workflowMode) => !covered.has(workflowMode));
+  assert.deepStrictEqual(
+    uncovered,
+    [],
+    `every registered mode needs a single-route case; uncovered: ${uncovered.join(', ')}`,
+  );
+  return registry.modes.length;
+}
+
 function runRouteCases(snapshot, fixture) {
+  const singleRouteCoverage = new Set();
   const rows = [];
   const scorerInputs = [];
   for (const entry of fixture.cases) {
@@ -571,6 +607,13 @@ function runRouteCases(snapshot, fixture) {
       assert.strictEqual(result.decision.clarify.question, snapshot.fallbackChecklist[0]);
     }
 
+    if (
+      result.decision.action === 'route'
+      && result.decision.route.selectionKind === 'single'
+      && result.decision.route.targets.length === 1
+    ) {
+      singleRouteCoverage.add(result.decision.route.targets[0].destinationId.workflowMode);
+    }
     const leafPairs = compiledLeafPairsForDecision(snapshot, result.decision);
     const projection = compatibilityProjection(snapshot, result.decision, leafPairs);
     scorerInputs.push({ observed: projection, scenario: scorerScenario(entry) });
@@ -643,6 +686,7 @@ function runRouteCases(snapshot, fixture) {
     corruptedObservationPass: falsifier.pass,
     corruptedScenarioId: rows[realGreenIndex].id,
     deliveredArtifact,
+    modesWithSingleRouteCase: assertSingleRouteCoverage(singleRouteCoverage),
     legacyBackfillUsed: false,
     projectorProof: {
       compiledLeafPairs: researchLeafPairs,

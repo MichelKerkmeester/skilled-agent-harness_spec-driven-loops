@@ -175,8 +175,6 @@
         "validate",
         "score",
         "optimize",
-        "check",
-        "review",
         "harden",
         "audit"
       ]
@@ -390,8 +388,6 @@
         "score this document",
         "optimize this doc",
         "DQI",
-        "HVR",
-        "human voice",
         "AI-friendly documentation",
         "extract structure",
         "quality bar",
@@ -434,7 +430,8 @@
         "de-ai the writing",
         "reads like a machine wrote it",
         "banned word check",
-        "hvr"
+        "hvr",
+        "human voice"
       ]
     }
   }

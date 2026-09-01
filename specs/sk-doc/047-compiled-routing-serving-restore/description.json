@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/047-compiled-routing-serving-restore",
+  "description": "Three of the five parent hubs reported `servingAuthority: legacy` with cause",
+  "keywords": [
+    "three",
+    "five",
+    "parent",
+    "hubs",
+    "reported",
+    "servingauthority",
+    "legacy",
+    "cause"
+  ],
+  "lastUpdated": "2026-09-01T06:20:02.671Z",
+  "specId": "047",
+  "folderSlug": "compiled-routing-serving-restore",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

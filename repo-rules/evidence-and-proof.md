@@ -78,7 +78,10 @@ Not launched. Not assumed. Read.
 1. **It did not run.** Stale build, refused start, missing binary, guard clause, crashed
    before the first test body.
 2. **It ran on the wrong thing.** Wrong path, branch, or working directory; a symlink
-   that resolved elsewhere; a filter that matched nothing.
+   that resolved elsewhere; a filter that matched nothing. A search that returns nothing
+   is not evidence of absence until you have confirmed it read the file: `grep` treats a
+   source file holding a NUL byte as binary and prints nothing at all, and several files
+   here use NUL as a composite-key separator. Re-run with `-a` before concluding.
 3. **It ran on stale artifacts.** Cached output, an old bundle, pre-change fixtures, a
    metadata fingerprint that no longer attests its source.
 4. **It asserted nothing.** A test with no assertion, a mocked subject, an auto-updated

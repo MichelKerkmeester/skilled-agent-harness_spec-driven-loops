@@ -115,27 +115,8 @@
       }
     },
     {
-      "id": "single-alignment",
-      "prompt": "alignment lane",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "alignment"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "alignment"
-        ],
-        "expectedResources": [
-          "deep-alignment/references/scoping-protocol.md",
-          "deep-alignment/references/discover-contract.md",
-          "deep-alignment/references/lane-config-schema.md"
-        ]
-      }
-    },
-    {
       "id": "one-turn-clarify",
-      "prompt": "deep review of this alignment lane",
+      "prompt": "deep review of this research loop",
       "expectedAction": "clarify",
       "gold": {
         "expectedIntents": [

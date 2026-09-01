@@ -157,6 +157,12 @@ function findNestedIdentities(skillDir) {
     try { entries = fs.readdirSync(cur, { withFileTypes: true }); } catch { continue; }
     for (const entry of entries) {
       if (entry.name === 'node_modules' || entry.name === '.git') continue;
+        // A fixture tree holds sample spec packets, not nested skills. Those samples
+        // carry the same identity filenames on purpose, because that is what they are
+        // fixtures OF, so walking into them reports every sample as a second identity
+        // the root projects. The spec generators already refuse to treat these as real
+        // packets for the same reason.
+        if (entry.name === 'fixtures' || entry.name === 'test-fixtures') continue;
       const full = path.join(cur, entry.name);
       if (entry.isDirectory()) { stack.push(full); continue; }
       if (!entry.isFile()) continue;

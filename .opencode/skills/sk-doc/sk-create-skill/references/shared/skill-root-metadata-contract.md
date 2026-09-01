@@ -97,7 +97,7 @@ Only files with no authored meaning may be written unattended.
 
 `leaf-aliases.json` splits on class, and the split reflects what the two shapes actually are.
 
-A **hub's** alias rows carry real compatibility triples — they relocate a mode's resource onto a disk path outside that mode's own packet, for example `assets/changelog-template.md → shared/assets/changelog-template.md`. Nothing in the corpus implies those rows, so they must be authored and a generator must never overwrite them.
+A **hub's** alias rows carry real compatibility triples — they relocate a mode's resource onto a disk path outside that mode's own packet, for example `assets/changelog-template.md → sk-create-changelog/assets/changelog-template.md`. Nothing in the corpus implies those rows, so they must be authored and a generator must never overwrite them.
 
 A **standalone** root has exactly one workflow mode, so the same triple degenerates to an identity projection over its own leaves: `workflowMode` is the skill id and `leafResourceId` equals `diskPath` on every row. That is a pure function of the manifest, so deriving it is strictly better than authoring it — a hand-maintained identity list silently rots the moment a leaf is added.
 

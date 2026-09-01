@@ -57,6 +57,16 @@ export class OllamaBackendUnreachableError extends OllamaAdapterError {
   }
 }
 
+// A timeout is a subclass of "unreachable" on purpose: a server that accepts the
+// connection and never answers is, to every caller, the same outage as one that
+// refuses it, and callers already degrade on the unreachable case.
+export class OllamaRequestTimeoutError extends OllamaBackendUnreachableError {
+  constructor(baseUrl: string, path: string, timeoutMs: number) {
+    super(baseUrl, new Error(`request to ${path} timed out after ${timeoutMs}ms`));
+    this.name = 'OllamaRequestTimeoutError';
+  }
+}
+
 export class OllamaModelNotLoadedError extends OllamaAdapterError {
   constructor(model: string) {
     super(`Ollama model is not loaded: ${model}`);
@@ -77,12 +87,54 @@ export class OllamaDimensionMismatchError extends OllamaAdapterError {
 
 const DEFAULT_OLLAMA_BASE_URL = 'http://127.0.0.1:11434';
 
+// Every request carries a deadline. A wedged Ollama accepts the TCP connection
+// and then never answers, and its /api/tags endpoint keeps replying while it does,
+// so the readiness probe reports healthy and an unbounded fetch parks the caller
+// forever. The deadline is split by what the embedding is for, which `inputType`
+// already tells us: a query embedding sits in an interactive scoring path whose
+// caller falls back to a lexical-only answer, so it gives up fast; a document
+// embedding runs inside batch indexing, where a long wait is the expected cost,
+// so it scales with the batch instead of failing a legitimately slow run.
+const OLLAMA_TAGS_TIMEOUT_MS = 5_000;
+const OLLAMA_QUERY_TIMEOUT_MS = 5_000;
+const OLLAMA_DOCUMENT_BASE_TIMEOUT_MS = 30_000;
+const OLLAMA_DOCUMENT_PER_INPUT_TIMEOUT_MS = 2_000;
+
 // ───────────────────────────────────────────────────────────────
 // 4. HELPERS
 // ───────────────────────────────────────────────────────────────
 
 function getOllamaBaseUrl(): string {
   return (process.env.OLLAMA_BASE_URL || DEFAULT_OLLAMA_BASE_URL).replace(/\/+$/, '');
+}
+
+// A positive OLLAMA_REQUEST_TIMEOUT_MS pins every request to one deadline, for
+// operators whose backend is slower or faster than the defaults assume.
+function getTimeoutOverrideMs(): number | null {
+  const raw = Number.parseInt(process.env.OLLAMA_REQUEST_TIMEOUT_MS ?? '', 10);
+  return Number.isFinite(raw) && raw > 0 ? raw : null;
+}
+
+function embedTimeoutMs(inputType: OllamaInputType, inputCount: number): number {
+  const override = getTimeoutOverrideMs();
+  if (override !== null) return override;
+  if (inputType === 'query') return OLLAMA_QUERY_TIMEOUT_MS;
+  return OLLAMA_DOCUMENT_BASE_TIMEOUT_MS
+    + OLLAMA_DOCUMENT_PER_INPUT_TIMEOUT_MS * Math.max(0, inputCount - 1);
+}
+
+async function fetchWithTimeout(
+  url: string,
+  init: RequestInit,
+  timeoutMs: number,
+): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...init, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function getManifestModelName(manifest: EmbedderManifest): string {
@@ -199,8 +251,9 @@ export class OllamaAdapter implements EmbedderAdapter {
       return [];
     }
 
-    const input = texts.map((text) => this.prepareInput(text, options.inputType ?? 'document'));
-    const body = await this.postEmbed(input);
+    const inputType = options.inputType ?? 'document';
+    const input = texts.map((text) => this.prepareInput(text, inputType));
+    const body = await this.postEmbed(input, inputType);
     const rows = parseEmbeddingRows(body);
 
     if (rows.length !== texts.length) {
@@ -215,7 +268,11 @@ export class OllamaAdapter implements EmbedderAdapter {
   async ready(): Promise<boolean> {
     let response: Response;
     try {
-      response = await fetch(`${this.baseUrl}/api/tags`, { method: 'GET' });
+      response = await fetchWithTimeout(
+        `${this.baseUrl}/api/tags`,
+        { method: 'GET' },
+        getTimeoutOverrideMs() ?? OLLAMA_TAGS_TIMEOUT_MS,
+      );
     } catch {
       return false;
     }
@@ -247,8 +304,12 @@ export class OllamaAdapter implements EmbedderAdapter {
     return input.slice(0, safeMaxInputChars);
   }
 
-  private async postEmbed(input: ReadonlyArray<string>): Promise<unknown> {
-    const batchResponse = await this.postJson('/api/embed', { model: this.ollamaTag, input });
+  private async postEmbed(
+    input: ReadonlyArray<string>,
+    inputType: OllamaInputType,
+  ): Promise<unknown> {
+    const timeoutMs = embedTimeoutMs(inputType, input.length);
+    const batchResponse = await this.postJson('/api/embed', { model: this.ollamaTag, input }, timeoutMs);
     if (batchResponse.response.ok) {
       return batchResponse.body;
     }
@@ -260,22 +321,29 @@ export class OllamaAdapter implements EmbedderAdapter {
     const singleResponse = await this.postJson('/api/embeddings', {
       model: this.ollamaTag,
       prompt: input[0],
-    });
+    }, timeoutMs);
     if (!singleResponse.response.ok) {
       this.throwForEmbeddingResponse(singleResponse.response, singleResponse.body);
     }
     return singleResponse.body;
   }
 
-  private async postJson(path: string, payload: Record<string, unknown>): Promise<{ response: Response; body: unknown }> {
+  private async postJson(
+    path: string,
+    payload: Record<string, unknown>,
+    timeoutMs: number,
+  ): Promise<{ response: Response; body: unknown }> {
     let response: Response;
     try {
-      response = await fetch(`${this.baseUrl}${path}`, {
+      response = await fetchWithTimeout(`${this.baseUrl}${path}`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(payload),
-      });
+      }, timeoutMs);
     } catch (error: unknown) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        throw new OllamaRequestTimeoutError(this.baseUrl, path, timeoutMs);
+      }
       throw new OllamaBackendUnreachableError(this.baseUrl, error);
     }
 

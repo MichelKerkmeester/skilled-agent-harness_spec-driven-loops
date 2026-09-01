@@ -137,28 +137,43 @@ def _guard_in_skill(relative_path: str) -> str:
         raise ValueError("Only skill-local markdown resources are routable")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
-EXPLANATION_SIGNALS = (
-    "explain visually", "diagram", "draw the flow", "visualize", "sketch",
-    "explain simply", "explain from zero", "walk me through",
-    "modality", "depth", "explain-visually",
-)
+# The two lanes as an intent dictionary. PROJECTION is the default lane and the
+# one every non-visual request lands in; EXPLANATION carries the phrases that
+# hand a request to Lane B.
+INTENT_MODEL = {
+    "PROJECTION": {"weight": 3, "keywords": [
+        "communication projection", "claudish to english", "rewrite cli output",
+        "plain-english projection", "privacy-first rewrite", "full-projection",
+        "safe-native", "provider adapters", "exact-original fallback",
+        "compatibility doctor", "release gate", "non-inferiority evaluation",
+    ]},
+    "EXPLANATION": {"weight": 4, "keywords": [
+        "explain visually", "diagram", "draw the flow", "visualize", "sketch",
+        "explain simply", "explain from zero", "walk me through",
+        "modality", "depth", "explain-visually",
+    ]},
+}
+
+# Projection routing lives inline in this document's subsystem map, so that lane
+# loads no extra file. Only the explanation lane has a separate reference.
+RESOURCE_MAP = {
+    "PROJECTION": [],
+    "EXPLANATION": ["references/visual-explanation.md"],
+}
+
+LANE_BY_INTENT = {"PROJECTION": "projection", "EXPLANATION": "explanation"}
 
 def select_lane(request) -> str:
     """Lane B owns visual explanation; everything else is projection."""
     text = str(getattr(request, "text", request)).lower()
-    return "explanation" if any(s in text for s in EXPLANATION_SIGNALS) else "projection"
-
-# Projection routing lives inline in this document's subsystem map, so that lane
-# loads no extra file. Only the explanation lane has a separate reference.
-LANE_RESOURCES = {
-    "projection": [],
-    "explanation": ["references/visual-explanation.md"],
-}
+    signals = INTENT_MODEL["EXPLANATION"]["keywords"]
+    return "explanation" if any(s in text for s in signals) else "projection"
 
 def route_resources(request):
     inventory = discover_markdown_resources()
     lane = select_lane(request)
-    selected = LANE_RESOURCES[lane]
+    intent = next(k for k, v in LANE_BY_INTENT.items() if v == lane)
+    selected = RESOURCE_MAP[intent]
     if lane == "projection":
         return {"lane": lane, "resources": [], "note": "subsystem map is inline in SKILL.md"}
     if not selected or not inventory:

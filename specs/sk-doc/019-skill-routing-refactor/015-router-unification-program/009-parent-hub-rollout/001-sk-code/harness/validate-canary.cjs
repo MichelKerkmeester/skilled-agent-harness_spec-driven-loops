@@ -93,7 +93,9 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  // Re-pinned when the index-table cell pattern was widened to accept the markdown-link
+  // file cell the playbook-authoring template now emits.
+  'load-playbook-scenarios.cjs': 'c79aa057a68dba4577519e7fb207f359a15fd76154f3be1ee337f7104fa98f0f',
   'router-replay.cjs': '14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9',
   'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
 });
@@ -221,7 +223,27 @@ function assertCompiledArtifacts(snapshot) {
   };
 }
 
+// A registered mode with no fixture case of its own is unreachable evidence: the
+// suite still passes while nothing ever proves that mode routes. Deriving the
+// expected set from the live registry rather than a written list is what makes
+// registering a mode without covering it fail here instead of going unnoticed.
+// Coverage counts only a case that actually resolved to a lone target, so a
+// fixture cannot claim a mode it does not really reach.
+function assertSingleRouteCoverage(covered) {
+  const registry = readJson(path.join(SKILL_ROOT, 'mode-registry.json'));
+  const uncovered = registry.modes
+    .map((mode) => mode.workflowMode)
+    .filter((workflowMode) => !covered.has(workflowMode));
+  assert.deepStrictEqual(
+    uncovered,
+    [],
+    `every registered mode needs a single-route case; uncovered: ${uncovered.join(', ')}`,
+  );
+  return registry.modes.length;
+}
+
 function runRouteCases(snapshot, fixture) {
+  const singleRouteCoverage = new Set();
   const rows = [];
   const scorerInputs = [];
   for (const entry of fixture.cases) {
@@ -243,6 +265,13 @@ function runRouteCases(snapshot, fixture) {
       assert.strictEqual(result.decision.clarify.alternatives.length, 4);
       assert.strictEqual(result.decision.clarify.alternatives.at(-1), 'none_of_these');
       assert.strictEqual(result.decision.clarify.question, snapshot.fallbackChecklist[0]);
+    }
+    if (
+      result.decision.action === 'route'
+      && result.decision.route.selectionKind === 'single'
+      && result.decision.route.targets.length === 1
+    ) {
+      singleRouteCoverage.add(result.decision.route.targets[0].destinationId.workflowMode);
     }
     const projection = projectToRouteGold(result.decision, { policy: snapshot.policy });
     scorerInputs.push({ observed: projection, scenario: scorerScenario(entry) });
@@ -275,6 +304,7 @@ function runRouteCases(snapshot, fixture) {
   assert.strictEqual(surfaceOnly.route.authority, 'WithheldUntilVerify');
   return {
     corruptedObservationPass: falsifier.pass,
+    modesWithSingleRouteCase: assertSingleRouteCoverage(singleRouteCoverage),
     realScorerRows: rows.length,
     rows,
     surfaceOnlyAction: surfaceOnly.action,
@@ -650,9 +680,15 @@ function runHardBlocks(snapshot, fixture) {
     snapshot,
     canaryInput(fixture, fixture.cases[0]),
   ).decision;
+  // Picked by what the case is, not by where it sits. These falsifiers smuggle a
+  // target and an authority into a withheld branch, so they need a case that does
+  // not route; selecting it by position silently repoints them at a routing case
+  // the moment anyone inserts a fixture above it, and the smuggle then tests nothing.
+  const negativeCase = fixture.cases.find((entry) => entry.expectedAction === 'defer');
+  assert.ok(negativeCase, 'the negative-branch falsifiers need a deferring case');
   const negative = evaluateCanary(
     snapshot,
-    canaryInput(fixture, fixture.cases[3]),
+    canaryInput(fixture, negativeCase),
   ).decision;
   const smuggled = clone(negative);
   smuggled.defer.tool = 'mutating-tool';

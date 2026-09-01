@@ -10,16 +10,27 @@ Tests the three core dual-threshold functions:
 - passes_dual_threshold()
 - calculate_confidence()
 
+The constants frozen below mirror the scorer as it is implemented. Its
+calculate_uncertainty() worked-example docstring still quotes a superseded
+tuning (bases 0.25/0.40, ambiguity step 0.10 capped at 0.30); the code was
+retuned to the softer bases and step asserted here when the intent- and
+multi-skill-booster tables were widened, so a wider match set would not push
+otherwise-good recommendations past the 0.35 routing gate. Trust the code, not
+that docstring, when the two disagree.
+
 Run with: pytest test_dual_threshold.py -v
 """
 import importlib.util
+import inspect
 from pathlib import Path
 import pytest
 
-# Load skill_advisor.py directly from .opencode/skills/scripts.
+# Load skill_advisor.py from the advisor skill that owns it. The scorer used to sit
+# in a shared scripts directory at the skills root; it now lives inside its own skill,
+# so resolve through that skill rather than assuming the flat layout.
 SCRIPT_DIR = Path(__file__).resolve().parent
-SKILL_DIR = SCRIPT_DIR.parent.parent.parent
-ADVISOR_PATH = SKILL_DIR / 'scripts' / 'skill_advisor.py'
+SKILLS_ROOT = SCRIPT_DIR.parent.parent.parent
+ADVISOR_PATH = SKILLS_ROOT / 'system-skill-advisor' / 'mcp-server' / 'scripts' / 'skill_advisor.py'
 
 if not ADVISOR_PATH.exists():
     raise RuntimeError(f"skill_advisor.py not found at expected path: {ADVISOR_PATH}")
@@ -43,9 +54,9 @@ class TestCalculateUncertainty:
     """Tests for calculate_uncertainty() function.
 
     Formula components:
-    - Base uncertainty by match count: 5+=0.15, 3+=0.25, 1+=0.40, 0=0.70
+    - Base uncertainty by match count: 5+=0.15, 3+=0.20, 1+=0.30, 0=0.70
     - Intent penalty: +0.15 if no boost
-    - Ambiguity penalty: min(ambiguous * 0.10, 0.30)
+    - Ambiguity penalty: min(ambiguous * 0.08, 0.24)
     """
 
     # -------------------------------------------------------------------------
@@ -57,24 +68,24 @@ class TestCalculateUncertainty:
         assert result == 0.70
 
     def test_one_match_base_uncertainty(self) -> None:
-        """1 match should give base uncertainty of 0.40"""
+        """1 match should give base uncertainty of 0.30"""
         result = calculate_uncertainty(num_matches=1, has_intent_boost=True, num_ambiguous_matches=0)
-        assert result == 0.40
+        assert result == 0.30
 
     def test_two_matches_base_uncertainty(self) -> None:
-        """2 matches should give base uncertainty of 0.40 (still in 1-2 range)"""
+        """2 matches should give base uncertainty of 0.30 (still in 1-2 range)"""
         result = calculate_uncertainty(num_matches=2, has_intent_boost=True, num_ambiguous_matches=0)
-        assert result == 0.40
+        assert result == 0.30
 
     def test_three_matches_base_uncertainty(self) -> None:
-        """3 matches should give base uncertainty of 0.25"""
+        """3 matches should give base uncertainty of 0.20"""
         result = calculate_uncertainty(num_matches=3, has_intent_boost=True, num_ambiguous_matches=0)
-        assert result == 0.25
+        assert result == 0.20
 
     def test_four_matches_base_uncertainty(self) -> None:
-        """4 matches should give base uncertainty of 0.25 (still in 3-4 range)"""
+        """4 matches should give base uncertainty of 0.20 (still in 3-4 range)"""
         result = calculate_uncertainty(num_matches=4, has_intent_boost=True, num_ambiguous_matches=0)
-        assert result == 0.25
+        assert result == 0.20
 
     def test_five_matches_base_uncertainty(self) -> None:
         """5 matches should give base uncertainty of 0.15"""
@@ -100,14 +111,14 @@ class TestCalculateUncertainty:
         assert result == 0.85
 
     def test_intent_penalty_with_one_match(self) -> None:
-        """No intent boost with 1 match: 0.40 + 0.15 = 0.55"""
+        """No intent boost with 1 match: 0.30 + 0.15 = 0.45"""
         result = calculate_uncertainty(num_matches=1, has_intent_boost=False, num_ambiguous_matches=0)
-        assert result == 0.55
+        assert result == 0.45
 
     def test_intent_penalty_with_three_matches(self) -> None:
-        """No intent boost with 3 matches: 0.25 + 0.15 = 0.40"""
+        """No intent boost with 3 matches: 0.20 + 0.15 = 0.35"""
         result = calculate_uncertainty(num_matches=3, has_intent_boost=False, num_ambiguous_matches=0)
-        assert result == 0.40
+        assert result == 0.35
 
     def test_intent_penalty_with_five_matches(self) -> None:
         """No intent boost with 5 matches: 0.15 + 0.15 = 0.30"""
@@ -121,43 +132,43 @@ class TestCalculateUncertainty:
         assert without_boost - with_boost == pytest.approx(0.15, abs=0.01)
 
     # -------------------------------------------------------------------------
-    # Ambiguity penalty tests (min(ambiguous * 0.10, 0.30))
+    # Ambiguity penalty tests (min(ambiguous * 0.08, 0.24))
     # -------------------------------------------------------------------------
     def test_one_ambiguous_match(self) -> None:
-        """1 ambiguous match: +0.10 penalty"""
+        """1 ambiguous match: +0.08 penalty"""
         result = calculate_uncertainty(num_matches=5, has_intent_boost=True, num_ambiguous_matches=1)
-        assert result == 0.25  # 0.15 + 0.10
+        assert result == 0.23  # 0.15 + 0.08
 
     def test_two_ambiguous_matches(self) -> None:
-        """2 ambiguous matches: +0.20 penalty"""
+        """2 ambiguous matches: +0.16 penalty"""
         result = calculate_uncertainty(num_matches=5, has_intent_boost=True, num_ambiguous_matches=2)
-        assert result == 0.35  # 0.15 + 0.20
+        assert result == 0.31  # 0.15 + 0.16
 
     def test_three_ambiguous_matches(self) -> None:
-        """3 ambiguous matches: +0.30 penalty (max)"""
+        """3 ambiguous matches: +0.24 penalty (max)"""
         result = calculate_uncertainty(num_matches=5, has_intent_boost=True, num_ambiguous_matches=3)
-        assert result == 0.45  # 0.15 + 0.30
+        assert result == 0.39  # 0.15 + 0.24
 
     def test_four_ambiguous_matches_capped(self) -> None:
-        """4 ambiguous matches: still +0.30 penalty (capped)"""
+        """4 ambiguous matches: still +0.24 penalty (capped)"""
         result = calculate_uncertainty(num_matches=5, has_intent_boost=True, num_ambiguous_matches=4)
-        assert result == 0.45  # 0.15 + 0.30 (capped)
+        assert result == 0.39  # 0.15 + 0.24 (capped)
 
     def test_ten_ambiguous_matches_capped(self) -> None:
-        """10 ambiguous matches: still +0.30 penalty (capped)"""
+        """10 ambiguous matches: still +0.24 penalty (capped)"""
         result = calculate_uncertainty(num_matches=5, has_intent_boost=True, num_ambiguous_matches=10)
-        assert result == 0.45  # 0.15 + 0.30 (capped)
+        assert result == 0.39  # 0.15 + 0.24 (capped)
 
     # -------------------------------------------------------------------------
     # Combined penalties
     # -------------------------------------------------------------------------
     def test_combined_intent_and_ambiguity(self) -> None:
-        """Combined: 3 matches, no boost, 2 ambiguous: 0.25 + 0.15 + 0.20 = 0.60"""
+        """Combined: 3 matches, no boost, 2 ambiguous: 0.20 + 0.15 + 0.16 = 0.51"""
         result = calculate_uncertainty(num_matches=3, has_intent_boost=False, num_ambiguous_matches=2)
-        assert result == 0.60
+        assert result == 0.51
 
     def test_worst_case_scenario(self) -> None:
-        """Worst case: 0 matches, no boost, max ambiguity: 0.70 + 0.15 + 0.30 = 1.0 (capped)"""
+        """Worst case: 0 matches, no boost, max ambiguity: 0.70 + 0.15 + 0.24 -> 1.0 (capped)"""
         result = calculate_uncertainty(num_matches=0, has_intent_boost=False, num_ambiguous_matches=5)
         assert result == 1.0
 
@@ -170,18 +181,18 @@ class TestCalculateUncertainty:
     # Boundary and edge cases
     # -------------------------------------------------------------------------
     def test_boundary_two_to_three_matches(self) -> None:
-        """Boundary: 2 matches (0.40) vs 3 matches (0.25)"""
+        """Boundary: 2 matches (0.30) vs 3 matches (0.20)"""
         two_matches = calculate_uncertainty(num_matches=2, has_intent_boost=True, num_ambiguous_matches=0)
         three_matches = calculate_uncertainty(num_matches=3, has_intent_boost=True, num_ambiguous_matches=0)
-        assert two_matches == 0.40
-        assert three_matches == 0.25
+        assert two_matches == 0.30
+        assert three_matches == 0.20
         assert two_matches > three_matches
 
     def test_boundary_four_to_five_matches(self) -> None:
-        """Boundary: 4 matches (0.25) vs 5 matches (0.15)"""
+        """Boundary: 4 matches (0.20) vs 5 matches (0.15)"""
         four_matches = calculate_uncertainty(num_matches=4, has_intent_boost=True, num_ambiguous_matches=0)
         five_matches = calculate_uncertainty(num_matches=5, has_intent_boost=True, num_ambiguous_matches=0)
-        assert four_matches == 0.25
+        assert four_matches == 0.20
         assert five_matches == 0.15
         assert four_matches > five_matches
 
@@ -194,8 +205,8 @@ class TestCalculateUncertainty:
         """Result should be rounded to 2 decimal places"""
         # Any combination should produce clean 2-decimal result
         result = calculate_uncertainty(num_matches=2, has_intent_boost=False, num_ambiguous_matches=1)
-        # 0.40 + 0.15 + 0.10 = 0.65
-        assert result == 0.65
+        # 0.30 + 0.15 + 0.08 = 0.53
+        assert result == 0.53
         assert len(str(result).split('.')[-1]) <= 2
 
 
@@ -382,18 +393,19 @@ class TestCalculateConfidence:
         assert result >= 0.80
 
     # -------------------------------------------------------------------------
-    # Weight parameter tests
+    # Signature contract
     # -------------------------------------------------------------------------
-    def test_weight_multiplier_basic(self) -> None:
-        """Weight multiplier affects final result"""
-        base = calculate_confidence(score=2, has_intent_boost=True, weight=1.0)
-        weighted = calculate_confidence(score=2, has_intent_boost=True, weight=0.5)
-        assert weighted == base * 0.5
+    def test_signature_exposes_no_external_multiplier(self) -> None:
+        """Confidence is a pure function of score and intent boost.
 
-    def test_weight_multiplier_capped_at_one(self) -> None:
-        """Weight > 1.0 is capped at 1.0"""
-        result = calculate_confidence(score=3, has_intent_boost=True, weight=2.0)
-        assert result == 1.0
+        A per-skill weight multiplier once sat here as a reserved argument that
+        no caller ever passed; it was dropped rather than wired up. Nothing may
+        scale confidence outside the two documented curves, so the callable must
+        accept exactly these two inputs and cap at the 0.95 ceiling.
+        """
+        parameters = list(inspect.signature(calculate_confidence).parameters)
+        assert parameters == ["score", "has_intent_boost"]
+        assert calculate_confidence(score=100, has_intent_boost=True) == 0.95
 
 
 # =============================================================================
@@ -402,36 +414,36 @@ class TestCalculateConfidence:
 class TestIntegration:
     """Integration tests combining multiple dual-threshold functions."""
 
-    def test_documentation_example_low_uncertainty(self) -> None:
-        """Docstring example: 5 matches, intent boost, 0 ambiguous -> 0.15"""
+    def test_worked_example_low_uncertainty(self) -> None:
+        """5 matches, intent boost, 0 ambiguous -> 0.15"""
         uncertainty = calculate_uncertainty(num_matches=5, has_intent_boost=True, num_ambiguous_matches=0)
         assert uncertainty == 0.15
         # With high confidence, should pass
         assert passes_dual_threshold(0.85, uncertainty) is True
 
-    def test_documentation_example_medium_uncertainty(self) -> None:
-        """Docstring example: 3 matches, intent boost, 1 ambiguous -> 0.35"""
+    def test_worked_example_medium_uncertainty(self) -> None:
+        """3 matches, intent boost, 1 ambiguous -> 0.28"""
         uncertainty = calculate_uncertainty(num_matches=3, has_intent_boost=True, num_ambiguous_matches=1)
-        assert uncertainty == 0.35
-        # At exact threshold, should pass
+        assert uncertainty == 0.28
+        # Below threshold, should pass
         assert passes_dual_threshold(0.85, uncertainty) is True
 
-    def test_documentation_example_high_uncertainty(self) -> None:
-        """Docstring example: 1 match, no intent boost, 0 ambiguous -> 0.55"""
+    def test_worked_example_high_uncertainty(self) -> None:
+        """1 match, no intent boost, 0 ambiguous -> 0.45"""
         uncertainty = calculate_uncertainty(num_matches=1, has_intent_boost=False, num_ambiguous_matches=0)
-        assert uncertainty == 0.55
+        assert uncertainty == 0.45
         # Above threshold, should fail
         assert passes_dual_threshold(0.85, uncertainty) is False
 
-    def test_documentation_example_very_high_uncertainty(self) -> None:
-        """Docstring example: 1 match, no intent boost, 2 ambiguous -> 0.75"""
+    def test_worked_example_very_high_uncertainty(self) -> None:
+        """1 match, no intent boost, 2 ambiguous -> 0.61"""
         uncertainty = calculate_uncertainty(num_matches=1, has_intent_boost=False, num_ambiguous_matches=2)
-        assert uncertainty == 0.75
+        assert uncertainty == 0.61
         # Way above threshold, should fail
         assert passes_dual_threshold(0.85, uncertainty) is False
 
-    def test_documentation_example_worst_case(self) -> None:
-        """Docstring example: 0 matches, no intent boost, 0 ambiguous -> 0.85"""
+    def test_worked_example_worst_case(self) -> None:
+        """0 matches, no intent boost, 0 ambiguous -> 0.85"""
         uncertainty = calculate_uncertainty(num_matches=0, has_intent_boost=False, num_ambiguous_matches=0)
         assert uncertainty == 0.85
         # Way above threshold, should fail
@@ -462,7 +474,7 @@ class TestIntegration:
         uncertainty = calculate_uncertainty(num_matches=1, has_intent_boost=False, num_ambiguous_matches=2)
 
         assert confidence == 0.95  # High
-        assert uncertainty == 0.75  # High (0.40 + 0.15 + 0.20)
+        assert uncertainty == 0.61  # High (0.30 + 0.15 + 0.16)
         # Fails on uncertainty
         assert passes_dual_threshold(confidence, uncertainty) is False
 
@@ -488,10 +500,10 @@ class TestIntegration:
         """Realistic scenario: user asks for 'code search' with 4 corpus matches"""
         # Simulating a query that matches corpus terms but not intent boosters
         confidence = calculate_confidence(score=4, has_intent_boost=False)  # 0.85
-        uncertainty = calculate_uncertainty(num_matches=4, has_intent_boost=False, num_ambiguous_matches=1)  # 0.50
+        uncertainty = calculate_uncertainty(num_matches=4, has_intent_boost=False, num_ambiguous_matches=1)  # 0.43
 
         assert confidence == 0.85
-        assert uncertainty == 0.50  # 0.25 + 0.15 + 0.10
+        assert uncertainty == 0.43  # 0.20 + 0.15 + 0.08
         # Fails due to uncertainty above 0.35 threshold
         assert passes_dual_threshold(confidence, uncertainty) is False
 
@@ -520,39 +532,39 @@ class TestBoundaryValues:
         assert abs(result - 0.80) < 0.01  # Within 0.01 of 0.80
 
     def test_uncertainty_threshold_boundary(self) -> None:
-        """Test exact uncertainty values at 0.35 threshold"""
-        # 5 matches + boost + 2 ambiguous = 0.15 + 0.20 = 0.35 (exactly at threshold)
-        result = calculate_uncertainty(5, True, 2)
+        """Test exact uncertainty values straddling the 0.35 threshold"""
+        # 3 matches + no boost + 0 ambiguous = 0.20 + 0.15 = 0.35 (exactly at threshold)
+        result = calculate_uncertainty(3, False, 0)
         assert result == 0.35
         assert passes_dual_threshold(0.85, result) is True
 
-        # 5 matches + boost + 3 ambiguous = 0.15 + 0.30 = 0.45 (above threshold)
+        # 5 matches + boost + 3 ambiguous = 0.15 + 0.24 = 0.39 (above threshold)
         result = calculate_uncertainty(5, True, 3)
-        assert result == 0.45
+        assert result == 0.39
         assert passes_dual_threshold(0.85, result) is False
 
     def test_match_count_boundaries(self) -> None:
         """Test exact match count boundaries"""
         # Boundary: 0 vs 1 match
         assert calculate_uncertainty(0, True, 0) == 0.70
-        assert calculate_uncertainty(1, True, 0) == 0.40
+        assert calculate_uncertainty(1, True, 0) == 0.30
 
         # Boundary: 2 vs 3 matches
-        assert calculate_uncertainty(2, True, 0) == 0.40
-        assert calculate_uncertainty(3, True, 0) == 0.25
+        assert calculate_uncertainty(2, True, 0) == 0.30
+        assert calculate_uncertainty(3, True, 0) == 0.20
 
         # Boundary: 4 vs 5 matches
-        assert calculate_uncertainty(4, True, 0) == 0.25
+        assert calculate_uncertainty(4, True, 0) == 0.20
         assert calculate_uncertainty(5, True, 0) == 0.15
 
     def test_ambiguity_cap_boundary(self) -> None:
-        """Test ambiguity penalty cap at 0.30"""
-        # 3 ambiguous = 0.30 (at cap)
+        """Test ambiguity penalty cap at 0.24"""
+        # 3 ambiguous = 0.24 (at cap)
         base = calculate_uncertainty(5, True, 0)
         with_3 = calculate_uncertainty(5, True, 3)
-        assert with_3 - base == pytest.approx(0.30, abs=0.01)
+        assert with_3 - base == pytest.approx(0.24, abs=0.01)
 
-        # 4 ambiguous = 0.30 (still at cap)
+        # 4 ambiguous = 0.24 (still at cap)
         with_4 = calculate_uncertainty(5, True, 4)
         assert with_4 == with_3
 

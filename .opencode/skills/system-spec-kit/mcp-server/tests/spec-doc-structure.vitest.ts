@@ -92,8 +92,13 @@ function replaceText(filePath: string, searchValue: string, replaceValue: string
 }
 
 function seedContinuityAcrossFixture(folder: string): void {
-  for (const basename of ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md', 'implementation-summary.md']) {
-    injectMemoryBlock(path.join(folder, basename));
+  // Seed whatever documents the fixture actually carries. A hard-coded roster is a second
+  // copy of the canonical document set, and it breaks the moment that set gains or retires
+  // a member - the helper then throws ENOENT on a file no packet has any more.
+  for (const entry of fs.readdirSync(folder).sort()) {
+    if (entry.endsWith('.md')) {
+      injectMemoryBlock(path.join(folder, entry));
+    }
   }
 }
 

@@ -21,13 +21,12 @@
       "sync"
     ],
     "importance_tier": "normal",
-    "status": "review",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "checklist.md",
       "decision-record.md"
     ],
     "source_docs": [
@@ -35,17 +34,17 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "checklist.md",
       "decision-record.md"
     ],
     "entities": [],
-    "causal_summary": "Tiny Catalog Sync is a local validation fixture baseline.",
+    "causal_summary": "A tiny fixture feature that synchronizes a sample catalog and records one architecture decision",
     "created_at": "2026-06-12T00:00:00.000Z",
     "last_save_at": "2026-06-12T00:00:00.000Z",
-    "save_lineage": "fixture",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "last_active_child_id": null,
     "last_active_at": null,
-    "source_fingerprint": "sha256:80dbf9da6d68adb0ae41843b2f5be32f1bbd2f8d111131a2c3611aec1ed6fb7d"
+    "source_fingerprint": "sha256:89360aef33696eec0fa01550eb0e0036d5f572c5a9669e3ff714e8fd30be3cb9",
+    "source_fingerprint_docset": 3
   }
 }

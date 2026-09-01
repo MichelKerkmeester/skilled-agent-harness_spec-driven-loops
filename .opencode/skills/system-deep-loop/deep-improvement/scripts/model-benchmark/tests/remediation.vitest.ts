@@ -289,10 +289,13 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
     ]);
   });
 
-  it('cli-pi defaults an omitted model to deepseek-v4-pro', () => {
+  it('cli-pi defaults an omitted model to the provider-prefixed roster default', () => {
     const spec = dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: undefined });
+    // The default is a Flash-family reasoning model pinned to its top thinking
+    // tier by operator policy, so `--thinking max` rides along even though the
+    // lane passed no variant.
     expect(spec.args).toEqual([
-      '-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', 'prompt',
+      '-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', 'prompt',
     ]);
   });
 
@@ -307,18 +310,25 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
   });
 
   it('cli-devin uses the shared fan-out permission args for read-only and write-capable dispatch', () => {
-    const devinResolved = { ...resolved, model: 'adaptive', variant: 'high' };
+    const devinResolved = { ...resolved, model: 'glm-5-2', variant: 'high' };
     delete process.env.DEEP_AGENT_DISPATCH_WRITE;
     const readOnly = dispatchModel.buildSpawnSpec('cli-devin', 'prompt', devinResolved);
     expect(readOnly.bin).toBe('devin');
+    // The devin CLI rejects every write tool call under --sandbox in non-interactive
+    // print mode, so write-capable dispatch carries only the dangerous permission
+    // mode and leans on the fan-out write-containment guard for confinement. The
+    // workspace-trust opt-out is unconditional: print mode cannot answer the trust
+    // prompt a fresh dispatch directory triggers.
     expect(readOnly.args).toEqual([
-      '-p', 'prompt', '--model', 'adaptive', '--permission-mode', 'auto',
+      '-p', 'prompt', '--model', 'glm-5-2', '--permission-mode', 'auto',
+      '--respect-workspace-trust', 'false',
     ]);
 
     process.env.DEEP_AGENT_DISPATCH_WRITE = '1';
     const writeCapable = dispatchModel.buildSpawnSpec('cli-devin', 'prompt', devinResolved);
     expect(writeCapable.args).toEqual([
-      '-p', 'prompt', '--model', 'adaptive', '--permission-mode', 'dangerous', '--sandbox',
+      '-p', 'prompt', '--model', 'glm-5-2', '--permission-mode', 'dangerous',
+      '--respect-workspace-trust', 'false',
     ]);
   });
 
@@ -327,9 +337,9 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
       const execResolved = ex === 'cli-cursor'
         ? { ...resolved, model: 'composer-2.5' }
         : ex === 'cli-devin'
-          ? { ...resolved, model: 'adaptive' }
+          ? { ...resolved, model: 'glm-5-2' }
           : ex === 'cli-pi'
-            ? { ...resolved, model: 'deepseek-v4-pro' }
+            ? { ...resolved, model: 'gpt-5.6-sol' }
             : resolved;
       const spec = dispatchModel.buildSpawnSpec(ex, 'prompt', execResolved);
       expect(typeof spec.bin).toBe('string');
@@ -342,9 +352,9 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
       expect(dispatchModel.KNOWN_EXECUTORS.has(executor)).toBe(true);
       expect(profileValidator.KNOWN_EXECUTORS.has(executor)).toBe(true);
     }
-    expect(dispatchModel.buildSpawnSpec('cli-devin', 'prompt', { ...resolved, model: 'adaptive' }).args)
+    expect(dispatchModel.buildSpawnSpec('cli-devin', 'prompt', { ...resolved, model: 'glm-5-2' }).args)
       .toContain('--permission-mode');
-    expect(dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'deepseek-v4-pro' }).args)
+    expect(dispatchModel.buildSpawnSpec('cli-pi', 'prompt', { ...resolved, model: 'gpt-5.6-sol' }).args)
       .toContain('--offline');
   });
 });

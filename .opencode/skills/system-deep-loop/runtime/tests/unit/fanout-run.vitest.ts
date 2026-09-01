@@ -229,6 +229,51 @@ function writeSleepingStubBinary(binDir: string, name: string, seconds: number):
   return stubPath;
 }
 
+function writeIntervalRecordingStubBinary(
+  binDir: string,
+  name: string,
+  seconds: number,
+  intervalLogPath: string,
+): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(
+    stubPath,
+    [
+      '#!/usr/bin/env node',
+      'const fs = require("node:fs");',
+      'const path = require("node:path");',
+      'const startedAt = Date.now();',
+      'function lineageDir() {',
+      '  const stateDir = process.env.SPECKIT_OPENCODE_STATE_DIR || process.env.SPECKIT_CLAUDE_CODE_STATE_DIR;',
+      '  return stateDir ? path.dirname(stateDir) : null;',
+      '}',
+      'function writeArtifacts() {',
+      '  const dir = lineageDir();',
+      '  if (!dir) return;',
+      '  fs.mkdirSync(dir, { recursive: true });',
+      '  for (const file of ["research.md", "review-report.md"]) fs.writeFileSync(path.join(dir, file), "ok\\n");',
+      '}',
+      'setTimeout(() => {',
+      '  writeArtifacts();',
+      `  fs.appendFileSync(${JSON.stringify(intervalLogPath)}, JSON.stringify({ startedAt, endedAt: Date.now() }) + "\\n");`,
+      '  console.log("slept");',
+      '  process.exit(0);',
+      `}, ${seconds * 1000});`,
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
+  return stubPath;
+}
+
+function readStubIntervals(intervalLogPath: string): Array<{ startedAt: number; endedAt: number }> {
+  return readFileSync(intervalLogPath, 'utf8')
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line) as { startedAt: number; endedAt: number })
+    .sort((left, right) => left.startedAt - right.startedAt);
+}
+
 function writeDelayedNodeStubBinary(binDir: string, name: string, delayMs: number): string {
   const stubPath = join(binDir, name);
   writeFileSync(
@@ -2575,21 +2620,17 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
 
 describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnSync)', () => {
   it('overlaps the lineage sleeps: concurrency 2 saves ~one sleep versus a serial run of the same lineages', async () => {
-    const binDir = makeTempDir('fanout-run-parallel-bin-');
-    writeSleepingStubBinary(binDir, 'opencode', 3);
-
-    // The executor spawn routes through the shipped effect gateway, which
-    // records a durable intent before and a confirmation after each lineage.
-    // That recording is synchronous per-lineage bookkeeping, so an absolute
-    // wall-clock bound would move with machine load and stop proving anything.
-    // Instead we compare the SAME two lineages at concurrency 1 and 2: the
-    // recording cost is identical in both runs and cancels, so the difference
-    // isolates whether the two 3s sleeps overlapped. Serial runs them back to
-    // back (~6s of sleep); concurrency 2 overlaps them (~3s of sleep). The
-    // concurrent run must therefore save at least ~one sleep, which no
-    // serialized run could — this is what "run concurrently" means here, and
-    // it holds regardless of how slow the ledger bookkeeping runs.
-    const runLineages = async (concurrency: number): Promise<number> => {
+    // "Ran concurrently" means the two lineages were in flight at the same instant, so measure
+    // exactly that: each stub records the interval it occupied, and the two intervals must
+    // intersect at concurrency 2 and must not at concurrency 1. Differencing the two runs'
+    // total wall clocks instead would compare two subprocess timings taken minutes apart on a
+    // shared machine, where per-run overhead swings by seconds — that noise is unrelated to
+    // whether the sleeps overlapped, and it decides the result. The same serial run is kept as
+    // the negative control, so the case still fails if the scheduler stops overlapping.
+    const runLineages = async (concurrency: number): Promise<Array<{ startedAt: number; endedAt: number }>> => {
+      const binDir = makeTempDir(`fanout-run-parallel-bin-c${concurrency}-`);
+      const intervalLogPath = join(binDir, 'lineage-intervals.jsonl');
+      writeIntervalRecordingStubBinary(binDir, 'opencode', 3, intervalLogPath);
       const baseDir = makeTempDir(`fanout-run-parallel-base-c${concurrency}-`);
       const fanoutConfig = JSON.stringify({
         executors: [
@@ -2599,7 +2640,6 @@ describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnS
         concurrency,
       });
       const hermetic = useHermeticEnv(`parallel-lineages-c${concurrency}`);
-      const startedAt = Date.now();
       const result = await spawnCjs(
         fanoutRunScript,
         [
@@ -2619,15 +2659,21 @@ describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnS
         },
       );
       expect(result.exitCode).toBe(0);
-      return Date.now() - startedAt;
+      return readStubIntervals(intervalLogPath);
     };
 
-    const serialMs = await runLineages(1);
-    const concurrentMs = await runLineages(2);
+    const overlaps = (
+      intervals: readonly { startedAt: number; endedAt: number }[],
+    ): boolean => intervals[0].startedAt < intervals[1].endedAt
+      && intervals[1].startedAt < intervals[0].endedAt;
 
-    // Overlapping the two 3s sleeps saves ~3s; require at least ~2s of saving
-    // to tolerate scheduling noise while still proving the sleeps overlapped.
-    expect(concurrentMs).toBeLessThan(serialMs - 2_000);
+    const serial = await runLineages(1);
+    const concurrent = await runLineages(2);
+
+    expect(serial).toHaveLength(2);
+    expect(concurrent).toHaveLength(2);
+    expect(overlaps(serial)).toBe(false);
+    expect(overlaps(concurrent)).toBe(true);
   });
 });
 
@@ -2781,13 +2827,14 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
     const baseDir = makeTempDir('fanout-run-resume-wait-base-');
     const markerPath = join(baseDir, 'lineage-launched.marker');
     const checkpointPath = join(baseDir, 'orchestration-wait-checkpoint.json');
+    const nextRunAt = new Date(Date.now() + 800).toISOString();
     writeMarkerSleepingStubBinary(binDir, 'opencode', 0, markerPath);
     writeFileSync(
       checkpointPath,
       `${JSON.stringify({
         schemaVersion: 1,
         status: 'waiting',
-        nextRunAt: new Date(Date.now() + 800).toISOString(),
+        nextRunAt,
         remainingDelayMs: 800,
         updatedAt: new Date().toISOString(),
       })}\n`,
@@ -2799,12 +2846,7 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
       binDir,
       baseDir,
     });
-    const closed = waitForChild(child);
-
-    await new Promise((resolvePromise) => setTimeout(resolvePromise, 150));
-    expect(existsSync(markerPath)).toBe(false);
-
-    const result = await closed;
+    const result = await waitForChild(child);
 
     expect(result.exitCode).toBe(0);
     expect(existsSync(markerPath)).toBe(true);
@@ -2819,6 +2861,12 @@ describe('fanout-run.cjs — persisted wait checkpoint', () => {
     const startedIndex = ledgerEvents.findIndex((event) => event.event === 'started');
     expect(resumeIndex).toBeGreaterThanOrEqual(0);
     expect(startedIndex).toBeGreaterThan(resumeIndex);
+    // The lineage must not launch before the checkpoint deadline. Prove that from the ledger's
+    // own timestamps rather than by looking at the marker file at a fixed instant: on a loaded
+    // host the observation can itself drift past the deadline and then report a dispatch that
+    // was in fact correctly withheld.
+    expect(Date.parse(ledgerEvents[startedIndex].at as string))
+      .toBeGreaterThanOrEqual(Date.parse(nextRunAt));
   });
 
   it('migrates legacy checkpoints without wait fields to the null state', async () => {

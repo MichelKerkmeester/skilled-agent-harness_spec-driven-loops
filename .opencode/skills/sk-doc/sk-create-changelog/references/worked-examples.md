@@ -20,7 +20,7 @@ Two filled-in changelog entries — one global component entry, one packet-local
 
 ## 1. OVERVIEW
 
-These examples illustrate the shared format in [../../shared/assets/changelog-template.md](../../shared/assets/changelog-template.md) applied to a real change. They do not replace the blank template or the [../SKILL.md](../SKILL.md) workflow; the seven-step workflow is authoritative. Open this file when you want a filled-in entry to model, not the blank template.
+These examples illustrate the shared format in [../assets/changelog-template.md](../assets/changelog-template.md) applied to a real change. They do not replace the blank template or the [../SKILL.md](../SKILL.md) workflow; the seven-step workflow is authoritative. Open this file when you want a filled-in entry to model, not the blank template.
 
 ---
 

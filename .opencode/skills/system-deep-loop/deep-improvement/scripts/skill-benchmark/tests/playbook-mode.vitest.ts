@@ -8,6 +8,8 @@ const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const SB = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
 const SKCODE = join(REPO_SKILLS, 'sk-code');
+// A skill that ships a playbook but was never declared a benchmark corpus.
+const SKVISION = join(REPO_SKILLS, 'sk-vision');
 
 const { loadPlaybookScenarios } = require(join(SB, 'load-playbook-scenarios.cjs'));
 const { dispatchScenario } = require(join(SB, 'executor-dispatch.cjs'));
@@ -16,7 +18,7 @@ const { parseLiveResult, extractRoutingJson, proseRoutingFallback } = require(jo
 const { executeBrowserScenario, verdictToDims } = require(join(SB, 'browser-executor.cjs'));
 const { gradeAblation, buildSkillOffPrompt, gradeTaskOutcome, buildTaskOutcomePrompt } = require(join(SB, 'd4-ablation.cjs'));
 const { generatePlaybook, analyzeCoverage, validateGenerated } = require(join(SB, 'playbook-generator.cjs'));
-const { mkdtempSync } = require('node:fs');
+const { mkdtempSync, readFileSync } = require('node:fs');
 const { tmpdir } = require('node:os');
 
 describe('playbook parser — sk-code', () => {
@@ -167,12 +169,36 @@ describe('scoreScenario — live surface mismatch fails routing', () => {
 });
 
 describe('run — honors --playbook-dir', () => {
+  // An empty corpus is a defect only where a corpus was promised. These two
+  // cases pin both sides of that split, so neither can drift into the other:
+  // silently scoring a promised corpus as zero would hide a lost-gold
+  // regression, while aborting on a skill that never claimed a corpus would let
+  // an absent corpus preempt a verdict the structural gate owns.
   it('refuses an empty custom playbook instead of emitting an empty report', () => {
     const { run } = require(join(SB, 'run-skill-benchmark.cjs'));
     const emptyPlaybook = mkdtempSync(join(tmpdir(), 'skc-empty-pb-'));
     const out = mkdtempSync(join(tmpdir(), 'skc-out-'));
     expect(() => run({ skill: SKCODE, 'outputs-dir': out, 'playbook-dir': emptyPlaybook, 'trace-mode': 'router' }))
       .toThrow(/no scenarios found/);
+  });
+
+  it('names the skill when a declared corpus loads nothing', () => {
+    const { run } = require(join(SB, 'run-skill-benchmark.cjs'));
+    const emptyPlaybook = mkdtempSync(join(tmpdir(), 'skc-empty-pb-'));
+    const out = mkdtempSync(join(tmpdir(), 'skc-out-'));
+    expect(() => run({ skill: SKCODE, 'outputs-dir': out, 'playbook-dir': emptyPlaybook, 'trace-mode': 'router' }))
+      .toThrow(/sk-code is a declared skill-benchmark corpus/);
+  });
+
+  it('scores an undeclared skill with no corpus as zero scenarios instead of aborting', () => {
+    const { run } = require(join(SB, 'run-skill-benchmark.cjs'));
+    const emptyPlaybook = mkdtempSync(join(tmpdir(), 'vis-empty-pb-'));
+    const out = mkdtempSync(join(tmpdir(), 'vis-out-'));
+    expect(() => run({ skill: SKVISION, 'outputs-dir': out, 'playbook-dir': emptyPlaybook, 'trace-mode': 'router' }))
+      .not.toThrow();
+    const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
+    expect(report.scenarioRows).toHaveLength(0);
+    expect(report.verdict).toBe('NO-SCENARIOS');
   });
 });
 

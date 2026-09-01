@@ -755,13 +755,26 @@ describe.sequential('fan-out scheduler contracts', () => {
     });
     const capturePrompt = readAdapterCaptures(fixture)[0].args.at(-1) ?? '';
     const envelope = stdoutEnvelope(run.result.stdout);
-    expect(run.result.exitCode).toBe(0);
+    // Forced depth is a real guarantee for research, not only review: a lineage that leaves no
+    // state log cannot prove it ran every iteration, so max-iterations fails closed even though
+    // the report artifact reached disk. The scheduler still binds the policy into the prompt and
+    // still records the artifact, which is what the rest of this case pins.
+    expect(run.result.exitCode).toBe(3);
     expect(capturePrompt).toContain('FANOUT_LINEAGE_COMPLETE:policy');
     expect(capturePrompt).toContain('config.stopPolicy: max-iterations');
     expect(capturePrompt).toContain('config.convergenceThreshold: 0.05');
     expect(existsSync(join(run.baseArtifactDir, 'lineages', 'policy', 'research.md'))).toBe(true);
-    expect(envelope).toMatchObject({ status: 'ok' });
-    expect(envelope.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0 });
+    expect(envelope).toMatchObject({ status: 'partial' });
+    expect(envelope.summary).toMatchObject({ total: 1, succeeded: 0, failed: 1, all_failed: true });
+    expect(ledgerEvents(run.baseArtifactDir)).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        event: 'failed',
+        error: expect.objectContaining({
+          message: 'lineage policy violated max-iterations stop policy: '
+            + 'missing deep-research-state.jsonl for max-iterations stop-policy validation',
+        }),
+      }),
+    ]));
 
     const reviewFixture = useShim('success');
     const reviewRun = await runReviewFanoutConfig(reviewFixture, 'policy-review', {

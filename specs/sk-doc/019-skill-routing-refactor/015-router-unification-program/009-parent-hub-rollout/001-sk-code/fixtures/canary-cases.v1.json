@@ -92,6 +92,86 @@
       }
     },
     {
+      "id": "single-review",
+      "prompt": "code review",
+      "riskSlice": "actor:mutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-review"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-review"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "single-webflow",
+      "prompt": "webflow implementation",
+      "riskSlice": "evidence:nonmutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-webflow"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-webflow"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "single-opencode",
+      "prompt": "opencode system code workflow",
+      "riskSlice": "evidence:nonmutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-opencode"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-opencode"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "single-mobile-cli",
+      "prompt": "svelte design system",
+      "riskSlice": "evidence:nonmutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-mobile-cli"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-mobile-cli"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "single-obsidian",
+      "prompt": "obsidian plugin implementation",
+      "riskSlice": "evidence:nonmutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-obsidian"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-obsidian"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "ambiguous-leaf",
       "prompt": "quality review",
       "riskSlice": "actor:mutating:none",

@@ -5,7 +5,7 @@ description: "This scenario validates CHANGELOG routing across CLI dispatch path
 stage: routing
 expected_intent: sk-create-changelog
 expected_resources:
-  - shared/assets/changelog-template.md
+  - sk-create-changelog/assets/changelog-template.md
 expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog

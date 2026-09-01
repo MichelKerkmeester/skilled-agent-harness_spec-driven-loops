@@ -167,14 +167,20 @@ function documentDecision(card, prompt) {
     }
   }
   const matched = card.destinations.filter((entry) => matchedKeys.has(destinationKey(entry.id)));
-  if (matched.length === 0 || matched.every((entry) => entry.role === 'evidence')) {
+  // Only the absence of a match defers. An evidence-only match still routes, to the
+  // read-only surface it named: the routing policy this document projects treats a
+  // surface signal as a real destination that carries no actor authority and mutates
+  // nothing, and the card is a projection of that policy rather than a second opinion
+  // about it. Deferring here instead would make the document disagree with the engine
+  // on every surface-only request, which is the one thing a replay must never do.
+  if (matched.length === 0) {
     return parseRouteDecisionShape({
       action: 'defer',
       defer: { authority: 'Withheld', reason: 'no-match', recovery: [] },
       schemaVersion: 'V1',
     });
   }
-  if (matched.length === 1 && matched[0].role === 'actor') {
+  if (matched.length === 1) {
     return parseRouteDecisionShape({
       action: 'route',
       route: {

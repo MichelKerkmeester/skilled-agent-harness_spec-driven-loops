@@ -1196,6 +1196,10 @@ describe('deblinding and invalidation controls', () => {
     expect(JSON.stringify(audit?.payload.data)).not.toContain('producer-alpha');
   });
 
+  // This case drives the full deblinding path through the real durable ledger, and a durable
+  // append is fsync-bound: it takes the exclusive cross-process lock repeatedly and syncs
+  // each frame and directory. On a busy host that runs well past the default per-test budget,
+  // so the budget is raised to match the work; nothing about what is asserted changes.
   it('requires external authorization and releases only the audited post-verdict scope', async () => {
     const deniedHarness = await acceptedHarness('denied-deblind', () => null);
     await stableVerdict(deniedHarness);
@@ -1239,7 +1243,7 @@ describe('deblinding and invalidation controls', () => {
       identity_map_version: 'identity-map@1',
       result: 'authorized',
     });
-  });
+  }, 180_000);
 
   it('appends invalidation without deleting the original verdict or raw evidence', async () => {
     const harness = await acceptedHarness('invalidation');

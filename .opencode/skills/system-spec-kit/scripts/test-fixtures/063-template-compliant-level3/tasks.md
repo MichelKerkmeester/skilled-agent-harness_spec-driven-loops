@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Template Compliant Level 3 Fixture [template:examples/level-3/tasks.md]"
+title: "Tasks: Template Compliant Level 3 Fixture"
 description: "Current-template Level 3 task list fixture."
 trigger_phrases:
   - "fixture"
@@ -145,10 +145,6 @@ _memory:
 - **Decisions**: See `decision-record.md`
 
 <!-- /ANCHOR:cross-refs -->
-
-<!-- ANCHOR:protocol -->
-## Verification Protocol
-<!-- /ANCHOR:protocol -->
 
 ---
 title: "Verification Checklist: Template Compliant Level 3 Fixture [template:examples/level-3/checklist.md]"

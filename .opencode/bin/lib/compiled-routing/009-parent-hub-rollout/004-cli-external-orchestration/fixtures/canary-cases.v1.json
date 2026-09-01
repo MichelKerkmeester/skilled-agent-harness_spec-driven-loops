@@ -66,6 +66,36 @@
       }
     },
     {
+      "id": "cursor-single",
+      "prompt": "delegate to cursor",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-cursor"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-cursor"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "devin-single",
+      "prompt": "delegate to devin",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "cli-devin"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "cli-devin"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "explicit-pair-ordered",
       "prompt": "delegate to codex and delegate to opencode",
       "expectedAction": "route",

@@ -187,6 +187,32 @@ def _hash_physical_path(digest: Any, root: Path, relative_path: PurePosixPath) -
     digest.update(b"\0")
 
 
+def worktree_status_lines(root: Path) -> set[str]:
+    """Read the porcelain status as a comparable set, for diffing two moments in time."""
+    try:
+        raw = _run_git(root.resolve(), ["status", "--porcelain=v1", "--untracked-files=all"]).stdout
+    except Exception:  # noqa: BLE001 - a diagnostic must never mask the failure it explains
+        return set()
+    return {line for line in raw.decode("utf-8", errors="surrogateescape").splitlines() if line.strip()}
+
+
+def describe_worktree_drift(before: set[str], after: set[str], limit: int = 12) -> str:
+    """Name only the paths that moved BETWEEN two snapshots.
+
+    The snapshot hashes the whole worktree, so any writer anywhere in the repository
+    moves it, including one with nothing to do with this harness. Reporting only that
+    the digest changed blames the harness for someone else's write. Reporting the whole
+    status is barely better: on an already-dirty tree it names every modified file and
+    implies they all drifted during the run. Only the delta is evidence.
+    """
+    moved = sorted((after - before) | (before - after))
+    if not moved:
+        return "no status delta (content changed beneath an unchanged status line)"
+    shown = moved[:limit]
+    suffix = "" if len(moved) <= limit else f" (+{len(moved) - limit} more)"
+    return "; ".join(shown) + suffix
+
+
 def snapshot_git_worktree(root: Path) -> str:
     """Hash HEAD, index, tracked bytes, symlinks, modes, status, and untracked bytes."""
     requested = root.resolve()
@@ -1177,6 +1203,7 @@ def run_harness(
     corpus = load_corpus(corpus_path)
     protected = protected_root.resolve()
     protected_before = snapshot_git_worktree(protected)
+    protected_status_before = worktree_status_lines(protected)
     evidence_runs = []
     evidence_hashes = []
 
@@ -1213,7 +1240,9 @@ def run_harness(
         current_protected = snapshot_git_worktree(protected)
         _require(
             current_protected == protected_before,
-            "fixture harness changed the protected worktree",
+            "fixture harness changed the protected worktree; "
+            "paths that moved during the run: "
+            f"{describe_worktree_drift(protected_status_before, worktree_status_lines(protected))}",
         )
 
     _require(
@@ -1221,7 +1250,12 @@ def run_harness(
         f"repeated fixture runs were non-deterministic: {evidence_hashes}",
     )
     protected_after = snapshot_git_worktree(protected)
-    _require(protected_after == protected_before, "protected worktree changed during harness run")
+    _require(
+        protected_after == protected_before,
+        "protected worktree changed during harness run; "
+        "paths that moved during the run: "
+        f"{describe_worktree_drift(protected_status_before, worktree_status_lines(protected))}",
+    )
     return {
         "schema_version": 1,
         "corpus_id": corpus["corpus_id"],

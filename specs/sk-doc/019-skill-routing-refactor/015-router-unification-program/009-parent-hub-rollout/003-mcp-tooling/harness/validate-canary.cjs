@@ -93,7 +93,9 @@ const SCORER_ROOT = path.join(
   'skill-benchmark',
 );
 const PROTECTED_DIGESTS = Object.freeze({
-  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  // Re-pinned when the index-table cell pattern was widened to accept the markdown-link
+  // file cell the playbook-authoring template now emits.
+  'load-playbook-scenarios.cjs': 'c79aa057a68dba4577519e7fb207f359a15fd76154f3be1ee337f7104fa98f0f',
   'router-replay.cjs': '14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9',
   'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
 });
@@ -203,7 +205,27 @@ function assertCompiled(snapshot) {
   };
 }
 
+// A registered mode with no fixture case of its own is unreachable evidence: the
+// suite still passes while nothing ever proves that mode routes. Deriving the
+// expected set from the live registry rather than a written list is what makes
+// registering a mode without covering it fail here instead of going unnoticed.
+// Coverage counts only a case that actually resolved to a lone target, so a
+// fixture cannot claim a mode it does not really reach.
+function assertSingleRouteCoverage(covered) {
+  const registry = readJson(path.join(path.join(REPO_ROOT, '.opencode', 'skills', 'mcp-tooling'), 'mode-registry.json'));
+  const uncovered = registry.modes
+    .map((mode) => mode.workflowMode)
+    .filter((workflowMode) => !covered.has(workflowMode));
+  assert.deepStrictEqual(
+    uncovered,
+    [],
+    `every registered mode needs a single-route case; uncovered: ${uncovered.join(', ')}`,
+  );
+  return registry.modes.length;
+}
+
 function runRoutes(snapshot, fixture) {
+  const singleRouteCoverage = new Set();
   const typed = readJson(path.join(PHASE_ROOT, 'compiled', 'route-gold.typed.json'));
   assert.deepStrictEqual(typed.cases.map((row) => row.scenarioId), fixture.cases.map((row) => row.id));
   const inputs = [];
@@ -222,6 +244,13 @@ function runRoutes(snapshot, fixture) {
       const branch = result.decision[result.decision.action];
       assert.strictEqual(branch.authority, 'Withheld');
       assert.strictEqual(Object.hasOwn(branch, 'targets'), false);
+    }
+    if (
+      result.decision.action === 'route'
+      && result.decision.route.selectionKind === 'single'
+      && result.decision.route.targets.length === 1
+    ) {
+      singleRouteCoverage.add(result.decision.route.targets[0].destinationId.workflowMode);
     }
     const observed = projectToRouteGold(result.decision, { policy: snapshot.policy });
     assert.deepStrictEqual(observed.observedIntents, typed.cases[index].observedIntents);
@@ -256,6 +285,7 @@ function runRoutes(snapshot, fixture) {
   });
   return {
     corruptedObservationPass: corruptedVerdict.pass,
+    modesWithSingleRouteCase: assertSingleRouteCoverage(singleRouteCoverage),
     realEvaluateRouteGoldRows: scorer.verdicts.length,
     realHubRows,
     rows,

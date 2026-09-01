@@ -48,10 +48,13 @@ describe('advisor_validate handler', () => {
       expect(slice.count.total).toBeGreaterThanOrEqual(slice.minN);
       expect(typeof slice.passed).toBe('boolean');
     }
-    expect(review.minN).toBe(32);
+    // The two labeled-corpus floors are censuses of their bucket, so they differ
+    // whenever the corpus does: true_read_only holds 31 rows, memory_save_resume 32.
+    expect(review.minN).toBe(31);
     expect(memorySave.minN).toBe(32);
-    expect(delegation.minN).toBe(11);
-    expect(delegation.count.total).toBe(11);
+    // Same census rule as the corpus buckets, over the executor-delegation fixture.
+    expect(delegation.minN).toBe(9);
+    expect(delegation.count.total).toBe(9);
   });
 
   it('computes buckets over the full corpus regardless of skillSlug scope', async () => {
@@ -60,9 +63,9 @@ describe('advisor_validate handler', () => {
     const scoped = AdvisorValidateOutputSchema.parse(
       JSON.parse((await handleAdvisorValidate({ confirmHeavyRun: true, skillSlug: 'system-spec-kit' })).content[0].text).data,
     );
-    expect(scoped.slices.buckets.review.count.total).toBe(32);
+    expect(scoped.slices.buckets.review.count.total).toBe(31);
     expect(scoped.slices.buckets.memory_save.count.total).toBe(32);
-    expect(scoped.slices.buckets.delegation.count.total).toBe(11);
+    expect(scoped.slices.buckets.delegation.count.total).toBe(9);
   });
 
   it('CorpusRowSchema enforces bucket and source_type enums', () => {

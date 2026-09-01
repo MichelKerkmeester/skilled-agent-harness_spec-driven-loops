@@ -23,7 +23,6 @@
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/spec.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/plan.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/tasks.md",
-      ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/checklist.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/implementation-summary.md"
     ],
     "entities": [],
@@ -36,15 +35,14 @@
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/spec.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/plan.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/tasks.md",
-      ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/checklist.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dde13f3eb9ab5b72ef41a7589956b1cb10f713b4c204680ad2b4e98f50483241",
+    "source_fingerprint": "sha256:baa214914a97cbbc3276c967655d7e2dc5df889b0815823083546287649e613b",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6f724ae380d0913b8d5d78b2dd6c586e6dec3deb76fe8b436439e4e6fcd00e7a",
+      "spec.md": "385c472ffe7e2b10dbad5cf35fdf5c3b845ad4ff1fdf670e1cd9318ba461a7d0",
       "plan.md": "cc5e594d868e1fd8d78da31598b76773754ed16de7466fe53c7870043c7c3979",
-      "tasks.md": "9efef5f2f8e80267bb1cf5ccd7bcac96a5e24ba78aac43a15392471d6ecaede0",
-      "checklist.md": "224a95619255d7249bc188fd9066b667bc85473df21bc37fd1bbeb7db4ecfae0",
+      "tasks.md": "9e8fcef0b019f24dde42946cb1206633b4790fc491efa91fd5f200407325d18b",
       "implementation-summary.md": "72f25cad52a6206b1a86dfed0b24aca1a2be02b81c4533b9cf567d1559824ab0"
     }
   }

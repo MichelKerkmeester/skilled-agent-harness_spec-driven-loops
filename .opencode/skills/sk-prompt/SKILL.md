@@ -124,6 +124,12 @@ INTENT_MODEL = {
     "FORMAT_MARKDOWN": {"keywords": [("markdown", 4), ("md", 2), ("readme", 3)]},
     "FORMAT_JSON": {"keywords": [("json", 5), ("schema", 3), ("api-ready", 3)]},
     "FORMAT_YAML": {"keywords": [("yaml", 5), ("frontmatter", 3), ("config", 2)]},
+    # $raw is the whole trigger: passthrough is asked for by command token, never
+    # inferred from prose, and it deliberately loads nothing.
+    "RAW": {"keywords": [("$raw", 5), ("raw passthrough", 4)]},
+    # The fast-path card a CLI orchestrator reads before dispatch, instead of the
+    # full body.
+    "CLI_FAST_PATH": {"keywords": [("cli prompt quality card", 5), ("prompt framework selection table", 4), ("clear pre-dispatch check", 4), ("fast path prompt quality", 4)]},
 }
 
 RESOURCE_MAP = {
@@ -134,6 +140,7 @@ RESOURCE_MAP = {
     "FORMAT_JSON": ["assets/format-guide-json.md", "references/patterns-evaluation.md"],
     "FORMAT_YAML": ["assets/format-guide-yaml.md", "references/patterns-evaluation.md"],
     "RAW": [],
+    "CLI_FAST_PATH": ["assets/cli-prompt-quality-card.md"],
 }
 
 ON_DEMAND_KEYWORDS = ["deep dive", "full template", "all frameworks", "format guide", "overnight-agent prompt", "system prompt", "prompt package", "prompt variant", "operator prompt", "evaluator prompt", "dispatch prompt"]

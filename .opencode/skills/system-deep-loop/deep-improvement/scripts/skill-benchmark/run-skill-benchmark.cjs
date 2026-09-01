@@ -211,6 +211,44 @@ function isHubTypeSkill(skillRoot) {
   return fs.existsSync(path.join(skillRoot, 'hub-router.json'));
 }
 
+// The playbook-authoring packet's corpus manifest is the only place the fleet
+// records which playbook trees were PROMISED to carry routing gold. That
+// promise is what separates an empty load that is normal from one that is a
+// regression, so the benchmark reads it to decide how loudly to fail.
+const CORPUS_MANIFEST = path.join(
+  SKILLS_DIR, 'sk-doc', 'sk-create-manual-testing-playbook', 'playbook-corpus-manifest.json',
+);
+
+/**
+ * Whether a skill was declared to own a skill-benchmark corpus.
+ *
+ * The promise attaches to the SKILL, not to whichever directory a given run
+ * happens to read: a declared skill that yields no scenarios has broken that
+ * promise even when the run pointed at a custom corpus, so the check is on the
+ * skill root and a declared root may sit anywhere beneath it (a hub can declare
+ * just its routing slice). An unreadable manifest yields false: without a
+ * recorded promise there is nothing to hold the skill to.
+ *
+ * @param {string} skillRootAbs - Absolute skill root.
+ * @returns {boolean} True when a declared corpus root lives under that skill.
+ */
+function isDeclaredCorpus(skillRootAbs) {
+  let roots;
+  try {
+    roots = JSON.parse(fs.readFileSync(CORPUS_MANIFEST, 'utf8')).routingGoldRoots;
+  } catch {
+    return false;
+  }
+  if (!Array.isArray(roots)) return false;
+  const repoRoot = path.resolve(SKILLS_DIR, '..', '..');
+  const root = path.resolve(skillRootAbs);
+  return roots.some((entry) => {
+    if (typeof entry !== 'string' || !entry) return false;
+    const abs = path.resolve(repoRoot, entry);
+    return abs === root || abs.startsWith(root + path.sep);
+  });
+}
+
 /**
  * Resolve the route-gold gate flag: `--route-gold on|off|auto` (default auto).
  * `auto` derives from the target: ON for hub-type skills, OFF otherwise.
@@ -355,12 +393,24 @@ function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, pla
   try {
     ({ scenarios, warnings } = loadPlaybookScenarios({ skillRoot, playbookDir }));
   } catch (err) {
-    // A skill with no playbook corpus at all scores zero scenarios rather than
+    // A skill with no benchmark corpus scores zero scenarios rather than
     // aborting: the structural/registry connectivity gate is evaluated upstream
     // and independently, so an absent corpus must not preempt its verdict. A
-    // legacy underscore playbook root stays fail-closed — only the genuinely
-    // empty case is absorbed here; every other load error re-throws.
-    if (!err || err.code !== 'MISSING_PLAYBOOK_ROOT') throw err;
+    // playbook that exists but carries no scoreable scenario is the same fact
+    // as having no playbook at all, so both load outcomes share that
+    // disposition. A legacy underscore playbook root stays fail-closed.
+    //
+    // The loud case is narrower than "the load failed". An empty load is a
+    // defect only where a corpus was promised: a declared tree that yields
+    // nothing has lost the gold it was declared to carry, and scoring it as a
+    // silent zero would hide precisely the regression this abort exists to
+    // catch. So the disposition follows the declaration, not the error code.
+    const absorbable = err && (err.code === 'MISSING_PLAYBOOK_ROOT' || err.code === 'EMPTY_PLAYBOOK');
+    if (!absorbable) throw err;
+    if (isDeclaredCorpus(skillRoot)) {
+      err.message = `${skillId} is a declared skill-benchmark corpus but loaded no scenarios: ${err.message}`;
+      throw err;
+    }
     scenarios = [];
     warnings = [];
   }

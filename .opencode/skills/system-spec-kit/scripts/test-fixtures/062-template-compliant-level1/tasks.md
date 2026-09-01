@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Level 1 Fixture [template:level-1/tasks.md]"
+title: "Tasks: Level 1 Fixture"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "fixture"
@@ -13,6 +13,7 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:notation -->
 ## Task Notation
 
 | Prefix | Meaning |
@@ -23,42 +24,53 @@ contextType: "general"
 | `[B]` | Blocked |
 
 **Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
 
 ---
 
+<!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
 - [x] T001 Create Level 1 spec.md fixture
 - [x] T002 Create Level 1 plan.md fixture
+<!-- /ANCHOR:phase-1 -->
 
 ---
 
+<!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
 - [x] T003 Create Level 1 tasks.md fixture
 - [x] T004 Create Level 1 implementation-summary.md fixture
+<!-- /ANCHOR:phase-2 -->
 
 ---
 
+<!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
 - [x] T005 Run strict validation on the fixture
 - [x] T006 Confirm zero errors and zero warnings
+<!-- /ANCHOR:phase-3 -->
 
 ---
 
+<!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
+<!-- /ANCHOR:completion -->
 
 ---
 
+<!-- ANCHOR:cross-refs -->
 ## Cross-References
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+<!-- /ANCHOR:cross-refs -->
 
 ---
 

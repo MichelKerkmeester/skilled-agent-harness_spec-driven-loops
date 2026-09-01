@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 # create-changelog References — Overflow Map
 
-Routing hub for the `create-changelog` overflow set. The packet contract at [../SKILL.md](../SKILL.md) is authoritative: it holds the seven-step creation workflow, required inputs, topology and target resolution, the format contract, validation, and the always/never/escalate rules. The shared changelog format lives in [../../shared/assets/changelog-template.md](../../shared/assets/changelog-template.md). These reference files carry only supplementary detail that would bloat the SKILL.md — worked examples, version-bump nuance, and placement and release edge cases.
+Routing hub for the `create-changelog` overflow set. The packet contract at [../SKILL.md](../SKILL.md) is authoritative: it holds the seven-step creation workflow, required inputs, topology and target resolution, the format contract, validation, and the always/never/escalate rules. The shared changelog format lives in [../assets/changelog-template.md](../assets/changelog-template.md). These reference files carry only supplementary detail that would bloat the SKILL.md — worked examples, version-bump nuance, and placement and release edge cases.
 
 ---
 
@@ -49,7 +49,7 @@ Load the file that matches the current task:
 - [../README.md](../README.md) - packet overview and quick start
 
 ### Shared format
-- [../../shared/assets/changelog-template.md](../../shared/assets/changelog-template.md) - canonical global changelog and release-note format (compact and expanded)
+- [../assets/changelog-template.md](../assets/changelog-template.md) - canonical global changelog and release-note format (compact and expanded)
 
 ### Command surface
 - `.opencode/commands/create/changelog.md` - thin router for `/create:changelog`

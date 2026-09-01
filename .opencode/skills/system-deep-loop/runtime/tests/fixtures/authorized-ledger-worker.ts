@@ -42,6 +42,15 @@ const gateway = new TransitionAuthorizationGateway({
   rootDirectory,
   auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
   authorityProvider,
+  // The gateway denies every request it cannot verify an identity for, so a caller with no
+  // resolver can never be authorized. Pin the identity from the request the same way the
+  // in-process harnesses do, which is what makes this writer a realistic peer of them rather
+  // than a caller that fails before it ever contends for the ledger.
+  identityResolver: (context) => ({
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  }),
 }, ledger, policies);
 const event = createFixtureEvent(registry, index);
 

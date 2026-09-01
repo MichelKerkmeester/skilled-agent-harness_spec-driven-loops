@@ -480,8 +480,6 @@
         "score this document",
         "optimize this doc",
         "DQI",
-        "HVR",
-        "human voice",
         "AI-friendly documentation",
         "extract structure"
       ],
@@ -561,7 +559,8 @@
         "remove ai tells",
         "ai writing tells",
         "voice pass",
-        "de-ai the writing"
+        "de-ai the writing",
+        "human voice"
       ],
       "advisorRouting": {
         "routingClass": "metadata"

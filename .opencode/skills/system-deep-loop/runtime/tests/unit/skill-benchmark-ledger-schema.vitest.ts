@@ -934,6 +934,11 @@ describe('skill-benchmark typed ledger schema', () => {
     );
   });
 
+  // Every stem is authorized and appended through the real durable pipeline, and a durable
+  // append is fsync-bound: it takes the ledger's exclusive cross-process lock many times per
+  // event and syncs each frame and directory. That is roughly a second per stem on a busy
+  // host, so enumerating a whole schema does not fit the default per-test budget. The budget
+  // is raised to match the work; nothing about what is asserted changes.
   it('authorizes, appends, and verifies every common and benchmark stem', async () => {
     const harness = createHarness();
     let priorHash = '0'.repeat(64);
@@ -961,7 +966,7 @@ describe('skill-benchmark typed ledger schema', () => {
         .toEqual(replayMetadata(stem));
       expect(entry.frame.authorization_ref.decision_id).not.toBe('');
     }
-  });
+  }, 180_000);
 
   it('keeps common envelope shapes closed and the score backend pinned', () => {
     expect(SKILL_BENCHMARK_SHARED_ENVELOPE_FIELDS).toEqual(

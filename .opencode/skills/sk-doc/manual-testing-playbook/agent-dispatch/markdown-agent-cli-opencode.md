@@ -7,7 +7,7 @@ execution_mode: dispatch_real
 expected_intent: sk-create-changelog
 expected_agent: '@markdown'
 expected_resources:
-  - shared/assets/changelog-template.md
+  - sk-create-changelog/assets/changelog-template.md
 expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog
@@ -99,7 +99,7 @@ Verify `opencode providers list` shows `deepseek`; confirm `--pure` strips the M
 - **Intent picked**: `CHANGELOG`
 - **Executor**: `@markdown` agent (opencode resolves via `.opencode/agents/markdown.md`)
 - **Resources loaded**:
-  - `.opencode/skills/sk-doc/shared/assets/changelog-template.md`
+  - `.opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`
   - `.opencode/skills/sk-doc/sk-create-changelog/references/README.md`
 - **Outcome**: CLI scaffolds a v0.1.0 changelog file with Added / Changed / Fixed / Removed sections at `/tmp/sk-test-dummy-CHANGELOG-cli-opencode.md`.
 

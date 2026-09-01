@@ -1,10 +1,5 @@
 [
   {
-    "workflowMode": "sk-create-changelog",
-    "leafResourceId": "assets/changelog-template.md",
-    "diskPath": "shared/assets/changelog-template.md"
-  },
-  {
     "workflowMode": "sk-create-quality-control",
     "leafResourceId": "assets/llmstxt-templates.md",
     "diskPath": "shared/assets/llmstxt-templates.md"

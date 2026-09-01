@@ -1,12 +1,16 @@
 import { describe, it, expect, afterAll } from 'vitest';
-import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 
 const BENCHMARK_ROOT = resolve(__dirname, '..');
 const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
-const SKDESIGN = join(REPO_SKILLS, 'sk-design');
+// A live parent hub whose registry aliases the typed hub vocabulary already
+// covers end to end: the clean-family fixture only means something against a
+// family this checker certifies clean, and the synthetic fixtures below are
+// copies of it.
+const CLEAN_HUB = join(REPO_SKILLS, 'cli-external-orchestration');
 const { checkVocabSync, ownerModeForClass } = require(join(BENCHMARK_ROOT, 'parent-hub-vocab-sync.cjs'));
 
 const tempRoots: string[] = [];
@@ -37,10 +41,26 @@ describe('ownerModeForClass — longest-prefix ownership', () => {
   });
 });
 
+// The checker reads a fixed surface: the hub's three root JSONs, its SKILL.md,
+// and one SKILL.md per registered mode packet. Copying only those keeps the
+// fixture a faithful family while a whole-tree copy of a live hub is slow
+// enough to trip the per-test timeout.
 function syntheticFamily(): string {
   const tempRoot = mkdtempSync(join(tmpdir(), 'parent-hub-vocab-sync-'));
   tempRoots.push(tempRoot);
-  cpSync(SKDESIGN, tempRoot, { recursive: true });
+  for (const name of ['hub-router.json', 'mode-registry.json', 'graph-metadata.json', 'SKILL.md']) {
+    const from = join(CLEAN_HUB, name);
+    if (existsSync(from)) cpSync(from, join(tempRoot, name));
+  }
+  const registry = readJson(join(CLEAN_HUB, 'mode-registry.json'));
+  for (const mode of registry.modes || []) {
+    const packet = mode.packet;
+    if (!packet) continue;
+    const from = join(CLEAN_HUB, packet, 'SKILL.md');
+    if (!existsSync(from)) continue;
+    mkdirSync(join(tempRoot, packet), { recursive: true });
+    cpSync(from, join(tempRoot, packet, 'SKILL.md'));
+  }
   return tempRoot;
 }
 
@@ -53,8 +73,8 @@ describe('parent-hub vocab sync — classified projection vs family copies', () 
     for (const root of tempRoots) rmSync(root, { recursive: true, force: true });
   });
 
-  it('keeps the live design family clean on hard vocabulary drift', () => {
-    const result = checkVocabSync({ skillRoot: SKDESIGN });
+  it('keeps the live hub family clean on hard vocabulary drift', () => {
+    const result = checkVocabSync({ skillRoot: CLEAN_HUB });
 
     expect(result.familyPresent).toBe(true);
     expect(result.projectionParsed).toBe(true);
@@ -72,7 +92,11 @@ describe('parent-hub vocab sync — classified projection vs family copies', () 
     const root = syntheticFamily();
     const registryPath = join(root, 'mode-registry.json');
     const registry = readJson(registryPath);
-    registry.modes[0].aliases.push('orphan interface alias');
+    // The owning mode is read from the family under test, not pinned to one
+    // hub's mode names, so a hub rename cannot quietly turn this into a
+    // fixture that asserts nothing.
+    const ownerMode = registry.modes[0].workflowMode;
+    registry.modes[0].aliases.push('orphan unrouted alias phrase');
     writeFileSync(registryPath, JSON.stringify(registry, null, 2) + '\n');
 
     const result = checkVocabSync({ skillRoot: root });
@@ -82,9 +106,9 @@ describe('parent-hub vocab sync — classified projection vs family copies', () 
     expect(result.orphanAliases).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          mode: 'interface',
-          phrase: 'orphan interface alias',
-          normalized: 'orphan interface alias',
+          mode: ownerMode,
+          phrase: 'orphan unrouted alias phrase',
+          normalized: 'orphan unrouted alias phrase',
         }),
       ]),
     );

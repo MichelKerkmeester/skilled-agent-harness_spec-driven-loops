@@ -79,10 +79,10 @@ const { evaluateRouteGold } = require('./score-skill-benchmark.cjs');
 // reflects the routing the fleet would really perform.
 const SKILLS_ROOT = path.resolve(__dirname, '..', '..', '..', '..');
 const RUNTIME_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..', 'bin', 'lib', 'compiled-routing');
-const ACTIVATION_ROOT = path.join(RUNTIME_ROOT, '010-live-activation', 'activation');
+const ACTIVATION_ROOT = path.join(RUNTIME_ROOT, '013-live-activation', 'activation');
 const SERVING_CLOSURE_MANIFEST = path.join(RUNTIME_ROOT, 'serving-closure.manifest.json');
-const PROMOTED_ENGINE = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'compiled-route.cjs');
-const PROMOTED_RESOLVER = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'resolve.cjs');
+const PROMOTED_ENGINE = path.join(RUNTIME_ROOT, '014-runtime-engine', 'lib', 'compiled-route.cjs');
+const PROMOTED_RESOLVER = path.join(RUNTIME_ROOT, '014-runtime-engine', 'lib', 'resolve.cjs');
 const PUBLIC_FRONT_DOOR = path.resolve(RUNTIME_ROOT, '..', '..', 'compiled-route.cjs');
 const STATUS_PROBE = path.resolve(RUNTIME_ROOT, '..', '..', 'compiled-route-status.cjs');
 
@@ -93,7 +93,9 @@ const STATUS_PROBE = path.resolve(RUNTIME_ROOT, '..', '..', 'compiled-route-stat
 const PINNED_FROZEN_SCORER_DIGESTS = Object.freeze({
   'router-replay.cjs': '14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9',
   'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
-  'load-playbook-scenarios.cjs': 'f5b4415034d3ea1132a862c2ae19f9015e9bff07cb54235cb42058fe4dfdcd24',
+  // Re-pinned when the index-table cell pattern was widened to accept the
+  // markdown-link file cell the playbook-authoring template now emits.
+  'load-playbook-scenarios.cjs': 'c79aa057a68dba4577519e7fb207f359a15fd76154f3be1ee337f7104fa98f0f',
 });
 
 // Per-scenario parity status. Only `match` is a pass; `n/a` is informational

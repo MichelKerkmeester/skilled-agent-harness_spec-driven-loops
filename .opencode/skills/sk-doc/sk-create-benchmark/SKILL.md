@@ -113,6 +113,55 @@ FAMILIES = ["behavior_benchmark", "skill_benchmark", "model_benchmark",
 # Resource dirs are kebab-case; family keys remain snake_case machine identifiers.
 # mcp_promotion templates live under shared/.
 FAMILY_DISK_KEY = {"mcp_promotion": "shared"}
+
+INTENT_MODEL = {
+    "MCP_PROMOTION": {"weight": 4, "keywords": ["benchmark-report.md", "source.md", "mcp-server/benchmarks", "mcp bake-off", "mcp promotion"]},
+    "BEHAVIOR_BENCHMARK": {"weight": 4, "keywords": ["behavior benchmark", "behavior-benchmark.md", "behavior_benchmark", "scenario contract"]},
+    "SKILL_BENCHMARK": {"weight": 4, "keywords": ["skill benchmark", "skill-benchmark", "benchmark/readme.md", "run-label folder", "benchmark package"]},
+    "MODEL_BENCHMARK": {"weight": 4, "keywords": ["model-benchmark", "model benchmark", "benchmark fixture", "benchmark profile", "command surface benchmark"]},
+    "AGENT_IMPROVEMENT": {"weight": 4, "keywords": ["agent improvement", "agent_improvement", "improvement guide"]},
+}
+
+# The family-keyed selection below resolves to exactly these sets. Enumerating
+# them keeps the routed inventory legible to a reader and to the connectivity
+# scan, which is what catches a new reference the keyed load silently picks up
+# but no documented route names.
+RESOURCE_MAP = {
+    "MCP_PROMOTION": [
+        "references/shared/README.md", "references/shared/case-studies.md",
+        "references/shared/pitfalls.md", "references/shared/worked-example.md",
+        "assets/shared/benchmark-report-template.md", "assets/shared/source-template.md",
+    ],
+    "BEHAVIOR_BENCHMARK": [
+        "references/shared/README.md", "references/shared/case-studies.md",
+        "references/shared/pitfalls.md", "references/shared/worked-example.md",
+        "references/behavior-benchmark/behavior-benchmark-guide.md",
+        "assets/behavior-benchmark/behavior-benchmark-index-template.md",
+        "assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
+        "assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
+    ],
+    "SKILL_BENCHMARK": [
+        "references/shared/README.md", "references/shared/case-studies.md",
+        "references/shared/pitfalls.md", "references/shared/worked-example.md",
+        "references/skill-benchmark/skill-benchmark-storage-guide.md",
+        "references/skill-benchmark/serving-snapshot-schema.md",
+        "assets/skill-benchmark/skill-benchmark-readme-template.md",
+    ],
+    "MODEL_BENCHMARK": [
+        "references/shared/README.md", "references/shared/case-studies.md",
+        "references/shared/pitfalls.md", "references/shared/worked-example.md",
+        "references/model-benchmark/model-benchmark-fixture-guide.md",
+        "assets/model-benchmark/model-benchmark-code-task-fixture-template.md",
+        "assets/model-benchmark/model-benchmark-pattern-fixture-template.md",
+        "assets/model-benchmark/model-benchmark-profile-template.md",
+    ],
+    "AGENT_IMPROVEMENT": [
+        "references/shared/README.md", "references/shared/case-studies.md",
+        "references/shared/pitfalls.md", "references/shared/worked-example.md",
+        "references/agent-improvement/agent-improvement-authoring-guide.md",
+    ],
+}
+
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the benchmark family (MCP promotion, behavior, skill, model, agent)",
     "Confirm what is authored here vs lane-owned, then the storage location and run label",

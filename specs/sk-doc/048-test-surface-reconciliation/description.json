@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-doc/048-test-surface-reconciliation",
+  "description": "Ninety-eight test failures across seven suites, almost none of them a code regression: renamed packets, a renumbered runtime layout, a retired hub and a withdrawn mode all landed without updating the tests that named them.",
+  "keywords": [
+    "test",
+    "fixture",
+    "stale",
+    "expectation",
+    "digest",
+    "pin",
+    "canary",
+    "benchmark",
+    "playbook",
+    "reconciliation",
+    "suite",
+    "regression"
+  ],
+  "lastUpdated": "2026-09-01T06:54:12.460Z",
+  "specId": "048",
+  "folderSlug": "test-surface-reconciliation",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -8,6 +8,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const {
   canonicalize,
@@ -322,8 +324,41 @@ function buildRoutingModel(registry, hubRouter, destinations) {
   };
 }
 
-function compileManifestResources(leafManifest, registry) {
+// A compiled route names a packet directory and a leaf file. Resolving both here,
+// at compile time, is what stops a registry from promoting a route to something
+// that is not on disk: the alternative is a green build whose route 404s at serve
+// time. Both resolutions are confined to the skill root so an authored relative
+// path cannot walk out of the tree it is allowed to name.
+function resolveWithinSkillRoot(skillRoot, relativePath, label) {
+  const root = path.resolve(skillRoot);
+  const resolved = path.resolve(root, relativePath);
+  if (resolved !== root && !resolved.startsWith(`${root}${path.sep}`)) {
+    fail('AUTHORED_PATH_ESCAPE', `${label} escapes the skill root: ${relativePath}`);
+  }
+  return resolved;
+}
+
+function assertPacketAndLeafOnDisk(skillRoot, packet, leafResourceId, workflowMode) {
+  const packetPath = resolveWithinSkillRoot(skillRoot, packet, `${workflowMode} packet`);
+  if (!fs.existsSync(packetPath) || !fs.statSync(packetPath).isDirectory()) {
+    fail('PACKET_NOT_FOUND', `packet does not resolve on disk for ${workflowMode}: ${packet}`);
+  }
+  const skillPath = path.join(packetPath, 'SKILL.md');
+  if (!fs.existsSync(skillPath) || !fs.statSync(skillPath).isFile()) {
+    fail('PACKET_NOT_FOUND', `packet SKILL.md does not resolve on disk for ${workflowMode}: ${packet}`);
+  }
+  const leafPath = resolveWithinSkillRoot(packetPath, leafResourceId, `${workflowMode} leaf`);
+  if (!fs.existsSync(leafPath) || !fs.statSync(leafPath).isFile()) {
+    fail(
+      'LEAF_NOT_FOUND',
+      `leaf does not resolve on disk for ${workflowMode}: ${packet}/${leafResourceId}`,
+    );
+  }
+}
+
+function compileManifestResources(leafManifest, registry, skillRoot) {
   assertObject(leafManifest, 'leaf manifest');
+  assertString(skillRoot, 'compiler skill root');
   if (!Array.isArray(leafManifest.modes)) {
     fail('AUTHORED_INPUT_INVALID', 'leaf manifest must declare modes');
   }
@@ -344,6 +379,9 @@ function compileManifestResources(leafManifest, registry) {
     if (!Array.isArray(mode.leaves)) {
       fail('AUTHORED_INPUT_INVALID', `leaf manifest modes[${modeIndex}].leaves must be an array`);
     }
+    // The packet directory is the same for every leaf under a mode, so stat it once
+    // and check only the leaf thereafter.
+    const packetChecked = new Set();
     mode.leaves.forEach((leafResourceId, leafIndex) => {
       assertString(
         leafResourceId,
@@ -357,6 +395,22 @@ function compileManifestResources(leafManifest, registry) {
         );
       }
       seen.add(key);
+      if (!packetChecked.has(mode.packet)) {
+        assertPacketAndLeafOnDisk(skillRoot, mode.packet, leafResourceId, mode.workflowMode);
+        packetChecked.add(mode.packet);
+      } else {
+        const leafPath = resolveWithinSkillRoot(
+          path.resolve(skillRoot, mode.packet),
+          leafResourceId,
+          `${mode.workflowMode} leaf`,
+        );
+        if (!fs.existsSync(leafPath) || !fs.statSync(leafPath).isFile()) {
+          fail(
+            'LEAF_NOT_FOUND',
+            `leaf does not resolve on disk for ${mode.workflowMode}: ${mode.packet}/${leafResourceId}`,
+          );
+        }
+      }
       identities.push({
         leafResourceId,
         resource: `${mode.packet}/${leafResourceId}`,
@@ -533,7 +587,11 @@ function compileRegistry(input) {
   const rows = input.registry.modes.map((mode) => projectionRow(input.registry.skill, mode));
   assertInjective(rows);
   assertNoCollapse(rows, input.registry);
-  const manifestResources = compileManifestResources(input.leafManifest, input.registry);
+  const manifestResources = compileManifestResources(
+    input.leafManifest,
+    input.registry,
+    input.skillRoot,
+  );
   const routeLeafSelections = compileRouteLeafSelections(
     input.smartRoutingMarkdown,
     manifestResources,

@@ -103,10 +103,6 @@ CORE TEMPLATE (~60 lines)
 - Add L2/L3 addendums for complexity
 -->
 
-<!-- ANCHOR:protocol -->
-## Verification Protocol
-<!-- /ANCHOR:protocol -->
-
 ---
 title: "Verification Checklist: Tiny Reminder Toggle [template:level-2/checklist.md]"
 description: "A tiny fixture feature that toggles one reminder flag and records verification details."

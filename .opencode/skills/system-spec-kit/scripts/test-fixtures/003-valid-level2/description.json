@@ -1,9 +1,15 @@
 {
   "name": "Tiny Reminder Toggle",
   "specFolder": ".opencode/skills/system-spec-kit/scripts/test-fixtures/003-valid-level2",
-  "description": "A tiny fixture feature that toggles one reminder flag and records verification details.",
+  "description": "A tiny fixture feature that toggles one reminder flag and records verification details",
+  "keywords": [
+    "tiny",
+    "reminder",
+    "toggle"
+  ],
+  "lastUpdated": "2026-06-12T00:00:00.000Z",
   "level": "2",
-  "status": "review",
+  "status": "in_progress",
   "trigger_phrases": [
     "tiny reminder toggle",
     "level 2 fixture",

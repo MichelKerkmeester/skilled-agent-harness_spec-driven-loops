@@ -1065,6 +1065,11 @@ afterEach(() => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('model-benchmark typed ledger schema', () => {
+  // Every stem is authorized and appended through the real durable pipeline, and a durable
+  // append is fsync-bound: it takes the ledger's exclusive cross-process lock many times per
+  // event and syncs each frame and directory. That is roughly a second per stem on a busy
+  // host, so enumerating a whole schema does not fit the default per-test budget. The budget
+  // is raised to match the work; nothing about what is asserted changes.
   it('extends all common stems and appends every common and mode-specific stem', async () => {
     const harness = createHarness();
     const prepared = new Map<ModelBenchmarkEventStem, EventWritePreflight>();
@@ -1119,7 +1124,7 @@ describe('model-benchmark typed ledger schema', () => {
         .toEqual(replayMetadata(stem));
       expect(entry.frame.authorization_ref.decision_id).not.toBe('');
     }
-  });
+  }, 180_000);
 
   it('produces stable canonical identity and deterministic payload digests', () => {
     const registry = createModelBenchmarkEventRegistry();

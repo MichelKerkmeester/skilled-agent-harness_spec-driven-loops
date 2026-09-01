@@ -30,10 +30,10 @@ function readJson(p: string): any {
 }
 
 const HARD_IDS = [
-  'hard_merge_intervals',
-  'hard_parse_csv_line',
-  'hard_roman_to_int',
-  'hard_eval_expr',
+  'hard-merge-intervals',
+  'hard-parse-csv-line',
+  'hard-roman-to-int',
+  'hard-eval-expr',
 ];
 
 describe('sweep dispatch isolation: cwd is a throwaway temp dir, not the repo', () => {
@@ -224,9 +224,9 @@ describe('capability profile: loads and selects the hard pack', () => {
 // expected value was generated from a reference impl that scores 1.0 through the
 // real code-task-scorer, with a deliberately-wrong impl confirmed strictly < 1.0.
 const HARDER_IDS = [
-  'harder_semver_compare',
-  'harder_normalize_path',
-  'harder_int_to_words',
+  'harder-semver-compare',
+  'harder-normalize-path',
+  'harder-int-to-words',
 ];
 
 describe('harder fixture pack: shape + de-saturation oracle density', () => {
@@ -267,7 +267,7 @@ describe('harder fixture pack: shape + de-saturation oracle density', () => {
 });
 
 describe('capability v2 profile: loads and selects the harder pack', () => {
-  const V2_FIXTURES = [...HARDER_IDS, 'hard_roman_to_int'];
+  const V2_FIXTURES = [...HARDER_IDS, 'hard-roman-to-int'];
 
   it('capability-m3-vs-mimo-v2.json validates and selects the 3 harder + retained roman fixtures', () => {
     const validator = require(
@@ -303,7 +303,7 @@ describe('capability v2 profile: loads and selects the harder pack', () => {
 // lands strictly below 1.0. Every oracle `expect` was generated from a reference
 // impl certified 1.0 through the real code-task-scorer, with a deliberately-lax
 // impl confirmed strictly < 1.0.
-const VALIDATION_IDS = ['validate_ipv4', 'validate_date', 'validate_semver'];
+const VALIDATION_IDS = ['validate-ipv4', 'validate-date', 'validate-semver'];
 
 describe('validation fixture pack: shape + adversarial-invalid dominance', () => {
   it('all three validation fixtures parse and carry the required code-task keys', () => {
@@ -356,7 +356,7 @@ describe('validation fixture pack: shape + adversarial-invalid dominance', () =>
 });
 
 describe('capability v3 profile: loads and selects the validation pack', () => {
-  const V3_FIXTURES = [...VALIDATION_IDS, 'hard_roman_to_int'];
+  const V3_FIXTURES = [...VALIDATION_IDS, 'hard-roman-to-int'];
 
   it('capability-m3-vs-mimo-v3.json validates and selects the 3 validation + retained roman fixtures', () => {
     const validator = require(

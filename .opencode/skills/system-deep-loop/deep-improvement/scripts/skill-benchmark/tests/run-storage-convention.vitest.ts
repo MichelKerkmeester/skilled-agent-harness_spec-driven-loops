@@ -169,7 +169,7 @@ describe('run storage — the reports index tracks its folders', () => {
 describe('run storage — the two index writers agree', () => {
   it('scaffolded and harness-written empty indexes are the same document', () => {
     const scaffolder = path.join(
-      REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'create-skill', 'scripts', 'init_skill.py',
+      REPO_ROOT, '.opencode', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'init_skill.py',
     );
     const fromPython = execFileSync('python3', [
       '-c',

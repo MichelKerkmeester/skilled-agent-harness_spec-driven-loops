@@ -1,7 +1,7 @@
 ---
 title: "deep-improvement: Feature Catalog"
 description: "Unified reference combining the evaluation loop, integration scanning, scoring, model-benchmark mode, and skill-benchmark mode surfaces that currently ship in deep-improvement."
-version: 1.17.0.29
+version: 1.18.0.0
 ---
 
 # deep-improvement: Feature Catalog
@@ -419,7 +419,7 @@ A static scan runs before any dispatch and caps the verdict on structural failur
 
 #### How It Works
 
-`scripts/skill-benchmark/d5-connectivity.cjs` flags dead routed paths, dead intent keys, path escapes, orphan references, and an unparseable router; any P0 sets `gateFailed` and caps the verdict to `BLOCKED-BY-STRUCTURE`.
+`scripts/skill-benchmark/d5-connectivity.cjs` flags dead routed paths, dead intent keys, path escapes, orphan references, and an unparseable router; any P0 sets `gateFailed` and caps the verdict to `BLOCKED-BY-STRUCTURE`. It resolves a router from any shape the fleet uses — `INTENT_SIGNALS` or the equivalent `INTENT_MODEL`, the `LOADING_LEVELS` tiers, and a parent hub's active root `ROUTER.md` stage-two map — so a packet routed by its hub is not condemned for carrying no router of its own.
 
 #### Source Files
 

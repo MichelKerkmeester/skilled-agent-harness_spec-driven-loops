@@ -195,7 +195,7 @@ Read `sk-doc` first, then read the matching template before writing.
 | `/create:feature-catalog`  | `feature-catalog/` package                              | `.opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`                                                                     |
 | `/create:manual-testing-playbook` | `manual-testing-playbook/` package                      | `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md`                                                            |
 | `/create:readme`    | `README.md` or install-guide markdown                   | `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`                                                                                       |
-| `/create:changelog`        | Versioned changelog markdown                            | `.opencode/skills/sk-doc/shared/assets/changelog-template.md`                                                                                           |
+| `/create:changelog`        | Versioned changelog markdown                            | `.opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`                                                                                           |
 | `/create:command`          | New or updated slash command set plus workflow assets   | `.opencode/skills/sk-doc/sk-create-command/assets/command-template.md`                                                                      |
 | `/create:benchmark`        | MCP benchmark folder plus report markdown               | `.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md`                                                         |
 | `/create:diagram`          | HTML/SVG technical diagram or validated ASCII/markdown flowchart | `.opencode/skills/sk-doc/sk-create-diagram/assets/` (pattern and format templates)                                                        |
@@ -297,7 +297,7 @@ Treat hook-injected skill-advisor recommendations as routing hints only. They ne
 | `.opencode/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md`          | Feature catalog package template                                   |
 | `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md` | Manual testing playbook package template                           |
 | `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`                            | README template for `/create:readme`                        |
-| `.opencode/skills/sk-doc/shared/assets/changelog-template.md`                                | Changelog template for `/create:changelog`                         |
+| `.opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`                                | Changelog template for `/create:changelog`                         |
 
 ---
 

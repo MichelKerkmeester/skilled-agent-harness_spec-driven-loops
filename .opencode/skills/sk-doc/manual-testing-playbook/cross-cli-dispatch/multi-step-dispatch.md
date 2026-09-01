@@ -13,7 +13,7 @@ expected_resources:
   - sk-create-quality-control/references/workflows.md
   - shared/references/core-standards.md
   - shared/references/evergreen-packet-id-rule.md
-  - shared/assets/changelog-template.md
+  - sk-create-changelog/assets/changelog-template.md
 expected_workflow_mode: sk-create-skill → sk-create-quality-control → sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-skill

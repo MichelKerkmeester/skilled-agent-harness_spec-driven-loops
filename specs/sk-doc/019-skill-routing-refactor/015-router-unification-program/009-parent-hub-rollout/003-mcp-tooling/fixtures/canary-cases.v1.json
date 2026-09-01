@@ -78,6 +78,96 @@
       }
     },
     {
+      "id": "chrome-devtools-single",
+      "prompt": "chrome devtools",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-chrome-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-chrome-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "aside-devtools-single",
+      "prompt": "aside browser",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-aside-devtools"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-aside-devtools"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "mobbin-single",
+      "prompt": "mobbin mcp",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-mobbin"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-mobbin"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "obsidian-single",
+      "prompt": "obsidian vault",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-obsidian"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-obsidian"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "notion-single",
+      "prompt": "notion database",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-notion"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-notion"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "magicpath-single",
+      "prompt": "magicpath component",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "mcp-magicpath"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "mcp-magicpath"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
       "id": "ambiguous-transport-bundle",
       "prompt": "refero mobbin",
       "expectedAction": "route",

@@ -26,21 +26,16 @@ interface ParityRegression {
 }
 
 // Reviewed-accepted top-1 divergence: a row the Python reference gets right but
-// the native scorer does not, ordered as it occurs in the corpus. The remaining
-// one is a fusion-level or labeling-edge loss that single-lane explicit
-// calibration does not cleanly resolve: sk-code losing a saturated multi-lane tie
-// to sk-doc. The former sk-code/sk-prompt loss rr-iter3-093 resolved (native now
-// also resolved post system-deep-loop rename (native no longer false-positives on
-// the old skill-name token) and was briefly replaced by rr-iter3-145, which itself
-// resolved once the Stage F lexical/explicit-lane fixes landed; both pruned. Prune
-// entries here as targeted cross-lane work resolves them.
+// the native scorer does not, ordered as it occurs in the corpus. What remains is
+// fusion-level or labeling-edge loss that single-lane explicit calibration does
+// not cleanly resolve. This list must stay identical to the one in
+// tests/parity/python-ts-parity.vitest.ts — both gates read the same corpus and
+// the same two scorers. Prune entries here as targeted cross-lane work resolves
+// them; rr-iter3-093, rr-iter3-145 and rr-iter3-146 each left the list that way.
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   'rr-iter3-092',
   'rr-iter3-097',
   'rr-iter3-099',
-  // Tipped when the retired sk-design hub left the routing graph: a 0.022-margin
-  // mixed-ambiguous review prompt where sk-code loses a saturated tie to sk-doc.
-  'rr-iter3-146',
   'rr-hub6-204',
   'rr-hub6-207',
 ];
@@ -136,12 +131,19 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
       }
 
       // On the current 195-row corpus the Python reference scorer (built-in
-      // semantic disabled for determinism) makes 110 gold-correct top-1 calls;
-      // the native/hook scorer preserves 104 of them. The remaining
+      // semantic disabled for determinism) makes 112 gold-correct top-1 calls;
+      // the native/hook scorer preserves 107 of them. The remaining
       // Python-correct rows the native scorer diverges on are enumerated and
-      // reviewed-accepted below.
-      expect(pythonCorrect).toBe(110);
-      expect(hookPreservedPythonCorrect).toBe(104);
+      // reviewed-accepted above.
+      //
+      // Both numbers measure the reference, not a target: they move with the
+      // labeled corpus, the Python scoring tables, and the compiled skill graph,
+      // and the graph is a locally built artifact that can shift them with no
+      // diff to show for it. Re-baseline only after checking the move is an
+      // improvement — a pythonCorrect drop, or an id appearing in the regression
+      // list that is not accepted above, is a regression to fix, not to record.
+      expect(pythonCorrect).toBe(112);
+      expect(hookPreservedPythonCorrect).toBe(107);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

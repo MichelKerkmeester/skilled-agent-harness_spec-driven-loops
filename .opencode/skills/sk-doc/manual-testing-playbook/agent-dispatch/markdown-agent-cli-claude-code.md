@@ -7,7 +7,7 @@ execution_mode: dispatch_real
 expected_intent: sk-create-changelog
 expected_agent: '@markdown'
 expected_resources:
-  - shared/assets/changelog-template.md
+  - sk-create-changelog/assets/changelog-template.md
 expected_workflow_mode: sk-create-changelog
 expected_leaf_resources:
   - workflow_mode: sk-create-changelog
@@ -87,7 +87,7 @@ Re-check `.claude/agents/markdown.md` exists; re-check `.opencode/commands/creat
 - **Intent picked**: `CHANGELOG`
 - **Executor**: `@markdown` agent (Phase 0 verification text appears verbatim in transcript)
 - **Resources loaded**:
-  - `.opencode/skills/sk-doc/shared/assets/changelog-template.md`
+  - `.opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md`
   - `.opencode/skills/sk-doc/sk-create-changelog/references/README.md`
 - **Outcome**: CLI scaffolds a v0.1.0 changelog file with Added / Changed / Fixed / Removed sections at `/tmp/sk-test-dummy-CHANGELOG-cli-claude-code.md`.
 

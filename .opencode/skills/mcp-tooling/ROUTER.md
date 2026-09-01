@@ -63,6 +63,10 @@ emits leaf paths, and this router never re-decides the mode.
 - **mcp-mobbin leaves** — the Mobbin tool-surface catalog and the MCP-wiring
   guide a request to research mobile-app UX flows and design patterns from real
   iOS / Android apps loads.
+- **mcp-magicpath leaves** — the MagicPath tool-surface catalog and the
+  credential-setup guide a request to look up a MagicPath component or design
+  system loads. The transport ships no MCP server of its own, so the pair covers
+  what the UTCP cli manual exposes and the token it needs.
 
 A bare tool-bridge phrase that names no tool (e.g. "use the MCP tool bridge for
 this") names no mode, so it fires no intent and falls back to the hub default
@@ -96,6 +100,7 @@ INTENT_SIGNALS = {
     "FIGMA":           {"weight": 4, "keywords": ["figma", "figma cli", "figma-ds-cli", "figma desktop", "render in figma", "figma tokens", "extract design.md", "figma mcp", "figma daemon", "export from figma", "design tokens", "design file"]},
     "REFERO":          {"weight": 4, "keywords": ["refero", "refero mcp", "refero.design", "design reference search", "ui reference", "real app screens", "reference styles", "web products"]},
     "MOBBIN":          {"weight": 4, "keywords": ["mobbin", "mobbin mcp", "app design research", "ux flow references", "mobile design patterns", "mobile ux research", "onboarding flow examples", "ios app examples", "phone apps"]},
+    "MAGICPATH":       {"weight": 4, "keywords": ["magicpath", "magicpath ai", "magicpath component", "magicpath canvas", "magicpath design system", "magicpath.ai"]},
 }
 
 RESOURCE_MAP = {
@@ -130,6 +135,10 @@ RESOURCE_MAP = {
     "MOBBIN": [
         "mcp-mobbin/references/tool-surface.md",
         "mcp-mobbin/references/mcp-wiring.md"
+    ],
+    "MAGICPATH": [
+        "mcp-magicpath/references/tool-surface.md",
+        "mcp-magicpath/references/credential-setup.md"
     ],
 }
 ```

@@ -131,7 +131,7 @@ Forced three-item groups are the fifth banned form. No exactly-three inline enum
 
 Every skill README carries a version in its frontmatter: `version: X.Y.Z.W`, the same 4-part scheme `SKILL.md` uses. Bump the README version on every release, whether the change touched the README text or the skill it documents. The README states the current state, so a behavior change is a README change even when the prose barely moves.
 
-Every release gets a per-skill changelog entry at `changelog/<version>.md`. The entry follows the shared [changelog template](../../../shared/assets/changelog-template.md) and its message-release shape: NEW covers what arrived, CHANGED covers what moved, NOT CHANGED covers what stayed untouched.
+Every release gets a per-skill changelog entry at `changelog/<version>.md`. The entry follows the shared [changelog template](../../../sk-create-changelog/assets/changelog-template.md) and its message-release shape: NEW covers what arrived, CHANGED covers what moved, NOT CHANGED covers what stayed untouched.
 
 `SKILL.md` and the README carry versions that move together. A skill release bumps both files. The changelog entry records the new version.
 
@@ -363,4 +363,4 @@ The pilot README work distilled eight writing directives. Every directive has a 
 - [`skill-md-template.md`](./skill-md-template.md) - Runtime `SKILL.md` scaffold.
 - [`skill-reference-template.md`](./skill-reference-template.md) - Reference-file scaffold.
 - [`hvr-rules.md`](../../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules, the voice this template writes in.
-- [`changelog-template.md`](../../../shared/assets/changelog-template.md) - Changelog entry format every skill release follows.
+- [`changelog-template.md`](../../../sk-create-changelog/assets/changelog-template.md) - Changelog entry format every skill release follows.

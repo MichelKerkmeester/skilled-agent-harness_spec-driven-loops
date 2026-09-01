@@ -215,7 +215,7 @@ RESOURCE_MAP = {
         "sk-create-readme/assets/readme-template.md"
     ],
     "CHANGELOG": [
-        "shared/assets/changelog-template.md"
+        "sk-create-changelog/assets/changelog-template.md"
     ],
     "BENCHMARK": [
         "sk-create-benchmark/references/shared/README.md",
@@ -259,7 +259,7 @@ RESOURCE_MAP = {
         "sk-create-benchmark/references/shared/pitfalls.md",
         "sk-create-benchmark/references/shared/worked-example.md",
         "sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
-        "shared/assets/changelog-template.md",
+        "sk-create-changelog/assets/changelog-template.md",
         "sk-create-changelog/references/README.md",
         "sk-create-changelog/references/topology-edge-cases.md",
         "sk-create-changelog/references/version-bump-rules.md",

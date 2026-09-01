@@ -141,6 +141,23 @@ function childResourceMap(surface: string): Record<string, string[]> {
   return (router.resourceMap || {}) as Record<string, string[]>;
 }
 
+// Every surface packet the hub can cite, including the read-only evidence
+// surfaces the parent reaches through a stage-two intent rather than through the
+// unioned detection projection.
+const SURFACE_PACKETS = new Set([...SURFACES, 'sk-code-obsidian']);
+
+const surfaceDeclaredCache = new Map<string, Set<string>>();
+function surfaceDeclared(surface: string): Set<string> {
+  const cached = surfaceDeclaredCache.get(surface);
+  if (cached) return cached;
+  const declared = new Set<string>();
+  for (const paths of Object.values(childResourceMap(surface))) {
+    for (const p of paths) declared.add(`${surface}/${norm(p)}`);
+  }
+  surfaceDeclaredCache.set(surface, declared);
+  return declared;
+}
+
 describe('sk-code surface children own the parent projection', () => {
   const parent = loadSurfaceRouter(SKCODE);
   const parentMap: Record<string, string[]> = (parent && parent.resourceMap) || {};
@@ -179,11 +196,20 @@ describe('sk-code surface children own the parent projection', () => {
         for (const p of children[s][it] || []) union.add(`${s}/${norm(p)}`);
       }
       const parentPaths = new Set((parentMap[it] || []).map(norm));
+      // A stage-two surface-selection intent is the hub's own entry point into a
+      // surface packet: no child declares the intent, and the parent cites a
+      // curated slice of that packet. It is parent-owned, but never free — every
+      // path it names must be a doc the surface child itself declares, so the
+      // parent can cite the surface without inventing routes into it.
+      const childOwnsIntent = SURFACES.some((s) => children[s][it]);
       for (const c of union) if (!parentPaths.has(c)) overExtraction.push(`${it}: ${c}`);
       for (const p of parentPaths) {
         if (union.has(p)) continue;
-        if (/^code-(webflow|opencode)\//.test(p)) uncovered.push(`${it}: ${p}`);
-        else if (!PARENT_TIER_ALLOWLIST.has(p)) tierViolations.push(`${it}: ${p}`);
+        const owner = /^(sk-code-[a-z0-9-]+)\//.exec(p);
+        if (owner && SURFACE_PACKETS.has(owner[1])) {
+          if (!childOwnsIntent && surfaceDeclared(owner[1]).has(p)) continue;
+          uncovered.push(`${it}: ${p}`);
+        } else if (!PARENT_TIER_ALLOWLIST.has(p)) tierViolations.push(`${it}: ${p}`);
       }
     }
     expect(overExtraction).toEqual([]);
@@ -213,9 +239,8 @@ const LEAF_CONTRACT = require(
 // is an additional check exercised whenever the artifact is present.
 const SK_CODE_ROUTE_GOLD = join(
   REPO_ROOT,
-  '.opencode', 'specs', 'sk-doc', '019-skill-routing-refactor', '020-router-unification-program',
-  '007-unified-refactor-implementation', '006-parent-hub-rollout', '001-sk-code', 'compiled',
-  'route-gold.typed.json',
+  'specs', 'sk-doc', '019-skill-routing-refactor', '015-router-unification-program',
+  '009-parent-hub-rollout', '001-sk-code', 'compiled', 'route-gold.typed.json',
 );
 
 interface ManifestMode {
@@ -296,6 +321,22 @@ describe('sk-code qualifiedIdToLeaf bijection — compiled destinations <-> leaf
 // doctrine is the live example: it ships symlinked into every surface and is
 // bundled on surface detection, never listed in any RESOURCE_MAP, so naming it
 // in a fixture asserts something the router structurally cannot do.
+// Categories that deliberately do NOT assert the intent -> resource contract.
+// The corpus was widened from flat routing scenarios into a category taxonomy,
+// and these axes measure something else: holdouts restate a fitted answer in
+// phrasing that carries no router keyword (that miss IS the measurement),
+// unknown-fallback asserts the default slice when nothing matches, and the
+// detection/cost/dispatch axes exercise surface selection, load volume, and
+// multi-turn sessions rather than a single prompt's routing.
+const NON_CONTRACT_CATEGORIES = new Set([
+  'holdout',
+  'unknown_fallback',
+  'surface_detection',
+  'token_cost_baseline',
+  'resource_loading',
+  'cross_cli_dispatch',
+]);
+
 function routingScenarios(): Array<{ file: string; root: string; expected: string[]; prompt: string }> {
   const out: Array<{ file: string; root: string; expected: string[]; prompt: string }> = [];
   for (const packet of readdirSync(SKCODE, { withFileTypes: true })) {
@@ -303,13 +344,26 @@ function routingScenarios(): Array<{ file: string; root: string; expected: strin
     const root = join(SKCODE, packet.name);
     const pb = join(root, 'manual-testing-playbook');
     if (!existsSync(pb)) continue;
-    for (const entry of readdirSync(pb, { withFileTypes: true })) {
-      if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
+    // Scenario files sit in per-category folders under the playbook root, so a
+    // flat listing sees only the index and silently makes this guard vacuous.
+    const pending = [pb];
+    const files: Array<{ name: string; path: string }> = [];
+    while (pending.length) {
+      const dir = pending.pop() as string;
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        if (entry.isDirectory()) pending.push(join(dir, entry.name));
+        else if (entry.isFile()) files.push({ name: entry.name, path: join(dir, entry.name) });
+      }
+    }
+    for (const entry of files) {
+      if (!entry.name.endsWith('.md')) continue;
       if (entry.name === 'manual-testing-playbook.md' || entry.name.toLowerCase() === 'readme.md') continue;
-      const text = readFileSync(join(pb, entry.name), 'utf8');
+      const text = readFileSync(entry.path, 'utf8');
       if (!text.startsWith('---')) continue;
       const fm = text.slice(3).split('\n---')[0];
       if (!/^expected_intent:/m.test(fm)) continue;
+      const category = /^category:\s*(\S+)/m.exec(fm);
+      if (category && NON_CONTRACT_CATEGORIES.has(category[1])) continue;
       const expected = [...fm.matchAll(/^\s*-\s*(\S+\.md)\s*$/gm)].map((m) => m[1]);
       if (!expected.length) continue;
       const fence = /```text\n([\s\S]*?)\n```/.exec(text);

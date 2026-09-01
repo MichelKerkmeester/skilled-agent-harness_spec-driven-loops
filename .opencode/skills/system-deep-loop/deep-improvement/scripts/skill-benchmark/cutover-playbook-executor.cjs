@@ -59,7 +59,9 @@ const {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SKILLS_ROOT = path.resolve(__dirname, '..', '..', '..', '..');
-const PROMOTED_ENGINE = path.join(RUNTIME_ROOT, '011-runtime-engine', 'lib', 'compiled-route.cjs');
+// The promoted engine directory is versioned and has been renumbered; the sync tool's
+// CURRENT_LAYOUT is the authority on its name.
+const PROMOTED_ENGINE = path.join(RUNTIME_ROOT, '014-runtime-engine', 'lib', 'compiled-route.cjs');
 const STATUS_PROBE = path.resolve(__dirname, '..', '..', '..', '..', '..', 'bin', 'compiled-route-status.cjs');
 
 // The evidence-contract field order asserted on every compiled-routing scenario.

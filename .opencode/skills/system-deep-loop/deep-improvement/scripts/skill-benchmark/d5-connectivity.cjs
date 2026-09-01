@@ -83,6 +83,103 @@ function resolveRoutedPath(skillRoot, r) {
   return { resolved, escapes: !inRoot && !inShared };
 }
 
+// Pull the {...}-balanced body that follows `NAME = {`, mirroring how the replay
+// finds a router dictionary in SKILL.md prose.
+function extractDictBody(text, name) {
+  const start = text.indexOf(`${name} = {`);
+  if (start === -1) return null;
+  const i = text.indexOf('{', start);
+  let depth = 0;
+  for (let j = i; j < text.length; j += 1) {
+    const ch = text[j];
+    if (ch === '{') depth += 1;
+    else if (ch === '}') {
+      depth -= 1;
+      if (depth === 0) return text.slice(i + 1, j);
+    }
+  }
+  return null;
+}
+
+// A skill's own SKILL.md names its intent dictionary INTENT_MODEL; a hub-root
+// router document names the same structure INTENT_SIGNALS. Both declare the same
+// fact this scan needs — which intents exist — so read either when deciding
+// whether a RESOURCE_MAP key is backed by a real intent. Only the key set is read
+// here; keyword scoring semantics belong to the replay, not to a structural scan.
+function readIntentKeys(skillMdText, name) {
+  const body = extractDictBody(skillMdText, name);
+  const keys = new Set();
+  if (body === null) return keys;
+  for (const m of body.matchAll(/["']([A-Z0-9_]+)["']\s*:\s*\{/g)) keys.add(m[1]);
+  return keys;
+}
+
+// A router declares its always-loaded and keyword-gated tiers in a loading-levels
+// dictionary alongside the intent map. Those are declared routes just as much as
+// a RESOURCE_MAP entry is, so a resource named there is reachable and is not an
+// orphan. Only quoted skill-relative markdown paths are taken; the same dictionary
+// also holds trigger phrases and load-level labels, which name no resource.
+function readLoadingLevelPaths(skillMdText) {
+  const out = new Set();
+  for (const name of ['LOADING_LEVELS', 'LOAD_LEVELS']) {
+    const body = extractDictBody(skillMdText, name);
+    if (body === null) continue;
+    for (const m of body.matchAll(/["']([^"']+\.md)["']/g)) {
+      if (/^(references|assets)\//.test(m[1])) out.add(m[1]);
+    }
+  }
+  return out;
+}
+
+// A mode packet nested inside a parent hub does not own stage-two routing. The
+// hub's root ROUTER.md maps intents to packet-qualified leaf paths, and that map
+// is how a request reaches the packet's references at all. Scanning such a packet
+// in isolation would read a router-less skill whose whole reference tree is
+// unreachable — a structural verdict that contradicts the hub contract the packet
+// is built to. Resolve the hub's stage-two map and project the entries owned by
+// this packet down to packet-relative paths, so the packet is scanned against the
+// router that actually routes it. A standalone skill has no parent hub here and
+// is unaffected.
+function readHubStageTwoRoute(skillRoot) {
+  const empty = { present: false, routed: new Set(), source: null };
+  const root = path.resolve(skillRoot);
+  const hubRoot = path.dirname(root);
+  const packet = path.basename(root);
+
+  let registry;
+  try {
+    registry = JSON.parse(fs.readFileSync(path.join(hubRoot, 'mode-registry.json'), 'utf8'));
+  } catch {
+    return empty;
+  }
+  const modes = Array.isArray(registry?.modes) ? registry.modes : [];
+  if (!modes.some((mode) => mode && mode.packet === packet)) return empty;
+
+  const routerPath = path.join(hubRoot, 'ROUTER.md');
+  let text;
+  try {
+    text = fs.readFileSync(routerPath, 'utf8');
+  } catch {
+    return empty;
+  }
+  // A hub scaffold declares router_state: stage1-only with empty maps until a
+  // concrete leaf map is authored. Only an active stage two routes anything.
+  if (!/^router_state:\s*active\s*$/m.test(text)) return empty;
+
+  // Parse the hub document's own dictionaries only: passing no skill root keeps
+  // parseRouter from following pointers out of the document being read.
+  const hubRouter = parseRouter(text, null);
+  const prefix = `${packet}/`;
+  const routed = new Set();
+  for (const resources of Object.values(hubRouter.resourceMap)) {
+    for (const r of resources) {
+      if (r.startsWith(prefix)) routed.add(r.slice(prefix.length));
+    }
+  }
+  if (routed.size === 0) return empty;
+  return { present: true, routed, source: path.relative(root, routerPath) };
+}
+
 function emptyHubRegistryResult() {
   return {
     registryPresent: false,
@@ -303,7 +400,7 @@ function scanHubRegistry({ skillRoot }) {
  * @param {string} args.skillRoot - Absolute path to the skill root.
  * @returns {{ score:number, gateFailed:boolean, findings:Array,
  *   deadResourcePaths:string[], deadIntentKeys:string[], orphanReferences:string[],
- *   pathEscapes:string[], routerParseable:boolean }}
+ *   pathEscapes:string[], routerParseable:boolean, hubStageTwoRouted:number }}
  */
 function scanConnectivity({ skillRoot }) {
   const findings = [];
@@ -313,13 +410,16 @@ function scanConnectivity({ skillRoot }) {
     // score-comparison consumer sees the same number for the same one-P0
     // condition; gateFailed is the authoritative verdict signal either way.
     return {
-      score: 60, gateFailed: true, routerParseable: false,
+      score: 60, gateFailed: true, routerParseable: false, hubStageTwoRouted: 0,
       deadResourcePaths: [], deadIntentKeys: [], orphanReferences: [], pathEscapes: [],
       findings: [{ class: 'missing_skill_md', severity: 'P0', detail: 'SKILL.md not found' }],
     };
   }
-  const router = parseRouter(fs.readFileSync(skillMdPath, 'utf8'), skillRoot);
-  const intentKeys = new Set(Object.keys(router.intentSignals));
+  const skillMdText = fs.readFileSync(skillMdPath, 'utf8');
+  const router = parseRouter(skillMdText, skillRoot);
+  const hubStageTwo = readHubStageTwoRoute(skillRoot);
+  const intentModelKeys = readIntentKeys(skillMdText, 'INTENT_MODEL');
+  const intentKeys = new Set([...Object.keys(router.intentSignals), ...intentModelKeys]);
   const deadResourcePaths = [];
   const deadIntentKeys = [];
   const pathEscapes = [];
@@ -327,6 +427,32 @@ function scanConnectivity({ skillRoot }) {
   // Always-loaded default resources are reachable on every route, so they count
   // as covered (not orphans) even when no intent maps to them.
   for (const r of router.defaultResource || []) routedRefs.add(r);
+  // A loading-level path counts as routed, so it is held to the same existence
+  // bar as any other route: a tier that names a file which is not there loads
+  // nothing.
+  for (const r of readLoadingLevelPaths(skillMdText)) {
+    routedRefs.add(r);
+    const { resolved, escapes } = resolveRoutedPath(skillRoot, r);
+    if (escapes) {
+      pathEscapes.push(r);
+      findings.push({ class: 'path_escape', severity: 'P0', locus: r, detail: `${r} resolves outside skill root (routed from a loading level)` });
+    } else if (!fs.existsSync(resolved)) {
+      deadResourcePaths.push(r);
+      findings.push({ class: 'dead_resource_path', severity: 'P0', locus: r, detail: `routed path ${r} does not exist (routed from a loading level)` });
+    }
+  }
+
+  for (const r of hubStageTwo.routed) {
+    routedRefs.add(r);
+    const { resolved, escapes } = resolveRoutedPath(skillRoot, r);
+    if (escapes) {
+      pathEscapes.push(r);
+      findings.push({ class: 'path_escape', severity: 'P0', locus: r, detail: `${r} resolves outside skill root (routed from ${hubStageTwo.source})` });
+    } else if (!fs.existsSync(resolved)) {
+      deadResourcePaths.push(r);
+      findings.push({ class: 'dead_resource_path', severity: 'P0', locus: r, detail: `routed path ${r} does not exist (routed from ${hubStageTwo.source})` });
+    }
+  }
 
   for (const [intent, resources] of Object.entries(router.resourceMap)) {
     if (!intentKeys.has(intent)) {
@@ -362,17 +488,19 @@ function scanConnectivity({ skillRoot }) {
   }
 
   // Hard gate: any P0 (dead path / escape / unparseable). Dead intent keys (P1)
-  // and orphans (P2) lower the score but do not gate by themselves.
+  // and orphans (P2) lower the score but do not gate by themselves. A packet
+  // routed by its hub's stage-two map is routable even with no router of its own.
+  const routerParseable = router.parseable || intentModelKeys.size > 0 || hubStageTwo.present;
   const p0 = findings.filter((f) => f.severity === 'P0').length;
-  const gateFailed = p0 > 0 || !router.parseable;
-  if (!router.parseable) {
-    findings.push({ class: 'router_unparseable', severity: 'P0', detail: 'INTENT_SIGNALS / RESOURCE_MAP could not be parsed from SKILL.md' });
+  const gateFailed = p0 > 0 || !routerParseable;
+  if (!routerParseable) {
+    findings.push({ class: 'router_unparseable', severity: 'P0', detail: 'INTENT_SIGNALS / RESOURCE_MAP could not be parsed from SKILL.md, and no parent hub stage-two router routes this packet' });
   }
   // Score: start at 100, subtract per finding by severity, floor 0.
   const penalty = findings.reduce((acc, f) => acc + (SEVERITY_PENALTY[f.severity] || 0), 0);
   const score = Math.max(0, 100 - penalty);
 
-  return { score, gateFailed, routerParseable: router.parseable, deadResourcePaths, deadIntentKeys, orphanReferences, pathEscapes, findings };
+  return { score, gateFailed, routerParseable, hubStageTwoRouted: hubStageTwo.routed.size, deadResourcePaths, deadIntentKeys, orphanReferences, pathEscapes, findings };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

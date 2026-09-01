@@ -9,7 +9,6 @@ expected_resources:
   - references/verification.md
   - assets/verification-checklist.md
   - references/screenshot-harness.md
-  - references/workflow-verify.md
   - references/release/release-verification.md
 version: 1.0.0.0
 ---

@@ -24,20 +24,14 @@ interface PythonRow {
 }
 
 // Reviewed-accepted top-1 divergences (Python-correct, native scorer diverges),
-// aligned with the legacy corpus-parity ledger. These three are cross-lane /
-// labeling-edge loss that explicit-lane calibration cannot resolve: sk-code
-// losing a saturated multi-lane tie to sk-doc. (The former sk-code/sk-prompt
-// loss rr-iter3-093 resolved — native now preserves it — and was pruned.
-// system-deep-loop rename — native no longer false-positives on the old
-// skill-name token — and was briefly replaced by rr-iter3-145, which itself
-// resolved once the Stage F lexical/explicit-lane fixes landed; both pruned.)
+// aligned with the legacy corpus-parity ledger. What remains is cross-lane /
+// labeling-edge loss that explicit-lane calibration cannot resolve. Entries are
+// pruned as targeted work resolves them, which is the only reason this list ever
+// shrinks — rr-iter3-093, rr-iter3-145 and rr-iter3-146 each left it that way.
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   'rr-iter3-092',
   'rr-iter3-097',
   'rr-iter3-099',
-  // Tipped when the retired sk-design hub left the routing graph: a 0.022-margin
-  // mixed-ambiguous review prompt where sk-code loses a saturated tie to sk-doc.
-  'rr-iter3-146',
   'rr-hub6-204',
   'rr-hub6-207',
 ];
@@ -178,11 +172,19 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     console.log(`advisor-parity-report ${JSON.stringify(report)}`);
 
     // On the current 195-row corpus (built-in semantic disabled for determinism)
-    // the Python reference makes 110 gold-correct top-1 calls; the native scorer
-    // preserves 104 of them and diverges only on the reviewed current-state rows
-    // enumerated above, while improving 48 rows the Python reference gets wrong.
-    expect(pythonCorrect).toBe(110);
-    expect(tsAlsoCorrect).toBe(104);
+    // the Python reference makes 112 gold-correct top-1 calls; the native scorer
+    // preserves 107 of them and diverges only on the reviewed current-state rows
+    // enumerated above, while improving 45 rows the Python reference gets wrong.
+    //
+    // Both numbers measure the reference, not a target, so they move whenever the
+    // labeled corpus, the Python scoring tables, or the compiled skill graph does
+    // — and the graph is a locally built artifact, so a rebuild alone can shift
+    // them with no diff to show for it. Re-baseline only after checking the move
+    // is an improvement: pythonCorrect rising with tsAlsoCorrect rising and the
+    // regression list a subset of the one above is the shape of a good move. A
+    // pythonCorrect drop, or a new id in regressionIds, is a regression to fix.
+    expect(pythonCorrect).toBe(112);
+    expect(tsAlsoCorrect).toBe(107);
     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

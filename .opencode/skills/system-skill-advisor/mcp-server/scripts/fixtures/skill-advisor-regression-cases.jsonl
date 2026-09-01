@@ -41,6 +41,7 @@
 {"id":"P1-PHRASE-003","priority":"P1","prompt":"5-dimension agent scoring","confidence_only":false,"expect_result":true,"expected_top_any":["sk-deep-agent-improvement"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-PHRASE-004","priority":"P1","prompt":"integration scan","confidence_only":false,"expect_result":true,"expected_top_any":["sk-deep-agent-improvement"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-PHRASE-005","priority":"P1","prompt":"dynamic profile","confidence_only":false,"expect_result":true,"expected_top_any":["sk-deep-agent-improvement"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P1-PHRASE-009","priority":"P1","prompt":"5-dimension","confidence_only":false,"expect_result":true,"expected_top_any":["sk-deep-agent-improvement"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P1-PHRASE-008","priority":"P1","prompt":"browser verification checklist","confidence_only":false,"expect_result":true,"expected_top_any":["sk-code"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P2-BREADTH-GUARD-001","priority":"P2","prompt":"build TypeScript route handler for auth","confidence_only":false,"expect_result":true,"expected_top_any":["sk-code"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P2-BREADTH-GUARD-002","priority":"P2","prompt":"fix full-stack auth service test failure","confidence_only":false,"expect_result":true,"expected_top_any":["sk-code"],"expect_kind":"skill","allow_command_bridge":false}

@@ -108,8 +108,12 @@ function expectSuccessArgs(kind: AdapterKind, args: readonly string[]): void {
       break;
     case 'cli-devin':
       expect(args).toEqual(expect.arrayContaining([
-        '-p', '--model', MODEL_BY_KIND[kind], '--permission-mode', 'dangerous', '--sandbox',
+        '-p', '--model', MODEL_BY_KIND[kind], '--permission-mode', 'dangerous',
+        '--respect-workspace-trust', 'false',
       ]));
+      // The devin CLI's --sandbox forces an autonomous permission mode that rejects every
+      // write tool call in non-interactive print mode, so a write lineage must never carry it.
+      expect(args).not.toContain('--sandbox');
       break;
     case 'cli-cursor':
       expect(args).toEqual(expect.arrayContaining([
@@ -119,6 +123,15 @@ function expectSuccessArgs(kind: AdapterKind, args: readonly string[]): void {
       expect(args).not.toContain('--auto-review');
       break;
   }
+}
+
+function orchestrationLedgerEvents(baseArtifactDir: string): readonly string[] {
+  const logPath = `${baseArtifactDir}/orchestration-status.log`;
+  if (!existsSync(logPath)) return [];
+  return readFileSync(logPath, 'utf8')
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => (JSON.parse(line) as { event?: string }).event ?? '');
 }
 
 function fanoutLog(lineageDir: string): string {
@@ -278,12 +291,20 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
 
     it(testName(2), async () => {
       const fixture = useShim('rate-limit');
-      const startedAt = Date.now();
       const run = await runAdapterFanout(fixture, { mode: 'rate-limit' });
       expect(run.result.exitCode).not.toBe(0);
       expect(fanoutLog(run.lineageDir)).toContain('429 rate limit: throttled');
       expect(readAdapterCaptures(fixture)).toHaveLength(1);
-      expect(Date.now() - startedAt).toBeLessThan(2_000);
+      // "Without delay" is a claim about the scheduler, not about how fast this host happens
+      // to be. The wait checkpoint is the only thing in the scheduler that can park a run on a
+      // clock, so assert that mechanism directly: a throttled lineage must surface its
+      // diagnostic immediately rather than persist a checkpoint and sleep on it. Measuring the
+      // mechanism instead of the stopwatch means a loaded machine cannot fail the case and a
+      // real regression cannot pass it.
+      const events = orchestrationLedgerEvents(run.baseArtifactDir);
+      expect(events).not.toContain('wait_checkpoint_persisted');
+      expect(events).not.toContain('resume_waiting');
+      expect(existsSync(`${run.baseArtifactDir}/orchestration-wait-checkpoint.json`)).toBe(false);
     });
 
     it(testName(3), async () => {

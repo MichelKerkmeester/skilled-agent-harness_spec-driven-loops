@@ -80,17 +80,22 @@ _complexity_count_acceptance_scenarios() {
     fi
 }
 
-# Count phases in plan.md
+# Count phases, preferring plan.md and falling back to tasks.md.
+#
+# The core plan template hands phase ownership to tasks.md so a packet has one
+# source of truth for phase state rather than two that drift. Counting only
+# plan.md therefore reports zero for every packet built that way, and warns that
+# a packet with three phases has none.
 _complexity_count_phases() {
     local folder="$1"
-    local plan_file="$folder/plan.md"
-    if [[ -f "$plan_file" ]]; then
-        local count
-        count=$(grep -cE "^##+[[:space:]]+Phase\b" "$plan_file" 2>/dev/null || true)
-        echo "${count:-0}"
-    else
-        echo "0"
-    fi
+    local count=0
+    for candidate in "$folder/plan.md" "$folder/tasks.md"; do
+        [[ -f "$candidate" ]] || continue
+        count=$(grep -cE "^##+[[:space:]]+Phase\b" "$candidate" 2>/dev/null || true)
+        count="${count:-0}"
+        [[ "$count" -gt 0 ]] && break
+    done
+    echo "${count:-0}"
 }
 
 # Count tasks in tasks.md

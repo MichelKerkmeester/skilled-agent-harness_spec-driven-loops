@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/048-test-surface-reconciliation",
+  "spec_folder": "sk-doc/048-test-surface-reconciliation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stale test expectation after a rename",
+      "fixture minted against a retired hub",
+      "frozen scorer digest re-pin",
+      "playbook loader sees no scenarios",
+      "benchmark suite failing on moved paths",
+      "triage stale test versus regression",
+      "parallel suite reconciliation",
+      "re-pin a drift tripwire",
+      "prove the assertion still bites",
+      "enumerate failing suites",
+      "parallel suite triage tasks",
+      "re-measure agent claims"
+    ],
+    "key_topics": [
+      "stale",
+      "test",
+      "expectation",
+      "rename",
+      "fixture",
+      "minted",
+      "against",
+      "retired",
+      "hub",
+      "frozen",
+      "scorer",
+      "digest"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      ".opencode/skills/mcp-tooling/ROUTER.md",
+      ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+      ".opencode/skills/sk-code/ROUTER.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename_tooling_fixture_core.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Seven",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Nothing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Group",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parallel",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Seven test suites were carrying failures, and running them together made the shape obvious",
+    "created_at": "2026-09-01T06:54:11Z",
+    "last_save_at": "2026-09-01T07:33:09.282Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6fd4ff738de2c3dee614e38734e0d4c25d4e3d6f9158a8540757c3e6a5e90588",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "10cfac6528f661e88fd5ef4b0884ff63cf48dfd66211cc7abe5d3e3b3498ebb7",
+      "plan.md": "76113a5065870c9dd03e1f03395e0098bdfdbb469d2f8590ea544061b227dd39",
+      "tasks.md": "46813fc31fba2ce96d5a4dc068deb4d65502bfe664d876957cf2040932212351",
+      "implementation-summary.md": "bb13a35eb1f450dcf54760786493ae027e763c682188a3e1520cc81875203ada"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

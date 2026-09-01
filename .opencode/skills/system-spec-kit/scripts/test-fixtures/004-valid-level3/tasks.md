@@ -103,10 +103,6 @@ CORE TEMPLATE (~60 lines)
 - Add L2/L3 addendums for complexity
 -->
 
-<!-- ANCHOR:protocol -->
-## Verification Protocol
-<!-- /ANCHOR:protocol -->
-
 ---
 title: "Verification Checklist: Tiny Catalog Sync [template:level-3/checklist.md]"
 description: "A tiny fixture feature that synchronizes a sample catalog and records one architecture decision."
