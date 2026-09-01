@@ -183,7 +183,7 @@ Documentation loaded as needed to inform the agent's process and thinking.
 - Keep only essential instructions in SKILL.md
 - Move detailed reference material to references files
 
-**Frontmatter contract**: every reference and asset markdown file carries the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`); `README.md` files are exempt. The Skill Advisor harvests these fields as routing signal — see [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) for the template and field rules.
+**Frontmatter contract**: every reference and asset markdown file carries the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`); `README.md` files are exempt. The Skill Advisor harvests these fields as routing signal — see [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for the template and field rules.
 
 #### Assets Directory (`assets/`)
 
@@ -274,7 +274,7 @@ Use these templates when authoring layered skills:
 - [skill-readme-template.md](../../assets/skill/skill-readme-template.md) - Skill README file template
 - [skill-reference-template.md](../../assets/skill/skill-reference-template.md) - Reference file templates
 - [skill-asset-template.md](../../assets/skill/skill-asset-template.md) - Asset file templates
-- [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 
 ### Reference Files
 - [core-standards.md](../../../shared/references/core-standards.md) - Document type rules and structural requirements

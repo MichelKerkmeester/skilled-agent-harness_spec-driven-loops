@@ -58,7 +58,7 @@ description: "Multi-stack coding standards, references, and assets. Provides sur
 description: "Multi-stack coding standards and verification. Smart router auto-detects the active surface and loads matching code patterns."
 ```
 
-**Trim rules** (see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../shared/assets/frontmatter-templates.md) for the canonical reference):
+**Trim rules** (see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for the canonical reference):
 - **Soft target**: ≤ 130 chars for skills, ≤ 110 for commands. Hard cap 1,536 (Claude Code). Project ceiling 5,600 (leaves headroom for built-ins under 8,000 default).
 - **DROP**: product enumerations (ClickUp/Notion/Figma…), stack lists (Webflow/Motion.dev/GSAP…), marketing prose (`Mandatory for…`, `Provides…efficient…`), parenthetical jargon
 - **KEEP**: skill name token, primary verb, primary domain noun, mode suffixes (`:auto`/`:confirm`), numeric specifics (`9 steps`, `5-dim scoring`)
@@ -259,7 +259,7 @@ def route_request(context):
 - [validation-and-packaging.md](./validation-and-packaging.md) - Validation requirements and distribution
 
 ### Templates
-- [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) - Frontmatter by document type, description budget and trim style
+- [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type, description budget and trim style
 - [skill-md-template.md](../../assets/skill/skill-md-template.md) - SKILL.md section pattern
 
 ### Reference Files

@@ -1,11 +1,15 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/049-sk-create-frontmatter/001-inventory-and-contract",
-  "description": "Phase 1: inventory-and-contract",
+  "description": "A move is only as safe as the inventory behind it",
   "keywords": [
-    "phase",
-    "inventory-and-contract"
+    "move",
+    "only",
+    "safe",
+    "inventory",
+    "behind"
   ],
-  "lastUpdated": "2026-09-01T08:42:56.912Z",
+  "lastUpdated": "2026-09-01T10:49:46.245Z",
   "specId": "001",
   "folderSlug": "inventory-and-contract",
   "parentChain": [
@@ -13,6 +17,5 @@
     "049-sk-create-frontmatter"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

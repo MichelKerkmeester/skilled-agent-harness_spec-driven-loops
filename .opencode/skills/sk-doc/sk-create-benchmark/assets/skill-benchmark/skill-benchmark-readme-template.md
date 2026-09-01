@@ -34,7 +34,7 @@ Usage:
      five frontmatter fields shown (title / description / trigger_phrases /
      importance_tier / contextType) and NO version field: it is a memory-indexed
      DATA artifact outside the references/** and assets/** version-scope defined
-     in ../../../shared/references/frontmatter-versioning.md §1, not a versioned
+     in ../../../sk-create-frontmatter/references/frontmatter-versioning.md §1, not a versioned
      reference doc. Replace the template's descriptive title / description /
      trigger_phrases with the hub's real values.
   3. Fill every {{PLACEHOLDER}} and remove every <!-- guidance --> comment.

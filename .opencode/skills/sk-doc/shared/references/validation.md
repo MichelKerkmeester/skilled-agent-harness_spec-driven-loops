@@ -541,4 +541,4 @@ fi
 - [command-template.md](../../sk-create-command/assets/command-template.md) - Command creation guide (19 sections)
 - [install-guide-template.md](../../sk-create-readme/assets/install-guide-template.md) - Install guide template (14 sections)
 - [llmstxt-templates.md](../assets/llmstxt-templates.md) - llms.txt with decision framework
-- [frontmatter-templates.md](../assets/frontmatter-templates.md) - Frontmatter validation & templates (11 sections)
+- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter validation & templates (11 sections)

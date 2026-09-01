@@ -55,7 +55,7 @@ Load the file that matches the current task:
 
 - [quick-reference.md](../../shared/references/quick-reference.md) - condensed commands and file locations
 - [validation.md](../../shared/references/validation.md) - quality scoring and validation workflows
-- [frontmatter-versioning.md](../../shared/references/frontmatter-versioning.md) - 4-part version field rules
+- [frontmatter-versioning.md](../../sk-create-frontmatter/references/frontmatter-versioning.md) - 4-part version field rules
 
 ### Companion packets
 

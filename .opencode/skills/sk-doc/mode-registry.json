@@ -449,6 +449,52 @@
       }
     },
     {
+      "workflowMode": "sk-create-frontmatter",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Grep",
+          "Glob"
+        ],
+        "forbidden": [
+          "Task"
+        ],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "sk-create-frontmatter",
+      "packetSkillName": "sk-create-frontmatter",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "yaml frontmatter",
+        "frontmatter block",
+        "frontmatter template",
+        "frontmatter field",
+        "frontmatter fields",
+        "trigger_phrases",
+        "importance_tier",
+        "contextType",
+        "description budget",
+        "4-part version",
+        "X.Y.Z.W",
+        "frontmatter versioning",
+        "frontmatter version",
+        "version field",
+        "frontmatter validation",
+        "missing frontmatter",
+        "frontmatter contract"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
       "workflowMode": "sk-create-quality-control",
       "packetKind": "workflow",
       "backendKind": "create-quality-control",

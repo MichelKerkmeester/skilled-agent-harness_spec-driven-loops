@@ -130,7 +130,7 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 - ✅ Final review completed (no critical gaps)
 - ✅ All bundled resources included
 - ✅ README or documentation provided
-- ✅ Version number in frontmatter (4-part `X.Y.Z.W`; see [frontmatter-versioning.md](../../../shared/references/frontmatter-versioning.md))
+- ✅ Version number in frontmatter (4-part `X.Y.Z.W`; see [frontmatter-versioning.md](../../../sk-create-frontmatter/references/frontmatter-versioning.md))
 - ✅ License information (if applicable)
 
 ### Installation

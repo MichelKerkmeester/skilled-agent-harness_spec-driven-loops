@@ -49,6 +49,8 @@
     "document-diff",
     "create-quality-control",
     "human-voice",
+    "frontmatter",
+    "frontmatter-versioning",
     "writing-standards"
   ],
   "intent_signals": [
@@ -75,6 +77,13 @@
     "document before after review",
     "before after document diff",
     "document change report",
+    "yaml frontmatter",
+    "frontmatter block",
+    "frontmatter field",
+    "description budget",
+    "4-part version",
+    "frontmatter versioning",
+    "frontmatter validation",
     "validate document",
     "score document quality",
     "optimize documentation",
@@ -107,6 +116,11 @@
       "create repo rule",
       "repo rule",
       "add a repo rule",
+      "yaml frontmatter",
+      "frontmatter block",
+      "description budget",
+      "4-part version",
+      "frontmatter versioning",
       "doc quality",
       "validate markdown",
       "dqi score",
@@ -224,7 +238,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to thirteen nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-with-human-voice, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
+    "causal_summary": "Documentation and OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to fourteen nested workflow packets (sk-create-skill/sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule, sk-create-with-human-voice, sk-create-quality-control). The universal sk-create-quality-control pipeline lives once in shared/ and is consumed by every packet. It matters because it gives the workspace one discoverable identity for authoring and validating high-quality documentation and components, with per-artifact workflows isolated in self-contained packets.",
     "source_docs": [
       "SKILL.md",
       "README.md",

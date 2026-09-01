@@ -982,7 +982,7 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 
 ### Templates
 - [skill-asset-template.md](../../sk-create-skill/assets/skill/skill-asset-template.md) - Pattern reference for this document
-- [frontmatter-templates.md](../../shared/assets/frontmatter-templates.md) - YAML frontmatter examples
+- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - YAML frontmatter examples
 
 ### Standards
 - [SKILL.md](../SKILL.md) - Install-guide workflow and reference map

@@ -59,7 +59,7 @@ Production agent files should stay at or below **600 lines**. If an agent needs 
 
 ### Required Fields
 
-> **Description budget**: agent `description:` fields share the Claude Code skill-metadata budget (default 8,000 chars total). Keep each agent description **≤ 130 chars**, no stack/product enumerations. See [`assets/frontmatter-templates.md` § Description Budget & Trim Style](../../shared/assets/frontmatter-templates.md) for the canonical trim rules.
+> **Description budget**: agent `description:` fields share the Claude Code skill-metadata budget (default 8,000 chars total). Keep each agent description **≤ 130 chars**, no stack/product enumerations. See [`assets/frontmatter-templates.md` § Description Budget & Trim Style](../../sk-create-frontmatter/assets/frontmatter-templates.md) for the canonical trim rules.
 
 ```yaml
 ---

@@ -241,6 +241,23 @@
       }
     },
     {
+      "id": "single-create-frontmatter",
+      "prompt": "yaml frontmatter block",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-create-frontmatter"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-create-frontmatter"
+        ],
+        "expectedResources": [
+          "sk-create-frontmatter/SKILL.md"
+        ]
+      }
+    },
+    {
       "id": "ordered-create-then-quality",
       "prompt": "create skill and validate documentation quality",
       "expectedAction": "route",

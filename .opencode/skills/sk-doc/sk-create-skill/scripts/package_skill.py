@@ -331,7 +331,7 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, 
         if not re.match(r'^\d+\.\d+\.\d+\.\d+$', version_value):
             return False, (
                 f"version '{version_value}' must be 4-part X.Y.Z.W "
-                f"(see references/frontmatter-versioning.md)"
+                f"(see sk-create-frontmatter/references/frontmatter-versioning.md)"
             ), warnings, parsed
 
     return True, "Frontmatter valid", warnings, parsed

@@ -564,7 +564,7 @@ The core executable workflow lives in this `SKILL.md`. Use these only for overfl
 - `assets/manual-testing-playbook-snippet-template.md` - per-feature file scaffold.
 - `../shared/references/core-standards.md` - shared markdown structure rules.
 - `../shared/references/validation.md` - shared validation and DQI workflow.
-- `../shared/references/frontmatter-versioning.md` - 4-part version expectations.
+- `../sk-create-frontmatter/references/frontmatter-versioning.md` - 4-part version expectations.
 - `../shared/references/evergreen-packet-id-rule.md` - evergreen current-state wording.
 
 The source assets keep the filenames `manual-testing-playbook-template.md` and `manual-testing-playbook-snippet-template.md` until their separate source-file migration. Those filenames are authoring inputs, not emitted package names.

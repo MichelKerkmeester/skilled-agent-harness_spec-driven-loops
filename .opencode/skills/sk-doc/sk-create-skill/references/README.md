@@ -73,7 +73,7 @@ Load the file that matches the current task:
 - [skill-procedure-template.md](../assets/skill/skill-procedure-template.md) - Private procedure card templates and guidelines
 - [parent-skill-hub-template.md](../assets/parent-skill/parent-skill-hub-template.md) - Parent-skill routing hub SKILL.md
 - [parent-skill-registry-template.json](../assets/parent-skill/parent-skill-registry-template.json) - Parent-skill mode-registry.json
-- [frontmatter-templates.md](../../shared/assets/frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 
 ### Reference Files
 - [core-standards.md](../../shared/references/core-standards.md) - Document type rules and structural requirements

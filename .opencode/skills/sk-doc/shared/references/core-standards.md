@@ -334,4 +334,4 @@ Format: Plain text navigation file for LLMs
 - [command-template.md](../../sk-create-command/assets/command-template.md) - Command creation guide
 - [install-guide-template.md](../../sk-create-readme/assets/install-guide-template.md) - Install guide template
 - [llmstxt-templates.md](../assets/llmstxt-templates.md) - llms.txt with decision framework
-- [frontmatter-templates.md](../assets/frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type

@@ -52,7 +52,7 @@ Load the file that matches the current task:
 ### Shared Reference Files
 - [core-standards.md](../../shared/references/core-standards.md) - Document type rules and structural requirements
 - [validation.md](../../shared/references/validation.md) - Shared validation and DQI workflow
-- [frontmatter-versioning.md](../../shared/references/frontmatter-versioning.md) - 4-part version expectations
+- [frontmatter-versioning.md](../../sk-create-frontmatter/references/frontmatter-versioning.md) - 4-part version expectations
 - [quick-reference.md](../../shared/references/quick-reference.md) - Condensed commands and file locations
 - [workflows.md](../../sk-create-quality-control/references/workflows.md) - Execution-mode reference
 

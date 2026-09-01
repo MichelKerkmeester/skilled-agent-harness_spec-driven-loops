@@ -847,7 +847,7 @@ Add sections:
 ## 14. RELATED RESOURCES
 
 ### Templates
-- [frontmatter-templates.md](./frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 - [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
 
 ### Standards

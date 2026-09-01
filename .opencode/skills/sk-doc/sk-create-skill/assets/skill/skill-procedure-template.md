@@ -83,7 +83,7 @@ version: 1.0.0.0
 [numbered operating steps]
 ```
 
-Every card carries the same full 5-field frontmatter block used by references and assets: `title`, `description`, 3-8 lowercase multi-word `trigger_phrases`, `importance_tier` (`normal` unless the card is a formal cross-packet contract), `contextType` (`implementation` for nearly all procedure cards), plus `version`. See [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) for field rules.
+Every card carries the same full 5-field frontmatter block used by references and assets: `title`, `description`, 3-8 lowercase multi-word `trigger_phrases`, `importance_tier` (`normal` unless the card is a formal cross-packet contract), `contextType` (`implementation` for nearly all procedure cards), plus `version`. See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
 
 ### Body Order
 
@@ -232,7 +232,7 @@ Placement:
 ### Templates
 - [skill-reference-template.md](./skill-reference-template.md) - Reference file templates (use when no trigger-based selection is needed)
 - [skill-asset-template.md](./skill-asset-template.md) - Asset file templates
-- [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 
 ### Standards
 - [core-standards.md](../../../shared/references/core-standards.md) - Document type rules

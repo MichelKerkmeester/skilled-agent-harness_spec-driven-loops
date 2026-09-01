@@ -60,7 +60,7 @@ User types: /command-name arguments
                     └─► AI agent executes instructions step-by-step
 ```
 
-> **Description budget**: command `description:` fields share the Claude Code skill-metadata budget (default 8,000 chars total). Keep each command description **≤ 110 chars**, retain `:auto`/`:confirm` mode suffixes (advisor trigger tokens), no product enumerations. See [`assets/frontmatter-templates.md` § Description Budget & Trim Style](../../shared/assets/frontmatter-templates.md) for the canonical trim rules.
+> **Description budget**: command `description:` fields share the Claude Code skill-metadata budget (default 8,000 chars total). Keep each command description **≤ 110 chars**, retain `:auto`/`:confirm` mode suffixes (advisor trigger tokens), no product enumerations. See [`assets/frontmatter-templates.md` § Description Budget & Trim Style](../../sk-create-frontmatter/assets/frontmatter-templates.md) for the canonical trim rules.
 
 ### Command File Location
 
@@ -1244,7 +1244,7 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
 ## 19. RELATED RESOURCES
 
 ### Templates
-- [frontmatter-templates.md](../../shared/assets/frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 - [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - If converting to skill
 
 ### Standards

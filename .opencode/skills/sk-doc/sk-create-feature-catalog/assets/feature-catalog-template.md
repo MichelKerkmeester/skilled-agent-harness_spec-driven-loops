@@ -295,4 +295,4 @@ Validation:
 
 - [feature-catalog-snippet-template.md](./feature-catalog-snippet-template.md) - Per-feature file template
 - [manual-testing-playbook-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md) - Parallel pattern for manual validation packages
-- [frontmatter-templates.md](../../shared/assets/frontmatter-templates.md) - Frontmatter conventions
+- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter conventions

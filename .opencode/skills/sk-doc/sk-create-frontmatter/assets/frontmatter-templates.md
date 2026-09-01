@@ -935,5 +935,5 @@ Skill references/assets additionally require `trigger_phrases` (3-8), `importanc
 - [command-template.md](../../sk-create-command/assets/command-template.md) - Command file templates
 
 ### Standards
-- [core-standards.md](../references/core-standards.md) - Document type rules
-- [validation.md](../references/validation.md) - Quality scoring
+- [core-standards.md](../../shared/references/core-standards.md) - Document type rules
+- [validation.md](../../shared/references/validation.md) - Quality scoring

@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-01 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -128,15 +128,14 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-inventory-and-contract/ | Read only. Enumerate every consumer of the frontmatter spec, and decide what the mode owns versus what stays shared | Pending |
-| 2 | 002-mode-scaffold/ | Build the mode packet to the create-skill templates, with no content in it yet | Pending |
-| 3 | 003-content-migration/ | Move the spec into the mode and repoint every consumer | Pending |
-| 4 | 004-routing-integration/ | Registry, hub vocabulary, router intents, leaf manifest, advisor identity, canary coverage | Pending |
-| 5 | 005-command-and-playbook/ | The command surface, its workflow assets, and the mode's manual testing playbook | Pending |
-| 6 | 006-verification-and-closeout/ | Whole-fleet gates from the final state, and the packet's own closure | Pending |
-| 7 | 007-human-voice-playbook/ | The sibling voice mode has no playbook either, and the setup for authoring one is paid in phase 005 | Pending |
+| 1 | 001-inventory-and-contract/ | Read only. Enumerate every consumer of the frontmatter spec, and decide what the mode owns versus what stays shared | Complete |
+| 2 | 002-mode-scaffold/ | Build the mode packet to the create-skill templates, with no content in it yet | Complete |
+| 3 | 003-content-migration/ | Move the spec into the mode and repoint every consumer | Complete |
+| 4 | 004-routing-integration/ | Registry, hub vocabulary, router intents, leaf manifest, advisor identity, canary coverage | Complete |
+| 5 | 005-command-and-playbook/ | The command surface, its workflow assets, and the mode's manual testing playbook | Complete |
+| 6 | 006-verification-and-closeout/ | Whole-fleet gates from the final state, and the packet's own closure | Complete |
+| 7 | 007-human-voice-playbook/ | The sibling voice mode has no playbook either, and the setup for authoring one is paid in phase 005 | Complete |
 
-| 7 | 007-human-voice-playbook/ | [Phase 7 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -154,7 +153,6 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 004-routing-integration | 005-command-and-playbook | The mode is reachable in both routing stages, not merely registered | The advisor selects the hub, the hub router selects the mode, and the canary covers it with a single-route case |
 | 005-command-and-playbook | 006-verification-and-closeout | The playbook package validates and its scenarios load | The playbook package validator passes and the loader reports the authored scenario count |
 | 006-verification-and-closeout | 007-human-voice-playbook | The fleet is green, so a second playbook is authored against a settled tree | Every gate in the phase 006 sweep passes |
-| 006-verification-and-closeout | 007-human-voice-playbook | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

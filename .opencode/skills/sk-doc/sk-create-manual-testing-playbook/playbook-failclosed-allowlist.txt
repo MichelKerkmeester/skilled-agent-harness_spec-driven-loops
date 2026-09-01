@@ -42,7 +42,9 @@
 .opencode/skills/sk-doc/manual-testing-playbook
 .opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook
 .opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook
+.opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook
 .opencode/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook
+.opencode/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook
 .opencode/skills/sk-git/manual-testing-playbook
 .opencode/skills/sk-prompt/manual-testing-playbook
 .opencode/skills/sk-vision/manual-testing-playbook

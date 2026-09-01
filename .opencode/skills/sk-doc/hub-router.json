@@ -18,6 +18,7 @@
       "sk-create-diagram",
       "sk-create-repo-rule",
       "sk-create-with-human-voice",
+      "sk-create-frontmatter",
       "sk-create-quality-control"
     ],
     "outcomes": {
@@ -166,6 +167,15 @@
       ],
       "resources": [
         "sk-create-with-human-voice/SKILL.md"
+      ]
+    },
+    "sk-create-frontmatter": {
+      "weight": 4,
+      "classes": [
+        "create-frontmatter-aliases"
+      ],
+      "resources": [
+        "sk-create-frontmatter/SKILL.md"
       ]
     }
   },
@@ -432,6 +442,27 @@
         "banned word check",
         "hvr",
         "human voice"
+      ]
+    },
+    "create-frontmatter-aliases": {
+      "keywords": [
+        "yaml frontmatter",
+        "frontmatter block",
+        "frontmatter template",
+        "frontmatter field",
+        "frontmatter fields",
+        "trigger_phrases",
+        "importance_tier",
+        "contextType",
+        "description budget",
+        "4-part version",
+        "X.Y.Z.W",
+        "frontmatter versioning",
+        "frontmatter version",
+        "version field",
+        "frontmatter validation",
+        "missing frontmatter",
+        "frontmatter contract"
       ]
     }
   }

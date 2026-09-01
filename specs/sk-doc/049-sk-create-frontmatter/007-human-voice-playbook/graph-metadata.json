@@ -15,14 +15,14 @@
       "sk-create-with-human-voice testing",
       "voice mode scenario coverage",
       "playbook for the voice standard",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary"
+      "human voice playbook plan",
+      "tell detection scope gate",
+      "shipped fixture scoring",
+      "voice mode scenario categories",
+      "human voice playbook tasks",
+      "tell detection scenarios",
+      "scope gate scenarios",
+      "playbook scanned with own tool"
     ],
     "key_topics": [
       "human",
@@ -34,9 +34,9 @@
       "scenario",
       "coverage",
       "standard",
-      "implementation",
       "plan",
-      "name"
+      "tell",
+      "detection"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -44,7 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt"
     ],
     "entities": [
       {
@@ -69,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
         "source": "derived"
       },
       {
@@ -120,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,25 +152,19 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Each",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -162,39 +176,27 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "own",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The human voice mode owns the standard the whole repository writes against, and it is one of",
     "created_at": "2026-09-01T10:24:27Z",
-    "last_save_at": "2026-09-01T10:25:06.591Z",
+    "last_save_at": "2026-09-01T11:43:19.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:537233f8395ead199398ff5b464f99c1323cf6256059be3d629cabefe7180194",
+    "source_fingerprint": "sha256:66f151ee7cdfcce3a6af90395dd7b19574b00fa7e1dc278e95a805134a8ede0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d10634d512c88180cbb6ca3a0dd27e18d14429a9091bea3a8ef6ce42f4af0cc",
-      "plan.md": "e946a31fb121e47fd07e9bebeab02a31357f2017bdd2d1219ebe7d48de322526",
-      "tasks.md": "075a967aae540ea701acd39ff7aee67c25e8b0dcf467492af22d463606fd4c52",
-      "implementation-summary.md": "b922a122030d54b513128ddf94fce44c99e3c27256d078ba2fab7d6fc15ac727"
+      "plan.md": "e011f830d35103e7e01277801706b8935eb9f39dba1b99438ea5c7dbdd1179e3",
+      "tasks.md": "4650a67fae511499fd88bd5cd8c109d6d694498cc767ab25989f21ce943c9183",
+      "implementation-summary.md": "6214f81cc8a7b8e887cae8a97daed316ace6e8f7f28f9c1b3926c071c1387074"
     },
     "last_active_child_id": null,
     "last_active_at": null

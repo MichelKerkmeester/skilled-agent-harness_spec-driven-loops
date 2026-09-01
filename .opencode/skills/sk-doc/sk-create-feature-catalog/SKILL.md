@@ -197,7 +197,7 @@ Use these packet resources while authoring:
 - `assets/feature-catalog-template.md` for the root catalog scaffold.
 - `assets/feature-catalog-snippet-template.md` for each per-feature file.
 - `../shared/references/quick-reference.md` and `../shared/references/validation.md` before delivery.
-- `../shared/references/frontmatter-versioning.md` when checking frontmatter version fields.
+- `../sk-create-frontmatter/references/frontmatter-versioning.md` when checking frontmatter version fields.
 - `references/README.md` to route the reference overflow — [`examples.md`](references/examples.md) (worked live-catalog walkthrough) and [`common-pitfalls.md`](references/common-pitfalls.md) (deep-dive pitfalls, template-versus-reference split) — only for depth beyond this inline workflow.
 
 The source assets keep the filenames `feature-catalog-template.md` and `feature-catalog-snippet-template.md` until their separate source-file migration. Those filenames are authoring inputs, not emitted package names.
@@ -462,4 +462,4 @@ The primary contract is this `SKILL.md`. Load the resources below only for overf
 - `assets/feature-catalog-snippet-template.md` - per-feature file scaffold.
 - `../shared/references/quick-reference.md` - condensed commands and file locations.
 - `../shared/references/validation.md` - shared validation and quality-scoring workflow.
-- `../shared/references/frontmatter-versioning.md` - four-part version field rules.
+- `../sk-create-frontmatter/references/frontmatter-versioning.md` - four-part version field rules.

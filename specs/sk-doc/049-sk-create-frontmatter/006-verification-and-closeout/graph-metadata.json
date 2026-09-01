@@ -15,14 +15,14 @@
       "fleet gates final state",
       "re-pin after frontmatter move",
       "frontmatter packet closeout",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "acceptance criteria"
+      "final state gate sweep",
+      "canary re-pin discipline",
+      "packet closeout edits",
+      "version derivation reconcile deferred",
+      "playbook allowlist enrolment",
+      "final state sweep tasks",
+      "canary re-pin after red run",
+      "changelog rewrite closeout"
     ],
     "key_topics": [
       "frontmatter",
@@ -36,7 +36,7 @@
       "move",
       "packet",
       "closeout",
-      "implementation"
+      "gate"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -45,7 +45,12 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "specs/descriptions.json",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/README.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md",
+      "specs/sk-doc/049-sk-create-frontmatter/spec.md"
     ],
     "entities": [
       {
@@ -76,6 +81,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/changelog/v1.0.0.0.md",
         "source": "derived"
       },
       {
@@ -127,7 +156,19 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Not",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,15 +180,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -157,45 +192,15 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Each phase proved its own step",
     "created_at": "2026-09-01T08:43:01Z",
-    "last_save_at": "2026-09-01T08:46:15.249Z",
+    "last_save_at": "2026-09-01T11:43:19.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96eaa3c7d867db67b65ce8c7ca3b2ddd9a8e7e7ade3ed289ecfb8c8c7499beaa",
+    "source_fingerprint": "sha256:5c47d75b4ccd5d5e89f91ab7902166cc954fb96964b967cc371088f081f425ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9fc8b5503affe4eb74de1fe992113ed1206e61abe7adb504314052a155a0f54e",
-      "plan.md": "99c01271f24d754d02d107b246ff8b7c15550ffe6f2e7fea8944d40595708c09",
-      "tasks.md": "b775292c0f5b7b1936c15bf33f1dae0aa1545708b93f25d4f61b7ab84a8befce",
-      "implementation-summary.md": "8827c3b5dded1649d13e6cfaf443955dbfd6a1ff5feadfac982289a12e04e65b"
+      "plan.md": "c7e952cdf135b29c320ccf3c936dbc83046d931b0d3f708ffe3a867fc705df91",
+      "tasks.md": "55644dcd1ccff144b8e23b3f75ec414b23cc287f619f0228c830e961271c4253",
+      "implementation-summary.md": "eff89085e84324682eaa145c563505ce90054771ebe4d13ef4f0a98c52176f27"
     },
     "last_active_child_id": null,
     "last_active_at": null

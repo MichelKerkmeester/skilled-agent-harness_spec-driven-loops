@@ -84,7 +84,7 @@ SKILL.md architecture follows progressive disclosure:
 | `allowed-tools` | ✅ | Array: `[Tool1, Tool2]` | `[Read, Write, Edit, Bash]` |
 | `version` | ✅ | 4-part X.Y.Z.W | `1.0.0.0` |
 
-> **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../shared/assets/frontmatter-templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose; keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
+> **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../sk-create-frontmatter/assets/frontmatter-templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose; keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
 
 ### Template
 
@@ -103,7 +103,7 @@ version: 1.0.0.0
 - **description**: Third-person voice, single line, no `<>` brackets
 - **allowed-tools**: Use brackets `[...]`, not comma-separated string
 
-> **Complete Reference**: For validation rules, edge cases, array formats, and all document type frontmatter, see [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md)
+> **Complete Reference**: For validation rules, edge cases, array formats, and all document type frontmatter, see [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md)
 
 ---
 
@@ -1173,7 +1173,7 @@ python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/[skill-
 ## 7. REFERENCES AND RELATED RESOURCES
 
 ### Templates
-- [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 - [skill-asset-template.md](./skill-asset-template.md) - Asset file creation guide
 - [skill-reference-template.md](./skill-reference-template.md) - Reference file templates
 

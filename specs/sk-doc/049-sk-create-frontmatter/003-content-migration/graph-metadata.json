@@ -15,14 +15,14 @@
       "repoint frontmatter consumers",
       "frontmatter migration",
       "frontmatter validator path",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "acceptance criteria"
+      "frontmatter content migration",
+      "git mv frontmatter templates",
+      "sibling relative path rewrite",
+      "frontmatter link integrity delta",
+      "frontmatter migration tasks",
+      "repoint consumer files",
+      "outbound link repair tasks",
+      "link integrity delta check"
     ],
     "key_topics": [
       "move",
@@ -34,9 +34,9 @@
       "migration",
       "validator",
       "path",
-      "implementation",
-      "plan",
-      "name"
+      "content",
+      "git",
+      "sibling"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -45,7 +45,14 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      ".opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+      ".opencode/skills/sk-doc/shared/assets/llmstxt-templates.md",
+      ".opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+      ".opencode/skills/sk-doc/shared/scripts/quick_validate.py",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".opencode/skills/sk-doc/leaf-aliases.json"
     ],
     "entities": [
       {
@@ -76,6 +83,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-versioning.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md",
+        "source": "derived"
+      },
+      {
+        "name": "llmstxt-templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/assets/llmstxt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-aliases.json",
         "source": "derived"
       },
       {
@@ -127,12 +176,6 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -151,51 +194,15 @@
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Test Type",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Two files move and roughly forty references follow them",
     "created_at": "2026-09-01T08:42:58Z",
-    "last_save_at": "2026-09-01T08:46:15.252Z",
+    "last_save_at": "2026-09-01T11:43:18.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:287e1219886351df6616a8a88ab86d99c6b78b868f76ea21c2748611e71c9741",
+    "source_fingerprint": "sha256:2710b7e07f19a6dc7a301e51833e04537eb4b218cc2e5c642fb519419e459437",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5cc4910cc13f3664e5e212263dd8f1b62b88040d80c6622d07978b1a34047dd0",
-      "plan.md": "d3f82d182645ee0e29e07c3d61412b7e67a44fa95f8f900639533fa99cfaa3c7",
-      "tasks.md": "d24150ddcf8fa51de3d58d595e90005126e45b6f64f864e1c25760dd1696f750",
-      "implementation-summary.md": "b7d0ac1fdd40d9cb0d5b8ce885c38daa43ab1916aa4a4eb5bb00f257c4f551ec"
+      "plan.md": "7b63c01223280abee347889220b93b59f3021116a5e3100a2c9c108174e76e21",
+      "tasks.md": "49b2133ccc2d7a2e6b7cb5436ed3f7b9229f92aaa78666e3df88a3a11d6049e3",
+      "implementation-summary.md": "a8402b53575218aafc2699afdfdfa50e72b728bd8b416d1e464d6ed5beeac090"
     },
     "last_active_child_id": null,
     "last_active_at": null

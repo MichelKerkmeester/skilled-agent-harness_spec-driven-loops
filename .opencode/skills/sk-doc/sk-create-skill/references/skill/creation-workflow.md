@@ -33,7 +33,7 @@ This reference is the core create workflow for a skill. It walks the six ordered
 - `scripts/init_skill.py` - scaffolds the skill directory
 - `scripts/package_skill.py` - validates and packages the skill
 - [skill-md-template.md](../../assets/skill/skill-md-template.md) - SKILL.md section pattern
-- [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) - frontmatter field rules
+- [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) - frontmatter field rules
 
 ---
 
@@ -276,7 +276,7 @@ SKILL.md requires all four fields. `package_skill.py --check` hard-fails when an
 | `name`          | ✅        | Must match folder name, lowercase-with-hyphens |
 | `description`   | ✅        | Single line, ≤ 130 chars (skill) / ≤ 110 (command). See Pitfall 1 in [common-pitfalls.md](../shared/common-pitfalls.md) for trim rules |
 | `allowed-tools` | ✅        | Array format (`[Read, Write, ...]`)           |
-| `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`). See [frontmatter-versioning.md](../../../shared/references/frontmatter-versioning.md) |
+| `version`       | ✅        | 4-part `X.Y.Z.W` (e.g., `1.0.0.0`). See [frontmatter-versioning.md](../../../sk-create-frontmatter/references/frontmatter-versioning.md) |
 
 ```yaml
 ---
@@ -291,7 +291,7 @@ version: 1.0.0.0
 - **`references/*.md` and `assets/*.md`** carry the full 5-field block (`title`, `description`, `trigger_phrases` 3-8, `importance_tier`, `contextType`) **plus `version`** (4-part `X.Y.Z.W`). Seed each new file from [skill-reference-template.md](../../assets/skill/skill-reference-template.md) / [skill-asset-template.md](../../assets/skill/skill-asset-template.md) so the block is present by construction. Emit kebab-case filenames and directory slugs. Python filenames, Python import-package directories and tool-mandated names remain exempt.
 - **`README.md`** is exempt from the 5-field reference block but still carries `title`, `description` and `version` per [skill-readme-template.md](../../assets/skill/skill-readme-template.md).
 
-> **Complete Reference**: For validation rules, format specifications and all document types, see [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md)
+> **Complete Reference**: For validation rules, format specifications and all document types, see [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md)
 
 ### Step 5: Packaging a Skill (~2 min)
 
@@ -425,7 +425,7 @@ Iteration 3:
 ### Templates
 - [skill-md-template.md](../../assets/skill/skill-md-template.md) - SKILL.md file templates
 - [skill-procedure-template.md](../../assets/skill/skill-procedure-template.md) - Private procedure card templates and guidelines
-- [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 
 ### Reference Files
 - [core-standards.md](../../../shared/references/core-standards.md) - Document type rules and structural requirements

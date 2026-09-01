@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/049-sk-create-frontmatter/007-human-voice-playbook",
-  "description": "Phase 1: human-voice-playbook",
+  "description": "The human voice mode owns the standard the whole repository writes against, and it is one of",
   "keywords": [
-    "phase",
-    "human-voice-playbook"
+    "human",
+    "voice",
+    "mode",
+    "owns",
+    "standard",
+    "whole",
+    "repository",
+    "writes",
+    "against",
+    "one"
   ],
-  "lastUpdated": "2026-09-01T10:24:27.832Z",
+  "lastUpdated": "2026-09-01T11:39:46.703Z",
   "specId": "007",
   "folderSlug": "human-voice-playbook",
   "parentChain": [
@@ -13,6 +22,5 @@
     "049-sk-create-frontmatter"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -110,6 +110,13 @@ emits leaf paths, and this router never re-decides the mode.
   request to add, change, or remove a repo-local rule loads. Fired by "repo rule /
   project rule / REPO RULES.md / trigger table / retire a repo rule" requests. Most such
   requests end in a refusal, so `decision-tests.md` is the always-loaded leaf.
+- **frontmatter leaves** — the field reference and the versioning standard a
+  request about a frontmatter block itself loads. Fired by "yaml frontmatter /
+  frontmatter block / frontmatter field / description budget / 4-part version /
+  frontmatter versioning" requests. The phrases are qualified rather than bare,
+  because `agent frontmatter` belongs to agent-creation and a bare "frontmatter"
+  would take that route away from it. The field reference is the always-loaded
+  leaf, because resolving the document class comes before any field rule.
 - **full-inventory leaves** — the entire sk-doc toolkit. `FULL_INVENTORY` is the
   single explicit full-toolkit intent; no other intent enumerates the whole hub.
   Fired only by an explicit "show the full sk-doc toolkit / everything sk-doc
@@ -148,6 +155,7 @@ INTENT_SIGNALS = {
     "BENCHMARK": {"weight": 4, "keywords": ["create a benchmark", "author a benchmark", "benchmark suite", "benchmark authoring", "behavior benchmark", "model benchmark", "skill benchmark"]},
     "DIFF": {"weight": 4, "keywords": ["document diff", "doc diff", "diff document", "before and after diff", "before/after diff", "visual document diff"]},
     "REPO_RULE": {"weight": 4, "keywords": ["repo rule", "repo-rules", "repo rules", "project rule", "repo rule file", "REPO RULES.md", "trigger table", "rule router", "retire a rule", "retire a repo rule", "revise a rule", "revise a repo rule", "add a repo rule", "always-loaded rule", "rule that binds"]},
+    "FRONTMATTER": {"weight": 4, "keywords": ["yaml frontmatter", "frontmatter block", "frontmatter template", "frontmatter field", "frontmatter fields", "trigger_phrases", "importance_tier", "contextType", "description budget", "4-part version", "X.Y.Z.W", "frontmatter versioning", "frontmatter version", "version field", "frontmatter validation", "missing frontmatter", "frontmatter contract"]},
     "FULL_INVENTORY": {"weight": 4, "keywords": ["full sk-doc toolkit", "all templates", "show the full", "entire toolkit", "everything sk-doc offers"]},
 }
 
@@ -236,12 +244,20 @@ RESOURCE_MAP = {
         "sk-create-repo-rule/assets/repo-rules-router-template.md",
         "sk-create-repo-rule/references/README.md"
     ],
+    "FRONTMATTER": [
+        "sk-create-frontmatter/assets/frontmatter-templates.md",
+        "sk-create-frontmatter/references/frontmatter-versioning.md",
+        "sk-create-frontmatter/references/README.md"
+    ],
     "FULL_INVENTORY": [
         "sk-create-agent/assets/agent-template.md",
         "sk-create-agent/references/README.md",
         "sk-create-agent/references/agent-vs-skill-vs-command.md",
         "sk-create-agent/references/common-pitfalls.md",
         "sk-create-agent/references/permission-design.md",
+        "sk-create-frontmatter/assets/frontmatter-templates.md",
+        "sk-create-frontmatter/references/README.md",
+        "sk-create-frontmatter/references/frontmatter-versioning.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md",
         "sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md",

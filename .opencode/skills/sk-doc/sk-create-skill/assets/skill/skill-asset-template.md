@@ -169,7 +169,7 @@ version: 1.0.0.0
 
 ```
 
-Every asset file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content; `importance_tier` defaults to `normal`; `contextType` one of `planning|research|implementation|general`). See [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) for field rules.
+Every asset file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content; `importance_tier` defaults to `normal`; `contextType` one of `planning|research|implementation|general`). See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
 
 > **WARNING: DO NOT duplicate content between intro and OVERVIEW section.**
 > The intro is a hook; OVERVIEW provides the details.
@@ -936,7 +936,7 @@ Integration:
 ## 15. REFERENCES AND RELATED RESOURCES
 
 ### Templates
-- [frontmatter-templates.md](../../../shared/assets/frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 - [skill-md-template.md](./skill-md-template.md) - If converting to skill
 - [skill-reference-template.md](./skill-reference-template.md) - Reference file templates
 - [llmstxt-templates.md](../../../shared/assets/llmstxt-templates.md) - llms.txt file templates

@@ -188,6 +188,15 @@
     },
     {
       "leaves": [
+        "assets/frontmatter-templates.md",
+        "references/README.md",
+        "references/frontmatter-versioning.md"
+      ],
+      "packet": "sk-create-frontmatter",
+      "workflowMode": "sk-create-frontmatter"
+    },
+    {
+      "leaves": [
         "assets/manual-testing-playbook-snippet-template.md",
         "assets/manual-testing-playbook-template.md",
         "references/README.md",

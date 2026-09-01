@@ -28,7 +28,7 @@ Usage:
   2. DELETE the "version:" line below. A shipped baseline carries the five
      frontmatter fields shown and NO version field: it is a memory-indexed DATA
      artifact outside the references/** and assets/** version-scope defined in
-     ../../../shared/references/frontmatter-versioning.md §1, not a versioned
+     ../../../sk-create-frontmatter/references/frontmatter-versioning.md §1, not a versioned
      reference doc.
   3. Ship the file with every row "pending" / "not_captured" if no Claude leg has
      run yet — an uncaptured cell is a legitimate ship state, but it is NEVER

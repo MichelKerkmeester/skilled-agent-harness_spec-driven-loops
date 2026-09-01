@@ -348,7 +348,7 @@ Validation note: the current validator checks the root playbook and does not rec
 
 ### Templates
 - [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
-- [frontmatter-templates.md](../assets/frontmatter-templates.md) - Frontmatter by document type
+- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
 - [command-template.md](../../sk-create-command/assets/command-template.md) - Command file templates
 - [feature-catalog-template.md](../../sk-create-feature-catalog/assets/feature-catalog-template.md) - Feature catalog template
 - [feature-catalog-snippet-template.md](../../sk-create-feature-catalog/assets/feature-catalog-snippet-template.md) - Per-feature catalog template
