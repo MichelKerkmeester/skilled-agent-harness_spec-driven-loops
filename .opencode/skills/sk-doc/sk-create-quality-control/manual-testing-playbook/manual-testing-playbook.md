@@ -150,7 +150,7 @@ Prompt: `Audit this existing SKILL.md for structure, DQI and human voice issues.
 
 The mode should select report-only audit, run `extract_structure.py`, report the detected type, metrics, checklist, DQI score and quality band, then review HVR without changing the target.
 
-Desired user-visible outcome: a report with observed structure and quality evidence plus actionable findings.
+Desired user-visible outcome: a report with observed structure, quality evidence and findings the author can act on.
 
 #### Test Execution
 

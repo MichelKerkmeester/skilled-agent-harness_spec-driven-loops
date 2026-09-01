@@ -249,6 +249,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 9. Keep the current runtime as conductor and Pi as delegated executor.
 10. Treat Pi-native discovery claims as confirmed only when backed by the pinned contract or a linked live documentation page.
 11. Compose every dispatch as `{resolved agent persona + task prompt}`, never a bare task. Resolve the persona from the ACTIVE runtime's agent directory (AGENTS.md §7; never hardcode a runtime) and map each subtask to the right agent (code, review, design, deep-research, markdown). Core Pi has no native persona surface on `pi -p`, so INLINE the persona block into the payload — the child cannot resolve agent paths by reference. A persona-less leaf runs as a generic assistant, dropping its tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
+12. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt. The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
 
 ### ⛔ NEVER
 

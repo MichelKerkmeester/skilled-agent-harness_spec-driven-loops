@@ -66,7 +66,7 @@ Capture the prompt, the boundary text, the classification, the recommendation an
 ### Failure Triage
 
 1. Check the number of features and expected runs in the request.
-2. Check whether release readiness or shared evidence is actually required.
+2. Check whether release readiness or shared evidence is required.
 3. Verify the scoped tree has no new playbook file.
 
 ---

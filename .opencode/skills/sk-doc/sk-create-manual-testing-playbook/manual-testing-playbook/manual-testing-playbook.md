@@ -147,7 +147,7 @@ Verify that the mode selects a reusable playbook when several features need repe
 
 Prompt: `We have six operator-visible features to check before release. Create a manual testing playbook with repeatable scenarios.`
 
-The mode should identify the reusable-validation need, define meaningful categories, create the root file and create one scenario file per feature. It should put shared review and orchestration rules in the root.
+The mode should identify the reusable-validation need, define meaningful categories, create the root file and create one scenario file per feature. It should place shared review and orchestration rules in the root.
 
 Desired user-visible outcome: a package with a readable index and deterministic scenario files.
 

@@ -12,7 +12,7 @@ This document captures the operator contract for `MTP-004`.
 
 ## 1. OVERVIEW
 
-This scenario validates the boundary between an operator-scenario corpus and a routing-gold corpus. It checks that a mode playbook omits the routing-gold signature so the operator validator actually exercises the scenario.
+This scenario validates the boundary between an operator-scenario corpus and a routing-gold corpus. It checks that a mode playbook omits the routing-gold signature so the operator validator exercises the scenario.
 
 ### Why This Matters
 

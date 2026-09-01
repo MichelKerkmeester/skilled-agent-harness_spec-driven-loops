@@ -81,7 +81,7 @@ It is not. It has no memory of this session, and no access to what you already r
 
 ## 2. BEFORE YOU DISPATCH
 
-Four things, in order. None is optional, and the first is a hard rule elsewhere.
+Five things, in order. None is optional, and the first is a hard rule elsewhere.
 
 1. **Read the executor's own contract.** `AGENTS.md` Dispatch Rules require reading
    `cli-external-orchestration/cli-X/SKILL.md` before composing any `cli-X` prompt.
@@ -94,6 +94,12 @@ Four things, in order. None is optional, and the first is a hard rule elsewhere.
    Scope you did not write down is scope the delegate will infer, and it will infer wider.
 4. **State the shape of an acceptable answer.** Not the answer, the shape. A file list,
    a table with named columns, a verdict plus citations. "Investigate X" returns an essay.
+5. **Pre-resolve every gate the delegate cannot ask you about.** A dispatched worker reads the
+   same gates you do and obeys them, including the ones that stop and wait for an operator.
+   Nobody is at its prompt, so it stops forever and reports success. Setting the environment
+   variable that waives a gate is not enough: it makes the waiver true, not observable, and a
+   model cannot read an environment variable. Put the answer in the prompt. Give the decision,
+   not permission to skip it.
 
 ---
 
@@ -147,6 +153,10 @@ something you ran confirms it. Three checks before you quote a return:
 - **Did it stay in scope?** Diff the paths it touched against the paths you authorized.
 - **Did it actually run?** An iteration count from a run's own summary is the run
   describing itself. Read the state it wrote, not the story it told.
+- **Do not read the exit status as the verdict.** It has been wrong in both directions:
+  a dispatch that stopped at a gate and wrote nothing exits zero, and a dispatch that
+  wrote everything then hit a provider capacity limit exits one. Check that the artifacts
+  exist, then check their content. The return code tells you the process ended.
 
 The failure this prevents: a finding entering your close-out with the delegate's
 confidence attached and none of your verification.
