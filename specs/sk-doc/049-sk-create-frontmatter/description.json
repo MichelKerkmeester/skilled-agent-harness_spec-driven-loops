@@ -1,21 +1,19 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/049-sk-create-frontmatter",
-  "description": "Give the frontmatter contract an owning mode by building sk-create-frontmatter",
+  "description": "Six modes emit frontmatter",
   "keywords": [
-    "give",
-    "frontmatter",
-    "contract",
-    "owning",
-    "mode",
-    "sk-create-frontmatter"
+    "six",
+    "modes",
+    "emit",
+    "frontmatter"
   ],
-  "lastUpdated": "2026-09-01T08:42:56.000Z",
+  "lastUpdated": "2026-09-01T08:46:14.898Z",
   "specId": "049",
   "folderSlug": "sk-create-frontmatter",
   "parentChain": [
     "sk-doc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

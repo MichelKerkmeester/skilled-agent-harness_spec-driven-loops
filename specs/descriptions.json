@@ -1,18 +1,7 @@
 {
   "version": 1,
-  "generated": "2026-09-01T08:22:22.285Z",
+  "generated": "2026-09-01T09:49:15.585Z",
   "folders": [
-    {
-      "specFolder": "001-scaffold-gate-probe",
-      "description": "scaffold gate probe level 3",
-      "keywords": [
-        "scaffold",
-        "gate",
-        "probe",
-        "level"
-      ],
-      "lastUpdated": "2026-09-01T08:22:21.901Z"
-    },
     {
       "specFolder": "agents/001-terminal-proof-discipline",
       "description": "A terminal-engineer benchmark prompt encodes a verification protocol that AGENTS.md did not express: encode every requirement as an objective",
@@ -24635,6 +24624,71 @@
         "regression"
       ],
       "lastUpdated": "2026-09-01T06:54:12.460Z"
+    },
+    {
+      "specFolder": "sk-doc/049-sk-create-frontmatter",
+      "description": "Six modes emit frontmatter",
+      "keywords": [
+        "six",
+        "modes",
+        "emit",
+        "frontmatter"
+      ],
+      "lastUpdated": "2026-09-01T08:46:14.898Z"
+    },
+    {
+      "specFolder": "sk-doc/049-sk-create-frontmatter/001-inventory-and-contract",
+      "description": "Phase 1: inventory-and-contract",
+      "keywords": [
+        "phase",
+        "inventory-and-contract"
+      ],
+      "lastUpdated": "2026-09-01T08:42:56.912Z"
+    },
+    {
+      "specFolder": "sk-doc/049-sk-create-frontmatter/002-mode-scaffold",
+      "description": "Phase 2: mode-scaffold",
+      "keywords": [
+        "phase",
+        "mode-scaffold"
+      ],
+      "lastUpdated": "2026-09-01T08:42:57.868Z"
+    },
+    {
+      "specFolder": "sk-doc/049-sk-create-frontmatter/003-content-migration",
+      "description": "Phase 3: content-migration",
+      "keywords": [
+        "phase",
+        "content-migration"
+      ],
+      "lastUpdated": "2026-09-01T08:42:58.928Z"
+    },
+    {
+      "specFolder": "sk-doc/049-sk-create-frontmatter/004-routing-integration",
+      "description": "Phase 4: routing-integration",
+      "keywords": [
+        "phase",
+        "routing-integration"
+      ],
+      "lastUpdated": "2026-09-01T08:42:59.969Z"
+    },
+    {
+      "specFolder": "sk-doc/049-sk-create-frontmatter/005-command-and-playbook",
+      "description": "Phase 5: command-and-playbook",
+      "keywords": [
+        "phase",
+        "command-and-playbook"
+      ],
+      "lastUpdated": "2026-09-01T08:43:01.000Z"
+    },
+    {
+      "specFolder": "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
+      "description": "Phase 6: verification-and-closeout",
+      "keywords": [
+        "phase",
+        "verification-and-closeout"
+      ],
+      "lastUpdated": "2026-09-01T08:43:02.072Z"
     },
     {
       "specFolder": "sk-doc/z_archive/001-sk-doc-rename",
