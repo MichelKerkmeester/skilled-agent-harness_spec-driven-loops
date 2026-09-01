@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/050-sk-doc-playbook-coverage",
+  "description": "Give every sk-doc mode the manual testing playbook it lacks",
+  "keywords": [
+    "give",
+    "every",
+    "sk-doc",
+    "mode",
+    "manual",
+    "testing",
+    "playbook",
+    "lacks"
+  ],
+  "lastUpdated": "2026-09-01T11:47:59.231Z",
+  "specId": "050",
+  "folderSlug": "sk-doc-playbook-coverage",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

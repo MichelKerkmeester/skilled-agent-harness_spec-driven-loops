@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/050-sk-doc-playbook-coverage",
+  "spec_folder": "sk-doc/050-sk-doc-playbook-coverage",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces",
+    "sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers",
+    "sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc playbook coverage",
+      "modes with no manual testing playbook",
+      "author playbooks for every mode",
+      "playbook gap sk-doc"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "playbook",
+      "coverage",
+      "modes",
+      "manual",
+      "testing",
+      "author",
+      "playbooks",
+      "every",
+      "mode",
+      "gap",
+      "three"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three of the fifteen sk-doc modes carry a manual testing playbook",
+    "created_at": "2026-09-01T11:47:59Z",
+    "last_save_at": "2026-09-01T11:49:40.114Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8510708f20cd5f9cb947860079269dbb9b7dafef73aaa21d425f1a1d3c599d8e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f6fe3d9836359b4f1212cc5d306514923a499f27d06d5d9f8eaa6c655ab15dda"
+    },
+    "last_active_child_id": "sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality",
+    "last_active_at": null
+  }
+}

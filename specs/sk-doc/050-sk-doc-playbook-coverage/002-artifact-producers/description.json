@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers",
+  "description": "Phase 2: artifact-producers",
+  "keywords": [
+    "phase",
+    "artifact-producers"
+  ],
+  "lastUpdated": "2026-09-01T11:48:00.798Z",
+  "specId": "002",
+  "folderSlug": "artifact-producers",
+  "parentChain": [
+    "sk-doc",
+    "050-sk-doc-playbook-coverage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
