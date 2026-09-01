@@ -124,6 +124,11 @@ describe('dist freshness — build cache bootstrap', () => {
     const packageRoot = join(workspaceRoot, '.opencode', 'skills', 'system-spec-kit', 'mcp-server');
     mkdirSync(join(packageRoot, 'dist'), { recursive: true });
     mkdirSync(join(packageRoot, 'schemas'), { recursive: true });
+    // The checker refuses to judge freshness for a package root that carries no
+    // package.json AND node_modules, because a checkout that thin cannot rebuild
+    // anyway. This fixture has to clear that bar or every assertion below reads
+    // "unprovisioned" instead of exercising the staleness logic under test.
+    mkdirSync(join(packageRoot, 'node_modules'), { recursive: true });
     writeFileSync(join(packageRoot, 'package.json'), '{"name":"fixture"}\n');
     writeFileSync(join(packageRoot, 'tsconfig.json'), '{"compilerOptions":{}}\n');
     writeFileSync(join(packageRoot, 'spec-memory-cli.ts'), 'export const cli = true;\n');

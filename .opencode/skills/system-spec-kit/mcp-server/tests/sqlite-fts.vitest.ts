@@ -28,7 +28,13 @@ describe('C138-P2 SQLite FTS5 BM25 Search', () => {
         file_path TEXT,
         spec_folder TEXT,
         is_archived INTEGER DEFAULT 0,
-        importance_tier TEXT DEFAULT NULL
+        importance_tier TEXT DEFAULT NULL,
+        -- The lexical query filters rows through the shared active-row
+        -- predicate, which reads the tombstone column. This fixture is a
+        -- hand-rolled subset of the real table, so every column that
+        -- predicate touches has to be mirrored here, or the query fails to
+        -- prepare and the lane silently reports itself unavailable.
+        deleted_at TEXT DEFAULT NULL
       );
     `);
 

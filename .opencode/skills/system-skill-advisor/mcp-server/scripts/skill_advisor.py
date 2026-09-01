@@ -4845,7 +4845,13 @@ Examples:
             _warn_native_fallback(probe)
 
     if args.force_native:
-        print(json.dumps({"error": "Native advisor unavailable", "reason": "NATIVE_CALL_FAILED"}, indent=2))
+        # Every force-native unavailable envelope carries freshness, so a caller can read
+        # one field on every branch instead of discovering that this one path omits it.
+        print(json.dumps({
+            "error": "Native advisor unavailable",
+            "reason": "NATIVE_CALL_FAILED",
+            "freshness": "native-unavailable",
+        }, indent=2))
         return 2
 
     results = analyze_prompt(
