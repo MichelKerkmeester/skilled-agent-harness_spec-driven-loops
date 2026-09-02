@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-memory-decommission/005-ripgrep-retrieval-research",
+  "description": "Phase 1: ripgrep-retrieval-research",
+  "keywords": [
+    "phase",
+    "ripgrep-retrieval-research"
+  ],
+  "lastUpdated": "2026-09-02T16:29:03.708Z",
+  "specId": "005",
+  "folderSlug": "ripgrep-retrieval-research",
+  "parentChain": [
+    "system-speckit",
+    "049-memory-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

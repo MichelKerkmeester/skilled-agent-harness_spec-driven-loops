@@ -1,0 +1,20 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "run": 5,
+  "mode": "research",
+  "status": "complete",
+  "focus": "final cross-check and ranked amendment map",
+  "newInfoRatio": 0.68,
+  "findingsCount": 8,
+  "ruledOut": [
+    "Embeddings, stemming, stop-word expansion, or semantic paraphrase recovery in lexical v1",
+    "Phrase-only index without substring postings",
+    "--sort=path as relevance, default multiline/preprocessing, and incompatible --json/-l/-c combinations",
+    "Reflowing legacy bodies or injecting generic session/context triggers"
+  ],
+  "timestamp": "2026-09-02T18:00:00.000Z",
+  "sessionId": "fanout-luna-max-1788368614908-8t310f",
+  "lineageId": "fanout-luna-max-1788368614908-8t310f",
+  "generation": 1
+}

@@ -1,11 +1,12 @@
 ---
-title: "Implementation Summary [template:level-3/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "spec memory server removal"
+  - "mcp server deletion"
+  - "daemon removal"
+  - "preserve set"
+  - "implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

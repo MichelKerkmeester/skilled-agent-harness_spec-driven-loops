@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "receipt": {
+    "ledger_id": "deep-research-ledger",
+    "sequence": 6,
+    "event_id": "event-6fd94827-c602-4274-90d8-016f409e71f0",
+    "event_type": "deep-research.ledger.iteration-completed",
+    "event_version": 1,
+    "stream_id": "deep-research-ledger",
+    "stream_sequence": 6,
+    "committed_at": "2026-09-02T17:32:38.588Z",
+    "canonicalEventHash": "438d3307722f1a02ef0769024f010dce3e8b69869592a203251f3b8805bd83db",
+    "recordHash": "57b0f4d71ba0f6f356b0b9d0d4e7b055d9a857061dfa3b92c3ad0b71437b75ee",
+    "authorizationRef": {
+      "audit_ledger_id": "deep-research-audit-ledger",
+      "audit_sequence": 7,
+      "audit_record_hash": "d4475a0aa0d623005f9cfab4e8dbe21af98444aa7f35139717c9f751d6861bad",
+      "decision_id": "decision-88e5f010-88f8-4049-aaa4-9251a007437e",
+      "decision_digest": "62a2db07d4e561ec64637e49bed88145e6174c9f991ceee2bc61160f78546b43",
+      "request_digest": "04539963ffe2db5bbde39724d4e9e68927046457ec4d1059d51c635a0806f88b",
+      "policy_digest": "a4b1c20c36f40aa5f6c82a50e7fb20354deda901fb7b2be8f51dc112f221c7dd",
+      "authority_epoch": 1,
+      "fence_token": 6
+    }
+  },
+  "projectionRefreshed": true,
+  "projectionError": null,
+  "warnings": [
+    "Trusted evidence yield was absent and remains explicitly zero."
+  ]
+}

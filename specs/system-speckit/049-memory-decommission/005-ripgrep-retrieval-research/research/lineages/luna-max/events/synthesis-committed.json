@@ -1,0 +1,18 @@
+{
+  "stem": "deep_research.synthesis_committed",
+  "scope": {
+    "runId": "fanout-luna-max-1788368614908-8t310f",
+    "lineageId": "fanout-luna-max-1788368614908-8t310f"
+  },
+  "data": {
+    "admittedLedgerRevision": "deep-research-ledger:5",
+    "selectedClaimVersionSetDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "synthesisPolicyDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "reportRevision": "lineage/luna-max/research.md",
+    "unresolvedClaimIds": [],
+    "contestedClaimIds": [],
+    "reportDigest": "b4eb5e21ebd3bea7526ac3e824e059afc0cda753c11e86525213fbb7ade50d44",
+    "citationEventIds": [],
+    "synthesisReceiptRef": "lineage/luna-max/research.md"
+  }
+}

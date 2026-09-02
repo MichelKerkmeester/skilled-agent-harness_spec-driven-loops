@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-memory-decommission/005-ripgrep-retrieval-research",
+  "spec_folder": "system-speckit/049-memory-decommission/005-ripgrep-retrieval-research",
+  "parent_id": "system-speckit/049-memory-decommission",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ripgrep retrieval research",
+      "trigger index research",
+      "grep convention research",
+      "retrieval parity evidence",
+      "memory decommission research",
+      "research run plan",
+      "fanout lineage",
+      "forced iterations",
+      "in-process leaf",
+      "research tasks",
+      "iteration evidence",
+      "synthesis fold-in"
+    ],
+    "key_topics": [
+      "ripgrep",
+      "retrieval",
+      "research",
+      "trigger",
+      "index",
+      "grep",
+      "convention",
+      "parity",
+      "evidence",
+      "memory",
+      "decommission",
+      "run"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/lineages/luna-max/research.md",
+      "research/lineages/luna-max/iterations/iteration-001.md",
+      "research/deep-research-config.json",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts",
+      "research/lineages/luna-max/deep-research-state.jsonl",
+      "research/lineages/luna-max/iterations/iteration-002.md",
+      "research/lineages/luna-max/iterations/iteration-003.md",
+      "research/lineages/luna-max/iterations/iteration-004.md",
+      "research/lineages/luna-max/iterations/iteration-005.md",
+      "research/lineages/luna-max/events/synthesis-committed.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/lineages/luna-max/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-committed.json",
+        "kind": "config",
+        "path": "research/lineages/luna-max/events/synthesis-committed.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Detached",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001 and 004 were specified before anyone had studied what the replacement actually has to match",
+    "created_at": "2026-09-02T16:29:02Z",
+    "last_save_at": "2026-09-02T18:01:21.994Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:99ee052d80a5a7a027715232e94840304c890c926e7419aa4da86b6f0f58a53b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "19b1ed3a6688dc2d274ad04a15f843c90375fa52101602c748cc5955654aeaed",
+      "plan.md": "4b5f4cfe1945cec8f9a3c07108751c7512f69d56c73b7619990b5c0a3c83812f",
+      "tasks.md": "351671b36e79b6070df2ec828c46c91d76120fdae2c46e4b3cf5a56595d041e0",
+      "implementation-summary.md": "7fab35363a56d4183bbda3da2d8d21ddc2ad45df2a478a5d472f6f7250b0e996"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

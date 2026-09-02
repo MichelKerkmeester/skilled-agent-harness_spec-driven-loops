@@ -15,14 +15,14 @@
       "mcp server deletion",
       "daemon removal",
       "subsystem decommission",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "acceptance criteria"
+      "spec memory server removal",
+      "preserve set",
+      "implementation plan",
+      "task breakdown",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr"
     ],
     "key_topics": [
       "spec",
@@ -34,9 +34,9 @@
       "daemon",
       "subsystem",
       "decommission",
-      "implementation",
-      "plan",
-      "name"
+      "preserve",
+      "set",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -45,11 +45,19 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".claude/mcp.json",
       ".opencode/bin/system-spec-memory-launcher.cjs",
       ".opencode/plugins/system-spec-memory.js",
-      "mcp-server/ENV-REFERENCE.md"
+      "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md",
+      ".opencode/bin/spec-memory.cjs",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      ".codex/config.toml",
+      ".cursor/mcp.json",
+      ".pi/mcp.json",
+      "mcp-server/ENV-REFERENCE.md",
+      ".opencode/commands/create/assets/create-skill-auto.yaml"
     ],
     "entities": [
       {
@@ -77,6 +85,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -101,9 +115,33 @@
         "source": "derived"
       },
       {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
         "name": "ENV-REFERENCE.md",
         "kind": "doc",
         "path": "mcp-server/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-skill-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create-skill-auto.yaml",
         "source": "derived"
       },
       {
@@ -155,51 +193,21 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Overview Delete",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
     "created_at": "2026-09-02T11:04:52Z",
-    "last_save_at": "2026-09-02T11:16:17.325Z",
+    "last_save_at": "2026-09-02T18:01:18.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +215,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b8646c6bb3e2ed3ff9db8c634f8f708171cacd812970eae80c80e8b39db01f2",
+    "source_fingerprint": "sha256:a50fe63c4fad96e29762efc8bd6f2c7e9c399328fe2a8aec3c1baab563d4ab77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c79a00ae213c26bfe2c16295f7a6a40e0c0f947026dce07b98d8e9b5ff081f33",
-      "plan.md": "bd668484f758d259606b9bc8b28568ab1c586466568fc0174438f93b1e72b3d8",
-      "tasks.md": "afd0f5394988855e86746d09f31c0c37d0d03a2b08b2afc7658b20c76fa50891",
-      "implementation-summary.md": "a225b2e32cc82b80f7bc1a69cc7f5a9c3e5f4a004ff1460282ef0bc004607630"
+      "spec.md": "5a37b4953ef083e109819ecce7505de64473214dbddecbf34212068b0fa6b90a",
+      "plan.md": "52b0e9d3515fb33fb9defd38095079477e743e662dc65ea7de8072a5b3be5634",
+      "tasks.md": "36a85a22271420986a05c0981d145298b6efc8411c699700c836c3408919957f",
+      "implementation-summary.md": "e0359068c2568ade51dd3dc41661e8e3f5232354c4bb0728e4afdcbe631879b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

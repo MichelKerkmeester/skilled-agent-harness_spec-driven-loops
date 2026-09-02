@@ -7,7 +7,9 @@
     "system-speckit/049-memory-decommission/001-trigger-index-replacement",
     "system-speckit/049-memory-decommission/002-memory-consumer-rewire",
     "system-speckit/049-memory-decommission/003-spec-memory-server-removal",
-    "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit"
+    "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
+    "system-speckit/049-memory-decommission/005-ripgrep-retrieval-research",
+    "system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory"
   ],
   "manual": {
     "depends_on": [],
@@ -21,7 +23,11 @@
       "spec memory removal",
       "grep-first retrieval",
       "trigger index replacement",
-      "phase parent"
+      "phase parent",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "049-memory-decommission",
@@ -38,19 +44,32 @@
       "parent"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "goal.md",
       ".claude/mcp.json",
       "AGENTS.md",
       "specs/system-speckit/028-memory-search-intelligence/benchmark-status.md",
-      "scripts/spec/validate.sh"
+      "scripts/spec/validate.sh",
+      "001-trigger-index-replacement/goal.md",
+      "002-memory-consumer-rewire/goal.md",
+      "003-spec-memory-server-removal/goal.md",
+      "004-grep-convention-doc-retrofit/goal.md",
+      "005-ripgrep-retrieval-research/goal.md",
+      "006-legacy-memory-surface-inventory/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -112,20 +131,57 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-02T11:06:57.237Z",
+    "last_save_at": "2026-09-02T18:21:55.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:da21fb6b026e7f342e19b8fe89df481e4d8f9c271498a38ba37494ee9bccc2b2",
+    "source_fingerprint": "sha256:32efad11ed0a2c30f3800ec626e1088d49d8ba1ffd27311019f031c374c3fdf0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d1d395690638a6844241c7927de424d3c8c3236a67a6da0a5d3247b7ce63d70d"
+      "spec.md": "6a786704388dfb711a311e3293e61b329092ca417c04425a845143eb697134dd"
     },
     "last_active_child_id": "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
     "last_active_at": null

@@ -1,0 +1,22 @@
+{
+  "iteration": 1,
+  "dispatchId": "research-i1-g1",
+  "route": "Resolved route: mode=research target_agent=deep-research",
+  "executor": {"kind":"cli-codex","model":"gpt-5.6-luna","reasoningEffort":"max","serviceTier":"fast"},
+  "gateway": {
+    "ok": true,
+    "ledgerId": "deep-research-ledger",
+    "sequence": 2,
+    "eventType": "deep-research.ledger.iteration-completed",
+    "projectionRefreshed": true,
+    "projectionPath": "research/deep-research-state.jsonl",
+    "recordHash": "1fb99626f4dd10fb5a972ee73e2602a45f89237088f68cec737af0e9bdad3c41"
+  },
+  "artifactChecks": {
+    "iterationFile": true,
+    "deltaFile": true,
+    "gatewayBacked": true,
+    "directVerifierNote": "Gateway uses its declared research/deep-research-state.jsonl projection beneath the lineage run directory; validation corroborated the ledger frame, projection watermark, narrative, and delta directly without creating a second state writer."
+  },
+  "timestamp": "2026-09-02T16:57:07.940Z"
+}

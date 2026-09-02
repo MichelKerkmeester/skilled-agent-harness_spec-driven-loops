@@ -45,6 +45,7 @@ _memory:
 **Level:** 3
 **Status:** Draft
 **Date:** 2026-09-02
+**Research:** `../005-ripgrep-retrieval-research/research/lineages/luna-max/research.md`
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -56,14 +57,14 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the frozen prompt set, When each prompt is resolved through both the live `exactTriggerSearch` lane and `trigger-index.json`, Then the index result set contains every path the live lane returned | `node scripts/retrieval/parity-check.mjs` reports `missing: 0`; report committed at `fixtures/parity-baseline.json` | Unmet | - |
-| AC-002 | REQ-002 | Given a generated `trigger-index.json`, When the generator is run a second time with no corpus change, Then the artifact is byte-identical | `node generate-trigger-index.mjs && git diff --exit-code .opencode/skills/system-spec-kit/data/trigger-index.json` exits 0 | Unmet | - |
-| AC-003 | REQ-003 | Given a fresh clone with no build step and no running daemon, When Gate 1 resolves a prompt, Then the index is present and readable from the working tree | `git ls-files` lists the artifact; lookup succeeds in a clean checkout | Unmet | - |
-| AC-004 | REQ-004 | Given no daemon, no database and no network, When the generator runs, Then it completes successfully | generation run with the MCP server stopped; exit status 0 read | Unmet | - |
-| AC-005 | REQ-005 | Given `retrieval-conventions.md`, When a reader looks up the replacement for `memory_search`, `memory_context` or `memory_quick_search`, Then each has a concrete ripgrep invocation that can be pasted and run | doc inspection; each invocation executed once and its output observed | Unmet | - |
-| AC-006 | REQ-006 | Given a document with a malformed `trigger_phrases` block, When the generator runs, Then it reports that document by path rather than skipping it silently | unit test over a malformed fixture; reported count recorded in the baseline | Unmet | - |
-| AC-007 | REQ-007 | Given a cold Node start, When a single prompt is resolved against the index, Then it completes in under 200ms | timed run, baseline and measurement both recorded | Unmet | - |
-| AC-008 | SC-003 | Given the `system-spec-memory` daemon is stopped, When a session exercises Gate 1, Then trigger matching still returns results | manual session run with the server stopped | Unmet | - |
+| AC-001 | REQ-001, REQ-008, REQ-009 | Given the frozen prompt set and the frozen corpus manifest, When each lexical prompt is resolved through the live `exactTriggerSearch` lane, `trigger-index.json` and the documented `rg` recipes, Then the candidate sets agree in both directions with zero unexplained `legacyOnly` and zero unexplained `indexOnly` rows, no scope, archive or expiry leakage. Semantic paraphrase rows are reported separately as boundary probes | `node scripts/retrieval/parity-check.mjs` reports both difference directions empty of unexplained rows and names the manifest and prompt-set hashes. Report committed at `fixtures/parity-baseline.json`, with the boundary probes in their own section | Unmet | - |
+| AC-002 | REQ-002, REQ-011 | Given a generated `trigger-index.json`, When the generator is run a second time over the same manifest, Then the artifact is byte-identical with a matching SHA-256. No run leaves a partial or replaced artifact behind | `node generate-trigger-index.mjs && git diff --exit-code .opencode/skills/system-spec-kit/data/trigger-index.json` exits 0. Both runs hash identically under `shasum -a 256`. A forced-failure run is observed leaving the last known-good artifact untouched with no temporary file left in the tree | Unmet | - |
+| AC-003 | REQ-003 | Given a fresh clone with no build step and no running daemon, When Gate 1 resolves a prompt, Then the index is present and readable from the working tree | `git ls-files` lists the artifact. Lookup succeeds in a clean checkout | Unmet | - |
+| AC-004 | REQ-004 | Given no daemon, no database and no network, When the generator runs, Then it completes successfully | generation run with the MCP server stopped and network access removed. The exact commands are recorded and their exit statuses are read, exit 0 required | Unmet | - |
+| AC-005 | REQ-005, REQ-013 | Given `retrieval-conventions.md`, When a reader looks up the replacement for `memory_search`, `memory_context` or `memory_quick_search`, Then each has a concrete ripgrep invocation that can be pasted and run. The doc states that ripgrep produces evidence rather than ranking relevance | doc inspection, then each invocation executed once with no daemon and no network. Command text, observed output and exit status are recorded against the 0 match, 1 no match, 2+ error mapping | Unmet | - |
+| AC-006 | REQ-006, REQ-010 | Given documents whose `trigger_phrases` block is missing, malformed, non-YAML, wrongly typed, validly empty, alias-spelled, generic, duplicated or oversized, When the generator runs, Then each one produces a diagnostic row rather than a silent skip | unit tests over one fixture per category. Each row carries `path`, a one-based `line`, a `category` and a `reason`. The per-category counts are recorded in the baseline | Unmet | - |
+| AC-007 | REQ-007, REQ-012 | Given at least 30 fresh Node processes, When a single prompt is resolved against the index in each, Then p95 and max both land under 200ms | recorded distribution with p50, p95, p99 and max, alongside corpus bytes, index bytes, runtime, platform and the manifest hash the run used | Unmet | - |
+| AC-008 | SC-003 | Given the `system-spec-memory` daemon is stopped and no network is available, When a session exercises Gate 1, Then trigger matching still returns results | manual session run with the server stopped. The commands run and their exit statuses are recorded as the proof, not the narrative | Unmet | - |
 
 ### Status values
 

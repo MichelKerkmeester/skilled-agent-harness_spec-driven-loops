@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "mcp-server/lib/search/hybrid-search.ts"
     ],
@@ -71,6 +72,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -152,7 +159,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Index Shape One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`AGENTS.md` Gate 1 mandates `memorymatchtriggers(prompt)` on every user message, and that tool is",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-02T11:12:48.985Z",
+    "last_save_at": "2026-09-02T18:01:14.893Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,15 +205,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:018cc4f8f5927112e2aa31a7822b6c6d8d4216562941868bbace444f96f33cca",
+    "source_fingerprint": "sha256:fd03ead0aa59a618a387bbe74891871e79b3d59284cfa9353b5319778c2f305f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "34f2558a776cc7f9de645de901501e1222d5bbb1bac4f3f94ef0745cfa5c1c45",
-      "plan.md": "d2345164e1382f1afd06082b07ce2aace377fe6ecebd4782896024c374089ef5",
-      "tasks.md": "320ab46bb71087cbd5301ef452875dc722831cde58f2090c433ee39813c60485",
-      "implementation-summary.md": "0790de652b31e2ce01479f2bc26885b8e04a467b3c390ddf5fb050e498e6727c"
+      "spec.md": "60d6426d29864aa96c1e9dd36df363d1edf41bf8fc650dbe33f856a74a2f4a52",
+      "plan.md": "cd8108203765696a0f216aaefde700ccf472d15385b8a6dda5f5d0c511bbcba6",
+      "tasks.md": "86342c9a6168161e13a25597ec006c24dff4e1e68a79db6fc10f2ea6e9433d6a",
+      "implementation-summary.md": "499a97e124edd0f1a86b6dcdb36054a282903d6e7c4d594c8099d4a72ee5bd9b"
     },
     "last_active_child_id": null,
     "last_active_at": null

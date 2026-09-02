@@ -108,8 +108,9 @@ document without a ranking layer compensating for the corpus.
 ### Out of Scope
 
 - `z_archive/` — 10,584 documents, excluded by the scope boundary above.
-- Rewriting document *bodies*. The convention governs frontmatter, markers and naming; prose is
-  untouched. This is the open question below and must be settled before the retrofit runs.
+- Rewriting document *bodies*. The convention governs frontmatter, markers and naming. Prose bytes
+  are frozen by the preimage rule in section 15, which is what makes marker retrofit and
+  no-body-rewrite compatible rather than contradictory.
 - Non-spec markdown: skill `SKILL.md`, references and READMEs keep their own contracts.
 
 ### Files to Change
@@ -136,6 +137,11 @@ document without a ranking layer compensating for the corpus.
 | REQ-002 | `validate.sh` fails a document that violates the convention |
 | REQ-003 | The retrofit enumerates every in-scope variant first, processes each, then rescans for residue |
 | REQ-004 | The retrofit changes no document body text |
+| REQ-008 | Canonical frontmatter keys are frozen in section 13.1. `triggerPhrases` is recognized on read, normalized to `trigger_phrases` on write and reported as an alias hit |
+| REQ-009 | Every `trigger_phrases` member is author-controlled. Generic negatives from section 13.3 are rejected and reported, never injected by a fallback |
+| REQ-010 | Anchor markers match the exact grammar in section 13.4. Unmatched, orphaned or duplicated ids are diagnostics rather than silent repairs |
+| REQ-011 | The retrofit classifies every in-scope document into exactly one of the eight frontmatter variants in section 13.2 before it processes any document |
+| REQ-012 | The body-preservation invariant in section 15 holds byte-exactly for every processed document |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -144,6 +150,9 @@ document without a ranking layer compensating for the corpus.
 | REQ-005 | Templates produce conforming documents with no manual step |
 | REQ-006 | The trigger index regenerates cleanly from the retrofitted corpus, with a phrase count at or above the pre-retrofit baseline |
 | REQ-007 | The retrofit is idempotent — a second run produces no diff |
+| REQ-013 | Packet directories and document basenames follow the naming grammar in section 13.6. Legacy exceptions are reported, not renamed by this retrofit |
+| REQ-014 | One fact per line governs newly authored structured sections only, per section 13.5 |
+| REQ-015 | The convention document carries the executable `rg` recipes in section 14, each with its exit mapping |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -157,6 +166,9 @@ document without a ranking layer compensating for the corpus.
 - **SC-001**: `validate.sh --recursive --strict` passes on the parent packet
 - **SC-002**: Residue rescan reports zero unprocessed variants across 22,127 documents
 - **SC-003**: Regenerated trigger index covers at least the pre-retrofit phrase count of 97,529
+- **SC-004**: Every in-scope document carries a variant label from section 13.2, and the eight labels sum to the enumerated total
+- **SC-005**: The body preimage manifest matches after the run for every processed document, with zero non-frontmatter and non-marker changed lines
+- **SC-006**: Each `rg` recipe in section 14 was executed once against the retrofitted corpus, and its exit status was read and recorded
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -195,10 +207,12 @@ document without a ranking layer compensating for the corpus.
 ### Data Boundaries
 - Empty input: a document with no frontmatter gets one, and is reported rather than silently rewritten
 - Maximum length: a document exceeding the marker budget is reported, not truncated
+- A valid empty `trigger_phrases` list is not malformed input. It is a distinct variant with its own handling, per section 13.2
 
 ### Error Scenarios
-- Malformed YAML: reported by path and skipped; never partially rewritten
+- Malformed YAML: reported by path and skipped, never partially rewritten
 - A document that is both spec and template fixture: excluded and listed
+- The full enumeration the retrofit must classify against lives in section 13.2. An in-scope document that matches no variant is a fail-closed condition, not a default-to-skip
 
 ---
 
@@ -245,8 +259,187 @@ document without a ranking layer compensating for the corpus.
 
 ## 12. OPEN QUESTIONS
 
-- Does the convention touch document bodies at all, or strictly frontmatter, markers and naming? REQ-004 currently says frontmatter-only; confirming that before the retrofit runs is what keeps this phase from becoming a corpus rewrite.
+- ~~Does the convention touch document bodies at all, or strictly frontmatter, markers and naming?~~ **Resolved** by section 15. The convention governs frontmatter, anchor marker lines and naming. Prose bytes are frozen by an exact preimage rule, which is what lets marker retrofit and no-body-rewrite hold at the same time.
 - Should `z_archive/` be excluded permanently, or retrofitted once so historical search behaves consistently? Excluded for now on diff-noise grounds, which is a reversible decision.
+- Which active documents actually hold valid, empty, malformed, aliased, generic, duplicate or oversized trigger lists? The counts in section 2 are corpus-wide. The per-variant inventory is task T011 and does not exist yet.
 <!-- /ANCHOR:questions -->
 
 ---
+
+## 13. CONVENTION CONTRACT
+
+The convention has six parts. Each part is a rule the retrofit enforces and `validate.sh` re-checks,
+not advice.
+
+### 13.1 Canonical frontmatter keys and accepted aliases
+
+Canonical keys, their value shape and whether the retrofit may create a missing one:
+
+| Key | Shape | Missing-key behavior |
+|-----|-------|----------------------|
+| `title` | scalar string | Created from the first H1 when one exists, else reported |
+| `description` | scalar string | Reported, never synthesized from body prose |
+| `trigger_phrases` | list of strings | Created as a valid empty list and reported. Never populated by a fallback |
+| `importance_tier` | scalar string | Reported |
+| `contextType` | scalar string | Reported |
+
+Accepted aliases:
+
+| Alias | Canonical | Retrofit behavior |
+|-------|-----------|-------------------|
+| `triggerPhrases` | `trigger_phrases` | Recognized on read, rewritten to the canonical spelling and counted in the alias diagnostic bucket |
+
+One spelling is written. Both spellings are read. An alias hit is always reported, so the corpus can
+be shown to converge on the canonical key rather than merely tolerating two.
+
+### 13.2 Frontmatter variant taxonomy
+
+Every in-scope document resolves to exactly one label. This is the enumeration REQ-011 requires the
+retrofit to classify against before it processes anything.
+
+| Variant | Definition | Handling |
+|---------|------------|----------|
+| `missing` | No frontmatter block at all | Insert a conforming block, report the path |
+| `malformed-or-unclosed` | An opening fence with no valid closing fence, or a block that does not parse | Skip, report, never partially rewrite |
+| `non-yaml` | A block that parses as something other than a YAML mapping | Skip, report |
+| `wrong-list-type` | `trigger_phrases` present but scalar, mapping or null | Skip, report the observed type |
+| `non-string-members` | A list whose members are not all strings | Skip, report the offending index |
+| `valid-empty` | A well-formed empty list | Accept as conforming, report the count. This is not an error |
+| `duplicate` | The same normalized phrase appears twice in one document | Deduplicate deterministically, report the removal |
+| `oversized` | A phrase or block exceeding the documented budget | Skip, report the measured size. Never truncate |
+
+A document matching no label stops the run. Fail closed beats a silent default.
+
+### 13.3 Trigger allowlist and generic negatives
+
+A `trigger_phrases` member must be author-controlled and distinctive. The allowlist admits
+user-searchable domain terms, exact decisions, API and symbol names, failure symptoms and
+packet-specific multi-word concepts.
+
+The following are rejected and reported, never written:
+
+| Negative class | Examples |
+|----------------|----------|
+| Generic workflow words | `session`, `context`, `memory`, `summary`, `feature`, `update`, `file`, `document`, `section` |
+| Stop-word-only phrases | A phrase whose every token is a stop word |
+| Whole prose sentences | A phrase carrying sentence punctuation or exceeding the phrase budget |
+| Body-derived fallbacks | Any phrase produced by a body extractor rather than by an author |
+
+The frontmatter editor's folder-token and `session` / `context` fallbacks are in this class. They may
+continue to exist as editor behavior, but a fallback-produced phrase must never silently define index
+input. The retrofit reports every one it finds instead of adopting it.
+
+### 13.4 Anchor grammar
+
+The exact pair, on its own line, with no leading or trailing content on that line:
+
+```text
+<!-- ANCHOR:section-id -->
+<!-- /ANCHOR:section-id -->
+```
+
+Rules:
+
+- Ordinary section ids are lower-kebab: lowercase ASCII letters, digits and hyphens.
+- Typed ids are the one exception and may carry an uppercase type prefix, as in `DECISION-pipeline-003`.
+- An id is stable once written. Supersede it, do not renumber it.
+- An id appears at most once per document.
+- Addresses are one-based line numbers.
+- Unmatched openers, orphan closers and duplicated ids are diagnostics. Runtime retrieval may stay
+  fail-soft, but the retrofit and the validator do not.
+
+### 13.5 One fact per line
+
+One fact per line applies to **newly authored** structured sections only: new decision bullets, new
+acceptance rows, new structured evidence blocks and continuity metadata. It does not apply to any
+prose that already exists. Reflowing legacy prose is out of scope and is forbidden by section 15.
+
+### 13.6 Naming and path rules
+
+- Packet directories are `NNN-short-descriptive-name`: three digits, a hyphen, then lowercase
+  hyphen-separated words. This is what makes a path a deterministic grep input.
+- The document basename carries the document type and stays a separate field from the packet name.
+  `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` are types, not titles.
+- Legacy naming exceptions are reported by path. This retrofit does not rename them, because a rename
+  during a 22,127-file frontmatter pass makes the diff unreviewable.
+
+---
+
+## 14. RIPGREP RECIPES THE CONVENTION MUST SERVE
+
+The convention exists to make these commands precise. Each is written with explicit flags and no
+dependence on ambient configuration, and each returns exit 0 on match, exit 1 on no match and exit 2
+or higher on an execution or configuration error.
+
+Structured search, for line-addressable evidence:
+
+```text
+rg --no-config --json --fixed-strings --ignore-case \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'phrase' specs .opencode
+```
+
+Path search, for a bounded candidate list:
+
+```text
+rg --no-config --fixed-strings --ignore-case \
+  --files-with-matches --max-count 1 \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'phrase' specs .opencode
+```
+
+Count, as its own recipe rather than a flag added to either of the above:
+
+```text
+rg --no-config --fixed-strings --ignore-case --count \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'phrase' specs .opencode
+```
+
+Anchor and context search reuses the structured recipe and adds a bounded context option in the
+caller, labelling the result as anchor or body evidence. `--multiline` stays opt-in because
+one-fact-per-line structured evidence does not need it and it costs memory and time.
+
+Constraints the convention inherits:
+
+- `--json` cannot be combined with `--files`, `--files-with-matches`, `--count` or `--count-matches`.
+  Parse match records in the wrapper instead of mixing output modes.
+- `--no-config` is mandatory. `.gitignore`, `.ignore`, `.rgignore` and `RIPGREP_CONFIG_PATH` would
+  otherwise inject filtering a caller never wrote.
+- Positive and negative globs are explicit, and later globs override earlier ones.
+- `-w` is not equivalent to a substring match and must not be used as a parity flag.
+- `--sort=path` is path ordering, not relevance. Ranking is the caller's job, over evidence field,
+  then normalized match class, then relative path and one-based line.
+
+---
+
+## 15. BODY PRESERVATION INVARIANT
+
+This section resolves the tension between retrofitting markers and not rewriting bodies. Both hold,
+because the preimage excludes exactly the lines the retrofit is allowed to touch.
+
+**Preimage definition.** Before processing a document, the retrofit records `SHA-256` over the body
+region. The body region is the file content after the closing fence of the frontmatter block, with
+every line that is wholly an anchor marker removed, and with no other normalization.
+
+**Invariant.** After processing, recomputing the body region hash over the same definition yields the
+identical digest. A mismatch fails the document and the run.
+
+**Diff rule.** A retrofitted document's diff may contain only two kinds of changed line:
+
+1. A line inside the frontmatter block.
+2. A whole-line addition or removal that matches the anchor grammar in section 13.4.
+
+Any other changed line is a defect. This is checkable mechanically, so it is the gate rather than a
+reviewer's judgment.
+
+**Consequence.** Marker insertion, marker repair and frontmatter normalization are all permitted.
+Reflow, rewording, whitespace normalization inside prose, list restructuring and heading edits are
+all forbidden, including where they would improve the document.
+
+---
+
+## 16. RESEARCH SOURCE
+
+The amendments in sections 13 through 15, the variant taxonomy, the trigger negatives and the
+ripgrep constraints derive from specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/research.md

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: trigger-index-replacement [template:level-3/tasks.md]"
+title: "Tasks: Phase 1: trigger-index-replacement"
 description: "Ordered tasks for building the trigger index, the ripgrep retrieval contract, and the parity harness."
 trigger_phrases:
   - "trigger index tasks"
@@ -33,8 +33,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Freeze the parity prompt set (`scripts/retrieval/fixtures/prompt-set.json`) — cover multi-word phrases, single tokens, casing variants, and prompts expected to match nothing
-- [ ] T002 Capture the live `exactTriggerSearch` output for that set into `fixtures/live-lane-baseline.json` while the daemon is reachable — this is the comparison target and the daemon is documented as flapping, so it is captured first
+- [ ] T001 Freeze the parity prompt set at 18 stable cases (`scripts/retrieval/fixtures/prompt-set.json`), each carrying `id`, `class`, `query`, expected behavior and `allowedDivergence`. Record the prompt-set hash too. The classes are exact phrase, uppercase case fold, punctuation separator, three-character partial token, multi-word subset, short-token rule, nine-token truncation, no-hit, scope collision, archived path, expired row, malformed frontmatter, duplicate phrase or path, accented and CJK input, anchor marker, body-only match, generic phrase negative and nested path punctuation
+- [ ] T002 Capture the live `exactTriggerSearch` output for that set into `fixtures/live-lane-baseline.json` while the daemon is reachable. Record the frozen corpus manifest with it: included relative paths, exclusions, corpus content hash, parser version, index schema version, prompt-set hash and daemon availability at capture time. The daemon is documented as flapping, so this is captured first. An unavailable live arm is recorded as blocked rather than passed
 - [ ] T003 [P] Measure the emitted index size against a stated budget and decide single-file vs per-track sharding (settles R-001 and ADR-001's open half)
 <!-- /ANCHOR:phase-1 -->
 
@@ -43,11 +43,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Frontmatter parser: extract `trigger_phrases`, handling absent, malformed, duplicated and oversized phrases (`scripts/retrieval/generate-trigger-index.mjs`)
-- [ ] T005 Corpus walker over `specs/**/*.md` and `.opencode/skills/**/*.md`, excluding `z_archive/` and `node_modules/`
-- [ ] T006 Deterministic index emitter — stable key order and stable path order, so two runs are byte-identical (`data/trigger-index.json`)
-- [ ] T007 [P] Write `references/retrieval/retrieval-conventions.md`: the concrete ripgrep invocation replacing each of `memory_search`, `memory_context` and `memory_quick_search`, with track and packet scoping
-- [ ] T008 Parity harness comparing index lookups against the captured baseline and reporting set differences in both directions (`scripts/retrieval/parity-check.mjs`)
+- [ ] T004 Frontmatter parser: extract `trigger_phrases`, then emit a diagnostic row of `path`, one-based `line`, `category` and `reason` for each of missing frontmatter, malformed or unclosed frontmatter, non-YAML frontmatter, wrong list type, non-string member, valid empty list, `triggerPhrases` alias spelling, generic fallback phrase, duplicate phrase and oversized phrase (`scripts/retrieval/generate-trigger-index.mjs`)
+- [ ] T005 Corpus walker over `specs/**/*.md` and `.opencode/skills/**/*.md`, excluding `z_archive/` and `node_modules/`, reporting excluded-path variants and any file the manifest does not cover
+- [ ] T006 Deterministic index emitter: sorted keys and sorted arrays, no generation timestamp, written to a same-directory temporary file and renamed only after validation, so a failed run leaves the last known-good artifact in place (`data/trigger-index.json`)
+- [ ] T007 [P] Write `references/retrieval/retrieval-conventions.md`: the concrete ripgrep invocation replacing each of `memory_search`, `memory_context` and `memory_quick_search`, with track and packet scoping, `--no-config`, the `z_archive` and `node_modules` exclusions, the 0/1/2+ exit mapping and the caller-side rank tuple
+- [ ] T008 Parity harness with three arms, legacy, index and `rg`, reporting `legacyOnly` and `indexOnly` separately plus any scope, archive or expiry leakage (`scripts/retrieval/parity-check.mjs`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,12 +55,14 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Unit tests: well-formed, malformed, absent, duplicate-across-docs, oversized phrase (`node:test`)
-- [ ] T010 Determinism check — run the generator twice, `git diff --exit-code` on the artifact (AC-002)
-- [ ] T011 Run the parity harness; require `missing: 0` and commit the report as `fixtures/parity-baseline.json` (AC-001)
-- [ ] T012 Time a single-prompt lookup from a cold Node start against the 200ms target; record baseline and measurement (AC-007)
-- [ ] T013 Stop the `system-spec-memory` daemon and confirm Gate 1 trigger matching still returns results (AC-008)
-- [ ] T014 Update `spec.md` open questions with the answers T003 and T011 produced
+- [ ] T009 Unit tests: well-formed, malformed, absent, valid empty list, alias spelling, generic phrase, duplicate-across-docs, oversized phrase (`node:test`)
+- [ ] T010 Determinism check: run the generator twice over one manifest, require byte equality and matching SHA-256, then run `git diff --exit-code` on the artifact (AC-002)
+- [ ] T011 Run the parity harness. Require zero unexplained rows in both directions and no lifecycle leakage across scope, archive and expiry, then commit the report as `fixtures/parity-baseline.json` (AC-001)
+- [ ] T012 Time single-prompt lookup across at least 30 fresh Node processes. Record p50, p95, p99, max, corpus bytes, index bytes, runtime and platform, then hold p95 and max under 200ms (AC-007)
+- [ ] T013 Stop the `system-spec-memory` daemon and confirm Gate 1 trigger matching still returns results with no network access, recording the commands run and their exit statuses (AC-008)
+- [ ] T014 Record the decisions T003 and T012 produced, the measured artifact size, the sharding verdict and the latency numbers, then update `spec.md` open questions with those answers
+- [ ] T015 Execute each documented ripgrep recipe once, read its exit status, then record the 0 match, 1 no match, 2+ error mapping alongside the observed output (AC-005)
+- [ ] T016 Run the semantic paraphrase rows as boundary probes and report them separately from the lexical gate, so a paraphrase miss never counts as a parity failure and never counts as a pass
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,6 +82,7 @@ contextType: "implementation"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Research**: See `../005-ripgrep-retrieval-research/research/lineages/luna-max/research.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

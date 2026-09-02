@@ -1,0 +1,20 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "run": 4,
+  "mode": "research",
+  "status": "complete",
+  "focus": "parity harness, frozen prompts, and measurable gates",
+  "newInfoRatio": 0.72,
+  "findingsCount": 8,
+  "ruledOut": [
+    "Semantic paraphrase fixtures as lexical parity",
+    "--json combined with -l or -c",
+    "--sort=path as relevance ranking",
+    "A warm-only timing run as the cold-start gate"
+  ],
+  "timestamp": "2026-09-02T17:48:00.000Z",
+  "sessionId": "fanout-luna-max-1788368614908-8t310f",
+  "lineageId": "fanout-luna-max-1788368614908-8t310f",
+  "generation": 1
+}

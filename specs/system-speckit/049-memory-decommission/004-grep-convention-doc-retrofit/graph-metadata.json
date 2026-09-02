@@ -16,13 +16,13 @@
       "doc retrofit",
       "greppable spec docs",
       "frontmatter normalization",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "spec doc retrofit",
+      "implementation plan",
+      "task breakdown",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr"
     ],
     "key_topics": [
       "grep",
@@ -36,7 +36,7 @@
       "normalization",
       "implementation",
       "plan",
-      "name"
+      "task"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -45,7 +45,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "goal.md",
+      "implementation-summary.md",
+      "scripts/core/frontmatter-editor.ts",
+      "scripts/lib/frontmatter-migration.ts",
+      "mcp-server/lib/search/anchor-metadata.ts"
     ],
     "entities": [
       {
@@ -73,9 +77,33 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-editor.ts",
+        "kind": "code",
+        "path": "scripts/core/frontmatter-editor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-migration.ts",
+        "kind": "code",
+        "path": "scripts/lib/frontmatter-migration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "anchor-metadata.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/search/anchor-metadata.ts",
         "source": "derived"
       },
       {
@@ -127,7 +155,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Batch",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -140,12 +174,6 @@
       },
       {
         "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -167,35 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
     "created_at": "2026-09-02T11:04:54Z",
-    "last_save_at": "2026-09-02T11:16:20.185Z",
+    "last_save_at": "2026-09-02T18:01:19.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +207,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bc7baeb3a41b4ac2ff0605380f2a67ddd0b109c54a10c5c5c7a4575836fd2bfe",
+    "source_fingerprint": "sha256:12a3f021826edaaf264070d8c2767aefb0d81c1f0b619bf168fda04e927d5392",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e7ffb0403209eeef9cfd88fc1951cbb68e3fbb02e7d07a54243c97635242bfa",
-      "plan.md": "a195e034f72956133bdb9800ea57b61fd2963928851f928c7af56e41a765a0b6",
-      "tasks.md": "23747cbad5b0aac9b36b70347b215699b57c75b399dfd1066928382ebd3c1467",
-      "implementation-summary.md": "a2daf1b567b9680bfc4a5089babcd01364171485b23ee2e546a8353b847006b1"
+      "spec.md": "82b3c3b973151fedfa02b6cc69234f0135c2aae5b0ff4901a1b1f5eb985c2b3d",
+      "plan.md": "c244d8e488c37d292e1723e59520660b129dcd78887372c2adb3e8b83cc92008",
+      "tasks.md": "01c8e164a7ebc326096c89e4f4881e25cba1cc42cb12c77ad9edb68ff8694315",
+      "implementation-summary.md": "5f0ca5893be66d662faa5801582dd6ad2173c394d5ee9e6f4367d36f3a1d2ced"
     },
     "last_active_child_id": null,
     "last_active_at": null

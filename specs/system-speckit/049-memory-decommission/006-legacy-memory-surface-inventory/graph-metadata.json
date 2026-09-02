@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory",
+  "spec_folder": "system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory",
+  "parent_id": "system-speckit/049-memory-decommission",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "legacy memory surface inventory",
+      "memory decommission inventory",
+      "system-spec-memory consumers",
+      "memory surface census",
+      "rewire and delete worklist",
+      "inventory research plan",
+      "detached lineage",
+      "ripgrep json scan",
+      "lifecycle classification",
+      "luna-max lineage",
+      "inventory tasks",
+      "research iterations"
+    ],
+    "key_topics": [
+      "legacy",
+      "memory",
+      "surface",
+      "inventory",
+      "decommission",
+      "system-spec-memory",
+      "consumers",
+      "census",
+      "rewire",
+      "delete",
+      "worklist",
+      "research"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/lineages/luna-max/research.md",
+      "research/lineages/luna-max/iterations/iteration-001.md",
+      "research/lineages/luna-max/inventory.external.json",
+      "research/deep-research-config.json",
+      "research/lineages/luna-max/iterations/iteration-002.md",
+      "research/lineages/luna-max/iterations/iteration-003.md",
+      "research/lineages/luna-max/iterations/iteration-004.md",
+      "research/lineages/luna-max/iterations/iteration-005.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.external.json",
+        "kind": "config",
+        "path": "research/lineages/luna-max/inventory.external.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-004.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-005.md",
+        "kind": "doc",
+        "path": "research/lineages/luna-max/iterations/iteration-005.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Detached",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Repository",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 002 and 003 were scoped against a parent estimate of roughly 167 logical consumers, a figure derived by judgment rather than by scanning",
+    "created_at": "2026-09-02T16:29:03Z",
+    "last_save_at": "2026-09-02T18:01:24.053Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9ebe32832349153d4986ba56a33c50eeea6d90bded98d429c61d0e25d37fc8e7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e9617e6e25ddc3c842af21ad9aebc05ab3d6597873ce5658e728d7a314978b67",
+      "plan.md": "1a87e74d02cc0569267d9c342155f7fc7ca3910867789b29cb94d515abf19415",
+      "tasks.md": "632cd33336c685eb90e9d4c3af8f76bd3e46ef44fd023d86dfed3b94417c5bbf",
+      "implementation-summary.md": "e61acdf5bc8fa4ff72b28d51deab4da42c2209d442829a4475481fb94ce80798"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

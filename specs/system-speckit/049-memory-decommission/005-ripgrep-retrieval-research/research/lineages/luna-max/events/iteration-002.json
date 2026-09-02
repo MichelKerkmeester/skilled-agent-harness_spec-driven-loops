@@ -1,0 +1,23 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "runId": "fanout-luna-max-1788368614908-8t310f:run:2",
+  "lineageId": "fanout-luna-max-1788368614908-8t310f",
+  "sessionId": "fanout-luna-max-1788368614908-8t310f",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "status": "complete",
+  "focus": "ripgrep invocation and replacement contract",
+  "findingsCount": 8,
+  "newInfoRatio": 0.84,
+  "ruledOut": [
+    "--sort=path as relevance ranking",
+    "--json combined with -l or -c",
+    "-w as trigger substring parity",
+    "Default --multiline or --pre"
+  ],
+  "timestamp": "2026-09-02T17:28:00.000Z"
+}

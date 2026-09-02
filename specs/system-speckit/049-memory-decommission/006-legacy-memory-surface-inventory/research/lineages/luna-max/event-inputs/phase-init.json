@@ -1,0 +1,14 @@
+{
+  "type": "config",
+  "schemaVersion": 1,
+  "topic": "system-spec-memory surface inventory",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "sessionId": "fanout-luna-max-1788366600409-l2538s",
+  "lineageId": "fanout-luna-max-1788366600409-l2538s",
+  "parentSessionId": null,
+  "generation": 1,
+  "specFolder": ".opencode/specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory",
+  "executor": "cli-codex model=gpt-5.6-luna reasoning=max service-tier=fast",
+  "timestamp": "2026-09-02T16:34:36.849Z"
+}

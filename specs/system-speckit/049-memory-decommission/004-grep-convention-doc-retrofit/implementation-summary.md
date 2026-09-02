@@ -1,11 +1,12 @@
 ---
-title: "Implementation Summary [template:level-3/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
+  - "grep convention"
+  - "spec doc retrofit"
+  - "frontmatter normalization"
+  - "greppable spec docs"
+  - "implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

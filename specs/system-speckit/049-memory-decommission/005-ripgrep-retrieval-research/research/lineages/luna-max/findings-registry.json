@@ -1,0 +1,696 @@
+{
+  "sessionId": "fanout-luna-max-1788368614908-8t310f",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": null,
+    "answeredCount": null,
+    "totalQuestions": null,
+    "timestamp": "2026-09-02T17:40:27.484Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-exact-trigger-index-shape-normalization-matching-and-lookup-contract-preser",
+      "inboxId": null,
+      "text": "What exact trigger-index shape, normalization, matching, and lookup contract preserves or exceeds `exactTriggerSearch` and its `LOWER(trigger_phrases) LIKE` behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-which-ripgrep-flags-and-invocation-recipes-replace-memory-search-memory-context-",
+      "inboxId": null,
+      "text": "Which ripgrep flags and invocation recipes replace `memory_search`, `memory_context`, and `memory_quick_search`, including deterministic ranking and ignore rules?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-which-frontmatter-one-fact-per-line-anchor-naming-and-trigger-phrase-conventions",
+      "inboxId": null,
+      "text": "Which frontmatter, one-fact-per-line, ANCHOR, naming, and trigger-phrase conventions make the corpus grep-precise without rewriting bodies?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-which-continuity-graph-resource-map-and-reporting-capabilities-are-lost-with-mcp",
+      "inboxId": null,
+      "text": "Which continuity, graph, resource-map, and reporting capabilities are lost with MCP retirement, and what explicit replacements preserve their useful contracts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-frozen-prompts-parity-harness-latency-measurements-malformed-input-reports-",
+      "inboxId": null,
+      "text": "What frozen prompts, parity harness, latency measurements, malformed-input reports, and acceptance thresholds make the replacement safe to build?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-exact-trigger-index-shape-normalization-matching-and-lookup-contract-preser",
+      "inboxId": null,
+      "text": "What exact trigger-index shape, normalization, matching, and lookup contract preserves or exceeds `exactTriggerSearch` and its `LOWER(trigger_phrases) LIKE` behavior?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-which-ripgrep-flags-and-invocation-recipes-replace-memory-search-memory-context-",
+      "inboxId": null,
+      "text": "Which ripgrep flags and invocation recipes replace `memory_search`, `memory_context`, and `memory_quick_search`, including deterministic ranking and ignore rules?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-which-frontmatter-one-fact-per-line-anchor-naming-and-trigger-phrase-conventions",
+      "inboxId": null,
+      "text": "Which frontmatter, one-fact-per-line, ANCHOR, naming, and trigger-phrase conventions make the corpus grep-precise without rewriting bodies?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-which-continuity-graph-resource-map-and-reporting-capabilities-are-lost-with-mcp",
+      "inboxId": null,
+      "text": "Which continuity, graph, resource-map, and reporting capabilities are lost with MCP retirement, and what explicit replacements preserve their useful contracts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-frozen-prompts-parity-harness-latency-measurements-malformed-input-reports-",
+      "inboxId": null,
+      "text": "What frozen prompts, parity harness, latency measurements, malformed-input reports, and acceptance thresholds make the replacement safe to build?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "What exact trigger-index shape, normalization, matching, and lookup contract preserves or exceeds `exactTriggerSearch` and its `LOWER(trigger_phrases) LIKE` behavior?",
+    "Which ripgrep flags and invocation recipes replace `memory_search`, `memory_context`, and `memory_quick_search`, including deterministic ranking and ignore rules?",
+    "Which frontmatter, one-fact-per-line, ANCHOR, naming, and trigger-phrase conventions make the corpus grep-precise without rewriting bodies?",
+    "Which continuity, graph, resource-map, and reporting capabilities are lost with MCP retirement, and what explicit replacements preserve their useful contracts?",
+    "What frozen prompts, parity harness, latency measurements, malformed-input reports, and acceptance thresholds make the replacement safe to build?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-candidate-ordering-is-part-of-the-observable-contract-sql-first-prefers-rows-who",
+      "text": "Candidate ordering is part of the observable contract: SQL first prefers rows whose serialized trigger field contains the complete normalized query, then newer `updated_at`/`created_at`, then ascending id; JavaScript then sorts by final score and recency. The trigger result is fused at weight `1.4`, and the final row exposes `triggerScore` and `exactTriggerMatch` for scores at least `0.94`. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:826-867,1670-1677,1938-1967]` A generated index should return stable path/phrase candidates but leave lifecycle recency and cross-channel fusion to the replacement layer.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/spec.md:77-105,115-180]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55,83-95]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:57-69,98-115,130-203]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130,273-302]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-867,1499-1677,1900-1967]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]` — official guide used to confirm later literal-search and recursive-filter semantics; command-specific evidence is scheduled for iteration 2."
+      ]
+    },
+    {
+      "id": "finding-1-8-do-not-add-stop-word-removal-or-stemming-in-v1-the-baseline-removes-only-tokens-",
+      "text": "Do not add stop-word removal or stemming in v1. The baseline removes only tokens shorter than three at the SQL entry point, still allows ordinary three-letter words, and has no stem expansion; adding either would change recall/precision and make a “superset” claim untestable. Preserve case-insensitive behavior through the same lower-and-strip normalization, rather than relying on a platform-specific Unicode or SQLite fold. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-747,801-819]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/spec.md:77-105,115-180]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55,83-95]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:57-69,98-115,130-203]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130,273-302]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-867,1499-1677,1900-1967]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]` — official guide used to confirm later literal-search and recursive-filter semantics; command-specific evidence is scheduled for iteration 2."
+      ]
+    },
+    {
+      "id": "finding-1-9-ranked-amendment-recommendation-for-phase-001-p0-expand-spec-md-req-001-req-006-",
+      "text": "Ranked amendment recommendation for phase 001: (P0) expand `spec.md` REQ-001/REQ-006/REQ-007 and success criteria to freeze the score cases, three-character substring recall, active/expiry/scope handoff, strict diagnostics, atomic no-partial-write behavior, and cold-process p95/max measurements; (P0) expand `plan.md` architecture to require phrase + full-token + trigram postings and a deterministic schema without timestamps; (P0) expand `tasks.md` T004/T006/T008/T011/T012 with negative and parity fixtures and a 20-run cold-start benchmark; (P1) expand the acceptance criteria with exact set equality for all frozen prompts and an explicit Unicode/punctuation policy. `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:130-151,157-162,181-203; specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130; specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:44-63]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/spec.md:77-105,115-180]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55,83-95]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:57-69,98-115,130-203]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130,273-302]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-867,1499-1677,1900-1967]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]` — official guide used to confirm later literal-search and recursive-filter semantics; command-specific evidence is scheduled for iteration 2."
+      ]
+    },
+    {
+      "id": "finding-1-7-recommended-json-shape-one-versioned-object-with-deterministic-keys-and-no-gener",
+      "text": "Recommended JSON shape: one versioned object with deterministic keys and no generation timestamp, for example `{schemaVersion:1, normalization:{case:\"lower\", separators:\"non-ascii-alnum\", minQueryTokenLength:3, maxQueryTokens:8, stopWords:[], stemming:\"none\"}, phrases:{<normalizedPhrase>:{raw:[...],tokens:[...],paths:[...]}}, tokenTrigrams:{<threeCharGram>:[<normalizedPhrase>...]}}`. Sort phrase keys, raw variants, tokens, paths, and trigram postings. Keep raw phrase text for diagnostics, normalized phrase text for the four score cases, full token lists for overlap, and trigram postings to reproduce any three-or-more-character substring admitted by SQL `LIKE` without embeddings. `[INFERENCE: derived from .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-765,804-837 and .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:217-225]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/spec.md:77-105,115-180]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55,83-95]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:57-69,98-115,130-203]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130,273-302]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-867,1499-1677,1900-1967]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]` — official guide used to confirm later literal-search and recursive-filter semantics; command-specific evidence is scheduled for iteration 2."
+      ]
+    },
+    {
+      "id": "finding-1-2-sql-candidate-recall-is-an-or-over-lower-m-trigger-phrases-like-token-gated-by-n",
+      "text": "SQL candidate recall is an OR over `LOWER(m.trigger_phrases) LIKE '%token%'`, gated by non-empty trigger storage, active/archived policy, expiry, and optional spec-folder scope. This means partial-token substrings are intentionally admitted, and the index cannot drop filtering metadata or replace the caller-side scope/lifecycle predicates. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:804-837]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/spec.md:77-105,115-180]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55,83-95]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:57-69,98-115,130-203]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130,273-302]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-867,1499-1677,1900-1967]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]` — official guide used to confirm later literal-search and recursive-filter semantics; command-specific evidence is scheduled for iteration 2."
+      ]
+    },
+    {
+      "id": "finding-1-5-stored-trigger-phrases-are-json-arrays-or-strings-that-parse-to-arrays-invalid-j",
+      "text": "Stored trigger phrases are JSON arrays or strings that parse to arrays; invalid JSON, non-array JSON, null, or empty values currently collapse silently to `[]`. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]` That is unsafe for generation: phase 001 REQ-006 asks for malformed-frontmatter reporting, so the generator must distinguish absent key, valid empty list, wrong type, malformed YAML, and non-string array members, report path plus line/reason, and refuse to publish a partial index by default. `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:130-151]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/spec.md:77-105,115-180]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55,83-95]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:57-69,98-115,130-203]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130,273-302]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-867,1499-1677,1900-1967]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]` — official guide used to confirm later literal-search and recursive-filter semantics; command-specific evidence is scheduled for iteration 2."
+      ]
+    },
+    {
+      "id": "finding-1-1-the-current-trigger-lane-is-not-a-simple-exact-string-lookup-it-normalizes-query",
+      "text": "The current trigger lane is not a simple exact-string lookup. It normalizes query text by lowercasing, replacing every non-ASCII-alphanumeric run with a space, collapsing whitespace, and trimming; it deduplicates tokens, then requires query tokens of length at least three and considers at most eight tokens. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-747,795-802]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/spec.md:77-105,115-180]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55,83-95]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:57-69,98-115,130-203]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130,273-302]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-867,1499-1677,1900-1967]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]` — official guide used to confirm later literal-search and recursive-filter semantics; command-specific evidence is scheduled for iteration 2."
+      ]
+    },
+    {
+      "id": "finding-1-6-the-existing-test-proves-only-full-phrase-promotion-and-recency-id-ordering-betw",
+      "text": "The existing test proves only full-phrase promotion and recency/id ordering between two matching rows; it does not cover partial tokens, punctuation normalization, case variants, token limits, phrase containment, malformed source, or an index-vs-SQL set comparison. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]` The current phase plan already reserves parser, walker, deterministic emitter, conventions, parity, determinism, cold lookup, and daemon-off tasks, but it needs explicit fixtures for each untested semantic. `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104; specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/spec.md:77-105,115-180]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55,83-95]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:57-69,98-115,130-203]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130,273-302]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-867,1499-1677,1900-1967]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]` — official guide used to confirm later literal-search and recursive-filter semantics; command-specific evidence is scheduled for iteration 2."
+      ]
+    },
+    {
+      "id": "finding-1-3-the-post-query-score-has-four-observable-cases-normalized-phrase-equals-normaliz",
+      "text": "The post-query score has four observable cases: normalized phrase equals normalized query (`1.0`); phrase contains query (`0.94`); query contains phrase (`0.88`); or at least 80% of query tokens overlap exact normalized phrase tokens, scored as `coverage * 0.75`. A phrase with fewer than two tokens cannot receive the overlap score. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:750-765]` The phase 001 index must either implement these cases over indexed phrase records or return a superset that is rescored by the same function; token-only lookup is not parity.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/spec.md:77-105,115-180]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55,83-95]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:57-69,98-115,130-203]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130,273-302]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:34-63]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-867,1499-1677,1900-1967]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-types.ts:212-226]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/tests/hybrid-search.vitest.ts:209-251,952-980]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]` — official guide used to confirm later literal-search and recursive-filter semantics; command-specific evidence is scheduled for iteration 2."
+      ]
+    },
+    {
+      "id": "finding-2-2-p0-phase-001-plan-md-add-the-parser-ranker-boundary-state-that-json-is-structure",
+      "text": "**P0 — phase 001 `plan.md`:** add the parser/ranker boundary; state that `--json` is structured search, `-l` and `-c` are separate projections, and path sorting is not relevance ranking. Amend `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130]`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts:1102-1284,1638-1685]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts:667-706,1290-1395]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-triggers.ts:327-378,432-455,709-763]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:91-108,159-180,287-300]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:130-162]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:44-63]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:99-149]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:24-65]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-57]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-747,804-819]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs]`"
+      ]
+    },
+    {
+      "id": "finding-2-1-p0-phase-001-spec-md-req-005-success-require-a-three-row-table-containing-exact-",
+      "text": "**P0 — phase 001 `spec.md` REQ-005/success:** require a three-row table containing exact commands, `--no-config`, roots, exclusions, output formats, caps, and caller-side ranking. Amend `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:130-151,157-162]`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts:1102-1284,1638-1685]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts:667-706,1290-1395]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-triggers.ts:327-378,432-455,709-763]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:91-108,159-180,287-300]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:130-162]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:44-63]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:99-149]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:24-65]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-57]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-747,804-819]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs]`"
+      ]
+    },
+    {
+      "id": "finding-2-3-p0-phase-001-tasks-md-acceptance-split-t007-into-commands-ignore-fixtures-json-p",
+      "text": "**P0 — phase 001 `tasks.md`/acceptance:** split T007 into commands, ignore fixtures, JSON parser, deterministic tie-breaks, and `--no-config` replay; extend T008/T011 across JSON, path-only, and anchor projections. Amend `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:44-63]` and `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/acceptance-criteria.md:57-66]`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts:1102-1284,1638-1685]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts:667-706,1290-1395]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-triggers.ts:327-378,432-455,709-763]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:91-108,159-180,287-300]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:130-162]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:44-63]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:99-149]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:24-65]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-57]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-747,804-819]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs]`"
+      ]
+    },
+    {
+      "id": "finding-2-4-p1-phase-004-spec-md-validate-active-roots-and-negative-globs-and-reject-convent",
+      "text": "**P1 — phase 004 `spec.md`:** validate active roots and negative globs, and reject conventions that require multiline search for one-fact lines. Amend `[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:99-149]`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts:1102-1284,1638-1685]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts:667-706,1290-1395]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-triggers.ts:327-378,432-455,709-763]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:91-108,159-180,287-300]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:130-162]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:44-63]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:99-149]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:24-65]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-57]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-747,804-819]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs]`"
+      ]
+    },
+    {
+      "id": "finding-2-5-p1-phase-004-plan-tasks-acceptance-add-command-replay-after-retrofit-nested-arch",
+      "text": "**P1 — phase 004 plan/tasks/acceptance:** add command replay after retrofit, nested archive/node_modules controls, and line-oriented anchor probes. Amend `[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:24-65]`, `[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`, and `[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-57]`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts:1102-1284,1638-1685]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts:667-706,1290-1395]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/memory-triggers.ts:327-378,432-455,709-763]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:91-108,159-180,287-300]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:130-162]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104,119-130]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:44-63]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:99-149]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:24-65]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-57]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:734-747,804-819]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs]`"
+      ]
+    },
+    {
+      "id": "finding-3-2-p0-phase-001-spec-md-plan-require-the-generator-to-consume-only-canonical-trigge",
+      "text": "**P0 — phase 001 `spec.md`/plan:** require the generator to consume only canonical `trigger_phrases`, preserve raw variants for diagnostics, derive path/document type separately, and publish no partial index after malformed input. Add the active/archived/expiry scope decision to the index schema. `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/spec.md:98-115,130-151; specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:5-21,139-160,222-345]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:54-61,385-469,606-665,1270-1432]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts:96-166]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/memory-frontmatter.ts:8-13,50-76,124-163]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/trigger-extractor.ts:17-88,571-658]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/anchor-metadata.ts:7-24,32-49,92-154]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:42-75]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/structure/folder-structure.md:54-84,187-228]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/save-workflow.md:253-298,542-570]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/causal-graph.ts:84-120,624-712,911-1059]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl:21-48,180-197]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/002-memory-consumer-rewire/spec.md:96-145,177-198]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:81-123,131-149,193-201]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:54-106]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-86]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:38-48,91-142]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/feature-catalog/retrieval/hybrid-search-pipeline.md:28-35]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md:23-26]`"
+      ]
+    },
+    {
+      "id": "finding-3-1-p0-phase-004-spec-md-requirements-add-the-canonical-key-value-table-generic-trig",
+      "text": "**P0 — phase 004 `spec.md` requirements:** add the canonical key/value table, generic-trigger rejection policy, marker grammar, and a structural-only marker invariant. Clarify whether marker insertion is an allowed non-prose edit, because current scope says both “markers in scope” and “bodies never rewritten.” `[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:99-123,131-146]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:5-21,139-160,222-345]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:54-61,385-469,606-665,1270-1432]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts:96-166]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/memory-frontmatter.ts:8-13,50-76,124-163]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/trigger-extractor.ts:17-88,571-658]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/anchor-metadata.ts:7-24,32-49,92-154]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:42-75]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/structure/folder-structure.md:54-84,187-228]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/save-workflow.md:253-298,542-570]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/causal-graph.ts:84-120,624-712,911-1059]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl:21-48,180-197]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/002-memory-consumer-rewire/spec.md:96-145,177-198]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:81-123,131-149,193-201]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:54-106]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-86]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:38-48,91-142]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/feature-catalog/retrieval/hybrid-search-pipeline.md:28-35]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md:23-26]`"
+      ]
+    },
+    {
+      "id": "finding-3-3-p0-phase-004-tasks-md-enumerate-generic-phrases-malformed-yaml-like-variants-anc",
+      "text": "**P0 — phase 004 `tasks.md`:** enumerate generic phrases, malformed/YAML-like variants, anchor pairs, aliases, and legacy naming before editing; dry-run by track; report unresolved files rather than silently adding `session/context`. `[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60; .opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts:141-166]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:5-21,139-160,222-345]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:54-61,385-469,606-665,1270-1432]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts:96-166]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/memory-frontmatter.ts:8-13,50-76,124-163]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/trigger-extractor.ts:17-88,571-658]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/anchor-metadata.ts:7-24,32-49,92-154]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:42-75]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/structure/folder-structure.md:54-84,187-228]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/save-workflow.md:253-298,542-570]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/causal-graph.ts:84-120,624-712,911-1059]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl:21-48,180-197]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/002-memory-consumer-rewire/spec.md:96-145,177-198]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:81-123,131-149,193-201]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:54-106]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-86]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:38-48,91-142]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/feature-catalog/retrieval/hybrid-search-pipeline.md:28-35]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md:23-26]`"
+      ]
+    },
+    {
+      "id": "finding-3-5-p1-phase-002-handoff-add-a-replacement-matrix-that-marks-continuity-writing-caus",
+      "text": "**P1 — phase 002 handoff:** add a replacement matrix that marks continuity writing, causal traversal, resource maps, semantic ranking, decay, and session dedup as either named file workflows or deliberate losses. `[SOURCE: specs/system-speckit/049-memory-decommission/002-memory-consumer-rewire/spec.md:96-123,130-145]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:5-21,139-160,222-345]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:54-61,385-469,606-665,1270-1432]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts:96-166]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/memory-frontmatter.ts:8-13,50-76,124-163]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/trigger-extractor.ts:17-88,571-658]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/anchor-metadata.ts:7-24,32-49,92-154]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:42-75]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/structure/folder-structure.md:54-84,187-228]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/save-workflow.md:253-298,542-570]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/causal-graph.ts:84-120,624-712,911-1059]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl:21-48,180-197]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/002-memory-consumer-rewire/spec.md:96-145,177-198]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:81-123,131-149,193-201]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:54-106]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-86]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:38-48,91-142]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/feature-catalog/retrieval/hybrid-search-pipeline.md:28-35]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md:23-26]`"
+      ]
+    },
+    {
+      "id": "finding-3-4-p1-phase-004-plan-acceptance-enforce-new-structured-sections-one-fact-per-line-w",
+      "text": "**P1 — phase 004 plan/acceptance:** enforce new structured sections one-fact-per-line while exempting unchanged legacy prose, and add byte-preservation checks that ignore only inserted markers/frontmatter fields. `[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:54-106; specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-86]`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/parsing/memory-template-contract.ts:5-21,139-160,222-345]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/frontmatter-migration.ts:54-61,385-469,606-665,1270-1432]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts:96-166]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/lib/memory-frontmatter.ts:8-13,50-76,124-163]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/shared/trigger-extractor.ts:17-88,571-658]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/anchor-metadata.ts:7-24,32-49,92-154]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/scripts/utils/validation-utils.ts:42-75]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/structure/folder-structure.md:54-84,187-228]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/save-workflow.md:253-298,542-570]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/mcp-server/handlers/causal-graph.ts:84-120,624-712,911-1059]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/templates/addons/resource-map.md.tmpl:21-48,180-197]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/002-memory-consumer-rewire/spec.md:96-145,177-198]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:81-123,131-149,193-201]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/plan.md:54-106]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/tasks.md:34-60]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/acceptance-criteria.md:55-86]`",
+        "`[SOURCE: specs/system-speckit/049-memory-decommission/goal.md:43-55]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/references/memory/memory-system.md:38-48,91-142]`",
+        "`[SOURCE: .opencode/skills/system-spec-kit/feature-catalog/retrieval/hybrid-search-pipeline.md:28-35]`",
+        "`[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md:23-26]`"
+      ]
+    },
+    {
+      "id": "finding-4-1-generate-twice-from-one-manifest-require-identical-bytes-and-sha-256-with-sorted",
+      "text": "Generate twice from one manifest; require identical bytes and SHA-256, with sorted paths/phrases and no timestamps. Write to a same-directory temporary file and atomically rename only after all diagnostics pass.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-repeat-the-parity-harness-twice-and-compare-canonical-json-output-byte-for-byte-",
+      "text": "Repeat the parity harness twice and compare canonical JSON output byte-for-byte after removing only an explicitly documented duration field.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-start-a-fresh-process-for-each-of-at-least-30-cold-lookups-measure-from-process-",
+      "text": "Start a fresh process for each of at least 30 cold lookups, measure from process start to result serialization, and report p50, p95, p99, max, machine/runtime, corpus/index bytes, and query ID. Require p95 < 200ms and max < 200ms for the exact single-prompt gate; report warm lookup separately rather than hiding startup in a warm-only loop.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-test-with-the-daemon-stopped-and-network-disabled-at-the-harness-boundary-prove-",
+      "text": "Test with the daemon stopped and network disabled at the harness boundary; prove the commands do not open the database or use embeddings. The no-daemon requirement is already a phase acceptance criterion. `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/acceptance-criteria.md:61-80; specs/system-speckit/049-memory-decommission/goal.md:43-55]`",
+      "addedAtIteration": 4,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-5c7d95a934cf",
+      "text": "A phrase-only map with no substring postings is ruled out for parity because SQL uses `%token%` and admits partial tokens. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:817-819]`",
+      "contentHash": "5c7d95a934cf",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-09377ab81240",
+      "text": "Stop-word removal and stemming are ruled out for v1 because neither exists in the baseline trigger lane and both alter the required superset relation. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:742-764]`",
+      "contentHash": "09377ab81240",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bd4729c71942",
+      "text": "The planned root-level `retrieval/generate-trigger-index.mjs`, `retrieval/parity-check.mjs`, and `retrieval/fixtures/prompt-set.json` are not present in this checkout; their intended work is described by phase 001 instead. I did not create them because this run is research-only and lineage-scoped. `[SOURCE: specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/plan.md:66-104; specs/system-speckit/049-memory-decommission/001-trigger-index-replacement/tasks.md:44-63]`",
+      "contentHash": "bd4729c71942",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-cbeb114d2152",
+      "text": "`--sort=path` as relevance ranking: it is path ordering, single-threaded, and cannot express field/phrase priority. `[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs:6207-6240,6289-6340]`",
+      "contentHash": "cbeb114d2152",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c5e3146571b8",
+      "text": "`-w` as trigger substring parity. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:804-819; https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs:7436-7473]`",
+      "contentHash": "c5e3146571b8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a67845298eac",
+      "text": "Combining `--json` with `-l` or `-c`. `[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs:3593-3655]`",
+      "contentHash": "a67845298eac",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7722731d7b46",
+      "text": "Default `--multiline` or `--pre` for Markdown. `[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs:4238-4294,5489-5527]`",
+      "contentHash": "7722731d7b46",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d339c17d6bff",
+      "text": "Claiming `rg` replaces continuity writes, causal traversal, or session state is ruled out because the commands are read-only and the phase-002/handler contracts are stateful. `[SOURCE: specs/system-speckit/049-memory-decommission/002-memory-consumer-rewire/spec.md:96-123; .opencode/skills/system-spec-kit/mcp-server/handlers/causal-graph.ts:624-712]`",
+      "contentHash": "d339c17d6bff",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-baf48ff97b53",
+      "text": "Re-running the body-based automatic trigger extractor during index generation is ruled out: it has its own stop-word/n-gram policy and would change an author-controlled frontmatter contract. `[SOURCE: .opencode/skills/system-spec-kit/shared/trigger-extractor.ts:571-658]`",
+      "contentHash": "baf48ff97b53",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-88e909e0398b",
+      "text": "Reflowing every legacy body to one fact per line is ruled out by phase 004's no-body-rewrite boundary. `[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:108-123]`",
+      "contentHash": "88e909e0398b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-54adbe14a2b8",
+      "text": "Silently adding `session`/`context` to sparse documents is ruled out for a grep-precision corpus because the editor currently uses those as generic fallbacks. `[SOURCE: .opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts:141-166]`",
+      "contentHash": "54adbe14a2b8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-33ff3b0ab2a0",
+      "text": "`rg --sort=path` as relevance ranking, default multiline/preprocessing, and `--json` combined with `-l`/`-c`. `[SOURCE: https://raw.githubusercontent.com/BurntSushi/ripgrep/master/crates/core/flags/defs.rs:3593-3655,4238-4294,5489-5527,6207-6240,6289-6340]`",
+      "contentHash": "33ff3b0ab2a0",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-1086264277a8",
+      "text": "A phrase-only index without substring postings. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:804-819]`",
+      "contentHash": "1086264277a8",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-66ec50912913",
+      "text": "Embeddings, stemming, stop-word expansion, or semantic paraphrase recovery in lexical v1. `[SOURCE: .opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:742-764; specs/system-speckit/049-memory-decommission/goal.md:43-55]`",
+      "contentHash": "66ec50912913",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-6d5cb78c5bc2",
+      "text": "Reflowing legacy bodies or silently injecting generic `session`/`context` triggers. `[SOURCE: specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/spec.md:108-123; .opencode/skills/system-spec-kit/scripts/core/frontmatter-editor.ts:141-166]`",
+      "contentHash": "6d5cb78c5bc2",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 23,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.68,
+    "coverageBySources": {
+      "code": 80,
+      "raw.githubusercontent.com": 3
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/017-memory-decommission/.opencode/specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research/lineages/luna-max/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

@@ -1,0 +1,23 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "run": 3,
+  "runId": "fanout-luna-max-1788368614908-8t310f:run:3",
+  "lineageId": "fanout-luna-max-1788368614908-8t310f",
+  "sessionId": "fanout-luna-max-1788368614908-8t310f",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "status": "complete",
+  "focus": "corpus precision and MCP capability boundary",
+  "findingsCount": 8,
+  "newInfoRatio": 0.78,
+  "ruledOut": [
+    "Re-running body trigger extraction during index generation",
+    "Synthetic generic session/context triggers",
+    "Claiming rg replaces continuity writes, causal traversal, session state",
+    "Reflowing legacy prose to one fact per line"
+  ],
+  "timestamp": "2026-09-02T17:38:00.000Z"
+}

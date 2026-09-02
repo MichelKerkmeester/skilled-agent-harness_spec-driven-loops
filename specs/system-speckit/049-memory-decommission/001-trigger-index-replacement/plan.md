@@ -37,6 +37,9 @@ no index at all, because a recursive grep over the full 38M-word corpus already 
 
 The phase adds files and changes nothing. That is what makes the parity check meaningful: the old
 lane and the new index are both live, so they can be run against the same prompts and diffed.
+
+The index shape, the ripgrep recipes, the ranking contract and the parity arms below come from
+`../005-ripgrep-retrieval-research/research/lineages/luna-max/research.md`.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -51,8 +54,8 @@ lane and the new index are both live, so they can be run against the same prompt
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] Parity harness reports zero missing paths, output committed as baseline
-- [ ] Second generator run leaves the artifact byte-identical
+- [ ] Parity harness reports zero unexplained rows in both directions, output committed as baseline
+- [ ] Second generator run leaves the artifact byte-identical, with a matching hash
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -70,13 +73,77 @@ removed, whose `.sqlite` was gitignored and therefore absent from every fresh cl
 ### Key Components
 
 - **`generate-trigger-index.mjs`**: walks the corpus, parses frontmatter, emits the artifact. Pure,
-  deterministic, no network, no daemon.
+  deterministic, no network, no daemon. Writes a same-directory temporary file, validates it, then
+  renames, so a failed run never replaces the last known-good index.
 - **`trigger-index.json`**: the committed artifact. Many-to-many: one phrase maps to every path
-  declaring it.
+  declaring it. Object keys and every array are sorted. No generation timestamp is emitted, so
+  two runs over one manifest are byte-identical and hash the same.
 - **`retrieval-conventions.md`**: the ripgrep contract replacing `memory_search`,
   `memory_context`, and `memory_quick_search`.
-- **`parity-check.mjs`**: runs a frozen prompt set against both mechanisms and reports set
-  differences.
+- **`parity-check.mjs`**: runs a frozen prompt set against three arms and reports differences in
+  both directions.
+
+### Index Shape
+
+One versioned object per `spec.md` §3 Index Artifact Design: `schemaVersion`, a `normalization`
+block (lower case, non-ASCII-alnum separators, three-character minimum token, eight-token cap, empty
+stop-word list, stemming `none`), a `phrases` map carrying `raw`, `tokens` and `paths` plus a
+`tokenTrigrams` posting list. Phrase postings answer exact and containment matches, token postings
+answer overlap. Three-character trigram postings answer the partial `%token%` candidates the SQL
+lane admits. No stop-word removal and no stemming in v1, because the baseline does neither and
+either one would change the relation the harness measures.
+
+### Parity Arms
+
+| Arm | Input | Compared on |
+|-----|-------|-------------|
+| Legacy | The live `exactTriggerSearch` lane, otherwise a baseline captured while the daemon is reachable | Candidate paths, eligibility, score class, order |
+| Index | The generated JSON, loaded once, with the documented normalization, postings and filters | The same tuple, plus index and schema hash and diagnostics |
+| `rg` | An explicit command recipe, its parsed JSONL, path or count output plus the caller-side ranker | Field, path, line, match class, deterministic order |
+
+`parity-check.mjs` reports `legacyOnly` and `indexOnly` separately. Missing results alone are not the
+gate.
+
+### Ripgrep Recipes
+
+Structured, line-addressable evidence:
+
+```text
+rg --no-config --json --fixed-strings --ignore-case \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'phrase' specs .opencode
+```
+
+Quick path lookup:
+
+```text
+rg --no-config --fixed-strings --ignore-case \
+  --files-with-matches --max-count 1 \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'phrase' specs .opencode
+```
+
+Counts use a separate `--count` recipe. `--json` cannot be combined with `--files-with-matches`,
+`--count` or `--count-matches`, so each output mode is its own recipe and the wrapper parses one
+shape at a time. Context and anchor lookups reuse the structured recipe with a bounded context
+option and label the result as anchor or body evidence. `--no-config` is mandatory, because
+`RIPGREP_CONFIG_PATH` can otherwise inject arguments and `.gitignore`, `.ignore` and `.rgignore`
+already filter silently. `-w` is not a substitute for the SQL `%token%` behavior, since word
+boundaries are narrower.
+
+Exit status maps to three outcomes. The wrapper must branch on all three: `0` is a match, `1` is
+no match, `2` or higher is an execution or configuration error.
+
+### Ranking Contract
+
+Ripgrep supplies matches, paths and lines. It never ranks relevance. No plan text should imply
+it does. The wrapper applies a stable caller-side tuple:
+
+1. Evidence field: `trigger_phrases`, then title or description, then anchor marker, then body line.
+2. Normalized match class: exact phrase, then phrase containment, then token coverage.
+3. Relative path, then one-based line.
+
+Each result carries its document type and packet path.
 
 ### Data Flow
 
@@ -120,9 +187,11 @@ Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and V
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Frontmatter parsing: well-formed, malformed, absent, duplicate phrases, oversized phrase | `node:test` |
-| Integration | Full generation over the real corpus; determinism across two runs | `node:test` + `git diff --exit-code` |
-| Parity | Frozen prompt set against live lane vs. index; set difference must be empty in the missing direction | `parity-check.mjs` |
+| Unit | Frontmatter parsing: well-formed, malformed, absent, valid empty list, alias spelling, generic phrase, duplicate phrases, oversized phrase | `node:test` |
+| Integration | Full generation over the frozen manifest, determinism across two runs, byte and hash equality, atomic publication with no partial replacement | `node:test` + `git diff --exit-code` + `shasum` |
+| Parity | Frozen prompt set across all three arms. Both `legacyOnly` and `indexOnly` must be empty of unexplained rows, with no scope, archive or expiry leakage | `parity-check.mjs` |
+| Boundary | Semantic paraphrase rows reported separately from the lexical gate, as evidence rather than as a pass criterion | `parity-check.mjs` boundary report |
+| Latency | At least 30 fresh Node processes, one prompt each, reporting p50, p95, p99 and max against the 200ms gate | timed harness run |
 | Manual | Gate 1 lookup with the MCP server stopped | session run |
 
 Coverage floor per `AGENTS.md` §3: happy path plus one edge case per public surface. The edge cases
@@ -232,7 +301,8 @@ Config (size budget decision) ──┘
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
 | Prompt set fixture | None | `fixtures/prompt-set.json` | Parity harness |
-| Live-lane snapshot | Prompt set | `fixtures/live-lane-baseline.json` | Parity harness |
+| Corpus manifest | None | `fixtures/corpus-manifest.json` | Generator, parity harness, latency runs |
+| Live-lane snapshot | Prompt set, corpus manifest | `fixtures/live-lane-baseline.json` | Parity harness |
 | Generator | Size budget decision | `trigger-index.json` | Parity harness, phase 002 |
 | Conventions doc | None | `retrieval-conventions.md` | Phase 002 |
 | Parity harness | Generator, snapshot | Parity report | Phase handoff |

@@ -1,0 +1,22 @@
+{
+  "run_id": "1788368614908-8t310f",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research",
+  "base_artifact_dir": ".opencode/specs/system-speckit/049-memory-decommission/005-ripgrep-retrieval-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}
