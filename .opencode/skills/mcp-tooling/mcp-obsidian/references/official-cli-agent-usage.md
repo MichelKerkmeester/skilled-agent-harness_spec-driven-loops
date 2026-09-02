@@ -164,9 +164,9 @@ Three surfaces reach an Obsidian vault. Pick by what the outcome needs, not by w
 | Opening something in the live UI | official `obsidian` | The remote-control case |
 | Structured tool calls from an MCP client with an auth boundary | cyanheads MCP | Typed tools over Local REST API |
 
-> **Agent default stays `notesmd-cli`.** It has no app dependency and no exit-code trap. Escalate to the official CLI when the result genuinely requires the live app, and preflight per §2 before depending on it.
+> **Agent default stays `notesmd-cli`.** It has no app dependency and no exit-code trap. Escalate to the official CLI when the result requires the live app, and preflight per §2 before depending on it.
 
-The official CLI and the MCP server both require the running app, and they overlap on basic note operations. Prefer the MCP server when the caller is already an MCP client and wants typed results. Prefer the official CLI for the app-only capabilities in the table above, which the MCP tool set does not expose.
+**Among the two app-backed surfaces, this CLI is the default.** It needs only the running app, where the MCP server also needs the Local REST API plugin enabled, a bearer token and a Node process. It exposes 106 commands against the server's 12, and it answers in about 38 ms per call with nothing to keep warm. Escalate to the MCP server for the four things this CLI cannot do (patch a section in place, replace text inside a note, write tags as a YAML list, set a JSON-typed frontmatter value) or for a batch over roughly 20 calls, where a warm session costs about 3 ms per call. Measured comparison: [`cli-versus-mcp.md`](cli-versus-mcp.md).
 
 ---
 
@@ -244,17 +244,29 @@ obsidian create name="scratch" content="B"   # → Created: scratch 1.md
 
 Exit 0 both times. An agent that assumes `create` is idempotent silently forks a second note and then writes its updates to the wrong one. Either pass `overwrite`, or read the filename back out of the `Created:` line and use that name for every later call.
 
-### 3. `eval` and `dev:*` execute arbitrary code in the user's live app
+### 3. `daily:read` creates today's daily note
+
+Isolated and reproduced on 1.13.7: with today's daily note removed, `daily:path` printed the filename and created nothing, then `daily:read` returned empty output and the file existed on disk. A read-shaped command mutated the vault.
+
+```bash
+obsidian daily:path                      # safe: prints the filename, creates nothing
+obsidian read path="$(obsidian daily:path)"   # safe read, once you know it exists
+obsidian daily:read                      # WRITES: creates the note when it is absent
+```
+
+`daily:append` and `daily:prepend` are documented writes and were not exercised. Whether they also create the note when absent is untested.
+
+### 4. `eval` and `dev:*` execute arbitrary code in the user's live app
 
 `eval code=...` runs JavaScript with the full Obsidian API in the running process, and returns `=> <result>`. It can modify or destroy vault content, and it is not sandboxed. `dev:cdp`, `dev:debug` and `dev:dom` attach a Chrome DevTools Protocol debugger to the user's session.
 
 Use them for diagnosis that has no command equivalent. Never use `eval` as a shortcut for a mutation that a named command already performs, since the named command is inspectable and `eval` is not.
 
-### 4. `delete` mutates a real vault
+### 5. `delete` mutates a real vault
 
-Without `permanent` the file goes to the app's trash and is recoverable. With `permanent` it is not. Prefer the default, and reserve `permanent` for content the agent itself created in the same run.
+Without `permanent` the file goes to trash, prints `Moved to trash: <name>.md`, and does **not** block on a GUI confirmation (measured at 54 ms). With `permanent` it prints `Deleted permanently:` and is unrecoverable. Prefer the default, and reserve `permanent` for content the agent itself created in the same run.
 
-### 5. Do not run mutating commands against an unverified vault
+### 6. Do not run mutating commands against an unverified vault
 
 `vault=` naming a vault that does not exist prints `Vault not found.` and exits 0. Confirm the target with `obsidian vaults` before a mutation, or a command intended for one vault silently reports success having done nothing.
 
@@ -318,9 +330,10 @@ Every behavioral claim in this document was observed by running the binary on ma
 | Unknown | Check |
 |---------|-------|
 | Windows and Linux registration paths and behavior | Run `obsidian version` after registering on each platform. The vendor page describes a Windows terminal redirector and a Linux copy to `~/.local/bin/obsidian`, neither exercised here. |
-| Whether any command exits non-zero while the app is running | Exercise a failing case per command family and record the status. All observed failures exited 0. |
+| Whether any command exits non-zero while the app is running | Exercise a failing case per command family and record the status. Across roughly sixty app-up invocations, including missing files, unknown commands, unknown vaults and a failed `move`, every one exited 0. |
 | Output shape of the sync, history, bases, plugin, theme and dev command groups | Call each with `format=json` where offered and record the shape. |
-| Whether `delete` without `permanent` can block on a GUI confirmation | Run it against a scratch note and time it. Only the `permanent` form was exercised. |
+| Where `delete` without `permanent` puts the file. It reported `Moved to trash` in 54 ms with no prompt, and the file was in neither `<vault>/.trash` nor `~/.Trash` | Set the vault's trash option explicitly, delete a scratch note under each setting, and locate the file |
+| Whether `property:remove` can stall. One invocation was killed at 120 s during app startup, and two later runs returned in 43 and 57 ms | Run it against a scratch note during indexing and time it repeatedly |
 | Behavior with more than one vault open | Open a second vault and repeat the `vault=` targeting tests. This machine has one vault. |
 
 ---
@@ -330,4 +343,5 @@ Every behavioral claim in this document was observed by running the binary on ma
 - `obsidian help`. The authoritative command list from the installed binary, and the first thing to run when this document and the binary disagree
 - Vendor reference: `https://obsidian.md/help/cli`
 - Headless alternative and profile comparison: [`obsidian-cli-commands.md`](obsidian-cli-commands.md)
+- Measured comparison against the MCP server, in both app states: [`cli-versus-mcp.md`](cli-versus-mcp.md)
 - Failure diagnosis: [`troubleshooting.md`](troubleshooting.md)

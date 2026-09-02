@@ -73,13 +73,14 @@ yay -S notesmd-cli-bin
 | Create/edit/search notes with no app running | `notesmd-cli` | Filesystem-native, headless |
 | Scripted / CI / server automation | `notesmd-cli` | No GUI dependency |
 | Manage multiple vaults, set default | `notesmd-cli` | `add-vault`/`set-default-vault` |
+| Anything against a running app that is not section-scoped editing or tag writing | `obsidian` | The default app-backed surface. 106 commands, app-only prerequisite |
 | Drive the live app (open a note in the running UI) | `obsidian` | App-backed remote control |
 | Resolved link graph: backlinks, orphans, unresolved | `obsidian` | Only the running app holds the resolved graph |
 | Vault-wide tags, tasks or properties as the app computes them | `obsidian` | The index lives in the app, not in the files |
 | Bases queries, sync history, file version history | `obsidian` | No filesystem equivalent |
 | Plugin, theme or snippet state changes | `obsidian` | Mutates live app state |
 
-> **Agent default:** prefer `notesmd-cli`. Only reach for the official `obsidian` CLI when the outcome genuinely requires the running app.
+> **Agent default:** prefer `notesmd-cli`. When the outcome requires the running app, the official `obsidian` CLI is the default app-backed surface, ahead of the MCP server. Escalate to MCP only for in-place section patching, in-note search-and-replace, tag-list writes, JSON-typed frontmatter, or a batch over roughly 20 calls. Measured comparison: [`cli-versus-mcp.md`](cli-versus-mcp.md).
 
 ---
 
@@ -170,10 +171,10 @@ The official `obsidian` binary ships inside Obsidian desktop **v1.12.4+** and is
 
 | Capability | Status | Notes |
 |------------|--------|-------|
-| Read, create, append, prepend, delete, move notes | Confirmed | `obsidian read file="Note"`, `obsidian create name="Note" content="..."` |
+| Read, create, append, prepend, delete, move, rename notes | Confirmed | `obsidian read file="Note"`, `obsidian create name="Note" content="..."`. There is no patch or in-note replace command |
 | Search the vault | Confirmed | `search` and `search:context`, both with `format=json` |
 | Resolved link graph | Confirmed present | `backlinks`, `links`, `orphans`, `deadends`, `unresolved` — no filesystem equivalent |
-| Vault-wide tags, tasks, properties | Confirmed present | `tags`, `tasks`, `properties`, `property:set` / `property:read` / `property:remove` |
+| Vault-wide tags, tasks, properties | Confirmed present | `tags`, `tasks`, `properties`, `property:set` / `property:read` / `property:remove`. `tag` and `tags` are **read-only**: the CLI cannot add or remove a tag |
 | Bases queries, sync and file history | Confirmed present | `base:query`, `sync:*`, `history:*`, `diff` |
 | Plugin, theme and snippet control | Confirmed present | `plugin:enable`, `theme:set`, `snippet:enable` and siblings |
 | Arbitrary JavaScript in the live app | Confirmed | `eval code="..."` returns `=> <result>`. Not sandboxed |
@@ -182,7 +183,7 @@ The official `obsidian` binary ships inside Obsidian desktop **v1.12.4+** and is
 
 > **Two contracts an agent must respect before scripting this CLI.** First, run the preflight: `obsidian version` prints a version number only when the binary is registered **and** the app is answering. Test the output, not the status, because an app that is still starting answers 0 with an error on stdout. Second, once the app is up the CLI **exits 0 even on failure** and prints `Error: ...` to stdout, so `$?` is not a success signal. Both, with the command surface and the safety invariants, are in [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
 
-**When to prefer it:** when the outcome requires the live app — the resolved link graph, the computed tag and task index, Bases, sync or file history, plugin and theme state, or the UI itself. For everything file-shaped, `notesmd-cli` is faster and needs no app.
+**When to prefer it:** whenever the outcome requires the live app. That covers the resolved link graph, the computed tag and task index, Bases, sync and file history, plugin and theme state, and the UI itself, none of which the MCP server exposes. For everything file-shaped, `notesmd-cli` is faster and needs no app. Where the CLI and the MCP server overlap, the CLI wins the default on prerequisites and coverage, and loses only on in-place section editing, tag writes and warm-batch latency. See [`cli-versus-mcp.md`](cli-versus-mcp.md).
 
 ---
 

@@ -15,14 +15,14 @@ version: 0.1.0.0
 
 # Obsidian MCP Tools Reference
 
-**MCP Server:** `obsidian` — the `obsidian-mcp-server` package (cyanheads, npm `@3.2.9`) launched over **stdio** via `npx -y obsidian-mcp-server@latest`, registered as the `obsidian` manual in `.utcp_config.json`. It also supports Streamable HTTP on `127.0.0.1:3010/mcp`.
+**MCP Server:** `obsidian`, the `obsidian-mcp-server` package (cyanheads) launched over **stdio** via `npx -y obsidian-mcp-server@latest`, registered as the `obsidian` manual in `.utcp_config.json`. It also supports Streamable HTTP on `127.0.0.1:3010/mcp`. On 2026-09-02 that `@latest` tag resolved to **v0.12.3**, so pin nothing to a version this document names.
 **Auth:** `OBSIDIAN_API_KEY` (the Local REST API bearer token) plus `OBSIDIAN_BASE_URL` and `OBSIDIAN_VERIFY_SSL`, interpolated into `.utcp_config.json`. The token comes from the Obsidian **Local REST API** plugin, not from an OAuth flow.
 **Invocation:** Code Mode `call_tool_chain({ code: "..." })` via `mcp__code_mode__call_tool_chain` — a single TypeScript code string with direct access to registered tools as hierarchical functions (not an array of `{tool, input}` records).
 **Tool naming:** Code Mode namespaces every registered tool as `<manual_name>.<manual_name>_<tool_name>` — one dot then underscore. For this manual the pattern is `obsidian.obsidian_<tool_name>` (e.g. `obsidian.obsidian_get_note`). Do not guess a tool name — confirm every one with `tool_info()`/`list_tools()` before calling.
 
 > **App-backed surface:** unlike `notesmd-cli` (headless, filesystem), this MCP server drives the vault through Obsidian's **Local REST API plugin**, which requires a **running Obsidian app**. If no app/token is available, route to the `notesmd-cli` CLI instead (see `obsidian-cli-commands.md`).
 
-> **Verification status:** the server exposes **14 tools total**. The five `obsidian_*` tools named below are the confirmed core surface; the remaining tools are **not enumerated in this pass**. Treat every tool name as unverified until reconfirmed with a fresh `list_tools()`/`tool_info()` call once the manual is reachable, and run `list_tools()` to enumerate the full 14 before assuming a capability is absent.
+> **Verification status:** the server builds **14 tools** and exposes **12**. `obsidian_list_commands` and `obsidian_execute_command` are withheld while `enableCommands` is false, and calling either returns a JSON-RPC `-32602 Tool not found`. All twelve exposed tools were enumerated and exercised against a live vault on 2026-09-02, in [`cli-versus-mcp.md`](cli-versus-mcp.md). Reconfirm with a fresh `list_tools()` before relying on a signature, since the pinned `@latest` tag moves.
 
 ---
 
@@ -64,11 +64,24 @@ Use this reference when:
 
 ---
 
-## 4. WHEN TO USE MCP VS notesmd-cli
+## 4. WHEN TO USE MCP
 
-Use the **Obsidian MCP** when:
-- A **running app + Local REST API** is available and you want to operate the live vault
-- You need the server's structured note read/write/search/tag surface over the REST API
+**The official `obsidian` CLI is the default app-backed surface, not this server.** It needs only the running app, exposes 106 commands against this server's 12, and answers in about 38 ms per call with no process to keep warm. The measured comparison behind that default is [`cli-versus-mcp.md`](cli-versus-mcp.md).
+
+Use the **Obsidian MCP** when the work needs one of the four things the CLI cannot do:
+- Patch a heading, block or frontmatter section **in place** (`obsidian_patch_note`)
+- Search and replace **inside** one note, literally or by regex (`obsidian_replace_in_note`)
+- Add or remove a tag as a real YAML list (`obsidian_manage_tags`). The CLI has no tag-write command at all
+- Set a JSON-typed frontmatter value: number, boolean, array or object (`obsidian_manage_frontmatter`)
+
+Also use it for a batch over roughly 20 calls, where a warm session costs about 3 ms per call against the CLI's 38, after paying a one-time startup of 724 ms or more.
+
+Before any of that, confirm the plugin is **enabled**, not merely installed. `tools/list` succeeds with the app closed and the plugin off, so it proves nothing:
+
+```bash
+obsidian plugin id=obsidian-local-rest-api        # look for: enabled  true
+curl -sk -o /dev/null -w '%{http_code}\n' "$OBSIDIAN_BASE_URL/"   # expect 200
+```
 
 Use **`notesmd-cli`** (the headless CLI) when:
 - **No app is running** (servers, CI, unattended agents) — the CLI operates the filesystem directly
@@ -80,27 +93,33 @@ Use **`notesmd-cli`** (the headless CLI) when:
 
 ## 5. TOOL INVENTORY
 
-The server reports **14 tools total**. The five below are the confirmed `obsidian_*` core; the remaining nine are **not enumerated in this pass** — run `list_tools()` to enumerate them and `tool_info()` to confirm each signature before use.
+The server exposes **12 tools** and withholds 2 more. All twelve below were called against a live vault. Run `tool_info()` to confirm a signature before scripting it.
 
 > **Two different MCP servers — do not conflate the tool names.** This catalog is the **cyanheads `obsidian-mcp-server`** (`obsidian_*` tools, launched via `npx`). The `obsidian-local-rest-api` plugin (v5.1.0+) ALSO ships its **own** built-in MCP at `https://127.0.0.1:27124/mcp/` exposing **16 `vault_*` tools** (`vault_read` / `vault_write` / `vault_patch` / `vault_move` / `search_simple` / `search_query` / `tag_list` / `command_list` / … — validated live). If `OBSIDIAN_BASE_URL` points at the plugin's own `/mcp/`, expect `vault_*` names, not `obsidian_*`. Same Local REST API core, different server + tool surface — always confirm with `list_tools()`.
 
-### Confirmed core (5 tools)
+### The twelve exposed tools
 
 | Tool (append to `obsidian.obsidian_`) | Description |
 |------|-------------|
-| `obsidian_get_note` | Read a note's contents (and metadata) from the vault |
-| `obsidian_write_note` | Create or overwrite a note |
-| `obsidian_search_notes` | Search notes (by name and/or content) |
-| `obsidian_manage_tags` | Add/remove/list tags on a note |
-| `obsidian_delete_note` | Delete a note from the vault |
+| `obsidian_get_note` | Read a note by path, active file or periodic note, in one of four projections: `content`, `full`, `document-map`, `section` |
+| `obsidian_list_notes` | List notes and subdirectories at a vault path, with `depth` and extension filters |
+| `obsidian_list_tags` | List vault tags with usage counts, ordered by count |
+| `obsidian_open_in_ui` | Open a file in the running app, with `failIfMissing` controlling open-or-create |
+| `obsidian_search_notes` | Search by text substring or a JSONLogic `logic` tree, paginated by opaque cursor |
+| `obsidian_write_note` | Create or overwrite a note. Refuses a collision unless `overwrite: true` |
+| `obsidian_append_to_note` | Append to a note, creating it when absent |
+| `obsidian_patch_note` | Append to, prepend to or replace a heading, block reference or frontmatter field in place |
+| `obsidian_replace_in_note` | Ordered literal or regex search-and-replace inside one note |
+| `obsidian_manage_frontmatter` | Get, set or delete one frontmatter key, with JSON-typed values |
+| `obsidian_manage_tags` | Add, remove or list a note's tags in frontmatter, inline, or both |
+| `obsidian_delete_note` | Permanently delete a note. **Requires the client to declare the MCP `elicitation` capability**, otherwise the call fails with `Cannot request input 'confirm'` |
 
-### Remaining tools (9) — `VERIFY against list_tools()`
+### The two withheld tools
 
-The server exposes 9 further tools beyond the five above (14 total). Their names are **not confirmed** in this pass. Likely areas (append/patch content, list/browse vault, frontmatter/properties, active-note operations) are **inferences, not confirmations** — enumerate with `list_tools()` before relying on any of them:
+`obsidian_list_commands` and `obsidian_execute_command` are constructed but not registered while the server's `enableCommands` setting is false. Set `OBSIDIAN_ENABLE_COMMANDS` for the manual and re-run `list_tools()` to expose them.
 
 ```typescript
-const tools = await list_tools();      // Enumerate the full 14
-// Then confirm a specific signature:
+const tools = await list_tools();      // Enumerate what this build actually exposes
 const info = await tool_info("obsidian.obsidian_get_note");
 ```
 
@@ -192,7 +211,7 @@ try {
 
 ---
 
-## 9. MCP VS notesmd-cli: QUICK DECISION
+## 9. MCP VS NOTESMD-CLI: QUICK DECISION
 
 | Need | Use | Reason |
 |------|-----|--------|
@@ -202,8 +221,10 @@ try {
 | Write a note (no app / CI) | CLI | `notesmd-cli create` — headless |
 | Search notes (app running) | MCP | `obsidian_search_notes` |
 | Full-text search (no app) | CLI | `notesmd-cli search-content` |
-| Manage tags (app running) | MCP | `obsidian_manage_tags` |
-| Delete a note | Either | MCP `obsidian_delete_note` (app) or `notesmd-cli delete` (headless) |
+| Manage tags (app running) | MCP | `obsidian_manage_tags`. The official CLI cannot write tags |
+| Patch a section, or replace text inside a note | MCP | `obsidian_patch_note`, `obsidian_replace_in_note`. No CLI equivalent |
+| Link graph, tasks, Bases, sync, history, plugins, UI (app running) | official `obsidian` CLI | The MCP server exposes none of these |
+| Delete a note | official CLI, or `notesmd-cli` headless | MCP `obsidian_delete_note` needs client elicitation support and is permanent-only |
 | Multi-vault config / set default | CLI | `notesmd-cli add-vault` / `set-default-vault` |
 
 ---

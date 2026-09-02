@@ -41,7 +41,7 @@ The skill gives an agent three ways to touch a vault, chosen by what the request
 
 - `notesmd-cli` (Yakitrak) operates the vault filesystem directly. No app, no token. Registration, search, print, create, move, delete, frontmatter, daily notes.
 - The official `obsidian` CLI (ships with Obsidian desktop v1.12.4+) remote-controls an already-running app. It reaches what only the live app knows: the resolved link graph, the computed tag and task index, Bases, sync and file history, and plugin state.
-- The cyanheads Obsidian MCP exposes a structured 14-tool `obsidian_*` surface through Code Mode when the live app and Local REST API are available.
+- The cyanheads Obsidian MCP exposes a structured 12-tool `obsidian_*` surface through Code Mode when the live app and the Local REST API plugin are available. It is the specialist surface, not the default one.
 
 On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, and Obsidian Git repositories. Alongside the plugins it operates the Obsidian theme system at the file layer — the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
 
@@ -113,14 +113,14 @@ const info = await tool_info("obsidian.obsidian_get_note");
 
 ### The Router
 
-Every request starts with a surface decision. The headless filesystem path is the default because it works everywhere, even in CI and over SSH. The live-app paths engage only when the request needs app state, the app is running and the API prerequisites hold. The skill probes, never assumes.
+Every request starts with a surface decision. The headless filesystem path is the default because it works everywhere, even in CI and over SSH. When the work needs the running app, the official `obsidian` CLI is the default app-backed surface: it needs only the app, exposes 106 commands against the MCP server's 12, and answers in about 38 ms per call. The MCP server additionally needs the Local REST API plugin enabled, a bearer token and a Node process. Measured comparison: [`references/cli-versus-mcp.md`](./references/cli-versus-mcp.md).
 
 | Need | Primary surface | Why |
 |---|---|---|
 | Vault registration, daily note, list, print, filename or content search | `notesmd-cli` | Filesystem-native and headless |
 | Create, move, delete or edit frontmatter with no app | `notesmd-cli` | Works directly on vault Markdown files |
-| Open or control the live app | official `obsidian` CLI | App-backed remote control |
-| Structured note reads, writes, tags or live-vault search | `obsidian-mcp-server` via Code Mode | Local REST API returns structured MCP results |
+| Anything against a running app: read, write, search, link graph, tasks, Bases, sync, plugins, UI | official `obsidian` CLI | The default app-backed surface. 106 commands, app-only prerequisite, no server process |
+| Section-scoped edits, tag-list management, JSON-typed frontmatter, or a batch over roughly 20 calls | `obsidian-mcp-server` via Code Mode | The only surface with in-place section patching and real tag lists, and the faster one once warm |
 | Plugin data operations | file layer through either surface | The mode edits the files a plugin renders |
 
 ### The File-Layer Doctrine
@@ -142,7 +142,7 @@ Obsidian plugins are render layers over plain data. The skill operates the data,
 
 ### When To Use This Skill
 
-Use this mode for an Obsidian vault, a daily note, a note search, a Local REST API operation or one of the supported plugin data formats. Use `notesmd-cli` whenever a vault-file outcome is enough. Use the official CLI when the live app is part of the intended result. Use the MCP when the live app is available and you need its structured note or tag API. The router deliberately prefers the headless path until a live-app capability is necessary.
+Use this mode for an Obsidian vault, a daily note, a note search, a Local REST API operation or one of the supported plugin data formats. Use `notesmd-cli` whenever a vault-file outcome is enough. When the running app is part of the result, use the official `obsidian` CLI. Escalate to the MCP server only for section-scoped editing, tag-list management or a long batch, and only after confirming the Local REST API plugin is enabled. The router prefers the headless path until a live-app capability is necessary, then the CLI until an MCP-only capability is.
 
 ### Related Skills
 
@@ -179,15 +179,15 @@ A: Use `notesmd-cli` for filesystem operations and any work that must run withou
 
 **Q: When should I use the cyanheads MCP?**
 
-A: Use it for structured note reads, writes, search or tag operations against a running Obsidian app with Local REST API enabled. If the app or token is unavailable, use `notesmd-cli` instead.
+A: For the four things the official CLI cannot do: patch a heading, block or frontmatter section in place, search and replace inside one note, add or remove a tag as a real YAML list, and set a JSON-typed frontmatter value. Also for a batch over roughly 20 calls, where a warm session costs 3 ms per call against the CLI's 38. For everything else against a running app, use the official CLI. Full evidence: [`references/cli-versus-mcp.md`](./references/cli-versus-mcp.md).
 
 **Q: Does the install script change `.utcp_config.json` or `.env`?**
 
 A: No. `scripts/install.sh` prints the exact Code Mode manual and `obsidian_OBSIDIAN_*` environment keys, and stays read-only. The `obsidian` manual and those keys are already registered in `.utcp_config.json` and `.env.example`; the installer never rewrites them.
 
-**Q: Are all 14 MCP tool names documented?**
+**Q: How many MCP tools are there?**
 
-A: No. Five core names are confirmed. Use `list_tools()` to enumerate the live 14-tool inventory and `tool_info()` to verify a particular signature before relying on it.
+A: Twelve are exposed. The server builds 14 and withholds `obsidian_list_commands` and `obsidian_execute_command` while `enableCommands` is false. All twelve are named and exercised in [`references/cli-versus-mcp.md`](./references/cli-versus-mcp.md). Confirm with `list_tools()` before relying on any signature.
 
 **Q: Is an empty note search an error?**
 
@@ -227,6 +227,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 | [`references/plugins/plugin-operation-logic.md`](./references/plugins/plugin-operation-logic.md) | The file-layer operating model shared by all plugin references |
 | [`references/obsidian-cli-commands.md`](./references/obsidian-cli-commands.md) | Detailed `notesmd-cli` and official `obsidian` CLI reference, including `VERIFY` boundaries |
 | [`references/mcp-tools.md`](./references/mcp-tools.md) | Cyanheads MCP prerequisites, confirmed core tools and Code Mode invocation pattern |
+| [`references/cli-versus-mcp.md`](./references/cli-versus-mcp.md) | Measured official-CLI-versus-MCP comparison in both app states, and the default it sets |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | PATH, vault, Local REST API, auth and MCP recovery guide |
 | [`examples/README.md`](./examples/README.md) | Index for the headless notes and MCP roundtrip workflows |
 | [`scripts/install.sh`](./scripts/install.sh) | Installs the headless CLI when possible and prints the official CLI and MCP setup steps |

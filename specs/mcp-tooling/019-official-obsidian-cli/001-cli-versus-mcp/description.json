@@ -1,18 +1,20 @@
 {
   "level": "3",
   "specFolder": "mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "The skill described the official CLI and the MCP server side by side and left the choice to the reader",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "skill",
+    "described",
+    "official",
+    "cli",
+    "mcp",
+    "server",
+    "side",
+    "left",
+    "choice",
+    "reader"
   ],
-  "lastUpdated": "2026-09-02T18:51:34.150Z",
+  "lastUpdated": "2026-09-02T19:17:40.424Z",
   "specId": "001",
   "folderSlug": "cli-versus-mcp",
   "parentChain": [

@@ -207,20 +207,20 @@ Prompt: `Register my throwaway vault for headless Obsidian work, verify it appea
 | Feature ID | Feature Name | Scenario Objective | Prerequisite | Feature File |
 |---|---|---|---|---|
 | `OBS-009` | Register and inspect official CLI | Register the binary and confirm help output | Obsidian desktop v1.12.4+; Register CLI | [`official-cli/register-and-help.md`](official-cli/register-and-help.md) |
-| `OBS-010` | Open an app-backed target | Use the local help-confirmed command to open a note/vault or URI action | Running/launchable desktop app; exact action syntax `VERIFY` | [`official-cli/open-app-action.md`](official-cli/open-app-action.md) |
+| `OBS-010` | Open an app-backed target | Use the local help-confirmed command to open a note/vault or URI action, and assert the exit-0-on-failure contract by testing stdout for a leading `Error:` rather than `$?` | Running desktop app, which the CLI does not launch. Syntax is `obsidian <command> key=value` | [`official-cli/open-app-action.md`](official-cli/open-app-action.md) |
 
 ---
 
 ## 10. MCP ROUND-TRIP (`MCP-H001..MCP-H004`)
 
-Every scenario in this category needs a running Obsidian app with the target vault open, Local REST API plugin v4.0.0+, `OBSIDIAN_API_KEY`, the correct base URL, and the registered `obsidian` manual. If any prerequisite is missing, record `SKIP` with the exact blocker.
+Every scenario in this category needs a running Obsidian app with the target vault open, Local REST API plugin v4.0.0+ **enabled**, `OBSIDIAN_API_KEY`, the correct base URL, and the registered `obsidian` manual. Installed is not enabled: a disabled plugin lets `tools/list` succeed and fails every vault call with `fetch failed`, so check `obsidian plugin id=obsidian-local-rest-api` for `enabled  true` before recording a FAIL. If any prerequisite is missing, record `SKIP` with the exact blocker.
 
 | Feature ID | Feature Name | Scenario Objective | Prerequisite | Feature File |
 |---|---|---|---|---|
 | `MCP-H001` | Read/write round-trip | Read a controlled note, append an idempotent section, and write it back | Live app, REST API, token, Code Mode; tool schemas may require `VERIFY` | [`mcp-roundtrip/read-write-roundtrip.md`](mcp-roundtrip/read-write-roundtrip.md) |
 | `MCP-H002` | Search live vault | Search a known marker through `obsidian_search_notes` | Same live prerequisites | [`mcp-roundtrip/search-live-vault.md`](mcp-roundtrip/search-live-vault.md) |
 | `MCP-H003` | Manage tags | Apply a controlled tag and capture the structured response | Same live prerequisites; argument shape `VERIFY` | [`mcp-roundtrip/manage-tags.md`](mcp-roundtrip/manage-tags.md) |
-| `MCP-H004` | Delete throwaway note | Delete only the note created by the round-trip and verify absence | Same live prerequisites; throwaway note required | [`mcp-roundtrip/delete-throwaway-note.md`](mcp-roundtrip/delete-throwaway-note.md) |
+| `MCP-H004` | Delete throwaway note | Delete only the note created by the round-trip and verify absence | Same live prerequisites; throwaway note required. The client MUST declare the MCP `elicitation` capability or the delete is refused | [`mcp-roundtrip/delete-throwaway-note.md`](mcp-roundtrip/delete-throwaway-note.md) |
 
 ---
 
@@ -228,7 +228,7 @@ Every scenario in this category needs a running Obsidian app with the target vau
 
 | Feature ID | Feature Name | Scenario Objective | Prerequisite | Feature File |
 |---|---|---|---|---|
-| `MCP-M001` | Tool inventory | Enumerate all 14 server tools and confirm the five known names | Live app, REST API, token, registered manual | [`mcp-verification/tool-inventory.md`](mcp-verification/tool-inventory.md) |
+| `MCP-M001` | Tool inventory | Enumerate the 12 exposed tools and confirm `obsidian_list_commands` and `obsidian_execute_command` stay withheld while `enableCommands` is false | Live app, REST API plugin **enabled**, token, registered manual | [`mcp-verification/tool-inventory.md`](mcp-verification/tool-inventory.md) |
 | `MCP-M002` | App/token boundary | Show the MCP preflight blocker and preserve a headless fallback | No live MCP prerequisite; `notesmd-cli` for fallback | [`mcp-verification/prerequisite-boundary.md`](mcp-verification/prerequisite-boundary.md) |
 
 ---
