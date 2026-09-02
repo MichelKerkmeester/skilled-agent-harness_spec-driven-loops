@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 7: spec-kit-residue [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The suite cannot finish a run, roughly a hundred and fifteen failures have a signature but no mechanism, and its tests have never been type-checked at all."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -69,10 +69,23 @@ This is **Phase 7** of the routing completeness phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+The suite does not complete. All modules run and then a reused worker spins on a rehash storm
+and never returns, so a bound kills it and the run reports nothing. Sharding works around it
+by giving each shard a fresh worker.
+
+Beneath that, roughly a hundred and fifteen failures across sixty files have an error
+signature and no established mechanism. Twenty-five references to names that do not exist sit
+in test files that no gate has ever type-checked, because the typecheck lane runs against a
+config that excludes tests.
+
+Five findings need a person rather than a fix, because each is a contract question where the
+test and the code assert opposite things.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+The suite completes, its failures have mechanisms rather than signatures, and the five
+contract questions are decided by their owner.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -81,13 +94,15 @@ This is **Phase 7** of the routing completeness phases specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The residue grouped by mechanism, with a worked example each.
+- The untypechecked references, which are runtime failures waiting to happen.
+- The five contract questions put to their owner with the evidence for each side.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- Changing what a test asserts to make it green. A test asserting the right thing about broken code means the code moves.
+- The worker spin itself, which is a runtime investigation rather than a suite fix.
 
 ### Files to Change
 

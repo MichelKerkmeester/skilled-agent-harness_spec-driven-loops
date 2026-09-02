@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 5: hub-surface-truth [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Every automated gate reads the registries and nothing reads the documents. So a hub surface can contradict its own registry indefinitely, and three of them currently do."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -69,10 +69,19 @@ This is **Phase 5** of the routing completeness phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+Three hub surfaces state something their registries contradict, and none of them has a gate.
+The inventory intent claims to enumerate the whole toolkit and lists 128 of 252 leaves. The
+hub manifest shows a mode as having no command while the command file exists in all five
+runtime trees. The readme summary and its own frontmatter still describe a smaller hub than
+the one that ships.
+
+Each was found by hand. That is the actual defect: every automated check reads a registry,
+and no check compares a document against the registry it describes.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+The hub documents agree with the registries, and a check fails when they stop agreeing.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -81,13 +90,15 @@ This is **Phase 5** of the routing completeness phases specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The three surfaces above, corrected against the registries.
+- A check that compares a document's enumerations against the registry, so this class cannot silently return.
+- The link-label class as well, since a label naming a path it does not point at is the same failure.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- Rewriting the prose for style. This phase is about claims that are false, not sentences that read poorly.
+- The voice backlog on those documents, which is measured in the hundreds and is a separate job.
 
 ### Files to Change
 

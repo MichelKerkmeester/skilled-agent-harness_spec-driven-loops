@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The suite does not complete",
     "created_at": "2026-09-02T16:34:09Z",
-    "last_save_at": "2026-09-02T16:35:58.516Z",
+    "last_save_at": "2026-09-02T16:47:23.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef7abaa2dd4a8537a93b660038a7f4ba22458f3bb24953c9aef88cdc5d8143b7",
+    "source_fingerprint": "sha256:2bd48315337a647ad2c135a90889974efccf1eda286ad5127f3bf5f23a3a05ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "91cac6e4dd4f712e78713f282cf7aa1a9e18bb1a2382de11059afb509db65abf",
+      "spec.md": "bccbb52a331756e21d6ab8d77a8494cbadbdd9064a69c3cd99e3efb3dcef8b8f",
       "plan.md": "74db142303e80db19c1180a5257d56a9c778dae00192c41133fcaaabe9885a12",
       "tasks.md": "05fe420c50546b32501c79b1c635e53f13c7c8e541f6894ec72a5975096ac255",
       "implementation-summary.md": "a9139f7b293cf6c36eed310fbebc6ebef83144454a6ef8000c65909939c0bcc7"

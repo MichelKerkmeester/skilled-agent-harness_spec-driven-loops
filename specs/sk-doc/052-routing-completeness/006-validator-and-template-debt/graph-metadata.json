@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "A template is the one document where the fenced block is the deliverable rather than a",
     "created_at": "2026-09-02T16:34:08Z",
-    "last_save_at": "2026-09-02T16:35:56.836Z",
+    "last_save_at": "2026-09-02T16:47:18.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a268b201900a1cd772560a33109dbf30019ad6967cc892c81d98d5fd9e7fff21",
+    "source_fingerprint": "sha256:2fde3191a03a5058f6246197051008dcc5bea2102c89f69e85fba86e8c2860d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b085d4a73a7c8a6eb75dd733a54deab115d702b59d7b59c5c19bd1922b6f1c38",
+      "spec.md": "70aee3f39f6cde93c3fa5457fe700ee98ef7385b25b42c8421c54e805926df86",
       "plan.md": "8064a90153a75b637520439a42ee666e0387195ddec09134807922042ebc811b",
       "tasks.md": "14b6a99ab6e63fc476c56344b6c690179b31e7c08cb979bde064060a47bb4d7a",
       "implementation-summary.md": "67f0fe20cae7662b325d0d39bb1b0a14fe97025999e183c6520ffeeae8687a70"

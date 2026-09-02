@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 6: validator-and-template-debt [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "A template scores clean and seeds what it emits, because the scanner skips the fenced block that is the template's whole payload. Three instances were found in one session."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -69,10 +69,22 @@ This is **Phase 6** of the routing completeness phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+A template is the one document where the fenced block is the deliverable rather than a
+quotation, and the voice scanner skips fenced content by default. So a template can score a
+perfect zero and seed a banned character into every document authored from it. Twenty-four
+of forty templates in this tree hide blockers that way, and the worst scores zero while
+emitting forty-three.
+
+Two related debts sit beside it. The document validator blocks on scanner fixtures whose
+bytes are pinned by tests, where the packaging gate already exempts fixture trees on exactly
+that reasoning. And forty-eight planning documents carry boilerplate from a template that has
+since been corrected.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+A template is measured against what it emits, and the two validators agree about what a
+fixture is.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -81,13 +93,15 @@ This is **Phase 6** of the routing completeness phases specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- A fixture exemption in the document validator, matching the precedent already in the packaging gate.
+- Template scanning that reads the payload, so a seeded blocker is caught rather than scoring clean.
+- The forty-eight planning documents brought to the corrected boilerplate.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- Sweeping the inherited voice backlog in non-template documents. It is a writing job and it would bury this.
+- Changing the scanner default for ordinary documents, where skipping a quoted command is correct.
 
 ### Files to Change
 

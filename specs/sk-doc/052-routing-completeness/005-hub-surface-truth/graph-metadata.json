@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Three hub surfaces state something their registries contradict, and none of them has a gate",
     "created_at": "2026-09-02T16:34:07Z",
-    "last_save_at": "2026-09-02T16:35:55.101Z",
+    "last_save_at": "2026-09-02T16:47:16.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d4b01d2e3d61be5cc47f26b61ef03870a5da7a8490570f032f83610e0d4897e",
+    "source_fingerprint": "sha256:b169fdf29469034e22d3bc6924197af5ed5e786248ae3ef0565b27547f45ba60",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "66d107514c99c7a6970217e3b06850d7985d480f36e1d790d0c41daa3a2ac938",
+      "spec.md": "2e3a0491fd96f92b145de985e96e4629ae8cdf917e0e1627d033d02150de25ca",
       "plan.md": "bd39b8f84579d6f28a555ec923d8869c1e3892977b2b2e59b613f12e1b4a88e3",
       "tasks.md": "8e9341a9f7046eb12d798d88a553f635c846394da48d0d5974a2892cd81330bc",
       "implementation-summary.md": "9ff2244ba69080e68ceca40c15062fef775b91d46a19bafb61ef979231e514e8"
