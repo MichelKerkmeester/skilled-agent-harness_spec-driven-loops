@@ -13,7 +13,7 @@ contextType: "implementation"
 version: 0.1.0.0
 ---
 
-# Official Obsidian CLI — Agent Usage
+# Official Obsidian CLI, Agent Usage
 
 The official `obsidian` binary is a remote control for a running desktop app, not a headless tool. Everything below follows from that one fact.
 
@@ -33,7 +33,7 @@ Use `notesmd-cli` for file-shaped work. Reach for this CLI when the outcome need
 
 ---
 
-## 2. PREFLIGHT — PROVE IT WILL ANSWER
+## 2. PREFLIGHT: PROVE IT WILL ANSWER
 
 Run one cheap command and check **only the exit status**. This is the single case where `$?` is meaningful, because the app-down failure is the one failure raised by the launcher rather than by the app.
 
@@ -80,7 +80,7 @@ Do not treat this as a formality. An agent that skips the wait races the app's s
 
 ---
 
-## 3. RESULT HANDLING — `$?` IS NOT A SUCCESS SIGNAL
+## 3. RESULT HANDLING: `$?` IS NOT A SUCCESS SIGNAL
 
 **Once the app is running, the CLI exits 0 for every outcome, including errors.** Failures are reported as human-readable text on **stdout**, not stderr.
 
@@ -327,7 +327,7 @@ Every behavioral claim in this document was observed by running the binary on ma
 
 ## 11. GETTING HELP
 
-- `obsidian help` — the authoritative command list from the installed binary, and the first thing to run when this document and the binary disagree
+- `obsidian help`. The authoritative command list from the installed binary, and the first thing to run when this document and the binary disagree
 - Vendor reference: `https://obsidian.md/help/cli`
 - Headless alternative and profile comparison: [`obsidian-cli-commands.md`](obsidian-cli-commands.md)
 - Failure diagnosis: [`troubleshooting.md`](troubleshooting.md)
