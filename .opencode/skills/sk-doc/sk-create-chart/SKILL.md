@@ -103,7 +103,7 @@ def route_resources(request):
 
 ## 3. HOW IT WORKS
 
-The workflow is template-first, and that is a constraint rather than a preference. A chart assembled from a template renders the way its gallery renders. A chart written freehand does not, and the failure shows up in a browser rather than in a check.
+The workflow is template-first, and that is a constraint rather than a preference. A chart assembled from a form file renders the way that file already rendered. A chart written freehand does not, and the failure shows up in a browser rather than in a check.
 
 1. Read the request and name the comparison the reader needs to make.
 2. Open `references/catalog.md` and resolve that comparison to one row.
@@ -165,7 +165,7 @@ Twenty chart forms across six question families: comparison, composition, time, 
 
 ## 7. INTEGRATION POINTS
 
-- Input: chart and report requests routed from the `sk-doc` hub.
+- Input: chart requests routed from the `sk-doc` hub.
 - Output: a standalone HTML chart.
 - Neighbour: `sk-create-diagram` owns structural visuals, and the two are separated by what the artifact carries rather than by which one was asked first.
 
