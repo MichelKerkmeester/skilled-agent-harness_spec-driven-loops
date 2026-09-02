@@ -53,8 +53,10 @@ _memory:
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
-|-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+|---|---|---|---|---|---|
+| AC-001 | REQ-001 | Given every declared signal across five hubs, When each is measured through the daemon, Then each lands in exactly one bucket | `research/gate-a-raw.tsv` holds 444 rows and every row carries one of the five bucket values | Met | |
+| AC-002 | REQ-002 | Given the headline count, When it is re-derived from the raw file by a second method, Then both agree | A independent pass over `gate-a-raw.tsv` returns 234 RESOLVED of 444, matching the written total | Met | |
+| AC-003 | REQ-003 | Given an unresolved signal, When the phase closes, Then it resolves to one mode or is retired with the choice recorded | Re-running the sweep returns zero signals in NO_RECOMMENDATION, WRONG_HUB, DEFERRED or MULTI without an adjacent decision | Unmet | |
 
 ### Status values
 

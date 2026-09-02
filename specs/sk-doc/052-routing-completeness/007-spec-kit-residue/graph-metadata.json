@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The suite does not complete",
     "created_at": "2026-09-02T16:34:09Z",
-    "last_save_at": "2026-09-02T16:47:23.260Z",
+    "last_save_at": "2026-09-02T17:17:16.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2bd48315337a647ad2c135a90889974efccf1eda286ad5127f3bf5f23a3a05ca",
+    "source_fingerprint": "sha256:bde6fb9e1eef48e7acc3d530f0e504f0a3b9d8afce471bb3969bb23904a149b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bccbb52a331756e21d6ab8d77a8494cbadbdd9064a69c3cd99e3efb3dcef8b8f",

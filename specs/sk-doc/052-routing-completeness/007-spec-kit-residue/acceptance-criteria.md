@@ -53,8 +53,11 @@ _memory:
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
-|-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+|---|---|---|---|---|---|
+| AC-001 | REQ-001 | Given a suite that cannot finish, When it is run sharded, Then every module reports and the run completes | `npm run test:sharded` reports all shards with a final line naming the failing count, and no shard exits 124 | Unmet | |
+| AC-002 | REQ-002 | Given roughly one hundred and fifteen failures with no mechanism, When the phase closes, Then each belongs to a named group | The residue document accounts for every failing test in a group with a worked example, and the unexplained count is zero | Unmet | |
+| AC-003 | REQ-003 | Given twenty-five references to names that do not exist, When the tests typecheck lane runs, Then each is fixed or recorded | `npm run typecheck:tests` reports zero TS2304 findings | Unmet | |
+| AC-004 | REQ-004 | Given five contract questions where test and code disagree, When the phase closes, Then each has a decision naming which side moves | The decision record holds five entries, each naming the contract, the two positions and the ruling | Unmet | |
 
 ### Status values
 

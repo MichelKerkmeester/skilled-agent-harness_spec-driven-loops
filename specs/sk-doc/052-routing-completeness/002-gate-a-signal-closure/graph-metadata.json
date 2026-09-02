@@ -45,7 +45,8 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/gate-a-raw.tsv"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-raw.tsv",
+        "kind": "file",
+        "path": "research/gate-a-raw.tsv",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
     "created_at": "2026-09-02T16:34:05Z",
-    "last_save_at": "2026-09-02T16:50:13.495Z",
+    "last_save_at": "2026-09-02T17:17:05.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +206,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04c8d7dbb61371c0ffce01ed17b0aff1dc14c8a07093e06b048521f328c7ee21",
+    "source_fingerprint": "sha256:10b2b7aa70eea99a369665a809f74ddfb44245571cd4168c5c8484b3acc78517",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2b819a4f6ee9f97bdf161f068284518591513bd373de38ae86215accc9c9c3fb",

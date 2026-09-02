@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Two scorers answer the same question",
     "created_at": "2026-09-02T16:34:04Z",
-    "last_save_at": "2026-09-02T16:35:48.321Z",
+    "last_save_at": "2026-09-02T17:17:03.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7ee5f3937cce460c9e18d59844a47903216cf8dc9e21613b48ae2d0362f3033",
+    "source_fingerprint": "sha256:c5572d610664d678c3fb776832a0f94254b895c72b5e41dc83e0b5f79e34e1f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f129d167fa7a293ab1e84980c6746ed0cfe2899da28e7ed8616af7da5be2b98b",

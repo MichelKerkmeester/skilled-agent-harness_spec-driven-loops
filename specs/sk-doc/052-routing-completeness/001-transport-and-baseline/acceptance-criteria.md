@@ -53,8 +53,10 @@ _memory:
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
-|-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+|---|---|---|---|---|---|
+| AC-001 | REQ-001 | Given two scorers answer routing, When the dispatch chain is read end to end, Then one is named as the governing caller | `grep -rn "skill_advisor.py" .opencode/skills/system-skill-advisor/hooks/lib/` returns no match, and the handler's scorer import resolves to `lib/scorer/fusion.js` | Met | |
+| AC-002 | REQ-002 | Given a confidence of 0.8200, When an unrelated prompt is measured, Then the same value returns and the score differs | `skill-advisor.cjs advisor_recommend --json '{"prompt":"refactor the auth module"}'` returns confidence 0.8200 with score near 0.51 | Met | |
+| AC-003 | REQ-003 | Given a ranking question, When the comparator is read, Then score alone is shown not to be the sort key | `fusion.ts` line 749 adds command, intent and conflict adjustments before falling through to rank fusion | Met | |
 
 ### Status values
 

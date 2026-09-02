@@ -53,8 +53,10 @@ _memory:
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
-|-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+|---|---|---|---|---|---|
+| AC-001 | REQ-001 | Given duplicate uncompiled entries under bare executor names, When they are removed, Then the compiled route wins | The twelve affected corpus rows resolve to their compiled mode, shown by a before and after table | Unmet | |
+| AC-002 | REQ-002 | Given a vocabulary change, When both hubs are re-measured, Then neither loses a prompt it owned | A before and after run of both hubs' own prompt sets shows no row moving away from its owner | Unmet | |
+| AC-003 | REQ-003 | Given any routing file edit, When the phase closes, Then manifests are fresh and canaries green in the same commit | `compiled-route-manifest.cjs freshness` reports fresh for all five hubs and all five canaries exit 0 | Unmet | |
 
 ### Status values
 

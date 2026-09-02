@@ -45,7 +45,9 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "assets/realistic-corpus.tsv",
+      "research/gate-b-measurement.md"
     ],
     "entities": [
       {
@@ -76,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "realistic-corpus.tsv",
+        "kind": "file",
+        "path": "assets/realistic-corpus.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "gate-b-measurement.md",
+        "kind": "doc",
+        "path": "research/gate-b-measurement.md",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-02T17:14:03.645Z",
+    "last_save_at": "2026-09-02T17:17:08.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +207,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6901dbc915ada611cc129a26119edda5b92077304453e1df4fb3474960fa63c4",
+    "source_fingerprint": "sha256:f3c9333574ff50cc2342274a38b556fcebad67fa3f7034af0d4a6ab3870e66d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0b5a732961b0600d4f4b9a2bf94e1f8239ebb37a7c736acedc910567430ed036",

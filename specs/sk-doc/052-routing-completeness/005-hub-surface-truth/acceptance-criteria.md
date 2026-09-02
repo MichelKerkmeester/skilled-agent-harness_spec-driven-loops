@@ -53,8 +53,11 @@ _memory:
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
-|-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+|---|---|---|---|---|---|
+| AC-001 | REQ-001 | Given the inventory intent claims completeness, When it is compared to the leaf manifest, Then it enumerates every leaf or drops the claim | A count of FULL_INVENTORY paths equals the manifest leaf count, currently 128 against 252 | Unmet | |
+| AC-002 | REQ-002 | Given a mode with a command file in every runtime tree, When the hub manifest is read, Then it does not report the mode as commandless | `grep -n 'sk-create-diff' .opencode/skills/sk-doc/SKILL.md` shows the command rather than a routes-via-aliases dash | Unmet | |
+| AC-003 | REQ-003 | Given the readme summary and its frontmatter, When compared to the mode registry, Then both name the current mode set | Every mode in `mode-registry.json` appears in the readme summary section and its trigger phrases | Unmet | |
+| AC-004 | REQ-004 | Given a document that contradicts its registry, When the new check runs, Then it fails | Removing one mode row from the readme makes the check exit non-zero, and restoring it returns exit 0 | Unmet | |
 
 ### Status values
 

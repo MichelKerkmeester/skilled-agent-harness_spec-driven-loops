@@ -53,8 +53,10 @@ _memory:
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
-|-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+|---|---|---|---|---|---|
+| AC-001 | REQ-001 | Given a scanner fixture whose bytes are pinned by tests, When the document validator runs, Then it is exempt | `validate_document.py` exits 0 on both voice fixtures, and the packaging gate still exempts fixture trees | Unmet | |
+| AC-002 | REQ-002 | Given a template whose payload is a fenced block, When it is scanned, Then a seeded blocker is caught | Inserting an em dash inside a template fence makes the template check fail, and removing it returns a pass | Unmet | |
+| AC-003 | REQ-003 | Given forty-eight planning documents carrying superseded boilerplate, When the phase closes, Then none carries it | `grep -rl 'it owns the Setup, Implementation, and Verification' specs/` returns nothing | Unmet | |
 
 ### Status values
 
