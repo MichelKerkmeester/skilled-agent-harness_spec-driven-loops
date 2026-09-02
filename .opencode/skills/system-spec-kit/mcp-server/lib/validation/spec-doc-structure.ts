@@ -748,7 +748,10 @@ function validateFrontmatterMemoryBlock(folder: string, level: string): RuleResu
       }
     }
 
-    if (packetPointer && (!/^[a-z0-9._-]+(?:\/[a-z0-9._-]+)+\/?$/.test(packetPointer) || packetPointer.includes('..') || packetPointer.includes('\\'))) {
+    // Single-segment pointers are legal: a repository may keep packets directly
+    // under the spec root, and the disk-path consistency rule already proves the
+    // pointer against the real folder leaf, so a two-segment minimum adds nothing.
+    if (packetPointer && (!/^[a-z0-9._-]+(?:\/[a-z0-9._-]+)*\/?$/.test(packetPointer) || packetPointer.includes('..') || packetPointer.includes('\\'))) {
       diagnostics.push({
         code: 'SPECDOC_FRONTMATTER_004',
         severity: 'error',

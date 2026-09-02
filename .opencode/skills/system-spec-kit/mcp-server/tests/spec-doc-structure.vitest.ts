@@ -76,6 +76,16 @@ function setContinuityFieldEmpty(filePath: string, field: string): void {
   fs.writeFileSync(filePath, updated, 'utf8');
 }
 
+// Set a single continuity field to a given value inside the doc's existing
+// _memory block; the parser reads the first block, so a value-bearing assertion
+// must mutate that block rather than append a second one it would ignore.
+function setContinuityField(filePath: string, field: string, value: string): void {
+  const content = fs.readFileSync(filePath, 'utf8');
+  const pattern = new RegExp(`^(\\s*${field}:\\s*).*$`, 'm');
+  const updated = content.replace(pattern, `$1"${value}"`);
+  fs.writeFileSync(filePath, updated, 'utf8');
+}
+
 function replaceAnchorBody(filePath: string, anchorId: string, body: string): void {
   const content = fs.readFileSync(filePath, 'utf8');
   const pattern = new RegExp(
@@ -311,6 +321,37 @@ describe('spec-doc-structure contract', () => {
 
     expect(result.status).toBe('fail');
     expect(result.details.some((detail) => detail.includes('missing continuity fields recent_action'))).toBe(true);
+  });
+
+  it('accepts a single-segment packet_pointer for spec trees flattened under specs/', () => {
+    const folder = copyFixture('063-template-compliant-level3');
+    setContinuityField(path.join(folder, 'spec.md'), 'packet_pointer', '005-component-surface-system');
+    const result = runSpecDocStructureRule({
+      folder,
+      level: '3',
+      rule: 'FRONTMATTER_MEMORY_BLOCK',
+    });
+
+    expect(result.status).toBe('pass');
+    expect(result.details.join(' ')).not.toMatch(/SPECDOC_FRONTMATTER_004/u);
+  });
+
+  it('rejects unsafe packet_pointer shapes', () => {
+    for (const pointer of ['../x', '/abs', 'a//b', 'bad\\path', 'UPPER/Case']) {
+      const folder = copyFixture('063-template-compliant-level3');
+      setContinuityField(path.join(folder, 'spec.md'), 'packet_pointer', pointer);
+      const result = runSpecDocStructureRule({
+        folder,
+        level: '3',
+        rule: 'FRONTMATTER_MEMORY_BLOCK',
+      });
+
+      expect(result.status, pointer).toBe('fail');
+      expect(
+        result.details.some((detail) => detail.includes('SPECDOC_FRONTMATTER_004') && detail.includes('packet_pointer')),
+        pointer,
+      ).toBe(true);
+    }
   });
 
   it('fails merge legality when table rows are routed into prose anchors', () => {
