@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/049-memory-decommission/003-spec-memory-server-removal",
+  "description": "Delete the system-spec-memory server package, MCP transport entries, plugin, bridge, hook, commands and flags.",
+  "keywords": [
+    "delete",
+    "system-spec-memory",
+    "server",
+    "package",
+    "mcp",
+    "transport",
+    "entries",
+    "plugin",
+    "bridge",
+    "hook",
+    "commands",
+    "flags"
+  ],
+  "lastUpdated": "2026-09-02T11:13:08.838Z",
+  "specId": "003",
+  "folderSlug": "spec-memory-server-removal",
+  "parentChain": [
+    "system-speckit",
+    "049-memory-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

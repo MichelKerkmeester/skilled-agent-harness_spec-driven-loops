@@ -1,0 +1,252 @@
+---
+title: "Feature Specification: Phase 4: grep-convention-doc-retrofit"
+description: "Define a grep-optimized spec-doc convention, enforce it in templates and validate.sh, and retrofit it across the 22,127 active spec documents."
+trigger_phrases:
+  - "grep convention"
+  - "spec doc convention"
+  - "doc retrofit"
+  - "greppable spec docs"
+  - "frontmatter normalization"
+importance_tier: "important"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
+# Feature Specification: Phase 4: grep-convention-doc-retrofit
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+
+---
+
+## EXECUTIVE SUMMARY
+
+With retrieval now resting on ripgrep and a frontmatter-derived index, the corpus itself becomes the
+retrieval engine. This phase makes 22,127 active spec documents predictable to grep: consistent
+frontmatter keys, stable section markers, and a naming grammar — enforced by templates and
+`validate.sh` so new documents cannot drift.
+
+**Key Decisions**: Retrofit all active documents rather than new-only, per the operator's scope choice; exclude `z_archive/`.
+
+**Critical Dependencies**: Phases 001-003 complete, so the convention is shaped by the retrieval path that actually exists.
+
+---
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-09-02 |
+| **Branch** | `claude/speckit-memory-db-review-3gheky` |
+| **Parent Spec** | ../spec.md |
+| **Phase** | 4 of 4 |
+| **Predecessor** | 003-spec-memory-server-removal |
+| **Successor** | None |
+| **Handoff Criteria** | Convention enforced by `validate.sh`; retrofit applied with no unresolved variants |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:phase-context -->
+## Phase Context
+
+This is **Phase 4** of the memory db decommission specification.
+
+**Scope Boundary**: The convention and its application to active spec docs. Archived packets under
+`z_archive/` are excluded — 10,584 files that nothing retrieves against and whose rewriting would
+only add diff noise.
+
+**Dependencies**:
+- Phase 001's `retrieval-conventions.md`, which the doc convention must serve
+- Phase 003 complete, so the convention is not shaped around a system being removed
+
+**Deliverables**:
+- The written convention
+- Template updates so new documents comply by construction
+- A `validate.sh` rule enforcing it
+- A retrofit tool plus its residue rescan
+- 22,127 active documents conforming
+
+**Changelog**:
+- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+<!-- /ANCHOR:phase-context -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+
+Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking
+pipeline. Today the corpus is inconsistent: `trigger_phrases` is present in 11,902 of the active
+documents but not all, frontmatter keys vary, and section markers differ between template
+generations. A grep is only as good as the regularity of what it searches.
+
+### Purpose
+
+Active spec documents share one predictable shape, so a single ripgrep invocation reaches the right
+document without a ranking layer compensating for the corpus.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+- The convention: required frontmatter keys and their value shapes, stable section markers, a
+  document naming grammar, and the rule for what belongs in `trigger_phrases`.
+- Template updates under `.opencode/skills/system-spec-kit/templates/`.
+- A `validate.sh` rule that fails a non-conforming document.
+- A retrofit tool that applies the convention mechanically and reports what it could not resolve.
+- Application across the 22,127 active spec documents.
+
+### Out of Scope
+
+- `z_archive/` — 10,584 documents, excluded by the scope boundary above.
+- Rewriting document *bodies*. The convention governs frontmatter, markers and naming; prose is
+  untouched. This is the open question below and must be settled before the retrofit runs.
+- Non-spec markdown: skill `SKILL.md`, references and READMEs keep their own contracts.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `.opencode/skills/system-spec-kit/references/structure/grep-convention.md` | Create | The written convention |
+| `.opencode/skills/system-spec-kit/templates/**` | Modify | New documents comply by construction |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-grep-convention.sh` | Create | Validator rule |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/retrofit-convention.mjs` | Create | Mechanical retrofit plus residue report |
+| `specs/**/*.md` (22,127 active) | Modify | Convention applied |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | The convention is written down before any document is modified |
+| REQ-002 | `validate.sh` fails a document that violates the convention |
+| REQ-003 | The retrofit enumerates every in-scope variant first, processes each, then rescans for residue |
+| REQ-004 | The retrofit changes no document body text |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement |
+|----|-------------|
+| REQ-005 | Templates produce conforming documents with no manual step |
+| REQ-006 | The trigger index regenerates cleanly from the retrofitted corpus, with a phrase count at or above the pre-retrofit baseline |
+| REQ-007 | The retrofit is idempotent — a second run produces no diff |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: `validate.sh --recursive --strict` passes on the parent packet
+- **SC-002**: Residue rescan reports zero unprocessed variants across 22,127 documents
+- **SC-003**: Regenerated trigger index covers at least the pre-retrofit phrase count of 97,529
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Risk | A 22,127-file diff is unreviewable as one change | High | Batch by track; one commit per track with its own residue report |
+| Risk | A mechanical retrofit corrupts frontmatter in an unanticipated variant | High | REQ-003's enumerate-first discipline; dry-run diff on one track before the rest |
+| Risk | Scope creep from frontmatter into body rewriting | Med | REQ-004 makes it a blocker; the open question below must be closed first |
+| Risk | Retrofit and phase 002's continuity-writer decision disagree about `_memory.continuity` | Med | Settle in phase 002; this phase consumes that answer |
+| Dependency | Phases 001-003 | Shapes the convention | Sequenced |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: A scoped ripgrep over the retrofitted corpus stays within the 0.5s measured today
+
+### Security
+- **NFR-S01**: The retrofit tool writes only inside `specs/` and makes no network calls
+
+### Reliability
+- **NFR-R01**: Retrofit is idempotent and dry-runnable
+
+---
+
+## 8. EDGE CASES
+
+### Data Boundaries
+- Empty input: a document with no frontmatter gets one, and is reported rather than silently rewritten
+- Maximum length: a document exceeding the marker budget is reported, not truncated
+
+### Error Scenarios
+- Malformed YAML: reported by path and skipped; never partially rewritten
+- A document that is both spec and template fixture: excluded and listed
+
+---
+
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Triggers |
+|-----------|-------|----------|
+| Scope | 25/25 | Files: 22,127, LOC: frontmatter-scale, Systems: 1 corpus |
+| Risk | 12/25 | Auth: N, API: N, Breaking: Y for validation |
+| Research | 10/20 | Variant enumeration across template generations |
+| Multi-Agent | 8/15 | Workstreams: parallelizable by track |
+| Coordination | 8/15 | Dependencies: consumes 001-003 |
+| **Total** | **63/100** | **Level 3** |
+
+---
+
+## 10. RISK MATRIX
+
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Unreviewable mega-diff | H | H | One commit per track |
+| R-002 | Frontmatter corruption in an unseen variant | H | M | Enumerate-first, dry-run one track |
+| R-003 | Body rewriting creeps in | M | M | REQ-004 blocker |
+
+---
+
+## 11. USER STORIES
+
+### US-001: A corpus that greps predictably (Priority: P0)
+
+**As a** framework operator, **I want** every active spec document to share one shape, **so that** one ripgrep invocation finds what I need without a ranking layer.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+### US-002: New documents that cannot drift (Priority: P1)
+
+**As a** framework operator, **I want** the templates and the validator to enforce the convention, **so that** the corpus does not decay back to inconsistency.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+## 12. OPEN QUESTIONS
+
+- Does the convention touch document bodies at all, or strictly frontmatter, markers and naming? REQ-004 currently says frontmatter-only; confirming that before the retrofit runs is what keeps this phase from becoming a corpus rewrite.
+- Should `z_archive/` be excluded permanently, or retrofitted once so historical search behaves consistently? Excluded for now on diff-noise grounds, which is a reversible decision.
+<!-- /ANCHOR:questions -->
+
+---
