@@ -2,7 +2,7 @@
 title: "SNAP-003 -- Snapshot status and cleanup"
 description: "This scenario validates snapshot status and cleanup for `SNAP-003`. It focuses on listing stored baselines and pruning them safely with a dry-run preview before deletion."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # SNAP-003 -- Snapshot status and cleanup

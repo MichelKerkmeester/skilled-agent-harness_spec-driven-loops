@@ -1,7 +1,7 @@
 ---
 title: "RMI-002 -- One-line install stays inline"
 description: "This scenario validates leaving a one-command setup in the README or official documentation instead of creating a full install guide."
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # RMI-002 -- One-line install stays inline

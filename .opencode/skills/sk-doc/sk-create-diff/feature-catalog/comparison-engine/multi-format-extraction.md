@@ -6,7 +6,7 @@ trigger_phrases:
   - "extract comparable text from documents"
   - "text extraction fidelity tiers"
   - "supported document formats"
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # Multi-format extraction

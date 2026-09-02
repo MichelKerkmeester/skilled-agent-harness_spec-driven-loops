@@ -1,7 +1,7 @@
 ---
 title: "FCR-001 -- Create the root catalog package"
 description: "This scenario validates root catalog package shape for FCR-001. The root inventory uses numbered sections and each entry maps to a per-feature file in a descriptive category folder."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # FCR-001 -- Create the root catalog package

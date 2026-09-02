@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global or packet-local changelogs with topology detection, versions, and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.1
+version: 1.0.1.2
 ---
 
 <!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->

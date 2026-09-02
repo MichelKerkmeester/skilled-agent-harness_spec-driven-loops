@@ -2,7 +2,7 @@
 name: sk-create-benchmark
 description: Author MCP-promotion, behavior, skill-benchmark, and model-benchmark artifacts; route the Lane A authoring guide.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
 <!-- Keywords: create-benchmark, benchmark-report.md, source.md, mcp_server benchmarks, benchmark promotion, skill-local benchmark, MCP bake-off, benchmark folder, behavior benchmark, behavior-benchmark.md, behavior_benchmark, scenario contract, behavior-benchmark framework, claude-baseline, skill-benchmark, benchmark/README.md, run-label folder, skill-benchmark-report, Lane C benchmark, model-benchmark, benchmark fixture, benchmark profile, code-task oracle fixture, reviewer-prompt fixture, Lane B fixture, command surface benchmark

@@ -136,7 +136,7 @@ Install Notion Bases and Dataview into my real Obsidian vault headlessly — sta
    jq empty "$COMMUNITY"
    ~~~
 
-5. Verify: confirm the exact repo/tag and manifest ID for Notion Bases with `jq`, confirm the staged files are non-empty, confirm Dataview's presence check result matches the staging decision made in step 3, and reload Obsidian only after every stage passes. Record a local `obsidian --help`/reload boundary as `SKIP` when the Obsidian desktop app is unavailable in this environment; it does not invalidate the file-layer result.
+5. Verify: confirm the exact repo/tag and manifest ID for Notion Bases with `jq`, confirm the staged files are non-empty, confirm Dataview's presence check result matches the staging decision made in step 3, and reload Obsidian only after every stage passes. Record a local `obsidian help`/reload boundary as `SKIP` when the Obsidian desktop app is unavailable in this environment; it does not invalidate the file-layer result.
 
 ### Expected
 

@@ -21,10 +21,10 @@ The official CLI ships with the desktop app and is not installed through npm or 
 
 - Feature ID: `OBS-009`
 - Feature Name: Register and inspect the official CLI
-- Scenario Objective: Enable Register CLI in Obsidian desktop v1.12.4+ and confirm `obsidian --help` resolves.
+- Scenario Objective: Enable Register CLI in Obsidian desktop v1.12.4+, then confirm `obsidian version` exits 0 and `obsidian help` lists the command surface.
 - Exact Prompt: `Register the official Obsidian CLI, then show its local help so we know the app-backed command surface.`
-- Exact Command Sequence: `1. Obsidian Settings → General → Command line interface → toggle on → Register CLI -> 2. obsidian --help`
-- Expected Signals: Step 1 completes in the desktop app; step 2 resolves the binary and prints usage with exit 0.
+- Exact Command Sequence: `1. Obsidian Settings → General → Command line interface → toggle on → Register CLI -> 2. obsidian version -> 3. obsidian help`
+- Expected Signals: Step 1 completes in the desktop app; step 2 prints a version and exits 0 while the app is running; step 3 prints the command list.
 - Evidence: Obsidian version, registration setting, shell path, help output, and exit code.
 - Pass/Fail Criteria: PASS if the registered binary resolves and help exits 0; FAIL if registration is unavailable, the binary is absent, or the app version is below the documented minimum.
 - Failure Triage: 1. Confirm Obsidian desktop v1.12.4+. 2. Re-register from Settings. 3. Compare the GUI-launched PATH with the shell PATH and open a new shell.
@@ -44,11 +44,12 @@ This scenario needs the desktop app. It does not validate headless file operatio
 ### Commands
 
 1. `Obsidian Settings → General → Command line interface → toggle on → Register CLI`
-2. `obsidian --help`
+2. `obsidian version` — exits 0 only when registered AND the app is running
+3. `obsidian help` — the authoritative command list
 
 ### Expected
 
-The app confirms registration and the shell prints official CLI help with exit 0.
+The app confirms registration, `obsidian version` exits 0 while Obsidian is running, and `obsidian help` prints the command list.
 
 ### Evidence
 
@@ -67,7 +68,7 @@ Capture the app version, registration setting, `command -v obsidian`, help outpu
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| OBS-009 | Register and inspect the official CLI | Register and inspect official help | `Register the official Obsidian CLI, then show its local help so we know the app-backed command surface.` | 1. Register from desktop settings -> 2. `obsidian --help` | Registration succeeds; help prints; exit 0 | App version/setting, PATH, help, exit code | PASS if binary resolves and help succeeds; FAIL otherwise | Recheck version, registration, and PATH |
+| OBS-009 | Register and inspect the official CLI | Register, then prove the surface is live | `Register the official Obsidian CLI, then show its local help so we know the app-backed command surface.` | 1. Register from desktop settings -> 2. `obsidian version` -> 3. `obsidian help` | Registration succeeds; version exits 0 with the app running; help prints the command list | App version/setting, PATH, version output, help, exit codes | PASS if the binary resolves and `version` exits 0; FAIL otherwise | Recheck version, registration, PATH, and that Obsidian is actually running |
 
 ---
 

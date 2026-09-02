@@ -1,7 +1,7 @@
 ---
 title: "CMR-001 -- Thin router and presentation boundary"
 description: "This scenario validates the router and presentation ownership boundary for a split command without changing its behavior."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CMR-001 -- Thin router and presentation boundary

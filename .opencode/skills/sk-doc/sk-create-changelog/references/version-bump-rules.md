@@ -9,7 +9,7 @@ trigger_phrases:
   - "four part semantic version changelog"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # Changelog Version Bump Rules

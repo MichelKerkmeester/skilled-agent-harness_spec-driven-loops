@@ -7,7 +7,7 @@ expected_intent: UNKNOWN
 expected_resources: []
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 1.8.0.6
+version: 2.1.0.14
 ---
 
 # SD-008: UNKNOWN Fallback (Zero Keyword Match)

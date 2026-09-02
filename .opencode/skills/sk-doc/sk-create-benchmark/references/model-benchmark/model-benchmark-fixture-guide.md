@@ -9,7 +9,7 @@ trigger_phrases:
   - "reviewer-prompt fixture authoring"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.5.0.10
 ---
 
 # Model Benchmark Fixture Authoring Guide

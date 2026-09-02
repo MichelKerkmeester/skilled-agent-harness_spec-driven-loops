@@ -2,7 +2,7 @@
 title: "RRD-003 -- Routing refusal"
 description: "This scenario validates the routing refusal for `RRD-003`. It focuses on refusing dispatch mechanics under the scope boundary, with the scope statement quoted rather than paraphrased."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # RRD-003 -- Routing refusal

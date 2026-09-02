@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-doc discriminator"
   - "sk-doc keyword triggers source of truth"
   - "sk-doc smart routing"
-version: 1.0.0.0
+version: 2.1.0.3
 ---
 
 # Packet-Authored, Registry-Projected Routing (sk-doc)

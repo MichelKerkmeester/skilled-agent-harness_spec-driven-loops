@@ -8,7 +8,7 @@ trigger_phrases:
   - "agent authoring reference index"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.6
 ---
 
 # Agent Creation Reference Map

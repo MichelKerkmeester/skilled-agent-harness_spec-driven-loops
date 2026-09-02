@@ -13,7 +13,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
 stage: holdout
-version: 1.0.0.0
+version: 2.1.0.7
 ---
 
 # SD-H10: FLOWCHART Independent Holdout

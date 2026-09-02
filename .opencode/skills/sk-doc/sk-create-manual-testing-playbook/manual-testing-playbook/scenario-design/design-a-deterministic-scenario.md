@@ -1,7 +1,7 @@
 ---
 title: "MTP-006 -- Design a deterministic scenario"
 description: "This scenario validates scenario design rules for `MTP-006`. It focuses on deterministic execution, prompt quality, voice selection, verdicts and prompt synchronization."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # MTP-006 -- Design a deterministic scenario

@@ -19,7 +19,7 @@ expected_leaf_resources:
     leaf_resource_id: assets/skill/skill-readme-template.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
-version: 1.8.0.7
+version: 2.1.0.17
 ---
 
 # SD-014: Medium-Load Token Cost (Median)

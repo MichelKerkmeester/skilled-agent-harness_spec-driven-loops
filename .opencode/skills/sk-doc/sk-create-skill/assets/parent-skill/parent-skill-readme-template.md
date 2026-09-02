@@ -9,7 +9,7 @@ trigger_phrases:
   - "hub readme validation"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.2.0.2
 ---
 
 # Parent Skill Hub README Template

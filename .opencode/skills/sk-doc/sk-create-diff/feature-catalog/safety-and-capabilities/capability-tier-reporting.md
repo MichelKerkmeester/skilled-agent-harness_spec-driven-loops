@@ -6,7 +6,7 @@ trigger_phrases:
   - "supported formats and fidelity tiers"
   - "capabilities subcommand"
   - "detected PDF extractor"
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # Capability and fidelity reporting (capabilities)

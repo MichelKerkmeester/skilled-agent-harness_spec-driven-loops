@@ -1,7 +1,7 @@
 ---
 title: "CHG-002 -- Route a phase child to nested output"
 description: "This scenario validates phase-child topology for CHG-002. A phase child uses the packet-local nested generator and a deterministic changelog filename instead of global versioning."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CHG-002 -- Route a phase child to nested output

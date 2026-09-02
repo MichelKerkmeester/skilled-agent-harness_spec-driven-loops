@@ -2,7 +2,7 @@
 title: "SAFE-004 -- Capability reporting and unsupported handling"
 description: "This scenario validates capability reporting and unsupported handling for `SAFE-004`. It focuses on confirming `capabilities` reports the format matrix and detected PDF extractor, and that unsupported or limited cases fail honestly."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # SAFE-004 -- Capability reporting and unsupported handling

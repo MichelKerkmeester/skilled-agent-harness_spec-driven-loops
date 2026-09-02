@@ -9,7 +9,7 @@ trigger_phrases:
   - "install guide error table"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.4
 ---
 
 # Install Guide Quality and Standards

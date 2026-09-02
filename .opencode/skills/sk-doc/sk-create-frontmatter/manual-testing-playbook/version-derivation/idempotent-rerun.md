@@ -1,7 +1,7 @@
 ---
 title: "FMV-004 -- Idempotent rerun"
 description: "This scenario validates idempotency for `FMV-004`. Re-running the versioning over an already-versioned tree is a byte-level no-op, and a run that rewrites bytes is a failure even when every version string is correct."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # FMV-004 -- Idempotent rerun

@@ -9,7 +9,7 @@ trigger_phrases:
   - "marginalia annotation"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # Annotation Callout (italic-serif aside)

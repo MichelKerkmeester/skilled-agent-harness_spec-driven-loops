@@ -13,7 +13,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: assets/llmstxt-templates.md
 stage: holdout
-version: 1.0.0.0
+version: 2.1.0.5
 ---
 
 # SD-H11: OPTIMIZATION Independent Holdout

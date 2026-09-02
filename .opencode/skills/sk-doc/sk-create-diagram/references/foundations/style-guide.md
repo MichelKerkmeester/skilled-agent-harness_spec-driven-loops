@@ -11,7 +11,7 @@ trigger_phrases:
   - "terminal skin palette"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.3
 ---
 
 # Diagram Style Guide

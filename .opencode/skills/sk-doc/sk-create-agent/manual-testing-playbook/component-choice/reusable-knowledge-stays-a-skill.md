@@ -1,7 +1,7 @@
 ---
 title: "AGC-002 -- Reusable knowledge stays a skill"
 description: "This scenario validates that reusable guidance without a runtime persona is left to the skill workflow instead of becoming an agent."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # AGC-002 -- Reusable knowledge stays a skill

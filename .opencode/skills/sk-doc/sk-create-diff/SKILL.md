@@ -2,7 +2,7 @@
 name: sk-create-diff
 description: Local, Git-free before/after review of an edited document (text, Markdown, HTML, DOCX, text PDF) as a self-contained HTML report.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 <!-- Keywords: create-diff, document diff, before after review, before/after document, local html diff report, document snapshot, ai edit review, docx diff, pdf diff, markdown diff, multi-file diff, aggregate file boundaries -->
 

@@ -1,7 +1,7 @@
 ---
 title: "DIA-001 -- Type selection and routing"
 description: "This scenario validates type selection and routing for `DIA-001`. It focuses on selecting the correct diagram type from the 27-type selection guide and loading the matching type reference before drawing."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # DIA-001 -- Type selection and routing

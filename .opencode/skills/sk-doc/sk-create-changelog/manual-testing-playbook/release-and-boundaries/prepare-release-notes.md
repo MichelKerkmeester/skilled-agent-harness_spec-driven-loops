@@ -1,7 +1,7 @@
 ---
 title: "CHG-006 -- Prepare release notes without inventing release mechanics"
 description: "This scenario validates the release-note boundary for CHG-006. The changelog body and full-changelog path are prepared while tags, commits and GitHub release mechanics remain with sk-git."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CHG-006 -- Prepare release notes without inventing release mechanics

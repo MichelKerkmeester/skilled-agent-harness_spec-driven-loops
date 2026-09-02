@@ -10,7 +10,7 @@ trigger_phrases:
   - "voice pass workflow"
 importance_tier: normal
 contextType: general
-version: 1.1.0.1
+version: 1.1.0.2
 ---
 
 # create-with-human-voice

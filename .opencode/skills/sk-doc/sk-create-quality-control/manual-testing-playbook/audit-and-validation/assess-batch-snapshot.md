@@ -1,7 +1,7 @@
 ---
 title: "QC-006 -- Assess a batch snapshot"
 description: "This scenario validates batch snapshot assessment for `QC-006`. It focuses on per-file extraction, DQI reporting, blockers and recommendations without edits."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # QC-006 -- Assess a batch snapshot

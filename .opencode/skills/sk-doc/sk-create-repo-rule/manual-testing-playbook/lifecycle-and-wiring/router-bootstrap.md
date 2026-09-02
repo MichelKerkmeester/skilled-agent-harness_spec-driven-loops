@@ -2,7 +2,7 @@
 title: "RRL-001 -- Router bootstrap"
 description: "This scenario validates the router prerequisite for `RRL-001`. It focuses on emitting the router into a repository that has none, before any rule is written."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # RRL-001 -- Router bootstrap

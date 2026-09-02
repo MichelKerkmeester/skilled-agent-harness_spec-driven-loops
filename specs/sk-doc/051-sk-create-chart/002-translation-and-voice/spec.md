@@ -102,7 +102,7 @@ Every authored word is English, reads as though written here, and still says wha
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| Translated authored documents, at the placement phase 1 chose | Create | English primary text for every source document |
+| `specs/sk-doc/051-sk-create-chart/002-translation-and-voice/scratch/translated/` | Create | English primary text for every source document, mirroring the source tree. Phase 4 carries these to whichever home phase 1 chose, which is what lets this phase run beside phase 1 rather than behind it |
 | specs/sk-doc/051-sk-create-chart/002-translation-and-voice/research/translation-log.md | Create | One row per divergence between literal and natural |
 <!-- /ANCHOR:scope -->
 

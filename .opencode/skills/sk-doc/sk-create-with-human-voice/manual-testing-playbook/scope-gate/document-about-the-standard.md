@@ -2,7 +2,7 @@
 title: "HVS-003 -- A document about the standard scores against itself"
 description: "This scenario validates the self-reference check for `HVS-003`. It confirms a document about the standard, the standard itself included, is identified as self-referential before any score is quoted."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.2
 ---
 
 # HVS-003 -- A document about the standard scores against itself

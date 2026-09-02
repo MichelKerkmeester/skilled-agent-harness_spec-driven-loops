@@ -1,7 +1,7 @@
 ---
 title: "RMI-001 -- Five-phase install flow"
 description: "This scenario validates the five-phase install-guide flow, checkpoints, STOP conditions and actionable troubleshooting."
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # RMI-001 -- Five-phase install flow

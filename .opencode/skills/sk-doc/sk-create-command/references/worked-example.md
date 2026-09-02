@@ -9,7 +9,7 @@ trigger_phrases:
   - "namespace command example"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.6
 ---
 
 # Command Creation - Worked Split Example

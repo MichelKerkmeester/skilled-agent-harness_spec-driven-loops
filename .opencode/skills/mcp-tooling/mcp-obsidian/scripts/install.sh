@@ -148,8 +148,13 @@ Enable it in the desktop app:
   2. Toggle it on
   3. Click "Register CLI"  (adds `obsidian` to PATH on macOS/Linux)
 
-It remote-controls a RUNNING app (launching it if not running), so it is not a
-headless/filesystem tool. Verify with: obsidian --help
+It remote-controls an ALREADY-RUNNING app and does NOT launch one: with the app
+down every command exits 1 with "The CLI is unable to find Obsidian". It is not a
+headless/filesystem tool.
+
+Syntax is `obsidian <command> key=value` (no POSIX flags).
+Verify with: obsidian version     (exit 0 = registered AND app running)
+Command list: obsidian help
 
 EOF
 }

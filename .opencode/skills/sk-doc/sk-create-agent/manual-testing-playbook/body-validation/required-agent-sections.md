@@ -1,7 +1,7 @@
 ---
 title: "AGV-001 -- Required agent sections"
 description: "This scenario validates the required body sections for a production-ready agent and the shared structure checks that inspect them."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # AGV-001 -- Required agent sections

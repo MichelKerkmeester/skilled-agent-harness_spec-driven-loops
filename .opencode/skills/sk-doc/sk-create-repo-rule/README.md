@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my rule refused"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.0.3
 ---
 
 # create-repo-rule

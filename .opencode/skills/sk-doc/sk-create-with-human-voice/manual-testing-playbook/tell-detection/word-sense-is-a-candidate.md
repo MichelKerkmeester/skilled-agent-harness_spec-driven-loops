@@ -2,7 +2,7 @@
 title: "HVT-002 -- A scanner finding is a candidate, not a verdict"
 description: "This scenario validates the sense check for `HVT-002`. It confirms a mechanical finding is decided by word sense rather than spelling, so the literal sense of a blocked term survives and the metaphorical sense does not."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.2
 ---
 
 # HVT-002 -- A scanner finding is a candidate, not a verdict

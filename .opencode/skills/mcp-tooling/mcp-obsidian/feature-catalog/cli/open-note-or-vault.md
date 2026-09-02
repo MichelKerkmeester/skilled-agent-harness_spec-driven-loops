@@ -12,9 +12,9 @@ version: 0.1.0.0
 
 ## 1. OVERVIEW
 
-The official `obsidian` binary remote-controls the Obsidian desktop app for live UI actions such as opening a note or vault. It launches or focuses the app when it is not already running.
+The official `obsidian` binary remote-controls the Obsidian desktop app for live UI actions such as opening a note. The app must already be running: the CLI does not launch it, and exits 1 when it is down.
 
-The current reference does not confirm the exact subcommand or flags. Those command forms remain `VERIFY` and must be read from `obsidian --help` on the installed version.
+The command is `obsidian open file="<name>"` or `obsidian open path="<folder/note.md>"`, confirmed present in the installed binary's command list. `obsidian help` on the installed version remains the authoritative parameter reference.
 
 ---
 
@@ -22,7 +22,7 @@ The current reference does not confirm the exact subcommand or flags. Those comm
 
 This surface is selected only when the requested outcome requires app focus, rendering, or another live-app action. It is not appropriate for deterministic file writes, CI, or server-side note management; those route to `notesmd-cli`.
 
-The operator registers the CLI, confirms the app-backed environment, checks `obsidian --help`, and then uses the installed command form for the target note or vault. The playbook records the command as `VERIFY` until the local binary supplies the exact syntax.
+The operator registers the CLI, starts Obsidian, confirms the surface is live with `obsidian version` (exit 0), and then opens the target with `obsidian open file="<name>"`. Because the CLI exits 0 even on failure once the app is up, the result is judged by the visible app state and by the absence of a leading `Error:` on stdout.
 
 ---
 

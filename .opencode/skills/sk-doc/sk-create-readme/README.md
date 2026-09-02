@@ -4,7 +4,7 @@ description: "Author current-state folder READMEs and folded five-phase install 
 trigger_phrases:
   - "create readme"
   - "write a readme"
-version: 1.1.0.0
+version: 1.1.0.11
 ---
 
 # create-readme

@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill metadata drift gate"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.2.0.6
 ---
 
 # Skill Root Metadata Contract

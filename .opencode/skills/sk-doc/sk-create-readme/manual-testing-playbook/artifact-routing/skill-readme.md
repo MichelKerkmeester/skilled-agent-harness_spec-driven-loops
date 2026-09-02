@@ -1,7 +1,7 @@
 ---
 title: "RMR-001 -- Skill README"
 description: "This scenario validates routing a skill folder to a general README with orientation first and evidence-backed reference detail."
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # RMR-001 -- Skill README

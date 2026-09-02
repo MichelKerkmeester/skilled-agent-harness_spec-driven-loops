@@ -1,7 +1,7 @@
 ---
 title: "create-repo-rule: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the create-repo-rule sk-doc workflow packet."
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # create-repo-rule: Manual Testing Playbook

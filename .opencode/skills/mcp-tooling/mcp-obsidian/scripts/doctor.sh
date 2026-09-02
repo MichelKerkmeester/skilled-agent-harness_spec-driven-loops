@@ -46,9 +46,19 @@ else
 fi
 
 # App-backed CLI: official obsidian
+# WHY the probe runs the binary instead of only checking PATH: this CLI is a remote
+# control for a desktop app, so a registered binary says nothing about whether it can
+# answer. `version` is the one call whose exit status is trustworthy — the launcher
+# raises it before the app is reached. Every later call exits 0 even when it fails.
 log "-- obsidian CLI (app-backed, official) --"
 if command -v obsidian >/dev/null 2>&1; then
-  ok "obsidian: $(command -v obsidian) (enabled in-app; remote-controls a running app)"
+  obsidian_path="$(command -v obsidian)"
+  if obsidian_version="$(obsidian version 2>/dev/null)" && [ -n "$obsidian_version" ]; then
+    ok "obsidian: $obsidian_path ($(first_line_or_unknown "$obsidian_version")) — app is running, CLI is live"
+  else
+    warn "obsidian: $obsidian_path is registered but the desktop app is NOT running — the CLI cannot answer and will not launch it. Start Obsidian, then re-run."
+  fi
+  info "Syntax is 'obsidian <command> key=value' (no POSIX flags); in-app failures exit 0 and print 'Error: ...' on stdout"
 else
   info "obsidian CLI not on PATH — enable it in Settings → General → Command line interface → Register CLI (Obsidian v1.12.4+)"
 fi

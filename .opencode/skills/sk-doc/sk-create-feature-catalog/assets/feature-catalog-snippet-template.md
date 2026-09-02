@@ -8,7 +8,7 @@ trigger_phrases:
   - "split catalog feature file"
 importance_tier: normal
 contextType: general
-version: 1.8.0.5
+version: 1.0.0.11
 ---
 
 # Feature Catalog Snippet Template

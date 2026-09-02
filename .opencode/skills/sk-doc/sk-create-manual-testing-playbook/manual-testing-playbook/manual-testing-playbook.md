@@ -1,7 +1,7 @@
 ---
 title: "sk-create-manual-testing-playbook: Manual Testing Playbook"
 description: "Operator-facing scenarios for authoring deterministic playbook packages, keeping operator checks in scope and storing run evidence."
-version: 1.0.0.0
+version: 1.0.0.3
 ---
 
 # sk-create-manual-testing-playbook: Manual Testing Playbook

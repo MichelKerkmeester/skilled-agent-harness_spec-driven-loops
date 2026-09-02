@@ -8,7 +8,7 @@ trigger_phrases:
   - "behavior scenario table template"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.0
+version: 1.5.0.9
 ---
 
 # Behavior Benchmark Index Template

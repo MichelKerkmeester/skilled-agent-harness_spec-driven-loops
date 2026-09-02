@@ -1,7 +1,7 @@
 ---
 title: "AGC-001 -- Named runtime persona"
 description: "This scenario validates choosing an agent for a stable runtime persona with explicit permissions and an authority boundary."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # AGC-001 -- Named runtime persona

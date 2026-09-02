@@ -9,7 +9,7 @@ trigger_phrases:
   - "agent decision rule"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.4
 ---
 
 # Agent vs Skill vs Command

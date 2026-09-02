@@ -1,7 +1,7 @@
 ---
 title: "create-with-human-voice: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review and orchestration guidance, execution expectations and per-feature validation files for the create-with-human-voice sk-doc workflow packet."
-version: 1.0.0.0
+version: 1.1.0.2
 ---
 
 # create-with-human-voice: Manual Testing Playbook

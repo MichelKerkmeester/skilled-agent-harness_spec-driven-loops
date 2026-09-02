@@ -2,7 +2,7 @@
 title: "CMP-003 -- PDF text comparison"
 description: "This scenario validates PDF text comparison for `CMP-003`. It focuses on extracting and comparing the text layer of two PDFs when an extractor is available and failing cleanly when none is present."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.2
 ---
 
 # CMP-003 -- PDF text comparison

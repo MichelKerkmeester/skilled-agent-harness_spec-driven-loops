@@ -8,7 +8,7 @@ trigger_phrases:
   - "snapshot cleanup lifecycle"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.0.3
 ---
 
 # Workflow: baseline, comparison, and lifecycle

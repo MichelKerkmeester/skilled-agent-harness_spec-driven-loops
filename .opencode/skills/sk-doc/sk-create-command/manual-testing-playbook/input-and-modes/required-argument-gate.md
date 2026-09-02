@@ -1,7 +1,7 @@
 ---
 title: "CMI-001 -- Required argument gate"
 description: "This scenario validates the mandatory input gate for a required command argument and its ban on inferred context."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CMI-001 -- Required argument gate

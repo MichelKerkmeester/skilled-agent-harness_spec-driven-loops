@@ -2,7 +2,7 @@
 title: "RRA-002 -- Standards gate rejection"
 description: "This scenario validates the standards gate for `RRA-002`. It focuses on rejecting a draft that satisfies every structural check and still fails the reader tests."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.2
 ---
 
 # RRA-002 -- Standards gate rejection

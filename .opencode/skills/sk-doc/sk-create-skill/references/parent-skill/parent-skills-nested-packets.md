@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 2.0.0.1
+version: 1.2.0.26
 ---
 
 # Parent Skills with Nested Mode Packets

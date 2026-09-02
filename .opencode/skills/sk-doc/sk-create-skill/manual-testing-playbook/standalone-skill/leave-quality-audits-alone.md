@@ -1,7 +1,7 @@
 ---
 title: "SKL-003 -- Leave quality audits alone"
 description: "This scenario validates the quality-control handoff for `SKL-003`. It focuses on existing-document review and no new skill scaffold."
-version: 1.0.0.0
+version: 1.2.0.1
 ---
 
 # SKL-003 -- Leave quality audits alone

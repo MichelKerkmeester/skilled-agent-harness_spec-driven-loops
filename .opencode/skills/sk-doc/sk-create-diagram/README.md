@@ -4,7 +4,7 @@ description: "Draw a self-contained HTML/SVG technical diagram across 27 types a
 trigger_phrases:
   - "create diagram"
   - "architecture diagram"
-version: 1.0.0.0
+version: 1.0.0.5
 ---
 
 # sk-create-diagram

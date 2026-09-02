@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "sk-doc compiled routing"
-version: 1.0.0.0
+version: 2.1.0.2
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)

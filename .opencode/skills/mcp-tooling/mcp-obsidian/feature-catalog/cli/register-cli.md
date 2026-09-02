@@ -20,7 +20,7 @@ It has no separate npm or Homebrew package. Registration adds the `obsidian` bin
 
 ## 2. HOW IT WORKS
 
-The operator opens the desktop app, enables the command-line interface setting, selects Register CLI, and then verifies the binary with `obsidian --help`. The CLI is app-backed and is not a headless substitute for `notesmd-cli`.
+The operator opens the desktop app, enables the command-line interface setting, selects Register CLI, and then verifies the binary with `obsidian version`, which exits 0 only while the app is running. `obsidian help` then lists the command surface. The CLI is app-backed and is not a headless substitute for `notesmd-cli`.
 
 The exact registration UI wording and PATH location are stable enough to document at this level; use the installed app and shell environment to diagnose GUI-versus-shell PATH mismatches.
 
@@ -39,7 +39,7 @@ The exact registration UI wording and PATH location are stable enough to documen
 
 | File | Type | Role |
 |---|---|---|
-| [`../../manual-testing-playbook/official-cli/register-and-help.md`](../../manual-testing-playbook/official-cli/register-and-help.md) | Manual playbook | Verifies registration and `obsidian --help` in an operator-owned app session. |
+| [`../../manual-testing-playbook/official-cli/register-and-help.md`](../../manual-testing-playbook/official-cli/register-and-help.md) | Manual playbook | Verifies registration, the `obsidian version` preflight, and `obsidian help` in an operator-owned app session. |
 | [`../../references/troubleshooting.md`](../../references/troubleshooting.md) | Reference | Diagnoses unregistered CLI and GUI PATH failures. |
 
 ---

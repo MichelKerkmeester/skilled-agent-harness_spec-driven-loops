@@ -9,7 +9,7 @@ trigger_phrases:
   - "where does this content belong"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.1.0.2
 ---
 
 # Decision Tests: May This Rule Exist?

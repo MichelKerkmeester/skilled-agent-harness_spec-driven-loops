@@ -8,7 +8,7 @@ trigger_phrases:
   - "snake_case exemption boundary"
 importance_tier: important
 contextType: general
-version: 1.0.0.0
+version: 2.1.0.3
 ---
 
 # Filesystem Naming Convention - Kebab-Case Canon

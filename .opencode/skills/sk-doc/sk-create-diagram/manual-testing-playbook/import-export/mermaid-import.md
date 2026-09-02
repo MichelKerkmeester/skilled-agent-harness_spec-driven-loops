@@ -1,7 +1,7 @@
 ---
 title: "IMP-002 -- Mermaid import"
 description: "This scenario validates Mermaid import for `IMP-002`. It focuses on extracting .mmd, .mermaid, or fenced-Mermaid sources via mermaid_extract.py, redrawing without copying the renderer layout or theme, and shipping a fidelity ledger."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # IMP-002 -- Mermaid import

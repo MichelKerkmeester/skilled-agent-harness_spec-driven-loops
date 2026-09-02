@@ -134,7 +134,7 @@ See [`cli/register-cli.md`](cli/register-cli.md).
 
 ### Open a note or vault in the app
 
-The official `obsidian` binary remote-controls the desktop app and can launch it when it is not running. Exact subcommand and flag syntax remains `VERIFY`.
+The official `obsidian` binary remote-controls an already-running desktop app and does **not** launch it. Its syntax is `obsidian <command> key=value` across 106 commands, confirmed against desktop 1.13.7.
 
 See [`cli/open-note-or-vault.md`](cli/open-note-or-vault.md).
 

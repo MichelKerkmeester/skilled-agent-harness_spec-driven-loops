@@ -2,7 +2,7 @@
 title: "SNAP-001 -- Baseline capture then compare"
 description: "This scenario validates baseline capture then compare for `SNAP-001`. It focuses on the capture-before-edit invariant: snapshot a file, edit it, then compare against the stored baseline."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # SNAP-001 -- Baseline capture then compare

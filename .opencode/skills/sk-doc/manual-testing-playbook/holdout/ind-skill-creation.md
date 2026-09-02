@@ -19,7 +19,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
 stage: holdout
-version: 1.0.0.0
+version: 2.1.0.6
 ---
 
 # SD-H06: SKILL_CREATION Independent Holdout

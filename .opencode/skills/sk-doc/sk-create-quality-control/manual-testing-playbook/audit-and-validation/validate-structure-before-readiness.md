@@ -1,7 +1,7 @@
 ---
 title: "QC-002 -- Validate structure before readiness"
 description: "This scenario validates the structure-validation path for `QC-002`. It focuses on directory boundaries, filename checks and grouped readiness findings."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # QC-002 -- Validate structure before readiness

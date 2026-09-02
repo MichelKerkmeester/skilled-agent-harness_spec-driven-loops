@@ -1,7 +1,7 @@
 ---
 title: "QC-004 -- Optimize only when asked"
 description: "This scenario validates scoped content optimization for `QC-004`. It focuses on targeted patterns, same-file edits and post-edit checks."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # QC-004 -- Optimize only when asked

@@ -8,7 +8,7 @@ trigger_phrases:
   - "16 optimization patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.1
+version: 1.0.0.4
 ---
 
 # Transformation Pattern Catalog

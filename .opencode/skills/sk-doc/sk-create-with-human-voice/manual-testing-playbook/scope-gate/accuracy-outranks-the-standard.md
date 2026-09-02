@@ -2,7 +2,7 @@
 title: "HVS-004 -- Accuracy outranks the standard"
 description: "This scenario validates the accuracy rule for `HVS-004`. It confirms a banned term whose removal would change what a sentence claims is kept, and that the exception is recorded with its reason."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.2
 ---
 
 # HVS-004 -- Accuracy outranks the standard

@@ -1,7 +1,7 @@
 ---
 title: "CMD-001 -- Repeatable slash command"
 description: "This scenario validates selecting a repeatable user-triggered workflow as a slash command with a valid namespace path."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CMD-001 -- Repeatable slash command

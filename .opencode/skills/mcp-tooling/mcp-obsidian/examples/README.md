@@ -15,12 +15,13 @@ trigger_phrases:
 
 - 3.1 [headless-notes-workflow.sh](#31-headless-notes-workflowsh)
 - 3.2 [mcp-roundtrip.sh](#32-mcp-roundtripsh)
+- 3.3 [official-cli-workflow.sh](#33-official-cli-workflowsh)
 
 ---
 
 ## 1. OVERVIEW
 
-This directory contains two focused examples for the mcp-obsidian mode. They demonstrate two of the runtime shapes the mode supports: filesystem-native notes with `notesmd-cli`, and a reference flow for Code Mode calls against a live Local REST API.
+This directory contains three focused examples for the mcp-obsidian mode. They demonstrate the three runtime shapes the mode supports: filesystem-native notes with `notesmd-cli`, a reference flow for Code Mode calls against a live Local REST API, and the app-backed official `obsidian` CLI.
 
 ### Key Features
 
@@ -141,6 +142,48 @@ OBSIDIAN_BASE_URL="http://127.0.0.1:27123" \
 - Preparing a live-app MCP session without writing a note
 - Explaining why an MCP operation should route back to `notesmd-cli` when the app is unavailable
 - Copying a verified invocation shape into a Code Mode session after live tool discovery
+
+---
+
+### 3.3 official-cli-workflow.sh
+
+**Purpose:** Drive the official app-backed `obsidian` CLI safely, with the preflight and result checks its contract requires.
+
+**Usage:**
+
+```bash
+# Use the CLI's default vault and the default demo note name
+bash examples/official-cli-workflow.sh
+
+# Target a named vault and note, and keep the note afterwards
+VAULT="Work" NOTE_NAME="CLI Probe" KEEP_NOTE=1 \
+  bash examples/official-cli-workflow.sh
+```
+
+**What it does:**
+
+1. Confirms `obsidian` resolves, then preflights with `obsidian version`. This is the only official-CLI call whose exit status is meaningful: exit 0 means the binary is registered **and** the desktop app is running.
+2. Confirms the target vault exists before any mutation, since an unknown vault reports `Vault not found.` and still exits 0.
+3. Creates a note and reads the created filename back out of the `Created:` line, because a name collision produces a numbered sibling instead of an error.
+4. Appends a line and sets a frontmatter property, always naming the target file. Omitting `file=` would write to whatever note the person has open.
+5. Reads the note back as a read-after-write check.
+6. Prints three app-only values (`tags`, `files`, `plugins:enabled`) that a filesystem CLI cannot produce.
+7. Deletes the note on exit through a trap, unless `KEEP_NOTE=1`.
+
+Every CLI call goes through an `obs()` wrapper that turns the CLI's own `Error:` text back into a non-zero status, because the official CLI exits 0 even when a command fails.
+
+**Exit codes:**
+
+- `0` — Preflight passed and the full round trip succeeded
+- `1` — `obsidian` is not registered, the Obsidian app is not running, the named vault does not exist, or a CLI call reported an error on stdout
+
+**Use cases:**
+
+- Confirming the official CLI is usable before an agent depends on it
+- A worked template for the preflight-and-parse pattern every official-CLI script needs
+- Reaching app-only data (resolved link graph, computed tag and task index, Bases, sync history)
+
+> Requires a running Obsidian desktop app. The official CLI does not launch one. For app-free work use `headless-notes-workflow.sh`.
 
 ---
 

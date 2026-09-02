@@ -8,7 +8,7 @@ trigger_phrases:
   - "diagram generation import export"
   - "feature catalog"
 last_updated: "2026-08-12"
-version: 1.0.0.0
+version: 1.0.0.3
 ---
 
 # sk-create-diagram: Feature Catalog

@@ -9,7 +9,7 @@ trigger_phrases:
   - "behavior preserving command split"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.3
 ---
 
 # Command Creation - Router / Presentation Split

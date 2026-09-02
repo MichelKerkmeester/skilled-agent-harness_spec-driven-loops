@@ -9,7 +9,7 @@ trigger_phrases:
   - "vocabulary class ownership"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.1
+version: 1.2.0.19
 ---
 
 # Parent Hub Router Schema

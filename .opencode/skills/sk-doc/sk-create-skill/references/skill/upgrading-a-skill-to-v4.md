@@ -9,7 +9,7 @@ trigger_phrases:
   - "remove repo parent skill"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.2.0.1
 ---
 
 # Upgrading a Customized Skill to v4

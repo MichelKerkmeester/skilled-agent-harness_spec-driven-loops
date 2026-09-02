@@ -2,7 +2,7 @@
 title: "SNAP-002 -- Missing baseline routes to fallback"
 description: "This scenario validates missing-baseline fallback for `SNAP-002`. It focuses on confirming `compare` with no stored baseline exits `4` and that the explicit-pair fallback works instead."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # SNAP-002 -- Missing baseline routes to fallback

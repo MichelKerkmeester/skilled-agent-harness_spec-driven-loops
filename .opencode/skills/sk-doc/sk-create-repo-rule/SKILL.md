@@ -2,7 +2,7 @@
 name: sk-create-repo-rule
 description: Author, revise or retire a repo rule from a user's request, with the decision tests that refuse most of them.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.0.1
+version: 1.1.0.0
 ---
 
 <!-- Keywords: create-repo-rule, /create:repo-rule, repo rule, REPO RULES.md, repo-rules, rule file, trigger table, rule router, operating discipline, always-loaded versus triggered -->

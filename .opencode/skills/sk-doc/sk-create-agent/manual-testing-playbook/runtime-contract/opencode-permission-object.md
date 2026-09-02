@@ -1,7 +1,7 @@
 ---
 title: "AGR-001 -- OpenCode permission object"
 description: "This scenario validates the OpenCode permission object, runtime placement and leaf authority boundary for a new agent."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # AGR-001 -- OpenCode permission object

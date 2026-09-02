@@ -9,7 +9,7 @@ trigger_phrases:
   - "mechanical versus judgment findings"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.1
+version: 1.1.0.2
 ---
 
 # Voice Scoring And Verification

@@ -8,7 +8,7 @@ trigger_phrases:
   - "accessible before after report"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.0.4
 ---
 
 # Report accessibility & self-containment contract

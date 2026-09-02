@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram examples index"
   - "canonical rendered examples"
 contextType: general
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # assets/examples

@@ -2,7 +2,7 @@
 title: "CMP-002 -- DOCX text comparison"
 description: "This scenario validates DOCX text comparison for `CMP-002`. It focuses on extracting paragraph and table text from two `.docx` files and comparing them at text fidelity with an honest warning."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # CMP-002 -- DOCX text comparison

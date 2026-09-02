@@ -2,7 +2,7 @@
 title: "HVS-002 -- Code and quotations stay byte-identical"
 description: "This scenario validates the protected-span rule for `HVS-002`. It confirms a voice pass edits no code block, quotation, error string, command, generated file, released changelog entry or byte-pinned fixture."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.2
 ---
 
 # HVS-002 -- Code and quotations stay byte-identical

@@ -1,7 +1,7 @@
 ---
 title: "QC-005 -- Require evidence for a DQI claim"
 description: "This scenario validates evidence discipline for `QC-005`. It focuses on refusing unsupported DQI claims and keeping HVR separate from structure checks."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # QC-005 -- Require evidence for a DQI claim

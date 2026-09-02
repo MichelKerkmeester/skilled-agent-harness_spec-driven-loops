@@ -1,7 +1,7 @@
 ---
 title: "IMP-003 -- Export guidance"
 description: "This scenario validates PNG/SVG export for `IMP-003`. It focuses on manual-only, diagram-only export via references/import-export/export.md, the Playwright PNG path, and an unchanged source HTML."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # IMP-003 -- Export guidance

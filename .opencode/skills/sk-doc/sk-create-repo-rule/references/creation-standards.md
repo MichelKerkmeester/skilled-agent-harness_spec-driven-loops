@@ -10,7 +10,7 @@ trigger_phrases:
   - "reviewing a draft rule"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.1.0.3
 ---
 
 # Creation Standards: Is This Rule Worth Loading?

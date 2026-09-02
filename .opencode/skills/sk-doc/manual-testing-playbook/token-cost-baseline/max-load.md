@@ -390,7 +390,7 @@ expected_leaf_resources:
     leaf_resource_id: references/skill/creation-workflow.md
   - workflow_mode: sk-create-skill-parent
     leaf_resource_id: references/skill/examples-and-maintenance.md
-version: 1.8.0.9
+version: 2.1.0.12
 ---
 
 # SD-015: Max-Load Token Cost (Ceiling)

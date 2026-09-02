@@ -1,7 +1,7 @@
 ---
 title: "BMR-001 -- Promote a completed MCP result"
 description: "This scenario validates MCP promotion for BMR-001. A completed result with an accepted decision, stable fixture and replay commands becomes a skill-local benchmark report and source pointer."
-version: 1.0.0.0
+version: 1.5.0.1
 ---
 
 # BMR-001 -- Promote a completed MCP result

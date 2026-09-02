@@ -21,13 +21,13 @@ The official CLI is a remote control for the running desktop app, not a headless
 
 - Feature ID: `OBS-010`
 - Feature Name: Open an app-backed target
-- Scenario Objective: Use the local `obsidian --help` output to open `TEST_TARGET` and capture visible app state.
+- Scenario Objective: With Obsidian running, open `TEST_TARGET` with `obsidian open file=` and capture visible app state.
 - Exact Prompt: `Open TEST_TARGET in the live Obsidian app using the official CLI, and report what became visible.`
-- Exact Command Sequence: `1. obsidian --help -> 2. obsidian "TEST_TARGET" (VERIFY target syntax against step 1) -> 3. capture the visible app state`
-- Expected Signals: Step 1 prints the installed syntax; step 2 launches/focuses Obsidian or the operator records a syntax mismatch; step 3 identifies the visible target.
+- Exact Command Sequence: `1. obsidian version (must exit 0) -> 2. obsidian open file="TEST_TARGET" -> 3. capture the visible app state`
+- Expected Signals: Step 1 exits 0, proving the app is running; step 2 prints no leading `Error:` on stdout; step 3 identifies the visible target in the live UI.
 - Evidence: Help output, exact command used, exit code, app window/vault/note state, and any URI-action syntax discovered.
 - Pass/Fail Criteria: PASS if the local-help-confirmed form opens the target in the app; SKIP if the documented high-level form differs and no safe syntax is confirmed; FAIL if a confirmed command does not produce the expected app action.
-- Failure Triage: 1. Read `obsidian --help` again. 2. Confirm the target is a valid vault-relative path or supported URI. 3. If app/plugin URI behavior is required, record it as `VERIFY` rather than substituting headless CLI work.
+- Failure Triage: 1. Re-run `obsidian version`; exit 1 means the app is not running and the CLI will not start it. 2. Confirm the target resolves with `obsidian file file="TEST_TARGET"`. 3. Remember the CLI exits 0 on failure, so read stdout for a leading `Error:` rather than trusting the status.
 
 ---
 
@@ -43,23 +43,23 @@ Use a non-destructive target. The current package confirms app-backed open behav
 
 ### Commands
 
-1. `obsidian --help`
-2. `obsidian "TEST_TARGET"` — verify the exact target form against step 1.
+1. `obsidian version` — must exit 0 before step 2; exit 1 means Obsidian is not running.
+2. `obsidian open file="TEST_TARGET"` — `file=` resolves by name like a wikilink; use `path=` for an exact vault-relative path.
 3. Capture the visible app state.
 
 ### Expected
 
-The app launches or focuses and shows the requested target when the local command form supports it. If the command differs, record `SKIP` with the exact help output.
+The running app focuses and shows the requested target. The CLI does not launch Obsidian, so a closed app is a prerequisite failure rather than a scenario failure.
 
 ### Evidence
 
-Capture help, command, exit code, visible app state, and any URI-action details.
+Capture the `obsidian version` output and status, the open command, its stdout, and the visible app state.
 
 ### Pass / Fail
 
-- **Pass:** a help-confirmed command opens/focuses the expected target.
-- **Skip:** Obsidian desktop is not installed, or `obsidian --help` is unavailable in this environment, so the target-open syntax cannot be confirmed before running it.
-- **Fail:** confirmed syntax runs but opens the wrong target or does not focus the app.
+- **Pass:** `obsidian open file=` focuses the expected target and prints no leading `Error:`.
+- **Skip:** Obsidian desktop is not installed, or it cannot be started in this environment, so `obsidian version` never exits 0.
+- **Fail:** the command runs but opens the wrong target, does not focus the app, or prints `Error:` on stdout.
 
 ### Failure Triage
 
@@ -69,7 +69,7 @@ Capture help, command, exit code, visible app state, and any URI-action details.
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| OBS-010 | Open an app-backed target | Open a local-help-confirmed note or vault target | `Open TEST_TARGET in the live Obsidian app using the official CLI, and report what became visible.` | 1. `obsidian --help` -> 2. `obsidian "TEST_TARGET"` (VERIFY) -> 3. capture app state | Help confirms syntax; app launches/focuses; target visible or syntax blocker recorded | Help, command, exit code, app state | PASS on confirmed open; SKIP on unconfirmed syntax; FAIL on wrong app behavior | Re-read help, validate target, keep URI behavior VERIFY |
+| OBS-010 | Open an app-backed target | Open a note in the live app with the confirmed command form | `Open TEST_TARGET in the live Obsidian app using the official CLI, and report what became visible.` | 1. `obsidian version` (exit 0) -> 2. `obsidian open file="TEST_TARGET"` -> 3. capture app state | Preflight exits 0; no leading `Error:` on stdout; target visible | Version output, command, stdout, app state | PASS on confirmed open; SKIP if the app cannot run here; FAIL on wrong app behavior | Re-run preflight, resolve the target with `obsidian file`, read stdout not `$?` |
 
 ---
 

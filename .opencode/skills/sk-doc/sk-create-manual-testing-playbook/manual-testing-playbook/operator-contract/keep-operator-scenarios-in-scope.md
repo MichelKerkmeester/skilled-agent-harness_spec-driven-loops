@@ -1,7 +1,7 @@
 ---
 title: "MTP-004 -- Keep operator scenarios in scope"
 description: "This scenario validates the operator-scenario boundary for `MTP-004`. It focuses on frontmatter that the operator validator must count."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # MTP-004 -- Keep operator scenarios in scope

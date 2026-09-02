@@ -1,7 +1,7 @@
 ---
 title: "CHG-004 -- Avoid a version collision"
 description: "This scenario validates collision handling for CHG-004. When the calculated global changelog path exists, the build segment increases until the target is unique and no file is overwritten."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CHG-004 -- Avoid a version collision

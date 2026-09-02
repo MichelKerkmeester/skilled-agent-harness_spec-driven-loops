@@ -2,7 +2,7 @@
 title: "RRL-002 -- Scope boundary halt"
 description: "This scenario validates the pre-wiring scope check for `RRL-002`. It focuses on halting rather than widening the router's scope statement to admit an out-of-bounds rule."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # RRL-002 -- Scope boundary halt

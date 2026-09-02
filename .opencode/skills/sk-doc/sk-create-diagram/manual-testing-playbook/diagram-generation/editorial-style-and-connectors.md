@@ -1,7 +1,7 @@
 ---
 title: "DIA-002 -- Editorial style and connectors"
 description: "This scenario validates the editorial design system and mandatory connector rules for `DIA-002`. It focuses on the 4px grid, single-accent focal rule, orthogonal elbows, fanned attach points, masked arrow labels, and bottom-strip legend."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # DIA-002 -- Editorial style and connectors

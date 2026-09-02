@@ -8,7 +8,7 @@ trigger_phrases:
   - "benchmark report structure example"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.5.0.6
 ---
 
 # Benchmark Report Worked Example

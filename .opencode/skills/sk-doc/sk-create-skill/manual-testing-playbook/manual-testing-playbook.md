@@ -1,7 +1,7 @@
 ---
 title: "sk-create-skill: Manual Testing Playbook"
 description: "Operator-facing scenarios for scaffolding standalone skills, building parent hubs, validating root metadata and preserving routing boundaries."
-version: 1.0.0.0
+version: 1.2.0.1
 ---
 
 # sk-create-skill: Manual Testing Playbook

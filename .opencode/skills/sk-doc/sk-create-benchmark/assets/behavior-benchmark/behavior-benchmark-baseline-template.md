@@ -8,7 +8,7 @@ trigger_phrases:
   - "behavior baseline provenance"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.0
+version: 1.5.0.8
 ---
 
 # Behavior Benchmark Baseline Template

@@ -9,7 +9,7 @@ trigger_phrases:
   - "provisional benchmark promotion"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.5.0.5
 ---
 
 # Benchmark Adoption Case Studies

@@ -10,7 +10,7 @@ trigger_phrases:
   - "obsidian vault cli"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.2.0.0
 ---
 
 # Obsidian CLI Reference
@@ -18,7 +18,7 @@ version: 0.1.0.0
 Two distinct CLI profiles operate an Obsidian vault. Pick by whether a live app is available.
 
 - **`notesmd-cli`** (Yakitrak) — HEADLESS. Operates directly on the vault filesystem. Works with **no running Obsidian app**. This is the default for agent automation.
-- **`obsidian`** (official) — APP-BACKED. A remote control for a running Obsidian desktop app (launches it if not running). Not headless.
+- **`obsidian`** (official) — APP-BACKED. A remote control for an already-running Obsidian desktop app. It does **not** launch the app, and fails with exit 1 when the app is down. Not headless.
 
 ---
 
@@ -26,7 +26,7 @@ Two distinct CLI profiles operate an Obsidian vault. Pick by whether a live app 
 
 `notesmd-cli` is a Go CLI that reads and writes the vault's markdown files directly. Because it never talks to a running app, it is the reliable surface for scripted, headless agent workflows: create notes, search content, list files, edit frontmatter, and manage which vault is the default — all against the filesystem.
 
-The official `obsidian` CLI is a thin remote control shipped inside the desktop app (GA in desktop v1.12.4, Feb 2026). It launches or focuses a running app and drives it. It is the right surface only when you need the live app's rendering, plugins, or URI actions in the loop.
+The official `obsidian` CLI is a thin remote control shipped inside the desktop app (GA in desktop v1.12.4, Feb 2026). It drives an app that is **already running** and does not start one. It is the right surface when you need the live app's resolved link graph, its computed tag/task index, its plugins, sync and file history, or its rendering. Agent-facing usage, preflight and the exit-0 failure contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
 
 **Key agent advantages of `notesmd-cli`:**
 - No app dependency — runs on servers, in CI, over SSH
@@ -62,7 +62,7 @@ yay -S notesmd-cli-bin
 **`obsidian` (official, app-backed):**
 - Obsidian desktop **v1.12.4+** installed
 - Enable in-app: **Settings → General → Command line interface → toggle on → "Register CLI"** (auto-adds `obsidian` to PATH on mac/Linux)
-- Obsidian must be installed/registered; the CLI launches the app if it is not already running
+- Obsidian must be installed/registered **and the desktop app must already be running**; the CLI does not launch it (confirmed: exit 1 with `The CLI is unable to find Obsidian` when the app is down)
 
 ---
 
@@ -74,7 +74,10 @@ yay -S notesmd-cli-bin
 | Scripted / CI / server automation | `notesmd-cli` | No GUI dependency |
 | Manage multiple vaults, set default | `notesmd-cli` | `add-vault`/`set-default-vault` |
 | Drive the live app (open a note in the running UI) | `obsidian` | App-backed remote control |
-| Trigger app-only rendering or plugin actions | `obsidian` | Runs inside the app `VERIFY` |
+| Resolved link graph: backlinks, orphans, unresolved | `obsidian` | Only the running app holds the resolved graph |
+| Vault-wide tags, tasks or properties as the app computes them | `obsidian` | The index lives in the app, not in the files |
+| Bases queries, sync history, file version history | `obsidian` | No filesystem equivalent |
+| Plugin, theme or snippet state changes | `obsidian` | Mutates live app state |
 
 > **Agent default:** prefer `notesmd-cli`. Only reach for the official `obsidian` CLI when the outcome genuinely requires the running app.
 
@@ -157,26 +160,36 @@ Fourteen subcommands, grouped by purpose:
 
 ## 8. OFFICIAL OBSIDIAN CLI (APP-BACKED)
 
-The official `obsidian` binary ships inside Obsidian desktop **v1.12.4+** and is a remote control for a running app. It is **not** headless: invoking it launches or focuses the desktop app and drives it.
+The official `obsidian` binary ships inside Obsidian desktop **v1.12.4+** and is a remote control for a running app. It is **not** headless, and it does **not** start the app: with the app down every invocation prints `The CLI is unable to find Obsidian. Please make sure Obsidian is running and try again.` to stderr and exits 1.
 
 **Enable it (one-time):** Settings → General → Command line interface → toggle on → **"Register CLI"**. On macOS/Linux this registers `obsidian` on PATH; the app must be installed.
 
-**Command surface (high level):**
+**Syntax:** `obsidian <command> key=value`. It takes no POSIX flags. `obsidian --version` and `obsidian help` both fail; the subcommands are `obsidian version` and `obsidian help`.
+
+**Command surface:** 106 commands, confirmed against desktop 1.13.7 (installer 1.13.4). `obsidian help` prints the authoritative list.
 
 | Capability | Status | Notes |
 |------------|--------|-------|
-| Open a note / vault URI in the running app | `VERIFY exact subcommand + flags` | The core "remote control" action |
-| Launch the app if not running | Confirmed behavior | The CLI starts the app when needed |
-| Trigger app/plugin actions via URI | `VERIFY` | Obsidian's `obsidian://` URI actions are the likely bridge |
-| Headless file operations | Not supported | Use `notesmd-cli` — the official CLI requires the app |
+| Read, create, append, prepend, delete, move notes | Confirmed | `obsidian read file="Note"`, `obsidian create name="Note" content="..."` |
+| Search the vault | Confirmed | `search` and `search:context`, both with `format=json` |
+| Resolved link graph | Confirmed present | `backlinks`, `links`, `orphans`, `deadends`, `unresolved` — no filesystem equivalent |
+| Vault-wide tags, tasks, properties | Confirmed present | `tags`, `tasks`, `properties`, `property:set` / `property:read` / `property:remove` |
+| Bases queries, sync and file history | Confirmed present | `base:query`, `sync:*`, `history:*`, `diff` |
+| Plugin, theme and snippet control | Confirmed present | `plugin:enable`, `theme:set`, `snippet:enable` and siblings |
+| Arbitrary JavaScript in the live app | Confirmed | `eval code="..."` returns `=> <result>`. Not sandboxed |
+| Launch the app if not running | **Not supported** | The CLI fails with exit 1 and leaves the app down |
+| Headless file operations | Not supported | Use `notesmd-cli` — the official CLI requires the running app |
 
-> **`VERIFY` note:** the official CLI's exact subcommand names, flags, and full command list are **not confirmed** in this pass. It shipped GA in desktop v1.12.4 (Feb 2026), free, with no npm/brew package (it ships with the desktop app). Confirm specifics with `obsidian --help` after enabling "Register CLI", and treat any subcommand name here as `VERIFY` until reconfirmed against the installed binary.
+> **Two contracts an agent must respect before scripting this CLI.** First, run the preflight: `obsidian version >/dev/null 2>&1` returns 0 only when the binary is registered **and** the app is running. Second, once the app is up the CLI **exits 0 even on failure** and prints `Error: ...` to stdout, so `$?` is not a success signal. Both, with the command surface and the safety invariants, are in [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
 
-**When to prefer it:** only when the outcome requires the live app — e.g. opening a note in the actual UI, or triggering an in-app action that has no filesystem equivalent. For everything file-shaped, `notesmd-cli` is faster and dependency-free.
+**When to prefer it:** when the outcome requires the live app — the resolved link graph, the computed tag and task index, Bases, sync or file history, plugin and theme state, or the UI itself. For everything file-shaped, `notesmd-cli` is faster and needs no app.
 
 ---
 
 ## 9. GLOBAL FLAGS (notesmd-cli)
+
+> The official `obsidian` CLI has no POSIX flags. Its one global option is `vault=<name>`, accepted either before or after the command word.
+
 
 | Flag | Applies To | Description |
 |------|-----------|-------------|
@@ -263,7 +276,7 @@ fi
 
 ### 5. Prefer notesmd-cli; escalate to the official CLI only for app-only outcomes
 
-The official `obsidian` CLI needs a running app and has an unconfirmed command surface (§8). Do not route a file-shaped task to it. Reach for it only when the result requires the live app, and confirm its flags with `obsidian --help` first.
+The official `obsidian` CLI needs an **already-running** app and does not start one. Do not route a file-shaped task to it. Reach for it only when the result requires the live app (§8), and before depending on it run the preflight `obsidian version >/dev/null 2>&1` — exit 0 means the binary is registered and the app is up. Once the app is running the CLI **exits 0 on failure**, so check its stdout for a leading `Error:` rather than `$?`. Full contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
 
 ---
 
@@ -272,7 +285,7 @@ The official `obsidian` CLI needs a running app and has an unconfirmed command s
 | Profile | Config location |
 |---------|-----------------|
 | `notesmd-cli` | Vault registrations at `~/.config/obsidian/obsidian.json` |
-| `obsidian` (official) | Managed in-app (Settings → General → Command line interface); no separate CLI config file `VERIFY` |
+| `obsidian` (official) | Managed in-app (Settings → General → Command line interface). On macOS registration symlinks `/usr/local/bin/obsidian` into the app bundle; no separate CLI config file |
 
 ---
 
@@ -280,5 +293,7 @@ The official `obsidian` CLI needs a running app and has an unconfirmed command s
 
 - `notesmd-cli` repo: https://github.com/Yakitrak/obsidian-cli
 - `notesmd-cli <command> --help` — authoritative per-command flag reference
-- Official Obsidian CLI: enable via Settings → General → Command line interface, then `obsidian --help`
+- Official Obsidian CLI: enable via Settings → General → Command line interface, then `obsidian help` (not `--help`, which is not a valid flag)
+- Official CLI agent contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md)
+- Obsidian CLI vendor reference: https://obsidian.md/help/cli
 - Obsidian help/docs: https://help.obsidian.md/

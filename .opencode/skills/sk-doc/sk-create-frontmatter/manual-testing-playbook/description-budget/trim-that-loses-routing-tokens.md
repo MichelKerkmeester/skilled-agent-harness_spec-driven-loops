@@ -1,7 +1,7 @@
 ---
 title: "FMB-002 -- Trim that loses routing tokens"
 description: "This scenario validates the inverted budget case for `FMB-002`. A description trimmed under budget by deleting the skill name and mode suffixes is a failure even though the length check now passes."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # FMB-002 -- Trim that loses routing tokens

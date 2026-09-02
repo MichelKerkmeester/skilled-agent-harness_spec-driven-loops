@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick validate batch"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.1
+version: 1.0.0.6
 ---
 
 # Workflow Examples and Batch Processing

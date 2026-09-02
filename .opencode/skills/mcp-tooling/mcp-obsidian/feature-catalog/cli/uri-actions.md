@@ -14,7 +14,7 @@ version: 0.1.0.0
 
 The official app-backed CLI is documented as the live surface for `obsidian://` URI actions and app/plugin actions. The exact CLI bridge and supported action set are not confirmed in the current reference.
 
-This entry records the current boundary, not a guaranteed command recipe. Use `obsidian --help` and the target app/plugin documentation before executing an action.
+This entry records the current boundary, not a guaranteed command recipe. The installed binary exposes `command` and `commands` for invoking registered app commands directly, which covers many cases a URI would otherwise carry. Use `obsidian help` and the target app/plugin documentation before executing an action.
 
 ---
 

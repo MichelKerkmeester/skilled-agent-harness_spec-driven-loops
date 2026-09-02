@@ -1,7 +1,7 @@
 ---
 title: "FMC-002 -- Class row before field row"
 description: "This scenario validates class-first diagnosis for `FMC-002`. It focuses on a field that one document class requires and another does not carry, and on reading the class row before the field row."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # FMC-002 -- Class row before field row

@@ -9,7 +9,7 @@ trigger_phrases:
   - "deprecated tools frontmatter agent"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # Agent Frontmatter and Permission Design

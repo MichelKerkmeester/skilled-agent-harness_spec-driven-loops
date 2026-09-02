@@ -9,7 +9,7 @@ trigger_phrases:
   - "behavior benchmark templates"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.5.0.12
 ---
 
 # Behavior Benchmark Authoring Guide

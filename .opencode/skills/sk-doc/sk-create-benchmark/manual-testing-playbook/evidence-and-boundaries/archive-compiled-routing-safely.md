@@ -1,7 +1,7 @@
 ---
 title: "BMR-006 -- Archive compiled-routing evidence safely"
 description: "This scenario validates compiled-routing evidence capture for BMR-006. Serving snapshots use the V1 schema and archives fail closed on collisions, shadow candidates and manifest changes."
-version: 1.0.0.0
+version: 1.5.0.1
 ---
 
 # BMR-006 -- Archive compiled-routing evidence safely

@@ -1,7 +1,7 @@
 ---
 title: "BMR-003 -- Author a behavior benchmark package"
 description: "This scenario validates behavior-benchmark authoring for BMR-003. The package contains an index, scenario contracts and a Claude baseline while run fixtures and evidence stay with the executing packet."
-version: 1.0.0.0
+version: 1.5.0.1
 ---
 
 # BMR-003 -- Author a behavior benchmark package

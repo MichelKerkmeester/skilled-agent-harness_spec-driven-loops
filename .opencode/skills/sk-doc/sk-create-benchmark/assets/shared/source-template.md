@@ -7,7 +7,7 @@ trigger_phrases:
   - "[BENCHMARK_TOPIC] bake-off source"
 importance_tier: "important"
 contextType: "general"
-version: 1.8.0.3
+version: 1.5.0.11
 ---
 
 # Benchmark Source Pointer Template

@@ -8,7 +8,7 @@ trigger_phrases:
   - "standard asset structure"
 importance_tier: normal
 contextType: general
-version: 1.8.0.19
+version: 1.2.0.29
 ---
 
 # Skill Asset File Templates - Creation Guidelines

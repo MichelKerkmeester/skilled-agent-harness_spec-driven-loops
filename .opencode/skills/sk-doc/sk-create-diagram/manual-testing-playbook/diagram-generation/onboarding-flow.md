@@ -1,7 +1,7 @@
 ---
 title: "DIA-003 -- Onboarding flow"
 description: "This scenario validates the style-guide gate and onboarding flow for `DIA-003`. It focuses on detecting the shipped-default skin, extracting tokens from a source, proposing a mapped diff, and rewriting style-guide.md only after approval."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # DIA-003 -- Onboarding flow

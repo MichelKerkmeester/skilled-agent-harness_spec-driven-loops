@@ -1,7 +1,7 @@
 ---
 title: "CMD-002 -- Reference guidance stays a skill"
 description: "This scenario validates that reusable guidance without a slash invocation is left to a skill or reference instead of becoming a command."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CMD-002 -- Reference guidance stays a skill

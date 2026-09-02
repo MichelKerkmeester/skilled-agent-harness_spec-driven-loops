@@ -6,7 +6,7 @@ trigger_phrases:
   - "single-file HTML diff report"
   - "zero-JavaScript diff report"
   - "self-contained report renderer"
-version: 1.1.1.0
+version: 1.1.0.2
 ---
 
 # Self-contained report

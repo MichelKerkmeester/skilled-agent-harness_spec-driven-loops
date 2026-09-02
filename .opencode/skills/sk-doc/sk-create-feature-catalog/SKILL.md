@@ -2,7 +2,7 @@
 name: sk-create-feature-catalog
 description: Create sk-doc feature-catalog packages with a root catalog, category folders, per-feature files, and auditable source anchors.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.1.1
+version: 1.0.1.2
 ---
 
 <!-- Keywords: create-feature-catalog, feature catalog, feature inventory, catalog package, per-feature files, source anchors, root catalog, capability inventory, /create:feature-catalog -->

@@ -1,7 +1,7 @@
 ---
 title: "AGV-002 -- Leaf denies delegation"
 description: "This scenario validates that a leaf agent keeps task delegation denied unless orchestration is its explicit authority."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # AGV-002 -- Leaf denies delegation

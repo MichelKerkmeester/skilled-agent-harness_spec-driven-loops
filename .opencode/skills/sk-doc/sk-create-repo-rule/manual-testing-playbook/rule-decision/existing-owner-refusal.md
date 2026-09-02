@@ -2,7 +2,7 @@
 title: "RRD-002 -- Existing-owner refusal"
 description: "This scenario validates the existing-owner refusal for `RRD-002`. It focuses on refusing a proposal another rule already carries, and naming that rule as the destination."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.1
 ---
 
 # RRD-002 -- Existing-owner refusal

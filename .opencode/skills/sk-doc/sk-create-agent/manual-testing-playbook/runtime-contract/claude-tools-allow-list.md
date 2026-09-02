@@ -1,7 +1,7 @@
 ---
 title: "AGR-002 -- Claude tools allow-list"
 description: "This scenario validates the Claude Code tools allow-list and omission of OpenCode-only frontmatter fields."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # AGR-002 -- Claude tools allow-list

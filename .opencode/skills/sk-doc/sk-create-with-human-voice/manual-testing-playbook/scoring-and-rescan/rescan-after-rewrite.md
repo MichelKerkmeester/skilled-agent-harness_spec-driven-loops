@@ -2,7 +2,7 @@
 title: "HVR-002 -- The re-scan after a rewrite"
 description: "This scenario validates the closing step for `HVR-002`. It confirms the scanner is re-run after any rewrite and that both numbers are reported, because rewriting to remove tells introduces new ones."
 stage: routing
-version: 1.0.0.0
+version: 1.1.0.2
 ---
 
 # HVR-002 -- The re-scan after a rewrite

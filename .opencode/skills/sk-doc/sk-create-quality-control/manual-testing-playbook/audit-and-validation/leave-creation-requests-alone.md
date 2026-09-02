@@ -1,7 +1,7 @@
 ---
 title: "QC-003 -- Leave creation requests alone"
 description: "This scenario validates the creation boundary for `QC-003`. It focuses on routing a new skill request to creation instead of inventing an existing target."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # QC-003 -- Leave creation requests alone

@@ -36,7 +36,7 @@ This package provides 30 deterministic scenarios across 6 categories:
 |---|---|---|
 | Headless vault setup | `OBS-001..OBS-002` | `notesmd-cli`; no app required |
 | Headless note operations | `OBS-003..OBS-008` | `notesmd-cli`; no app required |
-| Official app-backed CLI | `OBS-009..OBS-010` | Obsidian desktop v1.12.4+ and registered `obsidian` CLI |
+| Official app-backed CLI | `OBS-009..OBS-010` | Obsidian desktop v1.12.4+, registered `obsidian` CLI, and the app running |
 | MCP round-trip | `MCP-H001..MCP-H004` | Running Obsidian, Local REST API v4.0.0+, token, Code Mode manual |
 | MCP verification boundary | `MCP-M001..MCP-M002` | Same MCP prerequisites for live inventory; no-app boundary can be tested headlessly |
 | Community-plugin tie-ins | `OBS-012..OBS-025` | File-layer fixtures; app reload is required only for the render/activation check |
@@ -59,7 +59,7 @@ The `OBS-*` scenarios use real CLI commands. The `MCP-*` scenarios require the L
 2. The operator has at least one Obsidian vault on this machine and can identify a non-production or throwaway test vault. The build context confirms that vaults exist locally.
 3. Headless scenarios require `notesmd-cli` on `PATH`, at least one registered vault, and an explicit default-vault check. They do not require a running Obsidian app.
 4. `OBS-007` and `OBS-008` use throwaway notes. Do not run delete or move scenarios against production notes.
-5. Official CLI scenarios require Obsidian desktop v1.12.4+ with Settings → General → Command line interface → Register CLI completed. Exact app-action subcommands remain `VERIFY`.
+5. Official CLI scenarios require Obsidian desktop v1.12.4+ with Settings → General → Command line interface → Register CLI completed, **and the desktop app actually running**: the official CLI does not launch it and exits 1 when it is down. Preflight every official-CLI scenario with `obsidian version` (exit 0 = usable). Once the app is up the CLI exits 0 even on failure, so judge results by stdout, not by exit status.
 6. MCP scenarios require a running Obsidian app with the target vault open, Local REST API plugin v4.0.0+ enabled, a bearer token in `OBSIDIAN_API_KEY`, the correct `OBSIDIAN_BASE_URL` (default `http://127.0.0.1:27123`), and the `obsidian` Code Mode manual registered. Local REST API + token setup may be pending.
 7. `MCP-H004` deletes only the throwaway note created by `MCP-H001`. The operator must capture the exact path before execution.
 8. `OBS-012` uses a non-production vault and the Tables plugin; preserve the original `.table.md` asset and capture the app reload/render boundary.
@@ -94,7 +94,7 @@ Each scenario MUST capture:
 
 ## 4. DETERMINISTIC COMMAND NOTATION
 
-- CLI commands use `notesmd-cli <subcommand> [args]` or `obsidian <target>`.
+- CLI commands use `notesmd-cli <subcommand> [args]` (POSIX flags) or `obsidian <command> key=value` (no POSIX flags).
 - Bash wrappers use `bash: <command>`.
 - Code Mode calls use `Code Mode: call_tool_chain({ code: "..." })`.
 - Tool discovery uses `list_tools()` and `tool_info("obsidian.obsidian_<tool_name>")`.

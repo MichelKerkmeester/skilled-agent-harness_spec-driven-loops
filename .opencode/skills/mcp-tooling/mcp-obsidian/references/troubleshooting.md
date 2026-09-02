@@ -21,12 +21,13 @@ Diagnostic guide for the two Obsidian CLI profiles (`notesmd-cli` headless, `obs
 
 ## 1. OVERVIEW
 
-Most failures fall into five categories:
+Most failures fall into six categories:
 1. **Installation / PATH** — `notesmd-cli` or `obsidian` not on PATH (often a GUI-vs-shell PATH mismatch).
 2. **Official CLI not registered** — the `obsidian` binary was never enabled in Settings.
-3. **Local REST API prerequisite** — the plugin is not enabled, or is on the wrong port / SSL mode.
-4. **Authentication** — `OBSIDIAN_API_KEY` unset or wrong.
-5. **MCP launch** — npx cannot fetch `obsidian-mcp-server`, or the app is not running.
+3. **Official CLI registered but the app is down** — the most common official-CLI failure, and the only one that exits non-zero (§5b).
+4. **Local REST API prerequisite** — the plugin is not enabled, or is on the wrong port / SSL mode.
+5. **Authentication** — `OBSIDIAN_API_KEY` unset or wrong.
+6. **MCP launch** — npx cannot fetch `obsidian-mcp-server`, or the app is not running.
 
 Start with the Quick Diagnostics sequence (§3) before diving into specifics.
 
@@ -52,8 +53,10 @@ notesmd-cli list-vaults
 # 3. Can it read the vault (headless, no app needed)?
 notesmd-cli list
 
-# 4. Is the official app-backed CLI registered? (app-backed)
-obsidian --help        # Only after enabling "Register CLI" in Settings
+# 4. Is the official app-backed CLI registered AND live? (app-backed)
+#    Exit 0 = registered and the app is running. Exit 1 = app is down.
+#    This is the only official-CLI call whose exit status is trustworthy.
+obsidian version && echo "official CLI live" || echo "official CLI not usable" 
 
 # 5. Is the Local REST API reachable? (MCP prerequisite; app must be running)
 curl -sk -H "Authorization: Bearer $OBSIDIAN_API_KEY" \
@@ -128,17 +131,69 @@ which notesmd-cli                             # Resolves here?
 
 ### `command not found: obsidian`
 
-**Symptoms:** `obsidian --help` prints `command not found`, even though the desktop app is installed.
+**Symptoms:** `obsidian version` prints `command not found`, even though the desktop app is installed.
 
 **Root cause:** the official CLI ships **inside** the desktop app but is **not enabled by default** — it must be registered.
 
 **Fix:**
 1. Open Obsidian desktop (v1.12.4+).
 2. **Settings → General → Command line interface → toggle on → "Register CLI"**.
-3. On macOS/Linux this adds `obsidian` to PATH. Open a new shell, then `obsidian --help`.
+3. On macOS/Linux this adds `obsidian` to PATH (on macOS, a symlink at `/usr/local/bin/obsidian` into the app bundle). Open a new shell, then `obsidian version`.
 4. If it still fails, this is likely the GUI-vs-shell PATH issue (§4) — confirm where "Register CLI" placed the binary and ensure that prefix is on your shell PATH.
 
-> The official CLI is **app-backed** — it launches/focuses the running app. For headless/file work, use `notesmd-cli` instead; it needs no app and no registration step.
+> Note the syntax: this CLI takes **no POSIX flags**. `obsidian --help` and `obsidian --version` both fail with `Command "--help" not found`. Use `obsidian help` and `obsidian version`.
+
+> The official CLI is **app-backed** and does **not** launch the app. For headless/file work, use `notesmd-cli` instead; it needs no app and no registration step.
+
+---
+
+## 5b. OFFICIAL CLI REGISTERED BUT THE APP IS NOT RUNNING
+
+### `The CLI is unable to find Obsidian. Please make sure Obsidian is running and try again.`
+
+**Symptoms:** every `obsidian` command prints that line to **stderr** and exits **1**, including `obsidian version` and `obsidian help`. The binary resolves fine under `command -v`.
+
+**Root cause:** the official CLI is a remote control for a running desktop app. With no app to talk to it has nothing to answer, and it does **not** start one. Obsidian's own documentation claims the first command launches the app; the binary does not do this.
+
+**Fix:**
+
+```bash
+open -a Obsidian                                    # macOS
+until obsidian version >/dev/null 2>&1; do sleep 1; done
+```
+
+The wait matters. Issuing commands immediately after `open` races the app's startup and reproduces the same error.
+
+**Prefer avoiding it:** if the task is file-shaped, use `notesmd-cli`, which needs no app at all.
+
+**Diagnosing which of the two failures you have:**
+
+| Check | Meaning |
+|-------|---------|
+| `command -v obsidian` finds nothing | Not registered (§5) |
+| `obsidian version` exits 1 | Registered, app down (this section) |
+| `obsidian version` exits 0 and prints a version | Usable |
+
+> **Do not carry this exit status over to other commands.** Once the app is running, the CLI exits **0 even when a command fails**, printing `Error: ...` to stdout. Check the output text, not `$?`. Full contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
+
+---
+
+## 5c. OFFICIAL CLI RETURNS AN ERROR BUT EXITS 0
+
+**Symptoms:** a script using `set -e` or `if obsidian ...; then` treats a failed command as success. Output contains `Error: File "X" not found.` or `Vault not found.` yet `$?` is `0`.
+
+**Root cause:** with the app running, the CLI reports in-app failures as text on stdout and always exits 0. This is by design and applies to every command except the app-down case above.
+
+**Fix:** test the output, not the status.
+
+```bash
+out="$(obsidian read file="$name" 2>/dev/null)"
+case "$out" in
+  "Error: "*|"Vault not found."*) echo "failed: $out" >&2; exit 1 ;;
+esac
+```
+
+Use `format=json` where a command offers it, so a parse failure gives a second independent signal.
 
 ---
 

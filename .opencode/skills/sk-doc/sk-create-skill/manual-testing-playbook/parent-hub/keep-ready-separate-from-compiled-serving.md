@@ -1,7 +1,7 @@
 ---
 title: "SKL-005 -- Keep ready separate from compiled serving"
 description: "This scenario validates the compiled-routing boundary for `SKL-005`. It focuses on fresh onboarding evidence, legacy authority and no runtime claim."
-version: 1.0.0.0
+version: 1.2.0.1
 ---
 
 # SKL-005 -- Keep ready separate from compiled serving

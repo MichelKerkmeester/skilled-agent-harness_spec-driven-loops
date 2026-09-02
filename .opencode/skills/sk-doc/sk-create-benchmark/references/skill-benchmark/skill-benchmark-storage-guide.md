@@ -9,7 +9,7 @@ trigger_phrases:
   - "where do skill-benchmark reports live"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.5.0.14
 ---
 
 # Skill-Benchmark Storage Guide

@@ -20,7 +20,7 @@ version: 0.1.0.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Installing `notesmd-cli` for headless vault operations, and enabling the official `obsidian` CLI to remote-control a running app. |
-| **Invoke with** | `bash setup.sh`, then `notesmd-cli --help` and (once enabled in-app) `obsidian --help`. |
+| **Invoke with** | `bash setup.sh`, then `notesmd-cli --help` and (once enabled in-app) `obsidian help`. |
 | **Works on** | macOS/Linux via Homebrew (`notesmd-cli`); Obsidian desktop **v1.12.4+** for the official `obsidian` CLI. |
 | **Produces** | A `notesmd-cli` binary on `PATH` operating on the vault filesystem, plus an optional `obsidian` binary that controls a running Obsidian app. |
 
@@ -75,7 +75,7 @@ In the desktop app: **Settings → General → Command line interface → toggle
 
 ```bash
 notesmd-cli --help          # headless profile
-obsidian --help             # app-backed profile (after Step 3)
+obsidian help             # app-backed profile (after Step 3)
 ```
 
 Expected: `notesmd-cli` prints its subcommand list; `obsidian` prints its help only once the in-app CLI is enabled and registered.

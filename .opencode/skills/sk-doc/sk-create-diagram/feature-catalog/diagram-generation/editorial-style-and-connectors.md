@@ -7,7 +7,7 @@ trigger_phrases:
   - "mandatory connector rules"
   - "4px grid complexity budget"
   - "diagram style guide"
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # Editorial style and connectors

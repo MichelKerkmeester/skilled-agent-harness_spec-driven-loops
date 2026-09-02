@@ -8,7 +8,7 @@ trigger_phrases:
   - "schema v2 scenario scaffold"
 importance_tier: "important"
 contextType: "general"
-version: 1.1.0.0
+version: 1.5.0.11
 ---
 
 # Behavior Benchmark Scenario Template

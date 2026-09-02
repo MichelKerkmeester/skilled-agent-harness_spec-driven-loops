@@ -10,7 +10,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
 stage: holdout
-version: 1.0.0.0
+version: 2.1.0.6
 ---
 
 # SD-H04: CHANGELOG Held-Out (decontaminated phrasing)

@@ -8,7 +8,7 @@ trigger_phrases:
   - "transformation patterns markdown"
 importance_tier: normal
 contextType: implementation
-version: 1.8.0.17
+version: 1.0.0.27
 ---
 
 # Optimization Procedure - AI-Friendly Docs

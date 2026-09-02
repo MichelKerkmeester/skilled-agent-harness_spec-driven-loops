@@ -35,7 +35,7 @@ Verify:
 
 For the optional live-app profile, enable the official CLI in Obsidian:
   Settings → General → Command line interface → toggle on → Register CLI
-  obsidian --help
+  obsidian help
 
 For the optional MCP path, keep Obsidian running with Local REST API v4.0.0+
 enabled and an API key. The later Code Mode configuration step registers the
@@ -86,7 +86,7 @@ Agent
   ├── notesmd-cli list / search / create / print / daily
   │     └── Vault filesystem (no running app)
   │
-  ├── obsidian --help and verified live-app commands
+  ├── obsidian help and verified live-app commands
   │     └── Obsidian desktop v1.12.4+ (app-backed)
   │
   └── call_tool_chain("obsidian.obsidian_*")
@@ -156,9 +156,11 @@ The official CLI ships with the desktop app; it has no npm or Homebrew install. 
 1. Open **Settings → General → Command line interface**.
 2. Toggle the feature on.
 3. Click **Register CLI**.
-4. Open a new shell and run `obsidian --help`.
+4. Open a new shell and run `obsidian help`.
 
-On macOS/Linux, registration adds `obsidian` to `PATH`. The official CLI remote-controls the app (and launches it if needed); it is not a headless filesystem replacement. Confirm any exact subcommand or flag with `obsidian --help` before scripting it.
+On macOS/Linux, registration adds `obsidian` to `PATH` (on macOS, a symlink at `/usr/local/bin/obsidian` into the app bundle). The official CLI remote-controls an **already-running** app and does **not** launch it: with Obsidian closed every command exits 1 with `The CLI is unable to find Obsidian`. It is not a headless filesystem replacement.
+
+Its syntax is `obsidian <command> key=value` with no POSIX flags. Preflight with `obsidian version` (exit 0 means registered and running), then read `obsidian help` for the full command list. Note that once the app is running the CLI exits 0 even when a command fails, so scripts must check stdout for a leading `Error:`. See `references/official-cli-agent-usage.md`.
 
 ---
 
@@ -217,7 +219,7 @@ notesmd-cli list
 notesmd-cli search "nonexistent"
 ```
 
-The last search may return empty output and still pass. For the app-backed profile, `obsidian --help` must resolve after in-app registration. For the MCP profile, first confirm a live `obsidian.obsidian_*` tool with `list_tools()` and `tool_info()` before performing a real note operation.
+The last search may return empty output and still pass. For the app-backed profile, `obsidian version` must exit 0 after in-app registration **with Obsidian running**; exit 1 means the app is down. For the MCP profile, first confirm a live `obsidian.obsidian_*` tool with `list_tools()` and `tool_info()` before performing a real note operation.
 
 ---
 
@@ -228,6 +230,8 @@ The last search may return empty output and still pass. For the app-backed profi
 | `command not found: notesmd-cli` | The CLI is not installed or its prefix is absent from `PATH` | Run the mode-root installer, then follow its Homebrew, Scoop, AUR, or source-build instructions |
 | No default vault | A vault was not registered or selected | Run `notesmd-cli add-vault <path>` and `notesmd-cli set-default-vault <name>` |
 | `command not found: obsidian` | The desktop CLI has not been registered | Enable it in Settings → General → Command line interface → Register CLI |
+| `The CLI is unable to find Obsidian` (exit 1) | The CLI is registered but the desktop app is not running | Start Obsidian, then wait for `obsidian version` to exit 0. The CLI never launches the app itself |
+| `Command "--help" not found` | POSIX flags were used | This CLI takes `obsidian <command> key=value`; use `obsidian help` and `obsidian version` |
 | Local REST API connection refused | App closed, plugin disabled, or base URL mismatch | Open the app and target vault, enable Local REST API v4.0.0+, and check `OBSIDIAN_BASE_URL` |
 | 401 from MCP | Missing or invalid Local REST API token | Copy a fresh API key and expose it as `obsidian_OBSIDIAN_API_KEY` for the manual |
 | npx cannot launch the MCP | Node/npx unavailable or registry fetch failed | Confirm Node.js 18+, npx, and the `obsidian-mcp-server@latest` launch command |

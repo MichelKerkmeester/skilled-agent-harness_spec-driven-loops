@@ -1,7 +1,7 @@
 ---
 title: "FCR-005 -- Leave execution matrices to the playbook"
 description: "This scenario validates the catalog and playbook boundary for FCR-005. The catalog states current behavior and links to manual validation instead of embedding step-by-step scenarios."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # FCR-005 -- Leave execution matrices to the playbook

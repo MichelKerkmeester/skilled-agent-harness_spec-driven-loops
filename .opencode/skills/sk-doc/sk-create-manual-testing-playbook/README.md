@@ -6,7 +6,7 @@ trigger_phrases:
   - "/create:manual-testing-playbook"
   - "deterministic scenario"
   - "release readiness"
-version: 1.0.1.2
+version: 1.0.0.15
 ---
 
 # create-manual-testing-playbook

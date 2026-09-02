@@ -8,7 +8,7 @@ trigger_phrases:
   - "curated documentation entry point"
 importance_tier: normal
 contextType: general
-version: 1.8.0.11
+version: 2.1.0.17
 ---
 
 # llms.txt Templates - Document Type Reference

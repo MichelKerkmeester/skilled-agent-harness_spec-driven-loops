@@ -1,7 +1,7 @@
 ---
 title: "MTP-005 -- Persist the scenario result"
 description: "This scenario validates durable scenario-result storage for `MTP-005`. It focuses on the canonical wrapper, evidence metadata and renderer-owned reports."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # MTP-005 -- Persist the scenario result

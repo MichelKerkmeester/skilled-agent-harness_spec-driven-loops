@@ -9,7 +9,7 @@ trigger_phrases:
   - "router-compiled-parity-baseline label"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.5.0.3
 ---
 
 # Serving-Snapshot Schema and Compiled-Routing Archive Convention

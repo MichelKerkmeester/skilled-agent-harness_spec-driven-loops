@@ -8,7 +8,7 @@ trigger_phrases:
   - "argument hint patterns"
 importance_tier: normal
 contextType: general
-version: 1.8.0.20
+version: 1.0.0.34
 ---
 
 # Command Template - OpenCode Slash Commands

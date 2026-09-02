@@ -1,7 +1,7 @@
 ---
 title: "create-command: Manual Testing Playbook"
 description: "Operator-facing reference for authoring, routing and validating OpenCode slash commands in the create-command workflow."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # create-command: Manual Testing Playbook

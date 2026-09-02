@@ -40,7 +40,7 @@ That is the whole reason this skill exists. It makes AI use inside Obsidian effe
 The skill gives an agent three ways to touch a vault, chosen by what the request needs:
 
 - `notesmd-cli` (Yakitrak) operates the vault filesystem directly. No app, no token. Registration, search, print, create, move, delete, frontmatter, daily notes.
-- The official `obsidian` CLI (ships with Obsidian desktop v1.12.4+) remote-controls a running app for in-app opens and `obsidian://` URI actions.
+- The official `obsidian` CLI (ships with Obsidian desktop v1.12.4+) remote-controls an already-running app. It reaches what only the live app knows: the resolved link graph, the computed tag and task index, Bases, sync and file history, and plugin state.
 - The cyanheads Obsidian MCP exposes a structured 14-tool `obsidian_*` surface through Code Mode when the live app and Local REST API are available.
 
 On top of those surfaces sits the plugin knowledge layer. The mode treats each community plugin as a file format: `.table.md` JSON payloads, BRAT install state, Health.md export files with `health-viz` render blocks, the Iconic `data.json` rulebook, Charts render blocks, Dataview metadata and queries, and Obsidian Git repositories. Alongside the plugins it operates the Obsidian theme system at the file layer — the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
@@ -96,7 +96,7 @@ notesmd-cli search "meeting"
 
 **Step 3: Enable the app-backed CLI only when the live UI is the target.**
 
-In Obsidian desktop v1.12.4+: Settings → General → Command line interface → toggle on → Register CLI. That registers `obsidian` on PATH on macOS and Linux. Confirm the command surface with `obsidian --help`.
+In Obsidian desktop v1.12.4+: Settings → General → Command line interface → toggle on → Register CLI. That registers `obsidian` on PATH on macOS and Linux. Confirm it is usable with `obsidian version`, which exits 0 only when the binary is registered **and** the app is running, then read `obsidian help` for the command surface. The CLI does not launch Obsidian for you.
 
 **Step 4: Use the MCP for structured live-app operations.**
 
@@ -161,6 +161,7 @@ Use this mode for an Obsidian vault, a daily note, a note search, a Local REST A
 | `notesmd-cli: command not found` | The headless CLI is missing or its install prefix is not on PATH | Run the mode-root installer and use its printed Scoop, AUR or source-build alternatives when Homebrew is unavailable |
 | `notesmd-cli` has no default vault | No vault has been registered and selected | Run `notesmd-cli add-vault <path>` then `notesmd-cli set-default-vault <name>` |
 | `obsidian: command not found` | The desktop CLI is not enabled or registered | In Obsidian v1.12.4+, enable Command line interface and click Register CLI |
+| `The CLI is unable to find Obsidian` | Registered, but the Obsidian app is not running | Start Obsidian and wait for `obsidian version` to exit 0; the CLI will not launch it |
 | MCP connection refused | The app is closed, Local REST API is disabled or the base URL is wrong | Start Obsidian with the target vault, enable Local REST API v4.0.0+ and check `OBSIDIAN_BASE_URL` |
 | MCP returns 401 or 403 | `OBSIDIAN_API_KEY` is absent, wrong or the plugin is disabled | Copy a fresh Local REST API token into the Code Mode environment and restart the AI client |
 | MCP tool not found | The manual is not registered or the callable name was guessed | Run `list_tools()` and `tool_info()`, then use `obsidian.obsidian_<tool>` after confirming it |
@@ -207,7 +208,7 @@ The mode-root scripts are the first checks because they separate required headle
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-tooling/mcp-obsidian/README.md --type readme` reports zero issues |
 | Setup diagnostics | `bash .opencode/skills/mcp-tooling/mcp-obsidian/scripts/doctor.sh` reports the detected CLI, app and MCP prerequisites without changing them |
 | Headless CLI | `notesmd-cli --version && notesmd-cli list-vaults && notesmd-cli list` succeeds. An empty note list is valid |
-| Official CLI | After in-app registration, `obsidian --help` prints its current command surface |
+| Official CLI | With Obsidian running, `obsidian version` exits 0 and `obsidian help` prints its current command surface |
 | MCP health | With the manual registered, `list_tools()` shows `obsidian.obsidian_*` entries and `tool_info("obsidian.obsidian_get_note")` resolves a live schema |
 | Example scripts | `mcp-roundtrip.sh` preflights and prints a Code Mode reference. Run `headless-notes-workflow.sh` only against a chosen vault |
 

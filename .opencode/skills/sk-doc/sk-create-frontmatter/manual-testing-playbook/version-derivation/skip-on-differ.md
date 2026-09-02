@@ -1,7 +1,7 @@
 ---
 title: "FMV-003 -- Skip on differ"
 description: "This scenario validates skip-on-differ for `FMV-003`. A human-set `version` that differs from the computed one is skipped and reported rather than silently overwritten, with `SKILL.md` as the one exception."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # FMV-003 -- Skip on differ

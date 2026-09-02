@@ -9,7 +9,7 @@ trigger_phrases:
   - "{{FIXTURE_SLUG}} benchmark"
 importance_tier: "important"
 contextType: "general"
-version: 1.8.0.4
+version: 1.5.0.16
 ---
 
 # Benchmark Report Template

@@ -1,7 +1,7 @@
 ---
 title: "CHG-005 -- Select the canonical prose format"
 description: "This scenario validates changelog format selection for CHG-005. Compact and expanded entries use the shared template and plain category vocabulary."
-version: 1.0.0.0
+version: 1.0.0.1
 ---
 
 # CHG-005 -- Select the canonical prose format

@@ -1,7 +1,7 @@
 ---
 title: "FMB-001 -- Trim an over-budget description"
 description: "This scenario validates the documented trim style for `FMB-001`. It focuses on bringing a description inside the soft target by dropping enumerations, stack lists and marketing prose rather than by cutting whatever is longest."
-version: 1.0.0.0
+version: 1.0.0.2
 ---
 
 # FMB-001 -- Trim an over-budget description

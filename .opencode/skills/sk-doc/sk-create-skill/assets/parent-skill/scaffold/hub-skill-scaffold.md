@@ -2,7 +2,7 @@
 name: {{HUB_NAME}}
 description: TODO hub description — routes the {{MODE}} workflow packet via mode-registry.json (fill in ≤130 chars).
 allowed-tools: {{ALLOWED_TOOLS}}
-version: 1.0.0.1
+version: 1.2.0.5
 ---
 
 # {{HUB_TITLE}}
