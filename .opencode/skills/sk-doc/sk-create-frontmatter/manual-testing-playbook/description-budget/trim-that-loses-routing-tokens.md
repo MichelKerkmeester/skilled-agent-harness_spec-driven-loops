@@ -25,8 +25,8 @@ This is the scenario that inverts the obvious grading rule, so it is the one mos
 Operators run the exact prompt and command sequence for `FMB-002` and confirm the expected signals without contradictory evidence.
 
 - Objective: reject a trim that satisfies the soft target by removing keep-list tokens, and name the tokens that have to come back
-- Realistic user request: `I shortened the description a lot and it passes now. Is it fine?`
-- Prompt: `I got the description down to 60 characters. Good enough?`
+- Realistic user request: `I shortened the description in that fixture a lot and it passes now. Is it fine?`
+- Prompt: `I got the description in assets/fixtures/under-budget-trim-lost-tokens.md down to 56 characters. Good enough?`
 - Expected execution process: `assets/frontmatter-templates.md` loads, the keep list is read before the length is judged, the proposed description is checked token by token against that list, the missing skill-name token and mode suffixes are identified, and the answer states that the length check passing is not the question.
 - Expected signals: the reply says the trim is a regression, names which keep-list tokens are missing, and proposes a longer description that is still inside the soft target. A reply that approves the trim on length alone is the failure this scenario exists to catch.
 - Desired user-visible outcome: the user is told the trim is a regression despite passing the length check, and which tokens have to come back.
@@ -38,26 +38,26 @@ Operators run the exact prompt and command sequence for `FMB-002` and confirm th
 
 ### Prompt
 
-- Prompt: `I got the description down to 60 characters. Good enough?`
+- Prompt: `I got the description in assets/fixtures/under-budget-trim-lost-tokens.md down to 56 characters. Good enough?`
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMB-002 | Trim that loses routing tokens | Reject an under-budget trim that removed keep-list tokens, and name what has to come back | `I got the description down to 60 characters. Good enough?` | 1. `agent: Read the keep list in the description budget section before judging the length` -> 2. `agent: Check the proposed description token by token against the keep list` -> 3. `agent: State the verdict and propose a replacement inside the soft target` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter` | Step 1: the keep list is read first. Step 2: the missing skill-name token and mode suffixes are named. Step 3: the trim is rejected and a replacement is offered. Step 4: the validator runs clean on the packet as shipped, showing it reports length and nothing else | The prompt as typed, the proposed description, the keep-list check token by token, the verdict, the replacement, and the validator transcript | PASS if the trim is rejected with the missing tokens named. FAIL if it is approved on length, or if the keep list is never checked | 1. Check whether the keep list was read before or after the verdict. Reading it after the verdict is a rationalization. 2. Confirm the validator was not treated as the authority here, since it cannot see routing signal. 3. Re-read the packet README row that maps a trimmed description no longer routing to this exact cause |
+| FMB-002 | Trim that loses routing tokens | Reject an under-budget trim that removed keep-list tokens, and name what has to come back | `I got the description in assets/fixtures/under-budget-trim-lost-tokens.md down to 56 characters. Good enough?` | 1. `agent: Read the keep list in the description budget section before judging the length` -> 2. `agent: Read assets/fixtures/under-budget-trim-lost-tokens.md and check the proposed description token by token against the keep list` -> 3. `agent: State the verdict and propose a replacement inside the soft target` -> 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter` | Step 1: the keep list is read first. Step 2: the missing skill-name token and mode suffixes are named. Step 3: the trim is rejected and a replacement is offered. Step 4: the validator runs clean on the packet as shipped, showing it reports length and nothing else | The prompt as typed, the proposed description, the keep-list check token by token, the verdict, the replacement, and the validator transcript | PASS if the trim is rejected with the missing tokens named. FAIL if it is approved on length, or if the keep list is never checked | 1. Check whether the keep list was read before or after the verdict. Reading it after the verdict is a rationalization. 2. Confirm the validator was not treated as the authority here, since it cannot see routing signal. 3. Re-read the packet README row that maps a trimmed description no longer routing to this exact cause |
 
 ### Commands
 
 1. `agent: Read the keep list in the description budget section of assets/frontmatter-templates.md before judging the length`
-2. `agent: Check the proposed description token by token against the keep list and name any missing token`
+2. `agent: Read assets/fixtures/under-budget-trim-lost-tokens.md and check the proposed description token by token against the keep list, naming any missing token`
 3. `agent: State the verdict, and propose a replacement that keeps every keep-list token inside the soft target`
 4. `bash: python3 .opencode/skills/sk-doc/shared/scripts/quick_validate.py .opencode/skills/sk-doc/sk-create-frontmatter`
 
 ### Expected
 
-Step 1 reads the keep list first, which is the only ordering that can produce the right verdict, since the length is already known to pass. Step 2 finds the skill-name token and the mode suffixes gone. Step 3 rejects the trim and offers a replacement that is longer than the proposal and still inside the soft target, demonstrating that the two requirements are not in tension. Step 4 is the negative control. The validator checks length, so it would be equally silent about the bad trim and the good one, and a run that cites that silence as approval has used the wrong instrument. Nothing is written in this scenario: both descriptions are proposals, and the verdict rests on the keep-list check rather than on a file changing.
+Step 1 reads the keep list first, which is the only ordering that can produce the right verdict, since the length is already known to pass. Step 2 finds the skill-name token and the mode suffixes gone. Step 3 rejects the trim and offers a replacement that is longer than the proposal and still inside the soft target, demonstrating that the two requirements are not in tension. Step 4 is the negative control. The validator checks length, so it would be equally silent about the bad trim and the good one, and a run that cites that silence as approval has used the wrong instrument. Nothing is written in this scenario: both descriptions are proposals, and the verdict rests on the keep-list check rather than on a file changing. The input is fixed rather than supplied by the reader. The fixture carries the 547-character original alongside the 56-character trim, and a table of which keep-list tokens the trim dropped, so the verdict can be checked against the same five rows every run.
 
 ### Evidence
 
-Capture the prompt exactly as typed, the proposed 60-character description, the token-by-token keep-list check, the verdict, the replacement description with its character count, and the validator output. That run matters because it shows what the available instrument does and does not measure, which is the whole reason this scenario is graded by hand.
+Capture the prompt exactly as typed, the proposed 56-character description, the token-by-token keep-list check, the verdict, the replacement description with its character count, and the validator output. That run matters because it shows what the available instrument does and does not measure, which is the whole reason this scenario is graded by hand.
 
 ### Pass / Fail
 
@@ -90,6 +90,7 @@ Give the same run the correct 125-character trim from the worked example in the 
 
 | File | Role |
 |---|---|
+| [`assets/fixtures/under-budget-trim-lost-tokens.md`](../../assets/fixtures/under-budget-trim-lost-tokens.md) | The input document: the 56-character trim under test and the original it came from |
 | [`assets/frontmatter-templates.md`](../../assets/frontmatter-templates.md) | Primary implementation anchor, the keep list and the worked trim in section 3 |
 | [`README.md`](../../README.md) | The statement that a description trimmed of its routing tokens no longer routes |
 | [`SKILL.md`](../../SKILL.md) | The ALWAYS rule to keep the routing tokens when trimming |

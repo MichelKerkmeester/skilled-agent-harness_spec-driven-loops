@@ -260,7 +260,7 @@ Desired user-visible outcome: the user learns the field does not belong there, s
 Verify that an over-budget description is trimmed by dropping the four documented categories of content, and that the trim is measured against the soft target rather than judged by eye.
 
 #### Scenario Contract
-Prompt: `This skill description is way too long and the validator is warning about it. Shorten it.`
+Prompt: `The description in assets/fixtures/over-budget-description.md is way too long and the validator is warning about it. Shorten it.`
 
 The drop list is specific: product enumerations, stack lists, marketing prose, and parenthetical jargon. The field reference carries a worked case that goes from 545 characters to 125 by removing exactly those, and keeps every routing keyword.
 
@@ -278,7 +278,7 @@ Desired user-visible outcome: a description inside the soft target whose remaini
 Verify the inverted case: a description trimmed under budget by deleting the skill name and the mode suffixes is a `FAIL` even though the length check now passes, because those tokens are the routing signal.
 
 #### Scenario Contract
-Prompt: `I got the description down to 60 characters. Good enough?`
+Prompt: `I got the description in assets/fixtures/under-budget-trim-lost-tokens.md down to 56 characters. Good enough?`
 
 Length is a necessary condition and not a sufficient one. The keep list names the skill-name token, the primary verb, the primary domain noun, the mode suffixes and the numeric specifics, and the packet README states plainly that a description trimmed by deleting them is under budget and no longer routes.
 

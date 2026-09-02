@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Baseline the eight dead aliases against the hub's stage-one vocabulary (`.opencode/skills/sk-doc/graph-metadata.json`)
+- [x] T002 Baseline the advisor on the eight aliases and three realistic prompts, all eleven returning nothing but one
+- [x] T003 Reproduce the `--help` failure and record it (`Unknown mode: --help`, exit 64)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,14 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add the eight aliases to `intent_signals` and `derived.trigger_phrases` (`.opencode/skills/sk-doc/graph-metadata.json`)
+- [x] T005 Recognise `--help` and `-h` from any position before the mode is derived (`.opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs`)
+- [x] T006 Replace the three-to-five-times inflation claim with the measured figure (`.opencode/skills/sk-doc/sk-create-frontmatter/SKILL.md`)
+- [x] T007 Author the two description-budget fixtures and their README (`.opencode/skills/sk-doc/sk-create-frontmatter/assets/fixtures/`)
+- [x] T008 Point `FMB-001` and `FMB-002` at their fixtures, in the prompt, the commands and the anchors (`manual-testing-playbook/description-budget/`, `manual-testing-playbook/manual-testing-playbook.md`)
+- [x] T009 Register the fixtures as leaves and route them (`.opencode/skills/sk-doc/leaf-manifest.json` regenerated, `.opencode/skills/sk-doc/ROUTER.md`)
+- [x] T010 Add feature catalog, testing playbook and agent to the section 1, 2 and 10 index tables (`sk-create-frontmatter/assets/frontmatter-templates.md`)
+- [x] T011 Re-mint the runtime and authored activation manifests after the `SKILL.md` edit
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +59,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T012 Replay the advisor on the same eleven prompts, and replay four out-of-domain phrases against the new aliases
+- [x] T013 Run the engine tests, 23 passed and 0 failed, two of them new
+- [x] T014 Run the playbook package validator, `parent-skill-check.cjs`, `compiled-route-guard.cjs`, `compiled-route-sync.cjs --verify`, `package_skill.py --check --strict` and `quick_validate.py`
+- [x] T015 Run `validate_document.py` and `hvr_scan.py` on every edited markdown file, against each file's committed blocker baseline
+- [x] T016 Re-pin the two drifted canary source hashes once the concurrent edit landed, and confirm `REAL-GREEN`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +71,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -179,7 +185,7 @@ contextType: "general"
 | P1 Items | [Y] | [ ]/[Y] |
 | P2 Items | [Z] | [ ]/[Z] |
 
-**Verification Date**: 2026-09-02
+**Verification Date**: 2026-09-03
 <!-- /ANCHOR:summary -->
 
 ---
@@ -187,9 +193,9 @@ contextType: "general"
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
+- [x] CHK-100 [P0] Architecture decisions documented in decision-record.md
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale
 - [ ] CHK-103 [P2] Migration path documented (if applicable)
 <!-- /ANCHOR:arch-verify -->
 

@@ -104,13 +104,13 @@ const AUTHORED_DIGESTS = Object.freeze({
   'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
   'packets/sk-create-diff/SKILL.md': '91cf34e8834fb4e8841f8b9b9c56e364133add73cfdd3288a0f226c694668b36',
   'packets/sk-create-feature-catalog/SKILL.md': 'f4ab47733e43ebdbede265edbf8eb5b469a57a789b1cbc5ad0bdbee28683f43e',
-  'packets/sk-create-frontmatter/SKILL.md': '5a1fd566fdb3b99fb0e76cf6d0f71627e257663c1cf929b82a5c2a7164079f12',
+  'packets/sk-create-frontmatter/SKILL.md': 'a4e1a01a9754404aa351452aae5b51622e7562f9f84b7f510ead5d69a1441def',
   'packets/sk-create-manual-testing-playbook/SKILL.md': '57a7beffec83571823c34b78b5591269f970e96b22c1fbfec74c47f8e214bdec',
   'packets/sk-create-quality-control/SKILL.md': '8e7cce8a51b7aa7e4f631766f98051dc80a811be53716a093cf2bf1d9697c741',
   'packets/sk-create-readme/SKILL.md': 'b5abb270e52b6cda650556098a21465221c37b35ed06f718ad67213dc1ea31e3',
   'packets/sk-create-repo-rule/SKILL.md': 'bca4952686eecad102712584cb10146d23ad03d2ea5b1b9bbb8c92285c8eb274',
   'packets/sk-create-skill/SKILL.md': '82cb35d0148346fdb54b85d44f733b4260d04bc40c0aea56a69a91eca2f90c47',
-  'packets/sk-create-with-human-voice/SKILL.md': '35dd7cd811aacc6dcbf4aa1b2c48a6ee62704fde680e0424c6389b166aa21dcf',
+  'packets/sk-create-with-human-voice/SKILL.md': '2f0e212c117511d40c7bb4023b88ca2af3bec1b2b5b8cb3ced95f2f922a3f7f2',
 });
 
 function readJson(filePath) {

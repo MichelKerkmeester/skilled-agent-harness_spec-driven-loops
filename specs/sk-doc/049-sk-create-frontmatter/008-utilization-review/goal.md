@@ -64,13 +64,13 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] All eight dead aliases resolve: `frontmatter template`, `frontmatter fields`, `trigger_phrases`, `importance_tier`, `contextType`, `X.Y.Z.W`, `missing frontmatter`, `frontmatter contract` are in `sk-doc/graph-metadata.json`, added with the compiled-routing refresh, sync, verify, finalize and re-pin sequence in one commit
-- [ ] `node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs --help` prints usage and exits 0, without walking git history first
-- [ ] `sk-create-frontmatter/SKILL.md` no longer claims a three-to-five-times inflation, carrying the prepared replacement instead
-- [ ] `FMB-001` and `FMB-002` each name a fixture file that exists, so neither scenario needs the reader to supply its input
-- [ ] The index tables at `frontmatter-templates.md` sections 1, 2 and 10 each list feature catalog, testing playbook and agent alongside the classes already there
-- [ ] Three items are recorded as deferred with a reason rather than dropped: `validate_document.py` typing spec docs as `general`, the six realistic prompts that fail structurally, and the unverified fleet-wide inflation figure
-- [ ] `validate.sh <this phase> --strict` prints `RESULT: PASSED` with rule lines visible
+- [x] All eight dead aliases resolve: `frontmatter template`, `frontmatter fields`, `trigger_phrases`, `importance_tier`, `contextType`, `X.Y.Z.W`, `missing frontmatter`, `frontmatter contract` are in `sk-doc/graph-metadata.json`, added with the compiled-routing refresh, sync, verify, finalize and re-pin sequence in one commit
+- [x] `node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs --help` prints usage and exits 0, without walking git history first
+- [x] `sk-create-frontmatter/SKILL.md` no longer claims a three-to-five-times inflation, carrying the prepared replacement instead
+- [x] `FMB-001` and `FMB-002` each name a fixture file that exists, so neither scenario needs the reader to supply its input
+- [x] The index tables at `frontmatter-templates.md` sections 1, 2 and 10 each list feature catalog, testing playbook and agent alongside the classes already there
+- [x] Three items are recorded as deferred with a reason rather than dropped: `validate_document.py` typing spec docs as `general`, the six realistic prompts that fail structurally, and the unverified fleet-wide inflation figure
+- [x] `validate.sh <this phase> --strict` prints `RESULT: PASSED` with rule lines visible
 <!-- /ANCHOR:completion -->
 
 ---
@@ -91,11 +91,11 @@ The review itself shipped as `8ad1f98d09 fix(sk-create-frontmatter): run its pla
 | Eleven playbook scenarios executed | Done | `implementation-summary.md` section 3 records 11 of 11 PASS, including a negative control on `FMC-001` |
 | Reachability measured | Done | Section 4: 6 of 8 newcomer prompts return nothing, 8 of 17 declared triggers return nothing |
 | Four documentation defects corrected | Done | Six files modified in `8ad1f98d09`, each correction carrying its measurement |
-| Eight aliases added to the hub | Pending | `grep -Fc` against `sk-doc/graph-metadata.json` returns 0 for seven of the eight. `trigger_phrases` matches once at line 145, where it is the JSON key name rather than routing vocabulary, so all eight are absent as aliases |
-| `--help` on the versioning engine | Pending | `node .../frontmatter-version.mjs --help --skill sk-vision` prints `Unknown mode: --help` and exits 64. Cause at `frontmatter-version.mjs:359` in `parseArgs`, where `argv[0]` becomes the mode before the flag loop starts at index 1 |
-| `SKILL.md` inflation claim | Pending | `SKILL.md:172-175` still reads `over-counts by three to five times`. Prepared replacement is in `implementation-summary.md` section 7 |
-| `FMB-001` and `FMB-002` fixtures | Pending | Neither scenario file names an input document. Both grade `the current description`, which the reader has to supply |
-| Three missing classes in the index tables | Pending | `frontmatter-templates.md:49-56` lists six types, `:175-186` covers two, `:1094-1100` lists five. Feature catalog, testing playbook and agent appear in none of the three, though section 4 carries a full template for each |
+| Eight aliases added to the hub | Done | All eight are in `intent_signals` and `derived.trigger_phrases`. Advisor before: all eight returned nothing. After: `frontmatter template` 0.8828, `frontmatter fields` 0.8777, `missing frontmatter` 0.8777, `frontmatter contract` 0.8777, and `trigger_phrases`, `importance_tier`, `contextType`, `X.Y.Z.W` at the 0.82 floor, every one on `sk-doc` |
+| `--help` on the versioning engine | Done | `parseArgs` now scans the whole argv for the flag before the mode is derived. `--help`, `-h`, `--help --skill sk-vision` and no arguments each print usage and exit 0 with no git pass. `bogus` still exits 64 after discovery, unchanged. Engine tests 23 of 23, up from 21, the two new ones covering this |
+| `SKILL.md` inflation claim | Done | The three-to-five-times claim is replaced by the measured 1.06 to 1.09 times over 1,214 documents, with the corpus and the date, matching the reference. The edit made the hub stale and the activation manifests were re-minted for it |
+| `FMB-001` and `FMB-002` fixtures | Done | `assets/fixtures/` now carries `over-budget-description.md` (547 characters, every drop-list category and every keep-list token) and `under-budget-trim-lost-tokens.md` (the 56-character trim and the five keep-list rows), with a README. Both scenarios name their fixture in the prompt, the commands and the anchors table. Playbook package PASS, 11 scenarios, 0 violations |
+| Three missing classes in the index tables | Done | Feature catalog, testing playbook and agent are rows in the section 1 and section 10 tables and in `By Document Type`, and columns in the field summary, which also gained `title` and `trigger_phrases` rows so the three classes' required fields are visible. Every value is taken from the section 4 templates |
 | `validate.sh --strict` on this phase | Done | Recorded against AC-012, re-run at authoring time with `RESULT: PASSED` |
 
 ### Deviations and findings
@@ -108,4 +108,8 @@ The review itself shipped as `8ad1f98d09 fix(sk-create-frontmatter): run its pla
 | The inflation figure is measured on two skills | Deferred with reason. 1,214 documents, aggregate 1.06 to 1.09 times, max 2.25 and no file at 3. The corrected text names the corpus and the date so a fleet-wide run extends it rather than contradicting it |
 | The `--help` defect was proved and handed on | Deferred with reason. Four command workflows call the engine and it sits in the shared tier, so the owner of that tier makes the one-line change |
 | Human-voice blockers in touched files were left alone | 18 in the reference and 36 in the asset predate this phase. No file gained a blocker: deltas were 0, 0, 0, 0, 0 and -1 |
+| D2 names the wrong file as the compiled-routing input | Measured, not assumed. The sk-doc policy pins eighteen source hashes: the hub `SKILL.md`, `hub-router.json`, `mode-registry.json` and each packet `SKILL.md`. `graph-metadata.json` is not among them, and editing it left the guard fresh. What did make the hub stale was the `sk-create-frontmatter/SKILL.md` correction, which is what D1 says. The refresh was carried for that edit rather than for the alias edit |
+| Stage two already carried all eight terms | `hub-router.json`, `mode-registry.json` and root `ROUTER.md` each declare the eight, at `ROUTER.md:170`. Only stage one was missing them, so the repair was one file and the union needed nothing else |
+| The canary was red on an entry that was not this work's | `harness/validate-canary.cjs` pins eighteen source hashes and was red on two. One was this work's `sk-create-frontmatter/SKILL.md`. The other was `sk-create-with-human-voice/SKILL.md`, drifted by a concurrent session, so the canary was already red before this work began. The set refreshes as a whole, so the re-pin waited for that session to commit, which it did during this one, and both entries were closed in a single pass. `REAL-GREEN` at exit 0. ADR-001 records the sequencing |
+| `X.Y.Z.W` catches one out-of-domain phrase | Replayed as the alias rule asks. `write a parser for X.Y.Z.W semver strings in rust` routes to `sk-doc` at 0.9006. The token is repo-specific enough that the capture is narrow, and the alias is one the directive names, so it was kept and recorded rather than dropped |
 <!-- /ANCHOR:log -->

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/049-sk-create-frontmatter/008-utilization-review"
     last_updated_at: "2026-09-02T18:55:24Z"
     last_updated_by: "implementation"
-    recent_action: "Executed all eleven scenarios, measured routing, and corrected four documentation defects"
-    next_safe_action: "Decide the two items in section 7: the hub routing repair and the shared-tier --help defect"
+    recent_action: "Closed the five open goal items and re-minted the hub activation manifests"
+    next_safe_action: "Review the packet for closure"
     blockers: []
     key_files: []
     session_dedup:
@@ -82,6 +82,21 @@ structural cause the routing pass left untouched by its own account.
 | `manual-testing-playbook/manual-testing-playbook.md` | Modified | Same correction in the silent-failures list and the FMV-002 summary |
 | `manual-testing-playbook/version-derivation/numstat-gate.md` | Modified | Graded FMV-002 on producing both counts rather than on the size of the gap |
 | `manual-testing-playbook/version-derivation/idempotent-rerun.md` | Modified | Corrected the FMV-004 expectation that `verify` reports every file as already correct |
+
+A second pass then carried out the two written-up items and three more the goal named:
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `sk-doc/graph-metadata.json` | Modified | Added the eight dead aliases to `intent_signals` and `derived.trigger_phrases` |
+| `sk-create-frontmatter/SKILL.md` | Modified | Replaced the three-to-five-times claim with the measured figure and its corpus |
+| `sk-doc/shared/scripts/frontmatter-version.mjs` | Modified | `parseArgs` recognises `--help` and `-h` from any position, before the mode is derived |
+| `sk-doc/scripts/tests/test-frontmatter-version.mjs` | Modified | Two cases covering the lone `--help`, which no test reached |
+| `assets/fixtures/README.md`, `over-budget-description.md`, `under-budget-trim-lost-tokens.md` | Added | The fixed inputs for `FMB-001` and `FMB-002` |
+| `manual-testing-playbook/description-budget/*.md`, `manual-testing-playbook.md` | Modified | Both scenarios name their fixture in the prompt, the commands and the anchors |
+| `sk-doc/leaf-manifest.json` | Regenerated | Picks up the three fixture leaves |
+| `sk-doc/ROUTER.md` | Modified | The three fixtures in `FULL_INVENTORY`, matching how `sk-create-diff` routes its own |
+| `assets/frontmatter-templates.md` | Modified | Feature catalog, testing playbook and agent in the section 1, 2 and 10 index tables |
+| `013-live-activation/activation/sk-doc/manifest.json` (runtime and authored) | Re-minted | The `SKILL.md` edit is a compiled-routing input, so both manifests moved to `60f98f69...` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -182,6 +197,13 @@ template requires, and every extra key they carry is one the template already do
 | `validate_document.py` on all six modified files | PASS, exit 0 on each |
 | `hvr_scan.py` on all six modified files, `--include-code` for the asset | PASS, no file gained a hard blocker against its committed baseline, at deltas 0, 0, 0, 0, 0 and -1 |
 | `validate.sh <this phase> --strict` | See the closing run recorded against AC-012 |
+| `test-frontmatter-version.mjs` | PASS, exit 0, 23 passed 0 failed (21 before) |
+| `parent-skill-check.cjs .opencode/skills/sk-doc` | PASS, exit 0, all hard invariants, 0 warnings |
+| `compiled-route-guard.cjs` | PASS, exit 0, all five hubs fresh |
+| `compiled-route-sync.cjs --verify` | PASS, exit 0, `move-simulation OK: all 5 hubs resolve; 0 reads under .opencode/specs` |
+| `frontmatter-version.mjs gate --skill sk-doc` | PASS, exit 0, `393 files | ok=392 skip-no-frontmatter=1` |
+| `hvr_scan.py` on the nine files this pass wrote | No file gained a blocker: `ROUTER.md` 25 to 25, `frontmatter-templates.md` 36 to 36, the other seven at 0 |
+| `validate-canary.cjs` | PASS, exit 0, `"status":"REAL-GREEN"`, 23 of 23 route-gold rows |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -189,17 +211,18 @@ template requires, and every extra key they carry is one the template already do
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The mode is still unreachable from natural language.** The repair is vocabulary in
-   `sk-doc/graph-metadata.json`, which this phase was barred from editing, and the dilution effect
-   behind the six failing newcomer prompts is a scorer property that vocabulary alone will not fix.
-2. **`SKILL.md` still states the 3-5x figure at line 174.** It is compiled-policy input. The
-   prepared replacement is in section 7.
-3. **`frontmatter-version.mjs --help` is still broken.** The engine is shared-tier. The one-line
-   change is in section 7.
+1. **Reachability from natural language is better, not solved.** Every declared trigger now resolves
+   and two of three realistic prompts moved, but the dilution effect behind the rest is a scorer
+   property that vocabulary does not fix.
+2. **The canary re-pin captured a second packet's bytes.** Unavoidable, since the digest set refreshes
+   as a whole. Those bytes are committed at `HEAD`, so the pin attests a real state.
+3. **The four aliases at the 0.82 floor sit on the threshold.** They resolve, but with no margin, so a
+   scorer change could drop them again without anything else moving.
 4. **The inflation figure is measured on two skills, not the whole fleet.** The corrected text names
    the corpus and the date, so a later measurement can extend it rather than contradict it.
-5. **`FMB-001` and `FMB-002` name no fixture.** Both scenarios run only if the reader supplies the
-   description under test. The reference's worked example serves, and the scenarios do not say so.
+5. **The fixtures carry their subject in a fenced block rather than in their own frontmatter.** A
+   fixture whose own block broke the rule would read as a live defect to the versioning engine and to
+   every document validator, none of which can tell a deliberate fixture from a mistake.
 6. **`validate_document.py` misclassifies spec-folder documents.** Left alone, it types them as
    general, then blocks them for carrying anchor comments and for having no overview section. The
    spec-kit templates require those anchors and `validate.sh` checks them, so the two tools
@@ -209,30 +232,54 @@ template requires, and every extra key they carry is one the template already do
 
 ---
 
-## 7. WRITTEN UP, NOT FIXED
+## 7. THE FOLLOW-UP PASS
 
-**The hub routing gap.** Eight of the seventeen triggers the manifest declares reach nothing, and
-those eight are exactly the ones missing from `sk-doc/graph-metadata.json`. Adding them there is the
-change. It is a hub routing file and out of this phase's scope. Note that this closes only the
-keyword half: the six newcomer prompts fail with the vocabulary present, so the hub owner should
-expect the count of resolving triggers to rise and realistic reachability to move much less.
+**The hub routing gap is closed at stage one.** The eight aliases are in `sk-doc/graph-metadata.json`.
+Stage two already carried all eight, in `hub-router.json`, `mode-registry.json` and `ROUTER.md:170`, so
+the repair was one file. Measured on the same eleven prompts before and after:
 
-**The `--help` defect.** In `sk-doc/shared/scripts/frontmatter-version.mjs`, `parseArgs` assigns
-`args.mode = argv[0]` before the loop that recognises `--help` starts at index 1, so a lone `--help`
-becomes the mode name, falls past every branch, and reaches `Unknown mode` at exit 64 only after the
-git pass has run. The fix is to recognise the flag at position zero as well, before discovery. The
-file is shared-tier and four command workflows call it, so it belongs to that tier's owner.
+| Prompt | Before | After |
+|---|---|---|
+| `frontmatter template` | nothing | `sk-doc` 0.8828 |
+| `frontmatter fields` | nothing | `sk-doc` 0.8777 |
+| `missing frontmatter` | nothing | `sk-doc` 0.8777 |
+| `frontmatter contract` | nothing | `sk-doc` 0.8777 |
+| `trigger_phrases`, `importance_tier`, `contextType`, `X.Y.Z.W` | nothing | `sk-doc` 0.82, the floor |
+| `what frontmatter fields does this reference doc need` | nothing | `sk-doc` 0.8926 |
+| `the validator says this file is missing frontmatter, what goes at the top` | nothing | `sk-doc` 0.82 |
+| `which importance_tier and contextType should I set for a new skill reference` | `sk-doc` 0.82 | `sk-doc` 0.9121 |
 
-**Prepared text for `SKILL.md` line 174.** Replace:
+Two of the three realistic prompts moved from nothing to the hub, which is more than the write-up
+expected. Four out-of-domain phrases were replayed against the new aliases: `commit and push my branch`
+and `review this webflow animation for jank` are unaffected, `add a contextType field to the TypeScript
+config interface` goes to `sk-code`, and `write a parser for X.Y.Z.W semver strings in rust` is captured
+by `sk-doc` at 0.9006. That last one is a real capture, kept because the token is repo-specific and the
+directive names it.
 
-> A naive commit count over-counts by three to five times, because a historical repository-wide move
-> left every file carrying zero-line "edits" and bulk sweeps touch siblings without changing the file.
+**The `--help` defect is fixed at the cause.** `parseArgs` now scans argv for `--help` or `-h` before the
+mode is derived, so the flag can no longer become a mode name. `--help`, `-h`, `--help --skill sk-vision`
+and no arguments each print usage and exit 0 without a git pass. `bogus` still reaches `Unknown mode:
+bogus` at exit 64 after discovery, unchanged. The engine's test file gained the two cases that would
+have caught it: 23 passed, 0 failed, against 21 before.
 
-with:
+**The compiled-routing sequence went with the `SKILL.md` edit, not the alias edit.** The sk-doc policy
+pins eighteen source hashes and `graph-metadata.json` is not one of them. The pinned set is the hub
+`SKILL.md`, its `hub-router.json`, its `mode-registry.json` and each packet `SKILL.md`. The alias edit left the
+guard fresh. The `SKILL.md` correction turned it to `stale-manifest`, which was the negative control for
+the refresh. Both the runtime and the authored activation manifests were re-minted to
+`60f98f69b2245f6203fd5b0ac5ec02f24b093048ddc62fc3a506048edd53f922` and the guard reads all five hubs
+fresh. The promote and finalize legs were not run, because no closure file changed and the guard already
+reports the runtime matching its authored source.
 
-> A naive commit count over-counts, because a historical repository-wide move left files carrying
-> zero-line "edits" and bulk sweeps touch siblings without changing the file. The standard carries
-> the measured size of the gap, which is a small multiple on this corpus rather than a dramatic one.
+**The canary digest was re-pinned, second.** `009-parent-hub-rollout/007-sk-doc/harness/validate-canary.cjs`
+pins the same eighteen source hashes in `AUTHORED_DIGESTS`, and it was red on two of them. One was this
+work's `sk-create-frontmatter/SKILL.md`. The other was `sk-create-with-human-voice/SKILL.md`, drifted by a
+concurrent session, which means the canary was already red before this pass began. The set refreshes as a
+whole, so the re-pin waited until that session committed, which it did during this one. `build-artifacts.cjs`
+then regenerated the six compiled and activation artifacts and both values were updated in a single pass.
+`validate-canary.cjs` returns `"status":"REAL-GREEN"` at exit 0, with 23 of 23 route-gold rows real-green.
+ADR-001 records the sequencing.
+
 <!-- /ANCHOR:limitations -->
 
 ---

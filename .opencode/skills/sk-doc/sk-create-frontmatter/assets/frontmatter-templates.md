@@ -54,6 +54,9 @@ allowed-tools: Read, Write, Bash
 | **Knowledge (outside skills)** | ❌ **Forbidden** | Pure content, no programmatic interface |
 | **Spec** | ✅ **Required**, and governed elsewhere | `system-spec-kit` templates emit the block and its validator fails without it |
 | **README** | ✅ **Required** beside a `SKILL.md` | Carries `version` per the versioning standard. Optional for every other README |
+| **Feature Catalog** | ✅ **Required** | The block carries the title and the terms a reader searches the inventory on |
+| **Testing Playbook** | ✅ **Required** | Root index and scenario leaves are both addressed by title and version |
+| **Agent** | ✅ **Required** | The runtime reads the authority key, and a file without one inherits the full tool set |
 
 ### Core Characteristics
 
@@ -124,6 +127,9 @@ Level 3: Field Format
 | **Spec** | ✅ Always, per `system-spec-kit` | Owned by that skill, not by this contract | n/a |
 | **README** (beside a `SKILL.md`) | ✅ Always | `title`, `description`, `trigger_phrases`, `version` | `importance_tier`, `contextType` |
 | **README** (anywhere else) | ⚪ Optional | — | Add a block only when the doc should be discoverable |
+| **Feature Catalog** | ✅ Always | `title`, `description`, `trigger_phrases`, `version` | `importance_tier`, plus `last_updated` on the root index |
+| **Testing Playbook** | ✅ Always | `title`, `description`, `version` | Runner-specific keys only, added one at a time when a runner reads them |
+| **Agent** | ✅ Always | `name`, `description`, and the runtime's authority key: `permission:` under `.opencode/agents/`, `tools:` elsewhere | `mode`, `temperature`, `mcpServers` |
 
 > **`version` is the 4-part `X.Y.Z.W` field** carried by every in-scope skill doc (SKILL.md, README, references, assets, feature catalogs, testing playbooks). Format, derivation, and rollout live in [frontmatter-versioning.md](../references/frontmatter-versioning.md). Commands and agents are out of scope (their `version` stays optional).
 
@@ -174,15 +180,17 @@ Is this document invoked programmatically?
 
 ### Frontmatter Field Summary
 
-| Field | SKILL.md | Command | Purpose |
-|-------|----------|---------|---------|
-| `name` | ✅ Required | ⚪ Optional | Identifier (lowercase-with-hyphens) |
-| `description` | ✅ Required | ✅ Required | One-line explanation of purpose |
-| `allowed-tools` | ✅ Required | ✅ Required | Comma-separated tool list |
-| `argument-hint` | ❌ N/A | ✅ Required | Syntax hint: `<required> [optional]` |
-| `model` | ❌ N/A | ⚪ Optional | Override default model (rarely used) |
-| `version` | ✅ Required | ⚪ Optional | 4-part `X.Y.Z.W` for skill docs; see [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
-| `tags` | ⚪ Optional | ❌ N/A | Categorization keywords |
+| Field | SKILL.md | Command | Feature Catalog | Testing Playbook | Agent | Purpose |
+|-------|----------|---------|-----------------|------------------|-------|---------|
+| `name` | ✅ Required | ⚪ Optional | ❌ Uses `title` | ❌ Uses `title` | ✅ Required | Identifier (lowercase-with-hyphens) |
+| `title` | ❌ Uses `name` | ❌ Uses `name` | ✅ Required | ✅ Required | ❌ Uses `name` | Human-readable heading for the document |
+| `description` | ✅ Required | ✅ Required | ✅ Required | ✅ Required | ✅ Required | One-line explanation of purpose |
+| `trigger_phrases` | ❌ N/A | ❌ N/A | ✅ Required | ❌ Not used | ❌ N/A | Search terms, in the per-class shape Section 4 sets out |
+| `allowed-tools` | ✅ Required | ✅ Required | ❌ N/A | ❌ N/A | ❌ Uses `permission:` or `tools:` | Comma-separated tool list |
+| `argument-hint` | ❌ N/A | ✅ Required | ❌ N/A | ❌ N/A | ❌ N/A | Syntax hint: `<required> [optional]` |
+| `model` | ❌ N/A | ⚪ Optional | ❌ N/A | ❌ N/A | ❌ N/A | Override default model (rarely used) |
+| `version` | ✅ Required | ⚪ Optional | ✅ Required | ✅ Required | ❌ Out of scope | 4-part `X.Y.Z.W` for skill docs; see [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
+| `tags` | ⚪ Optional | ❌ N/A | ❌ N/A | ❌ N/A | ❌ N/A | Categorization keywords |
 
 ---
 
@@ -1098,8 +1106,12 @@ Document type?
 | **Skill Reference/Asset** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
 | **Knowledge (outside skills)** | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden |
 | **Spec** | n/a | n/a | n/a | n/a (see `system-spec-kit`) |
+| **Feature Catalog** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
+| **Testing Playbook** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
+| **Agent** | ✅ Required | ✅ Required | ❌ N/A | ❌ N/A (uses `permission:` or `tools:`) |
 
 Skill references/assets additionally require `trigger_phrases` (3-8), `importance_tier`, and `contextType` — see Section 3.
+Feature catalogs additionally require `trigger_phrases` and `version`. Testing playbooks require `title` and `version`. Agents require the authority key their own runtime reads, and carry no `version`. Section 4 has all three.
 
 ### Common Mistakes
 
