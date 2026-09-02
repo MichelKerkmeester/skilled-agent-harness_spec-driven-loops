@@ -19,7 +19,7 @@ contextType: "general"
 
 ## EXECUTIVE SUMMARY
 
-Build the package shape and prove it passes the packaging gate while it is still empty. The metadata contract differs between a hub mode and a standalone root, which is why this phase waits on phase 1 rather than running beside it.
+Build the package shape and prove it passes the packaging gate while it is still empty. A mode packet under a hub carries far less metadata than a root does, which is why this phase waits on phase 1 rather than running beside it.
 
 **Key Decisions**: Which root metadata files belong, given the placement, and where the manual testing playbook directory sits
 
@@ -74,7 +74,7 @@ This is **Phase 3** of the Bring the lieflat-charts skill into this repository a
 
 The source has its own document conventions. They are reasonable and they are not ours, so a direct copy produces a package that looks finished and fails every gate the repository runs.
 
-The metadata contract is also class-dependent in a way that is easy to get backwards. A `graph-metadata.json` is required at both a parent-hub root and a standalone root. A `description.json`, a `mode-registry.json` and a `hub-router.json` are hub-only and forbidden on a standalone root. Building the wrong set means the packaging gate fails for a reason that reads like a missing file rather than like a wrong shape.
+The metadata contract is easy to get backwards, and this spec got it backwards first. The two-class matrix people reach for governs skill **roots**: a `graph-metadata.json` at both a parent-hub root and a standalone root, with `description.json`, `mode-registry.json` and `hub-router.json` hub-only. A mode packet under a hub is not a root, and none of those belong at its level. A nested `graph-metadata.json` or `description.json` below the root is rejected outright, so adding one breaks the hub rather than completing the packet. The packet-level requirement is smaller: `SKILL.md`, `README.md` and a `changelog/`.
 
 ### Purpose
 
@@ -90,7 +90,7 @@ An empty package in the right shape, proven by the gate that will judge it when 
 
 - The package directory tree at the placement phase 1 chose
 - Entry documents built from the create-skill templates rather than adapted from the source
-- Root metadata matching the class, hub or standalone, and nothing outside that class
+- The packet-level documents, and none of the root-level metadata that belongs one level up
 - A packaging check that passes while the package is still empty
 
 ### Out of Scope
@@ -104,8 +104,8 @@ An empty package in the right shape, proven by the gate that will judge it when 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | The skill package root and its subdirectories | Create | The shape, from the create-skill templates |
-| `graph-metadata.json` at the package root | Create | Required at both hub and standalone roots |
-| Hub-only metadata, if and only if the placement is a hub mode | Create | Forbidden on a standalone root, so this depends on phase 1 |
+| `SKILL.md`, `README.md`, `changelog/` | Create | The packet-level requirement for a mode under a hub |
+| Root-level metadata JSON | Not created | It belongs at the hub root, and a nested copy is rejected |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,7 +118,7 @@ An empty package in the right shape, proven by the gate that will judge it when 
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | `package_skill.py --check --strict` reports PASS against the empty package. |
-| REQ-002 | Root metadata matches the contract for the class the placement implies, with no file from the other class present. |
+| REQ-002 | The packet carries its packet-level documents and no root-level metadata JSON, since a nested copy is rejected. |
 | REQ-003 | Every entry document derives from a create-skill template, not from the source's equivalent. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -138,7 +138,7 @@ An empty package in the right shape, proven by the gate that will judge it when 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `package_skill.py --check --strict` prints PASS.
-- **SC-002**: `ci-skill-root-metadata.cjs` reports no violation for the new root.
+- **SC-002**: `ci-skill-root-metadata.cjs` reports the same fleet result as before the packet existed.
 - **SC-003**: Every port or adapt row from phase 1 has a destination directory that exists.
 <!-- /ANCHOR:success-criteria -->
 
@@ -199,7 +199,7 @@ An empty package in the right shape, proven by the gate that will judge it when 
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Wrong metadata class built, hub files on a standalone root or the reverse | H | M | Read the metadata contract before writing any of them |
+| R-001 | Root-level metadata added to a packet, which breaks the hub rather than completing it | H | M | Read the packet contract, not the root matrix |
 | R-002 | Entry documents adapted from the source instead of built from templates | M | H | Build first, compare second |
 | R-003 | A destination directory is missing and phase 4 improvises one | M | M | Reconcile the tree against phase 1's port and adapt rows |
 

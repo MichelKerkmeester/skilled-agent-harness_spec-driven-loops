@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The source has its own document conventions",
     "created_at": "2026-09-02T07:56:50Z",
-    "last_save_at": "2026-09-02T09:21:00.901Z",
+    "last_save_at": "2026-09-02T09:24:38.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,10 +216,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ab3c9a10f6fce4934427c0a513b62ba9fc696e4d858f9f83ddf739ebbe88cf03",
+    "source_fingerprint": "sha256:5ad9e398f887309546091b9471977c66a1038ef67d846a74250150152aa473ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51c628b8857dece7a1d5c61e82440c74da2053784c8f3b22d0dfb37338aeff0f",
+      "spec.md": "086d9ec7d92fbff979a83e5d2370b202713e6b4eee87b0eaab9302a0f0e57e73",
       "plan.md": "3470ba49b1317976299b7df1ac52c2ac787dd5ccb2d460b4fe12b41f1332ab0b",
       "tasks.md": "46c6666351b1f2b931e9d1b03e0d42e2c0bedd012ab5b976006b4372c98e8a96",
       "implementation-summary.md": "31a6aea981adc02e3fb6dd994792f8917c64d2e953880f8f1e583e2ff82c041b"
