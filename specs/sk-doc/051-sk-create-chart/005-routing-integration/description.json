@@ -1,17 +1,19 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/051-sk-create-chart/005-routing-integration",
-  "description": "Phase 5: routing-integration",
+  "description": "A registry entry is not a route",
   "keywords": [
-    "phase",
-    "routing-integration"
+    "registry",
+    "entry",
+    "route"
   ],
-  "lastUpdated": "2026-09-02T07:56:52.299Z",
+  "lastUpdated": "2026-09-02T08:51:29.076Z",
   "specId": "005",
   "folderSlug": "routing-integration",
   "parentChain": [
-    "001-sk-create-chart"
+    "sk-doc",
+    "051-sk-create-chart"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-09-01T09:49:15.585Z",
+  "generated": "2026-09-02T08:55:03.054Z",
   "folders": [
     {
       "specFolder": "agents/001-terminal-proof-discipline",
@@ -7559,6 +7559,26 @@
         "server"
       ],
       "lastUpdated": "2026-08-29T14:33:53.772Z"
+    },
+    {
+      "specFolder": "mcp-tooling/019-official-obsidian-cli",
+      "description": "The official `obsidian` binary is already registered on this machine at `/usr/local/bin/obsidian`, symlinked into the desktop app bundle",
+      "keywords": [
+        "official",
+        "obsidian",
+        "binary",
+        "already",
+        "registered",
+        "machine",
+        "usr",
+        "local",
+        "bin",
+        "symlinked",
+        "desktop",
+        "app",
+        "bundle"
+      ],
+      "lastUpdated": "2026-09-02T08:24:47.044Z"
     },
     {
       "specFolder": "mcp-tooling/z_archive/001-mcp-coco-integration",
@@ -24634,61 +24654,229 @@
         "emit",
         "frontmatter"
       ],
-      "lastUpdated": "2026-09-01T08:46:14.898Z"
+      "lastUpdated": "2026-09-01T11:27:39.697Z"
     },
     {
       "specFolder": "sk-doc/049-sk-create-frontmatter/001-inventory-and-contract",
-      "description": "Phase 1: inventory-and-contract",
+      "description": "A move is only as safe as the inventory behind it",
       "keywords": [
-        "phase",
-        "inventory-and-contract"
+        "move",
+        "only",
+        "safe",
+        "inventory",
+        "behind"
       ],
-      "lastUpdated": "2026-09-01T08:42:56.912Z"
+      "lastUpdated": "2026-09-01T10:49:46.245Z"
     },
     {
       "specFolder": "sk-doc/049-sk-create-frontmatter/002-mode-scaffold",
-      "description": "Phase 2: mode-scaffold",
+      "description": "A packet that gains content and structure at the same time cannot tell you which of the two",
       "keywords": [
-        "phase",
-        "mode-scaffold"
+        "packet",
+        "gains",
+        "content",
+        "structure",
+        "same",
+        "time",
+        "cannot",
+        "tell",
+        "two"
       ],
-      "lastUpdated": "2026-09-01T08:42:57.868Z"
+      "lastUpdated": "2026-09-01T11:08:12.309Z"
     },
     {
       "specFolder": "sk-doc/049-sk-create-frontmatter/003-content-migration",
-      "description": "Phase 3: content-migration",
+      "description": "Two files move and roughly forty references follow them",
       "keywords": [
-        "phase",
-        "content-migration"
+        "two",
+        "files",
+        "move",
+        "roughly",
+        "forty",
+        "references",
+        "follow",
+        "them"
       ],
-      "lastUpdated": "2026-09-01T08:42:58.928Z"
+      "lastUpdated": "2026-09-01T11:12:19.552Z"
     },
     {
       "specFolder": "sk-doc/049-sk-create-frontmatter/004-routing-integration",
-      "description": "Phase 4: routing-integration",
+      "description": "A registry entry is not a route",
       "keywords": [
-        "phase",
-        "routing-integration"
+        "registry",
+        "entry",
+        "route"
       ],
-      "lastUpdated": "2026-09-01T08:42:59.969Z"
+      "lastUpdated": "2026-09-01T11:17:02.842Z"
     },
     {
       "specFolder": "sk-doc/049-sk-create-frontmatter/005-command-and-playbook",
-      "description": "Phase 5: command-and-playbook",
+      "description": "A mode with no operator surface is reachable only by the router, and a mode with no playbook",
       "keywords": [
-        "phase",
-        "command-and-playbook"
+        "mode",
+        "operator",
+        "surface",
+        "reachable",
+        "only",
+        "router",
+        "playbook"
       ],
-      "lastUpdated": "2026-09-01T08:43:01.000Z"
+      "lastUpdated": "2026-09-01T11:32:43.548Z"
     },
     {
       "specFolder": "sk-doc/049-sk-create-frontmatter/006-verification-and-closeout",
-      "description": "Phase 6: verification-and-closeout",
+      "description": "Each phase proved its own step",
       "keywords": [
         "phase",
-        "verification-and-closeout"
+        "proved",
+        "own",
+        "step"
       ],
-      "lastUpdated": "2026-09-01T08:43:02.072Z"
+      "lastUpdated": "2026-09-01T11:37:52.043Z"
+    },
+    {
+      "specFolder": "sk-doc/049-sk-create-frontmatter/007-human-voice-playbook",
+      "description": "The human voice mode owns the standard the whole repository writes against, and it is one of",
+      "keywords": [
+        "human",
+        "voice",
+        "mode",
+        "owns",
+        "standard",
+        "whole",
+        "repository",
+        "writes",
+        "against",
+        "one"
+      ],
+      "lastUpdated": "2026-09-01T11:39:46.703Z"
+    },
+    {
+      "specFolder": "sk-doc/050-sk-doc-playbook-coverage",
+      "description": "Three of the fifteen sk-doc modes carry a manual testing playbook",
+      "keywords": [
+        "three",
+        "fifteen",
+        "sk-doc",
+        "modes",
+        "carry",
+        "manual",
+        "testing",
+        "playbook"
+      ],
+      "lastUpdated": "2026-09-01T11:49:39.664Z"
+    },
+    {
+      "specFolder": "sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces",
+      "description": "Phase 1: authoring-surfaces",
+      "keywords": [
+        "phase",
+        "authoring-surfaces"
+      ],
+      "lastUpdated": "2026-09-01T11:48:00.002Z"
+    },
+    {
+      "specFolder": "sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers",
+      "description": "Phase 2: artifact-producers",
+      "keywords": [
+        "phase",
+        "artifact-producers"
+      ],
+      "lastUpdated": "2026-09-01T11:48:00.798Z"
+    },
+    {
+      "specFolder": "sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality",
+      "description": "Phase 3: meta-and-quality",
+      "keywords": [
+        "phase",
+        "meta-and-quality"
+      ],
+      "lastUpdated": "2026-09-01T11:48:01.612Z"
+    },
+    {
+      "specFolder": "sk-doc/051-sk-create-chart",
+      "description": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
+      "keywords": [
+        "lieflat-charts",
+        "data-visualization",
+        "skill",
+        "elsewhere",
+        "chart",
+        "report",
+        "templates"
+      ],
+      "lastUpdated": "2026-09-02T08:53:20.110Z"
+    },
+    {
+      "specFolder": "sk-doc/051-sk-create-chart/001-source-inventory-and-placement",
+      "description": "Phase 1: source-inventory-and-placement",
+      "keywords": [
+        "phase",
+        "source-inventory-and-placement"
+      ],
+      "lastUpdated": "2026-09-02T07:56:49.264Z"
+    },
+    {
+      "specFolder": "sk-doc/051-sk-create-chart/002-translation-and-voice",
+      "description": "Roughly 15,000 Chinese characters sit across six authored documents, the largest being the source `SKILL.md` at 8,304",
+      "keywords": [
+        "roughly",
+        "chinese",
+        "characters",
+        "sit",
+        "across",
+        "six",
+        "authored",
+        "documents",
+        "largest",
+        "source",
+        "skill"
+      ],
+      "lastUpdated": "2026-09-02T08:53:37.021Z"
+    },
+    {
+      "specFolder": "sk-doc/051-sk-create-chart/003-packet-scaffold",
+      "description": "The source has its own document conventions",
+      "keywords": [
+        "source",
+        "own",
+        "document",
+        "conventions"
+      ],
+      "lastUpdated": "2026-09-02T08:51:29.080Z"
+    },
+    {
+      "specFolder": "sk-doc/051-sk-create-chart/004-native-chart-build",
+      "description": "The reference implementation is PolyForm Noncommercial and this repository is MIT and public",
+      "keywords": [
+        "reference",
+        "implementation",
+        "polyform",
+        "noncommercial",
+        "repository",
+        "mit",
+        "public"
+      ],
+      "lastUpdated": "2026-09-02T08:53:20.066Z"
+    },
+    {
+      "specFolder": "sk-doc/051-sk-create-chart/005-routing-integration",
+      "description": "A registry entry is not a route",
+      "keywords": [
+        "registry",
+        "entry",
+        "route"
+      ],
+      "lastUpdated": "2026-09-02T08:51:29.076Z"
+    },
+    {
+      "specFolder": "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
+      "description": "Phase 6: playbook-and-closeout",
+      "keywords": [
+        "phase",
+        "playbook-and-closeout"
+      ],
+      "lastUpdated": "2026-09-02T07:56:53.088Z"
     },
     {
       "specFolder": "sk-doc/z_archive/001-sk-doc-rename",

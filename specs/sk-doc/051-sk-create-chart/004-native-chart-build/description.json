@@ -1,17 +1,23 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/051-sk-create-chart/004-native-chart-build",
-  "description": "Phase 4: content-migration",
+  "description": "The reference implementation is PolyForm Noncommercial and this repository is MIT and public",
   "keywords": [
-    "phase",
-    "content-migration"
+    "reference",
+    "implementation",
+    "polyform",
+    "noncommercial",
+    "repository",
+    "mit",
+    "public"
   ],
-  "lastUpdated": "2026-09-02T07:56:51.534Z",
+  "lastUpdated": "2026-09-02T08:53:20.066Z",
   "specId": "004",
-  "folderSlug": "content-migration",
+  "folderSlug": "native-chart-build",
   "parentChain": [
-    "001-sk-create-chart"
+    "sk-doc",
+    "051-sk-create-chart"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }
