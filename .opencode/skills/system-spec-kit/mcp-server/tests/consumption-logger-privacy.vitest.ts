@@ -5,7 +5,7 @@
 // the fingerprint scheme supports correct deduplication and grouping.
 // Uses in-memory SQLite only — never touches real filesystem paths.
 
-import { describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
 import { createHash } from 'node:crypto';
 import {
@@ -14,6 +14,24 @@ import {
   getConsumptionPatterns,
   computeQueryFingerprint,
 } from '../lib/telemetry/consumption-logger';
+
+// logConsumptionEvent is opt-in: it returns without writing unless
+// SPECKIT_CONSUMPTION_LOG is explicitly enabled. Without this the writer is a
+// no-op, every query below returns zero rows, and the privacy assertions pass
+// while proving nothing.
+const previousConsumptionLogFlag = process.env.SPECKIT_CONSUMPTION_LOG;
+
+beforeAll(() => {
+  process.env.SPECKIT_CONSUMPTION_LOG = 'true';
+});
+
+afterAll(() => {
+  if (previousConsumptionLogFlag === undefined) {
+    delete process.env.SPECKIT_CONSUMPTION_LOG;
+  } else {
+    process.env.SPECKIT_CONSUMPTION_LOG = previousConsumptionLogFlag;
+  }
+});
 
 function createTestDb(): Database.Database {
   const db = new Database(':memory:');

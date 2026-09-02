@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { execSync } from 'node:child_process';
 import { copyFileSync, existsSync, mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const TEST_DIR = dirname(fileURLToPath(import.meta.url));
@@ -10,14 +10,15 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const VALIDATE_SH = join(WORKSPACE_ROOT, '.opencode/skills/system-spec-kit/scripts/spec/validate.sh');
 const SOURCE_SPEC = join(
   WORKSPACE_ROOT,
-  '.opencode/specs/skilled-agent-orchestration/z_archive/089-multi-ai-council-persistence',
+  'specs/system-deep-loop/z_archive/021-multi-ai-council-write-protocol/002-multi-ai-council-persistence',
 );
 
+// checklist.md is deliberately absent: the standalone verification checklist was
+// retired and is no longer part of the canonical doc set.
 const specDocs = [
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'decision-record.md',
   'implementation-summary.md',
   'description.json',
@@ -25,15 +26,26 @@ const specDocs = [
 ];
 
 function makeSyntheticSpecFolder(): { tmp: string; packet: string } {
-  const tmp = mkdtempSync(join(tmpdir(), 'spec-kit-089-validator-'));
-  const packet = join(tmp, '089-multi-ai-council-persistence');
+  if (!existsSync(SOURCE_SPEC)) {
+    throw new Error(
+      `Council fixture source is missing: ${SOURCE_SPEC}. `
+      + 'Repoint SOURCE_SPEC at the packet it moved to rather than validating an empty folder.',
+    );
+  }
+
+  const tmp = mkdtempSync(join(tmpdir(), 'spec-kit-council-validator-'));
+  // The copied documents record the folder name they were authored under, so the
+  // synthetic packet must reuse that name or the disk/metadata consistency rule
+  // reports a stale reference and strict validation fails.
+  const packet = join(tmp, basename(SOURCE_SPEC));
   mkdirSync(packet, { recursive: true });
 
   for (const doc of specDocs) {
     const source = join(SOURCE_SPEC, doc);
-    if (existsSync(source)) {
-      copyFileSync(source, join(packet, doc));
+    if (!existsSync(source)) {
+      throw new Error(`Council fixture source is missing a required document: ${source}`);
     }
+    copyFileSync(source, join(packet, doc));
   }
 
   return { tmp, packet };
