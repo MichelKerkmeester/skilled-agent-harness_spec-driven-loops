@@ -120,7 +120,26 @@
     "reads like ai wrote it",
     "remove ai tells",
     "human voice rules",
-    "voice pass"
+    "voice pass",
+    "scaffold a skill",
+    "new skill",
+    "build a skill",
+    "author a skill",
+    "new agent",
+    "author an agent",
+    "new slash command",
+    "slash command",
+    "parent hub",
+    "skill hub",
+    "new benchmark",
+    "benchmark package",
+    "before and after document",
+    "document diff",
+    "opencode skill",
+    "opencode agent",
+    "opencode command",
+    "scaffold a new skill",
+    "create a new skill"
   ],
   "derived": {
     "trigger_phrases": [
