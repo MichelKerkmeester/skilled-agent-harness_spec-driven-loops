@@ -38,14 +38,19 @@
       "implementation",
       "plan"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/classify.mjs",
+      "research/inventory.md",
+      "scratch/scan-source.mjs",
+      "scratch/emit-tables.mjs"
     ],
     "entities": [
       {
@@ -73,9 +78,39 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "classify.mjs",
+        "kind": "file",
+        "path": "scratch/classify.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "research/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "scan-source.mjs",
+        "kind": "file",
+        "path": "scratch/scan-source.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "emit-tables.mjs",
+        "kind": "file",
+        "path": "scratch/emit-tables.mjs",
         "source": "derived"
       },
       {
@@ -127,7 +162,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Every",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,7 +174,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Clone",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -161,41 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The source repository is already shaped like a skill",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-02T08:06:03.756Z",
+    "last_save_at": "2026-09-02T08:26:21.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +208,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a0500166537ee87dbe14ec81791487a11730f0b769519aac32d22b78f3986a5",
+    "source_fingerprint": "sha256:3b7837d36d603fc108b91b0051c59d5b0e783c29eb7837457dd879f5ac274393",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9df16f6338f8adf7a7d08c67daf986680f5bf6cfb72b58e9766592c231e4301b",
-      "plan.md": "3e3c34a06cc195fe92bcf3194b5647e8d11af0e05963e6cc83a4ef4d478ef447",
-      "tasks.md": "d5bf7fcd1944c6952a13ab9dd178aa03b2918af1abb9ea39cdb0d8d621495a10",
-      "implementation-summary.md": "ea2b0a6c68098e783b67c2123b494c39cee43759f601164caff7f3ee5b4e4612"
+      "plan.md": "7d93f36c3d42b2661aff136237e9d0708c3416a4a359734bd77c1a2ec9a48f12",
+      "tasks.md": "f26d0d5be0ac3b1a5bbe092b2a485d5a8bcade5cfda8491a327f9f7863d80cf8",
+      "decision-record.md": "6be8e418453c12c796a0f867e1f1c1f0339ae9eca8dd1380164fd4a8c918d28c",
+      "implementation-summary.md": "00198022a40f9bcb517e66c6fcfdc8d239ec9f392693cc5db37ac4acd1d22e1b"
     },
     "last_active_child_id": null,
     "last_active_at": null

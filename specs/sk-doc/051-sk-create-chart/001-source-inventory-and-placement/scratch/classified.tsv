@@ -1,0 +1,125 @@
+path	bytes	class	lines	han	punct	disposition	reason
+.gitignore	61	text	6	0	0	drop	Ignore rules for a standalone repository root. This repository has its own
+agents/openai.yaml	466	text	4	0	0	port	Required by scripts/validate.mjs, and inert in this runtime but too small to be worth diverging over
+catalog.md	14410	text	108	1986	316	adapt	The lookup index the workflow depends on. It needs translation and re-pathing to the packet layout
+color-presets.js	9888	text	179	763	103	translate	Block comments and the cn display-name field are Chinese. The name field is already the latin id, so behaviour is unaffected
+docs/assets/color-palm-support-motion.gif	412405	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/color-palm-wave-motion.gif	466327	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/color-porcelain-almanac-motion.gif	1783106	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/color-porcelain-motion.gif	1037942	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/color-wire-hourglass-motion.gif	622011	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/color-wire-patchwork-motion.gif	612693	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/examples/r04-financial-report.zh.png	221753	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/glance-motion.gif	234967	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/glance-race-motion.gif	586056	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/glance-stroke-motion.gif	78713	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/glance-wave-motion.gif	44721	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/interactive-motion.gif	2479001	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/moxt-quick-start-en.png	62009	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/moxt-quick-start-zh.png	62629	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-basics-01.png	226774	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-basics-02.png	355269	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-color-palm-basics.png	76144	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-color-palm-glance.png	80460	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-color-palm.png	122280	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-color-porcelain-basics.png	140997	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-color-porcelain-glance.png	80396	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-color-porcelain.png	124801	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-color-wire-basics.png	73919	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-color-wire-glance.png	76930	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-color-wire.png	119377	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-glance-01.png	247612	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-glance-02.png	336511	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-glance-03.png	230410	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-lupi-01.png	265190	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-lupi-02.png	340168	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/preview-lupi-03.png	358310	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/readme-hero-en.png	81327	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/readme-hero-zh.png	80972	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-01.png	207226	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-02.png	134914	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-03.png	156102	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-04.png	123716	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-05.png	139930	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-06.png	211270	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-07.png	186174	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-08.png	105932	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-09.png	104352	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-10.png	210713	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-11.png	200991	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/en/report-12.png	156280	binary	0	0	0	drop	Preview imagery referenced only from the GitHub README surfaces, which do not cross over
+docs/assets/reports/report-01.png	516177	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-02.png	320920	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-03.png	303966	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-04.png	417258	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-05.png	349679	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-06.png	744527	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-07.png	472056	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-08.png	243567	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-09.png	468253	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-10.png	519061	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-11.png	269540	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+docs/assets/reports/report-12.png	474805	binary	0	0	0	port	Hard-required by scripts/validate.mjs:44 and referenced 12 times by templates/reports/index.html
+examples/lenny-2026-survey.html	23629	text	445	0	0	port	No Chinese content and no repository-specific assumption to rewrite
+examples/README.md	2680	text	35	515	76	translate	Folder-level guidance that ports structurally unchanged once the prose is English
+examples/reports/r04-financial-report.zh.html	19737	text	375	790	81	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+LICENSE	4563	text	131	0	0	port	The Notices clause requires the terms to travel with any part of the software
+mono-tokens.js	10427	text	177	518	82	translate	Block comments and the cn display-name field are Chinese. The name field is already the latin id, so behaviour is unaffected
+README.en.md	19420	text	304	2	0	adapt	Source of fact for the packet README, but rewritten to the readme template and stripped of dead image references
+README.md	18916	text	304	3180	300	drop	Chinese twin of README.en.md. Keeping both would duplicate content the adoption wants in one language
+report-catalog.md	4869	text	49	1010	146	adapt	The lookup index the workflow depends on. It needs translation and re-pathing to the packet layout
+scripts/smoke-new-charts.mjs	3356	text	77	151	22	adapt	Path assumptions and Chinese comments both change. Smoke additionally needs a global Playwright install
+scripts/validate.mjs	11344	text	322	204	28	adapt	Path assumptions and Chinese comments both change. Smoke additionally needs a global Playwright install
+SKILL.md	37421	text	355	8304	1097	adapt	Becomes the packet SKILL.md under the create-skill template, and carries the largest translation load
+templates/basics-gallery.html	49417	text	943	905	138	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/big-circular.html	4035	text	112	0	0	port	No Chinese content and no repository-specific assumption to rewrite
+templates/big-force.html	4651	text	111	0	0	port	No Chinese content and no repository-specific assumption to rewrite
+templates/big-threads.html	7711	text	164	0	0	port	No Chinese content and no repository-specific assumption to rewrite
+templates/color/basics-palm.html	48341	text	901	568	77	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/basics-porcelain.html	47617	text	893	427	57	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/basics-wire.html	47910	text	899	516	69	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/big-circular-palm.html	4161	text	112	25	4	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/big-circular-porcelain.html	4169	text	112	26	4	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/big-force-palm.html	4773	text	111	25	4	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/big-force-porcelain.html	4781	text	111	26	4	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/big-threads-palm.html	7724	text	164	3	0	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/big-threads-porcelain.html	7729	text	164	3	0	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/glance-palm.html	52790	text	1172	696	100	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/glance-porcelain.html	52672	text	1171	637	91	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/glance-wire.html	52988	text	1176	698	100	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/lupi-palm.html	65693	text	1260	884	113	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/lupi-porcelain.html	65540	text	1257	813	107	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/lupi-wire.html	65503	text	1257	832	108	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/maps-palm.html	9813	text	180	216	38	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/maps-porcelain.html	9825	text	180	216	38	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/maps-wire.html	9840	text	180	224	39	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/color/README.md	2836	text	37	652	78	translate	Folder-level guidance that ports structurally unchanged once the prose is English
+templates/glance-gallery.html	49086	text	1135	319	53	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/lupi-gallery.html	61263	text	1220	429	58	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/maps-gallery.html	9786	text	180	236	39	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/index.html	10836	text	42	818	64	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-01.en.html	16347	text	306	349	72	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-01.zh.html	16314	text	308	924	117	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-02.en.html	18640	text	351	496	88	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-02.zh.html	18794	text	355	896	113	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-03.en.html	19602	text	390	487	89	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-03.zh.html	19647	text	391	823	110	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-04.en.html	19064	text	369	330	63	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-04.zh.html	19546	text	375	773	83	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-05.en.html	13594	text	260	458	74	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-05.zh.html	13694	text	258	928	111	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-06.en.html	23443	text	434	745	110	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-06.zh.html	23202	text	433	1307	142	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-07.en.html	22358	text	419	668	137	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-07.zh.html	22126	text	415	1179	164	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-08.en.html	12995	text	255	454	86	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-08.zh.html	12820	text	255	683	94	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-09.en.html	23029	text	448	615	122	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-09.zh.html	23095	text	449	933	146	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-10.en.html	21360	text	430	424	94	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-10.zh.html	20908	text	423	1241	154	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-11.en.html	14358	text	182	446	66	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-11.zh.html	14401	text	180	713	83	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-12.en.html	21043	text	412	813	113	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+templates/reports/report-12.zh.html	21011	text	413	1348	117	translate	Chinese appears in human-facing copy rather than in structural keys, so the markup ports unchanged
+THIRD_PARTY_NOTICES.md	746	text	11	128	7	translate	Names the runtime dependencies and their licences, so it has to survive and has to be readable

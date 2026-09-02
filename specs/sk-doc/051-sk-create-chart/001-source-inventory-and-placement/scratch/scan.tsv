@@ -1,0 +1,125 @@
+path	bytes	class	lines	han	cjk_punct
+.gitignore	61	text	6	0	0
+agents/openai.yaml	466	text	4	0	0
+catalog.md	14410	text	108	1986	316
+color-presets.js	9888	text	179	763	103
+docs/assets/color-palm-support-motion.gif	412405	binary			
+docs/assets/color-palm-wave-motion.gif	466327	binary			
+docs/assets/color-porcelain-almanac-motion.gif	1783106	binary			
+docs/assets/color-porcelain-motion.gif	1037942	binary			
+docs/assets/color-wire-hourglass-motion.gif	622011	binary			
+docs/assets/color-wire-patchwork-motion.gif	612693	binary			
+docs/assets/examples/r04-financial-report.zh.png	221753	binary			
+docs/assets/glance-motion.gif	234967	binary			
+docs/assets/glance-race-motion.gif	586056	binary			
+docs/assets/glance-stroke-motion.gif	78713	binary			
+docs/assets/glance-wave-motion.gif	44721	binary			
+docs/assets/interactive-motion.gif	2479001	binary			
+docs/assets/moxt-quick-start-en.png	62009	binary			
+docs/assets/moxt-quick-start-zh.png	62629	binary			
+docs/assets/preview-basics-01.png	226774	binary			
+docs/assets/preview-basics-02.png	355269	binary			
+docs/assets/preview-color-palm-basics.png	76144	binary			
+docs/assets/preview-color-palm-glance.png	80460	binary			
+docs/assets/preview-color-palm.png	122280	binary			
+docs/assets/preview-color-porcelain-basics.png	140997	binary			
+docs/assets/preview-color-porcelain-glance.png	80396	binary			
+docs/assets/preview-color-porcelain.png	124801	binary			
+docs/assets/preview-color-wire-basics.png	73919	binary			
+docs/assets/preview-color-wire-glance.png	76930	binary			
+docs/assets/preview-color-wire.png	119377	binary			
+docs/assets/preview-glance-01.png	247612	binary			
+docs/assets/preview-glance-02.png	336511	binary			
+docs/assets/preview-glance-03.png	230410	binary			
+docs/assets/preview-lupi-01.png	265190	binary			
+docs/assets/preview-lupi-02.png	340168	binary			
+docs/assets/preview-lupi-03.png	358310	binary			
+docs/assets/readme-hero-en.png	81327	binary			
+docs/assets/readme-hero-zh.png	80972	binary			
+docs/assets/reports/en/report-01.png	207226	binary			
+docs/assets/reports/en/report-02.png	134914	binary			
+docs/assets/reports/en/report-03.png	156102	binary			
+docs/assets/reports/en/report-04.png	123716	binary			
+docs/assets/reports/en/report-05.png	139930	binary			
+docs/assets/reports/en/report-06.png	211270	binary			
+docs/assets/reports/en/report-07.png	186174	binary			
+docs/assets/reports/en/report-08.png	105932	binary			
+docs/assets/reports/en/report-09.png	104352	binary			
+docs/assets/reports/en/report-10.png	210713	binary			
+docs/assets/reports/en/report-11.png	200991	binary			
+docs/assets/reports/en/report-12.png	156280	binary			
+docs/assets/reports/report-01.png	516177	binary			
+docs/assets/reports/report-02.png	320920	binary			
+docs/assets/reports/report-03.png	303966	binary			
+docs/assets/reports/report-04.png	417258	binary			
+docs/assets/reports/report-05.png	349679	binary			
+docs/assets/reports/report-06.png	744527	binary			
+docs/assets/reports/report-07.png	472056	binary			
+docs/assets/reports/report-08.png	243567	binary			
+docs/assets/reports/report-09.png	468253	binary			
+docs/assets/reports/report-10.png	519061	binary			
+docs/assets/reports/report-11.png	269540	binary			
+docs/assets/reports/report-12.png	474805	binary			
+examples/lenny-2026-survey.html	23629	text	445	0	0
+examples/README.md	2680	text	35	515	76
+examples/reports/r04-financial-report.zh.html	19737	text	375	790	81
+LICENSE	4563	text	131	0	0
+mono-tokens.js	10427	text	177	518	82
+README.en.md	19420	text	304	2	0
+README.md	18916	text	304	3180	300
+report-catalog.md	4869	text	49	1010	146
+scripts/smoke-new-charts.mjs	3356	text	77	151	22
+scripts/validate.mjs	11344	text	322	204	28
+SKILL.md	37421	text	355	8304	1097
+templates/basics-gallery.html	49417	text	943	905	138
+templates/big-circular.html	4035	text	112	0	0
+templates/big-force.html	4651	text	111	0	0
+templates/big-threads.html	7711	text	164	0	0
+templates/color/basics-palm.html	48341	text	901	568	77
+templates/color/basics-porcelain.html	47617	text	893	427	57
+templates/color/basics-wire.html	47910	text	899	516	69
+templates/color/big-circular-palm.html	4161	text	112	25	4
+templates/color/big-circular-porcelain.html	4169	text	112	26	4
+templates/color/big-force-palm.html	4773	text	111	25	4
+templates/color/big-force-porcelain.html	4781	text	111	26	4
+templates/color/big-threads-palm.html	7724	text	164	3	0
+templates/color/big-threads-porcelain.html	7729	text	164	3	0
+templates/color/glance-palm.html	52790	text	1172	696	100
+templates/color/glance-porcelain.html	52672	text	1171	637	91
+templates/color/glance-wire.html	52988	text	1176	698	100
+templates/color/lupi-palm.html	65693	text	1260	884	113
+templates/color/lupi-porcelain.html	65540	text	1257	813	107
+templates/color/lupi-wire.html	65503	text	1257	832	108
+templates/color/maps-palm.html	9813	text	180	216	38
+templates/color/maps-porcelain.html	9825	text	180	216	38
+templates/color/maps-wire.html	9840	text	180	224	39
+templates/color/README.md	2836	text	37	652	78
+templates/glance-gallery.html	49086	text	1135	319	53
+templates/lupi-gallery.html	61263	text	1220	429	58
+templates/maps-gallery.html	9786	text	180	236	39
+templates/reports/index.html	10836	text	42	818	64
+templates/reports/report-01.en.html	16347	text	306	349	72
+templates/reports/report-01.zh.html	16314	text	308	924	117
+templates/reports/report-02.en.html	18640	text	351	496	88
+templates/reports/report-02.zh.html	18794	text	355	896	113
+templates/reports/report-03.en.html	19602	text	390	487	89
+templates/reports/report-03.zh.html	19647	text	391	823	110
+templates/reports/report-04.en.html	19064	text	369	330	63
+templates/reports/report-04.zh.html	19546	text	375	773	83
+templates/reports/report-05.en.html	13594	text	260	458	74
+templates/reports/report-05.zh.html	13694	text	258	928	111
+templates/reports/report-06.en.html	23443	text	434	745	110
+templates/reports/report-06.zh.html	23202	text	433	1307	142
+templates/reports/report-07.en.html	22358	text	419	668	137
+templates/reports/report-07.zh.html	22126	text	415	1179	164
+templates/reports/report-08.en.html	12995	text	255	454	86
+templates/reports/report-08.zh.html	12820	text	255	683	94
+templates/reports/report-09.en.html	23029	text	448	615	122
+templates/reports/report-09.zh.html	23095	text	449	933	146
+templates/reports/report-10.en.html	21360	text	430	424	94
+templates/reports/report-10.zh.html	20908	text	423	1241	154
+templates/reports/report-11.en.html	14358	text	182	446	66
+templates/reports/report-11.zh.html	14401	text	180	713	83
+templates/reports/report-12.en.html	21043	text	412	813	113
+templates/reports/report-12.zh.html	21011	text	413	1348	117
+THIRD_PARTY_NOTICES.md	746	text	11	128	7
