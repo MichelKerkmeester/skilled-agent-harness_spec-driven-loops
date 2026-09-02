@@ -1,11 +1,20 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/052-routing-completeness/002-gate-a-signal-closure",
-  "description": "Phase 2: gate-a-signal-closure",
+  "description": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
   "keywords": [
-    "phase",
-    "gate-a-signal-closure"
+    "across",
+    "five",
+    "hubs",
+    "declared",
+    "signals",
+    "resolve",
+    "end",
+    "exactly",
+    "one",
+    "mode"
   ],
-  "lastUpdated": "2026-09-02T16:34:05.873Z",
+  "lastUpdated": "2026-09-02T16:50:11.541Z",
   "specId": "002",
   "folderSlug": "gate-a-signal-closure",
   "parentChain": [
@@ -13,6 +22,5 @@
     "052-routing-completeness"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

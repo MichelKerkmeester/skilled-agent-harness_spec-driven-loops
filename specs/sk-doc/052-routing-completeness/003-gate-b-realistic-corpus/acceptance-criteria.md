@@ -57,7 +57,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given at least three realistic phrasings per mode, When the corpus is committed, Then no row contains its own mode name | `assets/realistic-corpus.tsv` holds 180 rows and a scan for the intended mode inside its own prompt returns zero | Met | |
 | AC-002 | REQ-002 | Given the corpus, When it is measured through the daemon, Then the rate is recorded and reproducible | A second run of the same corpus returns 8 of 180 as top pick, matching `research/gate-b-measurement.md` | Met | |
 | AC-003 | REQ-003 | Given the semantic lane, When its weight and embedding count are read, Then the structural cause is on record | `advisor_status` reports semantic_shadow at 0.05, and `select count(*) from skill_nodes where embedding is not null` returns 0 | Met | |
-| AC-004 | REQ-004 | Given command-surface modes, When the denominator is fixed, Then they are excluded with the reason stated | The measurement document names both modes and their routingClass, and excludes them from the rate | Unmet | |
+| AC-004 | REQ-004 | Given command-surface modes, When the denominator is fixed, Then they are excluded with the reason stated | The measurement document names both modes and their routingClass, and reports 8 of 172 alongside 8 of 180 | Met | |
 
 ### Status values
 

@@ -496,3 +496,23 @@ Re-running the full 180-row corpus a second time is expected to reproduce the sa
 within a few rows: the daemon is deterministic per prompt when the underlying registries
 have not changed, and several rows in this run already showed `cache.hit: true` on a
 verbatim repeat with an identical result.
+
+---
+
+## DENOMINATOR CORRECTION
+
+Two of the measured modes route by command surface rather than by prompt. Their registry
+entries carry `routingClass: command-bridge`, which means a request reaches them by naming a
+command, not by describing a need. Eight corpus rows target them, and those rows can never
+hit through this channel no matter what vocabulary exists.
+
+Counting them as misses measures the wrong thing, so they come out of the denominator.
+
+| Reading | Result |
+|---------|--------|
+| All rows | 8 of 180, 4.4 percent |
+| Excluding command-bridge modes | 8 of 172, 4.7 percent |
+
+The correction is honest rather than flattering. It moves the number by three tenths of a
+percent, which is the point: the eight rows were never the problem, and removing them shows
+how little of the gap they explain.

@@ -1,11 +1,20 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/052-routing-completeness/005-hub-surface-truth",
-  "description": "Phase 5: hub-surface-truth",
+  "description": "Three hub surfaces state something their registries contradict, and none of them has a gate",
   "keywords": [
-    "phase",
-    "hub-surface-truth"
+    "three",
+    "hub",
+    "surfaces",
+    "state",
+    "something",
+    "registries",
+    "contradict",
+    "none",
+    "them",
+    "gate"
   ],
-  "lastUpdated": "2026-09-02T16:34:08.246Z",
+  "lastUpdated": "2026-09-02T16:46:56.848Z",
   "specId": "005",
   "folderSlug": "hub-surface-truth",
   "parentChain": [
@@ -13,6 +22,5 @@
     "052-routing-completeness"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -41,7 +41,7 @@ recorded judgment rather than by a change.
 | 8 | Six signals name several modes at once | 002 | Planned |
 | 9 | Gate B stands at 8 of 180 realistic phrasings | 003 | Planned |
 | 10 | The semantic lane is weighted 0.05, shadow-only, and has zero embeddings | 003 | Decision |
-| 11 | Two modes route by command surface and cannot be reached through a prompt | 003 | Planned |
+| 11 | Two modes route by command surface and cannot be reached through a prompt | 003 | Fixed |
 | 12 | Duplicate uncompiled entries under bare executor names outrank their compiled routes | 004 | Planned |
 | 13 | One hub takes fourteen rows it does not own, from outside the measured five | 004 | Planned |
 | 14 | Surface vocabulary bundling takes rows belonging to three other hubs | 004 | Planned |

@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/052-routing-completeness",
   "description": "routing completeness and findings closure",
   "keywords": [
@@ -7,13 +8,14 @@
     "findings",
     "closure"
   ],
-  "lastUpdated": "2026-09-02T16:33:39.952Z",
+  "lastUpdated": "2026-09-02T17:17:55.225Z",
   "specId": "052",
   "folderSlug": "routing-completeness-and",
   "parentChain": [
     "sk-doc"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-09-26_18-17__the-hook-was-right-and-i-d-overclaimed-two-things.md"
+  ]
 }

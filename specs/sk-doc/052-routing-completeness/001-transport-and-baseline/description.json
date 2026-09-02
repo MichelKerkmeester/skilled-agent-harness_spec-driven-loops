@@ -1,11 +1,15 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/052-routing-completeness/001-transport-and-baseline",
-  "description": "Phase 1: transport-and-baseline",
+  "description": "Two scorers answer the same question",
   "keywords": [
-    "phase",
-    "transport-and-baseline"
+    "two",
+    "scorers",
+    "answer",
+    "same",
+    "question"
   ],
-  "lastUpdated": "2026-09-02T16:34:05.066Z",
+  "lastUpdated": "2026-09-02T16:35:48.107Z",
   "specId": "001",
   "folderSlug": "transport-and-baseline",
   "parentChain": [
@@ -13,6 +17,5 @@
     "052-routing-completeness"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }
