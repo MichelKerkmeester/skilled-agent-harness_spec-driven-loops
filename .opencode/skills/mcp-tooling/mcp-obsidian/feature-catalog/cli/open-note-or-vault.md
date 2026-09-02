@@ -4,7 +4,7 @@ description: "Use the official obsidian CLI as a remote control for a live Obsid
 trigger_phrases:
   - "Open a note or vault in the app"
   - "official obsidian CLI open note"
-  - "launch Obsidian from the command line"
+  - "open a note in the already-running Obsidian app"
 version: 0.1.0.0
 ---
 
