@@ -595,6 +595,13 @@ export class ImmutableFrameStore {
     return true;
   }
 
+  // Known window, deliberately open: the liveness check and the rename below are not
+  // one operation. Between them another process can archive the same dead lock and
+  // acquire its own, and this rename then moves a live lock aside, leaving two writers
+  // each believing they hold it. Closing it needs archiving to be mutually exclusive,
+  // and a mutex here inherits the staleness problem it exists to solve, so the fix is
+  // a design decision rather than an edit. Do not narrow this by reordering: a smaller
+  // window reads as fixed and is not.
   #archiveDeadLock(): void {
     const holder = readLockRecord(this.#lockPath);
     if (holder && isProcessAlive(holder.owner_pid)) return;
