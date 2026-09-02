@@ -44,6 +44,7 @@ _memory:
 |-------|-------|
 | **Packet** | sk-doc/052-routing-completeness/001-transport-and-baseline |
 | **Level** | 3 |
+| **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
 | **Date** | 2026-09-02 (git author date of `03f5db4876` and `4e66155b6c`) |
 | **Register findings** | 1, 2 and 3, all reading Fixed |
@@ -165,8 +166,4 @@ scorers against a shared corpus was produced in this phase.
 **Some declared signals are single tokens rather than sentences.** The advisor's
 low-information abstention path can treat those differently from a full prompt. Phase 002
 measures them as they are and excludes nothing, but the effect is unquantified.
-**The phase `spec.md` still reads Draft.** Its scaffold was never filled in, and the durable
-content of this phase lives in `goal.md`, `acceptance-criteria.md` and the research documents
-instead. This summary therefore carries no Status row, since asserting one here would
-contradict `spec.md` and would claim a closure the acceptance criteria have not reached.
 <!-- /ANCHOR:limitations -->

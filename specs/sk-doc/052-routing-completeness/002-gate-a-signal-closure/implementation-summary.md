@@ -44,6 +44,7 @@ _memory:
 |-------|-------|
 | **Packet** | sk-doc/052-routing-completeness/002-gate-a-signal-closure |
 | **Level** | 3 |
+| **Status** | In Progress |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
 | **Date** | 2026-09-02 (git author date of `dbc8678c9d` and `08eb67a0de`) |
 | **Register findings** | 3 reads Fixed. 4, 5, 6, 7 and 8 are owned by this phase |
@@ -191,8 +192,4 @@ bonuses the reply does not expose. Any later probe against `gate-a-raw.tsv` has 
 under `cli-external-orchestration` are the main case, and the advisor's low-information
 abstention path can treat them differently from a sentence. They were measured as-is, with
 nothing excluded or rephrased.
-**The phase `spec.md` still reads Draft.** Its scaffold was never filled in, and the durable
-content of this phase lives in `goal.md`, `acceptance-criteria.md` and the research documents
-instead. This summary therefore carries no Status row, since asserting one here would
-contradict `spec.md` and would claim a closure the acceptance criteria have not reached.
 <!-- /ANCHOR:limitations -->

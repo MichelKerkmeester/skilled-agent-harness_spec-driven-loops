@@ -44,6 +44,7 @@ _memory:
 |-------|-------|
 | **Packet** | sk-doc/052-routing-completeness/003-gate-b-realistic-corpus |
 | **Level** | 3 |
+| **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
 | **Date** | 2026-09-02 (git author date of `4a5de9e52b` and `8c6d6fd455`) |
 | **Register findings** | 11 Fixed, 10 closed by decision, 9 owned by this phase |
@@ -207,8 +208,4 @@ all, so the word was doing the damage rather than the intent being ambiguous.
 deterministic per prompt while the underlying registries are unchanged, and the registries
 have since changed under `08eb67a0de`. Re-running the corpus today measures the post-fix
 state, not this baseline.
-**The phase `spec.md` still reads Draft.** Its scaffold was never filled in, and the durable
-content of this phase lives in `goal.md`, `acceptance-criteria.md` and the research documents
-instead. This summary therefore carries no Status row, since asserting one here would
-contradict `spec.md` and would claim a closure the acceptance criteria have not reached.
 <!-- /ANCHOR:limitations -->

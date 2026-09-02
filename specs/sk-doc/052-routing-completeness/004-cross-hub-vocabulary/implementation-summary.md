@@ -46,6 +46,7 @@ _memory:
 |-------|-------|
 | **Packet** | sk-doc/052-routing-completeness/004-cross-hub-vocabulary |
 | **Level** | 3 |
+| **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
 | **Date** | 2026-09-02 (git author dates of `f8c2595ce0`, `461ef9261f`, `4a5de9e52b` and `08eb67a0de`) |
 | **Register findings** | 16, 17 and 18 read Fixed. 12, 13, 14 and 15 remain Planned |
@@ -192,8 +193,4 @@ rows, which finding 13 records. Nothing in this phase touched it.
 **None of this moves the number that matters most.** Gate B's largest bucket is 94 rows that
 contain none of the declared words in any form. Keyword ownership cannot reach them, and the
 lane that could is deliberately off under parent decision D2.
-**The phase `spec.md` still reads Draft.** Its scaffold was never filled in, and the durable
-content of this phase lives in `goal.md`, `acceptance-criteria.md` and the research documents
-instead. This summary therefore carries no Status row, since asserting one here would
-contradict `spec.md` and would claim a closure the acceptance criteria have not reached.
 <!-- /ANCHOR:limitations -->

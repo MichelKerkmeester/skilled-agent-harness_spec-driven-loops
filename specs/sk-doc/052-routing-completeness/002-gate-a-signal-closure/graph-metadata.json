@@ -39,7 +39,7 @@
       "closure"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,11 +47,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "research/gate-a-raw.tsv",
       "research/gate-a-measurement.md",
+      "research/gate-a-raw.tsv",
       ".opencode/skills/cli-external-orchestration/hub-router.json",
       ".opencode/skills/cli-external-orchestration/mode-registry.json",
-      ".opencode/skills/cli-external-orchestration/graph-metadata.json"
+      ".opencode/skills/cli-external-orchestration/graph-metadata.json",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
+      ".opencode/bin/skill-advisor.cjs"
     ],
     "entities": [
       {
@@ -91,15 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "gate-a-raw.tsv",
-        "kind": "file",
-        "path": "research/gate-a-raw.tsv",
-        "source": "derived"
-      },
-      {
         "name": "gate-a-measurement.md",
         "kind": "doc",
         "path": "research/gate-a-measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-raw.tsv",
+        "kind": "file",
+        "path": "research/gate-a-raw.tsv",
         "source": "derived"
       },
       {
@@ -121,6 +124,24 @@
         "source": "derived"
       },
       {
+        "name": "executor-delegation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -139,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -146,12 +173,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -169,7 +190,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Declared",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,29 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
     "created_at": "2026-09-02T16:34:05Z",
-    "last_save_at": "2026-09-02T20:28:40.494Z",
+    "last_save_at": "2026-09-02T22:06:42.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97060528b90c6f2570c1b4507e8635724b4588bab555ce8a7741f8772c896c30",
+    "source_fingerprint": "sha256:de53da921b07c14a4c69d33067f6d248f4d10319735b9c437a04f3e6c43d494b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b819a4f6ee9f97bdf161f068284518591513bd373de38ae86215accc9c9c3fb",
-      "plan.md": "8c02bf5311e6ee30a91766361aad4c359e2314697ea70e49e44bea9cc8ea0b10",
-      "tasks.md": "ea3935d1ee839eb41a1daa012d9562946008afa8421170286f854db6ab064602",
-      "implementation-summary.md": "aa223d7c1963c46cbaea8b12eb42db3db052a54c2cbe1b70630c635491f62c01"
+      "spec.md": "ad45fbf777ba053ec102f828010e17049fe0147936ee58280f357ced0582c42f",
+      "plan.md": "d1dac3780b0750adcadb9643b11da19af9d2c21ca5eec765b1a1cb31a33465c1",
+      "tasks.md": "b62c8ebe5a31e0031ef957453fc8e59642dee7aeab1f1155eeb1c0452149885c",
+      "implementation-summary.md": "f7b1452f30d83271a48ec175e3cb0811fc7b62b847ce4fa24684d5ca1c20f87a"
     },
     "last_active_child_id": null,
     "last_active_at": null

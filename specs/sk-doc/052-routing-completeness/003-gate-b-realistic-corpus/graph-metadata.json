@@ -39,7 +39,7 @@
       "closure"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -148,7 +148,7 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -172,13 +172,13 @@
         "source": "derived"
       },
       {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-02T20:28:40.689Z",
+    "last_save_at": "2026-09-02T22:06:42.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:526e81735cd1500226a1d21c119dd7c87964154fb3430ff9ef15acbdf89eb817",
+    "source_fingerprint": "sha256:2cab08241d77d719758af1886a6632825e54fa8ab40efece77ec6ca18a5879dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b5a732961b0600d4f4b9a2bf94e1f8239ebb37a7c736acedc910567430ed036",
-      "plan.md": "8f9b93ddc3192aed6dd01e4a233f1be90d60254bc3166089a2c693024327cf21",
-      "tasks.md": "49e755d01020cc6dab82faada577f5abbca00f0efb1f22ca8d3b226a25ac52c3",
-      "implementation-summary.md": "8fb32872406d5e1c4fe00541da9772b871fa393162a96dff093032068e0f3465"
+      "spec.md": "f0dba85fb233083a5800eeeb8be0edaeb9e81656ac9a54c1e1f25aae03af85d9",
+      "plan.md": "68a03ffed9d963e7ec1c2358b95cd4786d0a12e8900076ddc1177d26e2de4c13",
+      "tasks.md": "bd2334bb971042edcad37e9ff05f0c406457b8511ba45ad954092ffe03003dd2",
+      "implementation-summary.md": "e92e8c55750bb67f5d359d8c8d24456b10b4ba7b045e2695c82272887c30a28e"
     },
     "last_active_child_id": null,
     "last_active_at": null

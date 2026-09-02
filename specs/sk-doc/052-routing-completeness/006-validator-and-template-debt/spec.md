@@ -1,14 +1,34 @@
 ---
-title: "Feature Specification: Phase 6: validator-and-template-debt [template:level-3/spec.md]"
+title: "Feature Specification: Phase 6: validator-and-template-debt"
 description: "A template scores clean and seeds what it emits, because the scanner skips the fenced block that is the template's whole payload. Three instances were found in one session."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
-importance_tier: "normal"
-contextType: "general"
+  - "validator and template debt"
+  - "template payload scanning"
+  - "fixture exemption validator"
+  - "check that never looked"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/052-routing-completeness/006-validator-and-template-debt"
+    last_updated_at: "2026-09-02T18:47:58Z"
+    last_updated_by: "claude-code"
+    recent_action: "Filled the phase spec against shipped commits"
+    next_safe_action: "None; the phase is closed"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl"
+      - ".opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md"
+      - ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-09-02-052-006-validator-and-template-debt"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "45 of 53 templates carry a blocker once the payload is scanned, and that backlog is unstarted"
+    answered_questions:
+      - "The boilerplate count was 56 planning documents, not 48"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 6: validator-and-template-debt
@@ -20,11 +40,16 @@ contextType: "general"
 
 ## EXECUTIVE SUMMARY
 
-[2-3 sentence high-level overview for stakeholders who need quick context]
+Three checks passed because they never looked. The voice scanner skipped the fenced payload
+that is a template's entire output, the document validator blocked on fixtures the packaging
+gate already exempts, and a corrected template left dozens of documents carrying what it used
+to emit. Measured properly, 45 of 53 templates in the fleet carry a real blocker.
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: a template's fenced block is the deliverable, so the scanner reads it, and
+boilerplate is corrected at the template before the documents it seeded.
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: the voice scanner and the document validator, which had to agree
+about what a fixture is.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -33,15 +58,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
-| **Branch** | `scaffold/006-validator-and-template-debt` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 6 of 7 |
 | **Predecessor** | 005-hub-surface-truth |
 | **Successor** | 007-spec-kit-residue |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Payload scanning on, fixture exemption shared by both gates, the template backlog recorded with its count |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -51,13 +76,18 @@ contextType: "general"
 
 This is **Phase 6** of the routing completeness phases specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: the two validators and the templates they measure. Rewriting a template
+payload is a review-bearing change and stays out.
 
 **Dependencies**:
-- [To be defined during planning]
+- The packaging gate, whose fixture-tree exemption is the precedent the validator adopted.
+- The scaffold golden snapshots, which pin what the plan template emits.
+- The voice scanner's rule set, which supplies the blocker definitions.
 
 **Deliverables**:
-- [To be defined during planning]
+- Payload scanning for templates, detected by name and location.
+- A fixture-tree exemption in the document validator, matching the packaging gate.
+- Two seeded blockers corrected at the template, and the documents they seeded rewritten.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -107,7 +137,14 @@ fixture is.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md` | Modify | Banned character removed from the verbatim binding line (`c1b3b780c3`), overview section added (`d87e8dd162`) |
+| `.opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md` | Modify | Measured table re-derived after five of nine rows drifted (`c1b3b780c3`) |
+| `.../sk-create-with-human-voice/references/scope-and-exemptions.md` | Modify | Scanning a template with `--include-code`, and reading a zero without it as unmeasured (`c1b3b780c3`) |
+| `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl` | Modify | Scaffold line stripped of a semicolon and a serial comma (`9ae247d772`) |
+| `.../tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modify | Golden snapshots re-captured against the corrected template (`9ae247d772`) |
+| Thirteen reference and readme files under three modes | Modify | Overview sections added, ten promoted from existing prose and five authored (`d87e8dd162`) |
+| Fifty-six `plan.md` files across `specs/` | Modify | The superseded scaffold line replaced, each dropping exactly one blocker (`d229b0a24d`) |
+| The document validator and the voice scanner | Modify | Fixture-tree exemption added, and template payload scanning enabled by name and location (`d229b0a24d`) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -119,13 +156,15 @@ fixture is.
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | The document validator exempts scanner fixtures whose bytes are pinned by tests, matching the packaging gate |
+| REQ-002 | A template's fenced payload is scanned, so a seeded blocker is caught rather than scoring clean |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | No planning document carries the superseded scaffold boilerplate once the phase closes |
+| REQ-004 | Every template in the tree is re-scored with payload scanning on, and the count is recorded rather than swept |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -136,8 +175,14 @@ fixture is.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The document validator exits 0 on both voice fixtures, and the packaging gate
+  still exempts fixture trees.
+- **SC-002**: A blocker seeded inside a template fence is caught, and removing it returns a
+  pass.
+- **SC-003**: A search across `specs/` for the superseded scaffold sentence returns only the
+  criterion that describes this task.
+- **SC-004**: The re-scored template count is recorded with both figures, the tree count and
+  the fleet count, rather than one quoted for the other.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -147,8 +192,11 @@ fixture is.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | The packaging gate's fixture exemption | The validator needs a precedent to match rather than invent | The same reasoning was moved into the validator |
+| Dependency | Scaffold golden snapshots | A template edit that skips them leaves the suite red | Snapshots re-captured in the same commit |
+| Risk | Rewriting a template payload changes what it emits | High | The 45 of 53 backlog is recorded, not swept, and reviewed per template |
+| Risk | Renumbering documents to add an overview breaks citations | High | Overviews go in a zero slot wherever a section number is cited |
+| Risk | Quoting the fleet figure for the tree figure | Medium | Both numbers are stated with what each describes |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -158,25 +206,31 @@ fixture is.
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P01**: Payload scanning applies only to paths that look like templates, so ordinary
+  documents keep the existing masking behavior and the existing cost.
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S01**: Both gates read files and write nothing, and the fixture exemption is decided
+  by path rather than by content.
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: Every count in this phase is re-derived rather than inherited, and the
+  re-derivation is repeatable from the committed tree.
 
 ---
 
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- A document about templates rather than a template: its name starts with the word instead of
+  ending in it, which is how the detector tells them apart.
+- A template outside an assets or templates tree: name alone does not qualify it.
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
+- A fixture padded to satisfy a validator: the thing the fixture exists to test breaks, which
+  is why the exemption is the fix.
+- A document whose overview would need a renumber: the zero slot is used instead, so cited
+  section numbers keep resolving.
 
 ---
 
@@ -184,12 +238,12 @@ fixture is.
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3** |
+| Scope | 20/25 | Files: 75 or so, LOC: moderate per file, Systems: two gates plus the template tree |
+| Risk | 14/25 | Auth: N, API: N, Breaking: N, though a template edit changes future output |
+| Research | 12/20 | Every count had to be re-derived before it could be used |
+| Multi-Agent | 5/15 | Workstreams: 1 |
+| Coordination | 9/15 | Dependencies: golden snapshots and the packaging gate |
+| **Total** | **60/100** | **Level 3** |
 
 ---
 
@@ -197,23 +251,33 @@ fixture is.
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | A template payload rewrite changes emitted output unreviewed | H | M | Recorded as a backlog, decided per template |
+| R-002 | An inherited count is quoted without re-derivation | M | H | Forty-eight became fifty-six once counted |
+| R-003 | Renumbering breaks citations from files out of scope | H | M | Zero slot where a number is cited, prescribed numbering elsewhere |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: A template is measured against what it emits (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** template maintainer, **I want** the scanner to read the fenced payload, **so that** a
+clean score means measured rather than unmeasured.
+
+**Given** a template whose payload is a fenced block, **When** it is scanned, **Then** a
+seeded blocker is caught and its removal returns a pass.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
 ---
 
-### US-002: [Title] (Priority: P1)
+### US-002: Two gates agree about what a fixture is (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** maintainer running both gates, **I want** the document validator to exempt what the
+packaging gate exempts, **so that** a fixture is not padded into uselessness to quiet a check.
+
+**Given** a scanner fixture whose bytes are pinned by tests, **When** the document validator
+runs, **Then** it is exempt and exits 0.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
@@ -221,8 +285,10 @@ fixture is.
 
 ## 12. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Forty-five of fifty-three templates still carry a blocker in their payload, and whether that
+  backlog becomes its own packet is a roadmap decision rather than a phase one.
+- Two scanner fixtures still have no overview section on purpose, since their bytes are pinned
+  by tests asserting findings on specific lines.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -232,23 +298,5 @@ fixture is.
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `tasks.md`
-- **Decision Records**: See `decision-record.md`
-
----
-
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Acceptance Criteria**: See `acceptance-criteria.md`
+- **Durable Directive**: See `goal.md`

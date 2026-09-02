@@ -1,14 +1,29 @@
 ---
-title: "Implementation Plan: Phase 5: hub-surface-truth [template:level-3/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 5: hub-surface-truth"
+description: "How the three hub surfaces were reconciled with their registries, and how invariant 6c was proven able to fail before it was trusted."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
-contextType: "general"
+  - "hub surface truth plan"
+  - "invariant 6c approach"
+  - "registry is source of truth"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/052-routing-completeness/005-hub-surface-truth"
+    last_updated_at: "2026-09-02T18:54:23Z"
+    last_updated_by: "claude-code"
+    recent_action: "Filled the phase plan against shipped commits"
+    next_safe_action: "None; the phase is closed"
+    blockers: []
+    key_files:
+      - ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-09-02-052-005-hub-surface-truth"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 5: hub-surface-truth
@@ -24,13 +39,18 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown hub documents plus a CommonJS check under the doctor surface |
+| **Framework** | The parent-hub check that already runs invariants 1 through 6b |
+| **Storage** | `ROUTER.md`, `README.md`, `SKILL.md`, the mode registry and the leaf manifest |
+| **Testing** | `parent-skill-check-command-column.test.cjs`, five cases |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+
+The registry was treated as the source of truth throughout and the document moved to match
+it. The inventory was completed rather than its claim narrowed, the readme description was
+rewritten inside its budget rather than appended to, and the new invariant shipped red on the
+one real instance it was written to catch, with its fix landing in the commit that owns the
+file it touches.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -39,14 +59,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing: the five-case command column test file
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -55,14 +75,22 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+Registry-first reconciliation. A registry is machine-read at route time, so a document that
+disagrees with it is wrong by construction rather than merely out of date.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`ROUTER.md` FULL_INVENTORY**: the single explicit full-toolkit intent, and the one place
+  that promises to enumerate the whole hub.
+- **`README.md` summary surfaces**: description, trigger phrases and the at-a-glance table,
+  each read independently of the link table an earlier fix had already corrected.
+- **`parent-skill-check.cjs` invariant 6c**: requires a declared command to appear in the
+  mode's own row rather than anywhere in the document.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+
+The registry declares modes and commands. The hub documents describe them. Invariant 6c reads
+both and fails when the description contradicts the declaration.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -74,14 +102,19 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `sk-doc/ROUTER.md` | Holds the only full-toolkit enumeration | Updated: 128 leaves to 252 | Count matches the leaf manifest, each path resolves on disk |
+| `sk-doc/README.md` | Summary surfaces read before the link table | Updated: description, triggers, at-a-glance table | All six previously missing domains named in each |
+| `sk-doc/SKILL.md` | The hub manifest routing reads | Updated: hidden command restored to its row | `grep -n 'sk-create-diff'` shows the command at line 35 |
+| `parent-skill-check.cjs` | Runs the hub invariants | Updated: invariant 6c added | Fails on three defect shapes, passes on restore |
+| `parent-skill-check-command-column.test.cjs` | Pins the invariant behavior | Created | Five cases, all passing |
+| `sk-create-frontmatter/SKILL.md`, `sk-create-repo-rule/SKILL.md` | Packet manifests | Updated: keyword-triggers line added | The hub contract states every packet carries one |
+| The mode registry and leaf manifest | The source of truth | Unchanged | A registry is not edited to make a document right |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: every hub surface that enumerates modes was read, not only the link table an earlier fix had corrected.
+- Consumers of changed symbols: the 252 inventory paths were each resolved on disk rather than counted.
+- Matrix axes: document surface by defect shape, giving the dash form, a wrong command string and a deleted row.
+- Algorithm invariant: a declared command must appear in its own row, and a mention elsewhere in the document does not satisfy it.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -100,9 +133,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Invariant 6c against four defect shapes and one restore | `parent-skill-check-command-column.test.cjs` |
+| Integration | The invariant on the live tree at ship time | The doctor parent-hub check |
+| Manual | Inventory paths resolved on disk, readme surfaces read against the registry | Shell and direct reading |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -112,7 +145,10 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| The hub leaf manifest | Internal | Green | The inventory has no count to match |
+| The mode registry | Internal | Green | The readme surfaces have no source of truth |
+| The doctor parent-hub check | Internal | Green | The new invariant has nowhere to live |
+| The routing commit owning `SKILL.md` | Internal | Green | The red check stays red |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -120,8 +156,10 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: invariant 6c firing on a mode that genuinely has no command.
+- **Procedure**: the dash form is legitimate for a commandless mode, so the check would be
+  narrowed to declared commands rather than removed. Reverting the document edits restores
+  the previous surfaces without touching any registry.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -133,17 +171,16 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Read registries ──┐
+                  ├──► Correct documents ──► Add invariant 6c ──► Prove it fails
+Count leaves ─────┘
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Setup | None | Implementation |
+| Implementation | Setup | Verification |
+| Verification | Implementation | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -153,10 +190,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | Reading the registries and counting the leaves |
+| Core Implementation | Medium | 128 inventory lines, three readme surfaces, one invariant |
+| Verification | Medium | Five test cases plus a live-tree run |
+| **Total** | | **Part of one working session** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -165,19 +202,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] The invariant proven to fail before it is trusted
+- [x] Its fix prepared and owned by the commit that owns the file
+- [x] No registry edited to make a document right
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Restore the previous hub document from git.
+2. Leave the registry untouched, since it was never the thing that moved.
+3. Re-run the parent-hub check and the command column test file.
+4. Record why the invariant was narrowed rather than dropped.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -190,13 +227,13 @@ Phase 1.5 (Config) ───┘
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
-│   Setup     │     │    Core     │     │   Verify    │
+│  Read the   │────►│  Correct    │────►│  Prove the  │
+│  registries │     │  documents  │     │  check      │
 └─────────────┘     └──────┬──────┘     └─────────────┘
                           │
                     ┌─────▼─────┐
-                    │  Phase 2b │
-                    │  Parallel │
+                    │  Add      │
+                    │  6c       │
                     └───────────┘
 ```
 
@@ -204,10 +241,11 @@ Phase 1.5 (Config) ───┘
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Leaf manifest read | None | The 252 count | Inventory completion |
+| Inventory completion | Leaf manifest read | A complete enumeration | Verification |
+| Readme reconciliation | Mode registry | Current summary surfaces | Verification |
+| Invariant 6c | Mode registry | A failing check on real data | Verification |
+| Verification | All of the above | Five green test cases | None |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -215,15 +253,16 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **Read the registries and count the leaves** - the numbers decide the work - CRITICAL
+2. **Complete the inventory to 252** - the largest single edit - CRITICAL
+3. **Add invariant 6c and prove it fails four ways** - the durable output - CRITICAL
+4. **Land the manifest fix in the commit that owns the file** - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: part of one session.
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- The readme surfaces can be reconciled while the inventory is being completed.
+- The link-label class can be swept alongside either.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -233,37 +272,60 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Surfaces reconciled | Inventory at 252, readme on the current mode set | `98a327edf9` |
+| M2 | Check added and proven | Fails three ways, passes on restore | `98a327edf9` |
+| M3 | Real instance fixed | The hidden command back in its own row | `08eb67a0de` |
+| M4 | Findings recorded closed | Five findings and the new check in the register | `8bb9011584` |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: Ship the new check red, with its fix in another commit
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: invariant 6c was written to catch one real instance, and that instance was live
+in a file owned by a parallel routing pass.
 
-**Decision**: [What we decided]
+**Decision**: land the check exiting non-zero, and let the fix land in the commit that owns
+the file it touches.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- The check has both failed and passed on real data, rather than only ever passing.
+- The routing file stayed under one owner instead of being edited from two directions.
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- Shipping the check green alongside its own fix: that produces another check that has never
+  demonstrated it can fail, which is the shape of every finding in this packet.
+- Shipping it as a warning: same problem, with the failure hidden behind a severity.
 
 ---
 
+## 8. AI EXECUTION PROTOCOL
 
-<!-- SCAFFOLD_AI_PROTOCOL_MARKERS:
-AI EXECUTION
-Pre-Task Checklist
-Execution Rules
-Status Reporting Format
-Blocked Task Protocol
--->
+### Pre-Task Checklist
+
+- [x] Read `goal.md` and carry its three decisions into the work.
+- [x] Identify the registry that owns each claim before touching the document that makes it.
+- [x] Decide whether a claim is completed or narrowed, and record which.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Read the registry first. A document is corrected against it, never the reverse |
+| TASK-SCOPE | False claims only. A sentence that reads poorly is not this phase's work |
+| TASK-EVIDENCE | A new check is shown failing on real data before it is trusted |
+| TASK-OWNER | A file is edited by the commit that owns it, even when that splits a fix |
+
+### Status Reporting Format
+
+Report the surface, the claim it made, the registry figure it contradicted, and the check
+that now covers it. Where no check covers a fix, say so.
+
+### Blocked Task Protocol
+
+A BLOCKED task names the registry it would have to edit to proceed. That is the signal the
+document is right and the registry is wrong, which is a different phase.

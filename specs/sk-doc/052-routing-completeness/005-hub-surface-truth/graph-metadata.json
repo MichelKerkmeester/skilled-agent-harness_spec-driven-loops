@@ -11,35 +11,35 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
+      "hub surface truth",
+      "full inventory intent",
+      "command column invariant",
+      "document versus registry drift",
+      "hub surface truth plan",
+      "invariant 6c approach",
+      "registry is source of truth",
+      "hub surface truth tasks",
+      "inventory completion checklist",
+      "command column test cases",
       "acceptance criteria",
       "closure gate"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "hub",
+      "surface",
+      "truth",
+      "full",
+      "inventory",
+      "intent",
+      "command",
+      "column",
+      "invariant",
+      "document",
+      "versus",
+      "registry"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,9 +47,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       ".opencode/skills/sk-doc/ROUTER.md",
       ".opencode/skills/sk-doc/README.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-frontmatter/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-repo-rule/SKILL.md"
@@ -92,12 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
         "name": "ROUTER.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/ROUTER.md",
@@ -107,6 +101,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
@@ -164,7 +164,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Registry",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -176,21 +182,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -198,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three hub surfaces state something their registries contradict, and none of them has a gate",
     "created_at": "2026-09-02T16:34:07Z",
-    "last_save_at": "2026-09-02T20:28:41.073Z",
+    "last_save_at": "2026-09-02T22:06:43.235Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbea4dff05df33177b2eea92c16bd272c348b9d92cb123ddac96bbf882e3329f",
+    "source_fingerprint": "sha256:ac8ee92525cdb8c78f8141539a50395c43eecb6c7553a10d2c802124d039cd93",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e3a0491fd96f92b145de985e96e4629ae8cdf917e0e1627d033d02150de25ca",
-      "plan.md": "bd39b8f84579d6f28a555ec923d8869c1e3892977b2b2e59b613f12e1b4a88e3",
-      "tasks.md": "8e9341a9f7046eb12d798d88a553f635c846394da48d0d5974a2892cd81330bc",
-      "implementation-summary.md": "dfe217abb775123815cbad015109ae0a029ef5f5268ae098385d33dbe771e2b2"
+      "spec.md": "16c90dea02a777d41072003c4622e4b46f6fa19938ba7275c067f7247eb1709a",
+      "plan.md": "a64f92ce1e4acb8b210547601f57634b5eff889f4f3cae9c7a9570ae2f2666b8",
+      "tasks.md": "23fe223930e6c1649e39232a266b365eb032f01a1a19acb8af58b6f51a276ad5",
+      "implementation-summary.md": "d2db6765fbe2e04c68f052f665b8c7e3d9d358511cab2d25e0d24e25b17437e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

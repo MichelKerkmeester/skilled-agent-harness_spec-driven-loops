@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Phase 2: gate-a-signal-closure [template:level-3/spec.md]"
-description: "Half the declared routing vocabulary across the five hubs resolves to nothing usable. Measured at 234 of 444, with one hub at six percent, so this phase closes the gap the measurement found rather than the one anyone expected."
+title: "Feature Specification: Phase 2: gate-a-signal-closure"
+description: "Across five hubs 234 of 444 declared signals resolved to exactly one mode. The distribution was the finding rather than the total, and the follow-up fix moved the number without closing every signal."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -9,6 +9,28 @@ trigger_phrases:
   - "spec core"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
+    last_updated_at: "2026-09-02T18:54:23Z"
+    last_updated_by: "claude-code"
+    recent_action: "Filled the phase specification from shipped evidence"
+    next_safe_action: "Record a decision for each of the 50 signals still unresolved"
+    blockers:
+      - "AC-003 fails a fresh sweep: 50 declared signals do not resolve and none carries a recorded decision"
+    key_files:
+      - "research/gate-a-measurement.md"
+      - "research/gate-a-raw.tsv"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-09-02-052-002-gate-a-signal-closure"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions:
+      - "Which of the 50 remaining signals should resolve, and which should be retired"
+    answered_questions:
+      - "Gate A baseline is 234 of 444 across five hubs"
+      - "The executor hub resolved 7 of its 115 signals and had never been measured"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 2: gate-a-signal-closure
@@ -20,11 +42,17 @@ contextType: "general"
 
 ## EXECUTIVE SUMMARY
 
-[2-3 sentence high-level overview for stakeholders who need quick context]
+Every signal the five parent hubs declare was swept through the daemon-backed advisor and
+classified into one bucket. The baseline came out at 234 of 444 resolved, one hub had never
+been measured at all, and the follow-up fix moved the total to 328 against the same frozen
+corpus. A fresh sweep on 2026-09-02 returns 331 of 381 against today's declared vocabulary,
+which leaves 50 signals unresolved and AC-003 open.
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: Gate A is measured across all five hubs rather than the hub under audit,
+and rank is read from the comparator output rather than re-derived from the `score` field.
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: Phase 001, which named the daemon as the transport that governs
+automatic routing, and the advisor graph database that holds each hub's declared signals.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -33,15 +61,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P0 |
+| **Status** | In Progress |
 | **Created** | 2026-09-02 |
-| **Branch** | `scaffold/002-gate-a-signal-closure` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 7 |
 | **Predecessor** | 001-transport-and-baseline |
 | **Successor** | 003-gate-b-realistic-corpus |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every declared signal is classified, and none sits in an unexplained bucket |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -51,13 +79,17 @@ contextType: "general"
 
 This is **Phase 2** of the routing completeness phases specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Declared vocabulary and the stage-one and stage-two routes it reaches. The
+measurement itself touched no routing file. The follow-up fix touched hub routers, mode
+registries, graph metadata and one run-time override, and it left the scorer alone.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phase 001, for the transport, the confidence-floor rule and the rank rule.
+- `skill-graph.sqlite` and each hub's `graph-metadata.json`, the two sources of declared signals.
 
 **Deliverables**:
-- [To be defined during planning]
+- `research/gate-a-measurement.md`, the method, the per-hub distribution and every non-resolved signal.
+- `research/gate-a-raw.tsv`, one row per declared signal so the number can be re-derived.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -97,19 +129,26 @@ recorded.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Extracting every declared signal from all five parent hubs and measuring each through the daemon.
+- Classifying each reply into exactly one of five buckets and committing the raw result.
+- Acting on the sweep: retiring vocabulary that reaches nothing, and giving stage-one signals a stage-two class.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Any scorer, weight or embedding change. Parent decision D2 forbids it, since it would void the baseline.
+- Realistic phrasings. Gate A measures declared words, and phase 003 measures sentences.
+- Cross-hub collisions that no single hub can settle alone. Those belong to phase 004.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `research/gate-a-measurement.md` | Create | Method, per-hub distribution, every non-resolved signal, reproduction commands |
+| `research/gate-a-raw.tsv` | Create | One row per declared signal with its bucket |
+| `.opencode/skills/cli-external-orchestration/hub-router.json` | Modify | Stage-two classes for signals that reached the hub and dropped |
+| `.opencode/skills/cli-external-orchestration/mode-registry.json` | Modify | Mode declarations aligned with the router |
+| `.opencode/skills/cli-external-orchestration/graph-metadata.json` | Modify | Retired vocabulary removed from the advisor projection |
+| `.opencode/skills/system-skill-advisor/mcp-server/lib/scorer/executor-delegation.ts` | Modify | The run-time override lifts the hub instead of inserting a routeless entry |
+| `.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json` | Modify | Gold labels re-captured after the override change |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,13 +160,14 @@ recorded.
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Measure every declared signal across all five hubs through the daemon, and classify each reply into exactly one of five buckets |
+| REQ-002 | Commit the raw replies so the headline count can be re-derived by a second method rather than trusted |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | Resolve each unresolved signal to exactly one mode, or retire it with the choice recorded |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -138,8 +178,12 @@ recorded.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All 444 declared signals carry exactly one bucket value in the committed raw
+  file. Matches AC-001. Met.
+- **SC-002**: The headline 234 of 444 is reproduced by two independent tallies over the same
+  replies. Matches AC-002. Met.
+- **SC-003**: A fresh sweep leaves no signal in an unresolved bucket without a decision beside
+  it. Matches AC-003. Not met: the 2026-09-02 re-run leaves 50 of 381.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -149,8 +193,10 @@ recorded.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | The advisor daemon | Without it there is no measurement at all | Calls batch 20 wide with a 60 second timeout, and exit status is read from a file |
+| Dependency | `skill-graph.sqlite` | A stale database measures vocabulary the hubs no longer declare | Signals are unioned with each hub's `graph-metadata.json` and de-duplicated |
+| Risk | A vocabulary fix costs a hub a prompt it owned | High | Three suites re-run after the fix: 444 signals, 180 realistic prompts, 224 controls |
+| Risk | Retiring a signal that was resolving | High | All 67 retirements were audited first, and none was resolving |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -160,25 +206,32 @@ recorded.
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P01**: A full sweep of the declared vocabulary completes in one run at 20 concurrent
+  daemon requests. The 381-signal re-run at 12 concurrent finished inside four minutes.
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S01**: The sweep is read-only against the advisor. No mutation command was issued, so
+  no trusted-context flag was needed.
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: Every call records its own exit status in a separate file, so a failed call
+  cannot be hidden by a pipeline.
 
 ---
 
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- Empty input: an empty `recommendations` array is the NO_RECOMMENDATION bucket, which is a
+  measured outcome rather than a failed call.
+- Maximum length: some declared signals are single tokens rather than sentences. Short
+  executor names are the main case. They were measured as they are, with nothing excluded.
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
+- A hub declares a signal that another hub also declares: cross-hub overlap was checked and
+  found to be zero, so no signal is counted twice.
+- A reply ties on `score`: rank is read from the array order, since re-sorting inflated one
+  hub from 7 to 44.
 
 ---
 
@@ -186,12 +239,12 @@ recorded.
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3** |
+| Scope | 18/25 | Files: 8, LOC: 760 in docs plus 8 routing files, Systems: 2 |
+| Risk | 17/25 | Auth: N, API: N, Breaking: Y for routing vocabulary |
+| Research | 16/20 | A 444-signal sweep and a per-signal audit before retirement |
+| Multi-Agent | 4/15 | Workstreams: 1 |
+| Coordination | 11/15 | Dependencies: phase 001 rules, phase 004 collisions |
+| **Total** | **66/100** | **Level 3** |
 
 ---
 
@@ -199,23 +252,27 @@ recorded.
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | A retired signal was still routing | H | L | Every retirement audited first, and none was resolving |
+| R-002 | A fix trades one hub's reachability for another's | H | M | Canary fixtures caught two regressions mid-flight, both reverted |
+| R-003 | The headline hides a hub at 6 percent | H | H | The per-hub table is published beside the total |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: Measure declared vocabulary across every hub (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** person auditing routing, **I want** every hub's declared signals measured rather than
+the one hub under review, **so that** a comfortable number cannot stand in for the real one.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
 ---
 
-### US-002: [Title] (Priority: P1)
+### US-002: Close or retire every signal (Priority: P1)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** hub owner, **I want** each declared signal to resolve to one mode or be retired with
+the choice recorded, **so that** no vocabulary sits in an unexplained bucket.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
@@ -223,8 +280,12 @@ recorded.
 
 ## 12. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+One, and it is the reason this phase is not closed. Fifty declared signals still land outside
+RESOLVED on a fresh sweep: 21 reach their own hub and are dropped, 15 go to a different hub,
+13 surface nothing, and one names several modes. Each needs a resolution or a recorded
+retirement. Several are hub self-names such as `sk-code` and `system-deep-loop`, which may be
+correct behaviour for an ambiguous single word, and that is itself a decision nobody has
+written down.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -234,23 +295,4 @@ recorded.
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `tasks.md`
-- **Decision Records**: See `decision-record.md`
-
----
-
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Measurement**: See `research/gate-a-measurement.md`

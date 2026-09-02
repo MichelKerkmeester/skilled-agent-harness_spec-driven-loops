@@ -45,6 +45,7 @@ _memory:
 |-------|-------|
 | **Packet** | sk-doc/052-routing-completeness/006-validator-and-template-debt |
 | **Level** | 3 |
+| **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
 | **Date** | 2026-09-02 (git author dates of `c1b3b780c3`, `9ae247d772`, `d87e8dd162` and `d229b0a24d`) |
 | **Register findings** | 29 and 30 read Fixed. 26, 27 and 28 remain Planned |
@@ -196,8 +197,4 @@ than the workaround.
 **The fleet figure and the tree figure are different numbers.** Twenty-four of forty describes
 this tree. Forty-five of fifty-three describes the fleet once the payload is scanned. Quoting
 one for the other overstates or understates the debt.
-**The phase `spec.md` still reads Draft.** Its scaffold was never filled in, and the durable
-content of this phase lives in `goal.md`, `acceptance-criteria.md` and the research documents
-instead. This summary therefore carries no Status row, since asserting one here would
-contradict `spec.md` and would claim a closure the acceptance criteria have not reached.
 <!-- /ANCHOR:limitations -->

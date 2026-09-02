@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Phase 2: gate-a-signal-closure [template:level-3/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 2: gate-a-signal-closure"
+description: "How the 444-signal sweep was built and read: two declared-signal sources unioned per hub, one daemon call per signal with exit status read from a file, and rank taken from the array order rather than the score field."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -9,6 +9,25 @@ trigger_phrases:
   - "plan core"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/052-routing-completeness/002-gate-a-signal-closure"
+    last_updated_at: "2026-09-02T18:54:23Z"
+    last_updated_by: "claude-code"
+    recent_action: "Recorded the approach taken and its verification commands"
+    next_safe_action: "Record a decision for each of the 50 signals still unresolved"
+    blockers:
+      - "AC-003 fails a fresh sweep: 50 declared signals do not resolve"
+    key_files:
+      - "research/gate-a-measurement.md"
+      - "research/gate-a-raw.tsv"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-09-02-052-002-gate-a-signal-closure"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 2: gate-a-signal-closure
@@ -24,13 +43,18 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Node for the sweep driver and the advisor CLI, TypeScript for the scorer and the run-time override |
+| **Framework** | The system-skill-advisor daemon, reached through `.opencode/bin/skill-advisor.cjs` |
+| **Storage** | `skill-graph.sqlite` for declared signals, plus each hub's `graph-metadata.json` |
+| **Testing** | Three regression suites after the fix, plus canary fixtures during it |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+
+Declared signals came from two sources per hub, unioned and de-duplicated by exact string: the
+`intent_signals` column on that hub's row in the advisor graph database, and
+`derived.trigger_phrases` in that hub's `graph-metadata.json`. Cross-hub overlap was checked
+and found to be zero. Each signal went to the daemon-backed CLI rather than the Python scorer,
+because phase 001 established the daemon as the transport that governs automatic routing.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -39,14 +63,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Acceptance criteria AC-001 and AC-002 met
+- [ ] AC-003 met. A fresh sweep still leaves 50 signals unresolved with no decision beside them
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -55,14 +79,33 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+A measurement pipeline in four stages: extract, sweep, classify, tally. Each stage writes its
+output to disk so the next stage reads a file rather than a pipe.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Extraction**: `sqlite3` against `skill_nodes.intent_signals`, unioned with each hub's
+  `derived.trigger_phrases`, de-duplicated by exact string.
+- **Sweep driver**: a background script batching 20 concurrent daemon requests, one JSON reply
+  per signal in its own file, exit status in a matching `.exit` file.
+- **Classifier**: reads `recommendations[0]` and assigns exactly one of five buckets.
+- **Tally**: two independent passes over the same raw replies, one in Python and one in `jq`.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+
+A declared signal becomes one CLI call, which becomes one JSON reply on disk. The classifier
+reads the first array element, compares its `skillId` against the owning hub and its
+`compiledRoute.targets` against the mode list, and emits one TSV row. The tally counts rows.
+
+### Bucket definitions
+
+| Bucket | Condition |
+|---|---|
+| RESOLVED | The top result is the owning hub and `targets` names exactly one mode |
+| NO_RECOMMENDATION | `recommendations` is empty |
+| WRONG_HUB | The top result is a different hub |
+| DEFERRED | The owning hub wins but `targets` is empty or `action` is not `route` |
+| MULTI | `targets` names more than one mode |
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -70,18 +113,22 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+The measurement changed nothing. The follow-up fix in `08eb67a0de` changed the surfaces below.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `cli-external-orchestration/hub-router.json` | Stage-two routing for the executor hub | Updated with classes for signals that reached the hub and dropped | Executor hub moved from 7 of 115 to 66 |
+| `cli-external-orchestration/mode-registry.json` | Mode declarations | Aligned with the router | Re-swept in the same run |
+| `cli-external-orchestration/graph-metadata.json` | The advisor projection of declared vocabulary | Retired vocabulary removed, 68 lines touched | 67 signals retired, each audited first |
+| `lib/scorer/executor-delegation.ts` | Run-time override for bare executor names | Now lifts the hub instead of inserting a routeless entry at rank one | Accuracy metrics byte-identical to the committed baseline |
+| `scripts/routing-accuracy/scorer-eval-baseline.json` and the holdout corpus | Gold labels | Re-captured to match the override change | Three suites re-run with no hub losing a prompt it owned |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: `rg -n 'routingClass|workflowMode' .opencode/skills/*/hub-router.json`.
+- Consumers of changed symbols: `rg -n 'executor-delegation|advisorRouting' .opencode/skills --glob '!dist/**'`.
+- Matrix axes: five hubs by five buckets, which is the published distribution table.
+- Algorithm invariant: rank is the returned array order, since the sort key blends command,
+  intent and conflict adjustments that the reply does not expose.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -100,9 +147,23 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Measurement | 444 declared signals across five hubs | The daemon CLI, one call per signal |
+| Double tally | The same raw replies counted twice | One Python pass and one `jq` pass |
+| Regression | 444 signals, 180 realistic prompts, 224 controls | The three committed suites |
+| Canary | Mid-flight fixtures during the fix | `fixtures/skill-advisor-regression-cases.jsonl` |
+
+Verification commands, all run from the repository root:
+
+```bash
+sqlite3 .opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite \
+  "select intent_signals from skill_nodes where id='<hub>';"
+
+node .opencode/bin/skill-advisor.cjs advisor_recommend \
+  --json '{"prompt":"<signal>"}' --format json --timeout-ms 60000
+```
+
+The 2026-09-02 re-run used the same two commands over the current declared vocabulary, at 12
+concurrent requests, with exit status read from a per-signal file.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -112,7 +173,10 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Phase 001 reading rules | Internal | Green | Rank and confidence would be read wrongly, which already inflated one hub from 7 to 44 |
+| Advisor daemon | Internal | Green | No sweep is possible |
+| `skill-graph.sqlite` | Internal | Green | Declared signals cannot be extracted |
+| Phase 004 | Internal | Yellow | Cross-hub collisions in the WRONG_HUB bucket cannot be settled by one hub |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -120,8 +184,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A hub loses a prompt it owned, or a retired signal turns out to have been routing.
+- **Procedure**: `git revert 08eb67a0de` restores the routers, registries, graph metadata, the run-time override and the gold labels together. The two research documents are additive and carry no runtime effect.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -133,17 +197,16 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Extract ──► Sweep ──► Classify ──► Tally ──► Fix ──► Re-measure
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Extract | Phase 001 transport | Sweep |
+| Sweep | Extract | Classify |
+| Classify | Sweep | Tally |
+| Tally | Classify | Fix |
+| Fix | Tally | Re-measure |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -153,10 +216,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Med | Two extraction sources per hub, unioned and checked for overlap |
+| Core Implementation | High | 444 calls, a per-signal audit, and eight routing files |
+| Verification | High | Three regression suites plus a double tally |
+| **Total** | | **Two working sessions** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -165,19 +228,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Backup created. The frozen corpus lives in `research/gate-a-raw.tsv`
+- [x] Feature flag configured (not applicable, since routing files carry no toggle)
+- [x] Monitoring alerts set. Canary fixtures ran during the fix
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. `git revert 08eb67a0de` to restore routers, registries, metadata, the override and gold labels.
+2. Re-run the sweep and confirm the hub totals return to 234 of 444.
+3. Re-run the three regression suites and confirm no hub lost a prompt it owned.
+4. Notify the phase 004 owner, since the collision list depends on these numbers.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No. The graph database is rebuilt from the skill tree.
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -189,25 +252,23 @@ Phase 1.5 (Config) ───┘
 ## L3: DEPENDENCY GRAPH
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
-│   Setup     │     │    Core     │     │   Verify    │
-└─────────────┘     └──────┬──────┘     └─────────────┘
-                          │
-                    ┌─────▼─────┐
-                    │  Phase 2b │
-                    │  Parallel │
-                    └───────────┘
+┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
+│ Extract  │──►│  Sweep   │──►│ Classify │──►│  Tally   │
+└──────────┘   └──────────┘   └────┬─────┘   └────┬─────┘
+                                   │              │
+                             ┌─────▼──────────────▼─────┐
+                             │ Audit, retire, re-route  │
+                             └──────────────────────────┘
 ```
 
 ### Dependency Matrix
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Extraction | Phase 001 | 444 unique signals | Sweep |
+| Sweep | Extraction | 444 JSON replies | Classification |
+| Classification | Sweep, rank rule | `gate-a-raw.tsv` | Tally, audit |
+| Audit and fix | Classification | 67 retirements, new stage-two classes | Re-measurement |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -215,15 +276,16 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **Extract declared signals from both sources per hub** - the denominator - CRITICAL
+2. **Sweep all 444 through the daemon** - the measurement - CRITICAL
+3. **Classify against `recommendations[0]`** - where the rank rule bites - CRITICAL
+4. **Audit each unresolved signal before retiring it** - the slowest step - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: Extraction, one sweep, one classification pass, one audit.
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- The two tallies run independently over the same replies.
+- Per-hub audits are independent of each other.
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -233,37 +295,55 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Baseline measured | 444 rows, one bucket each, double-tallied | `dbc8678c9d` |
+| M2 | Vocabulary closed | Retirements audited, stage-two classes added | `08eb67a0de` |
+| M3 | Every signal settled | A fresh sweep leaves no unresolved signal without a decision | Open, 50 remain |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+### ADR-001: Measure Gate A across all five hubs
 
-**Status**: [Proposed/Accepted/Deprecated]
+**Status**: Accepted
 
-**Context**: [What problem we're solving]
+**Context**: Every audit in the session that produced these findings looked at the
+documentation hub, which sits at 90 percent.
 
-**Decision**: [What we decided]
+**Decision**: Gate A is measured across all five parent hubs in one sweep.
 
 **Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
+- The executor hub was found at 7 of 115, a number nobody had.
+- The sweep is five times larger and takes a batched driver to run.
 
 **Alternatives Rejected**:
-- [Option B]: [Why rejected]
+- Measuring only the hub under audit: confirms a comfortable number and misses the real one.
 
 ---
 
+## AI EXECUTION PROTOCOL
 
-<!-- SCAFFOLD_AI_PROTOCOL_MARKERS:
-AI EXECUTION
-Pre-Task Checklist
-Execution Rules
-Status Reporting Format
-Blocked Task Protocol
--->
+### Pre-Task Checklist
+
+- [x] Phase 001 reading rules are loaded before any reply is classified.
+- [x] Declared signals come from both sources and are de-duplicated before the sweep starts.
+- [x] Exit status is read from a per-signal file rather than through a pipe.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Extract, sweep, classify, tally, then fix. Never fix before the tally. |
+| TASK-SCOPE | No scorer, weight or embedding change. Routing vocabulary and routes only. |
+| TASK-EVIDENCE | Every count is re-derivable from the committed raw file by a second method. |
+
+### Status Reporting Format
+
+Report one line per task: the task id, its state, and the evidence. A count reports its
+denominator, since a bare percentage hides which hub carries it.
+
+### Blocked Task Protocol
+
+A task is BLOCKED when a signal cannot be resolved without a decision another hub owns. Record
+it against phase 004 rather than guessing, and leave the criterion Unmet.

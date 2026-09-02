@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-hub-surface-truth"
-    last_updated_at: "2026-09-02T16:34:08Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "sk-doc/052-routing-completeness/005-hub-surface-truth"
+    last_updated_at: "2026-09-02T18:54:23Z"
+    last_updated_by: "claude-code"
+    recent_action: "Re-ran the criteria verifications and recorded each result"
+    next_safe_action: "None; the criteria are settled"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-02-052-005-hub-surface-truth"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-doc/052-routing-completeness/005-hub-surface-truth
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-02
 <!-- /ANCHOR:metadata -->
 
@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |---|---|---|---|---|---|
-| AC-001 | REQ-001 | Given the inventory intent claims completeness, When it is compared to the leaf manifest, Then it enumerates every leaf or drops the claim | FULL_INVENTORY holds 252 paths, matching the manifest leaf count, each resolving on disk | Met | |
-| AC-002 | REQ-002 | Given a mode with a command file in every runtime tree, When the hub manifest is read, Then it does not report the mode as commandless | `grep -n 'sk-create-diff' .opencode/skills/sk-doc/SKILL.md` shows the command rather than a routes-via-aliases dash | Unmet | |
-| AC-003 | REQ-003 | Given the readme summary and its frontmatter, When compared to the mode registry, Then both name the current mode set | The description, trigger phrases and at-a-glance table each name all six previously missing domains | Met | |
-| AC-004 | REQ-004 | Given a document that contradicts its registry, When the new check runs, Then it fails | Invariant 6c fails on the dash form, on a wrong command string and on a deleted row, and passes on restore | Met | |
+| AC-001 | REQ-001 | Given the inventory intent claims completeness, When it is compared to the leaf manifest, Then it enumerates every leaf or drops the claim | `ROUTER.md:1` FULL_INVENTORY holds 252 paths, matching the manifest leaf count, each resolving on disk. Recorded at `98a327edf9` | Met | |
+| AC-002 | REQ-002 | Given a mode with a command file in every runtime tree, When the hub manifest is read, Then it does not report the mode as commandless | Re-run 2026-09-02: `grep -n 'sk-create-diff' .opencode/skills/sk-doc/SKILL.md` returns the mode's own row at `SKILL.md:35` carrying `/create:diff`, with no dash. The fix landed in `08eb67a0de` | Met | |
+| AC-003 | REQ-003 | Given the readme summary and its frontmatter, When compared to the mode registry, Then both name the current mode set | `README.md:1` description, trigger phrases and at-a-glance table each name all six previously missing domains. Recorded at `98a327edf9` | Met | |
+| AC-004 | REQ-004 | Given a document that contradicts its registry, When the new check runs, Then it fails | `parent-skill-check-command-column.test.cjs:1` covers the dash form, a wrong command string and a deleted row, and the restore case. Invariant 6c lives at `parent-skill-check.cjs:1` | Met | |
 
 ### Status values
 
@@ -82,8 +82,11 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+Invariant 6c carries the packet: it is the first check to read a hub document against the
+registry it describes, and it was proven to fail three ways before it was trusted. AC-002 was
+re-verified from the current tree rather than accepted from the commit that fixed it. What was
+consciously left out is breadth: the invariant covers one column, so a hub document can still
+contradict its registry in every other respect, and finding 25 stays owned rather than closed.
 <!-- /ANCHOR:closure -->

@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-cross-hub-vocabulary"
-    last_updated_at: "2026-09-02T16:34:07Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "sk-doc/052-routing-completeness/004-cross-hub-vocabulary"
+    last_updated_at: "2026-09-02T18:54:23Z"
+    last_updated_by: "claude-code"
+    recent_action: "Re-ran the criteria verifications and recorded each result"
+    next_safe_action: "None; the criteria are settled"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-02-052-004-cross-hub-vocabulary"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-doc/052-routing-completeness/004-cross-hub-vocabulary
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-02
 <!-- /ANCHOR:metadata -->
 
@@ -54,9 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |---|---|---|---|---|---|
-| AC-001 | REQ-001 | Given duplicate uncompiled entries under bare executor names, When they are removed, Then the compiled route wins | The twelve affected corpus rows resolve to their compiled mode, shown by a before and after table | Unmet | |
-| AC-002 | REQ-002 | Given a vocabulary change, When both hubs are re-measured, Then neither loses a prompt it owned | A before and after run of both hubs' own prompt sets shows no row moving away from its owner | Unmet | |
-| AC-003 | REQ-003 | Given any routing file edit, When the phase closes, Then manifests are fresh and canaries green in the same commit | `compiled-route-manifest.cjs freshness` reports fresh for all five hubs and all five canaries exit 0 | Unmet | |
+| AC-001 | REQ-001 | Given duplicate uncompiled entries under bare executor names, When they are removed, Then the compiled route wins | Re-run 2026-09-02: six bare executor names (codex, opencode, cursor, devin, pi, claude code) each return `cli-external-orchestration` at rank one carrying a compiled route, and no routeless bare-name entry appears at any rank. The before state is recorded in `08eb67a0de` and in `executor-delegation.ts:1` | Met | |
+| AC-002 | REQ-002 | Given a vocabulary change, When both hubs are re-measured, Then neither loses a prompt it owned | Re-run 2026-09-02: `capture-scorer-eval-baseline.mjs:1` re-scores the corpus and returns metrics and fixture hashes identical to `scorer-eval-baseline.json:1`, captured at `8bb9011584` after the routing edits. The ratchet moves on any lost row, so none moved. A direct read of the 46 sk-doc and sk-code gold rows puts 40 at rank one, which is the same figure the frozen baseline already carries | Met | |
+| AC-003 | REQ-003 | Given any routing file edit, When the phase closes, Then manifests are fresh and canaries green in the same commit | Re-run 2026-09-02: `compiled-route-manifest.cjs freshness` returns `"fresh":true` for cli-external-orchestration, mcp-tooling, sk-code, sk-doc and system-deep-loop, and all five `harness/validate-canary.cjs:1` runs exit 0 | Met | |
 
 ### Status values
 
@@ -81,8 +81,12 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+All three criteria were re-verified against the current tree rather than accepted from the
+commit log. The compiled route wins under every bare executor name, the ratchet baseline
+re-captures identical, manifests are fresh for all five hubs and the five canaries exit 0.
+What was consciously left out is the part the phase measured and could not reach: the 94 of
+180 realistic prompts that contain none of the declared words in any form. That is a scoring
+change, forbidden here by the parent packet's D2, and it moves to its own packet.
 <!-- /ANCHOR:closure -->

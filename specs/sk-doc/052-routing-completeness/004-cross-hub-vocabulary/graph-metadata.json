@@ -11,35 +11,35 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
+      "cross hub vocabulary",
+      "bare token collision",
+      "gate b vocabulary limit",
+      "executor delegation override",
+      "cross hub vocabulary plan",
+      "executor override approach",
+      "three suite regression control",
+      "cross hub vocabulary tasks",
+      "vocabulary phase checklist",
+      "routing edit verification",
       "acceptance criteria",
       "closure gate"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "cross",
+      "hub",
+      "vocabulary",
+      "bare",
+      "token",
+      "collision",
+      "gate",
+      "limit",
+      "executor",
+      "delegation",
+      "override",
+      "plan"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,8 +49,8 @@
       "implementation-summary.md",
       ".opencode/skills/sk-code/graph-metadata.json",
       ".opencode/skills/sk-doc/graph-metadata.json",
-      ".opencode/skills/sk-doc/hub-router.json",
       ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/sk-doc/hub-router.json",
       ".opencode/skills/cli-external-orchestration/mode-registry.json"
     ],
     "entities": [
@@ -99,7 +99,7 @@
       {
         "name": "hub-router.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
         "source": "derived"
       },
       {
@@ -157,7 +157,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -175,19 +181,13 @@
         "source": "derived"
       },
       {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-02T20:28:40.886Z",
+    "last_save_at": "2026-09-02T22:06:43.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aeec05d5ec57aa10f686d075d790f0ed3a8afdd7b8bd40b314c051c327c6a43b",
+    "source_fingerprint": "sha256:43e2a8faa26b6407e4832331001a2f8285185e61ce52b69d0052e32a967b4293",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ec37584220fb45c7aff78c9a13da02f73c26ef8f46a78cc27898d6c5d4220c09",
-      "plan.md": "3922dd580726be2d1943e9eb5e1587e36247b6cb2a385950222731012e1cbffb",
-      "tasks.md": "4a493a1b19eadf35555db06b54766757509bc83b8621204f2b2f8a6ae91b41b1",
-      "implementation-summary.md": "b872362b5511b4182e33337225fbb86d5beb15c7368f024b5fd36630e09f9634"
+      "spec.md": "1f9b8878e1fda106bc4ec5a51f9cbcf752f667ee08bd382673fb95c116fdbd3b",
+      "plan.md": "6fd4aa7ea8f781b111073d7f6f50ad56c2f90a37621e772ec85202a22b9110da",
+      "tasks.md": "d194b3f3f815120ead9b3775d29dcb53618fe2eb26891453d38bf292c0fb12ec",
+      "implementation-summary.md": "a7b03624b77b12675cacdc8a82ee3c48fad327dfe7bd385ca81b71925dd005e4"
     },
     "last_active_child_id": null,
     "last_active_at": null

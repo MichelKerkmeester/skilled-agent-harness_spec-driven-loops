@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-gate-b-realistic-corpus"
-    last_updated_at: "2026-09-02T16:34:06Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus"
+    last_updated_at: "2026-09-02T17:36:09Z"
+    last_updated_by: "claude-code"
+    recent_action: "Re-ran each criterion and recorded the observed output"
+    next_safe_action: "None; every criterion is Met"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-02-052-003-gate-b-realistic-corpus"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-doc/052-routing-completeness/003-gate-b-realistic-corpus
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-02
 <!-- /ANCHOR:metadata -->
 
@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |---|---|---|---|---|---|
-| AC-001 | REQ-001 | Given at least three realistic phrasings per mode, When the corpus is committed, Then no row contains its own mode name | `assets/realistic-corpus.tsv` holds 180 rows and a scan for the intended mode inside its own prompt returns zero | Met | |
-| AC-002 | REQ-002 | Given the corpus, When it is measured through the daemon, Then the rate is recorded and reproducible | A second run of the same corpus returns 8 of 180 as top pick, matching `research/gate-b-measurement.md` | Met | |
-| AC-003 | REQ-003 | Given the semantic lane, When its weight and embedding count are read, Then the structural cause is on record | `advisor_status` reports semantic_shadow at 0.05, and `select count(*) from skill_nodes where embedding is not null` returns 0 | Met | |
-| AC-004 | REQ-004 | Given command-surface modes, When the denominator is fixed, Then they are excluded with the reason stated | The measurement document names both modes and their routingClass, and reports 8 of 172 alongside 8 of 180 | Met | |
+| AC-001 | REQ-001 | Given at least three realistic phrasings per mode, When the corpus is committed, Then no row contains its own mode name | Re-checked 2026-09-02: `assets/realistic-corpus.tsv` holds 180 data rows, and `awk -F'\t' 'NR>1 && index(tolower($3),tolower($2))>0'` returns 0 rows | Met | |
+| AC-002 | REQ-002 | Given the corpus, When it is measured through the daemon, Then the rate is recorded and reproducible | The second run against the state it was measured in returned 8 of 180 as top pick, matching `research/gate-b-measurement.md`, with cache hits observed on verbatim repeats. A third run on 2026-09-02 at HEAD `c328d601d8` returns 21 top-only and 24 any-position, which reproduces the 21 of 180 recorded in `08eb67a0de` and measures the post-fix state rather than this baseline | Met | |
+| AC-003 | REQ-003 | Given the semantic lane, When its weight and embedding count are read, Then the structural cause is on record | Re-run 2026-09-02: `advisor_status --workspace-root "$PWD" --format json` reports `laneWeights.semantic_shadow: 0.05`, and `sqlite3 .../skill-graph.sqlite "select count(*) from skill_nodes where embedding is not null;"` returns 0 | Met | |
+| AC-004 | REQ-004 | Given command-surface modes, When the denominator is fixed, Then they are excluded with the reason stated | Re-checked 2026-09-02: `research/gate-b-measurement.md` names `model-benchmark` and `skill-benchmark` with `advisorRouting.routingClass: "command-bridge"` at lines 128 and 461, and its denominator table reports 8 of 172 beside 8 of 180 | Met | |
 
 ### Status values
 
@@ -82,8 +82,10 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-002 carried the packet: the rate is on record with its denominator and it reproduces, which
+is what makes 4.4 percent an honest starting point rather than an impression. Enabling the
+semantic lane was consciously left out, even though it is the structural cause of the largest
+miss bucket, because switching it on would void every measurement taken here.
 <!-- /ANCHOR:closure -->

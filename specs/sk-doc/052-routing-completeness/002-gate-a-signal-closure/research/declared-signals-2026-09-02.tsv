@@ -1,0 +1,381 @@
+sk-doc	create skill
+sk-doc	create parent skill hub
+sk-doc	create readme
+sk-doc	write install guide
+sk-doc	create agent
+sk-doc	create command
+sk-doc	create feature catalog
+sk-doc	create manual testing playbook
+sk-doc	promote benchmark folder
+sk-doc	create ascii flowchart
+sk-doc	create diagram
+sk-doc	html svg diagram
+sk-doc	create a chart
+sk-doc	plot the data
+sk-doc	data visualization
+sk-doc	standalone html chart
+sk-doc	waterfall chart
+sk-doc	treemap
+sk-doc	heatmap
+sk-doc	box plot
+sk-doc	histogram
+sk-doc	bar chart of
+sk-doc	line chart of
+sk-doc	scatter plot of
+sk-doc	data visualisation
+sk-doc	data viz
+sk-doc	heat matrix
+sk-doc	heat map
+sk-doc	candlestick chart
+sk-doc	stacked area chart
+sk-doc	donut chart
+sk-doc	waffle chart
+sk-doc	parallel coordinates
+sk-doc	chart catalog
+sk-doc	which chart type
+sk-doc	chart color system
+sk-doc	create changelog
+sk-doc	retire a repo rule
+sk-doc	add a project rule
+sk-doc	create repo rule
+sk-doc	write a repo rule
+sk-doc	repo rule
+sk-doc	add a repo rule
+sk-doc	create diff report
+sk-doc	document before after review
+sk-doc	before after document diff
+sk-doc	document change report
+sk-doc	yaml frontmatter
+sk-doc	frontmatter block
+sk-doc	frontmatter field
+sk-doc	description budget
+sk-doc	4-part version
+sk-doc	frontmatter versioning
+sk-doc	frontmatter validation
+sk-doc	validate document
+sk-doc	score document quality
+sk-doc	optimize documentation
+sk-doc	apply human voice
+sk-doc	rewrite in human voice
+sk-doc	make this sound human
+sk-doc	sounds ai-generated
+sk-doc	reads like ai wrote it
+sk-doc	remove ai tells
+sk-doc	human voice rules
+sk-doc	voice pass
+sk-doc	scaffold a skill
+sk-doc	new skill
+sk-doc	build a skill
+sk-doc	author a skill
+sk-doc	new agent
+sk-doc	author an agent
+sk-doc	new slash command
+sk-doc	slash command
+sk-doc	parent hub
+sk-doc	skill hub
+sk-doc	new benchmark
+sk-doc	benchmark package
+sk-doc	before and after document
+sk-doc	document diff
+sk-doc	opencode skill
+sk-doc	opencode agent
+sk-doc	opencode command
+sk-doc	scaffold a new skill
+sk-doc	create a new skill
+sk-doc	sk-doc
+sk-doc	documentation hub
+sk-doc	create parent skill
+sk-doc	install guide
+sk-doc	feature catalog
+sk-doc	manual testing playbook
+sk-doc	create benchmark
+sk-doc	ascii flowchart
+sk-doc	repo rule router
+sk-doc	repo rules
+sk-doc	doc quality
+sk-doc	validate markdown
+sk-doc	dqi score
+sk-code	code work
+sk-code	code surface detection
+sk-code	webflow
+sk-code	frontend
+sk-code	cdn
+sk-code	browser test
+sk-code	opencode
+sk-code	system code
+sk-code	mcp
+sk-code	typescript
+sk-code	python
+sk-code	shell
+sk-code	jsonc
+sk-code	alignment verifier
+sk-code	motion.dev integration
+sk-code	motion-dev integration
+sk-code	motion_dev references
+sk-code	cross-stack animation
+sk-code	motion api
+sk-code	motion snippets
+sk-code	motion decision matrix
+sk-code	add set -euo pipefail
+sk-code	console.error fallback
+sk-code	argparse block
+sk-code	vitest covering
+sk-code	stable jsonl keys
+sk-code	lenis smooth-scroll
+sk-code	gsap timeline
+sk-code	hls.js video
+sk-code	intersectionobserver gate
+sk-code	build a tiny script
+sk-code	tiny script that counts
+sk-code	code review
+sk-code	pr review
+sk-code	security review
+sk-code	quality gate
+sk-code	findings
+sk-code	review packet docs
+sk-code	quality check
+sk-code	check before done
+sk-code	author quality gate
+sk-code	pre-verification quality check
+sk-code	p0 p1 p2 review
+sk-code	pi remote mobile ui
+sk-code	svelte design system
+sk-code	mobile cli design tokens
+sk-code	ds grammar editability
+sk-code	obsidian plugin
+sk-code	obsidian plugin source
+sk-code	note database plugin
+sk-code	obsidian plugin design system
+sk-code	mobile cli source conventions
+sk-code	sk-code
+sk-code	surface-aware code implementation
+sk-code	frontend implementation standards
+sk-code	opencode typescript verification
+sk-code	motion animation integration
+sk-code	stack-specific code quality gate
+sk-code	language-specific verification commands
+sk-code	surface detection routing
+sk-code	webflow frontend workflow
+sk-code	opencode system code workflow
+sk-code	alignment verifier workflow
+sk-code	code quality gate
+sk-code	verification commands
+sk-code	sk-code hub
+sk-code	workflow doctrine
+sk-code	review mode
+sk-code	pi remote design system
+sk-code	ink-on-parchment retint
+sk-code	mobile cli source
+mcp-tooling	chrome devtools
+mcp-tooling	browser debug
+mcp-tooling	dom inspect
+mcp-tooling	lighthouse
+mcp-tooling	clickup
+mcp-tooling	cupt
+mcp-tooling	task management
+mcp-tooling	work queue
+mcp-tooling	mark done
+mcp-tooling	time tracking
+mcp-tooling	log time
+mcp-tooling	task list
+mcp-tooling	clickup task
+mcp-tooling	complete task
+mcp-tooling	add note to task
+mcp-tooling	tag task
+mcp-tooling	start timer
+mcp-tooling	stop timer
+mcp-tooling	process queue
+mcp-tooling	clickup documents
+mcp-tooling	clickup goals
+mcp-tooling	bulk tasks
+mcp-tooling	figma cli
+mcp-tooling	figma-ds-cli
+mcp-tooling	figma desktop
+mcp-tooling	render in figma
+mcp-tooling	figma tokens
+mcp-tooling	figma variables
+mcp-tooling	extract DESIGN.md
+mcp-tooling	export from figma
+mcp-tooling	connect to figma
+mcp-tooling	figma daemon
+mcp-tooling	figma mcp
+mcp-tooling	aside
+mcp-tooling	aside browser
+mcp-tooling	aside cli
+mcp-tooling	aside mcp
+mcp-tooling	aside repl
+mcp-tooling	ai browser automation
+mcp-tooling	agentic browser
+mcp-tooling	refero
+mcp-tooling	refero mcp
+mcp-tooling	design reference search
+mcp-tooling	ui reference
+mcp-tooling	real app screens
+mcp-tooling	mobbin
+mcp-tooling	mobbin mcp
+mcp-tooling	app design research
+mcp-tooling	screen examples
+mcp-tooling	ux flow references
+mcp-tooling	obsidian
+mcp-tooling	obsidian vault
+mcp-tooling	notesmd-cli
+mcp-tooling	obsidian mcp
+mcp-tooling	note management
+mcp-tooling	markdown notes
+mcp-tooling	vault search
+mcp-tooling	daily note
+mcp-tooling	knowledge base
+mcp-tooling	notion
+mcp-tooling	notion mcp
+mcp-tooling	notion api
+mcp-tooling	notion database
+mcp-tooling	notion data source
+mcp-tooling	notion page
+mcp-tooling	query notion
+mcp-tooling	notion property
+mcp-tooling	notion relation
+mcp-tooling	notion rollup
+mcp-tooling	notion formula
+mcp-tooling	notion token
+mcp-tooling	ntn_
+mcp-tooling	notion markdown
+mcp-tooling	iconic
+mcp-tooling	iconic rulebook
+mcp-tooling	icon rules
+mcp-tooling	icon automation
+mcp-tooling	file icons
+mcp-tooling	folder icons
+mcp-tooling	mcp-tooling
+mcp-tooling	mcp tool bridge
+mcp-tooling	chrome devtools orchestration
+mcp-tooling	browser debugger cli routing
+mcp-tooling	capture browser screenshots
+mcp-tooling	inspect network requests
+mcp-tooling	mcp-chrome-devtools
+mcp-tooling	mcp chrome devtools
+mcp-tooling	chrome-devtools
+mcp-tooling	cdp
+mcp-tooling	mcp-click-up
+mcp-tooling	mark task done
+mcp-tooling	mcp-figma
+mcp-tooling	extract design.md
+mcp-tooling	aside browser task
+mcp-tooling	aside repl evidence
+mcp-tooling	agentic browser automation
+mcp-tooling	refero design reference
+mcp-tooling	real app screen search
+mcp-tooling	mobbin app research
+mcp-tooling	real app ux patterns
+mcp-tooling	mcp-notion
+mcp-tooling	query notion database
+mcp-tooling	notion markdown round-trip
+mcp-tooling	mcp-magicpath
+mcp-tooling	magicpath
+mcp-tooling	magicpath ai
+mcp-tooling	magicpath component
+mcp-tooling	magicpath canvas
+cli-external-orchestration	opencode cli
+cli-external-orchestration	opencode run
+cli-external-orchestration	delegate to opencode
+cli-external-orchestration	parallel detached session
+cli-external-orchestration	spec kit runtime
+cli-external-orchestration	claude code
+cli-external-orchestration	claude cli
+cli-external-orchestration	delegate to claude
+cli-external-orchestration	codex cli
+cli-external-orchestration	codex exec
+cli-external-orchestration	delegate to codex
+cli-external-orchestration	openai cli second opinion
+cli-external-orchestration	cli-codex
+cli-external-orchestration	cursor cli
+cli-external-orchestration	cursor agent
+cli-external-orchestration	delegate to cursor
+cli-external-orchestration	composer
+cli-external-orchestration	cli-cursor
+cli-external-orchestration	devin cli
+cli-external-orchestration	delegate to devin
+cli-external-orchestration	cognition cli second opinion
+cli-external-orchestration	devin handoff
+cli-external-orchestration	cli-devin
+cli-external-orchestration	pi cli
+cli-external-orchestration	pi agent
+cli-external-orchestration	delegate to pi
+cli-external-orchestration	pi.dev cli
+cli-external-orchestration	pi coding agent
+cli-external-orchestration	cli-pi
+cli-external-orchestration	cli-external-orchestration
+cli-external-orchestration	cli dispatch
+cli-external-orchestration	cross-ai delegation
+cli-external-orchestration	executor delegation
+cli-external-orchestration	opencode cli orchestration
+cli-external-orchestration	full plugin runtime dispatch
+cli-external-orchestration	in-opencode parallel session
+cli-external-orchestration	cross-ai handback opencode
+cli-external-orchestration	ablation suite opencode
+cli-external-orchestration	worker farm opencode
+cli-external-orchestration	cli-opencode
+cli-external-orchestration	cli opencode
+cli-external-orchestration	claude code cli orchestration
+cli-external-orchestration	delegate to claude code
+cli-external-orchestration	anthropic cli second opinion
+cli-external-orchestration	structured claude code output
+cli-external-orchestration	cli-claude-code
+cli-external-orchestration	cli claude code
+cli-external-orchestration	claude-code
+cli-external-orchestration	claude-cli
+cli-external-orchestration	cli codex
+cli-external-orchestration	codex cli orchestration
+cli-external-orchestration	openai coding agent
+cli-external-orchestration	codex web search
+cli-external-orchestration	codex diff review
+cli-external-orchestration	codex sandbox
+cli-external-orchestration	gpt codex dispatch
+cli-external-orchestration	cli cursor
+cli-external-orchestration	cursor composer
+cli-external-orchestration	cursor plan mode
+cli-external-orchestration	cursor ask mode
+cli-external-orchestration	cursor worktree
+cli-external-orchestration	cursor cloud worker
+cli-external-orchestration	cli devin
+cli-external-orchestration	devin-handoff
+cli-external-orchestration	cognition-cli
+cli-external-orchestration	delegate-to-devin
+cli-external-orchestration	devin subagent
+cli-external-orchestration	devin cloud handoff
+cli-external-orchestration	swe-1.7 dispatch
+cli-external-orchestration	pi json event stream
+cli-external-orchestration	pi rpc integration
+cli-external-orchestration	pi community package
+cli-external-orchestration	cli pi
+cli-external-orchestration	parallel opencode session
+cli-external-orchestration	detached opencode session
+system-deep-loop	deep loop workflow
+system-deep-loop	deep-research
+system-deep-loop	deep-review
+system-deep-loop	deep-ai-council
+system-deep-loop	deep-improvement
+system-deep-loop	research loop
+system-deep-loop	iterative review loop
+system-deep-loop	deep-review wave
+system-deep-loop	release readiness
+system-deep-loop	ai council deliberation
+system-deep-loop	agent improvement benchmark
+system-deep-loop	system-deep-loop
+system-deep-loop	deep-loop-workflows
+system-deep-loop	deep loop workflows
+system-deep-loop	deep research
+system-deep-loop	iterative investigation workflow
+system-deep-loop	autoresearch
+system-deep-loop	deep review
+system-deep-loop	review loop
+system-deep-loop	severity weighted findings
+system-deep-loop	convergence review
+system-deep-loop	multi-seat planning council
+system-deep-loop	council convergence
+system-deep-loop	improve agent
+system-deep-loop	evaluate agent
+system-deep-loop	score agent candidate
+system-deep-loop	agent-improvement
+system-deep-loop	model benchmark
+system-deep-loop	benchmark a model or prompt framework
+system-deep-loop	skill benchmark

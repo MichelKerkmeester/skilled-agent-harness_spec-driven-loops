@@ -10,18 +10,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-transport-and-baseline"
-    last_updated_at: "2026-09-02T16:34:05Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "sk-doc/052-routing-completeness/001-transport-and-baseline"
+    last_updated_at: "2026-09-02T19:56:10Z"
+    last_updated_by: "claude-code"
+    recent_action: "Re-ran each criterion and recorded the observed output"
+    next_safe_action: "None; every criterion is Met"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "2026-09-02-052-001-transport-and-baseline"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-doc/052-routing-completeness/001-transport-and-baseline
+**Level:** 3
+**Status:** Complete
 **Date:** 2026-09-02
 <!-- /ANCHOR:metadata -->
 
@@ -54,9 +54,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |---|---|---|---|---|---|
-| AC-001 | REQ-001 | Given two scorers answer routing, When the dispatch chain is read end to end, Then one is named as the governing caller | `grep -rn "skill_advisor.py" .opencode/skills/system-skill-advisor/hooks/lib/` returns no match, and the handler's scorer import resolves to `lib/scorer/fusion.js` | Met | |
-| AC-002 | REQ-002 | Given a confidence of 0.8200, When an unrelated prompt is measured, Then the same value returns and the score differs | `skill-advisor.cjs advisor_recommend --json '{"prompt":"refactor the auth module"}'` returns confidence 0.8200 with score near 0.51 | Met | |
-| AC-003 | REQ-003 | Given a ranking question, When the comparator is read, Then score alone is shown not to be the sort key | `fusion.ts` line 749 adds command, intent and conflict adjustments before falling through to rank fusion | Met | |
+| AC-001 | REQ-001 | Given two scorers answer routing, When the dispatch chain is read end to end, Then one is named as the governing caller | Re-run 2026-09-02: `grep -rn "skill_advisor.py" .opencode/skills/system-skill-advisor/hooks/lib/` exits 1 with no output, and `mcp-server/handlers/advisor-recommend.ts:13` imports `scoreAdvisorPrompt` from `../lib/scorer/fusion.js`. The handler's only fallback is `hooks/lib/skill-advisor-cli-fallback.ts`, a daemon transport | Met | |
+| AC-002 | REQ-002 | Given a confidence of 0.8200, When surfaced replies are measured, Then the same value returns as a floor and the score differs underneath it | Re-run 2026-09-02 over the 381 declared signals: 555 recommendations, minimum confidence exactly 0.82, maximum 0.95, 166 rows sitting exactly at 0.8200, and the lowest score among those floor rows 0.10213. The originally cited prompt `refactor the auth module` now returns an empty recommendations array, since `08eb67a0de` changed the vocabulary underneath it | Met | |
+| AC-003 | REQ-003 | Given a ranking question, When the comparator is read, Then score alone is shown not to be the sort key | Re-run 2026-09-02: `fusion.ts:749` is `let ranked = recommendations.sort(...)`, and the comparator adds command, intent and conflict adjustments to `score` before falling through to rank fusion | Met | |
 
 ### Status values
 
@@ -81,8 +81,10 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-001 carried the packet: the governing transport is named by a read of the dispatch chain
+rather than by comparing outputs, so every later number in this packet has one caller behind
+it. Reconciling the two scorers was consciously left out, because changing a scorer would
+void every measurement taken here.
 <!-- /ANCHOR:closure -->

@@ -45,6 +45,7 @@ _memory:
 |-------|-------|
 | **Packet** | sk-doc/052-routing-completeness/005-hub-surface-truth |
 | **Level** | 3 |
+| **Status** | Complete |
 | **Delivery** | Shipped. The parent goal LOG records this phase Done |
 | **Date** | 2026-09-02 (git author dates of `98a327edf9`, `08eb67a0de` and `8bb9011584`) |
 | **Register findings** | 19, 21, 22, 23 and 24 read Fixed. 20 and 25 remain Planned |
@@ -172,8 +173,4 @@ close.
 **The 252 figure was not independently recounted here.** It comes from `98a327edf9` and from
 AC-001, both of which report the count matching the leaf manifest with each path resolving on
 disk. This summary cites that evidence rather than re-deriving it.
-**The phase `spec.md` still reads Draft.** Its scaffold was never filled in, and the durable
-content of this phase lives in `goal.md`, `acceptance-criteria.md` and the research documents
-instead. This summary therefore carries no Status row, since asserting one here would
-contradict `spec.md` and would claim a closure the acceptance criteria have not reached.
 <!-- /ANCHOR:limitations -->

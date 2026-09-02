@@ -11,35 +11,35 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
+      "validator and template debt",
+      "template payload scanning",
+      "fixture exemption validator",
+      "check that never looked",
+      "validator template debt plan",
+      "payload scanning approach",
+      "template first then documents",
+      "validator template debt tasks",
+      "payload scanning checklist",
+      "boilerplate rewrite evidence",
       "acceptance criteria",
       "closure gate"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
+      "validator",
       "template",
-      "spec",
-      "core",
-      "implementation",
+      "debt",
+      "payload",
+      "scanning",
+      "fixture",
+      "exemption",
+      "check",
+      "never",
+      "looked",
       "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "approach"
     ],
-    "importance_tier": "normal",
-    "status": "draft",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,9 +47,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl",
       ".opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md",
-      ".opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
-      ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl"
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md"
     ],
     "entities": [
       {
@@ -89,21 +90,27 @@
         "source": "derived"
       },
       {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
         "name": "repo-rule-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md",
         "source": "derived"
       },
       {
-        "name": "rule-anatomy.md",
+        "name": "scope-and-exemptions.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
         "source": "derived"
       },
       {
-        "name": "plan.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        "name": "rule-anatomy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
         "source": "derived"
       },
       {
@@ -155,7 +162,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -173,9 +186,9 @@
         "source": "derived"
       },
       {
-        "name": "Current Role",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -183,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A template is the one document where the fenced block is the deliverable rather than a",
     "created_at": "2026-09-02T16:34:08Z",
-    "last_save_at": "2026-09-02T20:28:41.258Z",
+    "last_save_at": "2026-09-02T22:06:43.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd6b1d6a09ab04c45ae06b99c98f9dda454a735743d548728c42bcb6e0262e47",
+    "source_fingerprint": "sha256:c5f95465c235a1bedcff01a9af812c98ee19e77bbcff4341809a3d2c84ab286a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "70aee3f39f6cde93c3fa5457fe700ee98ef7385b25b42c8421c54e805926df86",
-      "plan.md": "8064a90153a75b637520439a42ee666e0387195ddec09134807922042ebc811b",
-      "tasks.md": "14b6a99ab6e63fc476c56344b6c690179b31e7c08cb979bde064060a47bb4d7a",
-      "implementation-summary.md": "b3d4446ccf414e8c744125eec5ba686e12e25f8601cea95a7044e2a5fc6f7876"
+      "spec.md": "2afd5bba9c4a7baa16045221a72d26cf0b43add65bf80e237e243d043c0fd26a",
+      "plan.md": "f0c733d333ee44ca7a84df39e91824bf10e22edce724d81caef7452cdee7a9fa",
+      "tasks.md": "ed7204f2b12dde38111339bbdb8b572c97bf4daba904cbcd2dafa38b7f7ffaaf",
+      "implementation-summary.md": "d5c26a4fde1977e599c89eabb4b93eb197ed9463b36b2b544b5698dd6281a1e2"
     },
     "last_active_child_id": null,
     "last_active_at": null
