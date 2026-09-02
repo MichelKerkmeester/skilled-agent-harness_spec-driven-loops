@@ -155,8 +155,14 @@ DATA.forEach(function (d, i) {
 let keyX = LEFT;
 SEGMENTS.forEach(function (name, s) {
   node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
-  node('text', { x: keyX + 19, y: 19 }, 'key').textContent = name;
-  keyX += 44 + name.length * 6.6;
+  const label = node('text', { x: keyX + 19, y: 19 }, 'key');
+  label.textContent = name;
+  // The gap after a swatch is the label's real width, measured once it is in the
+  // document. A character count times a constant assumes every glyph is the same
+  // width, which this font stack does not promise, so a wide label used to run
+  // under the next swatch. The count stays as the fallback for a reader that has
+  // not laid the text out yet.
+  keyX += 44 + (label.getComputedTextLength() || name.length * 6.6);
 });
 
 const headRow = document.getElementById('head-row');

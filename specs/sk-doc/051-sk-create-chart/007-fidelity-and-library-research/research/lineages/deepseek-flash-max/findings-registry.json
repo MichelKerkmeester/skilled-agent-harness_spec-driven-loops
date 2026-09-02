@@ -1,0 +1,458 @@
+{
+  "sessionId": "fanout-deepseek-flash-max-1788375447497-ut4oqk",
+  "openQuestions": [
+    {
+      "id": "Q1",
+      "text": "Axis ladders and tick selection conventions vs corpus niceStep",
+      "status": "answered",
+      "source": "iteration-002.md F2.1"
+    },
+    {
+      "id": "Q2",
+      "text": "Label and legend placement conventions vs corpus fixed swatch row",
+      "status": "answered",
+      "source": "iteration-003.md F3.1-F3.4"
+    },
+    {
+      "id": "Q3",
+      "text": "Colour ramp conventions vs corpus fixed 5-step gated ramp",
+      "status": "answered",
+      "source": "iteration-004.md F4.1-F4.5"
+    },
+    {
+      "id": "Q4",
+      "text": "Accessibility affordances vs corpus rule-10 approach",
+      "status": "answered",
+      "source": "iteration-005.md F5.1-F5.5"
+    },
+    {
+      "id": "Q5",
+      "text": "Responsive sizing conventions vs corpus fixed viewBox",
+      "status": "answered",
+      "source": "iteration-006.md F6.1-F6.5"
+    },
+    {
+      "id": "Q7",
+      "text": "Number/date formatting conventions vs corpus String(value)",
+      "status": "answered",
+      "source": "iteration-008.md F8.1-F8.5"
+    },
+    {
+      "id": "Q6",
+      "text": "Data-mark relationship in grammars vs corpus data-block contract",
+      "status": "answered",
+      "source": "iteration-007.md F7.1-F7.5"
+    },
+    {
+      "id": "Q8",
+      "text": "Interaction/tooltip minimum conventions and dependency-free reach",
+      "status": "answered",
+      "source": "init"
+    },
+    {
+      "id": "Q9",
+      "text": "Reconciliation of each recommendation with the no-dependency contract",
+      "status": "answered",
+      "source": "init"
+    }
+  ],
+  "resolvedQuestions": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "Q5",
+    "Q6",
+    "Q7",
+    "Q8",
+    "Q9"
+  ],
+  "keyFindings": [
+    {
+      "id": "F1.1",
+      "text": "Vega-Lite auto-produces axes/legends/scales from mark+encoding; corpus freezes chrome per form — ahead on determinism, behind on expressiveness",
+      "iteration": 1,
+      "source": "https://vega.github.io/vega-lite/docs/spec.html"
+    },
+    {
+      "id": "F1.2",
+      "text": "ECharts dataset component is the closest analogue to the corpus data block; corpus is stricter (literal, no runtime reads)",
+      "iteration": 1,
+      "source": "https://echarts.apache.org/handbook/en/concepts/dataset/"
+    },
+    {
+      "id": "F1.3",
+      "text": "Chart.js ships tooltips+animation+responsive by default; corpus ships none — interaction is the largest behind-surface, cheapest to close with SVG title/pointer handlers",
+      "iteration": 1,
+      "source": "https://www.chartjs.org/docs/latest/configuration/tooltip.html"
+    },
+    {
+      "id": "F1.4",
+      "text": "Plotly tick machinery (dtick/nticks/tickformat/d3-format) is richer than corpus niceStep ladder; corpus ladder is fine-grained and sound but duplicated in 9 templates",
+      "iteration": 1,
+      "source": "https://plotly.com/javascript/tick-formatting/"
+    },
+    {
+      "id": "F1.5",
+      "text": "ECharts places legends upper-right/bottom with scroll for many; corpus uses fixed top-left swatch row with width-estimate math (label.length*6.6) — overlap fragility",
+      "iteration": 1,
+      "source": "https://echarts.apache.org/handbook/en/concepts/legend/"
+    },
+    {
+      "id": "F1.6",
+      "text": "Corpus fixed-viewBox scaling is ahead for the static delivery mode; gap is lack of legibility verification at narrow widths, not the mechanism",
+      "iteration": 1,
+      "source": "https://www.chartjs.org/docs/latest/configuration/responsive.html"
+    },
+    {
+      "id": "F2.1",
+      "text": "Corpus niceStep ladder is a sound finer instance of D3 tick doctrine; missing half is auto-precision tickFormat and float accumulation in candlestick tick loop",
+      "iteration": 2,
+      "source": "https://github.com/d3/d3-scale/blob/v4.0.2/README.md"
+    },
+    {
+      "id": "F2.2",
+      "text": "Plot mark-shape doctrine (rect/barX/barY/cell) formalises the corpus data-shape column; corpus adds orientation guardrail Plot lacks",
+      "iteration": 2,
+      "source": "https://observablehq.com/plot/features/marks"
+    },
+    {
+      "id": "F2.3",
+      "text": "d3-format s-type SI prefixes are the upstream answer for big-number labels; corpus String(value) has no separator/prefix story, demo data pre-scaled tacitly",
+      "iteration": 2,
+      "source": "https://d3js.org/d3-format"
+    },
+    {
+      "id": "F2.4",
+      "text": "Plot line breaks at invalid values; corpus line/range builders emit NaN paths silently — no null handling anywhere",
+      "iteration": 2,
+      "source": "https://observablehq.com/plot/marks/line"
+    },
+    {
+      "id": "F2.5",
+      "text": "D3 two-sided nice would break corpus zero-baseline discipline; corpus already range-nices exactly the one form (candlestick) where it is honest",
+      "iteration": 2,
+      "source": "https://github.com/d3/d3-scale/blob/v4.0.2/README.md"
+    },
+    {
+      "id": "F3.1",
+      "text": "No upstream legend placement consensus (top/right/top-right), but all reserve space outside the plot; corpus in-figure swatch row consumes plot budget",
+      "iteration": 3,
+      "source": "https://www.chartjs.org/docs/latest/configuration/legend.html"
+    },
+    {
+      "id": "F3.2",
+      "text": "Corpus width-estimate positioning (label.length*6.6/6.8/34) is the weakest label technique; upstream measures text, never character-count estimates",
+      "iteration": 3,
+      "source": "https://observablehq.com/plot/marks/text"
+    },
+    {
+      "id": "F3.3",
+      "text": "Direct labelling is an upstream doctrine and the corpus is already ahead (value labels on bars/segments/cells, anchor flips at edges)",
+      "iteration": 3,
+      "source": "https://observablehq.com/plot/marks/text"
+    },
+    {
+      "id": "F3.4",
+      "text": "parallel-axes alternating-lift label scheme is bespoke collision avoidance; needs a width check for longer units",
+      "iteration": 3,
+      "source": "https://plotly.com/python/axes/"
+    },
+    {
+      "id": "F3.5",
+      "text": "Vega-Lite legends carry aria/description; corpus swatch legends' mapping lives only in the data table, not the figure desc",
+      "iteration": 3,
+      "source": "https://vega.github.io/vega-lite/docs/legend.html"
+    },
+    {
+      "id": "F4.1",
+      "text": "Corpus ramp gates (darkest 3:1, lightest 1.15:1, step 1.3:1, monotonic) are ahead of every surveyed library — no upstream enforces contrast on schemes",
+      "iteration": 4,
+      "source": "https://d3js.org/d3-scale-chromatic"
+    },
+    {
+      "id": "F4.2",
+      "text": "Corpus single-hue teal ramp matches CVD guidance; multi-hue ramps carry a Vega cluster-illusion warning; diverging ramp deliberately absent (no consuming form)",
+      "iteration": 4,
+      "source": "https://vega.github.io/vega/docs/schemes/"
+    },
+    {
+      "id": "F4.3",
+      "text": "Okabe-Ito is the canonical CVD-safe qualitative palette; corpus categorical hues achieve safety by gates+luminance but never name a reference palette in docs",
+      "iteration": 4,
+      "source": "https://figviz.com/blog/scientific-color-palettes-okabe-ito-paul-tol-colorbrewer-viridis-cividis-rdbu-and-crameri-vik-2ubkmije"
+    },
+    {
+      "id": "F4.4",
+      "text": "The emphasis role (--chart-emphasis) has no counterpart in any surveyed library; corpus is ahead by design",
+      "iteration": 4,
+      "source": "color-system.md:58-59,127-129"
+    },
+    {
+      "id": "F4.5",
+      "text": "Upstream draws gradient ramp legends for quantitative scales; corpus textual less/more legend is accessible but an SVG linearGradient swatch is dependency-free",
+      "iteration": 4,
+      "source": "https://observablehq.com/plot/features/legends"
+    },
+    {
+      "id": "F5.1",
+      "text": "Rule-10 trio ahead of Chart.js (canvas content not accessible to screen readers, per Chart.js docs); granularity validated by Vega's ARIA-bloat concern",
+      "iteration": 5,
+      "source": "https://www.chartjs.org/docs/latest/general/accessibility.html"
+    },
+    {
+      "id": "F5.2",
+      "text": "Vega per-guide aria/description model: corpus figure desc should enumerate series mapping (one line per template)",
+      "iteration": 5,
+      "source": "https://github.com/vega/vega/blob/master/docs/docs/config.md"
+    },
+    {
+      "id": "F5.3",
+      "text": "ECharts decal patterns are dependency-free via SVG pattern fills; candidate for stacked-bars/stacked-area/unit-ring, per-form decision",
+      "iteration": 5,
+      "source": "https://echarts.apache.org/handbook/en/best-practices/aria/"
+    },
+    {
+      "id": "F5.4",
+      "text": "ECharts generates aria descriptions from data; corpus hand-written desc goes stale on data edits — data-derived desc clause is deterministic and applyable now",
+      "iteration": 5,
+      "source": "https://echarts.apache.org/handbook/en/best-practices/aria/"
+    },
+    {
+      "id": "F5.5",
+      "text": "Corpus gates map exactly onto WCAG 2.1 AA 1.4.3 (4.5:1) and 1.4.11 (3:1); un-gated rule role defensible under 1.4.11 scope",
+      "iteration": 5,
+      "source": "https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
+    },
+    {
+      "id": "F6.1",
+      "text": "Every upstream responsive mechanism (Chart.js resize, Vega-Lite container+autosize, Plot ResizeObserver re-render) needs a runtime; corpus viewBox scaling is the static subset",
+      "iteration": 6,
+      "source": "https://github.com/observablehq/plot/discussions/2105"
+    },
+    {
+      "id": "F6.2",
+      "text": "Min-size guard (svg min-width + figure overflow-x) is the dependency-free responsive improvement; pure CSS, passes all 13 checks",
+      "iteration": 6,
+      "source": "bar-rows.html:36,46"
+    },
+    {
+      "id": "F6.3",
+      "text": "Plot admits margins are not auto-adjusted for long labels; corpus fixed gutters need an explicit per-form label-length budget",
+      "iteration": 6,
+      "source": "https://observablehq.com/plot/features/plots"
+    },
+    {
+      "id": "F6.4",
+      "text": "Vega-Lite step sizing exists because it lacks capacity discipline; corpus ceilings make it unnecessary — corpus ahead",
+      "iteration": 6,
+      "source": "https://vega.github.io/vega-lite-v4/docs/spec.html"
+    },
+    {
+      "id": "F6.5",
+      "text": "Narrow-viewport render assertion (--window-size phone viewport) is the contract-level verification candidate",
+      "iteration": 6,
+      "source": "check-corpus.cjs:580-598"
+    },
+    {
+      "id": "F7.1",
+      "text": "Zero-transform contract is the deliberate inverse of Vega-Lite/Plot transform machinery; catalog data-shape column is the corpus's transform language",
+      "iteration": 7,
+      "source": "https://vega.github.io/vega-lite/docs/transform.html"
+    },
+    {
+      "id": "F7.2",
+      "text": "Missing data: Plot breaks lines at null, Vega-Lite filters with valid predicate; corpus draws NaN paths silently — null-filter fix is applyable now",
+      "iteration": 7,
+      "source": "https://observablehq.com/plot/marks/line"
+    },
+    {
+      "id": "F7.3",
+      "text": "Waterfall end + stacked-area total are the corpus's auditable computed-value exceptions; Plot stack transform solves the same problem opaquely",
+      "iteration": 7,
+      "source": "https://observablehq.com/plot/transforms/stack"
+    },
+    {
+      "id": "F7.4",
+      "text": "Plot bin insets and corpus surface-stroke separators are equivalent answers to touching marks; corpus mechanism already documented",
+      "iteration": 7,
+      "source": "https://observablehq.github.io/plot/features/transforms"
+    },
+    {
+      "id": "F7.5",
+      "text": "No shape enforcement exists anywhere upstream; corpus ceilings are documented only — console.warn guard is the minimal bridge",
+      "iteration": 7,
+      "source": "https://echarts.apache.org/handbook/en/concepts/dataset/"
+    },
+    {
+      "id": "F8.1",
+      "text": "Per-template fmt helper (thousands separators + float-dust trim, locale-fixed) is the applyable-now answer to String(value) everywhere",
+      "iteration": 8,
+      "source": "https://vega.github.io/vega-lite/docs/format.html"
+    },
+    {
+      "id": "F8.2",
+      "text": "Candlestick tick loop accumulates float dust (value += step); d3 computes ticks from integer index — floor + step*t is the two-line fix",
+      "iteration": 8,
+      "source": "https://github.com/d3/d3-array#ticks"
+    },
+    {
+      "id": "F8.3",
+      "text": "Corpus time labels are display-ready literals by design; catalog should state the rule so ISO-date readers know conversion is theirs",
+      "iteration": 8,
+      "source": "https://vega.github.io/vega-lite/docs/format.html"
+    },
+    {
+      "id": "F8.4",
+      "text": "Corpus hand-rolls Vega-Lite labelOverlap parity thinning (day%7, i%4, [1,3,5]) with undocumented constants — comment the rule per form",
+      "iteration": 8,
+      "source": "https://vega.github.io/vega-lite-v4/docs/axis.html"
+    },
+    {
+      "id": "F8.5",
+      "text": "Vega-Lite labelAngle -45/labelMaxLength 25 are runtime luxuries; corpus non-rotation stance is deliberate and upstream-informed",
+      "iteration": 8,
+      "source": "https://vega.github.io/vega-lite-v1/docs/axis.html"
+    },
+    {
+      "id": "F9.1",
+      "text": "Hover tooltips are the default upstream interaction; per-mark SVG title is the dependency-free fix (native tooltip since 2015, trips none of the 13 checks)",
+      "iteration": 9,
+      "source": "https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/title"
+    },
+    {
+      "id": "F9.2",
+      "text": "SVG title doubles as accessible name per W3C; data table remains the keyboard path (focus-tooltip browser-inconsistent, Chromium bug 829352)",
+      "iteration": 9,
+      "source": "https://w3c.github.io/writing-accessible-svg/accessible-svg.html"
+    },
+    {
+      "id": "F9.3",
+      "text": "Forms needing titles most are where direct labelling is weakest: scatter, heat-matrix, calendar-grid, candlestick, box-plot, treemap, waterfall, parallel-axes",
+      "iteration": 9,
+      "source": "https://observablehq.com/plot/features/interactions"
+    },
+    {
+      "id": "F9.4",
+      "text": "Title caveats: painted-pixels hover target and no touch tooltips — both covered by visible labels + rule-10 table",
+      "iteration": 9,
+      "source": "https://css-tricks.com/svg-title-vs-html-title-attribute/"
+    },
+    {
+      "id": "F9.5",
+      "text": "JS floating tooltip possible (~30 lines, deterministic) but per-form decision only; native title + labels + table already cover value reading",
+      "iteration": 9,
+      "source": "https://observablehq.com/plot/interactions/pointer"
+    },
+    {
+      "id": "F10.1",
+      "text": "Ranked template-level list T1-T10 (titles, fmt helper, null-filter, real text measurement, desc fixes, min-size guard, budget comments, gradient legend, shape guard, optional decals)",
+      "iteration": 10,
+      "source": "iterations/iteration-010.md"
+    },
+    {
+      "id": "F10.2",
+      "text": "Ranked contract-level list C1-C5 (narrow-viewport assertion, display-ready label wording, computed-value exception wording, visible shape notice, deferred diverging system)",
+      "iteration": 10,
+      "source": "iterations/iteration-010.md"
+    },
+    {
+      "id": "F10.3",
+      "text": "Palette-level: CVD rationale note + optional Okabe-Ito alignment; gates recompute automatically from palettes.json",
+      "iteration": 10,
+      "source": "check-corpus.cjs:617-618"
+    },
+    {
+      "id": "F10.4",
+      "text": "Eleven corpus-ahead results identified (ramp gates, emphasis, WCAG mapping, data table, direct labelling, zero baseline, ceilings, parity thinning, computed values, zero transforms, static viewBox)",
+      "iteration": 10,
+      "source": "iterations/iteration-010.md F10.4"
+    },
+    {
+      "id": "F10.5",
+      "text": "Coverage check passed: 9/9 questions answered with 15+ distinct sources; ready for synthesis",
+      "iteration": 10,
+      "source": "iterations/iteration-010.md F10.5"
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Survey all six libraries in iteration 1",
+      "reason": "Budget split; D3/Plot in iteration 2",
+      "iteration": 1
+    },
+    {
+      "approach": "Adopting D3 tick machinery as dependency",
+      "reason": "Contract forbids libraries",
+      "iteration": 2
+    },
+    {
+      "approach": "Two-sided d3-style nicing across corpus forms",
+      "reason": "Breaks zero-baseline discipline",
+      "iteration": 2
+    },
+    {
+      "approach": "Adopting a library legend component",
+      "reason": "Contract forbids; upstream avoids overlap by layout",
+      "iteration": 3
+    },
+    {
+      "approach": "Wholesale Plot-style dx/textAnchor offsets",
+      "reason": "Corpus already partially applies anchor flips",
+      "iteration": 3
+    },
+    {
+      "approach": "Adding a diverging colour system now",
+      "reason": "No catalog form consumes a midpoint ramp",
+      "iteration": 4
+    },
+    {
+      "approach": "Per-mark ARIA attributes",
+      "reason": "Bloat concern (Vega release notes)",
+      "iteration": 5
+    },
+    {
+      "approach": "Corpus-wide decal adoption",
+      "reason": "Changes shared visual register; per-form instead",
+      "iteration": 5
+    },
+    {
+      "approach": "Container-driven re-layout / per-viewport re-render",
+      "reason": "All upstream re-layouts need a runtime",
+      "iteration": 6
+    },
+    {
+      "approach": "ECharts-style generic 2D-array datasets",
+      "reason": "Would weaken per-form shapes",
+      "iteration": 7
+    },
+    {
+      "approach": "Adding Vega-Lite/Plot transform pipelines",
+      "reason": "Contract forbids computing in the data path",
+      "iteration": 7
+    },
+    {
+      "approach": "Locale-sensitive Intl.NumberFormat",
+      "reason": "Delivered file must not change shape across locales",
+      "iteration": 8
+    },
+    {
+      "approach": "Vega-Lite-style rotation/truncation defaults",
+      "reason": "Rotation needs runtime layout; truncation fights direct labelling",
+      "iteration": 8
+    },
+    {
+      "approach": "JS floating tooltip as corpus-wide default",
+      "reason": "Runtime surface without screenshot value",
+      "iteration": 9
+    },
+    {
+      "approach": "Replacing visible labels with tooltips",
+      "reason": "Fights direct-labelling doctrine",
+      "iteration": 9
+    }
+  ],
+  "rejectedPatterns": [],
+  "promotedIdeas": [],
+  "blockedStops": []
+}

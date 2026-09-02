@@ -18,13 +18,13 @@ A template is one HTML file. It opens on a double click, with no install, no pac
 
 ---
 
-## 0. OVERVIEW
+## 1. OVERVIEW
 
 Both of those properties are load-bearing. The reader is a writer or an operations analyst rather than a developer, and the file has to survive being emailed to somebody who will open it on a laptop with no network.
 
 ---
 
-## 1. THE DELIVERY UNIT
+## 2. THE DELIVERY UNIT
 
 One file holds one chart. Inside it, the visible unit is a card with four parts in a fixed order.
 
@@ -43,7 +43,7 @@ A delivery is one card in one file, and it is what reaches a user. A gallery is 
 
 ---
 
-## 2. THE FILE SKELETON
+## 3. THE FILE SKELETON
 
 Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a working file that passes every check. The structure is:
 
@@ -80,7 +80,7 @@ The sentinels are how the corpus check finds the two regions it has an opinion a
 
 ---
 
-## 3. HOW IT RECEIVES DATA
+## 4. HOW IT RECEIVES DATA
 
 One named array at the top of the inline script, between the `CHART_DATA` sentinels, and everything below it renders. That is the whole contract, and it is the right one, because the person editing a delivered file is looking for the numbers and nothing else.
 
@@ -88,7 +88,7 @@ The data block holds literal values. It never fetches, never computes the number
 
 ---
 
-## 4. WHAT IT MAY DEPEND ON
+## 5. WHAT IT MAY DEPEND ON
 
 Nothing.
 
@@ -100,7 +100,7 @@ The check enforces this by failing any remote `src` or `href`, any `@import` and
 
 ---
 
-## 5. WHERE COLOUR COMES FROM
+## 6. WHERE COLOUR COMES FROM
 
 The palette block is the only place in the file where a colour value appears. Everything else refers to `var(--chart-…)`.
 
@@ -112,7 +112,7 @@ Which system to pick, what the roles mean and where the ceilings are: `color-sys
 
 ---
 
-## 6. THE THIRTEEN RULES
+## 7. THE THIRTEEN RULES
 
 Every rule is enforced. The check name is what appears in the corpus check output, so a failure points at the rule it broke.
 
@@ -136,7 +136,7 @@ Rule 10 is the one worth doing first rather than last. A title inside the vector
 
 ---
 
-## 7. AUTHORING A NEW TEMPLATE
+## 8. AUTHORING A NEW TEMPLATE
 
 1. Find the question in `catalog.md`. If no row answers it, that is a gap to report rather than a chart to improvise.
 2. Copy `assets/color/palette-sheet-neutral.html` to `assets/templates/<id>.html`.
@@ -151,7 +151,7 @@ When the check fails on a template, fix the template. A validator edited to acce
 
 ---
 
-## 8. WHAT THE CHECK DOES NOT OBSERVE
+## 9. WHAT THE CHECK DOES NOT OBSERVE
 
 Stated plainly, so nobody reads a green run as more than it is.
 
@@ -162,7 +162,7 @@ Stated plainly, so nobody reads a green run as more than it is.
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 10. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |

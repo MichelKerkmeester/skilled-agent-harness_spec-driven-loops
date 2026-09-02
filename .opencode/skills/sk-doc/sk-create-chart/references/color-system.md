@@ -18,13 +18,13 @@ Every colour in this packet comes from `assets/color/palettes.json`. A template 
 
 ---
 
-## 0. OVERVIEW
+## 1. OVERVIEW
 
 Three systems exist. Pick one per delivery and apply it whole.
 
 ---
 
-## 1. THE QUESTION EACH SYSTEM ANSWERS
+## 2. THE QUESTION EACH SYSTEM ANSWERS
 
 A colour system is an answer to "what does colour mean in this chart". That is the only axis that separates the three. If two systems answered the same question, the second would be a skin rather than a system.
 
@@ -38,7 +38,7 @@ Start at `neutral`. Reach for another only when the data has the property that s
 
 ---
 
-## 2. THE ROLE VOCABULARY
+## 3. THE ROLE VOCABULARY
 
 A template reads a role, never a value. Every system defines the same roles, so the same markup renders under any of them.
 
@@ -66,7 +66,7 @@ A palette built from a client's brand colours defines the same six roles or it i
 
 ---
 
-## 3. THE RULES
+## 4. THE RULES
 
 **One system per delivery.** A file, or a set of sibling charts shipped together, locks one system. When one chart in the set cannot be expressed in it, the whole set changes system or goes neutral. Recolouring the one exception is what makes a deck look assembled from parts.
 
@@ -80,7 +80,7 @@ A palette built from a client's brand colours defines the same six roles or it i
 
 ---
 
-## 4. THE CONTRAST GATES
+## 5. THE CONTRAST GATES
 
 These are computed from the palette file on every run, never restated in a test. A test that copies the values goes stale the first time somebody edits a colour.
 
@@ -103,7 +103,7 @@ A ramp step is read as part of a group, against its legend and its neighbours. A
 
 ---
 
-## 5. WHAT IS ENFORCED AND WHAT IS NOT
+## 6. WHAT IS ENFORCED AND WHAT IS NOT
 
 Enforced by `scripts/check-corpus.cjs`, on every run:
 
@@ -122,7 +122,7 @@ The split is deliberate. A rule the tooling does not check describes the author'
 
 ---
 
-## 6. WHY THREE SYSTEMS AND NOT FOUR
+## 7. WHY THREE SYSTEMS AND NOT FOUR
 
 A fourth system of "neutral with one accent colour" was considered and cut. Emphasis is a role that every system already carries, so a system whose only difference is that the role is filled adds a name without adding an answer. In `neutral` the emphasis value is the only chromatic colour in the palette, which is exactly what that fourth system would have delivered, reached by filling a role instead of by switching system.
 
@@ -130,7 +130,7 @@ The cost of the cut is that emphasis is now required in all three systems rather
 
 ---
 
-## 7. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |

@@ -1,18 +1,14 @@
 {
   "level": "3",
   "specFolder": "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "Three reference overviews start at `## 0",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "three",
+    "reference",
+    "overviews",
+    "start"
   ],
-  "lastUpdated": "2026-09-02T18:50:54.540Z",
+  "lastUpdated": "2026-09-02T19:22:35.789Z",
   "specId": "007",
   "folderSlug": "fidelity-and-library-research",
   "parentChain": [

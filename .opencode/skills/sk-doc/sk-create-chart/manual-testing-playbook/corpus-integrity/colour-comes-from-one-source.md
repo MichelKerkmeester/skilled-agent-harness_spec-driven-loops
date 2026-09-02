@@ -102,7 +102,7 @@ Change one value in the palette source itself and run the check. Every template 
 |---|---|
 | [`assets/color/palettes.json`](../../assets/color/palettes.json) | Primary anchor, the only place a colour value is defined |
 | [`references/color-system.md`](../../references/color-system.md) | The three systems, the role vocabulary and the contrast gates |
-| [`references/template-contract.md`](../../references/template-contract.md) | Section 5, which states the palette block is the only place a colour appears |
+| [`references/template-contract.md`](../../references/template-contract.md) | Section 6, which states the palette block is the only place a colour appears |
 | [`assets/templates/heat-matrix.html`](../../assets/templates/heat-matrix.html) | The ordered ramp where a drifted step is least visible |
 | [`scripts/README.md`](../../scripts/README.md) | The worked break-and-restore sequence this scenario extends |
 

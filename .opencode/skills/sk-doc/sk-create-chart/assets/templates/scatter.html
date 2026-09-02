@@ -110,6 +110,16 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// A native SVG tooltip. The value a reader hovers is the value in the data block,
+// with no library, no listener and no state: the browser draws it and a screen
+// reader reads it as the mark's name.
+function tip(el, text) {
+  const t = document.createElementNS(SVG, 'title');
+  t.textContent = text;
+  el.appendChild(t);
+  return el;
+}
+
 // The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
 // the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
 function niceStep(v) {
@@ -145,7 +155,8 @@ for (let t = 0; t <= TICKS; t += 1) {
 node('line', { x1: LEFT, y1: BASE, x2: RIGHT, y2: BASE }, 'axis');
 
 DATA.forEach(function (d) {
-  node('circle', { cx: px(d.x), cy: py(d.y), r: 5.5 }, d.lead ? 'dot-lead' : 'dot');
+  tip(node('circle', { cx: px(d.x), cy: py(d.y), r: 5.5 }, d.lead ? 'dot-lead' : 'dot'),
+    d.label + ': ' + X_NAME + ' ' + d.x + ', ' + Y_NAME + ' ' + d.y);
 });
 
 const outlier = DATA.filter(function (d) { return d.lead; })[0];

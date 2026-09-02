@@ -134,8 +134,14 @@ node('text', { x: CX, y: CY + 26, 'text-anchor': 'middle' }, 'total-label').text
 let keyX = 6;
 DATA.forEach(function (d, s) {
   node('rect', { x: keyX, y: 6, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
-  node('text', { x: keyX + 19, y: 17 }, 'key').textContent = d.label + ' ' + d.value;
-  keyX += 46 + d.label.length * 6.6;
+  const label = node('text', { x: keyX + 19, y: 17 }, 'key');
+  label.textContent = d.label + ' ' + d.value;
+  // The gap after a swatch is the label's real width, measured once it is in the
+  // document. A character count times a constant assumes every glyph is the same
+  // width, which this font stack does not promise, so a wide label used to run
+  // under the next swatch. The count stays as the fallback for a reader that has
+  // not laid the text out yet.
+  keyX += 27 + (label.getComputedTextLength() || (d.label.length + 3) * 6.6);
 });
 
 const rows = document.getElementById('rows');

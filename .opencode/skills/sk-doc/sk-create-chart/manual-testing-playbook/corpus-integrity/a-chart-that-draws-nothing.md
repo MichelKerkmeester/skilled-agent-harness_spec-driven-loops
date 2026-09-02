@@ -103,7 +103,7 @@ That pair is the whole argument for the render mode existing, and it takes one m
 |---|---|
 | [`scripts/check-corpus.cjs`](../../scripts/check-corpus.cjs) | Primary anchor, the render pass and its element-count threshold |
 | [`scripts/README.md`](../../scripts/README.md) | How to read a run, and why the `RESULT:` line is required rather than the absence of a failure |
-| [`references/template-contract.md`](../../references/template-contract.md) | Section 8, which states what the check does not observe |
+| [`references/template-contract.md`](../../references/template-contract.md) | Section 9, which states what the check does not observe |
 
 ---
 

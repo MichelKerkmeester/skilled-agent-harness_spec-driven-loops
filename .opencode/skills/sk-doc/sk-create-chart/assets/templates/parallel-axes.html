@@ -115,6 +115,16 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// A native SVG tooltip. The value a reader hovers is the value in the data block,
+// with no library, no listener and no state: the browser draws it and a screen
+// reader reads it as the mark's name.
+function tip(el, text) {
+  const t = document.createElementNS(SVG, 'title');
+  t.textContent = text;
+  el.appendChild(t);
+  return el;
+}
+
 const LEFT = 74;
 const RIGHT = 646;
 const TOP = 62;
@@ -142,7 +152,8 @@ DATA.forEach(function (d, s) {
   const points = d.values.map(function (v, j) { return ax(j) + ',' + ay(j, v); });
   node('path', { d: 'M' + points.join(' L') }, 'line-' + (s + 1));
   d.values.forEach(function (v, j) {
-    node('circle', { cx: ax(j), cy: ay(j, v), r: 4 }, 'dot-' + (s + 1));
+    tip(node('circle', { cx: ax(j), cy: ay(j, v), r: 4 }, 'dot-' + (s + 1)),
+      d.label + ', ' + AXES[j].name + ': ' + v + ' ' + AXES[j].unit);
   });
   node('text', { x: RIGHT + 10, y: ay(AXES.length - 1, d.values[AXES.length - 1]) + 4 }, 'key')
     .textContent = d.label;

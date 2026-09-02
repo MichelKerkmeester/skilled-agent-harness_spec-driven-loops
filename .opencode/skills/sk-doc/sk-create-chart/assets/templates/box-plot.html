@@ -104,6 +104,16 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// A native SVG tooltip. The value a reader hovers is the value in the data block,
+// with no library, no listener and no state: the browser draws it and a screen
+// reader reads it as the mark's name.
+function tip(el, text) {
+  const t = document.createElementNS(SVG, 'title');
+  t.textContent = text;
+  el.appendChild(t);
+  return el;
+}
+
 function niceStep(v) {
   const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
   const n = v / pow;
@@ -136,9 +146,10 @@ DATA.forEach(function (d, i) {
   node('line', { x1: cx, y1: y(d.high), x2: cx, y2: y(d.low) }, 'whisker');
   node('line', { x1: cx - boxWidth / 4, y1: y(d.high), x2: cx + boxWidth / 4, y2: y(d.high) }, 'whisker');
   node('line', { x1: cx - boxWidth / 4, y1: y(d.low), x2: cx + boxWidth / 4, y2: y(d.low) }, 'whisker');
-  node('rect', {
+  tip(node('rect', {
     x: cx - boxWidth / 2, y: y(d.q3), width: boxWidth, height: y(d.q1) - y(d.q3), rx: 2
-  }, d.lead ? 'box-lead' : 'box');
+  }, d.lead ? 'box-lead' : 'box'),
+    d.label + ': low ' + d.low + ', quartile ' + d.q1 + ', median ' + d.median + ', quartile ' + d.q3 + ', high ' + d.high);
   node('line', {
     x1: cx - boxWidth / 2, y1: y(d.median), x2: cx + boxWidth / 2, y2: y(d.median)
   }, 'median');

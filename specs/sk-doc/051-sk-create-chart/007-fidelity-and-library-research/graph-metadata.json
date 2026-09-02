@@ -1,26 +1,225 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
-  "parent_id": null,
+  "packet_id": "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
+  "spec_folder": "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
+  "parent_id": "sk-doc/051-sk-create-chart",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-chart fidelity",
+      "chart library research",
+      "chart template improvement",
+      "overview renumbering",
+      "chart fidelity plan",
+      "chart research loop",
+      "renumber overview sections",
+      "chart fidelity tasks",
+      "chart research tasks",
+      "renumber tasks",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "sk-create-chart",
+      "fidelity",
+      "chart",
+      "library",
+      "research",
+      "template",
+      "improvement",
+      "overview",
+      "renumbering",
+      "plan",
+      "loop",
+      "renumber"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: fidelity-and-library-research",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Observable Plot",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three reference overviews start at `## 0",
     "created_at": "2026-09-02T18:50:53Z",
-    "last_save_at": "2026-09-02T18:50:53Z",
+    "last_save_at": "2026-09-02T19:23:12.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9459fdd18de000a719a1b93cba68b740c1660753191fd24802eb056d92a0b511",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a0c82c6178065a7e6012040f8b9c1730a4998b4f204ddebc7d3ec344dfe7ef78",
+      "plan.md": "29f146c7b340171381e6f1788f8df207aae9867641c7c4ec81ffc0887e7b3fce",
+      "tasks.md": "c251f05f73ab3aa010f88ed52ff95a03325df73e3b16a68620df1c0b507e9a6d",
+      "decision-record.md": "5dd329d6e8f7602adb823b6cc8bd1a794819054e4d61d1cc6e8023b0f1f0cc6a",
+      "implementation-summary.md": "923ebf7c28f36ac858619322bbee501e2258534b87873b5efd221d9449432569"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -1,0 +1,165 @@
+I'll start by reading the deep-research workflow SKILL.md to understand the loop contract, and check the current state of the lineage directory.
+
+The lineage directory has pre-seeded executor state. Let me read the rest of the SKILL.md and inspect the existing lineage state.
+
+Now let me read the deep-research loop protocol and state references, plus the quick reference — these define the exact state formats I need to maintain.
+
+Let me read the rest of the loop protocol plus the state format references to get the exact packet contract.
+
+Now let me get the exact JSONL record schemas and output formats.
+
+State contract is clear. Now let me survey the sk-create-chart skill corpus — the primary research target.
+
+Now let me read the core corpus documents — SKILL.md, template-contract, catalog, color-system, and check-corpus.
+
+Now the catalog, color-system, and the corpus checker.
+
+Now let me check template file sizes and read the corpus checker.
+
+Let me read the rest of the checker, the palette source, and the neutral palette sheet (the skeleton).
+
+
+
+Now let me read all 20 templates. I'll batch them — first batch of 5.
+
+
+
+
+
+
+
+
+
+I now have the full corpus in context. Let me check the spec folder's spec.md to anchor the research charter, plus the adapter's observability files to understand what the fan-out expects.
+
+The spec is a scaffold with placeholders; the adapter tracks status externally. Now let me read the config/strategy templates so phase_init writes conformant files.
+
+All contract materials are loaded. I have the full corpus, the loop protocol, state schemas, and the fan-out parameters. Now I'll run **phase_init** — creating the config, strategy, state log, and findings registry inside my write surface.
+
+
+
+
+
+**phase_init complete.** Config, state log, strategy, and registry are seeded. Now the main loop — 10 iterations, each with a focused evidence pass against upstream libraries.
+
+**Iteration 1: Upstream baseline survey** — what a delivered chart from each library actually looks like. Starting with Chart.js, Vega-Lite, ECharts, Plotly docs.
+
+Good baseline material. Writing iteration 1 with the upstream survey findings.
+
+
+
+Now the reducer pass — strategy, registry, and dashboard refresh for iteration 1.
+
+
+
+Iteration 1 complete. **Iteration 2: D3 + Observable Plot baselines.**
+
+Strong material on D3 and Plot. Writing iteration 2.
+
+
+
+
+
+
+
+Iteration 2 complete. **Iteration 3: Label and legend placement (Q2).**
+
+
+
+Rich material. Writing iteration 3 on label and legend placement.
+
+
+
+
+
+
+
+Iteration 3 complete. **Iteration 4: Colour ramps (Q3).**
+
+
+
+
+
+
+
+
+
+
+
+Iteration 4 complete. **Iteration 5: Accessibility (Q4).**
+
+
+
+
+
+
+
+
+
+
+
+Iteration 5 complete. **Iteration 6: Responsive sizing (Q5).**
+
+
+
+
+
+
+
+
+
+
+
+Iteration 6 complete. **Iteration 7: Data-mark relationship (Q6) — transforms and the data-block contract.**
+
+
+
+
+
+
+
+
+
+
+
+Iteration 7 complete. **Iteration 8: Number and date formatting (Q7).**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 9 complete. **Iteration 10: Reconciliation and ranking (Q9)** — assembling the ranked recommendation list with explicit contract reconciliation.
+
+
+
+
+
+All 10 iterations complete. Final reducer pass, then **phase_synthesis** — compiling the canonical research.md.
+
+
+
+
+
+Now the canonical synthesis document — **research.md**.
+
+Finalizing: config status → complete and the synthesis_complete event.
+
+Final verification of packet integrity before declaring completion.
+
+All phases complete and verified. The lineage packet is consistent: 12 JSONL records (config + 10 iterations + synthesis_complete), 10 iteration files, 10 deltas, 51 findings, 9/9 questions resolved, 15 ruled-out directions, research.md synthesized with the ranked recommendation list (10 template-level / 5 contract-level / 1 palette-level) and the mandatory Eliminated Alternatives table.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash-max

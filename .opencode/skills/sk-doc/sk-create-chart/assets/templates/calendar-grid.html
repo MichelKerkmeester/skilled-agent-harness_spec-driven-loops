@@ -155,6 +155,16 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// A native SVG tooltip. The value a reader hovers is the value in the data block,
+// with no library, no listener and no state: the browser draws it and a screen
+// reader reads it as the mark's name.
+function tip(el, text) {
+  const t = document.createElementNS(SVG, 'title');
+  t.textContent = text;
+  el.appendChild(t);
+  return el;
+}
+
 const GUTTER = 34;
 const CELL = 11.4;
 const STEP = 13.2;
@@ -173,9 +183,9 @@ function level(v) {
 
 WEEKS.forEach(function (week, w) {
   week.forEach(function (v, d) {
-    node('rect', {
+    tip(node('rect', {
       x: GUTTER + w * STEP, y: TOP + d * STEP, width: CELL, height: CELL, rx: 2
-    }, level(v));
+    }, level(v)), DAYS[d] + ', week ' + (w + 1) + ': ' + v);
   });
 });
 

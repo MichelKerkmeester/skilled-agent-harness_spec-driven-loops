@@ -113,6 +113,16 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// A native SVG tooltip. The value a reader hovers is the value in the data block,
+// with no library, no listener and no state: the browser draws it and a screen
+// reader reads it as the mark's name.
+function tip(el, text) {
+  const t = document.createElementNS(SVG, 'title');
+  t.textContent = text;
+  el.appendChild(t);
+  return el;
+}
+
 function niceStep(v) {
   const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
   const n = v / pow;
@@ -134,7 +144,11 @@ const floor = Math.floor(lowest / step) * step;
 const ceiling = Math.ceil(highest / step) * step;
 const y = function (v) { return BASE - (BASE - TOP) * ((v - floor) / (ceiling - floor)); };
 
-for (let value = floor; value <= ceiling; value += step) {
+// Ticks are counted, not accumulated. Repeated addition of a fractional step
+// drifts, and the drift reaches the reader as a label like 10.000000000000002.
+const rungs = Math.round((ceiling - floor) / step);
+for (let t = 0; t <= rungs; t += 1) {
+  const value = floor + step * t;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
   node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
 }
@@ -147,7 +161,8 @@ DATA.forEach(function (d, i) {
   node('line', { x1: cx, y1: y(d.high), x2: cx, y2: y(d.low) }, rising ? 'wick-up' : 'wick-down');
   const top = Math.min(y(d.open), y(d.close));
   const height = Math.max(Math.abs(y(d.open) - y(d.close)), 1.5);
-  node('rect', { x: cx - bodyWidth / 2, y: top, width: bodyWidth, height: height }, rising ? 'up' : 'down');
+  tip(node('rect', { x: cx - bodyWidth / 2, y: top, width: bodyWidth, height: height }, rising ? 'up' : 'down'),
+    d.period + ': opened ' + d.open + ', closed ' + d.close + ', ranged ' + d.low + ' to ' + d.high);
   node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'tick').textContent = d.period;
 });
 
@@ -155,8 +170,14 @@ const KEYS = [{ name: 'Closed up', cls: 'up' }, { name: 'Closed down', cls: 'dow
 let keyX = LEFT;
 KEYS.forEach(function (k) {
   node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, k.cls);
-  node('text', { x: keyX + 19, y: 19 }, 'key').textContent = k.name;
-  keyX += 44 + k.name.length * 6.6;
+  const label = node('text', { x: keyX + 19, y: 19 }, 'key');
+  label.textContent = k.name;
+  // The gap after a swatch is the label's real width, measured once it is in the
+  // document. A character count times a constant assumes every glyph is the same
+  // width, which this font stack does not promise, so a wide label used to run
+  // under the next swatch. The count stays as the fallback for a reader that has
+  // not laid the text out yet.
+  keyX += 44 + (label.getComputedTextLength() || k.name.length * 6.6);
 });
 
 const rows = document.getElementById('rows');

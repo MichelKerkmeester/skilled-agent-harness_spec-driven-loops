@@ -17,13 +17,13 @@ Read this before writing anything. It turns the comparison a reader needs into o
 
 ---
 
-## 0. OVERVIEW
+## 1. OVERVIEW
 
 Every row below points at a template that renders. When no row answers the question in front of you, that is a gap to report rather than a chart to improvise. A freehand chart is what the template-first rule exists to prevent.
 
 ---
 
-## 1. HOW TO READ IT
+## 2. HOW TO READ IT
 
 Start from the question, never from the chart name. A request arrives as "show me the split by plan" and the useful move is to ask what the reader will do with it: compare quantities, rank them, track them over time, or find where they pile up. That question picks the row.
 
@@ -31,7 +31,7 @@ When two rows answer the same question, the one whose data shape matches what yo
 
 ---
 
-## 2. THE INDEX
+## 3. THE INDEX
 
 The table is machine-read. The corpus check parses the rows between the sentinels below, matches columns by their header name rather than by position, and then verifies two things: every `id` here resolves to a file that identifies itself with the same `id`, and every chart form on disk appears here. An index that names a chart it cannot reach is worse than no index, so both directions are checked.
 
@@ -69,7 +69,7 @@ The columns mean:
 | Column | What goes in it |
 | --- | --- |
 | `id` | Lower-case kebab, unique, and identical to the filename stem and to the file's own identity tag |
-| `family` | The question group the form belongs to, from section 3 |
+| `family` | The question group the form belongs to, from section 4 |
 | `question` | The question a reader arrives with, written as they would say it |
 | `data shape` | What the form needs before it can be honest: how many categories, how many series, what must sum to what |
 | `system` | The colour system the template declares |
@@ -77,7 +77,7 @@ The columns mean:
 
 ---
 
-## 3. THE FAMILIES
+## 4. THE FAMILIES
 
 A family here is a group of questions, not a rendering style. Every form in the corpus is drawn in one visual register, so the family tells a reader which shelf to look on and nothing about how the chart is built.
 
@@ -94,7 +94,7 @@ A family here is a group of questions, not a rendering style. Every form in the 
 
 ---
 
-## 4. THE NAME A READER ARRIVES WITH
+## 5. THE NAME A READER ARRIVES WITH
 
 A request almost never carries an id from the index. It carries the industry name for the picture, and the names in the table below appear nowhere in the index. The row ids say what a form draws, which is what makes them precise and also what makes them unfindable by searching for the word the reader used.
 
@@ -115,13 +115,13 @@ A name that reaches neither this table nor a row in the index is still a gap to 
 
 ---
 
-## 5. WHAT IS NOT INDEXED HERE
+## 6. WHAT IS NOT INDEXED HERE
 
 The catalog governs `assets/templates/` alone. The palette sheets under `assets/color/` are proof sheets for the colour systems rather than chart forms, so they carry no row and the check does not expect one. The same holds for the deliveries under `assets/examples/`.
 
 ---
 
-## 6. ADDING A ROW
+## 7. ADDING A ROW
 
 1. Author the template at `assets/templates/<id>.html` against the template contract.
 2. Add one row here with the same `id`.
@@ -129,7 +129,7 @@ The catalog governs `assets/templates/` alone. The palette sheets under `assets/
 
 ---
 
-## 7. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |

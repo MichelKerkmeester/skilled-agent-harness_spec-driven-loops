@@ -106,6 +106,16 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// A native SVG tooltip. The value a reader hovers is the value in the data block,
+// with no library, no listener and no state: the browser draws it and a screen
+// reader reads it as the mark's name.
+function tip(el, text) {
+  const t = document.createElementNS(SVG, 'title');
+  t.textContent = text;
+  el.appendChild(t);
+  return el;
+}
+
 // The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
 // the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
 function niceStep(v) {
@@ -153,7 +163,8 @@ bars.forEach(function (b, i) {
   const cx = LEFT + slot * i + slot / 2;
   const top = Math.min(y(b.from), y(b.to));
   const height = Math.abs(y(b.from) - y(b.to));
-  node('rect', { x: cx - barWidth / 2, y: top, width: barWidth, height: Math.max(height, 2) }, b.cls);
+  tip(node('rect', { x: cx - barWidth / 2, y: top, width: barWidth, height: Math.max(height, 2) }, b.cls),
+    b.cls === 'total' ? b.label + ': ' + b.to : b.label + ': ' + (b.move > 0 ? '+' : '') + b.move + ', running total ' + b.to);
   node('text', { x: cx, y: top - 8, 'text-anchor': 'middle' }, 'tick')
     .textContent = (b.cls === 'total' ? '' : b.move > 0 ? '+' : '') + b.move;
   node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'cat').textContent = b.label;
@@ -171,8 +182,14 @@ const KEYS = [
 let keyX = LEFT;
 KEYS.forEach(function (k) {
   node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, k.cls);
-  node('text', { x: keyX + 19, y: 19 }, 'key').textContent = k.name;
-  keyX += 44 + k.name.length * 6.6;
+  const label = node('text', { x: keyX + 19, y: 19 }, 'key');
+  label.textContent = k.name;
+  // The gap after a swatch is the label's real width, measured once it is in the
+  // document. A character count times a constant assumes every glyph is the same
+  // width, which this font stack does not promise, so a wide label used to run
+  // under the next swatch. The count stays as the fallback for a reader that has
+  // not laid the text out yet.
+  keyX += 44 + (label.getComputedTextLength() || k.name.length * 6.6);
 });
 
 const rows = document.getElementById('rows');
