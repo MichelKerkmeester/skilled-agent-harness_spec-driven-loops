@@ -411,7 +411,7 @@ Never hardcode API keys directly in `.utcp_config.json`. Always use environment 
 ```json
 {
   "env": {
-    "CLICKUP_API_KEY": "pk_224591351_ACTUAL_KEY_HERE"
+    "CLICKUP_API_KEY": "pk_1234567890_ACTUAL_KEY_HERE"
   }
 }
 ```
@@ -429,7 +429,7 @@ Define the actual value in `.env` with the manual name prefix:
 ```bash
 # Code Mode requires prefixed variable names: {manual_name}_{VAR}
 # If your manual name is "clickup", use:
-clickup_CLICKUP_API_KEY=pk_224591351_your_actual_key
+clickup_CLICKUP_API_KEY=pk_1234567890_your_actual_key
 ```
 
 See the "CRITICAL: Prefixed Environment Variables" section below for full details.
