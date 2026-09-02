@@ -1,11 +1,12 @@
 // TEST: SCHEMA MIGRATION
 import { describe, it, expect } from 'vitest';
 
-// DB-dependent imports (commented out - requires better-sqlite3 / dist modules)
+// These imports are live. The suite below is not: it was written as a placeholder and
+// never implemented, so every case asserts a constant.
 import Database from 'better-sqlite3';
 import * as vectorIndex from '../lib/search/vector-index.js';
 
-describe('Schema Migration v4 (T701-T750) [deferred - requires DB test fixtures]', () => {
+describe.skip('Schema Migration v4 (T701-T750) [deferred - requires DB test fixtures]', () => {
 
   describe('T701-T710 - Column Existence', () => {
     it('T701: Database initialized with full schema', () => {
