@@ -45,7 +45,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/ROUTER.md",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/sk-doc/description.json",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/sk-doc/leaf-manifest.json",
+      ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-chart/README.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/README.md"
     ],
     "entities": [
       {
@@ -76,6 +86,54 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/README.md",
         "source": "derived"
       },
       {
@@ -127,7 +185,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Register",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -137,65 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A registry entry is not a route",
     "created_at": "2026-09-02T07:56:51Z",
-    "last_save_at": "2026-09-02T08:53:50.234Z",
+    "last_save_at": "2026-09-02T12:38:40.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edf1216e5a94bc6c8a9fd08848ca63ed2f537edaf3fbce82bdf4dd154748d07a",
+    "source_fingerprint": "sha256:776c38e468e6d0ed68754d2d21308758f87d8c552e12a1f782ef49bad5ade1d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f236e521df8ea4a6abb552b0f4bc5ceb3436f9769931fc4c878dabb6c1af8751",
-      "plan.md": "ab540f6ad553982f1c9391e8ebc3399630f52c659ba4e57669f07b9372e23e8d",
-      "tasks.md": "ecd488c4fe46b12dda80e411202e1fd25b9d4cac1304685f96906b6f522d6f8a",
-      "implementation-summary.md": "fba6f57f7f1282b795c831e81cc9e2910ff3af53f939c37168255583a35bf289"
+      "spec.md": "7e08e44a6e8aa7b55a2096b736bc0fd0ce6f9d588bc59e89bbfe51daeaef108d",
+      "plan.md": "fd823613dadc8aedbab540105e83b78b80bddecd5e7a33df8dcbd67037136e3e",
+      "tasks.md": "b73c50cb73acbb292efbb83db8bebc97ab47249bbff73e13edc19f5109de516c",
+      "implementation-summary.md": "4044950ac3a35477c545e161343c6d1c33c451d11672d0294f77e4d9a46ecda9"
     },
     "last_active_child_id": null,
     "last_active_at": null

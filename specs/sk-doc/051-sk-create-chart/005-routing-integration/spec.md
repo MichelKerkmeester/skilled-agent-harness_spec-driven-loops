@@ -231,8 +231,11 @@ A request for a chart reaches the chart skill, and a check fails if that stops b
 
 ## 12. OPEN QUESTIONS
 
-- What weight does the skill carry against its nearest neighbours, and what evidence sets it?
-- If the placement is standalone rather than a hub mode, which of these surfaces still apply?
+Both questions are answered, and the reasoning is recorded as ADR-002 and ADR-001 in `plan.md`.
+
+The weight is 3, matching `sk-create-diagram`, with the `routerSignals` key placed after that mode so a genuine tie resolves to the neighbour. The evidence is the scoring rule itself: a mode's score is its keyword hit count multiplied by its weight, and the ambiguity delta is one, so a weight-4 entry beside a weight-3 neighbour wins every single-hit tie. Parity is what keeps the two visual modes from outranking each other by construction.
+
+The placement is a hub mode, settled in phase 1, so every surface listed here applies except the two that do not fit the class. Projection maps and scorer entries are for `lexical` and `alias-fold` modes, and this one is `metadata`. Command mirrors are for a mode that owns a slash command, and this one carries `command: null`.
 <!-- /ANCHOR:questions -->
 
 ---

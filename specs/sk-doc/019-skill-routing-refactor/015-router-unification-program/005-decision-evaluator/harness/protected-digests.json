@@ -3,7 +3,7 @@
   "files": [
     {
       "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-      "sha256": "14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9"
+      "sha256": "95b5df3b9fc6332fc15c19ab2ad399cc05bcb35a04054573d5081c1c96df5d1d"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",

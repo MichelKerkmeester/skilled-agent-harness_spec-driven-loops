@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 1.2.0.0
+version: 1.3.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,7 +21,7 @@ This is sk-doc's second-layer (surface) router, first-class at the hub root as
 `ROUTER.md`. The hub selects a workflow mode in [`hub-router.json`](hub-router.json)
 (sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command,
 sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark,
-sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-repo-rule,
+sk-create-diagram, sk-create-chart, sk-create-changelog, sk-create-diff, sk-create-repo-rule,
 sk-create-with-human-voice, or sk-create-quality-control);
 this doc maps a request's documentation/authoring intent to the exact packet-local
 leaf resources that mode should load. Every path is either packet-qualified
@@ -76,6 +76,17 @@ emits leaf paths, and this router never re-decides the mode.
 - **flowchart leaves** — the simple-workflow and decision-tree ASCII patterns a
   request to diagram a flow as ASCII / text characters loads. Fired by
   "flowchart / ascii / text diagram / decision tree / process diagram" requests.
+- **chart leaves.** The chart catalog, the colour systems and the template
+  contract a request to plot data as a standalone HTML chart loads. Fired by
+  "create a chart / plot the data / data visualization / treemap / waterfall
+  chart / heatmap / box plot / histogram" requests. The catalog is the
+  always-loaded leaf, because turning the comparison a reader needs into one
+  chart form comes before any colour or markup decision. The form names claimed
+  here are the ones `sk-create-diagram` has no answer for. The bare type names
+  that packet does claim, `bar chart`, `line chart`, `scatter plot`, `radar
+  chart`, `gantt chart` and `org chart`, stay with it, and only the
+  data-qualified `bar chart of`, `line chart of` and `scatter plot of` cross
+  the boundary.
 - **install-guide leaves** — the install-guide template and the readme README a
   request to author install / setup instructions loads. Fired by "install guide /
   setup instructions / how to install / running from scratch" requests.
@@ -146,6 +157,7 @@ INTENT_SIGNALS = {
     "COMMAND_CREATION": {"weight": 4, "keywords": ["create a command", "create command", "slash command", "new slash command", "author a command", "scaffold a command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract"]},
     "AGENT_COMMAND": {"weight": 4, "keywords": ["agent and paired", "paired /create"]},
     "FLOWCHART": {"weight": 4, "keywords": ["flowchart", "ascii", "text diagram", "text characters", "decision tree", "decision branch", "process diagram", "flow diagram", "diagram the", "as a diagram"]},
+    "CHART": {"weight": 4, "keywords": ["create a chart", "make a chart", "chart this data", "chart the data", "plot the data", "plot this data", "standalone html chart", "chart catalog", "which chart type", "chart template", "chart color system", "chart colour system", "data visualization", "data visualisation", "data viz", "bar chart of", "line chart of", "scatter plot of", "treemap", "waterfall chart", "heat matrix", "heatmap", "heat map", "calendar heatmap", "box plot", "candlestick chart", "stacked area chart", "stacked bar chart", "grouped bar chart", "donut chart", "waffle chart", "histogram", "parallel coordinates"]},
     "INSTALL_GUIDE": {"weight": 4, "keywords": ["install guide", "installation instructions", "setup instructions", "how to install", "setup steps", "getting it running", "getting our project running", "running from scratch"]},
     "HVR": {"weight": 4, "keywords": ["hvr", "human voice rules", "apply human voice", "rewrite in human voice", "make this sound human", "sounds ai-generated", "reads like ai wrote it", "reads like a machine wrote it", "remove ai tells", "ai writing tells", "voice pass", "de-ai the writing", "banned word check"]},
     "PLAYBOOK": {"weight": 4, "keywords": ["playbook system", "manual testing playbook", "testing playbook"]},
@@ -201,6 +213,11 @@ RESOURCE_MAP = {
     "FLOWCHART": [
         "sk-create-diagram/assets/ascii-patterns/simple-workflow.md",
         "sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md"
+    ],
+    "CHART": [
+        "sk-create-chart/references/catalog.md",
+        "sk-create-chart/references/color-system.md",
+        "sk-create-chart/references/template-contract.md"
     ],
     "INSTALL_GUIDE": [
         "sk-create-readme/assets/install-guide-template.md",
@@ -280,6 +297,10 @@ RESOURCE_MAP = {
         "sk-create-changelog/references/topology-edge-cases.md",
         "sk-create-changelog/references/version-bump-rules.md",
         "sk-create-changelog/references/worked-examples.md",
+        "sk-create-chart/references/README.md",
+        "sk-create-chart/references/catalog.md",
+        "sk-create-chart/references/color-system.md",
+        "sk-create-chart/references/template-contract.md",
         "sk-create-command/assets/command-contract.json",
         "sk-create-command/assets/command-contract.schema.json",
         "sk-create-command/assets/command-presentation-template.md",

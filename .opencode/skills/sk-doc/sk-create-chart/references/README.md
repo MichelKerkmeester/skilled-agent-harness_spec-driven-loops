@@ -34,10 +34,8 @@ Chart markup lives in `../assets/`. Colour values live in `../assets/color/palet
 
 ---
 
-## WHERE SKILL.md IS AHEAD OF THE CORPUS
+## WHAT IS DELIBERATELY ABSENT
 
-The packet's `SKILL.md` and `README.md` were written before the corpus existed and they describe two things that are not there. Where they and these documents disagree, `template-contract.md` is what the corpus check enforces, so the contract wins and the descriptions are the ones to correct.
+**Report mode.** There is no report catalog and no multi-chart report page, and none is planned. A report is a second product with its own layouts, its own selection rules and its own index, and nothing in the chart capability depends on it. The capability analysis this packet was built from recommended leaving it out and that recommendation was taken.
 
-**Report mode.** An earlier version of this index promised a `report-catalog.md` for multi-chart report pages. No such catalog exists and none is planned inside the current corpus. The capability analysis this packet was built from recommends leaving report mode out: it is a second product with its own layouts, its own selection rules and its own index, and nothing in the chart capability depends on it. That recommendation has not been ruled on, so it is recorded rather than acted on, and `assets/reports/` stays empty.
-
-**Galleries.** `SKILL.md` describes opening a gallery page, finding a card on it and taking that card's render block. The corpus has no gallery pages. One chart form is one file, the catalog points straight at it, and a new template starts as a copy of a whole skeleton file rather than as an extracted block. The reason is the one `template-contract.md` gives: what reaches a user is a delivery, and a gallery ships every other chart's demo data alongside the one chart they asked for.
+**Galleries.** There are no gallery pages. One chart form is one file, the catalog points straight at it, and a new form starts as a copy of a whole skeleton file rather than as a block extracted from a page of demos. The reason is the one `template-contract.md` gives: what reaches a reader is a delivery, and a gallery ships every other form's demo data alongside the one they asked for.

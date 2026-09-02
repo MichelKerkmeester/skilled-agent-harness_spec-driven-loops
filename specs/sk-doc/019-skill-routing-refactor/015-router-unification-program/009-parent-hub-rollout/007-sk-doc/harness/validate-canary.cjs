@@ -81,7 +81,10 @@ const PROTECTED_DIGESTS = Object.freeze({
   // Re-pinned when the index-table cell pattern was widened to accept the markdown-link
   // file cell the playbook-authoring template now emits.
   'load-playbook-scenarios.cjs': 'c79aa057a68dba4577519e7fb207f359a15fd76154f3be1ee337f7104fa98f0f',
-  'router-replay.cjs': '14f169a466d970648f46f0f312904cc682221d1adfdedef97264398ffc9124d9',
+  // Re-pinned when the replay was taught to read the intent dict a mode template
+  // actually writes. The scorer source moved and the pin did not follow it, so this
+  // canary and its four siblings had been red on an unchanged working tree since.
+  'router-replay.cjs': '95b5df3b9fc6332fc15c19ab2ad399cc05bcb35a04054573d5081c1c96df5d1d',
   'score-skill-benchmark.cjs': '05bf38b8e186fd760a5a9b3940fc646821bd9caa843ad7a9c67d9d4df22a5886',
 });
 // These attest the authored hub sources the compiler reads: the hub SKILL.md, both
@@ -90,22 +93,23 @@ const PROTECTED_DIGESTS = Object.freeze({
 // Left stale, the canary reports the hub's own edits as corruption. The key set
 // mirrors what the loader collects, so adding a packet to the registry adds a row here.
 const AUTHORED_DIGESTS = Object.freeze({
-  'SKILL.md': '045187d22f9ed32fb257b03bc6961976592ffb4b1089db54ba2fe65c615775ab',
-  'hub-router.json': '28dc39a72e1246b419a42dc2f2d5573773abd791a7f067981fe0856a803b07f7',
-  'mode-registry.json': 'abeffa2eae6b929ca1c7725f9a319d9d70212103f07aead5935c5db0e7ff96f1',
-  'packets/sk-create-agent/SKILL.md': '4608c64691588311b935b62aaa138b1abc9b1b0499db4b107e730c8202d77c77',
-  'packets/sk-create-benchmark/SKILL.md': 'b686252ec99a6491f3f3f7d097b5af16ce03d859ece51bab63be4ae06f26ec05',
-  'packets/sk-create-changelog/SKILL.md': 'b335ad104e7ea5ab58665481bc271bae68321f879229f6225ab2eedb99a89d48',
-  'packets/sk-create-command/SKILL.md': '176c3c62910ef1ef7b19bb260e4b0176c2ea82d975c34da72520ade9f2f57466',
+  'SKILL.md': '11ecdc4d107c936993b1f658b1a87a6d664d66826ec226ff223b7b2c27492552',
+  'hub-router.json': '03c05c1d0e4dda4f2b5a9395b76643532fb5ec6e0e5b8e5b9152a09be0eaf612',
+  'mode-registry.json': 'c7cc5b09768e89c1934b56a19ae2f9825e2b1e05056bf079a94fc122ff44a914',
+  'packets/sk-create-agent/SKILL.md': '4d58c69c58f450e86122b8febfe11a71dc7667830707e46f6191a694bf830767',
+  'packets/sk-create-benchmark/SKILL.md': 'e1ab6aca520103e1cc46fa3445b8cdbb7b78f425b786800670b47211cfc75d9a',
+  'packets/sk-create-changelog/SKILL.md': '60dac718a2d81e42508c52972c8d32a15da772b9671942707bbf53c527b4923b',
+  'packets/sk-create-chart/SKILL.md': 'd3f588b5ad75b013a9b2291ca7916271225b794c47cec0a31fbad1cfa7b02b1f',
+  'packets/sk-create-command/SKILL.md': 'd081701986d558d7771b5871f632e392c71d1874cf1a3dd80dd983a38ddaa483',
   'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
-  'packets/sk-create-diff/SKILL.md': '4be80d8914ef927cdc27555c17292cef8de77d155f234fc989459016d05ac396',
-  'packets/sk-create-feature-catalog/SKILL.md': '5d8af117b211c7f17fbce3a4054418de459467963c387f56e8613c6fd99022b3',
+  'packets/sk-create-diff/SKILL.md': '91cf34e8834fb4e8841f8b9b9c56e364133add73cfdd3288a0f226c694668b36',
+  'packets/sk-create-feature-catalog/SKILL.md': 'f4ab47733e43ebdbede265edbf8eb5b469a57a789b1cbc5ad0bdbee28683f43e',
   'packets/sk-create-frontmatter/SKILL.md': '5af95ced2b474ea6ab6bfdcf4858fdff1cb9c7064697cde6bacfa4fe6d902844',
-  'packets/sk-create-manual-testing-playbook/SKILL.md': '4d94b23239b59fdbe4844518336dc8f08bbaacf1db97cb6e229ed0de7adbbfa7',
+  'packets/sk-create-manual-testing-playbook/SKILL.md': '57a7beffec83571823c34b78b5591269f970e96b22c1fbfec74c47f8e214bdec',
   'packets/sk-create-quality-control/SKILL.md': '8e7cce8a51b7aa7e4f631766f98051dc80a811be53716a093cf2bf1d9697c741',
-  'packets/sk-create-readme/SKILL.md': 'fa3c29373cd479e4845c4fc1ae9bfe02164ac2dd186cfd3590960b50e6679fc1',
-  'packets/sk-create-repo-rule/SKILL.md': '91b4f703076a71236a81576d2d04ef5ebeeef0af092ab5ea46cc1913a3a552f0',
-  'packets/sk-create-skill/SKILL.md': '844e2748234466aec72c5a9dfaacbb6b074cee158de13173b7d3813008355e35',
+  'packets/sk-create-readme/SKILL.md': 'b5abb270e52b6cda650556098a21465221c37b35ed06f718ad67213dc1ea31e3',
+  'packets/sk-create-repo-rule/SKILL.md': '68a8262c3f10e7a0c70d4cc4bfeec10894bfa042400ada06715cf922b77fb388',
+  'packets/sk-create-skill/SKILL.md': '82cb35d0148346fdb54b85d44f733b4260d04bc40c0aea56a69a91eca2f90c47',
   'packets/sk-create-with-human-voice/SKILL.md': '35dd7cd811aacc6dcbf4aa1b2c48a6ee62704fde680e0424c6389b166aa21dcf',
 });
 
@@ -204,10 +208,10 @@ function assertCompiled(snapshot) {
   // refreshes them in the same change. The invariant they encode is the gap between
   // the two counts: every mode gets its own identity tuple, and modes outnumber
   // packets because one packet backs more than one mode.
-  assert.strictEqual(snapshot.policy.destinations.length, 15);
-  assert.strictEqual(snapshot.projectionGraph.rows.length, 15);
-  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => canonicalize(row.identityTuple))).size, 15);
-  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => row.packetRef)).size, 14);
+  assert.strictEqual(snapshot.policy.destinations.length, 16);
+  assert.strictEqual(snapshot.projectionGraph.rows.length, 16);
+  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => canonicalize(row.identityTuple))).size, 16);
+  assert.strictEqual(new Set(snapshot.projectionGraph.rows.map((row) => row.packetRef)).size, 15);
   assert.strictEqual(snapshot.policy.compositionRules.length, 5);
   assert.deepStrictEqual(snapshot.routingModel.bundleRules[0].targetWorkflowModes, [
     'sk-create-skill',
@@ -220,8 +224,8 @@ function assertCompiled(snapshot) {
   )));
   return {
     byteIdenticalRecompile: true,
-    destinationCount: 15,
-    distinctPacketCount: 14,
+    destinationCount: 16,
+    distinctPacketCount: 15,
     orderedBundleRules: 5,
     schemaValidation: 'pass',
   };

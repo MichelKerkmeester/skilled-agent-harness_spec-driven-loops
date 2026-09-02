@@ -156,6 +156,23 @@
       }
     },
     {
+      "id": "single-create-chart",
+      "prompt": "create a chart",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-create-chart"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-create-chart"
+        ],
+        "expectedResources": [
+          "sk-create-chart/SKILL.md"
+        ]
+      }
+    },
+    {
       "id": "single-create-changelog",
       "prompt": "/create:changelog",
       "expectedAction": "route",

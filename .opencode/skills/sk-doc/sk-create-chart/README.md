@@ -1,13 +1,13 @@
 ---
 title: "sk-create-chart"
-description: "Builds a standalone HTML chart or report by taking a render block from a template that already renders, rather than writing chart code freehand."
+description: "Builds a standalone HTML chart by copying a form file that already renders and swapping its data, rather than writing chart code freehand."
 trigger_phrases:
   - "create chart"
   - "chart packet"
   - "what does sk-create-chart do"
-  - "make a bar chart"
+  - "plot the data"
   - "chart or diagram"
-  - "chart color system"
+  - "chart colour system"
 importance_tier: normal
 contextType: general
 version: 1.0.0.0
@@ -23,11 +23,11 @@ version: 1.0.0.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | A chart or a multi-chart report that plots values a reader compares |
-| **Invoke with** | "make a bar chart", "build a report page" or a direct read of `SKILL.md` |
+| **Use it for** | A chart that plots values a reader compares |
+| **Invoke with** | "create a chart", "plot the data", a named form such as "treemap" or a direct read of `SKILL.md` |
 | **Works on** | A dataset and the comparison someone wants to make from it |
-| **Produces** | One self-contained HTML file, built from a template and one color system |
-| **Current state** | The corpus directories exist and hold no charts yet |
+| **Produces** | One self-contained HTML file, built from a form file and one colour system |
+| **Corpus** | Twenty chart forms across six question families, plus three colour systems |
 
 ---
 
@@ -37,19 +37,19 @@ version: 1.0.0.0
 
 Charts written freehand are the ones that break. The axis labels overlap at the third data point, the legend wraps under a narrow viewport, the palette runs out of distinguishable colors at series six. None of that shows up in a check. It shows up when someone opens the file, and by then the chart has already been sent to somebody.
 
-A template that already renders has had those problems solved once. Taking its render block and swapping the data keeps the solution and changes only the part that should change. That is the whole method, and it is why this packet is organized around a corpus rather than around instructions for drawing.
+A form file that already renders has had those problems solved once. Copying it and swapping the data keeps the solution and changes only the part that should change. That is the whole method, and it is why this packet is organized around a corpus rather than around instructions for drawing.
 
 ### What It Does
 
-You describe the comparison a reader needs to make. The chart lookup in `references/` turns that comparison into one named chart type and points at the gallery page holding it. You take that card's render block, apply one color system and assemble a single file. A validator then proves the corpus still renders.
+You describe the comparison a reader needs to make. The catalog in `references/catalog.md` turns that comparison into one row, and the row names the file that draws it. You copy that file, swap its data block and apply one colour system. A validator then proves the corpus still renders.
 
-The packet holds no per-request logic. It holds a corpus and the rules for picking from it.
+One form is one file, so there is no gallery page to lift a block out of. The packet holds no per-request logic. It holds a corpus and the rules for picking from it.
 
 ### Why It Matters
 
 - **A chart that renders where it was built renders where it is read:** the output is one file with no install step and no build.
-- **The palette decision is made once:** color systems are named and applied whole, so no artifact invents its own.
-- **Regressions are catchable:** a validator over the corpus turns "the gallery still works" into something you can run.
+- **The palette decision is made once:** colour systems are named and applied whole, so no artifact invents its own.
+- **Regressions are catchable:** a validator over the corpus turns "the charts still work" into something you can run.
 
 ---
 
@@ -64,6 +64,8 @@ This packet and `sk-create-diagram` both answer "make me a bar chart", so the bo
 
 The test is what the reader does with it. Someone reading a chart is comparing quantities. Someone reading a diagram is tracing a path.
 
+The hub router draws the same line by name. The bare type names `sk-create-diagram` documents stay with it, and this packet answers the form names that packet has no file for along with the data-qualified phrasings such as "bar chart of". `SKILL.md` section 1 lists both sides.
+
 ---
 
 ## 4. LAYOUT
@@ -71,11 +73,10 @@ The test is what the reader does with it. Someone reading a chart is comparing q
 | Path | What it holds |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | The runtime contract: when to use the packet, the workflow, the rules |
-| [`references/`](./references/) | The chart lookup and the reference index that routes to it |
-| [`assets/templates/`](./assets/templates/) | Gallery pages and standalone charts, the source of every render block |
-| [`assets/color/`](./assets/color/) | Named color systems and their token files |
-| [`assets/reports/`](./assets/reports/) | Multi-chart report pages and the index listing them |
-| [`assets/examples/`](./assets/examples/) | Whole pages built from the corpus, for when a template alone is unclear |
+| [`references/`](./references/) | The catalog, the colour systems and the template contract |
+| [`assets/templates/`](./assets/templates/) | One self-contained file per chart form, copied whole |
+| [`assets/color/`](./assets/color/) | The three colour systems, their palette source and their proof sheets |
+| [`assets/examples/`](./assets/examples/) | One finished delivery per family, for when a form file alone is unclear |
 | [`scripts/`](./scripts/) | The corpus validator |
 | [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for the packet |
 | [`changelog/`](./changelog/) | One file per release, named `v[version].md` |
@@ -94,6 +95,7 @@ That is a constraint rather than a preference. This repository is MIT and public
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
+| Corpus | `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs` | `RESULT: PASSED` |
 | Package shape | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/sk-doc/sk-create-chart --check --strict` | `Result: PASS` |
 | Hub shape | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-doc` | Zero invariant failures |
 | Voice | `python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py README.md` | Zero hard blockers |
