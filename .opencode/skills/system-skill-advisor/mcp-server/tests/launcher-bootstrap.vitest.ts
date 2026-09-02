@@ -14,6 +14,13 @@ import type { AdvisorStatusOutput } from '../schemas/advisor-tool-schemas.js';
 import { resolveProvider } from '@spec-kit/shared/embeddings/factory.js';
 
 const require = createRequire(import.meta.url);
+// The launcher hands its child the socket directory the bridge resolves, which may
+// be relocated when the database path would push a unix socket past the platform
+// limit. Deriving the expectation through the same call keeps the test asserting the
+// contract rather than a literal path that cannot bind under a deep temp directory.
+const ipcBridge = require('../../../../bin/lib/launcher-ipc-bridge.cjs') as {
+  resolveIpcSocketDir: (serviceName: string, options?: { dbDir?: string; env?: NodeJS.ProcessEnv }) => string;
+};
 const launcher = require('../../../../bin/system-skill-advisor-launcher.cjs') as {
   acquireBootstrapLock: (options?: { staleMs?: number; timeoutMs?: number; retrySleepMs?: number }) => Promise<boolean>;
   advisorDbPath: () => string;
@@ -74,7 +81,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
   it('filters parent environment before spawning npm or the advisor server', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
-    const socketDir = dirname(memoryDbPath);
+    const socketDir = ipcBridge.resolveIpcSocketDir('system-skill-advisor', { dbDir: dirname(memoryDbPath), env: {} });
     expect(launcher.createChildEnv({
       PATH: '/bin',
       HOME: '/tmp/home',
@@ -93,7 +100,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
   it('passes the committed daemon trust default through to the advisor child env', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
-    const socketDir = dirname(memoryDbPath);
+    const socketDir = ipcBridge.resolveIpcSocketDir('system-skill-advisor', { dbDir: dirname(memoryDbPath), env: {} });
     const opencodeConfig = JSON.parse(sourceText('../../../../../opencode.json')) as {
       mcp?: { system_skill_advisor?: { environment?: Record<string, string> } };
     };
@@ -114,7 +121,7 @@ describe('system-skill-advisor launcher bootstrap', () => {
   it('passes advisor shadow feature flags through to the child env', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
-    const socketDir = dirname(memoryDbPath);
+    const socketDir = ipcBridge.resolveIpcSocketDir('system-skill-advisor', { dbDir: dirname(memoryDbPath), env: {} });
     expect(launcher.createChildEnv({
       SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
       SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
