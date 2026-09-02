@@ -1,0 +1,33 @@
+{
+  // Test files are excluded from the build config, and the typecheck lane runs
+  // against that same config, so nothing has ever type-checked them. A symbol a
+  // test references but never imports is therefore invisible until the file runs,
+  // and a module-load failure reports as a failed file that collected no tests,
+  // which reads as red rather than as absent coverage.
+  //
+  // This config exists to make that class visible. It is reported, not enforced:
+  // the tree does not pass yet, and turning it into a blocker before the backlog
+  // is cleared would only teach people to skip it.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false,
+    "types": ["node"],
+    // Vitest resolves these files itself, so the build's module and strictness
+    // settings describe a compilation that never happens. Matching the runtime
+    // keeps this lane reporting symbols that genuinely do not exist rather than
+    // thousands of findings about a build nobody runs.
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "tests/**/*.ts",
+    "scripts/tests/**/*.ts",
+    "lib/test-helpers/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

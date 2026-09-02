@@ -41,7 +41,8 @@
     "test:hydra:phase1": "vitest run tests/memory-roadmap-flags.vitest.ts tests/memory-state-baseline.vitest.ts tests/migration-checkpoint-scripts.vitest.ts tests/vector-index-schema-compatibility.vitest.ts",
     "test:watch": "vitest",
     "bench:watcher": "node dist/skill_advisor/bench/watcher-benchmark.js",
-    "setup:codex-policy": "node dist/hooks/codex/setup.js"
+    "setup:codex-policy": "node dist/hooks/codex/setup.js",
+    "typecheck:tests": "tsc --noEmit --composite false -p tsconfig.tests.json"
   },
   "keywords": [
     "mcp",
