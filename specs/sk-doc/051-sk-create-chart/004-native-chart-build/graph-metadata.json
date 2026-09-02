@@ -38,14 +38,28 @@
       "implementation",
       "plan"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/color/palette-sheet-neutral.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/color/palette-sheet-ordered.html",
+      ".opencode/skills/sk-doc/sk-create-chart/assets/color/palette-sheet-categorical.html",
+      ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+      ".opencode/skills/sk-doc/sk-create-chart/references/README.md",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+      ".opencode/skills/sk-doc/sk-create-chart/scripts/README.md",
+      "specs/sk-doc/051-sk-create-chart/004-native-chart-build/decision-record.md",
+      "specs/sk-doc/051-sk-create-chart/004-native-chart-build/research/foundation-record.md",
+      "research/foundation-record.md"
     ],
     "entities": [
       {
@@ -73,9 +87,75 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/051-sk-create-chart/004-native-chart-build/decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "palettes.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json",
+        "source": "derived"
+      },
+      {
+        "name": "palette-sheet-neutral.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/color/palette-sheet-neutral.html",
+        "source": "derived"
+      },
+      {
+        "name": "palette-sheet-ordered.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/color/palette-sheet-ordered.html",
+        "source": "derived"
+      },
+      {
+        "name": "palette-sheet-categorical.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/assets/color/palette-sheet-categorical.html",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/references/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-corpus.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "foundation-record.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/051-sk-create-chart/004-native-chart-build/research/foundation-record.md",
         "source": "derived"
       },
       {
@@ -125,77 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The reference implementation is PolyForm Noncommercial and this repository is MIT and public",
     "created_at": "2026-09-02T07:56:50Z",
-    "last_save_at": "2026-09-02T08:53:48.077Z",
+    "last_save_at": "2026-09-02T10:13:55.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +217,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ecd76b60b206981da810a0fdc454ae0934eafba971411bca59831c6a3480b46b",
+    "source_fingerprint": "sha256:690bc244636236b4992780a94abeaf758f939d059bcaf0da2249c72b4f1109d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b75b58a17763611a102e0d947f3b95a356be87a8c89b314b55a799bc3fef5532",
       "plan.md": "75f8878d05a4dd14c1764f5ff2ab3b8ec082fbbef42d92fb53433b95f6eee268",
       "tasks.md": "7293edcd1830cf994003c44c402c9ba875d2dcf664057a3dbe9b0053bd0c9538",
-      "implementation-summary.md": "d67f1b3747b221919bede93e14f66aa48ec2738c5c84f3c349821c9cc6f739eb"
+      "decision-record.md": "fc7dbfdba1ad8582a010131af0fbe51ae789929ef5a164dc16b8d50e260a9ab0",
+      "implementation-summary.md": "b9db3e8a6d81c32f8212df67246e7b8ab537f89f2f283535ef3d0c1d919a4731"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0.0",
+  "note": "The single source of truth for every colour value in this packet. A template carries these values inline in a sentinel-marked palette block, and check-corpus.cjs compares the block against this file in both directions. Edit here, then run the validator and paste the block it prints.",
+  "customPropertyPrefix": "--chart-",
+  "chrome": {
+    "surface": "#FAF8F5",
+    "ink": "#1A1917",
+    "muted": "#52504E",
+    "rule": "#E0DFDC"
+  },
+  "chromeRoles": {
+    "surface": "The page and card ground. Every contrast ratio in this file is measured against it.",
+    "ink": "Primary text: the headline and any label a reader has to read exactly.",
+    "muted": "Secondary text: the subtitle, the axis labels and the source line.",
+    "rule": "Gridlines, axis lines and card borders. Structure, never data.",
+    "separator": "Not a value. Shapes that touch are separated by a stroke in surface, so no two data colours ever share an edge."
+  },
+  "gates": {
+    "textOnSurface": 4.5,
+    "markOnSurface": 3.0,
+    "rampDarkestOnSurface": 3.0,
+    "rampLightestOnSurface": 1.15,
+    "rampStepSeparation": 1.3,
+    "emphasisAgainstFirstSeries": 1.5,
+    "ungated": {
+      "rule": "The gridline role is deliberately not gated. A gridline pushed to 3:1 competes with the data drawn over it, and it carries no information a reader has to recover. Structure that fails to read is a design defect, not an access barrier, so it is reviewed by eye rather than by ratio."
+    }
+  },
+  "systems": {
+    "neutral": {
+      "encodes": "importance",
+      "useWhen": "The default, and the fallback whenever hue would carry no stable meaning. Lightness alone ranks the series, darkest first.",
+      "capacity": 4,
+      "series": ["#292825", "#4C4B48", "#6B6A67", "#8D8B89"],
+      "emphasis": "#B4471F"
+    },
+    "ordered": {
+      "encodes": "magnitude",
+      "useWhen": "The data is ordered: a value, a rank, a time position, a progress figure. One hue, five steps, dark reads as more.",
+      "capacity": 5,
+      "series": ["#213B3D", "#275C63", "#2E7F89", "#69A2A9", "#A3C4C7"],
+      "emphasis": "#B4471F"
+    },
+    "categorical": {
+      "encodes": "category",
+      "useWhen": "The categories are unordered and there are four or fewer. Five or more categories go neutral and carry labels.",
+      "capacity": 4,
+      "series": ["#28405C", "#874420", "#487B3B", "#A377B6"],
+      "emphasis": "#1A1917"
+    }
+  }
+}

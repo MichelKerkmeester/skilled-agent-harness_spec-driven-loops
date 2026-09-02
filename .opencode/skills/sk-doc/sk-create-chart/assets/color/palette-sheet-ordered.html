@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="palette-sheet-ordered">
+<meta name="chart-color-system" content="ordered">
+<title>Ordered colour system</title>
+<style>
+/* CHART_PALETTE:BEGIN system=ordered */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #213B3D;
+  --chart-series-2: #275C63;
+  --chart-series-3: #2E7F89;
+  --chart-series-4: #69A2A9;
+  --chart-series-5: #A3C4C7;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0 0 22px; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.pass { color: var(--chart-ink); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" id="sheet-headline" data-chart-part="headline">One hue, five steps, and darker always means more</h1>
+  <p class="subtitle" id="sheet-subtitle" data-chart-part="subtitle">Every role in the ordered system, drawn from the custom property the browser resolved. Ratios are measured against the surface role.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 150" id="sheet-figure">
+      <title id="fig-title">Swatches for the ordered colour system</title>
+      <desc id="fig-desc">One block per role. Chrome roles are shared by every system and the data roles change with it. The table below carries the same values as text.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: the palette file in this packet. This sheet reads it through the browser rather than restating it.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>The same roles as numbers, so the sheet is readable without seeing it.</caption>
+    <thead>
+      <tr><th scope="col">Role</th><th scope="col">Custom property</th><th scope="col">Resolved value</th><th scope="col">On surface</th></tr>
+    </thead>
+    <tbody id="role-rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const ROLES = [
+  { property: '--chart-surface', label: 'surface', kind: 'chrome' },
+  { property: '--chart-ink', label: 'ink', kind: 'chrome' },
+  { property: '--chart-muted', label: 'muted', kind: 'chrome' },
+  { property: '--chart-rule', label: 'rule', kind: 'chrome' },
+  { property: '--chart-series-1', label: 'series 1', kind: 'data' },
+  { property: '--chart-series-2', label: 'series 2', kind: 'data' },
+  { property: '--chart-series-3', label: 'series 3', kind: 'data' },
+  { property: '--chart-series-4', label: 'series 4', kind: 'data' },
+  { property: '--chart-series-5', label: 'series 5', kind: 'data' },
+  { property: '--chart-emphasis', label: 'emphasis', kind: 'data' },
+];
+/* CHART_DATA:END */
+
+// Everything below renders. The block above is the only part to edit.
+const styles = getComputedStyle(document.documentElement);
+const resolve = (prop) => styles.getPropertyValue(prop).trim();
+
+function channel(c) {
+  const v = c / 255;
+  return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+}
+function luminance(value) {
+  const n = parseInt(value.slice(1), 16);
+  return 0.2126 * channel((n >> 16) & 255) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255);
+}
+function contrast(a, b) {
+  const la = luminance(a);
+  const lb = luminance(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('sheet-figure');
+const surface = resolve('--chart-surface');
+const columns = ROLES.length;
+const gap = 10;
+const width = (720 - gap * (columns - 1)) / columns;
+
+ROLES.forEach((role, i) => {
+  const x = i * (width + gap);
+  const rect = document.createElementNS(SVG_NS, 'rect');
+  rect.setAttribute('x', String(x));
+  rect.setAttribute('y', '0');
+  rect.setAttribute('width', String(width));
+  rect.setAttribute('height', '96');
+  rect.setAttribute('rx', '6');
+  // Shapes that touch are separated by a stroke in the surface role, so no two data
+  // colours ever share an edge and no pairwise contrast gate is needed.
+  rect.setAttribute('stroke-width', '2');
+  rect.style.fill = 'var(' + role.property + ')';
+  rect.style.stroke = 'var(--chart-surface)';
+  svg.appendChild(rect);
+
+  const label = document.createElementNS(SVG_NS, 'text');
+  label.setAttribute('x', String(x + width / 2));
+  label.setAttribute('y', '120');
+  label.setAttribute('text-anchor', 'middle');
+  label.setAttribute('font-size', '12');
+  label.style.fill = 'var(--chart-muted)';
+  label.textContent = role.label;
+  svg.appendChild(label);
+});
+
+const rows = document.getElementById('role-rows');
+ROLES.forEach((role) => {
+  const value = resolve(role.property);
+  const ratio = value === surface ? 1 : contrast(value, surface);
+  const tr = document.createElement('tr');
+  const cells = [role.label, role.property, value, ratio.toFixed(2) + ':1'];
+  cells.forEach((text, i) => {
+    const td = document.createElement('td');
+    td.textContent = text;
+    if (i === 3 && ratio >= 3) td.className = 'pass';
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>
