@@ -15,6 +15,12 @@ version: 1.0.0.0
 
 One script lives here. `check-corpus.cjs` is the corpus check, and it enforces every rule the template contract states.
 
+---
+
+## 1. OVERVIEW
+
+Run it from the repository root. The first form is the one to reach for by default.
+
 ```bash
 # structural checks over the whole corpus
 node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs
@@ -27,7 +33,15 @@ It needs Node and nothing else. `--render` needs a Chrome or Chromium binary, fo
 
 ---
 
-## READING A RUN
+## 2. KEY FILES
+
+| File | Role |
+| --- | --- |
+| [`check-corpus.cjs`](check-corpus.cjs) | The corpus check. It reads every template in the corpus and asserts the template contract against each one. With `--render` it also opens each template in a headless browser |
+
+---
+
+## 3. READING A RUN
 
 **Require the `RESULT: PASSED` line.** A run that dies before its first check exits without printing a failure, and a summary that only looks for `RESULT: FAILED` reads that silence as a pass.
 
@@ -37,7 +51,7 @@ Render is off by default and the summary says which mode it ran in. Without `--r
 
 ---
 
-## WHAT IT CHECKS
+## 4. WHAT IT CHECKS
 
 Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `motion`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
 
@@ -48,7 +62,7 @@ Two checks are about the corpus rather than about one file:
 
 ---
 
-## PROVING IT CAN FAIL
+## 5. PROVING IT CAN FAIL
 
 A validator that has only ever passed is not evidence. Before trusting a green run, break something and watch it go red.
 
@@ -64,7 +78,7 @@ Any of these breaks a different check: change one hex in the palette block, dele
 
 ---
 
-## RULES FOR SCRIPTS HERE
+## 6. RULES FOR SCRIPTS HERE
 
 - A rule the tooling does not check is a wish. Anything the contract states as binding is enforced here, and anything that cannot be enforced is named as advisory in the contract instead of written as if it bound.
 - Never assert that a document contains a particular sentence. Prose has to stay editable, and a check that pins a phrase makes rewriting the docs break the build. Facts a check needs live in structured data: the palette file, the sentinel-marked catalog table, the identity tags.

@@ -19,6 +19,10 @@ version: 1.1.0.5
 is not enough — a rule can satisfy every structural assertion and say nothing a reader
 would change their behaviour over.
 
+---
+
+## 0. OVERVIEW
+
 These five tests are read out of what the nine shipped rules already do. Every one passes
 on all nine. Each is a question a reviewer answers by reading; none can be automated, and
 that limit is the reason they live here rather than in the structural floor.

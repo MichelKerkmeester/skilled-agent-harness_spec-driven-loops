@@ -16,9 +16,15 @@ version: 1.1.0.5
 
 # Integration and Lifecycle: Wiring, Revising and Retiring a Rule
 
-A rule file that nothing points at is inert. The router's trigger table is the only thing
-that **loads** one; the pointer from the governed `AGENTS.md` section is the only thing
-that makes it **findable at the moment of need**.
+A rule file that nothing points at is inert.
+
+---
+
+## 0. OVERVIEW
+
+The router's trigger table is the only thing that **loads** one; the pointer from the
+governed `AGENTS.md` section is the only thing that makes it **findable at the moment
+of need**.
 
 ---
 

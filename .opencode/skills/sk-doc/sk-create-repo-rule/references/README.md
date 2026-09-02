@@ -12,6 +12,12 @@ version: 1.1.0.4
 
 # sk-create-repo-rule References
 
+Four references, in the order the questions arrive.
+
+---
+
+## 1. OVERVIEW
+
 | Load | When |
 |------|------|
 | [`decision-tests.md`](decision-tests.md) | **First, always.** Four gates deciding whether a request may become a rule at all. Most requests stop here |

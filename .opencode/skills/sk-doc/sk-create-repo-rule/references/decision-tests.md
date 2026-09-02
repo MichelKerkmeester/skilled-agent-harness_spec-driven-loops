@@ -18,6 +18,10 @@ Run these before writing anything. They decide **whether** a rule may exist, whi
 different question from how it should read — `rule-anatomy.md` answers that one, and only
 matters once these four pass.
 
+---
+
+## 0. OVERVIEW
+
 Each test is recovered from the phase record that established it, not restated from
 memory.
 

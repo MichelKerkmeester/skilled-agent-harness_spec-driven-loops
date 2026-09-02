@@ -12,6 +12,12 @@ version: 1.0.0.0
 
 # sk-create-with-human-voice Scripts
 
+The mechanical pass of the voice workflow, plus the two fixtures that prove it.
+
+---
+
+## 0. OVERVIEW
+
 | File | Purpose |
 |---|---|
 | [`hvr_scan.py`](hvr_scan.py) | Scans prose for the deterministic Human Voice Rules findings. Parses its term lists out of `../references/hvr-rules.md` at run time and holds no copy of them |

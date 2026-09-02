@@ -20,7 +20,7 @@ Derived from the eight files under `repo-rules/` plus the router, parsed structu
 
 ---
 
-## 0. WHAT A REPO RULE IS
+## 0. OVERVIEW: WHAT A REPO RULE IS
 
 A repo rule **supplements the harness**. It is not a law and not a contract with the
 runtime: it can be overridden by an explicit operator instruction, changed when it stops

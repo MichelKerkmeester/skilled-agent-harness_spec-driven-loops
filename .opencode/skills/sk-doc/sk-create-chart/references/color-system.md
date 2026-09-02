@@ -16,6 +16,10 @@ version: 1.0.0.0
 
 Every colour in this packet comes from `assets/color/palettes.json`. A template never invents one, and the corpus check fails a template that carries a colour literal anywhere except its palette block.
 
+---
+
+## 0. OVERVIEW
+
 Three systems exist. Pick one per delivery and apply it whole.
 
 ---
@@ -126,7 +130,7 @@ The cost of the cut is that emphasis is now required in all three systems rather
 
 ---
 
-## RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |

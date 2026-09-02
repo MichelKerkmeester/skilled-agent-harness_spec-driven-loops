@@ -16,6 +16,12 @@ version: 1.0.0.0
 
 The reference set answers three questions in order: which chart form answers the comparison the reader needs, what colour means in the chart and what the file has to contain.
 
+---
+
+## 1. OVERVIEW
+
+Three files sit here, each one a lookup or a contract rather than a guide to read end to end. Load the one the table names for the question in front of you.
+
 | Load | When |
 | --- | --- |
 | [`catalog.md`](./catalog.md) | **First, always.** Maps a comparison to one chart form and the file that draws it |
@@ -26,7 +32,7 @@ The catalog holds twenty chart forms across six question families. When no row a
 
 ---
 
-## WHAT BELONGS HERE
+## 2. WHAT BELONGS HERE
 
 Reference files in this packet are lookups and contracts. They route a request to a template and they carry no render code of their own, because a render block copied into a reference is a second copy that drifts from the template it came from.
 
@@ -34,7 +40,7 @@ Chart markup lives in `../assets/`. Colour values live in `../assets/color/palet
 
 ---
 
-## WHAT IS DELIBERATELY ABSENT
+## 3. WHAT IS DELIBERATELY ABSENT
 
 **Report mode.** There is no report catalog and no multi-chart report page, and none is planned. A report is a second product with its own layouts, its own selection rules and its own index, and nothing in the chart capability depends on it. The capability analysis this packet was built from recommended leaving it out and that recommendation was taken.
 

@@ -18,6 +18,10 @@ Emitted only when `REPO RULES.md` does not exist. **Nobody asks for this** — i
 created because the destination is missing, the way a build makes a directory before
 writing into it.
 
+---
+
+## 1. OVERVIEW
+
 The router is **not a rule**, and the difference is measured, not stylistic: no
 frontmatter, no `Fires when`, no `The rule`, no self-check, and four numbered sections
 against a rule's six to twelve. It holds no doctrine of its own. Every rule it lists is
@@ -25,7 +29,7 @@ a file; the router is the index.
 
 ---
 
-## THE TEMPLATE
+## 2. THE TEMPLATE
 
 <!-- BEGIN TEMPLATE -->
 ```markdown
@@ -88,7 +92,7 @@ A rule file may tighten `AGENTS.md`. None relaxes a hard block or authorizes wha
 
 ---
 
-## 1. WHAT THE ROUTER MUST NOT BECOME
+## 3. WHAT THE ROUTER MUST NOT BECOME
 
 **It holds no rules.** The moment a router explains *how* to do something rather than
 *where to look*, it has become a rule file with a routing table attached, and the set has
@@ -103,13 +107,13 @@ row, because it looks like coverage.
 
 ---
 
-## 2. ADDING A RULE LATER
+## 4. ADDING A RULE LATER
 
 Two rows, one file. If a new rule costs more than that, the router is not a router.
 
 ---
 
-## 3. SELF-CHECK
+## 5. SELF-CHECK
 
 - [ ] The router contains no doctrine of its own.
 - [ ] Every trigger row is written on an action, not a topic.

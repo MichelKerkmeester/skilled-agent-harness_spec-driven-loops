@@ -18,6 +18,10 @@ Copy everything between the markers into `repo-rules/<subject>.md` and fill it. 
 brackets are placeholders. Every instruction here is derived from the shipped corpus,
 not from taste.
 
+---
+
+## 1. OVERVIEW
+
 **Before filling anything, run `../references/decision-tests.md`.** Most requests should
 not become a rule, and finding that out after writing one is the expensive order.
 
@@ -26,7 +30,7 @@ say why it needs the room, and over 250 means split it or cut it.
 
 ---
 
-## THE TEMPLATE
+## 2. THE TEMPLATE
 
 <!-- BEGIN TEMPLATE -->
 ```markdown
@@ -95,7 +99,7 @@ shipped rules have it, and all three added it after someone misread the rule.>
 
 ---
 
-## 1. WHAT IS NOT OPTIONAL
+## 3. WHAT IS NOT OPTIONAL
 
 Ten elements are universal across all nine shipped rules. A file missing any of them is
 not a rule of this set.
@@ -115,7 +119,7 @@ not a rule of this set.
 
 ---
 
-## 2. TWO THINGS THAT LOOK LIKE STYLE AND ARE NOT
+## 4. TWO THINGS THAT LOOK LIKE STYLE AND ARE NOT
 
 **Quote `title` and `description`.** Both routinely contain a colon — `title` always
 does. Unquoted, the frontmatter is invalid YAML, and the failure is invisible to a
@@ -128,7 +132,7 @@ replaces a restatement of another rule's doctrine.
 
 ---
 
-## 3. SELF-CHECK
+## 5. SELF-CHECK
 
 - [ ] The decision tests ran before any of this was filled in.
 - [ ] All ten fixed elements are present.

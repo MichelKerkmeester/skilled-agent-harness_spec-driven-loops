@@ -16,6 +16,10 @@ version: 1.0.0.0
 
 A template is one HTML file. It opens on a double click, with no install, no package manager and no build step, and it keeps working when the person who received it edits the numbers by hand.
 
+---
+
+## 0. OVERVIEW
+
 Both of those properties are load-bearing. The reader is a writer or an operations analyst rather than a developer, and the file has to survive being emailed to somebody who will open it on a laptop with no network.
 
 ---
@@ -158,7 +162,7 @@ Stated plainly, so nobody reads a green run as more than it is.
 
 ---
 
-## RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |
