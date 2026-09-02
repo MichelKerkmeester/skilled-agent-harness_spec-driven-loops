@@ -12,6 +12,7 @@
 const fs = require('fs');
 const crypto = require('crypto');
 const net = require('net');
+const os = require('os');
 const path = require('path');
 const { StringDecoder } = require('string_decoder');
 
@@ -21,6 +22,13 @@ const { StringDecoder } = require('string_decoder');
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const DEFAULT_SKILL_ADVISOR_SOCKET_DIR = '/tmp/system-skill-advisor';
+// A unix domain socket address is bounded by sockaddr_un.sun_path: 104 bytes on
+// macOS, 108 on Linux. Take the smaller so one machine's socket path is every
+// machine's socket path. A service whose socket sits beside its database inherits
+// the checkout prefix, and a repository a few directories deep pushes it past the
+// limit. bind then fails with EINVAL, which names neither the length nor the path,
+// so the daemon looks unreachable rather than misconfigured.
+const SUN_PATH_LIMIT = 104;
 const DEFAULT_PROBE_TIMEOUT_MS = 5000;
 const MAX_PROBE_TIMEOUT_MS = 6999;
 const DEFAULT_MODEL_SERVER_LOADING_MAX_MS = 150000;
@@ -103,6 +111,24 @@ function shouldScopeIpcSocket(serviceName, socketDir = process.env.SPECKIT_IPC_S
     === path.resolve(DEFAULT_SKILL_ADVISOR_SOCKET_DIR);
 }
 
+function withinSunPathLimit(socketPath) {
+  return Buffer.byteLength(socketPath, 'utf8') < SUN_PATH_LIMIT;
+}
+
+/**
+ * A short, deterministic socket directory for a path that cannot fit the limit.
+ *
+ * Keyed by a digest of the directory it replaces, so every process that computes
+ * the address independently arrives at the same one, and two checkouts of the
+ * same service never collide. Windows named pipes carry no such limit, so the
+ * platform temporary directory is only consulted there.
+ */
+function shortSocketDirFor(serviceName, intendedDir) {
+  const base = process.platform === 'win32' ? os.tmpdir() : '/tmp';
+  const scope = crypto.createHash('sha256').update(path.resolve(intendedDir)).digest('hex').slice(0, 12);
+  return path.join(base, serviceName, scope);
+}
+
 function canonicalSocketScopePath(value) {
   const resolved = path.resolve(value);
   try {
@@ -121,11 +147,19 @@ function resolveIpcSocketDir(serviceName, options = {}) {
     ?? defaultDbDirForService(serviceName);
   if (String(rawSocketDir).startsWith('tcp://')) return String(rawSocketDir);
   const socketDir = path.resolve(rawSocketDir);
-  if (!shouldScopeIpcSocket(serviceName, rawSocketDir, env)) return socketDir;
+  if (!shouldScopeIpcSocket(serviceName, rawSocketDir, env)) {
+    return withinLimitOrRelocated(serviceName, socketDir);
+  }
 
   const dbDir = canonicalSocketScopePath(options.dbDir ?? defaultDbDirForService(serviceName));
   const scope = crypto.createHash('sha256').update(dbDir).digest('hex').slice(0, 12);
-  return path.join(socketDir, scope);
+  return withinLimitOrRelocated(serviceName, path.join(socketDir, scope));
+}
+
+/** Keep a socket directory only while the address it implies can actually bind. */
+function withinLimitOrRelocated(serviceName, socketDir) {
+  if (withinSunPathLimit(path.join(socketDir, SOCKET_FILE_NAME))) return socketDir;
+  return shortSocketDirFor(serviceName, socketDir);
 }
 
 function getIpcSocketPath(serviceName, options = {}) {

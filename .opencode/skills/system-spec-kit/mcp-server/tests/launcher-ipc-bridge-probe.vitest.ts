@@ -1,5 +1,6 @@
 import { EventEmitter } from 'node:events';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import net from 'node:net';
+import { mkdirSync, mkdtempSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -11,7 +12,7 @@ const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const bridgeModulePath = join(repoRoot, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
 const supervisionModulePath = join(repoRoot, '.opencode/bin/lib/model-server-supervision.cjs');
-const { getIpcSocketPath, maybeBridgeLeaseHolder, probeDaemon, probeModelServer } = require(bridgeModulePath) as {
+const { getIpcSocketPath, resolveIpcSocketDir, maybeBridgeLeaseHolder, probeDaemon, probeModelServer } = require(bridgeModulePath) as {
   getIpcSocketPath: (serviceName: string, options?: { dbDir?: string }) => string;
   maybeBridgeLeaseHolder: (options: Record<string, unknown>) => Promise<{ action: string; reason?: string; socketPath?: string }>;
   probeDaemon: (socketPath: string, options: Record<string, unknown>) => Promise<{ status: string; reason?: string }>;
@@ -407,5 +408,48 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
 
     expect(decision).toMatchObject({ action: 'report', reason: 'no-bridge-socket' });
     expect(bridged).toEqual([]);
+  });
+});
+
+describe('socket addresses stay inside the platform limit', () => {
+  // A unix socket address is capped by sockaddr_un.sun_path. A service whose
+  // socket sits beside its database inherits the checkout prefix, and bind then
+  // fails with EINVAL, which names neither the length nor the path.
+  const SUN_PATH_LIMIT = 104;
+
+  it('keeps every service socket short enough to bind', () => {
+    for (const service of ['system-spec-memory', 'system-skill-advisor']) {
+      const socketPath = getIpcSocketPath(service, {});
+      expect(Buffer.byteLength(socketPath, 'utf8')).toBeLessThan(SUN_PATH_LIMIT);
+    }
+  });
+
+  it('relocates a directory that would overflow, and leaves a short one alone', () => {
+    const longDir = `/tmp/${'d'.repeat(140)}`;
+    const relocated = resolveIpcSocketDir('system-spec-memory', { socketDir: longDir, env: {} });
+    expect(relocated).not.toBe(longDir);
+    expect(Buffer.byteLength(join(relocated, 'daemon-ipc.sock'), 'utf8')).toBeLessThan(SUN_PATH_LIMIT);
+
+    const shortDir = '/tmp/fits-fine';
+    expect(resolveIpcSocketDir('system-spec-memory', { socketDir: shortDir, env: {} })).toBe(shortDir);
+  });
+
+  it('resolves to the same address when its own answer is fed back in', () => {
+    const first = resolveIpcSocketDir('system-spec-memory', { env: {} });
+    const second = resolveIpcSocketDir('system-spec-memory', { env: { SPECKIT_IPC_SOCKET_DIR: first } });
+    expect(second).toBe(first);
+  });
+
+  it('actually binds at the address it hands out', async () => {
+    const socketPath = getIpcSocketPath('system-spec-memory', {});
+    mkdirSync(dirname(socketPath), { recursive: true });
+    try { unlinkSync(socketPath); } catch { /* absent is the normal case */ }
+    const server = net.createServer();
+    await new Promise<void>((resolve, reject) => {
+      server.once('error', reject);
+      server.listen(socketPath, resolve);
+    });
+    await new Promise<void>((resolve) => server.close(() => resolve()));
+    try { unlinkSync(socketPath); } catch { /* already gone */ }
   });
 });
