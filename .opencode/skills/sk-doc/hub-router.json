@@ -228,7 +228,8 @@
         "parent skill",
         "parent hub",
         "mode packet",
-        "nested workflow packet"
+        "nested workflow packet",
+        "skill hub"
       ]
     },
     "create-readme-aliases": {
@@ -329,7 +330,9 @@
         "agent quality dimensions",
         "create a benchmark",
         "author a benchmark",
-        "benchmark suite"
+        "benchmark suite",
+        "new benchmark",
+        "promote benchmark folder"
       ]
     },
     "create-changelog-aliases": {
@@ -355,7 +358,8 @@
         "document change report",
         "document diff",
         "doc diff",
-        "before and after diff"
+        "before and after diff",
+        "before and after document"
       ]
     },
     "create-diagram-aliases": {

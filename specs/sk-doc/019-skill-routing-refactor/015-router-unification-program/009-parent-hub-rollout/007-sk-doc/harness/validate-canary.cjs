@@ -94,12 +94,12 @@ const PROTECTED_DIGESTS = Object.freeze({
 // mirrors what the loader collects, so adding a packet to the registry adds a row here.
 const AUTHORED_DIGESTS = Object.freeze({
   'SKILL.md': '11ecdc4d107c936993b1f658b1a87a6d664d66826ec226ff223b7b2c27492552',
-  'hub-router.json': '03c05c1d0e4dda4f2b5a9395b76643532fb5ec6e0e5b8e5b9152a09be0eaf612',
+  'hub-router.json': 'ac3153459d42f8b7b27dc3188bf8b440e08e4ccd53b0c4ef25c48024128150eb',
   'mode-registry.json': 'c7cc5b09768e89c1934b56a19ae2f9825e2b1e05056bf079a94fc122ff44a914',
   'packets/sk-create-agent/SKILL.md': '4d58c69c58f450e86122b8febfe11a71dc7667830707e46f6191a694bf830767',
   'packets/sk-create-benchmark/SKILL.md': 'e1ab6aca520103e1cc46fa3445b8cdbb7b78f425b786800670b47211cfc75d9a',
   'packets/sk-create-changelog/SKILL.md': '60dac718a2d81e42508c52972c8d32a15da772b9671942707bbf53c527b4923b',
-  'packets/sk-create-chart/SKILL.md': 'd3f588b5ad75b013a9b2291ca7916271225b794c47cec0a31fbad1cfa7b02b1f',
+  'packets/sk-create-chart/SKILL.md': 'a1bb56840d07c135c5ca822f4fb3c4b9f7fd50dc237ff0413a665a666ff42c1c',
   'packets/sk-create-command/SKILL.md': 'd081701986d558d7771b5871f632e392c71d1874cf1a3dd80dd983a38ddaa483',
   'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
   'packets/sk-create-diff/SKILL.md': '91cf34e8834fb4e8841f8b9b9c56e364133add73cfdd3288a0f226c694668b36',
