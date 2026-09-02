@@ -77,7 +77,12 @@ The operator's instruction is to keep the source as literal as possible. That in
 
 ### Purpose
 
-Every authored word is English, reads as though written here, and still says what the source said.
+The reference is understood in English, well enough that a later phase can build from a written
+description instead of from the reference itself.
+
+ADR-002 changed what this phase is for after it ran. It was scoped to produce documents the
+packet would ship. It now produces understanding, and the surviving deliverable is the
+translation log and the analysis rather than the translated text.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -102,7 +107,7 @@ Every authored word is English, reads as though written here, and still says wha
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/sk-doc/051-sk-create-chart/002-translation-and-voice/scratch/translated/` | Create | English primary text for every source document, mirroring the source tree. Phase 4 carries these to whichever home phase 1 chose, which is what lets this phase run beside phase 1 rather than behind it |
+| `specs/sk-doc/051-sk-create-chart/002-translation-and-voice/scratch/translated/` | Create, then removed | English text for every reference document. Written as briefed, then removed from this repository when ADR-002 ruled that nothing is copied: a translation is a derivative work and falls under the same reasoning that stops the templates crossing. Preserved outside the repository, so reversing ADR-002 would restore it |
 | specs/sk-doc/051-sk-create-chart/002-translation-and-voice/research/translation-log.md | Create | One row per divergence between literal and natural |
 <!-- /ANCHOR:scope -->
 

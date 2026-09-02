@@ -1,17 +1,27 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/051-sk-create-chart/002-translation-and-voice",
-  "description": "Phase 2: translation-and-voice",
+  "description": "Roughly 15,000 Chinese characters sit across six authored documents, the largest being the source `SKILL.md` at 8,304",
   "keywords": [
-    "phase",
-    "translation-and-voice"
+    "roughly",
+    "chinese",
+    "characters",
+    "sit",
+    "across",
+    "six",
+    "authored",
+    "documents",
+    "largest",
+    "source",
+    "skill"
   ],
-  "lastUpdated": "2026-09-02T07:56:50.002Z",
+  "lastUpdated": "2026-09-02T08:07:47.944Z",
   "specId": "002",
   "folderSlug": "translation-and-voice",
   "parentChain": [
-    "001-sk-create-chart"
+    "sk-doc",
+    "051-sk-create-chart"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

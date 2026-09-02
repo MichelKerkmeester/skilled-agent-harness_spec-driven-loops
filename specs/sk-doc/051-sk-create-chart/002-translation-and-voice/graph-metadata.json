@@ -45,7 +45,8 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/translation-log.md"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "translation-log.md",
+        "kind": "doc",
+        "path": "research/translation-log.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Roughly 15,000 Chinese characters sit across six authored documents, the largest being the source `SKILL.md` at 8,304",
     "created_at": "2026-09-02T07:56:49Z",
-    "last_save_at": "2026-09-02T08:06:06.004Z",
+    "last_save_at": "2026-09-02T08:53:43.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffccf729a5505061ea03738f09d5392368e7b46857db9789c2b489672e32444c",
+    "source_fingerprint": "sha256:fdf644888d78ca422487c37139dea3acd33feebb6bc217dcb3cf7920a2bd80e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16c1c8c00c369196b71e759ef78035d246bdb3566717e9a3016a168abd5fb7ba",
+      "spec.md": "5cc4c4d3a4582bf5b77021325496193891ea17219b6c1ad2872adfb4ac936360",
       "plan.md": "4209f2017ecd74db734e5c4e3c3641b187bed674d23f94b486a64796a019ecfc",
       "tasks.md": "0eef031f7baec2f6c2f4c94e14f6953e1d3fc3795df6a88a5fd9a412f67df365",
-      "implementation-summary.md": "fd29541644954ed528e3c72f93886bbd2ec8623cde69cd694f2eb0d6a709fad1"
+      "implementation-summary.md": "ec7c4805d24f99f3d4b80a702c4c771b550726a2091059eaad0788c32e0b8ce0"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -38,7 +38,7 @@ Wire the skill into both routing stages and prove each one separately. Vocabular
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 5 of 6 |
-| **Predecessor** | 004-content-migration |
+| **Predecessor** | 004-native-chart-build |
 | **Successor** | 006-playbook-and-closeout |
 | **Handoff Criteria** | The advisor selects the skill for its own vocabulary, the router resolves it to leaves that exist on disk, and a canary covers the route |
 <!-- /ANCHOR:metadata -->

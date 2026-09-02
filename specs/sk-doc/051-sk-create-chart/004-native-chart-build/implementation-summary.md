@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/051-sk-create-chart/004-content-migration"
+    packet_pointer: "sk-doc/051-sk-create-chart/004-native-chart-build"
     last_updated_at: "2026-09-02T07:56:51Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -19,7 +19,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-004-content-migration"
+      session_id: "scaffold-004-native-chart-build"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 004-content-migration |
+| **Spec Folder** | 004-native-chart-build |
 | **Completed** | 2026-09-02 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

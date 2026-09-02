@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-content-migration"
+    packet_pointer: "scaffold/004-native-chart-build"
     last_updated_at: "2026-09-02T07:56:51Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

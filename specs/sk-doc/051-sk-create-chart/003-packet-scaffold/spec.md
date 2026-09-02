@@ -39,7 +39,7 @@ Build the package shape and prove it passes the packaging gate while it is still
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 6 |
 | **Predecessor** | 002-translation-and-voice |
-| **Successor** | 004-content-migration |
+| **Successor** | 004-native-chart-build |
 | **Handoff Criteria** | The empty package passes `package_skill.py --check --strict` with a PASS, and the root metadata matches the contract for its class |
 <!-- /ANCHOR:metadata -->
 

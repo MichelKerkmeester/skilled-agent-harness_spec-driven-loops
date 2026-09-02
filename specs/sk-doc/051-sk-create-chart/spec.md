@@ -70,14 +70,19 @@ in three families, a colour system, two validation scripts, and 26,500 lines of 
 already shaped like a skill, with its own `SKILL.md`, and it is good at something this
 repository has no answer for.
 
-It is not one of ours. Its primary `SKILL.md` and README are Chinese, with English kept as a
-secondary translation. It follows its own document conventions rather than the create-skill
-templates. It has no manual testing playbook, so nothing states what it doing its job looks
-like. Adopting it means making it ours without flattening what makes it worth adopting.
+It also cannot come here. It is PolyForm Noncommercial and this repository is MIT and public,
+and those two grants contradict each other for the same bytes. The operator ruled on 2026-09-02
+that nothing is copied. So the packet builds `sk-create-chart` natively, using the reference for
+what to build rather than for what to move.
+
+That leaves the original problems intact and adds one. The reference's documentation is Chinese,
+so understanding it takes a translation pass. It follows its own conventions rather than the
+create-skill templates. It has no manual testing playbook. And now the corpus that made it worth
+studying has to be written here instead of moved.
 
 ### Purpose
 
-The chart skill reads as though it had been written here, and still does what it did there.
+A chart skill that was written here, informed by a good reference and carrying none of it.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -89,26 +94,26 @@ The chart skill reads as though it had been written here, and still does what it
 
 ### In Scope
 
-- A `sk-create-chart` packet built to the create-skill templates, carrying the source's
-  templates, colour system, scripts and examples.
+- A `sk-create-chart` packet built to the create-skill templates, with its own chart corpus,
+  colour system and validator.
 - English throughout, as the primary and only language of the authored documents.
 - A manual testing playbook, to the operator-scenario contract.
 - Full routing integration, so the skill is reachable rather than merely present.
 
 ### Out of Scope
 
-- Redesigning the charts. The visual language is the reason to adopt this, and a rewrite of
-  the templates would discard the thing being adopted while claiming to adopt it.
-- Improving the source's own logic. Port it as it is, and raise anything that looks wrong as a
-  finding rather than fixing it inside a migration, where nobody can review it separately.
-- The upstream repository. This is a one-way adoption, not a fork to be kept in sync.
+- Copying anything from the reference. Not a template, not a fragment, not a snippet. This is
+  the operator's ruling and it is the constraint the whole packet is shaped around.
+- Matching the reference's chart count as a target. The corpus is sized by what is worth
+  having here.
+- The upstream repository. This is a repository we learn from, not one we fork or track.
 
 ### Files to Change
 Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/skills/<resolved placement>/sk-create-chart/**` | Create | 3, 4, 6 | The packet, its templates and its playbook |
+| `.opencode/skills/sk-doc/sk-create-chart/**` | Create | 3, 4, 6 | The mode, its authored corpus and its playbook |
 | Hub registry, router, vocabulary and leaf manifest | Modify | 5 | Registration and stage-two routing |
 | Canary fixtures and pinned digests | Modify | 5, 6 | Single-route coverage for the new surface |
 <!-- /ANCHOR:scope -->
@@ -122,10 +127,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-source-inventory-and-placement/ | Read only. Inventory every source file, and decide with evidence whether this is an sk-doc mode or a standalone skill | Pending |
-| 2 | 002-translation-and-voice/ | Translate the Chinese documents and bring every authored word to the voice standard | Pending |
+| 1 | 001-source-inventory-and-placement/ | Read only. Inventory every source file, and decide with evidence whether this is an sk-doc mode or a standalone skill | Complete |
+| 2 | 002-translation-and-voice/ | Read the Chinese documents into English so the reference can be understood, and describe what it does | Complete |
 | 3 | 003-packet-scaffold/ | Build the packet shape from the create-skill templates | Pending |
-| 4 | 004-content-migration/ | Move templates, colour system, scripts and examples across, and prove they still work | Pending |
+| 4 | 004-native-chart-build/ | Author the colour system and the chart corpus here, and prove each template renders | Pending |
 | 5 | 005-routing-integration/ | Registration and both routing stages, plus canary coverage | Pending |
 | 6 | 006-playbook-and-closeout/ | The manual testing playbook, then the whole-fleet gates | Pending |
 
@@ -141,9 +146,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001 | 002 | Every source file is classified as port, translate, adapt or drop, with a reason per drop | The inventory count matches a fresh scan of the clone, and nothing is unclassified |
-| 002 | 003 | No authored document carries Chinese text, and the voice scanner is clean | A character scan reports zero CJK in authored files, and `hvr_scan.py` exits 0 |
+| 002 | 003 | The reference is described well enough to build from without opening it | A capability description exists per chart family, and the voice scanner is clean |
 | 003 | 004 | The empty packet passes the packaging gate | `package_skill.py --check --strict` reports PASS |
-| 004 | 005 | Every ported template renders and the source's own validators pass against the new location | The source's `validate.mjs` runs green from the new path |
+| 004 | 005 | Every authored template renders, and nothing from the reference is present | The corpus validator exits 0 after being shown it can fail, and a scan for reference strings returns nothing |
 | 005 | 006 | The skill is reachable in both routing stages, not merely registered | The advisor selects it, the router resolves it, and its leaves resolve on disk |
 <!-- /ANCHOR:phase-map -->
 
@@ -152,10 +157,13 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-One, and phase 001 exists to answer it: whether this belongs as a mode under the documentation
-hub or as a standalone skill. The name suggests a mode, the size is comparable to the largest
-existing mode, and the subject is further from documentation than any current sibling. Phase
-001 is read only, so answering it wrongly costs nothing until phase 003 acts on the answer.
+Both of the packet's original questions are answered. Placement is a workflow mode under the
+documentation hub, recorded as ADR-001, decided on tie-break machinery rather than on size.
+Licensing is settled by ADR-002: nothing is copied, and the skill is built from the ideas.
+
+What stays open is a matter of size rather than direction. Phase 4 has to decide how many chart
+types the first corpus carries. The reference ships 49 in its primary tier by its own count,
+which is a reference point and not a target.
 <!-- /ANCHOR:questions -->
 
 ---

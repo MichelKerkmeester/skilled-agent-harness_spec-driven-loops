@@ -14,9 +14,9 @@ _memory:
     last_updated_at: "2026-09-02T10:30:00Z"
     last_updated_by: "phase-1-implementer"
     recent_action: "Recorded the placement verdict, the licence conflict, and the binary-asset split"
-    next_safe_action: "Take ADR-002 to the operator, since it blocks phase 4"
+    next_safe_action: "Re-plan phase 4 as a native build, since ADR-002 is now Accepted"
     blockers:
-      - "ADR-002 is Proposed, not Accepted. Phase 4 cannot start until the operator rules on the PolyForm against MIT conflict."
+      - "None. ADR-002 is Accepted: nothing is vendored, and the skill is built from the ideas."
     key_files:
       - "specs/sk-doc/051-sk-create-chart/001-source-inventory-and-placement/research/inventory.md"
     session_dedup:
@@ -25,9 +25,10 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "ADR-002: may a noncommercial-only work be redistributed inside a public MIT repository"
+      - "None open. ADR-002 was answered by the operator on 2026-09-02."
     answered_questions:
       - "ADR-001: mode packet under sk-doc, not a standalone skill"
+      - "ADR-002: build from the ideas, vendor nothing"
       - "ADR-003: 12 binary assets cross, 45 do not"
 ---
 # Decision Record: Phase 1: source-inventory-and-placement
@@ -229,13 +230,13 @@ rollback is a git revert of the registration commit rather than a directory remo
 ---
 
 <!-- ANCHOR:adr-002 -->
-## ADR-002: The source's noncommercial licence blocks phase 4 pending an operator decision
+## ADR-002: The source is not vendored. The skill is built from the ideas
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed, awaiting operator decision |
+| **Status** | Accepted |
 | **Date** | 2026-09-02 |
 | **Deciders** | Operator. This is a licensing judgment, not a measurable fact |
 | **Satisfies** | REQ-004 |
@@ -269,12 +270,24 @@ A grep for `Required Notice:` across the clone finds hits only inside `LICENSE` 
 
 ### Decision
 
-**Summary**: No decision is taken here. This phase surfaces the conflict, blocks phase 4 on it,
-and hands the operator the options. Phases 2 and 3 are unaffected, because neither copies source
-content into the skills tree.
+**Summary**: Nothing from the source is copied into this repository. `sk-create-chart` is built
+natively, using the source only as a reference for what to build. The operator ruled on
+2026-09-02, choosing this over the carve-out that scored highest on mechanics.
 
-**Details**: Phase 1 is read-only by design, and the phase that would create the exposure is
-phase 4. Recording the conflict now is the whole value of having found it now.
+**Details**: The carve-out is workable and it was not chosen, so the reasoning is worth keeping.
+It would have left a public MIT repository shipping files a downstream commercial user could not
+lawfully use, with only a note in the root `LICENSE` standing between them and an infringement
+they never agreed to. That cost lands on people who are not party to this decision, which is a
+poor trade for saving a build.
+
+The ruling reaches further than phase 4. A translation is a derivative work, so the phase 2
+output was removed from this repository under the same reasoning that stops the templates
+crossing. Facts about the source survive: file counts, character censuses, the chart families it
+ships, the defects found in its validator. Those are observations about a work, not the work.
+
+What the source keeps giving us is the shape of a good answer. Three chart families, a small
+number of named colour systems, templates that open in a browser with no install step. Those are
+ideas, and ideas are free to use.
 
 ---
 
@@ -299,24 +312,29 @@ within the meaning of the licence, and that is theirs to answer.
 **Positive**:
 - The conflict is found in a read-only phase, at zero cost, rather than after 20 MB has been
   copied into a public tree.
+- The repository stays MIT throughout, with no carve-out for a reader to miss.
 
 **Negative**:
-- Phase 4 cannot start until this is answered. Phases 2 and 3 can proceed in the meantime.
+- The build is larger. Fifty templates and a colour system have to be authored rather than moved.
+- The phase 2 translation cannot ship. Its analysis survives, its output does not.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| The adoption ships and downstream users receive a licence the upstream author did not grant | H | Phase 4 blocked on this ADR reaching Accepted or Rejected |
-| The conflict is quietly resolved by not thinking about it | H | Recorded as an UNKNOWN in the inventory and as a blocker in the implementation summary, not only here |
+| A native build drifts into copying because the source is open beside it | H | The build phase works from a written capability list, not from the source tree |
+| Source-derived text survives somewhere unnoticed and reaches the public remote | H | A scan for source content before any push, and the translated output already removed |
 
 ---
 
 ### Implementation
 
-**Affected Systems**: none yet. This ADR gates phase 4.
+**Affected Systems**: the phase map. Phase 4 becomes a native build rather than a migration, and
+phase 2's translated output was removed from the repository.
 
-**Rollback**: not applicable. Nothing was changed.
+**Rollback**: restoring the vendoring path means reversing this ADR first. The removed
+translation is preserved outside the repository, so reversal is possible and is a licensing
+decision rather than a technical one.
 
 <!-- /ANCHOR:adr-002 -->
 
