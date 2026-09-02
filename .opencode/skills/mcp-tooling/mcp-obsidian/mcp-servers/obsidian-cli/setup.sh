@@ -17,9 +17,9 @@ Enable it in the desktop app:
   2. Toggle it on
   3. Click "Register CLI"  (adds `obsidian` to PATH on macOS/Linux)
 
-It remote-controls a RUNNING app (launching it if not running), so it is
-not a headless/filesystem tool, and it does NOT launch the app: with Obsidian
-closed every command exits 1. Syntax is `obsidian <command> key=value`.
+It remote-controls an ALREADY-RUNNING app, so it is not a headless/filesystem
+tool, and it does NOT launch the app: with Obsidian closed every command writes
+to stderr and exits 1. Syntax is `obsidian <command> key=value`.
 Verify with: obsidian version     (exit 0 = registered AND app running)
 ──────────────────────────────────────────────────────────────────────
 EOF

@@ -164,7 +164,7 @@ The official `obsidian` binary ships inside Obsidian desktop **v1.12.4+** and is
 
 **Enable it (one-time):** Settings → General → Command line interface → toggle on → **"Register CLI"**. On macOS/Linux this registers `obsidian` on PATH; the app must be installed.
 
-**Syntax:** `obsidian <command> key=value`. It takes no POSIX flags. `obsidian --version` and `obsidian help` both fail; the subcommands are `obsidian version` and `obsidian help`.
+**Syntax:** `obsidian <command> key=value`. The subcommands are `obsidian version` and `obsidian help`. POSIX flags are not the grammar: `obsidian --version`, `-v` and `-h` each print `Error: Command "..." not found.` and still exit 0. The one exception measured on 1.13.7 is `obsidian --help`, whose output is byte-identical to `obsidian help`. Do not rely on it, since it is undocumented.
 
 **Command surface:** 106 commands, confirmed against desktop 1.13.7 (installer 1.13.4). `obsidian help` prints the authoritative list.
 
@@ -180,7 +180,7 @@ The official `obsidian` binary ships inside Obsidian desktop **v1.12.4+** and is
 | Launch the app if not running | **Not supported** | The CLI fails with exit 1 and leaves the app down |
 | Headless file operations | Not supported | Use `notesmd-cli` — the official CLI requires the running app |
 
-> **Two contracts an agent must respect before scripting this CLI.** First, run the preflight: `obsidian version >/dev/null 2>&1` returns 0 only when the binary is registered **and** the app is running. Second, once the app is up the CLI **exits 0 even on failure** and prints `Error: ...` to stdout, so `$?` is not a success signal. Both, with the command surface and the safety invariants, are in [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
+> **Two contracts an agent must respect before scripting this CLI.** First, run the preflight: `obsidian version` prints a version number only when the binary is registered **and** the app is answering. Test the output, not the status, because an app that is still starting answers 0 with an error on stdout. Second, once the app is up the CLI **exits 0 even on failure** and prints `Error: ...` to stdout, so `$?` is not a success signal. Both, with the command surface and the safety invariants, are in [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
 
 **When to prefer it:** when the outcome requires the live app — the resolved link graph, the computed tag and task index, Bases, sync or file history, plugin and theme state, or the UI itself. For everything file-shaped, `notesmd-cli` is faster and needs no app.
 
@@ -276,7 +276,7 @@ fi
 
 ### 5. Prefer notesmd-cli; escalate to the official CLI only for app-only outcomes
 
-The official `obsidian` CLI needs an **already-running** app and does not start one. Do not route a file-shaped task to it. Reach for it only when the result requires the live app (§8), and before depending on it run the preflight `obsidian version >/dev/null 2>&1` — exit 0 means the binary is registered and the app is up. Once the app is running the CLI **exits 0 on failure**, so check its stdout for a leading `Error:` rather than `$?`. Full contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
+The official `obsidian` CLI needs an **already-running** app and does not start one. Do not route a file-shaped task to it. Reach for it only when the result requires the live app (§8), and before depending on it run the preflight `obsidian version` and check its output looks like a version — exit 0 means the binary is registered and the app is up. Once the app is running the CLI **exits 0 on failure**, so check its stdout for a leading `Error:` rather than `$?`. Full contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
 
 ---
 

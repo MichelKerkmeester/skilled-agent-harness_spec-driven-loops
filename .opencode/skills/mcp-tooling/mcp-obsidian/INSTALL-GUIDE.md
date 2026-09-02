@@ -231,7 +231,7 @@ The last search may return empty output and still pass. For the app-backed profi
 | No default vault | A vault was not registered or selected | Run `notesmd-cli add-vault <path>` and `notesmd-cli set-default-vault <name>` |
 | `command not found: obsidian` | The desktop CLI has not been registered | Enable it in Settings → General → Command line interface → Register CLI |
 | `The CLI is unable to find Obsidian` (exit 1) | The CLI is registered but the desktop app is not running | Start Obsidian, then wait for `obsidian version` to exit 0. The CLI never launches the app itself |
-| `Command "--help" not found` | POSIX flags were used | This CLI takes `obsidian <command> key=value`; use `obsidian help` and `obsidian version` |
+| `Error: Command "--version" not found.` on stdout, exit 0 | POSIX flags were used | This CLI takes `obsidian <command> key=value`. Use `obsidian help` and `obsidian version` |
 | Local REST API connection refused | App closed, plugin disabled, or base URL mismatch | Open the app and target vault, enable Local REST API v4.0.0+, and check `OBSIDIAN_BASE_URL` |
 | 401 from MCP | Missing or invalid Local REST API token | Copy a fresh API key and expose it as `obsidian_OBSIDIAN_API_KEY` for the manual |
 | npx cannot launch the MCP | Node/npx unavailable or registry fetch failed | Confirm Node.js 18+, npx, and the `obsidian-mcp-server@latest` launch command |

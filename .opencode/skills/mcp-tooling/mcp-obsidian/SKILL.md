@@ -158,7 +158,7 @@ def resolve_execution_profile(request, runtime):
 
     Best-effort runtime probes — never fabricated:
       runtime.app_running   -> an Obsidian desktop app is live
-                               (probe: `obsidian version >/dev/null 2>&1` exits 0)
+                               (probe: `obsidian version` prints a version number)
       runtime.rest_api_up   -> Local REST API plugin reachable on OBSIDIAN_BASE_URL
       runtime.api_key       -> OBSIDIAN_API_KEY present in the Code Mode environment
     """
@@ -584,13 +584,13 @@ def route_obsidian_resources(request: str) -> dict:
 
 | Dimension | Headless CLI (`notesmd-cli`) | App-backed CLI (`obsidian`) | Cyanheads MCP |
 |---|---|---|---|
-| **Activation** | `notesmd-cli <command>` in Bash | `obsidian <target>` in Bash | Code Mode `call_tool_chain()` |
+| **Activation** | `notesmd-cli <command>` in Bash | `obsidian <command> key=value` in Bash | Code Mode `call_tool_chain()` |
 | **Running app** | Not required — filesystem only | Required, and NOT launched for you (exit 1 when down) | Required + Local REST API |
 | **Best for** | Daily note ops anywhere | In-app open / URI actions | Structured reads/writes, tags, search |
 | **Auth** | None — reads the vault directory | None — controls the local app | `OBSIDIAN_API_KEY` bearer token |
 | **Install** | `brew install yakitrak/yakitrak/notesmd-cli` | Ships with Obsidian desktop v1.12.4+ | `npx -y obsidian-mcp-server@latest` |
 | **Config store** | `~/.config/obsidian/obsidian.json` | In-app: Settings → Command line interface | `.utcp_config.json` manual `obsidian` |
-| **Output** | Human-readable text | Launches app UI | Structured JSON |
+| **Output** | Human-readable text | Human-readable text on stdout, exit 0 even on failure | Structured JSON |
 
 ### Headless CLI — `notesmd-cli` (Default Path)
 
@@ -633,7 +633,7 @@ The official `obsidian` CLI shipped GA in Obsidian desktop **v1.12.4** (Feb 2026
 
 **Syntax is `obsidian <command> key=value`,** with no POSIX flags: `obsidian version`, not `obsidian --version`. Use it for outcomes only the live app can produce — the resolved link graph, the computed tag and task index, Bases queries, sync and file history, plugin and theme state, and in-app opens.
 
-**Two contracts before scripting it.** Preflight with `obsidian version >/dev/null 2>&1` (exit 0 means registered AND running). Then stop trusting `$?`: once the app is up the CLI exits 0 even on failure and prints `Error: ...` to stdout. Both, plus the 106-command surface and the active-file hazard, are in `references/official-cli-agent-usage.md`.
+**Two contracts before scripting it.** Preflight with `obsidian version | grep -qE '^[0-9]+\.[0-9]+'` (a version number means registered AND running, where exit 0 does not, because a starting app answers 0 with an error). Then stop trusting `$?`: once the app is up the CLI exits 0 even on failure and prints `Error: ...` to stdout. Both, plus the 106-command surface and the active-file hazard, are in `references/official-cli-agent-usage.md`.
 
 ### Cyanheads MCP — `obsidian-mcp-server` (Structured Path)
 

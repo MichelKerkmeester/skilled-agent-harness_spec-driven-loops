@@ -38,7 +38,7 @@ Use `notesmd-cli` for file-shaped work. Reach for this CLI when the outcome need
 Run one cheap command and check **only the exit status**. This is the single case where `$?` is meaningful, because the app-down failure is the one failure raised by the launcher rather than by the app.
 
 ```bash
-if obsidian version >/dev/null 2>&1; then
+if obsidian version 2>/dev/null | grep -qE '^[0-9]+\.[0-9]+'; then
   : # CLI is live: binary registered AND app running
 else
   : # not usable — distinguish the two causes below
@@ -58,7 +58,7 @@ Full triage:
 ```bash
 if ! command -v obsidian >/dev/null 2>&1; then
   echo "official CLI not registered — enable it in Settings → General → Command line interface"
-elif ! obsidian version >/dev/null 2>&1; then
+elif ! obsidian version 2>/dev/null | grep -qE '^[0-9]+\.[0-9]+'; then
   echo "official CLI registered but the Obsidian app is not running"
 else
   echo "official CLI live: $(obsidian version)"
@@ -71,7 +71,7 @@ fi
 
 ```bash
 open -a Obsidian                        # macOS
-until obsidian version >/dev/null 2>&1; do sleep 1; done
+until obsidian version 2>/dev/null | grep -qE '^[0-9]+\.[0-9]+'; do sleep 1; done
 ```
 
 Do not treat this as a formality. An agent that skips the wait races the app's startup and reads the app-down failure as a task failure.
@@ -274,7 +274,7 @@ NOTE="Project Log"
 if ! command -v obsidian >/dev/null 2>&1; then
   echo "official CLI not registered" >&2; exit 1
 fi
-if ! obsidian version >/dev/null 2>&1; then
+if ! obsidian version 2>/dev/null | grep -qE '^[0-9]+\.[0-9]+'; then
   echo "Obsidian app is not running" >&2; exit 1
 fi
 

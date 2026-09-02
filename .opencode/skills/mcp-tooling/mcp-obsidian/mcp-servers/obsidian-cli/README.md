@@ -35,7 +35,7 @@ mcp-obsidian drives Obsidian vault operations through real third-party and first
 The two profiles cover different runtime conditions, and the router picks by whether a live app is available:
 
 - **Headless — `notesmd-cli`** (Yakitrak). Operates directly on the vault filesystem, so it works with **no running Obsidian app**. Use it for scripted, unattended, or app-less work.
-- **App-backed — official `obsidian` CLI**. Ships with the Obsidian desktop app and **remote-controls a running app** (launching it if not running). Use it when a live app is already the source of truth.
+- **App-backed — official `obsidian` CLI**. Ships with the Obsidian desktop app and **remote-controls an already-running app**. It does **not** launch one: with the app closed every command writes to stderr and exits 1. Use it when a live app is already the source of truth.
 
 ### What Each Profile Is
 
@@ -75,7 +75,7 @@ In the desktop app: **Settings → General → Command line interface → toggle
 
 ```bash
 notesmd-cli --help          # headless profile
-obsidian help             # app-backed profile (after Step 3)
+obsidian help               # app-backed profile (after Step 3)
 ```
 
 Expected: `notesmd-cli` prints its subcommand list; `obsidian` prints its help only once the in-app CLI is enabled and registered.

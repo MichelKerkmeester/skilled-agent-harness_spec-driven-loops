@@ -141,7 +141,7 @@ which notesmd-cli                             # Resolves here?
 3. On macOS/Linux this adds `obsidian` to PATH (on macOS, a symlink at `/usr/local/bin/obsidian` into the app bundle). Open a new shell, then `obsidian version`.
 4. If it still fails, this is likely the GUI-vs-shell PATH issue (§4) — confirm where "Register CLI" placed the binary and ensure that prefix is on your shell PATH.
 
-> Note the syntax: this CLI takes **no POSIX flags**. `obsidian --help` and `obsidian --version` both fail with `Command "--help" not found`. Use `obsidian help` and `obsidian version`.
+> Note the syntax: this CLI's grammar is `obsidian <command> key=value`. `obsidian --version`, `-h` and `-v` each print `Error: Command "..." not found.` and still exit 0. `obsidian --help` is the one exception measured on 1.13.7: it prints the full help, byte-identical to `obsidian help`. Use `obsidian help` and `obsidian version` and do not depend on the flag form.
 
 > The official CLI is **app-backed** and does **not** launch the app. For headless/file work, use `notesmd-cli` instead; it needs no app and no registration step.
 
@@ -159,7 +159,7 @@ which notesmd-cli                             # Resolves here?
 
 ```bash
 open -a Obsidian                                    # macOS
-until obsidian version >/dev/null 2>&1; do sleep 1; done
+until obsidian version 2>/dev/null | grep -qE '^[0-9]+\.[0-9]+'; do sleep 1; done
 ```
 
 The wait matters. Issuing commands immediately after `open` races the app's startup and reproduces the same error.

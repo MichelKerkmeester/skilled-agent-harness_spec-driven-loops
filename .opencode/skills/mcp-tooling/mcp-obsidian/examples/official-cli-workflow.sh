@@ -60,10 +60,10 @@ preflight() {
   info "checking the official CLI"
   require_cmd obsidian
 
-  if ! obsidian version >/dev/null 2>&1; then
+  if ! obsidian version 2>/dev/null | grep -qE '^[0-9]+\.[0-9]+'; then
     error "Obsidian desktop is not running. The official CLI is a remote control"
     error "for a live app and will not start one. Launch Obsidian and retry:"
-    error "  open -a Obsidian && until obsidian version >/dev/null 2>&1; do sleep 1; done"
+    error "  open -a Obsidian && until obsidian version 2>/dev/null | grep -qE '^[0-9]+\.[0-9]+'; do sleep 1; done"
     exit 1
   fi
   success "CLI live: $(obsidian version)"
