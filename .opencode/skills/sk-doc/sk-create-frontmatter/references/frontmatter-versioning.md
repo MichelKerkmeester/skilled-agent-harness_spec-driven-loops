@@ -93,6 +93,31 @@ This gate is mandatory: a naive `git log --follow | wc -l` over-counts by **3-5x
 
 Brand-new files (0-1 commits) get `W = 0`.
 
+### Writing `W` is itself an edit, so one pass never converges
+
+`W` is a function of git history, and applying `W` to a file changes that history. Commit a
+reconcile and every file it touched is stale again by exactly one, because the version-only
+commit changed a line and the numstat gate counts it. Reconcile again and the same thing
+happens. This is a property of the definition, not a bug in any run, and it is why a bulk
+`apply --update` looks like it failed when it did exactly what it was asked.
+
+Two passes converge, and the second one must amend rather than add:
+
+```bash
+node frontmatter-version.mjs apply --skill <name> --update
+git commit -m "..." -- .opencode/skills/<name>
+node frontmatter-version.mjs apply --skill <name> --update
+git commit --amend --no-edit -- .opencode/skills/<name>
+```
+
+The amend folds the second pass's increment into the commit that caused it, so the file's
+history gains one commit and the file records one more edit. Verify then passes against a
+clean tree, which is the only state worth calling converged. A green verify over a dirty
+tree just means the numbers have not been committed yet.
+
+The ordinary case avoids this entirely: run `apply` in the same commit as the content change
+you are versioning, and no separate version-only commit ever exists.
+
 ---
 
 ## 5. NORMALIZATION & EDGE CASES
