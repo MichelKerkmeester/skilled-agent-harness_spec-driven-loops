@@ -96,14 +96,14 @@ Measured against the shipped set:
 | File | Lines | Band |
 |------|-------|------|
 | `skill-hub-routing.md` | 127 | preferred |
-| `uncertainty-and-honesty.md` | 145 | preferred |
+| `uncertainty-and-honesty.md` | 144 | preferred |
 | `blast-radius.md` | 154 | preferred |
 | `root-cause-and-debugging.md` | 159 | preferred |
-| `prevent-overengineering.md` | 164 | good |
+| `prevent-overengineering.md` | 162 | good |
 | `scope-discipline.md` | 164 | good |
-| `evidence-and-proof.md` | 209 | at the limit |
-| `communication.md` | 219 | at the limit |
-| `delegation-and-orchestration.md` | 224 | at the limit |
+| `evidence-and-proof.md` | 210 | at the limit |
+| `communication.md` | 244 | at the limit |
+| `delegation-and-orchestration.md` | 248 | at the limit |
 
 **Four preferred, two good, three at the limit, none over.** The corpus fits, which is
 what makes this a usable constraint rather than a number to be revised again.

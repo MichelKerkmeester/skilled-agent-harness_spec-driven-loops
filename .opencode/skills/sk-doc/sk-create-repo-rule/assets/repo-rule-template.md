@@ -44,8 +44,8 @@ version: 1.0.0.0
 
 # Rule: <Subject>
 
-> Routed from [`REPO RULES.md`](../REPO%20RULES.md). <When to load this — one clause.>
-> Expands `AGENTS.md`, never overrides it — where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+> Routed from [`REPO RULES.md`](../REPO%20RULES.md). <When to load this. One clause.>
+> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
 
 ## Fires when
 

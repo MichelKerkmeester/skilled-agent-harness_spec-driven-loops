@@ -112,6 +112,17 @@ sentence claims, the sentence stays. Record it as an accepted exception with the
 A document that reads beautifully and says something false has failed at the only thing
 that mattered.
 
+**In a template, the fenced block is the deliverable rather than a quotation.** The scanner
+skips fenced content by default, which is right for a document quoting a command or an error
+string, and exactly wrong for a template whose whole output lives inside a fence. Scanning one
+without `--include-code` reads past the only part that reaches a new file, and the template
+then scores clean while seeding every document authored from it.
+
+The gap is not hypothetical. Of forty templates measured across the skills tree, twenty-four
+hide blockers this way. The worst scores zero and emits forty-three, and the voice mode's own
+report template hides six. So scan a template with `--include-code`, and read a zero without
+that flag as unmeasured rather than as a pass.
+
 ---
 
 ## 5. THE LENGTH CAVEAT
