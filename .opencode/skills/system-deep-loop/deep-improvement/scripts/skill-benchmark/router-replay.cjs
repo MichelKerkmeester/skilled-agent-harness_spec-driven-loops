@@ -73,6 +73,15 @@ function quotedStrings(segment) {
 }
 
 // INTENT_SIGNALS = { "KEY": {"weight": N, "keywords": ["a","b"]}, ... }
+// A hub root and a skill or mode root name the same dict differently: the parent-hub
+// template writes INTENT_SIGNALS, the skill template writes INTENT_MODEL. Reading only
+// the hub spelling makes every mode built to the mode template look like it declares no
+// routing at all, which is silent rather than loud because an empty dict is a legal
+// answer. Read whichever one the author used.
+function extractIntentDictBody(text) {
+  return extractDictBody(text, 'INTENT_SIGNALS') ?? extractDictBody(text, 'INTENT_MODEL');
+}
+
 function parseIntentSignals(body) {
   const signals = {};
   if (!body) return signals;
@@ -389,7 +398,7 @@ function findReferencedRouterDoc(skillMdText, skillRoot) {
  * @returns {{intentSignals:Object,resourceMap:Object,defaultResource:string[],parseable:boolean,routerSource:string}} Parsed router.
  */
 function parseRouter(skillMdText, skillRoot) {
-  let intentSignals = parseIntentSignals(extractDictBody(skillMdText, 'INTENT_SIGNALS'));
+  let intentSignals = parseIntentSignals(extractIntentDictBody(skillMdText));
   let resourceMap = parseResourceMap(extractDictBody(skillMdText, 'RESOURCE_MAP'));
   let defaultResource = parseDefaultResource(skillMdText);
   let defaultResourceSemantics = parseDefaultResourceSemantics(skillMdText);
@@ -400,7 +409,7 @@ function parseRouter(skillMdText, skillRoot) {
     const refDoc = findReferencedRouterDoc(skillMdText, skillRoot);
     if (refDoc) {
       const refText = fs.readFileSync(refDoc, 'utf8');
-      const refSignals = parseIntentSignals(extractDictBody(refText, 'INTENT_SIGNALS'));
+      const refSignals = parseIntentSignals(extractIntentDictBody(refText));
       const refMap = parseResourceMap(extractDictBody(refText, 'RESOURCE_MAP'));
       if (Object.keys(refSignals).length > 0 || Object.keys(refMap).length > 0) {
         intentSignals = refSignals;
@@ -554,7 +563,7 @@ function loadSurfaceRouter(skillRoot) {
   for (const doc of candidates) {
     if (!fs.existsSync(doc)) continue;
     const text = fs.readFileSync(doc, 'utf8');
-    const intentSignals = parseIntentSignals(extractDictBody(text, 'INTENT_SIGNALS'));
+    const intentSignals = parseIntentSignals(extractIntentDictBody(text));
     const resourceMap = parseResourceMap(extractDictBody(text, 'RESOURCE_MAP'));
     const defaultResource = parseDefaultResource(text);
     const defaultResourceSemantics = parseDefaultResourceSemantics(text);

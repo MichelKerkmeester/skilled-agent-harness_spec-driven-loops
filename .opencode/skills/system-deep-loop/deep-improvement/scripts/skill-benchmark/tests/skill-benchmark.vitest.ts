@@ -124,6 +124,31 @@ describe('Lane C — router-replay (Mode A)', () => {
     expect(router.parseable).toBe(true);
     expect(router.routerSource).toBe('inline');
   });
+
+  // A hub root and a mode root spell the intent dict differently, because their
+  // templates do. Reading only the hub spelling made every mode built to the mode
+  // template report no intents at all, and an empty dict is a legal answer, so the
+  // gap never surfaced as an error.
+  it('reads the INTENT_MODEL spelling a mode template writes', () => {
+    const mode = join(REPO_SKILLS, 'sk-doc', 'sk-create-frontmatter');
+    const skillMd = readFileSync(join(mode, 'SKILL.md'), 'utf8');
+    expect(skillMd).toContain('INTENT_MODEL = {');
+    expect(skillMd).not.toContain('INTENT_SIGNALS = {');
+
+    const router = parseRouter(skillMd, mode);
+    expect(router.parseable).toBe(true);
+    expect(Object.keys(router.intentSignals).length).toBeGreaterThan(0);
+    expect(Object.keys(router.intentSignals)).toEqual(Object.keys(router.resourceMap));
+  });
+
+  it('still reads the INTENT_SIGNALS spelling a hub template writes', () => {
+    const hub = join(REPO_SKILLS, 'sk-git');
+    const skillMd = readFileSync(join(hub, 'SKILL.md'), 'utf8');
+    expect(skillMd).toContain('INTENT_SIGNALS = {');
+
+    const router = parseRouter(skillMd, hub);
+    expect(Object.keys(router.intentSignals).length).toBeGreaterThan(0);
+  });
 });
 
 describe('Lane C — reference-following router (delegated RESOURCE_MAP)', () => {
