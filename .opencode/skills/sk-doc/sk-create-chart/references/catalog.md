@@ -15,6 +15,10 @@ version: 1.0.0.0
 
 Read this before writing anything. It turns the comparison a reader needs into one chart form, and it names the file that draws that form.
 
+---
+
+## 0. OVERVIEW
+
 Every row below points at a template that renders. When no row answers the question in front of you, that is a gap to report rather than a chart to improvise. A freehand chart is what the template-first rule exists to prevent.
 
 ---
@@ -90,13 +94,34 @@ A family here is a group of questions, not a rendering style. Every form in the 
 
 ---
 
-## 4. WHAT IS NOT INDEXED HERE
+## 4. THE NAME A READER ARRIVES WITH
+
+A request almost never carries an id from the index. It carries the industry name for the picture, and the names in the table below appear nowhere in the index. The row ids say what a form draws, which is what makes them precise and also what makes them unfindable by searching for the word the reader used.
+
+Every name in the left column already routes to this packet, so a request carrying one has arrived in the right place. A search that returns nothing is a naming mismatch rather than a missing capability. Read this table before reporting a gap.
+
+| The reader says | Draw | What to know first |
+| --- | --- | --- |
+| histogram | `distribution-strip` | Same question, different mark. The strip draws one dot per record rather than binning records into bars, so the spread is read from where the dots crowd. It stays honest from tens to a few hundred records. Past that ceiling, or when a five-number summary is what the reader wants, use `box-plot` |
+| heatmap, heat map | `heat-matrix` | The same chart under a different name. Two discrete dimensions, one cell per combination, shaded by value |
+| calendar heatmap | `calendar-grid` | The same chart, fixed to one year of days with weekdays down and weeks across. A shaded matrix of anything other than days belongs in `heat-matrix` |
+| donut chart | `unit-ring` | Same question, same ring, same total in the middle. The ring is built from countable ticks rather than from continuous arcs, which is the point: a reader counts marks instead of estimating angles. Parts that arrive as percentages rather than as whole-number counts belong in `unit-grid` |
+| waffle chart | `unit-grid` | The same chart under a different name. One hundred squares, one per percent, filled in reading order |
+| parallel coordinates | `parallel-axes` | The same chart under a different name. One vertical axis per dimension, one line per entity, every axis on its own scale |
+
+Two of those rows are substitutions rather than matches, and the difference is worth saying plainly. **This corpus draws no binned histogram and no arc-based pie or donut.** Each of the two rows names what arrives instead and why it answers the question the reader asked. The other four rows are the same chart wearing a name the index happens not to use.
+
+A name that reaches neither this table nor a row in the index is still a gap to report. Sending a reader to a chart that answers a different question costs more than telling them the corpus has no form for it.
+
+---
+
+## 5. WHAT IS NOT INDEXED HERE
 
 The catalog governs `assets/templates/` alone. The palette sheets under `assets/color/` are proof sheets for the colour systems rather than chart forms, so they carry no row and the check does not expect one. The same holds for the deliveries under `assets/examples/`.
 
 ---
 
-## 5. ADDING A ROW
+## 6. ADDING A ROW
 
 1. Author the template at `assets/templates/<id>.html` against the template contract.
 2. Add one row here with the same `id`.
@@ -104,7 +129,7 @@ The catalog governs `assets/templates/` alone. The palette sheets under `assets/
 
 ---
 
-## RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |
