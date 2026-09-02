@@ -31,7 +31,8 @@ const HISTORICAL_SETTINGS = Object.freeze({
     model: 'gpt-5.5',
     modelReasoningEffort: 'medium',
   },
-  orchestrate: { sandboxMode: 'read-only', ...DEFAULT_SETTINGS },
+  // The orchestrator fixes small things inline rather than dispatching for them, so it writes.
+  orchestrate: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'prompt-improver': { sandboxMode: 'read-only', ...DEFAULT_SETTINGS },
   review: { sandboxMode: 'read-only', ...DEFAULT_SETTINGS },
 });

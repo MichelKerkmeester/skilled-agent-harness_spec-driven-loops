@@ -648,5 +648,4 @@ PRE-DELIVERY VERIFICATION:
 - `.opencode/agents/orchestrate.md` — governs the operator-approved Task-tool dispatch this agent requires.
 - `.opencode/commands/speckit/implement.md` — a command surface that may offer @debug after repeated failures.
 - `.opencode/commands/speckit/complete.md` — a command surface that may offer @debug after repeated failures.
-
 '''
