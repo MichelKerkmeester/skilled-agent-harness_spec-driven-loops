@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** sk-doc/051-sk-create-chart/003-packet-scaffold
+**Level:** 3
+**Status:** In Progress
 **Date:** 2026-09-02
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the package holds no chart content, When `package_skill.py .opencode/skills/sk-doc/sk-create-chart --check --strict` runs, Then it reports a pass | `Result: PASS`, exit 0, zero warnings. The same command returned `Result: FAIL` at exit 1 before `SKILL.md` existed, so the check can fail | Met | - |
+| AC-002 | REQ-002 | Given the packet is a mode under a hub rather than a root, When the fleet metadata gate runs, Then the packet carries none of the four root-level metadata files and raises no violation | `ci-skill-root-metadata.cjs` reports `checked=14 passed=13 failed=1` with `OK [H] sk-doc`, matching the pre-work baseline. The one failure is a stale `mcp-tooling` manifest that predates this work | Met | - |
+| AC-003 | REQ-003 | Given entry documents could be adapted from the reference, When each was written, Then it derives from a create-skill template | `SKILL.md` follows `assets/parent-skill/scaffold/packet-skill-scaffold.md` section by section. `README.md` follows the packet README shape used by every sibling mode. No reference file was opened while writing either | Met | - |
+| AC-004 | REQ-004 | Given the source inventory classifies files as port or adapt, When the tree is reconciled against those rows, Then every content kind has a directory that exists | `references/` for the two catalogs, `assets/templates/`, `assets/color/`, `assets/reports/`, `assets/examples/` for the corpus, `scripts/` for the validator, `SKILL.md` and `README.md` for the two entry documents. The `LICENSE` and `agents/openai.yaml` rows get no home, recorded with reasons in `implementation-summary.md` | Met | - |
+| AC-005 | REQ-005 | Given a version story should start at adoption, When the changelog directory was created, Then it carries a first entry | `changelog/v1.0.0.0.md` exists and states that the release carries the shape and no corpus | Met | - |
+| AC-006 | SC-002 | Given a new directory under a hub can break a neighbour, When the fleet metadata gate and the compiled routing manifest are re-run, Then neither moved from its baseline | `fresh=true` at generation 5 with policy hash `6a5d6b45` and manifest fingerprint `b32b13d1`, byte-identical before and after | Met | - |
 
 ### Status values
 
@@ -79,8 +84,9 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-001 carried the packet: an empty package that passes its own gate is the whole point, because the same failure against a full one could be either shape or content. What was consciously left out is everything the later phases own, the chart corpus, the color system, the validator body and the playbook scenarios, so their directories exist and are empty on purpose.
+
+One consequence is recorded rather than fixed. `parent-skill-check.cjs .opencode/skills/sk-doc` now fails invariant 6a on the unregistered directory, where it was clean before. Creating the directory and registering the mode are separate phases, so every run between them sees a packet the registry does not know about. Registration closes it, and adding the packet to the check's allowlist would silence it permanently and wrongly.
 <!-- /ANCHOR:closure -->
