@@ -9,7 +9,7 @@ trigger_phrases:
   - "template versus reference split"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.4
+version: 1.0.0.6
 ---
 
 # Feature Catalog Common Pitfalls

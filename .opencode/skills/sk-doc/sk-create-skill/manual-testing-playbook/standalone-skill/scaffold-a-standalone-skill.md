@@ -1,7 +1,7 @@
 ---
 title: "SKL-001 -- Scaffold a standalone skill"
 description: "This scenario validates standalone skill scaffolding for `SKL-001`. It focuses on concrete use cases, generated shape, cleanup and strict validation."
-version: 1.2.0.1
+version: 1.2.0.3
 ---
 
 # SKL-001 -- Scaffold a standalone skill

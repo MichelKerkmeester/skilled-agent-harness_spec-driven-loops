@@ -1,7 +1,7 @@
 ---
 title: "MTP-003 -- Keep policy in the root"
 description: "This scenario validates the root-policy boundary for `MTP-003`. It focuses on keeping review guidance in the root and canonical scenarios in category folders."
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # MTP-003 -- Keep policy in the root

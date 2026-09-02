@@ -1,7 +1,7 @@
 ---
 title: "SKL-006 -- Keep one parent identity"
 description: "This scenario validates the nested-packet identity boundary for `SKL-006`. It focuses on hub-owned identity and child packets without graph metadata."
-version: 1.2.0.1
+version: 1.2.0.3
 ---
 
 # SKL-006 -- Keep one parent identity

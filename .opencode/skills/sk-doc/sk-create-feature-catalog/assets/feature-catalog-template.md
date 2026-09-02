@@ -8,7 +8,7 @@ trigger_phrases:
   - "numbered category sections"
 importance_tier: normal
 contextType: general
-version: 1.0.0.21
+version: 1.0.0.23
 ---
 
 # Feature Catalog Creation - Templates and Standards

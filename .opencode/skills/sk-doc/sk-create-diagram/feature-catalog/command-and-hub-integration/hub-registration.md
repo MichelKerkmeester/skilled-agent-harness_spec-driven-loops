@@ -7,7 +7,7 @@ trigger_phrases:
   - "hub-router.json signals"
   - "sk-doc advisor identity"
   - "packet registration"
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # Hub registration

@@ -9,7 +9,7 @@ trigger_phrases:
   - "readme heading hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.4
+version: 1.1.0.6
 ---
 
 # README Writing Patterns

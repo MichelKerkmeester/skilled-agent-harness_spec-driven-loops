@@ -1,7 +1,7 @@
 ---
 title: "CMD-002 -- Hub registration"
 description: "This scenario validates the sk-doc hub registration for `CMD-002`. It focuses on the mode-registry entry, the leaf-manifest references, the absence of a packet-local graph-metadata.json, and a clean package-structure validator run."
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # CMD-002 -- Hub registration

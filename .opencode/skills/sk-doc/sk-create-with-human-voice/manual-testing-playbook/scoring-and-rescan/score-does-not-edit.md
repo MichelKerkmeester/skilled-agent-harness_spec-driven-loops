@@ -2,7 +2,7 @@
 title: "HVR-001 -- A score reports and does not edit"
 description: "This scenario validates the score operation for `HVR-001`. It confirms a score run leaves the target byte-identical, using the shipped clean fixture as the control."
 stage: routing
-version: 1.1.0.2
+version: 1.1.0.4
 ---
 
 # HVR-001 -- A score reports and does not edit

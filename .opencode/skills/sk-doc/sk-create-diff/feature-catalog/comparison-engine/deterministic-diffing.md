@@ -6,7 +6,7 @@ trigger_phrases:
   - "line-level document diff"
   - "inline word-level highlighting"
   - "difflib SequenceMatcher diff"
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # Deterministic diffing

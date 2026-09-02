@@ -13,7 +13,7 @@ expected_leaf_resources:
     leaf_resource_id: references/README.md
   - workflow_mode: sk-create-readme
     leaf_resource_id: assets/readme-template.md
-version: 2.1.0.19
+version: 2.1.0.21
 ---
 
 # SD-006: Mixed References + Assets Resource Loading (README)

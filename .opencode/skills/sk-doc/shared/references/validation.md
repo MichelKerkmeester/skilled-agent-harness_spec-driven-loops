@@ -8,7 +8,7 @@ trigger_phrases:
   - "validation quality dimensions"
 importance_tier: important
 contextType: general
-version: 2.1.0.29
+version: 2.1.0.31
 ---
 
 # Validation - Quality Assessment and Gates

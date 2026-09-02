@@ -8,7 +8,7 @@ trigger_phrases:
   - "playbook root structure"
 importance_tier: normal
 contextType: general
-version: 1.0.0.28
+version: 1.0.0.30
 ---
 
 # Manual Testing Playbook Creation - Templates and Standards

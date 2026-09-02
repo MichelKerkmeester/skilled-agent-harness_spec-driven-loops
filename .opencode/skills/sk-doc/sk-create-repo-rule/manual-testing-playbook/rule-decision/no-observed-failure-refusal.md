@@ -2,7 +2,7 @@
 title: "RRD-004 -- Restraint refusal"
 description: "This scenario validates the restraint refusal for `RRD-004`. It focuses on refusing a proposal backed by a best-practice appeal rather than a failure that happens today."
 stage: routing
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # RRD-004 -- Restraint refusal

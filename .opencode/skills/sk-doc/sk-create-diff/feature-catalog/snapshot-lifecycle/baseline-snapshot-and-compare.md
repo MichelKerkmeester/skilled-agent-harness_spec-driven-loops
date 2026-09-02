@@ -6,7 +6,7 @@ trigger_phrases:
   - "capture baseline before editing"
   - "snapshot then compare"
   - "compare against latest baseline"
-version: 1.1.0.2
+version: 1.1.0.4
 ---
 
 # Baseline snapshot and compare (snapshot / compare)

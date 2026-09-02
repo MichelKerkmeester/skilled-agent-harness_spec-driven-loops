@@ -10,7 +10,7 @@ expected_workflow_mode: sk-create-with-human-voice
 expected_leaf_resources:
   - workflow_mode: sk-create-with-human-voice
     leaf_resource_id: references/hvr-rules.md
-version: 2.1.0.18
+version: 2.1.0.20
 ---
 
 # SD-013: Minimal-Load Token Cost (Floor)

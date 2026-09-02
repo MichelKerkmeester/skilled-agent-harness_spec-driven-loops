@@ -1,7 +1,7 @@
 ---
 title: "sk-create-quality-control: Manual Testing Playbook"
 description: "Operator-facing scenarios for auditing existing markdown, extracting DQI evidence, applying HVR review and making scoped improvements."
-version: 1.0.0.3
+version: 1.0.0.5
 ---
 
 # sk-create-quality-control: Manual Testing Playbook

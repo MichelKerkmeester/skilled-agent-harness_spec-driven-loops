@@ -34,7 +34,7 @@ expected_leaf_resources:
     leaf_resource_id: references/evergreen-packet-id-rule.md
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
-version: 2.1.0.20
+version: 2.1.0.22
 ---
 
 # SD-012: Multi-Step Dispatch Stability

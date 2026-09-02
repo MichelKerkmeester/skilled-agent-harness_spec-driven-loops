@@ -2,7 +2,7 @@
 title: "SAFE-001 -- Report is self-contained and zero-JS"
 description: "This scenario validates the self-contained zero-JS report for `SAFE-001`. It focuses on confirming a generated report passes the safety validator: correct doctype, `lang`, CSP, no scripts, and no remote references."
 stage: routing
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # SAFE-001 -- Report is self-contained and zero-JS

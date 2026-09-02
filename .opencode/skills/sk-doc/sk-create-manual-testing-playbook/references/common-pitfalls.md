@@ -9,7 +9,7 @@ trigger_phrases:
   - "overloaded root summary"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.3
+version: 1.0.0.5
 ---
 
 # Manual Testing Playbook Common Pitfalls

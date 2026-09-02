@@ -4,7 +4,7 @@ description: "Author canonical feature-inventory packages, a root catalog plus o
 trigger_phrases:
   - "feature catalog"
   - "feature inventory"
-version: 1.0.0.10
+version: 1.0.0.12
 ---
 
 # create-feature-catalog

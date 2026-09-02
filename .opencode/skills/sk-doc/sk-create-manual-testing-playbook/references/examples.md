@@ -9,7 +9,7 @@ trigger_phrases:
   - "system-spec-kit playbook example"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.8
+version: 1.0.0.10
 ---
 
 # Manual Testing Playbook Reference Implementations

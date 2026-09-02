@@ -2,7 +2,7 @@
 title: "SAFE-003 -- Source file never mutated"
 description: "This scenario validates the source-never-mutated invariant for `SAFE-003`. It focuses on confirming that neither `snapshot` nor `compare` nor `compare-pair` ever writes to a source document."
 stage: routing
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # SAFE-003 -- Source file never mutated

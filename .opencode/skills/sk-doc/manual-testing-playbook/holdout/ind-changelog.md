@@ -10,7 +10,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-changelog
     leaf_resource_id: assets/changelog-template.md
 stage: holdout
-version: 2.1.0.6
+version: 2.1.0.8
 ---
 
 # SD-H09: CHANGELOG Independent Holdout

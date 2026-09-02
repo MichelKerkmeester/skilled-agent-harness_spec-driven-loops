@@ -7,7 +7,7 @@ trigger_phrases:
   - "27 diagram types"
   - "create diagram"
   - "/create:diagram"
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # Type selection and routing (/create:diagram)

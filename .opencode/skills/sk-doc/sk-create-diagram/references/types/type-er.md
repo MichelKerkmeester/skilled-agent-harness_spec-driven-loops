@@ -9,7 +9,7 @@ trigger_phrases:
   - "domain model entities"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # ER / Data Model

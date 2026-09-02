@@ -1,7 +1,7 @@
 ---
 title: "FMC-003 -- Out-of-scope class"
 description: "This scenario validates the out-of-scope decline for `FMC-003`. It focuses on a command or agent file, which the version standard places outside its scope explicitly, and on declining to add `version` with the clause quoted."
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # FMC-003 -- Out-of-scope class

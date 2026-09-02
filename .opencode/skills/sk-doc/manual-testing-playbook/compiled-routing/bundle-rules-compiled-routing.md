@@ -28,7 +28,7 @@ evidence_fallback_cause: compiled-serving
 evidence_manifest_digest: 82496ebeee1491c0320eb4fccdbbd3e6aac582950b81552f823fd75a2193f553
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
-version: 2.1.0.3
+version: 2.1.0.5
 ---
 
 # sk-doc bundle-rules create-skill route serves compiled and matches legacy

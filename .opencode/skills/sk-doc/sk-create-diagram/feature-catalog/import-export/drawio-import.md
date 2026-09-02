@@ -7,7 +7,7 @@ trigger_phrases:
   - "convert drawio file"
   - "redraw existing diagram"
   - "drawio_extract"
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # draw.io import (drawio_extract.py)

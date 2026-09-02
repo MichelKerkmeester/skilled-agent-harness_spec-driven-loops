@@ -8,7 +8,7 @@ trigger_phrases:
   - "run create diff example"
 importance_tier: normal
 contextType: general
-version: 1.1.0.3
+version: 1.1.0.5
 ---
 
 # create-diff fixtures

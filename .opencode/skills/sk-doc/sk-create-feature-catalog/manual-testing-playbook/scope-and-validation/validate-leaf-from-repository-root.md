@@ -1,7 +1,7 @@
 ---
 title: "FCR-006 -- Validate a leaf from the repository root"
 description: "This scenario validates repository-root validation for FCR-006. The root catalog and each per-feature leaf are checked with the shared validator and the package validator."
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # FCR-006 -- Validate a leaf from the repository root

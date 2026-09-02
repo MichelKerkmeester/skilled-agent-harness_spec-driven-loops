@@ -1,7 +1,7 @@
 ---
 title: "RMR-002 -- Self-explanatory folder stays unchanged"
 description: "This scenario validates leaving a self-explanatory folder without a redundant README when parent documentation already serves its readers."
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # RMR-002 -- Self-explanatory folder stays unchanged

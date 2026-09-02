@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp install guide template"
 importance_tier: normal
 contextType: general
-version: 1.1.0.39
+version: 1.1.0.41
 ---
 
 # Install Guide Creation - Templates and Standards

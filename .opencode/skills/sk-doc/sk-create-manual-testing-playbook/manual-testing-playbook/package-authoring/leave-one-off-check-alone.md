@@ -1,7 +1,7 @@
 ---
 title: "MTP-002 -- Leave a one-off check alone"
 description: "This scenario validates the lightweight-workflow boundary for `MTP-002`. It focuses on a one-off check that does not need a reusable playbook corpus."
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # MTP-002 -- Leave a one-off check alone

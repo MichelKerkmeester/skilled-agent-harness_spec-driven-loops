@@ -8,7 +8,7 @@ trigger_phrases:
   - "Lane B profile json scaffold"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.0.10
+version: 1.5.0.12
 ---
 
 # Model Benchmark Profile Template

@@ -1,7 +1,7 @@
 ---
 title: "FMV-005 -- No frontmatter is skipped"
 description: "This scenario validates the no-frontmatter rule for `FMV-005`. A file with no frontmatter block is skipped and reported by a versioning pass, never given a synthesized block, and the corpus gate counts it as skipped rather than failed."
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # FMV-005 -- No frontmatter is skipped

@@ -7,7 +7,7 @@ trigger_phrases:
   - "voice pass output shape"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.2
+version: 1.1.0.4
 ---
 
 # Voice Report Template

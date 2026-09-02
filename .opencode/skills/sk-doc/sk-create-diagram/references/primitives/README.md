@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram primitives index"
   - "annotation sketchy terminal icons"
 contextType: general
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # references/primitives

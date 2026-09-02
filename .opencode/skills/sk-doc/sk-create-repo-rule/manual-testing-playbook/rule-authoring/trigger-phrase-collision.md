@@ -2,7 +2,7 @@
 title: "RRA-003 -- Trigger phrase collision"
 description: "This scenario validates collision detection for `RRA-003`. It focuses on catching a trigger phrase another rule already claims, before the file is written."
 stage: routing
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # RRA-003 -- Trigger phrase collision

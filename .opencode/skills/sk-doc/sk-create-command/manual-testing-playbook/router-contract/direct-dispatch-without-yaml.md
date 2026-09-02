@@ -1,7 +1,7 @@
 ---
 title: "CMR-002 -- Direct dispatch without YAML"
 description: "This scenario validates that a direct-dispatch command does not receive unused workflow YAML assets."
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # CMR-002 -- Direct dispatch without YAML

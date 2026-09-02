@@ -1,7 +1,7 @@
 ---
 title: "FMV-001 -- Changelog-anchored derivation"
 description: "This scenario validates anchor derivation for `FMV-001`. The anchor is the higher of the manifest frontmatter version and the highest changelog filename version, compared as integer tuples rather than as strings."
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # FMV-001 -- Changelog-anchored derivation

@@ -1,7 +1,7 @@
 ---
 title: "BMR-007 -- Prepare Lane A inputs without scoring"
 description: "This scenario validates Lane A authoring for BMR-007. The author fills the charter, strategy, config copy and bounded candidate while scoring and promotion remain in deep-improvement."
-version: 1.5.0.1
+version: 1.5.0.3
 ---
 
 # BMR-007 -- Prepare Lane A inputs without scoring

@@ -2,7 +2,7 @@
 title: "HVS-001 -- Every exempt span is named in the report"
 description: "This scenario validates the scope gate for `HVS-001`. It confirms the gate runs before the first finding and that each declined span is named in the report with its class and its reason."
 stage: routing
-version: 1.1.0.2
+version: 1.1.0.4
 ---
 
 # HVS-001 -- Every exempt span is named in the report

@@ -1,7 +1,7 @@
 ---
 title: "BMR-005 -- Match a Lane B fixture to its scorer"
 description: "This scenario validates Lane B fixture authoring for BMR-005. Code-task, evidence-contract and reviewer-prompt shapes have distinct consumers and the profile must not point a scorer at the wrong shape."
-version: 1.5.0.1
+version: 1.5.0.3
 ---
 
 # BMR-005 -- Match a Lane B fixture to its scorer

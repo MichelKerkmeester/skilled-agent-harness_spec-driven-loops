@@ -13,7 +13,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
 stage: holdout
-version: 2.1.0.7
+version: 2.1.0.9
 ---
 
 # SD-H05: FLOWCHART Held-Out (decontaminated phrasing)

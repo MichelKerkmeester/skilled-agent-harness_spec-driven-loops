@@ -9,7 +9,7 @@ trigger_phrases:
   - "multi team workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # Swimlane

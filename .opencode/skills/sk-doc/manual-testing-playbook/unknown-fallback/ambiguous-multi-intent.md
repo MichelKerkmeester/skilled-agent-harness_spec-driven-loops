@@ -25,7 +25,7 @@ expected_leaf_resources:
     leaf_resource_id: assets/ascii-patterns/simple-workflow.md
   - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
-version: 2.1.0.19
+version: 2.1.0.21
 ---
 
 # SD-007: Ambiguous Multi-Intent Disambiguation

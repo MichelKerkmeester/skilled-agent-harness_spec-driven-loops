@@ -8,7 +8,7 @@ trigger_phrases:
   - "reviewer-prompt fixture template"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.0.5
+version: 1.5.0.7
 ---
 
 # Model Benchmark Pattern / Capability Fixture Template

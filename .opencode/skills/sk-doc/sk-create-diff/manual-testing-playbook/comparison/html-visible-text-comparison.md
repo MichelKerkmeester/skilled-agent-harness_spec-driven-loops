@@ -2,7 +2,7 @@
 title: "CMP-004 -- HTML visible-text comparison"
 description: "This scenario validates HTML visible-text comparison for `CMP-004`. It focuses on extracting only visible text from HTML (scripts and styles dropped) and comparing it at text fidelity."
 stage: routing
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # CMP-004 -- HTML visible-text comparison

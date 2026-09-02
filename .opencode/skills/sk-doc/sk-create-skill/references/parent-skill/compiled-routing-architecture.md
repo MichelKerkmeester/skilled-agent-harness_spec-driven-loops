@@ -9,7 +9,7 @@ trigger_phrases:
   - "default-on hubs cohort"
 importance_tier: important
 contextType: implementation
-version: 1.2.0.7
+version: 1.2.0.9
 ---
 
 # Compiled-Routing Architecture For Parent Hubs

@@ -8,7 +8,7 @@ trigger_phrases:
   - "specialist agent structure"
 importance_tier: normal
 contextType: general
-version: 1.0.0.49
+version: 1.0.0.51
 ---
 
 # Agent Template - Specialist Agent Structure

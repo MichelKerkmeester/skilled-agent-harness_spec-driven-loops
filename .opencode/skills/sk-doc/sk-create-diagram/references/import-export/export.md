@@ -10,7 +10,7 @@ trigger_phrases:
   - "manual export never automatic"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.3
+version: 1.0.0.5
 ---
 
 # Export to PNG / SVG

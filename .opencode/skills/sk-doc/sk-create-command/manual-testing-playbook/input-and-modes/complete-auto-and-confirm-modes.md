@@ -1,7 +1,7 @@
 ---
 title: "CMI-002 -- Complete auto and confirm modes"
 description: "This scenario validates that advertised auto and confirm modes have complete targets and the correct execution pace."
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # CMI-002 -- Complete auto and confirm modes

@@ -1,7 +1,7 @@
 ---
 title: "create-feature-catalog: Manual Testing Playbook"
 description: "Operator playbook for the create-feature-catalog workflow across root inventories, per-feature files, source anchors, current-state claims and package validation."
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # create-feature-catalog: Manual Testing Playbook

@@ -6,7 +6,7 @@ trigger_phrases:
   - "diagram foundations index"
   - "style guide onboarding output spec"
 contextType: general
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # references/foundations

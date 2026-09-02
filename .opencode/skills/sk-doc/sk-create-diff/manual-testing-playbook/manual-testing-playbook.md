@@ -1,7 +1,7 @@
 ---
 title: "create-diff: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the create-diff sk-doc mode."
-version: 1.1.0.3
+version: 1.1.0.5
 ---
 
 # create-diff: Manual Testing Playbook

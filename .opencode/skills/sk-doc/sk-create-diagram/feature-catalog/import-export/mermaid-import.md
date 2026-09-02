@@ -7,7 +7,7 @@ trigger_phrases:
   - "convert mermaid source"
   - "redraw mermaid flowchart"
   - "mermaid_extract"
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # Mermaid import (mermaid_extract.py)

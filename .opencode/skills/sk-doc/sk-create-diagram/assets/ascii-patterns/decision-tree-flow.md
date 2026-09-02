@@ -7,7 +7,7 @@ trigger_phrases:
   - "order processing flow example"
 importance_tier: normal
 contextType: general
-version: 1.0.0.7
+version: 1.0.0.9
 ---
 
 # Decision Tree Flow Example - Complex Branching and Conditional Logic

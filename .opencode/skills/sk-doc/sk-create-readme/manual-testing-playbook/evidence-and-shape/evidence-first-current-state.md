@@ -1,7 +1,7 @@
 ---
 title: "RME-001 -- Evidence-first current-state README"
 description: "This scenario validates reading local evidence before documenting current files, commands, features and expected output."
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # RME-001 -- Evidence-first current-state README

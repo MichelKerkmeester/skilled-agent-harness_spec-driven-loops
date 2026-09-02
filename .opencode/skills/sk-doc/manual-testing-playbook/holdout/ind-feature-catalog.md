@@ -10,7 +10,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-feature-catalog
     leaf_resource_id: references/README.md
 stage: holdout
-version: 2.1.0.4
+version: 2.1.0.6
 ---
 
 # SD-H13: FEATURE_CATALOG Independent Holdout

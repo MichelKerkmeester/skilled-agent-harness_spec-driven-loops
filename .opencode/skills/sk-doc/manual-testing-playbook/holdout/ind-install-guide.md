@@ -13,7 +13,7 @@ expected_leaf_resources:
   - workflow_mode: sk-create-readme
     leaf_resource_id: references/README.md
 stage: holdout
-version: 2.1.0.5
+version: 2.1.0.7
 ---
 
 # SD-H12: INSTALL_GUIDE Independent Holdout

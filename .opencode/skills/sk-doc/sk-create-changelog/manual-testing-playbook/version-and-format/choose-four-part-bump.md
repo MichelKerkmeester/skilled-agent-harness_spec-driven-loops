@@ -1,7 +1,7 @@
 ---
 title: "CHG-003 -- Choose the four-part bump"
 description: "This scenario validates four-part bump selection for CHG-003. Major, minor, patch and build each map to a documented change type and auto detection follows the stated order."
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # CHG-003 -- Choose the four-part bump

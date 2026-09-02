@@ -1,7 +1,7 @@
 ---
 title: "FMB-003 -- Silent discovery drop"
 description: "This scenario validates the shared-budget diagnosis for `FMB-003`. Descriptions share one project-wide allowance, and going over it drops the longest entries from auto-discovery with no error at the point of failure."
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # FMB-003 -- Silent discovery drop

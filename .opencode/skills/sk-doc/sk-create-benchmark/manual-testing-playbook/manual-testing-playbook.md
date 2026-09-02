@@ -1,7 +1,7 @@
 ---
 title: "create-benchmark: Manual Testing Playbook"
 description: "Operator playbook for the create-benchmark workflow across MCP promotion, behavior, skill-benchmark, model-benchmark and agent-improvement inputs."
-version: 1.5.0.1
+version: 1.5.0.3
 ---
 
 # create-benchmark: Manual Testing Playbook

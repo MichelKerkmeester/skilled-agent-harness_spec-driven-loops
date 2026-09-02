@@ -2,7 +2,7 @@
 title: "RRL-003 -- Rule retirement"
 description: "This scenario validates the retirement ordering for `RRL-003`. It focuses on removing a rule in the inverted create order so no intermediate state leaves a row pointing at nothing."
 stage: routing
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # RRL-003 -- Rule retirement

@@ -9,7 +9,7 @@ trigger_phrases:
   - "editorial sketch register"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # Sketchy Filter (hand-drawn variant)

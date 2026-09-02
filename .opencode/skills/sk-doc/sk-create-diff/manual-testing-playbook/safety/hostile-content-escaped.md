@@ -2,7 +2,7 @@
 title: "SAFE-002 -- Hostile content is escaped"
 description: "This scenario validates hostile-content escaping for `SAFE-002`. It focuses on confirming document content containing markup is escaped as inert text and never becomes live markup or fails the validator."
 stage: routing
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # SAFE-002 -- Hostile content is escaped

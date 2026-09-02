@@ -10,7 +10,7 @@ trigger_phrases:
   - "map tokens to semantic roles"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # Style Guide Onboarding

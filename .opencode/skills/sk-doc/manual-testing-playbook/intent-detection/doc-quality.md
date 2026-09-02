@@ -19,7 +19,7 @@ expected_leaf_resources:
     leaf_resource_id: references/core-standards.md
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
-version: 2.1.0.17
+version: 2.1.0.19
 ---
 
 # SD-001: DOC_QUALITY Intent Detection

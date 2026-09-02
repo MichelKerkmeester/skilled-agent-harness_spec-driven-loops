@@ -9,7 +9,7 @@ trigger_phrases:
   - "command allowed-tools mistake"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.4
+version: 1.0.0.6
 ---
 
 # Command Creation - Component Choice and Common Pitfalls

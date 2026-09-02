@@ -9,7 +9,7 @@ trigger_phrases:
   - "testing playbook pitfalls"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.7
+version: 1.0.0.9
 ---
 
 # Manual Testing Playbook Creation - Reference Map

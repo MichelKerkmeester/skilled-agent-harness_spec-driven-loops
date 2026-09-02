@@ -2,7 +2,7 @@
 name: {{PACKET_NAME}}
 description: TODO — the primary workflow packet for the {{HUB_NAME}} hub (fill in ≤130 chars).
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.0.1
+version: 1.2.0.3
 ---
 
 # {{PACKET_TITLE}}

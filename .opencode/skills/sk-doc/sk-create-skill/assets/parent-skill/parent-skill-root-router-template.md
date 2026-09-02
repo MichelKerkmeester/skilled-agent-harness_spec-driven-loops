@@ -9,7 +9,7 @@ trigger_phrases:
   - "stage1-only router"
 importance_tier: normal
 contextType: general
-version: 1.2.0.9
+version: 1.2.0.11
 router_state: active
 skill_pointer: SKILL.md
 ---

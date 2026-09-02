@@ -8,7 +8,7 @@ trigger_phrases:
   - "structural validation rules"
 importance_tier: important
 contextType: general
-version: 2.1.0.34
+version: 2.1.0.36
 ---
 
 # Core Standards - Structure and Validation Rules

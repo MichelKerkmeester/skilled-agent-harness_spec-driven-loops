@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.0.18
+version: 1.2.0.20
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub

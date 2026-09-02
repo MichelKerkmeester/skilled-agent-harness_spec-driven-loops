@@ -1,7 +1,7 @@
 ---
 title: "RME-002 -- Code-folder navigation shape"
 description: "This scenario validates choosing a directory tree for nested code folders or a complete direct-file inventory for flat folders."
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # RME-002 -- Code-folder navigation shape

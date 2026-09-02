@@ -1,7 +1,7 @@
 ---
 title: "CHG-007 -- Pause on an ambiguous component"
 description: "This scenario validates unresolved component handling for CHG-007. The workflow asks for a component choice when path and hint evidence do not resolve one and writes nothing to a guessed folder."
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # CHG-007 -- Pause on an ambiguous component

@@ -2,7 +2,7 @@
 title: "CMP-001 -- Markdown before/after review"
 description: "This scenario validates Markdown before/after review for `CMP-001`. It focuses on producing a correct, full-fidelity before/after report from two versions of a Markdown document."
 stage: routing
-version: 1.1.0.2
+version: 1.1.0.4
 ---
 
 # CMP-001 -- Markdown before/after review

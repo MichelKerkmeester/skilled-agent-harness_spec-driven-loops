@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog back dating"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # Changelog Topology and Edge Cases

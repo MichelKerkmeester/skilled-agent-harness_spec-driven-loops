@@ -8,7 +8,7 @@ trigger_phrases:
   - "create-diff flags"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # CLI reference

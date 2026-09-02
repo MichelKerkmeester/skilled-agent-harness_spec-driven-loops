@@ -6,7 +6,7 @@ trigger_phrases:
   - "compare two files directly"
   - "compare-pair before after"
   - "stateless two-file diff"
-version: 1.1.0.2
+version: 1.1.0.4
 ---
 
 # Explicit-pair comparison (compare-pair)

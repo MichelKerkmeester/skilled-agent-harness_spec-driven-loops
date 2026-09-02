@@ -1,7 +1,7 @@
 ---
 title: "IMP-001 -- draw.io import"
 description: "This scenario validates draw.io import for `IMP-001`. It focuses on extracting a .drawio source into a digest, setting the four dials, redrawing rather than converting, and shipping a fidelity ledger."
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # IMP-001 -- draw.io import

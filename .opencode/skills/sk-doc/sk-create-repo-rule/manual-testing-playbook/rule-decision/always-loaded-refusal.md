@@ -2,7 +2,7 @@
 title: "RRD-001 -- Always-loaded refusal"
 description: "This scenario validates the always-loaded refusal for `RRD-001`. It focuses on refusing a proposal whose content must bind on every turn, and naming the always-loaded document as its destination."
 stage: routing
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # RRD-001 -- Always-loaded refusal

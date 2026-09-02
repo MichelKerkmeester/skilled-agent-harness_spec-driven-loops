@@ -1,7 +1,7 @@
 ---
 title: "MTP-001 -- Create a reusable package"
 description: "This scenario validates reusable playbook selection for `MTP-001`. It focuses on several features, deterministic evidence and release review."
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # MTP-001 -- Create a reusable package

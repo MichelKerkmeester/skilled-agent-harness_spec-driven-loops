@@ -13,7 +13,7 @@ expected_leaf_resources:
     leaf_resource_id: references/README.md
   - workflow_mode: sk-create-manual-testing-playbook
     leaf_resource_id: references/README.md
-version: 2.1.0.18
+version: 2.1.0.20
 ---
 
 # SD-009: Disambiguation Required (FEATURE_CATALOG ↔ PLAYBOOK)

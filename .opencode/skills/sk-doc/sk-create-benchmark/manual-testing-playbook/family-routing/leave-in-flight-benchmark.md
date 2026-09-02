@@ -1,7 +1,7 @@
 ---
 title: "BMR-002 -- Leave an in-flight benchmark in the packet"
 description: "This scenario validates the MCP promotion boundary for BMR-002. An unfinished, unstable or unreplayable benchmark remains in the spec packet and is not promoted into a live skill tree."
-version: 1.5.0.1
+version: 1.5.0.3
 ---
 
 # BMR-002 -- Leave an in-flight benchmark in the packet

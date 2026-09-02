@@ -1,7 +1,7 @@
 ---
 title: "create-readme: Manual Testing Playbook"
 description: "Operator-facing reference for routing, authoring and validating READMEs and install guides in the create-readme workflow."
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # create-readme: Manual Testing Playbook

@@ -6,7 +6,7 @@ trigger_phrases:
   - "behavior benchmark"
   - "skill-benchmark"
   - "model-benchmark"
-version: 1.5.0.20
+version: 1.5.0.22
 ---
 
 # create-benchmark

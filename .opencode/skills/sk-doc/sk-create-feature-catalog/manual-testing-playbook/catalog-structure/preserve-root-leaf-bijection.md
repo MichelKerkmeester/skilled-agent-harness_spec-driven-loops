@@ -1,7 +1,7 @@
 ---
 title: "FCR-002 -- Preserve root-to-leaf bijection"
 description: "This scenario validates root-to-leaf bijection for FCR-002. Every root link resolves to one per-feature file and every per-feature file appears in the root inventory."
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # FCR-002 -- Preserve root-to-leaf bijection

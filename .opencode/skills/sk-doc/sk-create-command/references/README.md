@@ -9,7 +9,7 @@ trigger_phrases:
   - "auto confirm command modes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.5
+version: 1.0.0.7
 ---
 
 # Command Creation Reference Map

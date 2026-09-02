@@ -6,7 +6,7 @@ trigger_phrases:
   - "validate diff report safety"
   - "validate_report.py check"
   - "self-contained report validator"
-version: 1.1.0.1
+version: 1.1.0.3
 ---
 
 # Report safety validation (validate_report.py)

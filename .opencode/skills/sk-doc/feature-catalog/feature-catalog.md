@@ -7,7 +7,7 @@ trigger_phrases:
   - "packet-authored registry routing"
   - "sk-doc compiled routing"
 last_updated: "2026-07-21"
-version: 2.1.0.6
+version: 2.1.0.8
 ---
 
 # sk-doc: Feature Catalog

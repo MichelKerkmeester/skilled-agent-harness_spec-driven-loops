@@ -2,7 +2,7 @@
 title: "HVT-003 -- The judgment pass the scanner cannot run"
 description: "This scenario validates the judgment pass for `HVT-003`. It confirms the eleven categories the scanner prints as unchecked are answered by a reader, so a clean mechanical result is never reported as a clean document."
 stage: routing
-version: 1.1.0.2
+version: 1.1.0.4
 ---
 
 # HVT-003 -- The judgment pass the scanner cannot run

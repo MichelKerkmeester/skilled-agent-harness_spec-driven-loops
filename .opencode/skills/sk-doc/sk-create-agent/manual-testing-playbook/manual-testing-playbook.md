@@ -1,7 +1,7 @@
 ---
 title: "create-agent: Manual Testing Playbook"
 description: "Operator-facing reference for choosing, authoring and validating runtime agent markdown files in the create-agent workflow."
-version: 1.0.0.1
+version: 1.0.0.3
 ---
 
 # create-agent: Manual Testing Playbook

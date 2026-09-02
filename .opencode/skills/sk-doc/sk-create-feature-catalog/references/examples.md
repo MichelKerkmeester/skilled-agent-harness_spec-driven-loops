@@ -9,7 +9,7 @@ trigger_phrases:
   - "worked feature catalog"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.6
+version: 1.0.0.8
 ---
 
 # Feature Catalog Examples - Live Catalog Walkthrough

@@ -9,7 +9,7 @@ trigger_phrases:
   - "allowed-tools least privilege"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.2
+version: 1.0.0.4
 ---
 
 # Command Creation - Argument Hints and Modes

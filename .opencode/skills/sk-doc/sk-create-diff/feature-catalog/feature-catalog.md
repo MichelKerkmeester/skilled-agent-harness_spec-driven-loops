@@ -7,7 +7,7 @@ trigger_phrases:
   - "before after document review"
   - "feature catalog"
 last_updated: "2026-07-20"
-version: 1.1.0.3
+version: 1.1.0.5
 ---
 
 # create-diff: Feature Catalog

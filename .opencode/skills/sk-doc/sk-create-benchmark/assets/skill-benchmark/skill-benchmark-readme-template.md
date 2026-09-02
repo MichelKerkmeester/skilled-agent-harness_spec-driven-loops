@@ -8,7 +8,7 @@ trigger_phrases:
   - "run-label index table template"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.0.9
+version: 1.5.0.11
 ---
 
 # Skill-Benchmark README Index Template

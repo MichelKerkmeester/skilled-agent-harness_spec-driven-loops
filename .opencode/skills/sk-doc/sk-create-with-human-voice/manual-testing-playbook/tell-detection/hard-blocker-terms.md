@@ -2,7 +2,7 @@
 title: "HVT-001 -- Hard blocker terms on the dirty fixture"
 description: "This scenario validates the mechanical pass for `HVT-001`. It runs the scanner over the shipped dirty fixture and confirms the hard-blocker count, the arithmetic, the masking of code spans and the non-zero exit."
 stage: routing
-version: 1.1.0.2
+version: 1.1.0.4
 ---
 
 # HVT-001 -- Hard blocker terms on the dirty fixture

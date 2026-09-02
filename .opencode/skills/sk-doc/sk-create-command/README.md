@@ -4,7 +4,7 @@ description: "Turns a repeatable workflow into a validated OpenCode slash comman
 trigger_phrases:
   - "create command"
   - "slash command"
-version: 1.0.0.10
+version: 1.0.0.12
 ---
 
 # create-command

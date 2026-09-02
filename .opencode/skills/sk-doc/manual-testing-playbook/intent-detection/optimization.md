@@ -13,7 +13,7 @@ expected_leaf_resources:
     leaf_resource_id: references/optimization.md
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: assets/llmstxt-templates.md
-version: 2.1.0.16
+version: 2.1.0.18
 ---
 
 # SD-016: OPTIMIZATION Intent Detection

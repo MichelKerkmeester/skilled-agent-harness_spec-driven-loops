@@ -1,7 +1,7 @@
 ---
 title: "BMR-004 -- Author a Lane C index"
 description: "This scenario validates Lane C index authoring for BMR-004. The workflow owns the hub benchmark README and storage convention while the deep-improvement lane owns reports, scoring and rendering."
-version: 1.5.0.1
+version: 1.5.0.3
 ---
 
 # BMR-004 -- Author a Lane C index

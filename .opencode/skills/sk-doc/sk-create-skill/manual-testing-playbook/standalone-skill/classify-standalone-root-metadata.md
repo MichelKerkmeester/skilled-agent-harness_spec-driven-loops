@@ -1,7 +1,7 @@
 ---
 title: "SKL-002 -- Classify standalone root metadata"
 description: "This scenario validates standalone root metadata for `SKL-002`. It focuses on class S, authored declarations, generated manifests and forbidden hub files."
-version: 1.2.0.1
+version: 1.2.0.3
 ---
 
 # SKL-002 -- Classify standalone root metadata

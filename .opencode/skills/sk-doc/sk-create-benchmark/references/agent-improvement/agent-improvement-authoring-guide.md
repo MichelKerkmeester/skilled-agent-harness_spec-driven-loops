@@ -9,7 +9,7 @@ trigger_phrases:
   - "agent-improvement setup docs"
 importance_tier: normal
 contextType: reference
-version: 1.5.0.3
+version: 1.5.0.5
 ---
 
 # Agent-Improvement Authoring Guide

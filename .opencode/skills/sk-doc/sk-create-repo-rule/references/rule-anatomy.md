@@ -9,7 +9,7 @@ trigger_phrases:
   - "divergence classification"
 importance_tier: important
 contextType: reference
-version: 1.1.0.3
+version: 1.1.0.5
 ---
 
 # Rule Anatomy Contract
