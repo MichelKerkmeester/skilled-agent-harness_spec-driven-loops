@@ -1,16 +1,16 @@
 ---
-title: "Tasks: Install and verify the official Obsidian CLI and add agent-facing usage support to the mcp-obsidian skill alongside the existing MCP surface [template:level-2/tasks.md]"
+title: "Tasks: Official Obsidian CLI agent-usage support in mcp-obsidian"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
+  - "official obsidian cli tasks"
+  - "obsidian cli verification tasks"
+  - "app-backed cli checklist"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Install and verify the official Obsidian CLI and add agent-facing usage support to the mcp-obsidian skill alongside the existing MCP surface
+# Tasks: Official Obsidian CLI agent-usage support in mcp-obsidian
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm the CLI is already registered rather than installing anything (`readlink -f /usr/local/bin/obsidian` → `/Applications/Obsidian.app/Contents/MacOS/obsidian-cli`)
+- [x] T002 Record the app-down failure contract before starting the app (stderr, exit 1, no auto-launch)
+- [x] T003 [P] Start the desktop app and capture the full command surface (`obsidian help` → 106 commands, saved for analysis)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +44,16 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Author the agent contract (`references/official-cli-agent-usage.md`): preflight, exit-0 result handling, `key=value` syntax, surface selection, command surface, safety invariants, vendor disagreements, verification status
+- [x] T005 Wire the `OFFICIAL_CLI` router intent into `INTENT_SIGNALS`, `RESOURCE_MAP`, the §2 loading map, the §8 inventory and the intent count (`SKILL.md`)
+- [x] T006 Replace the PATH-only official-CLI check with a live `obsidian version` probe (`scripts/doctor.sh`)
+- [x] T007 Add the two missing failure modes: app-down and exit-0-on-error (`references/troubleshooting.md` §5b, §5c)
+- [x] T008 Correct the false auto-launch claim in all nine files that asserted it, one of them as `Confirmed behavior`
+- [x] T009 Replace `obsidian --help` with `obsidian help` in 14 files, leaving `notesmd-cli --help` intact because that binary does take POSIX flags
+- [x] T010 Replace positional-argument examples with the real `obsidian <command> key=value` grammar (`SKILL.md`, playbook root, `official-cli/open-app-action.md`)
+- [x] T011 Add the executable form of the contract (`examples/official-cli-workflow.sh`) and index it (`examples/README.md` §3.3, `SKILL.md` §8)
+- [x] T012 Rewrite the two `official-cli/` playbook scenarios to preflight with `obsidian version` and judge by stdout
+- [x] T013 Write the release entry and bump versions (`changelog/v0.23.0.0.md`, `SKILL.md` 0.23.0.0, `obsidian-cli-commands.md` 0.2.0.0)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +61,13 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T014 Negative control: run `doctor.sh` with the app down and confirm the previously green check became a warning
+- [x] T015 Positive control: restart the app and confirm `doctor.sh` reports the version and liveness
+- [x] T016 Run `examples/official-cli-workflow.sh` in both conditions: exit 1 with guidance when down, full round trip and self-cleanup when up
+- [x] T017 Execute `SKILL.md`'s own `route_obsidian_resources` to prove `OFFICIAL_CLI` resolves and no existing intent regressed
+- [x] T018 `bash -n` on all four touched shell scripts
+- [x] T019 Reconcile the vault to its pre-change baseline and confirm no scratch note survived
+- [x] T020 Run `validate.sh <packet> --strict` and require an explicit `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +75,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +87,7 @@ contextType: "general"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Closure gate**: See `acceptance-criteria.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -98,9 +109,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001..REQ-007)
+- [x] CHK-002 [P0] Technical approach defined in plan.md, including the six autonomous decisions
+- [x] CHK-003 [P1] Dependencies identified and available: desktop 1.13.7, registration symlink present
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,10 +119,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] `bash -n` clean on `doctor.sh`, `install.sh`, `setup.sh`, `official-cli-workflow.sh`
+- [x] CHK-011 [P0] No errors or warnings in either script run; `doctor.sh` exits 0 in both app states
+- [x] CHK-012 [P1] Error handling implemented: the `obs()` wrapper converts the CLI's stdout error text into a non-zero status, and the example script traps for cleanup
+- [x] CHK-013 [P1] Follows project patterns: the example matches the banner, helper and preflight conventions of `headless-notes-workflow.sh`; comments carry the durable WHY and no ephemeral artifact labels
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -119,10 +130,10 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met (AC-001..AC-011 all `Met`)
+- [x] CHK-021 [P0] Manual testing complete in both app-down and app-up conditions
+- [x] CHK-022 [P1] Edge cases tested: name collision, missing file, unknown command, unknown vault, omitted target
+- [x] CHK-023 [P1] Error scenarios validated: every observed failure exits 0 except the app-down case, which exits 1 on stderr
 <!-- /ANCHOR:testing -->
 
 ---
@@ -130,13 +141,13 @@ contextType: "general"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Finding class recorded: the auto-launch claim is `cross-consumer` (one false statement replicated across nine files); the `--help` syntax error is `class-of-bug`
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed by grep for `launch`, `--help`, and positional-argument forms across the packet
+- [x] CHK-FIX-003 [P0] Consumer inventory completed: references, SKILL.md router, scripts, feature catalog, playbook, install guide, README and examples index all updated
+- [x] CHK-FIX-004 [P0] Not applicable. No security, path, parser or redaction logic was changed; the only executable change is a read-only diagnostic probe and an example script
+- [x] CHK-FIX-005 [P1] Matrix axes listed: {app down, app up} × {binary registered, not registered} for the preflight, and {missing file, unknown command, unknown vault, empty search} for the result contract
+- [x] CHK-FIX-006 [P1] Hostile-state variant executed: the app was quit and restarted to produce both global states rather than simulating them
+- [x] CHK-FIX-007 [P1] Evidence is pinned to observed command output recorded in `implementation-summary.md`, not to a moving range
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -144,9 +155,9 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No hardcoded secrets. No vault content, note text or API key appears in any committed file
+- [x] CHK-031 [P0] Input validation implemented: the example confirms the vault exists before mutating, because an unknown vault reports failure and still exits 0
+- [x] CHK-032 [P1] Auth/authz unchanged. The `eval` and `dev:*` families are documented with their blast radius stated rather than presented as ordinary commands
 <!-- /ANCHOR:security -->
 
 ---
@@ -154,9 +165,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks/acceptance-criteria synchronized
+- [x] CHK-041 [P1] Code comments adequate and free of ephemeral artifact labels
+- [x] CHK-042 [P2] README updated: skill README, INSTALL-GUIDE and examples README all carry the corrected contract
 <!-- /ANCHOR:docs -->
 
 ---
@@ -164,8 +175,8 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only. The captured help output stayed in the session scratchpad, outside the repository
+- [x] CHK-051 [P1] scratch/ clean before completion; the scoped diff contains no task-created residue
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -175,14 +186,11 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-09-02
 <!-- /ANCHOR:summary -->
 
 ---
-
-
-
