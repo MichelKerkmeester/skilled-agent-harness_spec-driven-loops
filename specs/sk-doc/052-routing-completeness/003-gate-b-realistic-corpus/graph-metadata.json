@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-02T16:35:51.732Z",
+    "last_save_at": "2026-09-02T17:14:03.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f02d1065d7bc3f3f25e5fe99324c4d6775005035f5e9104d258264dd729d56a8",
+    "source_fingerprint": "sha256:6901dbc915ada611cc129a26119edda5b92077304453e1df4fb3474960fa63c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e22ae0c565bdba6f70a96d32acda570063142a8332a98a264cd2a71f44aee06e",
+      "spec.md": "0b5a732961b0600d4f4b9a2bf94e1f8239ebb37a7c736acedc910567430ed036",
       "plan.md": "8f9b93ddc3192aed6dd01e4a233f1be90d60254bc3166089a2c693024327cf21",
       "tasks.md": "49e755d01020cc6dab82faada577f5abbca00f0efb1f22ca8d3b226a25ac52c3",
       "implementation-summary.md": "aa18daa892da6609a34fd28b82e2e0a5a11f3596c696866d9596acfa17b3fd95"

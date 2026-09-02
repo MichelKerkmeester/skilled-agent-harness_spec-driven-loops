@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-02T16:35:53.437Z",
+    "last_save_at": "2026-09-02T17:14:05.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1506d83269a90da5d4ef96a0a90ca41a075559515b94045dac6e3ea4052566b3",
+    "source_fingerprint": "sha256:b429f5c9fdf5b6540e0cfe39b1bbee04adb743b150bf52937d9674f9f8e59f86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eda4c59a15ba47167e3b3e3e0db26f6724dd4eac54aebaf827b2ed4ff8c655e1",
+      "spec.md": "ec37584220fb45c7aff78c9a13da02f73c26ef8f46a78cc27898d6c5d4220c09",
       "plan.md": "3922dd580726be2d1943e9eb5e1587e36247b6cb2a385950222731012e1cbffb",
       "tasks.md": "4a493a1b19eadf35555db06b54766757509bc83b8621204f2b2f8a6ae91b41b1",
       "implementation-summary.md": "b81bbf98345809cf5cad5724598617af24f9b006cfb0cbfd353fa962cc74b092"

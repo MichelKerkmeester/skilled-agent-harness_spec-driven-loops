@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: gate-b-realistic-corpus [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Eight of one hundred and eighty phrasings a person would actually type reach the right mode. The cause is not vocabulary, so no amount of keyword work moves this number."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -69,10 +69,37 @@ This is **Phase 3** of the routing completeness phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+Against a corpus of 180 prompts written the way people write, 8 reach the intended mode.
+Reading generously, counting the mode appearing anywhere in the returned list rather than
+first, 20 do. Ninety-four return no recommendation at all.
+
+An earlier corpus scored 44 percent, and the difference between the two is the measurement
+rather than a regression. That corpus used phrasings close to the declared keywords. This one
+does not, and the advisor matches keywords by substring.
+
+**The cause is structural.** The only lane that could match meaning rather than spelling is
+weighted at 0.05, carries a shadow flag that excludes it from live scoring, and has no
+embeddings at all: zero of fourteen skill nodes. Semantic matching exists as scaffolding, is
+switched off, and has no data behind it. So vocabulary work cannot move this number, and a
+phase that adds keywords would report progress while changing nothing a user experiences.
+
+Three mechanisms underneath are precise and worth separating from that:
+
+- One hub carries duplicate advisor entries under bare executor names, uncompiled, which
+  outrank the correct compiled route. Twelve rows, one hub, one shape.
+- Two modes route by command surface rather than by prompt, so they can never be reached
+  through this channel and do not belong in the denominator.
+- A hub outside the measured five wins fourteen rows, so the collision is wider than the
+  five-hub framing assumed.
+
+Right hub with the wrong mode happened zero times in 180 rows. Stage two is accurate whenever
+it fires, which locates the whole problem at stage one.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+The corpus is committed and re-runnable, the honest starting number is on record, and the
+work that would actually move it is separated from the work that would only look like it.
 <!-- /ANCHOR:problem -->
 
 ---

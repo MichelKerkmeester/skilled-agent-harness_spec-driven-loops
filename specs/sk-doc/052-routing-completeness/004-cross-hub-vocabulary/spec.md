@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 4: cross-hub-vocabulary [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "The cross-hub collision is real and smaller than it looked. Both gates now show vocabulary was never the binding constraint, so this phase fixes the collisions worth fixing and stops pretending keyword work reaches natural language."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -69,10 +69,27 @@ This is **Phase 4** of the routing completeness phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+This phase was scoped before either gate was measured, on the belief that a cross-hub
+vocabulary collision was the main obstacle. Both measurements have since arrived and the
+belief was half right.
+
+The collision is real. One hub wins fourteen rows it does not own, another wins sixteen
+across three hubs on surface vocabulary, and one identical intent loses decisively when
+phrased with a product name and returns nothing at all without it.
+
+But vocabulary is not what holds the realistic number down. Ninety-four of one hundred and
+eighty prompts return nothing at all, because they contain none of the declared words in any
+form. Adding words to the same lists moves signals, which is the other gate, and leaves a
+sentence that shares no vocabulary exactly where it was.
+
+So this phase narrows to the collisions that are genuinely vocabulary-shaped and hands the
+rest to a decision it cannot make alone.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+Every collision that keyword ownership can settle is settled, both hubs are re-measured, and
+the part that keyword ownership cannot reach is stated plainly rather than absorbed.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -81,13 +98,22 @@ This is **Phase 4** of the routing completeness phases specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+
+- The duplicate uncompiled entries under bare executor names, which outrank their own
+  compiled routes. One hub, twelve rows, one shape.
+- The surface-vocabulary bundling that takes rows belonging to three other hubs.
+- Removing the command-surface modes from the realistic denominator, since they route by a
+  channel this corpus does not exercise.
+- Re-measuring both hubs after every change, with canaries and manifests, so a win here is
+  not a loss somewhere unmeasured.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+
+- Reaching the realistic target by adding keywords. The measurement says that does not work,
+  and a phase that tried would report progress without producing any.
+- Enabling the semantic lane. That is the work that would move the number, it is a scoring
+  change rather than a vocabulary one, and it needs its own decision because it invalidates
+  every measurement in this packet.
 
 ### Files to Change
 
