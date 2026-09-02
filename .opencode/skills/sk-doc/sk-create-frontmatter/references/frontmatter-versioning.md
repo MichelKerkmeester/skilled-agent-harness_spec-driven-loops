@@ -163,7 +163,7 @@ Edit **line-wise**. Never run a YAML re-serializer — it reflows and corrupts m
 
 1. **Format-check:** `quick_validate.py` and `package_skill.py` reject a `version` that is not `^\d+\.\d+\.\d+\.\d+$`.
 2. **Required:** the same validators error on an absent `version` for skills (commands keep it optional).
-3. **Corpus gate:** `shared/scripts/check-frontmatter-versions.sh` (a wrapper for `frontmatter-version.mjs gate`) discovers every in-scope doc git-free and exits non-zero on any missing/malformed version. Run it in CI / pre-commit; frontmatter-less docs are skipped, not failed.
+3. **Corpus gate:** `shared/scripts/check-frontmatter-versions.sh` (a wrapper for `frontmatter-version.mjs gate`) discovers every in-scope doc git-free and exits non-zero on any missing/malformed version. Run it in CI or pre-commit. Frontmatter-less docs are skipped, not failed.
 
 ---
 

@@ -16,7 +16,7 @@ This scenario validates the shared-budget diagnosis for `FMB-003`. It focuses on
 
 ### Why This Matters
 
-The symptom has no error attached to it, which is what makes it hard. A skill stops being auto-suggested, stays invocable when named explicitly, and nothing in any log says why. The field reference explains it: the budget is a project total, and when it is exceeded the harness silently drops the longest descriptions from the available-skills list. The scope is what most diagnoses get wrong. The file that stopped being found may be entirely within its own per-skill target and be dropped because other files grew. That inverts the normal debugging instinct, which is to look at the file that broke. This scenario checks that the answer names the shared cost, not a per-file style rule, and that it points at a check for accumulated drift rather than at one description.
+The symptom has no error attached to it, which is what makes it hard. A skill stops being auto-suggested, stays invocable when named explicitly, and nothing in any log says why. The field reference explains it: the budget is a project total, and when it is exceeded Claude Code silently drops the longest descriptions from the available-skills list. The scope is what most diagnoses get wrong. The file that stopped being found may be entirely within its own per-skill target and be dropped because other files grew. That inverts the normal debugging instinct, which is to look at the file that broke. This scenario checks that the answer names the shared cost, not a per-file style rule, and that it points at a check for accumulated drift rather than at one description.
 
 ---
 

@@ -149,9 +149,9 @@ A: Because six modes emit it and every one of their templates defers to the same
 
 A: One of them is resolved by literal path from a post-edit hook outside this hub, on every qualifying edit. Moving it would break a live hook to gain nothing. Enforcement is exactly the kind of many-consumer utility a shared tier is for, and the rules are exactly what it is not.
 
-**Q: The budget constants are in the Python validator and in the markdown. Is that a bug?**
+**Q: Where do the budget numbers actually live?**
 
-A: It is deliberate and the validator's own docstring says so. The script needs the numbers to run fast without reading a 900-line document. The markdown carries the reasoning, the worked trim example and the class table. Duplicating two integers is cheaper than either alternative.
+A: In `shared/assets/skill-contract.json` under `descriptionBudget`. `quick_validate.py` reads them through `skill_contract.py` at import time and falls back to matching literals only if that import fails, so editing the Python literals changes nothing while the import works. Change a budget there, and nowhere else. The field reference in `assets/` repeats the same numbers with the reasoning, the worked trim example and the class table, which is a doc-side copy rather than a second input. The validator's own docstring still calls its literals the single source of truth for the Python validators. The code below it disagrees, and the code wins.
 
 **Q: Why is `version` four parts?**
 
@@ -171,8 +171,7 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 | Hub check | `node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-doc` | Exit 0 |
 | Link integrity | `python3 .opencode/skills/sk-doc/shared/scripts/resolve_skill_markdown_links.py --repo-root . --scope .opencode/skills/sk-doc/sk-create-frontmatter` | `failures=0` |
 | Corpus version gate | `bash .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh --skill sk-doc` | Exit 0 |
-| Playbook package | `node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook` | `PASS`, tier `FAIL_CLOSED`, `violations=0` |
-| Playbook is visible to the benchmark | `node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs --skill .opencode/skills/sk-doc/sk-create-frontmatter` | `scenarios` length 11, `warnings` empty |
+| Playbook package | `node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .opencode/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook` | `PASS`, tier `FAIL_CLOSED`, `operator=11`, `violations=0`. Read the operator count, not the exit status: a package filtered out of the contract reports `SKIP` at exit zero |
 
 ---
 
