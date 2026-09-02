@@ -98,7 +98,7 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase checkboxes and task state. The three phases below describe what each one is for.
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state. The three phases below describe what each one is for.
 
 ### Phase 1: Verify the claims and capture a baseline
 

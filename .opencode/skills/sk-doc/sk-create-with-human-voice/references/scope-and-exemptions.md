@@ -115,13 +115,16 @@ that mattered.
 **In a template, the fenced block is the deliverable rather than a quotation.** The scanner
 skips fenced content by default, which is right for a document quoting a command or an error
 string, and exactly wrong for a template whose whole output lives inside a fence. Scanning one
-without `--include-code` reads past the only part that reaches a new file, and the template
+without reading that fence reads past the only part that reaches a new file, and the template
 then scores clean while seeding every document authored from it.
 
-The gap is not hypothetical. Of forty templates measured across the skills tree, twenty-four
-hide blockers this way. The worst scores zero and emits forty-three, and the voice mode's own
-report template hides six. So scan a template with `--include-code`, and read a zero without
-that flag as unmeasured rather than as a pass.
+The gap was not hypothetical. Of forty templates measured across the skills tree, twenty-four
+hid blockers this way. The worst scored zero and emitted forty-three, and the voice mode's own
+report template hid six. The scanner now detects a template by its own naming convention (a
+name ending in "template" or "templates", under an `assets/` or `templates/` tree) and reads
+its fenced payload without needing `--include-code`. A target that does not match still masks
+by default, so a zero on a document is a pass and a zero on an undetected template is still
+unmeasured, worth a manual `--include-code` run to confirm.
 
 ---
 

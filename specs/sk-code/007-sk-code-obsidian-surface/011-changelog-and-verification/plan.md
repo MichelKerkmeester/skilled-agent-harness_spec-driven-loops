@@ -121,7 +121,7 @@ phase-map's forward-looking language.
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase
 state. In brief: read the sibling changelog and the prior two phases' summaries, verify the hub
 wiring and packet contents directly, write the changelog, then re-run the full gate suite and record
 its real result including the deliberate `scan-comments` failure and the remaining phases.

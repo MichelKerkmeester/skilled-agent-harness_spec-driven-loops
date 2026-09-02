@@ -138,7 +138,7 @@ into `SKILL.md` + `run-source-gates.sh` -> re-run full plugin gate suite to conf
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase
 state. In brief: build the guard and its reference documentation, run it against the live tree to
 surface the real drift count, repair every broken citation, wire the guard into `SKILL.md` and the
 gates runner, prove the guard cannot pass falsely in both directions, then re-run the full plugin

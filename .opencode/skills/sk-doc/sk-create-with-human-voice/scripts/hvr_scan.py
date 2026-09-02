@@ -27,6 +27,11 @@ Usage:
   python3 hvr_scan.py <file> --include-code     # do not skip code spans
   python3 hvr_scan.py <file> --rules <path>     # point at another standard
 
+A target whose name marks it as a template (ends in "template"/"templates") and
+sits in an assets/ or templates/ tree is scanned as if --include-code were
+passed: its fenced block is the deliverable, not a quotation, and masking it by
+default would let a banned character ride into every document authored from it.
+
 Exit status: 0 when no hard blocker is found, 1 when at least one is,
 2 on a usage or read error.
 """
@@ -203,6 +208,31 @@ def load_rules(rules_path):
 # ───────────────────────────────────────────────────────────────
 
 FENCE = re.compile(r"^\s*(```|~~~)")
+
+# A template's filename ends in "template" (a document ABOUT templates starts
+# with the word instead, e.g. "template-guide.md"), which is how the skills tree
+# already tells the two apart.
+TEMPLATE_STEM_RE = re.compile(r"(?:^|[-_.])templates?$", re.IGNORECASE)
+
+
+def is_template_path(path):
+    """Return whether a target is a template payload rather than running prose.
+
+    A template's whole output lives inside its own fenced block, so masking the
+    fence by default reads past the only part that reaches a new file. A target
+    counts as a template when its name marks it as one (see ``TEMPLATE_STEM_RE``)
+    and it sits where the skills tree keeps a payload rather than prose about
+    one: an ``assets/`` directory, or anywhere under a ``templates/`` tree.
+    """
+    normalized = str(path).replace("\\", "/")
+    parts = [part for part in normalized.split("/") if part]
+    if not parts:
+        return False
+    stem = Path(parts[-1]).stem
+    if not TEMPLATE_STEM_RE.search(stem):
+        return False
+    parents = parts[:-1]
+    return "assets" in parents or "templates" in parents
 
 
 def mask_untargeted(lines, include_code):
@@ -381,6 +411,8 @@ UNSCORED = (
 
 def render(path, result, every_occurrence=False):
     out = [f"HVR SCAN: {path}"]
+    if result.get("templatePayload"):
+        out.append("  template payload detected: fenced content scanned, not masked")
     findings = result["findings"]
     if not findings:
         out.append("  no mechanical findings")
@@ -454,8 +486,10 @@ def main(argv=None):
         except OSError as error:
             print(f"hvr_scan: cannot read {target}: {error}", file=sys.stderr)
             return 2
-        result = scan_text(text, rules, include_code=args.include_code)
+        template_payload = target != "-" and is_template_path(target)
+        result = scan_text(text, rules, include_code=args.include_code or template_payload)
         result["path"] = target
+        result["templatePayload"] = template_payload
         reports.append(result)
         worst = max(worst, result["hardBlockers"])
 
