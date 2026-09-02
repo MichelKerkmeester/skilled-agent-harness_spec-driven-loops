@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/051-sk-create-chart",
+  "spec_folder": "sk-doc/051-sk-create-chart",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/051-sk-create-chart/001-source-inventory-and-placement",
+    "sk-doc/051-sk-create-chart/002-translation-and-voice",
+    "sk-doc/051-sk-create-chart/003-packet-scaffold",
+    "sk-doc/051-sk-create-chart/004-content-migration",
+    "sk-doc/051-sk-create-chart/005-routing-integration",
+    "sk-doc/051-sk-create-chart/006-playbook-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-chart",
+      "lieflat charts adoption",
+      "import an external skill",
+      "chart template skill"
+    ],
+    "key_topics": [
+      "sk-create-chart",
+      "lieflat",
+      "charts",
+      "adoption",
+      "import",
+      "external",
+      "skill",
+      "chart",
+      "template",
+      "lieflat-charts",
+      "data-visualization",
+      "elsewhere"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
+    "created_at": "2026-09-02T07:56:48Z",
+    "last_save_at": "2026-09-02T08:06:01.653Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:8267202b073f64707a1d6a1869166028072d53b3327752a55a3429546f2e2c8f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "26a3f0ca27ed189f4b1bf9628765bcfe457083bfd49b48f5ca05c4416070093c"
+    },
+    "last_active_child_id": "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
+    "last_active_at": null
+  }
+}

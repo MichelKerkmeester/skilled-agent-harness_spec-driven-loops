@@ -1,0 +1,17 @@
+{
+  "specFolder": "sk-doc/051-sk-create-chart/004-content-migration",
+  "description": "Phase 4: content-migration",
+  "keywords": [
+    "phase",
+    "content-migration"
+  ],
+  "lastUpdated": "2026-09-02T07:56:51.534Z",
+  "specId": "004",
+  "folderSlug": "content-migration",
+  "parentChain": [
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

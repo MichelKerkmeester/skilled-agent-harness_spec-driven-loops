@@ -1,0 +1,17 @@
+{
+  "specFolder": "sk-doc/051-sk-create-chart/005-routing-integration",
+  "description": "Phase 5: routing-integration",
+  "keywords": [
+    "phase",
+    "routing-integration"
+  ],
+  "lastUpdated": "2026-09-02T07:56:52.299Z",
+  "specId": "005",
+  "folderSlug": "routing-integration",
+  "parentChain": [
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

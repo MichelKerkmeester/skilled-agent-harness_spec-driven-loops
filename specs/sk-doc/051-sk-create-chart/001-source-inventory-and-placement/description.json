@@ -1,0 +1,17 @@
+{
+  "specFolder": "sk-doc/051-sk-create-chart/001-source-inventory-and-placement",
+  "description": "Phase 1: source-inventory-and-placement",
+  "keywords": [
+    "phase",
+    "source-inventory-and-placement"
+  ],
+  "lastUpdated": "2026-09-02T07:56:49.264Z",
+  "specId": "001",
+  "folderSlug": "source-inventory-and-placement",
+  "parentChain": [
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -1,0 +1,17 @@
+{
+  "specFolder": "sk-doc/051-sk-create-chart/003-packet-scaffold",
+  "description": "Phase 3: packet-scaffold",
+  "keywords": [
+    "phase",
+    "packet-scaffold"
+  ],
+  "lastUpdated": "2026-09-02T07:56:50.766Z",
+  "specId": "003",
+  "folderSlug": "packet-scaffold",
+  "parentChain": [
+    "001-sk-create-chart"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
