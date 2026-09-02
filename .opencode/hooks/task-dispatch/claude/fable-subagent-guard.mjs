@@ -27,8 +27,15 @@ function readStdin() {
   }
 }
 
-// Last "model":"claude-…" wins: the transcript appends chronologically, so the
-// final occurrence reflects the model currently driving the main loop.
+// Last main-loop model wins: the transcript appends chronologically, so the final
+// occurrence reflects the model currently driving the session.
+//
+// Sidechain lines must be excluded, and that is the whole difficulty. A subagent
+// entry carries its own model, and dispatching one is the action this guard
+// PERMITS, so a raw scan of the tail reads the permitted subagent's model as the
+// parent's and concludes the parent is safe. The guard would then wave through the
+// fork it exists to stop, defeated by its own allowed path. Parse per line and keep
+// only entries the transcript marks as belonging to the main loop.
 function activeMainModel(transcriptPath) {
   try {
     const stat = fs.statSync(transcriptPath);
@@ -37,9 +44,21 @@ function activeMainModel(transcriptPath) {
     const buf = Buffer.alloc(stat.size - start);
     fs.readSync(fd, buf, 0, buf.length, start);
     fs.closeSync(fd);
-    const matches = buf.toString('utf8').match(/"model":"(claude-[a-z0-9.[\]-]+)"/g);
-    if (!matches || matches.length === 0) return null;
-    return matches[matches.length - 1].slice(9, -1);
+
+    const lines = buf.toString('utf8').split('\n');
+    // A tail read can begin mid-line, and a half object is not evidence of anything.
+    if (start > 0) lines.shift();
+
+    let model = null;
+    for (const line of lines) {
+      if (!line.startsWith('{')) continue;
+      let entry;
+      try { entry = JSON.parse(line); } catch { continue; }
+      if (entry?.isSidechain === true) continue;
+      const candidate = entry?.message?.model ?? entry?.model;
+      if (typeof candidate === 'string' && candidate.startsWith('claude-')) model = candidate;
+    }
+    return model;
   } catch {
     return null;
   }
