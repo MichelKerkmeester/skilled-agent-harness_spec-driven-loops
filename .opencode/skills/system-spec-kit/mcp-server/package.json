@@ -42,7 +42,8 @@
     "test:watch": "vitest",
     "bench:watcher": "node dist/skill_advisor/bench/watcher-benchmark.js",
     "setup:codex-policy": "node dist/hooks/codex/setup.js",
-    "typecheck:tests": "tsc --noEmit --composite false -p tsconfig.tests.json"
+    "typecheck:tests": "tsc --noEmit --composite false -p tsconfig.tests.json",
+    "test:sharded": "node scripts/run-tests-sharded.mjs"
   },
   "keywords": [
     "mcp",
