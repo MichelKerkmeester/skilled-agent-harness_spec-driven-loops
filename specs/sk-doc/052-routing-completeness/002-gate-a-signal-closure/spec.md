@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 2: gate-a-signal-closure [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Half the declared routing vocabulary across the five hubs resolves to nothing usable. Measured at 234 of 444, with one hub at six percent, so this phase closes the gap the measurement found rather than the one anyone expected."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -69,10 +69,26 @@ This is **Phase 2** of the routing completeness phases specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode.
+The rest split into 73 that reach their hub and are then dropped, 72 that reach a different
+hub, 59 that surface nothing at all, and 6 that name several modes at once.
+
+The distribution is the finding rather than the total. The documentation hub sits at 90
+percent and every audit this session looked there. The executor hub sits at **6 percent**,
+and nobody had measured it. Forty-seven of its signals are bare executor-name fragments that
+surface nothing, and its own headline phrase loses to a lexical alias carrying no route.
+
+One methodological correction is recorded with the data, because it changed the answer.
+Ranking is not by the score field. The comparator adds command, intent and conflict
+adjustments and then falls through to rank fusion, so the first element is the only rank
+source. A pass that re-sorted by score inflated one hub from 7 to 44 purely through
+tie-break direction.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+
+Every declared signal either resolves to exactly one mode or is retired, with the choice
+recorded.
 <!-- /ANCHOR:problem -->
 
 ---
