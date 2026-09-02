@@ -42,8 +42,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
@@ -104,6 +109,26 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
 // A native SVG tooltip. The value a reader hovers is the value in the data block,
 // with no library, no listener and no state: the browser draws it and a screen
 // reader reads it as the mark's name.
@@ -131,12 +156,15 @@ const BASE = 258;
 const TICKS = 4;
 const peak = DATA.reduce(function (m, d) { return Math.max(m, d.high); }, 0);
 const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
 const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
 
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
-  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
 
 const slot = (RIGHT - LEFT) / DATA.length;
@@ -149,7 +177,7 @@ DATA.forEach(function (d, i) {
   tip(node('rect', {
     x: cx - boxWidth / 2, y: y(d.q3), width: boxWidth, height: y(d.q1) - y(d.q3), rx: 2
   }, d.lead ? 'box-lead' : 'box'),
-    d.label + ': low ' + d.low + ', quartile ' + d.q1 + ', median ' + d.median + ', quartile ' + d.q3 + ', high ' + d.high);
+    d.label + ': low ' + fmt(d.low) + ', quartile ' + fmt(d.q1) + ', median ' + fmt(d.median) + ', quartile ' + fmt(d.q3) + ', high ' + fmt(d.high));
   node('line', {
     x1: cx - boxWidth / 2, y1: y(d.median), x2: cx + boxWidth / 2, y2: y(d.median)
   }, 'median');
@@ -166,7 +194,7 @@ DATA.forEach(function (d) {
   [d.low, d.q1, d.median, d.q3, d.high].forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);

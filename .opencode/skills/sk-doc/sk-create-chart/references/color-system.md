@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Chart Colour Systems
@@ -130,7 +130,46 @@ The cost of the cut is that emphasis is now required in all three systems rather
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 8. WHAT IS DELIBERATELY ABSENT
+
+Two things a reader coming from a charting library will look for and not find. Both were
+considered and both are cut, for the same reason section 7 cuts a fourth system: a name
+that adds no answer costs more than the gap it fills.
+
+### A diverging system
+
+A diverging ramp encodes distance from a meaningful midpoint, and it earns its place when a
+form reads two directions away from zero on one continuous scale. No form in the corpus
+does. `heat-matrix` and `calendar-grid` both run one direction from low to high, which is
+what `ordered` already encodes, and `waterfall` separates rises from falls by category
+rather than by magnitude, which is what `categorical` already encodes. Adding the system
+now would mean shipping a scale with no consumer and letting an author reach for it because
+it exists.
+
+What would reopen it is a catalog form that genuinely needs a midpoint: a matrix of signed
+change, a variance-against-plan grid, a correlation table. When such a form arrives, the
+system arrives with it, and the two are added together so the scale has a consumer on the
+day it ships.
+
+### Pattern fills
+
+Hatching or dotting a mark so that colour is not the only cue is a real technique, and this
+corpus does not need it. The rule above already forbids colour carrying meaning alone, and
+every form satisfies it another way: a stacked segment carries its value in the segment, a
+ring group carries its count beside the label, a scatter point carries a hover title, a band
+carries a legend swatch in the same order as the stack. The luminances in each system are
+spread so the set survives greyscale, which is the printing case patterns are usually
+reached for.
+
+The cost of adding them is not small. A pattern changes the visual register of every chart
+it appears in, so it is either corpus-wide, which redraws the whole product for a problem
+none of these forms has, or per-form, which makes two charts in one deck look like they came
+from different tools. If a future form does encode something in colour alone and cannot
+label it, that form carries the pattern, and this paragraph is the reason nothing else does.
+
+---
+
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |

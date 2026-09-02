@@ -8,7 +8,7 @@ trigger_phrases:
   - "check-corpus"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # sk-create-chart Scripts
@@ -53,11 +53,12 @@ Render is off by default and the summary says which mode it ran in. Without `--r
 
 ## 4. WHAT IT CHECKS
 
-Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `motion`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
+Per template file, one check name each: `document-shape`, `identity`, `palette-block`, `colour-literals`, `no-external`, `script-parses`, `data-block`, `unique-ids`, `accessibility`, `card-parts`, `determinism`, `narrow-viewport`, `motion`. The rule behind each one, and the failure it prevents, is the table in `../references/template-contract.md`.
 
 Two checks are about the corpus rather than about one file:
 
 - `palette-source` computes every contrast gate from `assets/color/palettes.json` rather than from a copy. A test that restates the values goes stale the first time somebody edits a colour, and then it certifies the old palette forever.
+- `narrow-viewport` is asserted from the stylesheet rather than from a rendered page, and that limit is deliberate rather than lazy. A headless run returns the DOM, and the DOM does not say whether the page overflowed. The numbers that would answer it live in layout. So the check proves the figure region can scroll sideways and that its drawing declares a floor no wider than its own `viewBox`, which is the part an author forgets. Whether the chart is legible at that floor stays a review question, and the contract says so.
 - `catalog` resolves the index in both directions: every catalog row reaches a file that identifies itself with the same id, and every chart form on disk appears in the catalog. A row that exists is not a row that points anywhere, and an index checked in one direction only rots on the first rename.
 
 ---
@@ -75,6 +76,18 @@ node scripts/check-corpus.cjs   # expect RESULT: PASSED
 ```
 
 Any of these breaks a different check: change one hex in the palette block, delete an `aria-labelledby`, add a second element with an existing id, add a catalog row pointing at a file that does not exist, drop the `CHART_DATA:END` sentinel.
+
+`narrow-viewport` is the newest and reads from the stylesheet, so break it there:
+
+```bash
+# remove the pan affordance and the drawing's floor
+sed -i '' 's/ overflow-x: auto;//; s/min-width: 480px; //' assets/templates/scatter.html
+node scripts/check-corpus.cjs   # expect RESULT: FAILED, twice on narrow-viewport
+git checkout -- assets/templates/scatter.html
+```
+
+Raising the floor above the drawing's own width fails it a third way, which is the case
+that catches a min-width copied from a wider form.
 
 ---
 

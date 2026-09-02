@@ -42,8 +42,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
@@ -69,7 +74,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
       <title id="fig-title">From gross bookings to net revenue</title>
-      <desc id="fig-desc">Six columns showing a running total. Gross bookings of 4200 fall by 640 for discounting and 410 for churn, then rise by 380 for expansion and 210 for services, ending at a net of 3740. The table below the chart carries every step as text.</desc>
+      <desc id="fig-desc">Six columns showing a running total. Each column takes the swatch printed beside its name in the key: the first and last columns are anchors resting on the baseline, a column rising from the previous total is an increase, and a column falling from it is a decrease. Gross bookings of 4200 fall by 640 for discounting and 410 for churn, then rise by 380 for expansion and 210 for services, ending at a net of 3740. The table below the chart carries every step as text.</desc>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -104,6 +109,26 @@ function node(name, attrs, cls) {
   if (cls) el.setAttribute('class', cls);
   svg.appendChild(el);
   return el;
+}
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
 }
 
 // A native SVG tooltip. The value a reader hovers is the value in the data block,
@@ -149,12 +174,15 @@ const BASE = 262;
 const TICKS = 4;
 const peak = bars.reduce(function (m, b) { return Math.max(m, b.from, b.to); }, 0);
 const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
 const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
 
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
-  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
 
 const slot = (RIGHT - LEFT) / bars.length;
@@ -164,9 +192,9 @@ bars.forEach(function (b, i) {
   const top = Math.min(y(b.from), y(b.to));
   const height = Math.abs(y(b.from) - y(b.to));
   tip(node('rect', { x: cx - barWidth / 2, y: top, width: barWidth, height: Math.max(height, 2) }, b.cls),
-    b.cls === 'total' ? b.label + ': ' + b.to : b.label + ': ' + (b.move > 0 ? '+' : '') + b.move + ', running total ' + b.to);
+    b.cls === 'total' ? b.label + ': ' + fmt(b.to) : b.label + ': ' + (b.move > 0 ? '+' : '') + fmt(b.move) + ', running total ' + fmt(b.to));
   node('text', { x: cx, y: top - 8, 'text-anchor': 'middle' }, 'tick')
-    .textContent = (b.cls === 'total' ? '' : b.move > 0 ? '+' : '') + b.move;
+    .textContent = (b.cls === 'total' ? '' : b.move > 0 ? '+' : '') + fmt(b.move);
   node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'cat').textContent = b.label;
   if (i === bars.length - 1) return;
   node('line', {
@@ -199,7 +227,7 @@ bars.forEach(function (b) {
   th.setAttribute('scope', 'row');
   th.textContent = b.label;
   tr.appendChild(th);
-  [b.cls === 'total' ? '' : (b.move > 0 ? '+' : '') + b.move, String(b.to)].forEach(function (v) {
+  [b.cls === 'total' ? '' : (b.move > 0 ? '+' : '') + fmt(b.move), fmt(b.to)].forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
     td.textContent = v;

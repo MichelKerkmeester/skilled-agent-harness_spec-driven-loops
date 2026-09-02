@@ -42,8 +42,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
@@ -69,7 +74,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart">
       <title id="fig-title">Revenue by product line within each market</title>
-      <desc id="fig-desc">Four markets drawn as stacked columns of three product lines each. Every column is dominated by the platform line except the newest market, where services lead. The table below the chart carries every segment as text.</desc>
+      <desc id="fig-desc">Four markets drawn as stacked columns of three product lines each. Each product line takes the swatch printed beside its name in the key, left to right, and the segments stack in the same order from the foot of every column upward: platform, then services, then support. Every column is dominated by the platform line except the newest market, where services lead. The table below the chart carries every segment as text.</desc>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -105,6 +110,26 @@ function node(name, attrs, cls) {
   if (cls) el.setAttribute('class', cls);
   svg.appendChild(el);
   return el;
+}
+
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
 }
 
 function channel(c) {
@@ -146,7 +171,7 @@ DATA.forEach(function (d, i) {
     node('rect', { x: cx - barWidth / 2, y: y, width: barWidth, height: h }, 'seg series-' + (s + 1));
     if (h >= 22) {
       node('text', { x: cx, y: y + h / 2 + 4, 'text-anchor': 'middle' },
-        labelClass(resolve('--chart-series-' + (s + 1)))).textContent = String(v);
+        labelClass(resolve('--chart-series-' + (s + 1)))).textContent = fmt(v);
     }
   });
   node('text', { x: cx, y: BASE + 22, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
@@ -183,7 +208,7 @@ DATA.forEach(function (d) {
   d.values.forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);

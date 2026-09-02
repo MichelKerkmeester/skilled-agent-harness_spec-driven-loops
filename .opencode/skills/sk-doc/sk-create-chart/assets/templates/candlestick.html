@@ -42,8 +42,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
@@ -68,7 +73,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
       <title id="fig-title">Weekly open, high, low and close over fourteen weeks</title>
-      <desc id="fig-desc">Fourteen weekly bars. Each body runs from the open to the close and each thin line runs from the low to the high. The series rises from 100 to a close of 140 in week ten, then falls across four weeks to close at 102. The table below the chart carries all four values for every week.</desc>
+      <desc id="fig-desc">Fourteen weekly bars. Each body runs from the open to the close and each thin line runs from the low to the high. A week takes the swatch printed beside its name in the key: a week that closed above its open is drawn in the first, a week that closed below it in the second. The series rises from 100 to a close of 140 in week ten, then falls across four weeks to close at 102. The table below the chart carries all four values for every week.</desc>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -113,6 +118,26 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
 // A native SVG tooltip. The value a reader hovers is the value in the data block,
 // with no library, no listener and no state: the browser draws it and a screen
 // reader reads it as the mark's name.
@@ -146,11 +171,14 @@ const y = function (v) { return BASE - (BASE - TOP) * ((v - floor) / (ceiling - 
 
 // Ticks are counted, not accumulated. Repeated addition of a fractional step
 // drifts, and the drift reaches the reader as a label like 10.000000000000002.
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number(step.toFixed(6))).split('.')[1] || '').length;
 const rungs = Math.round((ceiling - floor) / step);
 for (let t = 0; t <= rungs; t += 1) {
   const value = floor + step * t;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
-  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
 
 const slot = (RIGHT - LEFT) / DATA.length;
@@ -162,7 +190,7 @@ DATA.forEach(function (d, i) {
   const top = Math.min(y(d.open), y(d.close));
   const height = Math.max(Math.abs(y(d.open) - y(d.close)), 1.5);
   tip(node('rect', { x: cx - bodyWidth / 2, y: top, width: bodyWidth, height: height }, rising ? 'up' : 'down'),
-    d.period + ': opened ' + d.open + ', closed ' + d.close + ', ranged ' + d.low + ' to ' + d.high);
+    d.period + ': opened ' + fmt(d.open) + ', closed ' + fmt(d.close) + ', ranged ' + fmt(d.low) + ' to ' + fmt(d.high));
   node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'tick').textContent = d.period;
 });
 
@@ -190,7 +218,7 @@ DATA.forEach(function (d) {
   [d.open, d.high, d.low, d.close].forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);

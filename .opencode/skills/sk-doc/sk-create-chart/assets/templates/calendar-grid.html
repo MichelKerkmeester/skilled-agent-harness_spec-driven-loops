@@ -43,8 +43,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
@@ -155,6 +160,26 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
 // A native SVG tooltip. The value a reader hovers is the value in the data block,
 // with no library, no listener and no state: the browser draws it and a screen
 // reader reads it as the mark's name.
@@ -185,10 +210,14 @@ WEEKS.forEach(function (week, w) {
   week.forEach(function (v, d) {
     tip(node('rect', {
       x: GUTTER + w * STEP, y: TOP + d * STEP, width: CELL, height: CELL, rx: 2
-    }, level(v)), DAYS[d] + ', week ' + (w + 1) + ': ' + v);
+    }, level(v)), DAYS[d] + ', week ' + (w + 1) + ': ' + fmt(v));
   });
 });
 
+// Three weekday labels, not seven. Rows sit STEP units apart, which is 13.2, and a 10px
+// .lab label needs about 11 units of height, so all seven fit only just and read as a wall
+// of type beside the grid. Every other row gives 26.4 units of clear space, and Monday,
+// Wednesday and Friday is the set a reader already expects on a calendar heatmap.
 [1, 3, 5].forEach(function (d) {
   node('text', { x: GUTTER - 6, y: TOP + d * STEP + 9, 'text-anchor': 'end' }, 'lab').textContent = DAYS[d];
 });
@@ -197,6 +226,9 @@ MONTHS.forEach(function (name, m) {
   node('text', { x: GUTTER + Math.round(m * WEEKS.length / MONTHS.length) * STEP, y: TOP - 8 }, 'lab').textContent = name;
 });
 
+// Five discrete swatches, not a gradient bar. level() puts every day into one of five
+// steps plus an empty state, and a continuous ramp would claim a resolution the encoding
+// does not have. The legend says what the grid actually does.
 const legendY = TOP + 7 * STEP + 16;
 node('text', { x: GUTTER, y: legendY + 9 }, 'key').textContent = 'none';
 node('rect', { x: GUTTER + 32, y: legendY, width: CELL, height: CELL, rx: 2 }, 'empty');
@@ -204,7 +236,7 @@ node('text', { x: GUTTER + 54, y: legendY + 9 }, 'key').textContent = 'less';
 for (let i = 0; i < STEPS; i += 1) {
   node('rect', { x: GUTTER + 84 + i * STEP, y: legendY, width: CELL, height: CELL, rx: 2 }, 'series-' + (STEPS - i));
 }
-node('text', { x: GUTTER + 84 + STEPS * STEP + 6, y: legendY + 9 }, 'key').textContent = 'more, up to ' + peak;
+node('text', { x: GUTTER + 84 + STEPS * STEP + 6, y: legendY + 9 }, 'key').textContent = 'more, up to ' + fmt(peak);
 
 const rows = document.getElementById('rows');
 WEEKS.forEach(function (week, w) {
@@ -216,7 +248,7 @@ WEEKS.forEach(function (week, w) {
   week.forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);

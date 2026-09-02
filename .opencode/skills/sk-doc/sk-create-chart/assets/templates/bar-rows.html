@@ -42,8 +42,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
@@ -104,6 +109,26 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
 const LEFT = 156;
 const RIGHT = 656;
 const TOP = 12;
@@ -114,11 +139,15 @@ const width = function (v) { return (RIGHT - LEFT) * (v / max); };
 
 node('line', { x1: LEFT, y1: TOP - 4, x2: LEFT, y2: TOP + DATA.length * ROW - 12 }, 'axis');
 
+// The label gutter is LEFT minus the 12-unit gap, so 144 units in a 720-unit frame.
+// At the 13px .cat size the font stack averages about 6.6 units a character, which is a
+// budget of roughly 21 characters. A longer name runs off the left edge rather than
+// wrapping, and the fix is to shorten the name or raise LEFT and lose plot width for it.
 DATA.forEach(function (d, i) {
   const y = TOP + i * ROW;
   node('text', { x: LEFT - 12, y: y + BAR / 2 + 5, 'text-anchor': 'end' }, 'cat').textContent = d.label;
   node('rect', { x: LEFT, y: y, width: width(d.value), height: BAR, rx: 2 }, d.lead ? 'bar-lead' : 'bar');
-  node('text', { x: LEFT + width(d.value) + 10, y: y + BAR / 2 + 5 }, 'val').textContent = d.value + UNIT;
+  node('text', { x: LEFT + width(d.value) + 10, y: y + BAR / 2 + 5 }, 'val').textContent = fmt(d.value) + UNIT;
 });
 
 const rows = document.getElementById('rows');
@@ -129,7 +158,7 @@ DATA.forEach(function (d) {
   th.textContent = d.label;
   const td = document.createElement('td');
   td.className = 'num';
-  td.textContent = String(d.value);
+  td.textContent = fmt(d.value);
   tr.appendChild(th);
   tr.appendChild(td);
   rows.appendChild(tr);

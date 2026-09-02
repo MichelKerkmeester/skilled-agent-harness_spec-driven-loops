@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/051-sk-create-chart/007-fidelity-and-library-research"
-    last_updated_at: "2026-09-02T00:00:00Z"
-    last_updated_by: "phase-7-fidelity"
-    recent_action: "Recorded the decisions this phase took and the recommendations it did not apply"
-    next_safe_action: "Decide the five contract-level recommendations in ADR-004"
+    last_updated_at: "2026-09-03T00:00:00Z"
+    last_updated_by: "phase-7-second-read"
+    recent_action: "Closed ADR-004 and recorded the second read over the twelve unapplied items"
+    next_safe_action: "Run the library half of the research on an executor with live web search"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/assets/templates"
@@ -24,12 +24,13 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "ADR-004: five contract-level recommendations await an operator decision"
+      - "The library half of the research still needs a run with live web search"
     answered_questions:
       - "ADR-001: fidelity comes from independent work and MIT-class libraries"
       - "ADR-002: three template-level changes are applied, the rest are recommendations"
       - "ADR-003: no library is adopted, because the no-dependency clause is load-bearing"
       - "ADR-005: a fan-out lineage and local authoring must not share a working tree"
+      - "ADR-006: the second read applied nine of the twelve and refused two in writing"
 ---
 # Decision Record: Fidelity and library research for sk-create-chart
 
@@ -118,6 +119,10 @@ each can be proven by observation rather than by argument:
 The remaining seven are recorded in `implementation-summary.md` as recommendations with their
 evidence, and are not applied here.
 
+**Superseded in part by ADR-006.** The second read took those seven back up one at a time. Six are
+now applied and one is refused in writing. The reasoning below still holds for why they did not
+land in one pass with the first three.
+
 ### Consequences
 
 - Each applied change is provable: the drift was reproduced before the fix, the measured
@@ -186,8 +191,8 @@ legends, pattern fills and data-derived descriptions. No code was taken.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-09-02 |
+| **Status** | Accepted |
+| **Date** | 2026-09-03 |
 | **Deciders** | Operator |
 | **Satisfies** | REQ-004 |
 
@@ -200,26 +205,39 @@ asserts, rather than what a template contains.
 
 ### Decision
 
-They are recorded and not applied. Each needs an operator decision:
+The operator has decided all five. Four are applied and one is refused.
 
-| Ref | Recommendation |
-|-----|----------------|
-| C1 | Add a narrow-viewport render assertion to the corpus check, so a phone-width read is verified rather than assumed |
-| C2 | State in the catalog that time labels arrive display-ready in the data block |
-| C3 | Name the computed-value exception, the waterfall end and the stacked-area total, beside the contract's "never computes" sentence |
-| C4 | Show a visible in-figure notice when data exceeds a form's documented shape |
-| C5 | Add a diverging colour system, once a catalog form consumes one |
+| Ref | Recommendation | Disposition |
+|-----|----------------|-------------|
+| C1 | A narrow-viewport assertion in the corpus check | Applied, as a static assertion rather than a rendered measurement. Rule 14 in the contract, check `narrow-viewport` in the script |
+| C2 | State in the catalog that time labels arrive display-ready | Applied. `catalog.md` section 3 now says so, and says the opposite for numbers |
+| C3 | Name the computed-value exception beside the "never computes" sentence | Applied. `template-contract.md` section 4 names the waterfall total and the stacked-area total, and states the test that keeps the exception from generalising |
+| C4 | A visible in-figure notice when data exceeds a form's shape | Applied to the two forms whose ceilings the research named, `scatter` and `heat-matrix`. A notice is not spread across every form for its own sake, and the contract states the condition |
+| C5 | A diverging colour system | Refused. No catalog form consumes a midpoint ramp, and shipping a scale with no consumer repeats the fourth-system mistake `color-system.md` section 7 already documents. Section 8 now records the refusal and names the form that would reopen it |
+
+C1 could not be implemented the way it was written. The recommendation asked for a phone-width
+render assertion, and a headless run returns the DOM while the answer lives in layout, which no
+`--dump-dom` exposes. What the check can prove is that the file declares the affordance at all,
+which is the part an author forgets, and that its floor is never wider than the drawing's own
+`viewBox`. Both the contract and the script README say plainly what the check therefore does not
+observe.
 
 ### Consequences
 
-- The contract stays as it shipped, so nothing in the corpus is invalidated by this phase.
-- C1 is the one with a cost to leaving it: narrow-width legibility is the one property the check
-  does not observe and the research names as unverified.
+- The contract now carries fourteen rules rather than thirteen, and every file in the corpus
+  satisfies the new one.
+- Two forms can render a line of text that is not a data label, which is a new thing a template may
+  do. The condition is written into the contract so it does not spread by imitation.
+- A diverging system stays absent, and the absence is now documented rather than merely true.
 
 ### Alternatives Rejected
 
-- **Apply C2 and C3 as documentation-only edits.** They read as harmless wording, and they change
-  what the contract promises, which is the operator's call rather than the implementer's.
+- **Leave C2 and C3 as they were, on the grounds that wording changes what the contract promises.**
+  That was the right call while the change was the implementer's to make. It is the operator's call,
+  the operator made it, and both sentences were describing rules the corpus already followed.
+- **Implement C1 by screenshotting at a phone width and comparing images.** A pixel comparison over
+  twenty forms fails on font rendering long before it fails on a layout defect, and it needs a
+  browser on every machine that runs the check.
 <!-- /ANCHOR:adr-004 -->
 
 ---
@@ -266,3 +284,74 @@ another agent is working in. Where both are needed, the lineage belongs in its o
 - **Commit before dispatching.** It protects the committing session and does nothing for a
   concurrent one, which is where the real loss landed.
 <!-- /ANCHOR:adr-005 -->
+
+---
+
+<!-- ANCHOR:adr-006 -->
+## ADR-006: The second read applies nine items, refuses two, and changes the shape of one
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-03 |
+| **Deciders** | Operator, second-read implementer |
+| **Satisfies** | REQ-003, REQ-004 |
+
+---
+
+### Context
+
+ADR-002 left seven template-level recommendations unapplied and ADR-004 left five contract-level
+ones undecided. The operator asked for a second read: each item judged again against the template
+contract and the restraint ladder, applied if it survives, and refused in writing if it does not.
+A silent skip closes nothing, which is what D5 in the goal already said.
+
+### Decision
+
+Nine are applied and two are refused. One of the nine is applied in a different shape than it was
+written, and that is the deviation worth naming.
+
+**T8 was asked for as a gradient legend on both shaded forms, and neither got one.** Both put every
+value into one of five discrete steps. A continuous ramp would promise a resolution the encoding
+does not have, which is a fidelity regression dressed as a fidelity improvement. `heat-matrix` had
+no legend at all, which was the real gap, and it received a stepped ramp matching its own banding.
+`calendar-grid` already had exactly that legend and kept it, with a comment saying why it is not a
+gradient.
+
+**T10 is refused.** Pattern fills would change the visual register of every chart that carries one,
+and the problem they solve does not exist here: the colour rule already forbids colour carrying
+meaning alone, and every form satisfies it another way. The reasoning is written into
+`color-system.md` section 8 rather than left in this packet, because the next author to reach for a
+decal will be reading the colour reference.
+
+**C5 is refused,** for the reason in ADR-004.
+
+The pan guard from T6 went to all twenty-nine files under `assets/`, not only to the twenty
+templates. Two of those nine extra files are outside what the request named, and the widening is
+deliberate. The skeleton an author copies is `assets/color/palette-sheet-neutral.html`, so a guard
+that skipped it would leave every future template non-conformant on the day it is created. The
+examples are deliveries, which is exactly where a phone-width reader meets the chart, and a check
+with a carve-out for the files that most need the property is worse than no check.
+
+### Consequences
+
+- The corpus gained one shared idiom, the formatter, duplicated into every template rather than
+  shared. That is the delivery unit's cost and it is already paid nine times over by `niceStep`.
+- Two forms and three path builders can now draw a line of prose inside the figure. The contract
+  states the condition so it does not spread.
+- The check enforces fourteen rules over twenty-nine files, and one of them is asserted from the
+  stylesheet rather than from a render. Both documents say so.
+
+### Alternatives Rejected
+
+- **Apply T8 literally.** A gradient bar over a five-band encoding tells the reader the scale is
+  continuous. The recommendation was right that a legend was missing and wrong about its form.
+- **Apply C4 to every form with a documented ceiling.** Eleven forms carry one. Spreading a runtime
+  guard across all of them buys a notice for ceilings nobody has hit, and the two the research named
+  are the two where exceeding the shape destroys legibility silently.
+- **Scope the pan guard to `assets/templates/` alone.** It keeps the diff inside the named
+  directory and leaves the file the contract tells authors to copy without the rule the contract now
+  states.
+<!-- /ANCHOR:adr-006 -->

@@ -42,8 +42,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
@@ -59,6 +64,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .axis-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
 .note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
 </style>
 </head>
 <body>
@@ -110,6 +116,26 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
 // A native SVG tooltip. The value a reader hovers is the value in the data block,
 // with no library, no listener and no state: the browser draws it and a screen
 // reader reads it as the mark's name.
@@ -139,24 +165,28 @@ const BASE = 262;
 const TICKS = 4;
 const xMax = niceStep(DATA.reduce(function (m, d) { return Math.max(m, d.x); }, 0) / TICKS) * TICKS;
 const yMax = niceStep(DATA.reduce(function (m, d) { return Math.max(m, d.y); }, 0) / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const X_DP = (String(Number((xMax / TICKS).toFixed(6))).split('.')[1] || '').length;
+const Y_DP = (String(Number((yMax / TICKS).toFixed(6))).split('.')[1] || '').length;
 const px = function (v) { return LEFT + (RIGHT - LEFT) * (v / xMax); };
 const py = function (v) { return BASE - (BASE - TOP) * (v / yMax); };
 
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (yMax / TICKS) * t;
   node('line', { x1: LEFT, y1: py(value), x2: RIGHT, y2: py(value) }, 'grid');
-  node('text', { x: LEFT - 10, y: py(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
+  node('text', { x: LEFT - 10, y: py(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, Y_DP);
 }
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (xMax / TICKS) * t;
   const anchor = t === 0 ? 'start' : t === TICKS ? 'end' : 'middle';
-  node('text', { x: px(value), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = String(value);
+  node('text', { x: px(value), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = fmt(value, X_DP);
 }
 node('line', { x1: LEFT, y1: BASE, x2: RIGHT, y2: BASE }, 'axis');
 
 DATA.forEach(function (d) {
   tip(node('circle', { cx: px(d.x), cy: py(d.y), r: 5.5 }, d.lead ? 'dot-lead' : 'dot'),
-    d.label + ': ' + X_NAME + ' ' + d.x + ', ' + Y_NAME + ' ' + d.y);
+    d.label + ': ' + X_NAME + ' ' + fmt(d.x) + ', ' + Y_NAME + ' ' + fmt(d.y));
 });
 
 const outlier = DATA.filter(function (d) { return d.lead; })[0];
@@ -165,6 +195,20 @@ if (outlier) {
 }
 
 node('text', { x: (LEFT + RIGHT) / 2, y: BASE + 46, 'text-anchor': 'middle' }, 'axis-name').textContent = X_NAME;
+// The catalog gives this form a working shape, and until now nothing enforced it. A
+// delivery carrying several times the data drew anyway, silently, and looked wrong only to
+// a reader who already knew the ceiling. Past it the figure says so in the picture, where
+// the person reading the chart will see it, rather than in a console nobody opens. The
+// notice grows the frame instead of sitting inside the plot, so it never lands on a mark.
+const CEILING = 20;
+if (DATA.length > CEILING) {
+  const box = svg.getAttribute('viewBox').split(' ');
+  const grown = Number(box[3]) + 22;
+  svg.setAttribute('viewBox', box[0] + ' ' + box[1] + ' ' + box[2] + ' ' + grown);
+  node('text', { x: LEFT, y: grown - 6 }, 'notice').textContent =
+    fmt(DATA.length) + ' points are plotted and this form reads honestly up to ' + fmt(CEILING)
+    + '. Past that the marks merge into a cloud, which is a distribution chart.';
+}
 const midY = (TOP + BASE) / 2;
 node('text', {
   x: 16, y: midY, 'text-anchor': 'middle', transform: 'rotate(-90 16 ' + midY + ')'
@@ -180,7 +224,7 @@ DATA.forEach(function (d) {
   [d.x, d.y].forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);

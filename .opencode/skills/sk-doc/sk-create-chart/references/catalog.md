@@ -8,7 +8,7 @@ trigger_phrases:
   - "chart index"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Chart Catalog
@@ -71,9 +71,28 @@ The columns mean:
 | `id` | Lower-case kebab, unique, and identical to the filename stem and to the file's own identity tag |
 | `family` | The question group the form belongs to, from section 4 |
 | `question` | The question a reader arrives with, written as they would say it |
-| `data shape` | What the form needs before it can be honest: how many categories, how many series, what must sum to what |
+| `data shape` | What the form needs before it can be honest: how many categories, how many series, what must sum to what. A ceiling here is a real ceiling: two forms now print a notice in the figure when the data passes it |
 | `system` | The colour system the template declares |
 | `file` | Path from the packet root, which is always `assets/templates/<id>.html` for a chart form |
+
+### Time labels arrive display-ready
+
+A period label in a data block is the string the reader will see. `day 1`, `Jan 1`, `W1`,
+`Mon`. The file prints it and does nothing else to it. No form parses a date, derives a
+granularity or reformats a label, and none of them may: a template never reads the clock,
+and picking a format from the data is the analysis step that happens before the numbers
+reach the file.
+
+That puts the work where it belongs. Whoever prepares the data decides whether the axis
+says `Jan 1` or `2026-01-01`, and they decide it once, in the block they are already
+editing. The consequence is worth stating plainly, because it is easy to file as a
+limitation: a chart of half-hourly readings needs labels already thinned and already
+written the way they should appear. The form will not do it, and thinning rules in the
+drawing code decide which of those labels are drawn, never what they say.
+
+Numbers are the other way round. Every value in a data block is a raw number, and the file
+formats it. Grouping, decimal places and the dash that stands in for a reading nobody took
+are all the file's work, so that one figure never appears two ways in the same chart.
 
 ---
 

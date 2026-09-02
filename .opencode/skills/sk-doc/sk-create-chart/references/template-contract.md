@@ -1,6 +1,6 @@
 ---
 title: "Chart Template Contract"
-description: "What a chart template file contains, how it receives data, what it may depend on and the thirteen rules the corpus check enforces on every one."
+description: "What a chart template file contains, how it receives data, what it may depend on and the fourteen rules the corpus check enforces on every one."
 trigger_phrases:
   - "chart template contract"
   - "how to author a chart template"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Chart Template Contract
@@ -86,6 +86,39 @@ One named array at the top of the inline script, between the `CHART_DATA` sentin
 
 The data block holds literal values. It never fetches, never computes the numbers it is displaying and never reads the clock. A chart that changes on its own cannot be reviewed, because two screenshots of one file disagree and nobody can tell which is the bug.
 
+### The one exception, named
+
+Two forms compute a value they display, and both are deliberate: the waterfall's closing
+total and the stacked area's per-period total. Neither invents a number. Each is the sum
+of values the reader can already see, computed beside them and auditable against them, and
+in both cases typing the total by hand would create a second copy that drifts the first
+time a step is edited.
+
+That is the whole exception and it does not generalise. A computed value is allowed when it
+is a total of the typed values, sits next to them, and would otherwise be a hand-kept
+duplicate. Everything else belongs upstream, in the workbook or query the numbers came
+from. That covers a rate, a share of an untyped denominator, a smoothed series, and any
+value derived from another source. The test is whether a reader holding only the data block can check the figure. If
+they cannot, the file is computing rather than displaying.
+
+Everything else the drawing code derives is geometry or presentation, not data: an axis
+ceiling, a tick ladder, a bar height, a formatted label. Those are how the numbers are
+drawn, and they are not what this clause is about.
+
+### When a form cannot honour the data it was given
+
+A form is honest inside a documented shape, and the catalog states that shape per row. Two
+forms now say so in the picture when the shape is exceeded: `scatter` past twenty points and
+`heat-matrix` past a hundred cells both grow the frame and print one line naming the count
+and the ceiling. A missing reading gets the same treatment: `daily-line`, `daily-range` and
+`stacked-area` break the mark at the gap rather than drawing through it, and print how many
+readings were left out.
+
+A notice belongs in the figure when a reader looking at the picture would otherwise draw a
+wrong conclusion from it, and it is not spread across every form for its own sake. A console
+warning was the alternative and was rejected: the person the ceiling protects is reading a
+chart, not a developer console.
+
 ---
 
 ## 5. WHAT IT MAY DEPEND ON
@@ -112,7 +145,7 @@ Which system to pick, what the roles mean and where the ceilings are: `color-sys
 
 ---
 
-## 7. THE THIRTEEN RULES
+## 7. THE FOURTEEN RULES
 
 Every rule is enforced. The check name is what appears in the corpus check output, so a failure points at the rule it broke.
 
@@ -131,6 +164,12 @@ Every rule is enforced. The check name is what appears in the corpus check outpu
 | 11 | The four card parts, present and in order | `card-parts` | A chart that needs a caption to be understood |
 | 12 | No randomness and no clock in rendering code | `determinism` | Two renders of one file that disagree |
 | 13 | A file that animates carries a `prefers-reduced-motion` fallback | `motion` | Motion shipped to a reader who asked their system for none |
+| 14 | The figure region can scroll sideways, and its drawing declares a `min-width` no wider than its own `viewBox` | `narrow-viewport` | A phone-width screen shrinking a chart until its labels sit on top of each other |
+
+Rule 14 is the one a desktop author never notices is missing. `width: 100%` on the drawing
+looks correct at every size the author tries, and squashes the chart into illegibility at the
+width most readers will open it on. A floor plus a pannable region is the whole fix, and it is
+two declarations.
 
 Rule 10 is the one worth doing first rather than last. A title inside the vector output, an accessible role and a hidden data table cost almost nothing while a template is being written, and are close to unaffordable to retrofit across a whole corpus.
 
@@ -159,6 +198,7 @@ Stated plainly, so nobody reads a green run as more than it is.
 - **It does not read console warnings.** A script that throws is caught, because the marks never appear. A script that warns is not.
 - **It does not judge the headline.** Whether the top line states a conclusion is a review question.
 - **Without `--render` it has not opened anything.** The summary line says so on every run. A structural pass is not a rendering pass.
+- **It does not measure a narrow screen.** Rule 14 is asserted from the stylesheet, not from a rendered page, because a headless browser hands back the DOM and the DOM does not say whether the page overflowed. The check proves the pan affordance is declared and that its floor is not above the drawing's natural width. Whether the chart is legible at that floor is a review question, and the floor itself is a judgement nobody has measured per form.
 
 ---
 

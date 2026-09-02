@@ -42,8 +42,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
@@ -115,6 +120,26 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
 // A native SVG tooltip. The value a reader hovers is the value in the data block,
 // with no library, no listener and no state: the browser draws it and a screen
 // reader reads it as the mark's name.
@@ -141,11 +166,16 @@ AXES.forEach(function (axis, j) {
   const anchor = j === 0 ? 'start' : j === AXES.length - 1 ? 'end' : 'middle';
   // Neighbouring axis names collide the moment one of them is more than a word long, so
   // alternate axes sit a row higher rather than being truncated into initials.
+  // The unit width is the axis spacing: (RIGHT - LEFT) over one less than the axis count,
+  // which is 143 units at five axes and 114 at six. A centred name may take half that gap
+  // on each side, so at the 12px .axis-name size the budget is about 21 characters on one
+  // row. The lift buys the full gap back for alternate axes, which is why six axes still
+  // fit and a seventh would not.
   const lift = j % 2 === 1 ? 18 : 0;
   node('text', { x: ax(j), y: TOP - 26 - lift, 'text-anchor': anchor }, 'axis-name').textContent = axis.name;
   node('text', { x: ax(j), y: TOP - 13 - lift, 'text-anchor': anchor }, 'bound').textContent = axis.unit;
-  node('text', { x: ax(j), y: TOP - 2, 'text-anchor': anchor }, 'bound').textContent = String(axis.max);
-  node('text', { x: ax(j), y: BOTTOM + 16, 'text-anchor': anchor }, 'bound').textContent = String(axis.min);
+  node('text', { x: ax(j), y: TOP - 2, 'text-anchor': anchor }, 'bound').textContent = fmt(axis.max);
+  node('text', { x: ax(j), y: BOTTOM + 16, 'text-anchor': anchor }, 'bound').textContent = fmt(axis.min);
 });
 
 DATA.forEach(function (d, s) {
@@ -153,7 +183,7 @@ DATA.forEach(function (d, s) {
   node('path', { d: 'M' + points.join(' L') }, 'line-' + (s + 1));
   d.values.forEach(function (v, j) {
     tip(node('circle', { cx: ax(j), cy: ay(j, v), r: 4 }, 'dot-' + (s + 1)),
-      d.label + ', ' + AXES[j].name + ': ' + v + ' ' + AXES[j].unit);
+      d.label + ', ' + AXES[j].name + ': ' + fmt(v) + ' ' + AXES[j].unit);
   });
   node('text', { x: RIGHT + 10, y: ay(AXES.length - 1, d.values[AXES.length - 1]) + 4 }, 'key')
     .textContent = d.label;
@@ -177,7 +207,7 @@ DATA.forEach(function (d) {
   d.values.forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);

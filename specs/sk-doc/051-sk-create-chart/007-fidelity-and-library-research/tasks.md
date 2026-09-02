@@ -61,10 +61,37 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Second read over the twelve unapplied items
+
+Each item was re-decided against the template contract and the restraint ladder, then applied
+or refused in writing. The research re-run is deliberately not in this phase.
+
+- [x] T011 Capture the corpus check and the full rendered label list before any edit (scratchpad `validator-before.txt`, `labels-before.txt`)
+- [x] T012 T2: add one number formatter per template and route every printed figure through it (assets/templates/*.html)
+- [x] T013 T2: give each numeric ladder a decimal count derived from its own step, and fix the character-count width estimate the formatter breaks (assets/templates/progress-single.html)
+- [x] T014 T3: break the mark at a missing reading in the three path builders, and report the count in the figure (daily-line, daily-range, stacked-area)
+- [x] T015 T5: write the series-to-swatch mapping into the description of every form whose colours are only resolvable through a detached key (candlestick, grouped-bars, stacked-bars, stacked-area, waterfall)
+- [x] T016 T6: give every asset file a pannable figure region and a drawing floor (assets/templates, assets/examples, assets/color)
+- [x] T017 T7: write the numeric budget behind each gutter, thinning divisor and axis spacing as an author comment (bar-rows, distribution-strip, heat-matrix, parallel-axes, daily-line, stacked-area, calendar-grid)
+- [x] T018 T8: add the missing ramp legend to heat-matrix, as five discrete steps rather than a gradient (assets/templates/heat-matrix.html)
+- [x] T019 T10: refuse pattern fills in writing (references/color-system.md)
+- [x] T020 C1: implement `narrow-viewport` as an assertion the check can make without a browser, and prove it can fail three ways (scripts/check-corpus.cjs)
+- [x] T021 C2: state in the catalog that time labels arrive display-ready and numbers do not (references/catalog.md)
+- [x] T022 C3: name the computed-value exception beside the contract's "never computes" sentence (references/template-contract.md)
+- [x] T023 C4: print an in-figure notice when a form is given more than its documented shape (heat-matrix, scatter)
+- [x] T024 C5: refuse the diverging system in writing, and name what would reopen it (references/color-system.md)
+- [x] T025 Bump the packet version and write the changelog entry (SKILL.md, README.md, references/, scripts/README.md, changelog/v1.1.0.0.md)
+- [x] T026 Re-run the corpus check with `--render` from the final state and read the `RESULT:` line
+- [ ] T027 Re-run the library half of the research on an executor with live web search (blocked: out of scope for this pass, see goal.md)
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
+- [ ] All tasks marked `[x]`. T027 stays open: the upstream re-verification is a separate run and was excluded from this pass
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->
@@ -107,7 +134,7 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Every touched template passes all fifteen corpus checks
+- [x] CHK-010 [P0] Every touched template passes all sixteen corpus checks
 - [x] CHK-011 [P0] No script in a touched template throws on open, proven by the render check
 - [x] CHK-012 [P1] No template gained a remote dependency or a runtime fetch
 - [x] CHK-013 [P1] Every touched template still follows the four-part card order and the palette-block rule
@@ -122,6 +149,8 @@ contextType: "implementation"
 - [x] CHK-021 [P0] `check-corpus.cjs --render` run and its `RESULT:` line read
 - [x] CHK-022 [P1] A render failure was classified as browser flake or as a chart drawing nothing before being acted on
 - [x] CHK-023 [P1] The before-and-after greps for section numbering both recorded
+- [x] CHK-024 [P0] Every behavioural change proved against a fixture that exercises it, not against demo data that never triggers it
+- [x] CHK-025 [P1] The new `narrow-viewport` check shown to fail three ways and then restored
 <!-- /ANCHOR:testing -->
 
 ---
@@ -174,11 +203,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 12/12 |
-| P1 Items | 17 | 17/17 |
+| P0 Items | 14 | 14/14 |
+| P1 Items | 18 | 18/18 |
 | P2 Items | 6 | 6/6 |
 
-**Verification Date**: 2026-09-02
+**Verification Date**: 2026-09-03
 <!-- /ANCHOR:summary -->
 
 ---

@@ -42,8 +42,13 @@ body {
 }
 .headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
 .subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
-.figure { margin: 0; }
-.figure svg { display: block; width: 100%; height: auto; }
+/* A narrow screen pans the drawing rather than shrinking it. Every form here is drawn
+   at 720 units wide, and below roughly two thirds of that the axis labels start to
+   collide, so the figure scrolls sideways and the marks keep the size they were
+   drawn at. Shrinking to fit is the failure this replaces: it is silent, and it
+   produces a picture nobody can read on the device most readers open it on. */
+.figure { margin: 0; overflow-x: auto; }
+.figure svg { display: block; width: 100%; min-width: 480px; height: auto; }
 .source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
@@ -60,6 +65,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .grid { stroke: var(--chart-rule); stroke-width: 1; }
 .tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
 .key { fill: var(--chart-muted); font-size: 12px; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
 </style>
 </head>
 <body>
@@ -69,7 +75,7 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
   <div class="figure" data-chart-part="figure">
     <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart">
       <title id="fig-title">Revenue by licence type over twenty-four months</title>
-      <desc id="fig-desc">Four bands stacked over a continuous time axis. The perpetual band narrows from 52 to 18 while the subscription band widens from 14 to 50, crossing in month fourteen. The total stays between 92 and 106 throughout. The table below the chart carries every month as text.</desc>
+      <desc id="fig-desc">Four bands stacked over a continuous time axis. Each licence type takes the swatch printed beside its name in the key, left to right, and the bands stack in the same order from the foot of the chart upward: perpetual, then subscription, then services, then training. The perpetual band narrows from 52 to 18 while the subscription band widens from 14 to 50, crossing in month fourteen. The total stays between 92 and 106 throughout. The table below the chart carries every month as text.</desc>
     </svg>
   </div>
   <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
@@ -125,6 +131,26 @@ function node(name, attrs, cls) {
   return el;
 }
 
+// One formatter for every number a reader sees, so a tick, a value label and a table
+// cell can never disagree about the same figure. Grouping is fixed to a comma rather
+// than read from the host locale, because a delivered file has to look on the machine
+// that opens it exactly as it looked on the machine that made it. Rounding at six
+// decimals also strips the dust binary arithmetic leaves on an axis step, which is how
+// a ladder rung reaches a reader as 10.000000000000002. A value that is not a finite
+// number renders as an em dash rather than as NaN, which is what a reader with a gap
+// in their data would otherwise be shown.
+function fmt(v, decimals) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return '\u2014';
+  const text = decimals === undefined ? String(Number(n.toFixed(6))) : n.toFixed(decimals);
+  const negative = text.charAt(0) === '-';
+  const body = negative ? text.slice(1) : text;
+  const dot = body.indexOf('.');
+  const whole = dot === -1 ? body : body.slice(0, dot);
+  const rest = dot === -1 ? '' : body.slice(dot);
+  return (negative ? '-' : '') + whole.replace(/\B(?=(\d{3})+$)/g, ',') + rest;
+}
+
 function niceStep(v) {
   const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
   const n = v / pow;
@@ -140,33 +166,71 @@ const RIGHT = 706;
 const TOP = 42;
 const BASE = 266;
 const TICKS = 4;
-const peak = DATA.reduce(function (m, d) {
+// A period is stackable only when every series has a real number for it. Substituting a
+// zero for a missing reading invents a value and drops every band above it by that much,
+// which is a lie the picture tells confidently. The stack breaks at the gap instead, the
+// way a line does, and resumes on the far side.
+const complete = DATA.map(function (d) {
+  return d.values.length === SERIES.length && d.values.every(function (v) { return Number.isFinite(v); });
+});
+const omitted = complete.filter(function (ok) { return !ok; }).length;
+const peak = DATA.reduce(function (m, d, i) {
+  if (!complete[i]) return m;
   return Math.max(m, d.values.reduce(function (t, v) { return t + v; }, 0));
 }, 0);
 const max = niceStep(peak / TICKS) * TICKS;
+// Every rung prints to the same decimal count as the gap between rungs, so the ladder
+// reads as one column of numbers rather than as a ragged mix of 100 and 87.5.
+const TICK_DP = (String(Number((max / TICKS).toFixed(6))).split('.')[1] || '').length;
 const x = function (i) { return LEFT + (RIGHT - LEFT) * (i / (DATA.length - 1)); };
 const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
 
 for (let t = 0; t <= TICKS; t += 1) {
   const value = (max / TICKS) * t;
   node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
-  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = fmt(value, TICK_DP);
 }
+
+// Runs of consecutive complete periods. A period standing alone between two gaps has no
+// width for a band to fill, so only the table carries it.
+const runs = [];
+let run = [];
+complete.forEach(function (ok, i) {
+  if (ok) { run.push(i); return; }
+  if (run.length) runs.push(run);
+  run = [];
+});
+if (run.length) runs.push(run);
 
 const floors = DATA.map(function () { return 0; });
 SERIES.forEach(function (name, s) {
-  const upper = [];
-  const lower = [];
-  DATA.forEach(function (d, i) {
-    lower.push(x(i) + ',' + y(floors[i]));
-    floors[i] += d.values[s];
-    upper.push(x(i) + ',' + y(floors[i]));
+  runs.forEach(function (indices) {
+    const upper = [];
+    const lower = [];
+    indices.forEach(function (i) {
+      lower.push(x(i) + ',' + y(floors[i]));
+      floors[i] += DATA[i].values[s];
+      upper.push(x(i) + ',' + y(floors[i]));
+    });
+    node('path', {
+      d: 'M' + upper.join(' L') + ' L' + lower.reverse().join(' L') + ' Z'
+    }, 'band band-' + (s + 1));
   });
-  node('path', {
-    d: 'M' + upper.join(' L') + ' L' + lower.reverse().join(' L') + ' Z'
-  }, 'band band-' + (s + 1));
 });
 
+// A stack with a hole in it and a stack that simply starts late look the same, so the
+// count is stated inside the figure rather than left to the table to imply.
+if (omitted) {
+  node('text', { x: LEFT, y: BASE + 42 }, 'notice').textContent =
+    omitted === 1 ? '1 period is missing a reading and is left out of the stack.'
+                  : fmt(omitted) + ' periods are missing a reading and are left out of the stack.';
+}
+
+// Thinning, not rotating. Periods sit (RIGHT - LEFT) / (count - 1) apart, which is 29
+// units over twenty-four months, and a 'Jan 1' label is about 30 units wide at the 11px
+// .tick size, so consecutive labels touch. Every fourth leaves about 115 units of clear
+// space. The last period is always kept, because a time axis that stops short of its own
+// end reads as missing data.
 DATA.forEach(function (d, i) {
   if (i % 4 !== 0 && i !== DATA.length - 1) return;
   const anchor = i === 0 ? 'start' : i === DATA.length - 1 ? 'end' : 'middle';
@@ -205,7 +269,7 @@ DATA.forEach(function (d) {
   d.values.concat([total]).forEach(function (v) {
     const td = document.createElement('td');
     td.className = 'num';
-    td.textContent = String(v);
+    td.textContent = fmt(v);
     tr.appendChild(td);
   });
   rows.appendChild(tr);

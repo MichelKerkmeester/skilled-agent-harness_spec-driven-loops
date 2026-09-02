@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
   "spec_folder": "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
   "parent_id": "sk-doc/051-sk-create-chart",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -50,7 +51,8 @@
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
-      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md"
+      ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -111,6 +113,12 @@
         "name": "template-contract.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -190,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three reference overviews start at `## 0",
     "created_at": "2026-09-02T18:50:53Z",
-    "last_save_at": "2026-09-02T20:11:46.492Z",
+    "last_save_at": "2026-09-02T22:45:53.911Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f71bcec1ebe9dd8d64fb28fa5116b60954a294f07959ee028cd64c27d840ebe",
+    "source_fingerprint": "sha256:e5f7f6b496d9c72db9bbe3eefd21af2530e9e21c9c4bb5abda877cedee4e1f0d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0c82c6178065a7e6012040f8b9c1730a4998b4f204ddebc7d3ec344dfe7ef78",
       "plan.md": "29f146c7b340171381e6f1788f8df207aae9867641c7c4ec81ffc0887e7b3fce",
-      "tasks.md": "c251f05f73ab3aa010f88ed52ff95a03325df73e3b16a68620df1c0b507e9a6d",
-      "decision-record.md": "5dd329d6e8f7602adb823b6cc8bd1a794819054e4d61d1cc6e8023b0f1f0cc6a",
-      "implementation-summary.md": "923ebf7c28f36ac858619322bbee501e2258534b87873b5efd221d9449432569"
+      "tasks.md": "280bbb8ee7c574e944531ac75964fff4435f5b6e7bf635913b4a23a256c11cea",
+      "decision-record.md": "42690d650f5057f039b3b4fe4c70ab5dbdd9a98ea832e7b90c369f684aa09dd4",
+      "implementation-summary.md": "e3405bd719b7806e7c55bd5b1791564cfeadff2bc16f80f1e08b83ba20a0ba26"
     },
     "last_active_child_id": null,
     "last_active_at": null

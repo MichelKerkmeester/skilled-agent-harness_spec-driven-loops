@@ -473,6 +473,52 @@ function checkDeterminism(file, src) {
   }
 }
 
+// Rule 14: a narrow screen pans the drawing instead of shrinking it.
+//
+// This is asserted from the stylesheet rather than from a rendered page, and the reason is
+// worth stating. A headless browser can be given a phone-sized window, but the only thing
+// it hands back is the DOM, and the DOM says nothing about whether the page overflowed:
+// the numbers that would answer the question live in layout, which no --dump-dom run
+// exposes. What can be checked is whether the file declares the affordance at all, which
+// is the part an author forgets. So the check verifies that the figure region can scroll
+// sideways and that its drawing has a floor it will not shrink below. It does not verify
+// that the result is legible at that floor, and section 9 of the contract says so.
+function figureClassOf(src) {
+  const region = /<[^>]*data-chart-part\s*=\s*"figure"[^>]*>/i.exec(src);
+  if (!region) return null;
+  const cls = /\bclass\s*=\s*"([^"]+)"/i.exec(region[0]);
+  return cls ? cls[1].trim().split(/\s+/)[0] : null;
+}
+
+function checkNarrowViewport(file, src) {
+  tally('narrow-viewport', 3);
+  const cls = figureClassOf(src);
+  if (!cls) {
+    record('narrow-viewport', 'error', file,
+      'the figure region carries no class, so no rule can give the drawing somewhere to pan');
+    return;
+  }
+  const css = regionsOf(src).styles.join('\n');
+  const region = new RegExp('\\.' + cls + '\\s*\\{([^}]*)\\}').exec(css);
+  const drawing = new RegExp('\\.' + cls + '\\s+svg\\s*\\{([^}]*)\\}').exec(css);
+
+  if (!region || !/overflow-x\s*:\s*(auto|scroll)/.test(region[1])) {
+    record('narrow-viewport', 'error', file,
+      `the figure region declares no overflow-x, so a phone-width screen shrinks the drawing rather than panning it. At 340 units the axis labels sit on top of each other, and neither a static pass nor a desktop render ever sees it. Add "overflow-x: auto" to .${cls}`);
+  }
+
+  const min = drawing && /min-width\s*:\s*(\d+(?:\.\d+)?)px/.exec(drawing[1]);
+  if (!min) {
+    record('narrow-viewport', 'error', file,
+      `the figure drawing declares no min-width, so width:100% lets it shrink to whatever the screen gives it. Add a min-width to .${cls} svg`);
+    return;
+  }
+  const viewBox = /viewBox\s*=\s*"\s*[\d.+-]+\s+[\d.+-]+\s+([\d.]+)\s+[\d.]+\s*"/i.exec(src);
+  if (!viewBox || Number(min[1]) <= Number(viewBox[1])) return;
+  record('narrow-viewport', 'error', file,
+    `min-width is ${min[1]}px and the drawing is ${viewBox[1]} units wide, so the floor is above the natural size and the chart is scaled up at every screen width`);
+}
+
 function checkMotion(file, src) {
   const { styles } = regionsOf(src);
   const joined = styles.join('\n');
@@ -634,6 +680,7 @@ function main() {
     checkAccessibility(name, src, ids);
     checkCardParts(name, src);
     checkDeterminism(name, src);
+    checkNarrowViewport(name, src);
     checkMotion(name, src);
     if (id && file.startsWith(TEMPLATE_DIR + path.sep)) templateIdentities.set(id, file);
   }
