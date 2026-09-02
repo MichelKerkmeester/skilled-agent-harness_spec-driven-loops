@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-memory-decommission",
+  "spec_folder": "system-speckit/049-memory-decommission",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/049-memory-decommission/001-trigger-index-replacement",
+    "system-speckit/049-memory-decommission/002-memory-consumer-rewire",
+    "system-speckit/049-memory-decommission/003-spec-memory-server-removal",
+    "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "049-memory-decommission",
+      "memory db decommission",
+      "spec memory removal",
+      "grep-first retrieval",
+      "trigger index replacement",
+      "phase parent"
+    ],
+    "key_topics": [
+      "049-memory-decommission",
+      "memory",
+      "decommission",
+      "spec",
+      "removal",
+      "grep-first",
+      "retrieval",
+      "trigger",
+      "index",
+      "replacement",
+      "phase",
+      "parent"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      ".claude/mcp.json",
+      "AGENTS.md",
+      "specs/system-speckit/028-memory-search-intelligence/benchmark-status.md",
+      "scripts/spec/validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-status.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/028-memory-search-intelligence/benchmark-status.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
+    "created_at": "2026-09-02T11:04:48Z",
+    "last_save_at": "2026-09-02T11:06:57.237Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:da21fb6b026e7f342e19b8fe89df481e4d8f9c271498a38ba37494ee9bccc2b2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d1d395690638a6844241c7927de424d3c8c3236a67a6da0a5d3247b7ce63d70d"
+    },
+    "last_active_child_id": "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
+    "last_active_at": null
+  }
+}

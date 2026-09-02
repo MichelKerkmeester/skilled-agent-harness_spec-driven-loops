@@ -1,0 +1,32 @@
+{
+  "specFolder": "system-speckit/049-memory-decommission",
+  "description": "Decommission the system-spec-memory MCP database subsystem and replace it with a generated trigger index plus ripgrep conventions; retrofit active spe",
+  "keywords": [
+    "decommission",
+    "system-spec-memory",
+    "mcp",
+    "database",
+    "subsystem",
+    "replace",
+    "trigger",
+    "index",
+    "plus",
+    "ripgrep",
+    "conventions",
+    "retrofit",
+    "active",
+    "spec",
+    "docs",
+    "grep-optimized",
+    "convention"
+  ],
+  "lastUpdated": "2026-09-02T11:08:19.566Z",
+  "specId": "049",
+  "folderSlug": "memory-decommission",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

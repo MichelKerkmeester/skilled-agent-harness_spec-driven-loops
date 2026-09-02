@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-speckit/049-memory-decommission/001-trigger-index-replacement",
+  "description": "Build the generated trigger index and ripgrep retrieval conventions, proven at parity against the live substring lane before anything is removed.",
+  "keywords": [
+    "trigger",
+    "index",
+    "ripgrep",
+    "retrieval",
+    "conventions",
+    "proven",
+    "parity",
+    "against",
+    "live",
+    "substring",
+    "lane",
+    "anything",
+    "removed"
+  ],
+  "lastUpdated": "2026-09-02T11:13:07.983Z",
+  "specId": "001",
+  "folderSlug": "trigger-index-replacement",
+  "parentChain": [
+    "system-speckit",
+    "049-memory-decommission"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
