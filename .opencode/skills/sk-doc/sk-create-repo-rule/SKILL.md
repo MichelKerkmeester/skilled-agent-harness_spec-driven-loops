@@ -33,6 +33,8 @@ removed when it stops earning its load. This mode owns all three.
 - A rule needs retiring because nothing it prevents still happens.
 - A repository needs a rule router because it has none.
 
+Keyword triggers: `create repo rule`, `/create:repo-rule`, `repo rule`, `project rule`, `REPO RULES.md`, `repo-rules`, `add a rule`, `retire a rule`, `revise a rule`, `trigger table`, `rule router`.
+
 ### When NOT to Use
 
 - **It teaches how to do something.** A skill is capability, a rule is constraint. Route to the skill-authoring mode.

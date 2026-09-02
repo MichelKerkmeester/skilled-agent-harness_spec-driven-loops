@@ -93,8 +93,8 @@ const PROTECTED_DIGESTS = Object.freeze({
 // Left stale, the canary reports the hub's own edits as corruption. The key set
 // mirrors what the loader collects, so adding a packet to the registry adds a row here.
 const AUTHORED_DIGESTS = Object.freeze({
-  'SKILL.md': '11ecdc4d107c936993b1f658b1a87a6d664d66826ec226ff223b7b2c27492552',
-  'hub-router.json': 'ac3153459d42f8b7b27dc3188bf8b440e08e4ccd53b0c4ef25c48024128150eb',
+  'SKILL.md': 'e98e6c379287127d95b122826aca1c2e99b931ecfce34efc3f098116457ba0aa',
+  'hub-router.json': 'bb7a5a32156bd6ee63cc3e048533b6dc5a58e43ad89f3598863714027e659a07',
   'mode-registry.json': 'c7cc5b09768e89c1934b56a19ae2f9825e2b1e05056bf079a94fc122ff44a914',
   'packets/sk-create-agent/SKILL.md': '4d58c69c58f450e86122b8febfe11a71dc7667830707e46f6191a694bf830767',
   'packets/sk-create-benchmark/SKILL.md': 'e1ab6aca520103e1cc46fa3445b8cdbb7b78f425b786800670b47211cfc75d9a',
@@ -104,11 +104,11 @@ const AUTHORED_DIGESTS = Object.freeze({
   'packets/sk-create-diagram/SKILL.md': '0799f4eef8d405be3c1831dee2f14453aa3886d171b4e21c5eeb9fad8defbc40',
   'packets/sk-create-diff/SKILL.md': '91cf34e8834fb4e8841f8b9b9c56e364133add73cfdd3288a0f226c694668b36',
   'packets/sk-create-feature-catalog/SKILL.md': 'f4ab47733e43ebdbede265edbf8eb5b469a57a789b1cbc5ad0bdbee28683f43e',
-  'packets/sk-create-frontmatter/SKILL.md': '5af95ced2b474ea6ab6bfdcf4858fdff1cb9c7064697cde6bacfa4fe6d902844',
+  'packets/sk-create-frontmatter/SKILL.md': '5a1fd566fdb3b99fb0e76cf6d0f71627e257663c1cf929b82a5c2a7164079f12',
   'packets/sk-create-manual-testing-playbook/SKILL.md': '57a7beffec83571823c34b78b5591269f970e96b22c1fbfec74c47f8e214bdec',
   'packets/sk-create-quality-control/SKILL.md': '8e7cce8a51b7aa7e4f631766f98051dc80a811be53716a093cf2bf1d9697c741',
   'packets/sk-create-readme/SKILL.md': 'b5abb270e52b6cda650556098a21465221c37b35ed06f718ad67213dc1ea31e3',
-  'packets/sk-create-repo-rule/SKILL.md': '68a8262c3f10e7a0c70d4cc4bfeec10894bfa042400ada06715cf922b77fb388',
+  'packets/sk-create-repo-rule/SKILL.md': 'bca4952686eecad102712584cb10146d23ad03d2ea5b1b9bbb8c92285c8eb274',
   'packets/sk-create-skill/SKILL.md': '82cb35d0148346fdb54b85d44f733b4260d04bc40c0aea56a69a91eca2f90c47',
   'packets/sk-create-with-human-voice/SKILL.md': '35dd7cd811aacc6dcbf4aa1b2c48a6ee62704fde680e0424c6389b166aa21dcf',
 });

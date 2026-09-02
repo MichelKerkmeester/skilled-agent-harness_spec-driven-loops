@@ -142,6 +142,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 5 | 005-routing-integration/ | Registration and both routing stages, plus canary coverage | Complete |
 | 6 | 006-playbook-and-closeout/ | The manual testing playbook, then the whole-fleet gates | Complete |
 
+| 7 | 007-fidelity-and-library-research/ | [Phase 7 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -158,6 +159,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 003 | 004 | The empty packet passes the packaging gate | `package_skill.py --check --strict` reports PASS |
 | 004 | 005 | Every authored template renders, and nothing from the reference is present | The corpus validator exits 0 after being shown it can fail, and a scan for reference strings returns nothing |
 | 005 | 006 | The skill is reachable in both routing stages, not merely registered | The advisor selects it, the router resolves it, and its leaves resolve on disk |
+| 006-playbook-and-closeout | 007-fidelity-and-library-research | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

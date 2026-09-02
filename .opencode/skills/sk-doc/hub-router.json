@@ -1,6 +1,6 @@
 {
   "skill": "sk-doc",
-  "version": "2.0.0.0",
+  "version": "2.0.0.1",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -40,7 +40,11 @@
         ],
         "outcome": "orderedBundle"
       }
-    ]
+    ],
+    "discoveryClasses": [
+      "hub-identity"
+    ],
+    "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: a prompt naming only the hub scores zero modes and takes the defer outcome instead of fanning out to every authoring mode."
   },
   "routerSignals": {
     "sk-create-skill": {
@@ -302,8 +306,7 @@
         "deterministic scenario",
         "evidence collection",
         "operator validation",
-        "multi-agent execution",
-        "release readiness"
+        "multi-agent execution"
       ]
     },
     "create-benchmark-aliases": {
@@ -332,7 +335,8 @@
         "author a benchmark",
         "benchmark suite",
         "new benchmark",
-        "promote benchmark folder"
+        "promote benchmark folder",
+        "create benchmark"
       ]
     },
     "create-changelog-aliases": {
@@ -514,6 +518,12 @@
         "frontmatter validation",
         "missing frontmatter",
         "frontmatter contract"
+      ]
+    },
+    "hub-identity": {
+      "keywords": [
+        "sk-doc",
+        "documentation hub"
       ]
     }
   }

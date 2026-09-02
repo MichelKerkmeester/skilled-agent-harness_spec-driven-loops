@@ -33,6 +33,8 @@ This mode is where you find out what the validators are checking for and why.
 - Someone asks what `trigger_phrases`, `importance_tier` or `contextType` are for.
 - A document class is being added and needs a frontmatter rule of its own.
 
+Keyword triggers: `yaml frontmatter`, `frontmatter block`, `frontmatter template`, `frontmatter field`, `frontmatter fields`, `trigger_phrases`, `importance_tier`, `contextType`, `description budget`, `4-part version`, `X.Y.Z.W`, `frontmatter versioning`, `frontmatter version`, `version field`, `frontmatter validation`, `missing frontmatter`, `frontmatter contract`.
+
 ### When NOT to Use
 
 - **The document itself needs writing.** Frontmatter is the block at the top. The mode that owns the document class owns its body.

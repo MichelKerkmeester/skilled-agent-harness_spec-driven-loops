@@ -3842,7 +3842,7 @@ def _apply_executor_delegation_disambiguation(
     recommendations: List[Dict[str, Any]],
     prompt_lower: str,
 ) -> None:
-    """Route an explicit executor handoff to its executor (mirror of the native override).
+    """Route an explicit executor handoff to the hub owning its executor (mirror of the native override).
 
     Handles cli-opencode / cli-claude-code and any small model that dispatches
     through one via a metadata-derived alias table, injecting the executor when
@@ -3869,12 +3869,24 @@ def _apply_executor_delegation_disambiguation(
                 _append_reason_note(rec, "[disambiguation: retired executor named, abstaining]")
         return
 
-    executor = _find_recommendation(recommendations, executor_id)
+    # A hub executor is a nested workflow mode, not an advisor identity: the hub
+    # projects one identity and its compiled route already names this exact mode
+    # as its target. Lifting the bare mode id would put a second, route-less
+    # entry above the hub's own compiled one and tie with it on score, so the
+    # caller reads a rank-one recommendation it cannot route on. Lift the hub
+    # instead; the mode still reaches the caller, through the compiled target.
+    lift_id = (
+        "cli-external-orchestration"
+        if executor_id in _build_executor_alias_table()["active_executor_ids"]
+        else executor_id
+    )
+
+    executor = _find_recommendation(recommendations, lift_id)
     if executor is None:
         # Injection-if-absent: the harder orchestrator framings never surface the
         # executor as a candidate, so synthesize it to actually resolve the route.
         executor = {
-            "skill": executor_id,
+            "skill": lift_id,
             "kind": "skill",
             "confidence": 0.0,
             "uncertainty": 1.0,

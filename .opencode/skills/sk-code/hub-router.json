@@ -1,6 +1,6 @@
 {
   "skill": "sk-code",
-  "version": "4.1.0.0",
+  "version": "4.1.0.1",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -11,55 +11,57 @@
       "surfaceBundle": "one workflow mode primary plus zero-or-more surface packets as read-only evidence, workflow ordered first then surfaces",
       "defer": "unclear or contradictory code intent asks for disambiguation"
     },
-    "defaultResource": ["shared/README.md"]
+    "defaultResource": ["shared/README.md"],
+    "discoveryClasses": ["hub-identity"],
+    "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: hub-identity vocabulary describes the router itself, so a prompt carrying only it scores zero modes and defers instead of bundling every workflow mode and surface at once."
   },
   "routerSignals": {
     "sk-code-quality": {
       "weight": 4,
-      "classes": ["quality-aliases", "quality-gates", "hub-identity"],
+      "classes": ["quality-aliases", "quality-gates"],
       "resources": ["sk-code-quality/SKILL.md"]
     },
     "sk-code-review": {
       "weight": 4,
-      "classes": ["code-review-aliases", "code-review-findings", "code-review-security", "code-review-pr", "hub-identity"],
+      "classes": ["code-review-aliases", "code-review-findings", "code-review-security", "code-review-pr"],
       "resources": ["sk-code-review/SKILL.md"]
     },
     "sk-code-webflow": {
       "weight": 4,
-      "classes": ["code-webflow-aliases", "code-webflow-runtime", "hub-identity"],
+      "classes": ["code-webflow-aliases", "code-webflow-runtime"],
       "resources": ["sk-code-webflow/SKILL.md"]
     },
     "sk-code-opencode": {
       "weight": 4,
-      "classes": ["code-opencode-aliases", "code-opencode-runtime", "code-opencode-authoring", "hub-identity"],
+      "classes": ["code-opencode-aliases", "code-opencode-runtime", "code-opencode-authoring"],
       "resources": ["sk-code-opencode/SKILL.md"]
     },
     "sk-code-mobile-cli": {
       "weight": 4,
-      "classes": ["code-mobile-cli-aliases", "code-mobile-cli-runtime", "hub-identity"],
+      "classes": ["code-mobile-cli-aliases", "code-mobile-cli-runtime"],
       "resources": ["sk-code-mobile-cli/SKILL.md"]
     },
     "sk-code-obsidian": {
       "weight": 4,
-      "classes": ["code-obsidian-aliases", "code-obsidian-runtime", "hub-identity"],
+      "classes": ["code-obsidian-aliases", "code-obsidian-runtime"],
       "resources": ["sk-code-obsidian/SKILL.md"]
     }
   },
   "vocabularyClasses": {
     "hub-identity": {
-      "keywords": ["sk-code", "code-family", "mode-registry", "workflowmode", "backendkind", "surface-router", "surface-aware", "smart-router", "code surface detection", "two-axis hub"]
+      "keywords": ["sk-code", "code-family", "mode-registry", "workflowmode", "backendkind", "surface-router", "surface-aware", "smart-router", "code surface detection", "two-axis hub", "surface-aware code implementation", "workflow doctrine", "verification commands", "surface detection routing", "code work"]
     },
     "quality-aliases": {
       "keywords": ["quality", "code quality", "quality gate", "code-quality", "stack-specific code quality gate", "surface checklist", "surface checklists", "quality check", "check before done", "author quality gate", "pre-verification quality check"]
     },
     "quality-gates": {
-      "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "stable jsonl keys", "add set -euo pipefail", "alignment verifier", "p0 p1 p2 review"]
+      "keywords": ["comment hygiene", "comment hygiene check", "author checks", "p0 p1 p2 author check", "stable jsonl keys", "add set -euo pipefail", "alignment verifier"]
     },
     "code-review-aliases": {
       "keywords": ["review", "reviewer", "code review", "findings-first review", "security review", "pr review", "review baseline", "review mode", "code-review"]
     },
     "code-review-findings": {
-      "keywords": ["findings first", "findings-first", "severity", "output contract", "checklists", "correctness baseline", "test quality review", "correctness review", "review output contract"]
+      "keywords": ["findings first", "findings-first", "severity", "output contract", "checklists", "correctness baseline", "test quality review", "correctness review", "review output contract", "findings"]
     },
     "code-review-security": {
       "keywords": ["security", "security review", "correctness", "vulnerability", "unsafe", "filesystem behavior", "validation"]
@@ -68,7 +70,7 @@
       "keywords": ["pr review", "pull request review", "pr-state gates", "review-result cache", "review output cache"]
     },
     "code-webflow-aliases": {
-      "keywords": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow", "webflow", "frontend", "webflow.js", "src/2_javascript"]
+      "keywords": ["webflow implementation", "frontend implementation standards", "webflow frontend workflow", "webflow", "frontend", "webflow.js", "src/2_javascript", "motion.dev", "motion-dev", "motion_dev", "motion api", "motion snippets", "motion decision matrix", "cross-stack animation", "motion animation"]
     },
     "code-webflow-runtime": {
       "keywords": ["html", "css", "javascript", "cdn", "gsap", "lenis", "swiper", "hls.js", "filepond", "intersectionobserver", "browser"]
@@ -77,13 +79,13 @@
       "keywords": ["opencode system code", "opencode system code workflow", "opencode typescript verification", "opencode", "system code", "system-code", "mcp"]
     },
     "code-opencode-runtime": {
-      "keywords": ["typescript", "python", "shell", "json", "jsonc", "config", "rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib"]
+      "keywords": ["typescript", "python", "shell", "json", "jsonc", "config", "rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib", "vitest", "argparse", "console.error", "tiny script"]
     },
     "code-opencode-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
     },
     "code-mobile-cli-aliases": {
-      "keywords": ["pi remote mobile ui", "svelte design system", "mobile cli design tokens", "ink-on-parchment tokens", "ds grammar editability", "design-system tokens", "app-mobile"]
+      "keywords": ["pi remote mobile ui", "svelte design system", "mobile cli design tokens", "ink-on-parchment tokens", "ds grammar editability", "design-system tokens", "app-mobile", "mobile cli source", "ink-on-parchment", "pi remote design system"]
     },
     "code-mobile-cli-runtime": {
       "keywords": ["svelte", "sveltekit", "runes", "scoped style", "app.css", "--pi-clay", "@ds", "design tokens", "wcag aa", "light dark theme", "css custom properties"]

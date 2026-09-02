@@ -1,6 +1,6 @@
 {
  "skill": "mcp-tooling",
- "version": "1.2.0.0",
+ "version": "1.2.0.1",
  "routerPolicy": {
   "defaultMode": null,
   "ambiguityDelta": 1,
@@ -154,7 +154,9 @@
     "dom inspect",
     "lighthouse",
     "bdg",
-    "cdp"
+    "cdp",
+    "chrome-devtools",
+    "mcp-chrome-devtools"
    ]
   },
   "browser-debug": {
@@ -164,7 +166,8 @@
     "network requests",
     "har export",
     "performance trace",
-    "cdp domain"
+    "cdp domain",
+    "capture browser screenshots"
    ]
   },
   "clickup-aliases": {
@@ -175,7 +178,9 @@
     "work queue",
     "mark done",
     "time tracking",
-    "project tracker"
+    "project tracker",
+    "mcp-click-up",
+    "click-up"
    ]
   },
   "obsidian-aliases": {
@@ -194,7 +199,8 @@
     "backlinks",
     "daily note",
     "knowledge base",
-    "note crud"
+    "note crud",
+    "note management"
    ]
   },
   "task-management": {
@@ -204,7 +210,14 @@
     "clickup documents",
     "clickup goals",
     "bulk tasks",
-    "clickup task"
+    "clickup task",
+    "task list",
+    "complete task",
+    "add note to task",
+    "tag task",
+    "start timer",
+    "stop timer",
+    "mark task done"
    ]
   },
   "figma-aliases": {
@@ -282,7 +295,8 @@
     "design reference search",
     "ui reference",
     "real app screens",
-    "refero.design"
+    "refero.design",
+    "real app screen search"
    ]
   },
   "design-reference-research": {
@@ -301,7 +315,8 @@
     "mobbin mcp",
     "app design research",
     "ux flow references",
-    "mobile design patterns"
+    "mobile design patterns",
+    "real app ux patterns"
    ]
   },
   "app-design-research": {

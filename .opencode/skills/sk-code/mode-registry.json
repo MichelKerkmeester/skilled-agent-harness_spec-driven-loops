@@ -1,6 +1,6 @@
 {
   "skill": "sk-code",
-  "version": "4.1.0.0",
+  "version": "4.1.0.1",
   "resourceContractVersion": 1,
   "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (sk-code-quality/sk-code-review) is process; the SURFACE axis (sk-code-webflow/sk-code-opencode) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md, symlinked into each surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence.",
   "discriminator": {
@@ -33,7 +33,7 @@
       "packet": "sk-code-quality",
       "packetSkillName": "sk-code-quality",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["quality gate", "code quality", "comment hygiene check", "surface checklist", "p0 p1 p2 author check", "stack-specific code quality gate", "alignment verifier", "stable jsonl keys", "quality check", "check before done", "author quality gate", "pre-verification quality check", "p0 p1 p2 review"],
+      "aliases": ["quality gate", "code quality", "comment hygiene check", "surface checklist", "p0 p1 p2 author check", "stack-specific code quality gate", "alignment verifier", "stable jsonl keys", "quality check", "check before done", "author quality gate", "pre-verification quality check"],
       "advisorRouting": {
         "routingClass": "metadata"
       }
