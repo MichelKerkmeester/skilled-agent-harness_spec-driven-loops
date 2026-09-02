@@ -195,20 +195,21 @@ The skill ships the checks that prove a document is ready.
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the mode rules |
 | [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: authoring intent to the exact leaf resources the selected mode loads |
-| [`references/quick-reference.md`](shared/references/quick-reference.md) | One-page command and gate cheat sheet |
+| [`shared/references/quick-reference.md`](shared/references/quick-reference.md) | One-page command and gate cheat sheet |
 | [`sk-create-with-human-voice/references/hvr-rules.md`](sk-create-with-human-voice/references/hvr-rules.md) | Human Voice Rules, the writing standard all output must pass |
-| [`references/validation.md`](shared/references/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |
-| [`references/core-standards.md`](shared/references/core-standards.md) | Filename conventions, heading rules and document-type requirements |
+| [`shared/references/validation.md`](shared/references/validation.md) | DQI scoring criteria, quality gates and assessment interpretation |
+| [`shared/references/core-standards.md`](shared/references/core-standards.md) | Filename conventions, heading rules and document-type requirements |
 | [`sk-create-with-human-voice/SKILL.md`](sk-create-with-human-voice/SKILL.md) | Applying the Human Voice Rules to prose: scope gate, mechanical pass, judgment pass, re-scan |
 | [`sk-create-quality-control/references/workflows.md`](sk-create-quality-control/references/workflows.md) | Execution workflows by mode and task type |
 | [`sk-create-quality-control/references/optimization.md`](sk-create-quality-control/references/optimization.md) | AI-friendly content transforms and the llms.txt format |
-| [`references/evergreen-packet-id-rule.md`](shared/references/evergreen-packet-id-rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |
-| [`references/skill-creation.md`](sk-create-skill/references/README.md) | The skill-creation workflow: understanding through packaging |
-| [`references/README.md`](sk-create-agent/references/README.md) | Agent authority, permissions and the template-first workflow |
-| [`references/README.md`](sk-create-readme/references/README.md) | README creation workflow and standards |
-| [`references/install-guide/quality-and-standards.md`](sk-create-readme/references/install-guide/quality-and-standards.md) | Five-phase install guide standards and validation checkpoints |
-| [`references/README.md`](sk-create-manual-testing-playbook/references/README.md) | Playbook package structure, scenario tables and cross-reference index |
-| [`references/README.md`](sk-create-feature-catalog/references/README.md) | Feature catalog inventory standards and per-feature file structure |
+| [`shared/references/evergreen-packet-id-rule.md`](shared/references/evergreen-packet-id-rule.md) | Why runtime-state docs must not cite mutable spec-packet numbers |
+| [`sk-create-skill/references/README.md`](sk-create-skill/references/README.md) | The skill-creation workflow: understanding through packaging |
+| [`sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`](sk-create-skill/references/parent-skill/parent-skills-nested-packets.md) | The parent-hub method behind `sk-create-skill-parent`: one advisor identity, a single modes registry and the surfaces a new mode must land on |
+| [`sk-create-agent/references/README.md`](sk-create-agent/references/README.md) | Agent authority, permissions and the template-first workflow |
+| [`sk-create-readme/references/README.md`](sk-create-readme/references/README.md) | README creation workflow and standards |
+| [`sk-create-readme/references/install-guide/quality-and-standards.md`](sk-create-readme/references/install-guide/quality-and-standards.md) | Five-phase install guide standards and validation checkpoints |
+| [`sk-create-manual-testing-playbook/references/README.md`](sk-create-manual-testing-playbook/references/README.md) | Playbook package structure, scenario tables and cross-reference index |
+| [`sk-create-feature-catalog/references/README.md`](sk-create-feature-catalog/references/README.md) | Feature catalog inventory standards and per-feature file structure |
 | [`sk-create-benchmark/README.md`](sk-create-benchmark/README.md) | Benchmark family registry, including conformance authoring triggers and package boundaries |
 | [`sk-create-diff/README.md`](sk-create-diff/README.md) | Git-free before/after document diff: snapshot lifecycle, comparison engine and the self-contained HTML report |
 | [`sk-create-diff/references/workflow.md`](sk-create-diff/references/workflow.md) | The sk-create-diff capture/compare workflow and CLI reference |
@@ -221,6 +222,6 @@ The skill ships the checks that prove a document is ready.
 | [`scripts/extract_structure.py`](./scripts/extract_structure.py) | Full DQI analysis with type-specific checklists and JSON output |
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validate and package a skill to a zip file |
-| [`assets/skill/`](./sk-create-skill/assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
-| [`assets/ascii-patterns/`](./sk-create-diagram/assets/ascii-patterns/) | Reusable ASCII flowchart patterns for workflows and decision trees |
+| [`sk-create-skill/assets/skill/`](./sk-create-skill/assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
+| [`sk-create-diagram/assets/ascii-patterns/`](./sk-create-diagram/assets/ascii-patterns/) | Reusable ASCII flowchart patterns for workflows and decision trees |
 | [`changelog/`](./changelog/) | Per-release entries, one file per version |
