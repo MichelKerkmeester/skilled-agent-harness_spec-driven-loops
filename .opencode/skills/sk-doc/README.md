@@ -1,6 +1,6 @@
 ---
 title: sk-doc
-description: Markdown and OpenCode component specialist: structure-first document quality, DQI scoring, component scaffolding and packaging, flowcharts, install guides, feature catalogs and manual testing playbooks.
+description: Markdown and OpenCode component specialist: structure-first document quality (DQI, HVR voice), scaffolding and packaging, diagrams, charts, install guides, feature catalogs, testing playbooks, before/after diffs, repo rules and frontmatter contracts.
 trigger_phrases:
   - "documentation"
   - "readme"
@@ -15,6 +15,11 @@ trigger_phrases:
   - "peer adapter benchmark"
   - "human voice rules"
   - "make this sound human"
+  - "create a chart"
+  - "create a diagram"
+  - "repo rule"
+  - "frontmatter contract"
+  - "document diff"
 version: 2.1.0.65
 ---
 
@@ -28,10 +33,10 @@ version: 2.1.0.65
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Markdown quality enforcement, component scaffolding and packaging, benchmark authoring, flowcharts, install guides, feature catalogs, testing playbooks, changelogs and local before/after document diffs |
-| **Invoke with** | "create a skill", "validate doc", "conformance benchmark", "readme", "documentation", "flowchart", "changelog" or Gate 2 auto-routing on documentation keywords |
-| **Works on** | Markdown files, OpenCode components (skills, agents, commands) and ASCII flowcharts |
-| **Produces** | DQI scores, validated documents, packaged skill zips, templated component directories and self-contained HTML diff reports |
+| **Use it for** | Markdown quality enforcement, human-voice passes, component scaffolding and packaging, benchmark authoring, diagrams, charts, flowcharts, install guides, feature catalogs, testing playbooks, changelogs, repo rules, frontmatter contracts and local before/after document diffs |
+| **Invoke with** | "create a skill", "validate doc", "conformance benchmark", "readme", "documentation", "flowchart", "create a chart", "create a diagram", "repo rule", "frontmatter contract", "apply human voice", "changelog" or Gate 2 auto-routing on documentation keywords |
+| **Works on** | Markdown files, OpenCode components (skills, agents, commands), standalone HTML diagrams/charts and ASCII flowcharts |
+| **Produces** | DQI scores, validated documents, packaged skill zips, templated component directories, standalone HTML diagrams/charts and self-contained HTML diff reports |
 
 ---
 
