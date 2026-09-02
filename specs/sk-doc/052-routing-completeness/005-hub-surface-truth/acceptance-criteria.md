@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |---|---|---|---|---|---|
-| AC-001 | REQ-001 | Given the inventory intent claims completeness, When it is compared to the leaf manifest, Then it enumerates every leaf or drops the claim | A count of FULL_INVENTORY paths equals the manifest leaf count, currently 128 against 252 | Unmet | |
+| AC-001 | REQ-001 | Given the inventory intent claims completeness, When it is compared to the leaf manifest, Then it enumerates every leaf or drops the claim | FULL_INVENTORY holds 252 paths, matching the manifest leaf count, each resolving on disk | Met | |
 | AC-002 | REQ-002 | Given a mode with a command file in every runtime tree, When the hub manifest is read, Then it does not report the mode as commandless | `grep -n 'sk-create-diff' .opencode/skills/sk-doc/SKILL.md` shows the command rather than a routes-via-aliases dash | Unmet | |
-| AC-003 | REQ-003 | Given the readme summary and its frontmatter, When compared to the mode registry, Then both name the current mode set | Every mode in `mode-registry.json` appears in the readme summary section and its trigger phrases | Unmet | |
-| AC-004 | REQ-004 | Given a document that contradicts its registry, When the new check runs, Then it fails | Removing one mode row from the readme makes the check exit non-zero, and restoring it returns exit 0 | Unmet | |
+| AC-003 | REQ-003 | Given the readme summary and its frontmatter, When compared to the mode registry, Then both name the current mode set | The description, trigger phrases and at-a-glance table each name all six previously missing domains | Met | |
+| AC-004 | REQ-004 | Given a document that contradicts its registry, When the new check runs, Then it fails | Invariant 6c fails on the dash form, on a wrong command string and on a deleted row, and passes on restore | Met | |
 
 ### Status values
 

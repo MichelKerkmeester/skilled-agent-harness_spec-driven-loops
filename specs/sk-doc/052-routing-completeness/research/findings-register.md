@@ -56,9 +56,9 @@ recorded judgment rather than by a change.
 
 | # | Finding | Phase | State |
 |---|---|---|---|
-| 19 | The inventory intent claims completeness and lists 128 of 252 leaves | 005 | Planned |
+| 19 | The inventory intent claims completeness and lists 128 of 252 leaves | 005 | Fixed |
 | 20 | The hub manifest reports a mode as commandless while its command ships in five runtimes | 005 | Planned |
-| 21 | The readme summary and its frontmatter describe a smaller hub than the one shipping | 005 | Planned |
+| 21 | The readme summary and its frontmatter describe a smaller hub than the one shipping | 005 | Fixed |
 | 22 | Five modes were absent from the hub readme while present in every registry | 005 | Fixed |
 | 23 | Twelve link labels named paths they did not point at | 005 | Fixed |
 | 24 | A hub leaf manifest had gone stale, leaving a new reference unreachable | 005 | Fixed |
@@ -100,3 +100,14 @@ recorded judgment rather than by a change.
 | 38 | The ledger lock-archival race | Closing it needs archiving to be mutually exclusive, and a mutex there inherits the staleness problem it exists to solve. Documented at the site, deliberately unfixed |
 | 39 | Fleet-wide frontmatter drift of 3,542 files | The enforced gate is presence and format and it passes. The drifting command gates nothing, and a sweep would rewrite every in-scope document to quiet it |
 | 40 | Voice backlogs in the thousands | A writing job rather than a substitution. Measured and left, since folding it in would bury the routing work |
+
+---
+
+## 7. CHECKS ADDED
+
+A finding is only closed for good once something notices its return. These are the checks
+this packet added, each shown to fail before it was trusted.
+
+| Check | Catches | Proven to fail on |
+|-------|---------|-------------------|
+| Command column, invariant 6c in the hub parent check | A mode whose declared command is hidden in the hub table | The dash form, a wrong command string, and a deleted row |
