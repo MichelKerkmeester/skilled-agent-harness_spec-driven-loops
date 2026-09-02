@@ -125,6 +125,7 @@ All modes consume `runtime/` (frozen, MCP-free): executor config, prompt-pack, v
 - **NEVER** infer `runtimeLoopType` from `workflowMode` — read it from the registry (explicit `null` is load-bearing).
 - **NEVER** let a read-only mode (research/review/ai-council) reach the improvement mutation scripts (`promote-candidate.cjs`/`rollback-candidate.cjs`).
 - **NEVER** add a `graph-metadata.json` or a discoverable skill marker inside a mode packet or `shared/`.
+- **NEVER** let a CLI lineage dispatch a nested executor for its own iteration, and never edit tracked files in a checkout with a live lineage (write containment reverts those files from HEAD and fails the run). Both rules live in `deep-research/references/protocol/loop-protocol.md` under "Executor Resolution".
 
 ### ⚠️ ESCALATE IF
 - A new mode is needed beyond the six registered — extend `mode-registry.json` and open a packet, do not bolt logic onto the hub.

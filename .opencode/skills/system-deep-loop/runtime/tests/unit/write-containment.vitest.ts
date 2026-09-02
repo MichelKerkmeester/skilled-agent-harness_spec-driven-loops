@@ -6,7 +6,8 @@
 // revert / enforce over a real temp git repo so the diff + restore logic
 // is verified against actual `git status` porcelain, not a mock.
 
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync, unlinkSync, existsSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, writeFileSync, unlinkSync, existsSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -706,6 +707,298 @@ describe('write-containment — concurrent sibling lineages', () => {
   });
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+// CONCURRENT RUNS IN SIBLING PHASE FOLDERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Two fan-out runs in sibling phase folders of one packet write concurrently. Neither run's
+ * base artifact dir contains the other, so `siblingLineageDirs` — which only knows the
+ * lineages of its own run — cannot see it, and a preserved path in a sibling phase folder is
+ * not an ancestor of this leaf's artifact dir, so it was fatal. Both runs failed on each
+ * other's lock, ledgers, iterations and deltas while both bodies of work were intact.
+ *
+ * The driver now discovers the other run from its LIVE lock and passes its artifact dir as
+ * unattributable — the same mechanism, and the same reasoning, as a sibling lineage. Excluded
+ * from attribution rather than downgraded to an advisory, so the exclusion also lands before
+ * the revert: a file of the other run that is already in HEAD would otherwise be restored from
+ * HEAD, destroying the live work of a run this leaf never dispatched.
+ */
+describe('write-containment — a concurrent run in a sibling phase folder', () => {
+  const requireCjs = createRequire(import.meta.url);
+  const { discoverForeignLiveRunDirs } = requireCjs('../../scripts/fanout-run.cjs') as {
+    discoverForeignLiveRunDirs: (input: {
+      specFolder: string;
+      baseArtifactDir: string;
+    }) => Promise<string[]>;
+  };
+
+  interface PhasedPacket {
+    root: string;
+    specFolder: string;
+    baseArtifactDir: string;
+    artifactDir: string;
+    otherRunDir: string;
+  }
+
+  function phasedPacketRepo(): PhasedPacket {
+    const root = makeRepo();
+    writeFileSync(join(root, 'tracked-outside.txt'), 'ORIGINAL_OUTSIDE\n');
+    const packetDir = join(root, 'specs', 'track', '030-packet');
+    const specFolder = join(packetDir, '001-phase-a');
+    const baseArtifactDir = join(specFolder, 'research');
+    const artifactDir = join(baseArtifactDir, 'lineages', 'luna-max');
+    const otherRunDir = join(packetDir, '002-phase-b', 'research', 'lineages', 'luna-max');
+    mkdirSync(artifactDir, { recursive: true });
+    mkdirSync(otherRunDir, { recursive: true });
+    writeFileSync(join(artifactDir, 'seed.md'), 'seed\n');
+    writeFileSync(join(otherRunDir, 'seed.md'), 'seed\n');
+    commitAll(root, 'fix(containment): phased packet baseline');
+    return { root, specFolder, baseArtifactDir, artifactDir, otherRunDir };
+  }
+
+  function writeLoopLock(dir: string, liveness: 'live' | 'stale'): void {
+    writeFileSync(join(dir, '.deep-research.lock'), `${JSON.stringify({
+      owner_pid: process.pid,
+      started_at_iso: new Date().toISOString(),
+      ttl_ms: 300_000,
+      // A stale heartbeat expires the lock on the clock alone, so staleness never depends on
+      // whether some pid happens to be alive on the machine running the test.
+      last_heartbeat_iso: liveness === 'live' ? new Date().toISOString() : '2020-01-01T00:00:00.000Z',
+      packet_id: 'track/030-packet',
+      runtime_kind: 'main',
+      phase: 'running',
+    }, null, 2)}\n`);
+  }
+
+  /** Everything the other run writes into its own lineage dir during this leaf's dispatch. */
+  function writeOtherRunArtifacts(otherRunDir: string): string[] {
+    mkdirSync(join(otherRunDir, 'iterations'), { recursive: true });
+    mkdirSync(join(otherRunDir, 'deltas'), { recursive: true });
+    const written = [
+      join(otherRunDir, 'iterations', 'iteration-1.md'),
+      join(otherRunDir, 'deltas', 'iter-1.jsonl'),
+      join(otherRunDir, 'deep-research-state.jsonl'),
+    ];
+    writeFileSync(written[0], 'other run narrative\n');
+    writeFileSync(written[1], '{"type":"iteration"}\n');
+    writeFileSync(written[2], '{"type":"state"}\n');
+    return written;
+  }
+
+  it('passes with zero violations when a live lock marks the other run as its owner', async () => {
+    const { root, specFolder, baseArtifactDir, artifactDir, otherRunDir } = phasedPacketRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir }),
+    });
+
+    // The other run starts AFTER this leaf's baseline was taken — the case re-discovery exists
+    // for — and writes its lock plus a full iteration's worth of state.
+    writeLoopLock(otherRunDir, 'live');
+    const otherRunFiles = writeOtherRunArtifacts(otherRunDir);
+
+    const foreign = await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir });
+    expect(foreign).toHaveLength(1);
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: foreign,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
+      label: 'luna-max',
+    });
+
+    expect(result.violations).toEqual([]);
+    expect(result.advisories).toEqual([]);
+    expect(result.event).toBeNull();
+    // The other run's work is untouched — the outcome the whole exemption is for.
+    for (const file of otherRunFiles) {
+      expect(existsSync(file)).toBe(true);
+    }
+    expect(readFileSync(otherRunFiles[0], 'utf8')).toBe('other run narrative\n');
+  });
+
+  it('still fails the iteration on the same write when no lock claims the directory', async () => {
+    const { root, specFolder, baseArtifactDir, artifactDir, otherRunDir } = phasedPacketRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir }),
+    });
+
+    // Identical writes, no live run behind them: this leaf reaching into a quiet sibling phase.
+    const strayFiles = writeOtherRunArtifacts(otherRunDir);
+
+    const foreign = await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir });
+    expect(foreign).toEqual([]);
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: foreign,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
+      label: 'luna-max',
+    });
+
+    expect(result.violations.map((v) => v.path)).toEqual([
+      'specs/track/030-packet/002-phase-b/research/lineages/luna-max/deep-research-state.jsonl',
+      'specs/track/030-packet/002-phase-b/research/lineages/luna-max/deltas/iter-1.jsonl',
+      'specs/track/030-packet/002-phase-b/research/lineages/luna-max/iterations/iteration-1.md',
+    ]);
+    // Fatal, but a not-in-HEAD path is still never deleted.
+    for (const file of strayFiles) {
+      expect(existsSync(file)).toBe(true);
+    }
+  });
+
+  it('grants no exemption for a stale lock left behind by a finished run', async () => {
+    const { root, specFolder, baseArtifactDir, artifactDir, otherRunDir } = phasedPacketRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir }),
+    });
+
+    writeLoopLock(otherRunDir, 'stale');
+    writeOtherRunArtifacts(otherRunDir);
+
+    const foreign = await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir });
+    expect(foreign).toEqual([]);
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: foreign,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
+      label: 'luna-max',
+    });
+
+    expect(result.violations.map((v) => v.path)).toContain(
+      'specs/track/030-packet/002-phase-b/research/lineages/luna-max/deep-research-state.jsonl',
+    );
+  });
+
+  // The driver keeps what it saw at dispatch time as well as at check time: a run that was live
+  // when this leaf started and released its lock before the check would otherwise leave its
+  // files unowned, and they would land back on this leaf.
+  it('keeps exempting a run that was live at dispatch but released its lock before the check', async () => {
+    const { root, specFolder, baseArtifactDir, artifactDir, otherRunDir } = phasedPacketRepo();
+    writeLoopLock(otherRunDir, 'live');
+    const preDispatchForeign = await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir });
+    expect(preDispatchForeign).toHaveLength(1);
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: preDispatchForeign,
+    });
+
+    writeOtherRunArtifacts(otherRunDir);
+    // The other run finishes and releases its lock while this leaf is still dispatched.
+    unlinkSync(join(otherRunDir, '.deep-research.lock'));
+    expect(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })).toEqual([]);
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: [
+        ...preDispatchForeign,
+        ...(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })),
+      ],
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
+      label: 'luna-max',
+    });
+
+    expect(result.violations).toEqual([]);
+  });
+
+  it('keeps a tracked in-HEAD edit fatal and recoverable while the other run is exempt', async () => {
+    const { root, specFolder, baseArtifactDir, artifactDir, otherRunDir } = phasedPacketRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir }),
+    });
+
+    writeLoopLock(otherRunDir, 'live');
+    writeOtherRunArtifacts(otherRunDir);
+    // This leaf's genuine breach, alongside the other run's legitimate work.
+    writeFileSync(join(root, 'tracked-outside.txt'), 'CLOBBERED_BY_LUNA\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir }),
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 2,
+      label: 'luna-max',
+    });
+
+    expect(result.violations.map((v) => v.path)).toEqual(['tracked-outside.txt']);
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
+    const patchPath = result.event!.revertedPatchPath!;
+    expect(result.recoveryHint).toBe(`recoverable patch: ${patchPath}`);
+    expect(readFileSync(join(root, patchPath), 'utf8')).toContain('+CLOBBERED_BY_LUNA');
+    // The other run's dir is exempt; the leaf's breach elsewhere is not.
+    expect(existsSync(join(otherRunDir, 'deep-research-state.jsonl'))).toBe(true);
+  });
+
+  it("never exempts this run's own tree, even though its own lock is live", async () => {
+    const { root, specFolder, baseArtifactDir, artifactDir } = phasedPacketRepo();
+    writeLoopLock(baseArtifactDir, 'live');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir }),
+    });
+
+    // Inside this run's base artifact dir but outside this leaf's lineage dir.
+    writeFileSync(join(baseArtifactDir, 'stray-note.txt'), 'leaf wrote above its lineage\n');
+
+    const foreign = await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir });
+    expect(foreign).toEqual([]);
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      unattributableDirs: foreign,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
+      label: 'luna-max',
+    });
+
+    // Reported (as the packet-scoped advisory it already was) rather than dropped: an exemption
+    // covering this run's own base dir would erase it from the guard's view entirely.
+    expect(result.advisories.map((v) => v.path)).toContain(
+      'specs/track/030-packet/001-phase-a/research/stray-note.txt',
+    );
+  });
+
+  // A fan-out base dir may sit a level below `<spec folder>/research`, and a loop enclosing it
+  // holds its own lock at `research/` — an ancestor of this run's base dir. Claiming that
+  // ancestor as a foreign run's territory would prune the search at it, hiding every other run
+  // nested below it, including a second fan-out sharing the same research tree.
+  it('keeps searching below a locked ancestor of this run rather than pruning at it', async () => {
+    const { specFolder } = phasedPacketRepo();
+    const enclosingLoopDir = join(specFolder, 'research');
+    const baseArtifactDir = join(enclosingLoopDir, 'run-a');
+    const nestedForeignRunDir = join(enclosingLoopDir, 'run-b', 'lineages', 'luna-max');
+    mkdirSync(join(baseArtifactDir, 'lineages', 'luna-max'), { recursive: true });
+    mkdirSync(nestedForeignRunDir, { recursive: true });
+    writeLoopLock(enclosingLoopDir, 'live');
+    writeLoopLock(nestedForeignRunDir, 'live');
+
+    expect(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })).toEqual([
+      realpathSync(nestedForeignRunDir),
+    ]);
+  });
+});
+
 function dirtySorted(arr: DirtyPathEntry[]): string[] {
   return arr.map((e) => e.path).sort();
 }
@@ -794,5 +1087,135 @@ describe('write-containment — orchestrator-owned ledgers are not the leaf’s 
       'specs/demo/review/orchestration-status.log.bak',
     ]);
     expect(readFileSync(decoy, 'utf8')).toBe('SEEDED\n');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// REVERTED-EDIT RECOVERY
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * The guard cannot tell a leaf's stray write from an operator hand-editing the same
+ * checkout while a lineage runs, so it attributes both to the leaf and reverts them.
+ * That stays correct and stays fatal; what used to be wrong is that the operator's
+ * work was erased with nothing left but a path in the event. The content the revert
+ * undoes is now saved as an appliable patch first.
+ */
+describe('write-containment — a reverted tracked edit survives as a recoverable patch', () => {
+  function patchFileNames(artifactDir: string): string[] {
+    const dir = join(artifactDir, 'containment-reverted');
+    return existsSync(dir) ? readdirSync(dir) : [];
+  }
+
+  it('writes the reverted diff inside the artifact dir and names it on the event', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    writeFileSync(join(root, 'tracked-outside.txt'), 'OPERATOR_EDIT\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 3,
+      label: 'sol',
+    });
+
+    // Fail-closed is unchanged: still a fatal violation, still reverted from HEAD.
+    expect(result.violations.map((v) => v.path)).toEqual(['tracked-outside.txt']);
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
+
+    const patchPath = result.event!.revertedPatchPath;
+    expect(patchPath).toMatch(
+      /^artifact\/containment-reverted\/3-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}\.\d{3}Z\.patch$/,
+    );
+    expect(result.event!.revertedPatchError).toBeUndefined();
+    expect(result.recoveryHint).toBe(`recoverable patch: ${patchPath}`);
+    expect(patchFileNames(artifactDir)).toHaveLength(1);
+
+    // The erased content is IN the patch, not merely referenced by it.
+    const patchBody = readFileSync(join(root, patchPath!), 'utf8');
+    expect(patchBody).toContain('+OPERATOR_EDIT');
+    expect(patchBody).toContain('-ORIGINAL_OUTSIDE');
+  });
+
+  it('restores the erased edit when the saved patch is applied — the recoverability claim', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    writeFileSync(join(root, 'tracked-outside.txt'), 'OPERATOR_EDIT\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 1,
+    });
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
+
+    git(root, ['apply', join(root, result.event!.revertedPatchPath!)]);
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('OPERATOR_EDIT\n');
+  });
+
+  it('captures the deletion diff when the reverted path was a deleted tracked file', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    unlinkSync(join(root, 'deep/file.txt'));
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 2,
+    });
+
+    expect(existsSync(join(root, 'deep/file.txt'))).toBe(true);
+    const patchBody = readFileSync(join(root, result.event!.revertedPatchPath!), 'utf8');
+    expect(patchBody).toContain('deleted file mode');
+    expect(patchBody).toContain('-ORIGINAL_DEEP');
+  });
+
+  it('writes no patch for a preserved untracked path — nothing was undone to save', () => {
+    const { root, artifactDir } = baselineRepo();
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    writeFileSync(join(root, 'concurrent-new-file.txt'), 'CONCURRENT\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 4,
+    });
+
+    expect(result.revertResult.reverted[0].action).toBe('preserved_untracked');
+    expect(readFileSync(join(root, 'concurrent-new-file.txt'), 'utf8')).toBe('CONCURRENT\n');
+    expect(result.event!.revertedPatchPath).toBeUndefined();
+    expect(result.recoveryHint).toBeNull();
+    expect(patchFileNames(artifactDir)).toEqual([]);
+  });
+
+  it('still reverts, and records the write failure, when the patch cannot be saved', () => {
+    const { root, artifactDir } = baselineRepo();
+    // Occupy the patch directory's name with a file so the capture's mkdir throws.
+    writeFileSync(join(artifactDir, 'containment-reverted'), 'not a directory\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    writeFileSync(join(root, 'tracked-outside.txt'), 'OPERATOR_EDIT\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+      iteration: 5,
+    });
+
+    // Fail-closed survives a failed capture: the breach is still reverted and still fatal.
+    expect(result.violations.map((v) => v.path)).toEqual(['tracked-outside.txt']);
+    expect(readFileSync(join(root, 'tracked-outside.txt'), 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
+    expect(result.event!.revertedPatchPath).toBeUndefined();
+    expect(result.event!.revertedPatchError).toMatch(/^patch write failed: /);
+    expect(result.recoveryHint).toBeNull();
   });
 });

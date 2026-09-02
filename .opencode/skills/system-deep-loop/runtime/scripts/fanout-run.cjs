@@ -450,6 +450,15 @@ const WAIT_CHECKPOINT_SCHEMA_VERSION = 1;
 const WAIT_SLEEP_CHUNK_MS = 200;
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 const DEFAULT_POST_EXIT_GRACE_MS = 5 * 60 * 1000;
+// A deep-loop run publishes its advisory lock into its own artifact dir under one of these
+// names (the `lock_file` of the deep-research / deep-review command contracts). Presence plus
+// liveness is what identifies a directory as another run's working area.
+const DEEP_LOOP_LOCK_FILENAMES = ['.deep-research.lock', '.deep-review.lock'];
+// The packet scan runs once per lineage before dispatch and again before every containment
+// check, so it is bounded twice over: it never descends past the depth a run's artifact dir
+// plausibly sits at below its packet, and never walks more directories than a packet holds.
+const FOREIGN_RUN_SCAN_MAX_DEPTH = 6;
+const FOREIGN_RUN_SCAN_MAX_DIRS = 2000;
 
 function stopActiveLineageProcesses(signal) {
   for (const child of activeLineageProcesses) {
@@ -483,6 +492,99 @@ function physicalPathForValidation(targetPath) {
       return targetPath;
     }
   }
+}
+
+/**
+ * The top-level spec packet a path belongs to: `specs/<track>/<NNN-name>`, absolute.
+ *
+ * Phase children nest arbitrarily deep below that packet, and a concurrent run in one of them
+ * is what this exists to locate, so the boundary is the packet rather than the run's own spec
+ * folder. Resolved physically first so the `.opencode/specs` symlink alias and the real
+ * `specs/` tree name the same directory. Null when the path is not under a `specs` tree at all
+ * (a hermetic fixture, an external artifact dir) — the signal to skip discovery entirely.
+ */
+function resolveTopLevelPacketDir(startDir) {
+  const physical = physicalPathForValidation(path.resolve(process.cwd(), startDir));
+  const segments = physical.split(path.sep);
+  const specsIndex = segments.lastIndexOf('specs');
+  if (specsIndex === -1 || segments.length < specsIndex + 3) return null;
+  return segments.slice(0, specsIndex + 3).join(path.sep);
+}
+
+/** True when `dir` holds a deep-loop lock whose owner is still running and still heartbeating. */
+function holdsLiveLoopLock(dir, isStaleLoopLock) {
+  for (const name of DEEP_LOOP_LOCK_FILENAMES) {
+    let record;
+    try {
+      record = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
+    } catch {
+      continue;
+    }
+    if (!record || typeof record !== 'object') continue;
+    // The lock is persisted in snake_case; the liveness rule reads the camelCase view of the
+    // three fields it judges on. Mapped here rather than re-derived, so staleness stays the
+    // single definition in loop-lock and cannot drift from what the acquirer enforces.
+    const isStale = isStaleLoopLock({
+      ownerPid: record.owner_pid,
+      ttlMs: record.ttl_ms,
+      lastHeartbeatIso: record.last_heartbeat_iso,
+    });
+    if (!isStale) return true;
+  }
+  return false;
+}
+
+/**
+ * Artifact directories under this packet owned by a DIFFERENT deep-loop run that is still live.
+ *
+ * A run in a sibling phase folder writes its own lock, ledgers, iterations and receipts for the
+ * whole life of this leaf's dispatch. Those writes land after this leaf's baseline was taken and
+ * a tree diff cannot tell them from the leaf's own, so blaming this leaf for them is unsound in
+ * exactly the way a sibling lineage's writes are — with a sharper edge: any of them already in
+ * HEAD is restored from HEAD, so the guard destroys the live work of a run it never dispatched.
+ *
+ * The live lock is the evidence of ownership. A stale lock left behind by a finished run proves
+ * nothing and grants no exemption (the repo carries many), so a leaf that writes junk into a
+ * quiet sibling phase folder still fails the iteration exactly as before.
+ */
+async function discoverForeignLiveRunDirs({ specFolder, baseArtifactDir }) {
+  const packetDir = resolveTopLevelPacketDir(specFolder);
+  if (!packetDir) return [];
+  const { isStaleLoopLock } = await import('../lib/deep-loop/loop-lock.ts');
+  const ownRunDir = physicalPathForValidation(path.resolve(process.cwd(), baseArtifactDir));
+  const found = [];
+  const queue = [{ dir: packetDir, depth: 0 }];
+  let visited = 0;
+  while (queue.length > 0 && visited < FOREIGN_RUN_SCAN_MAX_DIRS) {
+    const { dir, depth } = queue.shift();
+    visited += 1;
+    // This run's own tree is already bounded by its artifact dir plus its sibling lineages, and
+    // no other run's artifact dir can live inside it — so it is skipped rather than searched.
+    // Exempting any part of it here would widen this leaf's own boundary instead of narrowing
+    // who its writes are attributed to.
+    if (isPathInside(dir, ownRunDir)) continue;
+    // A locked ANCESTOR of this run is this run's own supervisor, not a foreign owner, and its
+    // other subtrees are exactly where the sibling phase folders being searched for live — so
+    // it is neither claimed nor pruned.
+    if (holdsLiveLoopLock(dir, isStaleLoopLock) && !isPathInside(ownRunDir, dir)) {
+      found.push(dir);
+      // Everything below a live run's artifact dir belongs to that run wholesale.
+      continue;
+    }
+    if (depth >= FOREIGN_RUN_SCAN_MAX_DEPTH) continue;
+    let entries;
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      if (entry.name === '.git' || entry.name === 'node_modules') continue;
+      queue.push({ dir: path.join(dir, entry.name), depth: depth + 1 });
+    }
+  }
+  return found;
 }
 
 function validateBaseArtifactDir(baseArtifactDir, specFolder, loopType) {
@@ -1129,6 +1231,24 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
           ``,
         ]
       : [];
+  // A CLI lineage subprocess IS the executor for its own iterations. Left unsaid, a leaf reads
+  // the workflow YAML's per-iteration executor-dispatch step literally and spawns a nested CLI
+  // from inside its own sandbox, where nested dispatch is denied — the lineage then burns every
+  // iteration on dispatch failures and produces zero findings. Native lineages run through the
+  // command host and already have their executor bound, so the directive is CLI-only.
+  const inProcessDirective = lineage.kind !== 'native'
+    ? [
+        `EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.`,
+        `Perform each iteration yourself in THIS session — read the sources, then write the iteration`,
+        `file, its delta, the state record, and the synthesis directly into the lineage directory below.`,
+        `NEVER spawn a nested CLI, agent, or subprocess to run an iteration: no 'codex exec', no`,
+        `'opencode run', no 'cursor-agent', no 'devin', no 'pi', no 'claude', no Task/agent dispatch.`,
+        `The workflow YAML's per-iteration executor-dispatch steps are ALREADY SATISFIED by this`,
+        `process: treat them as done and run the iteration inline. A nested dispatch is a failure of`,
+        `this lineage, not a way to run it.`,
+        ``,
+      ]
+    : [];
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
   const stopPolicy = options.stopPolicy || 'convergence';
   const stopClause = hasIterationCap && stopPolicy === 'max-iterations'
@@ -1178,6 +1298,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `You are orchestrating the ${agentName} workflow YAML as a detached fan-out lineage.`,
     ...detachedIntro,
     ``,
+    ...inProcessDirective,
     `Read ${skillFile} and execute the ${loopType} loop with these parameters:`,
     ...params,
     ...setupBindings,
@@ -2653,12 +2774,22 @@ async function main() {
       // repo-local CLI config dir) is excluded from attribution the same way sibling
       // dirs are, so a legitimate write is never mistaken for a violation.
       const kindLegitimateDirs = resolvedClaudeConfigDir ? [resolvedClaudeConfigDir] : [];
-      const containmentUnattributableDirs = [...siblingLineageDirs, ...kindLegitimateDirs];
+      // A concurrent run in a sibling PHASE folder is the same unattributable-writer problem as
+      // a sibling lineage, one level up: its artifact dir is not under this run's base dir, so
+      // nothing above knows about it. Discovered from the live locks under the shared packet, and
+      // re-discovered before the containment check because such a run can start mid-iteration.
+      const staticUnattributableDirs = [...siblingLineageDirs, ...kindLegitimateDirs];
+      // Kept for the containment check as well as the baseline: a run that was live when this
+      // leaf started but released its lock before the check would otherwise have the files it
+      // left behind become unowned, and land back on this leaf.
+      const preDispatchForeignRunDirs = containmentEnabled
+        ? await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })
+        : [];
       const preDispatchDirtyPaths = containmentEnabled
         ? snapshotOutOfScopeDirtyPaths({
           repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
-          unattributableDirs: containmentUnattributableDirs,
+          unattributableDirs: [...staticUnattributableDirs, ...preDispatchForeignRunDirs],
           unattributablePaths: orchestratorOwnedPaths,
         })
         : [];
@@ -2727,7 +2858,11 @@ async function main() {
         const containment = enforceWriteContainment({
           repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
-          unattributableDirs: containmentUnattributableDirs,
+          unattributableDirs: [
+            ...staticUnattributableDirs,
+            ...preDispatchForeignRunDirs,
+            ...(await discoverForeignLiveRunDirs({ specFolder, baseArtifactDir })),
+          ],
           unattributablePaths: orchestratorOwnedPaths,
           preDispatchDirtyPaths,
           iteration: attempt,
@@ -2764,7 +2899,8 @@ async function main() {
           const failure = new Error(
             `lineage ${lineage.label} violated write containment: reverted `
               + `${containment.violations.length} out-of-scope path(s): `
-              + `${containment.violations.map((v) => v.path).join(', ')}`,
+              + `${containment.violations.map((v) => v.path).join(', ')}`
+              + `${containment.recoveryHint ? `; ${containment.recoveryHint}` : ''}`,
           );
           failure.label = lineage.label;
           failure.exitCode = 1;
@@ -2959,6 +3095,8 @@ module.exports = {
   normalizeStallWatchdogMs,
   computeSkippedCount,
   decorateSlotAccountingEvent,
+  discoverForeignLiveRunDirs,
+  resolveTopLevelPacketDir,
   startLineageProgressHeartbeat,
   startLineageStallWatchdog,
   statusForLedgerEvent,

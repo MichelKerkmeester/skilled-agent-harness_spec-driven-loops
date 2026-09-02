@@ -1397,7 +1397,12 @@ workflow:
             import { readFileSync } from 'node:fs';
             import { execFileSync } from 'node:child_process';
 
-            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import {
+              RECURSION_GUARD_EXIT_CODE,
+              formatRecursionGuardRefusal,
+              runAuditedExecutorCommand,
+              validateExecutorDispatchAllowed,
+            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
             import {
               snapshotOutOfScopeDirtyPaths,
               enforceWriteContainment,
@@ -1430,6 +1435,15 @@ workflow:
               timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
               governor: null,
             };
+
+            // Refuse before any spawn and before any receipt is written, so a refusal can
+            // never be mistaken for a real attempt. A process that is already a CLI lineage
+            // or a codex session must run the iteration itself, not delegate it onward.
+            const guardVerdict = validateExecutorDispatchAllowed(executor, { env: process.env });
+            if (!guardVerdict.allowed) {
+              console.error(formatRecursionGuardRefusal(guardVerdict, executor));
+              process.exit(RECURSION_GUARD_EXIT_CODE);
+            }
 
             const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
 
@@ -1490,6 +1504,8 @@ workflow:
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
           notes:
+            - "PRE-DISPATCH RULE (read before running the script): when this run is ITSELF a fan-out CLI lineage — config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID / SPECKIT_CLI_DISPATCH_STACK / CODEX_SESSION_ID is present in the environment — the lineage IS the executor. Do NOT run this dispatch script. Perform the iteration in-process instead: read the rendered prompt at {state_paths.prompt_dir}/iteration-{current_iteration}.md, do the review pass yourself, and write the iteration file, the delta and the state record exactly as the leaf contract requires, then continue to post_dispatch_validate."
+            - "Nested CLI dispatch from a lineage is a route violation, not a slow path: a codex lineage that runs this script spawns codex inside its own sandbox, where the child cannot initialize and every iteration fails. The script refuses that case before any spawn and before any dispatch receipt is written, exiting RECURSION_GUARD_EXIT_CODE; that refusal is a route error to fix, never a redispatchable executor failure."
             - "Routed through runAuditedExecutorCommand so codex produces INTENT + COMPLETION dispatch receipts; recursion guard (CODEX_SESSION_ID) + env allowlist (CODEX_/OPENAI_/AZURE_OPENAI_) enforced via buildExecutorDispatchEnv"
             - "Fails closed when the codex binary is absent (exit 1) — parity with the fan-out cli-codex lineage guard in fanout-run.cjs; codex routing never degrades to native"
             - "codex exec reads the iteration prompt from stdin via the trailing '-' (input: promptBody); '-c model_reasoning_effort=' maps reasoning depth, default medium; '-c service_tier=' forwarded when configured"

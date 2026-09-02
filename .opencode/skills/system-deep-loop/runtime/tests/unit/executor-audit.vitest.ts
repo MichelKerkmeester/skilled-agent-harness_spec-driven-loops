@@ -1,18 +1,22 @@
 import { describe, expect, it } from 'vitest';
 
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 
 import {
+  RECURSION_GUARD_EXIT_CODE,
   appendExecutorAuditToLastRecord,
   buildExecutorAuditRecord,
   buildExecutorDispatchEnv,
   detectFromAncestry,
+  detectFromFanoutLineage,
   detectFromLockfile,
   detectFromRuntimeEnv,
   detectSameKindFromStack,
   emitDispatchFailure,
+  formatRecursionGuardRefusal,
+  readAncestorCmdlines,
   runAuditedExecutorCommand,
   validateExecutorDispatchAllowed,
   writeFirstRecordExecutor,
@@ -45,6 +49,21 @@ function cliClaudeExecutor(): ExecutorConfig {
     reasoningEffort: 'high',
     serviceTier: null,
     sandboxMode: null,
+    timeoutSeconds: 900,
+  };
+}
+
+/**
+ * Returns a Codex CLI executor config for recursion-guard tests.
+ */
+function cliCodexExecutor(): ExecutorConfig {
+  return {
+    kind: 'cli-codex',
+    model: 'gpt-5.6-luna',
+    configDir: null,
+    reasoningEffort: 'high',
+    serviceTier: null,
+    sandboxMode: 'workspace-write',
     timeoutSeconds: 900,
   };
 }
@@ -592,7 +611,7 @@ describe('executor-audit', () => {
       });
 
       const lines = readFileSync(stateLogPath, 'utf8').trimEnd().split('\n');
-      expect(exitCode).toBe(0);
+      expect(exitCode).toBe(RECURSION_GUARD_EXIT_CODE);
       expect(JSON.parse(lines.at(-1) ?? '')).toMatchObject({
         type: 'event',
         event: 'dispatch_failure',
@@ -602,5 +621,126 @@ describe('executor-audit', () => {
         executor: { kind: 'cli-claude-code' },
       });
     });
+  });
+});
+
+describe('executor-audit recursion guard: nested cli-codex dispatch', () => {
+  /**
+   * Runs a codex dispatch whose command would create a marker file, so the test can
+   * prove from the filesystem whether a child process actually ran.
+   */
+  function dispatchCodexWithMarker(
+    env: Record<string, string | undefined>,
+    ancestryCmdlines: string[] = [],
+  ): { exitCode: number; markerExists: boolean; lastEvent: Record<string, unknown> } {
+    let outcome: { exitCode: number; markerExists: boolean; lastEvent: Record<string, unknown> } | null = null;
+
+    withTempStateLog('{"type":"event","event":"start"}\n', (stateLogPath) => {
+      const markerPath = join(dirname(stateLogPath), 'spawned.marker');
+      const exitCode = runAuditedExecutorCommand({
+        command: 'node',
+        args: ['-e', "require('fs').writeFileSync(process.argv[1], 'spawned')", markerPath],
+        cwd: tmpdir(),
+        timeoutSeconds: 30,
+        stateLogPath,
+        executor: cliCodexExecutor(),
+        iteration: 4,
+        guardContext: {
+          env: { PATH: process.env.PATH, HOME: process.env.HOME, ...env },
+          ancestryCmdlines,
+          statePaths: [],
+        },
+      });
+
+      const lines = readFileSync(stateLogPath, 'utf8').trimEnd().split('\n');
+      outcome = {
+        exitCode,
+        markerExists: existsSync(markerPath),
+        lastEvent: JSON.parse(lines.at(-1) ?? '{}'),
+      };
+    });
+
+    if (!outcome) {
+      throw new Error('dispatch did not run');
+    }
+    return outcome;
+  }
+
+  it('refuses before spawn when the process already holds a codex session', () => {
+    const outcome = dispatchCodexWithMarker({ CODEX_SESSION_ID: 'session-1' });
+
+    expect(outcome.exitCode).toBe(RECURSION_GUARD_EXIT_CODE);
+    expect(outcome.markerExists).toBe(false);
+    expect(outcome.lastEvent).toMatchObject({
+      event: 'dispatch_failure',
+      reason: 'recursion-guard-env',
+      executor: { kind: 'cli-codex' },
+    });
+  });
+
+  it('refuses before spawn when cli-codex already appears in the dispatch stack', () => {
+    const outcome = dispatchCodexWithMarker({ SPECKIT_CLI_DISPATCH_STACK: 'cli-codex' });
+
+    expect(outcome.exitCode).toBe(RECURSION_GUARD_EXIT_CODE);
+    expect(outcome.markerExists).toBe(false);
+    expect(outcome.lastEvent).toMatchObject({ reason: 'recursion-guard-stack' });
+  });
+
+  it('refuses before spawn when the process is itself a fan-out CLI lineage', () => {
+    const outcome = dispatchCodexWithMarker({ SPECKIT_FANOUT_LINEAGE_ID: 'research-lineage-1' });
+
+    expect(outcome.exitCode).toBe(RECURSION_GUARD_EXIT_CODE);
+    expect(outcome.markerExists).toBe(false);
+    expect(outcome.lastEvent).toMatchObject({ reason: 'recursion-guard-lineage' });
+  });
+
+  it('refuses before spawn when the codex binary is in the process ancestry', () => {
+    const outcome = dispatchCodexWithMarker({}, ['/opt/homebrew/bin/codex exec --sandbox workspace-write -']);
+
+    expect(outcome.exitCode).toBe(RECURSION_GUARD_EXIT_CODE);
+    expect(outcome.markerExists).toBe(false);
+    expect(outcome.lastEvent).toMatchObject({ reason: 'recursion-guard-ancestry' });
+  });
+
+  it('still reaches the spawn path for a top-level dispatch with a clean environment', () => {
+    const outcome = dispatchCodexWithMarker({});
+
+    expect(outcome.exitCode).toBe(0);
+    expect(outcome.markerExists).toBe(true);
+  });
+
+  it('detectFromFanoutLineage only fires on a non-empty lineage marker', () => {
+    expect(detectFromFanoutLineage({ SPECKIT_FANOUT_LINEAGE_ID: 'lineage-a' })).toBe(true);
+    expect(detectFromFanoutLineage({ SPECKIT_FANOUT_LINEAGE_ID: '  ' })).toBe(false);
+    expect(detectFromFanoutLineage({})).toBe(false);
+  });
+
+  it('formatRecursionGuardRefusal names the kind, the layer and the required alternative', () => {
+    const refusal = validateExecutorDispatchAllowed(cliCodexExecutor(), {
+      env: { SPECKIT_FANOUT_LINEAGE_ID: 'research-lineage-1' },
+      ancestryCmdlines: [],
+      statePaths: [],
+    });
+
+    expect(refusal.allowed).toBe(false);
+    if (refusal.allowed) {
+      return;
+    }
+    expect(formatRecursionGuardRefusal(refusal, cliCodexExecutor())).toBe(
+      'nested cli-codex dispatch refused [recursion-guard-lineage]: SPECKIT_FANOUT_LINEAGE_ID is set,'
+        + ' so this process is already a fan-out CLI lineage'
+        + ' — run the iteration in-process instead of dispatching cli-codex again',
+    );
+  });
+
+  it('reads a process ancestry on platforms without /proc so the ancestry layer can fire', () => {
+    const cmdlines = readAncestorCmdlines();
+    expect(Array.isArray(cmdlines)).toBe(true);
+
+    // Only assert a real reading where a source exists, so the test stays honest on a
+    // host that has neither /proc nor ps rather than asserting an unreachable guarantee.
+    if (existsSync('/proc/self/stat') || existsSync('/bin/ps')) {
+      expect(cmdlines.length).toBeGreaterThan(0);
+    }
   });
 });

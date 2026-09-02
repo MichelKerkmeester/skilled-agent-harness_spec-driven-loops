@@ -12,6 +12,12 @@ import { deriveReceiptKey, signReceipt } from './receipt-crypto.js';
 // ───── TYPE DEFINITIONS ─────
 
 export const CLI_DISPATCH_STACK_ENV = 'SPECKIT_CLI_DISPATCH_STACK' as const;
+export const FANOUT_LINEAGE_ENV = 'SPECKIT_FANOUT_LINEAGE_ID' as const;
+
+// A guard refusal is a route violation, not an executor outcome. It must not read as
+// a clean dispatch to the caller, so it exits distinctly from success (0) and from the
+// executor-missing fail-closed path (1) that the CLI branches already use.
+export const RECURSION_GUARD_EXIT_CODE = 3;
 
 export type DispatchFailureReason =
   | 'timeout'
@@ -23,8 +29,9 @@ export type DispatchFailureReason =
   | 'dispatch_receipt_write_failed'
   | RecursionGuardFailureReason;
 
-export type RecursionGuardLayer = 'stack' | 'ancestry' | 'env' | 'lockfile';
+export type RecursionGuardLayer = 'lineage' | 'stack' | 'ancestry' | 'env' | 'lockfile';
 export type RecursionGuardFailureReason =
+  | 'recursion-guard-lineage'
   | 'recursion-guard-stack'
   | 'recursion-guard-ancestry'
   | 'recursion-guard-env'
@@ -183,38 +190,99 @@ function commandLineContainsBinary(commandLine: string, binary: string): boolean
     .some((token) => basename(token) === binary);
 }
 
-function readLinuxAncestorCmdlines(startPid: number = process.ppid): string[] {
+type AncestorFrame = { commandLine: string; parentPid: number };
+
+// Bounds the walk so a pid cycle or an unexpectedly deep tree cannot spin the guard.
+const MAX_ANCESTOR_HOPS = 32;
+
+function readProcAncestorFrame(pid: number): AncestorFrame | null {
+  const procDir = join('/proc', String(pid));
+  const cmdlinePath = join(procDir, 'cmdline');
+  const statPath = join(procDir, 'stat');
+
+  if (!existsSync(cmdlinePath) || !existsSync(statPath)) {
+    return null;
+  }
+
+  try {
+    const commandLine = readFileSync(cmdlinePath, 'utf8').replace(/\0/g, ' ').trim();
+    const stat = readFileSync(statPath, 'utf8');
+    const closeParenIndex = stat.lastIndexOf(')');
+    const afterCommand = closeParenIndex === -1 ? '' : stat.slice(closeParenIndex + 2).trim();
+    const parentPid = Number(afterCommand.split(/\s+/)[1]);
+    return { commandLine, parentPid: Number.isInteger(parentPid) ? parentPid : 0 };
+  } catch {
+    return null;
+  }
+}
+
+// `ps` is the only ancestry source on platforms without /proc — macOS and the BSDs.
+// Without it the ancestry layer never fires there, and ancestry is the one layer that
+// survives a sandboxed CLI scrubbing its child environment, so a leaf can re-dispatch
+// its own binary undetected while every env-based layer stays blind.
+function readPsAncestorFrame(pid: number): AncestorFrame | null {
+  try {
+    const result = spawnSync('/bin/ps', ['-o', 'ppid=,command=', '-p', String(pid)], {
+      encoding: 'utf8',
+    });
+    if (result.status !== 0 || typeof result.stdout !== 'string') {
+      return null;
+    }
+
+    const line = result.stdout
+      .split('\n')
+      .map((entry) => entry.trim())
+      .find((entry) => entry.length > 0);
+    if (!line) {
+      return null;
+    }
+
+    const separatorIndex = line.search(/\s/);
+    if (separatorIndex === -1) {
+      return null;
+    }
+
+    const parentPid = Number(line.slice(0, separatorIndex));
+    return {
+      commandLine: line.slice(separatorIndex + 1).trim(),
+      parentPid: Number.isInteger(parentPid) ? parentPid : 0,
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Read the command lines of the current process ancestry.
+ *
+ * Prefers /proc where it exists and falls back to `ps`, so the ancestry layer of the
+ * recursion guard works on every POSIX platform rather than Linux alone.
+ *
+ * @param startPid - Pid to start the walk from (defaults to the parent process).
+ * @returns Ancestor command lines, nearest ancestor first; empty when none can be read.
+ */
+export function readAncestorCmdlines(startPid: number = process.ppid): string[] {
   const cmdlines: string[] = [];
-  let currentPid = startPid;
   const seen = new Set<number>();
+  let currentPid = startPid;
+  let hops = 0;
 
-  while (currentPid > 1 && !seen.has(currentPid)) {
+  while (currentPid > 1 && !seen.has(currentPid) && hops < MAX_ANCESTOR_HOPS) {
     seen.add(currentPid);
-    const procDir = join('/proc', String(currentPid));
-    const cmdlinePath = join(procDir, 'cmdline');
-    const statPath = join(procDir, 'stat');
+    hops += 1;
 
-    if (!existsSync(cmdlinePath) || !existsSync(statPath)) {
+    const frame = readProcAncestorFrame(currentPid) ?? readPsAncestorFrame(currentPid);
+    if (!frame) {
       break;
     }
 
-    try {
-      const cmdline = readFileSync(cmdlinePath, 'utf8').replace(/\0/g, ' ').trim();
-      if (cmdline.length > 0) {
-        cmdlines.push(cmdline);
-      }
-
-      const stat = readFileSync(statPath, 'utf8');
-      const closeParenIndex = stat.lastIndexOf(')');
-      const afterCommand = closeParenIndex === -1 ? '' : stat.slice(closeParenIndex + 2).trim();
-      const parentPid = Number(afterCommand.split(/\s+/)[1]);
-      if (!Number.isInteger(parentPid) || parentPid <= 0) {
-        break;
-      }
-      currentPid = parentPid;
-    } catch {
+    if (frame.commandLine.length > 0) {
+      cmdlines.push(frame.commandLine);
+    }
+    if (frame.parentPid <= 0) {
       break;
     }
+    currentPid = frame.parentPid;
   }
 
   return cmdlines;
@@ -667,7 +735,7 @@ export function detectSameKindFromStack(stack: string | undefined, kind: Executo
  * @param ancestryCmdlines - Pre-computed ancestor command lines (optional).
  * @returns True if the executor binary is found in the ancestry.
  */
-export function detectFromAncestry(kind: ExecutorKind, ancestryCmdlines: string[] = readLinuxAncestorCmdlines()): boolean {
+export function detectFromAncestry(kind: ExecutorKind, ancestryCmdlines: string[] = readAncestorCmdlines()): boolean {
   const binary = EXECUTOR_BINARY_BY_KIND[kind];
   if (!binary) {
     return false;
@@ -693,6 +761,19 @@ export function detectFromRuntimeEnv(
   }
 
   return typeof env[sessionEnvName] === 'string' && env[sessionEnvName]?.trim() !== '';
+}
+
+/**
+ * Detect whether this process is itself a fan-out CLI lineage.
+ *
+ * @param env - Environment variable map (defaults to process.env).
+ * @returns True when the fan-out lineage marker is set.
+ */
+export function detectFromFanoutLineage(
+  env: Record<string, string | undefined> = process.env,
+): boolean {
+  const lineageId = env[FANOUT_LINEAGE_ENV];
+  return typeof lineageId === 'string' && lineageId.trim() !== '';
 }
 
 /**
@@ -744,6 +825,19 @@ export function validateExecutorDispatchAllowed(
   }
 
   const env = context.env ?? process.env;
+
+  // A fan-out lineage IS the executor for its own iteration: it was spawned to do the
+  // work, not to delegate it again. Any further CLI dispatch from inside one is a route
+  // violation regardless of kind, so this layer is checked before the same-kind layers.
+  if (detectFromFanoutLineage(env)) {
+    return {
+      allowed: false,
+      layer: 'lineage',
+      reason: recursionReasonForLayer('lineage'),
+      detail: `${FANOUT_LINEAGE_ENV} is set, so this process is already a fan-out CLI lineage`,
+    };
+  }
+
   const stack = env[CLI_DISPATCH_STACK_ENV];
   if (detectSameKindFromStack(stack, kind)) {
     return {
@@ -784,6 +878,22 @@ export function validateExecutorDispatchAllowed(
   }
 
   return { allowed: true };
+}
+
+/**
+ * Format the one-line, actionable refusal a caller prints when the guard blocks a dispatch.
+ *
+ * @param refusal - The rejecting guard verdict.
+ * @param config - Executor configuration the caller asked to dispatch.
+ * @returns A single line naming the layer, the signal, and the required alternative.
+ */
+export function formatRecursionGuardRefusal(
+  refusal: Extract<ExecutorDispatchAllowedResult, { allowed: false }>,
+  config: ExecutorConfig,
+): string {
+  const kind = getExecutorKind(config);
+  return `nested ${kind} dispatch refused [${refusal.reason}]: ${refusal.detail}`
+    + ` — run the iteration in-process instead of dispatching ${kind} again`;
 }
 
 /**
@@ -928,13 +1038,18 @@ export function emitDispatchFailure(
  * them into typed dispatch_failure JSONL events.
  *
  * @param input - Command input with executor config and state log path.
- * @returns Always returns 0 (failures are logged, not thrown).
+ * @returns 0 for executor outcomes (failures are logged, not thrown), or
+ *   RECURSION_GUARD_EXIT_CODE when the recursion guard refused before spawn.
  */
 export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput): number {
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
   if (!dispatchAllowed.allowed) {
+    // Loud and non-zero: a refusal that returned 0 with no message read as a clean
+    // dispatch, so the caller carried on and only a missing-artifact check downstream
+    // hinted that nothing ran.
+    process.stderr.write(`${formatRecursionGuardRefusal(dispatchAllowed, input.executor)}\n`);
     emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail);
-    return 0;
+    return RECURSION_GUARD_EXIT_CODE;
   }
 
   // Pre-dispatch INTENT receipt (engine-signed, no child id yet). Null when the
@@ -1048,13 +1163,15 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
  * SIGTERM escalation to SIGKILL after the grace period.
  *
  * @param input - Command input with executor config and state log path.
- * @returns Promise resolving to 0 after process completes.
+ * @returns Promise resolving to 0 after the process completes, or
+ *   RECURSION_GUARD_EXIT_CODE when the recursion guard refused before spawn.
  */
 export async function runAuditedExecutorCommandAsync(input: RunAuditedExecutorCommandInput): Promise<number> {
   const dispatchAllowed = validateExecutorDispatchAllowed(input.executor, input.guardContext);
   if (!dispatchAllowed.allowed) {
+    process.stderr.write(`${formatRecursionGuardRefusal(dispatchAllowed, input.executor)}\n`);
     emitDispatchFailure(input.stateLogPath, input.executor, dispatchAllowed.reason, input.iteration, dispatchAllowed.detail);
-    return 0;
+    return RECURSION_GUARD_EXIT_CODE;
   }
 
   // Pre-dispatch INTENT receipt (engine-signed, no child id yet).

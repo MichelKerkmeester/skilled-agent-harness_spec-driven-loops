@@ -22,7 +22,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "f4168717c35f4d8636b308d25fd0b4309876f58b8579a7ae0741990a463e7944",
+      "sha256": "547280c78e793450640ee86d0c5a3108eb88e1f59a7f358e6f5d296a19bd544a",
       "section": "full"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "38a263848cb72d8414f8307cbe0443b8e7a0f7a3c971af7a486bdb5753424ffe",
+      "sha256": "df615c991eaf45dec4ea118dae5f100a04c7cd68629231e2bcd230fb1d41076a",
       "section": "full"
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "2f2c98b95d6b4ec1ec2219ec1adac8541e7b54463a21cf3837b6c8a7d45522c2",
+      "sha256": "facc2b4dbfdfbc1e03217d7ef664cab49f878d6dcc36c170a6c258cd0ac15f4e",
       "section": "full"
     },
     {

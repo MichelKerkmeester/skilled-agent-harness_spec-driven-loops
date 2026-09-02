@@ -284,6 +284,11 @@ Per-kind flag-compatibility is enforced at config parse time by `EXECUTOR_KIND_F
 
 Cross-CLI delegation (a running executor invoking other CLIs via its shell) is documented design intent. Runtime recursion detection is out of scope; see the SKILL.md Cross-CLI Delegation subsection.
 
+Two containment rules bind every CLI lineage (any `cli-*` executor kind):
+
+- **The lineage is the executor, so it works in-process.** A CLI lineage performs each iteration itself, with its own tools, inside the session the driver already started. The YAML's per-iteration executor dispatch steps are satisfied by the lineage. Spawning a second CLI process for the same iteration is a route violation, not an optimization, and on codex it also fails outright (see `cli-external-orchestration/cli-codex/SKILL.md` Rule 18).
+- **Write containment attributes every new dirty path outside the lineage directory to the lineage.** A tracked file changed anywhere in the same checkout while a lineage runs is reverted from HEAD and fails that lineage, even when an operator or a separate session made the edit. So do not edit tracked files in a checkout that has a live lineage. Make those edits after the driver exits, or in a separate worktree. Untracked files are never deleted, but only those in an ancestor directory of the lineage (the packet root or a parent phase) count as advisories. An untracked file in a sibling phase folder or anywhere else still fails the lineage, with one exemption: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time. A directory with no lock, or a stale one, is still a breach. The runtime writes each reverted diff to `<lineage dir>/containment-reverted/*.patch`, so a wrongly reverted change can be recovered and reapplied.
+
 Failure handling remains unchanged from spec 018: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
 
 The dispatch context may include a suggested `focusTrack` label (e.g., `"focusTrack": "performance"`, `"focusTrack": "security"`). Agents may tag their iteration with this track label for post-hoc grouping and analysis. Track labels are metadata only - the orchestrator does not use them for loop decisions.

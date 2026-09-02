@@ -9,8 +9,9 @@
 // ║          it write anywhere in the workspace -- the artifact dir boundary   ║
 // ║          is prompt-only. This module turns that boundary into a structural ║
 // ║          one: after a dispatch, diff the git working tree for NEW changes  ║
-// ║          outside the artifact dir, revert exactly those paths, emit a      ║
-// ║          containment_violation event, and let the caller fail the iter.    ║
+// ║          outside the artifact dir, save those changes as a recoverable     ║
+// ║          patch, revert exactly those paths, emit a containment_violation   ║
+// ║          event, and let the caller fail the iteration.                     ║
 // ║          Pre-existing dirty paths are subtracted so unrelated in-flight    ║
 // ║          work is never reverted. Fails OPEN: when it cannot reason about   ║
 // ║          git (no repo, no binary, artifact dir outside the worktree) it    ║
@@ -18,7 +19,7 @@
 // ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawnSync } from 'node:child_process';
-import { appendFileSync, mkdirSync, realpathSync } from 'node:fs';
+import { appendFileSync, mkdirSync, realpathSync, writeFileSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -78,8 +79,9 @@ export interface ContainmentOptions {
    * tree diff cannot tell the parent's append from the leaf's, so the leaf gets
    * blamed for its own supervisor's bookkeeping. That is fatal rather than
    * cosmetic once those ledgers are committed: the revert restores them from
-   * HEAD, which erases the live record of the run in progress — the guard
-   * destroying the very evidence it exists to protect.
+   * HEAD, so the live record of the run in progress survives only as a saved
+   * patch — the guard undoing the very evidence it exists to protect, and
+   * costing an operator a manual re-apply to get it back.
    *
    * Matched as WHOLE PATHS, never as prefixes. A sibling that merely starts with
    * an exempted name (`<ledger>.bak`) stays guarded, so the exemption cannot be
@@ -112,6 +114,14 @@ export interface ContainmentViolationEvent {
   label?: string;
   violations: Array<{ path: string; kind: ContainmentViolationKind; status: string }>;
   reverted: ContainmentRevertAction[];
+  /**
+   * Repo-relative POSIX path of the patch holding everything the revert undid —
+   * the only surviving copy of a reverted edit. Absent when no in-HEAD path was
+   * reverted, when the diff was empty, or when the patch could not be written.
+   */
+  revertedPatchPath?: string;
+  /** Why the patch could not be saved. The revert still happened; the edit is gone. */
+  revertedPatchError?: string;
   timestamp: string;
 }
 
@@ -129,6 +139,12 @@ export interface EnforceResult {
   advisories: ContainmentViolation[];
   revertResult: ContainmentRevertResult;
   event: ContainmentViolationEvent | null;
+  /**
+   * Ready-made sentence naming the saved patch, for the caller to append to the fatal
+   * message it already surfaces. Null when no patch was written, so a caller can append
+   * it unconditionally without inventing wording for the nothing-to-recover case.
+   */
+  recoveryHint: string | null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -436,6 +452,66 @@ export function detectNewOutOfScopeViolations(opts: DetectOptions): ContainmentV
   return violations;
 }
 
+interface RevertPatchCapture {
+  /** Repo-relative POSIX path of the written patch, or null when nothing was saved. */
+  path: string | null;
+  /** Why the patch could not be written. The revert proceeds regardless — fail-closed stays. */
+  error?: string;
+}
+
+/**
+ * Save everything the revert is about to undo as an appliable patch inside the artifact dir.
+ *
+ * The guard cannot tell a leaf's stray write from an operator editing the same checkout by
+ * hand, so reverting from HEAD is correct and destructive at once: correct because an
+ * unattributable out-of-scope change must not survive the run, destructive because a real
+ * person's unsaved work goes with it. The patch is what makes that trade recoverable —
+ * `git apply` restores the edit — and it must be taken BEFORE the checkout, since afterwards
+ * there is no diff left to take.
+ *
+ * Only in-HEAD paths are captured: a not-in-HEAD path is preserved on disk rather than
+ * reverted, so it needs no copy. `--no-textconv` and `--no-ext-diff` keep repo diff config
+ * from producing a human-readable diff that cannot be applied, and `--binary` keeps a
+ * non-text file recoverable too.
+ */
+function captureRevertPatch(input: {
+  repoRoot: string;
+  artifactDir: string;
+  artifactRelPosix: string;
+  violations: ContainmentViolation[];
+  iteration?: number;
+  env?: NodeJS.ProcessEnv;
+}): RevertPatchCapture {
+  const inHeadPaths = input.violations
+    .filter((violation) => pathInHead(input.repoRoot, violation.path, input.env))
+    .map((violation) => violation.path);
+  if (inHeadPaths.length === 0) return { path: null };
+
+  const { ok, stdout } = gitOutput(
+    ['diff', '--no-ext-diff', '--no-textconv', '--binary', 'HEAD', '--', ...inHeadPaths],
+    { repoRoot: input.repoRoot, env: input.env },
+  );
+  if (!ok) return { path: null, error: 'git diff HEAD -- <paths> failed' };
+  if (stdout.trim() === '') return { path: null };
+
+  // Coercing rather than trusting the declared type: the primary caller is untyped
+  // CommonJS, and this value becomes a path segment.
+  const iterationSegment =
+    typeof input.iteration === 'number' && Number.isFinite(input.iteration)
+      ? String(input.iteration)
+      : 'unknown';
+  const fileName = `${iterationSegment}-${new Date().toISOString().replace(/:/g, '-')}.patch`;
+  const absolutePath = join(input.artifactDir, 'containment-reverted', fileName);
+  try {
+    mkdirSync(dirname(absolutePath), { recursive: true });
+    writeFileSync(absolutePath, stdout, 'utf8');
+  } catch (error) {
+    return { path: null, error: `patch write failed: ${(error as Error).message}` };
+  }
+  const prefix = input.artifactRelPosix === '' ? '' : `${input.artifactRelPosix}/`;
+  return { path: `${prefix}containment-reverted/${fileName}` };
+}
+
 /**
  * Revert the given out-of-scope violating paths WITHOUT ever irreversibly deleting a file.
  * A tracked path present in HEAD is restored from HEAD -- which resurrects deletions and
@@ -480,6 +556,8 @@ export function buildContainmentViolationEvent(input: {
   label?: string;
   violations: ContainmentViolation[];
   revertResult: ContainmentRevertResult;
+  /** Outcome of the pre-revert patch capture; omitted when no revert was attempted. */
+  patch?: { path: string | null; error?: string };
 }): ContainmentViolationEvent {
   return {
     type: 'event',
@@ -490,6 +568,8 @@ export function buildContainmentViolationEvent(input: {
     ...(typeof input.label === 'string' && input.label.length > 0 ? { label: input.label } : {}),
     violations: input.violations.map((v) => ({ path: v.path, kind: v.kind, status: v.status })),
     reverted: input.revertResult.reverted,
+    ...(input.patch?.path ? { revertedPatchPath: input.patch.path } : {}),
+    ...(input.patch?.error ? { revertedPatchError: input.patch.error } : {}),
   };
 }
 
@@ -503,15 +583,18 @@ function appendContainmentEvent(stateLogPath: string, event: ContainmentViolatio
 }
 
 /**
- * High-level post-dispatch guard: detect NEW out-of-scope violations, revert
- * them, and (when stateLogPath is provided) append a containment_violation event.
- * Returns the violations, revert result, and the event (null when clean). The
- * caller fails the iteration fail-closed when `violations.length > 0`.
+ * High-level post-dispatch guard: detect NEW out-of-scope violations, save what the
+ * revert will undo as a patch, revert them, and (when stateLogPath is provided) append
+ * a containment_violation event. Returns the violations, revert result, the event (null
+ * when clean), and `recoveryHint` naming the saved patch for the caller's fatal message.
+ * The caller fails the iteration fail-closed when `violations.length > 0`.
  */
 export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   const detected = detectNewOutOfScopeViolations(input);
   if (detected.length === 0) {
-    return { violations: [], advisories: [], revertResult: { reverted: [] }, event: null };
+    return {
+      violations: [], advisories: [], revertResult: { reverted: [] }, event: null, recoveryHint: null,
+    };
   }
   // detectNewOutOfScopeViolations above only returns non-empty once it has already resolved
   // this same scope from this same input (it throws or returns [] otherwise), so this
@@ -522,6 +605,15 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   const artifactRelPosix = scope ? scope.artifactRelPosix : '';
   const exempted = detected.filter((violation) => isRegenerableRuntimeState(violation.path, artifactRelPosix));
   const guarded = detected.filter((violation) => !isRegenerableRuntimeState(violation.path, artifactRelPosix));
+  // Taken before the revert, because the revert is what destroys the content it copies.
+  const patch = captureRevertPatch({
+    repoRoot: input.repoRoot,
+    artifactDir: input.artifactDir,
+    artifactRelPosix,
+    violations: guarded,
+    iteration: input.iteration,
+    env: input.env,
+  });
   const revertResult = revertOutOfScopeViolations({
     repoRoot: input.repoRoot,
     violations: guarded,
@@ -558,11 +650,13 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     label: input.label,
     violations: detected,
     revertResult,
+    patch,
   });
   if (input.stateLogPath) {
     appendContainmentEvent(input.stateLogPath, event);
   }
-  return { violations, advisories, revertResult, event };
+  const recoveryHint = patch.path ? `recoverable patch: ${patch.path}` : null;
+  return { violations, advisories, revertResult, event, recoveryHint };
 }
 
 // Exported for tests / diagnostics.

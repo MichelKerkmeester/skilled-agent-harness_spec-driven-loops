@@ -22,7 +22,7 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "aab82fa14974cf4f728cca0d6f5be7b806c462e00b97818c9f67097dff41c9d3",
+      "sha256": "000ccca373fa45a47fd2501be8d4d4bc399614385419d24d50e2c8799b67720d",
       "section": "full"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "38a263848cb72d8414f8307cbe0443b8e7a0f7a3c971af7a486bdb5753424ffe",
+      "sha256": "df615c991eaf45dec4ea118dae5f100a04c7cd68629231e2bcd230fb1d41076a",
       "section": "full"
     },
     {
