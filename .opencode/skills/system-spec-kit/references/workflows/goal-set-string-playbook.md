@@ -6,6 +6,7 @@ trigger_phrases:
   - "session goal objective"
   - "goal pointer"
   - "copied completion criteria"
+version: 3.9.0.1
 ---
 
 # Goal Set-String Playbook

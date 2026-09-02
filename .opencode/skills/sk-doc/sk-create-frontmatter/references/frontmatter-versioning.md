@@ -118,6 +118,21 @@ tree just means the numbers have not been committed yet.
 The ordinary case avoids this entirely: run `apply` in the same commit as the content change
 you are versioning, and no separate version-only commit ever exists.
 
+### What is enforced, and what is advice
+
+Two commands answer different questions and only one of them gates anything.
+
+`gate` is the enforced check, and it is what the post-edit hook runs. It asks whether every
+in-scope document carries a well-formed four-part version. It never consults git, so it cannot
+drift and it cannot be made stale by a commit.
+
+`verify` compares each recorded version against the value git implies right now. It is a
+reconciliation tool, not a gate. Because writing a version is itself an edit, a fleet-wide
+`verify` reports thousands of mismatches on a repository whose `gate` is clean, and that is the
+expected reading rather than a fault to chase. Reconcile a skill when you want its numbers to
+mean something precise. Do not reconcile the fleet to make `verify` quiet, since the sweep
+rewrites every in-scope document, buries real changes in noise, and is undone by its own commit.
+
 ---
 
 ## 5. NORMALIZATION & EDGE CASES
