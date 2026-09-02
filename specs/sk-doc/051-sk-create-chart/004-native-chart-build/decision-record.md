@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "sk-doc/051-sk-create-chart/004-native-chart-build"
     last_updated_at: "2026-09-02T12:30:00Z"
     last_updated_by: "phase-4-foundation-implementer"
-    recent_action: "Recorded six foundation decisions"
-    next_safe_action: "Author the chart forms against the template contract, one catalog row per form"
+    recent_action: "Recorded the three decisions the chart forms needed"
+    next_safe_action: "Route the mode into the hub, which phase 5 owns"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/assets/color/palettes.json"
@@ -25,9 +25,9 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-4-foundation"
       parent_session_id: null
-    completion_pct: 40
+    completion_pct: 85
     open_questions:
-      - "Whether report mode is cut, which would make the assets/reports directory dead"
+      - "Whether the six question families are the right shelves for a reader picking a chart"
     answered_questions:
       - "ADR-001: three colour systems, and emphasis is a role rather than a fourth system"
       - "ADR-002: one shared chrome, and only the data roles vary by system"
@@ -35,6 +35,11 @@ _memory:
       - "ADR-004: no remote dependency of any kind"
       - "ADR-005: the contrast gate is shaped by what the colour encodes"
       - "ADR-006: the index is structured data inside a document, checked in both directions"
+      - "ADR-007: report mode is cut and its directory goes with it"
+      - "ADR-008: the examples directory holds one delivery per family"
+      - "ADR-009: a family is a question group, carried as a catalog column"
+      - "ADR-010: a label on a mark picks its colour at runtime from the resolved palette"
+      - "ADR-011: demo data is literal and derived spacing uses an integer mixer"
 ---
 # Decision Record: Phase 4: native-chart-build
 
@@ -42,10 +47,10 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> These six decisions cover the foundation alone: the colour system, the template contract and
-> the corpus check. The chart forms are authored on top of them and are not decided here.
-> Every one of them fills a gap the capability analysis withheld on purpose, so each is an
-> invention rather than a reading.
+> ADR-001 through ADR-006 cover the foundation: the colour system, the template contract and the
+> corpus check. ADR-007 through ADR-011 cover the corpus authored on top of it. Every one of them
+> fills a gap the capability analysis withheld on purpose, so each is an invention rather than a
+> reading.
 
 ---
 
@@ -526,3 +531,183 @@ characteristic once the corpus exists.
 A reader gets one honest sample per family without opening the whole corpus, and the directory
 has a rule that says when it is finished rather than growing by accretion.
 <!-- /ANCHOR:adr-008 -->
+
+---
+
+<!-- ANCHOR:adr-009 -->
+## ADR-009: A family is a question group, and the catalog carries it as a column
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-02 |
+| **Deciders** | Phase 4 forms author |
+| **Satisfies** | REQ-005 |
+
+---
+
+### Context
+
+The capability analysis uses "family" for a reading contract: how long the reader will look, and
+whether the chart may aggregate before showing them anything. It then recommends building one
+visual register first, which leaves that meaning of the word with nothing to distinguish.
+
+ADR-008 nonetheless requires one delivery per family, so families have to be enumerable and every
+form has to belong to one.
+
+### Decision
+
+A family in this packet is a group of questions, taken from how section 4 of the analysis
+organises the forms: comparison, composition, time, distribution, relationship and matrix. The
+catalog carries it as a `family` column beside `id`.
+
+### Why a column rather than a paragraph
+
+The alternative was a prose list of which form sits in which family. That is a second copy of an
+assignment the rows already need, and it drifts on the first form added. A column cannot drift
+from the row it is in.
+
+The word is reused rather than replaced because the reader-facing meaning is the same either way:
+it tells them which shelf to look on. What it no longer tells them is how the chart is drawn, and
+the catalog says so where the families are listed.
+
+### Alternatives Considered
+
+| Option | Why rejected |
+|--------|--------------|
+| Keep "family" for the reading register and leave the corpus with one family | ADR-008 would then require one delivery, which tells a reader nothing about the twenty forms |
+| A separate word, such as "shelf" or "group" | A second vocabulary for the same reader-facing idea, and every document would have to explain the difference |
+| A prose list outside the table | A second copy of the assignment, drifting on the first addition |
+
+### Consequences
+
+**Positive**: `assets/examples/` has a rule that says when it is finished, and a reader scanning
+the catalog can find the right shelf without reading twenty rows.
+
+**Negative**: a document that discusses both meanings has to say which it means. The catalog does
+this in one sentence, and the analysis is unchanged.
+
+<!-- /ANCHOR:adr-009 -->
+
+---
+
+<!-- ANCHOR:adr-010 -->
+## ADR-010: A label sitting on a mark picks its colour at runtime
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-02 |
+| **Deciders** | Phase 4 forms author |
+| **Satisfies** | REQ-002 |
+
+---
+
+### Context
+
+Four forms print a number or a name on top of a filled shape: the stacked composition, the
+treemap, the heat matrix and the matrix delivery. The contrast gates in the palette file measure
+a mark against the surface. Nothing measures text against a mark, because until a form printed on
+one there was no such pairing.
+
+The categorical series spans 10.01 to 3.37 against the surface and the ordered ramp spans 11.27 to
+1.76. Light text is unreadable on the pale end of either and dark text is unreadable on the dark
+end, so no single choice works across a whole system.
+
+### Decision
+
+The file reads the resolved custom property with `getComputedStyle`, computes the contrast of both
+text roles against it, and takes whichever is higher. Two classes exist, one filling with `surface`
+and one with `ink`, and the drawing code picks between them per mark.
+
+### Why not a fixed choice per series slot
+
+Because it would be a third copy of the palette. A hardcoded map from series slot to text role is
+correct only for the values in the palette file today, it would go silently wrong the first time
+one of them moved, and no check in this packet would catch it. Computing it means the answer
+follows the palette by construction.
+
+The arithmetic is already in the package. The palette sheets compute contrast in the browser from
+resolved values, and this is the same formula reaching a different question.
+
+### Alternatives Considered
+
+| Option | Why rejected |
+|--------|--------------|
+| Always use the surface role for text on a mark | Unreadable on the pale end of the ordered ramp, which is exactly where a low cell needs its number read |
+| A hardcoded map from series slot to text role | A third copy of the palette, wrong the first time a value moves, and unchecked |
+| Never print a value on a mark | The heat matrix exists to be read for values as often as for its pattern, and moving them outside the cell loses the association |
+
+### Consequences
+
+**Positive**: a palette edit cannot make a label unreadable, because the label follows the value.
+
+**Negative**: four templates carry the same twenty lines of contrast arithmetic. That is the
+duplication ADR-003 accepted, and it is the first place a generation step would pay for itself.
+
+<!-- /ANCHOR:adr-010 -->
+
+---
+
+<!-- ANCHOR:adr-011 -->
+## ADR-011: Demo data is literal, and derived spacing uses an integer mixer
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-02 |
+| **Deciders** | Phase 4 forms author |
+| **Satisfies** | REQ-002, REQ-003 |
+
+---
+
+### Context
+
+Two forms need many values: the calendar grid needs 364 and the distribution strip needs 144. The
+`determinism` check bans the platform random function outright, and the data block contract says
+the numbers are literal.
+
+The distribution strip has a second problem. Its dots have to be spread vertically inside a band
+or overlapping records hide each other, and that spread is presentation rather than data.
+
+### Decision
+
+Every number in every data block is a literal, including all 364 calendar values. They were
+produced outside the file and pasted in, so nothing in a delivered file computes the numbers it is
+displaying.
+
+Vertical spread inside a strip is derived from the record's index with a small integer mixer held
+in the drawing code. It never touches a value, and two opens of the same file place every dot
+identically.
+
+### Why the mixer is not the thing the check bans
+
+The check bans the platform random function because it makes two renders of one file disagree,
+which is what breaks a screenshot review. A pure function of the index has neither property. The
+comment above it says so, because the next reader will otherwise read it as a random number
+generator that slipped past a rule.
+
+### Alternatives Considered
+
+| Option | Why rejected |
+|--------|--------------|
+| Generate the demo values in the file from a seeded helper | The data block would then hold a generator rather than numbers, and an editor opening it to change the figures would find code |
+| Spread the dots by a fixed repeating offset | A visible comb pattern, which reads as structure in data that has none |
+| Do not spread them at all | Overlapping records hide each other, and the form exists because every record is present |
+
+### Consequences
+
+**Positive**: every file in the corpus renders identically on every open, and the calendar grid is
+still hand-editable because its data is a grid of numbers.
+
+**Negative**: the calendar grid's data block is 52 lines long. That is the honest size of a year
+of daily values, and the alternative was hiding it behind a generator.
+
+<!-- /ANCHOR:adr-011 -->
+

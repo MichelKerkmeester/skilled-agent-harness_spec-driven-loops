@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="daily-line">
+<meta name="chart-color-system" content="neutral">
+<title>One reading per day over a month</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.area { fill: var(--chart-series-1); fill-opacity: 0.10; }
+.line { fill: none; stroke: var(--chart-series-1); stroke-width: 2; stroke-linejoin: round; }
+.grid { stroke: var(--chart-rule); stroke-width: 1; }
+.mark { fill: var(--chart-emphasis); }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">The drop in the second week never came back</h1>
+  <p class="subtitle" data-chart-part="subtitle">Orders placed per day across four weeks to the twenty-eighth. The lowest day carries a marker because it is what the headline is about.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart">
+      <title id="fig-title">Orders per day over twenty-eight days</title>
+      <desc id="fig-desc">A daily line over twenty-eight days with a light area fill beneath it. The series falls sharply on day eleven to a low of 96 and settles below its earlier level. The table below the chart carries every reading as text.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Orders placed per day, twenty-eight days.</caption>
+    <thead><tr><th scope="col">Day</th><th scope="col">Orders</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { day: 1, value: 184 }, { day: 2, value: 191 }, { day: 3, value: 176 }, { day: 4, value: 203 },
+  { day: 5, value: 198 }, { day: 6, value: 142 }, { day: 7, value: 131 }, { day: 8, value: 188 },
+  { day: 9, value: 195 }, { day: 10, value: 173 }, { day: 11, value: 96 }, { day: 12, value: 108 },
+  { day: 13, value: 121 }, { day: 14, value: 114 }, { day: 15, value: 133 }, { day: 16, value: 145 },
+  { day: 17, value: 139 }, { day: 18, value: 151 }, { day: 19, value: 148 }, { day: 20, value: 112 },
+  { day: 21, value: 104 }, { day: 22, value: 156 }, { day: 23, value: 162 }, { day: 24, value: 149 },
+  { day: 25, value: 158 }, { day: 26, value: 154 }, { day: 27, value: 118 }, { day: 28, value: 109 }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. A hairline is the right weight here. The area fill helps only
+// when the reader is reading shape rather than reading values off the axis.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
+// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+const LEFT = 50;
+const RIGHT = 706;
+const TOP = 20;
+const BASE = 244;
+const TICKS = 4;
+const peak = DATA.reduce(function (m, d) { return Math.max(m, d.value); }, 0);
+const max = niceStep(peak / TICKS) * TICKS;
+const x = function (i) { return LEFT + (RIGHT - LEFT) * (i / (DATA.length - 1)); };
+const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (max / TICKS) * t;
+  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
+}
+
+const points = DATA.map(function (d, i) { return x(i) + ',' + y(d.value); });
+node('path', { d: 'M' + LEFT + ',' + BASE + ' L' + points.join(' L') + ' L' + RIGHT + ',' + BASE + ' Z' }, 'area');
+node('path', { d: 'M' + points.join(' L') }, 'line');
+
+DATA.forEach(function (d, i) {
+  if (d.day % 7 !== 0 && d.day !== 1) return;
+  const anchor = i === 0 ? 'start' : i === DATA.length - 1 ? 'end' : 'middle';
+  node('text', { x: x(i), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = 'day ' + d.day;
+});
+
+const lowest = DATA.reduce(function (a, b) { return b.value < a.value ? b : a; }, DATA[0]);
+const lowIndex = DATA.indexOf(lowest);
+node('circle', { cx: x(lowIndex), cy: y(lowest.value), r: 5 }, 'mark');
+node('text', { x: x(lowIndex) + 10, y: y(lowest.value) + 4 }, 'note').textContent = String(lowest.value);
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = 'Day ' + d.day;
+  const td = document.createElement('td');
+  td.className = 'num';
+  td.textContent = String(d.value);
+  tr.appendChild(th);
+  tr.appendChild(td);
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

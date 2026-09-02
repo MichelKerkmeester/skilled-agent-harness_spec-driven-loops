@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="van-age-against-repair-cost">
+<meta name="chart-color-system" content="neutral">
+<title>Van age against repair spend</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.dot { fill: var(--chart-series-1); }
+.dot-lead { fill: var(--chart-emphasis); }
+.grid { stroke: var(--chart-rule); stroke-width: 1; }
+.axis { stroke: var(--chart-muted); stroke-width: 1; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.axis-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.note { fill: var(--chart-emphasis); font-size: 12px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Repair spend climbs steadily with age, and one three-year-old van costs more than the oldest</h1>
+  <p class="subtitle" data-chart-part="subtitle">Age against repair spend for all eighteen vans in the fleet, financial year to date. Van 09 carries the emphasis colour because it is what the headline is about.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 316" id="chart">
+      <title id="fig-title">Van age against repair spend</title>
+      <desc id="fig-desc">Eighteen points rising from left to right, so older vans cost more to repair. Van 09 is three years old and has cost 2140 pounds, more than the twelve-year-old van at 1740. The table below the chart carries both values for every van.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: maintenance ledger, 1 April to 31 August.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Van age against repair spend this financial year.</caption>
+    <thead><tr><th scope="col">Van</th><th scope="col">Age in years</th><th scope="col">Repair spend</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const X_NAME = 'Age of the van in years';
+const Y_NAME = 'Repair spend this year, in pounds';
+const DATA = [
+  { label: 'Van 03', x: 1, y: 180 }, { label: 'Van 11', x: 1, y: 210 },
+  { label: 'Van 07', x: 2, y: 260 }, { label: 'Van 15', x: 2, y: 320 },
+  { label: 'Van 09', x: 3, y: 2140, lead: true }, { label: 'Van 02', x: 3, y: 380 },
+  { label: 'Van 18', x: 4, y: 470 }, { label: 'Van 05', x: 5, y: 540 },
+  { label: 'Van 13', x: 5, y: 610 }, { label: 'Van 01', x: 6, y: 720 },
+  { label: 'Van 16', x: 7, y: 810 }, { label: 'Van 08', x: 8, y: 950 },
+  { label: 'Van 12', x: 8, y: 1030 }, { label: 'Van 04', x: 9, y: 1180 },
+  { label: 'Van 17', x: 10, y: 1290 }, { label: 'Van 06', x: 10, y: 1420 },
+  { label: 'Van 14', x: 11, y: 1560 }, { label: 'Van 10', x: 12, y: 1740 }
+];
+/* CHART_DATA:END */
+
+// Everything below renders. The block above is the only part to edit.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+// The ladder is fine-grained on purpose. A coarse one jumps from five to ten and leaves
+// the tallest bar filling half the plot, which reads as a flat chart rather than a full one.
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+const LEFT = 56;
+const RIGHT = 700;
+const TOP = 16;
+const BASE = 262;
+const TICKS = 4;
+const xMax = niceStep(DATA.reduce(function (m, d) { return Math.max(m, d.x); }, 0) / TICKS) * TICKS;
+const yMax = niceStep(DATA.reduce(function (m, d) { return Math.max(m, d.y); }, 0) / TICKS) * TICKS;
+const px = function (v) { return LEFT + (RIGHT - LEFT) * (v / xMax); };
+const py = function (v) { return BASE - (BASE - TOP) * (v / yMax); };
+
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (yMax / TICKS) * t;
+  node('line', { x1: LEFT, y1: py(value), x2: RIGHT, y2: py(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: py(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
+}
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (xMax / TICKS) * t;
+  const anchor = t === 0 ? 'start' : t === TICKS ? 'end' : 'middle';
+  node('text', { x: px(value), y: BASE + 20, 'text-anchor': anchor }, 'tick').textContent = String(value);
+}
+node('line', { x1: LEFT, y1: BASE, x2: RIGHT, y2: BASE }, 'axis');
+
+DATA.forEach(function (d) {
+  node('circle', { cx: px(d.x), cy: py(d.y), r: 5.5 }, d.lead ? 'dot-lead' : 'dot');
+});
+
+const outlier = DATA.filter(function (d) { return d.lead; })[0];
+if (outlier) {
+  node('text', { x: px(outlier.x) + 12, y: py(outlier.y) + 4 }, 'note').textContent = outlier.label;
+}
+
+node('text', { x: (LEFT + RIGHT) / 2, y: BASE + 46, 'text-anchor': 'middle' }, 'axis-name').textContent = X_NAME;
+const midY = (TOP + BASE) / 2;
+node('text', {
+  x: 16, y: midY, 'text-anchor': 'middle', transform: 'rotate(-90 16 ' + midY + ')'
+}, 'axis-name').textContent = Y_NAME;
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  tr.appendChild(th);
+  [d.x, d.y].forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = String(v);
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

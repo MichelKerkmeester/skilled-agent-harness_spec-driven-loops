@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="parallel-axes">
+<meta name="chart-color-system" content="categorical">
+<title>One entity set across several dimensions</title>
+<style>
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.line-1 { fill: none; stroke: var(--chart-series-1); stroke-width: 2.5; }
+.line-2 { fill: none; stroke: var(--chart-series-2); stroke-width: 2.5; }
+.line-3 { fill: none; stroke: var(--chart-series-3); stroke-width: 2.5; }
+.line-4 { fill: none; stroke: var(--chart-series-4); stroke-width: 2.5; }
+.dot-1 { fill: var(--chart-series-1); }
+.dot-2 { fill: var(--chart-series-2); }
+.dot-3 { fill: var(--chart-series-3); }
+.dot-4 { fill: var(--chart-series-4); }
+.axis { stroke: var(--chart-rule); stroke-width: 2; }
+.axis-name { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.bound { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.key { fill: var(--chart-muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">The cheapest supplier is the worst on every measure that is not price</h1>
+  <p class="subtitle" data-chart-part="subtitle">Four shortlisted suppliers across five measures, each on its own scale. The axes are not pointed the same way, so a high line is not a good line. Read each axis on its own and read the crossings between them. Each line is named where it ends.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 300" id="chart">
+      <title id="fig-title">Four suppliers across five measures</title>
+      <desc id="fig-desc">Five vertical axes, one per measure, with a line per supplier crossing all five. Alpha is lowest on unit price at 4.10 pounds and is also the longest lead time, the highest defect rate, the lowest on-time delivery and the slowest support. The table below the chart carries every value.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Four shortlisted suppliers across five measures.</caption>
+    <thead><tr id="head-row"><th scope="col">Supplier</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const AXES = [
+  { name: 'Unit price', unit: 'pounds', min: 4, max: 7 },
+  { name: 'Lead time', unit: 'days', min: 0, max: 24 },
+  { name: 'Defect rate', unit: 'per thousand', min: 0, max: 20 },
+  { name: 'On-time delivery', unit: 'percent', min: 60, max: 100 },
+  { name: 'Support response', unit: 'hours', min: 0, max: 48 }
+];
+const DATA = [
+  { label: 'Alpha', values: [4.1, 21, 18, 71, 48] },
+  { label: 'Beta', values: [5.2, 14, 9, 86, 24] },
+  { label: 'Gamma', values: [5.8, 9, 5, 93, 8] },
+  { label: 'Delta', values: [6.4, 7, 3, 96, 4] }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. Each axis carries its own scale, which is the whole point and
+// also the trap: nothing here says which end of an axis is the good end.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+const LEFT = 74;
+const RIGHT = 646;
+const TOP = 62;
+const BOTTOM = 244;
+const ax = function (j) { return LEFT + (RIGHT - LEFT) * (j / (AXES.length - 1)); };
+const ay = function (j, v) {
+  const axis = AXES[j];
+  const t = (v - axis.min) / (axis.max - axis.min);
+  return BOTTOM - (BOTTOM - TOP) * t;
+};
+
+AXES.forEach(function (axis, j) {
+  node('line', { x1: ax(j), y1: TOP, x2: ax(j), y2: BOTTOM }, 'axis');
+  const anchor = j === 0 ? 'start' : j === AXES.length - 1 ? 'end' : 'middle';
+  // Neighbouring axis names collide the moment one of them is more than a word long, so
+  // alternate axes sit a row higher rather than being truncated into initials.
+  const lift = j % 2 === 1 ? 18 : 0;
+  node('text', { x: ax(j), y: TOP - 26 - lift, 'text-anchor': anchor }, 'axis-name').textContent = axis.name;
+  node('text', { x: ax(j), y: TOP - 13 - lift, 'text-anchor': anchor }, 'bound').textContent = axis.unit;
+  node('text', { x: ax(j), y: TOP - 2, 'text-anchor': anchor }, 'bound').textContent = String(axis.max);
+  node('text', { x: ax(j), y: BOTTOM + 16, 'text-anchor': anchor }, 'bound').textContent = String(axis.min);
+});
+
+DATA.forEach(function (d, s) {
+  const points = d.values.map(function (v, j) { return ax(j) + ',' + ay(j, v); });
+  node('path', { d: 'M' + points.join(' L') }, 'line-' + (s + 1));
+  d.values.forEach(function (v, j) {
+    node('circle', { cx: ax(j), cy: ay(j, v), r: 4 }, 'dot-' + (s + 1));
+  });
+  node('text', { x: RIGHT + 10, y: ay(AXES.length - 1, d.values[AXES.length - 1]) + 4 }, 'key')
+    .textContent = d.label;
+});
+
+const headRow = document.getElementById('head-row');
+AXES.forEach(function (axis) {
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'col');
+  th.textContent = axis.name + ' (' + axis.unit + ')';
+  headRow.appendChild(th);
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  tr.appendChild(th);
+  d.values.forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = String(v);
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

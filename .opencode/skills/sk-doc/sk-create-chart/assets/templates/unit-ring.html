@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="unit-ring">
+<meta name="chart-color-system" content="categorical">
+<title>Part to whole as a ring of countable marks</title>
+<style>
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.series-1 { fill: var(--chart-series-1); }
+.series-2 { fill: var(--chart-series-2); }
+.series-3 { fill: var(--chart-series-3); }
+.series-4 { fill: var(--chart-series-4); }
+.key { fill: var(--chart-muted); font-size: 12px; }
+.total { fill: var(--chart-ink); font-size: 34px; font-weight: 600; }
+.total-label { fill: var(--chart-muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Three quarters of last month's incidents trace back to two causes</h1>
+  <p class="subtitle" data-chart-part="subtitle">One tick is one incident, reading clockwise from the top. The silhouette is the familiar ring and the marks inside it are countable, which is what fixes the angle-estimation problem a pie has.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart">
+      <title id="fig-title">Incidents by root cause, one tick per incident</title>
+      <desc id="fig-desc">Forty-five ticks arranged in a ring, grouped by cause. Configuration change and dependency timeout together account for thirty-four of the forty-five. The table below the chart carries every count as text.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Incidents by root cause, last month.</caption>
+    <thead><tr><th scope="col">Root cause</th><th scope="col">Incidents</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const UNITS = 'incidents';
+const DATA = [
+  { label: 'Configuration change', value: 19 },
+  { label: 'Dependency timeout', value: 15 },
+  { label: 'Capacity', value: 7 },
+  { label: 'Human error', value: 4 }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. One tick is one record, so the counts have to be whole
+// numbers. A share that only exists as a percentage belongs in the unit grid instead.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+const CX = 360;
+const CY = 178;
+const OUTER = 118;
+const THICK = 34;
+const TICK_W = 9;
+const total = DATA.reduce(function (t, d) { return t + d.value; }, 0);
+const stepAngle = 360 / total;
+
+let placed = 0;
+DATA.forEach(function (d, s) {
+  for (let n = 0; n < d.value; n += 1) {
+    const angle = (placed + n) * stepAngle;
+    node('rect', {
+      x: CX - TICK_W / 2,
+      y: CY - OUTER,
+      width: TICK_W,
+      height: THICK,
+      rx: 2,
+      transform: 'rotate(' + angle + ' ' + CX + ' ' + CY + ')'
+    }, 'series-' + (s + 1));
+  }
+  placed += d.value;
+});
+
+node('text', { x: CX, y: CY + 6, 'text-anchor': 'middle' }, 'total').textContent = String(total);
+node('text', { x: CX, y: CY + 26, 'text-anchor': 'middle' }, 'total-label').textContent = UNITS;
+
+let keyX = 6;
+DATA.forEach(function (d, s) {
+  node('rect', { x: keyX, y: 6, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
+  node('text', { x: keyX + 19, y: 17 }, 'key').textContent = d.label + ' ' + d.value;
+  keyX += 46 + d.label.length * 6.6;
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  const td = document.createElement('td');
+  td.className = 'num';
+  td.textContent = String(d.value);
+  tr.appendChild(th);
+  tr.appendChild(td);
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

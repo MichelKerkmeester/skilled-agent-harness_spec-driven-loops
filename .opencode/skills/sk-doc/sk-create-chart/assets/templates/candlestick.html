@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="candlestick">
+<meta name="chart-color-system" content="categorical">
+<title>Four values per period</title>
+<style>
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.up { fill: var(--chart-series-3); }
+.down { fill: var(--chart-series-2); }
+.wick-up { stroke: var(--chart-series-3); stroke-width: 1.5; }
+.wick-down { stroke: var(--chart-series-2); stroke-width: 1.5; }
+.grid { stroke: var(--chart-rule); stroke-width: 1; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.key { fill: var(--chart-muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Four down weeks gave back everything the autumn rally had gained</h1>
+  <p class="subtitle" data-chart-part="subtitle">Weekly open, high, low and close, fourteen weeks to the end of November. The market convention is used because readers already know it, and no general form encodes four values per period this compactly.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
+      <title id="fig-title">Weekly open, high, low and close over fourteen weeks</title>
+      <desc id="fig-desc">Fourteen weekly bars. Each body runs from the open to the close and each thin line runs from the low to the high. The series rises from 100 to a close of 140 in week ten, then falls across four weeks to close at 102. The table below the chart carries all four values for every week.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Weekly open, high, low and close.</caption>
+    <thead><tr><th scope="col">Week</th><th scope="col">Open</th><th scope="col">High</th><th scope="col">Low</th><th scope="col">Close</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { period: 'W1', open: 100, high: 106, low: 98, close: 104 },
+  { period: 'W2', open: 104, high: 112, low: 103, close: 110 },
+  { period: 'W3', open: 110, high: 114, low: 106, close: 108 },
+  { period: 'W4', open: 108, high: 118, low: 107, close: 117 },
+  { period: 'W5', open: 117, high: 124, low: 115, close: 122 },
+  { period: 'W6', open: 122, high: 128, low: 119, close: 126 },
+  { period: 'W7', open: 126, high: 131, low: 123, close: 124 },
+  { period: 'W8', open: 124, high: 134, low: 122, close: 133 },
+  { period: 'W9', open: 133, high: 141, low: 132, close: 139 },
+  { period: 'W10', open: 139, high: 144, low: 136, close: 140 },
+  { period: 'W11', open: 140, high: 141, low: 128, close: 130 },
+  { period: 'W12', open: 130, high: 132, low: 118, close: 120 },
+  { period: 'W13', open: 120, high: 122, low: 110, close: 112 },
+  { period: 'W14', open: 112, high: 113, low: 100, close: 102 }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. This is the one form in the corpus whose value axis does not
+// start at zero, because a price chart forced to zero flattens every move it exists to show.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+const LEFT = 48;
+const RIGHT = 706;
+const TOP = 40;
+const BASE = 262;
+const lowest = DATA.reduce(function (m, d) { return Math.min(m, d.low); }, DATA[0].low);
+const highest = DATA.reduce(function (m, d) { return Math.max(m, d.high); }, DATA[0].high);
+const step = niceStep((highest - lowest) / 4);
+const floor = Math.floor(lowest / step) * step;
+const ceiling = Math.ceil(highest / step) * step;
+const y = function (v) { return BASE - (BASE - TOP) * ((v - floor) / (ceiling - floor)); };
+
+for (let value = floor; value <= ceiling; value += step) {
+  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
+}
+
+const slot = (RIGHT - LEFT) / DATA.length;
+const bodyWidth = slot * 0.52;
+DATA.forEach(function (d, i) {
+  const cx = LEFT + slot * i + slot / 2;
+  const rising = d.close >= d.open;
+  node('line', { x1: cx, y1: y(d.high), x2: cx, y2: y(d.low) }, rising ? 'wick-up' : 'wick-down');
+  const top = Math.min(y(d.open), y(d.close));
+  const height = Math.max(Math.abs(y(d.open) - y(d.close)), 1.5);
+  node('rect', { x: cx - bodyWidth / 2, y: top, width: bodyWidth, height: height }, rising ? 'up' : 'down');
+  node('text', { x: cx, y: BASE + 20, 'text-anchor': 'middle' }, 'tick').textContent = d.period;
+});
+
+const KEYS = [{ name: 'Closed up', cls: 'up' }, { name: 'Closed down', cls: 'down' }];
+let keyX = LEFT;
+KEYS.forEach(function (k) {
+  node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, k.cls);
+  node('text', { x: keyX + 19, y: 19 }, 'key').textContent = k.name;
+  keyX += 44 + k.name.length * 6.6;
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.period;
+  tr.appendChild(th);
+  [d.open, d.high, d.low, d.close].forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = String(v);
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

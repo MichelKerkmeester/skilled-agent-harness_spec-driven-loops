@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="box-plot">
+<meta name="chart-color-system" content="neutral">
+<title>A five-number summary per group</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.box { fill: var(--chart-series-2); }
+.box-lead { fill: var(--chart-emphasis); }
+.whisker { stroke: var(--chart-series-1); stroke-width: 1.5; }
+.median { stroke: var(--chart-surface); stroke-width: 3; }
+.grid { stroke: var(--chart-rule); stroke-width: 1; }
+.cat { fill: var(--chart-ink); font-size: 12px; }
+.tick { fill: var(--chart-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Three teams share a median and share nothing else</h1>
+  <p class="subtitle" data-chart-part="subtitle">Days to resolve a case, five-number summary per team, all cases closed this year. A box hides how the values pile up inside it, so reach for the distribution strip whenever the pile is the finding rather than the summary.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 320" id="chart">
+      <title id="fig-title">Days to resolve a case, by team</title>
+      <desc id="fig-desc">Five boxes, each running from the lower quartile to the upper quartile with a line at the median and whiskers to the extremes. Casework, Appeals and Complex all sit at a median of thirty days while their ranges run from 12 to 52, 18 to 44 and 4 to 78. The table below the chart carries all five numbers for every team.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Days to resolve a case, five-number summary per team.</caption>
+    <thead><tr><th scope="col">Team</th><th scope="col">Lowest</th><th scope="col">Lower quartile</th><th scope="col">Median</th><th scope="col">Upper quartile</th><th scope="col">Highest</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { label: 'Casework', low: 12, q1: 22, median: 30, q3: 38, high: 52 },
+  { label: 'Appeals', low: 18, q1: 27, median: 30, q3: 34, high: 44 },
+  { label: 'Complex', low: 4, q1: 15, median: 30, q3: 49, high: 78, lead: true },
+  { label: 'Reviews', low: 24, q1: 33, median: 41, q3: 50, high: 61 },
+  { label: 'Triage', low: 8, q1: 19, median: 25, q3: 31, high: 40 }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. A five-number summary is legitimate only when the reader wants
+// the summary. It cannot show two clusters inside one box, and it will not admit that.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+function niceStep(v) {
+  const pow = Math.pow(10, Math.floor(Math.log(v) / Math.LN10));
+  const n = v / pow;
+  const ladder = [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+  for (let i = 0; i < ladder.length; i += 1) {
+    if (n <= ladder[i]) return ladder[i] * pow;
+  }
+  return 10 * pow;
+}
+
+const LEFT = 56;
+const RIGHT = 700;
+const TOP = 18;
+const BASE = 258;
+const TICKS = 4;
+const peak = DATA.reduce(function (m, d) { return Math.max(m, d.high); }, 0);
+const max = niceStep(peak / TICKS) * TICKS;
+const y = function (v) { return BASE - (BASE - TOP) * (v / max); };
+
+for (let t = 0; t <= TICKS; t += 1) {
+  const value = (max / TICKS) * t;
+  node('line', { x1: LEFT, y1: y(value), x2: RIGHT, y2: y(value) }, 'grid');
+  node('text', { x: LEFT - 10, y: y(value) + 4, 'text-anchor': 'end' }, 'tick').textContent = String(value);
+}
+
+const slot = (RIGHT - LEFT) / DATA.length;
+const boxWidth = slot * 0.42;
+DATA.forEach(function (d, i) {
+  const cx = LEFT + slot * i + slot / 2;
+  node('line', { x1: cx, y1: y(d.high), x2: cx, y2: y(d.low) }, 'whisker');
+  node('line', { x1: cx - boxWidth / 4, y1: y(d.high), x2: cx + boxWidth / 4, y2: y(d.high) }, 'whisker');
+  node('line', { x1: cx - boxWidth / 4, y1: y(d.low), x2: cx + boxWidth / 4, y2: y(d.low) }, 'whisker');
+  node('rect', {
+    x: cx - boxWidth / 2, y: y(d.q3), width: boxWidth, height: y(d.q1) - y(d.q3), rx: 2
+  }, d.lead ? 'box-lead' : 'box');
+  node('line', {
+    x1: cx - boxWidth / 2, y1: y(d.median), x2: cx + boxWidth / 2, y2: y(d.median)
+  }, 'median');
+  node('text', { x: cx, y: BASE + 22, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  tr.appendChild(th);
+  [d.low, d.q1, d.median, d.q3, d.high].forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = String(v);
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

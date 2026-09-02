@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="progress-single">
+<meta name="chart-color-system" content="ordered">
+<title>One value against a goal</title>
+<style>
+/* CHART_PALETTE:BEGIN system=ordered */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #213B3D;
+  --chart-series-2: #275C63;
+  --chart-series-3: #2E7F89;
+  --chart-series-4: #69A2A9;
+  --chart-series-5: #A3C4C7;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.track { fill: var(--chart-rule); }
+.fill { fill: var(--chart-series-2); }
+.pace { stroke: var(--chart-ink); stroke-width: 2; stroke-dasharray: 5 4; }
+.value { fill: var(--chart-ink); font-size: 56px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.unit { fill: var(--chart-muted); font-size: 15px; }
+.tick { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.pace-label { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Two thirds of the annual target with a quarter of the year left</h1>
+  <p class="subtitle" data-chart-part="subtitle">Bookings against the annual goal, to the end of September. The dashed marker is where an even pace would have put us by now, which is the comparison the number alone cannot make.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 190" id="chart">
+      <title id="fig-title">Bookings against the annual goal</title>
+      <desc id="fig-desc">A single track filled to sixty-seven percent of the annual goal, with a dashed marker at the seventy-five percent an even pace would have reached. Bookings stand at 6.7 million against a goal of 10 million. The table below the chart carries both figures as text.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Bookings against the annual goal, to the end of September.</caption>
+    <thead><tr><th scope="col">Measure</th><th scope="col">Value</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const MEASURE = {
+  label: 'Bookings booked to date',
+  value: 6.7,
+  goal: 10,
+  unit: 'million',
+  paceLabel: 'Even pace to date',
+  pace: 0.75
+};
+/* CHART_DATA:END */
+
+// Everything below draws. The pace marker is what turns a number into a comparison. A
+// progress bar with no reference point tells a reader how far, never whether that is enough.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+const LEFT = 4;
+const RIGHT = 716;
+const TRACK_Y = 108;
+const TRACK_H = 40;
+const share = MEASURE.value / MEASURE.goal;
+const at = function (fraction) { return LEFT + (RIGHT - LEFT) * fraction; };
+
+node('text', { x: LEFT, y: 62 }, 'value').textContent = String(MEASURE.value);
+node('text', { x: LEFT + String(MEASURE.value).length * 34 + 10, y: 62 }, 'unit')
+  .textContent = MEASURE.unit + ' of ' + MEASURE.goal + ' ' + MEASURE.unit;
+node('text', { x: RIGHT, y: 62, 'text-anchor': 'end' }, 'unit')
+  .textContent = Math.round(share * 100) + '% of goal';
+
+node('rect', { x: LEFT, y: TRACK_Y, width: RIGHT - LEFT, height: TRACK_H, rx: 8 }, 'track');
+node('rect', { x: LEFT, y: TRACK_Y, width: (RIGHT - LEFT) * share, height: TRACK_H, rx: 8 }, 'fill');
+
+node('line', {
+  x1: at(MEASURE.pace), y1: TRACK_Y - 12, x2: at(MEASURE.pace), y2: TRACK_Y + TRACK_H + 12
+}, 'pace');
+node('text', { x: at(MEASURE.pace) - 10, y: TRACK_Y + TRACK_H + 30, 'text-anchor': 'end' }, 'pace-label')
+  .textContent = MEASURE.paceLabel;
+node('text', { x: LEFT, y: TRACK_Y + TRACK_H + 30 }, 'tick').textContent = '0';
+node('text', { x: RIGHT, y: TRACK_Y + TRACK_H + 30, 'text-anchor': 'end' }, 'tick')
+  .textContent = String(MEASURE.goal);
+
+const rows = document.getElementById('rows');
+[
+  [MEASURE.label, MEASURE.value + ' ' + MEASURE.unit],
+  ['Annual goal', MEASURE.goal + ' ' + MEASURE.unit],
+  ['Share of goal', Math.round(share * 100) + '%'],
+  [MEASURE.paceLabel, Math.round(MEASURE.pace * 100) + '%']
+].forEach(function (pair) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = pair[0];
+  const td = document.createElement('td');
+  td.className = 'num';
+  td.textContent = pair[1];
+  tr.appendChild(th);
+  tr.appendChild(td);
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

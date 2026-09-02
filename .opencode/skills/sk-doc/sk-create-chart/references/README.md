@@ -22,7 +22,7 @@ The reference set answers three questions in order: which chart form answers the
 | [`color-system.md`](./color-system.md) | Before choosing a palette, and whenever a request asks for more categories than a system carries |
 | [`template-contract.md`](./template-contract.md) | Before authoring or editing any template file |
 
-The catalog holds no chart forms yet. Until a row exists, a chart request is deferred with the gap named rather than answered freehand, because a freehand chart is what the template-first rule exists to prevent. The colour systems and the template contract are complete and binding now.
+The catalog holds twenty chart forms across six question families. When no row answers the question in front of you, defer with the gap named rather than answering freehand, because a freehand chart is what the template-first rule exists to prevent.
 
 ---
 

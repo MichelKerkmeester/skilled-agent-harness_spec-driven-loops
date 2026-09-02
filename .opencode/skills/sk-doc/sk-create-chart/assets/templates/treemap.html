@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="treemap">
+<meta name="chart-color-system" content="categorical">
+<title>Two-level hierarchy as areas</title>
+<style>
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.series-1 { fill: var(--chart-series-1); }
+.series-2 { fill: var(--chart-series-2); }
+.series-3 { fill: var(--chart-series-3); }
+.series-4 { fill: var(--chart-series-4); }
+.cell { stroke: var(--chart-surface); stroke-width: 3; }
+.group { fill: var(--chart-ink); font-size: 12px; font-weight: 600; }
+.on-dark { fill: var(--chart-surface); font-size: 12px; }
+.on-light { fill: var(--chart-ink); font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Storage is nearly half the cloud bill and no team has claimed it</h1>
+  <p class="subtitle" data-chart-part="subtitle">Last month's cloud spend, grouped by service family and broken down by line item. Area is the encoding, so a cell twice the size cost twice as much. Below about thirty leaves the tail is merged before drawing.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 336" id="chart">
+      <title id="fig-title">Cloud spend by service family and line item</title>
+      <desc id="fig-desc">Four service families drawn as columns whose width is their share of the bill, each split into line items whose height is their share of the family. Storage is the widest column. The table below the chart carries every line item as text.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Cloud spend by service family and line item, in thousands.</caption>
+    <thead><tr><th scope="col">Family</th><th scope="col">Line item</th><th scope="col">Spend</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const DATA = [
+  { label: 'Storage', leaves: [
+    { label: 'Object archive', value: 128 },
+    { label: 'Block volumes', value: 74 },
+    { label: 'Snapshots', value: 41 }
+  ] },
+  { label: 'Compute', leaves: [
+    { label: 'Batch fleet', value: 96 },
+    { label: 'Always-on nodes', value: 58 }
+  ] },
+  { label: 'Network', leaves: [
+    { label: 'Egress', value: 63 },
+    { label: 'Load balancing', value: 22 }
+  ] },
+  { label: 'Managed data', leaves: [
+    { label: 'Warehouse', value: 44 },
+    { label: 'Queues', value: 17 }
+  ] }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. Cells that touch carry a stroke in the surface role, so no two
+// data colours ever share an edge. Colour marks the family and the label names the leaf.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+const styles = getComputedStyle(document.documentElement);
+const resolve = function (prop) { return styles.getPropertyValue(prop).trim(); };
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+function channel(c) {
+  const v = c / 255;
+  return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+}
+function luminance(value) {
+  const n = parseInt(value.slice(1), 16);
+  return 0.2126 * channel((n >> 16) & 255) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255);
+}
+function ratio(a, b) {
+  const la = luminance(a);
+  const lb = luminance(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+// A label sitting on a cell picks whichever of the two text roles reads better on it.
+// Hardcoding one of them would go silently unreadable the first time a palette value moves.
+function labelClass(fill) {
+  return ratio(resolve('--chart-surface'), fill) >= ratio(resolve('--chart-ink'), fill) ? 'on-dark' : 'on-light';
+}
+
+const TOP = 30;
+const HEIGHT = 300;
+const WIDTH = 720;
+const sum = function (list) { return list.reduce(function (t, l) { return t + l.value; }, 0); };
+const total = DATA.reduce(function (t, g) { return t + sum(g.leaves); }, 0);
+
+let x = 0;
+DATA.forEach(function (g, s) {
+  const groupTotal = sum(g.leaves);
+  const w = WIDTH * (groupTotal / total);
+  const text = labelClass(resolve('--chart-series-' + (s + 1)));
+  // A label on the last column would run off the right edge, so it flips to end-anchored
+  // rather than being silently clipped.
+  const caption = g.label + ' ' + groupTotal;
+  const overflows = x + caption.length * 6.8 > WIDTH;
+  node('text', overflows
+    ? { x: x + w - 2, y: 20, 'text-anchor': 'end' }
+    : { x: x + 2, y: 20 }, 'group').textContent = caption;
+  let y = TOP;
+  g.leaves.forEach(function (leaf) {
+    const h = HEIGHT * (leaf.value / groupTotal);
+    node('rect', { x: x, y: y, width: w, height: h }, 'cell series-' + (s + 1));
+    if (h >= 30 && w >= 74) {
+      node('text', { x: x + 10, y: y + 20 }, text).textContent = leaf.label;
+      node('text', { x: x + 10, y: y + 36 }, text).textContent = String(leaf.value);
+    }
+    y += h;
+  });
+  x += w;
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (g) {
+  g.leaves.forEach(function (leaf, i) {
+    const tr = document.createElement('tr');
+    const th = document.createElement('th');
+    th.setAttribute('scope', 'row');
+    th.textContent = i === 0 ? g.label : '';
+    const name = document.createElement('td');
+    name.textContent = leaf.label;
+    const value = document.createElement('td');
+    value.className = 'num';
+    value.textContent = String(leaf.value);
+    tr.appendChild(th);
+    tr.appendChild(name);
+    tr.appendChild(value);
+    rows.appendChild(tr);
+  });
+});
+</script>
+</body>
+</html>

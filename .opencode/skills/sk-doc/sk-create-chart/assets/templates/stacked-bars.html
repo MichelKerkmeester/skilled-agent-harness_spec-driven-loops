@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="stacked-bars">
+<meta name="chart-color-system" content="categorical">
+<title>Composition stacked within each category</title>
+<style>
+/* CHART_PALETTE:BEGIN system=categorical */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #28405C;
+  --chart-series-2: #874420;
+  --chart-series-3: #487B3B;
+  --chart-series-4: #A377B6;
+  --chart-emphasis: #1A1917;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.series-1 { fill: var(--chart-series-1); }
+.series-2 { fill: var(--chart-series-2); }
+.series-3 { fill: var(--chart-series-3); }
+.seg { stroke: var(--chart-surface); stroke-width: 3; }
+.cat { fill: var(--chart-ink); font-size: 12px; }
+.key { fill: var(--chart-muted); font-size: 12px; }
+.on-dark { fill: var(--chart-surface); font-size: 12px; font-variant-numeric: tabular-nums; }
+.on-light { fill: var(--chart-ink); font-size: 12px; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">The revenue mix holds everywhere except in the market we entered last year</h1>
+  <p class="subtitle" data-chart-part="subtitle">Revenue by product line within each market, in millions, last financial year. Three segments across four markets is the ceiling for this form. Past it only the bottom segment stays comparable.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 330" id="chart">
+      <title id="fig-title">Revenue by product line within each market</title>
+      <desc id="fig-desc">Four markets drawn as stacked columns of three product lines each. Every column is dominated by the platform line except the newest market, where services lead. The table below the chart carries every segment as text.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: demo figures. Replace the data block at the top of the script and nothing else.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Revenue by product line within each market, in millions.</caption>
+    <thead><tr id="head-row"><th scope="col">Market</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const SEGMENTS = ['Platform', 'Services', 'Support'];
+const DATA = [
+  { label: 'Home market', values: [62, 21, 11] },
+  { label: 'Continent', values: [48, 19, 9] },
+  { label: 'Offshore', values: [31, 14, 6] },
+  { label: 'New market', values: [7, 16, 4] }
+];
+/* CHART_DATA:END */
+
+// Everything below draws. Segments that touch carry a stroke in the surface role, so
+// no two data colours ever share an edge and each one is read against the ground.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+const styles = getComputedStyle(document.documentElement);
+const resolve = function (prop) { return styles.getPropertyValue(prop).trim(); };
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+function channel(c) {
+  const v = c / 255;
+  return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+}
+function luminance(value) {
+  const n = parseInt(value.slice(1), 16);
+  return 0.2126 * channel((n >> 16) & 255) + 0.7152 * channel((n >> 8) & 255) + 0.0722 * channel(n & 255);
+}
+function ratio(a, b) {
+  const la = luminance(a);
+  const lb = luminance(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+// A label sitting on a mark picks whichever of the two text roles reads better on it.
+// Hardcoding one of them would go silently unreadable the first time a palette value moves.
+function labelClass(fill) {
+  return ratio(resolve('--chart-surface'), fill) >= ratio(resolve('--chart-ink'), fill) ? 'on-dark' : 'on-light';
+}
+
+const LEFT = 40;
+const RIGHT = 700;
+const TOP = 44;
+const BASE = 286;
+const peak = DATA.reduce(function (m, d) {
+  return Math.max(m, d.values.reduce(function (t, v) { return t + v; }, 0));
+}, 0);
+const scale = (BASE - TOP) / peak;
+
+const slot = (RIGHT - LEFT) / DATA.length;
+const barWidth = slot * 0.52;
+DATA.forEach(function (d, i) {
+  const cx = LEFT + slot * i + slot / 2;
+  let y = BASE;
+  d.values.forEach(function (v, s) {
+    const h = v * scale;
+    y -= h;
+    node('rect', { x: cx - barWidth / 2, y: y, width: barWidth, height: h }, 'seg series-' + (s + 1));
+    if (h >= 22) {
+      node('text', { x: cx, y: y + h / 2 + 4, 'text-anchor': 'middle' },
+        labelClass(resolve('--chart-series-' + (s + 1)))).textContent = String(v);
+    }
+  });
+  node('text', { x: cx, y: BASE + 22, 'text-anchor': 'middle' }, 'cat').textContent = d.label;
+});
+
+let keyX = LEFT;
+SEGMENTS.forEach(function (name, s) {
+  node('rect', { x: keyX, y: 8, width: 13, height: 13, rx: 2 }, 'series-' + (s + 1));
+  node('text', { x: keyX + 19, y: 19 }, 'key').textContent = name;
+  keyX += 44 + name.length * 6.6;
+});
+
+const headRow = document.getElementById('head-row');
+SEGMENTS.forEach(function (name) {
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'col');
+  th.textContent = name;
+  headRow.appendChild(th);
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  tr.appendChild(th);
+  d.values.forEach(function (v) {
+    const td = document.createElement('td');
+    td.className = 'num';
+    td.textContent = String(v);
+    tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>

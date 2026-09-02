@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="chart-template" content="staff-hours-by-service">
+<meta name="chart-color-system" content="neutral">
+<title>Staff hours by service</title>
+<style>
+/* CHART_PALETTE:BEGIN system=neutral */
+:root {
+  --chart-surface: #FAF8F5;
+  --chart-ink: #1A1917;
+  --chart-muted: #52504E;
+  --chart-rule: #E0DFDC;
+  --chart-series-1: #292825;
+  --chart-series-2: #4C4B48;
+  --chart-series-3: #6B6A67;
+  --chart-series-4: #8D8B89;
+  --chart-emphasis: #B4471F;
+}
+/* CHART_PALETTE:END */
+
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  padding: 32px 20px;
+  background: var(--chart-surface);
+  color: var(--chart-ink);
+  font-family: ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.card {
+  max-width: 760px;
+  margin: 0 auto 20px;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 10px;
+  background: var(--chart-surface);
+}
+.headline { margin: 0 0 6px; font-size: 21px; line-height: 1.3; font-weight: 600; color: var(--chart-ink); }
+.subtitle { margin: 0 0 20px; font-size: 14px; color: var(--chart-muted); }
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; }
+.source { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--chart-rule); font-size: 13px; color: var(--chart-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+caption { text-align: left; padding-bottom: 8px; font-size: 13px; color: var(--chart-muted); }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--chart-rule); }
+th { font-weight: 600; color: var(--chart-ink); }
+td { color: var(--chart-muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.bar { fill: var(--chart-series-1); }
+.bar-lead { fill: var(--chart-emphasis); }
+.axis { stroke: var(--chart-rule); stroke-width: 1; }
+.cat { fill: var(--chart-ink); font-size: 13px; }
+.val { fill: var(--chart-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 class="headline" data-chart-part="headline">Home visits and the day centre take more staff time than everything else together</h1>
+  <p class="subtitle" data-chart-part="subtitle">Average staff hours per week by service, over the twelve weeks to 30 June. Home visits carry the emphasis colour because they are what the headline is about.</p>
+  <div class="figure" data-chart-part="figure">
+    <svg role="img" aria-labelledby="fig-title fig-desc" viewBox="0 0 720 292" id="chart">
+      <title id="fig-title">Average staff hours per week by service</title>
+      <desc id="fig-desc">Six services drawn as horizontal bars, ordered largest first. Home visits take 412 hours a week, more than the four smallest services combined. The table below the chart carries every value as text.</desc>
+    </svg>
+  </div>
+  <p class="source" data-chart-part="source">Source: rota export for weeks 14 to 25, extracted 2 July.</p>
+</div>
+<div class="card">
+  <table data-chart-table>
+    <caption>Average staff hours per week by service, largest first.</caption>
+    <thead><tr><th scope="col">Service</th><th scope="col">Hours per week</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<script>
+/* CHART_DATA:BEGIN */
+const UNIT = ' h';
+const DATA = [
+  { label: 'Home visits', value: 412, lead: true },
+  { label: 'Day centre', value: 268 },
+  { label: 'Transport', value: 141 },
+  { label: 'Meals', value: 96 },
+  { label: 'Advice line', value: 74 },
+  { label: 'Equipment loans', value: 39 }
+];
+/* CHART_DATA:END */
+
+// Everything below renders. The block above is the only part to edit.
+const SVG = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('chart');
+
+function node(name, attrs, cls) {
+  const el = document.createElementNS(SVG, name);
+  Object.keys(attrs).forEach(function (k) { el.setAttribute(k, String(attrs[k])); });
+  if (cls) el.setAttribute('class', cls);
+  svg.appendChild(el);
+  return el;
+}
+
+const LEFT = 156;
+const RIGHT = 656;
+const TOP = 12;
+const ROW = 46;
+const BAR = 28;
+const max = DATA.reduce(function (m, d) { return Math.max(m, d.value); }, 0);
+const width = function (v) { return (RIGHT - LEFT) * (v / max); };
+
+node('line', { x1: LEFT, y1: TOP - 4, x2: LEFT, y2: TOP + DATA.length * ROW - 12 }, 'axis');
+
+DATA.forEach(function (d, i) {
+  const y = TOP + i * ROW;
+  node('text', { x: LEFT - 12, y: y + BAR / 2 + 5, 'text-anchor': 'end' }, 'cat').textContent = d.label;
+  node('rect', { x: LEFT, y: y, width: width(d.value), height: BAR, rx: 2 }, d.lead ? 'bar-lead' : 'bar');
+  node('text', { x: LEFT + width(d.value) + 10, y: y + BAR / 2 + 5 }, 'val').textContent = d.value + UNIT;
+});
+
+const rows = document.getElementById('rows');
+DATA.forEach(function (d) {
+  const tr = document.createElement('tr');
+  const th = document.createElement('th');
+  th.setAttribute('scope', 'row');
+  th.textContent = d.label;
+  const td = document.createElement('td');
+  td.className = 'num';
+  td.textContent = String(d.value);
+  tr.appendChild(th);
+  tr.appendChild(td);
+  rows.appendChild(tr);
+});
+</script>
+</body>
+</html>
