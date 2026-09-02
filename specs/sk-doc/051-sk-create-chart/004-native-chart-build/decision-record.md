@@ -456,3 +456,73 @@ both directions by breaks 3 and 4 in the foundation record.
 - **Capability analysis this phase built from**: See `../002-translation-and-voice/research/capability-analysis.md`
 - **Licence ruling**: See `../001-source-inventory-and-placement/decision-record.md`, ADR-002
 - **Specification**: See `spec.md`
+
+---
+
+<!-- ANCHOR:adr-007 -->
+## ADR-007: Report mode is cut, and the directory holding it goes with it
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-02 |
+| **Deciders** | Orchestrator, under an instruction to continue open work autonomously |
+
+### Context
+
+The reference ships a report mode carrying twelve page layouts. The capability analysis
+recommended cutting it, and the foundation phase left the question open because nothing
+measurable settles it.
+
+Two things settle it now. The licensing decision means the layouts cannot be carried across,
+so keeping report mode means authoring twelve page designs from nothing. And no request for
+this repository has ever asked for one. That is a large build serving a hypothetical.
+
+### Decision
+
+Report mode is out of scope. `assets/reports/` is removed rather than left empty, because an
+empty directory named for a feature reads as unfinished work rather than as a decision.
+
+### Consequences
+
+The chart corpus delivers single charts. A reader wanting a multi-chart page composes one, and
+if that turns out to be common the decision is cheap to revisit, since nothing was built on the
+assumption that it stays cut.
+<!-- /ANCHOR:adr-007 -->
+
+---
+
+<!-- ANCHOR:adr-008 -->
+## ADR-008: The examples directory holds deliveries, one per family
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-02 |
+| **Deciders** | Orchestrator, under an instruction to continue open work autonomously |
+
+### Context
+
+The foundation phase flagged that `assets/examples/` has no clear owner, since the palette
+sheets already serve as worked examples and the gallery-versus-delivery split means anything
+placed there has to be a delivery rather than a catalogue page.
+
+### Decision
+
+`assets/examples/` holds one finished delivery per chart family: a file shaped exactly as a
+recipient receives it, chosen to show the family at its most characteristic. The palette sheets
+stay where they are and keep their own job, which is proving the colour system rather than
+demonstrating a chart.
+
+The forms author owns filling it, since only that author knows which form is most
+characteristic once the corpus exists.
+
+### Consequences
+
+A reader gets one honest sample per family without opening the whole corpus, and the directory
+has a rule that says when it is finished rather than growing by accretion.
+<!-- /ANCHOR:adr-008 -->
