@@ -110,7 +110,7 @@ Main flow:
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ npx vitest run [suite or pattern]        │
+│ npm run test:sharded  (or one suite)     │
 └──────────────────────────────────────────┘
                   │
                   ▼
@@ -135,8 +135,9 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `npx vitest run` | CLI | Runs the full MCP server test suite. |
+| `npm run test:sharded` | CLI | Runs the full suite. This is the supported way to run everything. |
 | `npx vitest run tests/<file>.vitest.ts` | CLI | Runs one focused suite. |
+| `npx vitest run` | CLI | Runs everything in one reused worker. Use the sharded command instead. |
 | `rg --files tests -g '*.vitest.ts'` | CLI | Lists the current Vitest inventory. |
 | `fixtures/` | Directory | Shared fixture inputs for targeted suites. |
 
@@ -147,8 +148,18 @@ Main flow:
 Run from `.opencode/skills/system-spec-kit/mcp-server`.
 
 ```bash
-npx vitest run
+npm run test:sharded
 ```
+
+Every file runs, split across twelve shards, each in its own worker process with its
+own timeout. Shards run one at a time on purpose: run together they contend for the
+same temporary directories and databases, which produces failures that belong to the
+harness rather than to the code. `SPECKIT_TEST_SHARDS` changes the shard count and
+`SPECKIT_TEST_RUN_TIMEOUT_MS` the per-shard bound; a shard that exceeds it prints
+`[test-bound] invocation exceeded` and exits 124, which is not a result.
+
+The sharded command covers the Vitest lane only. The shell validation suites run
+separately through `npm run test:spec-validation`.
 
 Focused examples:
 

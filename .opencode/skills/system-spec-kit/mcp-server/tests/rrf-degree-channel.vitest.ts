@@ -7,6 +7,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { fuseResultsMulti, SOURCE_TYPES } from '@spec-kit/shared/algorithms/rrf-fusion';
 import type { RankedList, FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
 import {
+  EDGE_TYPE_WEIGHTS,
   computeDegreeScores,
   computeTypedDegree,
   computeMaxTypedDegree,

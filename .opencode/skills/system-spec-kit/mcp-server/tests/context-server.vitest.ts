@@ -5,6 +5,7 @@ import { describe, it, expect, beforeAll, afterEach, vi } from 'vitest'
 import fs from 'fs'
 import path from 'path'
 import { estimateTokenCount } from '@spec-kit/shared/utils/token-estimate'
+import type { ApiKeyValidationResult } from '@spec-kit/shared/types'
 import {
   appendAutoSurfaceHints as actualAppendAutoSurfaceHints,
   syncEnvelopeTokenCount as actualSyncEnvelopeTokenCount,
@@ -497,7 +498,7 @@ describe('Context Server', () => {
         topFolders?: unknown[]
       }
       startupEmbeddingDimension?: number
-      startupValidation?: ApiKeyValidation
+      startupValidation?: ApiKeyValidationResult
       configuredEmbeddingsProvider?: string | null
       databasePath?: string
       ftsIntegrityCheckError?: string

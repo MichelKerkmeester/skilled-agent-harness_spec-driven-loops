@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const collectRawCandidatesMock = vi.hoisted(() => vi.fn(async () => []));
 const rewriteMock = vi.hoisted(() => vi.fn(async (params: { q: string }) => ({

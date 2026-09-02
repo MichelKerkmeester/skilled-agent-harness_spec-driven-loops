@@ -244,7 +244,8 @@ Main tool flow:
 | `hooks/*` | Modules | Produce startup, prompt, and compact-context payloads for runtime integrations. |
 | `handlers/memory-embedding-reconcile.ts` | Module | Net-new public `memory_embedding_reconcile` tool: dry-run-default embedding convergence and retry-counter reset under a guarded transaction. |
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
-| `npm test` | Command | Runs package tests through the configured runner, including `test:spec-validation` on the tracked validation suites. |
+| `npm run test:sharded` | Command | Runs the full Vitest suite in twelve sequential shards, each in its own worker with its own timeout. This is the supported way to run everything. |
+| `npm test` | Command | Runs the whole Vitest suite in one reused worker, then `test:file-watcher` and `test:spec-validation`. Prefer `test:sharded` for the Vitest lane. |
 
 ---
 
@@ -284,9 +285,14 @@ Run from `mcp-server/` unless noted.
 
 ```bash
 npm run build
-npm test
+npm run test:sharded
 npm run test:spec-validation
 ```
+
+`test:sharded` covers the Vitest lane; `test:spec-validation` covers the tracked shell
+validation suites. A shard that exceeds `SPECKIT_TEST_RUN_TIMEOUT_MS` prints
+`[test-bound] invocation exceeded` and exits 124, which is not a result — read the log
+and the exit status separately rather than through a pipe.
 
 Focused documentation checks from the repository root:
 

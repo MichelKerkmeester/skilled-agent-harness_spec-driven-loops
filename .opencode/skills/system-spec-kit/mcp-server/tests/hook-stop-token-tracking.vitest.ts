@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // TEST: Stop Hook Token Tracking
 // ───────────────────────────────────────────────────────────────
-import { describe, it, expect } from 'vitest';
+import { afterEach, describe, it, expect } from 'vitest';
 import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';

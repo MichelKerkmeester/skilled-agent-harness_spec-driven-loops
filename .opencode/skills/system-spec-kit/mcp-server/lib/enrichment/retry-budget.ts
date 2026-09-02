@@ -110,9 +110,11 @@ export function emitRetryTelemetry(record: RetryTelemetryRecord): void {
 
 /** Clear retry state for a single memory ID. */
 export function clearBudget(memoryId: number): void {
-  for (const budgetKey of retryBudget.keys()) {
-    const entry = retryBudget.get(budgetKey);
-    if (entry?.memoryId === memoryId) {
+  // Snapshot before iterating. The backing map keeps LRU order by re-inserting on
+  // read, so reading a non-matching key inside a live iteration moves it to the end
+  // and the loop never terminates.
+  for (const [budgetKey, entry] of Array.from(retryBudget.entries())) {
+    if (entry.memoryId === memoryId) {
       retryBudget.delete(budgetKey);
     }
   }

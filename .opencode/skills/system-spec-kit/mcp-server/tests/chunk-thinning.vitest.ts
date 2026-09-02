@@ -16,8 +16,17 @@ function makeTempDir(prefix: string): string {
   return dir;
 }
 
+// The shared vitest setup provisions a throwaway database directory for this
+// worker. Files run serially in one worker, so clearing it here would leave every
+// later suite resolving the production database instead. Capture, then restore.
+const SETUP_DB_DIR = process.env.SPEC_KIT_DB_DIR;
+
 afterEach(() => {
-  delete process.env.SPEC_KIT_DB_DIR;
+  if (SETUP_DB_DIR === undefined) {
+    delete process.env.SPEC_KIT_DB_DIR;
+  } else {
+    process.env.SPEC_KIT_DB_DIR = SETUP_DB_DIR;
+  }
   delete process.env.MEMORY_ALLOWED_PATHS;
   delete process.env.MEMORY_DB_PATH;
 

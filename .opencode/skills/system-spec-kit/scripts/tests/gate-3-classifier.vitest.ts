@@ -23,7 +23,7 @@ import {
 } from '../../shared/gate-3-classifier';
 
 const ASCII_ONLY_PATTERN = /^[\x00-\x7F]+$/;
-const VALID_SPEC_FOLDER = '.opencode/specs/deep-loops/035-gpt-reliability-fixes/002-gate3-precedence-and-validator';
+const VALID_SPEC_FOLDER = 'specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator';
 const VALID_COMMAND_CONTRACT: CommandContract = {
   declaresAutonomousExecution: true,
   ownsSpecFolderSetup: true,

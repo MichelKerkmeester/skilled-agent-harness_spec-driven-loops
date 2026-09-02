@@ -3,6 +3,15 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { clearBudget } from '../lib/enrichment/retry-budget.js';
 
+// buildIndexResult reads a near-duplicate hint straight off the database handle, so an
+// empty object is no longer a usable stand-in. This stub answers that one lookup and
+// nothing else, keeping the suite focused on the enrichment-status reporting it asserts.
+function stubDatabase() {
+  return {
+    prepare: () => ({ get: () => undefined, all: () => [], run: () => ({ changes: 0 }) }),
+  } as never;
+}
+
 describe('post-insert deferred enrichment reporting', () => {
   afterEach(() => {
     clearBudget();
@@ -100,7 +109,7 @@ describe('post-insert deferred enrichment reporting', () => {
 
     const { buildIndexResult } = await import('../handlers/save/response-builder.js');
     const result = buildIndexResult({
-      database: {} as never,
+      database: stubDatabase(),
       existing: undefined,
       embeddingStatus: 'success',
       id: 19,
@@ -164,7 +173,7 @@ describe('post-insert deferred enrichment reporting', () => {
 
     const { buildIndexResult } = await import('../handlers/save/response-builder.js');
     const result = buildIndexResult({
-      database: {} as never,
+      database: stubDatabase(),
       existing: undefined,
       embeddingStatus: 'success',
       id: 20,
@@ -212,7 +221,7 @@ describe('post-insert deferred enrichment reporting', () => {
 
     const { buildIndexResult } = await import('../handlers/save/response-builder.js');
     const result = buildIndexResult({
-      database: {} as never,
+      database: stubDatabase(),
       existing: undefined,
       embeddingStatus: 'success',
       id: 21,
@@ -268,7 +277,7 @@ describe('post-insert deferred enrichment reporting', () => {
 
     const { buildIndexResult } = await import('../handlers/save/response-builder.js');
     const result = buildIndexResult({
-      database: {} as never,
+      database: stubDatabase(),
       existing: undefined,
       embeddingStatus: 'success',
       id: 22,
