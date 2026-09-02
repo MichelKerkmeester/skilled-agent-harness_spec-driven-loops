@@ -201,11 +201,18 @@ You also stay accountable for what the delegate did. "The sub-agent wrote it" is
 defect report; it is the same sentence as "not my code", which
 [`evidence-and-proof.md`](evidence-and-proof.md) already refuses.
 
-**Do not stage what you did not read.** While a delegate is running, its edits are in the
-same working tree as yours, and `git add -A` cannot tell them apart. Committing that way
-publishes work you never reviewed under a message that does not describe it, and it lands
-on a delegate you explicitly told not to commit. Stage the paths you changed, by name.
-When a delegate's work belongs in the commit, read it first and say so in the message.
+**Do not commit what you did not read, and remember that staging by name is not enough.**
+While a delegate is running, its edits sit in the same working tree as yours. `git add -A`
+cannot tell them apart, so it is the obvious trap. The one that actually catches people is
+quieter: **`git commit` commits the whole index, not the paths you just added.** A delegate
+told to stage its own work as it goes, which is the right instruction, is staging into that
+same index. Your next commit takes its files too, under a message about something else,
+and the delegate reads the result as you having committed work it was told to leave alone.
+
+So name the paths at commit time, not only at add time: `git commit -- <paths>` or
+`git commit --only <paths>`. Check `git diff --cached --name-only` first when a delegate is
+live. When a delegate's work does belong in your commit, read it first and say so in the
+message.
 
 ---
 
