@@ -95,6 +95,7 @@
         "assets/plugins/outliner/outliner-settings.example.json",
         "assets/plugins/outliner/outliner-settings.partial.example.json",
         "assets/workflows.md",
+        "references/cli-versus-mcp.md",
         "references/mcp-tools.md",
         "references/notion-migration.md",
         "references/obsidian-cli-commands.md",

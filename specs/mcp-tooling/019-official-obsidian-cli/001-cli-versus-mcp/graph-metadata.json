@@ -54,6 +54,7 @@
       ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/mcp-tooling/leaf-manifest.json",
       "scratch/runt.sh",
+      "specs/mcp-tooling/013-mcp-obsidian/spec.md",
       "scratch/mcpcall.cjs",
       "scratch/mcpseq.cjs",
       "manual-testing-playbook/manual-testing-playbook.md",
@@ -207,7 +208,7 @@
     ],
     "causal_summary": "The skill described the official CLI and the MCP server side by side and left the choice to the reader",
     "created_at": "2026-09-02T18:51:33Z",
-    "last_save_at": "2026-09-02T19:17:42.326Z",
+    "last_save_at": "2026-09-02T19:20:31.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:868086e6bc31e6c043994349e42c7f4a86adedf3a1455ed6cd904fd57b434a50",
+    "source_fingerprint": "sha256:c8100fa17eccc9a1389a64191a391f595de07ff51f13a300a281bc3cd031c38f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ce4e01455f02ea111714f7eef13a3727ce2ff17c306c329e689cdf4b2570813",
+      "spec.md": "7850076c2fd163a8a06e9fcf2cb79e591e731c248045033af3aa65d304eabe46",
       "plan.md": "13a4e435ca8d13fb9bbdc5315637c32ff875f0424bbf27547f67c79e78d7482a",
       "tasks.md": "e6059fc8df8095461075802902ab3203fb8880cafb6bea89f2e7426a69913ce9",
-      "implementation-summary.md": "40555fb02f211f42b014af9e684c27cbf4580dbcb33713f4a99617cedff5edc3"
+      "implementation-summary.md": "a324c9f42ce4588ed47d8f1297b2b1382a273564da9c74fab9b1bf4563c57718"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -239,7 +239,7 @@ The skill names one default app-backed surface, states when to leave it, and bac
 
 ---
 
-## 13. PREPARED SKILL.md TEXT (NOT APPLIED)
+## 13. PREPARED SKILL FILE TEXT (NOT APPLIED)
 
 `SKILL.md` is a compiled-policy input and was not edited. Two of its statements are now contradicted by measurement. The replacement text is recorded here for whoever owns the recompile.
 
