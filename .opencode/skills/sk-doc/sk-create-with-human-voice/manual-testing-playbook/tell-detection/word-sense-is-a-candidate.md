@@ -45,18 +45,19 @@ Operators run the exact prompt and command sequence for `HVT-002` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| HVT-002 | A scanner finding is a candidate | Verify word sense decides each finding, so the literal occurrence survives and the metaphorical one does not | `The scanner flagged two occurrences of the same word in this file. Fix the writing.` | 1. `agent: Read references/scope-and-exemptions.md section 4` -> 2. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target> --all` -> 3. `agent: Read each reported occurrence in its own sentence and state its sense` -> 4. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target> --all` | Step 1: the sense rule is loaded before any edit. Step 2: both occurrences appear with a line and a column. Step 3: the two senses are named separately. Step 4: the literal occurrence is still reported and the metaphorical one is gone | The prompt as typed, both scanner listings with line and column, the sense stated for each occurrence, the diff and the exception row for the kept occurrence | PASS when the two occurrences receive different decisions and the kept one carries a recorded reason. FAIL when both are edited, both are dismissed or the kept one has no note | 1. Check that `--all` was used. Without it the grouped report gives one line for the term and the two occurrences cannot be told apart. 2. Check whether the sense was stated per occurrence or once for the term. A single verdict for a term is the failure this scenario catches. 3. Confirm the kept occurrence is still reported by the step 4 re-scan. A scan that no longer reports it means the occurrence was edited after all |
+| HVT-002 | A scanner finding is a candidate | Verify word sense decides each finding, so the literal occurrence survives and the metaphorical one does not | `The scanner flagged two occurrences of the same word in this file. Fix the writing.` | 1. `agent: Read references/scope-and-exemptions.md section 4` -> 2. `bash: cp .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-two-senses.md /tmp/hvr-hvt-002.md` -> 3. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvt-002.md --all` -> 4. `agent: Read each reported occurrence in its own sentence, state its sense and edit only the blocked one` -> 5. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvt-002.md --all` | Step 1: the sense rule is loaded before any edit. Step 2: the copy is written outside the packet. Step 3: both occurrences appear with a line and a column. Step 4: the two senses are named separately. Step 5: the literal occurrence is still reported and the metaphorical one is gone | The prompt as typed, both scanner listings with line and column, the sense stated for each occurrence, the diff and the exception row for the kept occurrence | PASS when the two occurrences receive different decisions and the kept one carries a recorded reason. FAIL when both are edited, both are dismissed or the kept one has no note | 1. Check that `--all` was used. Without it the grouped report gives one line for the term and the two occurrences cannot be told apart. 2. Check whether the sense was stated per occurrence or once for the term. A single verdict for a term is the failure this scenario catches. 3. Confirm the kept occurrence is still reported by the step 5 re-scan. A scan that no longer reports it means the occurrence was edited after all |
 
 ### Commands
 
 1. `agent: Read references/scope-and-exemptions.md section 4 and state the sense rule`
-2. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target> --all`
-3. `agent: Read each reported occurrence in its own sentence and state whether the sense is literal or metaphorical`
-4. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <target> --all`
+2. `bash: cp .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures/voice-two-senses.md /tmp/hvr-hvt-002.md`
+3. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvt-002.md --all`
+4. `agent: Read each reported occurrence in its own sentence, state whether the sense is literal or metaphorical and edit only the blocked one`
+5. `bash: python3 .opencode/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py /tmp/hvr-hvt-002.md --all`
 
 ### Expected
 
-Step 1 loads the sense rule, which lives in the scope gate rather than in the standard, because the standard was written for the writing and not for the tooling around it. Step 2 lists both occurrences with a line and a column, which is the only way to read each one in context. Step 3 names the two senses separately. Step 4 still reports the kept occurrence, and that surviving finding is the proof the pass declined it deliberately rather than missing it.
+Step 1 loads the sense rule, which lives in the scope gate rather than in the standard, because the standard was written for the writing and not for the tooling around it. Step 2 copies the shipped fixture out of the packet, because this scenario edits its target and precondition 6 fails any run that leaves a diff under the packet. Step 3 lists both occurrences with a line and a column, which is the only way to read each one in context. Step 4 names the two senses separately and edits the blocked one. Step 5 still reports the kept occurrence, and that surviving finding is the proof the pass declined it deliberately rather than missing it.
 
 ### Evidence
 
@@ -97,6 +98,7 @@ Repeat with a term the standard lists as context-dependent, such as the industry
 | [`references/hvr-rules.md`](../../references/hvr-rules.md) | Sections 6 and 8 list the terms, including the context-dependent set |
 | [`references/scoring-and-verification.md`](../../references/scoring-and-verification.md) | Section 5 is the shipped worked example of two correct findings that were kept |
 | [`SKILL.md`](../../SKILL.md) | Section 3 step 3, which states that a finding is a candidate |
+| [`scripts/tests/fixtures/voice-two-senses.md`](../../scripts/tests/fixtures/voice-two-senses.md) | The shipped target, carrying `harness` as a noun and as a verb, copied out before the edit |
 
 ---
 

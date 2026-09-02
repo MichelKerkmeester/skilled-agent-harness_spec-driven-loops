@@ -122,16 +122,20 @@ The gap was not hypothetical. Of forty templates measured across the skills tree
 hid blockers this way. The worst scored zero and emitted forty-three, and the voice mode's own
 report template hid six. The scanner now detects a template by its own naming convention (a
 name ending in "template" or "templates", under an `assets/` or `templates/` tree) and reads
-its fenced payload without needing `--include-code`. A target that does not match still masks
+its payload fence without needing `--include-code`. A target that does not match still masks
 by default, so a zero on a document is a pass and a zero on an undetected template is still
 unmeasured, worth a manual `--include-code` run to confirm.
 
-**Detection is by name and location, so it cannot tell a prose payload from a code one.**
-`mcp-code-mode/assets/env-template.md` is a template by both tests and its fence is TypeScript,
-so the scan reports four hard blockers that are statement terminators. Section 3 still governs
-inside a detected template: a fence carrying a command, a config or a code sample is out of scope
-whatever the filename says, and each finding there is recorded as an exemption rather than edited.
-Read the fence before you act on a finding inside one.
+**Inside a detected template, the fence tag separates the payload from a code sample.** A fence
+tagged with a code language stays masked, exactly as it would anywhere else. An untagged fence,
+or one tagged `markdown`, `text` or `yaml`, is read as the payload, because silencing a prose
+payload trades a loud correct finding for a silent wrong one.
+`mcp-code-mode/assets/env-template.md` is a template by both tests and its payload is TypeScript,
+so its fence is masked and the scan exits 0 where it once reported four statement terminators.
+The tag settles the common case rather than every case: an untagged fence carrying a command or
+a config is still out of scope under section 3, so a finding inside a payload fence remains a
+candidate. Read the fence before you act on a finding inside one, and record an out-of-scope
+finding as an exemption rather than editing it.
 
 ---
 

@@ -28,9 +28,11 @@ Usage:
   python3 hvr_scan.py <file> --rules <path>     # point at another standard
 
 A target whose name marks it as a template (ends in "template"/"templates") and
-sits in an assets/ or templates/ tree is scanned as if --include-code were
-passed: its fenced block is the deliverable, not a quotation, and masking it by
-default would let a banned character ride into every document authored from it.
+sits in an assets/ or templates/ tree has its payload fence read as prose: that
+block is the deliverable, not a quotation, and masking it by default would let a
+banned character ride into every document authored from it. A fence tagged with
+a code language stays masked even there, because a semicolon in a TypeScript
+sample is a statement terminator rather than a punctuation defect.
 
 Exit status: 0 when no hard blocker is found, 1 when at least one is,
 2 on a usage or read error.
@@ -208,6 +210,20 @@ def load_rules(rules_path):
 # ───────────────────────────────────────────────────────────────
 
 FENCE = re.compile(r"^\s*(```|~~~)")
+FENCE_INFO = re.compile(r"^\s*(?:```|~~~)\s*([A-Za-z0-9_+.-]*)")
+
+# Fence tags that mark a sample of code rather than a payload of prose. Inside a
+# template the tag is the only thing separating the document the template emits
+# from a sample the template quotes, and the two need opposite treatment. Absent,
+# markdown, text and yaml tags stay prose on purpose: silencing a prose payload
+# trades a loud correct finding for a silent wrong one.
+CODE_FENCE_LANGUAGES = {
+    "bash", "sh", "shell", "zsh", "console",
+    "json", "jsonc",
+    "python", "py",
+    "javascript", "js", "typescript", "ts",
+    "gitignore",
+}
 
 # A template's filename ends in "template" (a document ABOUT templates starts
 # with the word instead, e.g. "template-guide.md"), which is how the skills tree
@@ -235,13 +251,33 @@ def is_template_path(path):
     return "assets" in parents or "templates" in parents
 
 
-def mask_untargeted(lines, include_code):
+def _mask_inline_spans(masked, indexes):
+    """Blank inline code spans over one paragraph of prose.
+
+    A span is paired across the whole paragraph rather than line by line,
+    because a backticked error string wraps like any other text. The paragraph
+    is the boundary because Markdown ends a code span at a blank line, which is
+    also what stops an unmatched backtick blanking the rest of the document.
+    """
+    if not indexes:
+        return
+    joined = "\n".join(masked[index] for index in indexes)
+    joined = re.sub(r"`[^`]*`", lambda m: re.sub(r"[^\n]", " ", m.group(0)), joined)
+    for index, line in zip(indexes, joined.split("\n")):
+        masked[index] = line
+
+
+def mask_untargeted(lines, include_code, template_payload=False):
     """Blank out frontmatter, fenced blocks and inline code spans.
 
     HVR governs prose. A banned word inside a code sample, a command, an
     identifier or a quoted error string is not a voice defect, and scoring it
     produces edits that break the sample. Masking replaces those spans with
     spaces so line and column numbers stay true.
+
+    A template payload changes which fences count as prose, never whether the
+    other masking runs. Its own output fence is read as prose, and a fence
+    tagged with a code language is masked exactly as it would be anywhere else.
     """
     masked = list(lines)
     if include_code:
@@ -257,16 +293,32 @@ def mask_untargeted(lines, include_code):
             masked[index] = " " * len(masked[index])
 
     in_fence = False
+    fence_is_code = True
+    paragraph = []
     for index in range(start, len(masked)):
         line = masked[index]
         if FENCE.match(line):
-            in_fence = not in_fence
-            masked[index] = " " * len(line)
+            _mask_inline_spans(masked, paragraph)
+            paragraph = []
+            if in_fence:
+                in_fence = False
+            else:
+                in_fence = True
+                info = (FENCE_INFO.match(line).group(1) or "").lower()
+                fence_is_code = not template_payload or info in CODE_FENCE_LANGUAGES
+            if fence_is_code:
+                masked[index] = " " * len(line)
             continue
         if in_fence:
-            masked[index] = " " * len(line)
+            if fence_is_code:
+                masked[index] = " " * len(line)
             continue
-        masked[index] = re.sub(r"`[^`]*`", lambda m: " " * len(m.group(0)), line)
+        if not line.strip():
+            _mask_inline_spans(masked, paragraph)
+            paragraph = []
+            continue
+        paragraph.append(index)
+    _mask_inline_spans(masked, paragraph)
     return masked
 
 
@@ -372,9 +424,9 @@ def score_transitions(findings, transitions):
     return kept
 
 
-def scan_text(text, rules, include_code=False):
+def scan_text(text, rules, include_code=False, template_payload=False):
     raw_lines = text.splitlines()
-    lines = mask_untargeted(raw_lines, include_code)
+    lines = mask_untargeted(raw_lines, include_code, template_payload)
 
     findings = []
     scan_punctuation(lines, rules["punctuation"], findings)
@@ -412,7 +464,7 @@ UNSCORED = (
 def render(path, result, every_occurrence=False):
     out = [f"HVR SCAN: {path}"]
     if result.get("templatePayload"):
-        out.append("  template payload detected: fenced content scanned, not masked")
+        out.append("  template payload detected: its payload fence is read as prose")
     findings = result["findings"]
     if not findings:
         out.append("  no mechanical findings")
@@ -487,7 +539,12 @@ def main(argv=None):
             print(f"hvr_scan: cannot read {target}: {error}", file=sys.stderr)
             return 2
         template_payload = target != "-" and is_template_path(target)
-        result = scan_text(text, rules, include_code=args.include_code or template_payload)
+        result = scan_text(
+            text,
+            rules,
+            include_code=args.include_code,
+            template_payload=template_payload,
+        )
         result["path"] = target
         result["templatePayload"] = template_payload
         reports.append(result)

@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
-    last_updated_at: "2026-09-02T18:30:00Z"
+    last_updated_at: "2026-09-02T23:50:00Z"
     last_updated_by: "spec-kit-residue-implementer"
-    recent_action: "Wrote the five contract decisions with two-sided evidence"
-    next_safe_action: "Operator picks a side per ADR; the loser's documentation moves in the same change"
+    recent_action: "Re-read every ADR against 049, implemented ADR-005 and ADR-008, closed the rest as superseded"
+    next_safe_action: "Rule on adjacent findings A1 and A2"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/lib/search/bm25-index.ts"
@@ -29,8 +29,12 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "ADR-001 through ADR-005, ADR-007 and ADR-008 each need an operator yes before any code or test moves; ADR-006 is already implemented."
-    answered_questions: []
+      - "Adjacent finding A1: does an empty research graph score claimVerificationRate 0 or 1?"
+      - "Adjacent finding A2: is a review coverage gap a FILE with no incoming COVERS, or no outgoing COVERS/EVIDENCE_FOR?"
+    answered_questions:
+      - "ADR-001 through ADR-004 and ADR-007 are superseded by 049-memory-decommission: every file they would edit is inside the mcp-server delete."
+      - "ADR-005 and ADR-008 sit outside 049 and are implemented."
+      - "The daemon recycle is superseded: 049 deletes the launcher, the plugin and the hook concern."
 ---
 # Decision Record: spec-kit test-surface contract questions
 
@@ -59,9 +63,22 @@ finding about the code.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Superseded |
 | **Date** | 2026-09-02 |
 | **Deciders** | Operator |
+
+### Resolution (2026-09-02)
+
+**Superseded by `specs/system-speckit/049-memory-decommission`.** The operator's decision
+stands as recorded: keep the opt-in default, move BM01 and T037.2, correct the three docs.
+None of it is implemented, because all four subject files sit under
+`.opencode/skills/system-spec-kit/mcp-server/`, which 049 phase `003-spec-memory-server-removal`
+lists as `Delete` (spec.md §3, *Files to Change*, 1,480 files / 453,813 lines). Verified on
+disk: `mcp-server/lib/search/bm25-index.ts`, `mcp-server/lib/search/hybrid-search.ts`,
+`mcp-server/tests/search-extended.vitest.ts` and `mcp-server/tests/bm25-index.vitest.ts` all
+exist and all sit under that prefix. 049 is still `Draft` and unmerged. That does not change
+the answer, because editing a tree that is scheduled for deletion buys a green check that the
+delete throws away.
 
 ---
 
@@ -215,9 +232,19 @@ this decision, so no runtime rollback is needed.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Superseded |
 | **Date** | 2026-09-02 |
 | **Deciders** | Operator |
+
+### Resolution (2026-09-02)
+
+**Superseded by `049-memory-decommission`.** The decision, keep the filter, move the six
+tests, fix their titles, is unchanged and unimplemented. `mcp-server/lib/search/channel-representation.ts`,
+`mcp-server/tests/channel-representation.vitest.ts` and `mcp-server/tests/channel-enforcement.vitest.ts`
+were all confirmed on disk under the `mcp-server/` prefix that 049 phase 003 deletes. The two
+further test files named in Context (`feature-eval-query-intelligence`,
+`query-router-channel-interaction`) sit under the same prefix. Spending six assertion edits on
+a tree scheduled for deletion returns nothing that survives the delete.
 
 ---
 
@@ -346,9 +373,17 @@ touched, so runtime behavior is unaffected either way.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Superseded |
 | **Date** | 2026-09-02 |
 | **Deciders** | Operator |
+
+### Resolution (2026-09-02)
+
+**Superseded by `049-memory-decommission`.** The decision to restore `enforceSearchTokenBudget`
+and its call site stands, and is not implemented: `mcp-server/handlers/memory-search.ts` and
+`mcp-server/tests/memory-search-token-budget.vitest.ts` both sit under the `mcp-server/` tree
+049 phase 003 deletes. The handler enforces a budget for a `memory_search` tool that 049 removes
+along with the other forty, so the restored code would have no caller after the delete.
 
 ---
 
@@ -476,9 +511,17 @@ the state before this decision.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Superseded |
 | **Date** | 2026-09-02 |
 | **Deciders** | Operator |
+
+### Resolution (2026-09-02)
+
+**Superseded by `049-memory-decommission`.** Adding the five scope columns to `makeTestDb()`
+remains the right call for the fixture, and is not implemented:
+`mcp-server/tests/incremental-index-move-reconcile.vitest.ts` and the module it exercises,
+`mcp-server/lib/storage/incremental-index.ts`, are both inside the `mcp-server/` delete. The
+`memory_index` table the fixture replicates is the memory database 049 removes outright.
 
 ---
 
@@ -604,9 +647,16 @@ be false in production is a branch nobody exercises, and the drift is a fixture 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-02 |
 | **Deciders** | Operator |
+
+### Resolution (2026-09-02)
+
+**Implemented.** Nothing here is inside 049: the four test files live under
+`system-spec-kit/scripts/tests/`, and the repoint target
+`.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/` belongs to `system-deep-loop`,
+which 049 spec.md §3 names as out of scope. See the Outcome section below.
 
 ---
 
@@ -732,6 +782,41 @@ depends on it.
 **How to roll back**: revert the import edits; the files return to failing at load,
 which is the state before this decision.
 <!-- /ANCHOR:adr-005-impl -->
+
+### Outcome
+
+**What changed**: the three `lib`-only importers now resolve
+`../../../system-deep-loop/runtime/lib/coverage-graph/*`, and
+`scripts/tests/session-isolation.vitest.ts` was deleted, its `handlers/coverage-graph/*`
+imports name modules retired on an explicit no-aliases directive, with no relocated
+equivalent.
+
+**Before** (`vitest run` on the four files): 4 test files failed at module load,
+`Tests  no tests`. Each errored with `Cannot find module '../../mcp-server/lib/coverage-graph/…'`.
+
+**After** (`vitest run` on the three repointed files): `Test Files  1 failed | 2 passed (3)`,
+`Tests  2 failed | 47 passed (49)`. Forty-seven assertions that had been dark for three and a
+half months now run.
+
+**The two remaining failures are the drift this ADR predicted**, both in
+`coverage-graph-cross-layer.vitest.ts`, and neither was papered over:
+
+1. *"handles empty graphs without errors in both layers"*, the test expects
+   `claimVerificationRate: 0` for an empty graph.
+   `computeResearchClaimVerificationRateFromData` returns `1.0` when there are no CLAIM nodes
+   (`system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:599`). Vacuous truth
+   against a zero floor: one of the two is wrong and it is a contract question, not a typo.
+2. *"keeps research data invisible to review queries in the same spec folder"*, the test
+   expects a FILE node with no **outgoing** COVERS/EVIDENCE_FOR edges to be a gap.
+   `getCoverageGapRequirements` now defines the review requirement as a FILE with no
+   **incoming** COVERS (`coverage-graph-query.ts:286`). The fixture's FILE does have an
+   incoming COVERS, so no gap is reported. The direction was inverted deliberately at some
+   point, a dimension covers a file, not the reverse, which makes the test the stale side.
+
+Both producers live in `system-deep-loop/runtime/lib/coverage-graph/`, outside this packet's
+frozen scope, and this ADR's own risk row says to triage such drift as its own finding rather
+than weaken an assertion. They are recorded in Adjacent Findings below and left red.
+
 <!-- /ANCHOR:adr-005 -->
 
 ---
@@ -746,6 +831,13 @@ which is the state before this decision.
 | **Status** | Accepted |
 | **Date** | 2026-09-02 |
 | **Deciders** | Operator |
+
+### Resolution (2026-09-02)
+
+**Already shipped in `59a597e37d`, before the 049 question arose.** Its subject,
+`mcp-server/lib/enrichment/retry-budget.ts`, is inside the tree 049 phase 003 deletes, so the
+fix is short-lived, but it was the reason the suite could not complete, and it was already
+landed when this packet re-read the ADRs against 049. Nothing further to do.
 
 ---
 
@@ -876,9 +968,25 @@ rollback anyone should want.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Superseded |
 | **Date** | 2026-09-02 |
 | **Deciders** | Operator |
+
+### Resolution (2026-09-02)
+
+**Split, and nothing survives to implement.** The two halves land on opposite sides of 049.
+
+- The five failing tests are `mcp-server/tests/memory-roadmap-flags.vitest.ts` (three) and
+  `mcp-server/tests/db-lifecycle-paths.vitest.ts` (two). Both files sit under the `mcp-server/`
+  prefix 049 phase 003 deletes, so all five assertions go with the tree.
+- `.opencode/skills/system-spec-kit/shared/paths.ts` survives the delete, it is outside
+  `mcp-server/` and 049 does not name it. But `resolveDatabaseDir` resolves the memory
+  **database** directory, and that database is exactly what 049 decommissions. The surviving
+  file has no surviving subject.
+
+So the injectable base directory would be added to serve five tests that will not exist, on a
+resolver whose product will not exist. The decision text stays on the record for the case where
+049 is abandoned. It is not implemented now.
 
 ---
 
@@ -1002,9 +1110,16 @@ seam change lets both stand.
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-09-02 |
 | **Deciders** | Operator |
+
+### Resolution (2026-09-02)
+
+**Implemented.** `scripts/memory/generate-context.ts` is outside 049's delete list, 049 phase
+001 *creates* under `scripts/memory/`, and phase 003's Files-to-Change table names nothing in
+`scripts/`. 049's own open question about what replaces the save-path metadata refresh leaves
+this entry point in play rather than scheduled for removal. See the Outcome section below.
 
 ---
 
@@ -1126,6 +1241,63 @@ invisible, and it was invisible last time too, which is how this stayed unnotice
 
 **How to roll back**: revert; the seven tests return to red, which is today's state.
 <!-- /ANCHOR:adr-008-impl -->
+
+### Outcome
+
+**What changed**: `main()` in `scripts/memory/generate-context.ts` takes a third defaulted
+parameter, `projectRoot: string = CONFIG.PROJECT_ROOT`, and binds `CONFIG.PROJECT_ROOT` to it
+before parsing. That one assignment is enough because every downstream resolver already reads the root from
+`CONFIG`: `resolveSpecFolderCanonical`, `assertSpecWriteAllowed`,
+`resolveExistingSpecFolderPath` and `getSpecsDirectories`. The module documents that object as
+mutable runtime config. Threading a parameter through four exported helpers instead would have
+widened the change for no gain. The default keeps production behavior byte-identical.
+
+`scripts/tests/generate-context-cli-authority.vitest.ts` now builds a throwaway workspace per
+test, `specs/system-spec-kit/022-hybrid-rag-fusion` with a `spec.md`, plus a track-level
+`graph-metadata.json`, under `os.tmpdir()`, passes that root to `main()`, and removes it
+afterwards. The track-level metadata is required rather than decorative: a track folder holding
+`NNN-` children is a phase parent, so the save path rewrites its pointers, and a real track
+folder carries that file.
+
+**Before**: `Tests  7 failed | 4 passed (11)`, every failure
+`process.exit unexpectedly called with "1"` behind the stderr line
+`Spec packet write blocked … collision class is divergent-duplicate`.
+
+**After**: `Tests  11 passed (11)`, exit 0. No lock directory and no metadata write lands in
+the repository.
+
 <!-- /ANCHOR:adr-008 -->
 
 ---
+
+---
+
+<!-- ANCHOR:daemon-recycle -->
+## Daemon recycle, superseded
+
+The residue also raised the daemon-recycle concern: the spec-memory launcher restarts a
+long-lived daemon whose worker state is what ADR-006 found spinning. It is **superseded by
+`049-memory-decommission`**, and there is nothing left to decide.
+
+049 phase `003-spec-memory-server-removal` §3 *Files to Change* lists all three surfaces as
+deletions: `.opencode/bin/system-spec-memory-launcher.cjs` and `spec-memory.cjs` (*"Launcher and
+CLI shim"*), `.opencode/plugins/system-spec-memory.js` (*"OpenCode plugin"*), and
+`.opencode/hooks/spec-memory/` (*"Hook concern"*). All three were confirmed present on disk on
+2026-09-02, and all three are named `Delete`. A recycle policy for a daemon that is being
+removed has no subject.
+<!-- /ANCHOR:daemon-recycle -->
+
+---
+
+<!-- ANCHOR:adjacent-findings -->
+## Adjacent findings
+
+Recorded, not fixed. Each sits outside this packet's frozen scope.
+
+| # | Where | What | Why it is not fixed here |
+|---|-------|------|--------------------------|
+| A1 | `system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:599` | `computeResearchClaimVerificationRateFromData` returns `1.0` for a graph with no CLAIM nodes. The restored cross-layer test asserts `0` | The producer is `system-deep-loop` runtime, outside the files this phase was scoped to, and which side is right is a contract question |
+| A2 | `system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:286` | The review coverage-gap requirement is a FILE with no **incoming** COVERS. The restored test asserts the older **outgoing** COVERS/EVIDENCE_FOR rule | Same tree, same reason. The direction looks like a deliberate correction, which would make the assertion the stale side, but nobody has ruled |
+| A3 | `system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:2` | The *"do not diverge"* parity comment still names the pre-move MCP handler path | A comment fix in a file this phase did not otherwise touch |
+| A4 | `system-spec-kit/scripts/tsconfig.json` | `exclude` carries `tests/**/*.vitest.ts`, so `npm run typecheck` never type-checks any test file, including the two this phase edited | AC-003 already tracks it. Adding a tests typecheck lane is its own change with its own blast radius |
+<!-- /ANCHOR:adjacent-findings -->

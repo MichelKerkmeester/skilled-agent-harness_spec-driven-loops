@@ -2,13 +2,32 @@
 title: "Feature Specification: Phase 7: spec-kit-residue [template:level-3/spec.md]"
 description: "The suite cannot finish a run, roughly a hundred and fifteen failures have a signature but no mechanism, and its tests have never been type-checked at all."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
-  - "spec core"
+  - "spec kit residue"
+  - "contract questions"
+  - "049 supersession"
+  - "coverage graph repoint"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
+    last_updated_at: "2026-09-02T23:50:00Z"
+    last_updated_by: "spec-kit-residue-implementer"
+    recent_action: "Closed every ADR against 049 and implemented the two that survive"
+    next_safe_action: "Rule on adjacent findings A1 and A2 in decision-record.md"
+    blockers: []
+    key_files:
+      - "decision-record.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-kit-residue-decisions"
+      parent_session_id: null
+    completion_pct: 70
+    open_questions:
+      - "AC-001 to AC-003 remain open. Each needs work outside this phase."
+    answered_questions:
+      - "Every contract question is ruled: two implemented, five superseded by 049, one already shipped."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 7: spec-kit-residue
@@ -20,11 +39,19 @@ contextType: "general"
 
 ## EXECUTIVE SUMMARY
 
-[2-3 sentence high-level overview for stakeholders who need quick context]
+Eight contract questions, where a test and the code it exercises assert opposite things, were
+put to their owner and decided. Re-reading each against `049-memory-decommission` showed that
+five of them would edit files that packet deletes outright, so they close as superseded with
+their decision text intact. The two that survive are implemented and verified, and one had
+already shipped.
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: supersede rather than implement anything inside the `mcp-server/` delete.
+restore the coverage-graph tests by repointing them at the moved subject rather than deleting
+them. Give `generate-context.ts`'s `main()` an injectable project root instead of pointing its
+fixture back at a real packet.
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: `specs/system-speckit/049-memory-decommission` phase
+`003-spec-memory-server-removal`, whose Delete list decides which decisions are worth spending on.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -33,15 +60,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | In Progress |
 | **Created** | 2026-09-02 |
-| **Branch** | `scaffold/007-spec-kit-residue` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 7 of 7 |
 | **Predecessor** | 006-validator-and-template-debt |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Every ADR carries a resolution. The two implemented decisions run green or name their failures |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -51,13 +78,18 @@ contextType: "general"
 
 This is **Phase 7** of the routing completeness phases specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: the eight recorded contract questions and the two code paths their surviving
+decisions name. Nothing inside the `mcp-server/` tree is edited, and nothing in
+`system-deep-loop` runtime is changed.
 
 **Dependencies**:
-- [To be defined during planning]
+- `049-memory-decommission/003-spec-memory-server-removal` §3, the Delete list that decides
+  which decisions survive
 
 **Deliverables**:
-- [To be defined during planning]
+- A resolution on every ADR, plus the daemon-recycle entry
+- The three repointed coverage-graph tests, with the fourth deleted
+- An injectable project root on `generate-context.ts`'s `main()`, and a hermetic fixture
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -108,7 +140,12 @@ contract questions are decided by their owner.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts` | Modify | Repoint the import at the deep-loop runtime |
+| `system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts` | Modify | Repoint three imports at the deep-loop runtime |
+| `system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts` | Modify | Repoint the import at the deep-loop runtime |
+| `system-spec-kit/scripts/tests/session-isolation.vitest.ts` | Delete | Depends on retired MCP handler modules with no relocated equivalent |
+| `system-spec-kit/scripts/memory/generate-context.ts` | Modify | `main()` takes a defaulted project root |
+| `system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts` | Modify | Fixture moves to a throwaway packet under a temp root |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -222,8 +259,10 @@ contract questions are decided by their owner.
 
 ## 12. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Does an empty research graph score `claimVerificationRate` 0 or 1? The restored cross-layer
+  test and the deep-loop signals module disagree (adjacent finding A1).
+- Is a review coverage gap a FILE with no incoming COVERS, or with no outgoing
+  COVERS/EVIDENCE_FOR? The restored test asserts the older direction (adjacent finding A2).
 <!-- /ANCHOR:questions -->
 
 ---

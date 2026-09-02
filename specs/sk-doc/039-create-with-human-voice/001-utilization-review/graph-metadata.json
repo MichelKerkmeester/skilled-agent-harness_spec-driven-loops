@@ -56,6 +56,7 @@
       ".opencode/skills/mcp-code-mode/assets/env-template.md",
       "manual-testing-playbook/manual-testing-playbook.md",
       "specs/sk-doc/039-create-with-human-voice/spec.md",
+      "scripts/README.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
       ".opencode/bin/skill-advisor.cjs"
     ],
@@ -207,7 +208,7 @@
     ],
     "causal_summary": "The mode ships a nine-scenario manual-testing playbook that nobody had ever run, so no claim it makes about the workflow had been tested against the workflow",
     "created_at": "2026-09-02T18:52:03Z",
-    "last_save_at": "2026-09-02T20:21:51.827Z",
+    "last_save_at": "2026-09-02T22:02:37.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78866e89f473686598c409cefe554227218c666cf9ad470de98444b7a0d7efcc",
+    "source_fingerprint": "sha256:cac45db55b4271c4006c2970e8cec627f0ceb88619889391b7adf3a8ce0a6d26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09be8e75a023768c1fecf576b31e0114b85d18aac05f64bd7037087ce337ffc5",
       "plan.md": "5585965071b299f77718e6f90c2b9c4032a824a2b4610564ec4df76f753d3108",
-      "tasks.md": "eb6d690e597531ce6293c4f9b9048656d70ac4de64eb259dba96297623f08290",
-      "implementation-summary.md": "44369f8cb6168c4beaed2a91b955c2914aaf7498d60bbff9c26d2e7be5b1a6a1"
+      "tasks.md": "fd5d6fa132c4731fcca38d3e50c0fe3c132629f900bf79774621ad7073ec335f",
+      "implementation-summary.md": "c0943a6b2abd89bd4b9dd6e1fca4aff4148e5c5ff3f5eb33752a144acbbd8f5a"
     },
     "last_active_child_id": null,
     "last_active_at": null

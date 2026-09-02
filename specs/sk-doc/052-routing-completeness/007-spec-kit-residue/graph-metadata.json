@@ -11,35 +11,35 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
+      "spec kit residue",
+      "contract questions",
+      "049 supersession",
+      "coverage graph repoint",
       "implementation",
       "plan",
+      "name",
+      "template",
       "plan core",
       "tasks",
-      "tasks core",
-      "acceptance criteria",
-      "closure gate"
+      "adr disposition",
+      "acceptance criteria"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
       "spec",
-      "core",
+      "kit",
+      "residue",
+      "contract",
+      "questions",
+      "supersession",
+      "coverage",
+      "graph",
+      "repoint",
       "implementation",
       "plan",
-      "tasks",
-      "acceptance",
-      "criteria",
-      "closure"
+      "name"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,25 +48,25 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      "mcp-server/lib/search/bm25-index.ts",
-      "mcp-server/lib/search/hybrid-search.ts",
-      "mcp-server/tests/search-extended.vitest.ts",
-      "mcp-server/tests/bm25-index.vitest.ts",
-      "mcp-server/lib/search/channel-representation.ts",
-      "mcp-server/tests/channel-representation.vitest.ts",
-      "mcp-server/tests/channel-enforcement.vitest.ts",
-      "mcp-server/handlers/memory-search.ts",
-      "mcp-server/tests/memory-search-token-budget.vitest.ts",
-      "mcp-server/lib/storage/incremental-index.ts",
-      "mcp-server/tests/incremental-index-move-reconcile.vitest.ts",
-      "scripts/tests/coverage-graph-integration.vitest.ts",
-      "scripts/tests/coverage-graph-cross-layer.vitest.ts"
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts",
+      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/decision-record.md",
+      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/tasks.md",
+      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/acceptance-criteria.md",
+      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md",
+      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/implementation-summary.md",
+      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md",
+      "scripts/tsconfig.json",
+      "specs/system-speckit/049-memory-decommission/003-spec-memory-server-removal/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md",
         "source": "derived"
       },
       {
@@ -78,109 +78,67 @@
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/tasks.md",
         "source": "derived"
       },
       {
         "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "acceptance-criteria.md",
+        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/acceptance-criteria.md",
         "source": "derived"
       },
       {
         "name": "goal.md",
         "kind": "doc",
-        "path": "goal.md",
+        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "bm25-index.ts",
-        "kind": "code",
-        "path": "mcp-server/lib/search/bm25-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "mcp-server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-extended.vitest.ts",
-        "kind": "test",
-        "path": "mcp-server/tests/search-extended.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "bm25-index.vitest.ts",
-        "kind": "test",
-        "path": "mcp-server/tests/bm25-index.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "channel-representation.ts",
-        "kind": "code",
-        "path": "mcp-server/lib/search/channel-representation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "channel-representation.vitest.ts",
-        "kind": "test",
-        "path": "mcp-server/tests/channel-representation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "channel-enforcement.vitest.ts",
-        "kind": "test",
-        "path": "mcp-server/tests/channel-enforcement.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp-server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search-token-budget.vitest.ts",
-        "kind": "test",
-        "path": "mcp-server/tests/memory-search-token-budget.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "incremental-index.ts",
-        "kind": "code",
-        "path": "mcp-server/lib/storage/incremental-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "incremental-index-move-reconcile.vitest.ts",
-        "kind": "test",
-        "path": "mcp-server/tests/incremental-index-move-reconcile.vitest.ts",
+        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "coverage-graph-integration.vitest.ts",
         "kind": "test",
-        "path": "scripts/tests/coverage-graph-integration.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
         "source": "derived"
       },
       {
         "name": "coverage-graph-cross-layer.vitest.ts",
         "kind": "test",
-        "path": "scripts/tests/coverage-graph-cross-layer.vitest.ts",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-convergence-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context-cli-authority.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": "scripts/tsconfig.json",
         "source": "derived"
       },
       {
@@ -202,15 +160,57 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The suite does not complete",
     "created_at": "2026-09-02T16:34:09Z",
-    "last_save_at": "2026-09-02T20:30:53.120Z",
+    "last_save_at": "2026-09-02T21:58:19.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a76d28004ed8dedf6caf31f0343bf0759060edd8ba58ed709bd4e340cb5197a",
+    "source_fingerprint": "sha256:eb7cb843098fe06e750d553f0ef10c7e5ba8918de959bfae53052d821eaa238c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bccbb52a331756e21d6ab8d77a8494cbadbdd9064a69c3cd99e3efb3dcef8b8f",
+      "spec.md": "ca3d2a9d0658f2db5ba56caebea868f984f7719e96a7f45978d14674c9b30524",
       "plan.md": "74db142303e80db19c1180a5257d56a9c778dae00192c41133fcaaabe9885a12",
-      "tasks.md": "05fe420c50546b32501c79b1c635e53f13c7c8e541f6894ec72a5975096ac255",
-      "decision-record.md": "3e85cf3f919dbb35ac36ecb542edecb4545c29b6bad78c80a659e4533acf9230",
-      "implementation-summary.md": "a9139f7b293cf6c36eed310fbebc6ebef83144454a6ef8000c65909939c0bcc7"
+      "tasks.md": "130f4cd630d4298fb7d4ba0094b65a61b9c1a9892b1b770df184055c396e38be",
+      "decision-record.md": "3eac140825c584d2e65a98d4958c138a84834afd81daab4aa513ba6244b64405",
+      "implementation-summary.md": "f4b3f8d17030f1ab51965f9a2b7cefcf140fa60c5566a2aeeb37adf21d8dac5c"
     },
     "last_active_child_id": null,
     "last_active_at": null

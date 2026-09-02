@@ -68,6 +68,19 @@ contextType: "general"
 
 ---
 
+## Phase 4: Closing The Write-Ups
+
+- [x] T017 Read the scanner's scoring code and settle which of the two systems it implements (`scripts/hvr_scan.py`)
+- [x] T018 State one scoring system across the standard and the arithmetic reference (`references/hvr-rules.md`, `references/scoring-and-verification.md`)
+- [x] T019 Write the failing checks before the scanner change and record the red run (`scripts/tests/test_hvr_scan.py`)
+- [x] T020 Fix template masking at the producer so a code-tagged fence stays masked (`scripts/hvr_scan.py`)
+- [x] T021 [P] Fix inline-span masking so a span that wraps a line is covered, and correct the reference that said otherwise (`scripts/hvr_scan.py`, `references/scoring-and-verification.md`)
+- [x] T022 Ship a fixture for each scenario written against a placeholder and rewire the six scenarios (`scripts/tests/fixtures/`, `manual-testing-playbook/`)
+- [x] T023 Apply the prepared step 5 text (`SKILL.md`)
+- [x] T024 Re-run the scanner tests, the playbook package validator, the document validator, the control pair and the 50-document template set from the final state
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -116,7 +129,7 @@ contextType: "general"
 
 - [x] CHK-010 [P0] `validate_document.py` exits 0 on all five edited files, `Total issues: 0` on each
 - [x] CHK-011 [P0] `validate-playbook-package.cjs` reports `violations=0 warnings=0`
-- [x] CHK-012 [P1] No code changed in this phase, so the scanner's fail-closed path is unmodified and its exit-2 behavior stands
+- [x] CHK-012 [P1] The scanner's fail-closed path is unmodified: only masking changed, and `hvr_scan.py references/hvr-rules.md` still parses to `30 / -246` rather than exiting 2
 - [x] CHK-013 [P1] Every edit uses the replacement the standard prescribes for the mark it removed
 <!-- /ANCHOR:code-quality -->
 
@@ -128,7 +141,7 @@ contextType: "general"
 - [x] CHK-020 [P0] All acceptance criteria met, see `acceptance-criteria.md`
 - [x] CHK-021 [P0] Manual testing complete, nine of nine scenarios recorded
 - [x] CHK-022 [P1] Edge cases tested: a 510-line self-referential target, a mechanically clean target with seven judgment findings, a claim-bearing blocked term
-- [x] CHK-023 [P1] Error scenarios validated: masked fences stayed unreported, a multi-line inline code span leaked as documented, `--include-code` raised the dirty fixture from 6 to 14
+- [x] CHK-023 [P1] Error scenarios validated: masked fences stayed unreported, `--include-code` raised the dirty fixture from 6 to 14, and the multi-line inline code span that used to leak is now masked and pinned by a test
 <!-- /ANCHOR:testing -->
 
 ---
@@ -161,7 +174,7 @@ contextType: "general"
 ## Documentation
 
 - [x] CHK-040 [P1] Spec, plan, tasks, acceptance criteria and implementation summary agree on scope and status
-- [x] CHK-041 [P1] Not applicable, no code changed
+- [x] CHK-041 [P1] The scanner's module docstring, `mask_untargeted`'s docstring and `scripts/README.md` all describe the masking as it now behaves
 - [x] CHK-042 [P2] The packet `README.md` invocation row corrected
 <!-- /ANCHOR:docs -->
 
@@ -170,7 +183,7 @@ contextType: "general"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Constructed scenario targets were kept outside the repository, in the session scratchpad, so no packet or phase path carries residue
+- [x] CHK-050 [P1] Scenario targets now ship as fixtures under `scripts/tests/fixtures/`, and the three scenarios that edit copy theirs to `/tmp` so no packet path carries a diff
 - [x] CHK-051 [P1] `scratch/` holds only its `.gitkeep`
 <!-- /ANCHOR:file-org -->
 
@@ -185,7 +198,7 @@ contextType: "general"
 | P1 Items | 22 | 22/22 |
 | P2 Items | 9 | 9/9 |
 
-**Verification Date**: 2026-09-02
+**Verification Date**: 2026-09-02, re-verified after the closing pass on 2026-09-03
 <!-- /ANCHOR:summary -->
 
 ---

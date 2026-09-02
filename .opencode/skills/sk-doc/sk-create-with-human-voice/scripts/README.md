@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # sk-create-with-human-voice Scripts
 
-The mechanical pass of the voice workflow, plus the two fixtures that prove it.
+The mechanical pass of the voice workflow, the tests that pin its masking contract and the fixtures the playbook scenarios run against.
 
 ---
 
@@ -21,8 +21,14 @@ The mechanical pass of the voice workflow, plus the two fixtures that prove it.
 | File | Purpose |
 |---|---|
 | [`hvr_scan.py`](hvr_scan.py) | Scans prose for the deterministic Human Voice Rules findings. Parses its term lists out of `../references/hvr-rules.md` at run time and holds no copy of them |
+| [`tests/test_hvr_scan.py`](tests/test_hvr_scan.py) | Pins the masking contract: which fences a template payload reads as prose, which it still masks, how an inline span that wraps two lines is treated and the two control numbers |
 | [`tests/fixtures/voice-dirty.md`](tests/fixtures/voice-dirty.md) | Carries one finding of each mechanical class, plus the same violations inside a fenced block and an inline code span that must not be reported |
 | [`tests/fixtures/voice-clean.md`](tests/fixtures/voice-clean.md) | Carries none |
+| [`tests/fixtures/voice-two-senses.md`](tests/fixtures/voice-two-senses.md) | One blocked term twice, once in the sense the standard permits and once in the sense it blocks. `HVT-002` |
+| [`tests/fixtures/voice-judgment-only.md`](tests/fixtures/voice-judgment-only.md) | No mechanical finding and several a reader has to settle. `HVT-003` |
+| [`tests/fixtures/voice-carried-spans.md`](tests/fixtures/voice-carried-spans.md) | A quoted user sentence, a quoted error string, a fenced sample and an inline span. `HVS-001` and `HVS-002` |
+| [`tests/fixtures/voice-claim-bearing-term.md`](tests/fixtures/voice-claim-bearing-term.md) | A sentence whose claim rests on a blocked term. `HVS-004` |
+| [`tests/fixtures/voice-ai-draft.md`](tests/fixtures/voice-ai-draft.md) | Four hard blockers and a ceiling of 77/100 for a before-number. `HVR-002` |
 
 ---
 
@@ -52,6 +58,10 @@ confused.
 ---
 
 ## 3. VERIFICATION
+
+Run the tests with `python3 tests/test_hvr_scan.py` from this directory. Exit 0 and
+`ALL PASS` mean the masking contract holds and both fixture controls still report their
+pinned numbers.
 
 See section 8 of [`../README.md`](../README.md) for the four controls, including the
 fail-closed one that proves a renamed section in the standard stops the scan rather than

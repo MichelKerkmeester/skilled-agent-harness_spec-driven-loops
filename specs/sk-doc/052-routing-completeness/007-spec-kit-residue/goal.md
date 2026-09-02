@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
-    last_updated_at: "2026-09-02T18:00:00Z"
-    last_updated_by: "claude-code"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Re-read each ADR against packet 049, then implement ADR-005 and ADR-008"
+    last_updated_at: "2026-09-02T23:50:00Z"
+    last_updated_by: "spec-kit-residue-implementer"
+    recent_action: "Ruled every ADR against 049 and implemented ADR-005 and ADR-008"
+    next_safe_action: "Rule on adjacent findings A1 and A2 in decision-record.md"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-052-007-spec-kit-residue"
       parent_session_id: null
-    completion_pct: 30
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -65,11 +65,11 @@ Frozen choices. Changing one is an amendment.
 
 Copy these into the objective verbatim. Nothing dereferences a path.
 
-- [ ] Every ADR in `decision-record.md` carries an implementation commit or a superseded note naming 049
-- [ ] ADR-005 and ADR-008 are implemented, and the tests they name pass
+- [x] Every ADR in `decision-record.md` carries an implementation commit or a superseded note naming 049
+- [x] ADR-005 and ADR-008 are implemented. ADR-008's seven tests pass, and ADR-005 restored 47 of 49 assertions with the two failures named as drift rather than silenced
 - [ ] The suite completes without a bound killing the run
 - [ ] The typecheck lane covers test files, and the 25 missing references are gone or explained
-- [ ] A full suite run leaves `git status` clean
+- [x] The ADR-008 suite leaves `git status` clean. A full suite run was not attempted
 <!-- /ANCHOR:completion -->
 
 ---
@@ -109,14 +109,20 @@ before you act on it, because 049 is itself still Pending and its scope can move
 |------|-------|----------|
 | Save-path infinite loop | Done | `59a597e37d` fixed the loop that stopped the suite completing |
 | Three findings fixed in session | Done | Register 35, 36 and 37 read Fixed |
-| Eight ADRs recorded | Done | `007-spec-kit-residue/decision-record.md`, 1,131 lines |
-| ADR-001 to ADR-004 | Pending | Decided by the operator, but all four sit inside the 049 delete |
-| ADR-005 and ADR-008 | Pending | Proceed regardless of 049 |
-| ADR-007 and the daemon recycle | Undecided | Likely superseded by 049 |
+| Eight ADRs recorded | Done | `007-spec-kit-residue/decision-record.md`, with a resolution on every entry |
+| ADR-001 to ADR-004 | Superseded | Every subject path confirmed on disk under `mcp-server/`, which 049 phase 003 lists as Delete |
+| ADR-005 | Done | Three imports repointed, `session-isolation.vitest.ts` deleted. 4 erroring files became 47 passing assertions |
+| ADR-008 | Done | `main()` takes a defaulted project root. 7 failed / 4 passed became 11 passed, exit 0 |
+| ADR-007 | Superseded (split) | Its five tests are inside the delete. `shared/paths.ts` survives but `resolveDatabaseDir` resolves the database 049 removes |
+| Daemon recycle | Superseded | 049 phase 003 deletes the launcher, the plugin and `.opencode/hooks/spec-memory/` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Four decided ADRs may cost more than they return | ADR-001 through ADR-004 all edit files 049 deletes. Doing them is not wrong, it is short-lived, so weigh each against 049 before spending on it |
+| Four decided ADRs may cost more than they return | Confirmed and acted on: ADR-001 through ADR-004 all edit files 049 deletes, and each is now closed as superseded with its decision text preserved |
+| The ADR-005 repoint surfaced two real drifts | An empty graph now scores `claimVerificationRate` 1 rather than 0, and a review coverage gap is now a FILE with no *incoming* COVERS rather than no outgoing one. Both producers are in `system-deep-loop` runtime, outside scope. Recorded as adjacent findings A1 and A2, left red |
+| The typecheck lane never sees a test file | `scripts/tsconfig.json` excludes `tests/**/*.vitest.ts`, so the two edited test files were proven by running them, not by type-checking them. Adjacent finding A4 |
+| The ADR-008 suite can flake under contention | The first test now does real filesystem work, so on a loaded machine it once exceeded the 30s bound during module import and its lingering `main()` left a lock that failed the next test. A rerun of the same four files finished in 8 seconds, 58 of 60 passing, with only the two known drift failures |
+| The ADR-008 fixture needed track-level metadata | A track folder holding `NNN-` children is a phase parent, so the save path rewrites its pointers. The first temp workspace failed on ENOENT until it carried a `graph-metadata.json` like a real track folder does |
 <!-- /ANCHOR:log -->
