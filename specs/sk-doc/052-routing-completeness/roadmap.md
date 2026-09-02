@@ -25,7 +25,7 @@ contextType: "general"
 **Status:** Active
 **Horizon:** 2026-09 onward
 **Owner:** Operator
-**Last updated:** 2026-09-02
+**Last updated:** 2026-09-03
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -71,15 +71,15 @@ keep with the reason.
 All three follow-up phases now hold a goal.md, authored alongside this roadmap on 2026-09-02.
 Read the phase goal before working the phase; its criteria bind.
 
-**Later:** Planned. Focus: a new packet under `specs/system-skill-advisor/` for the semantic
-lane. Gate B measures 8 of 172 realistic phrasings, 4.7 percent, and the cause is structural
-rather than lexical. The only lane that could match meaning instead of spelling carries
-registry weight 0.05, is tagged shadow-only at the lane, and has zero of 14 skill nodes
-embedded. Adding keywords cannot move that number. The packet is plan-only for now: a
-baseline phase, a deep-research phase on lane weight and embedding coverage, then an enable
-phase, each with its own goal.md. The next free number under that track is 023. Exit signal:
-the packet exists with three planned phases and no code change, because enabling the lane is
-a scoring change and this packet's D2 forbids one while its numbers stand.
+**Later:** Done as a plan. Focus: `specs/system-skill-advisor/023-semantic-lane-enablement`,
+five planned phases, no code change. Gate B measures 8 of 172 realistic phrasings, 4.7 percent,
+and the cause is structural rather than lexical. Two premises were corrected while planning it:
+the semantic lane is live at weight 0.05 rather than shadow-only (`lane-registry.ts:12`), and 9
+of 14 skill nodes carry a vector in `vec_768`, and the five without one include the two hubs that
+scored zero. Adding keywords cannot move that number. Exit signal reached: the packet exists,
+validates strict and recursive with zero errors, and each phase carries its own goal.md.
+Enabling the lane stays outside this packet because it is a scoring change and D2 forbids one
+while these numbers stand.
 <!-- /ANCHOR:now-next-later -->
 
 ---
@@ -117,9 +117,9 @@ of the three phases has run yet.
 **Fleet template sweep decided:** phase Next, target after the follow-up phases. Status:
 Planned. Evidence: the 45 of 53 count from phase 006 payload scanning.
 
-**Semantic lane packet planned:** phase Later, target unset. Status: Planned. Evidence:
-`.opencode/skills/system-skill-advisor/references/scoring/advisor-scorer.md` records the lane
-live at weight 0.05.
+**Semantic lane packet planned:** phase Later, target 2026-09-03. Status: Done. Evidence:
+`specs/system-skill-advisor/023-semantic-lane-enablement` at commit `c0ab5103fd`, six folders
+validating strict and recursive at zero errors.
 <!-- /ANCHOR:milestones-targets -->
 
 ---
@@ -142,7 +142,8 @@ whoever picks the phase up. Status: Ready. Risk and mitigation: all three exist 
 drifts.
 
 **Embedding coverage for the semantic lane:** needed by the Later packet, owner Operator.
-Status: Blocked. Risk and mitigation: zero of 14 skill nodes are embedded, so the lane has no
-data even if its weight rises. The research phase must settle weight and coverage together
-rather than one at a time.
+Status: Planned in 023 phase 002. Risk and mitigation: 9 of 14 skill nodes are embedded and
+the five without a vector include mcp-tooling and system-deep-loop, so the lane has no data for
+the hubs that miss most even if its weight rises. The research phase settles weight and coverage
+together rather than one at a time.
 <!-- /ANCHOR:dependencies -->
