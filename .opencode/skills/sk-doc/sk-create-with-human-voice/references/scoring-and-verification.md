@@ -132,6 +132,8 @@ shipped. Scanning it finds:
 x2  hard   word-blocker           harness
 x7  soft1  soft-deduction         do
 x3  soft1  soft-deduction         take
+x1  soft1  soft-deduction         get
+x1  soft1  soft-deduction         might
 x9  review oxford-comma-candidate , and
 ```
 

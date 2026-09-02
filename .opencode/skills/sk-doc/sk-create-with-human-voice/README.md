@@ -24,7 +24,7 @@ version: 1.1.0.4
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Applying the Human Voice Rules to prose, or scoring prose against them |
-| **Invoke with** | `/create:with-human-voice`, "make this sound human" or a direct read of `SKILL.md` |
+| **Invoke with** | `@markdown /create:with-human-voice`, which the command requires and hard-blocks without, or "make this sound human", or a direct read of `SKILL.md` |
 | **Works on** | A file, a passage, a reply, or a draft you are part way through |
 | **Produces** | An edited target plus a before and after report, or a report alone |
 | **Owns** | The standard at `references/hvr-rules.md`, and the workflow that applies it |

@@ -1,26 +1,230 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-doc/039-create-with-human-voice/001-utilization-review",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-doc/039-create-with-human-voice/001-utilization-review",
-  "parent_id": null,
+  "packet_id": "sk-doc/039-create-with-human-voice/001-utilization-review",
+  "spec_folder": "sk-doc/039-create-with-human-voice/001-utilization-review",
+  "parent_id": "sk-doc/039-create-with-human-voice",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: utilization-review",
+  "derived": {
+    "trigger_phrases": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec core",
+      "implementation",
+      "plan",
+      "plan core",
+      "tasks",
+      "tasks core",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "name",
+      "template",
+      "spec",
+      "core",
+      "implementation",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "closure"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-repo-rule/README.md",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/README.md",
+      ".opencode/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-code-mode/assets/env-template.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "specs/sk-doc/039-create-with-human-voice/spec.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      ".opencode/bin/skill-advisor.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-repo-rule/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "voice-report-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoring-and-verification.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-and-exemptions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "env-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/assets/env-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The mode ships a nine-scenario manual-testing playbook that nobody had ever run, so no claim it makes about the workflow had been tested against the workflow",
     "created_at": "2026-09-02T18:52:03Z",
-    "last_save_at": "2026-09-02T18:52:03Z",
+    "last_save_at": "2026-09-02T19:16:22.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b5e56c5c5615194360e9545969998058a28d28953b51dfda727a8132ef27d107",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "09be8e75a023768c1fecf576b31e0114b85d18aac05f64bd7037087ce337ffc5",
+      "plan.md": "5585965071b299f77718e6f90c2b9c4032a824a2b4610564ec4df76f753d3108",
+      "tasks.md": "eb6d690e597531ce6293c4f9b9048656d70ac4de64eb259dba96297623f08290",
+      "implementation-summary.md": "b6a4aee7c48aadea3184813412a3c370b475bd78db812a3250b2bae19095a5f2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -39,7 +39,7 @@ This playbook covers the operator-visible surface of the `create-with-human-voic
 
 Coverage runs in both directions on purpose. Tell detection covers text the mode must flag. The scope gate covers text the mode must leave alone, which is the half a term-list scanner will never volunteer.
 
-Every scenario is runnable today against the shipped standard, the shipped scanner and the two shipped fixtures. None of them edits the packet. The recovery path for the whole package is `git checkout` of any file a run touched by mistake.
+Three scenarios name their target outright and run against shipped files. `HVT-001` and `HVR-001` use the two fixtures, and `HVS-003` uses the standard. The other six take an operator-supplied target, written as `<target>` in their command sequences, and precondition 7 below names the property each one has to carry. None of them edits the packet. The recovery path for the whole package is `git checkout` of any file a run touched by mistake.
 
 ### A Clean Mechanical Scan Is Not A Pass
 
@@ -74,6 +74,18 @@ Exit 2 is a failure and never a pass. It means the scanner could not read the st
 4. The working tree is clean for the packet paths, so any diff is attributable to the run.
 5. The control pair in `references/scoring-and-verification.md` section 6 has been run once before the first wave starts. It proves the parser still reads the standard. A scanner exiting 2 invalidates every scenario that follows it.
 6. No scenario here is destructive. A run that produces a diff under the packet has already failed the scenario it was executing.
+7. A target is supplied for each of the six scenarios written against `<target>`, and it carries the property that scenario measures. Without it the run measures nothing:
+
+| Scenario | The target has to carry |
+|---|---|
+| `HVT-002` | Two occurrences of one blocked term, one in the literal sense the standard permits and one in the blocked sense |
+| `HVT-003` | Prose with no mechanical findings and real judgment findings, so the verdict cannot rest on the exit code |
+| `HVS-001` | Quoted material in running prose, which the scanner cannot see and the gate has to name |
+| `HVS-002` | A fenced code sample, an inline code span and a quoted error string, all byte-pinned by what they carry |
+| `HVS-004` | A sentence whose claim depends on a blocked term, so every replacement changes what it says |
+| `HVR-002` | Enough hard blockers to give the before-number something to measure |
+
+8. A supplied target that lives outside the repository cannot be asserted with `git status --porcelain`. Substitute a checksum of the file before and after, and record the substitution with the evidence.
 
 ---
 

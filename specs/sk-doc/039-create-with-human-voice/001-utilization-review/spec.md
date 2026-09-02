@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Phase 1: utilization-review [template:level-3/spec.md]"
-description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+title: "Feature Specification: Phase 1: utilization-review"
+description: "Utilization review of the sk-create-with-human-voice mode: run the never-executed manual-testing playbook end to end, route newcomer prompts through the advisor, exercise the scanner and the scope gate, then fix what is provable and write up what needs a decision."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -20,11 +20,11 @@ contextType: "general"
 
 ## EXECUTIVE SUMMARY
 
-[2-3 sentence high-level overview for stakeholders who need quick context]
+The `sk-create-with-human-voice` mode passed its conformance audit and had never been used. This phase asks the different question: does a person reaching for it get what they came for. It runs all nine manual-testing scenarios for the first time, routes eight newcomer prompts through the live advisor, exercises the template-payload detection and the fixture exemption on real files, and constructs the boundary case where the standard and accuracy pull apart.
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: fix only what is provable and inside the mode, write up anything needing a rule change or a hub change. Leave `SKILL.md` untouched because it is compiled-policy input.
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: the shipped scanner, the two shipped fixtures and the live skill advisor daemon.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -33,15 +33,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
-| **Branch** | `scaffold/001-utilization-review` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 1 |
 | **Predecessor** | None |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Acceptance criteria all `Met` and the phase validates `--strict` clean |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -51,13 +51,19 @@ contextType: "general"
 
 This is **Phase 1** of the Utilization review of the create-with-human-voice mode specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: the packet at `.opencode/skills/sk-doc/sk-create-with-human-voice/`, excluding `SKILL.md` and every hub routing file.
 
 **Dependencies**:
-- [To be defined during planning]
+- `scripts/hvr_scan.py` and the standard it parses at run time
+- `.opencode/skills/sk-doc/scripts/validate_document.py`
+- `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs`
+- the skill advisor daemon behind `.opencode/bin/skill-advisor.cjs`
 
 **Deliverables**:
-- [To be defined during planning]
+- a recorded outcome for all nine playbook scenarios
+- a routing result for eight newcomer prompts
+- five fixes inside the mode
+- six write-ups for decisions that sit outside it
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -69,10 +75,10 @@ This is **Phase 1** of the Utilization review of the create-with-human-voice mod
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The mode ships a nine-scenario manual-testing playbook that nobody had ever run, so no claim it makes about the workflow had been tested against the workflow. Its own report template emitted six hard blockers of the standard it owns, its worked example no longer matched the scanner it cites, and half of what a newcomer would type never reaches it.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Every scenario has a recorded outcome, every provable defect inside the mode is fixed, and every defect outside it is written up with the evidence that found it.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -81,19 +87,26 @@ This is **Phase 1** of the Utilization review of the create-with-human-voice mod
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Executing all nine playbook scenarios and recording each outcome with evidence
+- Routing eight newcomer prompts through the live advisor and recording where each lands
+- Exercising template-payload detection and the document-validator fixture exemption on real files
+- Fixing provable defects inside the packet
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- `SKILL.md` - compiled-policy input, changes are recorded as prepared text instead
+- Hub routing files (`graph-metadata.json`, `hub-router.json`, `mode-registry.json`) - the routing gap belongs to the hub and is written up
+- `references/hvr-rules.md` scoring semantics - two incompatible scoring systems is a rule change, not a repair
+- `scripts/hvr_scan.py` behavior - the template-detection and Oxford heuristics are arguably correct and are written up
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md` | Modify | Remove six em dashes from the fenced template payload |
+| `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md` | Modify | Sync the worked example with live scanner output |
+| `.opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md` | Modify | Record the template-detection caveat with its observed instance |
+| `.opencode/skills/sk-doc/sk-create-with-human-voice/README.md` | Modify | Correct the invocation instruction |
+| `.opencode/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md` | Modify | Correct the runnability claim and name the operator-supplied targets |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -105,13 +118,16 @@ This is **Phase 1** of the Utilization review of the create-with-human-voice mod
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | [Requirement description] |
+| REQ-001 | Every one of the nine playbook scenarios carries a recorded outcome: passed, failed with evidence, or could not run with the reason |
+| REQ-002 | Anything this phase writes or edits inside the packet scans with zero new hard blockers |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | [Requirement description] |
+| REQ-003 | Eight newcomer prompts are routed through the live advisor and each result is recorded |
+| REQ-004 | The playbook package still satisfies its operator contract with a nonzero operator count |
+| REQ-005 | Every finding that cannot be fixed inside the mode is written up with the observation that found it |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -122,8 +138,10 @@ This is **Phase 1** of the Utilization review of the create-with-human-voice mod
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: `validate-playbook-package.cjs` prints `PASS` with `operator=9` after the playbook edits
+- **SC-002**: `hvr_scan.py` exits 0 on the report template, which exited 1 with six hard blockers before this phase
+- **SC-003**: `validate_document.py` exits 0 on all five edited files
+- **SC-004**: the two shipped fixture controls report the same numbers after the phase as before it
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -133,8 +151,9 @@ This is **Phase 1** of the Utilization review of the create-with-human-voice mod
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Skill advisor daemon | Routing results cannot be measured | The daemon answered live for all eight prompts, `freshness=live` on each |
+| Risk | A playbook edit reclassifies a scenario as routing gold | The operator count drops to zero and the contract silently stops being checked | Only prose in the root document changed, no `expected_*` frontmatter was added, and the count was re-read after the edit |
+| Risk | A concurrent session reverts this work | Every claim in this packet becomes false without warning | Observed once. File modification times and the reflog are the evidence, and the fixes were re-applied and re-verified |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -144,25 +163,25 @@ This is **Phase 1** of the Utilization review of the create-with-human-voice mod
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
+- **NFR-P01**: a full scan of any packet document finishes in under a second, which is what makes the re-scan step affordable
 
 ### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
+- **NFR-S01**: no scenario in this phase writes outside the packet or the phase folder
 
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: the scanner fails closed on a thin parse, exiting 2 rather than reporting a clean scan
 
 ---
 
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
+- A document with no mechanical findings still owes the judgment pass, which `HVT-003` proves on a target scoring 99 out of 100
+- A document past roughly 400 lines drops the absolute score for hard blockers plus density, which `HVS-003` exercises on a 510-line target
 
 ### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
+- The standard's section shape moves: the scanner exits 2 and refuses to report a clean scan
+- A target outside the repository: `git status --porcelain` cannot assert it, so a checksum substitutes and the substitution is recorded
 
 ---
 
@@ -170,12 +189,12 @@ This is **Phase 1** of the Utilization review of the create-with-human-voice mod
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3** |
+| Scope | 12/25 | Files: 5 edited, LOC: about 40 changed, Systems: 1 packet |
+| Risk | 14/25 | Auth: N, API: N, Breaking: N, but the report template is a shared shape |
+| Research | 18/20 | Nine unexecuted scenarios, eight routing probes and two tool surfaces |
+| Multi-Agent | 4/15 | Workstreams: 1 |
+| Coordination | 8/15 | Dependencies: scanner, document validator, playbook validator, advisor daemon |
+| **Total** | **56/100** | **Level 3** |
 
 ---
 
@@ -183,23 +202,25 @@ This is **Phase 1** of the Utilization review of the create-with-human-voice mod
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | A playbook edit turns an operator scenario into a skipped routing-gold file | H | L | The operator count is read after every playbook edit, not assumed |
+| R-002 | The worked example drifts again when the file it cites changes | M | M | Written up as an operator item, since pinning it needs a decision |
+| R-003 | A concurrent session restores this branch over staged work | H | M | Observed once in this session. Verify by content before reporting, never by memory of having written it |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: A newcomer asks for prose that sounds human (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As a** writer with a draft that reads like a machine wrote it, **I want** my request to reach the voice mode and produce an edited draft with both scan numbers, **so that** I can see the pass happened rather than take its word for it.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
 ---
 
-### US-002: [Title] (Priority: P1)
+### US-002: An operator runs the playbook (Priority: P1)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As an** operator validating the packet before it ships, **I want** every scenario to name the target it needs, **so that** a run measures the workflow rather than stalling on a placeholder.
 
 **Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
@@ -207,8 +228,9 @@ This is **Phase 1** of the Utilization review of the create-with-human-voice mod
 
 ## 12. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Should the standard's five category weights be reconciled with the point system, or should one of the two be retired
+- Should the hub's advisor vocabulary gain the plain phrasings a newcomer uses, given four of eight probes missed the mode
+- Should `is_template_path` gate on the fence language tag so a code payload is not reported as prose
 <!-- /ANCHOR:questions -->
 
 ---
