@@ -18,6 +18,7 @@ vi.mock('../lib/cognitive/prediction-error-gate.js', () => ({
     UPDATE: 'UPDATE',
     CREATE_LINKED: 'CREATE_LINKED',
   },
+  init: vi.fn(),
   evaluateMemory: orchestrationMocks.evaluateMemory,
 }));
 

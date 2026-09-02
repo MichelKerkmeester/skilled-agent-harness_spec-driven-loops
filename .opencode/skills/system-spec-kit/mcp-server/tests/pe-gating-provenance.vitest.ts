@@ -136,6 +136,7 @@ async function loadPeGating(reindexCarry: { importanceTier: string; sourceKind: 
     classifyEncodingIntent: vi.fn(() => 'document'),
   }));
   vi.doMock('../lib/search/search-flags.js', () => ({
+    parseFlagTristate: vi.fn((_name: string, defaultValue: boolean) => defaultValue),
     isEncodingIntentEnabled: vi.fn(() => false),
   }));
   vi.doMock('../lib/storage/document-helpers.js', () => ({

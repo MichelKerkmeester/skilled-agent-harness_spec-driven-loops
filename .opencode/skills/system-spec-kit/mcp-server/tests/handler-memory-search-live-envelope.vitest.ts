@@ -196,16 +196,10 @@ describe('handleMemorySearch live SearchDecisionEnvelope seam', () => {
     auditPath = join(tempDir, 'search-decisions.jsonl');
     vi.stubEnv('SPECKIT_SEARCH_DECISION_AUDIT_PATH', auditPath);
     vi.mocked(executePipeline).mockResolvedValue(pipelineFixture());
-    vi.mocked(getGraphReadinessSnapshotFromMarker).mockReturnValue({
-      freshness: 'fresh',
-      action: 'none',
-      reason: 'all tracked files are up-to-date',
-    });
   });
 
   afterEach(() => {
     vi.mocked(executePipeline).mockReset();
-    vi.mocked(getGraphReadinessSnapshotFromMarker).mockReset();
     vi.unstubAllEnvs();
     while (tempDirs.length > 0) {
       const tempDir = tempDirs.pop();

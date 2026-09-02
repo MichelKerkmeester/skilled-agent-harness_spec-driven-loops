@@ -24,7 +24,7 @@ describe('spec root resolver registry', () => {
 
     for (const entry of SPEC_ROOT_RESOLVERS) {
       expect(entry.file.trim()).not.toBe('');
-      expect(entry.file).toMatch(/^(scripts|mcp_server|shared)\/.+:\d/u);
+      expect(entry.file).toMatch(/^(scripts|mcp-server|shared)\/.+:\d/u);
       expect(entry.symbol.trim()).not.toBe('');
       expect(entry.consumerOrEffect.trim()).not.toBe('');
       expect(ALLOWED_PRECEDENCE.has(entry.precedence)).toBe(true);

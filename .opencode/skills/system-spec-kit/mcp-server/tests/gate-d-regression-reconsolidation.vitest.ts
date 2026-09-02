@@ -47,6 +47,7 @@ vi.mock('../lib/search/encoding-intent', () => ({
 }));
 
 vi.mock('../lib/search/search-flags', () => ({
+  parseFlagTristate: vi.fn((_name: string, defaultValue: boolean) => defaultValue),
   isEncodingIntentEnabled: bridgeMocks.isEncodingIntentEnabled,
   isReconsolidationEnabled: bridgeMocks.isReconsolidationEnabled,
   isAssistiveReconsolidationEnabled: bridgeMocks.isAssistiveReconsolidationEnabled,

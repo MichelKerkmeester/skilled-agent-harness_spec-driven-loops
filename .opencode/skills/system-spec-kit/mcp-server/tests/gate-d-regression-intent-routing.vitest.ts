@@ -84,6 +84,7 @@ vi.mock('../lib/resume/resume-ladder.js', () => ({
 }));
 
 vi.mock('../lib/search/search-flags.js', () => ({
+  parseFlagTristate: vi.fn((_name: string, defaultValue: boolean) => defaultValue),
   isAutoResumeEnabled: mocks.isAutoResumeEnabled,
   isFolderDiscoveryEnabled: mocks.isFolderDiscoveryEnabled,
   isPressurePolicyEnabled: mocks.isPressurePolicyEnabled,

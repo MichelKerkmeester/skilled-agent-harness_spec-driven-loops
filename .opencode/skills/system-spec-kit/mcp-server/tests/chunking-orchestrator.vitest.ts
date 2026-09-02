@@ -139,6 +139,7 @@ vi.mock('../handlers/memory-crud-utils', () => ({
 }));
 
 vi.mock('../lib/search/search-flags', () => ({
+  parseFlagTristate: vi.fn((_name: string, defaultValue: boolean) => defaultValue),
   isEncodingIntentEnabled: vi.fn(() => false),
 }));
 

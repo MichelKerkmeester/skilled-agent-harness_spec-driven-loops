@@ -27,12 +27,18 @@ function makeTempRoot(prefix: string): string {
 const GIT_ENV_REDIRECTORS = [
   'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE',
   'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES',
-  'GIT_CONFIG', 'GIT_CONFIG_GLOBAL', 'GIT_CONFIG_SYSTEM', 'GIT_CONFIG_COUNT',
+  'GIT_CONFIG', 'GIT_CONFIG_COUNT',
   'GIT_NAMESPACE', 'GIT_CEILING_DIRECTORIES',
 ];
 function cleanGitEnv(): NodeJS.ProcessEnv {
   const env = { ...process.env };
   for (const key of GIT_ENV_REDIRECTORS) delete env[key];
+  // Deleting GIT_CONFIG_GLOBAL/SYSTEM does not isolate the fixture: git then falls back to the
+  // developer's real ~/.gitconfig, whose core.hooksPath can point at a commit-message policy hook
+  // that rejects these fixtures' commits. Pointing both at an empty file makes the throwaway repo's
+  // own config the only config in play, so the fixture behaves the same on every machine.
+  env.GIT_CONFIG_GLOBAL = '/dev/null';
+  env.GIT_CONFIG_SYSTEM = '/dev/null';
   return env;
 }
 

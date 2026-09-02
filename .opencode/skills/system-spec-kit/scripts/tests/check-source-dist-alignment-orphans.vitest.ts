@@ -97,7 +97,7 @@ describe('check-source-dist-alignment orphan detection (F-020-D5-02)', () => {
     const checkerSource = fs.readFileSync(CHECKER_PATH, 'utf8');
     expect(checkerSource).toContain("'mcp-server', 'dist', 'tests'");
     expect(checkerSource).toContain('mcp-server/tests');
-    expect(checkerSource).toMatch(/label:\s*'mcp_server\/tests'/);
+    expect(checkerSource).toMatch(/label:\s*'mcp-server\/tests'/);
   });
 
   it('expands DIST_TARGETS beyond the original two roots (lib + scripts)', () => {
