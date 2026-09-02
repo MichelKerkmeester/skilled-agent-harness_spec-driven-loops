@@ -89,7 +89,9 @@ W = min( realEditCount(file), 99 )
 
 `W` is the number of commits whose **own added+deleted line count for that file is > 0**. Trace the path with `git log --follow` for continuity across renames, but **gate every commit through per-file `numstat`** and discard commits that changed 0 lines in the file.
 
-This gate is mandatory: a naive `git log --follow | wc -l` over-counts by **3-5x** because of (a) the historical repo-wide rename `skill/ -> .opencode/skills/` (every file inherits the pre-move history as zero-line "edits") and (b) bulk sweep commits that touch a file's siblings without changing the file. The numstat gate removes both.
+This gate is mandatory, and its size is worth stating accurately because the number moved. A naive `git log --follow | wc -l` over-counts for two reasons: (a) the historical repo-wide rename `skill/ -> .opencode/skills/`, where a file inherits pre-move history as commits that changed zero of its lines, and (b) bulk sweep commits that touch a file's siblings without changing the file. The gate removes both.
+
+Measured across all 1,214 in-scope docs of `sk-doc` and `system-spec-kit` on 2026-09-02, the ungated count is **1.06-1.09x** the gated one in aggregate, **2.25x** at the worst single file, and identical on 262 of `sk-doc`'s 390. No file in either skill reaches 3x. The gate still changes the answer on 128 of those 390, so run it. But a run that reports a large multiple today is reporting something other than these two inflators, and is worth reading before it is trusted.
 
 Brand-new files (0-1 commits) get `W = 0`.
 

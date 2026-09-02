@@ -136,6 +136,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 6 | 006-verification-and-closeout/ | Whole-fleet gates from the final state, and the packet's own closure | Complete |
 | 7 | 007-human-voice-playbook/ | The sibling voice mode has no playbook either, and the setup for authoring one is paid in phase 005 | Complete |
 
+| 8 | 008-utilization-review/ | [Phase 8 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -153,6 +154,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 004-routing-integration | 005-command-and-playbook | The mode is reachable in both routing stages, not merely registered | The advisor selects the hub, the hub router selects the mode, and the canary covers it with a single-route case |
 | 005-command-and-playbook | 006-verification-and-closeout | The playbook package validates and its scenarios load | The playbook package validator passes and the loader reports the authored scenario count |
 | 006-verification-and-closeout | 007-human-voice-playbook | The fleet is green, so a second playbook is authored against a settled tree | Every gate in the phase 006 sweep passes |
+| 007-human-voice-playbook | 008-utilization-review | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

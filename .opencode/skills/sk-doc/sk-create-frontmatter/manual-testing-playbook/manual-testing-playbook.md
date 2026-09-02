@@ -46,7 +46,7 @@ Coverage note: every scenario is runnable today against the shipped `SKILL.md`, 
 One property shapes every grading rule below. **Nothing in this contract fails loudly at the point of failure.**
 
 - A `description` over the shared project budget does not error. The longest entries are dropped from auto-discovery and the skill simply stops being found, which the field reference states in its budget section and the packet README repeats in its troubleshooting table.
-- An edit count taken without the per-file numstat gate does not error. It returns a number three to five times too high, and the versioning standard's own worked case is a document edited four times reading as `1.5.0.19`.
+- An edit count taken without the per-file numstat gate does not error. It returns a number that is too high, and the standard now carries the measured size of that gap rather than an estimate: 1.06-1.09x in aggregate, 2.25x at the worst file, and different at all on roughly a third of them.
 - A frontmatter block that is correct for one document class and wrong for the class in hand does not look wrong when the field is read on its own. The packet README says this is where the most time is wasted.
 - A path inside a cited command that has since moved does not error either. It sends the operator to a directory that is no longer there, and the run reads as clean.
 
@@ -336,7 +336,7 @@ Verify that the build segment counts only commits whose own added-plus-deleted l
 #### Scenario Contract
 Prompt: `How many times has this file actually been edited? I need the build number for its version.`
 
-Two inflators are documented: a historical repository-wide move that left every file carrying its pre-move history as commits that changed zero of its lines, and bulk sweeps that touch a file's siblings. The gate removes both, and the standard puts the naive count at three to five times too high.
+Two inflators are documented: a historical repository-wide move that left files carrying pre-move history as commits that changed zero of its lines, and bulk sweeps that touch a file's siblings. The gate removes both. The standard carries the measured gap, so the scenario is graded on whether both numbers are produced rather than on how far apart they land.
 
 Desired user-visible outcome: a gated count, the ungated count beside it, and the gap named.
 

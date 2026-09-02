@@ -52,7 +52,7 @@ allowed-tools: Read, Write, Bash
 | **Command** | ✅ **Required** | Arguments and tools must be declared |
 | **Skill Reference/Asset** | ✅ **Required** | Skill Advisor harvests the 5-field block as routing signal |
 | **Knowledge (outside skills)** | ❌ **Forbidden** | Pure content, no programmatic interface |
-| **Spec** | ❌ **Not recommended** | Use inline metadata for flexibility |
+| **Spec** | ✅ **Required**, and governed elsewhere | `system-spec-kit` templates emit the block and its validator fails without it |
 | **README** | ✅ **Required** beside a `SKILL.md` | Carries `version` per the versioning standard. Optional for every other README |
 
 ### Core Characteristics
@@ -120,21 +120,22 @@ Level 3: Field Format
 | **SKILL.md** | ✅ Always | `name`, `description`, `allowed-tools`, `version` | `tags`, `category` |
 | **Command** | ✅ Always | `description`, `argument-hint`, `allowed-tools` | `name`, `model`, `version` |
 | **Skill Reference/Asset** | ✅ Always | `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version` | — |
-
-> **`version` is the 4-part `X.Y.Z.W` field** carried by every in-scope skill doc (SKILL.md, README, references, assets, feature catalogs, testing playbooks). Format, derivation, and rollout live in [frontmatter-versioning.md](../references/frontmatter-versioning.md). Commands and agents are out of scope (their `version` stays optional).
 | **Knowledge (outside skills)** | ❌ Never | — | — |
-| **Spec** | ❌ Avoid | — | Use inline metadata instead |
+| **Spec** | ✅ Always, per `system-spec-kit` | Owned by that skill, not by this contract | n/a |
 | **README** (beside a `SKILL.md`) | ✅ Always | `title`, `description`, `trigger_phrases`, `version` | `importance_tier`, `contextType` |
 | **README** (anywhere else) | ⚪ Optional | — | Add a block only when the doc should be discoverable |
+
+> **`version` is the 4-part `X.Y.Z.W` field** carried by every in-scope skill doc (SKILL.md, README, references, assets, feature catalogs, testing playbooks). Format, derivation, and rollout live in [frontmatter-versioning.md](../references/frontmatter-versioning.md). Commands and agents are out of scope (their `version` stays optional).
 
 ### Remove Frontmatter When
 
 **Content-Only Documents**:
 - Knowledge files outside skill folders (general reference documentation)
-- Spec files (planning documents)
 - General markdown files
 
-**Why Remove from Knowledge/Spec**:
+Spec-folder documents are not in this group. They carry frontmatter and `system-spec-kit` owns their block.
+
+**Why Remove from Knowledge**:
 - Frontmatter implies programmatic interface
 - These documents are pure content
 - Adds confusion about document purpose
@@ -162,8 +163,8 @@ Is this document invoked programmatically?
     ├─► Is it a Knowledge file outside skill folders?
     │   └─► Remove frontmatter if present
     │
-    ├─► Is it a Spec file?
-    │   └─► Remove frontmatter, use inline metadata
+    ├─► Is it a document under specs/?
+    │   └─► Keep the block system-spec-kit's template emits, since that skill owns it
     │
     └─► Is it a README?
         ├─► Beside a SKILL.md? → Add title, description, trigger_phrases,
@@ -642,21 +643,31 @@ Content...
 Content...
 ```
 
-### Spec File (Inline Metadata Instead)
+### Spec File (Governed by `system-spec-kit`)
 
-**Rule**: Specs use inline metadata, not YAML frontmatter.
+**Rule**: Spec-folder documents carry YAML frontmatter, and this contract does not define it.
 
-```markdown
-# Feature Name - Spec
+`system-spec-kit` owns the block. Its `templates/core/spec.md.tmpl` emits one at every level, and
+`validate.sh --strict` reports `SPECDOC_FRONTMATTER_001` and `RESULT: FAILED` on a `spec.md` whose
+block is missing. The keys are that skill's, including the `_memory.continuity` mapping no other
+class carries, so read them there rather than composing a block from this section.
 
-**Date**: 2025-01-15
-**Version**: 1.0
-**Priority**: HIGH
-
-Brief introduction...
+```yaml
+---
+title: "Feature Specification: <name>"
+description: "One line on what the packet does."
+trigger_phrases:
+  - "distinctive phrase"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "<track>/<packet>"
+---
 ```
 
-**Rationale**: Specs evolve rapidly during planning. YAML frontmatter adds formality that slows iteration.
+**Where to go**: the templates under `system-spec-kit/templates/`, and the scaffold that fills them.
+Never hand-author a spec block from this page, and never strip one you find.
 
 ---
 
@@ -972,7 +983,7 @@ Document type detected?
 │   ├─ Has frontmatter? → Remove it
 │   └─ No frontmatter? → Valid (no action)
 │
-├─► Spec
+├─► Spec folder document
 │   ├─ Has frontmatter? → Validate required fields (title, description, trigger_phrases, importance_tier, _memory.continuity)
 │   └─ No frontmatter? → Auto-generate from Spec Kit template
 │
@@ -1073,7 +1084,7 @@ Document type?
 ├─► Skill Reference/Asset → MUST have: title, description, trigger_phrases,
 │                           importance_tier, contextType (README.md exempt)
 ├─► Knowledge (outside skills) → MUST NOT have frontmatter (remove if present)
-├─► Spec                 → SHOULD NOT have frontmatter (use inline metadata)
+├─► Spec folder doc      → MUST have frontmatter (system-spec-kit owns the block)
 └─► README               → Beside a SKILL.md: title, description,
                             trigger_phrases, version. Elsewhere optional
 ```
@@ -1086,7 +1097,7 @@ Document type?
 | **Command** | ⚪ Optional | ✅ Required | ✅ Required | ✅ Required |
 | **Skill Reference/Asset** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
 | **Knowledge (outside skills)** | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden |
-| **Spec** | ❌ Not used | ❌ Not used | ❌ Not used | ❌ Not used |
+| **Spec** | n/a | n/a | n/a | n/a (see `system-spec-kit`) |
 
 Skill references/assets additionally require `trigger_phrases` (3-8), `importance_tier`, and `contextType` — see Section 3.
 
@@ -1098,7 +1109,7 @@ Skill references/assets additionally require `trigger_phrases` (3-8), `importanc
 | Skill reference/asset missing the 5-field block | Author trigger_phrases (3-8), importance_tier, contextType |
 | SKILL.md missing `name` | Add with directory name |
 | Command missing `argument-hint` | Infer from content or ask |
-| Spec with YAML frontmatter | Convert to inline metadata |
+| Spec folder doc missing its block | Restore it from the `system-spec-kit` template |
 | Wrong field names (Name vs name) | Use lowercase field names |
 | Multiline description | Collapse to single line |
 

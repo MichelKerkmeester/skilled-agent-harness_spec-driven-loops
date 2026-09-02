@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `FMV-004` and confirm th
 - Realistic user request: `I ran the versioning already. Is running it again going to touch anything?`
 - Prompt: `I already ran the versioning yesterday. Is it safe to run it again?`
 - Expected execution process: `references/frontmatter-versioning.md` loads, the idempotency row and the line-wise editing rule in section 6 are read together, the engine is run in a read-only mode over an already-versioned tree, and `git status --porcelain` is used to show the tree unchanged.
-- Expected signals: the run reports every in-scope file as already correct, the working tree is unchanged, and the answer states that the assertion is byte-level and explains why value equality is not enough.
+- Expected signals: the working tree is unchanged, and the answer states that the assertion is byte-level and explains why value equality is not enough. `verify` exits 1 and names mismatches on a tree whose `gate` is clean. That is the documented state of a healthy repository, not a scenario failure, and a run that grades it as one has read the exit code instead of the standard.
 - Desired user-visible outcome: a second run whose diff is empty, with the empty diff shown rather than claimed.
 - Pass/fail: PASS if the second run leaves the tree byte-identical and the empty diff is shown. FAIL if any file is rewritten, or if the answer asserts idempotency without producing the status output.
 
@@ -42,7 +42,7 @@ Operators run the exact prompt and command sequence for `FMV-004` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FMV-004 | Idempotent rerun | Prove a second pass over a versioned tree is a byte-level no-op, with the empty diff shown | `I already ran the versioning yesterday. Is it safe to run it again?` | 1. `agent: Read the idempotency row and the line-wise editing rule in references/frontmatter-versioning.md` -> 2. `bash: git status --porcelain .opencode/skills/sk-doc` -> 3. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc` -> 4. `bash: git status --porcelain .opencode/skills/sk-doc` | Step 1: both rules are quoted. Step 2: baseline, empty for the target paths. Step 3: every in-scope file reports as correct. Step 4: identical to step 2 | The prompt as typed, both rules quoted, the two status outputs, the engine transcript with its exit status, and an explicit statement that the two status outputs match | PASS if steps 2 and 4 match and nothing was rewritten. FAIL if step 4 differs from step 2, or if no status output is produced | 1. Confirm a baseline was taken before the run, since a single status reading proves nothing. 2. Check whether the answer relied on version strings matching rather than on bytes matching. 3. Inspect `trigger_phrases` in one file for reflow, which is the specific corruption line-wise editing prevents |
+| FMV-004 | Idempotent rerun | Prove a second pass over a versioned tree is a byte-level no-op, with the empty diff shown | `I already ran the versioning yesterday. Is it safe to run it again?` | 1. `agent: Read the idempotency row and the line-wise editing rule in references/frontmatter-versioning.md` -> 2. `bash: git status --porcelain .opencode/skills/sk-doc` -> 3. `bash: node .opencode/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc` -> 4. `bash: git status --porcelain .opencode/skills/sk-doc` | Step 1: both rules are quoted. Step 2: baseline for the target paths. Unrelated in-flight edits under `sk-doc` make this non-empty on a working repository, which is why it is a baseline to compare against rather than a cleanliness check. Hash the in-scope files before and after instead when the paths cannot be quiesced. Step 3: the engine writes nothing, and its mismatch list and non-zero exit are expected rather than the assertion. Step 4: identical to step 2 | The prompt as typed, both rules quoted, the two status outputs, the engine transcript with its exit status, and an explicit statement that the two status outputs match | PASS if steps 2 and 4 match and nothing was rewritten. FAIL if step 4 differs from step 2, or if no status output is produced | 1. Confirm a baseline was taken before the run, since a single status reading proves nothing. 2. Check whether the answer relied on version strings matching rather than on bytes matching, and whether it mistook `verify`'s non-zero exit for a failed run. 3. Inspect `trigger_phrases` in one file for reflow, which is the specific corruption line-wise editing prevents |
 
 ### Commands
 
@@ -53,7 +53,7 @@ Operators run the exact prompt and command sequence for `FMV-004` and confirm th
 
 ### Expected
 
-Step 1 quotes both rules, because idempotency and line-wise editing are the same requirement seen from two sides: the second is how the first is achieved. Step 2 records the baseline for the target paths, which is what makes step 4 a comparison rather than a reading. Step 3 runs the engine in verify mode and reports every in-scope file as already carrying its derived version. Step 4 produces output identical to step 2. The answer states that the assertion is byte equality and explains that a YAML re-serializer would produce correct version strings and a changed file, which is the case value equality cannot see.
+Step 1 quotes both rules, because idempotency and line-wise editing are the same requirement seen from two sides, and the second is how the first is achieved. Step 2 records the baseline for the target paths, which is what makes step 4 a comparison rather than a reading. Step 3 runs the engine in verify mode, which is read-only. It exits 1 and lists files whose stored version differs from the one git implies right now, because writing a version is itself an edit. The standard says so directly and tells you not to reconcile the fleet to silence it. None of that is the assertion here. What is under test is that the engine wrote nothing. Step 4 produces output identical to step 2. The answer states that the assertion is byte equality and explains that a YAML re-serializer would produce correct version strings and a changed file, which is the case value equality cannot see.
 
 ### Evidence
 
@@ -61,7 +61,7 @@ Capture the prompt exactly as typed, both quoted rules, the literal output of bo
 
 ### Pass / Fail
 
-- **Pass**: the before and after status outputs are identical, the engine reports every file as already correct, and the answer states the assertion as byte-level.
+- **Pass**: the before and after status outputs are identical, the engine wrote nothing, and the answer states the assertion as byte-level.
 - **Fail**: the second status output differs from the first, any file is rewritten, idempotency is asserted with no status output produced, or the answer treats matching version strings as sufficient proof.
 
 ### Failure Triage

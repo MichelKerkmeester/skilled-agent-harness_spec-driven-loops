@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/049-sk-create-frontmatter/008-utilization-review",
+  "description": "The packet ships eleven manual-testing scenarios that had never been run, so no claim about the",
+  "keywords": [
+    "packet",
+    "ships",
+    "eleven",
+    "manual-testing",
+    "scenarios",
+    "never",
+    "run",
+    "claim",
+    "about"
+  ],
+  "lastUpdated": "2026-09-02T19:25:56.153Z",
+  "specId": "008",
+  "folderSlug": "utilization-review",
+  "parentChain": [
+    "sk-doc",
+    "049-sk-create-frontmatter"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

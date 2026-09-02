@@ -1,6 +1,6 @@
 ---
 title: "FMV-002 -- Numstat gate"
-description: "This scenario validates the numstat gate for `FMV-002`. The build segment counts only commits whose own added-plus-deleted line count for that file is above zero, and the ungated count is three to five times too high."
+description: "This scenario validates the numstat gate for `FMV-002`. The build segment counts only commits whose own added-plus-deleted line count for that file is above zero, and the ungated count is reported beside it."
 version: 1.0.0.4
 ---
 
@@ -16,7 +16,7 @@ This scenario validates the numstat gate for `FMV-002`. The build segment is the
 
 ### Why This Matters
 
-This is the critical scenario in the package because its failure mode is a number that looks entirely reasonable. A version of `1.5.0.19` on a document edited four times passes every format check, sorts correctly, and reads like a mature file. The standard names both inflators. A historical repository-wide path move left every file carrying its whole pre-move history as commits that changed zero of its lines, and bulk sweep commits touch a file's siblings while listing the file in the commit. Together they put a naive count at three to five times the real one. The gate removes both by asking each commit what it did to this file specifically. Nothing downstream catches an ungated number, because the corpus gate checks presence and format and never checks whether a version is the right one, so the only defence is running the gated count and the ungated count side by side.
+This is the critical scenario in the package because its failure mode is a number that looks entirely reasonable. An inflated build segment passes every format check, sorts correctly, and reads like a mature file. The standard names both inflators. A historical repository-wide path move left files carrying pre-move history as commits that changed zero of its lines, and bulk sweep commits touch a file's siblings while listing the file in the commit. The gate removes both by asking each commit what it did to this file specifically. Grade the run on whether it produced both numbers and used the gated one, not on the size of the gap: the standard carries the measured spread, and on this corpus it is a small multiple rather than a dramatic one. Nothing downstream catches an ungated number, because the corpus gate checks presence and format and never checks whether a version is the right one, so the only defence is running the gated count and the ungated count side by side.
 
 ---
 
