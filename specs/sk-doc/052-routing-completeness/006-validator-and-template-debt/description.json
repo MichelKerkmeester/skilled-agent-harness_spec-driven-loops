@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/052-routing-completeness/006-validator-and-template-debt",
+  "description": "Phase 6: validator-and-template-debt",
+  "keywords": [
+    "phase",
+    "validator-and-template-debt"
+  ],
+  "lastUpdated": "2026-09-02T16:34:09.040Z",
+  "specId": "006",
+  "folderSlug": "validator-and-template-debt",
+  "parentChain": [
+    "sk-doc",
+    "052-routing-completeness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}
