@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/023-semantic-lane-enablement/002-embedding-population",
+  "spec_folder": "system-skill-advisor/023-semantic-lane-enablement/002-embedding-population",
+  "parent_id": "system-skill-advisor/023-semantic-lane-enablement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedding population",
+      "skill vector refresh",
+      "active embedder pointer",
+      "vector coverage gap",
+      "embedding refresh plan",
+      "vec table upsert",
+      "content hash guard",
+      "backend outage policy",
+      "embedding tasks",
+      "refresh run",
+      "coverage check",
+      "hash guard"
+    ],
+    "key_topics": [
+      "embedding",
+      "population",
+      "skill",
+      "vector",
+      "refresh",
+      "active",
+      "embedder",
+      "pointer",
+      "coverage",
+      "gap",
+      "plan",
+      "vec"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Start",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Idempotent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nine of fourteen skill nodes carry a vector",
+    "created_at": "2026-09-02T22:17:11Z",
+    "last_save_at": "2026-09-02T22:38:53.873Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:3118c12aedb0412115d67930919de8f0e75c36adf06c79fe225dadf67ca1a83a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0ced8c6f034d28a93d8b7e03d37722e79fd3c339eb5d4a35a6978ccb875743c2",
+      "plan.md": "e1facbe50320a00aae33f4655e7e7373730b9f956f919918a0d022620060b389",
+      "tasks.md": "ec7394d5be51fa302c7db78dfe9610469cfc36040dcf3a36e5d391df8ae399f9",
+      "decision-record.md": "8889d180c653db50e9de8e82ab12debc17ccece1c4db1f996077ba0b8fa9eb42"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

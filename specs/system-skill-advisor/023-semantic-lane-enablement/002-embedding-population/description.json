@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/023-semantic-lane-enablement/002-embedding-population",
+  "description": "Nine of fourteen skill nodes carry a vector",
+  "keywords": [
+    "nine",
+    "fourteen",
+    "skill",
+    "nodes",
+    "carry",
+    "vector"
+  ],
+  "lastUpdated": "2026-09-02T22:29:06.256Z",
+  "specId": "002",
+  "folderSlug": "embedding-population",
+  "parentChain": [
+    "system-skill-advisor",
+    "023-semantic-lane-enablement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

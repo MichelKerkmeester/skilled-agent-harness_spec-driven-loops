@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/023-semantic-lane-enablement",
+  "spec_folder": "system-skill-advisor/023-semantic-lane-enablement",
+  "parent_id": null,
+  "children_ids": [
+    "system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation",
+    "system-skill-advisor/023-semantic-lane-enablement/002-embedding-population",
+    "system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research",
+    "system-skill-advisor/023-semantic-lane-enablement/004-gated-enable",
+    "system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "semantic lane enablement",
+      "advisor lane weight",
+      "skill embedding coverage",
+      "gate b routing rate",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "semantic",
+      "lane",
+      "enablement",
+      "advisor",
+      "weight",
+      "skill",
+      "embedding",
+      "coverage",
+      "gate",
+      "routing",
+      "rate",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-baseline-and-instrumentation/spec.md",
+      "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/research/gate-b-measurement.md",
+      "001-baseline-and-instrumentation/goal.md",
+      "002-embedding-population/goal.md",
+      "003-weight-and-fusion-research/goal.md",
+      "004-gated-enable/goal.md",
+      "005-verification-and-closeout/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-b-measurement.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/research/gate-b-measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Lane Enablement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Eight",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "vectors",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Eight of 172 realistic phrasings reach the mode they were written for",
+    "created_at": "2026-09-02T22:17:10Z",
+    "last_save_at": "2026-09-02T22:40:06.970Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:1f1993c33453f727facb351f1755ae51ceb03883731616d60dfefae2ecc278bd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d884c4b936ad51abc4ce7d4d2cf275ba08d4ead7f9014c06da31516ea512bda4"
+    },
+    "last_active_child_id": "system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout",
+    "last_active_at": null
+  }
+}
