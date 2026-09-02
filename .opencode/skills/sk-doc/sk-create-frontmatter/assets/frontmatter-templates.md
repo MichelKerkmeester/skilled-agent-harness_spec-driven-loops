@@ -53,7 +53,7 @@ allowed-tools: Read, Write, Bash
 | **Skill Reference/Asset** | ✅ **Required** | Skill Advisor harvests the 5-field block as routing signal |
 | **Knowledge (outside skills)** | ❌ **Forbidden** | Pure content, no programmatic interface |
 | **Spec** | ❌ **Not recommended** | Use inline metadata for flexibility |
-| **README** | ⚪ **Optional** | Usually none, unless documenting a skill |
+| **README** | ✅ **Required** beside a `SKILL.md` | Carries `version` per the versioning standard. Optional for every other README |
 
 ### Core Characteristics
 
@@ -124,7 +124,8 @@ Level 3: Field Format
 > **`version` is the 4-part `X.Y.Z.W` field** carried by every in-scope skill doc (SKILL.md, README, references, assets, feature catalogs, testing playbooks). Format, derivation, and rollout live in [frontmatter-versioning.md](../references/frontmatter-versioning.md). Commands and agents are out of scope (their `version` stays optional).
 | **Knowledge (outside skills)** | ❌ Never | — | — |
 | **Spec** | ❌ Avoid | — | Use inline metadata instead |
-| **README** | ⚪ Rarely | Only if in `.opencode/skills/*/` | — |
+| **README** (beside a `SKILL.md`) | ✅ Always | `title`, `description`, `trigger_phrases`, `version` | `importance_tier`, `contextType` |
+| **README** (anywhere else) | ⚪ Optional | — | Add a block only when the doc should be discoverable |
 
 ### Remove Frontmatter When
 
@@ -165,8 +166,9 @@ Is this document invoked programmatically?
     │   └─► Remove frontmatter, use inline metadata
     │
     └─► Is it a README?
-        ├─► In .opencode/skills/*/? → Optional skill-style frontmatter
-        └─► Elsewhere? → No frontmatter needed
+        ├─► Beside a SKILL.md? → Add title, description, trigger_phrases,
+        │                        version (Section 4)
+        └─► Elsewhere? → Optional, add a block only for discoverability
 ```
 
 ### Frontmatter Field Summary
@@ -459,6 +461,166 @@ version: 1.7.0.0
 
 Verify with `check-skill-doc-frontmatter.sh` (system-skill-advisor `mcp-server/scripts/`), which enforces this contract in coverage mode.
 
+### Skill README Frontmatter Template
+
+**Required Fields**: `title`, `description`, `trigger_phrases`, `version`
+
+This is the `README.md` that sits beside a `SKILL.md`. [frontmatter-versioning.md](../references/frontmatter-versioning.md) lists `README.md` among the classes that must carry `version`, so the block is required there rather than optional.
+
+```yaml
+---
+title: "skill-or-mode-name"
+description: "One line saying what the skill does and who reaches for it."
+trigger_phrases:
+  - "distinctive phrase one"
+  - "distinctive phrase two"
+  - "distinctive phrase three"
+version: 1.0.0.0
+---
+```
+
+**Complete Example** (`sk-doc/sk-create-changelog/README.md`):
+
+```yaml
+---
+title: "create-changelog"
+description: "Writes a correctly versioned, correctly placed changelog entry from a spec folder, a component hint or git history, for anyone recording a shipped change."
+trigger_phrases:
+  - "create changelog"
+  - "release notes"
+version: 1.0.0.10
+---
+```
+
+- `importance_tier` and `contextType` are optional here. A minority of skill READMEs carry them. No validator asks for them.
+- READMEs deeper in a skill tree are a different class. Most carry no block at all. `sk-create-readme`'s own template treats frontmatter as optional for a normal project README, so add a block to one of those only when the document should be discoverable.
+- Nothing enforces the field set. `check-skill-doc-frontmatter.sh` exempts `README.md`, so the version gate is the only automated check a README block faces.
+- `trigger_phrases` lengths across skill READMEs run from 2 items to 13. The 3 to 8 range in Section 3 is the reference and asset rule, not a README rule.
+
+### Feature Catalog Frontmatter Template
+
+**Required Fields**: `title`, `description`, `trigger_phrases`, `version`
+
+A catalog has two document shapes and they differ by one field. Per-feature leaf card:
+
+```yaml
+---
+title: "Feature name"
+description: "One line, shown in the root catalog table."
+trigger_phrases:
+  - "the H3 feature heading from the root catalog"
+  - "a natural-language alternate"
+  - "the tool or command name"
+version: 1.0.0.0
+---
+```
+
+Root index, which adds `last_updated`:
+
+```yaml
+---
+title: "<skill>: Feature Catalog"
+description: "Current-state inventory for <skill>, covering <surfaces>."
+trigger_phrases:
+  - "<skill> feature catalog"
+  - "<skill> capabilities"
+last_updated: "2026-08-23"
+version: 0.1.2.0
+---
+```
+
+- The four leaf fields are the settled shape. 809 of the 878 leaf cards in the tree use exactly those and no others.
+- `last_updated` is a root habit rather than a leaf one. It appears on 19 of 27 roots against 6 of 878 leaves, always as a quoted ISO date.
+- `importance_tier` is optional and `contextType` is not part of this class. Each appears on well under a tenth of leaves.
+- Catalog `trigger_phrases` route nothing today, because the advisor doc-trigger harvest scans `references/` and `assets/` only. The field is still required. It is what a reader searches on, so match it to the root catalog H3 heading.
+- The field-by-field contract lives in `sk-create-feature-catalog/assets/feature-catalog-snippet-template.md` Section 2.
+
+### Testing Playbook Frontmatter Template
+
+**Required Fields**: `title`, `description`, `version`
+
+Those three are the whole settled block, for the root index and for a per-feature scenario alike. `trigger_phrases` is not part of this class.
+
+```yaml
+---
+title: "OBS-009 -- Register and inspect the official CLI"
+description: "This scenario validates official obsidian CLI registration and help output in an app-backed environment."
+version: 0.1.0.0
+---
+```
+
+Root index, same three fields with a `<skill>: Manual Testing Playbook` title:
+
+```yaml
+---
+title: "create-frontmatter: Manual Testing Playbook"
+description: "Operator-facing reference combining the testing directory, execution expectations and the per-feature validation files for this packet."
+version: 1.0.0.4
+---
+```
+
+**Past those three fields this class has no settled convention.** Playbook leaves in this repository carry a long tail of runner-specific keys, among them `id`, `stage`, `category`, `expected_intent`, `expected_resources`, `expected_workflow_mode`, `expected_leaf_resources`, `matrix_cell`, `test_file`, `test_name` and `playbook_path`. No set of them is standard: the largest shape past the core covers 193 of 1,728 leaves. Each key belongs to whichever runner reads it. Add one only when a runner reads it. Never copy a set across from a neighbouring playbook.
+
+Two of those keys change behavior rather than describing it:
+
+| Key | What it does |
+|-----|--------------|
+| `id`, `expected_intent`, `expected_resources` | The Lane C scenario loader skips any feature file whose block carries none of the three, so a routing scenario without them is silently absent from the benchmark. |
+| `stage` | Benchmark tier, one of `routing`, `holdout` or `negative`. It carries what a numbered filename prefix used to encode. |
+
+Both are documented in `sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md` Section 2.
+
+### Agent Frontmatter Template
+
+**Required Fields**: `name`, `description`, plus the authority key its own runtime reads.
+
+An agent has no single block. The field set is chosen by the directory the file lives in. The other runtime authority key is silently ignored rather than rejected, which is why the wrong one is a security defect and not a validation error.
+
+`.opencode/agents/` uses a `permission:` object:
+
+```yaml
+---
+name: agent-name
+description: One line covering purpose, authority and the main boundary.
+mode: subagent
+temperature: 0.1
+permission:
+  read: allow
+  write: allow
+  edit: allow
+  bash: allow
+  grep: allow
+  glob: allow
+  list: allow
+  memory: allow
+  webfetch: deny
+  chrome_devtools: deny
+  task: deny
+  patch: deny
+mcpServers:
+  - system-spec-memory
+---
+```
+
+`.claude/agents/` and `.cursor/agents/` use a `tools:` allow-list:
+
+```yaml
+---
+name: agent-name
+description: One line covering purpose, authority and the main boundary.
+tools: Read, Write, Edit, Bash, Grep, Glob
+---
+```
+
+`.pi/agents/` carries the same three keys with `tools` as a block list of lowercase names.
+
+- **No `version`.** The versioning standard puts `.opencode/agents/*.md` out of scope. No agent file in the tree carries one.
+- `validate_document.py` blocks a `.claude/agents/` file that has no non-empty `tools:`, because Claude Code enforces only `tools:` and an absent list inherits the parent session full, unrestricted tool set. It blocks a `.opencode/agents/` file with no `permission:` and warns on a stray `tools:` there.
+- `mode` is `subagent` on all but two OpenCode agents in the tree. `temperature` sits at 0.1 or 0.2. `mcpServers` is optional and rare.
+- Keep `description` at 130 characters or fewer. Agent descriptions share the Claude Code metadata budget described above.
+- `template-rules.json` lists `name`, `description`, `mode`, `temperature` and `permission` as required for the agent type without splitting by runtime. That list is not read for agents, since `validate_document.py` consults `frontmatterFields.required` only on the command path. The runtime split is what runs.
+- The fuller field reference is `sk-create-agent/assets/agent-template.md` Section 2.
+
 ### Knowledge File Outside Skill Folders (No Frontmatter)
 
 **Rule**: Knowledge files outside `.opencode/skills/*/` should **NOT** have YAML frontmatter. (Skill references/assets are covered by the 5-field block above instead.)
@@ -579,8 +741,20 @@ validation_rules:
     action_if_present: "suggest_removal"
 
   README:
-    frontmatter_required: false
-    action_if_present: "no_action"
+    # a README.md sitting beside a SKILL.md. Every other README is optional
+    frontmatter_required: true
+    required_fields:
+      - title
+      - description
+      - trigger_phrases
+      - version
+    optional_fields:
+      - importance_tier
+      - contextType
+    field_formats:
+      version:
+        pattern: "^\\d+\\.\\d+\\.\\d+\\.\\d+$"
+        description: "4-part X.Y.Z.W, last key in the block"
 ```
 
 ### Validation Checklist
@@ -803,8 +977,9 @@ Document type detected?
 │   └─ No frontmatter? → Auto-generate from Spec Kit template
 │
 └─► README
-    ├─ In .opencode/skills/*/? → Optional skill-style
-    └─ Elsewhere? → No frontmatter needed
+    ├─ Beside a SKILL.md? → Validate title, description,
+    │                      trigger_phrases, version
+    └─ Elsewhere? → Optional, no action when absent
 ```
 
 ---
@@ -899,7 +1074,8 @@ Document type?
 │                           importance_tier, contextType (README.md exempt)
 ├─► Knowledge (outside skills) → MUST NOT have frontmatter (remove if present)
 ├─► Spec                 → SHOULD NOT have frontmatter (use inline metadata)
-└─► README               → No requirement (usually none)
+└─► README               → Beside a SKILL.md: title, description,
+                            trigger_phrases, version. Elsewhere optional
 ```
 
 ### Field Requirements Matrix
