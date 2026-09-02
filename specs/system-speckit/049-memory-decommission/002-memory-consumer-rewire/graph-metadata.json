@@ -206,7 +206,7 @@
     ],
     "causal_summary": "427 files reference the memory MCP surface",
     "created_at": "2026-09-02T11:04:50Z",
-    "last_save_at": "2026-09-02T18:01:16.670Z",
+    "last_save_at": "2026-09-02T20:08:01.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74f9c517439c2fa43c54ba6a1f5edad3695aa6186fb76cb7ac67670a56416075",
+    "source_fingerprint": "sha256:de67e9b03c0d48d98546550e5911726ead3eb5f422d7661c88fd9709f39eaba6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "64d353054af61605c1e2d06924f07b17db3a62bc4120287bb39fbf14e7bd1f67",

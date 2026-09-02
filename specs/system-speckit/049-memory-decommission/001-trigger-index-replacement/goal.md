@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/049-memory-decommission/001-trigger-index-replacement"
-    last_updated_at: "2026-09-02T12:00:00Z"
+    last_updated_at: "2026-09-02T20:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Build the generator and the parity harness"
+    recent_action: "Criteria re-baselined against the ripgrep research"
+    next_safe_action: "Freeze the corpus manifest and prompt set"
     blockers: []
     key_files: []
     session_dedup:
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Build a generated trigger index and a written ripgrep contract, proven at parity against the live substring lane before anything is removed.
+**Objective:** Build a generated trigger index and a written ripgrep contract, proven at two-way parity against the live substring lane before anything is removed.
 
 ### Decisions
 
@@ -48,10 +48,11 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The index is a JSON artifact committed to the repository, not gitignored and not built on clone |
-| D2 | Free-text retrieval is ripgrep with no index at all |
-| D3 | This phase adds files only: no consumer is repointed and nothing is deleted, so both mechanisms stay live for comparison |
-| D4 | No embedding or semantic path is rebuilt |
+| D1 | The index is a versioned JSON artifact committed to the repository, sorted keys, no timestamps, phrase plus token plus trigram postings |
+| D2 | No stop-words, no stemming and no semantic claims in v1: the live substring lane is the parity baseline |
+| D3 | Ripgrep is an evidence producer, never the relevance ranker; the caller ranks and maps exit codes 0, 1 and 2 or more |
+| D4 | This phase adds files only; no consumer is repointed and nothing is deleted, so both mechanisms stay live for comparison |
+| D5 | Generation publishes atomically and never replaces the last known-good index when any malformed document is found |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -63,11 +64,12 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] The parity harness reports `missing: 0` against the frozen prompt set and its baseline is committed
-- [ ] A second generator run leaves the index byte-identical under `git diff --exit-code`
+- [ ] The three-arm parity harness reports zero unexplained legacy-only and index-only differences on the frozen 18-case prompt set, with corpus and prompt hashes recorded
+- [ ] A second generator run leaves the index byte-identical and hash-identical under `git diff --exit-code`
 - [ ] The generator completes with exit 0 with the MCP server stopped and no network
-- [ ] The retrieval conventions doc gives a runnable ripgrep invocation for memory_search, memory_context and memory_quick_search
-- [ ] A malformed trigger_phrases block is reported by path, not skipped
+- [ ] Every malformed, empty, alias, generic, duplicate and oversized frontmatter variant is reported with path, line, category and reason
+- [ ] Fresh-process lookup p95 and max are recorded under 200ms over at least 30 runs, with corpus and index sizes
+- [ ] The retrieval conventions doc gives a runnable ripgrep recipe for structured, path-only and count retrieval, each executed once with its exit code read
 - [ ] Gate 1 returns trigger matches in a session with the daemon stopped
 <!-- /ANCHOR:completion -->
 
@@ -84,11 +86,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| This phase | Pending | - |
+| Research input | Done | `../005-ripgrep-retrieval-research/research/lineages/luna-max/research.md` sections 6, 7, 10 and 11 |
+| Spec, plan, tasks and acceptance amended | Done | REQ-008 to REQ-013, T015 and T016, AC-001 to AC-008 rewritten; validate --strict 0 errors |
+| Build | Pending | - |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Parity check widened from one-way to two-way | The research showed a one-way `missing: 0` check cannot detect index-only extras or lifecycle leakage |
 <!-- /ANCHOR:log -->

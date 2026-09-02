@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit"
-    last_updated_at: "2026-09-02T12:00:00Z"
+    last_updated_at: "2026-09-02T20:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Write the convention before touching any document"
+    recent_action: "Criteria re-baselined against the ripgrep research"
+    next_safe_action: "Write and commit the convention before touching any document"
     blockers: []
     key_files: []
     session_dedup:
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Define a grep-optimized spec-doc convention, enforce it in templates and validate.sh, and retrofit it across every active spec document.
+**Objective:** Define a grep-optimized spec-doc convention, enforce it in templates and validate.sh, and retrofit it across every active spec document without changing any document body.
 
 ### Decisions
 
@@ -49,9 +49,10 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Retrofit all active documents, not new-only; z_archive is excluded |
-| D2 | The convention governs frontmatter, section markers and naming; document bodies are never rewritten |
-| D3 | The convention is written and committed before any document is modified |
-| D4 | Retrofit is mechanical and idempotent: enumerate variants, process each, rescan for residue |
+| D2 | The convention governs canonical frontmatter keys and aliases, an author-controlled trigger allowlist with generic negatives, exact anchor grammar, one-fact-per-line for new structured sections only, and naming rules; prose is never reflowed |
+| D3 | The body-preservation invariant is an exact preimage rule: the protected region is the body with whole-line anchor markers removed, hashed before and after |
+| D4 | The convention is written and committed before any document is modified |
+| D5 | The retrofit is mechanical and idempotent: enumerate every variant, dry-run, process, rescan for residue |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -66,9 +67,9 @@ here are invisible to whatever judges completion.
 - [ ] The convention document exists and predates the first retrofitted file in git history
 - [ ] `validate.sh` fails a fixture document that violates the convention
 - [ ] Templates produce a conforming document with no manual step
-- [ ] The retrofit residue rescan reports zero unresolved variants
+- [ ] The retrofit residue rescan reports zero unresolved variants and no z_archive document was processed
 - [ ] A second retrofit run produces no diff
-- [ ] The retrofit diff touches no document body text
+- [ ] Every retrofitted document's body preimage hash is unchanged
 - [ ] The trigger index regenerates cleanly with a phrase count at or above the pre-retrofit baseline
 <!-- /ANCHOR:completion -->
 
@@ -85,11 +86,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| This phase | Pending | - |
+| Research input | Done | `../005-ripgrep-retrieval-research/research/lineages/luna-max/research.md` sections 6.3, 8, 12 and 16 |
+| Spec, plan, tasks and acceptance amended | Done | convention contract sections 13 to 15, REQ-008 to REQ-015, T011 to T028, AC-001 to AC-016; validate --strict 0 errors |
+| Build | Pending | - |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Marker retrofit versus no body rewrite resolved | The preimage excludes whole-line anchor markers, so marker retrofit sits outside the protected region by construction |
 <!-- /ANCHOR:log -->

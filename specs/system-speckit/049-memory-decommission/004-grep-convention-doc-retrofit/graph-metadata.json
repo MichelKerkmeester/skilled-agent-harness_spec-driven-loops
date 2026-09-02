@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Once retrieval is ripgrep, retrieval quality is a property of the corpus rather than of a ranking",
     "created_at": "2026-09-02T11:04:54Z",
-    "last_save_at": "2026-09-02T18:01:19.955Z",
+    "last_save_at": "2026-09-02T20:07:24.655Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12a3f021826edaaf264070d8c2767aefb0d81c1f0b619bf168fda04e927d5392",
+    "source_fingerprint": "sha256:0d7b797f579afcc5d1e3cb9d39b65c271aa7924896832826b77d765f097c38cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "82b3c3b973151fedfa02b6cc69234f0135c2aae5b0ff4901a1b1f5eb985c2b3d",

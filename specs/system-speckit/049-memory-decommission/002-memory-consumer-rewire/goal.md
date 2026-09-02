@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/049-memory-decommission/002-memory-consumer-rewire"
-    last_updated_at: "2026-09-02T12:00:00Z"
+    last_updated_at: "2026-09-02T20:30:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Inventory the external consumers, then rewire AGENTS.md Gate 1 first"
+    recent_action: "Criteria re-baselined against the surface inventory"
+    next_safe_action: "Reconcile consumer owners, then rewire Gate 1"
     blockers: []
     key_files: []
     session_dedup:
@@ -40,7 +40,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Repoint AGENTS.md Gate 1 and every external consumer of the memory MCP surface at the phase-001 index and ripgrep contract while the old surface still runs.
+**Objective:** Repoint AGENTS.md Gate 1 and every external consumer of the memory MCP surface at the phase 001 index and ripgrep contract while the old surface still runs, and split every shared seam so the skill advisor keeps working.
 
 ### Decisions
 
@@ -49,9 +49,10 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Rewire before deleting, so a wrong rewire is a wrong answer and not a missing tool |
-| D2 | The 260 in-subsystem references are deletions for phase 003, not rewrites here |
-| D3 | Nothing is deleted in this phase and the server keeps running |
-| D4 | The continuity frontmatter gets a named writer that does not depend on the MCP server |
+| D2 | Order is live consumers first, then shared seams, then the residue sweep |
+| D3 | The continuity frontmatter gets a standalone packet-local writer that keeps atomic same-directory update and lock semantics |
+| D4 | Semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal are declared as honest lexical-only loss, not silently dropped |
+| D5 | The preserve set is out of scope: advisor registration and database, the shared HF model server and hf-embed socket, shared embedding adapters and IPC, deep-loop locks and projections, historical evidence |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -63,12 +64,13 @@ Three to seven bullets, each checkable without opening another file. Copy them
 verbatim into the objective: nothing dereferences a path, so criteria left only
 here are invisible to whatever judges completion.
 
-- [ ] `rg mcp__system_spec_memory__` returns no hits outside the mcp-server tree
-- [ ] None of the 41 memory tool names appears as a live instruction outside the mcp-server tree
+- [ ] The residue sweep with `rg --json --ignore-case --no-ignore-global` returns no hit outside the mcp-server tree, excluding .git, node_modules and z_archive
+- [ ] No allowed-tools frontmatter in any runtime agent or command directory grants a removed tool
 - [ ] AGENTS.md Gate 1 names a mechanism that works with no daemon running
-- [ ] The continuity frontmatter writer is named, wired and exercised once without the MCP server
-- [ ] No command allowed-tools frontmatter grants a removed tool
-- [ ] The residue sweep script is committed and its empty result recorded
+- [ ] The continuity writer is named, wired and exercised once with the MCP server stopped
+- [ ] The skill advisor still resolves its embedder after the shared embedding, HF and IPC branches are split
+- [ ] Each of the five break-risk seams has a named replacement or an explicit retain decision
+- [ ] The roughly 167 logical consumers are reconciled owner by owner against the row inventory and the reconciliation is recorded
 <!-- /ANCHOR:completion -->
 
 ---
@@ -84,11 +86,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| This phase | Pending | - |
+| Research input | Done | `../006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md` sections 6, 7, 9 and 11 |
+| Spec, plan, tasks and acceptance amended | Done | worklist W1 to W6, preserve set, seams S-001 to S-005, REQ-007 to REQ-014, AC-001 to AC-012; validate --strict 0 errors |
+| Build | Pending | - |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | - |
+| Consumer count corrected | The 167 figure is a logical-owner estimate; the row inventory holds 9,016 live paths with a rewire row, and both must be reconciled rather than one replacing the other |
 <!-- /ANCHOR:log -->
