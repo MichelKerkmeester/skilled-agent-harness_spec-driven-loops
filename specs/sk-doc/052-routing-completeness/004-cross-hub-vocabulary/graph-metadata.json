@@ -45,7 +45,13 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/mode-registry.json"
     ],
     "entities": [
       {
@@ -73,9 +79,33 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
         "source": "derived"
       },
       {
@@ -167,35 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This phase was scoped before either gate was measured, on the belief that a cross-hub",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-02T17:17:10.747Z",
+    "last_save_at": "2026-09-02T20:28:40.886Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +209,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6ac9b0ace0837e3f192ae867ee73230d6ace38450c6ce966e1e2759d504366f",
+    "source_fingerprint": "sha256:aeec05d5ec57aa10f686d075d790f0ed3a8afdd7b8bd40b314c051c327c6a43b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec37584220fb45c7aff78c9a13da02f73c26ef8f46a78cc27898d6c5d4220c09",
       "plan.md": "3922dd580726be2d1943e9eb5e1587e36247b6cb2a385950222731012e1cbffb",
       "tasks.md": "4a493a1b19eadf35555db06b54766757509bc83b8621204f2b2f8a6ae91b41b1",
-      "implementation-summary.md": "b81bbf98345809cf5cad5724598617af24f9b006cfb0cbfd353fa962cc74b092"
+      "implementation-summary.md": "b872362b5511b4182e33337225fbb86d5beb15c7368f024b5fd36630e09f9634"
     },
     "last_active_child_id": null,
     "last_active_at": null

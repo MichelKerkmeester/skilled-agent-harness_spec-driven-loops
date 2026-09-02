@@ -45,8 +45,13 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
-      "research/gate-a-raw.tsv"
+      "research/gate-a-raw.tsv",
+      "research/gate-a-measurement.md",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/mode-registry.json",
+      ".opencode/skills/cli-external-orchestration/graph-metadata.json"
     ],
     "entities": [
       {
@@ -74,6 +79,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -83,6 +94,30 @@
         "name": "gate-a-raw.tsv",
         "kind": "file",
         "path": "research/gate-a-raw.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "gate-a-measurement.md",
+        "kind": "doc",
+        "path": "research/gate-a-measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -162,41 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
     "created_at": "2026-09-02T16:34:05Z",
-    "last_save_at": "2026-09-02T17:17:05.829Z",
+    "last_save_at": "2026-09-02T20:28:40.494Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,15 +209,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10b2b7aa70eea99a369665a809f74ddfb44245571cd4168c5c8484b3acc78517",
+    "source_fingerprint": "sha256:97060528b90c6f2570c1b4507e8635724b4588bab555ce8a7741f8772c896c30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2b819a4f6ee9f97bdf161f068284518591513bd373de38ae86215accc9c9c3fb",
       "plan.md": "8c02bf5311e6ee30a91766361aad4c359e2314697ea70e49e44bea9cc8ea0b10",
       "tasks.md": "ea3935d1ee839eb41a1daa012d9562946008afa8421170286f854db6ab064602",
-      "implementation-summary.md": "297aa35aa20903b30b19cb9c246cddb28ab6e72f84aeea5266c2e39ddd479c5a"
+      "implementation-summary.md": "aa223d7c1963c46cbaea8b12eb42db3db052a54c2cbe1b70630c635491f62c01"
     },
     "last_active_child_id": null,
     "last_active_at": null

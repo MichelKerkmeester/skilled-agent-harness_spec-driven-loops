@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A registry entry is not a route",
     "created_at": "2026-09-01T08:42:59Z",
-    "last_save_at": "2026-09-01T11:43:18.683Z",
+    "last_save_at": "2026-09-02T20:20:18.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,11 +212,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f58d01062a1cb88f6526623a9692c7c5281f7d74b65db060fbd78683d6dd17ac",
+    "source_fingerprint": "sha256:8df8cf9309f133a32879a62033925166f743040f4fd9a950546c1171937b24d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "10bd53bbfd9ffba01b4a3ab993ba055415037e69fcdbc324b12510c81aa709aa",
-      "plan.md": "63ebfaa86c43673b35f07448a8471c434c15c5d255b7612351fa606e1daf84e8",
+      "plan.md": "e83fda0ef3ead1aae2aee6ad4e3f283b610ca2538a379932cac46cecf6791a59",
       "tasks.md": "6da4c21377b16104e924c7cde2bab5525a925d6a7b0cd5c2e2f3455ff1e3a361",
       "implementation-summary.md": "75657a092eccf66afd99e46ace03a0cd6610e7d1535a2719787f49b49ece65b7"
     },

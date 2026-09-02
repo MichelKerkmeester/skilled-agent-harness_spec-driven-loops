@@ -47,6 +47,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md",
       "scripts/doctor.sh",
@@ -61,8 +62,7 @@
       ".opencode/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-cli/README.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/INSTALL-GUIDE.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/examples/README.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/FEATURE-CATALOG.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/examples/README.md"
     ],
     "entities": [
       {
@@ -87,6 +87,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -162,12 +168,6 @@
         "source": "derived"
       },
       {
-        "name": "FEATURE-CATALOG.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/FEATURE-CATALOG.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The official `obsidian` binary is already registered on this machine at `/usr/local/bin/obsidian`, symlinked into the desktop app bundle",
     "created_at": "2026-09-02T08:06:41Z",
-    "last_save_at": "2026-09-02T19:11:49.355Z",
+    "last_save_at": "2026-09-02T20:14:05.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,9 +220,10 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ab0aeb0aae280fb56eeb5a33f100567af3de644ed6c4f821c9e5bf7b2a1fb91",
+    "source_fingerprint": "sha256:4c380a1dc3fe6a2d59deec38a3376a81d79a800b61e23c03089132d2626be068",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "83868a101df58e28394f77a06619c6b1472e40905344b8d86298c47aaf91ec0f",

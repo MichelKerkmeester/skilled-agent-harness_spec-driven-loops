@@ -113,7 +113,7 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] No runtime code ships. The runner scripts live in git-ignored `scratch/`
+- [x] CHK-010 [P0] No runtime code ships. The runner scripts live in `scratch/`, which this repository does not git-ignore, so the evidence tree was left explicitly untracked rather than committed. See limitation 7 in `implementation-summary.md`
 - [x] CHK-011 [P0] Every runner run's stderr was read. The MCP server's startup log is informational and was used as evidence
 - [x] CHK-012 [P1] `runt.sh` carries a portable timeout, added after `property:remove` stalled past two minutes
 - [x] CHK-013 [P1] Documents follow the sk-doc reference and readme templates. Both gates pass

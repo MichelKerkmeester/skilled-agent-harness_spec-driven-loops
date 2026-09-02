@@ -11,19 +11,23 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/049-sk-create-frontmatter"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "planning"
-    recent_action: "Authored the parent scope and the phase map"
-    next_safe_action: "Execute phase 001, the read-only inventory"
+    last_updated_at: "2026-09-02T00:00:00Z"
+    last_updated_by: "phase-8-utilization-review"
+    recent_action: "Closed phase 008 and reconciled the phase map against what shipped"
+    next_safe_action: "Decide the hub routing repair from phase 008"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "019ahF7gmhZy3Bo2bKRKK2i7"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "Six of eight newcomer prompts still reach no recommendation, and the repair sits in hub files this packet does not own"
+      - "The shared-tier --help defect phase 008 measured is written up and unfixed"
+    answered_questions:
+      - "The boundary between what the mode owns and what stays shared, settled in phase 001"
+      - "The mode answers well when it is reached, measured across all eleven playbook scenarios in phase 008"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -135,8 +139,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 5 | 005-command-and-playbook/ | The command surface, its workflow assets, and the mode's manual testing playbook | Complete |
 | 6 | 006-verification-and-closeout/ | Whole-fleet gates from the final state, and the packet's own closure | Complete |
 | 7 | 007-human-voice-playbook/ | The sibling voice mode has no playbook either, and the setup for authoring one is paid in phase 005 | Complete |
+| 8 | 008-utilization-review/ | Execute all eleven playbook scenarios, measure whether a newcomer's prompt reaches the mode, and fix the defects that are provable and inside it | Complete |
 
-| 8 | 008-utilization-review/ | [Phase 8 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -154,7 +158,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 004-routing-integration | 005-command-and-playbook | The mode is reachable in both routing stages, not merely registered | The advisor selects the hub, the hub router selects the mode, and the canary covers it with a single-route case |
 | 005-command-and-playbook | 006-verification-and-closeout | The playbook package validates and its scenarios load | The playbook package validator passes and the loader reports the authored scenario count |
 | 006-verification-and-closeout | 007-human-voice-playbook | The fleet is green, so a second playbook is authored against a settled tree | Every gate in the phase 006 sweep passes |
-| 007-human-voice-playbook | 008-utilization-review | [Criteria TBD] | [Verification TBD] |
+| 007-human-voice-playbook | 008-utilization-review | The voice playbook package validates and the benchmark loader finds its scenarios, so both playbooks exist before either is executed | `validate-playbook-package.cjs` reports PASS at nine scenarios, and the scenario loader reports `shape=sk-doc scenarios=9` |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -162,9 +166,13 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-None. Phase 001 exists precisely to answer the one open question worth asking, which is where
-the boundary falls between what the mode owns and what stays shared. It is read only, so the
-answer costs nothing to change.
+Phase 001 answered the one question worth asking before any of this was built, which is where
+the boundary falls between what the mode owns and what stays shared.
+
+Phase 008 opened two more by measuring the finished mode. Six of eight realistic newcomer prompts
+return no recommendation at all, and the repair lives in hub routing files this packet does not
+own. A shared-tier `--help` defect is written up and unfixed for the same reason. Both are
+recorded with their evidence in `008-utilization-review/implementation-summary.md`.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -23,7 +23,11 @@
       "gate a signal closure",
       "gate b realistic corpus",
       "advisor transport disagreement",
-      "close the routing findings"
+      "close the routing findings",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "routing",
@@ -42,13 +46,27 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "goal.md",
+      "001-transport-and-baseline/goal.md",
+      "002-gate-a-signal-closure/goal.md",
+      "003-gate-b-realistic-corpus/goal.md",
+      "004-cross-hub-vocabulary/goal.md",
+      "005-hub-surface-truth/goal.md",
+      "006-validator-and-template-debt/goal.md",
+      "007-spec-kit-residue/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -86,22 +104,59 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Routing Completeness",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "numbers",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "criteria",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A hub can be complete in every registry and still not be reachable",
     "created_at": "2026-09-02T16:33:39Z",
-    "last_save_at": "2026-09-02T17:17:57.181Z",
+    "last_save_at": "2026-09-02T20:15:06.073Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:d6e15ee1043f7604a42edf2d4b92cf5ab950bf568aafcc4d480dc0467af21343",
+    "source_fingerprint": "sha256:d6dd375d77b0c4d0665bcf01e16ee341d6360cb4b914fd3c3d92631ebb35d165",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dc92040269383277b446facc5238601632b92d1a03dfee40dbd0bd7969f37b87"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/052-routing-completeness/007-spec-kit-residue",
     "last_active_at": "2026-09-02T17:17:57.181Z"
   }
 }

@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "assets/realistic-corpus.tsv",
       "research/gate-b-measurement.md"
@@ -72,6 +73,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Against a corpus of 180 prompts written the way people write, 8 reach the intended mode",
     "created_at": "2026-09-02T16:34:06Z",
-    "last_save_at": "2026-09-02T17:35:55.282Z",
+    "last_save_at": "2026-09-02T20:28:40.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,15 +206,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dcc3cbee998dfb3febbe76b6f228e50eb9824fe352882d3d77bd6a94a3aa4331",
+    "source_fingerprint": "sha256:526e81735cd1500226a1d21c119dd7c87964154fb3430ff9ef15acbdf89eb817",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0b5a732961b0600d4f4b9a2bf94e1f8239ebb37a7c736acedc910567430ed036",
       "plan.md": "8f9b93ddc3192aed6dd01e4a233f1be90d60254bc3166089a2c693024327cf21",
       "tasks.md": "49e755d01020cc6dab82faada577f5abbca00f0efb1f22ca8d3b226a25ac52c3",
-      "implementation-summary.md": "aa18daa892da6609a34fd28b82e2e0a5a11f3596c696866d9596acfa17b3fd95"
+      "implementation-summary.md": "8fb32872406d5e1c4fe00541da9772b871fa393162a96dff093032068e0f3465"
     },
     "last_active_child_id": null,
     "last_active_at": null

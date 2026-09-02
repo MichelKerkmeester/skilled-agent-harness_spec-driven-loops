@@ -45,19 +45,22 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      "mcp-server/ENV-REFERENCE.md",
-      "mcp-server/tests/memory-search-token-budget.vitest.ts",
-      "handlers/memory-search.ts",
+      "mcp-server/lib/search/bm25-index.ts",
+      "mcp-server/lib/search/hybrid-search.ts",
+      "mcp-server/tests/search-extended.vitest.ts",
+      "mcp-server/tests/bm25-index.vitest.ts",
+      "mcp-server/lib/search/channel-representation.ts",
+      "mcp-server/tests/channel-representation.vitest.ts",
+      "mcp-server/tests/channel-enforcement.vitest.ts",
       "mcp-server/handlers/memory-search.ts",
+      "mcp-server/tests/memory-search-token-budget.vitest.ts",
+      "mcp-server/lib/storage/incremental-index.ts",
       "mcp-server/tests/incremental-index-move-reconcile.vitest.ts",
-      "mcp-server/tests/retry-budget.vitest.ts",
-      "mcp-server/lib/enrichment/retry-budget.ts",
-      "tests/memory-roadmap-flags.vitest.ts",
-      "shared/paths.ts",
-      "scripts/tests/generate-context-cli-authority.vitest.ts",
-      "scripts/memory/generate-context.ts"
+      "scripts/tests/coverage-graph-integration.vitest.ts",
+      "scripts/tests/coverage-graph-cross-layer.vitest.ts"
     ],
     "entities": [
       {
@@ -85,6 +88,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -97,9 +106,51 @@
         "source": "derived"
       },
       {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp-server/ENV-REFERENCE.md",
+        "name": "bm25-index.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/search/bm25-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-extended.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/search-extended.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-index.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/bm25-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "channel-representation.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/search/channel-representation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "channel-representation.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/channel-representation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "channel-enforcement.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/channel-enforcement.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "mcp-server/handlers/memory-search.ts",
         "source": "derived"
       },
       {
@@ -109,9 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "memory-search.ts",
+        "name": "incremental-index.ts",
         "kind": "code",
-        "path": "handlers/memory-search.ts",
+        "path": "mcp-server/lib/storage/incremental-index.ts",
         "source": "derived"
       },
       {
@@ -121,39 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "retry-budget.vitest.ts",
+        "name": "coverage-graph-integration.vitest.ts",
         "kind": "test",
-        "path": "mcp-server/tests/retry-budget.vitest.ts",
+        "path": "scripts/tests/coverage-graph-integration.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "retry-budget.ts",
-        "kind": "code",
-        "path": "mcp-server/lib/enrichment/retry-budget.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-roadmap-flags.vitest.ts",
+        "name": "coverage-graph-cross-layer.vitest.ts",
         "kind": "test",
-        "path": "tests/memory-roadmap-flags.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "paths.ts",
-        "kind": "code",
-        "path": "shared/paths.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context-cli-authority.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/generate-context-cli-authority.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "scripts/memory/generate-context.ts",
+        "path": "scripts/tests/coverage-graph-cross-layer.vitest.ts",
         "source": "derived"
       },
       {
@@ -179,35 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The suite does not complete",
     "created_at": "2026-09-02T16:34:09Z",
-    "last_save_at": "2026-09-02T19:35:23.014Z",
+    "last_save_at": "2026-09-02T20:30:53.120Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +218,11 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8aede7e6ae83dee6bd5ac3c6bef97a83a153d3264e3155aab1b87ca457e49e5d",
+    "source_fingerprint": "sha256:6a76d28004ed8dedf6caf31f0343bf0759060edd8ba58ed709bd4e340cb5197a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bccbb52a331756e21d6ab8d77a8494cbadbdd9064a69c3cd99e3efb3dcef8b8f",

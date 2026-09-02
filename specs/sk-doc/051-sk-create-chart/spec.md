@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-doc/051-sk-create-chart"
     last_updated_at: "2026-09-02T00:00:00Z"
     last_updated_by: "phase-6-closeout"
-    recent_action: "Closed phase 006 and reconciled the phase map against what shipped"
-    next_safe_action: "Review the open items recorded in 006/implementation-summary.md"
+    recent_action: "Closed phase 007 and reconciled the phase map against what shipped"
+    next_safe_action: "Work the twelve open fidelity items in 007/goal.md"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/SKILL.md"
@@ -27,11 +27,13 @@ _memory:
     open_questions:
       - "The packet changelog still describes the scaffold release and is contradicted by the shipped tree"
       - "A bare two-word chart form name scores below the mandatory-invoke bar at stage one"
+      - "Twelve fidelity recommendations from phase 007 are open, tracked in 007/goal.md"
     answered_questions:
       - "Placement is a workflow mode under sk-doc, recorded as ADR-001"
       - "Nothing is copied from the reference, recorded as ADR-002"
       - "The first corpus carries twenty chart forms across six question families"
       - "Report mode is cut, recorded as ADR-007"
+      - "No charting library is adopted, decided in phase 007"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -141,8 +143,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 4 | 004-native-chart-build/ | Author the colour system and the chart corpus here, and prove each template renders | Complete |
 | 5 | 005-routing-integration/ | Registration and both routing stages, plus canary coverage | Complete |
 | 6 | 006-playbook-and-closeout/ | The manual testing playbook, then the whole-fleet gates | Complete |
+| 7 | 007-fidelity-and-library-research/ | Renumber the reference overviews from one, measure the shipped corpus against six open-source charting libraries, and apply what the research proves | Complete |
 
-| 7 | 007-fidelity-and-library-research/ | [Phase 7 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -159,7 +161,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 003 | 004 | The empty packet passes the packaging gate | `package_skill.py --check --strict` reports PASS |
 | 004 | 005 | Every authored template renders, and nothing from the reference is present | The corpus validator exits 0 after being shown it can fail, and a scan for reference strings returns nothing |
 | 005 | 006 | The skill is reachable in both routing stages, not merely registered | The advisor selects it, the router resolves it, and its leaves resolve on disk |
-| 006-playbook-and-closeout | 007-fidelity-and-library-research | [Criteria TBD] | [Verification TBD] |
+| 006 | 007 | The playbook validates under the operator-scenario contract with a nonzero operator count, and the fleet gates pass from the final state | The playbook is in place and `check-corpus.cjs --render` passes from the shipped tree |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -180,6 +182,11 @@ and both statements are false in the tree that reader is holding. And a bare two
 form name scores below the mandatory-invoke bar at the first routing stage, while a full
 request carrying the same name clears it comfortably. Both are recorded with their evidence in
 `006-playbook-and-closeout/implementation-summary.md`.
+
+Phase 007 adds a third. It measured the corpus against six open-source charting libraries and
+shipped three of the ten template-level improvements it found. The other twelve recommendations
+are open, five of them contract-level and waiting on an operator call. They are tracked with
+their evidence in `007-fidelity-and-library-research/goal.md`.
 <!-- /ANCHOR:questions -->
 
 ---

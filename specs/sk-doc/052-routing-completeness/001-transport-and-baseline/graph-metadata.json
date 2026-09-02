@@ -45,7 +45,10 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "goal.md",
+      "implementation-summary.md",
+      "research/transport-finding.md",
+      ".opencode/bin/skill-advisor.cjs"
     ],
     "entities": [
       {
@@ -73,9 +76,27 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "transport-finding.md",
+        "kind": "doc",
+        "path": "research/transport-finding.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/skill-advisor.cjs",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two scorers answer the same question",
     "created_at": "2026-09-02T16:34:04Z",
-    "last_save_at": "2026-09-02T17:17:03.450Z",
+    "last_save_at": "2026-09-02T20:28:40.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +206,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c5572d610664d678c3fb776832a0f94254b895c72b5e41dc83e0b5f79e34e1f3",
+    "source_fingerprint": "sha256:b8a6b0dfb7e81dbc854bf4205149dba6ca77459f792fa2512cd457b9a47c89a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f129d167fa7a293ab1e84980c6746ed0cfe2899da28e7ed8616af7da5be2b98b",
       "plan.md": "4d300bad6e73c75ed3dad90e28bd63207b06bcbfd61f057b27ebcb372e21770b",
       "tasks.md": "500bebcaf467b2824544c0ddc9195c53fc1002f6ee967e936246127e7f91a29f",
-      "implementation-summary.md": "50eb4e3da76cc5b05418ceda8c529d40ae3aaede31caef5012d8d646176ae3b8"
+      "implementation-summary.md": "c4c530681f3344943057ad17e79564860efe967052c51ff87a6d58fce353992f"
     },
     "last_active_child_id": null,
     "last_active_at": null

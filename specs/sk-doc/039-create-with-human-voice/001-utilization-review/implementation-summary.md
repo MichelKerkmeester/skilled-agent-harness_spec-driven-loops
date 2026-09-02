@@ -214,8 +214,9 @@ File modification times show all nine of them rewritten inside a three-second wi
 21:09:02, well after the last edit and well after the final validation run. No stash holds
 the lost content and `git fsck --unreachable` finds no dangling blob, so nothing was
 recoverable and every fix was re-applied by hand and re-verified by content rather than
-trusted from memory. Nothing here is committed or pushed. The working tree carries five
-edited packet files and the phase folder, staged explicitly by path.
+trusted from memory. All of it is committed and pushed. The five edited packet files and the
+phase folder landed in `f92c84a673` at 21:17 on 2026-09-02, and the description index followed
+in `710f2171d6` at 21:39. Both commits are contained in `origin/skilled/v4.0.0.0`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -266,7 +267,8 @@ edited packet files and the phase folder, staged explicitly by path.
 4. **Version frontmatter was not bumped** on the five edited packet files, and no changelog
    entry was added. Both belong to a release action the operator owns.
 5. **This branch is shared and unstable.** Work here was reverted once by a concurrent
-   session. Until it is committed, anything in this packet can disappear the same way.
+   session. This packet is committed and pushed now, so it is out of reach of a repeat, but
+   anything left uncommitted on this branch can still disappear the same way.
 <!-- /ANCHOR:limitations -->
 
 ---

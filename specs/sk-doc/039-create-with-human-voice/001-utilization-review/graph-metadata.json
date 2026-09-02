@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-repo-rule/README.md",
       ".opencode/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md",
@@ -81,6 +82,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -196,17 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mode ships a nine-scenario manual-testing playbook that nobody had ever run, so no claim it makes about the workflow had been tested against the workflow",
     "created_at": "2026-09-02T18:52:03Z",
-    "last_save_at": "2026-09-02T19:16:22.243Z",
+    "last_save_at": "2026-09-02T20:21:51.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +215,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5e56c5c5615194360e9545969998058a28d28953b51dfda727a8132ef27d107",
+    "source_fingerprint": "sha256:78866e89f473686598c409cefe554227218c666cf9ad470de98444b7a0d7efcc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09be8e75a023768c1fecf576b31e0114b85d18aac05f64bd7037087ce337ffc5",
       "plan.md": "5585965071b299f77718e6f90c2b9c4032a824a2b4610564ec4df76f753d3108",
       "tasks.md": "eb6d690e597531ce6293c4f9b9048656d70ac4de64eb259dba96297623f08290",
-      "implementation-summary.md": "b6a4aee7c48aadea3184813412a3c370b475bd78db812a3250b2bae19095a5f2"
+      "implementation-summary.md": "44369f8cb6168c4beaed2a91b955c2914aaf7498d60bbff9c26d2e7be5b1a6a1"
     },
     "last_active_child_id": null,
     "last_active_at": null
