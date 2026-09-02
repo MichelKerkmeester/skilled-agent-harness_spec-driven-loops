@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "agents/008-orchestrate-external-cli-delegation",
+  "description": "The `orchestrate` agent carries no documented policy for the six external CLI executor modes under",
+  "keywords": [
+    "orchestrate",
+    "agent",
+    "carries",
+    "documented",
+    "policy",
+    "six",
+    "external",
+    "cli",
+    "executor",
+    "modes"
+  ],
+  "lastUpdated": "2026-09-02T11:18:19.791Z",
+  "specId": "008",
+  "folderSlug": "orchestrate-external-cli-delegation",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

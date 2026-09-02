@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/008-orchestrate-external-cli-delegation",
+  "spec_folder": "agents/008-orchestrate-external-cli-delegation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "external cli delegation",
+      "orchestrate agent rule 7",
+      "cli-external-orchestration",
+      "executor cli is not a skill route",
+      "opt-in external executor",
+      "orchestrate rule 7 plan",
+      "agent mirror propagation",
+      "codex pi sync agents",
+      "external cli delegation plan",
+      "six runtime surfaces",
+      "orchestrate rule 7 tasks",
+      "agent mirror verification"
+    ],
+    "key_topics": [
+      "external",
+      "cli",
+      "delegation",
+      "orchestrate",
+      "agent",
+      "rule",
+      "cli-external-orchestration",
+      "executor",
+      "skill",
+      "route",
+      "opt-in",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      "codex/sync-agents.cjs",
+      ".pi/agents/orchestrate.md",
+      "pi/sync-agents-pi.cjs",
+      ".codex/agents/debug.toml",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs",
+      ".cursor/agents/orchestrate.md",
+      ".devin/agents/orchestrate/AGENT.md",
+      ".opencode/skills/sk-doc/sk-create-agent/SKILL.md",
+      "repo-rules/delegation-and-orchestration.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": "codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "debug.toml",
+        "kind": "file",
+        "path": ".codex/agents/debug.toml",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/orchestrate/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "delegation-and-orchestration.md",
+        "kind": "doc",
+        "path": "repo-rules/delegation-and-orchestration.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Selection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Canonical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `orchestrate` agent carries no documented policy for the six external CLI executor modes under",
+    "created_at": "2026-09-02T11:03:33Z",
+    "last_save_at": "2026-09-02T12:02:24.320Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:703adda390438a9237beaf1962072d076d562f28a421df47336bf8bd8c0d5da4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3e46155cf57314a11289ce79e0a089b7abc6a2851bee2cd8d9280e8dc13ed958",
+      "plan.md": "ec0e8a310ae2ff97e83756d8ba8c88066b7a1c28778b24de217305d3979f87f2",
+      "tasks.md": "5a4fc525ba1b1833a10c82dfc02fab10dc300a8ce55194da83249a6da4494384",
+      "implementation-summary.md": "73c0c127de94b83cf11c2958f3e709a2b8782a869b58f82dd276d5f570a4fb68"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

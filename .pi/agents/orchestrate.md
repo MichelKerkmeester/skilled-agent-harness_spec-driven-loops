@@ -71,6 +71,7 @@ Steps 1-4 and 9-10 run linear; step 5 (CWB CHECK) branches to parallel or sequen
 | 6        | Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review) | `@deep-review` | LEAF | `system-spec-kit`, `deep-review` | `"general"` |
 | 7        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"general"`   |
 | 8        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via Task tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
+| 9        | External CLI execution — ONLY when the user names an executor; never auto-selected | `cli-<mode>` via the `cli-external-orchestration` hub | LEAF | `cli-external-orchestration` → the named `cli-X` packet | n/a (external process) |
 
 ### Nesting Depth Protocol (NDP)
 
@@ -457,6 +458,22 @@ TASK #2: Implement Notification System
 
 **EMERGENCY BYPASS**: If direct spec-doc authoring repeatedly fails (3+ attempts) AND user explicitly approves a narrower workaround, log the exception and record it in `decision-record.md`.
 
+### Rule 7: External CLI Delegation — Explicit User Request Only
+
+**Trigger:** The user names an external CLI executor in their own words — one of the six `cli-external-orchestration` modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`.
+
+**Action:**
+
+1. **Opt-in only.** NEVER select an external executor on your own initiative. An advisor score, a hook hint, or a "this would be faster" judgment is not a user request. No executor named → dispatch a native LEAF agent as usual.
+2. **The skill route still owns the work.** AGENTS.md GATE 4, verbatim: "Executor CLI ≠ skill route. 'Use cli-opencode gpt-5.5 high' is the HOW — it still runs INSIDE the skill's workflow. Never let the executor name override the skill-owned route." Its companion tiebreaker binds too: when `command-spec-kit` matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins — the CLI executor is a tool inside the command's workflow, not a replacement for it.
+3. **Read the mode's own contract first.** Before composing ANY `cli-X` prompt you MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md`. The advisor recommendation alone does not waive this. The hub's persona-injection rule applies too: attach the resolved agent persona to every external-CLI dispatch — the right agent per subtask, never a bare task.
+4. **An external run is a LEAF at depth 1.** It inherits the frozen scope, cannot widen it, and cannot dispatch further. Never let a mode dispatch itself — the self-invocation guard is packet-owned and non-negotiable.
+5. **The brief pre-resolves every gate the external run cannot ask about.** Nobody is at its prompt, so a gate that stops and waits stops forever and then reports success; put the decision in the prompt rather than permission to skip it. Carry the sandbox facts the run depends on: `codex exec` defaults to `--sandbox read-only`, so file-modification tasks silently no-op unless `--sandbox workspace-write` is passed, and `--sandbox danger-full-access` requires the user's explicit approval; Cursor's `auto` model router is banned because it can silently resolve to a model outside the enforced allowlist.
+6. **What comes back is a claim, not evidence.** An external run's `COMPLETE`, its iteration count, and its exit status are all the run describing itself. Confirm against the artifacts and state it actually wrote before quoting any of it. A lane whose sandbox cannot reach the browser cannot produce a browser number, however confidently it reports one.
+7. **Pass an explicit model per dispatch, exactly as the user named it.** Never substitute a near-sounding model id when the requested tier is unavailable on a transport — report it and ask.
+
+**Logic:** External delegation pushes work past this runtime's own boundaries, so it stays operator-initiated. The executor is the HOW; the skill-owned route and the frozen scope remain the WHAT.
+
 ### Single-Hop Dispatch Model
 
 The orchestrator uses a two-phase approach with single-hop dispatch only:
@@ -807,6 +824,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | Read 3+ large files back-to-back in main context | Floods the orchestrator's context window; delegate bulk reads to `@context` for a summarized Context Package | §8 |
 | Echo full tool output (>50 lines) into conversation | Raw output accumulates rapidly; summarize to 3-5 bullet points | §7 |
 | Continue after session degradation without user confirmation | Lost context leads to incorrect assumptions; stop, re-read AGENTS.md, summarize state, wait for confirmation | §6 |
+| Choose an external CLI executor the user did not name | External delegation is opt-in by explicit user request; an advisor score or a speed judgment is not a request, and self-selecting one sends the frozen scope outside this runtime with no operator decision behind it | §4 Rule 7 |
 
 ---
 
@@ -820,3 +838,5 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - `.opencode/agents/ai-council.md` — the LEAF for multi-strategy planning and architecture synthesis.
 - `.opencode/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
 - `.opencode/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.
+- `.opencode/skills/cli-external-orchestration/SKILL.md` — the hub that routes the six external CLI executor modes, and owns their invariants (§4 Rule 7).
+- `repo-rules/delegation-and-orchestration.md` — the orchestrating posture: what a brief must carry, and why a delegate's return is unverified.
