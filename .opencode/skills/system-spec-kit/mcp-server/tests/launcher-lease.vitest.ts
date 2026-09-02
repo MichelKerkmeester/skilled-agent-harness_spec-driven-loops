@@ -523,6 +523,14 @@ describe('system-spec-memory launcher lease', () => {
     // Mirror production's path.resolve so the strict equality holds even where the
     // temp root is symlinked (e.g. /tmp -> /private/tmp); the launcher stores a resolved path.
     const ownerSocket = join(resolve(owner.socketDir), SOCKET_FILE_NAME);
+    // The lease is written before the context-server child exists, so childPid and socketPath
+    // land in a later write than the owner pid waitForLeasePid above waits on. Wait for the
+    // field this test actually asserts, or the read races the second write.
+    await waitFor(
+      () => readLease(owner.pidFilePath)?.childPid != null,
+      10000,
+      'owner lease childPid',
+    );
     const lease = readLease(owner.pidFilePath);
     expect(lease?.socketPath).toBe(ownerSocket);
     const ownerChildPid = lease?.childPid;

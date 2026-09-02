@@ -615,7 +615,30 @@ function startOwnerLeaseHeartbeat(ownerPid = process.pid) {
   ownerLeaseHeartbeatTimer.unref?.();
 }
 
+/**
+ * Report whether fd 0 is a real stdio peer rather than an inherited placeholder.
+ *
+ * A peer that closes is a pipe or socket reaching EOF. An inherited /dev/null
+ * (any launch with stdin redirected from it, or spawned with stdio 'ignore') and a
+ * TTY were never peers at all: /dev/null reports EOF on the very first read, so
+ * arming the disconnect shutdown against it terminates the launcher milliseconds
+ * after start, before it can write its lease.
+ */
+function isRealStdioPeer(fd = 0) {
+  try {
+    const stats = require('node:fs').fstatSync(fd);
+    return stats.isFIFO() || stats.isSocket();
+  } catch {
+    return false;
+  }
+}
+
 function installStdinCloseHandler(input = process.stdin, shutdown = () => shutdownLauncherForSignal('SIGTERM'), logger = log) {
+  // Only guard the process-wide stdin; an explicitly supplied stream is the caller's contract.
+  if (input === process.stdin && !isRealStdioPeer()) {
+    logger('stdin is not a peer pipe; stdin-close shutdown not armed');
+    return () => {};
+  }
   let handled = false;
   const onClose = () => {
     if (handled) return;
