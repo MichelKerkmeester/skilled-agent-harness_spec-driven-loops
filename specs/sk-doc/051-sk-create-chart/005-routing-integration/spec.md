@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 5: routing-integration [template:level-3/spec.md]"
+title: "Feature Specification: Phase 5: routing-integration"
 description: "Registration is the easy half and it is not the deliverable. The skill has to be reachable through both routing stages, which means the advisor selects it and the router resolves it, with a canary that fails when either stops being true."
 trigger_phrases:
   - "chart skill routing"
@@ -33,7 +33,7 @@ Wire the skill into both routing stages and prove each one separately. Vocabular
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |

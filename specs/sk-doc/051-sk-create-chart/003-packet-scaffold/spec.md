@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: packet-scaffold [template:level-3/spec.md]"
+title: "Feature Specification: Phase 3: packet-scaffold"
 description: "A skill package built to the create-skill templates at the placement phase 1 chose, empty of ported content. Getting the shape right before the content arrives means the packaging gate fails against an empty shell rather than against 26,500 lines."
 trigger_phrases:
   - "scaffold chart skill package"
@@ -33,7 +33,7 @@ Build the package shape and prove it passes the packaging gate while it is still
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |

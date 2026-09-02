@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level-3/implementation-summary.md]"
+title: "Implementation Summary"
 description: "The placement question is answered with evidence, all 124 source files carry a disposition, and the source's noncommercial licence turns out to block phase 4."
 trigger_phrases:
   - "implementation"

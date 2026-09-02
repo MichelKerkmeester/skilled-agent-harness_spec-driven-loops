@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: source-inventory-and-placement [template:level-3/spec.md]"
+title: "Feature Specification: Phase 1: source-inventory-and-placement"
 description: "The clone is 124 files across three chart families, a colour system and two validators. Nothing yet says which of those files belong here, and the packet cannot be shaped until one question is answered: is this a mode under the documentation hub, or a standalone skill?"
 trigger_phrases:
   - "chart source inventory"
@@ -33,7 +33,7 @@ A read-only phase. Every file in the source clone gets a disposition, and the pl
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |

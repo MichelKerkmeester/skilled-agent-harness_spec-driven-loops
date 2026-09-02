@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The source repository is already shaped like a skill",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-02T08:53:42.246Z",
+    "last_save_at": "2026-09-02T14:09:54.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e659fd41f1a73f0d5f928a508acdbbeb3859ca3fe47f4074eadbae1a2fb4e3c",
+    "source_fingerprint": "sha256:3129e15a2bcb4fc8a5c7162d23d06a122b4f99bf99be1a98fbf77adbca064f68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9df16f6338f8adf7a7d08c67daf986680f5bf6cfb72b58e9766592c231e4301b",
-      "plan.md": "7d93f36c3d42b2661aff136237e9d0708c3416a4a359734bd77c1a2ec9a48f12",
-      "tasks.md": "f26d0d5be0ac3b1a5bbe092b2a485d5a8bcade5cfda8491a327f9f7863d80cf8",
+      "spec.md": "051cb82078dfdd6ddafc8a35515bf73cc3a41f918a8333c4f69c87c748475c8b",
+      "plan.md": "74565f8ee724a60988cf4437d71ef0b576dd063265fc530175c18c7f24ab8ec9",
+      "tasks.md": "379a49e7084ca44b9a4f5d17f3282e3d2961f442eb9587c8bfc4009b113e9ca0",
       "decision-record.md": "4ada66946a1cf71d1ad2aff8e2ab6561c95d37afe7383ad86557cb61b67d093d",
-      "implementation-summary.md": "00198022a40f9bcb517e66c6fcfdc8d239ec9f392693cc5db37ac4acd1d22e1b"
+      "implementation-summary.md": "e14dcff38cee68bb06a9df5eda78f209534250a8047a8dd699d1c32807400e8e"
     },
     "last_active_child_id": null,
     "last_active_at": null

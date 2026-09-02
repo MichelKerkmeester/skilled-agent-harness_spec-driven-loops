@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: source-inventory-and-placement [template:level-3/plan.md]"
+title: "Implementation Plan: Phase 1: source-inventory-and-placement"
 description: "A read-only inventory of the lieflat-charts clone and an evidence-backed placement verdict, measured by two scripts whose output is reconciled against independent counts."
 trigger_phrases:
   - "implementation"
@@ -106,7 +106,7 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
 
 ---

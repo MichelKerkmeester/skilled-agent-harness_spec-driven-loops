@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level-3/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Seven authored lieflat-charts documents became English with zero Chinese left, the voice scanner clean and every divergence between literal and natural recorded."
 trigger_phrases:
   - "implementation"

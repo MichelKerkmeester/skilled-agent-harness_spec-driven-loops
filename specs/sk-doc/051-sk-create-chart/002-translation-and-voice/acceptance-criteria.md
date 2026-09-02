@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-translation-and-voice"
+    packet_pointer: "sk-doc/051-sk-create-chart/002-translation-and-voice"
     last_updated_at: "2026-09-02T07:56:50Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

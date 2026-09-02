@@ -40,13 +40,28 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/manual-testing-playbook.md",
+      "006-playbook-and-closeout/implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -88,16 +103,16 @@
     ],
     "causal_summary": "`lieflat-charts` is a data-visualization skill built elsewhere: 51 chart and report templates",
     "created_at": "2026-09-02T07:56:48Z",
-    "last_save_at": "2026-09-02T08:53:40.420Z",
+    "last_save_at": "2026-09-02T14:03:12.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7bba00382ea4a640d7b7222267a8b05d22213dbbe1c209aac5c705b7225fcd76",
+    "source_fingerprint": "sha256:608c451ded3f28af27a89d5f24e96ac2cddeb2aa73d8dc90acc02785e984d7d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "281dd858f9f2331f0ec0fb3fffb21bd5ff6b721cc3a22389899332d2b32d64c4"
+      "spec.md": "6bb47bb9d90d779d82d7fcd800a8343d9b76ab38f01b8ea45cad63c8c2ab662a"
     },
     "last_active_child_id": "sk-doc/051-sk-create-chart/006-playbook-and-closeout",
     "last_active_at": null

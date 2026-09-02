@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: packet-scaffold [template:level-3/plan.md]"
+title: "Implementation Plan: Phase 3: packet-scaffold"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"
@@ -90,7 +90,7 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
 
 ---

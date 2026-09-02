@@ -11,19 +11,27 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/051-sk-create-chart"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "planning"
-    recent_action: "Authored the parent scope and the phase map"
-    next_safe_action: "Execute phase 001, the read-only inventory and placement decision"
+    last_updated_at: "2026-09-02T00:00:00Z"
+    last_updated_by: "phase-6-closeout"
+    recent_action: "Closed phase 006 and reconciled the phase map against what shipped"
+    next_safe_action: "Review the open items recorded in 006/implementation-summary.md"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/sk-doc/sk-create-chart/SKILL.md"
+      - ".opencode/skills/sk-doc/sk-create-chart/manual-testing-playbook/manual-testing-playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "019ahF7gmhZy3Bo2bKRKK2i7"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "The packet changelog still describes the scaffold release and is contradicted by the shipped tree"
+      - "A bare two-word chart form name scores below the mandatory-invoke bar at stage one"
+    answered_questions:
+      - "Placement is a workflow mode under sk-doc, recorded as ADR-001"
+      - "Nothing is copied from the reference, recorded as ADR-002"
+      - "The first corpus carries twenty chart forms across six question families"
+      - "Report mode is cut, recorded as ADR-007"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -32,7 +40,7 @@ _memory:
   FORBIDDEN content (do NOT author at phase-parent level):
     - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
     - migrated from, ported from, originally in
-    - heavy docs: plan.md, tasks.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+    - heavy docs: plan.md, tasks.md, decision-record.md, implementation-summary.md. These belong in child phase folders only
   REQUIRED content (MUST author at phase-parent level):
     - Root purpose: what problem does this entire phased decomposition solve?
     - Sub-phase list: which child phase folders exist and what each one does
@@ -48,9 +56,9 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
-| **Branch** | `main` |
+| **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | scaffold/001-sk-create-chart |
 | **Predecessor** | None |
@@ -129,10 +137,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 |-------|--------|-------|--------|
 | 1 | 001-source-inventory-and-placement/ | Read only. Inventory every source file, and decide with evidence whether this is an sk-doc mode or a standalone skill | Complete |
 | 2 | 002-translation-and-voice/ | Read the Chinese documents into English so the reference can be understood, and describe what it does | Complete |
-| 3 | 003-packet-scaffold/ | Build the packet shape from the create-skill templates | Pending |
-| 4 | 004-native-chart-build/ | Author the colour system and the chart corpus here, and prove each template renders | Pending |
-| 5 | 005-routing-integration/ | Registration and both routing stages, plus canary coverage | Pending |
-| 6 | 006-playbook-and-closeout/ | The manual testing playbook, then the whole-fleet gates | Pending |
+| 3 | 003-packet-scaffold/ | Build the packet shape from the create-skill templates | Complete |
+| 4 | 004-native-chart-build/ | Author the colour system and the chart corpus here, and prove each template renders | Complete |
+| 5 | 005-routing-integration/ | Registration and both routing stages, plus canary coverage | Complete |
+| 6 | 006-playbook-and-closeout/ | The manual testing playbook, then the whole-fleet gates | Complete |
 
 ### Phase Transition Rules
 
@@ -161,9 +169,15 @@ Both of the packet's original questions are answered. Placement is a workflow mo
 documentation hub, recorded as ADR-001, decided on tie-break machinery rather than on size.
 Licensing is settled by ADR-002: nothing is copied, and the skill is built from the ideas.
 
-What stays open is a matter of size rather than direction. Phase 4 has to decide how many chart
-types the first corpus carries. The reference ships 49 in its primary tier by its own count,
-which is a reference point and not a target.
+The size question is answered too. The first corpus carries twenty chart forms across six
+question families, sized by data-shape coverage rather than against the reference count.
+
+Two items close as recorded unknowns rather than as answers. The packet changelog still
+describes the scaffold release, so it tells a reader the corpus is empty and nothing routes,
+and both statements are false in the tree that reader is holding. And a bare two-word chart
+form name scores below the mandatory-invoke bar at the first routing stage, while a full
+request carrying the same name clears it comfortably. Both are recorded with their evidence in
+`006-playbook-and-closeout/implementation-summary.md`.
 <!-- /ANCHOR:questions -->
 
 ---

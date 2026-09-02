@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: source-inventory-and-placement [template:level-3/tasks.md]"
+title: "Tasks: Phase 1: source-inventory-and-placement"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

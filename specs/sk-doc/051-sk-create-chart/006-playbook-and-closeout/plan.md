@@ -1,14 +1,13 @@
 ---
-title: "Implementation Plan: Phase 6: playbook-and-closeout [template:level-3/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 6: playbook-and-closeout"
+description: "Read the operator-scenario contract from its validator, author eight scenarios that each catch something no other one catches, then close the packet on gate output rather than on a reading."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+  - "chart playbook plan"
+  - "operator scenario contract plan"
+  - "chart closeout gates"
+  - "playbook negative control"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 6: playbook-and-closeout
@@ -24,13 +23,17 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown documents, validated by Node scripts |
+| **Framework** | The operator-scenario contract owned by `sk-create-manual-testing-playbook` |
+| **Storage** | None. The playbook is files in the packet |
+| **Testing** | `validate-playbook-package.cjs`, `check-corpus.cjs`, `parent-skill-check.cjs`, `compiled-route-manifest.cjs`, `validate.sh` |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+
+Author a manual testing playbook for the chart packet, to the operator-scenario contract and to
+nothing beyond it, then close the packet on the output of the whole-fleet gates. The contract is
+read from the validator source rather than from a summary of it, because the failure mode that
+matters here is a package that reports a clean skip.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -39,14 +42,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] The operator-contract check reports a nonzero operator count
+- [x] Docs updated and reconciled against what shipped
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -55,14 +58,21 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+Split-document playbook package. One root index carries the policy and the directory, and each
+scenario lives in its own file under a kebab-case category folder.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Root index**: the operator directory, the review protocol, the wave plan, the family coverage map and the recorded render flake.
+- **Category folders**: `reading-the-chart/`, `corpus-integrity/` and `delivery-and-routing/`, one file per scenario.
+- **Closeout edits**: the parent phase map, the child statuses and this phase's own documents.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+
+The package validator walks the playbook tree, classifies every file as an operator scenario or
+as routing gold, then validates the operator files against the contract. A file carrying a
+routing-gold frontmatter signature is excluded, so the operator count is what says whether the
+package was checked at all.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -70,18 +80,19 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Not a bug fix. The table below records the surfaces this phase writes to and how each was verified.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `sk-create-chart/manual-testing-playbook/` | Was an empty directory holding a tracked marker | Create nine documents | `validate-playbook-package.cjs --package sk-doc/sk-create-chart` reports a nonzero operator count |
+| Parent `spec.md` phase map | Listed shipped phases as Pending | Update | `validate.sh --strict --recursive` from the final state |
+| Child `spec.md` status fields | Said Draft while the parent said Complete | Update | The same recursive run |
+| Hub compiled routing | Not a consumer. The playbook tree is not a routing input | Unchanged | `compiled-route-manifest.cjs freshness --hub sk-doc` reports fresh |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Contract source read directly: `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs`.
+- Sibling shape read directly: `sk-create-with-human-voice/manual-testing-playbook/` and `sk-create-diagram/manual-testing-playbook/`.
+- Scenario grounding read directly: the corpus record's defect table, the template contract and the corpus check.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -90,7 +101,7 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and the task state.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -100,9 +111,11 @@ Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and V
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Contract | The playbook package against the operator-scenario contract | `validate-playbook-package.cjs` |
+| Negative control | The routing-gold trap, reproduced and reversed | The same validator, with a checksum-verified restore |
+| Fleet | The hub, the corpus and the compiled routing | `parent-skill-check.cjs`, `check-corpus.cjs --render`, `compiled-route-manifest.cjs` |
+| Spec | Every folder in the packet | `validate.sh --strict --recursive` |
+| Voice | Every authored document | `hvr_scan.py` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -112,7 +125,10 @@ Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and V
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `sk-create-manual-testing-playbook` validator | Internal | Green | No contract to write against |
+| The shipped chart corpus and its check | Internal | Green | Nothing for the scenarios to describe |
+| The hub registration from the previous phase | Internal | Green | The routing scenario has nothing to replay |
+| A Chrome or Chromium binary | External | Green | The render gate records a named blocker rather than a pass |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -120,8 +136,8 @@ Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and V
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A gate fails from the final state and the cause is in this phase's edits.
+- **Procedure**: The playbook tree is new and untracked, so removing the three category folders and the root index returns the packet to its previous state. The spec-document edits revert with `git checkout --` of the touched paths.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -133,17 +149,18 @@ Follow the ordered tasks in `tasks.md`; it owns the Setup, Implementation, and V
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Read the contract ──► Author the scenarios ──► Reconcile the packet ──► Run the gates
+                                   │
+                          Negative control
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Read the contract | None | Author |
+| Author | Read the contract | Negative control, Reconcile |
+| Negative control | Author | Gates |
+| Reconcile | Author | Gates |
+| Gates | Negative control, Reconcile | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -153,10 +170,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | Reading the validator and one sibling package |
+| Core Implementation | Medium | Nine documents, each grounded in a real defect |
+| Verification | Medium | Five gates plus a negative control and a restore |
+| **Total** | | **One session** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -165,19 +182,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Backup taken before the negative control, verified by checksum afterwards
+- [x] No feature flag applies. Nothing here is runtime behavior
+- [x] Baselines captured for every gate before the first edit
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Remove the playbook tree, which is new and carries nothing else.
+2. Revert the spec-document edits with `git checkout --` of the touched paths.
+3. Re-run the five gates and compare against the captured baselines.
+4. No stakeholder notification applies. Nothing user-facing changed.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -189,25 +206,26 @@ Phase 1.5 (Config) ───┘
 ## L3: DEPENDENCY GRAPH
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Phase 1   │────►│   Phase 2   │────►│   Phase 3   │
-│   Setup     │     │    Core     │     │   Verify    │
-└─────────────┘     └──────┬──────┘     └─────────────┘
-                          │
-                    ┌─────▼─────┐
-                    │  Phase 2b │
-                    │  Parallel │
-                    └───────────┘
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│  Read contract  │────►│  Author package │────►│   Run gates     │
+│  from source    │     │  nine documents │     │   from final    │
+└─────────────────┘     └────────┬────────┘     └─────────────────┘
+                                 │
+                       ┌─────────▼─────────┐
+                       │ Negative control  │
+                       │ and restore       │
+                       └───────────────────┘
 ```
 
 ### Dependency Matrix
 
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
-| [Component A] | None | [Output] | B, C |
-| [Component B] | A | [Output] | D |
-| [Component C] | A | [Output] | D |
-| [Component D] | B, C | [Final] | None |
+| Contract reading | None | The frontmatter and section rules | Authoring |
+| Root index | Contract reading | The directory, policy and coverage map | Scenarios, gates |
+| Scenario files | Root index | Eight execution contracts | Gates |
+| Negative control | Scenario files | Proof the trap is real | Gates |
+| Closeout edits | Scenario files | A reconciled packet | Gates |
 <!-- /ANCHOR:dependency-graph -->
 
 ---
@@ -215,15 +233,15 @@ Phase 1.5 (Config) ───┘
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **[Phase/Task]** - [Duration estimate] - CRITICAL
-2. **[Phase/Task]** - [Duration estimate] - CRITICAL
-3. **[Phase/Task]** - [Duration estimate] - CRITICAL
+1. **Read the validator source** - the contract decides every frontmatter field - CRITICAL
+2. **Author the nine documents** - the deliverable - CRITICAL
+3. **Run the five gates from the final state** - the closeout claim rests on them - CRITICAL
 
-**Total Critical Path**: [Sum of durations]
+**Total Critical Path**: One session
 
 **Parallel Opportunities**:
-- [Task A] and [Task B] can run simultaneously
-- [Task C] and [Task D] can run after Phase 1
+- The negative control and the closeout edits are independent once the scenarios exist
+- The voice scan runs against any document as soon as it is written
 <!-- /ANCHOR:critical-path -->
 
 ---
@@ -233,29 +251,24 @@ Phase 1.5 (Config) ───┘
 
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
-| M1 | [Setup Complete] | [All dependencies ready] | [Date/Phase] |
-| M2 | [Core Done] | [Main features working] | [Date/Phase] |
-| M3 | [Release Ready] | [All tests pass] | [Date/Phase] |
+| M1 | Contract understood from source | The frontmatter field set and the five required sections are known | Before the first document |
+| M2 | Package authored | The contract check reports a nonzero operator count with zero violations | Before the closeout edits |
+| M3 | Packet closed | Every gate run from the final state, with its output read | End of phase |
 <!-- /ANCHOR:milestones -->
 
 ---
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-### ADR-001: [Decision Title]
+Three decisions were taken in this phase and all three live in `decision-record.md`, which is the
+single place they are numbered. Restating them here would produce a second ADR-001 with different
+content, which is how a waiver ends up citing the wrong record.
 
-**Status**: [Proposed/Accepted/Deprecated]
-
-**Context**: [What problem we're solving]
-
-**Decision**: [What we decided]
-
-**Consequences**:
-- [Positive outcome 1]
-- [Negative outcome + mitigation]
-
-**Alternatives Rejected**:
-- [Option B]: [Why rejected]
+| ADR | Decision |
+|-----|----------|
+| ADR-001 | Scenarios group by failure mode, with a family coverage table |
+| ADR-002 | The result-persistence sentence is restated without its semicolon |
+| ADR-003 | The fleet metadata criterion closes as a waiver |
 
 ---
 

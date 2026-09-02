@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 5: routing-integration [template:level-3/plan.md]"
+title: "Implementation Plan: Phase 5: routing-integration"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

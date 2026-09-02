@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 6: playbook-and-closeout [template:level-3/spec.md]"
+title: "Feature Specification: Phase 6: playbook-and-closeout"
 description: "The manual testing playbook says what the skill doing its job looks like, written to the operator-scenario contract. Then the fleet gates run, and the packet closes on their output rather than on a reading."
 trigger_phrases:
   - "chart manual testing playbook"
@@ -33,7 +33,7 @@ A playbook to the operator-scenario contract, then the whole-fleet gates. The co
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -227,8 +227,27 @@ A reader can tell whether the chart skill still works, and the gates that judge 
 
 ## 12. OPEN QUESTIONS
 
-- Does each chart family need its own scenario, or does the colour system carry the risk that matters?
-- Which scenarios can run headless, and which need something rendering the chart?
+Both questions are answered, and two new items close as recorded unknowns rather than as answers.
+
+**Does each chart family need its own scenario?** No. The failure modes cut across families
+rather than along them, so a per-family set would produce six documents failing for the same
+reason. Every family is still named in the root playbook's coverage table, mapped to the
+scenario that carries it and the reason that scenario is the one.
+
+**Which scenarios can run headless?** Five of the eight need nothing but Node. `CHT-004` needs a
+Chrome or Chromium binary and says so in its own preconditions. `CHT-003` needs a desktop
+browser a person can read, which is the one scenario that cannot be graded from markup at all.
+Each records a `SKIP` naming its blocker rather than a pass.
+
+**Recorded unknowns:**
+
+- The packet changelog still describes the scaffold release, so it tells a reader the corpus is
+  empty and nothing routes to the packet. Both statements are false in the tree that reader is
+  holding. The fix is a new changelog entry plus a matching `SKILL.md` version bump, which
+  belongs to the phases that shipped the corpus and the routing.
+- A bare two-word chart form name scores below the mandatory-invoke bar at the first routing
+  stage, while a full request carrying the same name clears it. The measurement and the check
+  that would settle it are in `implementation-summary.md`.
 <!-- /ANCHOR:questions -->
 
 ---

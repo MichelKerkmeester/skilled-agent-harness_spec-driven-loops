@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: translation-and-voice [template:level-3/spec.md]"
+title: "Feature Specification: Phase 2: translation-and-voice"
 description: "The source's primary documentation is Chinese, with English kept as a secondary README. Translation is the step where the instruction to stay literal is either honoured or quietly lost, so it gets its own phase and its own log."
 trigger_phrases:
   - "translate lieflat charts"
@@ -33,7 +33,7 @@ Every authored word becomes English, and the voice standard applies to the resul
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |

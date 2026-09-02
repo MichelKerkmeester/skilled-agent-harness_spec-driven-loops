@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 5: routing-integration [template:level-3/tasks.md]"
+title: "Tasks: Phase 5: routing-integration"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

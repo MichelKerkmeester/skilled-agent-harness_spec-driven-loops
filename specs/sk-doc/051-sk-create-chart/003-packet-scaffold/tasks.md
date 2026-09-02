@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: packet-scaffold [template:level-3/tasks.md]"
+title: "Tasks: Phase 3: packet-scaffold"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"
