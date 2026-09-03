@@ -28,7 +28,7 @@ _memory:
       - "Line weight and glow are a taste question that only renders can settle"
     answered_questions:
       - "The copy rule needs no amendment, because the one row that wanted code is rejected on other grounds"
-      - "The two lineages contradict each other on four points, and each is resolved or handed over rather than averaged"
+      - "The two lineages contradict each other on five points, and each is resolved or handed over rather than averaged"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -92,10 +92,13 @@ it. The TypeScript module the script mirrors already carried the carve-out, so t
 stale copy of a contract that had moved. The two functions were mirrored across, and the
 recorded effective config confirms the model then ran at its own top tier.
 
-**Contradictions are recorded, not averaged.** The two lineages disagree on four points. Two are
+**Contradictions are recorded, not averaged.** The two lineages disagree on five points. Three are
 settled in the synthesis by argument, one against the reading that ignored a deliberate corpus
-choice, one against the reading that would put decoration behind data. Two are handed to the
-operator, because they are questions of taste that no amount of source reading can settle.
+choice, one against the reading that would put decoration behind data, and one against removing
+the focus ring and the ability to copy a number from a delivered document. Two are handed to the
+operator, because they are questions of taste that no amount of source reading can settle. The
+fifth was found while planning the build rather than while merging, which is the argument for
+re-reading a merged set instead of trusting it.
 
 **The copy rule stays as written.** Both lineages independently found that the skill forbids
 copying from an outside chart library with no carve-out for licence, and that the library is

@@ -93,7 +93,7 @@ and findings belong here.
 | Phase documents authored | Done | Written before dispatch, because a live lineage restores tracked files from `HEAD` |
 | DeepSeek lineage | Done | Five of five iterations, its own ranked synthesis, 16 adoptions and 13 rejections |
 | GLM lineage | Partial | Four of five iterations, its own ranked synthesis, 16 adoptions and 14 rejections. The fifth iteration never ran |
-| Cross-lineage synthesis | Done | `research/research.md`: nine agreements, four contradictions resolved, the unique contribution of each lineage, four operator decisions |
+| Cross-lineage synthesis | Done | `research/research.md`: nine agreements, five contradictions resolved, the unique contribution of each lineage, four operator decisions |
 | Citations verified | Done | Every cited path resolves under the vendored tree, and four were opened at the exact line: the stroke constant, the dash default, the mono value class, the bar radius |
 
 ### Deviations and findings
@@ -101,6 +101,6 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | The GLM lineage is four iterations, not five | Its missing iteration was the registry and install question plus a final sweep. The DeepSeek lineage answered that same question across its own five, so the pair covers the subject, but no pass re-audited the merged list. The acceptance row that asked for five each stays unmet rather than being softened |
-| The two lineages contradict each other on four points | Stroke weight, glow, background patterns and a draggable range window. Two are settled by argument in the synthesis, and two are handed to the operator as a look-at-the-renders decision. Averaging them would have produced a recommendation neither model made |
+| The two lineages contradict each other on five points | Stroke weight, glow, background patterns, a draggable range window and interaction hygiene. The fifth was missed on the first read of the two lists and was caught while planning the build, which is why the merged set is re-read rather than trusted. Three are settled by argument in the synthesis, and two are handed to the operator as a look-at-the-renders decision. Averaging them would have produced a recommendation neither model made |
 | The fan-out runner forced the wrong thinking tier for GLM-5.3-Flash | `pinReasoningEffortForModel` in `executor-config.ts` knows GLM-5.3-Flash tops out at `xhigh`, and nothing in production calls it. The live pin is a stale copy inside `fanout-run.cjs`, which still forces `max` for the whole Flash family. Recorded in `implementation-summary.md` with the correction that made this run possible |
 <!-- /ANCHOR:log -->

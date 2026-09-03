@@ -83,7 +83,8 @@ pass is stricter and stays. Only the visual treatment is adopted.
 
 ## 4. WHERE THEY CONTRADICT EACH OTHER
 
-Four real forks. Each is recorded with the losing argument intact so none is relitigated.
+Five real forks. Each is recorded with the losing argument intact so none is relitigated. The
+fifth was missed when this document was first written and is marked as such.
 
 **D1. Series stroke weight.** DeepSeek ranks thinning from 2px to 0.8px as the change that buys the most
 visible payoff, and calls it the reason the corpus looks plain. GLM rejects it outright, citing
@@ -116,6 +117,18 @@ The determinism rule targets automatic variation such as randomness and clocks, 
 choosing to look closer. A window that opens at the full range paints identically every time.
 Resolution: allowed, but last, and only where a form is genuinely dense.
 
+**D5. Interaction hygiene.** Both lineages read the same block, which suppresses the focus ring
+on drawing shapes and stops text being selected. GLM adopts both rules for any form that gains a
+pointer. DeepSeek rejects both, on the ground that a delivered chart is a document, so keyboard
+focus and copyable numbers are features rather than noise.
+
+This one was missed on the first pass through the two lists and was caught while planning the
+build. DeepSeek has the better argument on both halves, but only one half is all-or-nothing.
+Resolution: the focus ring is suppressed for pointer interaction only, through the selector that
+leaves keyboard focus visible, and the rule that stops text being selected is rejected outright
+because the numbers in a delivered chart are meant to be copyable. The build phase that adds
+interaction carries this narrowed form.
+
 Two smaller splits resolve by merging rather than choosing. On corner radius, GLM measured that
 the existing 10px is already uniform across all twenty forms and proposes formalizing it, while
 DeepSeek proposes a contextual ladder. Both land: the ladder is the change, tokens are how it
@@ -134,8 +147,7 @@ allowed only on ordered-system forms, where a sweep along the ramp carries real 
 block of shared geometry defaults in the skeleton so the corpus stops varying margins by hand.
 
 From GLM alone: bars that grow from the baseline over half a second with a cubic ease. A two
-pixel radius on bar ends. Round tick dots in place of tick marks. Two lines of interaction
-hygiene for any form that gains a pointer. Naming each family example after a real scenario so
+pixel radius on bar ends. Round tick dots in place of tick marks. Naming each family example after a real scenario so
 the headline-as-argument rule is demonstrated instead of asserted. Catalog prose that names the
 three forms evilcharts has and the corpus does not, each with the reason.
 
