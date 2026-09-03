@@ -19,13 +19,18 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-Delete 1,481 tracked files and 453,964 lines, the MCP transport entries that start them, the
-OpenCode plugin and bridge, the `spec-memory` hook concern, the memory command family, the
-server-only environment flags and the catalog and playbook that document all of it. The same tree
-holds 3,203 regular files in a working checkout once build output and installed dependencies are
-counted, so the working-copy saving is larger than the tracked diff.
+Delete the memory engine out of a 1,481-file, 453,964-line package while keeping the package as
+the spec-kit engine (validation orchestrator, graph and description metadata, level contracts, the
+continuity writer's imports and the runtime hook adapters), together with the MCP transport entries
+that started the server, the OpenCode plugin and bridge, the `spec-memory` hook concern, the memory
+command family, the server-only environment flags and the catalog and playbook that document all of
+it. The same tree holds 3,203 regular files in a working checkout once build output and installed
+dependencies are counted, so the working-copy saving is larger than the tracked diff.
 
-**Key Decisions**: Delete rather than deprecate — the artifact is derived, git holds the history, and a deprecated-but-present subsystem keeps its operational cost; leave `system_skill_advisor` untouched.
+**Outcome:** the removal was partial under option A — the engine is gone and the package survives as
+the spec-kit engine at 333 import-closed files.
+
+**Key Decisions**: Delete the engine, keep the package (decided 2026-09-03 after phase 002 showed validation, the metadata refresh and the continuity writer import modules inside `mcp-server/`): the deletion set is every module unreachable from the surviving entry points plus the transport, tools, daemon, launcher, plugin, hooks, registrations and memory-only rows. Delete rather than deprecate — the artifact is derived, git holds the history, and a deprecated-but-present subsystem keeps its operational cost; leave `system_skill_advisor` untouched.
 
 **Critical Dependencies**: Phase 002's residue sweep must return empty first.
 
@@ -37,7 +42,7 @@ counted, so the working-copy saving is larger than the tracked diff.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `claude/speckit-memory-db-review-3gheky` |
 | **Parent Spec** | ../spec.md |
@@ -101,7 +106,7 @@ starts clean without them.
 
 ### In Scope
 
-- `.opencode/skills/system-spec-kit/mcp-server/`: 1,481 tracked files, 453,964 lines, 20,273,034 bytes
+- `.opencode/skills/system-spec-kit/mcp-server/`: the engine modules unreachable from the surviving entry points (the tree held 1,481 tracked files and 453,964 lines; the surviving closure is about a third of the modules)
 - `.claude/mcp.json` `system-spec-memory` entry, and the equivalent in any peer runtime config
 - `.opencode/bin/system-spec-memory-launcher.cjs` and the `spec-memory.cjs` CLI shim
 - `.opencode/plugins/system-spec-memory.js` and its bridge
@@ -113,8 +118,10 @@ starts clean without them.
 
 ### Tree Census
 
-Measured against the target tree rather than estimated. The census below replaces the parent's
-1,480-file and 453,813-line figures, which were short by one file and 151 lines.
+Measured against the target tree before removal rather than estimated. The census below replaces
+the parent's 1,480-file and 453,813-line figures, which were short by one file and 151 lines. It is
+the before state; the removal is partial, and the after state is recorded in the implementation
+summary.
 
 | Scope | Files | Bytes | Newline-counted lines |
 |-------|------:|------:|----------------------:|
@@ -143,9 +150,14 @@ structured fields rather than as literal strings, so a name-grep undercounts the
 
 Four items, in order. Nothing here starts until phase 002's residue sweep returns empty.
 
-**W1. The server tree, as one unit.** Delete `.opencode/skills/system-spec-kit/mcp-server/` in a
-single move, then remove what pointed at it: its npm workspace entry, its `bin` and `scripts`
-entries and the server-only lock and package entries that the workspace left behind.
+**W1. The engine inside the package.** Delete every module under `.opencode/skills/system-spec-kit/mcp-server/`
+that only served the memory surface: the transport, the tool schemas and tools, the memory CLI, the
+plugin bridges, matrix runners, evaluation and migration scripts, the engine-only hooks and every
+library module unreachable from the surviving entry points, with their tests. The package survives
+as the spec-kit engine: validation, graph metadata, description generation, the level-contract
+resolver and the modules the continuity writer and the scripts workspace import stay, the public API
+barrel is pruned to what they need, and the `context-server` and `spec-memory` bin entries and the
+`./server` export go. The gate is the build: anything the surviving entry points need is restored.
 
 **W2. Launchers, plugin and hooks.** Delete `.opencode/bin/system-spec-memory-launcher.cjs` and
 `.opencode/bin/spec-memory.cjs`, strip the memory allowlists from

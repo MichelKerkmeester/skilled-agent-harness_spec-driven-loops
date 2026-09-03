@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Delete the subsystem, do not shrink or deprecate it in place |
+| D1 | Delete the memory engine outright: no memory database, daemon, launcher, plugin, hook, tool surface or runtime registration remains. The package survives only as the spec-kit engine for validation, metadata and the continuity writer |
 | D2 | Scope is system-spec-memory only; system_skill_advisor and council-graph.sqlite are untouched |
 | D3 | The replacement is a generated, committed trigger index plus ripgrep; no embedding path is rebuilt |
 | D4 | Order is load-bearing: build the replacement, rewire every consumer, then delete, then retrofit |
@@ -113,12 +113,17 @@ and findings belong here.
 | 005 ripgrep retrieval research | Done | five iterations and synthesis under `005-ripgrep-retrieval-research/research/lineages/luna-max/` |
 | 006 legacy memory surface inventory | Done | five iterations, synthesis and row-level inventory under `006-legacy-memory-surface-inventory/research/lineages/luna-max/` |
 | Research folded into phases 001 to 004 | Done | amended spec, plan, tasks and acceptance docs validate `--recursive --strict` with 0 errors |
-| 001 to 004 build | Pending | - |
+| 003 spec memory server removal | Done | engine deleted under option A: package 1,482 tracked files at `cc6a50271e` to 333 and import-closed at 99 modules; grep count 0 for the server in all five runtime config roots; five cold boots with no memory process, mention or lock directory; advisor scored recommendation exit 0; sweep live 0 across 3,171 paths now including `mcp-server`; `validate.sh --strict` on packet 040 PASSED; AC-001 to AC-014 Met |
+| 001 to 004 build | In progress | 001, 002 and 003 complete; 004 grep-convention doc retrofit remains |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Two research phases added after the packet was planned | The operator asked for evidence before the build; the research runs are phases 005 and 006 and feed the build phases rather than following them |
+| D1 amended after the consumer rewire | Validation, the metadata refresh and the continuity writer run from modules inside the MCP package, so the tree cannot go as one unit; the operator chose to delete the engine and keep the package on 2026-09-03 |
 | Both research drivers reported rejected | Sibling-phase containment false positive while the two lineages ran concurrently; all artifacts intact, recorded in system-deep-loop packet 040 |
+| OPEN DECISION: who spawns the shared HF model server | The deleted memory launcher was its default owner, and the skill-advisor launcher spawns it only under `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1`. The advisor works without it, so nothing is broken. Decide whether the advisor becomes the default spawner, which is a launcher default change inside the preserve set |
+| OPEN DECISION: the eight dependencies with no importer | `@modelcontextprotocol/sdk`, `sqlite-vec` and its darwin optional, `@huggingface/transformers`, `chokidar`, `web-tree-sitter`, `tree-sitter-wasms`, `zod-to-json-schema` and `ignore` have no importer left. Removing them regenerates the lockfile, and `node_modules` is shared with the main checkout, so phase 003 left them in place. Decide whether they come out and when |
+| OPEN DECISION: the fate of `lib/description/repair.ts` | It is test-only now that nothing in production reaches it. Decide whether it folds into `repair-derived.cjs`, which already covers the file repair, or is dropped |
 <!-- /ANCHOR:log -->

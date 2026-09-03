@@ -23,9 +23,9 @@ contextType: "general"
 
 **Subject:** specs/system-speckit/049-memory-decommission
 **Status:** Active
-**Horizon:** research complete 2026-09-02; build phases 001 to 004 in strict order
+**Horizon:** research complete 2026-09-02; build phases 001 to 003 done, 004 remaining
 **Owner:** operator, executed by the orchestrate agent
-**Last updated:** 2026-09-02
+**Last updated:** 2026-09-03
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -33,11 +33,11 @@ contextType: "general"
 <!-- ANCHOR:now-next-later -->
 ## 2. PHASES: NOW / NEXT / LATER
 
-**Now:** Done. Focus: evidence before build. Two five-iteration deep-research phases ran, 005 on ripgrep-first retrieval and 006 on the legacy surface inventory, and their findings are folded into the four build phases. The runtime defects they surfaced are fixed in system-deep-loop packet 040. Exit signal: the packet validates recursively with zero errors and every phase carries a goal document, which holds as of 2026-09-02.
+**Now:** Planned. Focus: phase 004, the grep-optimized doc convention and its retrofit across the active spec corpus. The three phases before it are done — the trigger index and ripgrep contract are built and proven, every consumer is rewired, and the memory engine, its registrations and its documentation are gone. Exit signal: the convention is enforced by `validate.sh` and the retrofit rescan reports no residue.
 
-**Next:** Planned. Focus: phase 001, the trigger index and ripgrep contract, built alongside the live server so the three-arm parity harness can compare both. Exit signal: two-way parity with zero unexplained differences, byte-identical regeneration, fresh-process p95 and max under 200ms, and Gate 1 answering with the daemon stopped.
+**Next:** Planned. Focus: packet closeout. Three open decisions came up from phase 003 — whether the skill-advisor launcher becomes the default spawner of the shared HF model server, whether the eight dependencies with no importer left come out at the cost of a lockfile regeneration, and whether `lib/description/repair.ts` folds into `repair-derived.cjs` or is dropped. Exit signal: `validate.sh --recursive --strict` over the packet exits 0 and every phase reports its acceptance criteria closeable.
 
-**Later:** Planned. Focus: phase 002 rewires every consumer and splits the shared seams, phase 003 deletes the server and its registrations while the preserve set survives, phase 004 writes and enforces the grep convention and retrofits the active corpus. Exit signal: the residue sweep is empty, no runtime declares the server, every session boots daemon-free, and the retrofit rescan reports no residue.
+**Later:** Planned. Focus: land `branches/017-memory-decommission`. Everything from phase 003 onward sits uncommitted in the worktree with the before state at `cc6a50271e`. Exit signal: the removal and the retrofit are on the branch as reviewable commits with the packet's seven completion criteria holding.
 <!-- /ANCHOR:now-next-later -->
 
 ---
@@ -49,13 +49,13 @@ contextType: "general"
 
 **Runtime defects fixed:** phase Now, target 2026-09-02. Status: Done. Evidence: specs/system-deep-loop/040-cli-lineage-nesting-and-containment-guard, commits 2c2687e260 and 54e65e115a, whole suite 2531 passed.
 
-**Parity proven:** phase Next, target the 001 acceptance rows AC-001 to AC-008 Met. Status: Planned. Evidence: parity-check baseline and latency report committed under phase 001.
+**Parity proven:** phase Done, target the 001 acceptance rows AC-001 to AC-008 Met. Status: Done. Evidence: phase 001 is Complete in the parent Phase Documentation Map; its parity-check baseline and latency report are recorded in `001-trigger-index-replacement/`.
 
-**Consumers rewired:** phase Later, target the 002 residue sweep empty outside the mcp-server tree. Status: Planned. Evidence: sweep output and the owner-by-owner reconciliation.
+**Consumers rewired:** phase Done, target the 002 residue sweep empty outside the mcp-server tree. Status: Done. Evidence: sweep live 0 with 79 reasoned exemptions, and `002-memory-consumer-rewire/owner-reconciliation.json` covering 588 consumer files.
 
-**Server removed:** phase Later, target every runtime boots with no daemon and the advisor embedder still resolves. Status: Planned. Evidence: five config roots inspected, clean session boot per runtime.
+**Server removed:** phase Done, target every runtime boots with no daemon and the advisor embedder still resolves. Status: Done. Evidence: grep count 0 for the server in all five config roots; five cold boots with no memory process, no memory mention or timeout notice and no launcher lock directory; a live advisor scored recommendation exit 0; the closing sweep live 0 across 3,171 paths now including `mcp-server`. The removal is partial under option A — the package survives as the spec-kit engine at 333 import-closed files.
 
-**Corpus retrofitted:** phase Later, target zero residue and unchanged body preimages across the active corpus. Status: Planned. Evidence: retrofit rescan and preimage manifest.
+**Corpus retrofitted:** phase Now, target zero residue and unchanged body preimages across the active corpus. Status: Planned. Evidence: retrofit rescan and preimage manifest.
 <!-- /ANCHOR:milestones-targets -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 
 **Live server during phase 001:** needed by the parity harness, owner phase 001. Status: Ready. Risk and mitigation: the daemon flaps, so an unavailable live arm is blocked, not green, and a captured baseline with availability metadata stands in.
 
-**Continuity writer decision:** needed by phase 002 and consumed by phase 004, owner phase 002. Status: Open. Risk and mitigation: a read-only index cannot write frontmatter, so the writer is a P0 requirement with atomic same-directory semantics named before any rewire.
+**Continuity writer decision:** needed by phase 002 and consumed by phase 004, owner phase 002. Status: Ready. Risk and mitigation: settled on `generate-context.js` as the packet-local writer, exercised with no daemon in both phases — exit 0 with the graph-metadata refresh logged.
 
-**Shared embedding socket ownership:** needed by phase 003, owner phase 002. Status: Open. Risk and mitigation: the skill advisor shares the HF socket, so the split is proven by the advisor resolving its embedder before deletion starts.
+**Shared embedding socket ownership:** needed by phase 003, owner phase 002. Status: Ready. Risk and mitigation: the advisor is the surviving owner and resolves its embedder with the engine gone, proven by a live scored recommendation and the two-launcher socket test, 3 passed 2 skipped. Open follow-on: nothing spawns the shared model server by default now, which is a decision rather than a break.
 
 **Deep-loop runtime fix:** needed by any further fan-out research on this packet, owner system-deep-loop packet 040. Status: Ready. Risk and mitigation: landed and tested; sibling-phase runs need live locks to coexist.
 <!-- /ANCHOR:dependencies -->

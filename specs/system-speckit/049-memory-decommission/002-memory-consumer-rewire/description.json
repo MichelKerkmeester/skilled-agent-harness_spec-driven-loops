@@ -1,23 +1,15 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/049-memory-decommission/002-memory-consumer-rewire",
-  "description": "Repoint AGENTS.md Gate 1 and every external consumer at the new retrieval path while the old surface still exists.",
+  "description": "427 files reference the memory MCP surface",
   "keywords": [
-    "repoint",
-    "agents",
-    "gate",
-    "every",
-    "external",
-    "consumer",
-    "new",
-    "retrieval",
-    "path",
-    "while",
-    "old",
-    "surface",
-    "still",
-    "exists"
+    "files",
+    "reference",
+    "memory",
+    "mcp",
+    "surface"
   ],
-  "lastUpdated": "2026-09-02T11:13:08.389Z",
+  "lastUpdated": "2026-09-03T08:07:28.123Z",
   "specId": "002",
   "folderSlug": "memory-consumer-rewire",
   "parentChain": [
@@ -25,6 +17,5 @@
     "049-memory-decommission"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

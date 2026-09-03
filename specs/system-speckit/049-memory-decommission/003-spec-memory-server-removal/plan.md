@@ -66,7 +66,7 @@ Staged deletion behind seam checks. Each stage is one reviewable commit, and no 
 the seam check for the surface it is about to touch has passed on the current tree.
 
 ### Key Components
-- **Stage 1, the server tree**: `.opencode/skills/system-spec-kit/mcp-server/` removed as one unit, then its workspace, bin and script entries and its server-only lock and package entries
+- **Stage 1, the engine inside the package**: every module under `.opencode/skills/system-spec-kit/mcp-server/` unreachable from the surviving entry points removed, the API barrel pruned, the `context-server` and `spec-memory` bin entries and the `./server` export dropped, the build kept green
 - **Stage 2, launchers and plugin and hooks**: the two bins, the memory allowlists inside the retained session proxy, the plugin, the hook adapters and the memory-only plugin tests and playbooks
 - **Stage 3, config roots and env rows**: the registration and tool grants in all five runtime roots, then the server-only `.env.example` and `ENV-REFERENCE.md` rows, launcher leases, orphan and session cleanup branches and obsolete memory routes
 - **Stage 4, catalogs and playbooks**: the install and catalog entries and the documentation packages for an engine that no longer exists

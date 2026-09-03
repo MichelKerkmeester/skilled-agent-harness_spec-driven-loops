@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory",
-  "description": "Phase 2: legacy-memory-surface-inventory",
+  "description": "Phases 002 and 003 were scoped against a parent estimate of roughly 167 logical consumers, a figure derived by judgment rather than by scanning",
   "keywords": [
-    "phase",
-    "legacy-memory-surface-inventory"
+    "phases",
+    "scoped",
+    "against",
+    "parent",
+    "estimate",
+    "roughly",
+    "logical",
+    "consumers",
+    "figure",
+    "derived",
+    "judgment",
+    "rather",
+    "scanning"
   ],
-  "lastUpdated": "2026-09-02T16:29:04.305Z",
+  "lastUpdated": "2026-09-02T17:55:00.159Z",
   "specId": "006",
   "folderSlug": "legacy-memory-surface-inventory",
   "parentChain": [
@@ -13,6 +25,5 @@
     "049-memory-decommission"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

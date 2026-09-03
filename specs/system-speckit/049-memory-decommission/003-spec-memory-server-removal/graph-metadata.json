@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,17 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "lib/test-helpers/env-snapshot.ts",
+      "mcp-server/scripts/tests/resource-map-extractor.vitest.ts",
+      "core/config.ts",
+      "data/README.md",
+      "scripts/core/workflow.ts",
+      "shared/embeddings/adapter.ts",
+      "shared/ipc/socket-server.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/api/index.ts",
       ".claude/mcp.json",
-      ".opencode/bin/system-spec-memory-launcher.cjs",
-      ".opencode/plugins/system-spec-memory.js",
-      "specs/system-speckit/049-memory-decommission/006-legacy-memory-surface-inventory/research/lineages/luna-max/research.md",
-      ".opencode/bin/spec-memory.cjs",
-      ".opencode/bin/lib/launcher-session-proxy.cjs",
       ".codex/config.toml",
       ".cursor/mcp.json",
       ".pi/mcp.json",
-      "mcp-server/ENV-REFERENCE.md",
-      ".opencode/commands/create/assets/create-skill-auto.yaml"
+      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
+      "scripts/deploy-mcp.sh"
     ],
     "entities": [
       {
@@ -97,33 +100,57 @@
         "source": "derived"
       },
       {
+        "name": "env-snapshot.ts",
+        "kind": "code",
+        "path": "lib/test-helpers/env-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map-extractor.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/scripts/tests/resource-map-extractor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "data/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adapter.ts",
+        "kind": "code",
+        "path": "shared/embeddings/adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "socket-server.ts",
+        "kind": "code",
+        "path": "shared/ipc/socket-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/api/index.ts",
+        "source": "derived"
+      },
+      {
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "system-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/system-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "system-spec-memory.js",
-        "kind": "code",
-        "path": ".opencode/plugins/system-spec-memory.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/spec-memory.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-session-proxy.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
         "source": "derived"
       },
       {
@@ -133,15 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp-server/ENV-REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "create-skill-auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create-skill-auto.yaml",
+        "name": "deploy-mcp.sh",
+        "kind": "script",
+        "path": "scripts/deploy-mcp.sh",
         "source": "derived"
       },
       {
@@ -185,29 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Delete",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The subsystem's cost is structural, not incidental: a background service that flaps, 41 tools loaded",
     "created_at": "2026-09-02T11:04:52Z",
-    "last_save_at": "2026-09-02T20:08:03.303Z",
+    "last_save_at": "2026-09-03T21:28:15.876Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e30748f8919a3959e3a710e14186d685ed6e6b20291be9804f7b83d1acca1b18",
+    "source_fingerprint": "sha256:e399f63d87b8131dace349f51f61a7e6d965fb26840957dde19263c7a75c097d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5a37b4953ef083e109819ecce7505de64473214dbddecbf34212068b0fa6b90a",
-      "plan.md": "52b0e9d3515fb33fb9defd38095079477e743e662dc65ea7de8072a5b3be5634",
-      "tasks.md": "36a85a22271420986a05c0981d145298b6efc8411c699700c836c3408919957f",
-      "implementation-summary.md": "e0359068c2568ade51dd3dc41661e8e3f5232354c4bb0728e4afdcbe631879b2"
+      "spec.md": "c4bf40a921bb7a9e0b5b71f4e2c84494e30e512f6f9df0fef4a2bd5dd433fa42",
+      "plan.md": "b5cd7e85a46417deb1478993e5e03eb86f119dcbb53c5cfdb621c98ac173a822",
+      "tasks.md": "3a78f3ea0bd664ae7c20a4f8f52f73d1b38fa07f075089c9762afcfc8b6201e5",
+      "implementation-summary.md": "e06d7c318a77982a0ede2758200aca8ea08f58cb2412b8b40c207c83e5dae813"
     },
     "last_active_child_id": null,
     "last_active_at": null
