@@ -118,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -131,6 +125,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The mode ships twenty templates, three colour systems and a corpus validator",
     "created_at": "2026-09-03T07:26:12.232Z",
-    "last_save_at": "2026-09-03T08:04:59.438Z",
+    "last_save_at": "2026-09-03T09:48:40.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +210,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:400325f70680424f6a693b3da8860e5b7ce0ed5b057a828e91fb3c585c677adb",
+    "source_fingerprint": "sha256:80693333017e818440425ae6cc84021270d2b91e2ab4613bce3a6ae2d9a5ffaf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aeb45ea529d6dbc4eb28f867f5b08f7cc6a3a8cc0100d18857b11aade7cdee50",
+      "spec.md": "75746f9f40ce7ab39a59bdf202385958c905134dd1cd1859919b03ffd2950538",
       "plan.md": "365d6ec4a85eacb3847bc7907ea833a1f2d335b24da7522d073c4f7f15e1267f",
       "tasks.md": "d3aa7ad47f9f2a43a23445bd27bc62d01b1a9a88282077a80b4098919c455be3",
-      "implementation-summary.md": "f0516a23f35356992f2a975cdc7dd63af16275826ea29c0c9e77e5305b88cc73",
-      "research/research.md": "bb414b8258d41d02fc3ab4c81cfc1ade422d1d6a88e93a481489449ca847a70f"
+      "implementation-summary.md": "a075599bc77289b2fa80d81b0d67f685994ba7b4294276523d796c8f7f9627c6",
+      "research/research.md": "5b0c65edeb3262aea668a0a7781b20935a773292475fa32b5915052f7f5ddc2b"
     },
     "last_active_child_id": null,
     "last_active_at": null

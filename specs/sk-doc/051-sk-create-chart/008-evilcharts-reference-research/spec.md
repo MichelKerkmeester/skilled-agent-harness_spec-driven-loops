@@ -44,7 +44,7 @@ lineage restores tracked files from `HEAD` and would eat a concurrent session's 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-03 |
 | **Branch** | `worktrees/043-evilcharts-reference-research` |
 | **Parent Spec** | ../spec.md |

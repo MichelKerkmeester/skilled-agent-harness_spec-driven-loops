@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-09-03T00:00:00Z"
     last_updated_by: "phase-8-cross-lineage-synthesis"
     recent_action: "Merged both lineages into one adjudicated set"
-    next_safe_action: "Open the build packet against the synthesis"
+    next_safe_action: "None open. The build packet is authored and running"
     blockers: []
     key_files:
       - "research/research.md"
@@ -23,9 +23,8 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-8-evilcharts-reference-research"
       parent_session_id: null
-    completion_pct: 95
-    open_questions:
-      - "Line weight and glow are a taste question that only renders can settle"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "The copy rule needs no amendment, because the one row that wanted code is rejected on other grounds"
       - "The two lineages contradict each other on five points, and each is resolved or handed over rather than averaged"
@@ -44,9 +43,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Packet** | sk-doc/051-sk-create-chart/008-evilcharts-reference-research |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Delivery** | Research only. Nothing under the chart skill was modified |
-| **Why not complete** | One acceptance row asked for five iterations per lineage and got nine of ten. The research it would have added was covered by the sibling lineage, but the row is not softened to match |
+
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -73,7 +72,7 @@ could stop early.
 | Lineage | Executor | Model | Effort | Iterations |
 | --- | --- | --- | --- | --- |
 | `deepseek-flash-max` | cli-devin | `deepseek-v4-flash-max` | permission-mode lever | 5 of 5 |
-| `glm-flash-xhigh` | cli-pi | `z-ai/glm-5.3-flash` | `xhigh` | 4 of 5 |
+| `glm-flash-xhigh` | cli-pi | `z-ai/glm-5.3-flash` | `xhigh` | 5 of 5 |
 
 The two read different halves of the subject, which is why the merge is worth more than either
 list. One read the React components and the install path. The other found that the library ships
@@ -124,10 +123,12 @@ no errors.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-The GLM lineage is four iterations rather than five. Its missing iteration was the registry and
-install question plus a final sweep of its own list. The other lineage answered that same
-question in full, so the subject is covered across the pair, but no pass re-audited the merged
-list after both finished. The acceptance row that asked for five iterations each stays unmet.
+The GLM lineage reached five on a later day, through the runtime's own resume path rather than a
+hand-written substitute. Its fifth iteration answered the registry question and swept its own
+list. The sweep overturned no verdict and corrected four counts, the largest being the block
+total, which had been overstated by a factor of two. The merged set was re-read against both
+lineages when the cross-lineage document was written, and again when the build plan was authored,
+which is where two errors in it were caught.
 
 The runtime repair lives in this branch. Any other place that dispatches this model family
 through the script carries the same defect until this lands.
