@@ -108,8 +108,11 @@ Three changes are applied, chosen because each closes a defect that exists in th
 each can be proven by observation rather than by argument:
 
 1. **Per-mark hover titles** on the eight forms where direct labelling is weakest. The largest
-   measured gap against upstream, and additive: a `<title>` child of a mark is a native browser
-   tooltip and the mark's accessible name, with no listener, no state and no library.
+   measured gap against upstream, and additive: a `<title>` child of a mark has been widely
+   available since July 2015, is usually displayed as a browser tooltip, and is the mark's
+   accessible name, with no listener, no state and no library. MDN states the usual behaviour
+   rather than guaranteeing a tooltip in every browser, and the corrected wording is in the
+   research prose as of 2026-09-03 [SOURCE: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/title].
 2. **Counted ticks in the candlestick ladder.** The loop accumulated a fractional step, and
    repeated addition drifts. Counting from an integer index is the approach d3 takes.
 3. **Measured legend labels** in the six forms that advanced by a character count times a

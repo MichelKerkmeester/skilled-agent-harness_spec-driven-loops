@@ -12,9 +12,9 @@ _memory:
   continuity:
     packet_pointer: "sk-doc/051-sk-create-chart/007-fidelity-and-library-research"
     last_updated_at: "2026-09-03T00:00:00Z"
-    last_updated_by: "phase-7-second-read"
-    recent_action: "Re-ran every criterion after the second read over the twelve unapplied items"
-    next_safe_action: "Fold the ten corrected citations back into the research prose and the mode references"
+    last_updated_by: "phase-7-citation-fold-back"
+    recent_action: "Folded the ten corrected citations back into the research prose and reconciled T5, T8 and C1"
+    next_safe_action: "None open. The packet is closed unless the operator reopens T10 or C5"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs"
@@ -24,13 +24,13 @@ _memory:
       session_id: "phase-7-fidelity-and-library-research"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "The ten corrected citations are recorded but not yet folded back into the mode references"
+    open_questions: []
     answered_questions:
       - "Three template-level changes were applied and gated"
       - "No library was adopted, and the reason is recorded"
       - "All five contract-level recommendations are decided, and ADR-004 is Accepted"
       - "T10 pattern fills and C5 a diverging system are refused in writing"
+      - "The ten corrections are folded into the research prose, and the mode references carried none of them"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
 # Acceptance Criteria: Fidelity and library research for sk-create-chart
@@ -75,6 +75,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-012 | REQ-004 | Given C1 asks for a narrow-viewport assertion, When the check runs without a browser, Then it fails a template that cannot pan and passes one that can | `narrow-viewport` reports 87 assertions and 0 failures on the corpus, and failed three separate ways on a mutated copy of `scatter.html` before it was restored | Met | - |
 | AC-013 | REQ-004 | Given a form is handed more data than its documented shape, When it draws, Then it says so in the figure | Fixture past both ceilings: `scatter` printed the notice at 28 points and `heat-matrix` at 112 cells, each growing its own frame. The shipped data triggers neither | Met | - |
 | AC-014 | REQ-002 | Given the library half of the research ran without web tooling, When it is re-run on an executor with live search, Then every upstream URL it cites is marked resolved or unverified | Ten iterations of `/deep:research` on `cli-codex gpt-5.6-luna` with `webSearch: live`, in worktree `worktrees/042-chart-upstream-citation-verify`. All 43 cited URLs carry a verdict: 31 VERIFIED, 10 CORRECTED, 2 UNVERIFIABLE. Ledger at `research/verification-2026-09-03/lineages/codex-luna-max/research.md` | Met | - |
+| AC-015 | REQ-002 | Given ten citations were corrected and two could not be reached, When the corrections are folded back, Then no document outside the two research ledgers states a corrected claim | All ten read as corrected in `research/lineages/deepseek-flash-max/research.md`, each marked `CORRECTED 2026-09-03`, and both unreachable sources are marked `UNVERIFIABLE` beside the claim they carried. A grep for `aria.enabled`, `labelMaxLength`, `colorarchive`, `figviz`, the CSS-Tricks URL, the Vega release URL and the `d3-array#ticks` fragment over the mode and the packet returns only the ledgers and the corrected prose that names them | Met | - |
+| AC-016 | REQ-003 | Given the ledger reads three checklist items more strictly than this phase recorded, When the packet record is reconciled, Then each reads partial with its reason | T5 partial at `scatter.html:77`, `heat-matrix.html:82` and `waterfall.html:77`, T8 partial by the decision in ADR-006 rather than by omission, and C1 partial as `scripts/check-corpus.cjs:476-485` already states. The three-row table is in `implementation-summary.md` | Met | ADR-006 |
 
 ### Status values
 
@@ -105,6 +107,10 @@ The renumbering and the ten-iteration research loop carried the first pass, and 
 template-level recommendations were applied and gated there. The second read has since closed the
 remaining twelve: nine are applied and two are refused in writing, and no item is left as a silent
 skip. Every claim above is pinned to an observation made from the final state.
+
+The corrections that re-run produced are now in the prose they correct, and the three checklist items
+the ledger read more strictly read partial here, with T8's partial standing as ADR-006's decision
+rather than as a gap.
 
 The last open criterion is now closed. The library half of the research was re-run on 2026-09-03 on
 an executor with live web search, in its own worktree as ADR-005 requires, and every URL it cited

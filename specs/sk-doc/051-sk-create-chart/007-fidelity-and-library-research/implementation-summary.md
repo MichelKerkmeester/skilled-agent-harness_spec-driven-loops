@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/051-sk-create-chart/007-fidelity-and-library-research"
-    last_updated_at: "2026-09-02T00:00:00Z"
-    last_updated_by: "phase-7-fidelity"
-    recent_action: "Applied three template-level improvements and recorded the rest"
-    next_safe_action: "Decide the five contract-level recommendations in ADR-004"
+    last_updated_at: "2026-09-03T00:00:00Z"
+    last_updated_by: "phase-7-citation-fold-back"
+    recent_action: "Folded the ten corrected citations back into the research prose"
+    next_safe_action: "None open. The packet is closed unless the operator reopens T10 or C5"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/assets/templates"
@@ -24,12 +24,11 @@ _memory:
       session_id: "phase-7-fidelity-and-library-research"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Five contract-level recommendations await an operator decision"
-      - "Seven template-level recommendations are recorded and unapplied"
+    open_questions: []
     answered_questions:
       - "The overviews number from one, and seven citations were corrected with them"
       - "No library is adopted, because the no-dependency clause is load-bearing"
+      - "The ten corrected upstream citations now read as corrected in the research prose"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -90,7 +89,7 @@ Three further citations name `SKILL.md` sections, which did not shift, and were 
 
 | Change | Files | Finding |
 |--------|-------|---------|
-| Per-mark `<title>` hover text | scatter, heat-matrix, calendar-grid, candlestick, box-plot, treemap, waterfall, parallel-axes | The largest measured gap: every surveyed library ships hover by default and the corpus shipped none |
+| Per-mark `<title>` hover text | scatter, heat-matrix, calendar-grid, candlestick, box-plot, treemap, waterfall, parallel-axes | The largest measured gap: every surveyed library ships hover, Chart.js with it on by default, and the corpus shipped none. The re-verification withdrew the claim that Plotly and ECharts default it on, which the pages cited never carried |
 | Counted rather than accumulated ticks | candlestick | The loop added a fractional step repeatedly, and the drift reached the label |
 | Measured rather than estimated label widths | stacked-bars, stacked-area, waterfall, candlestick, unit-grid, unit-ring | A character count times a constant assumes a fixed advance, which this font stack does not give |
 
@@ -155,9 +154,29 @@ evidence about a file that ships none, and two of the corrections exist because 
 treated one as the other.
 
 The same run re-read the shipped corpus at `756a7fcd4c` against the T-and-C checklist and reached
-the same verdicts this phase recorded, with two it reads more strictly. It calls T5 partial,
-because several descriptions still state facts derived from the data block that will not follow an
-edit to it, and it calls C1 partial for the reason the limitation below already gives.
+the same verdicts this phase recorded, with three it reads more strictly. Those three readings are
+now the record here rather than a note in someone else's ledger.
+
+| Item | Recorded here | The ledger reads | Standing |
+|------|---------------|------------------|----------|
+| T5 | Applied | Partial. The series-to-swatch sentence landed on all five detached-key forms, at `candlestick.html:76`, `grouped-bars.html:75`, `stacked-area.html:78`, `stacked-bars.html:77` and `waterfall.html:77`, and several `<desc>` texts still state facts read off the data block that will not follow an edit to it, at `scatter.html:77`, `heat-matrix.html:82` and `waterfall.html:77` | Partial and open. The mapping half shipped, the data-derived half did not |
+| T8 | Applied, in a different shape | Partial. `calendar-grid.html:229-239` and `heat-matrix.html:219-223` carry five discrete swatches, not a continuous ramp | Partial by decision. ADR-006 refuses a gradient over a five-band encoding because a continuous bar claims a resolution the encoding does not have |
+| C1 | Applied | Partial. `scripts/check-corpus.cjs:476-485` says in the script itself that the narrow check reads the stylesheet and does not verify phone legibility | Partial and stated. The check proves the affordance is declared, not that the chart reads at the floor |
+
+### The citation fold-back, 2026-09-03
+
+The corrections have since been folded into the prose they came from. `research/lineages/deepseek-flash-max/research.md`
+now carries all ten inline, each marked `CORRECTED 2026-09-03` beside the claim it changes, and both
+unreachable sources are marked `UNVERIFIABLE` beside the claim they used to carry rather than deleted.
+Two claims were softened rather than re-sourced, because nothing else supports them: the Vega ARIA-bloat
+concern, which rested on a release note that would not serve, and the Plotly hover default, which the
+axes page never carried. The ten per-iteration records under that lineage's `iterations/` were left as
+written, because they are the log of what each iteration said, and the synthesis says so at its head.
+
+The mode's own references needed no change. None of `SKILL.md`, `README.md`, `references/catalog.md`,
+`references/color-system.md` or `references/template-contract.md` cites an upstream URL or restates a
+corrected claim, which a grep for each wrong token across the mode confirms. The packet version stays
+at `1.1.0.0` because nothing a user of the mode reads has changed.
 
 Nothing was committed by the first pass.
 <!-- /ANCHOR:what-built -->
@@ -227,6 +246,8 @@ Added by the second read on 2026-09-03. Every command below was run and its outp
 | Proof the ceiling notice fires and stays quiet | a 28-point scatter and a 112-cell heat matrix each grew their frame and printed the notice. The shipped data produced none |
 | Phone-width screenshots at 390 by 900 | `heat-matrix` before the change squashed the whole grid into the card at roughly 6px labels. After, it keeps its drawn size, the figure region carries a scrollbar and the new ramp legend reads `from 6 … up to 101` |
 | `hvr_scan.py` on every markdown file the second read touched | zero hard blockers on each, against a zero baseline |
+| Residual grep for each corrected token over the mode and the packet, 2026-09-03 | `aria.enabled`, `labelMaxLength`, `colorarchive`, `figviz`, the CSS-Tricks URL, the Vega release URL and the `d3-array#ticks` fragment appear only inside the two research ledgers and the corrected prose that names them |
+| `hvr_scan.py` on every file the fold-back touched | no file gained a hard blocker. `research.md` went from 157 to 152, and the four packet documents held at their own baselines |
 
 The corpus check opens every file in a headless browser under `--render` and asserts the figure
 region holds real elements. It does not judge whether the picture is right, which is why the three
@@ -245,11 +266,12 @@ inexact. The formatter rounds at six decimals and the reproduction above now pri
 **The first research had no live web tooling on its executor, and the re-run has now covered it.**
 The fan-out runtime rejects a live web-search policy for `cli-devin`, so the original loop ran
 without that flag and its upstream half rested on the model's own knowledge of those documents. The
-2026-09-03 re-run on `cli-codex` fetched all forty-three of them. Ten needed correcting, and two —
-a CSS-Tricks article behind a 403 and the Vega v5.11.0 release page, which would not serve — are
-still unverified rather than wrong. The corrections are recorded in the verification ledger and
-have not yet been folded back into the first research's prose, so that file still reads as first
-written.
+2026-09-03 re-run on `cli-codex` fetched all forty-three of them. Ten needed correcting, and two,
+a CSS-Tricks article behind a 403 and the Vega v5.11.0 release page which would not serve, are
+still unverified rather than wrong. All ten corrections are now in the research prose, and the two
+unverifiable sources are marked there rather than removed. Neither one can be closed from here:
+whether the CSS-Tricks comparison agrees is unknown while the page returns 403, and the historical
+Vega release wording stays unproven.
 
 **A concurrent agent lost uncommitted work to this phase's dispatch.** The fan-out runtime
 snapshots dirty paths before dispatch, then restores from `HEAD` any tracked file that becomes

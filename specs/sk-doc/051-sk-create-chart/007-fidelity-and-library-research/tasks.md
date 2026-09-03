@@ -84,6 +84,8 @@ or refused in writing. The research re-run is deliberately not in this phase.
 - [x] T025 Bump the packet version and write the changelog entry (SKILL.md, README.md, references/, scripts/README.md, changelog/v1.1.0.0.md)
 - [x] T026 Re-run the corpus check with `--render` from the final state and read the `RESULT:` line
 - [x] T027 Re-run the library half of the research on an executor with live web search (research/verification-2026-09-03/lineages/codex-luna-max/research.md)
+- [x] T028 Fold the ten corrections and the two unverifiable sources back into the research prose, and grep every wrong token to zero outside the ledgers (research/lineages/deepseek-flash-max/research.md, decision-record.md)
+- [x] T029 Record the three items the ledger reads more strictly than this phase did, T5 and C1 as partial in fact and T8 as partial by the decision in ADR-006 (goal.md, acceptance-criteria.md, implementation-summary.md)
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -91,7 +93,7 @@ or refused in writing. The research re-run is deliberately not in this phase.
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`. T027 closed on 2026-09-03 with a ten-iteration live-search run in its own worktree
+- [x] All tasks marked `[x]`. T027 closed on 2026-09-03 with a ten-iteration live-search run in its own worktree, and T028 and T029 closed the same day by folding its corrections back
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->

@@ -49,6 +49,7 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/verification-2026-09-03/lineages/codex-luna-max/research.md",
+      "research/lineages/deepseek-flash-max/research.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
@@ -202,7 +203,7 @@
     ],
     "causal_summary": "Three reference overviews start at `## 0",
     "created_at": "2026-09-02T18:50:53Z",
-    "last_save_at": "2026-09-03T04:09:57.667Z",
+    "last_save_at": "2026-09-03T04:20:42.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8a74ec658c46884886eee2a15817949cb6be4d1476cd56fbafdd639a7ee4349",
+    "source_fingerprint": "sha256:f4891cde58ccddad99e172598d37bac7954076252521143d714a9ff712da8075",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0c82c6178065a7e6012040f8b9c1730a4998b4f204ddebc7d3ec344dfe7ef78",
       "plan.md": "29f146c7b340171381e6f1788f8df207aae9867641c7c4ec81ffc0887e7b3fce",
-      "tasks.md": "a7eff594f5da796533d57dd38f7fc3521db21fe03cbc4d60a31ff9513bfee7d3",
-      "decision-record.md": "42690d650f5057f039b3b4fe4c70ab5dbdd9a98ea832e7b90c369f684aa09dd4",
-      "implementation-summary.md": "399fb0f1eb3919776f518ecdef0117ff6722d26ce22b3a767d1b76098e796658"
+      "tasks.md": "e419a98b008149b717a76b8404f4313629313d1e64c1c59161093e6749ac6e80",
+      "decision-record.md": "18cfe525c2f8f0915b02403fd48c14e719fa93424fe1ab92c126b0ebd1cbbd5c",
+      "implementation-summary.md": "1aca72de908e63848f16969491f050eb3d69dc1cdbd9d1c0cacf0399400f7289"
     },
     "last_active_child_id": null,
     "last_active_at": null
