@@ -32,7 +32,7 @@ The `install-guides/` directory is the central hub for all OpenCode setup and in
 |----------|-------|---------|
 | Guide files | 5 | 1 regular file + 4 symlinks in this directory |
 | Install scripts | 6 | 3 regular files + 3 symlinks in `install-scripts/` |
-| Registered MCP servers | 3 | Code Mode, Spec Kit Memory, Skill Advisor (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
+| Registered MCP servers | 2 | Code Mode, Skill Advisor (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
 
 ### What this guide covers
@@ -51,7 +51,7 @@ All 5 `.md` guide entries in this directory (1 regular file + 4 symlinks), group
 | **MCP Guides** | | |
 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) | Symlink | Chrome DevTools MCP server (bdg CLI) |
 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) | Symlink | Code Mode orchestration MCP |
-| [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) | Symlink | Spec Kit Memory MCP server |
+| [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) | Symlink | Retired. The Spec Kit Memory MCP server is being decommissioned; retrieval now runs off the trigger index and the ripgrep recipes in `references/retrieval/retrieval-conventions.md` |
 | [Skill Advisor INSTALL_GUIDE](../skills/system-skill-advisor/INSTALL-GUIDE.md) | Skill-local | Standalone `system_skill_advisor` MCP server install + tuning |
 | **Automation** | | |
 | [install-scripts/](./install-scripts/) | Directory | Automated install scripts (7 files) |
@@ -81,7 +81,7 @@ My environment:
 - Platform: [macOS / Linux / Windows WSL]
 - LLM Provider: [Claude / GitHub Copilot / OpenAI]
 - Install Mode: [Full / Minimal / Missing only / Custom]
-- Components (if custom): [Code Mode, Spec Kit Memory, Skill Advisor, Chrome DevTools CLI]
+- Components (if custom): [Code Mode, Skill Advisor, Chrome DevTools CLI]
 
 Start with Pre-Flight Check to detect what's already installed, then guide me through each phase.
 ```
@@ -116,7 +116,7 @@ echo ""
 | Mode             | Description                                 | Use When                       |
 | ---------------- | ------------------------------------------- | ------------------------------ |
 | **Full**         | Install all components, reinstall if exists | Fresh setup or reset           |
-| **Minimal**      | Code Mode + Spec Kit Memory only            | Quick start, limited resources |
+| **Minimal**      | Code Mode + Skill Advisor only              | Quick start, limited resources |
 | **Missing only** | Skip already-installed components           | Recommended for most cases     |
 | **Custom**       | Select specific components                  | Targeted installation          |
 
@@ -144,7 +144,7 @@ Answer these questions to configure your installation:
 - **Claude (Anthropic)** → Requires `ANTHROPIC_API_KEY`
 - **GitHub Copilot** → Requires GitHub authentication
 - **OpenAI / Codex** → Requires `OPENAI_API_KEY`
-> **Note:** Spec Kit Memory embeddings use a local-first `auto` cascade: Ollama (default, local daemon when reachable), HF Local (pure-Node local fallback), Voyage (cloud, opt-in via `VOYAGE_API_KEY`), and OpenAI (cloud, opt-in via `OPENAI_API_KEY`). The default `auto` cascade works out of the box with no API key. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
+> **Note:** The shared embedding stack uses a local-first `auto` cascade: Ollama (default, local daemon when reachable), HF Local (pure-Node local fallback), Voyage (cloud, opt-in via `VOYAGE_API_KEY`), and OpenAI (cloud, opt-in via `OPENAI_API_KEY`). The default `auto` cascade works out of the box with no API key. See [Section 9](#9-phase-2-local-embeddings) for details.
 
 ### Windows-Specific Configuration
 
@@ -186,7 +186,7 @@ Some MCP servers use native Node.js modules that require compilation:
 2. Or run: `npm install --global windows-build-tools` (requires admin)
 
 This is needed for:
-- `better-sqlite3` (Memory MCP server)
+- `better-sqlite3` (Skill Advisor MCP server)
 - `sqlite-vec` (Vector search extension)
 
 </details>
@@ -212,7 +212,7 @@ git checkout -- script.sh
 
 ### Q4: Component Bundle
 - **Full** → All components (3 native MCP servers + CLI tools + plugins)
-- **Minimal** → Code Mode + Spec Kit Memory (Skills are built-in)
+- **Minimal** → Code Mode + Skill Advisor (Skills are built-in)
 - **Custom** → Select specific components from matrix below
 
 ### Validation: `environment_check`
@@ -243,20 +243,20 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 **Notes:**
 - Node.js 22+ recommended for best performance
 - Python 3.10+ used by the Skill Advisor Python shim and SpecKit shell/Python scripts
-- Spec Kit Memory local embeddings resolve automatically through the active provider profile.
+- Shared local embeddings resolve automatically through the active provider profile.
 
 ### 6.2 Resource Requirements
 
 | Bundle   | RAM  | Disk | Network  | Components                                |
 | -------- | ---- | ---- | -------- | ----------------------------------------- |
-| Minimal  | 4GB  | 2GB  | Optional | Code Mode + Spec Kit Memory               |
+| Minimal  | 4GB  | 2GB  | Optional | Code Mode + Skill Advisor                 |
 | Standard | 8GB  | 5GB  | Required | + Skill Advisor                           |
 | Full     | 16GB | 10GB | Required | All + Chrome DevTools CLI                 |
 
 **Disk breakdown:**
 - MCP servers: ~500MB
 - HF Local fallback model (nomic-embed-text-v1.5, ONNX q8): ~140MB (downloaded only if the HF Local fallback is used)
-- Spec Kit Memory database: ~50MB typical (grows with rows)
+- Trigger index (`.opencode/skills/system-spec-kit/data/trigger-index.json`): ~4MB, regenerated from spec-doc frontmatter
 
 **Quick Verification:**
 ```bash
@@ -272,7 +272,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Component                          | Type       | Purpose                                                                    | Dependencies                            |
 | ---------------------------------- | ---------- | -------------------------------------------------------------------------- | --------------------------------------- |
 | Code Mode                          | MCP Server | External tool orchestration (GitHub, your CMS, etc.)                       | Node.js 18+                             |
-| Spec Kit Memory (`system-spec-memory`) | MCP Server | Conversation context preservation                                          | Node.js 20.11+                          |
+| Trigger index + ripgrep            | Built-in   | Spec-folder retrieval and Gate 1 trigger lookup, no server                  | Node.js 20.11+, ripgrep 14+             |
 | Skill Advisor (`system_skill_advisor`) | MCP Server | Native advisor_recommend + skill_graph_* (9 tools)                         | Node.js 20.11+                          |
 | Native Skills                      | Built-in   | Skill discovery from .opencode/skills/                                      | None (OpenCode v1.0.190+)               |
 | Chrome DevTools CLI                | CLI Tool   | Browser debugging & automation                                              | Node.js 18+                             |
@@ -296,16 +296,16 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
          │                            │                            │
          ▼                            ▼                            ▼
     ┌─────────────────────────────────────────────────────────────────────┐
-    │                     3 NATIVE MCP SERVERS                            │
+    │                     2 NATIVE MCP SERVERS                            │
     │                   (configured in opencode.json)                      │
     └─────────────────────────────────────────────────────────────────────┘
                                        │
-         ┌─────────────────────────────┼──────────────────┐
-         ▼                             ▼                  ▼
-   ┌───────────┐               ┌───────────┐       ┌───────────┐
-   │   Code    │               │ Semantic  │       │   Skill   │
-   │   Mode    │               │  Memory   │       │  Advisor  │
-   └─────┬─────┘               └───────────┘       └───────────┘
+         ┌─────────────────────────────┴──────────────────┐
+         ▼                                                ▼
+   ┌───────────┐                                   ┌───────────┐
+   │   Code    │                                   │   Skill   │
+   │   Mode    │                                   │  Advisor  │
+   └─────┬─────┘                                   └───────────┘
          │
          ▼
    ┌───────────────────────────────────┐
@@ -322,19 +322,18 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 **Full Bundle** (all components):
 ```
-Prerequisites → Local Embeddings → Code Mode → Spec Kit Memory →
+Prerequisites → Local Embeddings → Code Mode →
 Skill Advisor → Chrome DevTools CLI →
 Antigravity Auth → OpenAI Codex Auth
 ```
 
 **Minimal Bundle** (essential only):
 ```
-Prerequisites → Code Mode → Spec Kit Memory
+Prerequisites → Code Mode → Skill Advisor
 ```
 
 **Custom Bundle** - Select from:
 - [ ] Code Mode (foundation for external tools)
-- [ ] Spec Kit Memory (context preservation)
 - [ ] Skill Advisor (native advisor_recommend + skill_graph_* — 8 tools)
 - [ ] Chrome DevTools CLI (browser debugging)
 - [ ] Antigravity Auth (Google OAuth)
@@ -429,21 +428,60 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 
 ## 9. PHASE 2: LOCAL EMBEDDINGS
 
-Spec Kit Memory resolves the active local embedding profile automatically. The HF Local ONNX profile runs on Node.js without external services. When an Ollama daemon is reachable on `localhost:11434`, the cascade can promote to Ollama.
+The shared embedding stack at `.opencode/skills/system-spec-kit/shared/embeddings/` resolves the active local embedding profile automatically. Skill Advisor and the retained model-server consumers read it. The HF Local ONNX profile runs on Node.js without external services. When an Ollama daemon is reachable on `localhost:11434`, the cascade can promote to Ollama.
 
-No separate local model service is required for Memory MCP embeddings. Continue to Phase 3 for MCP server setup.
+| Provider | When to use | Dimension | Requirements |
+|----------|-------------|-----------|------------|
+| **Ollama** | Local default (daemon) | 768 | Ollama on `localhost:11434` |
+| **HF Local** | Local fallback, Node.js only | 768 | Node.js only |
+| **OpenAI** | Cloud opt-in | 1536/3072 | `OPENAI_API_KEY` |
+| **Voyage** | Cloud opt-in | 1024 | `VOYAGE_API_KEY` |
+
+**Default provider:** `auto`. The active default is **Ollama** when its local daemon is reachable; otherwise the cascade falls back to local **HF Local** (pure-Node), then to opt-in cloud. Cloud (OpenAI/Voyage) is never auto-selected silently — it requires an explicit key or `EMBEDDINGS_PROVIDER`.
+
+**Provider selection (local-first cascade order when `EMBEDDINGS_PROVIDER=auto` or unset):**
+1. Explicit `EMBEDDINGS_PROVIDER` env var (if set and not `auto`)
+2. **Ollama** (default) if the local daemon is reachable on `localhost:11434`
+3. **HF Local** (pure-Node local fallback) when Ollama is unavailable
+4. **OpenAI** when `OPENAI_API_KEY` is set (cloud, opt-in)
+5. **Voyage** when `VOYAGE_API_KEY` is set (cloud, opt-in)
+
+```bash
+# Provider selection (ollama|hf-local|voyage|openai|auto)
+export EMBEDDINGS_PROVIDER=auto  # Default: auto-cascade provider selection
+
+# Voyage config (cloud opt-in)
+export VOYAGE_API_KEY=pa-...
+export VOYAGE_EMBEDDINGS_MODEL=voyage-4  # Default
+
+# OpenAI config (if using OpenAI)
+export OPENAI_API_KEY=sk-...
+export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default
+
+# HF Local config (pure-Node local fallback provider; nomic-only menu)
+export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Default
+export HF_EMBEDDINGS_DTYPE=q8  # Default (also: fp32, fp16, q4, int8, uint8, bnb4)
+
+# Ollama config (local daemon opt-in)
+export OLLAMA_EMBEDDINGS_MODEL=nomic-embed-text-v1.5  # Default
+```
+
+Spec-folder retrieval does not use any of this. It is lexical and file-based (Section 10.2). Embeddings exist here for the advisor and the retained model-server consumers only.
+
+No separate local model service is required. Continue to Phase 3 for MCP server setup.
 
 ---
 
 ## 10. PHASE 3: MCP SERVERS
 
-> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"system-spec-memory"' opencode.json && echo "✅ All configured"`. If all configured, skip to Phase 4.
+> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"system_skill_advisor"' opencode.json && echo "✅ All configured"`. If all configured, skip to Phase 4.
 
 ### Installation Order (Important!)
 
 1. **Code Mode** (foundation, install FIRST)
-2. Spec Kit Memory (context preservation, **now supports multiple embedding providers**)
-3. Skill Advisor (native skill recommendation)
+2. Skill Advisor (native skill recommendation)
+
+Spec-folder retrieval is not on this list. It needs no server — see Section 10.2.
 
 ---
 
@@ -505,106 +543,43 @@ npx utcp-mcp --help >/dev/null 2>&1 && test -f .utcp_config.json && echo "✅ PA
 
 ---
 
-### 10.2 Spec Kit Memory (Context Preservation)
+### 10.2 Spec-Folder Retrieval (No Server)
 
-Spec Kit Memory provides conversation context preservation with vector search.
-
-> **Detailed Guide:** See [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) for comprehensive configuration and troubleshooting.
-
-**V12.0: Multiple Embedding Providers**
-
-Spec Kit Memory now supports four providers in cascade:
-
-| Provider | When to use | Dimension | Requirements |
-|----------|-------------|-----------|------------|
-| **Ollama** | Local default (daemon) | 768 | Ollama on `localhost:11434` |
-| **HF Local** | Local fallback, Node.js only | 768 | Node.js only |
-| **OpenAI** | Cloud opt-in | 1536/3072 | `OPENAI_API_KEY` |
-| **Voyage** | Cloud opt-in | 1024 | `VOYAGE_API_KEY` |
-
-**Default provider:** `auto`. The active default is **Ollama** when its local daemon is reachable; otherwise the cascade falls back to local **HF Local** (pure-Node), then to opt-in cloud. Cloud (OpenAI/Voyage) is never auto-selected silently — it requires an explicit key or `EMBEDDINGS_PROVIDER`.
-
-**Provider selection (local-first cascade order when `EMBEDDINGS_PROVIDER=auto` or unset):**
-1. Explicit `EMBEDDINGS_PROVIDER` env var (if set and not `auto`)
-2. **Ollama** (default) if the local daemon is reachable on `localhost:11434`
-3. **HF Local** (pure-Node local fallback) when Ollama is unavailable
-4. **OpenAI** when `OPENAI_API_KEY` is set (cloud, opt-in)
-5. **Voyage** when `VOYAGE_API_KEY` is set (cloud, opt-in)
-- Manual override: `export EMBEDDINGS_PROVIDER=ollama|hf-local|voyage|openai|auto`
+Retrieval over spec folders and skill docs is file-based. There is no server to register, no database to create and no daemon to keep warm: a committed trigger index answers Gate 1 lookups, and ripgrep answers free-text queries.
 
 **Location:** Bundled in project at `.opencode/skills/system-spec-kit/`
 
-**Configure in `opencode.json`:**
-```json
-{
-  "mcp": {
-    "system-spec-memory": {
-      "command": "node",
-      "args": [".opencode/bin/system-spec-memory-launcher.cjs"],
-      "env": {
-        "EMBEDDINGS_PROVIDER": "auto"
-      }
-    }
-  }
-}
-```
-
-**Optional environment variables:**
+**Gate 1 trigger lookup:**
 ```bash
-# Provider selection (ollama|hf-local|voyage|openai|auto)
-export EMBEDDINGS_PROVIDER=auto  # Default: auto-cascade provider selection
-
-# Voyage config (cloud opt-in)
-export VOYAGE_API_KEY=pa-...
-export VOYAGE_EMBEDDINGS_MODEL=voyage-4  # Default
-
-# OpenAI config (if using OpenAI)
-export OPENAI_API_KEY=sk-...
-export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default
-
-# HF Local config (pure-Node local fallback provider; nomic-only menu)
-export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Default
-export HF_EMBEDDINGS_DTYPE=q8  # Default (also: fp32, fp16, q4, int8, uint8, bnb4)
-
-# Ollama config (local daemon opt-in)
-export OLLAMA_EMBEDDINGS_MODEL=nomic-embed-text-v1.5  # Default
-
-# Database directory (optional - default: .opencode/skills/system-spec-kit/mcp-server/database/)
-export SPEC_KIT_DB_DIR=/path/to/database  # (or SPECKIT_DB_DIR)
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
 ```
 
-**Note on per-profile DB:**
-Each provider+model+dimension combination uses its own SQLite database. This prevents "dimension mismatch" errors and allows switching providers without migrations.
+Exit `0` means candidates were found, `1` means none were, and `2` means a bad invocation or an unreadable index. Branch on all three: an empty result is not a failure.
 
-**Initialize database:**
+**Regenerate the index** after spec-doc frontmatter changes:
 ```bash
-# The database is created automatically on first run
-# Verify the directory exists
-ls -la .opencode/skills/system-spec-kit/mcp-server/database/
+node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
 ```
 
-### Validation: `system_spec_memory_check`
+The generated artifact lives at `.opencode/skills/system-spec-kit/data/trigger-index.json` and is committed, so a fresh clone answers Gate 1 before anything is built.
 
-- [ ] Context server JS file exists
-- [ ] Database directory exists (or will be created)
-- [ ] Embeddings provider loads on first run (auto-cascade: ollama (default, if reachable) -> hf-local (local fallback) -> `OPENAI_API_KEY` -> `VOYAGE_API_KEY`)
+**Free-text retrieval** uses the literal ripgrep recipes in [`retrieval-conventions.md`](../skills/system-spec-kit/references/retrieval/retrieval-conventions.md), scoped by track and packet. Copy the flags rather than paraphrasing them: `--no-config` and the two exclusion globs each close a specific failure.
+
+**Continuity saves** are written by `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, invoked through `/memory:save`. The writer updates the packet's continuity surfaces in place; nothing is indexed afterwards.
+
+**What this does not do.** Semantic paraphrase matching, vector and BM25 fusion, decay scoring, access tracking, session dedup and causal traversal have no file-based equivalent, and this install does not provide them. A query that matches nothing returns nothing rather than degrading to an approximate answer.
+
+### Validation: `spec_retrieval_check`
+
+- [ ] Trigger index exists at `.opencode/skills/system-spec-kit/data/trigger-index.json`
+- [ ] The lookup script exits `0` for a known trigger phrase
+- [ ] `rg --version` reports ripgrep 14 or newer
 
 **Quick Verification:**
 ```bash
-test -f .opencode/bin/system-spec-memory-launcher.cjs && grep -q 'system-spec-memory-launcher' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
-```
-
-**Verify active provider:**
-Use the `memory_health` tool after starting OpenCode to see which provider is active:
-```json
-{
-  "embeddingProvider": {
-    "provider": "openai",
-    "model": "text-embedding-3-small",
-    "dimension": 1536,
-    "healthy": true
-  }
-}
+test -f .opencode/skills/system-spec-kit/data/trigger-index.json && \
+  node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+    --json -- "spec folder" >/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ---
@@ -703,15 +678,15 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 ### Phase 3 Complete Validation: `mcp_servers_check`
 
 - [ ] Code Mode: npx utcp-mcp --version responds
-- [ ] Spec Kit Memory (`system-spec-memory`): configured in opencode.json
 - [ ] Skill Advisor (`system_skill_advisor`): configured in opencode.json
+- [ ] Trigger index present at `.opencode/skills/system-spec-kit/data/trigger-index.json`
 - [ ] (Optional) Chrome DevTools: bdg --version responds
 
 **Quick Verification:**
 ```bash
 grep -q '"code_mode"' opencode.json && \
-  grep -q '"system-spec-memory"' opencode.json && \
   grep -q '"system_skill_advisor"' opencode.json && \
+  test -f .opencode/skills/system-spec-kit/data/trigger-index.json && \
   echo "✅ PASS" || echo "❌ FAIL"
 ```
 
@@ -743,7 +718,7 @@ Skills are organized as parent hubs that own workflow modes (dispatched via each
 | `sk-git`               | (single-mode)                                                                                                                                      | Git workflow orchestrator: worktrees, commits, PRs                           |
 | `mcp-code-mode`        | (transport skill)                                                                                                                                  | External MCP tool orchestration via Code Mode (~98% context reduction)       |
 | `system-skill-advisor` | (single-mode)                                                                                                                                      | Native skill recommendation engine                                           |
-| `system-spec-kit`      | (single-mode)                                                                                                                                      | Spec folder workflow, context preservation, and Spec Kit Memory MCP          |
+| `system-spec-kit`      | (single-mode)                                                                                                                                      | Spec folder workflow, context preservation, and trigger-index retrieval      |
 
 **How it works:**
 - OpenCode scans skill folders on startup
@@ -829,10 +804,6 @@ test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo 
       "args": ["utcp-mcp"],
       "env": {}
     },
-    "system-spec-memory": {
-      "command": "node",
-      "args": [".opencode/bin/system-spec-memory-launcher.cjs"]
-    },
     "system_skill_advisor": {
       "type": "local",
       "command": ["node", ".opencode/bin/system-skill-advisor-launcher.cjs"],
@@ -871,10 +842,6 @@ test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo 
       "command": "npx",
       "args": ["utcp-mcp"],
       "env": {}
-    },
-    "system-spec-memory": {
-      "command": "node",
-      "args": [".opencode/bin/system-spec-memory-launcher.cjs"]
     }
   },
   "plugins": []
@@ -930,7 +897,7 @@ After the static checks above pass, run the interactive doctor surface to verify
 
 - `/doctor` opens an 11-option menu. **Option 1** is "Update everything to match latest spec-kit release" — the right pick after a fresh install (runs `/doctor:update --migrate`).
 - `/doctor:update` rebuilds every database in dependency-safe order with snapshots + auto-rollback. Use it after upgrades or large packet moves.
-- `/doctor:mcp debug` checks the native MCP servers (Spec Kit Memory, Skill Advisor, Code Mode) and offers guided repair with `--fix`.
+- `/doctor:mcp debug` checks the native MCP servers (Skill Advisor, Code Mode) and offers guided repair with `--fix`.
 
 Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doctor/_routes.yaml`. Canonical subsystem targets: memory, causal-graph, deep-loop, skill-advisor, skill-budget.
 
@@ -976,7 +943,7 @@ BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$
 | ------------------------ | ------------------------------------------------------ | ---------------------------------------------------- |
 | **Code Mode**            | `npm uninstall -g utcp-mcp`                            | Remove from opencode.json + delete .utcp_config.json |
 | **Chrome DevTools CLI**  | `npm uninstall -g browser-debugger-cli`                |                                                      |
-| **Spec Kit Memory**      | `rm .opencode/skills/system-spec-kit/mcp-server/database/*.sqlite` | Database will be recreated             |
+| **Trigger index**        | `rm .opencode/skills/system-spec-kit/data/trigger-index.json`      | Regenerate with `generate-trigger-index.mjs` |
 | **Skills**               | `rm -rf .opencode/skills/<skill-name>/`                 | Remove specific skill folder                         |
 | **All Skills**           | `rm -rf .opencode/skills/`                              | Removes all skills                                   |
 
@@ -1031,7 +998,7 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 | `JSON parse error`            | Invalid config      | Validate with `jq`, fix syntax  |
 | `Port already in use`         | Port conflict       | Kill conflicting process        |
 | `Permission denied`           | File permissions    | Check ownership, run `chmod`    |
-| `Memory not found`            | DB not indexed      | Run `memory_index_scan()`       |
+| Trigger lookup finds nothing  | Index stale         | Rerun `generate-trigger-index.mjs` |
 
 ---
 
@@ -1158,13 +1125,13 @@ You have completed the installation. Here is your roadmap for getting started.
 | 1    | Verify installation    | Run health check script from Section 14.5                        |
 | 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
 | 3    | Test skill invocation  | `python .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "your task"`          |
-| 4    | Save first memory      | Use `/memory:save` or "save context" in conversation             |
+| 4    | Save first continuity record | Use `/memory:save` or "save context" in conversation       |
 
 ### 16.2 Common Workflows
 
 | Workflow                 | Tools/Commands                | Example                                                   |
 | ------------------------ | ----------------------------- | --------------------------------------------------------- |
-| **Context Preservation** | Spec Kit Memory               | `/memory:save`, `memory_search()`                         |
+| **Context Preservation** | Continuity writer + trigger index | `/memory:save`, `lookup-trigger-index.mjs`            |
 | **Browser Debugging**    | Chrome DevTools CLI           | `bdg screenshot --url https://example.com`                |
 | **Documentation**        | sk-doc skill | Invoke skill for doc structure                            |
 | **Git Operations**       | sk-git skill           | Commit, PR creation workflows                             |
@@ -1224,30 +1191,35 @@ npx utcp-mcp
 </details>
 
 <details>
-<summary><strong>Spec Kit Memory Issues</strong></summary>
+<summary><strong>Spec-Folder Retrieval Issues</strong></summary>
 
-### Database not found
+### Trigger index missing
 ```bash
-# Create directory if missing
-mkdir -p .opencode/skills/system-spec-kit/mcp-server/database
-
-# Database is created on first run when OpenCode starts the MCP server
+# Regenerate it; the artifact is committed, so this is also how you repair a bad merge
+node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+ls -l .opencode/skills/system-spec-kit/data/trigger-index.json
 ```
 
 ### Embeddings not working
 1. Auto-cascade is ollama (default, if reachable) -> hf-local (local fallback) -> `OPENAI_API_KEY` -> `VOYAGE_API_KEY`
-2. Clear corrupted model cache: `rm -rf .opencode/skills/system-spec-kit/mcp-server/node_modules/@huggingface/transformers/.cache`
-3. Restart MCP server (model re-downloads on first use)
+2. Clear corrupted model cache: `rm -rf .opencode/skills/system-spec-kit/shared/embeddings/node_modules/@huggingface/transformers/.cache`
+3. Restart the consuming MCP server (model re-downloads on first use)
 4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches
 
-### Memory search returns empty
+Embeddings serve Skill Advisor, not spec-folder retrieval. A retrieval miss is never an embedding problem.
+
+### Retrieval returns nothing
 ```bash
-# Check database has content
-# Find the active database file (filename encodes provider, model, dim, and dtype)
-ls .opencode/skills/system-spec-kit/mcp-server/database/context-index__*.sqlite
-# Then query it (replace path with the file you found):
-sqlite3 "$(ls .opencode/skills/system-spec-kit/mcp-server/database/context-index__*.sqlite | head -n 1)" "SELECT COUNT(*) FROM memory_index;"
+# Exit 1 means a clean no-hit; exit 2 means the invocation or the index is broken
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
+
+# Free-text lane, per references/retrieval/retrieval-conventions.md
+rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'phrase' specs .opencode
 ```
+
+A phrase the author never declared in `trigger_phrases` will not appear in the index. That is a corpus gap, not a lookup failure.
 
 </details>
 
@@ -1333,7 +1305,7 @@ Instead of manual troubleshooting, use the built-in diagnostic commands that che
 /doctor:mcp install
 
 # Diagnose or install a single server
-/doctor:mcp install --server system-spec-memory
+/doctor:mcp install --server system_skill_advisor
 ```
 
 The doctor commands read the install guides, check system reality, and offer guided repair. Available across OpenCode, Claude Code, and Codex CLI.

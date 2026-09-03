@@ -3,9 +3,11 @@
 # COMPONENT: MASTER INSTALLER
 # ───────────────────────────────────────────────────────────────
 # Orchestrates installation of all MCP servers in dependency order:
-#   1. Spec Kit Memory (no dependencies)
-#   2. Code Mode (no dependencies)
-#   3. Chrome DevTools (no dependencies)
+#   1. Code Mode (no dependencies)
+#   2. Chrome DevTools (no dependencies)
+#
+# Spec-folder retrieval is deliberately absent: it is file-based (a committed
+# trigger index plus ripgrep) and has nothing to install.
 
 set -euo pipefail
 
@@ -17,28 +19,24 @@ source "${SCRIPT_DIR}/_utils.sh"
 # ───────────────────────────────────────────────────────────────
 
 # MCP definitions using parallel arrays (bash 3.2 compatible)
-# Index: 0=system-spec-memory, 1=code-mode, 2=chrome-devtools
+# Index: 0=code-mode, 1=chrome-devtools
 readonly MCP_NAMES=(
-    "system-spec-memory"
     "code-mode"
     "chrome-devtools"
 )
 
 readonly MCP_SCRIPTS=(
-    "install-spec-kit-memory.sh"
     "install-code-mode.sh"
     "install-chrome-devtools.sh"
 )
 
 readonly MCP_DISPLAY_NAMES=(
-    "Spec Kit Memory"
     "Code Mode"
     "Chrome DevTools"
 )
 
 # Dependencies (empty string = no deps, otherwise MCP name)
 readonly MCP_DEPS=(
-    ""
     ""
     ""
 )
@@ -207,20 +205,18 @@ Options:
     --no-verify         Skip verification steps
 
 MCP Names (for --skip/--only):
-    system-spec-memory        Semantic vector search for conversation context
     code-mode              UTCP orchestration for external MCP tools
     chrome-devtools        Browser debugging via DevTools Protocol
 
 Installation Order (dependency-based):
-    1. Spec Kit Memory (no dependencies)
-    2. Code Mode (no dependencies)
-    3. Chrome DevTools (no dependencies)
+    1. Code Mode (no dependencies)
+    2. Chrome DevTools (no dependencies)
 
 Examples:
     $(basename "$0")                          # Install all MCPs
     $(basename "$0") --skip chrome-devtools   # Install all except Chrome DevTools
     $(basename "$0") --only code-mode         # Install only Code Mode
-    $(basename "$0") --only code-mode --only system-spec-memory   # Install Code Mode and Spec Kit Memory
+    $(basename "$0") --only code-mode --only chrome-devtools   # Install Code Mode and Chrome DevTools
     $(basename "$0") --dry-run                # Preview without installing
 
 EOF
