@@ -272,7 +272,7 @@ TypeScript sources compile to `.opencode/skills/system-spec-kit/scripts/dist/`. 
          ▼
   ┌─────────────────────────────────────────────┐
   │  Gate 1: Understanding (SOFT BLOCK)         │
-  │  memory_match_triggers() surfaces context   │
+  │  trigger index lookup surfaces context      │
   │  Classify intent: Research / Implementation │
   │  confidence >= 0.70, uncertainty <= 0.35     │
   └──────────────────┬──────────────────────────┘
@@ -317,9 +317,9 @@ For the full spec folder workflow, Level contract template architecture, gate de
 
 ### 🧠 Memory Engine
 
-The Memory Engine is a local-first cognitive memory system built as an MCP server. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/speckit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. The MCP server indexes those packet-local sources with vector embeddings, BM25 and FTS5 full-text search. `memory_match_triggers()` can still surface relevant prior context automatically when deeper retrieval is needed.
+Continuity and retrieval are packet-local and file-based. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/speckit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.opencode/skills/system-spec-kit/data/trigger-index.json`, and free-text retrieval uses the ripgrep recipes in [retrieval-conventions.md](.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md). Both read committed files, so neither needs a running daemon. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
-`/memory:save` refreshes packet metadata on every invocation. `session_resume` binds `args.sessionId` to transport caller context by default. Set `MCP_SESSION_RESUME_AUTH_MODE=permissive` for rollout canaries. Copilot and Claude share the same compact-cache provenance path.
+`/memory:save` refreshes packet metadata on every invocation through the continuity writer `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`. Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup. Copilot and Claude share the same compact-cache provenance path.
 
 Expired ephemeral rows are cleaned by a retention sweep on startup and hourly by default. Use `memory_retention_sweep` for manual or dry-run cleanup. The handler is defined at [memory-retention-sweep.ts](.opencode/skills/system-spec-kit/mcp-server/handlers/memory-retention-sweep.ts), with `SPECKIT_RETENTION_SWEEP` and `SPECKIT_RETENTION_SWEEP_INTERVAL_MS` controlling the background interval.
 
@@ -479,7 +479,6 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 - **Memory-safe lexical fallback** - An in-memory BM25 engine (title and trigger matches rank above body noise) runs inside a bounded memory budget, resolving spec-folder and tier filters before truncating so scoped searches return their real results
 - **Lexical fallback** - Text-searchable when embedding services are down
 - **Atomic writes** - Crash-safe with pending-file recovery on startup
-- **`memory_index_scan` self-maintaining** - Overlapping scans return a `coalesced:true` success envelope instead of a raw error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` status with `pendingVectors` count). Move reconciliation heals renamed spec folders by packet identity without re-embedding. A bounded global orphan sweep runs per scan. `memory_health` gains an `index` block with a summary enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) plus `indexed`, `pending` and `failed` counts.
 - **`memory_embedding_reconcile`** - Net-new L4 maintenance tool (shipped 2026-05-27). Converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. Dry-run by default; pass `mode: "apply"` to apply.
 
 &nbsp;
@@ -828,8 +827,8 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **Fails closed:** failures return to the orchestrator with an `escalation` classifier, no silent retry. Dispatched only by `@orchestrate`
 
 **Context**
-- **Finds what you already know before searching code.** Memory-first retrieval in order: `match_triggers` → `memory_context` → `memory_search` → grep/glob
-- **Returns a Context Package** that combines memory findings with codebase evidence, drawing on the 5-channel memory system. Read-only
+- **Finds what you already know before searching code.** Continuity-first retrieval in order: `handover.md` → `_memory.continuity` → packet spec docs → trigger index lookup → ripgrep recipes
+- **Returns a Context Package** that combines packet continuity findings with codebase evidence. Read-only
 
 **Review**
 - **Guards code quality, never edits.** Strict read-only, loading `sk-code`'s `code-review` mode (the findings-first baseline) and layering its router-selected surface standards
@@ -920,7 +919,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 **Save**
 - Updates packet continuity and supporting generated context artifacts via `generate-context.js`
 - AI composes structured JSON with session summary, key decisions and findings
-- Indexes immediately for future retrieval via `memory_save()` or `memory_index_scan()`
+- Writes continuity frontmatter and generated metadata in place. There is no separate index to refresh afterwards
 
 **Search**
 - Unified retrieval and analysis entry point with intent-aware routing
@@ -1020,7 +1019,7 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 **`/doctor:update`**
 - Multi-subsystem orchestrator: dependency-safe rebuild across context-index + vector-index → causal-edges → skill-graph → advisor → deep-loop → eval
 - One lock (`mcp-server/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
-- Tier-aware mid-run prompts: SHORT steps auto-acknowledge. MEDIUM steps share one combined prompt (Q-MED). LONG-POLE `memory_index_scan` gets explicit ETA prompt (Q-LONG, 5-15 min)
+- Tier-aware mid-run prompts: SHORT steps auto-acknowledge. MEDIUM steps share one combined prompt (Q-MED). LONG-POLE index rebuild gets explicit ETA prompt (Q-LONG, 5-15 min)
 - Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle schema migration (e.g. v3.3.0.0 → v3.4.1.0). Wall-clock 8-25 min
 
@@ -1240,7 +1239,7 @@ A: Gate 3 blocks file modifications until a spec folder answer is provided. You 
 &nbsp;
 **Q: How does the memory system know what is relevant to my current task?**
 
-A: Packet continuity and any supporting generated context artifacts use structured frontmatter and anchored markdown so the memory engine can classify, index and retrieve them reliably. For recovery, start with `/speckit:resume` and the packet-local continuity ladder `handover.md` -> `_memory.continuity` -> canonical spec docs. After that, `memory_match_triggers()` runs a fast trigger/cognitive pass, while `memory_context()` and `memory_search()` handle deeper retrieval with intent routing, reranking and filtering.
+A: Packet continuity and any supporting generated context artifacts use structured frontmatter and anchored markdown so the trigger index generator can classify and index them reliably. For recovery, start with `/speckit:resume` and the packet-local continuity ladder `handover.md` -> `_memory.continuity` -> canonical spec docs. After that, the trigger index lookup matches your prompt against author-declared trigger phrases and the ripgrep recipes in `retrieval-conventions.md` cover free text. Both lanes are lexical, so a phrase no author declared and no document contains is a clean no-hit.
 &nbsp;
 **Q: Can I use this framework without the cognitive memory features?**
 

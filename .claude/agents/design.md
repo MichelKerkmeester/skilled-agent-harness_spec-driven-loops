@@ -1,7 +1,7 @@
 ---
 name: design
 description: "Design specialist across two skills: decides UI values and behavior via sk-design, and measures an existing surface into a Style Reference via sk-design-md-generator. LEAF."
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__system_spec_memory__*
+tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # The Design Specialist: sk-design + sk-design-md-generator Agent

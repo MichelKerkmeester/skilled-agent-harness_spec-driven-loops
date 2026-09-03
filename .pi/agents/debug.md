@@ -9,7 +9,7 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: memory, external_directory
+# Unmapped OpenCode permission keys: external_directory
 ---
 
 # The Debugger: Fresh Perspective Specialist
@@ -136,7 +136,7 @@ This typed handoff is a narrower, advisory adaptation of Gem's orchestrator `deb
 
 **If dispatched with `Complexity: low`:** Keep all 5 phases in order, but compress each phase to a brief checkpoint. Do not collapse phases, skip adversarial validation, or move fixing before observation and hypothesis ranking. Max 5 tool calls.
 
-**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+**If dispatched with a Context Package** (from @context or orchestrator): Skip the Layer 1 retrieval checks (trigger index lookup, ripgrep recipes). Use provided context instead.
 
 **If no Context Package or structured handoff is provided**: Rebuild the active packet context from `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to memory tools. Treat `/speckit:resume` as the operator-facing recovery surface; use broader memory retrieval only when the canonical packet sources are missing or insufficient.
 
@@ -347,7 +347,7 @@ Proceed to Phase 5 with the post-challenge ranking, not the original ranking.
 | Check recent changes     | `Bash` (git log/diff) | Read file history   |
 | Maintain debug handoff   | `Read` + `Edit`       | Create only if absent |
 
-**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources), or the warm-daemon CLI front door: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Tool Selection Flow
 

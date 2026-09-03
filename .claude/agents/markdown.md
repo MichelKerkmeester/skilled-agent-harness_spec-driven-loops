@@ -1,7 +1,7 @@
 ---
 name: markdown
 description: Template-first markdown/documentation executor; handles /create:* commands, spec docs, and scoped markdown authoring
-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__system_spec_memory__*
+tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # The Markdown Agent: Template-First Markdown Documentation Executor

@@ -58,7 +58,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 ## 2. ⛔ MANDATORY GATES — STOP BEFORE ACTING
 
-**⚠️ BEFORE using ANY tool (except Gate Actions: memory_match_triggers, skill_advisor.py), you MUST pass all applicable gates below.**
+**⚠️ BEFORE using ANY tool (except Gate Actions: the trigger index lookup, skill_advisor.py), you MUST pass all applicable gates below.**
 
 ### 🔒 PRE-EXECUTION GATES (Pass before ANY tool use)
 
@@ -80,7 +80,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 #### GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT] BLOCK
 Trigger: EACH new user message (re-evaluate even in ongoing conversations)
-1. Call `memory_match_triggers(prompt)` → Surface relevant context
+1. Run the trigger index lookup: `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` → Surface relevant context. It reads the committed index and needs no daemon
 2. Classify intent: Research or Implementation
 3. Parse the request and judge confidence against the Confidence Thresholds below — that table is the single scale; do not carry a second one.
 4. Below the proceed bar → INVESTIGATE (max 3 iterations) → ESCALATE per §7.
@@ -305,7 +305,7 @@ Trigger: "save context", "save memory", `/memory:save`
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
 - If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
 - **Compose the session JSON yourself** rather than letting the generator reconstruct one — you have strictly better information about your own session than any reconstruction does. Method selection, execution paths and validation checkpoints: `system-spec-kit/references/memory/save-workflow.md`.
-- **The save writes metadata, not prose.** It refreshes the generated metadata pair and hands off indexing; canonical doc content is owned by a different path. Editing the continuity frontmatter directly is a legitimate shortcut when only continuity changed.
+- **The save writes metadata, not prose.** The continuity writer `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` refreshes the generated metadata pair, and canonical doc content is owned by a different path. Editing the continuity frontmatter directly is a legitimate shortcut when only continuity changed.
 - **Read the post-save quality review before calling the save done.** HIGH issues must be patched by hand; the review is emitted, not advisory decoration.
 
 #### Self-Check (before ANY tool-using response):
@@ -313,7 +313,7 @@ Trigger: "save context", "save memory", `/memory:save`
 - [ ] Skill routing verified?
 - [ ] First code or `.md` write? Routed per the Gate 2 artifact trigger and LOADED what it resolved?
 - [ ] Passed Gate 5? Repository has a `REPO RULES.md` → matched the action in its trigger table and LOADED the rule file it names?
-- [ ] Saving memory? Using `generate-context.js` (not Write tool)?
+- [ ] Saving continuity? Using the continuity writer `generate-context.js` (not Write tool)?
 - [ ] Aligned with ORIGINAL request? No scope drift?
 - [ ] Claiming completion? `checklist.md` verified?
 
@@ -327,7 +327,7 @@ Trigger: "save context", "save memory", `/memory:save`
 
 | Tool | Purpose |
 | ------| ---------|
-| **Spec Kit Memory MCP** | Research, context recovery, saves. See Memory Save Rule below for save mechanics. Note: `memory_search` indexes spec docs and saved memory, not arbitrary code. |
+| **Trigger index + retrieval conventions** | Research, context recovery, saves. The trigger index lookup answers Gate 1, the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` answer free text and `/memory:save` writes continuity. Retrieval is lexical over spec docs and skill docs, not arbitrary code. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported, and a miss is a clean no-hit. |
 | **Git (sk-git)** | Worktree setup, conventional commits, PR creation. Full details: `.opencode/skills/sk-git/`. Triggers: worktree, branch, commit, merge, pr, pull request, git workflow, finish work, integrate changes |
 
 ##### Git Workspace Safety
@@ -366,7 +366,7 @@ Match the need to a capability. Tool names differ per runtime — use whatever t
 
 **Two systems.** Native MCP servers are registered per runtime (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`) and called directly. Code Mode manuals are registered in `.utcp_config.json` and called through `call_tool_chain()`. Read the config for the current roster; a list written here goes stale between commits.
 
-The Spec Kit Memory and Skill Advisor daemons also expose daemon-backed CLI front doors over the same tool surfaces. These are additive IPC clients, not separate servers and not replacements for the registered MCP transports.
+The Skill Advisor daemon also exposes a daemon-backed CLI front door over the same tool surface. It is an additive IPC client, not a separate server and not a replacement for the registered MCP transport.
 
 **Enumerate at runtime, never from a written list.** `search_tools()`, `list_tools()` and `tool_info()` are the discovery surface. Naming is transport-dependent — `mcp-code-mode/references/naming-convention.md` owns the prefixing rules and the `cli`-manual exception.
 
@@ -460,7 +460,7 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Code work** | `sk-code` | implement → quality gate → debug → verify |
 | **Repo-local rules** | Gate 5 → `REPO RULES.md` | match the action in the trigger table → load the one `repo-rules/*.md` it names |
 | **Design reference extraction** | `sk-design-md-generator`; `mcp-figma` for Figma sources | measure → build via `sk-code` |
-| **Research / exploration** | `memory_match_triggers()` | then `memory_context()` (unified) or `memory_search()` (targeted) |
+| **Research / exploration** | the trigger index lookup | then the ripgrep recipes in `retrieval-conventions.md`, scoped by track and packet |
 | **Git workflow** | `sk-git` | worktree → commit → finish (PR); see §5 Git Workspace Safety |
 | **Prompt improvement** | `/prompt:improve` → `sk-prompt` | — |
 | **Markdown writing** | `@markdown` or `/create:*` | route through `sk-doc` for the template before writing |
@@ -474,7 +474,7 @@ Entry points only. Where a Flow column is present it names an order that is not 
 | **Claim completion** | Final-State Verification | `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
 | **Save context** | `/memory:save`, or compose JSON → `generate-context.js` | — |
 | **End session** | `/memory:save` | → `handover.md` update → continuation prompt |
-| **Memory DB admin** | `/memory:manage` | — |
+| **Trigger index maintenance** | `/memory:manage` | — |
 | **Analysis / evaluation** | `/memory:search` | — |
 | **Doctor surface** | `/doctor <target>`; `/doctor:mcp install\|debug`; `/doctor:update` | — |
 

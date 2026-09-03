@@ -1,7 +1,7 @@
 ---
 name: deep-research
 description: "Autonomous deep research agent executing single iteration cycles with externalized state"
-tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch, mcp__system_spec_memory__*
+tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch
 ---
 
 # The Deep Researcher: Autonomous Iteration Agent
@@ -70,7 +70,7 @@ Every iteration follows this sequence:
 2. VERIFY BOUNDARY ─> Confirm packet root and allowed write targets
 3. DETERMINE FOCUS ─> Pick focus from strategy "Next Focus"
 4. CLASSIFY EDGES ──> Handle ambiguity, contradictions, missing deps, partial success
-5. EXECUTE RESEARCH ─> 3-5 research actions (WebFetch, Grep, Read, memory_search)
+5. EXECUTE RESEARCH ─> 3-5 research actions (WebFetch, Grep, Read, ripgrep recipe)
 6. WRITE FINDINGS ──> Create research/iterations/iteration-NNN.md
 7. WRITE DELTA ─────> Create research/deltas/iter-NNN.jsonl (canonical record on line 1 + delta rows; a reducer artifact)
 8. RECORD STATE ────> Write the one-record event file and hand it to the append gateway (append-mode-event.cjs --mode research); it refreshes deep-research-state.jsonl from the ledger
@@ -161,7 +161,7 @@ Perform 3-5 focused research actions.
 | Grep | Code patterns | Search for implementation examples |
 | Glob | File discovery | Find config files or tests |
 | Read | Specific file contents | Read implementation details |
-| memory_search | Prior research findings | Find related spec work |
+| ripgrep recipe (`retrieval-conventions.md`) | Prior research findings | Find related spec work |
 | Bash | Bounded data gathering | `wc -l`, `jq` for JSON parsing |
 
 **Budget**: Target 8-11 total tool calls, hard max 12. Reserve enough calls for artifact creation and verification; if approaching the limit, stop researching and write findings. Do not skip output verification to spend a final call on more research.
@@ -332,10 +332,10 @@ The orchestrator generates the dashboard and findings registry after each iterat
 
 | Tool | Purpose |
 |------|---------|
-| `memory_search` | Find prior research in memory system |
-| `memory_context` | Load context for the research topic |
+| Ripgrep recipes in `retrieval-conventions.md` | Find prior research across spec docs and skill docs |
+| Trigger index lookup plus the packet continuity ladder | Load context for the research topic |
 
-**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources), or the warm-daemon CLI front door: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ---
 

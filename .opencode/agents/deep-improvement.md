@@ -82,7 +82,7 @@ This agent is LEAF-only and write-capable, and its writes are confined to one ca
 | `list` | Inspect runtime directories | When packet-local structure is unclear |
 | `bash` (node) | Run scan-integration and generate-profile scripts | When integration surface or dynamic profile is needed |
 
-**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources), or the warm-daemon CLI front door: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ---
 

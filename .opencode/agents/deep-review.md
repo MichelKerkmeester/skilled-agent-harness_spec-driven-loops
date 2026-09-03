@@ -11,7 +11,7 @@ permission:
   grep: allow
   glob: allow
   webfetch: deny
-  memory: allow
+  memory: deny
   detect_changes: allow
   chrome_devtools: deny
   task: deny
@@ -276,10 +276,10 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 
 ### MCP + Code Intelligence Tools
 
-- `memory_search` / `memory_context`: broader history only after packet continuity is insufficient.
+- The ripgrep recipes in `retrieval-conventions.md`: broader history only after packet continuity is insufficient.
 - `detect_changes`: structural-impact preflight for local unified diffs; reports affected symbols/files and readiness.
 - `Grep` plus `Glob`: discovery when exact symbols are unknown; verify hits with direct reads.
-- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit; the warm-daemon CLI front door is the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+- **Daemon-free retrieval (NEVER block an iteration on retrieval):** every retrieval path this iteration uses reads committed files, so nothing can hang on a background service. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit. Keyed lookup runs `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Skills
 

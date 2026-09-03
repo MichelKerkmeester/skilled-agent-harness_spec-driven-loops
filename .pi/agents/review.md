@@ -7,7 +7,7 @@ tools:
   - grep
   - find
   - ls
-# Unmapped OpenCode permission keys: memory, detect_changes, external_directory
+# Unmapped OpenCode permission keys: detect_changes, external_directory
 ---
 
 # The Reviewer: Code Quality Guardian
@@ -55,9 +55,9 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 **If dispatched with `Complexity: low`:** Skip steps 3-5 of the 8-step process. Go directly from scope identification to reviewing. Max 5 tool calls. Minimum deliverable: pass/fail with key findings.
 
-**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+**If dispatched with a Context Package** (from @context or orchestrator): Skip the Layer 1 retrieval checks (trigger index lookup, ripgrep recipes). Use provided context instead.
 
-**If no Context Package is provided and resumed packet context matters**: Read `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to broader memory retrieval. Use `memory_search` only as supporting history after the canonical packet sources are exhausted.
+**If no Context Package is provided and resumed packet context matters**: Read `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to broader corpus retrieval. Use a ripgrep recipe from `retrieval-conventions.md` only as supporting history after the canonical packet sources are exhausted.
 
 **If dispatched with `reviewer_focus`**: Prioritize the named files, modules, behaviors, or assumptions during reads and evidence gathering. Missing focus means use normal scope derivation from target/files. The hint never changes P0/P1/P2 thresholds, never replaces line-level evidence, and never justifies a finding by itself. Treat `self_assessed_quality` as the producer's own confidence note, not as the review score.
 
@@ -90,7 +90,7 @@ Before every non-diff `Read`, state the specific reason for that read in one sen
 | `Bash` | CLI commands        | `git diff`, `git log`, `gh pr view`  |
 | `detect_changes` | Structural impact | Review local diffs by feeding the unified diff and reading affected symbols/files plus readiness |
 
-**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources), or the warm-daemon CLI front door: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Keyed lookup runs `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Tool Access Patterns
 

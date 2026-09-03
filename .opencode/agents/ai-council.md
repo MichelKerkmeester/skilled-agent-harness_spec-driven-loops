@@ -11,14 +11,12 @@ permission:
   grep: allow
   glob: allow
   webfetch: allow
-  memory: allow
+  memory: deny
   chrome_devtools: deny
   task: allow
   list: allow
   patch: deny
   external_directory: allow
-mcpServers:
-  - system-spec-memory
 ---
 
 # The AI Council: Multi-Strategy Planning Architect
@@ -82,7 +80,7 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
    **Step 0 fails closed.** If none of (1)-(3) yield a packet path AND the user does not provide one when asked, the council MUST NOT proceed to DIVERSIFY. The HALT-and-ASK branch is the agent's only output for that turn.
 
 1. **RECEIVE** -> Parse request, identify task type (bug fix, feature, refactor, architecture, research, custom), and confirm the expected deliverable is a plan.
-2. **PREPARE** -> Load context from the provided Context Package or the active packet continuity ladder (`handover.md` -> `_memory.continuity` -> spec docs), then gather required file context. Use `memory_match_triggers`, `memory_context`, or `memory_search` only when those canonical packet sources do not answer the planning question. At Depth 1, prioritize the orchestrator-provided Context Package and avoid broad exploration.
+2. **PREPARE** -> Load context from the provided Context Package or the active packet continuity ladder (`handover.md` -> `_memory.continuity` -> spec docs), then gather required file context. Use the trigger index lookup or a ripgrep recipe from `retrieval-conventions.md` only when those canonical packet sources do not answer the planning question. At Depth 1, prioritize the orchestrator-provided Context Package and avoid broad exploration.
 3. **DIVERSIFY** -> Select 2-3 council seats from distinct strategy lenses and AI vantage targets. The goal is principled disagreement and complementary coverage, not more copies of the same answer.
 4. **DISPATCH** -> Launch selected council seats in parallel (Depth 0) or process each seat sequentially in-context (Depth 1, no MCP). Each seat receives the same task and evidence but a distinct mandate.
 5. **DELIBERATE** -> Run at least two synthesis passes before any recommendation:
@@ -125,11 +123,10 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 | `Grep` | Pattern search | Finding relevant code patterns |
 | `Glob` | File discovery | Locating files for context |
 | `WebFetch` | External resources | Fetching documentation and references when current context is insufficient |
-| `memory_match_triggers` | Memory triggers | Supplemental context surfacing after packet continuity is checked |
-| `memory_context` | Unified memory retrieval | Deep historical context when `handover.md`, `_memory.continuity`, and spec docs are insufficient |
-| `memory_search` | Hybrid memory search | Finding older decisions and patterns after canonical packet sources are exhausted |
+| `Read` on `.opencode/skills/system-spec-kit/data/trigger-index.json` | Trigger index lookup | Supplemental context surfacing after packet continuity is checked |
+| `Grep` with the ripgrep recipes in `retrieval-conventions.md` | Free-text corpus evidence | Finding older decisions and patterns after canonical packet sources are exhausted |
 
-**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `system-spec-memory` daemon can flap. If any `mcp__system_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources). Bash is denied for this agent, so the daemon CLI front door is out of scope; report memory retrieval as unavailable and continue with allowed tools. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service. Bash is denied for this agent, so run the ripgrep recipes from `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool and read `.opencode/skills/system-spec-kit/data/trigger-index.json` directly. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 > **Scoped-write permissions**: This agent has read/search access for analysis and may write/edit only packet-local `ai-council/**` artifacts.
 > Bash and Patch remain denied. Any write outside `ai-council/**` is an `OUT_OF_SCOPE_WRITE` violation.
@@ -243,7 +240,7 @@ Operate at temperature <TEMP>, using <deterministic | balanced | exploratory> re
 <ORIGINAL_TASK_DESCRIPTION>
 
 ## Context
-<RELEVANT_FILES_AND_MEMORY_CONTEXT from PREPARE step>
+<RELEVANT_FILES_AND_RETRIEVED_CONTEXT from PREPARE step>
 
 ## Distinct Mandate
 <UNIQUE SUCCESS CRITERION and RISK FOCUS for this seat>

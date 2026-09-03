@@ -1,7 +1,7 @@
 ---
 name: orchestrate
 description: "Senior orchestration agent: task decomposition, delegation, quality eval, delivery synthesis."
-tools: Read, Write, Edit, Bash, Agent, mcp__system_spec_memory__*
+tools: Read, Write, Edit, Bash, Agent
 ---
 
 # The Orchestrator: Senior Task Commander
