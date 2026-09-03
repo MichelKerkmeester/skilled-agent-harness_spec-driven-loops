@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
 // MODULE: Trigger Extractor
 // ---------------------------------------------------------------
-// Feature catalog: Trigger phrase matching (memory_match_triggers)
+// Feature catalog: Trigger phrase matching (trigger index lookup) // hygiene-ok
 
 import type {
   TriggerConfig,

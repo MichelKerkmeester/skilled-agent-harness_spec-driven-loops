@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c0806077f0d2e22ae7b0e9b6f8ab4e17244fac5aef0f6da59c95f7fe0938d370",
+  "manifestHash": "314a39ecfeccc636432b7c22cadadad2e77449db39ac2f77af5d69d5c4f470a4",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -42057,9 +42057,6 @@
       5054,
       5055
     ],
-    "context retrieval failures": [
-      2149
-    ],
     "context save methods": [
       2156
     ],
@@ -42244,6 +42241,9 @@
     ],
     "continuity save concurrency disposition": [
       12346
+    ],
+    "continuity save failures": [
+      2149
     ],
     "continuity single source": [
       13351,
@@ -43007,6 +43007,9 @@
     ],
     "council graph db namespace delete": [
       1185
+    ],
+    "council graph derived projection ownership": [
+      1189
     ],
     "council graph mcp surface retired": [
       1189
@@ -47023,6 +47026,9 @@
     ],
     "declaration module header alignment": [
       11072
+    ],
+    "declared capability loss": [
+      2155
     ],
     "decommission copilot hook bridge": [
       4819
@@ -56982,9 +56988,6 @@
     "embedder set mcp tool": [
       9656
     ],
-    "embedder set runbook": [
-      2151
-    ],
     "embedder sidecar commit handoff": [
       9681
     ],
@@ -57021,6 +57024,9 @@
     ],
     "embedder swap dry run": [
       1952
+    ],
+    "embedder swap runbook": [
+      2151
     ],
     "embedder testing architecture": [
       11203
@@ -68231,9 +68237,6 @@
     "hybrid search dedup fix": [
       1675
     ],
-    "hybrid search fallback": [
-      2149
-    ],
     "hybrid search fusion mode": [
       1774
     ],
@@ -69780,11 +69783,11 @@
     "incremental memory index scan": [
       11748
     ],
+    "incremental research context": [
+      1324
+    ],
     "incremental research document": [
       1329
-    ],
-    "incremental research memory": [
-      1324
     ],
     "incremental spec doc indexing": [
       1792
@@ -71104,6 +71107,9 @@
     ],
     "iteration evidence aggregation": [
       9251
+    ],
+    "iteration evidence persistence": [
+      1324
     ],
     "iteration graph event file": [
       1440
@@ -73508,6 +73514,9 @@
     ],
     "lineage canonical supersede writer": [
       12532
+    ],
+    "lineage context prompt line": [
+      1324
     ],
     "lineage delta resource map": [
       7650
@@ -76562,9 +76571,6 @@
     "mcp connection failed": [
       269
     ],
-    "mcp connection problems": [
-      2149
-    ],
     "mcp consumer migration": [
       13570
     ],
@@ -78426,9 +78432,6 @@
     "memory context payload count invariant": [
       8910
     ],
-    "memory context refresh": [
-      1324
-    ],
     "memory context result floor": [
       13101,
       13102,
@@ -79433,9 +79436,6 @@
     "memory save idempotency receipt tasks": [
       11808
     ],
-    "memory save iteration file": [
-      1324
-    ],
     "memory save pipeline": [
       2046
     ],
@@ -79511,9 +79511,6 @@
     ],
     "memory search audit findings": [
       10933
-    ],
-    "memory search behavior": [
-      2155
     ],
     "memory search citation policy": [
       10838
@@ -79739,9 +79736,6 @@
       5084,
       5085
     ],
-    "memory system reference": [
-      2155
-    ],
     "memory systems mining strategy": [
       12738
     ],
@@ -79769,9 +79763,6 @@
     "memory trigger embeddings table": [
       11765,
       12233
-    ],
-    "memory troubleshooting guide": [
-      2149
     ],
     "memory trust badges": [
       10504
@@ -89079,7 +89070,7 @@
     "per intent k value selection ndcg 10": [
       1926
     ],
-    "per iteration memory upsert": [
+    "per iteration lineage context refresh": [
       1324
     ],
     "per kind flag compatibility": [
@@ -102660,6 +102651,9 @@
     "retrieval adherence logic": [
       13006
     ],
+    "retrieval and continuity reference": [
+      2155
+    ],
     "retrieval backend routing": [
       1700
     ],
@@ -103695,6 +103689,9 @@
     ],
     "ripgrep retrieval research": [
       13587
+    ],
+    "ripgrep retrieval returns nothing": [
+      2149
     ],
     "ripgrep retrieval synthesis": [
       13585
@@ -114427,6 +114424,9 @@
     "skill advisor launcher cjs": [
       11047
     ],
+    "skill advisor launcher lease": [
+      2148
+    ],
     "skill advisor launcher p2 closeout": [
       11242
     ],
@@ -116837,6 +116837,9 @@
     "spec folder detection and description metadata": [
       1980
     ],
+    "spec folder diagnosis": [
+      2149
+    ],
     "spec folder git context enrichment": [
       1816
     ],
@@ -117096,9 +117099,6 @@
     "spec kit memory to mk spec memory migration": [
       11150
     ],
-    "spec kit memory tools": [
-      2155
-    ],
     "spec kit optimization plan": [
       13378
     ],
@@ -117221,6 +117221,9 @@
     ],
     "spec kit tests": [
       2258
+    ],
+    "spec kit troubleshooting guide": [
+      2149
     ],
     "spec kit utilities": [
       2313
@@ -117355,9 +117358,6 @@
     ],
     "spec memory ipc": [
       2074
-    ],
-    "spec memory launcher lease": [
-      2148
     ],
     "spec memory launcher ownership": [
       11250
@@ -119440,7 +119440,7 @@
       1319,
       1361
     ],
-    "step memory upsert iteration": [
+    "step refresh lineage context": [
       1324
     ],
     "stop allowed stop blocked": [
@@ -122271,9 +122271,6 @@
     ],
     "system spec memory consumers": [
       13592
-    ],
-    "system spec memory council graph absent": [
-      1189
     ],
     "system spec memory embedder benchmark": [
       2024
@@ -125334,9 +125331,15 @@
     "trigger index": [
       13564
     ],
+    "trigger index behavior": [
+      2155
+    ],
     "trigger index generator": [
       13562,
       13564
+    ],
+    "trigger index lookup fails": [
+      2149
     ],
     "trigger index lookup path": [
       2158
@@ -127425,9 +127428,6 @@
     ],
     "vector index": [
       2088
-    ],
-    "vector index issues": [
-      2149
     ],
     "vector index logical key unique": [
       9121,

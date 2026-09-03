@@ -153,7 +153,7 @@ let totalRedactions = 0;
 let byKind: Record<string, number> = {};
 let lastRedactionAt: string | null = null;
 
-/** In-process redaction counters surfaced through memory_health. */
+/** In-process redaction counters surfaced through the health report. */
 export function getRedactionStats(): RedactionStats {
   return {
     totalRedactions,

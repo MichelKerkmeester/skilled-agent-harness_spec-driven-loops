@@ -21,7 +21,7 @@ Complete guide to saving conversation context, execution methods, and retrieval.
 
 ### Core Principle
 
-Execute save operations through whichever method fits your workflow - slash commands for convenience, direct scripts for control. All paths feed the same canonical save entrypoint, update the target packet's continuity surfaces, and reindex the resulting packet docs for retrieval.
+Execute save operations through whichever method fits your workflow - slash commands for convenience, direct scripts for control. All paths feed the same canonical save entrypoint and update the target packet's continuity surfaces.
 
 When direct CLI mode includes an explicit spec-folder argument, that target is authoritative. Session-learning matches, JSON `SPEC_FOLDER` fields, and auto-detect may inform diagnostics, but they must not reroute the save to another folder.
 
@@ -168,7 +168,7 @@ The indexed-continuity store supports **2 independent execution paths**. Any met
 ✓ Spec folder: 049-anchor-context-retrieval
 ✓ Continuity surfaces updated for: 049-anchor-context-retrieval
 ✓ Primary continuity block: implementation-summary.md::_memory.continuity
-✓ Packet docs reindexed
+✓ Generated metadata pair refreshed: description.json + graph-metadata.json
 ```
 
 ---
@@ -252,17 +252,26 @@ If that explicit CLI argument resolves to a phase folder, the command keeps that
 
 ### Canonical Output Surfaces
 
-The Phase 018 save path is packet-first. Retired `[spec]/memory/*.md` writes are no longer part of the workflow. `generate-context.js` updates continuity inside the selected packet and reindexes the affected docs.
-
-After the save mutates indexed state, the MCP runtime touches `DB_UPDATED_FILE` so long-lived server processes can hot-rebind on the next `checkDatabaseUpdated()` pass instead of serving stale packet data.
-
-Before canonical continuity files are mutated, `generate-context.js` acquires a packet-local `.canonical-save.lock`. Parallel saves against the same folder fail fast while stale locks are removed with a warning, which keeps simultaneous handoff writes from interleaving.
+The Phase 018 save path is packet-first. Retired `[spec]/memory/*.md` writes are no longer part of the workflow. `generate-context.js` updates continuity inside the selected packet.
 
 | Surface | Role |
 |---------|------|
 | `implementation-summary.md` | Primary continuity document carrying `_memory.continuity` in frontmatter |
 | Routed packet docs | Canonical narrative updates applied in-place to spec/plan/tasks/checklist/decision/summary surfaces as appropriate |
 | `handover.md` | First-class recovery surface refreshed by `/memory:save` when `handover_state` routing applies, using the packet template for initial creation |
+
+### Continuity Writer Contract
+
+`generate-context.js` is the named continuity writer, and it is standalone: it needs no MCP server and no background daemon to complete. Four properties are the contract, not incidental behavior:
+
+| Property | What it means |
+|----------|---------------|
+| Packet-local | Writes land inside the resolved spec folder. The one documented reach outside it is the phase-parent pointer bubble-up, which updates only the parent's `graph-metadata.json`. |
+| Atomic, same-directory | The generated metadata pair is written to a temp file beside its target and moved into place with `fs.renameSync` (POSIX-atomic), so a crashed save leaves the previous JSON intact rather than torn. Helper: `atomicWriteJson` in `scripts/memory/generate-context.ts`. |
+| Locked | The packet-local `.canonical-save.lock` is acquired before any canonical continuity file is mutated. Parallel saves against the same folder fail fast; a lock whose owner process is gone is reclaimed with a warning. Together this keeps simultaneous handoff writes from interleaving. |
+| Metadata-refreshing | The save refreshes the generated metadata pair (`description.json` and `graph-metadata.json`) for the packet, plus the phase-parent pointer. |
+
+Retrieval is a separate, generated artifact. Regenerate the trigger index with `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` when trigger phrases changed; the save neither runs it nor depends on it.
 
 ### Continuity Block Shape
 
@@ -359,16 +368,16 @@ Content here...
 
 ### All Indexed Content Sources (2)
 
-The canonical save path updates packet docs first. During `memory_index_scan()`, the indexed-continuity store indexes two active source families:
+The canonical save path updates packet docs first. Two active source families carry indexed content:
 
 | Content Type | Location | Weight | Indexed By |
 |-------------|----------|--------|------------|
 | Spec documents | `<active-spec-folder>/**/*.md` and `specs/**/*.md` | Per-type multiplier | `findSpecDocuments()` |
 | Graph metadata | `graph-metadata.json` adjacent to spec docs | Packet metadata weighting | Graph metadata parser + scan pipeline |
 
-Spec documents are controlled by the `includeSpecDocs` parameter (default: `true`) or the `SPECKIT_INDEX_SPEC_DOCS` environment variable. Spec documents use per-document scoring multipliers (e.g., spec: 1.4x, plan: 1.3x) on the current vector index schema v41 fields (`document_type`, `spec_level`).
+Spec documents are retrieved from the working tree, never from a database. The committed trigger index answers Gate 1 through `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`, and free-text retrieval follows the ripgrep recipes in `references/retrieval/retrieval-conventions.md`, scoped by track and packet. Retrieval is lexical only: paraphrase, fusion, decay and access tracking are unsupported, and a miss is a clean no-hit.
 
-For retrieval, `memory_context()` routes queries across 7 intents (including `find_spec` and `find_decision`) and applies intent-aware weighting.
+For context recovery, follow the continuity ladder: `handover.md`, then `_memory.continuity`, then the packet's spec docs read directly, then the ripgrep context recipe with bounded context.
 
 > **Tip:** Add `<!-- ANCHOR:name -->` tags to spec documents and continuity-rich packet sections so targeted retrieval can pull only the sections you need.
 

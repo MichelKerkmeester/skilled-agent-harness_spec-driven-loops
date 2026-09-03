@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c0806077f0d2e22ae7b0e9b6f8ab4e17244fac5aef0f6da59c95f7fe0938d370",
+  "manifestHash": "314a39ecfeccc636432b7c22cadadad2e77449db39ac2f77af5d69d5c4f470a4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -26811,9 +26811,6 @@
     "context reduction": [
       "context reduction"
     ],
-    "context retrieval failures": [
-      "context retrieval failures"
-    ],
     "context save methods": [
       "context save methods"
     ],
@@ -26991,6 +26988,9 @@
     ],
     "continuity save concurrency disposition": [
       "continuity save concurrency disposition"
+    ],
+    "continuity save failures": [
+      "continuity save failures"
     ],
     "continuity single source": [
       "continuity single source"
@@ -27712,6 +27712,9 @@
     ],
     "council graph db namespace delete": [
       "council-graph-db namespace delete"
+    ],
+    "council graph derived projection ownership": [
+      "council graph derived projection ownership"
     ],
     "council graph mcp surface retired": [
       "council graph mcp surface retired"
@@ -31532,6 +31535,9 @@
     ],
     "declaration module header alignment": [
       "declaration module header alignment"
+    ],
+    "declared capability loss": [
+      "declared capability loss"
     ],
     "decommission copilot hook bridge": [
       "decommission copilot hook bridge"
@@ -41073,9 +41079,6 @@
     "embedder set mcp tool": [
       "embedder_set mcp tool"
     ],
-    "embedder set runbook": [
-      "embedder_set runbook"
-    ],
     "embedder sidecar commit handoff": [
       "embedder sidecar commit handoff"
     ],
@@ -41111,6 +41114,9 @@
     ],
     "embedder swap dry run": [
       "embedder swap dry run"
+    ],
+    "embedder swap runbook": [
+      "embedder swap runbook"
     ],
     "embedder testing architecture": [
       "embedder testing architecture"
@@ -51584,9 +51590,6 @@
     "hybrid search dedup fix": [
       "hybrid search dedup fix"
     ],
-    "hybrid search fallback": [
-      "hybrid search fallback"
-    ],
     "hybrid search fusion mode": [
       "hybrid search fusion mode"
     ],
@@ -52559,11 +52562,11 @@
     "incremental memory index scan": [
       "incremental memory_index_scan"
     ],
+    "incremental research context": [
+      "incremental research context"
+    ],
     "incremental research document": [
       "incremental research document"
-    ],
-    "incremental research memory": [
-      "incremental research memory"
     ],
     "incremental spec doc indexing": [
       "incremental spec-doc indexing"
@@ -53839,6 +53842,9 @@
     ],
     "iteration evidence aggregation": [
       "iteration evidence aggregation"
+    ],
+    "iteration evidence persistence": [
+      "iteration evidence persistence"
     ],
     "iteration graph event file": [
       "iteration graph event file"
@@ -56124,6 +56130,9 @@
     ],
     "lineage canonical supersede writer": [
       "lineage canonical supersede writer"
+    ],
+    "lineage context prompt line": [
+      "lineage context prompt line"
     ],
     "lineage delta resource map": [
       "lineage delta resource map"
@@ -59032,9 +59041,6 @@
     "mcp connection failed": [
       "mcp connection failed"
     ],
-    "mcp connection problems": [
-      "mcp connection problems"
-    ],
     "mcp consumer migration": [
       "mcp consumer migration"
     ],
@@ -60811,9 +60817,6 @@
     "memory context payload count invariant": [
       "memory_context payload count invariant"
     ],
-    "memory context refresh": [
-      "memory_context refresh"
-    ],
     "memory context result floor": [
       "memory context result floor"
     ],
@@ -61749,9 +61752,6 @@
     "memory save idempotency receipt tasks": [
       "memory save idempotency receipt tasks"
     ],
-    "memory save iteration file": [
-      "memory_save iteration file"
-    ],
     "memory save pipeline": [
       "memory save pipeline"
     ],
@@ -61824,9 +61824,6 @@
     ],
     "memory search audit findings": [
       "memory search audit findings"
-    ],
-    "memory search behavior": [
-      "memory search behavior"
     ],
     "memory search citation policy": [
       "memory_search citation policy"
@@ -62041,9 +62038,6 @@
     "memory system": [
       "memory system"
     ],
-    "memory system reference": [
-      "memory system reference"
-    ],
     "memory systems mining strategy": [
       "memory systems mining strategy"
     ],
@@ -62067,9 +62061,6 @@
     ],
     "memory trigger embeddings table": [
       "memory_trigger_embeddings table"
-    ],
-    "memory troubleshooting guide": [
-      "memory troubleshooting guide"
     ],
     "memory trust badges": [
       "memory trust badges"
@@ -70183,8 +70174,8 @@
     "per intent k value selection ndcg 10": [
       "per-intent K-value selection NDCG@10"
     ],
-    "per iteration memory upsert": [
-      "per-iteration memory upsert"
+    "per iteration lineage context refresh": [
+      "per-iteration lineage context refresh"
     ],
     "per kind flag compatibility": [
       "per-kind flag compatibility"
@@ -81719,6 +81710,9 @@
     "retrieval adherence logic": [
       "retrieval adherence logic"
     ],
+    "retrieval and continuity reference": [
+      "retrieval and continuity reference"
+    ],
     "retrieval backend routing": [
       "retrieval backend routing"
     ],
@@ -82690,6 +82684,9 @@
     ],
     "ripgrep retrieval research": [
       "ripgrep retrieval research"
+    ],
+    "ripgrep retrieval returns nothing": [
+      "ripgrep retrieval returns nothing"
     ],
     "ripgrep retrieval synthesis": [
       "ripgrep retrieval synthesis"
@@ -92737,6 +92734,9 @@
     "skill advisor launcher cjs": [
       "skill-advisor-launcher.cjs"
     ],
+    "skill advisor launcher lease": [
+      "skill advisor launcher lease"
+    ],
     "skill advisor launcher p2 closeout": [
       "skill-advisor launcher P2 closeout"
     ],
@@ -94973,6 +94973,9 @@
     "spec folder detection and description metadata": [
       "spec-folder detection and description metadata"
     ],
+    "spec folder diagnosis": [
+      "spec folder diagnosis"
+    ],
     "spec folder git context enrichment": [
       "spec-folder git context enrichment"
     ],
@@ -95218,9 +95221,6 @@
     "spec kit memory to mk spec memory migration": [
       "spec_kit_memory to mk_spec_memory migration"
     ],
-    "spec kit memory tools": [
-      "spec kit memory tools"
-    ],
     "spec kit optimization plan": [
       "spec-kit optimization plan"
     ],
@@ -95342,6 +95342,9 @@
     ],
     "spec kit tests": [
       "spec kit tests"
+    ],
+    "spec kit troubleshooting guide": [
+      "spec kit troubleshooting guide"
     ],
     "spec kit utilities": [
       "spec kit utilities"
@@ -95470,9 +95473,6 @@
     ],
     "spec memory ipc": [
       "spec memory ipc"
-    ],
-    "spec memory launcher lease": [
-      "spec memory launcher lease"
     ],
     "spec memory launcher ownership": [
       "spec-memory launcher ownership"
@@ -97385,8 +97385,8 @@
     "step fanout spawn": [
       "step_fanout_spawn"
     ],
-    "step memory upsert iteration": [
-      "step_memory_upsert_iteration"
+    "step refresh lineage context": [
+      "step_refresh_lineage_context"
     ],
     "stop allowed stop blocked": [
       "STOP_ALLOWED STOP_BLOCKED",
@@ -99943,9 +99943,6 @@
     "system spec memory consumers": [
       "system-spec-memory consumers"
     ],
-    "system spec memory council graph absent": [
-      "system-spec-memory council graph absent"
-    ],
     "system spec memory embedder benchmark": [
       "system-spec-memory embedder benchmark"
     ],
@@ -102133,8 +102130,14 @@
     "trigger index": [
       "trigger index"
     ],
+    "trigger index behavior": [
+      "trigger index behavior"
+    ],
     "trigger index generator": [
       "trigger index generator"
+    ],
+    "trigger index lookup fails": [
+      "trigger index lookup fails"
     ],
     "trigger index lookup path": [
       "trigger index lookup path"
@@ -104104,9 +104107,6 @@
     ],
     "vector index": [
       "vector index"
-    ],
-    "vector index issues": [
-      "vector index issues"
     ],
     "vector index logical key unique": [
       "vector index logical key unique"

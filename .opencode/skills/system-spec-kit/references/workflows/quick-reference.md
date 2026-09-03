@@ -171,7 +171,7 @@ Say: "save context" or "save conversation"
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/
 ```
 
-Use `generate-context.js` for routine metadata and index saves. Quick direct edits are allowed only for `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md`; for immediate MCP visibility after a save, finish with `memory_index_scan({ specFolder })` or `memory_save()`.
+Use `generate-context.js` for routine metadata saves. Quick direct edits are allowed only for `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md`. There is no indexing hand-off after a save; regenerate `data/trigger-index.json` only when a document's `trigger_phrases` changed.
 
 ---
 

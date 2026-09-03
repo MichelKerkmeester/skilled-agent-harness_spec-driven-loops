@@ -660,3 +660,48 @@ describe('HfLocalProvider HTTP client', () => {
     expect(unreachable.reason).toContain('ENOENT');
   });
 });
+
+describe('HfLocalProvider model-server socket resolution', () => {
+  const { resolveHfLocalServerTarget } = __hfLocalProviderTestables;
+  // The shared model server owns this rendezvous; the client must reach it without a
+  // database directory existing anywhere, so every case below passes an explicit env.
+  const SHARED_DEFAULT_SOCKET = path.join('/tmp/system-hf-embed', 'hf-embed.sock');
+
+  it('falls back to the shared model-server socket when nothing is configured', () => {
+    expect(resolveHfLocalServerTarget({})).toEqual({
+      kind: 'socket',
+      socketPath: SHARED_DEFAULT_SOCKET,
+    });
+  });
+
+  it('ignores the memory database env vars when locating the socket', () => {
+    const target = resolveHfLocalServerTarget({
+      SPEC_KIT_DB_DIR: '/tmp/spec-kit-db-dir-fixture',
+      SPECKIT_DB_DIR: '/tmp/speckit-db-dir-fixture',
+      MEMORY_DB_PATH: '/tmp/memory-db-fixture/context-index.sqlite',
+    });
+
+    expect(target).toEqual({ kind: 'socket', socketPath: SHARED_DEFAULT_SOCKET });
+  });
+
+  it('still lets SPECKIT_IPC_SOCKET_DIR win over the shared default', () => {
+    const target = resolveHfLocalServerTarget({
+      SPECKIT_IPC_SOCKET_DIR: '/tmp/explicit-socket-dir',
+      SPEC_KIT_DB_DIR: '/tmp/spec-kit-db-dir-fixture',
+    });
+
+    expect(target).toEqual({
+      kind: 'socket',
+      socketPath: path.join('/tmp/explicit-socket-dir', 'hf-embed.sock'),
+    });
+  });
+
+  it('still lets HF_EMBED_SERVER_URL win over SPECKIT_IPC_SOCKET_DIR', () => {
+    const target = resolveHfLocalServerTarget({
+      HF_EMBED_SERVER_URL: 'tcp://127.0.0.1:9931',
+      SPECKIT_IPC_SOCKET_DIR: '/tmp/explicit-socket-dir',
+    });
+
+    expect(target).toEqual({ kind: 'tcp', host: '127.0.0.1', port: 9931 });
+  });
+});

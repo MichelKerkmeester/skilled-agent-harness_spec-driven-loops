@@ -248,6 +248,17 @@ Directive-capsule lifecycle dedup has runtime-specific output cadence. Model-con
 
 ## 2. INFRASTRUCTURE
 
+**Ownership.** These rows split into two owners, mirroring the markers in `.env.example`.
+*Shared, owned by the HF model server and the skill advisor:* `SPECKIT_IPC_SOCKET_DIR`,
+`SPECKIT_IPC_SOCKET_SCOPE`, `SPECKIT_MAX_SECONDARY_CLIENTS`, `SPECKIT_LAUNCHER_BRIDGE_DISABLED`,
+`SPECKIT_BRIDGE_RESPAWN_DISABLED`, `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`, `SPECKIT_DAEMON_REELECTION`
+and the `SPECKIT_LEASE_PROBE_*` trio — the skill-advisor launcher and the shared IPC bridge read
+them, so they survive the memory decommission. *Memory-only:* every remaining row here, including
+the `SPECKIT_DB_DIR`/`SPEC_KIT_DB_DIR`/`MEMORY_DB_PATH` family, the launcher log rows and
+`SPECKIT_EVAL_DB_PATH`. The specs-root and templates-root overrides (`SPECKIT_SPECS_DIR`,
+`SPEC_KIT_SPECS_DIR`, `SPEC_KIT_ROOT_DIR`, `SPECKIT_TEMPLATES_BASE`) are neither: the spec scripts
+read them independently of the database.
+
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_DB_DIR` | (auto-detected) | string | Override database directory path. Also accepts `SPEC_KIT_DB_DIR`. | `core/config.ts`, `shared/config.ts` |
@@ -591,6 +602,17 @@ Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDD
 
 For the simplest local-first new-user setup, install [Ollama](https://ollama.com) and `ollama pull nomic-embed-text:v1.5`, and the cascade auto-selects it with no API keys.
 
+**Ownership.** Mirroring the markers in `.env.example`: every provider-selection row
+(`EMBEDDINGS_PROVIDER`, `OLLAMA_EMBEDDINGS_MODEL`, `HF_EMBEDDINGS_MODEL`, `HF_EMBEDDINGS_DTYPE`,
+`HF_EMBEDDINGS_PREFIX_*`, `EMBEDDING_DIM`, `OPENAI_API_KEY`, `VOYAGE_API_KEY`), the circuit-breaker
+trio, every `HF_EMBED_SERVER_*` / `SPECKIT_HF_MODEL_SERVER_*` row, `SPECKIT_HF_READY_LATCH_TTL_MS`,
+`SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` and the cascade-probe rows are **shared: owned by the
+HF model server and the skill advisor** — they are read from `shared/embeddings/**` or the launcher
+libraries, both of which the advisor consumes. The `SPECKIT_RETRY_*` loop, the `SPECKIT_EMBED_CACHE_*`
+and `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES` caps, `SPECKIT_EMBED_CLIENT_MAX_BATCH`,
+`EMBEDDER_REINDEX_BATCH_SIZE` and `SPECKIT_LIVE_MODEL_TEST` are **memory-only** — they are read only
+from `mcp-server/`.
+
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
@@ -601,7 +623,7 @@ For the simplest local-first new-user setup, install [Ollama](https://ollama.com
 | `SPECKIT_RETRY_BATCH_SIZE` | `5` (code default) | number | Number of deferred-embedding items processed per background retry batch. Pinned to `100` in all three runtime configs. | `lib/providers/retry-manager.ts` |
 | `SPECKIT_RETRY_QUEUE_MAX_PENDING` | `1000` (code default) | number (positive int) | Cap on pending deferred-embedding retry entries before older entries are pruned. Pinned to `300000` in all three runtime configs. | `lib/providers/retry-manager.ts` |
 | `SPECKIT_RETRY_QUEUE_MAX_AGE_MS` | `86400000` (code default) | number (positive int) | Maximum age, in milliseconds, a deferred-embedding retry entry is retained before pruning (code default 24h). Pinned to `3153600000000` in all three runtime configs. | `lib/providers/retry-manager.ts` |
-| `HF_EMBED_SERVER_URL` | (unset → `<dbDir>/hf-embed.sock`) | string | Overrides the local HF model-server endpoint. Accepts a Unix socket path, `unix://<path>`, or `tcp://<host>:<port>`. Both launchers and the `hf-local` client resolve this first, then `SPECKIT_IPC_SOCKET_DIR`, then `<dbDir>/hf-embed.sock`. Leave unset so system-spec-memory and skill-advisor share one resident server. | `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
+| `HF_EMBED_SERVER_URL` | (unset → `/tmp/system-hf-embed/hf-embed.sock`) | string | Overrides the local HF model-server endpoint. Accepts a Unix socket path, `unix://<path>`, or `tcp://<host>:<port>`. Both launchers and the `hf-local` client resolve this first, then `SPECKIT_IPC_SOCKET_DIR`, then the short model-server default `/tmp/system-hf-embed`. That last fallback is owned by the model server rather than by any database directory, so the client reaches the same socket whether or not a database exists; it must stay equal to `DEFAULT_MODEL_SERVER_SOCKET_DIR` in `.opencode/bin/lib/model-server-supervision.cjs`. Leave unset so system-spec-memory and skill-advisor share one resident server. | `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
 | `HF_EMBED_SERVER_READY_TIMEOUT_MS` | `45000` | number | Initial readiness budget while the `hf-local` client waits for a reachable model server. Once `/api/health` reports `state: "loading"`, the client keeps retrying under `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` instead of failing at 45 s. | `shared/embeddings/providers/hf-local.ts` |
 | `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` | (unset → disabled) | number | RSS ceiling (MB) for the launcher-supervised model-server process tree. Unset disables the watchdog. | `bin/lib/model-server-supervision.cjs` |
 | `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT` | (unset → off) | string | Set `1` (with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB`) to recycle the model server via graceful self-exit on an RSS breach. | `bin/lib/model-server-supervision.cjs` |
@@ -623,7 +645,7 @@ For the simplest local-first new-user setup, install [Ollama](https://ollama.com
 
 ### Local HF model server (single resident model)
 
-When the cascade selects `hf-local`, embeddings are served by a **launcher-supervised local HTTP model server** (`bin/hf-model-server.cjs`) over a Unix socket at `<dbDir>/hf-embed.sock`, with no in-process model load and no sidecar. The system-spec-memory launcher lazily spawns and supervises it on first embed demand. `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1` lets skill-advisor win that spawn when the memory daemon is absent. Both services resolve the **same** socket, so one resident model serves all consumers.
+When the cascade selects `hf-local`, embeddings are served by a **launcher-supervised local HTTP model server** (`bin/hf-model-server.cjs`) over a Unix socket at `<SPECKIT_IPC_SOCKET_DIR>/hf-embed.sock`, falling back to the model server's own short default `/tmp/system-hf-embed/hf-embed.sock` rather than to a database directory, with no in-process model load and no sidecar. The system-spec-memory launcher lazily spawns and supervises it on first embed demand. `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1` lets skill-advisor win that spawn when the memory daemon is absent. Both services resolve the **same** socket, so one resident model serves all consumers.
 
 **Single-resident-model contract.** The server loads exactly **one** model (`HF_EMBEDDINGS_MODEL`, default `nomic-ai/nomic-embed-text-v1.5`). A request for any other model returns **HTTP 404** (`{error, model, loadedModel}`). The `hf-local` provider treats that as "model not loaded" and reports the requested model beside the server's loaded model. To run a different local HF model, change `HF_EMBEDDINGS_MODEL` for **all** consumers, and do not expect per-request model switching.
 

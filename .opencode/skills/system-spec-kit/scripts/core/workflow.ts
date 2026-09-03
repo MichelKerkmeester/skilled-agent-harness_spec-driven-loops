@@ -99,11 +99,7 @@ import {
   runBackfillResearchMetadata,
 } from '../memory/backfill-research-metadata.js';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
-import {
-  isProcessAlive,
-  isSpecMemoryDaemonAlive,
-  type SpecMemoryDaemonStatus,
-} from './daemon-detect.js';
+import { isProcessAlive } from './daemon-detect.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
@@ -383,7 +379,7 @@ export interface WorkflowResult {
   specFolderName: string;
   /** List of absolute paths for all files written during this run (canonical spec docs via content-router). */
   writtenFiles: string[];
-  /** Numeric memory ID from indexing, or null if indexing was skipped. Always null post-v3.4.1.0 — Step 11.5 indexes canonical docs separately. */
+  /** Numeric memory ID from the retired legacy indexer. Always null: this workflow no longer indexes. */
   memoryId: number | null;
   /** Non-fatal warnings encountered while persisting workflow artifacts. */
   warnings: string[];
@@ -400,25 +396,6 @@ export interface WorkflowResult {
     /** Whether the data originated from a simulation rather than a live session. */
     isSimulation: boolean;
   };
-}
-
-export interface Step115IndexingApi {
-  readonly initializeIndexingRuntime: () => void;
-  readonly reindexSpecDocs: (specFolder: string) => Promise<unknown>;
-}
-
-export interface Step115AutoIndexOptions {
-  readonly specFolderName: string | null;
-  readonly autoIndexTouchedDisabled: boolean;
-  readonly shouldRunExplicitSaveFollowUps: boolean;
-  readonly log: (message?: string) => void;
-  readonly warn: (message?: string) => void;
-  readonly daemonStatus?: SpecMemoryDaemonStatus;
-  readonly importIndexingApi?: () => Promise<Step115IndexingApi>;
-}
-
-export interface Step115AutoIndexResult {
-  readonly warning?: string;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -600,168 +577,6 @@ async function withSavePfdLock<TResult>(
       releaseSavePfdLock(folderPath);
     }
   }
-}
-
-async function importDefaultIndexingApi(): Promise<Step115IndexingApi> {
-  const indexingApi = await import('@spec-kit/mcp-server/api/indexing');
-  return {
-    initializeIndexingRuntime: indexingApi.initializeIndexingRuntime,
-    reindexSpecDocs: indexingApi.reindexSpecDocs,
-  };
-}
-
-function formatMemoryIndexScanFollowUp(specFolderName: string): string {
-  return `memory_index_scan({ specFolder: "${specFolderName}" })`;
-}
-
-function formatStep115DaemonSkipMessage(
-  specFolderName: string,
-  daemonStatus: SpecMemoryDaemonStatus,
-): string {
-  const pidLabel = daemonStatus.pid !== undefined ? `pid ${daemonStatus.pid}` : 'pid unknown';
-  return 'Step 11.5 SKIPPED: system-spec-memory daemon is running '
-    + `(${pidLabel}). A standalone index here would be a 2nd writer on `
-    + 'context-index.sqlite (corruption-risk class, incident 026/004/012). '
-    + `Finish indexing via MCP: ${formatMemoryIndexScanFollowUp(specFolderName)}.`;
-}
-
-function isStep115DaemonContentionError(message: string): boolean {
-  const normalized = message.toLowerCase();
-  return normalized.includes('sqlite_busy')
-    || normalized.includes('single-writer lock')
-    || normalized.includes('vector_index is null')
-    || (normalized.includes('embedding_cache') && normalized.includes('unique'));
-}
-
-function formatStep115ContentionWarning(specFolderName: string, errMsg: string): string {
-  return 'Warning: Step 11.5 auto-index skipped after daemon/index contention signal: '
-    + `${errMsg}. This matches the second-writer failure class for `
-    + 'context-index.sqlite (embedding_cache UNIQUE, SQLITE_BUSY, or vector_index null). '
-    + `Leave the standalone writer closed and finish indexing via MCP: ${formatMemoryIndexScanFollowUp(specFolderName)}.`;
-}
-
-async function runStep115AutoIndex(
-  options: Step115AutoIndexOptions,
-): Promise<Step115AutoIndexResult> {
-  const {
-    specFolderName,
-    autoIndexTouchedDisabled,
-    shouldRunExplicitSaveFollowUps,
-    log,
-    warn,
-    daemonStatus: providedDaemonStatus,
-    importIndexingApi = importDefaultIndexingApi,
-  } = options;
-
-  if (!specFolderName || autoIndexTouchedDisabled) {
-    return {};
-  }
-
-  if (!shouldRunExplicitSaveFollowUps) {
-    log('Step 11.5: deferred (planner-default save requires explicit reindex follow-up)');
-    return {};
-  }
-
-  const daemonStatus = providedDaemonStatus ?? isSpecMemoryDaemonAlive();
-  if (daemonStatus.alive) {
-    const warning = formatStep115DaemonSkipMessage(specFolderName, daemonStatus);
-    warn(`   ${warning}`);
-    return { warning };
-  }
-
-  try {
-    const { initializeIndexingRuntime, reindexSpecDocs } = await importIndexingApi();
-    log('Step 11.5: Indexing touched canonical spec documents...');
-    // Ensure indexing runtime is initialized. Idempotent: safe to call even if Step 11
-    // Already initialized it via the vectorIndex module (different init path).
-    try {
-      initializeIndexingRuntime();
-    } catch (initErr: unknown) {
-      // Not fatal — runtime may already be warm; runMemoryIndexScan will surface real errors.
-      const initMsg = initErr instanceof Error ? initErr.message : String(initErr);
-      if (!/already/i.test(initMsg)) {
-        warn(`   Step 11.5: indexing runtime init note: ${initMsg}`);
-      }
-    }
-    const scanResult = await reindexSpecDocs(specFolderName);
-
-    // runMemoryIndexScan returns MCP-style { content: [{ type: "text", text: "<json>" }], isError }.
-    // Parse the nested JSON envelope to extract scan counts.
-    let scanEnvelope: { summary?: string; data?: Record<string, unknown> } | null = null;
-    try {
-      const contentText = (scanResult as {
-        content?: Array<{ text?: string }>
-      } | null | undefined)?.content?.[0]?.text;
-      if (typeof contentText === 'string' && contentText.length > 0) {
-        scanEnvelope = JSON.parse(contentText) as { summary?: string; data?: Record<string, unknown> };
-      }
-    } catch {
-      // Fall through to generic message below.
-    }
-
-    const scanIsError = Boolean((scanResult as { isError?: boolean } | null | undefined)?.isError);
-    const scanData = scanEnvelope?.data;
-    if (scanIsError) {
-      const reason = typeof scanData?.error === 'string' ? scanData.error : (scanEnvelope?.summary ?? 'unknown error');
-      const code = typeof scanData?.code === 'string' ? scanData.code : null;
-      // Trust the backend error-code contract; drop the over-eager regex fallback
-      // That could accidentally swallow unrelated errors whose message happens to contain
-      // "rate limit" or "cooldown" substrings.
-      if (code === 'E429') {
-        log('   Step 11.5: skipped (scan cooldown active; retry on next save)');
-      } else if (code === 'E_RESTORE_IN_PROGRESS') {
-        log('   Step 11.5: skipped (checkpoint restore in progress; retry after restore)');
-      } else {
-        warn(`   Warning: Step 11.5 scan reported error: ${reason}${code ? ` [${code}]` : ''}`);
-      }
-    } else if (scanData && typeof scanData === 'object') {
-      const indexed = Number(scanData.indexed) || 0;
-      const updated = Number(scanData.updated) || 0;
-      const unchanged = Number(scanData.unchanged) || 0;
-      const failed = Number(scanData.failed) || 0;
-      const scanned = Number(scanData.scanned) || 0;
-      log(`   Step 11.5: ${indexed + updated} indexed/updated, ${unchanged} unchanged, ${failed} failed (${scanned} files scanned)`);
-      // When failures occur, surface per-file detail (capped at 3) so prod
-      // Investigations don't need a second manual memory_index_scan to diagnose.
-      // Backend increments `failed` for ANY non-successful status; per-file entries
-      // Use the actual status string ('rejected', 'failed', etc.) — match the inverse
-      // Of the success set rather than hard-coding 'failed'.
-      if (failed > 0) {
-        const successStatuses = new Set([
-          'success', 'indexed', 'updated', 'unchanged', 'reinforced', 'duplicate', 'deferred',
-        ]);
-        const filesList = Array.isArray(scanData.files) ? scanData.files : [];
-        const failedFiles = filesList.filter(
-          (entry: unknown): entry is { file?: string; status?: string; error?: string } => {
-            if (typeof entry !== 'object' || entry === null) return false;
-            const status = (entry as { status?: string }).status;
-            return typeof status === 'string' && !successStatuses.has(status);
-          }
-        );
-        const failureCap = 3;
-        for (const failure of failedFiles.slice(0, failureCap)) {
-          const fileName = typeof failure.file === 'string' ? failure.file : 'unknown';
-          const statusLabel = typeof failure.status === 'string' ? failure.status : 'failed';
-          const errorMsg = typeof failure.error === 'string' ? failure.error : '';
-          warn(`     - ${statusLabel}: ${fileName}${errorMsg ? ` - ${errorMsg}` : ''}`);
-        }
-        if (failedFiles.length > failureCap) {
-          warn(`     - (${failedFiles.length - failureCap} additional failure(s) omitted)`);
-        }
-      }
-    } else {
-      log('   Step 11.5: scan completed (no summary payload)');
-    }
-  } catch (e: unknown) {
-    const errMsg = e instanceof Error ? e.message : String(e);
-    const warning = isStep115DaemonContentionError(errMsg)
-      ? formatStep115ContentionWarning(specFolderName, errMsg)
-      : `Warning: Step 11.5 auto-index skipped: ${errMsg}`;
-    warn(`   ${warning}`);
-    return { warning };
-  }
-
-  return {};
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -1579,7 +1394,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   // Steps 8.5/8.6/8.5b/CG-07/CG-07b removed in v3.4.1.0 cutover (Path A r2 P1-fix F003/F010).
   // These steps validated, scored, and gated the rendered [spec]/memory/*.md artifact that
   // No longer exists. Quality + sufficiency + template-contract checks for canonical-doc
-  // Saves are owned by the content-router (handlers/memory-save.ts) and Step 11.5 indexer.
+  // Saves are owned by the content-router (handlers/memory-save.ts).
 
   const sessionObservations = Array.isArray(sessionData.OBSERVATIONS) ? sessionData.OBSERVATIONS : [];
   const sessionFiles = Array.isArray(sessionData.FILES) ? sessionData.FILES : [];
@@ -1761,21 +1576,16 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     log('   Context file was a duplicate — skipping description tracking');
   }
 
-  // Previously gated on
-  // options.plannerMode === 'full-auto', which made the default plan-only
-  // /memory:save a structural no-op for graph-metadata.json (last_save_at
-  // never advanced, Step 11.5 spec-doc reindex was deferred indefinitely,
-  // post-save quality review was skipped). The compound with the
-  // dead ctxFileWritten stub produced H-56-1 (default canonical save wrote
-  // zero metadata). Lifted unconditional so every canonical save refreshes
-  // graph metadata, re-indexes touched spec docs, and runs the post-save
-  // quality review regardless of planner mode.
+  // Unconditional by design. Gating these follow-ups on planner mode made the default
+  // plan-only save a structural no-op for graph-metadata.json: last_save_at never
+  // advanced and the post-save quality review never ran. Every canonical save refreshes
+  // graph metadata and runs the review, whatever the planner mode.
   const shouldRunExplicitSaveFollowUps = true;
   if (shouldRunExplicitSaveFollowUps) {
     try {
-      const graphApiModule = await tryImportMcpApi('@spec-kit/mcp-server/api/indexing');
+      const graphApiModule = await tryImportMcpApi('@spec-kit/mcp-server/api');
       if (!graphApiModule) {
-        throw new Error('MCP server indexing API unavailable for graph-metadata refresh');
+        throw new Error('MCP server API unavailable for graph-metadata refresh');
       }
       const { refreshGraphMetadata } = graphApiModule as {
         refreshGraphMetadata?: (
@@ -1839,31 +1649,9 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   let memoryId: number | null = null;
   log('   Skipping retired legacy memory indexing');
 
-  // Step 11.5: Auto-index touched canonical spec docs + graph-metadata.json in target folder.
-  // Closes the "only the new memory file is indexed" gap documented in
-  // command/memory/save.md APPENDIX A: "Canonical spec-doc surfaces participate
-  // In spec-doc indexing." Reuses the same incremental mtime + content-hash path as
-  // Memory_index_scan so unchanged files are skipped cheaply.
-  //
-  // Kill switches (either disables this step):
-  //   SPECKIT_AUTO_INDEX_TOUCHED=false  — new, targeted at Step 11.5 only
-  //   SPECKIT_INDEX_SPEC_DOCS=false     — existing global opt-out, honored by handler
-  const autoIndexTouchedDisabled =
-    process.env.SPECKIT_AUTO_INDEX_TOUCHED === 'false' ||
-    process.env.SPECKIT_INDEX_SPEC_DOCS === 'false';
-
-  // Guard on specFolderName only so canonical docs still re-index even though
-  // the legacy memory artifact is no longer written by this workflow.
-  const step115Result = await runStep115AutoIndex({
-    specFolderName,
-    autoIndexTouchedDisabled,
-    shouldRunExplicitSaveFollowUps,
-    log,
-    warn,
-  });
-  if (step115Result.warning) {
-    workflowWarnings.push(step115Result.warning);
-  }
+  // Retrieval is source-owned: the trigger index is a generated artifact, not a
+  // save-time side effect, so the save only points at the generator.
+  log('   Trigger index: run node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs when trigger phrases changed');
 
   // Step 11.75: Post-save quality review — wire into production pipeline.
   // Runs the post-save reviewer against the canonical spec-doc save artifacts.
@@ -1935,7 +1723,6 @@ export {
   filterTriggerPhrases,
   refreshPhaseParentPointersAfterSave,
   releaseFilesystemLock,
-  runStep115AutoIndex,
   runWorkflow,
   scrubWorkflowSavePayloadTextFields,
 };

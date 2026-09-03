@@ -1,8 +1,8 @@
 ---
-title: Spec Memory Launcher Lease
-description: PID-file single-writer lease for the system-spec-memory launcher.
+title: Launcher Lease
+description: PID-file single-writer lease for the skill-advisor launcher.
 trigger_phrases:
-  - "spec memory launcher lease"
+  - "skill advisor launcher lease"
   - "pid-file single-writer lease"
   - "stale reclaim path"
   - "lease env-var override"
@@ -11,9 +11,9 @@ contextType: implementation
 version: 3.6.0.6
 ---
 
-# Spec Memory Launcher Lease
+# Launcher Lease
 
-`system-spec-memory-launcher.cjs` uses a launcher-local PID file to prevent duplicate spec-memory MCP daemons from racing the same SQLite stores.
+`system-skill-advisor-launcher.cjs` uses a launcher-local PID file to prevent duplicate advisor MCP daemons from racing the same SQLite stores.
 
 ---
 
@@ -21,7 +21,7 @@ version: 3.6.0.6
 
 ### Purpose
 
-Define the launcher-local PID-file lease that prevents duplicate system-spec-memory MCP daemons from racing the same SQLite stores.
+Define the launcher-local PID-file lease that prevents duplicate advisor MCP daemons from racing the same SQLite stores.
 
 ### When to Use
 
@@ -33,7 +33,7 @@ The launcher may reclaim stale owners, but it must not open a second writer when
 
 ### Lease Summary
 
-The launcher lease is a process-boundary guard. Before bootstrap work begins, the launcher reads `.opencode/skills/system-spec-kit/mcp-server/database/.system-spec-memory-launcher.json` and probes the recorded PID with `process.kill(pid, 0)`.
+The launcher lease is a process-boundary guard. Before bootstrap work begins, the launcher reads `.system-skill-advisor-launcher.json` from its database directory and probes the recorded PID with `process.kill(pid, 0)`.
 
 If the recorded process is alive, the launcher calls `bridgeOrReportLeaseHeld()`, which first attempts to bridge stdio through the existing daemon's session proxy so the second client survives a daemon recycle transparently; it only prints `LEASE_HELD_BY:<pid>` to stdout and exits with code `0` when bridge fallback is unavailable (for example, the bridge module is missing or `SPECKIT_LAUNCHER_BRIDGE_DISABLED=1`). If the recorded process is gone, the launcher logs `staleReclaimed: true`, continues boot, and overwrites the PID file after bootstrap succeeds.
 
@@ -41,13 +41,13 @@ If the recorded process is alive, the launcher calls `bridgeOrReportLeaseHeld()`
 
 ## 2. PID-FILE FORMAT
 
-The PID file lives beside the spec-memory launcher database state:
+The PID file lives beside the launcher's database state, under `SYSTEM_SKILL_ADVISOR_DB_DIR`:
 
 ```text
-.opencode/skills/system-spec-kit/mcp-server/database/.system-spec-memory-launcher.json
+<SYSTEM_SKILL_ADVISOR_DB_DIR>/.system-skill-advisor-launcher.json
 ```
 
-The active lease payload is intentionally small. `pid`, `startedAt`, and `ownerPid` are always present; `childPid` and `modelServerPid` are optional, written only when the launcher has spawned the corresponding child (a context-server child and a model-server process, respectively):
+The active lease payload is intentionally small. `pid`, `startedAt`, and `ownerPid` are always present; `childPid` and `modelServerPid` are optional, written only when the launcher has spawned the corresponding child (a daemon child and a model-server process, respectively):
 
 ```json
 {
@@ -63,17 +63,9 @@ Writes are atomic: the launcher writes a process-specific temporary file, then r
 
 ---
 
-## 3. ENV-VAR OVERRIDE
+## 3. NO BYPASS FLAG
 
-Set `SYSTEM_SPEC_MEMORY_STRICT_SINGLE_WRITER=0` or `SYSTEM_SPEC_MEMORY_STRICT_SINGLE_WRITER=false` to bypass the duplicate-start exit.
-
-When disabled, the launcher logs:
-
-```text
-SYSTEM_SPEC_MEMORY_STRICT_SINGLE_WRITER is disabled; skipping lease check
-```
-
-Use this only for deliberate local testing. The default behavior is strict single-writer enforcement.
+The retired spec-memory launcher carried an env-var bypass for the duplicate-start exit. The advisor launcher exposes no equivalent flag: the lease check always runs, and strict single-writer enforcement is the only behavior. Diagnose a `LEASE_HELD_BY:<pid>` line by finding the recorded owner, not by disabling the guard.
 
 ---
 
@@ -87,12 +79,12 @@ Stale reclaim handles interrupted owners, especially `SIGKILL` or host crashes t
 4. Bootstrap proceeds.
 5. Launcher writes a fresh PID file for its own process before spawning `context-server.js`.
 
-If the OS has reused the recorded PID for another live process, the launcher treats the lease as held. Remove the PID file manually only after verifying no real `system-spec-memory-launcher.cjs` owner is running.
+If the OS has reused the recorded PID for another live process, the launcher treats the lease as held. Remove the PID file manually only after verifying no real `system-skill-advisor-launcher.cjs` owner is running.
 
 ---
 
 ## 5. RELATED
 
-- `.opencode/bin/system-spec-memory-launcher.cjs` owns the inline PID-file primitive.
-- `.opencode/skills/system-spec-kit/references/memory/memory-system.md` documents spec-memory storage behavior.
+- `.opencode/bin/system-skill-advisor-launcher.cjs` owns the inline PID-file primitive.
+- `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` covers spec-folder retrieval, which needs no launcher and no lease.
 - Internal design notes define the propagation contract.

@@ -85,12 +85,12 @@ Search responses should include a degradation warning when semantic search is un
 
 ### Rebuild in flight is transient, not corruption
 
-A `memory_health` status of `degraded` paired with a "N missing vectors" or "embedder rebuilding" note is usually a TRANSIENT rebuild lag, not a corrupted or dropped index. The vector shard re-embeds asynchronously after a provider swap, a `/doctor:update`, or a cold cache, so its coverage count climbs toward the `memory_index` row total while the embedder job runs. A `/doctor:update` that ends with `final_status: ok` plus a "N missing vectors, embedder rebuilding" note took the accept-with-note path for that lag; it did NOT roll back.
+A reported health status of `degraded` paired with a "N missing vectors" or "embedder rebuilding" note is usually a TRANSIENT rebuild lag, not a corrupted or dropped index. The vector shard re-embeds asynchronously after a provider swap, a `/doctor:update`, or a cold cache, so its coverage count climbs toward the `memory_index` row total while the embedder job runs. A `/doctor:update` that ends with `final_status: ok` plus a "N missing vectors, embedder rebuilding" note took the accept-with-note path for that lag; it did NOT roll back.
 
 Confirm vector health correctly before concluding corruption:
 
-- `memory_health.recallDegradation.degraded` is the authoritative vector-health flag. `false` means the vector layer is fine even when the top-level `status` still reads `degraded`, because the top-level flag also folds in non-vector subsystems and the in-flight re-embed.
-- `vectorSearchAvailable: true` plus a `memory_search` that returns real hits means semantic search is live right now.
+- The reported `recallDegradation.degraded` field is the authoritative vector-health flag. `false` means the vector layer is fine even when the top-level `status` still reads `degraded`, because the top-level flag also folds in non-vector subsystems and the in-flight re-embed.
+- `vectorSearchAvailable: true` plus a vector query that returns real hits means semantic search is live right now.
 - `embedder_jobs` (status `running` then `completed`, with `processed` / `total`) shows the rebuild progressing. Sampling the active shard's `vec_<dim>` count twice a few seconds apart confirms it is climbing rather than stuck.
 - Do NOT query the canonical `context-index.sqlite` `sqlite_master` for `vec_*` tables to judge health. The `vec_memories*` and `vec_<dim>` tables live in the attached shard under `vectors/` (see [embedder-architecture.md](./embedder-architecture.md) §4). The main DB exposes only `vec_metadata`, so a `sqlite_master` scan there falsely looks like the vector tables were dropped.
 
@@ -135,10 +135,10 @@ Never reuse a cache row across profile, input-kind, model, or dimension boundari
 
 ## 7. OPERATOR CHECKS
 
-- `embedder_status` should report the active provider and any running reindex job.
+- The active provider and any running reindex job should be read from `vec_metadata` and the embedder job rows; the spec kit exposes no tool that reports them.
 - `vec_metadata.active_embedder_name` should match the provider used for query encoding.
 - `vec_<dim>` should contain rows before the active pointer is trusted for vector search. Count it in the active shard file under `vectors/`, NOT in the canonical `context-index.sqlite` (which holds only `vec_metadata`).
 - `OLLAMA_BASE_URL` should point at the same Ollama daemon used to pull the selected model.
-- Before reporting a vector regression, distinguish a transient async rebuild (health `degraded` + "N missing vectors" that is climbing, `final_status: ok`) from real corruption (`recallDegradation.degraded: true`, `vectorSearchAvailable: false`, and `memory_search` returning no vector hits). See §4 "Rebuild in flight is transient, not corruption".
+- Before reporting a vector regression, distinguish a transient async rebuild (health `degraded` + "N missing vectors" that is climbing, `final_status: ok`) from real corruption (`recallDegradation.degraded: true`, `vectorSearchAvailable: false`, and a vector query returning no hits). See §4 "Rebuild in flight is transient, not corruption".
 
 Related architecture reference: [embedder-architecture.md](./embedder-architecture.md).

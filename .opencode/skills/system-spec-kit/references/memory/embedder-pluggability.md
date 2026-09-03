@@ -1,6 +1,6 @@
 ---
-title: "Embedder Pluggability: system-spec-memory"
-description: "Canonical system-spec-memory pluggable-embedder reference, covering defaults, swap flows, rollback, and the out-of-box support matrix."
+title: "Embedder Pluggability"
+description: "Canonical pluggable-embedder reference for the shared embedding stack, covering defaults, swap flows, rollback, and the out-of-box support matrix."
 trigger_phrases:
   - "embedder pluggability"
   - "embedder swap"
@@ -14,9 +14,11 @@ contextType: implementation
 version: 3.6.0.14
 ---
 
-# Embedder Pluggability: system-spec-memory
+# Embedder Pluggability
 
-Canonical reference for system-spec-memory embedder pluggability. Read this when a new user asks "which embedder do you use", before swapping memory embedders, or when triaging memory retrieval-quality regressions.
+Canonical reference for the shared embedding stack at `.opencode/skills/system-spec-kit/shared/embeddings/`. Read this when a new user asks "which embedder do you use", before swapping embedders, or when triaging vector retrieval-quality regressions.
+
+> **Scope.** Spec-folder retrieval does not use any of this. It is lexical: a trigger-index lookup plus the ripgrep recipes in `../retrieval/retrieval-conventions.md`. Embedders serve the skill advisor and the retained model-server consumers, and an embedder problem can never explain a spec-folder retrieval miss.
 
 ---
 
@@ -24,30 +26,30 @@ Canonical reference for system-spec-memory embedder pluggability. Read this when
 
 ### Purpose
 
-Explain system-spec-memory embedder pluggability, including defaults, swap flows, rollback, and supported candidates.
+Explain shared-stack embedder pluggability, including defaults, swap flows, rollback, and supported candidates.
 
 ### When to Use
 
-Load this reference when changing the system-spec-memory text embedder, diagnosing memory retrieval-quality regressions, or answering operator questions about out-of-box support.
+Load this reference when changing the shared text embedder, diagnosing vector retrieval-quality regressions, or answering operator questions about out-of-box support.
 
 ### Core Principle
 
-system-spec-memory has a pluggable text embedder. The current default is `nomic-embed-text-v1.5` through the local-first cascade described below.
+The shared stack has a pluggable text embedder. The current default is `nomic-embed-text-v1.5` through the local-first cascade described below.
 
 ### Scope after 014
 
-`system-spec-memory` indexes prose: spec docs, decision records, continuity frontmatter, conversation summaries. Prose recall benefits from text-tuned embedders that handle paraphrase, multilingual prefixes, and synonym overlap.
+The consumers of this stack index prose: spec docs, decision records, continuity frontmatter, conversation summaries. Prose recall benefits from text-tuned embedders that handle paraphrase, multilingual prefixes, and synonym overlap.
 
 
 ### What "out-of-box for any embedder" means
 
-The promise is operator-facing: a new install picks the system-spec-memory default without configuration, and swapping to a different text embedder from the vetted list never requires code changes. Schema migrations and dim-mismatch handling are automatic.
+The promise is operator-facing: a new install picks the default without configuration, and swapping to a different text embedder from the vetted list never requires code changes. Schema migrations and dim-mismatch handling are automatic.
 
-The promise does NOT mean any HuggingFace model just works. Only vetted candidates in the memory registry are guaranteed first-class. Adding a new candidate is a one-row append (see §2) — not a new code path.
+The promise does NOT mean any HuggingFace model just works. Only vetted candidates in `shared/embeddings/registry.ts` are guaranteed first-class. Adding a new candidate is a one-row append (see §2) — not a new code path.
 
 ---
 
-## 2. MK-SPEC-MEMORY SIDE
+## 2. SHARED EMBEDDING STACK
 
 ### Provider cascade (ADR-014, local-first)
 
@@ -94,21 +96,23 @@ Source of truth: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts
 }
 ```
 
-One candidate is registered today: `nomic-embed-text-v1.5` (`ollama` backend, 768d). `embedder_set` rejects any other name with `UNKNOWN_EMBEDDER`. Additional models can be added by appending manifests to `shared/embeddings/registry.ts`.
+One candidate is registered today: `nomic-embed-text-v1.5` (`ollama` backend, 768d). A swap rejects any other name with `UNKNOWN_EMBEDDER`. Additional models can be added by appending manifests to `shared/embeddings/registry.ts`.
 
 Adding a new candidate is a single registry row plus, if the backend is new, a single adapter file under `.opencode/skills/system-spec-kit/mcp-server/lib/embedders/adapters/`. No call sites change. The adapter contract is small (see §2: EmbedderAdapter interface).
 
-### MCP tools
+### Administration surface
 
-Three tools wrap the registry. They live in `mcp-server/handlers/` and are exposed through the standard MCP transport:
+Three operations wrap the registry: list the registered manifests with their `ready()` state, set the active embedder, and read the active pointer plus the most recent swap-job status.
 
-| Tool | Purpose |
+| Operation | Purpose |
 |---|---|
-| `embedder_list` | Return all registered manifests plus their `ready()` state. |
-| `embedder_set({ name })` | Swap active embedder; queues a re-index job and updates `active_embedder_name` on success. |
-| `embedder_status` | Return current `active_embedder_name`, `active_embedder_dim`, and the most recent swap-job status. |
+| List | Return all registered manifests plus their `ready()` state. |
+| Set | Swap active embedder; queues a re-index job and updates `active_embedder_name` on success. |
+| Status | Return current `active_embedder_name`, `active_embedder_dim`, and the most recent swap-job status. |
 
-Operator flow is "list, set, watch." The set call is asynchronous: it returns a job ID, the orchestrator re-indexes every `memory_index` row through the new adapter, and the active pointer flips only when the job reaches `completed`.
+Operator flow is "list, set, watch." The set operation is asynchronous: it returns a job ID, the orchestrator re-indexes every row through the new adapter, and the active pointer flips only when the job reaches `completed`.
+
+**The spec kit exposes no tool for any of this.** These three operations were served by the retired memory MCP surface. The registry, the adapters and the dim-tagged schema survive under `shared/embeddings/`, and the stack is configured through the environment variables in `../config/environment-variables.md`; which surviving surface exposes the swap is decided by the shared-seam split. For daemon and model-server health, use the advisor's own status surface (`node .opencode/bin/skill-advisor.cjs advisor_status --format json`), which is the only live health tool in this tree.
 
 ### EmbedderAdapter interface
 
@@ -130,7 +134,7 @@ interface EmbedderAdapter {
 }
 ```
 
-The retrieval pipeline (`hybrid-search`, `memory_search`, `memory_context`) only calls `embed()` and `ready()`. It does not know which backend is underneath. Implementations live in `mcp-server/lib/embedders/adapters/<backend>.ts`.
+A vector retrieval pipeline only calls `embed()` and `ready()`. It does not know which backend is underneath. Implementations live under the shared embedding adapters.
 
 ### Dim-tagged vec_<dim> schema — no migration when swapping dim
 
@@ -184,11 +188,11 @@ Per-row empirical results live in `evidence/embedder-comparison-with-rescue.json
 
 ### First-install flow
 
-| Step | system-spec-memory |
+| Step | Action |
 |---|---|
-| 1 | Install the MCP server (per skill INSTALL_GUIDE). |
+| 1 | Install the consuming MCP server (per its install guide). |
 | 2 | Pull the default Ollama model: `ollama pull nomic-embed-text:v1.5`. |
-| 3 | Start the MCP server; first `embedder_status` call returns the active `nomic-embed-text-v1.5` profile. |
+| 3 | Start the MCP server; the active profile reads back as `nomic-embed-text-v1.5`. |
 | 4 | Optional: confirm `SPECKIT_RERANK_LAYER` unset (default-on). |
 
 No code changes. No schema migrations. A fresh clone reaches a ready state from the documented commands above.
@@ -196,25 +200,27 @@ No code changes. No schema migrations. A fresh clone reaches a ready state from 
 ### Swap flow
 
 ```text
-1. embedder_list({})                          // confirm candidate is registered + ready
-2. embedder_set({ name: "<candidate-name>" }) // returns job ID; runs async
-3. (poll) embedder_status                     // watch active_embedder_name flip
-4. memory_search probe                        // sanity-check a known-good query
+1. list      // confirm candidate is registered + ready
+2. set       // returns job ID; runs async
+3. (poll)    // watch active_embedder_name flip
+4. probe     // sanity-check a known-good vector query
 ```
 
-The system-spec-memory swap is single-MCP-call and crash-resumable.
+The swap is a single call and crash-resumable.
+
+> **Pending owner.** These four steps ran through the retired memory MCP surface and there is no command to run today. Treat them as the shape of the operation until the shared-seam split names the surviving caller.
 
 ### Rollback flow
 
-system-spec-memory rollback is a same-shape `embedder_set` call that re-points active back to the prior embedder. The previous `vec_<dim>` table is preserved, so rollback is fast when same-to-same (the re-index orchestrator can short-circuit if the destination table already has fresh vectors for the current corpus). Eight rollbacks executed cleanly across ADR-001..ADR-008.
+Rollback is a same-shape set call that re-points active back to the prior embedder. The previous `vec_<dim>` table is preserved, so rollback is fast when same-to-same (the re-index orchestrator can short-circuit if the destination table already has fresh vectors for the current corpus). Eight rollbacks executed cleanly across ADR-001..ADR-008.
 
 ---
 
 ## 5. OUT-OF-BOX SUPPORT MATRIX
 
-The table below lists the system-spec-memory embedder that works without code changes because the registry already includes the candidate. Only one manifest is registered today (`MANIFESTS` in `shared/embeddings/registry.ts`); `embedder_set` throws `UNKNOWN_EMBEDDER` for any name not in this list.
+The table below lists the embedder that works without code changes because the registry already includes the candidate. Only one manifest is registered today (`MANIFESTS` in `shared/embeddings/registry.ts`); a swap throws `UNKNOWN_EMBEDDER` for any name not in this list.
 
-| Embedder | system-spec-memory backend | Dim | Approx RAM | Notes |
+| Embedder | Backend | Dim | Approx RAM | Notes |
 |---|---|---:|---:|---|
 | `nomic-embed-text-v1.5` | ollama | 768 | ~600 MB | Current default text retrieval specialist; local-first cascade default. |
 
@@ -226,7 +232,7 @@ The candidates evaluated during the 016/004 bake-off (`jina-embeddings-v3`, `bge
 
 ### Fit guidance
 
-system-spec-memory indexes prose: spec docs, decision records, meeting notes, conversation summaries. Text-tuned embedders are the right class when queries are paraphrase-heavy ("how do we handle X" rather than literal symbol lookups), or when multilingual or cross-domain recall matters.
+The consumers of this stack index prose: spec docs, decision records, meeting notes, conversation summaries. Text-tuned embedders are the right class when queries are paraphrase-heavy ("how do we handle X" rather than literal symbol lookups), or when multilingual or cross-domain recall matters.
 
 ### Size vs quality
 

@@ -65,10 +65,12 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 
 | Capability | What the skill knows how to operate |
 |---|---|
-| **Retrieval** | five fused channels, Vector, FTS5, BM25, Causal Graph and Degree, with intent-based channel selection |
-| **Decay lifecycle** | six importance tiers with FSRS power-law decay and promotion through positive feedback |
-| **Causal graph** | six relationship types across memories with Louvain community detection |
-| **Save arbitration** | four outcomes per save, CREATE, REINFORCE, UPDATE and SUPERSEDE, behind three quality gates |
+| **Gate 1 trigger lookup** | a committed index over author-declared `trigger_phrases`, answered from a cold Node process with no service running |
+| **Free-text retrieval** | literal ripgrep recipes scoped by track and packet, ordered by a caller-side ranking tuple |
+| **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` |
+| **Declared loss** | semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal are retired with no successor |
+
+The retrieval contract is `references/retrieval/retrieval-conventions.md`. A lookup that matches nothing returns nothing; nothing degrades to an approximate answer.
 
 ---
 
@@ -103,7 +105,7 @@ node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
   specs/042-my-feature/
 ```
 
-The command updates the canonical continuity surfaces for the target folder, refreshes `description.json.lastUpdated` and rewrites the derived fields in `graph-metadata.json`. The `/memory:save 042-my-feature` shorthand does the same. Direct MCP `memory_save({ filePath })` indexes content only and returns a `metadataRefresh` advisory with `refreshed: false` when packet metadata should be regenerated through the save lane.
+The command updates the canonical continuity surfaces for the target folder, refreshes `description.json.lastUpdated` and rewrites the derived fields in `graph-metadata.json`. The `/memory:save 042-my-feature` shorthand does the same. There is no second save lane: the continuity writer is the only path that touches those files, so a save either went through it or did not happen.
 
 **Step 3: Resume work from a previous session.**
 
@@ -130,23 +132,20 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 
 The default validation set runs the non-strict rules from the 46-rule registry. Exit 0 means all rules pass, exit 1 is a user error, exit 2 is a validation error and exit 3 is a system error.
 
-**Step 6: Verify the memory server is up.**
-
-```json
-{
-  "tool": "memory_health",
-  "arguments": { "reportMode": "full" }
-}
-```
-
-The response returns `status: "ok"` with database table counts. The same check runs from a shell through the daemon-backed CLI, which fronts the identical 41-tool surface:
+**Step 6: Verify retrieval works.**
 
 ```bash
-node .opencode/bin/spec-memory.cjs list-tools --format text
-node .opencode/bin/spec-memory.cjs memory_health --json '{"reportMode":"full"}' --format json
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+  --json -- "spec folder"; echo "exit=$?"
 ```
 
-`list-tools` answers offline. Every other command speaks JSON-RPC to the daemon over the IPC socket. Exit codes are `0` success, `1` runtime error, `64` usage or schema error, `69` protocol or dist mismatch and `75` retryable daemon error. Pass `--warm-only` in prompt-time contexts so a cold daemon yields exit `75` instead of a cold spawn. The exit taxonomy is shared with the `code-index` and `skill-advisor` CLI front doors.
+Exit `0` means the index resolved candidates, `1` means a clean miss and `2` means a bad invocation or an unreadable index. There is nothing to start and nothing to keep warm: the index is a committed file, and a fresh clone answers on the first call.
+
+If the index is missing, rebuild it:
+
+```bash
+node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+```
 
 ### Common Patterns
 
@@ -184,12 +183,12 @@ Session starts
             ▼
   Session ends
   └─► generate-context.js updates canonical continuity surfaces
-       └─► MCP reindexes packet docs (vector + BM25 + graph)
+       └─► regenerate the trigger index when frontmatter changed
             │
             ▼
   Next session starts
   └─► /speckit:resume compares handover.md and _memory.continuity freshness, then falls back to packet docs
-       └─► session_bootstrap() or memory_context() deepen retrieval when needed
+       └─► the ripgrep context recipe deepens retrieval when needed
        └─► AI resumes with context + health + structural readiness
 ```
 
@@ -211,7 +210,7 @@ specs/<###-feature-name>/
 └── scratch/                     # Temporary workspace files (gitignored)
 ```
 
-`implementation-summary.md` is required at all levels but created after implementation completes, not at folder creation time. `generate-context.js` updates the packet continuity state for `/speckit:resume`, refreshes `description.json.lastUpdated` and rewrites the derived fields in `graph-metadata.json` on every save-lane run. Direct MCP `memory_save({ filePath })` does not refresh those metadata files and returns a `metadataRefresh` advisory when packet metadata may lag.
+`implementation-summary.md` is required at all levels but created after implementation completes, not at folder creation time. `generate-context.js` updates the packet continuity state for `/speckit:resume`, refreshes `description.json.lastUpdated` and rewrites the derived fields in `graph-metadata.json` on every run. It is the only writer of those files, so metadata cannot lag behind a save that went through it.
 
 ### Documentation Levels
 
@@ -283,6 +282,12 @@ Optional support documents such as `handover.md`, `debug-delegation.md`, `resear
 
 `create.sh` rejects `--path` values that traverse outside the repository with a clear error before any write. Set `SPECKIT_POST_VALIDATE=1` when a strict workflow should run full validation immediately after scaffolding. A mkdir-based advisory lock protects `description.json` and `graph-metadata.json` writes during canonical save so two parallel `/memory:save` calls for the same packet do not race.
 
+> **Retired engine.** Everything from here to the end of Section 4 describes the memory MCP
+> server, which packet 049 is decommissioning. It is kept as a record of what the system did, not
+> as instructions. Live retrieval is the trigger index plus the ripgrep recipes in
+> `references/retrieval/retrieval-conventions.md`, and none of the behavior below has a
+> file-based successor.
+
 ### The Search Pipeline
 
 Every search runs through four stages:
@@ -341,7 +346,7 @@ Short decision-type memories can bypass the content-length gate when `SPECKIT_SA
 
 The system tracks how decisions relate to each other. Six relationship types connect memories: `caused`, `enabled`, `supersedes`, `contradicts`, `derived_from` and `supports`. Community detection with the Louvain algorithm clusters related memories automatically, so finding one surfaces its neighbors.
 
-`memory_search` results carry an additive `trustBadges` payload per result envelope. The badges read existing causal-edge columns at response time, so callers can judge whether a causal claim looks fresh and well-supported without changing storage.
+Result envelopes carried an additive `trustBadges` payload. The badges read existing causal-edge columns at response time, so callers can judge whether a causal claim looks fresh and well-supported without changing storage.
 
 | Badge | Source |
 |---|---|
@@ -355,19 +360,19 @@ The formatter derives the badges from existing causal-edge tables, fails open wh
 
 ### Index Health and Self-Maintenance
 
-`memory_index_scan` is self-maintaining. Overlapping scan calls return a `coalesced: true` success envelope instead of a rate-limit error. Rows become text-searchable immediately as `pending` while vectors drain, reported as `complete_with_pending_vectors` with a `pendingVectors` count, so content is always searchable even when the embedding queue is backed up. Move reconciliation heals renamed spec folders by packet identity without re-embedding. Each scan also runs a bounded global orphan sweep.
+The index scan was self-maintaining. Overlapping scan calls returned a `coalesced: true` success envelope instead of a rate-limit error. Rows become text-searchable immediately as `pending` while vectors drain, reported as `complete_with_pending_vectors` with a `pendingVectors` count, so content is always searchable even when the embedding queue is backed up. Move reconciliation heals renamed spec folders by packet identity without re-embedding. Each scan also runs a bounded global orphan sweep.
 
-`memory_health` includes an `index` block with a summary enum:
+The health surface reported an `index` block with a summary enum:
 
 | Summary value | Meaning |
 |---|---|
 | `healthy_fresh` | index is current and all vectors are resolved |
 | `healthy_lagging_vectors` | index is current but some vectors are still pending |
 | `stale_needs_scan` | index has not been scanned recently |
-| `degraded_needs_repair` | failed rows require `memory_embedding_reconcile` |
+| `degraded_needs_repair` | failed rows require an embedding reconcile pass |
 | `unavailable` | index state could not be read |
 
-`memory_embedding_reconcile` converges embedding status for stale rows and resets genuinely missing-vector retry rows inside one guarded transaction. The default mode is `dry-run`. No writes happen unless `mode: "apply"` is passed.
+The reconcile pass converged embedding status for stale rows and reset genuinely missing-vector retry rows inside one guarded transaction. It defaulted to a dry run and wrote nothing unless applied explicitly.
 
 After a checkpoint restore that swaps the live database files, the runtime writes a `.needs-rebuild` sentinel beside the restored database. The next boot detects it and rebuilds the derived FTS5 and BM25 shadow plus the vector profile before serving, so a restored snapshot never serves from a stale shadow. The sentinel clears once the rebuild completes.
 
@@ -401,7 +406,7 @@ Stale-audit and tool-ownership lint run as live guardrails around this surface. 
 
 ### Front-Proxy and Daemon Recycle
 
-The launcher fronts the backend daemon with a session proxy. The proxy keeps one stable client-facing stdio session while the backend behind it recycles in place, for example when the RSS-ceiling watchdog restarts the daemon or when a new build replaces the backend. Read-only replayable tools such as `memory_search` and `memory_context` retry transparently across a recycle, so a routine restart looks like a brief pause.
+The launcher fronts the backend daemon with a session proxy. The proxy keeps one stable client-facing stdio session while the backend behind it recycles in place, for example when the RSS-ceiling watchdog restarts the daemon or when a new build replaces the backend. Read-only replayable retrieval tools retried transparently across a recycle, so a routine restart looked like a brief pause.
 
 Three operator-visible error codes surface from this behavior:
 
@@ -454,14 +459,14 @@ Command source files: `.opencode/commands/speckit/`.
 
 ### Memory Commands
 
-| Command | Tool count | Purpose |
-|---|---|---|
-| `/memory:save` | 4 | update packet continuity surfaces with semantic indexing |
-| `/memory:search` | 13 | search, retrieve and analyze knowledge with auto-detected intent from 7 task types |
-| `/memory:manage` | 20 | database maintenance and lifecycle operations |
-| `/memory:learn` | 6 | constitutional memory management, create, list, edit and remove rules |
+| Command | Purpose |
+|---|---|
+| `/memory:save` | update packet continuity surfaces through `generate-context.js`; no indexing hand-off |
+| `/memory:search` | retrieval over spec docs using the ripgrep recipes, scoped by track and packet |
+| `/memory:manage` | administers the indexed-continuity store, which packet 049 is removing |
+| `/memory:learn` | deprecated; the constitutional-memory layer was retired |
 
-Some commands own their tools while others borrow from `/memory:search` or `/memory:manage`. A borrowed tool works the same way, it is just administered somewhere else.
+The tool counts these commands used to carry were counts of memory MCP tools. They are gone, so the column is too.
 
 Command source files: `.opencode/commands/memory/`.
 
@@ -501,25 +506,12 @@ OpenCode note: if the MCP server runs in a restricted or read-only repo context,
 
 ### MCP Server Configuration
 
-For generic MCP clients that use `mcpServers` syntax such as Claude Desktop, add the server like this:
+This skill registers no MCP server of its own. Retrieval runs from two committed scripts under `scripts/retrieval/`, and continuity is written by `scripts/dist/memory/generate-context.js`. There is nothing to add to `mcpServers` for a generic MCP client, and nothing to keep warm.
 
-```json
-{
-  "mcpServers": {
-    "system-spec-memory": {
-      "command": "node",
-      "args": [
-        "/absolute/path/to/.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js"
-      ],
-      "env": {
-        "EMBEDDINGS_PROVIDER": "auto"
-      }
-    }
-  }
-}
+```bash
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
+node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
 ```
-
-Claude Code, Codex, Cursor, Devin and the OpenCode plugin bridge use checked-in repo-specific config shapes. Use `mcp-server/INSTALL-GUIDE.md` for the runtime-specific examples instead of pasting the generic block into every client.
 
 ### Feature Flags
 
@@ -629,16 +621,16 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 
 ## 8. TROUBLESHOOTING
 
-### MCP Tools Return "Tool Not Found"
+### Trigger Lookup Fails
 
-Calling `memory_match_triggers()` returns an error or the tool is not recognized. The MCP server is not running or not registered in your MCP config.
+The Gate 1 lookup exits `2`. That is a bad invocation or an unreadable index, never a clean miss.
 
 ```bash
-node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js
-node --version
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder"; echo "exit=$?"
+ls -l .opencode/skills/system-spec-kit/data/trigger-index.json
 ```
 
-The server should start and Node.js should report 20.11 or newer. Verify `system-spec-memory` appears in your `opencode.json` or equivalent MCP config file.
+Exit `0` means candidates were found and `1` means none were. If the index file is missing or truncated, regenerate it with `scripts/retrieval/generate-trigger-index.mjs`.
 
 ### Memory Save Fails or Creates an Empty File
 
@@ -650,9 +642,9 @@ cd .opencode/skills/system-spec-kit && npm run build
 
 Rebuild the scripts, then retry with a valid structured payload and an explicit spec-folder target.
 
-### Memory Save Rejected by Quality Gate
+### Continuity Save Rejected by Quality Gate
 
-The save completes but the record is rejected by the semantic sufficiency gate or the structure gate. The content is too thin or missing required structure. Use `dryRun: true` in the `memory_save` tool call to preview gate results without saving. Read the post-save quality review output for specific issues.
+The save runs but the payload is rejected by the sufficiency gate or the structure gate. The content is too thin or missing required structure. Read the post-save quality review output for the specific issue, then add a real `sessionSummary`, meaningful `recent_context` entries and described `FILES` rows before retrying.
 
 ### Validation Fails With "Missing Required Files"
 
@@ -664,23 +656,17 @@ bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh specs/[pro
 bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[project]/NNN-feature/ [target-level]
 ```
 
-### Memory Search Returns Poor Results
+### Retrieval Misses Content You Know Exists
 
-`memory_context()` returns irrelevant results or misses content you know exists. The embedding index is stale or the query is too vague for intent classification. Force a re-index with `memory_index_scan`, check `memory_health` with full report mode and try a more specific query with an intent hint such as `find_decision:`.
-
-### memory_health Reports Corruption or FTS5 Integrity Failure
-
-`memory_health` returns `corrupt` or the server logs show an FTS5 shadow index corruption at boot. When the `.unclean-shutdown` crash marker is present, the server runs two probes. A whole-database `PRAGMA quick_check` guards the main index and writes the checkpoint `.needs-rebuild` sentinel on failure, refusing to start rather than serving corrupted data. The `memory_fts` shadow check auto-heals by default because the shadow table is fully derived from `memory_index`. Set `SPECKIT_BOOT_FTS_AUTOHEAL=0` for detect-only mode. Clean shutdowns skip both probes.
+The trigger index only knows what an author declared in `trigger_phrases`. A phrase that was never declared cannot be matched, and no amount of rephrasing will surface it — that is a corpus gap, not a lookup failure. Regenerate the index if frontmatter changed, then fall back to the free-text lane, which scans prose rather than declared phrases:
 
 ```bash
-SPECKIT_BOOT_FTS_AUTOHEAL=1 node .opencode/bin/system-spec-memory-launcher.cjs
+rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'phrase' specs .opencode
 ```
 
-If `degraded_needs_repair` appears in the `index.summary` field, run `memory_embedding_reconcile({ mode: "apply" })` after the rebuild.
-
-### Memory Save Fails While a Live Daemon Is Running
-
-A standalone script save and a live daemon session can conflict when both try to acquire the write lock on the same database file. The store uses a single-writer lease. Use the MCP tool path when a daemon is running: `/memory:save [spec-folder]`. The daemon serializes writes through its own handler queue. Fall back to `generate-context.js` directly only when no daemon is active, for example in CI or headless batch jobs.
+There is no paraphrase matching to fall back to. Retrieval is lexical.
 
 ### Quick Fixes
 
@@ -688,13 +674,12 @@ A standalone script save and a live daemon session can conflict when both try to
 |---|---|
 | `generate-context.js` not found | run `npm run build` in `system-spec-kit/` |
 | Spec folder fails validation | run `validate.sh --verbose` and read each failing rule |
-| Memory context seems wrong | call `memory_stats({})` to check index counts |
+| Retrieval seems wrong | rerun the lookup and read the exit status: `0` hit, `1` clean miss, `2` broken |
 | Session context lost after crash | use `/speckit:resume` to select the fresher folder-local source |
 | Placeholder check fails | run `check-placeholders.sh` and replace all `[PLACEHOLDER]` values |
-| Stale results after save | call `memory_index_scan({ specFolder: "..." })` to force re-index |
+| Stale results after save | rerun `scripts/retrieval/generate-trigger-index.mjs` |
 | Too many near-duplicate results | check that the interference penalty is active in feature flags |
-| `spec-memory.cjs` exits 69 | CLI dist is missing or stale, run `npm run build --workspace=@spec-kit/mcp-server` |
-| `spec-memory.cjs` exits 75 with `--warm-only` | expected when the daemon is cold, retry without `--warm-only` or start a session that spawns it |
+| Trigger index absent in a fresh clone | it is committed at `data/trigger-index.json`; a missing file means a bad checkout, not a build step |
 
 ### Diagnostic Commands
 
@@ -702,7 +687,7 @@ A standalone script save and a live daemon session can conflict when both try to
 bash .opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh specs/[project]/NNN-feature/
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/[project]/NNN-feature/ --verbose
 bash .opencode/skills/system-spec-kit/scripts/check-api-boundary.sh
-# memory_health({ reportMode: "full" })
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 ```
 
 ---
@@ -723,15 +708,15 @@ A: Level 3 adds a `decision-record.md` for architecture decisions. Use it for ch
 
 **Q: How do spec folders and memory work together?**
 
-A: Spec folders capture what happened in structured documentation. `generate-context.js` updates the packet's canonical continuity surfaces. `/speckit:resume` rebuilds the next session from those sources, comparing folder-local `handover.md` and `_memory.continuity` freshness before falling back to packet docs. The MCP server indexes those sources so deeper retrieval still works through `session_bootstrap()`, `memory_context()`, `memory_match_triggers()` and `memory_search()`. One side captures, the recovery surfaces retrieve.
+A: Spec folders capture what happened in structured documentation. `generate-context.js` updates the packet's canonical continuity surfaces. `/speckit:resume` rebuilds the next session from those sources, comparing folder-local `handover.md` and `_memory.continuity` freshness before falling back to packet docs. Deeper retrieval reads the same files directly: the trigger index for a declared phrase, the ripgrep recipes for anything else. One side captures, the recovery surfaces retrieve, and both work with nothing running.
 
-**Q: Can I use memory without spec folders?**
+**Q: Can I use retrieval without spec folders?**
 
-A: The store can index any markdown file, beyond spec folder contents. For implementation work the canonical continuity path is the spec folder itself. You can still save standalone memories with `memory_save`, but Gate 3 will still ask about a spec folder for file modifications.
+A: Yes. The index and the ripgrep recipes read any Markdown under `specs` and `.opencode`, not only packet docs. For implementation work the canonical continuity path is still the spec folder itself, and Gate 3 asks about one before any file modification regardless.
 
 **Q: What is the difference between this README and the MCP server README?**
 
-A: This README covers the whole skill: spec folders, documentation levels, commands, templates and scripts, plus the indexed-continuity store at a high level. The MCP server README goes deep on the store: the 41-tool API reference, the retrieval channels, the save pipeline, the causal graph and the evaluation infrastructure.
+A: This README covers the whole skill: spec folders, documentation levels, commands, templates and scripts. The MCP server README documents the retired store, and packet 049 removes it; read it as a record of what the engine did, not as an interface you can call.
 
 **Q: What is the difference between SKILL.md and this README?**
 
@@ -759,7 +744,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[proje
 | Human Voice Rules | the em dash, semicolon and Oxford comma greps return zero prose hits |
 | Link resolution | the link guard reports no failures in this README |
 | Spec folder validation | `validate.sh` on a spec folder exits 0 |
-| Memory health | `memory_health({ reportMode: "full" })` returns `status: "ok"` |
+| Retrieval health | the trigger lookup exits `0` for a known phrase, and `data/trigger-index.json` parses |
 
 ### Scripts That Manage Spec Folders
 

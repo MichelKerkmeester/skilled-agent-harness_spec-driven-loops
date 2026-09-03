@@ -69,8 +69,8 @@ Expected outcomes:
 ## 5. BASELINE VERIFICATION
 
 Confirm baseline behavior before closing rollback:
-- `memory_search` response metadata shows no applied session/causal boosts
-- `memory_context` response metadata shows no pressure-mode override
+- retrieval responses show no applied session/causal boosts
+- retrieval responses show no pressure-mode override
 - `working_memory` receives no new extraction inserts from post-tool callbacks
 
 ---

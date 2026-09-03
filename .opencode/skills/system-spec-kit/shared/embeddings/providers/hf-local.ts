@@ -33,6 +33,13 @@ const NO_OWNER_GRACE_MS = 5000;
 const DEFAULT_READY_LATCH_TTL_MS: number = 30000;
 const MAX_READY_LATCH_TTL_MS: number = 120000;
 const SOCKET_FILE_NAME = 'hf-embed.sock';
+// Last-resort socket directory when nothing is configured. The model server that binds
+// hf-embed.sock owns this rendezvous, so the client must not derive it from any database
+// directory: the resident model server outlives and is shared by every database consumer,
+// and a checkout-dependent database path can exceed the 104-byte sun_path limit.
+// MUST stay byte-identical to DEFAULT_MODEL_SERVER_SOCKET_DIR in
+// .opencode/bin/lib/model-server-supervision.cjs, which is the process that binds it.
+const DEFAULT_MODEL_SERVER_SOCKET_DIR = '/tmp/system-hf-embed';
 
 // Task prefixes required by nomic-embed-text-v1.5
 // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
@@ -377,7 +384,7 @@ function resolveHfLocalServerTarget(env: NodeJS.ProcessEnv = process.env): HfLoc
 
   const socketDir = env.SPECKIT_IPC_SOCKET_DIR
     ? path.resolve(env.SPECKIT_IPC_SOCKET_DIR)
-    : path.resolve(env.SPEC_KIT_DB_DIR ?? env.SPECKIT_DB_DIR ?? defaultDbDir());
+    : DEFAULT_MODEL_SERVER_SOCKET_DIR;
 
   return parseServerTarget(path.join(socketDir, SOCKET_FILE_NAME));
 }

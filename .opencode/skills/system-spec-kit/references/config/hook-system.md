@@ -90,7 +90,7 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 | Codex | yes (`UserPromptSubmit`) | yes (`SessionStart`, `PreCompact`, `Stop`) | `.codex/hooks.json` | `/speckit:resume`, direct MCP tools |
 | Cursor | yes (`beforeSubmitPrompt`) | yes (`sessionStart`, `preCompact`, `sessionEnd`) | `.cursor/hooks.json` | `/speckit:resume`, direct MCP tools |
 | Devin | yes (`UserPromptSubmit`) | yes (`SessionStart`, `Stop`) | `.devin/hooks.v1.json` | `/speckit:resume`, direct MCP tools |
-| OpenCode | yes (`experimental.chat.system.transform`) | plugin events | `.opencode/plugins/system-skill-advisor.js` | `/speckit:resume`, `session_bootstrap()`, direct MCP tools |
+| OpenCode | yes (`experimental.chat.system.transform`) | plugin events | `.opencode/plugins/system-skill-advisor.js` | `/speckit:resume`, trigger-index lookup, direct MCP tools |
 
 ---
 

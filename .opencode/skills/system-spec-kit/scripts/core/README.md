@@ -16,14 +16,14 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/core/` contains the TypeScript workflow modules used by `scripts/dist/memory/generate-context.js`. The folder owns context-save orchestration, quality scoring, metadata extraction, file writing, indexing hooks, spec-folder path handling and live daemon detection.
+`scripts/core/` contains the TypeScript workflow modules used by `scripts/dist/memory/generate-context.js`. The folder owns context-save orchestration, quality scoring, metadata extraction, file writing and spec-folder path handling.
 
 Current state:
 
 - Source of truth is `scripts/core/*.ts`.
 - Compiled runtime output is `scripts/dist/core/*.js`.
 - `workflow.ts` composes the save flow and imports focused helpers from this folder.
-- `daemon-detect.ts` decides whether the standalone indexer may open a writer or must defer to the running MCP daemon.
+- `daemon-detect.ts` probes process liveness for the save lock's stale-owner check.
 
 ---
 
@@ -43,8 +43,8 @@ Current state:
                        ▼                  ▼                  ▼
               ┌────────────────┐ ┌────────────────┐ ┌────────────────┐
               │ path + config  │ │ metadata +     │ │ daemon-detect  │
-              │ config/        │ │ scoring        │ │ writer-safety  │
-              │ subfolders     │ │ memory/title   │ │ gate           │
+              │ config/        │ │ scoring        │ │ save-lock pid  │
+              │ subfolders     │ │ memory/title   │ │ probe          │
               └───────┬────────┘ │ topic/quality  │ └────────────────┘
                       │          └───────┬────────┘
                       ▼                  ▼
@@ -69,7 +69,7 @@ scripts/core/
 +-- workflow-accessors.ts     # Typed accessors for workflow objects
 +-- workflow-path-utils.ts    # Path normalization and key-file discovery
 +-- config.ts                 # Runtime config, constants and specs-dir resolution
-+-- daemon-detect.ts          # MCP-daemon liveness gate (lease + process probe)
++-- daemon-detect.ts          # Process-liveness probe for the save lock
 +-- subfolder-utils.ts        # Spec folder and child-folder resolution
 +-- save-context-path.ts      # Save path resolution helpers
 +-- memory-*.ts               # Metadata and indexing support
@@ -103,7 +103,7 @@ scripts/core/
 +-- alignment-validator.ts       # Spec-folder alignment and thinning targets
 +-- config.ts                    # Config loading, path wiring, canonical-first specs-dir discovery
 +-- content-cleaner.ts           # HTML stripping and literal-anchor escaping
-+-- daemon-detect.ts             # MCP-daemon liveness check before standalone indexing
++-- daemon-detect.ts             # Process-liveness probe for the save lock
 +-- find-predecessor-memory.ts   # Prior memory lookup support
 +-- frontmatter-editor.ts        # Frontmatter injection and trigger rendering
 +-- index.ts                     # Barrel exports
@@ -138,9 +138,9 @@ scripts/core/
 
 | File | Responsibility |
 |---|---|
-| `workflow.ts` | Runs the context-save flow from parsed input through generated continuity artifacts; serializes runs with an in-process queue plus filesystem lock and gates Step 11.5 auto-indexing on daemon liveness. |
+| `workflow.ts` | Runs the context-save flow from parsed input through generated continuity artifacts; serializes runs with an in-process queue plus filesystem lock and refreshes the generated metadata pair after the save. |
 | `config.ts` | Loads `config.jsonc`, validates and normalizes workflow limits, freezes the `CONFIG` object, and resolves the active specs directories canonical-first (`specs` before legacy `.opencode/specs`, with legacy read fallback). |
-| `daemon-detect.ts` | Reports whether the `system-spec-memory` daemon is alive by combining the launcher lease with live process probing, so a standalone save never opens a second SQLite writer. |
+| `daemon-detect.ts` | Reports whether a pid is alive via `process.kill(pid, 0)`, so the save lock can tell a crashed owner from a live one before reclaiming. |
 | `subfolder-utils.ts` | Resolves spec folders, child folders and subfolder-aware save targets. |
 | `save-context-path.ts` | Computes canonical save paths for generated context output. |
 | `memory-metadata.ts` | Builds metadata used by memory records, deduplication, causal links and evidence snapshots. |
@@ -156,38 +156,30 @@ scripts/core/
 
 | Boundary | Rule |
 |---|---|
-| Imports | Source modules import local TypeScript helpers and script libraries, not compiled `dist/` output. `daemon-detect.ts` is stdlib-only (`node:fs`, `node:path`, `node:url`). |
+| Imports | Source modules import local TypeScript helpers and script libraries, not compiled `dist/` output. `daemon-detect.ts` is stdlib-only. |
 | Exports | `index.ts` is the public barrel for this folder. Keep one-off helpers private unless another script imports them. |
-| Ownership | This folder owns context-save orchestration helpers and the writer-safety daemon gate. MCP server tools, database code and spec templates belong outside `scripts/core/`. |
+| Ownership | This folder owns context-save orchestration helpers. MCP server tools, database code and spec templates belong outside `scripts/core/`. |
 
-Daemon-liveness gate:
+Save-lock ownership check:
 
 ```text
 ╭──────────────────────────────────────────╮
-│ standalone save reaches Step 11.5        │
+│ save finds an existing lock directory    │
 ╰──────────────────────────────────────────╯
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ readLeasePids(): primaryPid + childPid   │
-│ from .system-spec-memory-launcher.json       │
+│ read owner.json -> recorded pid          │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ primaryPid alive?  ──── yes ──▶ ALIVE     │
-│ else childPid alive? ── yes ──▶ ALIVE     │
-│ else ───────────────────────▶ NOT ALIVE   │
+│ isProcessAlive(pid)? ─── yes ──▶ WAIT     │
+│ else ───────────────────────▶ RECLAIM     │
 └──────────────────────────────────────────┘
-                  │
-                  ▼
-╭──────────────────────────────────────────╮
-│ ALIVE -> skip standalone index (use MCP) │
-│ NOT ALIVE -> safe to index in-process    │
-╰──────────────────────────────────────────╯
 ```
 
-The childPid branch is load-bearing: a launcher pid that looks dead does not make the lease reclaimable while the recorded child (the real SQLite writer) is still live. Reclaiming there would spawn a second writer on `context-index.sqlite`.
+No owner record and no live pid means the previous run died mid-save, so the lock is stale and reclaiming it is correct. A live owner means a concurrent save, and reclaiming would let two writers interleave the same packet's continuity files.
 
 ---
 
@@ -196,9 +188,7 @@ The childPid branch is load-bearing: a launcher pid that looks dead does not mak
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `runWorkflow` | Function (`workflow.ts`) | Main context-save orchestration entry, serialized under the run lock. |
-| `isSpecMemoryDaemonAlive` | Function (`daemon-detect.ts`) | Returns `{ alive, pid }`; the writer-safety gate for standalone indexing. |
-| `isProcessAlive` | Function (`daemon-detect.ts`) | Liveness probe via `process.kill(pid, 0)`, reused by the workflow lock cleanup. |
-| `resolveSpecMemoryDaemonLeasePath` | Function (`daemon-detect.ts`) | Resolves the launcher lease path under `mcp-server/database/`. |
+| `isProcessAlive` | Function (`daemon-detect.ts`) | Liveness probe via `process.kill(pid, 0)`, used by the workflow lock cleanup. |
 | `CONFIG` / `findActiveSpecsDir` | Export (`config.ts`) | Frozen runtime config and active specs-directory resolution. |
 | `index.ts` | Module | Public barrel for importing core helpers. |
 | `scripts/dist/memory/generate-context.js` | CLI script | Primary caller for core workflow behavior. |
@@ -224,7 +214,7 @@ npx vitest run tests/workflow-step115-daemon-guard.vitest.ts
 npx vitest run tests/workflow-canonical-save-metadata.vitest.ts
 ```
 
-Expected result: Vitest reports the daemon-detection, Step-11.5 guard and canonical-save suites passing.
+Expected result: Vitest reports the process-liveness, save-follow-up guard and canonical-save suites passing.
 
 ---
 

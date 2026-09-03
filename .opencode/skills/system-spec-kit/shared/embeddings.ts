@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
 // MODULE: Embeddings
 // ---------------------------------------------------------------
-// Feature catalog: Hybrid search pipeline
+// Feature catalog: Hybrid search pipeline // hygiene-ok
 
 // Node stdlib
 import crypto from 'crypto';
@@ -439,7 +439,7 @@ function isProviderInitialized(): boolean {
 /**
  * Drop the cached provider singleton so the next getProvider() re-resolves it.
  * Call after the active-embedder pointer (vec_metadata) changes — e.g. a completed
- * embedder_set reindex. resolveProvider() reads the active pointer, but only when the
+ * embedder switch and reindex. resolveProvider() reads the active pointer, but only when the
  * singleton is (re)created; without this the daemon keeps embedding with the previously
  * resolved model/dim and new vectors land under the wrong profile. In-flight init is not
  * cancelled (matches resetForTesting semantics), so a concurrent build may repopulate.

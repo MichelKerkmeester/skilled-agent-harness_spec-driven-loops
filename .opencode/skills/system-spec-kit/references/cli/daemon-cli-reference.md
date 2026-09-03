@@ -14,7 +14,7 @@ version: 3.6.0.8
 
 # Daemon CLI Reference
 
-The daemon CLI shims are additive IPC clients over the existing MCP daemons. They are not replacement servers, and MCP remains the primary in-session transport.
+The daemon CLI shim is an additive IPC client over the skill-advisor MCP daemon. It is not a replacement server, and MCP remains the primary in-session transport.
 
 Use these CLIs when a runtime MCP transport is missing, failed, or not reconnecting while the daemon is expected to be warm, or when an operator needs shell diagnostics, CI checks, or scripted maintenance.
 
@@ -24,17 +24,18 @@ Run the repo-relative examples from the repository root. If the caller is in ano
 
 | CLI shim | MCP daemon | Tool count | Primary use |
 | --- | --- | ---: | --- |
-| `node .opencode/bin/spec-memory.cjs` | `system-spec-memory` | 41 | Memory context, search, health, indexing, checkpoint, and session recovery fallback. |
 | `node .opencode/bin/skill-advisor.cjs` | `system_skill_advisor` | 9 | Advisor recommendations, advisor health, skill graph diagnostics, and trusted maintainer mutations. |
 
-Each shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
+The shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio. `list-tools` and `--help` are served from local definitions and do not contact or spawn a daemon.
 
-Launcher supervision is not uniform by design. The spec-memory launcher supervises the backend with crash-loop backoff, relaunch, and RSS-watchdog support. The skill-advisor launcher mirrors child exit or signal state and expects the owning runtime or operator to restart it after a child crash.
+The skill-advisor launcher mirrors child exit or signal state and expects the owning runtime or operator to restart it after a child crash.
+
+Spec-folder retrieval has no CLI on this page and no daemon behind it. It is two committed scripts under `system-spec-kit/scripts/retrieval/` plus the ripgrep recipes in `../retrieval/retrieval-conventions.md`, and none of the exit codes, warm-only rules or recovery steps below apply to it.
 
 ## CLI vs MCP — when to use which
 
 
-Because the CLIs already use the same daemon IPC path and expose stable count-locked surfaces, a later evolution could consolidate them as the primary or sole transport, replacing MCP servers without breaking existing MCP workflows. Treat that as a possible direction, not a committed migration plan.
+Because the CLI already uses the same daemon IPC path and exposes a stable count-locked surface, a later evolution could make it the primary or sole transport, replacing the MCP server without breaking existing MCP workflows. Treat that as a possible direction, not a committed migration plan.
 
 ---
 
@@ -56,12 +57,11 @@ node .opencode/bin/<cli>.cjs <tool_name> --help
 
 `completion bash|zsh` emits generated shell completion for the selected CLI and shell.
 
-Tool names accept the aliases exposed by the CLI. Both CLIs expose snake_case, kebab-case, and camelCase aliases from their tool manifests.
+Tool names accept the aliases exposed by the CLI: snake_case, kebab-case, and camelCase, read from the tool manifest.
 
 Use `--json` for one complete JSON object argument when a tool has structured input:
 
 ```bash
-node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000
 node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement cli core"}' --format json --timeout-ms 3000 --warm-only
 ```
 
@@ -69,7 +69,7 @@ node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implem
 
 ## 3. OUTPUT FORMATS
 
-Both CLIs accept `--format json|text|jsonl`.
+The CLI accepts `--format json|text|jsonl`.
 
 | Format | Behavior |
 | --- | --- |
@@ -77,7 +77,7 @@ Both CLIs accept `--format json|text|jsonl`.
 | `text` | Human-readable summary when the payload has one; `list-tools --format text` prints tool names. |
 | `jsonl` | A single complete JSON payload rendered on one stdout line. |
 
-`jsonl` is not streaming JSON Lines. Do not assume one record per tool, one record per result, or incremental output. When passing input with `--json`, pass one complete JSON object as one shell argument; the CLIs do not parse a stream of JSONL records from stdin.
+`jsonl` is not streaming JSON Lines. Do not assume one record per tool, one record per result, or incremental output. When passing input with `--json`, pass one complete JSON object as one shell argument; the CLI does not parse a stream of JSONL records from stdin.
 
 ---
 
@@ -102,7 +102,6 @@ Prompt-time hooks and prompt-time runtime fallbacks must use warm-only behavior.
 Use either the explicit flag or the prompt-time env flags:
 
 ```bash
-node .opencode/bin/spec-memory.cjs memory_stats --warm-only --format json --timeout-ms 3000
 node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --warm-only --format json --timeout-ms 3000
 ```
 
@@ -114,14 +113,13 @@ Non-prompt contexts such as explicit operator maintenance, CI, cron, or session 
 
 ## 6. EXIT 69 RECOVERY
 
-The shims refuse stale or missing dist entrypoints with exit `69`. Rebuild before retrying.
+The shim refuses a stale or missing dist entrypoint with exit `69`. Rebuild before retrying.
 
 | CLI | Shim stale/missing message | Build recovery |
 | --- | --- | --- |
-| `spec-memory.cjs` | `Run npm run build --workspace=@spec-kit/mcp-server.` | `npm run build --workspace=@spec-kit/mcp-server` |
 | `skill-advisor.cjs` | `Run the skill-advisor TypeScript build.` | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build` |
 
-Development-only stale overrides exist for local loops, but should not be used in normal recovery: `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, and `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
+A development-only stale override exists for local loops, but should not be used in normal recovery: `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
 
 ---
 
@@ -130,36 +128,34 @@ Development-only stale overrides exist for local loops, but should not be used i
 Use `list-tools` for offline surface discovery:
 
 ```bash
-node .opencode/bin/spec-memory.cjs list-tools --format json
 node .opencode/bin/skill-advisor.cjs list-tools --format json
-node .opencode/bin/spec-memory.cjs list-tools --compact
+node .opencode/bin/skill-advisor.cjs list-tools --compact
 node .opencode/bin/skill-advisor.cjs completion zsh
 ```
 
-Expected counts are `41` for spec-memory and `9` for skill-advisor. Compact and names-only output preserve those counts while returning zero `inputSchema` fields. The counts come from the live `TOOL_DEFINITIONS` manifests and the parity test; this reference does not maintain a second tool inventory.
+The expected count is `9` for skill-advisor. Compact and names-only output preserve it while returning zero `inputSchema` fields. The count comes from the live `TOOL_DEFINITIONS` manifest and the parity test; this reference does not maintain a second tool inventory.
 
 Per-command help is available and prints the command description, aliases, and input schema:
 
 ```bash
-node .opencode/bin/spec-memory.cjs memory_stats --help
 node .opencode/bin/skill-advisor.cjs advisor_status --help
 ```
 
-Run the host-safe offline smoke check to verify both shims without daemon contact:
+Run the host-safe offline smoke check to verify the shim without daemon contact:
 
 ```bash
 node .opencode/bin/cli-offline-smoke.cjs --format json
 ```
 
-The smoke check expects `spec-memory=41`, `skill-advisor=9`, and `daemonFree:true` for each result. It is the executable parity check for the live manifests, not a separate tool inventory.
+The check is the executable parity check for the live manifests, not a separate tool inventory. It still enumerates the retired spec-memory shim alongside `skill-advisor=9`; that entry is removed with the server itself, not from this page.
 
 ---
 
 ## 8. SAFETY RULES
 
-- Keep MCP as the primary in-session transport today; use the CLIs as additive fallbacks and operator surfaces.
-- We may consider making the CLIs the primary or sole transport later, but account for the spec-memory CLI/MCP surface-count difference and do not treat that as a decided plan.
-- Prefer read-only recovery commands when transport fails: memory context/status and advisor recommend/status.
+- Keep MCP as the primary in-session transport today; use the CLI as an additive fallback and operator surface.
+- We may consider making the CLI the primary or sole transport later, but do not treat that as a decided plan.
+- Prefer read-only recovery commands when transport fails: advisor recommend and advisor status.
 - Prompt-time hooks must probe warm daemons only. They must not cold-spawn daemons from prompt-time paths.
 - Treat exit `75` as retryable daemon/IPC unavailability. Retry after MCP reconnect, daemon prewarm, or short backoff.
 - Treat exit `69` as a stale/missing dist or protocol mismatch. Rebuild the matching package before retrying.

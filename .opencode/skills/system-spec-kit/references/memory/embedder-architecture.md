@@ -6,7 +6,7 @@ trigger_phrases:
   - "bootstrap auto-selection"
   - "active_embedder_name"
   - "vec dim tables"
-  - "embedder_set runbook"
+  - "embedder swap runbook"
 importance_tier: normal
 contextType: implementation
 version: 3.6.0.17
@@ -41,7 +41,7 @@ The runtime has two embedder paths:
 | Path | Location | Used for |
 |------|----------|----------|
 | Shared factory | `shared/embeddings/factory.ts` and `shared/embeddings/providers/*` | Search-time and save-time calls through `generateEmbedding()`, `generateDocumentEmbedding()`, and `generateQueryEmbedding()` |
-| Registry adapters | `mcp-server/lib/embedders/registry.ts` and `mcp-server/lib/embedders/adapters/*` | Embedder manifests, readiness checks, and re-index jobs launched by `embedder_set` |
+| Registry adapters | `mcp-server/lib/embedders/registry.ts` and `mcp-server/lib/embedders/adapters/*` | Embedder manifests, readiness checks, and re-index jobs launched by a swap |
 
 Both paths must agree on the active model and vector dimension.
 
@@ -100,7 +100,7 @@ The memory store is split into one stable canonical metadata database plus one a
 
 At runtime the canonical connection attaches the active shard as `active_vec`. Vector queries and writes use `active_vec.vec_memories` or `active_vec.vec_<dim>`, while cache reads and writes use `active_vec.embedding_cache`. The canonical `vec_metadata.active_embedder_*` keys remain the source of truth for the active profile; the shard mirror is an integrity check that prevents attaching a mismatched provider/model/dimension store.
 
-> **Diagnostic warning, do not misread the layout.** The `vec_memories*` and dim-tagged `vec_<dim>` tables live ONLY in the attached shard file under `vectors/`, never in the canonical `context-index.sqlite`. Querying `context-index.sqlite`'s `sqlite_master` for `vec_*` returns only the canonical `vec_metadata` pointer rows, which falsely looks like the vector tables were dropped or the index is corrupt. To inspect vector coverage, open the active shard file directly (`vectors/context-vectors__<provider>__<model>__<dim>.sqlite`) and count its `vec_<dim>` table, or use `memory_health` and `embedder_status`. Multiple provider shards can coexist (for example an `ollama` shard alongside an `hf-local` shard), so confirm which file matches the active `vec_metadata.active_embedder_*` profile before trusting a coverage count.
+> **Diagnostic warning, do not misread the layout.** The `vec_memories*` and dim-tagged `vec_<dim>` tables live ONLY in the attached shard file under `vectors/`, never in the canonical `context-index.sqlite`. Querying `context-index.sqlite`'s `sqlite_master` for `vec_*` returns only the canonical `vec_metadata` pointer rows, which falsely looks like the vector tables were dropped or the index is corrupt. To inspect vector coverage, open the active shard file directly (`vectors/context-vectors__<provider>__<model>__<dim>.sqlite`) and count its `vec_<dim>` table. Multiple provider shards can coexist (for example an `ollama` shard alongside an `hf-local` shard), so confirm which file matches the active `vec_metadata.active_embedder_*` profile before trusting a coverage count.
 
 Legacy profile databases named `context-index__<slug>.sqlite` migrate during guarded memory-runtime initialization when the active profile still has a single-file store and the canonical/shard pair is missing. Migration copies canonical tables into `context-index.sqlite`, copies vector/cache payloads into `vectors/context-vectors__<slug>.sqlite`, enables WAL on both files, and moves the original legacy file to `mcp-server/database/migrations/legacy_<slug>_<timestamp>.sqlite.bak` for rollback. Operators should delete that backup only after validating the split in production.
 
@@ -110,13 +110,13 @@ No environment variable controls this layout. `MEMORY_DB_PATH` still points at t
 
 ## 5. SUPPORTED MANIFESTS
 
-The MCP registry currently exposes a single Ollama-backed re-index manifest (`MANIFESTS` in `shared/embeddings/registry.ts`). `embedder_set` rejects any name not in this list with `UNKNOWN_EMBEDDER`:
+The registry currently exposes a single Ollama-backed re-index manifest (`MANIFESTS` in `shared/embeddings/registry.ts`). A swap rejects any name not in this list with `UNKNOWN_EMBEDDER`:
 
 | Manifest | Ollama model | Dim | Notes |
 |----------|--------------|-----|-------|
 | `nomic-embed-text-v1.5` | `nomic-embed-text:v1.5` | 768 | Requires query/document prefixes; local-first cascade default |
 
-To support additional models, add manifests to `shared/embeddings/registry.ts`. Cloud and hf-local providers are selected during bootstrap, not by `embedder_set`.
+To support additional models, add manifests to `shared/embeddings/registry.ts`. Cloud and hf-local providers are selected during bootstrap, not by a swap.
 
 ---
 
@@ -134,15 +134,17 @@ ollama pull nomic-embed-text:v1.5
 curl http://127.0.0.1:11434/api/tags
 ```
 
-3. Use MCP `embedder_set` with a registered manifest name (only `nomic-embed-text-v1.5` is registered today):
+3. Request a swap to a registered manifest name (only `nomic-embed-text-v1.5` is registered today):
 
 ```json
 { "name": "nomic-embed-text-v1.5" }
 ```
 
-4. Poll `embedder_status` until the job completes.
+4. Wait for the re-index job to complete.
 5. Confirm `vec_metadata.active_embedder_name`, `active_embedder_dim`, and `active_embedder_provider`.
 6. Restart the daemon after code changes so it loads the rebuilt shared dist.
+
+> **Which surface serves the swap is unsettled.** The steps above ran through the retired memory MCP tools. The registry, adapters and shard layout survive under `shared/embeddings/`; the calling surface is decided by the shared-seam split, not by this page. Until it lands, read steps 3 and 4 as the shape of the operation rather than a command.
 
 The re-index job writes the target dim table and flips the active pointer only after completion. Existing tables remain on disk for rollback.
 
@@ -162,7 +164,7 @@ For active `jina-embeddings-v3`, the expected operator result after daemon resta
 
 ## 8. MEMORY DIAGNOSTICS
 
-`memory_health` accepts `includeFullReport:true` for byte-aware runtime diagnostics. The extended report includes RSS, V8 heap totals, external memory, ArrayBuffer memory, V8 malloc counters, cache byte estimates for tool cache, trigger matcher regex retention, and the in-process embedding LRU.
+The health surface accepts `includeFullReport:true` for byte-aware runtime diagnostics. The extended report includes RSS, V8 heap totals, external memory, ArrayBuffer memory, V8 malloc counters, cache byte estimates for tool cache, trigger matcher regex retention, and the in-process embedding LRU.
 
 ### Multi-client launcher bridge
 
@@ -175,9 +177,9 @@ Bridge mode is only used for normal MCP launcher flow after a live lease is dete
 
 The MCP server now starts with a thin bootstrap: tool schemas, validation, runtime detection, signal handlers, and stdio binding are registered immediately, while the memory runtime initializes on first memory-owning tool call. `ensureMemoryRuntimeInitialized(reason)` guards DB open, integrity and dimension checks, storage/search consumer init, BM25 warmup, reindex resume, retry manager startup, and the background scan.
 
-`memory_health` is intentionally lightweight before the guard fires. It uses `tryGetDb()` and reports `runtime_initialized: false` without opening SQLite or spawning embedder sidecars. After the first guarded memory call, the same field reports `true`, and full reports include DB-backed cache and consistency data again.
+The health surface is intentionally lightweight before the guard fires. It uses `tryGetDb()` and reports `runtime_initialized: false` without opening SQLite or spawning embedder sidecars. After the first guarded memory call, the same field reports `true`, and full reports include DB-backed cache and consistency data again.
 
-The trade-off is first-call latency: the first `memory_search`, `memory_context`, `memory_save`, embedder, checkpoint, ingest, eval, causal, or session-learning call pays the runtime initialization cost. Idle startup stays smaller because SQLite, BM25, retry jobs, startup scans, and local model sidecars remain cold until memory is actually used.
+The trade-off is first-call latency: the first retrieval, save, embedder, checkpoint, ingest, eval, causal, or session-learning call pays the runtime initialization cost. Idle startup stays smaller because SQLite, BM25, retry jobs, startup scans, and local model sidecars remain cold until memory is actually used.
 
 ### Stage 3 Reranking (removed)
 
@@ -197,7 +199,7 @@ Embedding execution is routed through `mcp-server/lib/embedders/execution-router
 
 `SPECKIT_EMBEDDER_EXECUTION` is **deprecated and ignored**. `execution-router.ts` calls `warnIgnoredExecutionPolicyEnv()`, which logs `SPECKIT_EMBEDDER_EXECUTION="..." is deprecated and ignored; using direct provider routing` and early-returns without applying the value. All providers use direct provider routing regardless of the env var; there is no `auto`/`direct`/`sidecar` routing switch in effect.
 
-Use `embedder_status` and `memory_health` to inspect provider readiness and cache/vector consistency; there is no embedding worker lifecycle to tune.
+Inspect provider readiness and cache/vector consistency from `vec_metadata` and the cache tables directly; the spec kit exposes no tool for it, and there is no embedding worker lifecycle to tune.
 
 ### Profile-Aware Caching
 
@@ -205,7 +207,7 @@ Persistent document and query embeddings are cached by `content_hash`, active `p
 
 The cache is byte-bounded rather than count-bounded. `SPECKIT_EMBED_CACHE_MAX_BYTES` caps all embedding cache rows, `SPECKIT_EMBED_CACHE_PROFILE_MAX_BYTES` caps each profile, `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES` caps query rows separately, and `SPECKIT_EMBED_CACHE_MAX_ENTRIES_PER_PROFILE` remains as a secondary safety limit. LRU eviction uses `last_used_at`, then calls SQLite `PRAGMA shrink_memory` when rows are deleted.
 
-Full `memory_health` reports expose `cache_byte_estimates.embedding_cache_by_profile`, with document/query breakdowns per profile. Use that field to verify profile switches do not stack unbounded historical cache rows.
+Full health reports expose `cache_byte_estimates.embedding_cache_by_profile`, with document/query breakdowns per profile. Use that field to verify profile switches do not stack unbounded historical cache rows.
 
 Heap snapshots remain opt-in because they can contain indexed text, prompts, file paths, and secret-shaped values. Set `SPECKIT_HEAP_SNAPSHOT_DIR=/path/to/private/dir` before launching the context server, then call the heap profiler snapshot path during an investigation; the server creates the directory with mode `0700` and each `.heapsnapshot` with mode `0600`.
 

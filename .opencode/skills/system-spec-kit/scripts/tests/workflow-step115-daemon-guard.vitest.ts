@@ -1,70 +1,64 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Workflow Step 11.5 Daemon Guard Tests
+// MODULE: Workflow Save Follow-Up Guard Tests
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { describe, expect, it, vi } from 'vitest';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import { runStep115AutoIndex } from '../core/workflow';
+import { describe, expect, it } from 'vitest';
 
 // ───────────────────────────────────────────────────────────────────
-// 2. TESTS
+// 2. FIXTURES
 // ───────────────────────────────────────────────────────────────────
 
-describe('runStep115AutoIndex daemon guard', () => {
-  it('skips the direct indexing runtime when system-spec-memory is alive', async () => {
-    const importIndexingApi = vi.fn(async () => ({
-      initializeIndexingRuntime: vi.fn(),
-      reindexSpecDocs: vi.fn(),
-    }));
-    const logMessages: string[] = [];
-    const warnMessages: string[] = [];
+const WORKFLOW_SOURCE_PATH = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '..',
+  'core',
+  'workflow.ts',
+);
+const workflowSource = fs.readFileSync(WORKFLOW_SOURCE_PATH, 'utf8');
 
-    const result = await runStep115AutoIndex({
-      specFolderName: 'system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard',
-      autoIndexTouchedDisabled: false,
-      shouldRunExplicitSaveFollowUps: true,
-      daemonStatus: { alive: true, pid: process.pid },
-      importIndexingApi,
-      log: (message = '') => logMessages.push(message),
-      warn: (message = '') => warnMessages.push(message),
-    });
+// ───────────────────────────────────────────────────────────────────
+// 3. TESTS
+// ───────────────────────────────────────────────────────────────────
 
-    expect(importIndexingApi).not.toHaveBeenCalled();
-    expect(logMessages).toEqual([]);
-    expect(result.warning).toContain('Step 11.5 SKIPPED');
-    expect(result.warning).toContain('2nd writer on context-index.sqlite');
-    expect(result.warning).toContain('incident 026/004/012');
-    expect(result.warning).toContain(
-      'memory_index_scan({ specFolder: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard" })',
-    );
-    expect(warnMessages.join('\n')).toContain(result.warning);
+// The save no longer owns retrieval. Indexing is a generated artifact produced by its
+// own generator, so the save must reach neither an indexing runtime nor a daemon lease —
+// which is also what lets a save succeed with no background service running.
+describe('canonical save follow-ups', () => {
+  it('imports no indexing runtime', () => {
+    expect(workflowSource).not.toContain('@spec-kit/mcp-server/api/indexing');
+    expect(workflowSource).not.toContain('initializeIndexingRuntime');
+    expect(workflowSource).not.toContain('reindexSpecDocs');
   });
 
-  it('diagnoses daemon contention errors from the standalone indexing fallback', async () => {
-    const importIndexingApi = vi.fn(async () => {
-      throw new Error('SQLITE_BUSY: database is locked');
-    });
-    const warnMessages: string[] = [];
+  it('emits no memory index-scan follow-up', () => {
+    expect(workflowSource).not.toContain('memory_index_scan');
+  });
 
-    const result = await runStep115AutoIndex({
-      specFolderName: 'system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard',
-      autoIndexTouchedDisabled: false,
-      shouldRunExplicitSaveFollowUps: true,
-      daemonStatus: { alive: false },
-      importIndexingApi,
-      log: () => undefined,
-      warn: (message = '') => warnMessages.push(message),
-    });
+  it('probes no spec-memory daemon', () => {
+    expect(workflowSource).not.toContain('isSpecMemoryDaemonAlive');
+    expect(workflowSource).not.toContain('.system-spec-memory-launcher.json');
+    expect(workflowSource).not.toContain('daemonStatus');
+  });
 
-    expect(importIndexingApi).toHaveBeenCalledTimes(1);
-    expect(result.warning).toContain('daemon/index contention signal');
-    expect(result.warning).toContain('SQLITE_BUSY');
-    expect(result.warning).toContain('memory_index_scan');
-    expect(warnMessages.join('\n')).toContain('second-writer failure class');
+  it('still refreshes graph metadata through the top-level API', () => {
+    expect(workflowSource).toContain("tryImportMcpApi('@spec-kit/mcp-server/api')");
+    expect(workflowSource).toContain('refreshGraphMetadata(validatedSpecFolderPath, graphRefreshOptions)');
+  });
+
+  it('points at the trigger-index generator instead of running it', () => {
+    expect(workflowSource).toContain('scripts/retrieval/generate-trigger-index.mjs');
+  });
+
+  it('exports no auto-index step', async () => {
+    const workflowModule = await import('../core/workflow');
+    expect(Object.keys(workflowModule)).not.toContain('runStep115AutoIndex');
   });
 });
-

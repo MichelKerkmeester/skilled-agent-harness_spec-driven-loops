@@ -1,11 +1,11 @@
 ---
 name: system-spec-kit
-description: "Unified spec-folder workflow + context preservation: Levels 1-3+, validation, Spec Kit Memory. Required for file modifications."
+description: "Unified spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index and ripgrep retrieval. Required for file modifications."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 3.7.1.0
 ---
 
-<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, system-spec-memory, opencode-goal, goal-plugin, active_goal, session-goal, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
+<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers, trigger-phrases -->
 
 # Spec Kit - Mandatory Conversation Documentation
 
@@ -81,13 +81,14 @@ Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `
 
 This skill uses simple intent/domain routing, not keyed runtime resource routing. It does not select whole `references/<key>/` or `assets/<key>/` subtrees from project, mode, stack, or model signals. Instead, the router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring from `RESOURCE_MAP` to load real, guarded resources from the current inventory. Keep this section domain-focused rather than static file inventories.
 
-- `references/memory/` for context retrieval, save workflows, trigger behavior, and indexing.
+- `references/retrieval/` for the trigger-index lookup and the ripgrep recipes.
+- `references/memory/` for continuity save workflows, trigger-phrase behavior, and the shared embedding stack.
 - `references/templates/` for level selection, template selection, and structure guides.
 - `references/validation/` for checklist policy, verification rules, decision formats, and template compliance contracts.
 - `references/structure/` for folder organization and sub-folder versioning.
 - `references/workflows/` for command workflows, shared intake, rename procedures, and worked examples.
 - `references/debugging/` for troubleshooting and root-cause methodology.
-- `references/cli/` for daemon CLI parity, shared smart-router behavior, and memory handback contracts.
+- `references/cli/` for daemon CLI behavior, shared smart-router behavior, and continuity handback contracts.
 - `references/config/` for runtime environment configuration and launcher/lease contracts.
 - `assets/*.md` for shared decision matrices, template mapping, and parallel dispatch support.
 
@@ -410,21 +411,19 @@ def route_speckit_resources(task):
 4. Use checklist priority as the completion gate: P0 cannot defer, P1 requires completion or approved deferral, and P2 is optional.
 5. Preserve continuity in `implementation-summary.md` or through canonical `/memory:save` with `generate-context.js`.
 
-### Spec Kit Memory
+### Retrieval and Continuity
 
-Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/speckit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves.
+Retrieval is file-based and needs no running service. Gate 1 resolves a prompt against the committed trigger index with `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`, which exits `0` on candidates, `1` on a clean no-hit and `2` on a bad invocation or unreadable index. Free-text retrieval uses the literal ripgrep recipes in [`references/retrieval/retrieval-conventions.md`](references/retrieval/retrieval-conventions.md), scoped by track and packet through the trailing positional path.
 
-The surface is dual-stack: alongside the `system-spec-memory` MCP registration, all 41 tools are callable through the full-parity daemon-backed CLI `node .opencode/bin/spec-memory.cjs <tool_name> [--json '{...}' | --param value]` against the same daemon. MCP remains the primary in-session transport today; use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Recovery example: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000`. CLI exit taxonomy: `0` success, `1` runtime, `64` usage/schema, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. Prompt-time callers must pass `--warm-only` (probe-only, exit `75` instead of cold-spawning); non-prompt contexts auto-spawn the daemon through the launcher. Because this CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Full cross-daemon CLI behavior, recovery, stale-dist build commands, per-command `--help`, offline smoke, and safety rules live in [`references/cli/daemon-cli-reference.md`](references/cli/daemon-cli-reference.md). See `mcp-server/ENV-REFERENCE.md` ("CLI front door") for the warm-only/prompt-time env flags. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory-system.md`, `references/memory/save-workflow.md`, and `mcp-server/ENV-REFERENCE.md`. Launcher/daemon reliability is operator-tunable via the `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION` (default-on in the runtime configs: a disposing owner releases the shared daemon for a live secondary, and a fresh session reaps the released daemon before respawn for a single writer) flags, all documented in `mcp-server/ENV-REFERENCE.md`.
+Recovery walks the continuity ladder rather than inferring a session: `handover.md`, then the `_memory.continuity` frontmatter block, then packet-first spec docs, then the bounded context recipe. `/speckit:resume` owns that ladder. Saves go through `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`, invoked by `/memory:save`; the writer updates the packet's continuity surfaces in place and there is no indexing hand-off afterwards.
 
-`memory_index_scan` is self-maintaining: overlapping scan calls return a `coalesced:true` success envelope instead of a raw E429 error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` with a `pendingVectors` count). Move reconciliation heals renamed spec folders by packet identity without re-embedding. Each scan also runs a bounded global orphan sweep. `memory_health` now includes an `index` block with a summary enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) and counts for indexed/pending/failed rows.
+Regenerate the index with `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` after spec-doc frontmatter changes. The artifact at `data/trigger-index.json` is committed, so a fresh clone answers Gate 1 before anything is built.
 
-`memory_embedding_reconcile` is a net-new public MCP maintenance tool on the `system-spec-memory` surface. It converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. It runs dry-run by default so operators can inspect the proposed changes before committing them.
-
-The current memory baseline is schema v41. The hardening features ship behind conservative defaults: semantic-trigger shadow matching, session-trace causal inference, feedback-retention reducers, soft-delete tombstones, memory idempotency receipts, authored continuity snapshots, and completion freshness all stay opt-in. `source_kind` provenance, retrieval observability, stale-audit signals, and tool-ownership linting are documented in the memory and ENV references rather than duplicated here.
+**Declared loss.** Semantic paraphrase matching, vector and BM25 fusion, decay scoring, access tracking, session dedup and causal traversal are gone and have no file-based successor. A lookup that matches nothing returns nothing; callers must say so plainly rather than degrading to a guess. What `trigger_phrases` never declared, the index cannot find — see `references/retrieval/retrieval-conventions.md` §8 for what belongs in that field.
 
 ### Reranking
 
-Model-based cross-encoder/local-GGUF reranking was removed in the 014 deprecation: the spec-memory local model path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Memory search still has a Stage 3 rerank step: MMR diversity reranking plus MPAB chunk collapse, with the `memory_search` `rerank` option defaulting to true. The `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
+Model-based cross-encoder/local-GGUF reranking was removed in the 014 deprecation: the local model path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Nothing reranks retrieval today. Ripgrep produces matches, paths and lines and never orders them by relevance; ordering is the caller's job, using the deterministic tuple in `references/retrieval/retrieval-conventions.md` §5. That tuple is a stable sort, not a relevance model. The `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
 
 ### Security
 
@@ -468,7 +467,7 @@ The local `/goal` surface is `.opencode/plugins/opencode-goal.js` plus `.opencod
    - **Authoring-time vs review-time load**: `sk-code` is loaded at TWO distinct points in `/speckit:complete`. (a) Authoring-time (Step 10 development): when the implementation target is under `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`, or `.opencode/specs/`, load the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) and, for `.opencode/specs/` targets, the system-spec-kit spec-folder docs (`references/workflows/spec-folder-authoring-checklist.md` + `references/workflows/spec-folder-write-recipe.md`) BEFORE the first write. (b) Review-time (Step 11 review): the existing `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) overlay runs after writes complete. Authoring-time load surfaces invariants the writer needs to honor; review-time load catches drift the writer didn't honor. See `cross_skill_authoring_load` block in `speckit-complete-auto.yaml` and `speckit-complete-confirm.yaml` for the YAML contract.
 18. **Route all documentation creation/updates through `sk-doc`** - Full alignment is mandatory before claiming completion
 19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
-20. **Literal naming for AI-derived spec folders and phases** - When the AI (not the user) picks a spec-folder or phase slug, the name MUST describe the concrete work being built or fixed. Names must include a specific subject token (the component, behavior, or bug being addressed). Forbidden as standalone slugs: `remediation`, `cleanup`, `fix`, `phase-N`, `review-remediation`, `round-N`. Good remediation-packet examples: `fix-deep-review-p1-p2-findings-for-sk-doc-skill`, `harden-mcp-server-startup-races`, `fix-singleton-leak-in-launcher`. Good phase-decomposition examples: `data-model-design`, `api-implementation`, `ui-integration`. **Remediation-packet source/target rule** - remediation slugs MUST follow `NNN-fix-<source>-for-<target>` where: **Source** = the event or evidence that triggered the packet (e.g. `deep-review-p0-p1-findings`, `verdict-fail`, `audit-finding-NN`); **Target** = the specific component being remediated (e.g. `skill-local-benchmarks-format`, `system-spec-memory-handler`, `launcher-cache`). The source names WHERE the work comes from; the target names WHAT is being fixed. Do not conflate them: the thing being remediated is the target, not the source. Worked example: `007-fix-deep-review-p0-p1-findings-for-skill-local-benchmarks-format` (source=`deep-review-p0-p1-findings`, target=`skill-local-benchmarks-format`). This rule is documentation-layer guidance; `validate.sh` does not lint slugs today (operator decision; may be lifted in a follow-on packet).
+20. **Literal naming for AI-derived spec folders and phases** - When the AI (not the user) picks a spec-folder or phase slug, the name MUST describe the concrete work being built or fixed. Names must include a specific subject token (the component, behavior, or bug being addressed). Forbidden as standalone slugs: `remediation`, `cleanup`, `fix`, `phase-N`, `review-remediation`, `round-N`. Good remediation-packet examples: `fix-deep-review-p1-p2-findings-for-sk-doc-skill`, `harden-mcp-server-startup-races`, `fix-singleton-leak-in-launcher`. Good phase-decomposition examples: `data-model-design`, `api-implementation`, `ui-integration`. **Remediation-packet source/target rule** - remediation slugs MUST follow `NNN-fix-<source>-for-<target>` where: **Source** = the event or evidence that triggered the packet (e.g. `deep-review-p0-p1-findings`, `verdict-fail`, `audit-finding-NN`); **Target** = the specific component being remediated (e.g. `skill-local-benchmarks-format`, `trigger-index-generator`, `launcher-cache`). The source names WHERE the work comes from; the target names WHAT is being fixed. Do not conflate them: the thing being remediated is the target, not the source. Worked example: `007-fix-deep-review-p0-p1-findings-for-skill-local-benchmarks-format` (source=`deep-review-p0-p1-findings`, target=`skill-local-benchmarks-format`). This rule is documentation-layer guidance; `validate.sh` does not lint slugs today (operator decision; may be lifted in a follow-on packet).
 
 ### ⛔ NEVER
 
@@ -516,7 +515,9 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Validate | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
 | Verify code alignment drift | `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` |
 | Save context | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |
-| Memory CLI (dual-stack) | `node .opencode/bin/spec-memory.cjs <tool> --format json` calls any of the 41 memory tools over the live daemon; `list-tools` enumerates them offline; `--warm-only` for prompt-time contexts |
+| Gate 1 trigger lookup | `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (exit `0` hit, `1` no-hit, `2` broken) |
+| Regenerate trigger index | `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` |
+| Free-text retrieval | The ripgrep recipes in `references/retrieval/retrieval-conventions.md` §2, scoped by the trailing positional path |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
 | Upgrade level | `bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/` |
@@ -531,7 +532,7 @@ Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repair
 
 ## 7. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/workflows/quick-reference.md`, `references/templates/template-guide.md`, `references/validation/validation-rules.md`, `references/memory/save-workflow.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/workflows/quick-reference.md`, `references/templates/template-guide.md`, `references/validation/validation-rules.md`, `references/retrieval/retrieval-conventions.md`, `references/memory/save-workflow.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/spec/validate.sh`, `scripts/spec/create.sh`, `scripts/dist/memory/generate-context.js`, `scripts/spec/check-completion.sh`.
 

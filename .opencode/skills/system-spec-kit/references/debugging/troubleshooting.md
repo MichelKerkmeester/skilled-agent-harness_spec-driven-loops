@@ -1,12 +1,12 @@
 ---
 title: Troubleshooting Reference
-description: Systematic diagnosis and resolution for semantic memory issues, context retrieval failures, and MCP tool problems.
+description: Systematic diagnosis and resolution for trigger-index lookups, ripgrep retrieval, continuity saves, and spec-folder problems.
 trigger_phrases:
-  - "memory troubleshooting guide"
-  - "vector index issues"
-  - "mcp connection problems"
-  - "context retrieval failures"
-  - "hybrid search fallback"
+  - "spec kit troubleshooting guide"
+  - "trigger index lookup fails"
+  - "ripgrep retrieval returns nothing"
+  - "continuity save failures"
+  - "spec folder diagnosis"
 importance_tier: normal
 contextType: general
 version: 3.6.0.39
@@ -14,7 +14,7 @@ version: 3.6.0.39
 
 # Troubleshooting Reference - Issue Resolution Guide
 
-Systematic diagnosis and resolution for semantic memory issues, context retrieval failures, and MCP tool problems.
+Systematic diagnosis and resolution for retrieval, continuity and spec-folder problems.
 
 ---
 
@@ -22,13 +22,14 @@ Systematic diagnosis and resolution for semantic memory issues, context retrieva
 
 **Core Principle:** Systematic diagnosis before fixes. Never guess at solutions.
 
-This reference provides structured troubleshooting for the semantic memory system, covering:
+This reference provides structured troubleshooting for spec-folder retrieval and continuity, covering:
 
-- **Context retrieval failures** - Memory search returning no/wrong results
-- **Vector index issues** - Embedding generation and search problems
-- **MCP tool connection problems** - Server connectivity and timeout issues
-- **Decay calculation issues** - Recency scoring anomalies
-- **Hybrid search fallback scenarios** - When FTS5 or vector search fails
+- **Trigger lookup failures** - the Gate 1 index returning nothing, or refusing to run
+- **Free-text retrieval failures** - ripgrep recipes returning nothing, or the wrong thing
+- **Continuity save failures** - `generate-context.js` rejecting or mis-targeting a save
+- **Spec-folder problems** - missing files, validation errors, wrong packet
+
+Retrieval is lexical and file-based. There is no server to restart, no index to warm and no embedding to blame. That narrows the diagnosis: a miss is a corpus gap, a scoping error, or a broken invocation, and the exit status tells you which.
 
 ### Diagnosis Decision Tree
 
@@ -37,15 +38,15 @@ Issue Detected
      │
      ├─→ "No results" ─────────────────→ See §3 COMMON ERRORS
      │         │
-     │         ├─→ Vector search empty? ─→ Check index: memory_stats()
-     │         └─→ FTS5 search empty? ───→ Check content indexing
+     │         ├─→ Lookup exit 1? ──────→ Clean miss: the phrase was never declared
+     │         └─→ Lookup exit 2? ──────→ Broken: bad flags or unreadable index
      │
      ├─→ "Wrong results" ──────────────→ See §4 DEBUGGING
      │         │
-     │         ├─→ Low relevance? ───────→ Check decay settings
-     │         └─→ Stale content? ───────→ Verify tier/importance
+     │         ├─→ Too many hits? ──────→ Narrow the positional search root
+     │         └─→ Wrong packet? ───────→ Check the track/packet path you passed
      │
-     ├─→ "Tool timeout" ───────────────→ See §3 MCP Connection Issues
+     ├─→ "Save rejected" ──────────────→ See §3 Continuity Save Issues
      │
      └─→ "Permission denied" ──────────→ See §3 File System Issues
 ```
@@ -57,133 +58,82 @@ Issue Detected
 | Issue | Symptom | Solution |
 |-------|---------|----------|
 | Missing spec folder | `Folder not found` | Create the packet folder with canonical docs, then run `generate-context.js` to refresh metadata |
-| Vector search empty | No results from `memory_search()` | Run `memory_stats()` to check index health |
-| MCP server not responding | Tool timeout errors | Restart MCP server, check `opencode.json` config |
+| Lookup returns nothing | Exit `1` from the lookup script | A clean miss. The phrase is not in any document's `trigger_phrases`; fall back to the ripgrep lane |
+| Lookup refuses to run | Exit `2` from the lookup script | Bad invocation or unreadable index. Check the flags, then `ls -l data/trigger-index.json` |
+| Index stale after edits | New `trigger_phrases` not matched | Rerun `scripts/retrieval/generate-trigger-index.mjs` |
 | Wrong script path | `File not found` | Use `.opencode/skills/system-spec-kit/` |
-| Arg format error | Invalid parameter | Use full folder name: `122-skill-standardization` |
-| Decay not applying | Old spec-doc records ranked high | Check `useDecay: true` in search params |
+| Arg format error | Invalid scope | Use the full packet path: `specs/<track>/122-skill-standardization` |
+| Ripgrep result set surprises you | Files appear or vanish between runs | Missing `--no-config` or reordered globs; copy the recipe verbatim |
 
 ### Before/After: Common Mistakes
 
 ❌ **Wrong approach:**
-```javascript
-// Guessing at folder names
-memory_search({ query: "auth", specFolder: "122" })
+```bash
+# Guessing at folder names, and scoping by pattern instead of by path
+rg 'auth' --glob '122*'
 ```
 
 ✅ **Correct approach:**
-```javascript
-// Use full spec folder identifier
-memory_search({ query: "auth", specFolder: "122-skill-standardization" })
+```bash
+# Scope by positional search root, using the full packet path
+rg --no-config --fixed-strings --ignore-case \
+  --files-with-matches --max-count 1 --glob '*.md' \
+  -- 'auth' specs/<track>/122-skill-standardization
 ```
 
 ❌ **Wrong approach:**
-```javascript
-// Calling through Code Mode (loses native efficiency)
-call_tool_chain(`system-spec-memory.memory_search({ query: "test" })`)
+```bash
+# Combining output modes: the last one silently wins
+rg --json --count -- 'phrase' specs
 ```
 
 ✅ **Correct approach:**
-```javascript
-// Direct MCP call (native, faster)
-memory_search({ query: "test" })
+```bash
+# One output mode per invocation
+rg --no-config --json --fixed-strings --ignore-case \
+  --glob '*.md' -- 'phrase' specs .opencode
 ```
 
 ---
 
 ## 3. COMMON ERRORS
 
-### Vector Index Issues
+### Trigger Lookup Issues
 
 | Error | Root Cause | Resolution |
 |-------|------------|------------|
-| `Vector search returned 0 results` | Index empty or corrupted | Run `memory_stats()` to verify index size; restart MCP server |
-| `Embedding generation failed` | Model unavailable or rate limited | Wait 60s and retry; check API key validity |
-| `Index out of sync` | New spec-doc records not indexed | Force re-index via server restart |
-| `Dimension mismatch` | Mixed embedding models | Clear index, regenerate with single model |
+| Exit `1`, empty output | No document declares a matching phrase | Expected behavior for a miss. Use the ripgrep lane, or add the phrase to the owning document's `trigger_phrases` |
+| Exit `2`, `unreadable index` | `data/trigger-index.json` missing or truncated | Regenerate with `scripts/retrieval/generate-trigger-index.mjs` |
+| Exit `2`, usage error | Flags in the wrong order, or a pattern parsed as a flag | Keep the `--` separator before the prompt |
+| Match set feels arbitrary | Generic phrases in the corpus | Author phrases per `../retrieval/retrieval-conventions.md` §8; generic workflow words pollute every query |
 
-### MCP Tool Connection Problems
+### Free-Text Retrieval Issues
 
 | Error | Root Cause | Resolution |
 |-------|------------|------------|
-| `Tool timeout after 30s` | Server overloaded or hung | Restart MCP server; reduce concurrent calls |
-| `Connection refused` | Server not running | Start server: check `.mcp.json` configuration |
-| `Invalid tool name` | Wrong call syntax | Use native MCP syntax: `memory_search()`, `memory_list()`, etc. |
-| `Authentication failed` | Invalid or expired credentials | Refresh API keys in environment |
-| `E429: Rate limited` | Too many requests in short period | Wait specified seconds before retrying; applies to `memory_index_scan()` |
+| Result set changes between machines | `RIPGREP_CONFIG_PATH` injecting arguments | `--no-config` is mandatory in every recipe |
+| Archived packets in the results | Exclusion globs dropped or reordered | Keep the positive glob first, the exclusions last |
+| Parser sees an empty result | Two output modes on one command line | One output mode per invocation; the last flag wins silently |
+| Exit `2` read as a no-hit | Non-existent search root, or a malformed pattern | Branch on all three exit statuses; `2` is a failure, not a miss |
 
-**Connection Recovery Protocol:**
-
-1. Check server status: `ps aux | grep context-server`
-2. Verify config: `cat opencode.json | jq '.mcp["system-spec-memory"]'`
-3. Test basic call: `memory_stats()`
-4. Probe the warm daemon via the dual-stack CLI: `node .opencode/bin/spec-memory.cjs memory_stats --warm-only --format json --timeout-ms 3000` — success means the daemon is healthy and only the runtime's MCP wiring needs repair (reconnect MCP); exit `75` means the daemon itself is down (retryable after restart or prewarm)
-5. If still failing: restart server and wait 10s
-
-### Context Retrieval Issues
+### Continuity Save Issues
 
 | Issue | Symptom | Solution |
 |-------|---------|----------|
-| **Anchor not found** | `Anchor not found: X` | Use `memory_search()` to find available anchors |
-| **Indexed-continuity store empty** | `No previous sessions found` | Save context first via skill workflow |
-| **Wrong spec-doc record loaded** | Context from different session | Check `specFolder` parameter matches intent |
+| **Save rejected as thin** | `INSUFFICIENT_CONTEXT_ABORT` | Add a specific `sessionSummary`, real `recent_context` entries, and described `FILES` rows |
+| **Save rejected as mixed** | `CONTAMINATION_GATE_ABORT` | The payload carries content from another packet; split it |
+| **Explicit data file unreadable** | `EXPLICIT_DATA_FILE_LOAD_FAILED` | Surface the error and stop; do not fall back to a capture path |
+| **Save landed in the wrong packet** | Continuity written under another folder | Re-run with the exact spec-folder CLI target; the explicit target is authoritative |
+| **Script not found** | `File not found` for `generate-context.js` | Run `npm run build` in `system-spec-kit/` |
+
+### Anchor and Document Issues
+
+| Issue | Symptom | Solution |
+|-------|---------|----------|
+| **Anchor not found** | `Anchor not found: X` | Grep the marker directly: `rg -- '<!-- ANCHOR:' <file>` |
+| **Orphan marker** | An opening marker with no closing pair | Report it as a diagnostic; do not silently drop the block |
 | **Legacy file detected** | `Legacy format detected` | Re-save to generate current anchors |
-| **Token budget exceeded** | `Token budget exceeded: N tokens` | Use `limit` parameter or filter by tier |
-| **No results from search** | `No spec-doc records found matching: query` | Broaden query; check `memory_list()` for content |
-
-### Decay Calculation Issues
-
-| Issue | Root Cause | Resolution |
-|-------|------------|------------|
-| Old spec-doc records ranked too high | Decay not enabled | Set `useDecay: true` in search params |
-| Recent spec-doc records not prioritized | Decay rate too high | Check tier-specific rates (normal=0.80, temporary=0.60) |
-| Score calculations seem wrong | Missing FSRS fields | Verify `stability` and `last_review` fields populated |
-| Decay too aggressive | Low decay rate | Adjust tier or use a no-decay tier (critical) |
-
-**Note:** Under FSRS classification decay (`IMPORTANCE_TIER_STABILITY_MULTIPLIER`, gated by `SPECKIT_CLASSIFICATION_DECAY`), only the critical tier has `Infinity` stability and therefore never decays:
-- critical
-
-All other tiers decay, scaled by a stability multiplier:
-- `important` — 1.5x stability (decays slower than normal)
-- `normal` — 1.0x (standard)
-- `temporary` — 0.5x (decays ~2x faster)
-- `deprecated` — 0.25x (decays fastest, ~4x)
-
-The per-tier `rate = 1.0` values in the turn-based attention-decay system are a separate mechanism from this FSRS classification decay and do not make `important` or `deprecated` decay-protected.
-
-**Decay Models (v1.7.2 has TWO distinct decay systems):**
-
-**1. Long-term memory decay (FSRS day-based):** Used by `memory_search()` for ranking stored spec-doc records. Uses FSRS v4 spaced-repetition algorithm based on elapsed calendar days since last review.
-```
-retrievability = (1 + FSRS_FACTOR × (elapsed_days / stability)) ^ FSRS_DECAY
-
-Where:
-- elapsed_days = calendar days since last review/access
-- stability = FSRS stability parameter (grows with successful reviews)
-- Memories accessed more often gain higher stability → slower decay
-```
-
-**2. Trigger matching decay (turn-based):** Used by `memory_match_triggers()` within a single conversation session. Applies per-turn attention decay so earlier matches lose weight as the conversation progresses.
-```
-turn_decay_factor = TURN_DECAY_RATE ^ (turnNumber - 1)
-
-Where:
-- TURN_DECAY_RATE = 0.98
-- turnNumber=1 → factor=1.0 (no decay)
-- turnNumber=50 → factor≈0.364
-- turnNumber=100 → factor≈0.133
-```
-
-**Important:** Long-term decay uses calendar days (FSRS). Trigger matching uses conversation turns. The `useDecay` parameter in `memory_search()` controls the FSRS day-based decay.
-
-### Hybrid Search Fallback Scenarios
-
-| Scenario | Primary Search | Fallback | Trigger |
-|----------|----------------|----------|---------|
-| Short query (<3 words) | Vector | FTS5 | Low vector confidence |
-| Exact phrase needed | FTS5 | Vector | User quotes query |
-| No vector results | Vector | FTS5 | 0 results from embeddings |
-| API rate limited | Vector | FTS5 | Embedding API error |
+| **Token budget exceeded** | Reading whole documents when an anchor would do | Bound the read to the anchor block, per `../retrieval/retrieval-conventions.md` §2.4 |
 
 ### File System Issues
 
@@ -210,17 +160,16 @@ grep -o 'ANCHOR:[a-z0-9-]*' .opencode/specs/<track>/<NNN-name>/*.md | sed 's/ANC
 # Find all spec docs with anchors across the project
 find .opencode/specs -name "*.md" -exec grep -l "<!-- ANCHOR:" {} \;
 
-# Re-index a spec folder for immediate MCP visibility
-# Use: memory_index_scan({ specFolder: ".opencode/specs/<track>/<NNN-name>" })
+# Resolve a prompt against the trigger index (exit 0 hit, 1 miss, 2 broken)
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 
-# Check memory system statistics (via MCP)
-# Use: memory_stats() - shows counts, dates, tier breakdown
+# Rebuild the index after frontmatter changes
+node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
 
-# Verify index health
-# Use: memory_list({ limit: 5 }) - quick check for recent entries
-
-# Test search functionality
-# Use: memory_search({ query: "test", limit: 3 })
+# Free-text scan, path-only, per references/retrieval/retrieval-conventions.md
+rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'phrase' specs .opencode
 ```
 
 ### File Format Detection
@@ -238,46 +187,50 @@ echo "Current: $current_count | Legacy: $((total_count - current_count))"
 ### Systematic Debugging Workflow
 
 **Step 1: Gather Information**
-```javascript
-// Check system health
-memory_stats()
+```bash
+# Does the index exist, and how old is it?
+ls -l .opencode/skills/system-spec-kit/data/trigger-index.json
 
-// List recent indexed spec-doc records
-memory_list({ limit: 10, sortBy: "created_at" })
+# Does the phrase resolve at all? Read the exit status, not just the output
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "recent work"; echo "exit=$?"
 
-// Test basic search
-memory_search({ query: "recent work", limit: 5 })
+# Does the text exist anywhere, declared or not?
+rg --no-config --fixed-strings --ignore-case --count \
+  --glob '*.md' -- 'recent work' specs .opencode
 ```
 
 **Step 2: Isolate the Problem**
 
 ❌ **Wrong approach:**
 ```
-"Search isn't working" → Immediately restart server
+"Search isn't working" → Rerun the same query with different wording
 ```
 
 ✅ **Correct approach:**
 ```
-"Search isn't working" → Check stats → Test search → Verify content exists → Then diagnose
+"Search isn't working" → Read the exit status → Confirm the text exists with a raw scan
+  → Then decide: corpus gap, scoping error, or broken invocation
 ```
 
 **Step 3: Verify Fix**
-```javascript
-// After any fix, verify with these checks:
-memory_stats()  // Index counts should be non-zero
-memory_search({ query: "test" })  // Should return results
-memory_list({ limit: 3 })  // Should show recent entries
+```bash
+# The phrase now resolves
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "test"; echo "exit=$?"
+
+# And the raw scan agrees the content is where you think it is
+rg --no-config --fixed-strings --ignore-case --files-with-matches \
+  --glob '*.md' -- 'test' specs
 ```
 
 ### Root Cause Analysis Patterns
 
 | Symptom | Check First | Check Second | Likely Cause |
 |---------|-------------|--------------|--------------|
-| All searches empty | `memory_stats()` | `memory_list()` | Empty index |
-| Some searches empty | Query specificity | Tier filtering | Query too narrow |
-| Wrong results returned | Decay settings | Importance tiers | Ranking misconfigured |
-| Slow responses | Server load | Index size | Performance bottleneck |
-| Intermittent failures | Connection status | Rate limits | External service issue |
+| Every lookup empty | Index file exists and parses | Index freshness | Missing or stale `trigger-index.json` |
+| One lookup empty, raw scan finds it | The document's `trigger_phrases` | Phrase wording | Corpus gap: the author never declared it |
+| Too many hits | The positional search root | The glob list | Scope too wide |
+| Results differ between machines | `--no-config` present | Glob order | Ambient ripgrep configuration |
+| Exit `2` treated as a miss | The search root exists | The pattern parses | Broken invocation read as no-hit |
 
 ---
 
@@ -286,10 +239,10 @@ memory_list({ limit: 3 })  // Should show recent entries
 ### When to Escalate
 
 **Escalate immediately if:**
-- Vector embedding generation fails repeatedly (>3 attempts)
-- MCP server crashes on startup
-- Data corruption suspected (inconsistent counts)
-- Authentication/permission issues persist after standard fixes
+- The trigger index cannot be regenerated from a clean checkout
+- The continuity writer corrupts or truncates a packet document
+- Data loss suspected in `handover.md` or `_memory.continuity`
+- Permission issues persist after standard fixes
 
 ### Escalation Checklist
 
@@ -297,7 +250,7 @@ Before escalating, gather:
 
 ```markdown
 □ Error message (exact text)
-□ memory_stats() output
+□ The exact command and its exit status
 □ Steps to reproduce
 □ Recent changes to config
 □ Server logs (if available)
@@ -316,36 +269,31 @@ Before escalating, gather:
 
 **"I can't find a specific decision I know we made"**
 
-✅ Solution: Use cross-folder search
-```javascript
-memory_search({ 
-  query: "auth decision",
-  limit: 10
-  // Note: omit specFolder to search all folders
-})
+✅ Solution: Widen the search root to everything, then narrow once you have a hit
+```bash
+rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'auth decision' specs .opencode
 ```
 
-**"Smart search returns nothing but I know the content exists"**
+**"The lookup returns nothing but I know the content exists"**
 
-Root Cause: Content not indexed or uses legacy format
+Root Cause: The index only knows author-declared phrases. Prose the author never listed in `trigger_phrases` is invisible to it, however prominent it is in the document.
 
 ✅ Solution:
-1. Check if memory exists: `memory_list({ specFolder: "###-name" })`
-2. If exists but not searchable: re-save to generate embeddings
-3. Use `Read(filePath)` for direct access to known content
+1. Confirm the text exists with a raw scan over `specs`
+2. If it does, add the phrase to that document's `trigger_phrases` and regenerate the index
+3. Read the file directly for known content; no lookup is needed to open a path you already have
 
 **"Context loaded from wrong spec folder"**
 
-Root Cause: Incorrect specFolder parameter
+Root Cause: The wrong positional search root, or a save with the wrong explicit target
 
 ✅ Solution:
-```javascript
-// Verify active context
-memory_list({ specFolder: "###-correct-folder", limit: 3 })
-
-// Search and read from specific folder
-const results = await memory_search({ query: "current task", specFolder: "###-correct-folder", limit: 3 })
-Read(results[0].filePath)  // Read specific indexed document
+```bash
+# Scope every retrieval by path, not by pattern
+rg --no-config --fixed-strings --ignore-case --files-with-matches \
+  --glob '*.md' -- 'current task' specs/<track>/<NNN-correct-folder>
 ```
 
 For direct memory saves, prefer an explicit CLI target:
@@ -366,28 +314,31 @@ Phase-folder targets are valid explicit save destinations. If a save lands in th
 
 ### Index Recovery
 
-If vector index is corrupted or empty:
+If the trigger index is missing or corrupted:
 
-1. **Backup current state**: `memory_stats()` output
-2. **Restart MCP server**: Triggers re-initialization
-3. **Verify recovery**: `memory_stats()` should show counts
-4. **Re-index if needed**: Save new spec-doc record to trigger indexing
+1. **Confirm the damage**: `ls -l .opencode/skills/system-spec-kit/data/trigger-index.json`
+2. **Regenerate**: `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs`
+3. **Verify recovery**: a known phrase resolves with exit `0`
+
+The index is a derived artifact built from committed frontmatter. Losing it costs a regeneration, never data.
 
 ### Data Recovery
 
-If spec-doc records are missing:
+If packet documents are missing:
 
-1. Check file system: `find .opencode/specs -name "*.md"` for canonical spec docs (spec.md, plan.md, tasks.md, implementation-summary.md)
-2. Check the index via MCP: `memory_index_scan()`, `memory_search()`, `memory_list()`
-3. Restore from checkpoint: `checkpoint_list()` → `checkpoint_restore()`
+1. Check the file system: `find specs -name "*.md"` for canonical spec docs (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`)
+2. Check git: the documents are the durable record, so `git log --` on the packet path is the real recovery path
+3. Rebuild continuity from `handover.md`, then `_memory.continuity`, then the packet docs
+
+There is no checkpoint store to restore from. The documents are the record.
 
 ### Configuration Recovery
 
 If settings are wrong:
 
-1. Check `.mcp.json` for server config
-2. Verify environment variables
-3. Reset to defaults if needed
+1. Check `references/config/environment-variables.md` for the variable and its default
+2. Verify the variable is exported in the shell that runs the command, not only in a config file
+3. Reset to defaults if needed; retrieval itself reads no configuration beyond the index path
 
 ---
 
@@ -399,25 +350,23 @@ Quick reference for common recovery scenarios with symptoms and actions.
 |----------|----------|-----------------|
 | **Context Loss** | Agent doesn't remember prior work | Run `/speckit:resume [spec-folder]` |
 | **State Mismatch** | Files don't match expected state | Verify with `git status` and `git diff` |
-| **Memory Not Found** | Search returns no results | Check `memory_search({ query: "<keyword>", specFolder: "..." })` |
-| **Stale Context** | Information seems outdated | Check recent `updated_at` values in `memory_list({ specFolder: "...", sortBy: "updated_at" })` |
+| **Content Not Found** | Retrieval returns no results | Run the ripgrep path-only recipe scoped to the packet, then widen to `specs` |
+| **Stale Context** | Information seems outdated | Compare `handover.md` and `_memory.continuity` timestamps against the packet's git log |
 | **Incomplete Handover** | Missing continuation context | Review the CONTINUE SESSION section in `handover.md` |
-| **Dedup Collision** | Wrong memory surfaced | Check `fingerprint_hash` for conflicts |
-| **Embedding Failure** | Semantic search not working | Check provider health, use fallback FTS5 |
-| **Checkpoint Corrupt** | Can't restore state | Try previous checkpoint, rebuild from `handover.md`, `_memory.continuity`, and packet docs |
+| **Wrong Packet Surfaced** | Retrieval answers from a neighbor packet | Narrow the positional search root to the exact packet path |
+| **Declared-Phrase Gap** | Lookup misses obvious content | Add the phrase to that document's `trigger_phrases`, then regenerate the index |
+| **Continuity Unreadable** | Can't restore state | Rebuild from `handover.md`, `_memory.continuity`, and packet docs, in that order |
 
 ### Recovery Action Details
 
 **Context Loss Recovery:**
-```javascript
-// Resume from saved context
-// Command: /speckit:resume specs/###-feature-name
-// Or via MCP:
-memory_search({
-  query: "session context",
-  specFolder: "###-feature-name",
-  anchors: ["state", "next-steps"]
-})
+```bash
+# Resume from saved context
+# Command: /speckit:resume specs/<track>/<NNN-feature-name>
+
+# Or read the ladder by hand, in order
+cat specs/<track>/<NNN-feature-name>/handover.md
+rg --no-config --fixed-strings -- '_memory.continuity' specs/<track>/<NNN-feature-name>
 ```
 
 **State Mismatch Recovery:**
@@ -431,50 +380,41 @@ cat specs/###-feature/acceptance-criteria.md
 ```
 
 **Stale Context Detection:**
-```javascript
-// Check memory freshness via recent updates
-memory_list({ specFolder: "###-feature", sortBy: "updated_at" })
-
-// Review updated_at timestamps in the returned rows
-// If the latest continuity docs are stale, consider refreshing context
+```bash
+# Freshness comes from the file system and git, not from a store
+ls -l specs/<track>/<NNN-feature>/handover.md specs/<track>/<NNN-feature>/implementation-summary.md
+git log -3 --format='%ad %s' -- specs/<track>/<NNN-feature>
 ```
 
-**Checkpoint Recovery:**
-```javascript
-// List available checkpoints
-checkpoint_list()
-
-// Restore from specific checkpoint name
-checkpoint_restore({ name: "checkpoint-###" })
-
-// If corrupt, try previous:
-checkpoint_restore({ name: "checkpoint-###-prev" })
-```
+If the continuity documents are older than the last real work, refresh them with `/memory:save` before resuming.
 
 ---
 
 ## 8. EMPTY TRIGGER PHRASES
 
-**Symptom:** `memory_match_triggers()` returns no results even for relevant queries.
+**Symptom:** The trigger lookup returns nothing even for queries you consider relevant.
 
-**Cause:** Older spec-doc records may have been indexed before trigger phrase extraction was improved.
+**Cause:** Two different things, and they need different fixes. Either the index is older than the frontmatter, or the document never declared the phrase.
 
-**Solution:** Re-index memories with force flag:
+**Solution:**
 ```bash
-# Via MCP tool
-memory_index_scan({ force: true })
+# 1. Rule out staleness: rebuild and retry
+node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"
 
-# Or delete and re-save specific spec-doc records
-memory_delete({ id: <memory_id> })
-# Then re-save the generated support artifact
+# 2. Still empty? Confirm what the document actually declares
+rg --no-config -n -A6 -- 'trigger_phrases:' specs/<track>/<NNN-name>/spec.md
 ```
+
+If the phrase is absent, add it to that document's `trigger_phrases` and regenerate. A phrase that arrived by fallback rather than by an author's choice is corpus pollution, so write the distinctive term, not a generic workflow word.
 
 ---
 
 ## 9. RELATED RESOURCES
 
 ### Reference Files
-- [SKILL.md](../../SKILL.md) - MCP tools, hybrid search, and importance tier system
+- [SKILL.md](../../SKILL.md) - Spec-folder workflow, retrieval and continuity entry point
+- [retrieval-conventions.md](../retrieval/retrieval-conventions.md) - The ripgrep recipes, exit-status mapping and ranking contract
 - [execution-methods.md](../workflows/execution-methods.md) - Continuity artifact detection and execution trigger patterns
 - [folder-routing.md](../structure/folder-routing.md) - Routing logic and alignment scoring
 

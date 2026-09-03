@@ -7,6 +7,7 @@ import {
   cpSync,
   mkdirSync,
   mkdtempSync,
+  realpathSync,
   rmSync,
   writeFileSync,
 } from 'node:fs';
@@ -333,5 +334,43 @@ describe.skip('launcher IPC bridge', () => {
     expect(getIpcBridgeStats().socket_path).toMatch(/^tcp:\/\/127\.0\.0\.1:\d+$/);
     await handle.close();
     expect(getIpcBridgeStats().socket_path).toBeNull();
+  });
+});
+
+describe('resolveIpcSocketPath directory ownership', () => {
+  const ORIGINAL_SOCKET_DIR = process.env.SPECKIT_IPC_SOCKET_DIR;
+  // canonicalizePath() realpaths the socket directory, so /tmp becomes /private/tmp on
+  // macOS and stays /tmp on Linux. Derive the expectation the same way.
+  const fallbackSocketPath = join(realpathSync.native('/tmp'), 'system-skill-advisor', 'daemon-ipc.sock');
+
+  afterEach(() => {
+    if (ORIGINAL_SOCKET_DIR === undefined) {
+      delete process.env.SPECKIT_IPC_SOCKET_DIR;
+    } else {
+      process.env.SPECKIT_IPC_SOCKET_DIR = ORIGINAL_SOCKET_DIR;
+    }
+  });
+
+  it('falls back to the short daemon socket dir instead of a database dir', () => {
+    delete process.env.SPECKIT_IPC_SOCKET_DIR;
+
+    const socketPath = resolveIpcSocketPath();
+
+    expect(socketPath).toBe(fallbackSocketPath);
+    expect(socketPath.startsWith(resolve(process.env.SPEC_KIT_DB_DIR ?? '/nonexistent'))).toBe(false);
+  });
+
+  it('treats an empty SPECKIT_IPC_SOCKET_DIR as unconfigured', () => {
+    process.env.SPECKIT_IPC_SOCKET_DIR = '';
+
+    expect(resolveIpcSocketPath()).toBe(fallbackSocketPath);
+  });
+
+  it('lets SPECKIT_IPC_SOCKET_DIR win over the caller-supplied directory', () => {
+    const callerDir = tempDir('daemon-bridge-caller-');
+    const envDir = tempDir('daemon-bridge-env-');
+    process.env.SPECKIT_IPC_SOCKET_DIR = envDir;
+
+    expect(resolveIpcSocketPath(callerDir)).toBe(join(envDir, 'daemon-ipc.sock'));
   });
 });

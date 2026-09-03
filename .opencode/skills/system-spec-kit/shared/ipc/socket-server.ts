@@ -14,6 +14,14 @@ import path from 'node:path';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
+// Fallback socket directory for a caller that supplies neither an explicit directory nor
+// SPECKIT_IPC_SOCKET_DIR. It names the skill-advisor daemon because that is the one daemon
+// whose launcher already pins this path, and it MUST stay byte-identical to
+// DEFAULT_SOCKET_DIR in .opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts
+// and .opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts, or the daemon and
+// its CLI probe bind different addresses. Any other daemon MUST pass its own directory:
+// daemon-ipc.sock is a per-service name, so two services sharing this fallback would collide.
+const DEFAULT_DAEMON_SOCKET_DIR = '/tmp/system-skill-advisor';
 // Every live session's launcher holds one persistent slot, and multi-seat
 // fan-outs run well past 8 concurrent sessions. A refused connection is
 // accepted then closed, which probes cannot distinguish from a dead daemon,
@@ -198,10 +206,16 @@ function isWithinAllowedSocketRoot(candidate: string): boolean {
   return allowedSocketRoots().some((root) => isWithinRoot(root, candidate));
 }
 
-function resolveIpcSocketPath(dbDir: string): string {
-  const rawSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR
-    ? path.resolve(process.env.SPECKIT_IPC_SOCKET_DIR)
-    : path.resolve(dbDir);
+// `serviceDir` is the calling daemon's own socket directory, supplied by that daemon and
+// never read from the environment here: this module is shared, so deriving a directory from
+// any one service's database would make every other service's socket follow it. Omitting it
+// falls back to the short default below rather than to a database path.
+function resolveIpcSocketPath(serviceDir?: string): string {
+  // Truthiness, not nullishness: an exported-but-empty SPECKIT_IPC_SOCKET_DIR means
+  // "unconfigured" and must fall through, not resolve to the process working directory.
+  const rawSocketDir = path.resolve(
+    process.env.SPECKIT_IPC_SOCKET_DIR || serviceDir || DEFAULT_DAEMON_SOCKET_DIR,
+  );
   const socketDir = canonicalizePath(rawSocketDir);
   if (!isWithinAllowedSocketRoot(socketDir)) {
     throw new Error(

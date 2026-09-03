@@ -1,248 +1,122 @@
 ---
-title: Memory System Reference
-description: Detailed documentation for Spec Kit Memory MCP tools, behavior notes, and configuration
+title: Retrieval and Continuity Reference
+description: How spec-folder retrieval and continuity work after the memory MCP surface was retired: the trigger index, the ripgrep lane, the continuity ladder, and what is gone for good
 trigger_phrases:
-  - "memory system reference"
-  - "spec kit memory tools"
+  - "retrieval and continuity reference"
+  - "trigger index behavior"
   - "importance tier behavior"
-  - "memory search behavior"
+  - "declared capability loss"
   - "indexable content sources"
 importance_tier: normal
 contextType: general
 version: 3.6.0.55
 ---
 
-# Memory System Reference - MCP Tools & Behavior
+# Retrieval and Continuity Reference
 
-Spec Kit Memory MCP tools, behavior notes, and configuration options.
+How a spec folder is found and how a session is resumed, after the memory MCP surface was retired. Retrieval is lexical and file-based; continuity is written by one script into the packet's own documents.
 
 ---
 
 ## 1. OVERVIEW
 
-Current baseline: schema v41 (`document_type`, `spec_level`, trigger embeddings, provenance `source_kind`, idempotency receipts, near-duplicate hints, tombstone partitions, retention-forgetting, and semantic-edge substrate support), 2 active indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
-
-The Spec Kit Memory system provides context preservation across sessions through vector-based semantic search and packet-first continuity. Phase 018 makes `handover.md -> _memory.continuity -> spec docs` the canonical recovery chain; retired `[spec]/memory/*.md` artifacts are no longer produced at save time and only matter when older packets still contain them. This reference covers MCP tool behavior, importance tiers, decay scoring, and configuration.
-
-When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE` marker from `mcp-server/core/config.ts`. Long-lived MCP processes poll that marker with `checkDatabaseUpdated()` so canonical-doc writes become visible without restarting the server.
+Two mechanisms, and they answer different questions. A keyed lookup matches a prompt against phrases an author declared. A scan finds text anywhere in the corpus. Neither infers meaning, and neither runs a service.
 
 ### Architecture
 
 | Component | Location | Purpose |
 |-----------|----------|---------|
-| MCP Server | `mcp-server/context-server.ts` | Spec Kit Memory MCP with vector search |
-| CLI Shim | `.opencode/bin/spec-memory.cjs` | Daemon-backed CLI over the same tool surface; additive warm-only fallback when runtime MCP transport is unavailable (exit `75` = retryable daemon/IPC unavailability) |
-| Database | `mcp-server/database/context-index__*.sqlite` | SQLite with FTS5 + vector embeddings; active profile filename resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
-| Scripts | runtime `scripts/dist/memory/generate-context.js` (source: `scripts/memory/generate-context.ts`) | Canonical continuity save entrypoint for packet docs |
+| Trigger index | `data/trigger-index.json` | Committed index over author-declared `trigger_phrases`; the Gate 1 lookup surface |
+| Index generator | `scripts/retrieval/generate-trigger-index.mjs` | Rebuilds the index from spec-doc and skill-doc frontmatter |
+| Index lookup | `scripts/retrieval/lookup-trigger-index.mjs` | Resolves a prompt from a cold Node process; exit `0` hit, `1` miss, `2` broken |
+| Free-text lane | `rg`, per `../retrieval/retrieval-conventions.md` | Finds a phrase anywhere, with no index at all |
+| Continuity writer | `scripts/dist/memory/generate-context.js` | The only writer of `_memory.continuity`; source at `scripts/memory/generate-context.ts` |
+
+There is no server, no database and no daemon in that table. That is the point: a fresh clone answers Gate 1 before anything is built, and a flapping background process cannot degrade a session.
 
 ### Core Support
 
-- **Semantic search** - Find indexed spec-doc records by meaning, not just keywords
-- **Importance tiers** - Six-level system for prioritizing context
-- **Decay scoring** - Recent indexed spec-doc records rank higher than older ones
-- **Checkpoints** - Save/restore indexed-continuity state snapshots
+- **Declared-phrase lookup** — matches what authors wrote in `trigger_phrases`, nothing more
+- **Free-text scan** — literal, case-folded matching over Markdown, scoped by path
+- **Importance tiers** — an authored frontmatter field, still written and still read by humans
+- **Continuity ladder** — `handover.md`, then `_memory.continuity`, then packet-first spec docs
 
 ### Indexable Content Sources
 
-The indexed-continuity store indexes content from two active source families, plus a retired-compatibility row preserved for read-side retrieval against historical packets:
+The index reads frontmatter from two active source families, plus a retired-compatibility row that survives only in historical packets:
 
-| Source | Location Pattern | Memory Type | Default Tier | Discovery |
-|--------|-----------------|-------------|--------------|-----------|
-| **Spec Documents** | `specs/**/*.md` and `<active-spec-folder>/**/*.md` | Per-type (spec, plan, tasks, etc.) | `normal` | `findSpecDocuments()` |
-| **Graph Metadata** | `graph-metadata.json` adjacent to spec docs | `graph_metadata` | `important` | `findGraphMetadataFiles()` |
-| **Retired Compatibility Artifacts** | Older `specs/*/memory/*.{md,txt}` files already present in historical packets | Varies (episodic, procedural, etc.) | `normal` | Historical compatibility only |
+| Source | Location Pattern | Field read | Default Tier |
+|--------|-----------------|------------|--------------|
+| **Spec Documents** | `specs/**/*.md` and `<active-spec-folder>/**/*.md` | `trigger_phrases`, `title`, `description` | `normal` |
+| **Skill Documents** | `.opencode/skills/**/*.md` | `trigger_phrases`, `title`, `description` | `normal` |
+| **Retired Compatibility Artifacts** | Older `specs/*/memory/*.{md,txt}` files already present in historical packets | Varies | `normal` |
 
 **Content Source Behavior:**
 
-- **Spec Documents** — Canonical packet continuity source. Recovery should read `handover.md`, then `_memory.continuity`, then the rest of the packet docs before widening into search.
-- **Graph Metadata** — Packet metadata source discovered alongside spec documents and indexed with the `graph_metadata` document type.
-- **Retired Compatibility Artifacts** — Older session notes may still exist in historical packets, but save workflows no longer produce them and operators should not treat them as an active surface.
-
-**Spec Document Indexing Pipeline:**
-1. `findSpecDocuments()` walks both supported specs roots and discovers supported doc filenames
-2. `isMemoryFile()` validates each document as an indexable file
-3. `extractDocumentType()` infers `document_type` (spec/plan/tasks/etc.) for scoring
-4. Spec documents and `graph-metadata.json` files are merged and indexed together
-5. `createSpecDocumentChain()` links lifecycle docs for causal traversal
+- **Spec Documents** — the canonical packet continuity source. Recovery reads `handover.md`, then `_memory.continuity`, then the rest of the packet docs before widening into a scan.
+- **Skill Documents** — routing and reference vocabulary, indexed the same way.
+- **Retired Compatibility Artifacts** — older session notes may still exist in historical packets. Save workflows stopped producing them, and they are not an active surface.
 
 ---
 
 ## 2. IMPORTANCE TIERS
 
-Six-tier system for prioritizing memory relevance:
+Six-tier system, authored in frontmatter:
 
-| Tier | Weight | searchBoost | Purpose | Auto-Surface |
-|------|--------|-------------|---------|--------------|
-| **Critical** | 1.0 | 2.0 | High-importance context | Yes (high relevance) |
-| **Important** | 0.8 | 1.5 | Significant decisions/context | Relevance-based |
-| **Normal** | 0.5 | 1.0 | Standard session context | Relevance-based |
-| **Temporary** | 0.3 | 0.5 | Short-term notes | Relevance-based |
-| **Archived** | 0.2 | 0.0 | Archived context (kept, hidden from ranked search) | Never (excluded from search by default) |
-| **Deprecated** | 0.1 | 0.0 | Outdated (kept for history) | Never (excluded from search) |
+| Tier | Purpose |
+|------|---------|
+| **Critical** | High-importance context |
+| **Important** | Significant decisions and context |
+| **Normal** | Standard session context |
+| **Temporary** | Short-term notes |
+| **Archived** | Archived context, kept for the record |
+| **Deprecated** | Outdated, kept for history |
 
-**searchBoost Multipliers:** Applied to search scores to prioritize higher tiers:
-- Critical memories get 2x boost
-- Important memories get 1.5x boost
-- Normal memories have no boost (1.0x)
-- Temporary gets reduced visibility (0.5x); Archived and Deprecated are excluded from ranked search (0x)
+The tier is a human signal about a document's weight. It is not a search boost: nothing multiplies a score by tier any more, because nothing scores. Authors should keep setting it honestly, and readers should treat it as the author's claim about importance rather than a ranking input.
 
 ---
 
-## 3. MCP TOOLS
+## 3. RETRIEVAL SURFACES
 
-> **Note:** MCP tool names use plain names such as `memory_search`, `memory_save`, and `checkpoint_create`.
+### Gate 1 trigger lookup
 
-### Tool Reference (41 `system-spec-memory` MCP tools)
-
-The public MCP surface is 41 local descriptors in `TOOL_DEFINITIONS` from `mcp-server/tool-schemas.ts`.
-Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, not this registry.
-
-| Layer | Tool | Purpose | Example Use |
-|-------|------|---------|-------------|
-| L1: Orchestration | `memory_context()` | Unified entry point with intent-aware routing (7 intents) | START HERE for most memory operations |
-| L1: Orchestration | `session_resume()` | Resume memory, code graph, and Code Graph state in one call | Detailed recovery payload after reconnect, or when you want direct merged resume state |
-| L1: Orchestration | `session_bootstrap()` | Composite bootstrap combining resume and health checks | Canonical first tool call in a fresh OpenCode-style session or after `/clear` |
-| L2: Core | `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
-| L2: Core | `memory_quick_search()` | Simplified search wrapper for fast lookups | Quick keyword-based retrieval |
-| L2: Core | `memory_match_triggers()` | Fast keyword matching (<50ms) with cognitive features | Gate enforcement |
-| L2: Core | `memory_save()` | Index a saved continuity artifact or spec doc. Re-generates embedding when **content hash** changes. Title-only changes do not trigger re-embedding. | After generate-context.js |
-| L3: Discovery | `memory_list()` | Browse stored spec-doc records with pagination (parent rows by default) | Review session history |
-| L3: Discovery | `memory_stats()` | Get memory system statistics with composite scoring | Check index health |
-| L3: Discovery | `memory_health()` | Check health status of memory system | Diagnose issues |
-| L3: Discovery | `session_health()` | Report session readiness, graph freshness, and priming status | Detect stale session context before continuing |
-| L4: Mutation | `memory_delete()` | Delete memory by ID or bulk delete by spec folder | Remove outdated memories |
-| L4: Mutation | `memory_update()` | Update memory metadata (title, tier, triggers) | Correct memory properties |
-| L4: Mutation | `memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
-| L4: Mutation | `memory_bulk_delete()` | Bulk delete memories by spec folder with confirmation | Clean up entire spec folder memories |
-| L4: Mutation | `memory_retention_sweep()` | Audit or delete expired governed spec-doc records | Retention cleanup with dry-run evidence |
-| L4: Mutation | `memory_learned_expire()` | Expire stale learned trigger terms | Preview or remove old learned terms |
-| L4: Mutation | `memory_learned_clear()` | Clear learned trigger terms after confirmation | Reset learned trigger feedback |
-| L4: Mutation | `memory_embedding_reconcile()` | Reconcile embedding status against active vector coverage | Repair stale pending/failed vector rows |
-| L5: Lifecycle | `checkpoint_create()` | Save named state snapshot | Before risky changes |
-| L5: Lifecycle | `checkpoint_list()` | List available checkpoints | Find restore points |
-| L5: Lifecycle | `checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
-| L5: Lifecycle | `checkpoint_delete()` | Delete a checkpoint | Clean up old snapshots |
-| L6: Analysis | `task_preflight()` | Capture epistemic baseline before task execution | Start of implementation work |
-| L6: Analysis | `task_postflight()` | Capture epistemic state after task, calculate Learning Index | After completing implementation |
-| L6: Analysis | `memory_drift_why()` | Trace causal chain for a spec-doc record ("why was this decided?") | Understand decision lineage |
-| L6: Analysis | `memory_causal_link()` | Create causal relationship between two memories | Link decision to its cause |
-| L6: Analysis | `memory_causal_stats()` | Get statistics about the causal memory graph | Check causal coverage |
-| L6: Analysis | `memory_causal_unlink()` | Remove a causal relationship | Correct bad causal edges |
-| L6: Analysis | `eval_run_ablation()` | Run ablation study on memory scoring components | Compare scoring strategies |
-| L6: Analysis | `eval_reporting_dashboard()` | Generate evaluation and reporting dashboard data | Review system metrics |
-| L7: Maintenance | `memory_index_scan()` | Bulk scan and index packet docs and graph metadata | After continuity or spec-doc updates |
-| L7: Maintenance | `memory_index_scan_status()` | Get progress for a background index scan | Poll a `background:true` scan job |
-| L7: Maintenance | `memory_index_scan_cancel()` | Cancel a running background index scan | Stop a runaway scan job |
-| L7: Maintenance | `memory_get_learning_history()` | Return preflight/postflight learning history | Analyze learning patterns |
-| L7: Maintenance | `memory_ingest_start()` | Start async bulk memory ingestion | Import large memory sets |
-| L7: Maintenance | `memory_ingest_status()` | Check status of running ingestion job | Monitor import progress |
-| L7: Maintenance | `memory_ingest_cancel()` | Cancel a running ingestion job | Stop runaway imports |
-| L7: Maintenance | `embedder_list()` | List available embedder profiles | Inspect local/cloud embedding options |
-| L7: Maintenance | `embedder_set()` | Change the active embedder profile | Controlled embedder swap |
-| L7: Maintenance | `embedder_status()` | Report active embedder health and profile | Diagnose embedding readiness |
-
-### memory_index_scan() Parameters
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `specFolder` | string | - | Limit scan to specific spec folder |
-| `force` | boolean | false | Force re-index all files (ignore content hash) |
-| `includeSpecDocs` | boolean | true | Scan for spec folder documents in `.opencode/specs/`. When true, discovers and indexes specs, plans, tasks, decision records, etc. with document-type scoring multipliers (11 types). Also controllable via `SPECKIT_INDEX_SPEC_DOCS` env var. |
-| `incremental` | boolean | true | Skip files whose mtime and content hash are unchanged since last index |
-| `background` | boolean | false | Queue a background scan job; poll with `memory_index_scan_status` and stop with `memory_index_scan_cancel` |
-| `tenantId`, `userId`, `agentId`, `sessionId` | string | - | Governance boundaries for scoped ingest |
-| `provenanceSource`, `provenanceActor`, `governedAt` | string | - | Provenance metadata for governed ingest validation |
-| `retentionPolicy`, `deleteAfter` | string | - | Retention metadata for governed spec-doc records |
-
----
-
-## 4. MEMORY_SEARCH() BEHAVIOR
-
-### Parameter Requirements
-
-> **IMPORTANT:** You MUST provide either `query` OR `concepts` parameter. Calling `memory_search({ specFolder: "..." })` without a search parameter will cause an E040 error.
-
-**Required Parameters (one of):**
-- `query`: Natural language search query (string)
-- `concepts`: Multiple concepts for AND search (array of 2-5 strings)
-
-**Optional Parameters:**
-- `specFolder`: Limit search to specific spec folder
-- `tenantId` (string, optional): Tenant boundary for governed retrieval
-- `userId` (string, optional): User boundary for governed retrieval
-- `agentId` (string, optional): Agent boundary for governed retrieval
-- `includeContent`: Include full file content in results
-- `anchors`: Array of anchor IDs for targeted section retrieval (token-efficient)
-- `tier`: Filter by importance tier
-- `limit`: Maximum results to return
-- `useDecay`: Apply temporal decay scoring
-
-When operating in shared or multi-actor deployments, always provide scope parameters to prevent cross-scope data exposure.
-
-### Parameter Reference
-
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `query` | string | One of query/concepts | - | Natural language search query |
-| `concepts` | string[] | One of query/concepts | - | 2-5 concepts for AND search (results must match ALL) |
-| `specFolder` | string | No | - | Filter to specific spec folder |
-| `tenantId` | string | No | - | Tenant boundary for governed retrieval |
-| `userId` | string | No | - | User boundary for governed retrieval |
-| `agentId` | string | No | - | Agent boundary for governed retrieval |
-| `includeContent` | boolean | No | false | Embed full file content in results |
-| `includeContiguity` | boolean | No | false | Include adjacent memories |
-| `anchors` | string[] | No | - | Anchor IDs to extract (e.g., `['summary', 'decisions']`) |
-| `tier` | string | No | - | Filter by importance tier |
-| `limit` | number | No | 10 | Maximum results to return |
-| `useDecay` | boolean | No | true | Apply temporal decay scoring |
-
-### Intent-Aware Retrieval (7 Intents)
-
-The system detects query intent and applies task-specific search weights. Seven intent types are supported:
-
-| Intent | Weight Adjustments |
-|--------|-------------------|
-| `add_feature` | +procedural, +architectural |
-| `fix_bug` | +error logs, +debug, +recent |
-| `refactor` | +patterns, +structure |
-| `security_audit` | +security, +vulnerabilities |
-| `understand` | +semantic, +explanatory |
-| `find_spec` | +spec documents, +plans, +decision records |
-| `find_decision` | +decision records, +architectural context |
-
-### Usage Examples
-
-```javascript
-// Basic semantic search (query required)
-memory_search({ query: "authentication decisions" })
-
-// Folder-scoped with content (query still required)
-memory_search({
-  query: "OAuth implementation",
-  specFolder: "007-auth",
-  includeContent: true
-})
-
-// Multi-concept AND search (alternative to query)
-memory_search({
-  concepts: ["authentication", "session management"],
-  specFolder: "007-auth"
-})
-
-// WRONG: specFolder alone is NOT sufficient
-// memory_search({ specFolder: "007-auth" })  // ERROR: E040
+```bash
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+  --json -- "<prompt>"
 ```
 
-### Anchor-Based Retrieval (Token-Efficient)
+The result carries matched paths, the phrases that matched, and a match class. Branch on all three exit statuses: `0` is a hit, `1` is a clean miss, and `2` is a bad invocation or an unreadable index. Reading stdout alone cannot tell `1` from `2`, because both are empty.
 
-The `anchors` parameter enables **targeted section retrieval** from indexed documents, reducing token usage by ~90% when you only need specific sections.
+### Free-text scan
 
-**When to Use Anchors:**
-- You need only specific sections (summary, decisions) not full content
-- Token efficiency is important (large packet docs)
-- Loading context for specific purposes (e.g., resume work, review decisions)
+The literal recipes live in [`../retrieval/retrieval-conventions.md`](../retrieval/retrieval-conventions.md) §2. Copy the flags rather than paraphrasing them: `--no-config` blocks argument injection through `RIPGREP_CONFIG_PATH`, the two exclusion globs keep archived and vendored trees out, and `--` keeps a hyphen-leading phrase a pattern instead of a parse error.
 
-**Common Anchor Patterns:**
+One output mode per invocation. Combining `--json` with `--count` or `--files-with-matches` is not rejected; the last flag wins silently, and a JSONL parser handed count output sees an empty result rather than an error.
+
+### Scoping
+
+Narrow by positional path, never by pattern. `specs/<track>` is a track, `specs/<track>/<NNN-name>` is a packet, and one more segment is a phase child. The trailing positional argument is the whole scoping mechanism.
+
+---
+
+## 4. RANKING
+
+Ripgrep supplies matches, paths and lines. It never ranks relevance, and no wrapper may imply that it does. Ordering is the caller's job, applied after parsing, using the stable tuple in `../retrieval/retrieval-conventions.md` §5: evidence field, then normalized match class, then relative path and line number.
+
+The tuple is deterministic by construction, so two runs over an unchanged corpus produce the same ordering. It is a sort, not a relevance model.
+
+---
+
+## 5. ANCHOR-BASED RETRIEVAL (TOKEN-EFFICIENT)
+
+Anchors let a caller read one section instead of a whole document, which is where most of the token saving lives.
+
+**When to use anchors:**
+- You need specific sections (summary, decisions), not full content
+- The packet docs are large
+- You are loading context for a specific purpose, such as resuming work or reviewing decisions
+
+**Common anchor patterns:**
 
 | Anchor ID | Content | Use Case |
 |-----------|---------|----------|
@@ -255,185 +129,64 @@ The `anchors` parameter enables **targeted section retrieval** from indexed docu
 | `blockers` | Current blockers | Identify issues |
 | `next-steps` | Planned actions | Continue work |
 
-**Anchor Usage Examples:**
+**Finding anchors:**
 
-```javascript
-// Get only summary and decisions (minimal tokens)
-memory_search({
-  query: "auth implementation",
-  anchors: ['summary', 'decisions']
-})
+```bash
+# Which anchors does this packet declare?
+rg --no-config -o -- '<!-- ANCHOR:[a-zA-Z0-9-]+ -->' specs/<track>/<NNN-name>
 
-// Resume work - get state and next steps
-memory_search({
-  query: "session context",
-  specFolder: "007-auth",
-  anchors: ['state', 'next-steps', 'blockers']
-})
-
-// Review what changed - artifacts only
-memory_search({
-  query: "recent changes",
-  anchors: ['artifacts', 'metadata']
-})
-
-// Full content (no anchors - default behavior)
-memory_search({
-  query: "complete context",
-  includeContent: true  // Returns entire file
-})
+# Read one anchor block with bounded context
+rg --no-config --json --fixed-strings --ignore-case -C 2 \
+  --glob '*.md' -- '<!-- ANCHOR:summary -->' specs/<track>/<NNN-name>
 ```
 
-**Anchor Format in Indexed Continuity Sources:**
+The grammar is an exact pair: an opening `<!-- ANCHOR:id -->` and a closing `<!-- /ANCHOR:id -->` with the same `id`, addressed by one-based line numbers. Ordinary section IDs are lower-kebab; typed IDs may carry a type prefix such as `DECISION-pipeline-003`. Report an unmatched or orphan marker as a diagnostic rather than dropping it silently.
 
-Indexed continuity-bearing docs and generated support artifacts use HTML comment anchors:
-```markdown
-Brief summary of the session...
-
-- Decision 1: Chose approach X because...
-- Decision 2: Deferred Y until...
-```
-
-**Token Savings:**
-- Full indexed document: ~2000 tokens
-- With `anchors: ['summary']`: ~150 tokens (93% savings)
-- With `anchors: ['summary', 'decisions']`: ~300 tokens (85% savings)
+**Token savings:**
+- Full document: ~2000 tokens
+- One anchor block: ~150 tokens
+- Two anchor blocks: ~300 tokens
 
 ---
 
-## 5. MEMORY_LIST() BEHAVIOR
+## 6. CONTINUITY
 
-### Exact Matching Behavior
+### Read path
 
-> **Important:** The `specFolder` filter uses **EXACT matching**, not prefix or hierarchical matching.
+`/speckit:resume` owns the ladder and walks it in order:
 
-| Query | Matches | Does NOT Match |
-|-------|---------|----------------|
-| `specFolder: "003-memory"` | `003-memory` only | `003-memory-and-spec-kit`, `003-memory-upgrade` |
-| `specFolder: "003-memory-and-spec-kit"` | `003-memory-and-spec-kit` only | `003-memory` |
+1. `handover.md` at the resolved folder root
+2. `_memory.continuity` frontmatter inside `implementation-summary.md`
+3. Canonical spec docs: `implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`
+4. The bounded context recipe, when the packet docs do not answer the question
 
-Use exact folder names when filtering. This is intentional for precise filtering control.
+There is no session inference at any step. Each rung is a file read, and a missing rung falls through to the next.
 
-### Parameter Reference
+### Write path
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `specFolder` | string | - | Filter by exact spec folder name |
-| `limit` | number | 20 | Maximum results (max 100) |
-| `offset` | number | 0 | Pagination offset |
-| `sortBy` | string | `created_at` DESC | Sort order: created_at, updated_at, importance_weight |
-| `includeChunks` | boolean | `false` | Include chunk child rows. Default returns parent memories only for cleaner browsing |
+`/memory:save` composes structured JSON and hands it to the writer:
 
-### Parent vs Chunk Rows
-
-- By default, `memory_list()` filters to `parent_id IS NULL`, so dashboards and maintenance flows show one row per indexed parent document.
-- Use `includeChunks: true` only when chunk-level diagnostics are needed.
-
-### Spec Folder Filtering
-
-The `specFolder` parameter behavior varies by operation:
-- `memory_search`: Exact match (SQL `=` operator)
-- `memory_list`: Exact match (SQL `=` operator)
-- `findMemoryFiles`: Prefix match (`startsWith`) - matches `007-auth` and `007-auth-v2`
-
-For consistent exact matching, use the full spec folder name.
-
----
-
-## 6. DECAY SCORING
-
-> [VERIFIED: matches source code as of 2026-02-08]
-
-The indexed-continuity store uses two complementary decay models, both **day-based** (calendar time), not turn-based.
-
-### Model A: Tier-Based Exponential Decay
-
-**Source:** `lib/cognitive/attention-decay.ts:96-106`
-
-**Formula:** `score_decayed = score × decayRate^(elapsedDays / 30)`
-
-Where `elapsedDays` = calendar days since the spec-doc record's `updated_at` (or `created_at`). The 30-day normalization means the decay rate applies per 30-day period. Scores below `0.001` are clamped to 0.
-
-#### Tier-Specific Decay Rates
-
-| Tier | Decay Rate | Behavior |
-|------|------------|----------|
-| `critical` | 1.0 | Never decays (exempt) |
-| `important` | 1.0 | Never decays (exempt) |
-| `normal` | 0.80 | Standard decay (~20% loss per 30 days) |
-| `temporary` | 0.60 | Fast decay (~40% loss per 30 days) |
-| `deprecated` | 1.0 | Never decays (but excluded from search results) |
-
-**Protected Tiers:** Critical, important, and deprecated tiers have rate = 1.0, so `decayRate^(elapsedDays/30)` = 1.0 always.
-
-#### Decay Examples (Normal Tier, decay_rate = 0.80)
-
-| Days Elapsed | Decay Factor (`0.80^(days/30)`) | Effective Score (base 0.50) |
-|--------------|----------------------------------|----------------------------|
-| 0 | 1.000 | 0.500 |
-| 30 | 0.800 | 0.400 |
-| 60 | 0.640 | 0.320 |
-| 90 | 0.512 | 0.256 |
-| 180 | 0.262 | 0.131 |
-
-### Model B: FSRS Power-Law Retrievability
-
-**Source:** `lib/cognitive/attention-decay.ts:111-118`, `lib/scoring/composite-scoring.ts:123-125,158-181`
-
-Used for composite scoring and the 5-state model (Section 10). Based on the FSRS v4 spaced-repetition formula:
-
-**Formula:** `R = (1 + FSRS_FACTOR × t/S)^(-0.5)`
-
-Where:
-- `R` = retrievability (0 to 1)
-- `t` = elapsed days since last review
-- `S` = stability (learned from review history, default 1.0)
-- `FSRS_FACTOR` = `19/81 ≈ 0.235` (in composite-scoring) or `1/19` inline fallback (in attention-decay)
-- Power exponent = `-0.5`
-
-The FSRS model produces a power-law curve (slower initial decay, steeper long-term decay) compared to the exponential Model A. It is used by `calculateRetrievabilityScore()` in composite scoring and by the tier classifier for state transitions.
-
-### Disabling Decay
-
-```javascript
-memory_search({ 
-  query: "historical decisions",
-  useDecay: false  // Returns results without temporal weighting
-})
+```bash
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js \
+  /tmp/save-context-data-<session-id>.json \
+  specs/<track>/<NNN-name>
 ```
 
+The writer routes content into the right canonical doc and refreshes `description.json` and `graph-metadata.json`. It keeps atomic same-directory update and lock semantics, so a partial write cannot leave a half-updated continuity block. It is the only writer of `_memory.continuity`, and there is no indexing hand-off after it returns.
+
+An explicit spec-folder target on the command line is authoritative and wins over any `specFolder` inside the payload. Full save mechanics live in [`save-workflow.md`](./save-workflow.md).
+
 ---
 
-## 7. REAL-TIME SYNC
+## 7. REGENERATING THE INDEX
 
-### Current Limitation
+```bash
+node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs
+```
 
-> **Note:** By default, indexed markdown is discovered on MCP server startup. Changes made after startup are not automatically detected unless the optional `SPECKIT_FILE_WATCHER` feature is enabled.
+Run it when a document's `trigger_phrases` changed. The artifact is committed, so regeneration belongs in the same commit as the frontmatter edit that motivated it; a stale index is the single most common cause of a lookup that "should" have matched.
 
-### Workarounds
-
-To index new or modified continuity-bearing docs:
-
-1. **Single file:** Use `memory_save` tool to index a specific file
-   ```javascript
-   memory_save({ filePath: "specs/007-auth/implementation-summary.md" })
-   ```
-
-2. **Batch scan:** Use `memory_index_scan` tool to scan and index all affected docs
-   ```javascript
-   memory_index_scan({ specFolder: "007-auth" })
-   ```
-
-3. **Enable watcher:** Set `SPECKIT_FILE_WATCHER=true` to opt into automatic markdown re-indexing after startup
-4. **Full restart:** Restart the MCP server (indexes all files on startup)
-
-### Future Enhancement
-
-Real-time file watching is optional rather than always-on. By default, use `memory_save()` or `memory_index_scan()` to index new or modified files. Enable `SPECKIT_FILE_WATCHER=true` when you want automatic markdown re-indexing after startup.
-
-### Rate Limiting
-
-The `memory_index_scan` operation is self-maintaining. Overlapping scans coalesce into a successful `coalesced: true` envelope instead of failing with the old cooldown error, and rows become BM25/FTS-searchable while embeddings drain in the background.
+What belongs in `trigger_phrases` decides what the index can ever find: distinctive domain terms, exact decisions, API and symbol names, failure symptoms, packet-specific multi-word concepts. Generic workflow words such as `session`, `context`, `update` or `document` cost precision on every query that touches them. The full include-and-warn list is in `../retrieval/retrieval-conventions.md` §8.
 
 ---
 
@@ -449,170 +202,57 @@ historical record.
 
 ---
 
-## 9. SESSION DEDUPLICATION
+---
 
-> [VERIFIED: matches source code as of 2026-02-08]
+## 9. DECLARED CAPABILITY LOSS
 
-The indexed-continuity store uses content hashing and session-aware deduplication to prevent redundant memories and reduce token usage.
+The retired surface carried stateful behavior that a committed index and a read-only scan cannot provide. Each row is a loss, not a migration. None of them has a replacement, and no wrapper may paper over one by guessing.
 
-### Content Hashing
+| Capability | Status |
+|------------|--------|
+| Semantic paraphrase matching | Gone. A phrase no author declared and no document contains cannot be found |
+| Vector and BM25 fusion | Gone. Matching is literal and case-folded |
+| Decay scoring and the retrievability model | Gone. Nothing ages, promotes or demotes a document |
+| Access tracking | Gone. Nothing records that a document was read |
+| Session deduplication | Gone. Nothing fingerprints a session or suppresses a repeat |
+| Causal graph and drift analysis | Gone. Explicit Markdown links and typed evidence are the only traversal left |
+| Checkpoints and restore | Gone. Git and the packet documents are the recovery path |
 
-**Source:** `lib/parsing/memory-parser.ts:347-349`
-
-Each indexed continuity source is hashed using SHA-256 of its **raw content** (no normalization):
-
-```typescript
-function computeContentHash(content: string): string {
-  return crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
-}
-```
-
-This hash is stored as `content_hash` in the database and used by `memory_save()` to detect whether a file has changed — if the hash matches, re-embedding is skipped.
-
-### Session Memory Hashing
-
-**Source:** `lib/session/session-manager.ts:230-249`
-
-For session deduplication, a separate hash identifies individual memories within a session:
-
-```typescript
-function generateMemoryHash(memory: MemoryInput): string {
-  let hashInput: string;
-
-  if (memory.content_hash) {
-    hashInput = memory.content_hash;
-  } else if (memory.id !== undefined) {
-    hashInput = `${memory.id}:${memory.anchorId || ''}:${memory.file_path || ''}`;
-  } else {
-    hashInput = JSON.stringify({
-      anchor: memory.anchorId,
-      path: memory.file_path,
-      title: memory.title,
-    });
-  }
-
-  return crypto.createHash('sha256').update(hashInput).digest('hex').slice(0, 16);
-}
-```
-
-The hash priority: `content_hash` > `id:anchorId:file_path` > JSON of `{anchor, path, title}`. Truncated to 16 hex chars for storage efficiency.
-
-### Deduplication Behavior
-
-| Scenario | Hash Match | Action |
-|----------|------------|--------|
-| Identical file content | Full SHA-256 match | Skip re-embedding, return existing ID |
-| Same spec-doc record in same session | 16-char hash match | Skip sending (session dedup) |
-| Substantive file changes | No match | Re-index with new embedding |
-| Same content, different spec folder | Separate entries | Each folder gets its own index entry |
-
-### Token Savings
-
-Session deduplication (`enableDedup: true` with `sessionId`) provides significant savings on follow-up queries:
-
-| Metric | Without Dedup | With Dedup | Savings |
-|--------|---------------|------------|---------|
-| Avg memories per spec folder | 12 | 6 | 50% |
-| Search result tokens | ~4000 | ~2000 | 50% |
-| Index size (100 specs) | 1200 entries | 600 entries | 50% |
-
-**Note:** There is no content normalization (lowercasing, whitespace/date normalization) in the hashing pipeline. Hashes are computed on raw content, so even whitespace-only changes will produce a different hash and trigger re-indexing.
+The required behavior on a no-hit is to say so. A caller that degrades to an approximate answer, or that reports a broken invocation as an empty result, is wrong in a way this document cannot catch.
 
 ---
 
-## 10. 5-STATE MEMORY MODEL
+## 10. VERIFICATION
 
-> [VERIFIED: matches source code as of 2026-02-08]
+```bash
+# The index exists and resolves a known phrase
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+  --json -- "spec folder"; echo "exit=$?"
 
-Indexed rows are classified into five states based on their **retrievability score** (R), not calendar-day thresholds. This is retrieval internals, not the operator-facing continuity ladder: packet recovery still starts from `handover.md -> _memory.continuity -> spec docs`.
+# The free-text lane agrees the content is where you think it is
+rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 \
+  --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' \
+  -- 'spec folder' specs .opencode
 
-**Source:** `lib/cognitive/tier-classifier.ts:26-33, 211-256, 261-299`
-
-### Retrievability Thresholds
-
+# A packet still validates after a continuity save
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/<track>/<NNN-name> --strict
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                 4-STATE MODEL (Retrievability-Based)             │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  R ≥ 0.80    →  HOT       (high recall probability)            │
-│  R ≥ 0.25    →  WARM      (moderate recall)                    │
-│  R ≥ 0.05    →  COLD      (low recall)                         │
-│  R < 0.05    →  DORMANT   (very low recall)                    │
-│  Critical tier → always HOT (R = 1.0)                           │
-│  Pinned spec-doc records (is_pinned=1) → always HOT (R = 1.0)          │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-Thresholds are configurable via environment variables (`HOT_THRESHOLD`, `WARM_THRESHOLD`, `COLD_THRESHOLD`) with validation that HOT > WARM > COLD.
-
-### State Classification
-
-The core classifier accepts either a numeric retrievability value or a spec-doc record object:
-
-```typescript
-// lib/cognitive/tier-classifier.ts — classifyState()
-function classifyState(
-  retrievabilityOrMemory: number | MemoryRow | Record<string, unknown> | null | undefined,
-  elapsedDays?: number,
-): TierState {
-  // ... resolve r and days from input ...
-
-  if (r >= TIER_CONFIG.hotThreshold) return 'HOT';   // default 0.80
-  if (r >= TIER_CONFIG.warmThreshold) return 'WARM';  // default 0.25
-  if (r >= TIER_CONFIG.coldThreshold) return 'COLD';  // default 0.05
-  return 'DORMANT';
-}
-```
-
-The richer `classifyTier()` function wraps this with half-life support, pinned-memory handling, and critical-tier exemptions. It computes retrievability using the FSRS formula (see Section 6, Model B) with an effective stability derived from the spec-doc record's type-specific half-life.
-
-### State Behaviors
-
-| State | Retrievability | Search Inclusion | Description |
-|-------|---------------|------------------|-------------|
-| **HOT** | R ≥ 0.80 | Always (max 5) | High recall — recently reviewed or important |
-| **WARM** | R ≥ 0.25 | Always (max 10) | Moderate recall — still relevant |
-| **COLD** | R ≥ 0.05 | Relevance-based | Low recall — aging out |
-| **DORMANT** | R < 0.05 | High relevance only | Very low recall — lowest active state in the continuity contract |
-
-HOT and WARM states have per-query limits (`maxHotMemories: 5`, `maxWarmMemories: 10`) to prevent context flooding.
-
-### Half-Life to Stability Conversion
-
-Each spec-doc record type has a configured half-life (in days). This is converted to FSRS stability:
-
-```
-S = half_life / ln(2) ≈ half_life / 0.693
-```
-
-The effective stability is `max(fsrs_stability, type_stability)`, ensuring new spec-doc records benefit from their type's baseline while well-reviewed memories keep earned FSRS stability.
-
-### State Transitions
-
-| Event | Effect |
-|-------|--------|
-| FSRS review (access) | Increases stability → higher R → may promote state |
-| Time passes without access | R decays via FSRS formula → may demote state |
-| User validates as useful | Increases confidence score (does not directly change state) |
-| Memory marked deprecated | Excluded from search (tier-level exclusion, not state) |
-| Critical tier | Always classified as HOT regardless of R |
-| Pinned (`is_pinned=1`) | Always classified as HOT regardless of R |
 
 ---
 
 ## 11. RELATED RESOURCES
 
 ### Reference Files
-- [save-workflow.md](./save-workflow.md) - Memory save workflow documentation
-- [embedding-resilience.md](./embedding-resilience.md) - Provider fallback and offline mode
+- [retrieval-conventions.md](../retrieval/retrieval-conventions.md) - The recipes, exit-status mapping and ranking contract
+- [save-workflow.md](./save-workflow.md) - Continuity save workflow
+- [embedding-resilience.md](./embedding-resilience.md) - Provider fallback for the shared embedding stack
 - [troubleshooting.md](../debugging/troubleshooting.md) - Common issues and solutions
 - [environment-variables.md](../config/environment-variables.md) - Configuration options
 
 ### Scripts
-- `scripts/dist/memory/generate-context.js` - Runtime memory-save entrypoint (compiled from `scripts/memory/generate-context.ts`)
-- `mcp-server/context-server.ts` - MCP server implementation
+- `scripts/retrieval/generate-trigger-index.mjs` - Builds the trigger index
+- `scripts/retrieval/lookup-trigger-index.mjs` - Reads the trigger index
+- `scripts/dist/memory/generate-context.js` - Continuity writer (compiled from `scripts/memory/generate-context.ts`)
 
 ### Related Skills
 - `system-spec-kit` - Parent skill orchestrating spec folder workflow

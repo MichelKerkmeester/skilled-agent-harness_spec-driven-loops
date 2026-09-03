@@ -31,7 +31,7 @@ These variables control memory system behavior, token budgets, script execution,
 | `MEMORY_BASE_PATH` | Current working directory | Workspace root path |
 | `MEMORY_ALLOWED_PATHS` | `specs/,.opencode/` (Note: effective read boundary also includes `process.cwd()` and `~/.claude/` at runtime. For tighter isolation, explicitly set this variable to restrict filesystem access.) | Additional allowed paths (colon-separated) |
 | `DEBUG_TRIGGER_MATCHER` | `false` | Enable verbose trigger matching logs |
-| `SPECKIT_STRICT_SCHEMAS` | `true` | Enforce strict Zod MCP tool input validation for the 41-tool `system-spec-memory` MCP surface (`TOOL_DEFINITIONS.length` in `mcp-server/tool-schemas.ts`; `false` allows unknown passthrough keys and is development-only) |
+| `SPECKIT_STRICT_SCHEMAS` | `true` | Enforce strict Zod MCP tool input validation for the retained MCP surfaces (`TOOL_DEFINITIONS.length`; `false` allows unknown passthrough keys and is development-only) |
 | `SPECKIT_RESPONSE_TRACE` | `false` | Include provenance-rich `scores`/`source`/`trace` fields by default in search responses |
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | Auto-detected | Fallback chain for database directory path. `SPEC_KIT_DB_DIR` checked first, then `SPECKIT_DB_DIR` |
 | `DISABLE_SESSION_DEDUP` | `false` | Disables session-level deduplication when set to `true` |
@@ -44,7 +44,7 @@ OpenCode note: point `SPEC_KIT_DB_DIR` at a writable directory outside read-only
 
 ### CLI Transport (Dual-Stack Fallback)
 
-The MCP server remains the primary registered transport; the daemon-backed CLI shim (`.opencode/bin/spec-memory.cjs`) is an additive dual-stack surface over the same warm daemon.
+The MCP server remains the primary registered transport; the daemon-backed CLI shim (`.opencode/bin/skill-advisor.cjs`) is an additive dual-stack surface over the same warm daemon. Spec-folder retrieval has no daemon and no shim: it runs from `system-spec-kit/scripts/retrieval/`, and none of these variables reach it.
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -129,7 +129,7 @@ Cloud providers (OpenAI/Voyage) can be selected by the cascade as a last resort 
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `SPEC_KIT_BATCH_SIZE` | `5` | Batch size for memory_index_scan |
+| `SPEC_KIT_BATCH_SIZE` | `5` | Batch size for bulk index scans |
 | `SPEC_KIT_BATCH_DELAY_MS` | `100` | Delay between batches (ms) |
 
 ---
@@ -204,7 +204,7 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 | `SPECKIT_TRM` | ON | S5 | Transparent Reasoning Module (evidence-gap detection) |
 | `ENABLE_BM25` | ON | S3 | Enables in-memory BM25 scoring channel. Set `false` to disable |
 | `SPECKIT_SHADOW_SCORING` | OFF | S7 | Shadow attribution logging (comparison path disabled; attribution tracking only) |
-| `SPECKIT_DASHBOARD_LIMIT` | `10000` | S7 | Row cap for `eval_reporting_dashboard` queries |
+| `SPECKIT_DASHBOARD_LIMIT` | `10000` | S7 | Row cap for evaluation dashboard queries |
 | `SPECKIT_GRAPH_UNIFIED` | ON | S7 | Unified graph retrieval with deterministic ranking, explainability trace, and rollback support |
 | `SPECKIT_PARSER` | `treesitter` | R-024 | Structural parser backend for code graph indexing: `treesitter` (default WASM AST parser) or `regex` (lightweight fallback) |
 | `SPECKIT_PARSER_SKIP_LIST_ENABLED` | ON | R-024 | Enables code-graph parser skip-list safeguards for generated, vendored, or unsupported inputs |
@@ -261,7 +261,7 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 | `SPECKIT_AUTO_ENTITIES` | ON | S6 | Rule-based noun-phrase entity extraction at save time (R10) |
 | `SPECKIT_ENTITY_LINKING` | ON | S6 | Cross-document entity linking via entity-based edges (S5). Requires R10 |
 | `SPECKIT_MEMORY_SUMMARIES` | ON | S5 | TF-IDF extractive summary generation as search channel (R8) |
-| `SPECKIT_INDEX_SPEC_DOCS` | ON | S7 | Spec document indexing in `memory_index_scan()` with document-type scoring |
+| `SPECKIT_INDEX_SPEC_DOCS` | ON | S7 | Spec document indexing at scan time with document-type scoring |
 | `SPECKIT_SIGNAL_VOCAB` | ON | S5 | Signal vocabulary expansion in trigger matching |
 
 #### Retrieval & Discovery
@@ -274,7 +274,7 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 | `SPECKIT_DEGREE_BOOST` | ON | S3 | Degree-centrality boost for highly-connected memories |
 | `SPECKIT_CHANNEL_MIN_REP` | ON | S4 | Channel minimum representation: promotes best result from under-represented channels |
 | `SPECKIT_LEARN_FROM_SELECTION` | ON | S6 | Learned feedback from user result selections (set `false` to disable) |
-| `SPECKIT_AUTO_RESUME` | ON | S7 | Auto-resume session detection in `memory_context()` |
+| `SPECKIT_AUTO_RESUME` | ON | S7 | Auto-resume session detection on the recovery path |
 | `SPECKIT_PRESSURE_POLICY` | ON | S7 | Context pressure policy for token budget management |
 
 #### Research-Based Refinement Flags
@@ -317,7 +317,7 @@ These shipped safety flags are opt-in. They should be enabled deliberately, usua
 | `SPECKIT_RELATIONS` | ON | S4 | Enables relation extraction in learning/corrections module |
 | `SPECKIT_ABLATION` | OFF | S7 | Ablation testing framework (opt-in) |
 | `SPECKIT_EVAL_LOGGING` | OFF | S7 | Evaluation metric logging (opt-in) |
-| `SPECKIT_QUALITY_LOOP` | ON | S7 | Verify-fix-verify quality loop for `memory_save`. Graduated ON; set `SPECKIT_QUALITY_LOOP=false` to opt out |
+| `SPECKIT_QUALITY_LOOP` | ON | S7 | Verify-fix-verify quality loop for the continuity writer. Graduated ON; set `SPECKIT_QUALITY_LOOP=false` to opt out |
 | `SPECKIT_SKIP_API_VALIDATION` | OFF | S0 | Skip API key validation at startup (development only) |
 | `SPECKIT_DEBUG_INDEX_SCAN` | OFF | S7 | Debug logging for index scan operations (opt-in) |
 | `SPECKIT_ROLLOUT_PERCENT` | `100` | S3 | Numeric: graduated rollout percentage (0-100) for deterministic feature bucketing |

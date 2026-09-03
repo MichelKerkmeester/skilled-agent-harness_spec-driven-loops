@@ -290,7 +290,7 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 | Type            | Bonus | Example                               |
 | --------------- | ----- | ------------------------------------- |
 | Problem Terms   | 3.0x  | "short output", "missing data"        |
-| Technical Terms | 2.5x  | "generateContext", "memory_search"    |
+| Technical Terms | 2.5x  | "generateContext", "lookupTriggerIndex"    |
 | Decision Terms  | 2.0x  | "chose ollama", "selected openai"  |
 | Action Terms    | 1.5x  | "fix bug", "add feature"              |
 | Compound Nouns  | 1.3x  | "trigger extraction", "memory system" |

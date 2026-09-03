@@ -387,11 +387,11 @@ DUAL-THRESHOLD CHECK:
 
 ## 8. LEARNING INDEX WORKFLOW
 
-Three MCP tools measure knowledge gains across implementation tasks:
+Three measurements described knowledge gains across implementation tasks. They were served by the retired memory MCP surface and have no successor, so the workflow below is a record of the model rather than a sequence you can run:
 
-1. **`task_preflight()`** — Captures epistemic baseline before work begins. Records uncertainty score (0-100), knowledge gaps, and context coverage.
-2. **`task_postflight()`** — Measures post-task state. Computes Learning Index: `LI = (KnowledgeDelta × 0.4) + (ContextImprovement × 0.35) + (UncertaintyReduction × 0.25)`.
-3. **`memory_get_learning_history()`** — Returns historical learning measurements with trend analysis.
+1. **Preflight** — Captured the epistemic baseline before work began. Recorded uncertainty score (0-100), knowledge gaps, and context coverage.
+2. **Postflight** — Measured post-task state. Computed the Learning Index: `LI = (KnowledgeDelta × 0.4) + (ContextImprovement × 0.35) + (UncertaintyReduction × 0.25)`.
+3. **Learning history** — Returned historical learning measurements with trend analysis.
 
 **Score Interpretation (0-100):**
 

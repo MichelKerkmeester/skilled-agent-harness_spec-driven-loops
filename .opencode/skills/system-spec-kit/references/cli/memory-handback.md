@@ -34,7 +34,7 @@ Canonical 7-step Memory Handback procedure shared across the three cli-* sibling
    - `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder]`
    - `printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin [spec-folder]`
    - `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json "$JSON_PAYLOAD" [spec-folder]`
-7. **Index**: Run `memory_index_scan({ specFolder })` for immediate MCP visibility.
+7. **Stop there**: The save is complete when `generate-context.js` returns. There is no indexing hand-off and no daemon to notify.
 
 ---
 
@@ -44,7 +44,7 @@ Canonical 7-step Memory Handback procedure shared across the three cli-* sibling
 
 **Structured JSON only**: Direct spec-folder-only invocation is no longer supported. Always call `generate-context.js` with `--stdin`, `--json`, or a JSON temp file.
 
-**MCP session scoping**: A dispatched cli sub-session should omit `sessionId` on its first Spec Kit Memory call. The trusted-session rejection (`E_SESSION_SCOPE`) is enforced by `memory_context`, `memory_search`, and `memory_match_triggers`; do not assume every sessionId-accepting tool applies the same guard. Omit `sessionId` so the server generates one, then reuse the `effectiveSessionId` returned for calls that stay inside that dispatched session.
+**No session scoping to negotiate**: Retrieval in a dispatched cli sub-session is a file read — the trigger index lookup or a ripgrep recipe from `../retrieval/retrieval-conventions.md`. There is no session identity to establish, no server to reject the call, and nothing to carry between calls. The only state a handback creates is the packet's own continuity surfaces.
 
 **Explicit target precedence**: If you pass `[spec-folder]` on the CLI, that explicit target wins over any `specFolder` value inside the payload.
 

@@ -109,7 +109,7 @@ Reverse imports are blocked by lint and CI.
 
 ## 3. CANONICAL CONTINUITY FLOWS
 
-Spec-kit treats canonical spec documents as the durable continuity record. Generated memory indexes are search/recall surfaces over that record, not the record itself.
+Spec-kit treats canonical spec documents as the durable continuity record. The generated trigger index is a lookup surface over that record, not the record itself.
 
 **Read path (`/speckit:resume`):**
 
@@ -122,14 +122,14 @@ Spec-kit treats canonical spec documents as the durable continuity record. Gener
 
 1. AI composes structured JSON describing session context.
 2. `generate-context.js` routes content into the right canonical doc (`implementation-summary.md`, `decision-record.md`, `handover.md`) and refreshes `description.json` + `graph-metadata.json`.
-3. Direct MCP `memory_save({ filePath })` indexes content only and returns a `metadataRefresh` advisory when packet metadata was not refreshed by that lane.
-4. The indexed-continuity store re-indexes the touched docs for hybrid retrieval.
+3. There is no second write lane. `generate-context.js` is the only writer of `_memory.continuity`, and it keeps the atomic same-directory update and lock semantics that made a separate indexing call unnecessary.
+4. Regenerate `data/trigger-index.json` when a document's `trigger_phrases` changed; nothing else is indexed.
 
 **Key modules:**
 
-- `mcp-server/lib/resume/` owns the read path.
+- `/speckit:resume` owns the read path, walking the continuity ladder above.
 - `scripts/dist/memory/generate-context.js` owns the write path.
-- `mcp-server/lib/continuity/` owns the indexing layer.
+- `scripts/retrieval/generate-trigger-index.mjs` builds the lookup surface; `scripts/retrieval/lookup-trigger-index.mjs` reads it.
 
 ---
 

@@ -85,25 +85,23 @@ function detectTrigger(userMessage: string): boolean {
 }
 ```
 
-### MCP Tool Integration
+### Trigger Index Lookup
 
-The `memory_match_triggers` MCP tool provides fast trigger phrase matching without requiring embeddings:
+Trigger matching is a keyed lookup over the generated index. It runs from a cold Node process, needs no service and no embeddings:
 
-```typescript
-// Fast trigger matching (<50ms) - no embeddings required
-const result = await mcp__system_spec_memory__memory_match_triggers({
-  prompt: "I want to save context for this session",
-  limit: 3  // Maximum matching spec-doc records to return
-});
-
-// Returns matching spec-doc records based on trigger phrases
-// Ideal for proactive memory surfacing during conversation
+```bash
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+  --json -- "I want to save context for this session"
 ```
 
+The result carries the matched paths, the phrases that matched and a match class. Exit `0` means candidates were found, `1` means none were, `2` means a bad invocation or an unreadable index. Regenerate the index with `scripts/retrieval/generate-trigger-index.mjs` after frontmatter changes.
+
 **Usage Scenarios:**
-- Quick keyword-based memory lookup before semantic search
-- Proactive memory surfacing during conversation
-- Fallback when semantic search is unavailable
+- Gate 1 prompt matching against author-declared phrases
+- Surfacing the packets whose authors claimed a topic
+- A first pass before the free-text ripgrep lane in `../retrieval/retrieval-conventions.md`
+
+This lane matches declared phrases only. It has no semantic fallback: a paraphrase an author never wrote down does not match, and the honest answer is a no-hit rather than an approximation.
 
 ### Gate 3 Enforcement Triggers
 
@@ -122,20 +120,18 @@ The Gate 3 enforcement trigger set uses 33 trigger phrases to detect file modifi
 
 **How Gate 3 Trigger Matching Works:**
 
-1. AI calls `memory_match_triggers({ prompt: "user message" })`
+1. AI runs the trigger index lookup on the user message
 2. If the prompt matches any Gate 3 trigger, the Gate 3 spec-folder check is signaled
 3. AI sees reminder to ask spec folder question before file modifications
 
 **Example:**
 
-```typescript
-// User says: "refactor the authentication module"
-const matches = await memory_match_triggers({
-  prompt: "refactor the authentication module"
-});
-// Returns: Gate 3 file-modification trigger match
-// matchedPhrases: ["refactor"]
-// AI then asks: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip"
+```bash
+# User says: "refactor the authentication module"
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs \
+  --json -- "refactor the authentication module"
+# Returns: Gate 3 file-modification trigger match, phrases: ["refactor"]
+# AI then asks: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip"
 ```
 
 **Trigger Design Guidelines for Enforcement Trigger Sets:**
@@ -160,7 +156,7 @@ Beyond the default trigger phrases, the system recognizes expanded signal types 
 | `PREFERENCE` | Captures user preference signals | "I prefer", "use this instead", "default to", "always do" |
 | `REINFORCEMENT` | Positive validation of existing spec-doc records | "that's right", "confirmed", "keep this" |
 
-These signals are detected during `memory_match_triggers()` processing and influence save-time arbitration (prediction-error scoring) and correction tracking.
+These signals were detected during trigger-match processing on the retired server, where they influenced save-time arbitration and correction tracking. The index lookup does not classify signals: it returns matched phrases and nothing else, so a caller that needs this must read it from the documents themselves.
 
 ### Trigger Sanitization (026 Remediation)
 
@@ -175,10 +171,9 @@ Save-time trigger validation now applies sanitization rules to prevent low-quali
 
 **Post-save quality review** checks trigger_phrases in the saved memory and reports HIGH-severity issues when triggers are overly broad or likely to cause false matches. The AI must patch these manually via Edit tool when flagged.
 
-**Filter behavior changes (026):**
-- `memory_match_triggers()` now applies a relevance threshold before returning matches, reducing noise from weak partial matches
-- Trigger matching respects importance tier: higher-tier triggers match more readily, while normal-tier triggers require higher confidence scores
-- When multiple memories match the same trigger, results are deduplicated by content similarity (>=0.88 threshold)
+**Filter behavior:**
+- The index lookup applies a candidate gate and a match class before returning results, reducing noise from weak partial matches
+- Content-similarity deduplication is gone with the store it ran against; the lookup returns every path whose declared phrases matched, and the caller dedupes
 
 ---
 
@@ -387,7 +382,7 @@ Before deploying custom triggers:
 - [generate-context.ts](../../scripts/memory/generate-context.ts) - Context generation script
 
 ### Related Skills
-- `system-spec-memory` - Integrated MCP tools for context preservation
+- `system-skill-advisor` - Skill routing over its own advisor metadata
 
 ---
 
