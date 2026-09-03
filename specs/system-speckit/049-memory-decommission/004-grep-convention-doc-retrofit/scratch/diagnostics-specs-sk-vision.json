@@ -1,0 +1,87 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 0,
+    "anchor-unmatched": 0,
+    "duplicate": 0,
+    "generic-trigger": 0,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 5,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/CODE_OF_CONDUCT.md",
+      "rawKey": "CODE_OF_CONDUCT.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'CODE_OF_CONDUCT.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/CONTRIBUTING.md",
+      "rawKey": "CONTRIBUTING.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'CONTRIBUTING.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/PLAN.md",
+      "rawKey": "PLAN.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'PLAN.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/SECURITY.md",
+      "rawKey": "SECURITY.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SECURITY.md'",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 5
+  },
+  "track": "specs/sk-vision"
+}

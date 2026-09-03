@@ -1,0 +1,463 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 0,
+    "anchor-unmatched": 0,
+    "duplicate": 0,
+    "generic-trigger": 52,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 0,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate/plan.md",
+      "rawKey": "gate",
+      "reason": "single token \"gate\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate/spec.md",
+      "rawKey": "baseline",
+      "reason": "single token \"baseline\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate/spec.md",
+      "rawKey": "ownership",
+      "reason": "single token \"ownership\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate/spec.md",
+      "rawKey": "gate",
+      "reason": "single token \"gate\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate/tasks.md",
+      "rawKey": "baseline",
+      "reason": "single token \"baseline\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-design/009-sk-design-claude-parity/001-baseline-ownership-gate/tasks.md",
+      "rawKey": "ownership",
+      "reason": "single token \"ownership\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/014-review-remediation/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-design/009-sk-design-claude-parity/015-design-commands-implementation/implementation-summary.md",
+      "rawKey": "implementation",
+      "reason": "single token \"implementation\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/015-design-commands-implementation/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/016-hub-routing-optimization/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/017-design-proof-token-relocation/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/018-mcp-open-design-transport-integration/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/019-transport-mode-benchmark-coverage/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/021-command-surface-validator-and-agent-parity/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/022-benchmark-rerun-and-coverage-fill/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/001-mode-routing-core/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/002-transport-and-negative-controls/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/003-advisor-positive-controls/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/004-transform-verb-make-it/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/005-transform-verb-should-it-be/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/006-excluded-aliases-and-shared-base/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/008-parity-proof-and-fallback-start/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/009-fallback-and-hub-intake/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/009-fallback-and-hub-intake/spec.md",
+      "rawKey": "FR-001 FR-002 HM-001 HM-002 HM-003 HM-004",
+      "reason": "phrase carries 12 tokens, above the 10-token budget; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline/spec.md",
+      "rawKey": "MR-005 AI-001-P5 PB-003 MG-001 MG-002 MG-003 MG-004 FR-001-md-generator FR-002-md-generator",
+      "reason": "phrase carries 23 tokens, above the 10-token budget; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/024-manual-playbook-bug-remediation/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/025-pb002-advisor-and-audit-bundle-fix/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/009-sk-design-claude-parity/026-mr004-fix-and-doc-symmetry/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/012-sk-design-program/001-research/002-research-design-commands/implementation-summary.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/012-sk-design-program/001-research/002-research-design-commands/plan.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-design/012-sk-design-program/001-research/002-research-design-commands/research/lineages/sol/research.md",
+      "rawKey": "sol",
+      "reason": "single token \"sol\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/012-sk-design-program/001-research/002-research-design-commands/research/research.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-design/012-sk-design-program/001-research/002-research-design-commands/tasks.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/012-sk-design-program/001-research/002-research-design-commands/tasks.md",
+      "rawKey": "design",
+      "reason": "single token \"design\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/012-sk-design-program/001-research/006-mode-consolidation-research/handover.md",
+      "rawKey": "mode",
+      "reason": "single token \"mode\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/012-sk-design-program/001-research/006-mode-consolidation-research/research/research.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/plan.md",
+      "rawKey": "brand",
+      "reason": "single token \"brand\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/tasks.md",
+      "rawKey": "brand",
+      "reason": "single token \"brand\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/tasks.md",
+      "rawKey": "first",
+      "reason": "single token \"first\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/014-template-conformance/003-design-motion/001-packet-root/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-design/014-template-conformance/003-design-motion/001-packet-root/implementation-summary.md",
+      "rawKey": "packet",
+      "reason": "single token \"packet\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/014-template-conformance/003-design-motion/001-packet-root/plan.md",
+      "rawKey": "packet",
+      "reason": "single token \"packet\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-design/014-template-conformance/003-design-motion/001-packet-root/plan.md",
+      "rawKey": "root",
+      "reason": "single token \"root\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/014-template-conformance/003-design-motion/001-packet-root/tasks.md",
+      "rawKey": "packet",
+      "reason": "single token \"packet\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-design/014-template-conformance/003-design-motion/001-packet-root/tasks.md",
+      "rawKey": "root",
+      "reason": "single token \"root\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/008-changelog/implementation-summary.md",
+      "rawKey": "changelog",
+      "reason": "single token \"changelog\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/008-changelog/plan.md",
+      "rawKey": "changelog",
+      "reason": "single token \"changelog\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-design/014-template-conformance/004-design-md-generator/008-changelog/tasks.md",
+      "rawKey": "changelog",
+      "reason": "single token \"changelog\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-design/017-design-skill/002-agent-alignment/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 52
+  },
+  "track": "specs/sk-design"
+}

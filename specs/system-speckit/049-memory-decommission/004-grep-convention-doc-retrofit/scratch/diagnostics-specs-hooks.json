@@ -1,0 +1,135 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 0,
+    "anchor-unmatched": 0,
+    "duplicate": 0,
+    "generic-trigger": 4,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 7,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/hooks/006-spec-gate-question-noise/handover.md",
+      "rawKey": "session",
+      "reason": "\"session\" is a terminal fallback phrase of the frontmatter editor's ensureMinTriggerPhrases, not an author choice; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/hooks/007-fable-governor-pi-hook/review-archive/20260805T073738Z/deep-review-strategy.md",
+      "rawKey": "20260805T073738Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260805T073738Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/hooks/007-fable-governor-pi-hook/review-archive/20260805T073738Z/iterations/iteration-001.md",
+      "rawKey": "20260805T073738Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260805T073738Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/hooks/007-fable-governor-pi-hook/review-archive/20260805T073738Z/prompts/iteration-1.md",
+      "rawKey": "20260805T073738Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260805T073738Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-fast-mode/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-gpt-fast-mode/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-openai-fast-mode/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/research.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/hooks/014-retire-governor-and-proof-directives/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/hooks/015-git-hook-gate-reduction/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 11
+  },
+  "track": "specs/hooks"
+}

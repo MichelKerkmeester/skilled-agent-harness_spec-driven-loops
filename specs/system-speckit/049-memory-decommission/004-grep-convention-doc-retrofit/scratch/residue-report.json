@@ -1,0 +1,57 @@
+{
+  "canonicalKey": "trigger_phrases",
+  "considered": 22094,
+  "counts": {
+    "duplicate": 0,
+    "malformed-or-unclosed": 1,
+    "missing": 8,
+    "non-string-members": 0,
+    "non-yaml": 1,
+    "oversized": 0,
+    "valid-empty": 22084,
+    "wrong-list-type": 0
+  },
+  "residue": [],
+  "residueCount": 0,
+  "schemaVersion": 1,
+  "skippedByDesign": {
+    "malformed-or-unclosed": {
+      "count": 1,
+      "paths": [
+        "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme/context/seats/iter-001/deepseek.extracted.md"
+      ]
+    },
+    "non-string-members": {
+      "count": 0,
+      "paths": []
+    },
+    "non-yaml": {
+      "count": 1,
+      "paths": [
+        "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
+      ]
+    },
+    "oversized": {
+      "count": 0,
+      "paths": []
+    },
+    "refused-unsafe-edit": {
+      "count": 8,
+      "paths": [
+        "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow/compiled/mcp-code-mode/policy-card.md",
+        "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/PolicyCardV1.md",
+        "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/compiled/PolicyCardV1.md",
+        "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/compiled/PolicyCardV1.md",
+        "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git/compiled/sk-git/policy-card.md",
+        "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph/compiled/system-code-graph/policy-card.md",
+        "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor/compiled/system-skill-advisor/policy-card.md",
+        "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit/compiled/system-spec-kit/policy-card.md"
+      ]
+    },
+    "wrong-list-type": {
+      "count": 0,
+      "paths": []
+    }
+  },
+  "stage": "rescan"
+}

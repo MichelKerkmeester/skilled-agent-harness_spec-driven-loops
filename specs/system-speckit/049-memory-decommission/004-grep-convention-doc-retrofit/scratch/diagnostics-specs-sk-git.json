@@ -1,0 +1,239 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 0,
+    "anchor-unmatched": 0,
+    "duplicate": 0,
+    "generic-trigger": 18,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 6,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-git/015-remote-branch-policy/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-git/016-git-action-advisory-hook/001-advisory-research/research/BRIEFING.md",
+      "rawKey": "BRIEFING.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'BRIEFING.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-git/016-git-action-advisory-hook/001-advisory-research/research/RUNNING-NOTES.md",
+      "rawKey": "RUNNING-NOTES.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'RUNNING-NOTES.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-git/016-git-action-advisory-hook/001-advisory-research/research/manual-devin/FOCUS-PLAN.md",
+      "rawKey": "FOCUS-PLAN.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FOCUS-PLAN.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-git/016-git-action-advisory-hook/007-runtime-coverage/scratch/SOL-BRIEF.md",
+      "rawKey": "SOL-BRIEF.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SOL-BRIEF.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-git/016-git-action-advisory-hook/007-runtime-coverage/scratch/SOL-REPORT.md",
+      "rawKey": "SOL-REPORT.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SOL-REPORT.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-git/016-git-action-advisory-hook/008-docs-and-playbooks/scratch/GLM-BRIEF.md",
+      "rawKey": "GLM-BRIEF.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'GLM-BRIEF.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/decision-record.md",
+      "rawKey": "worktree",
+      "reason": "single token \"worktree\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/decision-record.md",
+      "rawKey": "branch",
+      "reason": "single token \"branch\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/decision-record.md",
+      "rawKey": "naming",
+      "reason": "single token \"naming\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/implementation-summary.md",
+      "rawKey": "worktree",
+      "reason": "single token \"worktree\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/implementation-summary.md",
+      "rawKey": "branch",
+      "reason": "single token \"branch\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/implementation-summary.md",
+      "rawKey": "naming",
+      "reason": "single token \"naming\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/plan.md",
+      "rawKey": "worktree",
+      "reason": "single token \"worktree\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/plan.md",
+      "rawKey": "branch",
+      "reason": "single token \"branch\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/plan.md",
+      "rawKey": "naming",
+      "reason": "single token \"naming\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/spec.md",
+      "rawKey": "worktree",
+      "reason": "single token \"worktree\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/spec.md",
+      "rawKey": "branch",
+      "reason": "single token \"branch\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/spec.md",
+      "rawKey": "naming",
+      "reason": "single token \"naming\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/tasks.md",
+      "rawKey": "worktree",
+      "reason": "single token \"worktree\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/tasks.md",
+      "rawKey": "branch",
+      "reason": "single token \"branch\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-git/022-worktree-branch-naming-overhaul/tasks.md",
+      "rawKey": "naming",
+      "reason": "single token \"naming\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 24
+  },
+  "track": "specs/sk-git"
+}

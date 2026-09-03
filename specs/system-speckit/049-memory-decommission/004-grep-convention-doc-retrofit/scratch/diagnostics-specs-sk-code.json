@@ -1,0 +1,327 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 28,
+    "anchor-unmatched": 0,
+    "duplicate": 0,
+    "generic-trigger": 7,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 0,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/research.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 183,
+      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
+      "rawKey": "adr-001",
+      "reason": "anchor id 'adr-001' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 196,
+      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
+      "rawKey": "adr-001-context",
+      "reason": "anchor id 'adr-001-context' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 213,
+      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
+      "rawKey": "adr-001-decision",
+      "reason": "anchor id 'adr-001-decision' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 223,
+      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
+      "rawKey": "adr-001-alternatives",
+      "reason": "anchor id 'adr-001-alternatives' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 236,
+      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
+      "rawKey": "adr-001-consequences",
+      "reason": "anchor id 'adr-001-consequences' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 255,
+      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
+      "rawKey": "adr-001-five-checks",
+      "reason": "anchor id 'adr-001-five-checks' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 271,
+      "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/decision-record.md",
+      "rawKey": "adr-001-impl",
+      "reason": "anchor id 'adr-001-impl' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 183,
+      "path": "specs/sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
+      "rawKey": "adr-001",
+      "reason": "anchor id 'adr-001' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 196,
+      "path": "specs/sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
+      "rawKey": "adr-001-context",
+      "reason": "anchor id 'adr-001-context' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 213,
+      "path": "specs/sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
+      "rawKey": "adr-001-decision",
+      "reason": "anchor id 'adr-001-decision' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 223,
+      "path": "specs/sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
+      "rawKey": "adr-001-alternatives",
+      "reason": "anchor id 'adr-001-alternatives' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 236,
+      "path": "specs/sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
+      "rawKey": "adr-001-consequences",
+      "reason": "anchor id 'adr-001-consequences' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 255,
+      "path": "specs/sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
+      "rawKey": "adr-001-five-checks",
+      "reason": "anchor id 'adr-001-five-checks' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 271,
+      "path": "specs/sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep/decision-record.md",
+      "rawKey": "adr-001-impl",
+      "reason": "anchor id 'adr-001-impl' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 183,
+      "path": "specs/sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
+      "rawKey": "adr-001",
+      "reason": "anchor id 'adr-001' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 196,
+      "path": "specs/sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
+      "rawKey": "adr-001-context",
+      "reason": "anchor id 'adr-001-context' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 213,
+      "path": "specs/sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
+      "rawKey": "adr-001-decision",
+      "reason": "anchor id 'adr-001-decision' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 223,
+      "path": "specs/sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
+      "rawKey": "adr-001-alternatives",
+      "reason": "anchor id 'adr-001-alternatives' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 236,
+      "path": "specs/sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
+      "rawKey": "adr-001-consequences",
+      "reason": "anchor id 'adr-001-consequences' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 255,
+      "path": "specs/sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
+      "rawKey": "adr-001-five-checks",
+      "reason": "anchor id 'adr-001-five-checks' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 271,
+      "path": "specs/sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair/decision-record.md",
+      "rawKey": "adr-001-impl",
+      "reason": "anchor id 'adr-001-impl' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 183,
+      "path": "specs/sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
+      "rawKey": "adr-001",
+      "reason": "anchor id 'adr-001' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 196,
+      "path": "specs/sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
+      "rawKey": "adr-001-context",
+      "reason": "anchor id 'adr-001-context' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 213,
+      "path": "specs/sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
+      "rawKey": "adr-001-decision",
+      "reason": "anchor id 'adr-001-decision' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 223,
+      "path": "specs/sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
+      "rawKey": "adr-001-alternatives",
+      "reason": "anchor id 'adr-001-alternatives' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 236,
+      "path": "specs/sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
+      "rawKey": "adr-001-consequences",
+      "reason": "anchor id 'adr-001-consequences' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 255,
+      "path": "specs/sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
+      "rawKey": "adr-001-five-checks",
+      "reason": "anchor id 'adr-001-five-checks' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 271,
+      "path": "specs/sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming/decision-record.md",
+      "rawKey": "adr-001-impl",
+      "reason": "anchor id 'adr-001-impl' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan/plan.md",
+      "rawKey": "plan",
+      "reason": "single token \"plan\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan/plan.md",
+      "rawKey": "mode",
+      "reason": "single token \"mode\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan/spec.md",
+      "rawKey": "mode",
+      "reason": "single token \"mode\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan/spec.md",
+      "rawKey": "design",
+      "reason": "single token \"design\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan/tasks.md",
+      "rawKey": "mode",
+      "reason": "single token \"mode\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-code/008-sk-code-mobile-cli-mode/spec.md",
+      "rawKey": "phase 4 — dedicated sk-code mode for mobile-cli app work",
+      "reason": "phrase carries 11 tokens, above the 10-token budget; reported, never adopted as index input",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 35
+  },
+  "track": "specs/sk-code"
+}

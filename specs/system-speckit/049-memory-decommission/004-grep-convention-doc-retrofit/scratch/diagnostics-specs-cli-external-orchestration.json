@@ -1,0 +1,647 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 0,
+    "anchor-unmatched": 29,
+    "duplicate": 0,
+    "generic-trigger": 12,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 34,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/cli-external-orchestration/028-cli-hub-rename/001-hub-dir-rename/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/cli-external-orchestration/028-cli-hub-rename/002-advisor-realign/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/cli-external-orchestration/028-cli-hub-rename/002-advisor-realign/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/cli-external-orchestration/028-cli-hub-rename/003-reference-sweep/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/cli-external-orchestration/028-cli-hub-rename/003-reference-sweep/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/cli-external-orchestration/028-cli-hub-rename/004-verify-closeout/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/cli-external-orchestration/028-cli-hub-rename/004-verify-closeout/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 25,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-10.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 77,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-10.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "closing marker with no open marker for id 'carried-forward-open-questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 79,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-10.md",
+      "rawKey": "next-focus",
+      "reason": "open marker with no closing marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 21,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-2.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 29,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-2.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 43,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-2.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "closing marker with no open marker for id 'carried-forward-open-questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 45,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-2.md",
+      "rawKey": "next-focus",
+      "reason": "open marker with no closing marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 25,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-3.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 43,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-3.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "closing marker with no open marker for id 'carried-forward-open-questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 45,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-3.md",
+      "rawKey": "next-focus",
+      "reason": "open marker with no closing marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 25,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-4.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 48,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-4.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "closing marker with no open marker for id 'carried-forward-open-questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 50,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-4.md",
+      "rawKey": "next-focus",
+      "reason": "open marker with no closing marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 25,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-5.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 48,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-5.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "closing marker with no open marker for id 'carried-forward-open-questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 50,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-5.md",
+      "rawKey": "next-focus",
+      "reason": "open marker with no closing marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 25,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-6.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 57,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-6.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "closing marker with no open marker for id 'carried-forward-open-questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 59,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-6.md",
+      "rawKey": "next-focus",
+      "reason": "open marker with no closing marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 25,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-7.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 61,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-7.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "closing marker with no open marker for id 'carried-forward-open-questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 63,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-7.md",
+      "rawKey": "next-focus",
+      "reason": "open marker with no closing marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 25,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-8.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 65,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-8.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "closing marker with no open marker for id 'carried-forward-open-questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 67,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-8.md",
+      "rawKey": "next-focus",
+      "reason": "open marker with no closing marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 25,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-9.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 65,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-9.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "closing marker with no open marker for id 'carried-forward-open-questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 67,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/prompts/iteration-9.md",
+      "rawKey": "next-focus",
+      "reason": "open marker with no closing marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research/research.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research/research.md",
+      "rawKey": "and",
+      "reason": "every token is a stop word; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/deep-research-dashboard.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/deep-research-dashboard.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/deep-research-strategy.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/deep-research-strategy.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-001.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-001.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-002.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-002.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-003.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-003.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-004.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-004.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-005.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/iterations/iteration-005.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-1.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-1.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-2.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-2.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-3.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-3.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-4.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-4.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-5.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/prompts/iteration-5.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/research.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/research.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/resource-map.md",
+      "rawKey": "research_archive",
+      "reason": "directory name is not lowercase hyphen-separated: 'research_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/resource-map.md",
+      "rawKey": "20260727T040816Z",
+      "reason": "directory name is not lowercase hyphen-separated: '20260727T040816Z'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/036-grok-4.6-support/decision-record.md",
+      "rawKey": "036-grok-4.6-support",
+      "reason": "packet directory is not NNN-short-descriptive-name: '036-grok-4.6-support'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/036-grok-4.6-support/implementation-summary.md",
+      "rawKey": "036-grok-4.6-support",
+      "reason": "packet directory is not NNN-short-descriptive-name: '036-grok-4.6-support'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/cli-external-orchestration/036-grok-4.6-support/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/036-grok-4.6-support/plan.md",
+      "rawKey": "036-grok-4.6-support",
+      "reason": "packet directory is not NNN-short-descriptive-name: '036-grok-4.6-support'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/036-grok-4.6-support/spec.md",
+      "rawKey": "036-grok-4.6-support",
+      "reason": "packet directory is not NNN-short-descriptive-name: '036-grok-4.6-support'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 248,
+      "path": "specs/cli-external-orchestration/036-grok-4.6-support/spec.md",
+      "rawKey": "questions",
+      "reason": "closing marker with no open marker for id 'questions'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/036-grok-4.6-support/tasks.md",
+      "rawKey": "036-grok-4.6-support",
+      "reason": "packet directory is not NNN-short-descriptive-name: '036-grok-4.6-support'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/cli-external-orchestration/059-dispatch-surface-truthfulness/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/cli-external-orchestration/059-dispatch-surface-truthfulness/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 75
+  },
+  "track": "specs/cli-external-orchestration"
+}

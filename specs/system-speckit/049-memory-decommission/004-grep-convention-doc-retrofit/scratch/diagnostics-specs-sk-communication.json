@@ -1,0 +1,111 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 0,
+    "anchor-unmatched": 0,
+    "duplicate": 0,
+    "generic-trigger": 6,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 2,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-communication/001-sk-communication-creation/002-contracts-and-fixtures/decision-record.md",
+      "rawKey": "use a self-contained fixture-first contract package with immutable originals",
+      "reason": "phrase carries 11 tokens, above the 10-token budget; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-communication/001-sk-communication-creation/006-runtime-adapters-and-clients/decision-record.md",
+      "rawKey": "use client-owned presentation whenever native interception is not explicitly safe",
+      "reason": "phrase carries 11 tokens, above the 10-token budget; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-communication/001-sk-communication-creation/007-evaluation-and-observability/scratch/demo/DEMO-README.md",
+      "rawKey": "DEMO-README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'DEMO-README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-communication/001-sk-communication-creation/008-packaging-and-release-hardening/decision-record.md",
+      "rawKey": "gate release with a dated support matrix and fail-closed compatibility doctor",
+      "reason": "phrase carries 12 tokens, above the 10-token budget; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-communication/001-sk-communication-creation/context/claudish-to-english-main/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-communication/002-sk-communication-triggers/003-rewrite-response-by-external-agent/implementation-summary.md",
+      "rawKey": "rewrite",
+      "reason": "single token \"rewrite\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-communication/002-sk-communication-triggers/003-rewrite-response-by-external-agent/plan.md",
+      "rawKey": "rewrite",
+      "reason": "single token \"rewrite\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-communication/002-sk-communication-triggers/003-rewrite-response-by-external-agent/tasks.md",
+      "rawKey": "rewrite",
+      "reason": "single token \"rewrite\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 8
+  },
+  "track": "specs/sk-communication"
+}

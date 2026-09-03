@@ -1,0 +1,1423 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 9,
+    "anchor-unmatched": 0,
+    "duplicate": 0,
+    "generic-trigger": 31,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 132,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood/research/INCIDENT.md",
+      "rawKey": "INCIDENT.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'INCIDENT.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/030-deep-loop-unification/008-divergent-mode-dogfood/review/INCIDENT.md",
+      "rawKey": "INCIDENT.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'INCIDENT.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer/implementation-summary.md",
+      "rawKey": "stage",
+      "reason": "single token \"stage\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/032-deep-alignment-mode/006-adapter-sk-git-and-sk-design/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/032-deep-alignment-mode/007-adapter-sk-code/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/032-deep-alignment-mode/008-iterate-converge-report/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/032-deep-alignment-mode/009-command-agent-advisor-cutover/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/032-deep-alignment-mode/010-adapter-sk-design-live-render/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs-clean/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs/skill-shaped/SKILL.md",
+      "rawKey": "SKILL.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SKILL.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/033-post-sync-verification-fixes/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/plan.md",
+      "rawKey": "deterministic",
+      "reason": "single token \"deterministic\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/tasks.md",
+      "rawKey": "deterministic",
+      "reason": "single token \"deterministic\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/tasks.md",
+      "rawKey": "fixtures",
+      "reason": "single token \"fixtures\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/plan.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/spec.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/tasks.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/plan.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/spec.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/src/parent-skill/SKILL.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/src/parent-skill/SKILL.md",
+      "rawKey": "SKILL.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SKILL.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/tasks.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/plan.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/spec.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/tasks.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/plan.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/plan.md",
+      "rawKey": "dab",
+      "reason": "single token \"dab\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/plan.md",
+      "rawKey": "015",
+      "reason": "single token \"015\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/spec.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/spec.md",
+      "rawKey": "dab",
+      "reason": "single token \"dab\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/spec.md",
+      "rawKey": "015",
+      "reason": "single token \"015\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/tasks.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/tasks.md",
+      "rawKey": "dab",
+      "reason": "single token \"dab\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-015-monolithic/tasks.md",
+      "rawKey": "015",
+      "reason": "single token \"015\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/plan.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/spec.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/src/demo-mode/SKILL.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/src/demo-mode/SKILL.md",
+      "rawKey": "SKILL.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SKILL.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/tasks.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-017-design-audit/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-017-design-audit/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-018-doctor-mcp-install/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-018-doctor-mcp-install/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-019-doctor-mcp-debug/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-019-doctor-mcp-debug/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-020-doctor-mcp-conflict/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-020-doctor-mcp-conflict/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-021-memory-learn-list/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-021-memory-learn-list/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-022-memory-learn-budget/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-022-memory-learn-budget/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-023-memory-manage-health/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-023-memory-manage-health/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-024-memory-checkpoint-list/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-024-memory-checkpoint-list/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/implementation-summary.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/plan.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/spec.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/tasks.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-026-goal-show/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-026-goal-show/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-027-agent-router-bare/FIXTURE.md",
+      "rawKey": "behavior_benchmark",
+      "reason": "directory name is not lowercase hyphen-separated: 'behavior_benchmark'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-027-agent-router-bare/FIXTURE.md",
+      "rawKey": "FIXTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'FIXTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/plan.md",
+      "rawKey": "command",
+      "reason": "single token \"command\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/research/lineages/glm52-max/research.md",
+      "rawKey": "glm52",
+      "reason": "single token \"glm52\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/research/lineages/glm52-max/research.md",
+      "rawKey": "max",
+      "reason": "single token \"max\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/research/lineages/gpt56-sol-high-fast/research.md",
+      "rawKey": "gpt56",
+      "reason": "single token \"gpt56\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/research/lineages/gpt56-sol-high-fast/research.md",
+      "rawKey": "sol",
+      "reason": "single token \"sol\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/research/research.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/tasks.md",
+      "rawKey": "command",
+      "reason": "single token \"command\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 4410,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations/iteration-003.md",
+      "rawKey": "key-questions",
+      "reason": "anchor id 'key-questions' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 4431,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations/iteration-003.md",
+      "rawKey": "answered-questions",
+      "reason": "anchor id 'answered-questions' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 4439,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations/iteration-003.md",
+      "rawKey": "what-worked",
+      "reason": "anchor id 'what-worked' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 4447,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations/iteration-003.md",
+      "rawKey": "what-failed",
+      "reason": "anchor id 'what-failed' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 4455,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations/iteration-003.md",
+      "rawKey": "exhausted-approaches",
+      "reason": "anchor id 'exhausted-approaches' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 4471,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations/iteration-003.md",
+      "rawKey": "ruled-out-directions",
+      "reason": "anchor id 'ruled-out-directions' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 4479,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations/iteration-003.md",
+      "rawKey": "divergence-frontier",
+      "reason": "anchor id 'divergence-frontier' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 4491,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations/iteration-003.md",
+      "rawKey": "carried-forward-open-questions",
+      "reason": "anchor id 'carried-forward-open-questions' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 4498,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/iterations/iteration-003.md",
+      "rawKey": "next-focus",
+      "reason": "anchor id 'next-focus' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/PRE-014-VALIDATION-RUN.md",
+      "rawKey": "PRE-014-VALIDATION-RUN.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'PRE-014-VALIDATION-RUN.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/alignment/STOPPED-AFTER-SAMPLE.md",
+      "rawKey": "STOPPED-AFTER-SAMPLE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'STOPPED-AFTER-SAMPLE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/003-legacy-compat-event-vocabulary/fixtures/skill-benchmark-live/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation/implementation-summary.md",
+      "rawKey": "gateway",
+      "reason": "single token \"gateway\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation/plan.md",
+      "rawKey": "gateway",
+      "reason": "single token \"gateway\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation/tasks.md",
+      "rawKey": "gateway",
+      "reason": "single token \"gateway\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope/plan.md",
+      "rawKey": "containment",
+      "reason": "single token \"containment\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope/tasks.md",
+      "rawKey": "containment",
+      "reason": "single token \"containment\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope/tasks.md",
+      "rawKey": "for",
+      "reason": "every token is a stop word; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/changelog/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/research/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/research/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/ACKNOWLEDGEMENTS.md",
+      "rawKey": "ACKNOWLEDGEMENTS.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'ACKNOWLEDGEMENTS.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/CHANGELOG.md",
+      "rawKey": "CHANGELOG.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'CHANGELOG.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/CODE_OF_CONDUCT.md",
+      "rawKey": "CODE_OF_CONDUCT.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'CODE_OF_CONDUCT.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/CONTRIBUTING.md",
+      "rawKey": "CONTRIBUTING.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'CONTRIBUTING.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/LICENSE.md",
+      "rawKey": "LICENSE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'LICENSE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/ROADMAP.md",
+      "rawKey": "ROADMAP.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'ROADMAP.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/SECURITY.md",
+      "rawKey": "SECURITY.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SECURITY.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docgen-service/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/AGENT_CHAT.md",
+      "rawKey": "AGENT_CHAT.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'AGENT_CHAT.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/ARCHITECTURE.md",
+      "rawKey": "ARCHITECTURE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'ARCHITECTURE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/BUSINESS_INTELLIGENCE.md",
+      "rawKey": "BUSINESS_INTELLIGENCE.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'BUSINESS_INTELLIGENCE.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/DATA_SOURCES.md",
+      "rawKey": "DATA_SOURCES.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'DATA_SOURCES.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/DEPLOYMENT.md",
+      "rawKey": "DEPLOYMENT.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'DEPLOYMENT.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/DEVELOPER_WORKSPACE_RUNTIME.md",
+      "rawKey": "DEVELOPER_WORKSPACE_RUNTIME.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'DEVELOPER_WORKSPACE_RUNTIME.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/EXTENDING.md",
+      "rawKey": "EXTENDING.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'EXTENDING.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/IAM.md",
+      "rawKey": "IAM.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'IAM.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/INSTALL.md",
+      "rawKey": "INSTALL.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'INSTALL.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/KNOWLEDGE_BASES.md",
+      "rawKey": "KNOWLEDGE_BASES.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'KNOWLEDGE_BASES.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/SCALE_AND_LIMITS.md",
+      "rawKey": "SCALE_AND_LIMITS.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SCALE_AND_LIMITS.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/SEMANTIC_LAYER.md",
+      "rawKey": "SEMANTIC_LAYER.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SEMANTIC_LAYER.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/SYSTEM_REQUIREMENTS.md",
+      "rawKey": "SYSTEM_REQUIREMENTS.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SYSTEM_REQUIREMENTS.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/TESTING.md",
+      "rawKey": "TESTING.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'TESTING.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/screenshots/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/src/assets/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/PATCHES.md",
+      "rawKey": "PATCHES.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'PATCHES.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/UPSTREAM-README.md",
+      "rawKey": "UPSTREAM-README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'UPSTREAM-README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md",
+      "rawKey": "Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md",
+      "reason": "document basename is not lowercase hyphen-separated: 'Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md",
+      "rawKey": "From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering Roadmap.md",
+      "rawKey": "Graph Engineering Roadmap.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'Graph Engineering Roadmap.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering explained: what it is, when to use it and when not to.md",
+      "rawKey": "Graph Engineering explained: what it is, when to use it and when not to.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'Graph Engineering explained: what it is, when to use it and when not to.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering replaced RAG at Microsoft, Stanford and Anthropic. Here's how it works.md",
+      "rawKey": "Graph Engineering replaced RAG at Microsoft, Stanford and Anthropic. Here's how it works.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'Graph Engineering replaced RAG at Microsoft, Stanford and Anthropic. Here's how it works.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md",
+      "rawKey": "Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md",
+      "rawKey": "Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md",
+      "rawKey": "Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md",
+      "rawKey": "How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Use Graph Engineering to Build a Multi-Factor Alpha Model.md",
+      "rawKey": "How to Use Graph Engineering to Build a Multi-Factor Alpha Model.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'How to Use Graph Engineering to Build a Multi-Factor Alpha Model.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/LOOP ⭢ GRAPH ⭢ HARNESS: build the whole pipeline in one sitting.md",
+      "rawKey": "LOOP ⭢ GRAPH ⭢ HARNESS: build the whole pipeline in one sitting.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'LOOP ⭢ GRAPH ⭢ HARNESS: build the whole pipeline in one sitting.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/New/CLAUDE LOOP ENGINEERING: HOW TO BUILD AN AGENT THAT WORKS WHILE YOU SLEEP.md",
+      "rawKey": "New",
+      "reason": "directory name is not lowercase hyphen-separated: 'New'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/New/CLAUDE LOOP ENGINEERING: HOW TO BUILD AN AGENT THAT WORKS WHILE YOU SLEEP.md",
+      "rawKey": "CLAUDE LOOP ENGINEERING: HOW TO BUILD AN AGENT THAT WORKS WHILE YOU SLEEP.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'CLAUDE LOOP ENGINEERING: HOW TO BUILD AN AGENT THAT WORKS WHILE YOU SLEEP.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/New/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md",
+      "rawKey": "New",
+      "reason": "directory name is not lowercase hyphen-separated: 'New'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/New/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md",
+      "rawKey": "Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/New/Graph Engineering: from 1 prompt to 100 agents running in one system (full 8-step course).md",
+      "rawKey": "New",
+      "reason": "directory name is not lowercase hyphen-separated: 'New'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/New/Graph Engineering: from 1 prompt to 100 agents running in one system (full 8-step course).md",
+      "rawKey": "Graph Engineering: from 1 prompt to 100 agents running in one system (full 8-step course).md",
+      "reason": "document basename is not lowercase hyphen-separated: 'Graph Engineering: from 1 prompt to 100 agents running in one system (full 8-step course).md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/New/How to Become a Graph Architect With Zero Experience (Full Course).md",
+      "rawKey": "New",
+      "reason": "directory name is not lowercase hyphen-separated: 'New'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/New/How to Become a Graph Architect With Zero Experience (Full Course).md",
+      "rawKey": "How to Become a Graph Architect With Zero Experience (Full Course).md",
+      "reason": "document basename is not lowercase hyphen-separated: 'How to Become a Graph Architect With Zero Experience (Full Course).md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/blog-posts/What is Graph Engineering.md",
+      "rawKey": "What is Graph Engineering.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'What is Graph Engineering.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/CHANGELOG.md",
+      "rawKey": "CHANGELOG.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'CHANGELOG.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/CONTRIBUTING.md",
+      "rawKey": "CONTRIBUTING.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'CONTRIBUTING.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/ROADMAP.md",
+      "rawKey": "ROADMAP.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'ROADMAP.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/bench/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md",
+      "rawKey": "WORKFLOWS.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'WORKFLOWS.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/SKILL.md",
+      "rawKey": "SKILL.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SKILL.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graphene-main/IMPLEMENTATION.md",
+      "rawKey": "IMPLEMENTATION.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'IMPLEMENTATION.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graphene-main/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graphene-main/bench/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/graphene-main/skill/SKILL.md",
+      "rawKey": "SKILL.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SKILL.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md",
+      "rawKey": "NVIDIA-labs-OO-Agents.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'NVIDIA-labs-OO-Agents.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/system-deep-loop/037-graph-engineering/reference/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/system-deep-loop/039-executor-availability-docs/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/system-deep-loop/039-executor-availability-docs/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 172
+  },
+  "track": "specs/system-deep-loop"
+}

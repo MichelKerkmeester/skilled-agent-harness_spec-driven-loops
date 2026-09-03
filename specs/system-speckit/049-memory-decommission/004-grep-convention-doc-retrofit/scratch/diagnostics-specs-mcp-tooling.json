@@ -1,0 +1,407 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 0,
+    "anchor-unmatched": 3,
+    "duplicate": 0,
+    "generic-trigger": 10,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 32,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "anchor-unmatched",
+      "line": 51,
+      "path": "specs/mcp-tooling/008-mcp-aside/001-research/research/research.md",
+      "rawKey": "findings",
+      "reason": "open marker with no closing marker for id 'findings'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/010-mcp-mobbin/001-research/research/lineages/luna/BINDING.md",
+      "rawKey": "BINDING.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'BINDING.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/001-deep-research/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/002-tool-selection-and-scaffold/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/003-cli-tool-integration/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/004-mcp-server-integration/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/005-skill-authoring/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/006-feature-catalog-and-playbook/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/007-hub-registration-and-advisor/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/008-verification-and-closeout/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/deep-review-dashboard.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/deep-review-strategy.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 101,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/deep-review-strategy.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/iterations/iteration-001.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/iterations/iteration-002.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/iterations/iteration-003.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/iterations/iteration-004.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/iterations/iteration-005.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/iterations/iteration-006.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/iterations/iteration-007.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/prompts/iteration-001.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/prompts/iteration-002.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/prompts/iteration-003.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/prompts/iteration-004.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/prompts/iteration-005.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/prompts/iteration-006.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-FAILED-run1-containment/prompts/iteration-007.md",
+      "rawKey": "luna-max-FAILED-run1-containment",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-FAILED-run1-containment'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/deep-review-dashboard.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/deep-review-strategy.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 228,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/deep-review-strategy.md",
+      "rawKey": "ruled-out-directions",
+      "reason": "closing marker with no open marker for id 'ruled-out-directions'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-001.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-002.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-003.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-004.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-005.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-006.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-007.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-008.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-009.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/iterations/iteration-010.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL/review-report.md",
+      "rawKey": "luna-max-cycle2-CONDITIONAL",
+      "reason": "directory name is not lowercase hyphen-separated: 'luna-max-cycle2-CONDITIONAL'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/mcp-tooling/014-mcp-notion/003-knowledge-references/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine/_superseded-deepseek-partial/deep-research-dashboard.md",
+      "rawKey": "_superseded-deepseek-partial",
+      "reason": "directory name is not lowercase hyphen-separated: '_superseded-deepseek-partial'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/mcp-tooling/015-notion-to-obisidian-migration/006-plugin-docs-deep-research/007-js-engine/_superseded-deepseek-partial/deep-research-strategy.md",
+      "rawKey": "_superseded-deepseek-partial",
+      "reason": "directory name is not lowercase hyphen-separated: '_superseded-deepseek-partial'",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 45
+  },
+  "track": "specs/mcp-tooling"
+}

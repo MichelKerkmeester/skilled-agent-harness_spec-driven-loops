@@ -1,0 +1,1735 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 14,
+    "anchor-unmatched": 25,
+    "duplicate": 0,
+    "generic-trigger": 80,
+    "malformed-or-unclosed": 1,
+    "missing": 48,
+    "naming-exception": 42,
+    "non-string-members": 0,
+    "non-yaml": 1,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/014-sk-doc-parent/001-research-and-canon/research/research.md",
+      "rawKey": "research",
+      "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs/implementation-summary.md",
+      "rawKey": "convention",
+      "reason": "single token \"convention\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs/plan.md",
+      "rawKey": "convention",
+      "reason": "single token \"convention\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs/tasks.md",
+      "rawKey": "convention",
+      "reason": "single token \"convention\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling/implementation-summary.md",
+      "rawKey": "migration",
+      "reason": "single token \"migration\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling/plan.md",
+      "rawKey": "migration",
+      "reason": "single token \"migration\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling/tasks.md",
+      "rawKey": "migration",
+      "reason": "single token \"migration\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/decision-record.md",
+      "rawKey": "emoji",
+      "reason": "single token \"emoji\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/decision-record.md",
+      "rawKey": "enforcement",
+      "reason": "single token \"enforcement\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/decision-record.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/implementation-summary.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/plan.md",
+      "rawKey": "emoji",
+      "reason": "single token \"emoji\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/plan.md",
+      "rawKey": "enforcement",
+      "reason": "single token \"enforcement\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/plan.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 154,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/plan.md",
+      "rawKey": "dependencies",
+      "reason": "anchor id 'dependencies' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 169,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/plan.md",
+      "rawKey": "phase-deps",
+      "reason": "closing marker does not match open marker 'dependencies' for id 'phase-deps'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 174,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/plan.md",
+      "rawKey": "dependencies",
+      "reason": "closing marker does not match open marker 'effort' for id 'dependencies'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 183,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/plan.md",
+      "rawKey": "effort",
+      "reason": "closing marker does not match open marker 'phase-deps' for id 'effort'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 265,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/plan.md",
+      "rawKey": "architecture",
+      "reason": "anchor id 'architecture' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/spec.md",
+      "rawKey": "emoji",
+      "reason": "single token \"emoji\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/spec.md",
+      "rawKey": "enforcement",
+      "reason": "single token \"enforcement\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/spec.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 144,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/spec.md",
+      "rawKey": "requirements",
+      "reason": "anchor id 'requirements' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/tasks.md",
+      "rawKey": "emoji",
+      "reason": "single token \"emoji\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/tasks.md",
+      "rawKey": "enforcement",
+      "reason": "single token \"enforcement\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/tasks.md",
+      "rawKey": "from",
+      "reason": "every token is a stop word; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/sk-doc/016-create-diff-mode/001-cmd-create-emoji-enforcement/tasks.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/decision-record.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/decision-record.md",
+      "rawKey": "codex",
+      "reason": "single token \"codex\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/implementation-summary.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/implementation-summary.md",
+      "rawKey": "codex",
+      "reason": "single token \"codex\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/plan.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/plan.md",
+      "rawKey": "codex",
+      "reason": "single token \"codex\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 195,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/plan.md",
+      "rawKey": "dependencies",
+      "reason": "anchor id 'dependencies' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 211,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/plan.md",
+      "rawKey": "phase-deps",
+      "reason": "closing marker does not match open marker 'dependencies' for id 'phase-deps'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 216,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/plan.md",
+      "rawKey": "dependencies",
+      "reason": "closing marker does not match open marker 'effort' for id 'dependencies'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 227,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/plan.md",
+      "rawKey": "effort",
+      "reason": "closing marker does not match open marker 'phase-deps' for id 'effort'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 325,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/plan.md",
+      "rawKey": "architecture",
+      "reason": "anchor id 'architecture' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/spec.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/spec.md",
+      "rawKey": "codex",
+      "reason": "single token \"codex\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 179,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/spec.md",
+      "rawKey": "requirements",
+      "reason": "anchor id 'requirements' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/tasks.md",
+      "rawKey": "create",
+      "reason": "single token \"create\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/tasks.md",
+      "rawKey": "codex",
+      "reason": "single token \"codex\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/016-create-diff-mode/002-cmd-create-codex-compatibility/tasks.md",
+      "rawKey": "compatibility",
+      "reason": "single token \"compatibility\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/016-create-diff-mode/003-cmd-create-changelog/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/016-create-diff-mode/003-cmd-create-changelog/implementation-summary.md",
+      "rawKey": "changelog",
+      "reason": "single token \"changelog\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/016-create-diff-mode/003-cmd-create-changelog/plan.md",
+      "rawKey": "changelog",
+      "reason": "single token \"changelog\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-doc/016-create-diff-mode/003-cmd-create-changelog/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/016-create-diff-mode/003-cmd-create-changelog/spec.md",
+      "rawKey": "changelog",
+      "reason": "single token \"changelog\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/016-create-diff-mode/003-cmd-create-changelog/tasks.md",
+      "rawKey": "changelog",
+      "reason": "single token \"changelog\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 151,
+      "path": "specs/sk-doc/016-create-diff-mode/004-cmd-create-skill-merger/plan.md",
+      "rawKey": "dependencies",
+      "reason": "anchor id 'dependencies' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 166,
+      "path": "specs/sk-doc/016-create-diff-mode/004-cmd-create-skill-merger/plan.md",
+      "rawKey": "phase-deps",
+      "reason": "closing marker does not match open marker 'dependencies' for id 'phase-deps'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 171,
+      "path": "specs/sk-doc/016-create-diff-mode/004-cmd-create-skill-merger/plan.md",
+      "rawKey": "dependencies",
+      "reason": "closing marker does not match open marker 'effort' for id 'dependencies'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 183,
+      "path": "specs/sk-doc/016-create-diff-mode/004-cmd-create-skill-merger/plan.md",
+      "rawKey": "effort",
+      "reason": "closing marker does not match open marker 'phase-deps' for id 'effort'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 150,
+      "path": "specs/sk-doc/016-create-diff-mode/004-cmd-create-skill-merger/spec.md",
+      "rawKey": "requirements",
+      "reason": "anchor id 'requirements' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 161,
+      "path": "specs/sk-doc/016-create-diff-mode/004-cmd-create-skill-merger/spec.md",
+      "rawKey": "nfr",
+      "reason": "closing marker does not match open marker 'requirements' for id 'nfr'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 166,
+      "path": "specs/sk-doc/016-create-diff-mode/004-cmd-create-skill-merger/spec.md",
+      "rawKey": "requirements",
+      "reason": "closing marker does not match open marker 'edge-cases' for id 'requirements'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 180,
+      "path": "specs/sk-doc/016-create-diff-mode/004-cmd-create-skill-merger/spec.md",
+      "rawKey": "edge-cases",
+      "reason": "closing marker does not match open marker 'nfr' for id 'edge-cases'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 159,
+      "path": "specs/sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog/plan.md",
+      "rawKey": "dependencies",
+      "reason": "anchor id 'dependencies' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 172,
+      "path": "specs/sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog/plan.md",
+      "rawKey": "phase-deps",
+      "reason": "closing marker does not match open marker 'dependencies' for id 'phase-deps'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 177,
+      "path": "specs/sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog/plan.md",
+      "rawKey": "dependencies",
+      "reason": "closing marker does not match open marker 'effort' for id 'dependencies'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 187,
+      "path": "specs/sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog/plan.md",
+      "rawKey": "effort",
+      "reason": "closing marker does not match open marker 'phase-deps' for id 'effort'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 53,
+      "path": "specs/sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog/spec.md",
+      "rawKey": "metadata",
+      "reason": "closing marker does not match open marker 'problem' for id 'metadata'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 61,
+      "path": "specs/sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog/spec.md",
+      "rawKey": "problem",
+      "reason": "closing marker does not match open marker 'metadata' for id 'problem'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 172,
+      "path": "specs/sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog/spec.md",
+      "rawKey": "requirements",
+      "reason": "anchor id 'requirements' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/016-create-diff-mode/008-skill-command-readme-rewrite/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/016-create-diff-mode/008-skill-command-readme-rewrite/tasks.md",
+      "rawKey": "readme",
+      "reason": "single token \"readme\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 191,
+      "path": "specs/sk-doc/016-create-diff-mode/009-cmd-create-changelog-and-releases/spec.md",
+      "rawKey": "success-criteria",
+      "reason": "anchor id 'success-criteria' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 6475,
+      "path": "specs/sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/review/iterations/iteration-003.md",
+      "rawKey": "overview",
+      "reason": "open marker with no closing marker for id 'overview'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 3901,
+      "path": "specs/sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/review/iterations/iteration-004.md",
+      "rawKey": "instructions",
+      "reason": "open marker with no closing marker for id 'instructions'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit/plan.md",
+      "rawKey": "trigger",
+      "reason": "single token \"trigger\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit/spec.md",
+      "rawKey": "spec",
+      "reason": "single token \"spec\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit/spec.md",
+      "rawKey": "trigger",
+      "reason": "single token \"trigger\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/collide/manual_testing_playbook/16--x/010-dup.md",
+      "rawKey": "manual_testing_playbook",
+      "reason": "directory name is not lowercase hyphen-separated: 'manual_testing_playbook'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/collide/manual_testing_playbook/16--x/010-dup.md",
+      "rawKey": "16--x",
+      "reason": "packet directory is not NNN-short-descriptive-name: '16--x'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/collide/manual_testing_playbook/16--x/011-dup.md",
+      "rawKey": "manual_testing_playbook",
+      "reason": "directory name is not lowercase hyphen-separated: 'manual_testing_playbook'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/collide/manual_testing_playbook/16--x/011-dup.md",
+      "rawKey": "16--x",
+      "reason": "packet directory is not NNN-short-descriptive-name: '16--x'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/collide/manual_testing_playbook/manual_testing_playbook.md",
+      "rawKey": "manual_testing_playbook",
+      "reason": "directory name is not lowercase hyphen-separated: 'manual_testing_playbook'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/collide/manual_testing_playbook/manual_testing_playbook.md",
+      "rawKey": "manual_testing_playbook.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'manual_testing_playbook.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/01--alpha/foo-bar.md",
+      "rawKey": "feature_catalog",
+      "reason": "directory name is not lowercase hyphen-separated: 'feature_catalog'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/01--alpha/foo-bar.md",
+      "rawKey": "01--alpha",
+      "reason": "packet directory is not NNN-short-descriptive-name: '01--alpha'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/01--alpha/foo.md",
+      "rawKey": "feature_catalog",
+      "reason": "directory name is not lowercase hyphen-separated: 'feature_catalog'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/01--alpha/foo.md",
+      "rawKey": "01--alpha",
+      "reason": "packet directory is not NNN-short-descriptive-name: '01--alpha'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/02--beta/baz.md",
+      "rawKey": "feature_catalog",
+      "reason": "directory name is not lowercase hyphen-separated: 'feature_catalog'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/02--beta/baz.md",
+      "rawKey": "02--beta",
+      "reason": "packet directory is not NNN-short-descriptive-name: '02--beta'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/feature_catalog.md",
+      "rawKey": "feature_catalog",
+      "reason": "directory name is not lowercase hyphen-separated: 'feature_catalog'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run/tooling/fixtures/happy/feature_catalog/feature_catalog.md",
+      "rawKey": "feature_catalog.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'feature_catalog.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 96,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit/implementation-summary.md",
+      "rawKey": "limitations",
+      "reason": "anchor id 'limitations' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 95,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills/implementation-summary.md",
+      "rawKey": "limitations",
+      "reason": "anchor id 'limitations' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-duplicate",
+      "line": 95,
+      "path": "specs/sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills/implementation-summary.md",
+      "rawKey": "limitations",
+      "reason": "anchor id 'limitations' appears more than once",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme/output/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "non-yaml",
+      "line": 1,
+      "path": "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md",
+      "rawKey": null,
+      "reason": "frontmatter block is not YAML key/value content",
+      "severity": "error"
+    },
+    {
+      "category": "malformed-or-unclosed",
+      "line": 1,
+      "path": "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme/context/seats/iter-001/deepseek.extracted.md",
+      "rawKey": null,
+      "reason": "opening frontmatter delimiter has no closing delimiter",
+      "severity": "error"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/016-create-diff-mode/scratch/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow/compiled/mcp-code-mode/policy-card.md",
+      "rawKey": null,
+      "reason": "no trigger_phrases key in frontmatter",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow/compiled/mcp-code-mode/policy-card.md",
+      "rawKey": "contextType",
+      "reason": "canonical key 'contextType' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow/compiled/mcp-code-mode/policy-card.md",
+      "rawKey": "description",
+      "reason": "canonical key 'description' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow/compiled/mcp-code-mode/policy-card.md",
+      "rawKey": "importance_tier",
+      "reason": "canonical key 'importance_tier' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow/compiled/mcp-code-mode/policy-card.md",
+      "rawKey": "title",
+      "reason": "canonical key 'title' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow/compiled/mcp-code-mode/policy-card.md",
+      "rawKey": null,
+      "reason": "edit refused: it would turn this missing document into non-yaml",
+      "severity": "error"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/PolicyCardV1.md",
+      "rawKey": "PolicyCardV1.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'PolicyCardV1.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/PolicyCardV1.md",
+      "rawKey": null,
+      "reason": "no trigger_phrases key in frontmatter",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/PolicyCardV1.md",
+      "rawKey": "contextType",
+      "reason": "canonical key 'contextType' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/PolicyCardV1.md",
+      "rawKey": "description",
+      "reason": "canonical key 'description' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/PolicyCardV1.md",
+      "rawKey": "importance_tier",
+      "reason": "canonical key 'importance_tier' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/PolicyCardV1.md",
+      "rawKey": "title",
+      "reason": "canonical key 'title' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/PolicyCardV1.md",
+      "rawKey": null,
+      "reason": "edit refused: it would turn this missing document into non-yaml",
+      "severity": "error"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/compiled/PolicyCardV1.md",
+      "rawKey": "PolicyCardV1.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'PolicyCardV1.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/compiled/PolicyCardV1.md",
+      "rawKey": null,
+      "reason": "no trigger_phrases key in frontmatter",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/compiled/PolicyCardV1.md",
+      "rawKey": "contextType",
+      "reason": "canonical key 'contextType' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/compiled/PolicyCardV1.md",
+      "rawKey": "description",
+      "reason": "canonical key 'description' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/compiled/PolicyCardV1.md",
+      "rawKey": "importance_tier",
+      "reason": "canonical key 'importance_tier' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/compiled/PolicyCardV1.md",
+      "rawKey": "title",
+      "reason": "canonical key 'title' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/compiled/PolicyCardV1.md",
+      "rawKey": null,
+      "reason": "edit refused: it would turn this missing document into non-yaml",
+      "severity": "error"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling/compiled/PolicyCardV1.md",
+      "rawKey": "PolicyCardV1.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'PolicyCardV1.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/compiled/PolicyCardV1.md",
+      "rawKey": "PolicyCardV1.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'PolicyCardV1.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/compiled/PolicyCardV1.md",
+      "rawKey": "PolicyCardV1.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'PolicyCardV1.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/compiled/PolicyCardV1.md",
+      "rawKey": null,
+      "reason": "no trigger_phrases key in frontmatter",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/compiled/PolicyCardV1.md",
+      "rawKey": "contextType",
+      "reason": "canonical key 'contextType' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/compiled/PolicyCardV1.md",
+      "rawKey": "description",
+      "reason": "canonical key 'description' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/compiled/PolicyCardV1.md",
+      "rawKey": "importance_tier",
+      "reason": "canonical key 'importance_tier' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/compiled/PolicyCardV1.md",
+      "rawKey": "title",
+      "reason": "canonical key 'title' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/compiled/PolicyCardV1.md",
+      "rawKey": null,
+      "reason": "edit refused: it would turn this missing document into non-yaml",
+      "severity": "error"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/011-fleet-cleanup/compiled/PolicyCardV1.md",
+      "rawKey": "PolicyCardV1.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'PolicyCardV1.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git/compiled/sk-git/policy-card.md",
+      "rawKey": null,
+      "reason": "no trigger_phrases key in frontmatter",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git/compiled/sk-git/policy-card.md",
+      "rawKey": "contextType",
+      "reason": "canonical key 'contextType' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git/compiled/sk-git/policy-card.md",
+      "rawKey": "description",
+      "reason": "canonical key 'description' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git/compiled/sk-git/policy-card.md",
+      "rawKey": "importance_tier",
+      "reason": "canonical key 'importance_tier' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git/compiled/sk-git/policy-card.md",
+      "rawKey": "title",
+      "reason": "canonical key 'title' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git/compiled/sk-git/policy-card.md",
+      "rawKey": null,
+      "reason": "edit refused: it would turn this missing document into non-yaml",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph/compiled/system-code-graph/policy-card.md",
+      "rawKey": null,
+      "reason": "no trigger_phrases key in frontmatter",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph/compiled/system-code-graph/policy-card.md",
+      "rawKey": "contextType",
+      "reason": "canonical key 'contextType' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph/compiled/system-code-graph/policy-card.md",
+      "rawKey": "description",
+      "reason": "canonical key 'description' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph/compiled/system-code-graph/policy-card.md",
+      "rawKey": "importance_tier",
+      "reason": "canonical key 'importance_tier' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph/compiled/system-code-graph/policy-card.md",
+      "rawKey": "title",
+      "reason": "canonical key 'title' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph/compiled/system-code-graph/policy-card.md",
+      "rawKey": null,
+      "reason": "edit refused: it would turn this missing document into non-yaml",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor/compiled/system-skill-advisor/policy-card.md",
+      "rawKey": null,
+      "reason": "no trigger_phrases key in frontmatter",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor/compiled/system-skill-advisor/policy-card.md",
+      "rawKey": "contextType",
+      "reason": "canonical key 'contextType' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor/compiled/system-skill-advisor/policy-card.md",
+      "rawKey": "description",
+      "reason": "canonical key 'description' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor/compiled/system-skill-advisor/policy-card.md",
+      "rawKey": "importance_tier",
+      "reason": "canonical key 'importance_tier' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor/compiled/system-skill-advisor/policy-card.md",
+      "rawKey": "title",
+      "reason": "canonical key 'title' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor/compiled/system-skill-advisor/policy-card.md",
+      "rawKey": null,
+      "reason": "edit refused: it would turn this missing document into non-yaml",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit/compiled/system-spec-kit/policy-card.md",
+      "rawKey": null,
+      "reason": "no trigger_phrases key in frontmatter",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit/compiled/system-spec-kit/policy-card.md",
+      "rawKey": "contextType",
+      "reason": "canonical key 'contextType' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit/compiled/system-spec-kit/policy-card.md",
+      "rawKey": "description",
+      "reason": "canonical key 'description' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit/compiled/system-spec-kit/policy-card.md",
+      "rawKey": "importance_tier",
+      "reason": "canonical key 'importance_tier' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit/compiled/system-spec-kit/policy-card.md",
+      "rawKey": "title",
+      "reason": "canonical key 'title' is absent and is reported rather than synthesized",
+      "severity": "error"
+    },
+    {
+      "category": "missing",
+      "line": 2,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit/compiled/system-spec-kit/policy-card.md",
+      "rawKey": null,
+      "reason": "edit refused: it would turn this missing document into non-yaml",
+      "severity": "error"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/handover.md",
+      "rawKey": "compiled",
+      "reason": "single token \"compiled\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/plan.md",
+      "rawKey": "review",
+      "reason": "single token \"review\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 12,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/tasks.md",
+      "rawKey": "review",
+      "reason": "single token \"review\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/handover.md",
+      "rawKey": "routing",
+      "reason": "single token \"routing\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 65,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/023-sk-design-dissolution-routing-reactivation/decision-record.md",
+      "rawKey": "decisions",
+      "reason": "closing marker with no open marker for id 'decisions'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/GLM-cross-lineage-notes.md",
+      "rawKey": "GLM-cross-lineage-notes.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'GLM-cross-lineage-notes.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/plan.md",
+      "rawKey": "existing",
+      "reason": "single token \"existing\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/tasks.md",
+      "rawKey": "existing",
+      "reason": "single token \"existing\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 131,
+      "path": "specs/sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/review/lineages/composer-2-5-r2/deep-review-strategy.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision/decision-record.md",
+      "rawKey": "decision",
+      "reason": "single token \"decision\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision/decision-record.md",
+      "rawKey": "derived",
+      "reason": "single token \"derived\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/001-derived-authority-decision/decision-record.md",
+      "rawKey": "authority",
+      "reason": "single token \"authority\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/scratch/DESIGN.md",
+      "rawKey": "DESIGN.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'DESIGN.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/scratch/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 322,
+      "path": "specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/review/lineages/luna-xhigh-r2/deep-review-strategy.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 132,
+      "path": "specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/review/lineages/luna-xhigh/deep-review-strategy.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/019-skill-routing-refactor/research/post-019-angles/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 180,
+      "path": "specs/sk-doc/019-skill-routing-refactor/review/lineages/sol-drift-review/deep-review-strategy.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/implementation-summary.md",
+      "rawKey": "code",
+      "reason": "single token \"code\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/plan.md",
+      "rawKey": "code",
+      "reason": "single token \"code\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/plan.md",
+      "rawKey": "naming",
+      "reason": "single token \"naming\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/tasks.md",
+      "rawKey": "code",
+      "reason": "single token \"code\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/tasks.md",
+      "rawKey": "naming",
+      "reason": "single token \"naming\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/tasks.md",
+      "rawKey": "enforcement",
+      "reason": "single token \"enforcement\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "anchor-unmatched",
+      "line": 188,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-2-isolated/lineages/terra-high-fast/deep-review-strategy.md",
+      "rawKey": "next-focus",
+      "reason": "closing marker with no open marker for id 'next-focus'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-3-convergence/lineages/terra-high-fast/_archive/fanout-terra-high-fast-1785149403377-degd9r/deep-review-dashboard.md",
+      "rawKey": "_archive",
+      "reason": "directory name is not lowercase hyphen-separated: '_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-3-convergence/lineages/terra-high-fast/_archive/fanout-terra-high-fast-1785149403377-degd9r/deep-review-strategy.md",
+      "rawKey": "_archive",
+      "reason": "directory name is not lowercase hyphen-separated: '_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-3-convergence/lineages/terra-high-fast/_archive/fanout-terra-high-fast-1785149403377-degd9r/iterations/iteration-001.md",
+      "rawKey": "_archive",
+      "reason": "directory name is not lowercase hyphen-separated: '_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-3-convergence/lineages/terra-high-fast/_archive/fanout-terra-high-fast-1785149403377-degd9r/iterations/iteration-002.md",
+      "rawKey": "_archive",
+      "reason": "directory name is not lowercase hyphen-separated: '_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-3-convergence/lineages/terra-high-fast/_archive/fanout-terra-high-fast-1785149403377-degd9r/iterations/iteration-003.md",
+      "rawKey": "_archive",
+      "reason": "directory name is not lowercase hyphen-separated: '_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-3-convergence/lineages/terra-high-fast/_archive/fanout-terra-high-fast-1785149403377-degd9r/iterations/iteration-004.md",
+      "rawKey": "_archive",
+      "reason": "directory name is not lowercase hyphen-separated: '_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-3-convergence/lineages/terra-high-fast/_archive/fanout-terra-high-fast-1785149403377-degd9r/iterations/iteration-005.md",
+      "rawKey": "_archive",
+      "reason": "directory name is not lowercase hyphen-separated: '_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-3-convergence/lineages/terra-high-fast/_archive/fanout-terra-high-fast-1785149403377-degd9r/resource-map.md",
+      "rawKey": "_archive",
+      "reason": "directory name is not lowercase hyphen-separated: '_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/021-benchmark-naming-and-playbook-results/review-rounds/round-3-convergence/lineages/terra-high-fast/_archive/fanout-terra-high-fast-1785149403377-degd9r/review-report.md",
+      "rawKey": "_archive",
+      "reason": "directory name is not lowercase hyphen-separated: '_archive'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 7,
+      "path": "specs/sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement/decision-record.md",
+      "rawKey": "code",
+      "reason": "single token \"code\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/026-skill-readme-refinement/handover.md",
+      "rawKey": "readme",
+      "reason": "single token \"readme\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 9,
+      "path": "specs/sk-doc/026-skill-readme-refinement/handover.md",
+      "rawKey": "refinement",
+      "reason": "single token \"refinement\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/sk-doc/026-skill-readme-refinement/handover.md",
+      "rawKey": "skill",
+      "reason": "single token \"skill\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/028-sk-create-diagram/context/README.md",
+      "rawKey": "README.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'README.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/028-sk-create-diagram/context/SECURITY.md",
+      "rawKey": "SECURITY.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SECURITY.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/028-sk-create-diagram/context/THIRD_PARTY_LICENSES.md",
+      "rawKey": "THIRD_PARTY_LICENSES.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'THIRD_PARTY_LICENSES.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/028-sk-create-diagram/context/skills/diagram-design/SKILL.md",
+      "rawKey": "SKILL.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'SKILL.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/029-doc-divider-and-anchor-standard/scratch/selftest/A.md",
+      "rawKey": "A.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'A.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/029-doc-divider-and-anchor-standard/scratch/selftest/B.md",
+      "rawKey": "B.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'B.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/sk-doc/029-doc-divider-and-anchor-standard/scratch/selftest/C-hasdividers.md",
+      "rawKey": "C-hasdividers.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'C-hasdividers.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/039-create-with-human-voice/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-doc/040-create-repo-rules/008-conformance-playbook-and-readme/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/040-create-repo-rules/009-hub-routing-guardrails/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/sk-doc/040-create-repo-rules/009-hub-routing-guardrails/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers/spec.md",
+      "rawKey": "playbooks for the modes that derive an artifact from a source",
+      "reason": "phrase carries 11 tokens, above the 10-token budget; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 8,
+      "path": "specs/sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality/spec.md",
+      "rawKey": "playbooks for the modes that act on another mode's output",
+      "reason": "phrase carries 11 tokens, above the 10-token budget; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/051-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/sk-doc/051-sk-create-chart/002-translation-and-voice/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 50,
+    "warn": 161
+  },
+  "track": "specs/sk-doc"
+}

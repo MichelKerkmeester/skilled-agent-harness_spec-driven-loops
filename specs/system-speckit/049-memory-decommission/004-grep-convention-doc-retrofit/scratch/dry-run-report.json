@@ -1,0 +1,29 @@
+{
+  "blockers": [],
+  "considered": 22094,
+  "diffBytes": 3959394,
+  "diffPath": "/Users/michelkerkmeester/worktrees/public/017-memory-decommission/specs/system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit/scratch/plan.diff",
+  "plannedByTrack": {
+    "specs/agents": 16,
+    "specs/cli-external-orchestration": 226,
+    "specs/hooks": 347,
+    "specs/mcp-tooling": 435,
+    "specs/sk-code": 94,
+    "specs/sk-communication": 88,
+    "specs/sk-design": 654,
+    "specs/sk-doc": 1424,
+    "specs/sk-git": 55,
+    "specs/sk-prompt": 24,
+    "specs/sk-vision": 5,
+    "specs/system-deep-loop": 1246,
+    "specs/system-skill-advisor": 4,
+    "specs/system-speckit": 5592
+  },
+  "plannedDocuments": 10210,
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 40812,
+    "warn": 1260
+  },
+  "stage": "dry-run"
+}

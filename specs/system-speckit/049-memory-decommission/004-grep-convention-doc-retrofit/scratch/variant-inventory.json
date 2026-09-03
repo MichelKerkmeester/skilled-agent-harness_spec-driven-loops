@@ -1,0 +1,189 @@
+{
+  "counts": {
+    "duplicate": 0,
+    "malformed-or-unclosed": 1,
+    "missing": 8,
+    "non-string-members": 0,
+    "non-yaml": 1,
+    "oversized": 0,
+    "valid-empty": 22084,
+    "wrong-list-type": 0
+  },
+  "detailCounts": {
+    "malformed-or-unclosed/unclosed-opening-fence": 1,
+    "missing/no-trigger-key": 8,
+    "non-yaml/non-yaml-frontmatter": 1,
+    "valid-empty/empty-list": 10181,
+    "valid-empty/populated-list": 11903
+  },
+  "manifestTotal": 22094,
+  "paths": {
+    "duplicate": [],
+    "malformed-or-unclosed": [
+      "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme/context/seats/iter-001/deepseek.extracted.md"
+    ],
+    "missing": [
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow/compiled/mcp-code-mode/policy-card.md",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/PolicyCardV1.md",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/compiled/PolicyCardV1.md",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/compiled/PolicyCardV1.md",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/001-sk-git/compiled/sk-git/policy-card.md",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph/compiled/system-code-graph/policy-card.md",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/003-system-skill-advisor/compiled/system-skill-advisor/policy-card.md",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/004-system-spec-kit/compiled/system-spec-kit/policy-card.md"
+    ],
+    "non-string-members": [],
+    "non-yaml": [
+      "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
+    ],
+    "oversized": [],
+    "valid-empty": [],
+    "wrong-list-type": []
+  },
+  "schemaVersion": 1,
+  "sum": 22094,
+  "sumMatchesManifest": true,
+  "unclassified": [],
+  "variantsByTrack": {
+    "specs/agents": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 53,
+      "wrong-list-type": 0
+    },
+    "specs/cli-external-orchestration": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 748,
+      "wrong-list-type": 0
+    },
+    "specs/hooks": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 709,
+      "wrong-list-type": 0
+    },
+    "specs/mcp-tooling": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 832,
+      "wrong-list-type": 0
+    },
+    "specs/sk-code": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 336,
+      "wrong-list-type": 0
+    },
+    "specs/sk-communication": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 252,
+      "wrong-list-type": 0
+    },
+    "specs/sk-design": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 1264,
+      "wrong-list-type": 0
+    },
+    "specs/sk-doc": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 1,
+      "missing": 8,
+      "non-string-members": 0,
+      "non-yaml": 1,
+      "oversized": 0,
+      "valid-empty": 3611,
+      "wrong-list-type": 0
+    },
+    "specs/sk-git": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 190,
+      "wrong-list-type": 0
+    },
+    "specs/sk-prompt": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 95,
+      "wrong-list-type": 0
+    },
+    "specs/sk-vision": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 126,
+      "wrong-list-type": 0
+    },
+    "specs/system-deep-loop": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 2535,
+      "wrong-list-type": 0
+    },
+    "specs/system-skill-advisor": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 36,
+      "wrong-list-type": 0
+    },
+    "specs/system-speckit": {
+      "duplicate": 0,
+      "malformed-or-unclosed": 0,
+      "missing": 0,
+      "non-string-members": 0,
+      "non-yaml": 0,
+      "oversized": 0,
+      "valid-empty": 11297,
+      "wrong-list-type": 0
+    }
+  }
+}

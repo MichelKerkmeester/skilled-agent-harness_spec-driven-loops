@@ -1,0 +1,59 @@
+{
+  "budgets": {
+    "maxPhraseLength": 120,
+    "maxTriggerListMembers": 20
+  },
+  "measures": {
+    "declaredMembers": {
+      "definition": "trigger_phrases members as written across the in-scope corpus, before dedupe or normalization",
+      "value": 38308
+    },
+    "documentsDeclaringTriggerPhrases": {
+      "definition": "in-scope documents carrying a trigger_phrases or triggerPhrases key",
+      "value": 22084
+    },
+    "parsedPhrases": {
+      "definition": "phrases surviving the strict reader per document, summed across the corpus",
+      "value": 38308
+    },
+    "uniqueNormalizedPhrases": {
+      "definition": "distinct normalizeTriggerText values across the in-scope corpus; the measure the trigger index reports",
+      "value": 26743
+    }
+  },
+  "primaryMeasure": "uniqueNormalizedPhrases",
+  "probe": "grep convention",
+  "recipeRuns": [
+    {
+      "command": "rg --no-config --json --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'grep convention' specs .opencode",
+      "exitCode": 0,
+      "outcome": "match",
+      "recipe": "structured",
+      "resultCount": 37,
+      "stderr": ""
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --files-with-matches --max-count 1 --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'grep convention' specs .opencode",
+      "exitCode": 0,
+      "outcome": "match",
+      "recipe": "path",
+      "resultCount": 29,
+      "stderr": ""
+    },
+    {
+      "command": "rg --no-config --fixed-strings --ignore-case --count --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' -- 'grep convention' specs .opencode",
+      "exitCode": 0,
+      "outcome": "match",
+      "recipe": "count",
+      "resultCount": 29,
+      "stderr": ""
+    }
+  ],
+  "ripgrepVersion": "ripgrep 14.1.1 (rev 4649aa9700)",
+  "schemaVersion": 1,
+  "scope": {
+    "documents": 22094,
+    "root": "specs",
+    "track": null
+  }
+}

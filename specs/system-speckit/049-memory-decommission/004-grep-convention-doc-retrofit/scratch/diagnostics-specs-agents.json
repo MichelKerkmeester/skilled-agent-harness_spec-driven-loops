@@ -1,0 +1,87 @@
+{
+  "categories": [
+    "missing",
+    "malformed-or-unclosed",
+    "non-yaml",
+    "wrong-list-type",
+    "non-string-members",
+    "valid-empty",
+    "duplicate",
+    "oversized",
+    "alias-hit",
+    "generic-trigger",
+    "anchor-unmatched",
+    "anchor-duplicate",
+    "naming-exception",
+    "preimage-mismatch"
+  ],
+  "counts": {
+    "alias-hit": 0,
+    "anchor-duplicate": 0,
+    "anchor-unmatched": 0,
+    "duplicate": 0,
+    "generic-trigger": 4,
+    "malformed-or-unclosed": 0,
+    "missing": 0,
+    "naming-exception": 1,
+    "non-string-members": 0,
+    "non-yaml": 0,
+    "oversized": 0,
+    "preimage-mismatch": 0,
+    "valid-empty": 0,
+    "wrong-list-type": 0
+  },
+  "failuresByKind": {
+    "gate": 0,
+    "stale-manifest": 0,
+    "write": 0
+  },
+  "rows": [
+    {
+      "category": "naming-exception",
+      "line": 0,
+      "path": "specs/agents/003-communication-quality/context/How I deal with 5.6's language _ r_codex.md",
+      "rawKey": "How I deal with 5.6's language _ r_codex.md",
+      "reason": "document basename is not lowercase hyphen-separated: 'How I deal with 5.6's language _ r_codex.md'",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 11,
+      "path": "specs/agents/004-agents-md-bloat-audit/spec.md",
+      "rawKey": "audit",
+      "reason": "single token \"audit\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/agents/007-orchestrator-inline-authority/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 5,
+      "path": "specs/agents/007-orchestrator-inline-authority/spec.md",
+      "rawKey": "feature",
+      "reason": "generic workflow word \"feature\"; reported, never adopted as index input",
+      "severity": "warn"
+    },
+    {
+      "category": "generic-trigger",
+      "line": 6,
+      "path": "specs/agents/008-orchestrate-external-cli-delegation/implementation-summary.md",
+      "rawKey": "summary",
+      "reason": "generic workflow word \"summary\"; reported, never adopted as index input",
+      "severity": "warn"
+    }
+  ],
+  "schemaVersion": 1,
+  "severityCounts": {
+    "error": 0,
+    "warn": 5
+  },
+  "track": "specs/agents"
+}
