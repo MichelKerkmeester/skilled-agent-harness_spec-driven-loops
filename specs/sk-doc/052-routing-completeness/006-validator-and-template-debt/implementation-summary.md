@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/006-validator-and-template-debt"
-    last_updated_at: "2026-09-02T18:00:00Z"
+    last_updated_at: "2026-09-03T00:00:00Z"
     last_updated_by: "phase-6-validator-and-template-debt"
-    recent_action: "Authored the phase impl-summary from packet docs and git"
-    next_safe_action: "Decide whether the 45-of-53 template payload backlog becomes its own packet"
+    recent_action: "Recorded the template backlog triage in Known Limitations"
+    next_safe_action: "Rule on the four tiers in research/template-triage.md"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl"
@@ -25,7 +25,7 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "45 of 53 templates carry a real blocker once the payload is scanned, and that backlog is unstarted"
+      - "The template backlog is triaged into four tiers and awaits an operator ruling on each"
     answered_questions:
       - "The document validator now carries the fixture exemption the packaging gate already had"
       - "The boilerplate count was 56 planning documents, not 48"
@@ -178,9 +178,16 @@ Every command below was run and its output read.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-**Forty-five of fifty-three templates still carry a blocker in their payload.** That is the
-real backlog and it is untouched. Each fix changes what a template emits, so it needs review
-per template rather than a sweep, and the roadmap holds it rather than this phase.
+**The template backlog is still untouched, and it now has a triage.** `research/template-triage.md`
+re-measured it on 2026-09-03 and sorted every occurrence: 38 of the 50 templates detected under
+`.opencode/` carry 520 hard blockers, of which 347 are author-facing guidance, 134 reach a generated
+document, 29 are scanner defects and 10 are exemptions. Two thirds of the backlog therefore needs no
+per-template review. The rewrite itself remains unstarted and unauthorized.
+
+**The recorded count moved twice, and one leg of it does not reproduce.** The 45 of 53 was
+repo-wide. Re-running the pre-fix scanner over the same file set returns 44 of 53, one file lower,
+with the rule set held fixed as a control. The masking fix in `82938b3e1c` then took the fleet to 41
+of 53 repo-wide and 38 of 50 under `.opencode/`.
 
 **The three acceptance criteria rows still read Unmet.** All three conditions now hold, and
 the grep for AC-003 was re-run while writing this summary. The rows were written before the

@@ -50,7 +50,8 @@
       ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl",
       ".opencode/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md",
       ".opencode/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
-      ".opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md"
+      ".opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+      "research/template-triage.md"
     ],
     "entities": [
       {
@@ -111,6 +112,12 @@
         "name": "rule-anatomy.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-triage.md",
+        "kind": "doc",
+        "path": "research/template-triage.md",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A template is the one document where the fenced block is the deliverable rather than a",
     "created_at": "2026-09-02T16:34:08Z",
-    "last_save_at": "2026-09-02T22:06:43.413Z",
+    "last_save_at": "2026-09-03T03:08:53.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c5f95465c235a1bedcff01a9af812c98ee19e77bbcff4341809a3d2c84ab286a",
+    "source_fingerprint": "sha256:67a62e1ec85ec0a42f85087b47f4bacf789e3974a6cc2b0bd1b04e970b6d2792",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2afd5bba9c4a7baa16045221a72d26cf0b43add65bf80e237e243d043c0fd26a",
       "plan.md": "f0c733d333ee44ca7a84df39e91824bf10e22edce724d81caef7452cdee7a9fa",
-      "tasks.md": "ed7204f2b12dde38111339bbdb8b572c97bf4daba904cbcd2dafa38b7f7ffaaf",
-      "implementation-summary.md": "d5c26a4fde1977e599c89eabb4b93eb197ed9463b36b2b544b5698dd6281a1e2"
+      "tasks.md": "e20f194ba3a2a96f8bf0c3a7a5982eb6b67db9d2fdf202b743a68c7db5624e5e",
+      "implementation-summary.md": "3fd5bc2c6530aa71a2fe9555309372482b4f1f654146b0124c1e20038bddc6e8"
     },
     "last_active_child_id": null,
     "last_active_at": null

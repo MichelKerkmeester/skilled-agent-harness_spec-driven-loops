@@ -81,6 +81,7 @@ _memory:
 - [x] T016 Measure the blocker delta across the fifty-six rewritten documents - evidence: every file dropped by exactly one and none rose
 - [x] T017 Re-score every template in the fleet with payload scanning on - evidence: 45 of 53 carry a real blocker, recorded rather than swept
 - [x] T018 Confirm the packaging gate still exempts fixture trees after the validator change - evidence: `d229b0a24d`
+- [x] T019 Triage every detected template blocker into prose, emitted payload, exemption or scanner gap - evidence: `research/template-triage.md`, 2026-09-03. 38 of 50 detected templates, 520 occurrences, classified 347 prose, 134 emitted, 29 gap, 10 exempt, with a ranked fix order and the consumer named for every emitted file
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -260,6 +261,7 @@ _memory:
 - [x] CHK-141 [P1] No public API documentation applies
 - [x] CHK-142 [P2] The corrected templates are what future authors read
 - [x] CHK-143 [P2] The 45 of 53 backlog is written down for whoever picks it up
+- [x] CHK-144 [P2] The backlog is triaged rather than only counted, and the recorded denominator is reconciled
 <!-- /ANCHOR:docs-verify -->
 
 ---
