@@ -8,7 +8,7 @@ trigger_phrases:
   - "chart index"
 importance_tier: normal
 contextType: reference
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # Chart Catalog
@@ -72,7 +72,7 @@ The columns mean:
 | `family` | The question group the form belongs to, from section 4 |
 | `question` | The question a reader arrives with, written as they would say it |
 | `data shape` | What the form needs before it can be honest: how many categories, how many series, what must sum to what. A ceiling here is a real ceiling: two forms now print a notice in the figure when the data passes it |
-| `system` | The colour system the template declares |
+| `system` | The colour system the template declares. The cell mirrors the file rather than judging it, so a row and the colour document can disagree with nothing catching it. `color-system.md` carries the procedure for settling one row against the definitions, and every row here has been read against them |
 | `file` | Path from the packet root, which is always `assets/templates/<id>.html` for a chart form |
 
 ### Time labels arrive display-ready
@@ -134,13 +134,41 @@ A name that reaches neither this table nor a row in the index is still a gap to 
 
 ---
 
-## 6. WHAT IS NOT INDEXED HERE
+## 6. THE FORMS THIS CORPUS DOES NOT DRAW
+
+Section 5 covers a reader who asks for a chart the corpus draws under another name. This section
+covers the other case, where the corpus has no answer at all. Three forms come up often enough
+that silence about them reads as an oversight rather than as a decision, so each is named with
+the reason it is absent.
+
+Nothing here is a row. These forms have no file, and the index above stays the list of what
+renders.
+
+| Form | Why it is absent |
+| --- | --- |
+| sankey | The contract excludes forms that need a layout engine, and a flow diagram is one. A hand-drawn approximation of a sankey is less honest than saying the corpus does not draw one, because the thing a reader trusts in a flow diagram is that the ribbon widths were solved rather than eyeballed. If flow is ever genuinely wanted, the exclusion in the contract is what to revisit, not this row |
+| radar | `parallel-axes` answers the same question with one scale per axis. A radar normalises every dimension onto one radial scale, which is honest when the dimensions share a unit and misleading when they do not, and the request that reaches this corpus almost always mixes units. The area a radar encloses also reads as a quantity and is not one, since it changes when the axes are reordered |
+
+### The dual-axis composed form
+
+A reported gap rather than a refusal, and the only entry in this section that is expected to
+disappear. `waterfall` covers signed steps against a running total, and nothing in the corpus puts
+two measures with different units on one time axis. A reader asking for revenue against conversion
+rate has no row.
+
+This paragraph and its heading are written to be deleted whole when that form lands, rather than
+edited into a row. A gap entry that gets rewritten into a description of the thing it was a gap
+for is how a document ends up describing a form twice.
+
+---
+
+## 7. WHAT IS NOT INDEXED HERE
 
 The catalog governs `assets/templates/` alone. The palette sheets under `assets/color/` are proof sheets for the colour systems rather than chart forms, so they carry no row and the check does not expect one. The same holds for the deliveries under `assets/examples/`.
 
 ---
 
-## 7. ADDING A ROW
+## 8. ADDING A ROW
 
 1. Author the template at `assets/templates/<id>.html` against the template contract.
 2. Add one row here with the same `id`.
@@ -148,7 +176,7 @@ The catalog governs `assets/templates/` alone. The palette sheets under `assets/
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 | --- | --- |

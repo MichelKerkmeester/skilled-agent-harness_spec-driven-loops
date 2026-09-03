@@ -40,15 +40,15 @@ Nothing here is copied. Two of the five come from reading the corpus against its
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phases 001 through 005 closed, so the picture the documents describe has stopped moving
-- [ ] Baseline corpus check captured before any edit
-- [ ] The twenty-row system re-check completed on paper before any row is edited
+- [x] Phases 001 through 005 closed, so the picture the documents describe has stopped moving
+- [x] Baseline corpus check captured before any edit, after one flaked run was re-run from the same untouched tree
+- [x] The twenty-row system re-check completed before any row was edited, and it found no row to edit
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state, with `catalog` at zero failures
-- [ ] Every empty-data notice proved on a fixture and proved silent on the shipped data
-- [ ] Docs updated (spec, plan, tasks, acceptance-criteria, goal)
+- [x] All acceptance criteria met or superseded, with none unmet
+- [x] `check-corpus.cjs --render` prints `RESULT: PASSED` from the final state, with `catalog` at 41 assertions and zero failures
+- [x] Every empty-data notice proved on a fixture and proved silent on the shipped data, twenty of twenty each way
+- [x] Docs updated, plus a decision record and an implementation summary
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -69,6 +69,14 @@ The research found one mismatch. `grouped-bars` answers "how does this period co
 The re-check is a twenty-row reading, and the correction is a paired edit: the catalog cell and the template's own `chart-color-system` meta tag, plus the palette block the check prints for the new system. A one-sided edit fails the `identity` check, which is the right failure.
 
 This is the one correction that changes a picture, and the phase says so out loud rather than letting a documentation phase quietly redraw a chart.
+
+**What the re-check actually returned.** No row moved, `grouped-bars` included. The argument
+above is the case for moving it, and ADR-001 of `decision-record.md` carries the three things
+that answer it, the strongest being that `categorical` is defined for categories that are
+unordered while last year against this year is a time order. The reading did find a different
+defect, which is `progress-single` declaring a system whose whole content is that colour encodes
+magnitude while painting a fixed value. That is the form the one picture change lands on, through
+the sweep rather than through a reassignment.
 
 ### Correction 2: the empty-data notice
 
@@ -100,7 +108,10 @@ The corpus cannot share a runtime, so the block is copied rather than imported. 
 
 ### The drafted gradient clause
 
-This one is not applied. The adjudication lists the multi-hue series among the four operator decisions, and the clause is written so the decision is a yes or a no on a sentence.
+The operator answered yes on 2026-09-03, scoped to systems that already encode magnitude, so the
+clause is written into the colour document and applied. It reaches one form rather than three,
+because a calendar cell and a matrix cell each hold one reading and a gradient across one of them
+would paint variation inside a single value. ADR-002 carries the scope and the build.
 
 The evidence is the vendored slot gradient at `context/evilcharts/src/registry/charts/recharts-line-chart.tsx:785-809`, which builds a stroke gradient from a series that carries more than one colour. The corpus rule that governs it is the one saying a system encodes one meaning.
 <!-- /ANCHOR:architecture -->
@@ -215,9 +226,9 @@ Setup (baseline, 20-row re-check) ──► Reassignment ──┐
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline corpus check captured before any edit, with its `RESULT:` line read
-- [ ] The before-state screenshot of any form whose system will change
-- [ ] Nothing committed, so the working tree is the only state to revert
+- [x] Baseline corpus check captured before any edit, with its `RESULT:` line read
+- [x] Before-state pictures captured. No form's system changed, so all twenty were captured instead of one
+- [x] Nothing committed, so the working tree is the only state to revert
 
 ### Rollback Procedure
 1. Identify the failing file from the `RESULT:` block of the corpus check.
@@ -235,9 +246,9 @@ Setup (baseline, 20-row re-check) ──► Reassignment ──┐
 ## 8. AI EXECUTION PROTOCOL
 
 ### Pre-Task Checklist
-- [ ] Confirm the twenty-row system re-check is written down before any row is edited, so a reassignment is a conclusion rather than a reaction.
-- [ ] Confirm the baseline corpus check was captured before any edit, and its `RESULT:` line read.
-- [ ] Confirm the empty-data condition is proved on a fixture before it reaches a second form.
+- [x] The twenty-row re-check is written down in ADR-001, and its conclusion is that no row moves.
+- [x] Baseline captured and read before any edit.
+- [x] The condition was proved on `bar-rows` first, and the fixture caught a defect before the guard reached a second form.
 
 ### Execution Rules
 

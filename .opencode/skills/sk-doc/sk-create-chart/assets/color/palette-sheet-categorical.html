@@ -42,6 +42,22 @@
 }
 /* CHART_PALETTE_DARK:END */
 
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
+
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
 body {

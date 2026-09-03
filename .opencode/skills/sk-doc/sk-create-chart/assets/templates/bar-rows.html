@@ -42,6 +42,22 @@
 }
 /* CHART_PALETTE_DARK:END */
 
+/* GEOMETRY DEFAULTS
+   The measurements every file in this corpus shares. They are written down rather than
+   imported, and both halves of that are deliberate: a delivered file has no runtime to
+   import from, and neither place these numbers are used can read a custom property. A
+   viewBox attribute takes a number, and the pan floor is read out of the stylesheet as a
+   literal by the check that enforces it.
+     drawing frame   720 units wide, which is the viewBox width every form draws in
+     pan floor       480px, the min-width that stops a narrow screen shrinking the drawing
+     card width      760px
+     card padding    28px 28px 22px
+     page padding    32px 20px
+   The frame height and the four plot insets are per-form on purpose. A left inset is sized
+   to the widest label a form actually carries, so copying one form's inset into another
+   buys uniformity by cutting a label off. A form that departs from a value above says why
+   beside the value it uses instead. */
+
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
 body {
@@ -77,6 +93,7 @@ th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--char
 th { font-weight: 600; color: var(--chart-ink); }
 td { color: var(--chart-muted); }
 td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.notice { fill: var(--chart-muted); font-size: 12px; }
 
 .bar { fill: var(--chart-series-1); }
 .bar-lead { fill: var(--chart-emphasis); }
@@ -155,6 +172,22 @@ function node(name, attrs, cls) {
   return el;
 }
 
+/* CHART_EMPTY_NOTICE:BEGIN */
+// A figure with nothing to draw still draws its frame, and an empty frame reads as a chart
+// whose values are all zero rather than as a chart with no values. The notice tells the reader
+// which one they are looking at, inside the picture, where the person reading a chart will see
+// it. Readability is what is tested rather than length: a block whose entries all carry values
+// that are not finite numbers has length and still has nothing to draw. One row is not empty.
+const HAS_READABLE_DATA = (DATA || []).some(function (d) { return Number.isFinite(d.value); });
+figure: {
+if (!HAS_READABLE_DATA) {
+  const box = svg.viewBox.baseVal;
+  node('text', { x: box.width / 2, y: box.height / 2, 'text-anchor': 'middle' }, 'notice')
+    .textContent = 'The data block at the top of this file holds no readable values, so there is nothing to draw.';
+  break figure;
+}
+/* CHART_EMPTY_NOTICE:END */
+
 // One formatter for every number a reader sees, so a tick, a value label and a table
 // cell can never disagree about the same figure. Grouping is fixed to a comma rather
 // than read from the host locale, because a delivered file has to look on the machine
@@ -229,6 +262,8 @@ DATA.forEach(function (d) {
   tr.appendChild(td);
   rows.appendChild(tr);
 });
+// The drawing ends here. Everything above it ran because the data block held something to draw.
+}
 </script>
 </body>
 </html>

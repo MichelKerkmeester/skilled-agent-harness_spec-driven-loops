@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 1.5.0.0
+version: 1.6.0.0
 ---
 
 # Chart Template Contract
@@ -84,6 +84,50 @@ Copy the skeleton from `assets/color/palette-sheet-neutral.html`, which is a wor
 
 The sentinels are how the corpus check finds the three regions it has an opinion about. Do not rename them, and use each pair once. The dark pair carries its own name for that reason: a second block under the light block's name would be the same sentinel twice, and then nothing can say which region a drifted value came from.
 
+### The type scale, as six named roles
+
+Five sizes were in use across the corpus before any document named them, which made the size of
+a twenty-first template's axis tick a guess. The roles below record what the corpus already
+does. They are a reading of the files rather than a proposal, so adopting them moves nothing.
+
+| Role | Size | What is set in it |
+| --- | --- | --- |
+| headline | 21px | The card headline, and nothing else |
+| body | 15px | The page default every file sets on `body`. In the drawing it appears once, as the unit caption beside the one hero number a form prints |
+| subtitle | 14px | The subtitle under the headline |
+| label | 13px | The source line, the table, the table caption, and a category name inside the drawing where there is room for it |
+| note | 12px | A notice, a hover card line, a value label, an axis name, and a key entry |
+| tick | 11px | An axis tick, and a category name or key entry in a form too dense to carry the label size |
+
+In-figure text steps down a rung as a form gets denser, which is why a category name appears at
+13px in `bar-rows` and at 11px in `waterfall`. That is the scale working rather than a drift: the
+rung is chosen for the space the text has, out of six rungs rather than out of the air.
+
+Three sizes sit outside the scale, each on one form, and each is a departure with a reason
+written beside it in the file. `progress-single` prints its hero figure at 56px and
+`unit-ring` prints its ring total at 34px, because both are a single number that is the point
+of the chart rather than a label on it. `calendar-grid` prints a month name at 10px, because a
+year of days leaves a strip narrower than the tick size can sit in.
+
+### The geometry defaults ride beside the palette block
+
+Every file carries one `GEOMETRY DEFAULTS` block, immediately after its dark palette block. It
+records the five measurements every file in the corpus shares: the 720-unit drawing frame, the
+pan floor, the card width, the card padding and the page padding.
+
+The block is a written record rather than an indirection, and that is forced rather than chosen.
+Neither place these numbers are used can read a custom property. A `viewBox` attribute takes a
+number, and rule 14's floor is read out of the stylesheet as a literal by the check that
+enforces it, so a `min-width` resolving through a variable would fail the rule it satisfies.
+
+What the block deliberately does not carry is the frame height or the four plot insets. Those
+are per-form, because a left inset is sized to the widest label a form actually carries, and
+copying one form's inset into another buys uniformity by cutting a label off. A form that
+departs from a shared value says why beside the value it uses instead.
+
+Nothing asserts the block yet. It is a register in the sense section 10 uses the word, and the
+check that compares the copies against each other is the next phase's work.
+
 ---
 
 ## 4. HOW IT RECEIVES DATA
@@ -124,6 +168,30 @@ A notice belongs in the figure when a reader looking at the picture would otherw
 wrong conclusion from it, and it is not spread across every form for its own sake. A console
 warning was the alternative and was rejected: the person the ceiling protects is reading a
 chart, not a developer console.
+
+### An empty data block says so, on every form
+
+All twenty forms carry the same guard, marked `CHART_EMPTY_NOTICE`, above their drawing code.
+When the data block holds nothing readable, the form prints one line in the middle of the frame
+and draws nothing else.
+
+This is the clearest case the rule above describes rather than a new rule. An empty frame and a
+chart whose values are all zero look identical, so a reader shown an empty box has no way to
+tell which one they are holding. The notice tells them.
+
+Readability is what the guard tests, not length. A block whose entries all carry values that are
+not finite numbers has length and still has nothing to draw, so it fires. One row does not fire
+it. That distinction matters more than it looks: a guard written against `length` alone passes an
+array of nulls straight through to a drawing that has nothing to draw, and a guard that coerces
+before it tests reads `null` as zero and calls it a reading. The corpus already had the right
+test, in the three time forms that break a line at a gap, and this guard uses the same one.
+
+The notice is a text element inside the drawing, so a screen reader reaches it exactly as it
+reaches the ceiling notices. Its wording is fixed rather than assembled from the data block, so
+nothing a reader pastes into the file can reach the picture as text.
+
+Nothing asserts this yet either. The guard was proved on a fixture and proved silent on the
+shipped block, form by form, and the check that will do it on every run is the next phase's work.
 
 ---
 
@@ -299,7 +367,7 @@ A form that gains any of the three also carries one line of interaction hygiene:
 
 - Read the clock or a random source. Rule 12 bans both, and interaction is not an exemption from it: a reader choosing to look closer is not the picture changing on its own.
 - Change what the file paints before anyone touches it. Two opens with no pointer input have to agree, and a file that gained a pointer has to paint what it painted before it gained one.
-- Move a mark, a label or a printed value. The card floats above the drawing; it does not rearrange it.
+- Move a mark, a label or a printed value. The card floats above the drawing rather than rearranging it.
 - Print a figure the table below the chart does not also carry. The table is the complete reading and stays the accessibility floor, so nothing may exist only inside a card.
 - Format a number any way but through the file's own formatter. A locale-dependent one makes a delivered file read differently on the machine that opens it, which is the failure the fixed-comma formatter exists to prevent.
 - Take a focus ring away from anything a reader can reach with a keyboard, and never add a control a pointer can use that a keyboard cannot.

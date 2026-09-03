@@ -33,7 +33,7 @@ This is the phase that pays the documentation debt the research found, plus the 
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-03 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -160,7 +160,7 @@ The catalog and the contract say what the corpus actually does, an empty figure 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `grep -E '^\| grouped-bars \|' .opencode/skills/sk-doc/sk-create-chart/references/catalog.md` prints a row whose system cell reads `categorical`, and the same string appears in that template's `chart-color-system` meta tag.
+- **SC-001**: every one of the twenty rows carries a written verdict against the colour document's definitions, and for each row the system cell in `references/catalog.md` and the `chart-color-system` tag in the file it names print the same string. This criterion replaces one that presumed `grouped-bars` would read `categorical`. The re-check does not support that outcome, and the reasoning is in ADR-001 of `decision-record.md`.
 - **SC-002**: `grep -l 'CHART_EMPTY_NOTICE' .opencode/skills/sk-doc/sk-create-chart/assets/templates/*.html | wc -l` prints `20`.
 - **SC-003**: `grep -n 'sankey' .opencode/skills/sk-doc/sk-create-chart/references/catalog.md` prints at least one line outside the machine-read sentinels.
 - **SC-004**: `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED`, with `catalog` at zero failures.
@@ -229,11 +229,11 @@ Scored with `bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.
 
 ## 10. OPEN QUESTIONS
 
-The first item is an operator decision the adjudication named, and this phase does not assume an answer to it.
+All three are answered. Each answer is recorded in `decision-record.md`, which carries the reasoning this list only summarises.
 
-- **The multi-hue series.** Allowing one series to carry a colour range needs the colour document to say when that is honest. The drafted clause reads: a single series may carry a gradient along its own system ramp only when the system encodes magnitude, because a sweep along an ordered ramp restates the ordering the data already has, and the same sweep on a `neutral` or `categorical` series invents an ordering the data does not have. That would permit it on `calendar-grid`, `heat-matrix` and `progress-single` and forbid it everywhere else. The operator answers yes or no. A no leaves the clause recorded and nothing applied.
-- Whether any catalog row besides `grouped-bars` changes system. The research named one. The re-check is a row-by-row reading of twenty rows against one definition, and it may find none more or several.
-- Whether the shared geometry block belongs in the skeleton or in the contract prose. The skeleton is what an author copies, which argues for the skeleton. The contract is what an author reads, which argues for both, and the cost of both is that two places can drift.
+- **The multi-hue series.** Answered yes by the operator on 2026-09-03, scoped to systems that already encode magnitude. The clause permits a sweep on `calendar-grid`, `heat-matrix` and `progress-single` and forbids it on every `neutral` or `categorical` series. It is applied on `progress-single`, the only one of the three drawing a mark whose length is the magnitude. See ADR-002.
+- **Whether any row besides `grouped-bars` changes system.** No row changes, including `grouped-bars`. The twenty-row reading is in ADR-001, along with the case for moving that row and the three things that answer it. The re-check did find one row declared correctly and behaving as though it were not, which the sweep fixes.
+- **Where the shared geometry block belongs.** In every file, with the contract naming it and restating none of its numbers. See ADR-003, which also records why the block cannot be the indirection REQ-007 asks for.
 <!-- /ANCHOR:questions -->
 
 ---

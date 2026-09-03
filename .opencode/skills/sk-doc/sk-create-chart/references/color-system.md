@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 1.3.0.0
+version: 1.4.0.0
 ---
 
 # Chart Colour Systems
@@ -37,6 +37,29 @@ A colour system is an answer to "what does colour mean in this chart". That is t
 | `categorical` | Category membership | The categories are unordered and there are four or fewer | 4 categories |
 
 Start at `neutral`. Reach for another only when the data has the property that system encodes. A categorical palette on ordered data throws away the ordering, and an ordered ramp on unordered categories invents one.
+
+### How to settle a row against this table
+
+The catalog carries a system per row, and that cell is a mirror of what the template declares
+rather than a second opinion. So a row and a definition can disagree with nobody noticing, which
+is what happened for as long as no one read the two documents against each other. The procedure
+below is what a reader applies to settle one row, and it is written down so the answer is a
+reading rather than a preference.
+
+1. **Name what colour is doing in that file.** Not what the chart is about. What the colour
+   varies with. If it varies with nothing, the answer is already `neutral`.
+2. **Test the data for the property, not the chart for the vibe.** `categorical` needs
+   categories that are unordered. `ordered` needs a position on a scale. A pair of periods, a
+   before and an after, a signed step: each of those has an order, and an order is what
+   `categorical` does not have.
+3. **`neutral` is the default and the fallback, so it wins a tie.** Leave it only when the data
+   plainly has the property another system encodes. `neutral` carrying four series is not a
+   workaround. Its capacity is four precisely so a form can draw several series and rank them by
+   lightness, and a key printed beside those series is the ranking made legible rather than
+   evidence that colour has started encoding membership.
+4. **Record an ambiguous row instead of resolving it.** Where the reading genuinely goes both
+   ways, the row keeps the system it has and the ambiguity is written down. A row flipped on
+   preference is how a corpus acquires a system nobody can defend.
 
 ---
 
@@ -111,6 +134,25 @@ Two things do not rotate, and both refusals are as deliberate as the rotation. T
 
 **Colour is never the only cue.** Categories keep labels, ordered data keeps position or length, emphasis keeps a headline. Remove the colour and the chart still has to be readable. That is an accessibility floor and it is also a hedge against a reader printing in greyscale.
 
+**A single mark may sweep along its own ramp, and only where the system already encodes magnitude.** A sweep restates an ordering the data already has, which is why it is honest on an `ordered` system and dishonest anywhere else. On a `neutral` or a `categorical` series the same sweep invents an ordering the data does not have, so it is refused there. That permits it on `calendar-grid`, `heat-matrix` and `progress-single`, and forbids it on the other seventeen forms.
+
+The rule is written to be testable rather than judged. A gradient whose stops name two different
+series values is a sweep, and it may appear only in a file whose declared system is `ordered`. A
+gradient whose stops name one series value at two opacities is a fade rather than a sweep, which
+is what the area under the line in `daily-line` already is, and the rule leaves it alone.
+
+Permission is not obligation, and two of the three permitted forms have nothing to sweep. A
+calendar cell and a matrix cell each carry one value, so a gradient across one of them would
+show a variation inside a single reading. Only `progress-single` draws a mark whose length is
+the magnitude, so only `progress-single` carries the sweep. Its ramp is anchored to the whole
+track rather than to the fill, which is what makes the shade at the bar's end mean how far along
+the goal it is rather than simply the end of the bar. It runs from the fourth step to the first,
+leaving out the step nearest the ground, because that step reads at 1.76:1 and a bar that starts
+invisible against its own track is a bar that starts in the wrong place.
+
+A gradient reference is not a colour and cannot be typed into a `fill`. It reaches the mark
+through a custom property, the way every other value in a template does.
+
 ---
 
 ## 5. THE CONTRAST GATES
@@ -131,9 +173,15 @@ Every gate runs twice, once per theme, against that theme's own surface. A run p
 Two of those names were written when there was one ground and now read wrong on the other: on ink
 the step this table calls the darkest is the brightest one. The check tests the end by its distance
 from the ground rather than by its position in the array, and it says which end it tested in the
-failure it prints. Renaming the two keys would be the honest fix and it is left as a proposal
-rather than folded in here, because the names reach the palette source and the phase record that
-set them.
+failure it prints.
+
+The rename stays a proposal, and the reason has changed since it was first written. It is now a
+scoping fact rather than a judgement: `rampDarkestOnSurface` and `rampLightestOnSurface` reach
+three files, being this document, the palette source and the check that reads the keys by name,
+and the check is the one file the phase that would rename them is not allowed to touch. Renaming
+here and not there would leave a gate reading a key nobody defines, which is a worse state than
+two badly named keys that work. `rampFarEndOnSurface` and `rampNearEndOnSurface` are the names
+the rename should land under, and it lands as one edit across all three files or not at all.
 
 ### Which end of a ramp the gates hold
 
@@ -164,10 +212,18 @@ Enforced by `scripts/check-corpus.cjs`, on every run:
 - No colour literal appears anywhere outside a palette block.
 - No corner value appears anywhere outside a palette block: a stylesheet corner resolves through a rung, and the drawing code computes a corner rather than typing one.
 
+Stated as a rule and not yet asserted:
+
+- The sweep rule above. The predicate is mechanical, being a gradient with two different series
+  values in a file whose declared system is not `ordered`, and the corpus was scanned against it
+  by hand rather than on every run. Folding it into the check is the next phase's work, and until
+  that lands a file could break the rule and pass.
+
 Advisory, and reviewed by a person:
 
 - Whether the gridline weight looks right at the size the chart ships.
 - Whether two categorical hues that both clear the gate are still easy to tell apart. Their luminances are spread so the set survives greyscale, and that is a design property rather than a measurable one.
+- Whether a sweep reads as one mark deepening rather than as two marks. That is the judgement the rule cannot make, and the reason the rule is a ceiling on where a sweep may appear rather than an instruction to use one.
 
 The split is deliberate. A rule the tooling does not check describes the author's intentions rather than the artifact, so anything stated as binding above is checked, and anything that cannot be checked is named here as advice.
 

@@ -39,13 +39,15 @@
       "rule"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md"
@@ -79,6 +81,18 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five separate defects, one theme",
     "created_at": "2026-09-03T08:01:46.458Z",
-    "last_save_at": "2026-09-03T09:05:56.254Z",
+    "last_save_at": "2026-09-03T21:10:18.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +208,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:547b6232aff74d2e6a25cd76f53e49b7c05c489bbe2cf4c4dfe3bcebd1fa6ff1",
+    "source_fingerprint": "sha256:bfd48812e445e9642ac0f37a89f75658117a4488adf0d72f4082ca6e00f336d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "32fe754492de465660be71439c501ecbe408dce1c5b2c2f28d334740fa9a8ec1",
-      "plan.md": "53e8497b6849667b18fe2f95c88a11f9245b36589b2b7375d99fca5daab265e4",
-      "tasks.md": "25bdb9c60876a1a6fdc80306fb031e5ea4f599ed92bded602f308c256313afed"
+      "spec.md": "cf7d16b0898b1fd6f983b88d7e17cee39cce70d76ed0eb7a194b6461dd6f4ab3",
+      "plan.md": "540491bdfece32892626340e80e657f5eca9be5709ad06cb015feaaa8ac04aa6",
+      "tasks.md": "aae2c7677c1077acac7594d0b563e3a2b576b0f6ca70c2ed7b5138b53959ae2e",
+      "decision-record.md": "f867703499e7586326581a471b94c35283c008e13995be7b6372591dce31e83e",
+      "implementation-summary.md": "1c5a5acdc03b0e082a6a90382e4f39466f21a9a01c76f9e1da5daea6bc668ffc"
     },
     "last_active_child_id": null,
     "last_active_at": null
