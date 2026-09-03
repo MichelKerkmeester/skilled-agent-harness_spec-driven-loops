@@ -62,4 +62,3 @@ The validator therefore gained both freshness enforcement and structural linting
 - Feature file path: `tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md`
 Related references:
 - [research-metadata-backfill.md](../../feature-catalog/tooling-and-scripts/research-metadata-backfill.md) — Research metadata backfill
-- [cli-matrix-adapter-runners.md](../../feature-catalog/tooling-and-scripts/cli-matrix-adapter-runners.md) — CLI matrix adapter runners

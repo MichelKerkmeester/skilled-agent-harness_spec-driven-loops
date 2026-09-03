@@ -70,7 +70,7 @@ The case studies, pitfalls, and worked example cover the **MCP promotion** famil
 
 | Path | What | Status |
 | --- | --- | --- |
-| `.opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-17--run--unspecified/` | system-spec-memory text-embedder bake-off ([case-studies.md](case-studies.md) Case study 1) | Live, promoted |
+| _(folder removed from disk with the memory MCP server. See case-studies.md Case study 1 for the narrative.)_ | text-embedder bake-off ([case-studies.md](case-studies.md) Case study 1) | Was promoted, tree since removed |
 | _(folder removed from disk. See case-studies.md Case study 2 for the narrative.)_ | experimental coco-index code-embedder bake-off ([case-studies.md](case-studies.md) Case study 2) | Archived, never promoted |
 
 ### Related sk-doc references

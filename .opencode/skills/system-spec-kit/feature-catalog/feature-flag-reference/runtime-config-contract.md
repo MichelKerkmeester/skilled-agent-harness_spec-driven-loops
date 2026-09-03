@@ -94,5 +94,4 @@ Outside Section 1, `config/config.jsonc` currently declares the following boolea
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `feature-flag-reference/runtime-config-contract.md`
 Related references:
-- [audit-phase-020-mapping-note.md](../../feature-catalog/feature-flag-reference/audit-phase-020-mapping-note.md) — Feature flag reference mapping note
 - [filter-config-contract.md](../../feature-catalog/feature-flag-reference/filter-config-contract.md) — Filter Config Contract

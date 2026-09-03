@@ -19,14 +19,14 @@ This is destructive and requires a disposable workspace. The test is only truthf
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: SIGINT cancellation during `/doctor:update` memory rebuild.
+- Objective: SIGINT cancellation during the `/doctor:update` long-pole rebuild step.
 - Playbook ID: DOC-340.
-- Real user request: `Start /doctor:update, then Ctrl-C ~30 sec into the memory rebuild step.`
-- Prompt: `Start /doctor:update, then Ctrl-C ~30 sec into the memory rebuild step.`
-- Preconditions: A long-pole full rebuild reaches `memory_index_scan`; snapshots are enabled; the workspace is disposable.
-- Expected execution process: Record pre-run checksums, start `/doctor:update`, send SIGINT during the memory rebuild, wait for settle and restore, then compare DB checksums and exit code.
+- Real user request: `Start /doctor:update, then Ctrl-C ~30 sec into the long-pole rebuild step.`
+- Prompt: `Start /doctor:update, then Ctrl-C ~30 sec into the long-pole rebuild step.`
+- Preconditions: A long-pole full rebuild reaches the advisor skill-graph rebuild, the longest surviving step in the manifest; snapshots are enabled; the workspace is disposable.
+- Expected execution process: Record pre-run checksums, start `/doctor:update`, send SIGINT during the long-pole rebuild, wait for settle and restore, then compare DB checksums and exit code.
 - Expected signals: SIGINT caught at orchestrator, current SQLite transaction settles in roughly 5 seconds per ADR-001, in-flight snapshot restored, state log written, and process exits 130.
-- Desired user-visible outcome: A cancellation verdict proving no half-rebuilt memory database remains after Ctrl-C.
+- Desired user-visible outcome: A cancellation verdict proving no half-rebuilt database remains after Ctrl-C.
 - Pass/fail: PASS only when exit code is 130 and the affected DB matches the pre-rebuild snapshot or copied baseline.
 - Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
@@ -37,16 +37,16 @@ This is destructive and requires a disposable workspace. The test is only truthf
 ### Prompt
 
 ```
-Start /doctor:update, then Ctrl-C ~30 sec into the memory rebuild step.
+Start /doctor:update, then Ctrl-C ~30 sec into the long-pole rebuild step.
 ```
 
 ### Commands
 
 1. Create a disposable workspace with the current spec-kit databases.
-2. Confirm snapshots are enabled and record pre-run checksums for the active resolved profile Memory MCP database and the vector index database.
+2. Confirm snapshots are enabled and record pre-run checksums for every database the manifest declares as a rebuild target.
 3. Run `/doctor:update` through the real runtime.
-4. Wait until Phase 5 enters `context-index` or `memory_index_scan({ incremental: false, force: true })`.
-5. Send Ctrl-C roughly 30 seconds into the memory rebuild step.
+4. Wait until the run enters its declared long-pole step.
+5. Send Ctrl-C roughly 30 seconds into that step.
 6. Wait for the command to settle and record whether restore finishes after the ADR-001 settle window.
 7. Capture the process exit code.
 8. Recompute affected DB checksums and compare them to the pre-run baseline or restored snapshot.

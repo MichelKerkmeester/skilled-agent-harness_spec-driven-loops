@@ -55,8 +55,6 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 | `scripts/lib/validate-memory-quality.ts` | V13 YAML parsing and memory-quality validation |
 | `scripts/renderers/template-renderer.ts` | Optional-placeholder handling for compact tool/exchange sections |
 | `scripts/memory/generate-context.ts` | CLI help text and structured-first save workflow documentation |
-| `mcp-server/lib/providers/retry-manager.ts` | `getEmbeddingRetryStats()` accessor for embedding retry visibility |
-| `mcp-server/handlers/memory-crud-health.ts` | `embeddingRetry` block in `memory_health` MCP response |
 
 ### FEATURE BREAKDOWN
 
@@ -129,12 +127,6 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 - Observation dedup at normalization time (string-equality).
 - Pre-save overlap check enabled by default (set `SPECKIT_PRE_SAVE_DEDUP=false` to disable). Current algorithm is advisory exact-match SHA1 comparison against the most recent 20 sibling memories.
 
-### 3.10 Embedding visibility
-
-- Zero-DB `getEmbeddingRetryStats()` accessor in `retry-manager.ts`.
-- `embeddingRetry` returns an in-memory health snapshot refreshed by retry-manager queue scans and status mutations; the accessor itself does not hit SQLite.
-- `embeddingRetry` block in `memory_health` MCP response with: `pending`, `failed`, `retryAttempts`, `circuitBreakerOpen`, `lastRun`, `queueDepth`.
-
 ### 3.11 projectPhase override
 
 - `resolveProjectPhase()` in `session-extractor.ts` following `resolveContextType()` pattern.
@@ -179,7 +171,6 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 - `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/embedding-retry-stats.vitest.ts tests/retry-manager-health.vitest.ts`
 
 Related references:
-- [module-boundary-map.md](../../feature-catalog/tooling-and-scripts/module-boundary-map.md) — Module boundary map
 - [json-primary-deprecation-posture.md](../../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md) — JSON-primary deprecation posture
 
 ---

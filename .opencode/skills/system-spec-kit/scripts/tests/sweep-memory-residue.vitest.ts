@@ -47,7 +47,7 @@ function writeAllowlist(root: string, entries: Array<{ pathPrefixOrGlob: string;
 
 /**
  * A tree with one hit of every class the sweep can report, plus one inside the
- * subsystem tree that must never reach the report at all.
+ * surviving package tree that is swept like any other.
  */
 function makeFixtureTree(): { allowlistPath: string; root: string } {
   const root = makeTempDir('residue-sweep-');
@@ -171,7 +171,7 @@ describe('loadAllowlist', () => {
 // ───────────────────────────────────────────────────────────────
 
 describe('sweep', () => {
-  it('classifies live, historical and allowlisted hits and never sees the subsystem tree', async () => {
+  it('classifies live, historical and allowlisted hits, including inside the surviving package', async () => {
     const { allowlistPath, root } = makeFixtureTree();
     const report = await sweep({ allowlistPath, root });
 
@@ -188,12 +188,15 @@ describe('sweep', () => {
       allowlistReason: 'deliberate survivor for this fixture',
       class: 'allowlisted',
     });
-    expect(byPath.has('.opencode/skills/system-spec-kit/mcp-server/handler.ts')).toBe(false);
+    expect(byPath.get('.opencode/skills/system-spec-kit/mcp-server/handler.ts')).toMatchObject({ class: 'live', term: 'memory_stats' });
 
-    expect(report.counts).toMatchObject({ allowlisted: 1, historical: 1, live: 1 });
+    expect(report.counts).toMatchObject({ allowlisted: 1, historical: 1, live: 2 });
     expect(report.liveBySurface.commands).toBe(1);
     expect(report.unparsedLines).toBe(0);
-    expect(report.topLivePaths).toEqual([{ path: '.opencode/commands/demo/run.md', records: 1 }]);
+    expect(report.topLivePaths).toEqual([
+      { path: '.opencode/commands/demo/run.md', records: 1 },
+      { path: '.opencode/skills/system-spec-kit/mcp-server/handler.ts', records: 1 },
+    ]);
   });
 
   it('refuses a root that is not a repository root instead of reporting a clean tree', async () => {
@@ -213,13 +216,14 @@ describe('sweep CLI', () => {
 
     expect(run.status).toBe(1);
     const report = JSON.parse(run.stdout);
-    expect(report.counts.live).toBe(1);
-    expect(report.records.map((record: any) => record.class).sort()).toEqual(['allowlisted', 'historical', 'live']);
+    expect(report.counts.live).toBe(2);
+    expect(report.records.map((record: any) => record.class).sort()).toEqual(['allowlisted', 'historical', 'live', 'live']);
   });
 
   it('exits 0 once nothing live remains and writes the report where asked', () => {
     const { allowlistPath, root } = makeFixtureTree();
     fs.rmSync(path.join(root, '.opencode/commands'), { force: true, recursive: true });
+    fs.rmSync(path.join(root, '.opencode/skills'), { force: true, recursive: true });
     const reportPath = path.join(root, 'out', 'residue.json');
 
     const run = runCli(['--root', root, '--allowlist', allowlistPath, '--report', reportPath]);

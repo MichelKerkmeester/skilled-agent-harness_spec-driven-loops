@@ -75,4 +75,3 @@ Flags include `--level N`, `--dry-run`, `--json`, `--strict`, `--quiet` and `--v
 - Feature file path: `tooling-and-scripts/progressive-validation-for-spec-documents.md`
 Related references:
 - [architecture-boundary-enforcement.md](../../feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md) — Architecture boundary enforcement
-- [dead-code-removal.md](../../feature-catalog/tooling-and-scripts/dead-code-removal.md) — Dead code removal

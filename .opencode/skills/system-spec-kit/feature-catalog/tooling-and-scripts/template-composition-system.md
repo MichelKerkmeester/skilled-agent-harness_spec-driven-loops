@@ -68,4 +68,3 @@ The shipped behavior currently works as follows:
 - Feature file path: `tooling-and-scripts/template-composition-system.md`
 Related references:
 - [setup-native-module-health-and-mcp-installation.md](../../feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md) — Setup, Native Module Health, and MCP Installation
-- [evaluation-benchmark-and-import-policy-tooling.md](../../feature-catalog/tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md) — Evaluation, benchmark, and import-policy tooling

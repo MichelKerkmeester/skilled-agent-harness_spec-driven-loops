@@ -34,8 +34,7 @@ For a handful of renames on the current branch, the standard
 ### Core Split
 
 The worktree does file/rename ops ONLY. The spec-kit toolchain (strict validate,
-generators, metadata regen) and the global memory/vector DBs both run on `main` AFTER
-merge — never inside the bare worktree. See
+generators, metadata regen) runs on `main` AFTER merge — never inside the bare worktree. See
 [worktree-workflows.md §8b](./worktree-workflows.md#8b-large-reorg-in-a-worktree---caveats)
 for the why behind each caveat.
 
@@ -47,22 +46,6 @@ parents, ~9000 renames) hit avoidable failure modes this runbook closes.
 ---
 
 ## 2. WORKFLOW
-
-### Step 0: Snapshot the gitignored DBs (BEFORE touching anything)
-
-`git revert` / `git reset` cannot restore gitignored files. The memory + vector DBs under
-`.opencode/skills/system-spec-kit/mcp-server/database/` are gitignored and are a SINGLE
-global instance — if a botched reindex corrupts them, git cannot roll them back.
-
-```bash
-ts=$(date +%Y%m%d-%H%M%S)
-db=.opencode/skills/system-spec-kit/mcp-server/database
-cp -a "$db" "${db}.bak-${ts}"
-echo "Snapshot: ${db}.bak-${ts}"
-```
-
-Keep the snapshot until the reorg is verified on `main`. Restore by swapping the dir back
-if reindex goes wrong.
 
 ### Step 1: Worktree from a clean HEAD
 
@@ -172,7 +155,6 @@ running it from the worktree records paths that do not yet exist.
 - [ ] `validate.sh --strict` on `main` exits 0/1 (NOT a worktree run).
 - [ ] Generators (4b) ran on `main`; spot-check that a moved folder resolves with the
       path-only ripgrep recipe (`retrieval-conventions.md` §2.2).
-- [ ] DB snapshot (step 0) can be deleted once the above all pass.
 - [ ] Worktree removed: `git worktree remove .worktrees/<NNN>-reorg && git branch -d worktrees/<NNN>-reorg`.
 
 ---
@@ -185,7 +167,6 @@ running it from the worktree records paths that do not yet exist.
 | Strict-validate "passes" but touched 0 files | Ran in bare worktree (no deps) or via symlinked deps | Run toolchain on `main` (4b) |
 | Metadata attests paths that do not exist | Generators ran from the worktree | Run the generators on `main` post-merge (4b, 4c) |
 | Renames show as add/delete, blame lost | Content edits mixed into rename commit | Separate rename + edit commits (step 2) |
-| Cannot roll back a corrupted DB | DBs are gitignored; `git revert` can't restore | Restore from step 0 snapshot |
 
 ---
 

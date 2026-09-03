@@ -159,7 +159,6 @@ node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.m
 | Recover after crash | `/speckit:resume` | session interrupted unexpectedly |
 | Check prior decisions | `/memory:search "query"` | starting a related task |
 | Upgrade documentation level | `upgrade-level.sh [folder] [level]` | scope grew beyond the original level |
-| Create always-surface rule | `/memory:learn` | team standards, workflow rules |
 | Validate before claiming done | `validate.sh [folder]` | before any completion claim |
 
 ---
@@ -282,148 +281,17 @@ Optional support documents such as `handover.md`, `debug-delegation.md`, `resear
 
 `create.sh` rejects `--path` values that traverse outside the repository with a clear error before any write. Set `SPECKIT_POST_VALIDATE=1` when a strict workflow should run full validation immediately after scaffolding. A mkdir-based advisory lock protects `description.json` and `graph-metadata.json` writes during canonical save so two parallel `/memory:save` calls for the same packet do not race.
 
-> **Retired engine.** Everything from here to the end of Section 4 describes the memory MCP
-> server, which packet 049 is decommissioning. It is kept as a record of what the system did, not
-> as instructions. Live retrieval is the trigger index plus the ripgrep recipes in
-> `references/retrieval/retrieval-conventions.md`, and none of the behavior below has a
-> file-based successor.
+The memory MCP server that used to sit here is gone. It held the search pipeline, query
+intelligence, the memory lifecycle, save scoring, the causal graph, index self-maintenance and
+the evaluation harness, and none of that came back in another form.
 
-### The Search Pipeline
-
-Every search runs through four stages:
-
-1. **Gather** collects candidates from the active channels in parallel. Constitutional memories always inject regardless of score.
-2. **Score** fuses channel results with Reciprocal Rank Fusion, then applies the post-fusion scoring signals in one authoritative pass. Those signals cover session boost, recency, causal boost, co-activation spreading, community co-retrieval, graph signals, the FSRS testing effect, intent weights, artifact routing, feedback and anchor and validation metadata enrichment. Intent weights apply here only for non-hybrid search, so hybrid results are never double-weighted.
-3. **Rerank** applies MMR diversity reranking without a model to reduce near-duplicate results, then collapses chunks back to parent memories.
-4. **Filter** enforces score immutability, applies state filtering, annotates results with confidence labels and truncates at the confidence gap.
-
-### Query Intelligence
-
-Before any search runs, the system figures out what kind of help you need:
-
-- **Complexity routing** sizes up the question and picks how many channels to use, 2 for simple, 4 for moderate and all 5 for complex questions
-- **Intent classification** maps the query to one of 7 task types, each with its own channel weight profile
-- **Query decomposition** splits multi-topic questions into focused sub-queries without an LLM call
-- **HyDE fallback** writes a hypothetical answer and searches for real documents matching it, surfacing content the original wording missed
-
-### Memory Lifecycle
-
-The store uses FSRS to track freshness, a decay model validated on millions of Anki flashcard users.
-
-| Tier | Description | Decay behavior |
-|---|---|---|
-| **Constitutional** | always-surface rules | never decays |
-| **Critical** | high-importance decisions | never decays or decays at 2x slower rate |
-| **Important** | significant patterns | 1.5x slower than normal |
-| **Normal** | standard session context | standard FSRS decay |
-| **Temporary** | quick scratch notes | fast decay |
-| **Deprecated** | superseded content | fastest decay |
-
-Decay speed is also controlled by content type. Decisions decay slower than general notes. Memories earn promotions through positive feedback: 5 thumbs-up promotes normal to important, 10 promotes to critical.
-
-Four cognitive states track access patterns: **HOT** for just-used memories, **WARM** for recently used, **COLD** and **DORMANT** for older content. Hot memories get full content in results. Warm ones appear as summaries. Cold and dormant content surfaces only if it still scores well enough.
-
-### Save Intelligence
-
-Every save runs an arbitration process before storing anything. Prediction Error gating compares the incoming content against existing records and picks one of four outcomes:
-
-| Outcome | When | What happens |
-|---|---|---|
-| **CREATE** | nothing similar exists | stored as new knowledge |
-| **REINFORCE** | similar exists and the new one adds value | both kept, existing gets a confidence boost |
-| **UPDATE** | similar exists and the new one is better | old version replaced in place |
-| **SUPERSEDE** | new knowledge contradicts the old | new version active, old one demoted |
-
-Quality gates run before storage:
-
-- a structure check for the required format and metadata
-- a semantic sufficiency check for enough real content to be useful
-- a duplicate detection pass
-
-Short decision-type memories can bypass the content-length gate when `SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS=true` and at least two structural signals are present, for example a title and a `specFolder` or an anchor.
-
-### The Causal Graph
-
-The system tracks how decisions relate to each other. Six relationship types connect memories: `caused`, `enabled`, `supersedes`, `contradicts`, `derived_from` and `supports`. Community detection with the Louvain algorithm clusters related memories automatically, so finding one surfaces its neighbors.
-
-Result envelopes carried an additive `trustBadges` payload. The badges read existing causal-edge columns at response time, so callers can judge whether a causal claim looks fresh and well-supported without changing storage.
-
-| Badge | Source |
-|---|---|
-| `confidence` | clamped from the strongest connected edge strength |
-| `extractionAge` | human-readable age from the newest connected `extracted_at` |
-| `lastAccessAge` | human-readable age from the newest connected `last_accessed` |
-| `orphan` | true when the result has no incoming causal edges |
-| `weightHistoryChanged` | true when any connected edge has a `weight_history` row |
-
-The formatter derives the badges from existing causal-edge tables, fails open when the database handle or `weight_history` table is unavailable and preserves any precomputed payload a caller supplied. Response profile shaping keeps the badge payload on `results[]` and `topResult`. Display only. Storage and schema stay unchanged. No new relation types and no new facts about code, process or tools are stored.
-
-### Index Health and Self-Maintenance
-
-The index scan was self-maintaining. Overlapping scan calls returned a `coalesced: true` success envelope instead of a rate-limit error. Rows become text-searchable immediately as `pending` while vectors drain, reported as `complete_with_pending_vectors` with a `pendingVectors` count, so content is always searchable even when the embedding queue is backed up. Move reconciliation heals renamed spec folders by packet identity without re-embedding. Each scan also runs a bounded global orphan sweep.
-
-The health surface reported an `index` block with a summary enum:
-
-| Summary value | Meaning |
-|---|---|
-| `healthy_fresh` | index is current and all vectors are resolved |
-| `healthy_lagging_vectors` | index is current but some vectors are still pending |
-| `stale_needs_scan` | index has not been scanned recently |
-| `degraded_needs_repair` | failed rows require an embedding reconcile pass |
-| `unavailable` | index state could not be read |
-
-The reconcile pass converged embedding status for stale rows and reset genuinely missing-vector retry rows inside one guarded transaction. It defaulted to a dry run and wrote nothing unless applied explicitly.
-
-After a checkpoint restore that swaps the live database files, the runtime writes a `.needs-rebuild` sentinel beside the restored database. The next boot detects it and rebuilds the derived FTS5 and BM25 shadow plus the vector profile before serving, so a restored snapshot never serves from a stale shadow. The sentinel clears once the rebuild completes.
-
-The SQLite index schema advanced eight migrations (v34 through v41). Each is additive and applied automatically at server boot:
-
-| Migration | Adds |
-|---|---|
-| **v34** | `memory_trigger_embeddings` table and status index for semantic trigger shadow matching |
-| **v35** | `memory_index.source_kind` with provenance backfill into human, agent, system, import or feedback |
-| **v36** | idempotency receipts, `delete_after`, `near_duplicate_of` and `last_dedup_checked_at` behind `SPECKIT_MEMORY_IDEMPOTENCY` |
-| **v37** | `deleted_at`, active recall index and purgeable retention index for soft-delete tombstones |
-| **v38** | bi-temporal validity windows preserving `valid_at` and `invalid_at` alongside the new columns |
-| **v39** | causal-edge closure-provenance marker |
-| **v40** | derived-identity provenance for generated causal edges with backfill |
-| **v41** | retention-forgetting partitions and the semantic-edge layer schema |
-
-### Hardening Defaults
-
-The memory-hardening surface is intentionally conservative. Semantic trigger scoring, feedback retention learning, session-trace causal inference, idempotency receipts, soft-delete tombstones and completion freshness all default OFF. When enabled, the first step is shadow, audit or advisory output so operators can compare behavior before changing live recall or retention.
-
-| Feature | Default | Operator-facing behavior |
-|---|---|---|
-| Semantic-trigger shadow | OFF | computes semantic trigger candidates while lexical triggers stay primary |
-| Idempotency and provenance | OFF for receipts | adds replay receipts and near-duplicate hints only when enabled |
-| Soft-delete tombstones | OFF | adds tombstone-aware delete and retention partitions behind `SPECKIT_SOFT_DELETE_TOMBSTONES` |
-| Retrieval observability | OFF | `SPECKIT_RESPONSE_TRACE=true` adds search trace payloads without changing the default response shape |
-| Feedback reducers | OFF | session-trace causal inference and feedback-aware retention run only behind explicit gates |
-| Completion freshness | OFF | strict validation compares stored continuity fingerprints with packet content |
-
-Stale-audit and tool-ownership lint run as live guardrails around this surface. Health checks report stale conditions. Pre-commit compares the generated tool-ownership map against live tool definitions so command ownership cannot drift silently.
-
-### Front-Proxy and Daemon Recycle
-
-The launcher fronts the backend daemon with a session proxy. The proxy keeps one stable client-facing stdio session while the backend behind it recycles in place, for example when the RSS-ceiling watchdog restarts the daemon or when a new build replaces the backend. Read-only replayable retrieval tools retried transparently across a recycle, so a routine restart looked like a brief pause.
-
-Three operator-visible error codes surface from this behavior:
-
-| Code | Retryable | Meaning |
-|---|---|---|
-| `E429` | legacy | the former index rate-limit class, replaced by the `coalesced: true` success envelope |
-| `-32001` | yes | `RETRYABLE_RECYCLE_ERROR`, the live launcher recycle signal, retry and reconnect |
-| `-32002` | no | `PROTOCOL_MISMATCH_ERROR`, a fail-closed protocol break, reconnect from scratch |
-
-### Evaluation Infrastructure
-
-The store includes built-in tools for measuring search quality:
-
-- **Ablation studies** turn off one search component at a time to measure its contribution
-- **12-metric computation** covers MRR, NDCG, MAP and nine other information retrieval metrics
-- **Synthetic ground truth** ships 110 test questions with known correct answers, keyed to live parent-memory IDs. Rerun `scripts/evals/map-ground-truth-ids.ts` after database rebuilds or imports before trusting ablation or reporting comparisons
-- **Reporting dashboard** shows performance trends across work periods and search channels
+Retrieval is now two lexical lanes over committed files. `lookup-trigger-index.mjs` matches a
+prompt against author-declared `trigger_phrases` through the generated index, and the ripgrep
+recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus.
+Continuity is written by `scripts/dist/memory/generate-context.js` into the packet itself and read
+back through the ladder `/speckit:resume` walks. Semantic paraphrase, ranking fusion, decay,
+access tracking, session dedup and graph traversal have no successor: a phrase nobody wrote is a
+clean no-hit.
 
 ---
 
@@ -463,8 +331,6 @@ Command source files: `.opencode/commands/speckit/`.
 |---|---|
 | `/memory:save` | update packet continuity surfaces through `generate-context.js`; no indexing hand-off |
 | `/memory:search` | retrieval over spec docs using the ripgrep recipes, scoped by track and packet |
-| `/memory:manage` | administers the indexed-continuity store, which packet 049 is removing |
-| `/memory:learn` | deprecated; the constitutional-memory layer was retired |
 
 The tool counts these commands used to carry were counts of memory MCP tools. They are gone, so the column is too.
 
@@ -497,12 +363,11 @@ The store converts text to numerical embeddings for vector search. Four provider
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | no | preferred database-directory override, filename derives from the active embedding profile |
 | `MEMORY_DB_PATH` | no | explicit file override for the active SQLite database path |
 | `LOG_LEVEL` | no | log verbosity: `debug`, `info`, `warn` or `error` |
-| `SPECKIT_LAUNCHER_RSS_SELF_EXIT` | no | set `1` to enable the launcher RSS-ceiling watchdog, default off |
-| `SPECKIT_BACKEND_ONLY` | no | backend-only stdio gate read at server boot, default off |
+| `SPECKIT_LAUNCHER_RSS_SELF_EXIT` | no | set `1` to enable the RSS-ceiling watchdog in the shared model-server supervisor, default off |
 
 The full environment variable reference, including evaluation and telemetry overrides plus the feature flag table, lives in `references/config/environment-variables.md`.
 
-OpenCode note: if the MCP server runs in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
+Note: in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
 
 ### MCP Server Configuration
 
@@ -572,15 +437,14 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 │   ├── extractors/             # Session data extractors (12 extractors)
 │   ├── utils/                  # Utility modules (20 utilities)
 │   └── dist/                   # Compiled JavaScript output
-├── mcp-server/                 # Spec Kit Memory MCP (TypeScript)
-│   ├── context-server.ts       # MCP server entry point and tool registration
-│   ├── handlers/               # Tool handlers, save pipeline, response assembly
-│   ├── lib/                    # Search pipeline, cognitive engine, graph, governance
-│   ├── matrix-runners/         # F1-F14 x CLI adapter manifest and runner
-│   ├── stress-test/            # Opt-in stress, load, matrix-cell, degraded-state suites
-│   ├── tests/                  # MCP test suite
-│   ├── INSTALL-GUIDE.md        # Full installation walkthrough
-│   └── README.md               # MCP server reference (tool API, pipeline, configuration)
+├── mcp-server/                 # Spec Kit engine (TypeScript), consumed as a library
+│   ├── api/                    # Public barrel imported by the scripts workspace
+│   ├── handlers/               # Spec-document discovery, save-path folder mutex
+│   ├── lib/                    # Validation, graph metadata, description, continuity
+│   ├── hooks/                  # Per-runtime hook adapters and the spec-gate core
+│   ├── stress-test/            # Opt-in load and contention suites
+│   ├── tests/                  # Engine test suite
+│   └── README.md               # Engine reference (API surface, build, validation)
 ├── shared/                     # Shared workspace (@spec-kit/shared)
 │   ├── algorithms/             # Fusion, reranking, lab algorithms
 │   ├── contracts/              # Typed trace/envelope contracts
@@ -599,8 +463,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 |---|---|
 | [`SKILL.md`](./SKILL.md) | AI agent instructions: routing rules, gates, validation procedures, template application |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `scripts/` and `mcp-server/` |
-| [`mcp-server/README.md`](./mcp-server/README.md) | full MCP architecture, 41-tool API reference, search pipeline and configuration |
-| [`mcp-server/INSTALL-GUIDE.md`](./mcp-server/INSTALL-GUIDE.md) | step-by-step installation with embedding providers and environment setup |
+| [`mcp-server/README.md`](./mcp-server/README.md) | engine architecture, the public API surface, build and validation commands |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh) | create spec folders with level-appropriate template files |
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh) | run the validation set from the 46-rule registry on any spec folder |
 | `scripts/dist/memory/generate-context.js` | update packet continuity state from structured JSON |
@@ -722,10 +585,6 @@ A: This README covers the whole skill: spec folders, documentation levels, comma
 
 A: SKILL.md contains instructions for AI agents: when to activate, routing rules, gate procedures and validation workflows. This README is for humans and AI alike: what the skill does, how to use it, where to find things and which commands drive it. SKILL.md is the employee handbook, this README is the product brochure.
 
-**Q: What is Constitutional Memory?**
-
-A: Constitutional memories are rules that always surface in every retrieval, regardless of recency or score. They carry a 3.0x scoring multiplier and never decay. Use `/memory:learn` to create them. Typical uses include team coding standards and mandatory workflow steps, plus known failure modes. They work like pinned messages in a chat, always visible no matter how far you scroll.
-
 **Q: How do I upgrade a Level 1 folder to Level 2 after the fact?**
 
 A: Run `upgrade-level.sh` with the target level. It renders and injects the additional Level contract sections into the existing folder. Then run `check-placeholders.sh` to find new placeholder values that need filling.
@@ -771,9 +630,6 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[proje
 | `backfill-frontmatter.ts` | add missing frontmatter to generated context artifacts |
 | `backfill-research-metadata.ts` | backfill missing metadata files under `research/*/iterations/` |
 | `rank-memories.ts` | rank memories by relevance for a query |
-| `reindex-embeddings.ts` | rebuild embedding vectors for stored records |
-| `cleanup-orphaned-vectors.ts` | remove vector entries with no matching record |
-| `rebuild-auto-entities.ts` | regenerate the auto-extracted entity catalog |
 | `validate-memory-quality.ts` | run quality checks on stored record content |
 | `ast-parser.ts` | parse markdown AST for section extraction |
 | `fix-memory-h1.mjs` | fix heading levels in older generated artifacts |
@@ -800,8 +656,7 @@ The manual testing playbook runs every scenario behind these checks.
 |---|---|
 | [`SKILL.md`](./SKILL.md) | AI agent instructions, routing, gates and validation |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md) | API boundary contract between `scripts/` and `mcp-server/` |
-| [`mcp-server/README.md`](./mcp-server/README.md) | full MCP architecture, 41-tool API reference, search pipeline and configuration |
-| [`mcp-server/INSTALL-GUIDE.md`](./mcp-server/INSTALL-GUIDE.md) | installation walkthrough with embedding providers and environment variables |
+| [`mcp-server/README.md`](./mcp-server/README.md) | engine architecture, the public API surface, build and validation commands |
 | [`references/memory/memory-system.md`](./references/memory/memory-system.md) | detailed memory system reference |
 | [`references/workflows/intake-contract.md`](./references/workflows/intake-contract.md) | shared spec-folder intake contract for plan, complete and resume re-entry |
 | [`references/workflows/rename-pattern.md`](./references/workflows/rename-pattern.md) | mechanical rename workflow and live-vs-historical surface discipline |

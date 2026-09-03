@@ -98,6 +98,3 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 - `/doctor:update` and `/doctor:mcp` are intentional colon-form survivors of the consolidation.
 - `route-validate.sh` exits 0 on a clean manifest and non-zero on any structural violation.
 
-Related references:
-- [startup-runtime-compatibility-guards.md](../../feature-catalog/maintenance/startup-runtime-compatibility-guards.md) — Startup runtime compatibility guards
-- [memory-retention-sweep.md](../../feature-catalog/maintenance/memory-retention-sweep.md) — Memory retention sweep

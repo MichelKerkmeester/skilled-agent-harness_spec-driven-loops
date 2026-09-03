@@ -31,7 +31,7 @@ The check lives in one module, `.opencode/skills/system-spec-kit/scripts/lib/dis
 
 ### Four Consumer Classes
 
-The module has four independent classes of caller, one of which fans out to three concrete CLI shims:
+The module has four independent classes of caller, one of which fans out to the surviving CLI shim:
 
 2. **`validate.sh`'s compiled-orchestrator backstop**: `resolve_orchestrator()` in `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` calls the module scoped to `system-spec-kit/mcp-server`'s `validation-orchestrator` entry before delegating a validation run to the compiled Node orchestrator. A stale result prints `ERROR: validate.sh compiled validation orchestrator is stale.` plus the rebuild command and exits **3** — a hard, fail-closed backstop with no auto-rebuild.
 3. **Claude Code PostToolUse hook**: `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` (a Python script despite the `.sh` extension) is wired into `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh`, which fires on every `Write`/`Edit`. It calls the module's `check-file` command against the edited file and, if the file falls under a watched source tree and that package is stale, prints a `STALE DIST WARNING: <package> -- run: <rebuild command>` banner. It always exits 0 — warn-only, never blocking the edit.
@@ -39,7 +39,7 @@ The module has four independent classes of caller, one of which fans out to thre
 
 ### Fail-Closed Vs Warn-Only Asymmetry
 
-The four consumer classes deliberately split into two response tiers. `validate.sh`'s backstop is the one hard, fail-closed consumer (exit 3, no fallback to the possibly-stale compiled orchestrator) because a stale validation orchestrator could silently grade a spec folder with outdated rules. The CLI shims are similarly fail-closed because they are the sole entrypoint to a daemon call and there is no safe degraded path; for `spec-memory.cjs`, stale-dist remains inside exit 75 as a documented non-retryable subcase to preserve prompt-time hook consumers that treat 75 as the daemon-unavailable retry contract. The hook and the plugin are deliberately warn-only (exit 0 / `console.warn`, never blocking) because they observe general editing activity across the whole repo, not a single validation gate — blocking every edit under a watched source tree on staleness would be far too disruptive for routine iterative development.
+The four consumer classes deliberately split into two response tiers. `validate.sh`'s backstop is the one hard, fail-closed consumer (exit 3, no fallback to the possibly-stale compiled orchestrator) because a stale validation orchestrator could silently grade a spec folder with outdated rules. The CLI shim is similarly fail-closed because it is the sole entrypoint to a daemon call and there is no safe degraded path. The hook and the plugin are deliberately warn-only (exit 0 / `console.warn`, never blocking) because they observe general editing activity across the whole repo, not a single validation gate — blocking every edit under a watched source tree on staleness would be far too disruptive for routine iterative development.
 
 None of the four consumer classes auto-rebuilds on detecting staleness. This was a deliberate design decision, not an oversight: a `validate.sh` call (or a hook firing on an edit) is frequently running concurrently with other active editing sessions writing into the same shared, gitignored `dist/` output. An automatic rebuild triggered by one session's freshness check risks compiling in another concurrent session's unrelated, uncommitted source changes into that shared dist artifact — contaminating one session's build with another's in-flight edits. This exact failure mode occurred once already in this repository's history, which is why every consumer fails closed or warns instead of rebuilding, and always asks the operator to run the rebuild command explicitly.
 
@@ -52,7 +52,6 @@ None of the four consumer classes auto-rebuilds on detecting staleness. This was
 | File | Layer | Role |
 |---|---|---|
 | `scripts/lib/dist-freshness.cjs` | Shared | `checkPackageFreshness()`, `checkFileFreshness()`, `checkAllFreshness()`, the `DIST_PACKAGES` registry, and the module's own CLI (`check`, `check-file`, `check-all`, `list`) |
-| `.opencode/bin/spec-memory.cjs` | Script | `ensureFreshDist` guard calling the shared module for the `spec-memory-cli` entry |
 | `.opencode/bin/skill-advisor.cjs` | Script | Same guard for the `skill-advisor-cli` entry |
 | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Script | `resolve_orchestrator()` hard backstop, exit 3 |
 | `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` | Handler | PostToolUse warn-only checker (Python, `.sh` extension) |
@@ -78,5 +77,4 @@ None of the four consumer classes auto-rebuilds on detecting staleness. This was
 > **Playbook:** [429](../../manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md), [455](../../manual-testing-playbook/tooling-and-scripts/validate-sh-dist-freshness-backstop.md)
 
 Related references:
-- [spec-memory-cli-daemon-backed-surface.md](../../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) — Daemon-backed spec-memory CLI surface that consumes this module's freshness guard
 - [source-dist-alignment-enforcement.md](../../feature-catalog/tooling-and-scripts/source-dist-alignment-enforcement.md) — Related but distinct concern: detects orphaned dist artifacts with no source, not source-newer-than-dist staleness

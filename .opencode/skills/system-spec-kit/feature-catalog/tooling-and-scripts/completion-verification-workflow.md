@@ -71,4 +71,3 @@ Exit behavior is intentionally narrow: `0` means completion is allowed, `1` mean
 - Feature file path: `tooling-and-scripts/completion-verification-workflow.md`
 Related references:
 - [template-compliance-contract-enforcement.md](../../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) — Template Compliance Contract Enforcement
-- [ops-self-healing-runbooks.md](../../feature-catalog/tooling-and-scripts/ops-self-healing-runbooks.md) — Ops Self-Healing Runbooks

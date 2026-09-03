@@ -41,7 +41,6 @@
         "manual-testing-playbook/owner-first-worktree-tooling/reaper-auto-reap-qualifying-wrapper.md",
         "manual-testing-playbook/owner-first-worktree-tooling/reaper-dry-run-no-mutation.md",
         "manual-testing-playbook/owner-first-worktree-tooling/reaper-keeps-non-qualifying-worktrees.md",
-        "manual-testing-playbook/owner-first-worktree-tooling/reaper-orphan-daemon-report-only.md",
         "manual-testing-playbook/owner-first-worktree-tooling/runtime-identity-validation.md",
         "manual-testing-playbook/owner-first-worktree-tooling/session-activity-marker.md",
         "manual-testing-playbook/owner-first-worktree-tooling/shared-artifact-symlink-containment.md",

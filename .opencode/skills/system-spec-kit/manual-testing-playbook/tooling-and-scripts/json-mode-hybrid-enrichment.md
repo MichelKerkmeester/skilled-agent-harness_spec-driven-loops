@@ -454,37 +454,6 @@ Check filterTriggerPhrases in workflow.ts
 ### Prompt
 
 ```
-Validate Embedding retry stats visible in memory_health against the documented validation surface and report cited pass/fail evidence.
-```
-
-### Commands
-
-1. Call memory_health MCP tool
-2. Inspect response for embeddingRetry block
-3. Verify all 6 fields present
-
-### Expected
-
-embeddingRetry block present with all fields
-
-### Evidence
-
-memory_health MCP response
-
-### Pass / Fail
-
-- **Pass**: embeddingRetry block present with all fields
-- **Fail**: missing or incomplete
-
-### Failure Triage
-
-Check retry-manager.ts getEmbeddingRetryStats() and memory-crud-health.ts handler
-
----
-
-### Prompt
-
-```
 Validate Default-on pre-save overlap warning uses exact content match against SPECKIT_PRE_SAVE_DEDUP and report cited pass/fail evidence.
 ```
 

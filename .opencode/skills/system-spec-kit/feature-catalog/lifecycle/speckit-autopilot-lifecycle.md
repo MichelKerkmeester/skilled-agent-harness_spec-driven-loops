@@ -70,5 +70,3 @@ When planning in autopilot mode, executable `tasks.md` rows must include `agent`
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `lifecycle/speckit-autopilot-lifecycle.md`
 
-Related references:
-- [async-ingestion-job-lifecycle.md](../../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md) - lifecycle-state precedent in the same category

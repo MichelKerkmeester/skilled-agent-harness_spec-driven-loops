@@ -1,5 +1,5 @@
 {
-  "description": "Deliberate survivors of the memory-surface residue sweep. Every row exempts a path prefix (plain startsWith) or a glob from the live count and must say why in plain words. Exemptions win over the structural historical rule, so an explicit row stays visible as an explicit row. The rule for adding one: exempt a file that is itself deleted or is pure narrative, never a file that survives the decommission \u2014 hiding a whole live config to silence one registration line would let real residue in behind it.",
+  "description": "Deliberate survivors of the memory-surface residue sweep. Every row exempts a path prefix (plain startsWith) or a glob from the live count and must say why in plain words. Exemptions win over the structural historical rule, so an explicit row stays visible as an explicit row. The rule for adding one: exempt a file that is itself deleted or is pure narrative, never a file that survives the decommission — hiding a whole live config to silence one registration line would let real residue in behind it.",
   "entries": [
     {
       "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/retrieval/sweep-memory-residue.mjs",
@@ -12,22 +12,6 @@
     {
       "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/sweep-memory-residue.vitest.ts",
       "reason": "The sweep's own tests. Their fixtures have to contain the terms to prove the classifier works."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/bin/spec-memory.cjs",
-      "reason": "Memory-server CLI shim, deleted whole once every consumer is rewired. Temporary: drop this row when the file goes."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/bin/system-spec-memory-launcher.cjs",
-      "reason": "Memory-server launcher, deleted whole once every consumer is rewired. Temporary: drop this row when the file goes."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/plugins/system-spec-memory.js",
-      "reason": "Memory-server plugin bridge, deleted whole once every consumer is rewired. Temporary: drop this row when the file goes."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/hooks/spec-memory/",
-      "reason": "Memory-server hook adapters, deleted whole once every consumer is rewired. Temporary: drop this row when the directory goes."
     },
     {
       "pathPrefixOrGlob": "specs/system-speckit/049-memory-decommission/",
@@ -86,118 +70,6 @@
       "reason": "Recorded research or run evidence under a spec packet's context directory is a historical artifact of the retired surface, never a live instruction; rewriting it would falsify the record."
     },
     {
-      "pathPrefixOrGlob": "opencode.json",
-      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
-    },
-    {
-      "pathPrefixOrGlob": ".claude/mcp.json",
-      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
-    },
-    {
-      "pathPrefixOrGlob": ".codex/config.toml",
-      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
-    },
-    {
-      "pathPrefixOrGlob": ".cursor/mcp.json",
-      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
-    },
-    {
-      "pathPrefixOrGlob": ".pi/mcp.json",
-      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
-    },
-    {
-      "pathPrefixOrGlob": ".pi/SYNC.md",
-      "reason": "Inventory row naming the runtime registration that the removal phase deletes; drop with it."
-    },
-    {
-      "pathPrefixOrGlob": ".pi/README.md",
-      "reason": "Names the runtime registration that the removal phase deletes; drop with it."
-    },
-    {
-      "pathPrefixOrGlob": ".env.example",
-      "reason": "Memory-only rows are marked for removal and stay until the removal phase deletes them; the shared rows survive under their new owners."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/bin/",
-      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/hooks/",
-      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/plugins/",
-      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/scripts/orphan-mcp-sweeper.sh",
-      "reason": "Process cleanup seam; the memory daemon branch is removed in the removal phase."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/scripts/session-cleanup.sh",
-      "reason": "Process cleanup seam; the memory daemon branch is removed in the removal phase."
-    },
-    {
-      "pathPrefixOrGlob": ".github/hooks/",
-      "reason": "Deleted whole or rewired in the removal phase, which deregisters the server; drop this row when that phase lands."
-    },
-    {
-      "pathPrefixOrGlob": "README.md",
-      "reason": "Root README architecture box, launcher help and registration snippet describe the server that stays running until the removal phase; rewritten there."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/feature-catalog/",
-      "reason": "Catalog entries of the memory engine are removed in the removal phase and the surviving entries are rewired there."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/manual-testing-playbook/",
-      "reason": "Playbook scenarios of the memory engine are removed in the removal phase and the surviving scenarios are rewired there."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/manual-playbook-runner.",
-      "reason": "Runs the memory-engine playbook scenarios; goes with the playbook in the removal phase."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.",
-      "reason": "Fixture for the playbook runner; goes with it in the removal phase."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/warm-start-bundle-benchmark.vitest.ts.test.ts",
-      "reason": "Memory-engine benchmark test; removed with the engine."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/session-cached-consumer.vitest.ts.test.ts",
-      "reason": "Memory-engine session test; removed with the engine."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts",
-      "reason": "Memory daemon process harness test; removed with the engine."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
-      "reason": "Memory daemon process harness; removed with the engine."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
-      "reason": "Process cleanup seam; the memory daemon branch is removed in the removal phase."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/deploy-mcp.sh",
-      "reason": "Deploy seam; the memory server branch is removed in the removal phase."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/setup/install.sh",
-      "reason": "Install producer; the memory server steps are removed in the removal phase."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/memory/reindex-embeddings.ts",
-      "reason": "Memory-only CLI; removed with the engine."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/README.md",
-      "reason": "Documents the memory-only CLIs until the removal phase deletes them."
-    },
-    {
       "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
       "reason": "False positive: memory_save is the classifier category for prompts that say save context or /memory:save, not a tool call."
     },
@@ -214,44 +86,8 @@
       "reason": "Fixture text; historical narrative inside a test fixture."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts",
-      "reason": "Documentation string citing a source location inside the engine tree; goes with the engine."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/import-policy-rules.vitest.ts",
-      "reason": "Import policy fixtures naming engine modules as prohibited targets; retargeted when the engine goes."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts",
-      "reason": "Imports the graph refresh through the engine's indexing barrel; retargeted to the top-level API when the engine goes."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-refresh.vitest.ts",
-      "reason": "Imports the graph refresh through the engine's indexing barrel; retargeted to the top-level API when the engine goes."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/shared/embeddings/",
-      "reason": "Shared embedding adapters carry comments naming the memory server as a former consumer; the removal phase rewrites them."
-    },
-    {
       "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
       "reason": "Lives in the engine tree; excluded with it."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/",
-      "reason": "Preserve set: advisor runtime, tests and soak scripts that mention the memory server as the former third daemon; a code-lane pass with a build and test gate in the removal phase reduces them to two-daemon checks."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/sk-doc/sk-create-feature-catalog/references/examples.md",
-      "reason": "Annotated walkthrough of the spec-kit feature catalog; rehomed when the removal phase reshapes that catalog."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/sk-doc/sk-create-benchmark/references/shared/",
-      "reason": "Dated embedder bake-off case study; rehomed or narrated when the removal phase deletes its benchmark folder."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      "reason": "The learn and manage command rows describe database administration that the removal phase deletes."
     },
     {
       "pathPrefixOrGlob": ".opencode/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md",
@@ -274,36 +110,8 @@
       "reason": "Dated benchmark run evidence; rewriting it falsifies the record."
     },
     {
-      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
-      "reason": "Names the retired tools it replaces so a reader can map each one to its recipe."
-    },
-    {
       "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/scripts/tests/workflow-step115-daemon-guard.vitest.ts",
       "reason": "Negative guard asserting the retired index scan and daemon probe never return to the save path."
-    },
-    {
-      "pathPrefixOrGlob": ".gitignore",
-      "reason": "Ignores the memory database files until the removal phase deletes those rows."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/commands/doctor/assets/doctor-mcp-install.yaml",
-      "reason": "Server roster row for install and repair of the baseline server that keeps running during the rewire; the removal phase deregisters it and drops this row."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/commands/doctor/assets/doctor-mcp-debug.yaml",
-      "reason": "Server roster row for install and repair of the baseline server that keeps running during the rewire; the removal phase deregisters it and drops this row."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/commands/doctor/assets/doctor-mcp-presentation.txt",
-      "reason": "Server roster row for install and repair of the baseline server that keeps running during the rewire; the removal phase deregisters it and drops this row."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
-      "reason": "Server roster row for install and repair of the baseline server that keeps running during the rewire; the removal phase deregisters it and drops this row."
-    },
-    {
-      "pathPrefixOrGlob": ".opencode/install-guides/MCP - Spec Kit Memory.md",
-      "reason": "Install guide for the server itself; deleted in the removal phase, and its README row already marks it retired."
     },
     {
       "pathPrefixOrGlob": "specs/",
@@ -314,8 +122,56 @@
       "reason": "The daemon-off proof probes for the retired server process by name so it can record that none is running."
     },
     {
-      "pathPrefixOrGlob": ".pi/extensions/README.md",
-      "reason": "Describes the pi extension's CLI fallback to the retired shim, which the removal phase deletes along with the shim; the row is rewritten there."
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "reason": "Its retired-tool to successor mapping table names the tools it maps, so a reader can find the replacement."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "Its retired-tool to successor mapping table names the tools it maps, so a reader can find the replacement."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      "reason": "Names the retired tools it replaces so a reader can map each one to its recipe."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/plugins/tests/opencode-goal-tool-path.test.cjs",
+      "reason": "Negative assertion that the retired server name is forbidden as a goal tool path."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md",
+      "reason": "Two historical lines explaining why a scenario step changed."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/scorer-eval-baseline.json",
+      "reason": "Captured scorer baseline; dated evidence that is never rewritten."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-validate.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the labeled-corpus bucket and its accuracy slice are named after the prompts they group, not after a tool call."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the accuracy-bucket key is part of the validate output schema and renaming it would break the captured baseline."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-validate.vitest.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the test reads the accuracy-bucket key its handler emits."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the ratchet compares the accuracy-bucket key recorded in the captured baseline."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs",
+      "reason": "Routing vocabulary for the surviving /memory:save command: the capture script writes the accuracy-bucket key the baseline records."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/mcp-server/lib/scorer/fusion.ts",
+      "reason": "Routing vocabulary for the surviving /memory:save command: a prompt keyword the scorer matches on, not a tool call."
+    },
+    {
+      "pathPrefixOrGlob": ".opencode/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/doc-frontmatter-harvest.md",
+      "reason": "Dated evidence: a recorded transcript of a step as originally run against the retired memory MCP, labelled as such in the document."
     }
   ]
 }

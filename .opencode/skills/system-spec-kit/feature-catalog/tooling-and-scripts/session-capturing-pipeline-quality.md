@@ -97,7 +97,7 @@ Status: Implemented and strongly verified for the shared runtime contract. The a
 | `scripts/types/session-types.ts` | Structured JSON contract types for fields such as `toolCalls` and `exchanges` |
 | `scripts/utils/workspace-identity.ts` | Canonical `.opencode` workspace identity and path equivalence |
 | `scripts/utils/spec-affinity.ts` | Shared target-spec anchor evaluation for alignment and normalization |
-| `shared/parsing/memory-sufficiency.ts` | Shared semantic sufficiency evaluator used by `generate-context.js` and `memory_save` |
+| `shared/parsing/memory-sufficiency.ts` | Shared semantic sufficiency evaluator; `generate-context.js` is now its only caller |
 | `shared/parsing/memory-template-contract.ts` | Shared rendered-memory structural contract validator |
 | `scripts/utils/input-normalizer.ts` | `DataSource` typing, snake_case JSON compatibility, and tool-evidence shaping |
 | `scripts/extractors/collect-session-data.ts` | Template-field assembly, completion-status recovery, and structured summary preservation |
@@ -245,13 +245,9 @@ The closure feature consists of these distinct shipped behaviors:
 
 - Treat the commands in this section as the canonical reproducible baseline and capture fresh output each time; do not reuse historical test counts as evidence.
 - The current supported scripts baseline for this feature is: `npm run check`, `npm run build`, the targeted Vitest lanes above, and `npm run test:legacy` after build.
-- The current supported MCP baseline for this feature is the targeted `memory_save` quality lanes plus the package-level `npm run check`.
 - Source/dist alignment should report zero violations for both `mcp-server/dist/lib` and `scripts/dist`.
 - Live-proof claims require fresh per-save-mode artifacts generated during the same verification run. No retained `research/` artifact is currently treated as canonical by this catalog.
 
-Related references:
-- [feature-catalog-code-references.md](../../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md) — Feature catalog code references
-- [constitutional-memory-manager-command.md](../../feature-catalog/tooling-and-scripts/constitutional-memory-manager-command.md) — Constitutional memory manager command
 
 ---
 
@@ -259,14 +255,12 @@ Related references:
 
 Manual coverage lives in `M-007` and is expected to explicitly cover:
 
-1. Rich JSON-mode save success and indexing.
+1. Rich JSON-mode continuity-write success.
 2. Thin JSON insufficiency detection and lower score behavior, including the documented snake_case JSON contract plus shipped structured-summary fields such as `toolCalls` and `exchanges`.
 3. Git/spec-folder enrichment output.
 4. Rendered-memory anchor preservation and frontmatter trigger-phrase quality.
-5. Cross-reference to `133` for MCP `memory_save` dry-run and insufficiency verification.
-6. Cross-reference to `149` for rendered-memory contract and active-corpus remediation verification.
-7. V10-only saves that continue with `QUALITY_GATE_WARN`.
-8. V8/V9 contamination that aborts with `QUALITY_GATE_ABORT`.
+5. V10-only saves that continue with `QUALITY_GATE_WARN`.
+6. V8/V9 contamination that aborts with `QUALITY_GATE_ABORT`.
 9. `generate-context.js --stdin` with structured JSON, explicit CLI target precedence, and preserved `toolCalls` / `exchanges`.
 10. `generate-context.js --json <string>` with payload-target fallback when no explicit CLI override exists and file-backed JSON authority preserved.
 11. Claude `tool title with path` downgrade proof, paired with the unchanged non-Claude capped path.

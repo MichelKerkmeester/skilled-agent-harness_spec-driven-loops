@@ -108,5 +108,4 @@ The implementation branch therefore contains the resolver, guards, migration pri
 - Feature file path: `tooling-and-scripts/canonical-first-spec-root-resolution.md`
 
 Related references:
-- [migration-checkpoint-scripts.md](../../feature-catalog/tooling-and-scripts/migration-checkpoint-scripts.md) — Migration rollback tooling and checkpoint discipline
 - [dist-freshness-enforcement.md](../../feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md) — Source/dist freshness enforcement for runtime rollout bundles

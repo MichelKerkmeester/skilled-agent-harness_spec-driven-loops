@@ -67,4 +67,3 @@ The two workflow YAMLs that drive the offer flow are `speckit-implement-auto.yam
 - Feature file path: `tooling-and-scripts/debug-delegation-scaffold-generator.md`
 Related references:
 - [spec-folder-literal-naming-ai-derived-slugs.md](../../feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md) — Spec folder literal naming: AI-derived slugs
-- [mcp-daemon-rebuild-restart-live-probe.md](../../feature-catalog/tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md) — MCP daemon rebuild, restart, and live-probe protocol

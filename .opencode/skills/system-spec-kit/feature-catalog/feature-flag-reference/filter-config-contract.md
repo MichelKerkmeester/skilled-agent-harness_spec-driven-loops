@@ -62,4 +62,3 @@ The live contract is therefore both file-driven and code-guarded: `filters.jsonc
 <!-- Wave 2 verification note: this file already documents every boolean toggle exposed in config/filters.jsonc: pipeline.enabled, noise.enabled, dedupe.enabled, and quality.enabled. No extra toggle matrix was needed. -->
 Related references:
 - [runtime-config-contract.md](../../feature-catalog/feature-flag-reference/runtime-config-contract.md) — Runtime Config Contract
-- [memory-roadmap-capability-flags.md](../../feature-catalog/feature-flag-reference/memory-roadmap-capability-flags.md) — Memory roadmap flags (SPECKIT_MEMORY_*)

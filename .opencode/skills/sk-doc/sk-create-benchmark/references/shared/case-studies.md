@@ -1,6 +1,6 @@
 ---
 title: Benchmark Adoption Case Studies
-description: Two real skill-local benchmark adoptions - the promoted system-spec-memory text-embedder bake-off and the archived experimental coco-index code-embedder bake-off - and the lessons each teaches about when and how to promote.
+description: Two real skill-local benchmark adoptions - a promoted text-embedder bake-off and an archived experimental coco-index code-embedder bake-off - and the lessons each teaches about when and how to promote.
 trigger_phrases:
   - "benchmark case study"
   - "text embedder bake-off"
@@ -20,19 +20,19 @@ Two adoptions teach the format from opposite ends: one promoted into a live skil
 
 ## 1. OVERVIEW
 
-Each case study records what triggered the adoption decision, the load-bearing insight the folder had to surface, and the lesson for the next author. Case study 1 is a clean promotion backed by many ADRs; case study 2 is a correctly-formatted run that was deliberately never promoted because its headline was a single-run signal.
+Each case study records what triggered the adoption decision, the load-bearing insight the folder had to surface, and the lesson for the next author. Case study 1 is a clean promotion backed by many ADRs; case study 2 is a correctly-formatted run that was deliberately never promoted because its headline was a single-run signal. Neither folder is on disk any more, so both read as narrative. The lesson outlives the artifact, which is itself worth noticing when you decide what to write down.
 
 ---
 
-## 2. CASE STUDY 1: TEXT-EMBEDDER BAKE-OFF (system-spec-memory, May 17, 2026)
+## 2. CASE STUDY 1: TEXT-EMBEDDER BAKE-OFF (May 17, 2026)
 
-Path: `.opencode/skills/system-spec-kit/mcp-server/benchmarks/2026-05-17--run--unspecified/`
+The folder lived in the memory MCP server's skill tree and went with that server when it was decommissioned. What follows is the narrative, not a link.
 
 The bake-off compared six text embedders against a deterministic paraphrase-recall fixture. Twelve ADRs landed in a single day across rollbacks, fixture surgery and a retrieval-rescue pivot. The spec packet ended with the winning embedder plus retrieval-rescue layer as the production default.
 
-**What triggered adoption**: production ran on a different embedder than the schema fallback, and the rescue layer was default-on. Every future operator inside the MCP code would need to know which embedder was active, why and what fixture closed the gate. Promoting a curated entry point gave the next operator a sub-minute orientation.
+**What triggered adoption**: production ran on a different embedder than the schema fallback, and the rescue layer was default-on. Every future operator inside that MCP code would need to know which embedder was active, why and what fixture closed the gate. Promoting a curated entry point gave the next operator a sub-minute orientation.
 
-**The load-bearing insight was not the headline winner.** The most valuable finding was that the retrieval-rescue layer contributed more lift to recall than any embedder swap measured in the bake-off. Pre-rescue, no candidate reached the PASS gate. Post-rescue, scores climbed by three to six points depending on the candidate. Future embedder swaps must measure with the rescue layer on against that baseline. That guidance is one click away from anyone in the MCP code instead of buried in ADR-010 of a spec packet they would have to know existed.
+**The load-bearing insight was not the headline winner.** The most valuable finding was that the retrieval-rescue layer contributed more lift to recall than any embedder swap measured in the bake-off. Pre-rescue, no candidate reached the PASS gate. Post-rescue, scores climbed by three to six points depending on the candidate. Future embedder swaps must measure with the rescue layer on against that baseline. Putting that at the top of a skill-local folder kept it one click from anyone in the code, instead of buried in ADR-010 of a spec packet they would have to know existed.
 
 **Lesson**: A benchmark folder pays off most when the spec packet has many ADRs supporting one curated headline. Promote a `runtime-measurements.md` companion only when the runtime profile is part of the decision (RAM headroom, daemon residency, cold-load time).
 

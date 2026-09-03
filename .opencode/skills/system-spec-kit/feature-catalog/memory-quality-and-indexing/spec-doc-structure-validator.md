@@ -59,6 +59,3 @@ The validator is wired into the save pipeline and the dedicated regression suite
 - Group: Memory Quality And Indexing
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `memory-quality-and-indexing/spec-doc-structure-validator.md`
-Related references:
-- [indexing-runtime-bootstrap-api.md](../../feature-catalog/memory-quality-and-indexing/indexing-runtime-bootstrap-api.md) — Indexing runtime bootstrap API
-- [canonical-continuity-save-substrate.md](../../feature-catalog/memory-quality-and-indexing/canonical-continuity-save-substrate.md) — Canonical continuity save substrate

@@ -70,5 +70,4 @@ Taken together, these files are the reusable infrastructure beneath the higher-l
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `tooling-and-scripts/core-workflow-infrastructure.md`
 Related references:
-- [memory-maintenance-and-migration-clis.md](../../feature-catalog/tooling-and-scripts/memory-maintenance-and-migration-clis.md) — Memory Maintenance and Migration CLIs
 - [session-extraction-and-enrichment.md](../../feature-catalog/tooling-and-scripts/session-extraction-and-enrichment.md) — Session Extraction and Enrichment

@@ -147,7 +147,7 @@ Run the host-safe offline smoke check to verify the shim without daemon contact:
 node .opencode/bin/cli-offline-smoke.cjs --format json
 ```
 
-The check is the executable parity check for the live manifests, not a separate tool inventory. It still enumerates the retired spec-memory shim alongside `skill-advisor=9`; that entry is removed with the server itself, not from this page.
+The check is the executable parity check for the live manifests, not a separate tool inventory.
 
 ---
 

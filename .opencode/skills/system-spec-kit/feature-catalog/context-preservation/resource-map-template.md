@@ -49,5 +49,3 @@ Generated packet `resource-map.md` output plus the discovery and classification 
 - Group: Context Preservation And Code Graph
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `context-preservation/resource-map-template.md`
-Related references:
-- [tool-routing-enforcement.md](../../feature-catalog/context-preservation/tool-routing-enforcement.md) — Tool routing enforcement

@@ -53,5 +53,4 @@ The script is deliberately narrow: it is not a full regenerate-everything pass l
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `tooling-and-scripts/research-metadata-backfill.md`
 Related references:
-- [memory-quality-kpi-reporting.md](../../feature-catalog/tooling-and-scripts/memory-quality-kpi-reporting.md) — Memory Quality KPI Reporting
 - [strict-validation-addons-continuity-freshness-and-evidence-markers.md](../../feature-catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) — Strict validation add-ons: continuity freshness and evidence markers

@@ -32,7 +32,7 @@ AI coding assistants have amnesia. Every session starts from zero. You explain y
 The framework adds three layers on top of the base platform:
 
 1. **Structured documentation** (Spec Kit) - every file change gets a spec folder recording what changed, why and how. Like a lab notebook for software.
-2. **Cognitive memory** (MCP server) - a local-first memory engine storing decisions, context and project history in a searchable database. Like a personal librarian who remembers every conversation.
+2. **Packet continuity** (files) - session context written into the spec folder it belongs to, then found again through a committed trigger index and ripgrep recipes over the same files.
 3. **Coordinated agents and skills** - 12 specialized agents routed by a gate system that loads the right skills at the right time.
 
 ### How It All Connects
@@ -64,16 +64,14 @@ The framework adds three layers on top of the base platform:
                  ▼                           ▼
          ┌──────────────────────────────────────────┐
          │          NATIVE MCP TOPOLOGY             │
-         │  5 native servers - each one a separate  │
+         │  2 native servers - each one a separate  │
          │  process and MCP boundary                │
          │                                          │
-         │  system-spec-memory      context + memory    │
          │  system_skill_advisor     skill routing      │
          │  code_mode            external tools     │
-         │  sequential_thinking  reasoning helper   │
          │                                          │
-         │  Shared contract: hybrid retrieval +     │
-         │  startup payload via runtime hooks       │
+         │  Shared contract: startup payload via    │
+         │  runtime hooks                           │
          └──────────────────────┬───────────────────┘
                                 │
                                 ▼
@@ -81,7 +79,7 @@ The framework adds three layers on top of the base platform:
          │     SPEC KIT (documentation framework)   │
          │  specs/###-feature/ - scratch/           │
          │  4 levels - template set - 38 rules      │
-         │  nomic-v1.5 (Ollama) │ HF Local │ Voyage │
+         │  trigger index │ ripgrep retrieval       │
          └──────────────────────────────────────────┘
 ```
 
@@ -103,33 +101,17 @@ npm install
 
 # 3. Boot the native MCP servers via their committed launchers
 # Each launcher is a self-contained .cjs that vendors its own deps on first run.
-node .opencode/bin/system-spec-memory-launcher.cjs --help
 node .opencode/bin/system-skill-advisor-launcher.cjs --help
 ```
 
-### Set Up Embedding Provider
+### Set Up Embeddings
 
-Choose an embedding provider:
-
-```bash
-# Default when no cloud keys are set: nomic-embed-text-v1.5 (768 dim)
-# served by a local Ollama HTTP endpoint. Pull the model once:
-#   ollama pull nomic-embed-text:v1.5
-# Option A: Voyage AI (cloud, requires API key, opt-in only)
-export VOYAGE_API_KEY="your-key-here"
-
-# Option B: OpenAI embeddings (cloud, requires API key)
-export OPENAI_API_KEY="your-key-here"
-
-# Option C: HuggingFace Local (free, CPU/ONNX fallback when Ollama is unavailable)
-# Auto-detected when the Ollama probe fails and no cloud keys are set
-```
+Retrieval is lexical and needs no embedder. The one surviving embedding stack belongs to the skill advisor, which manages its own model server. Check it with `/doctor embeddings`.
 
 ### Verify Installation
 
 ```bash
-# Confirm the launcher binaries respond
-node .opencode/bin/system-spec-memory-launcher.cjs --help
+# Confirm the launcher binary responds
 node .opencode/bin/system-skill-advisor-launcher.cjs --help
 
 # Confirm the active runtime's MCP config references the launchers
@@ -144,7 +126,7 @@ Open OpenCode in your project directory. The framework is active. Try:
 /speckit:complete Build a user authentication system
 ```
 
-This creates a spec folder, runs research, builds a plan and begins implementation - all with memory saved automatically. When you come back tomorrow, the memory engine remembers everything.
+This creates a spec folder, runs research, builds a plan and begins implementation, and writes the session context into the packet as it goes. When you come back tomorrow, `/speckit:resume` reads it back.
 
 ### Adapting to Your Stack
 
@@ -315,189 +297,13 @@ For the full spec folder workflow, Level contract template architecture, gate de
 
 ---
 
-### 🧠 Memory Engine
+### 🧠 Continuity and Retrieval
 
 Continuity and retrieval are packet-local and file-based. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/speckit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.opencode/skills/system-spec-kit/data/trigger-index.json`, and free-text retrieval uses the ripgrep recipes in [retrieval-conventions.md](.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md). Both read committed files, so neither needs a running daemon. Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 `/memory:save` refreshes packet metadata on every invocation through the continuity writer `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`. Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup. Copilot and Claude share the same compact-cache provenance path.
 
-Expired ephemeral rows are cleaned by a retention sweep on startup and hourly by default. Use `memory_retention_sweep` for manual or dry-run cleanup. The handler is defined at [memory-retention-sweep.ts](.opencode/skills/system-spec-kit/mcp-server/handlers/memory-retention-sweep.ts), with `SPECKIT_RETENTION_SWEEP` and `SPECKIT_RETENTION_SWEEP_INTERVAL_MS` controlling the background interval.
-
-The full MCP API reference is in the [MCP Server README](.opencode/skills/system-spec-kit/mcp-server/README.md).
-
-&nbsp;
-#### Layered MCP Surface
-
-The `system-spec-memory` tools are organized into a layered architecture. Skill-advisor tools moved to a standalone MCP server, so this table covers memory-owned tools only:
-
-| Layer  | Name            | Tools  | Token Budget | Purpose                                                                      |
-| ------ | --------------- | ------ | ------------ | ---------------------------------------------------------------------------- |
-| **L1** | Orchestration   | 3      | 2,000        | Unified context, resume and bootstrap entry points                           |
-| **L2** | Core            | 3      | 1,500        | Search, trigger matching, save                                               |
-| **L3** | Discovery       | 4      | 800          | List, stats, health checks and session readiness                             |
-| **L4** | Mutation        | 6      | 500          | Delete, update, validate, bulk cleanup, retention sweep, embedding reconcile |
-| **L5** | Lifecycle       | 4      | 600          | Checkpoints and lifecycle state                                              |
-| **L6** | Analysis        | 7      | 1,200        | Causal graph (link/unlink/stats/drift_why), quick search, evaluations and dashboards |
-| **L7** | Maintenance     | 7      | 1,000        | Memory index scans (run/status/cancel), async ingest and learning history    |
-| **L8** | Embedder        | 3      | 400          | Embedder list, set and status                                                |
-| **L9** | Task            | 2      | 300          | Task preflight and postflight                                                |
-|        | **Total**       | **41** | **~8,300**   |                                                                              |
-
-Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 41 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
-
-&nbsp;
-#### Hybrid Search
-
-Every search checks five core channels at once:
-
-- **Vector** - Semantic similarity via embeddings. Finds related content when words differ.
-- **FTS5** - Full-text search on exact words and phrases.
-- **BM25** - Keyword relevance scoring.
-- **Causal Graph** - Follows cause-and-effect links between memories.
-- **Degree** - Scores by graph connectivity, weighted by edge type.
-
-**Reciprocal Rank Fusion (RRF)** combines results across channels so memories scoring well in multiple channels rise to the top. A **3-tier FTS fallback** activates when those channels miss: FTS5 full-text, BM25 keyword scoring, then Grep/Glob filesystem search. The system truncates weak results and ensures every active channel is represented.
-
-&nbsp;
-#### Search Pipeline
-
-Every search passes through 4 stages:
-
-- **Candidate generation** - Parallel retrieval from the active channels.
-- **Fusion** - RRF-based scoring with post-fusion signals such as co-activation, FSRS decay, interference control, intent weights and graph/session boosts when enabled.
-- **Rerank** - MMR diversity reranking (algorithmic, gated by `SPECKIT_MMR`) with MPAB chunk reassembly.
-- **Filtering** - State/quality filtering, confidence annotation, token-budget enforcement and final response shaping without mutating post-rerank scores.
-
-&nbsp;
-#### Query Intelligence
-
-- **Complexity routing** - Simple (2 channels), moderate (4), complex (all 5)
-- **Intent classification** - 7 public types (`add_feature`, `fix_bug`, `refactor`, `security_audit`, `understand`, `find_spec`, `find_decision`) plus an internal continuity profile for resume-oriented retrieval (`semantic 0.52`, `keyword 0.18`, `recency 0.07`, `graph 0.23`. Stage 3 MMR lambda `0.65`)
-- **Query decomposition** - Multi-topic queries split into sub-queries, expanded with related terms
-- **Context pressure** - Downgrades search mode at 60% and 80% window usage
-- **Fallback strategies** - LLM reformulation or HyDE for low-confidence searches
-
-Four response modes: **quick** (top answer only), **focused** (one-topic), **deep** (full evidence trails), **resume** (state summary + next-steps).
-
-&nbsp;
-#### Memory Lifecycle
-
-Memories fade using **FSRS** (Free Spaced Repetition Scheduler). Decay speed varies by content type and importance tier. Critical decisions never fade. Temporary debugging notes fade within days.
-
-- **Cold-start boost** - Fresh memories (under 48h) receive a temporary scoring lift
-- **Interference penalty** - Suppresses near-duplicate clusters
-- **Auto-promotion** - Memories earn higher tiers through positive validation
-- **Negative feedback** - 30-day decay prevents permanent blacklisting
-
-Four active cognitive states drive normal retrieval weighting: **HOT** >> **WARM** >> **COLD** >> **DORMANT**.
-
-&nbsp;
-#### Causal Graph
-
-Six relationship types: `caused`, `enabled`, `supersedes`, `contradicts`, `derived_from`, `supports`
-
-- **Typed traversal** - Prioritizes connection types based on query intent
-- **Community detection** - Louvain clustering with neighbor boosting
-- **Co-activation spreading** - Fan-effect dampening prevents hub bias
-- **Temporal contiguity** - Same-session grouping
-- **Graph momentum** - Trending knowledge surfaces higher
-- **LLM backfill** - Background discovery of missed causal links
-- **Index-friendly traversal** - Graph walks run through a shared app-level BFS helper instead of recursive SQL CTEs, returning the same results with far fewer full scans
-
-&nbsp;
-#### Trust Badges on Search Results
-
-Every search result ships with a small `trustBadges` block that tells you how reliable the hit is at a glance. The badges are display-only, they read existing causal links and don't add new storage:
-
-| Badge                  | What it tells you                                         |
-| ---------------------- | --------------------------------------------------------- |
-| `confidence`           | How strong the strongest causal link to this result is    |
-| `extractionAge`        | How long ago the supporting evidence was extracted        |
-| `lastAccessAge`        | How recently anything in the chain was used               |
-| `orphan`               | True when nothing else in the graph points at this result |
-| `weightHistoryChanged` | True when the underlying edge weight has been re-tuned    |
-
-If the database is unreachable the formatter quietly skips badges instead of failing. Caller-provided badges pass through untouched. Every response profile (`quick`, `research`, `resume`) keeps the badges on the top result and the result list.
-
-&nbsp;
-#### Save Intelligence
-
-When you save new knowledge, **Prediction Error gating** compares it against existing memories and picks one of four outcomes:
-
-- **CREATE** - No similar memory exists. Stored as new knowledge.
-- **REINFORCE** - Similar exists, new one adds value. Both kept, old one boosted.
-- **UPDATE** - Similar exists, new one is better. Old version replaced.
-- **SUPERSEDE** - New knowledge contradicts the old. Old one demoted to deprecated.
-
-Additional save-time processing:
-
-- **Semantic sufficiency gating** - Rejects content too thin to be useful
-- **Verify-fix-verify** - Auto-fixes quality issues before storing
-- **Content normalization** - Strips formatting clutter for cleaner embeddings
-- **Secret scrubbing** - Pre-index redaction with typed `[REDACTED:<kind>]` markers across 13 credential pattern kinds (API keys, tokens, JWTs, private keys, credential assignments). Fail-closed: a scrubber error aborts the save rather than persisting raw text. The scrubber is shared between the MCP save path and the standalone CLI save lane, and `memory_health` surfaces redaction counters
-- **Write provenance** - Automated reducer and feedback writers tag their writes with source-kind provenance, so the write-ingress guard prevents automated writers from overwriting protected manual content
-- **Idempotency receipts** (flag-gated, `SPECKIT_MEMORY_IDEMPOTENCY`) - Replayed saves return the original response verbatim from immutable first-write receipts; concurrent first-write losers replay the winner with a visible conflict envelope, and expired receipts are swept on a TTL
-- **Auto-entity extraction** - Spots tool/project/concept names for cross-linking
-- **SHA-256 deduplication** - Skips unchanged files instantly
-- **Correction tracking** - Records how knowledge evolves across versions
-
-&nbsp;
-#### Session Awareness
-
-- **Working memory** - Tracks current session findings with attention decay
-- **Session deduplication** - Suppresses already-seen results in follow-up queries
-- **Context pressure** - Downgrades search mode as the context window fills
-
-&nbsp;
-#### Quality Gates
-
-Three layered checks before storage:
-
-- **Structure gate** - Format, headings, metadata validation
-- **Semantic sufficiency** - Enough real content to be useful
-- **Duplicate detection** - Triggers Prediction Error arbitration if similar content exists
-
-Preview all checks without saving using `dryRun: true`. Learned relevance feedback boosts helpful results with safeguards against noise. Two-tier explainability shows plain-language reasons or exact channel contributions.
-
-&nbsp;
-#### Retrieval Enhancements
-
-- **Hierarchy awareness** - Searches parent and sibling spec folders
-- **Entity linking** - Connects memories referencing the same concepts
-- **ANCHOR retrieval** - Per-section indexing (~93% token savings)
-- **Auto-surfacing** - Triggers on tool use and context compression events
-- **Provenance traces** - Shows exactly how each result was found
-
-&nbsp;
-#### Indexing and Infrastructure
-
-- **Real-time watching** - Filesystem monitoring via chokidar
-- **Incremental indexing** - Content hashes skip unchanged files
-- **Embedding retry** - Background worker retries failed embeddings
-- **Single-writer database lock** - Exactly one daemon writer per database, enforced by a kernel-level lock that self-releases even on `kill -9`. A losing cold-spawn exits with a dedicated code and the launcher bridges it to the live holder, structurally eliminating the dual-writer corruption class
-- **Vector shard self-heal, durably** - A malformed vector shard is detected, quarantined and rebuilt, and the repair intent survives a process restart: boot compares vector rowcount against the index success count to resume a real repair instead of silently attaching an empty shard
-- **Memory-safe lexical fallback** - An in-memory BM25 engine (title and trigger matches rank above body noise) runs inside a bounded memory budget, resolving spec-folder and tier filters before truncating so scoped searches return their real results
-- **Lexical fallback** - Text-searchable when embedding services are down
-- **Atomic writes** - Crash-safe with pending-file recovery on startup
-- **`memory_embedding_reconcile`** - Net-new L4 maintenance tool (shipped 2026-05-27). Converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. Dry-run by default; pass `mode: "apply"` to apply.
-
-&nbsp;
-#### Evaluation
-
-- **12-metric computation** - MRR, NDCG, MAP and more
-- **Ground truth corpus** - 110 test questions with known correct answers
-- **Ablation studies** - Per-channel quality impact measurement
-- **Offline scoring checks** - Test ranking changes before deployment
-
-&nbsp;
-#### Embedding Providers
-
-The system-spec-memory text embedder layer is pluggable. Swap defaults through the memory embedder controls without touching code. Canonical narrative: [embedder-pluggability.md](.opencode/skills/system-spec-kit/references/memory/embedder-pluggability.md).
-
-- **Ollama (nomic-embed-text-v1.5)** - Default since 2026-05-19 (ADR-013/014). Free, local, 768d retrieval-tuned. Pull once with `ollama pull nomic-embed-text:v1.5`.
-- **HuggingFace Local** - Fallback when the Ollama probe fails. Free, local, 768d q8 ONNX.
-- **Voyage AI** - Cloud opt-in. Set `VOYAGE_API_KEY`. 1024d. Gated by egress guard.
-- **OpenAI** - Cloud opt-in. Set `OPENAI_API_KEY`. 1536d.
+What the retired continuity server used to do is now split three ways. `/memory:search` runs the two lexical lanes. `/speckit:resume` walks the continuity ladder. `/doctor memory` checks that the index and the recipes are still healthy. Embeddings left with the shared model server for the skill advisor, reachable through `/doctor embeddings`.
 
 ---
 
@@ -581,7 +387,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 - **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
 - **CLI front door**: `skill-advisor.cjs` exposes the same 9 tools over the warm daemon for hooks, cron and shell diagnostics; mutation commands (`advisor_rebuild`, `skill_graph_scan`) are gated behind `--trusted`.
-- **Launcher resilience**: the advisor launcher carries the same owner lease and reconnecting session proxy as the spec-memory launcher, and acts on dead-socket respawn decisions under a bootstrap lock — a hung daemon is reaped and replaced instead of stranding the session or spawning a second writer.
+- **Launcher resilience**: the advisor launcher carries an owner lease and a reconnecting session proxy, and acts on dead-socket respawn decisions under a bootstrap lock — a hung daemon is reaped and replaced instead of stranding the session or spawning a second writer.
 
 &nbsp;
 #### Validation and Testing
@@ -730,14 +536,14 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/system-deep-loo
 **system-spec-kit**
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
-- Integrates the 41-tool memory surface with session bootstrap and hybrid 5-channel retrieval
+- Owns the packet continuity writer, the generated trigger index and the ripgrep retrieval recipes
 - Manages the manifest template source, 38 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 - Owns AST indexing, SQLite graph storage, readiness contracts and `detect_changes` impact checks
 
 **system-skill-advisor**
 - Gate 2 skill-routing subsystem at `.opencode/skills/system-skill-advisor/`
-- Owns prompt-time skill routing, the `skill_graph_*` tools, freshness and lifecycle checks, with advisor storage kept out of the memory server
+- Owns prompt-time skill routing, the `skill_graph_*` tools, freshness and lifecycle checks, plus the shared embedding model server
 - Current MCP server name: `system_skill_advisor`. Client namespace: `mcp__system_skill_advisor__*`
 
 &nbsp;
@@ -769,7 +575,7 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 
 **cli-external-orchestration**
 - **Parent hub for external CLI dispatch.** One advisor identity routing to [`cli-opencode`](.opencode/skills/cli-external-orchestration/cli-opencode/README.md) (OpenCode runtime dispatch), [`cli-claude-code`](.opencode/skills/cli-external-orchestration/cli-claude-code/README.md) (Claude Code CLI), [`cli-codex`](.opencode/skills/cli-external-orchestration/cli-codex/README.md) (OpenAI Codex CLI, availability-gated), [`cli-cursor`](.opencode/skills/cli-external-orchestration/cli-cursor/README.md) (Cursor CLI, availability-gated), [`cli-devin`](.opencode/skills/cli-external-orchestration/cli-devin/README.md) (Devin CLI, availability-gated), and [`cli-pi`](.opencode/skills/cli-external-orchestration/cli-pi/README.md) (Pi CLI, availability-gated) through `mode-registry.json`
-- **`cli-opencode`** — OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP / Spec Kit Memory runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server and the memory database. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`). Default model: `opencode-go/deepseek-v4-pro` at high reasoning. Configured providers span `opencode-go` (default gateway: DeepSeek + open models), `deepseek` (direct API), `minimax-coding-plan` / `minimax` (MiniMax-M3), `xiaomi` (MiMo-V2.5-Pro), `kimi-for-coding` (Kimi k2.7 Code), `zai-coding-plan` (GLM-5.2) and `openai` (`gpt-5.5` family) — see the skill's provider pre-flight for the live list
+- **`cli-opencode`** — OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skills/` and every MCP server. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`). Default model: `opencode-go/deepseek-v4-pro` at high reasoning. Configured providers span `opencode-go` (default gateway: DeepSeek + open models), `deepseek` (direct API), `minimax-coding-plan` / `minimax` (MiniMax-M3), `xiaomi` (MiMo-V2.5-Pro), `kimi-for-coding` (Kimi k2.7 Code), `zai-coding-plan` (GLM-5.2) and `openai` (`gpt-5.5` family) — see the skill's provider pre-flight for the live list
 - **`cli-claude-code`** — Claude Code CLI orchestrator. Use it for **extended thinking (chain-of-thought), surgical diff-based edits and JSON-schema-validated structured output**. Ships with 9 built-in agents and session continuity. Three models: `claude-opus-4-6` (deep reasoning), `claude-sonnet-4-6` (default, balanced), `claude-haiku-4-5` (fast/cheap)
 - **`cli-codex`** — OpenAI Codex CLI orchestrator. Use it for **OpenAI-backed coding, repo analysis, PR review, web research and cross-model second opinions**, dispatched through `codex exec` (Codex CLI 0.144.1, `gpt-5.5` family). **Availability-gated / fails closed:** every routing surface checks `command -v codex` before advertising or dispatching, and refuses the route when the binary is absent — an unavailable Codex is never offered as usable. Execution runs through the audited deep-loop runtime, and project hooks + agents mirror the Claude bridge under `.codex/`
 - **`cli-cursor`** — Cursor CLI orchestrator. Use it for **Composer-model dispatch** (Cursor's own native model), a **read-only `--mode plan`/`--mode ask`** pass, or a second-AI opinion, dispatched through `cursor-agent -p` (models: `auto` router default, `composer-2.5`/`composer-2.5-fast`, plus 150+ hosted-frontier ids). **Availability-gated / fails closed:** checks `command -v cursor-agent` plus an explicit auth-state probe (`cursor-agent about`), since `-p` exits `0` even on an auth failure. Uniquely among the six, its `.cursor/` config (hooks, MCP, rules) is **shared with the Cursor editor**, not tool-private — a dispatched CLI session inherits the operator's editor-level config
@@ -922,18 +728,9 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - Writes continuity frontmatter and generated metadata in place. There is no separate index to refresh afterwards
 
 **Search**
-- Unified retrieval and analysis entry point with intent-aware routing
-- Supports epistemic baselines, causal graph traversal, ablation studies and dashboards
-- Routes by intent: `add_feature`, `fix_bug`, `refactor`, `security_audit`, `understand`, `find_spec`, `find_decision`
-
-**Learn**
-- `/memory:learn` constitutional rule manager for the reference rule docs under `constitutional/`
-- Lifecycle operations: create, list, edit, remove, budget
-
-**Manage**
-- Database admin: stats (memory counts, index health), health checks, cleanup (orphaned vectors)
-- Checkpoint management: create, list, restore, delete
-- Bulk operations and ingestion (start/status/cancel)
+- Two lexical lanes over spec docs and skill docs: trigger-index lookup with `--triggers`, ripgrep recipes otherwise
+- `--paths` and `--count` pick the recipe; `--packet <specFolder>` narrows the search roots
+- A phrase nobody wrote is a clean no-hit, never a nearest guess
 
 &nbsp;
 #### CREATE
@@ -1004,22 +801,22 @@ The active autonomous loop families (the improvement family carries three lanes)
 Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no target to see the interactive menu. Upgrade users see "Update everything to match latest release" as option 1.
 
 **`/doctor <target>` (router)**
-- Single entry point for 8 subsystems: `memory`, `embeddings`, `causal-graph`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `fable-mode`
+- Single entry point for 7 subsystems: `memory`, `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `fable-mode`
 - Argv-positional dispatch via `.opencode/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor_<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor memory --dry-run`, `/doctor causal-graph --confidence-threshold=0.8`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
+- Examples: `/doctor memory --dry-run`, `/doctor embeddings`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
 - `--target=<name>` is preserved as a compatibility alias for flag-only invocation
 
 **`/doctor:mcp install|debug`**
 - MCP infrastructure repair (replaces the standalone `/doctor:mcp_install` and `/doctor:mcp_debug` from v3.4.0.0)
 - `install`. Fresh install or reinstall of the native MCP servers from their install guides. Handles old-conflicting-with-new (clean reinstall with venv/node_modules removal)
-- `debug`. Diagnoses the native MCP servers (Spec Kit Memory, System Skill Advisor, Code Mode, Sequential Thinking) with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
+- `debug`. Diagnoses the native MCP servers (System Skill Advisor, Code Mode) with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 
 **`/doctor:update`**
-- Multi-subsystem orchestrator: dependency-safe rebuild across context-index + vector-index → causal-edges → skill-graph → advisor → deep-loop → eval
+- Multi-subsystem orchestrator: dependency-safe rebuild across context-index → skill-graph → advisor → deep-loop
 - One lock (`mcp-server/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
-- Tier-aware mid-run prompts: SHORT steps auto-acknowledge. MEDIUM steps share one combined prompt (Q-MED). LONG-POLE index rebuild gets explicit ETA prompt (Q-LONG, 5-15 min)
+- Tier-aware mid-run prompts: SHORT steps auto-acknowledge. The LONG-POLE index rebuild gets an explicit ETA prompt (Q-LONG, 5-15 min)
 - Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle schema migration (e.g. v3.3.0.0 → v3.4.1.0). Wall-clock 8-25 min
 
@@ -1063,11 +860,10 @@ Canonical native server set:
 
 | Server                 | Tools | Purpose                                                                |
 | ---------------------- | ----- | ---------------------------------------------------------------------- |
-| `system-spec-memory`      | 39    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
 | `system_skill_advisor`     | 9     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
-| **Total**              | **64** |                                                                        |
+| **Total**              | **17** |                                                                        |
 
 &nbsp;
 #### Code Mode Tools (7)
@@ -1156,46 +952,9 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 - **`.vscode/mcp.json`** - VS Code / Copilot MCP configuration wrapper.
 
 &nbsp;
-### Memory Engine Configuration
+### Retrieval And Continuity Configuration
 
-The memory server reads configuration from environment variables:
-
-- **`VOYAGE_API_KEY`** (optional) - Voyage AI cloud embeddings (opt-in only, gated by egress guard)
-- **`EMBEDDINGS_PROVIDER`** (optional) - Override the default embedder provider (default: `ollama-nomic-v1.5` since ADR-013/014 2026-05-19; was previously `ollama-jina-v3`). See [embedder_pluggability.md](.opencode/skills/system-spec-kit/references/memory/embedder-pluggability.md) for the registered list.
-- **`SPECKIT_RERANK_LAYER`** (optional) - Retrieval-rescue layer toggle, default `true` per ADR-011. Set to `false` to disable.
-- **`HF_EMBEDDINGS_DTYPE`** (optional) - hf-local fallback dtype (default: `q8`. Also: `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4`)
-- **`OPENAI_API_KEY`** (optional) - OpenAI embeddings (alternative)
-- **`MEMORY_DB_PATH`** (optional) - Override default database path
-
-Default repo-local database path: `.opencode/skills/system-spec-kit/mcp-server/database/context-index__ollama__nomic-embed-text-v1.5__768.sqlite` (default since ADR-013/014 2026-05-19; previously `__jina-embeddings-v3__1024__q4_k_m.sqlite`). The filename encodes provider, model, dimension and dtype so multiple backends can coexist on disk without mixing vectors.
-
-> [!TIP]
-> If no API key is set, the memory engine auto-detects the local Ollama endpoint serving **nomic-embed-text-v1.5** (current default per ADR-013/014), then falls back to **HuggingFace Local** embeddings.
-
-&nbsp;
-### Memory Feature Flags
-
-Feature flags control search channels, scoring signals, save-time enforcement and evaluation behavior. The important retrieval/runtime flags are resolved at call time, so long-lived MCP processes do not depend on frozen import-time snapshots.
-
-- **Search Pipeline** - 5-channel retrieval, fallback routing, reranking, graph-walk rollout, confidence and token-budget policies.
-- **Session/Cache** - Working memory, cache invalidation on DB rebind, session deduplication, recovery helpers.
-- **Memory/Storage** - Save quality gate, reconsolidation, governed scopes, causal graph maintenance, projection cleanup.
-- **Runtime Lifecycle** - MCP idle self-exit, a dry-run-first orphan sweeper, non-destructive incremental rebuilds, WAL durability checkpointing, boot-time FTS5 integrity checks and an opt-in RSS-ceiling watchdog with crash-loop backoff. Full flag list in `ENV-REFERENCE.md` below.
-- **Embedding/API** - Startup provider resolution, fail-fast dimension checks, structured fallback metadata for effective vs requested provider.
-- **Evaluation/Debug** - Trace mode, eval logging, ablation/reporting guardrails, feedback evaluation and proposal diagnostics that observe candidates without reordering live results.
-
-For the complete flag reference with per-flag defaults, see [ENV-REFERENCE.md](.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md) and the [MCP Server runtime guardrail notes](.opencode/skills/system-spec-kit/mcp-server/README.md#8--runtime-lifecycle-guardrails).
-
-&nbsp;
-### Database Schema
-
-The runtime centers on a SQLite `memory_index` table (schema v37 baseline) plus companion FTS5/vector, lineage, checkpoint, working-memory and eval tables.
-
-- **Primary store** - `memory_index` holds the searchable memory rows plus governance, quality, chunking and retrieval metadata.
-- **Search companions** - FTS5 and vector tables support lexical and embedding retrieval alongside BM25 rebuild/index data.
-- **Graph/lifecycle** - Causal edges, lineage projection, checkpoints, working memory and access tracking support decision tracing and session continuity.
-- **Evaluation** - Separate eval tables persist ablation/reporting metrics, with guards for missing query IDs and synthetic token-usage markers.
-- **Paths** - The checked-in configs default to the provider-keyed database path under `.opencode/skills/system-spec-kit/mcp-server/database/`. The filename encodes provider, model, dimension and dtype (current default since ADR-013/014: `context-index__ollama__nomic-embed-text-v1.5__768.sqlite`; jina-v3 fallback would produce `context-index__ollama__jina-embeddings-v3__1024__q4_k_m.sqlite`). If a runtime cannot write inside the repo, override `MEMORY_DB_PATH` (and, when relevant, `SPEC_KIT_DB_DIR`) to a writable location.
+Nothing to configure. The trigger index is a committed file regenerated by `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs`, the ripgrep recipes read the working tree, and the continuity writer updates the packet in place. There is no database, no daemon and no embedding provider on this path. The skill advisor keeps its own model-server settings.
 
 &nbsp;
 ### MCP Config Shape
@@ -1203,12 +962,7 @@ The runtime centers on a SQLite `memory_index` table (schema v37 baseline) plus 
 ```json
 {
   "mcp": {
-    "system-spec-memory": {
-      "type": "local"
-    },
     "system_skill_advisor": {
-      "type": "local"
-    },
       "type": "local"
     },
     "code_mode": {
@@ -1235,23 +989,23 @@ A: It works with OpenCode and Claude Code. OpenCode uses plugin surfaces; Claude
 &nbsp;
 **Q: What happens if I do not use a spec folder?**
 
-A: Gate 3 blocks file modifications until a spec folder answer is provided. You can skip it with option D, but skipped sessions are undocumented and will not be recoverable via memory search. For trivial changes under 5 characters in a single file, Gate 3 does not trigger.
+A: Gate 3 blocks file modifications until a spec folder answer is provided. You can skip it with option D, but skipped sessions are undocumented and will not be recoverable through `/speckit:resume` or `/memory:search`. For trivial changes under 5 characters in a single file, Gate 3 does not trigger.
 &nbsp;
 **Q: How does the memory system know what is relevant to my current task?**
 
 A: Packet continuity and any supporting generated context artifacts use structured frontmatter and anchored markdown so the trigger index generator can classify and index them reliably. For recovery, start with `/speckit:resume` and the packet-local continuity ladder `handover.md` -> `_memory.continuity` -> canonical spec docs. After that, the trigger index lookup matches your prompt against author-declared trigger phrases and the ripgrep recipes in `retrieval-conventions.md` cover free text. Both lanes are lexical, so a phrase no author declared and no document contains is a clean no-hit.
 &nbsp;
-**Q: Can I use this framework without the cognitive memory features?**
+**Q: Can I use this framework without the continuity features?**
 
-A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) works independently of the memory MCP server. You lose cross-session memory retrieval, but structured documentation, agent routing and skill loading all still work.
+A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) works whether or not you ever run `/memory:save`. You lose cross-session recovery, but structured documentation, agent routing and skill loading all still work.
 &nbsp;
 **Q: How do I add a new skill to the framework?**
 
 A: Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.opencode/skills/README.txt`.
 &nbsp;
-**Q: What does "local-first" mean for the memory system?**
+**Q: What does "local-first" mean for continuity?**
 
-A: The memory database is a SQLite file on your local machine. No session data, code or context is sent to any external service unless you configure a cloud embedding provider (Voyage AI or OpenAI). HuggingFace Local embeddings run entirely on-device.
+A: Everything is a file in your own repository. Continuity lives in the spec folder, the trigger index is a committed JSON file and retrieval is ripgrep over the working tree. No session data, code or context leaves the machine.
 &nbsp;
 **Q: How do I contribute a new agent definition?**
 
@@ -1271,11 +1025,10 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 
 - **[→ AGENTS.md](AGENTS.md)** - Agent routing, gate definitions, behavior rules
 - **[→ Spec Kit README](.opencode/skills/system-spec-kit/README.md)** - Spec folder workflow, Level contract template set, validation rules
-- **[→ MCP Server README](.opencode/skills/system-spec-kit/mcp-server/README.md)** - Memory API reference and runtime support docs
+- **[→ Spec-Kit Engine README](.opencode/skills/system-spec-kit/mcp-server/README.md)** - Validation, generated metadata and runtime hook adapters
 - **[→ Repo Scripts Runbook](.opencode/scripts/README.md)** - Dry-run orphan MCP sweeper, Claude cleanup, and LaunchAgent template guidance
 - **[→ Orphan MCP Leak Prevention Packet](specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)** - Canonical implementation summary and rollout state
 - **[→ Skill Advisor README](.opencode/skills/system-skill-advisor/README.md)** - Standalone `system_skill_advisor` server, nine advisor/skill-graph tools and routing docs
-- **[→ Install Guide](.opencode/skills/system-spec-kit/mcp-server/INSTALL-GUIDE.md)** - MCP server setup, embedding providers
 - **[→ Deployment Notes](DEPLOYMENT.md)** - Docker anti-patterns, Copilot notes and session-resume auth flag
 - **[→ Architecture](.opencode/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
 - **[→ sk-doc Skill](.opencode/skills/sk-doc/SKILL.md)** - Documentation standards, DQI scoring

@@ -55,5 +55,4 @@ The current system is therefore not just descriptive documentation. The node is 
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `tooling-and-scripts/phase-system-knowledge-node.md`
 Related references:
-- [eval-runner-cli.md](../../feature-catalog/tooling-and-scripts/eval-runner-cli.md) — Eval Runner CLI
 - [spec-lifecycle-automation.md](../../feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md) — Spec Lifecycle Automation

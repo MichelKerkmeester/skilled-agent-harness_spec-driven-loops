@@ -32,7 +32,7 @@ Canonical package artifacts:
 
 This playbook validates the `sk-git` skill surface through the scenarios indexed in sections 7-14 and cross-referenced in section 16. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file that carries the full execution contract. The category folders listed above and the per-feature links below are the authoritative inventory; no separate count is maintained here.
 
-Coverage note (2026-07-14): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, deterministic scope inference, mixed-concern split warnings, the canonical Claude Opus co-author footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only orphan-daemon scanning), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
+Coverage note (2026-07-14): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, deterministic scope inference, mixed-concern split warnings, the canonical Claude Opus co-author footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only handling of non-qualifying worktrees), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
 
 ### Realistic Test Model
 
@@ -553,7 +553,7 @@ Expected signals: External response is advisory; final command plan is filtered 
 
 ## 13. NUMBERED WORKTREE TOOLING (`GIT-023..GIT-041`)
 
-This category covers 19 scenarios. The linked per-feature files remain the canonical execution contract. It validates the safety contract of the four numbered-worktree tools: the allocator (`worktree-naming.sh`), the launch-wrapper session (`worktree-session.sh`), the reaper (`worktree-reaper.sh`), and the pre-push naming gate.
+This category covers 18 scenarios. The linked per-feature files remain the canonical execution contract. It validates the safety contract of the four numbered-worktree tools: the allocator (`worktree-naming.sh`), the launch-wrapper session (`worktree-session.sh`), the reaper (`worktree-reaper.sh`), and the pre-push naming gate.
 
 ### GIT-023 | Locked unique number allocation
 
@@ -747,22 +747,6 @@ Expected signals: `DRY_RUN would:` lines naming the qualifying pair; repository 
 
 > **Feature File:** [GIT-034](owner-first-worktree-tooling/reaper-dry-run-no-mutation.md)
 
-### GIT-035 | Orphan-daemon reporting stays report-only unless --reap-daemons
-
-#### Description
-
-Prove the reaper only reports a daemon whose worktree DB directory no longer exists, unless `--reap-daemons` is explicitly passed, and never touches a daemon whose worktree still exists.
-
-#### Scenario Contract
-
-Prompt: `Run the worktree reaper's orphan-daemon scan against a fixture with one live-worktree daemon and one gone-worktree daemon, first without --reap-daemons and then with it, and confirm the live daemon is always left alone.`
-
-Expected signals: default run reports the orphan only; `--reap-daemons` dry-run names the orphan as a kill target and never the live daemon.
-
-#### Test Execution
-
-> **Feature File:** [GIT-035](owner-first-worktree-tooling/reaper-orphan-daemon-report-only.md)
-
 ### GIT-036 | Pre-push gates only new remote branch creation
 
 #### Description
@@ -939,7 +923,6 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Numbered Worktree Tooling | GIT-032 | `owner-first-worktree-tooling/reaper-auto-reap-qualifying-wrapper.md` | Yes |
 | Numbered Worktree Tooling | GIT-033 | `owner-first-worktree-tooling/reaper-keeps-non-qualifying-worktrees.md` | Yes |
 | Numbered Worktree Tooling | GIT-034 | `owner-first-worktree-tooling/reaper-dry-run-no-mutation.md` | No |
-| Numbered Worktree Tooling | GIT-035 | `owner-first-worktree-tooling/reaper-orphan-daemon-report-only.md` | No |
 | Numbered Worktree Tooling | GIT-036 | `owner-first-worktree-tooling/prepush-gates-only-new-branches.md` | Yes |
 | Numbered Worktree Tooling | GIT-037 | `owner-first-worktree-tooling/prepush-migration-tolerance.md` | Yes |
 | Numbered Worktree Tooling | GIT-038 | `owner-first-worktree-tooling/prepush-fail-open-on-broken-validator.md` | Yes |

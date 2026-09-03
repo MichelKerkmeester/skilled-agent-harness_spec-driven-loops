@@ -103,6 +103,3 @@ The review output is machine-readable so callers and downstream quality monitors
 - Group: Memory Quality And Indexing
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `memory-quality-and-indexing/post-save-quality-review.md`
-Related references:
-- [session-enrichment-and-alignment-guards.md](../../feature-catalog/memory-quality-and-indexing/session-enrichment-and-alignment-guards.md) — Stateless enrichment and alignment guards
-- [assistive-reconsolidation.md](../../feature-catalog/memory-quality-and-indexing/assistive-reconsolidation.md) — Assistive reconsolidation

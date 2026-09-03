@@ -133,35 +133,10 @@ dist/
 .opencode/skills/system-skill-advisor/mcp_server/
 
 # ───────────────────────────────────────────
-# Database: system-spec-kit
-# ───────────────────────────────────────────
-.opencode/skills/system-spec-kit/mcp-server/*.sqlite*
-.opencode/skills/system-spec-kit/mcp-server/database/*.sqlite
-.opencode/skills/system-spec-kit/mcp-server/database/*.sqlite-shm
-.opencode/skills/system-spec-kit/mcp-server/database/*.sqlite-wal
-.opencode/skills/system-spec-kit/mcp-server/database/*.sqlite.bak*
-.opencode/skills/system-spec-kit/mcp-server/database/**/*.sqlite*
-.opencode/skills/system-spec-kit/mcp-server/database/.db-updated
-.opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.flock
-.opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
-.opencode/skills/system-spec-kit/mcp-server/database/.maintenance-active.json
-.opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json
-.opencode/skills/system-spec-kit/mcp-server/database/.memory-drift-dirty-paths.json.processing-*
-.opencode/skills/system-spec-kit/mcp-server/database/.system-spec-memory-launcher.json
-.opencode/skills/system-spec-kit/mcp-server/database/.system-spec-memory-launcher.lockdir/
-.opencode/skills/system-spec-kit/mcp-server/database/.unclean-shutdown
-.opencode/skills/system-spec-kit/mcp-server/dist/database/
-.opencode/skills/system-spec-kit/shared/mcp-server/database/*.sqlite
-.opencode/skills/system-spec-kit/shared/mcp-server/database/*.sqlite-shm
-.opencode/skills/system-spec-kit/shared/mcp-server/database/*.sqlite-wal
-.opencode/skills/system-spec-kit/shared/mcp-server/database/.db-updated
-
-# ───────────────────────────────────────────
 # Daemon ownership/lease files
 # ───────────────────────────────────────────
 .opencode/skills/*/mcp-server/database/.*-owner.json
 **/database/.crash-probe-receipt
-**/database/.spec-memory-owner.json
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Runtime artifacts & data files
@@ -188,10 +163,6 @@ sweep-reports/
 # Runtime: system-spec-kit
 # ───────────────────────────────────────────
 .opencode/skills/system-spec-kit/mcp-server/.opencode/
-.opencode/skills/system-spec-kit/mcp-server/.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl
-.opencode/skills/system-spec-kit/mcp-server/.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl.*
-.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl
-.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl.*
 .opencode/skills/system-spec-kit/mcp-server/skill_advisor/scripts/out/*.json
 
 # ───────────────────────────────────────────

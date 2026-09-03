@@ -52,7 +52,7 @@ Run /doctor:update (no mode suffix). Verify short steps run silent, medium combi
 
 ### Expected
 
-The command loads `doctor-update.yaml` and uses tier-aware interactive mode. Short steps such as skill-graph and deep-loop graph initialization run without individual prompts. Medium steps such as code-graph scan and spec-kit eval ablation are grouped into a single combined proceed prompt. The context-index/vector memory rebuild gets an explicit long-pole prompt with a 5-15 minute ETA before `memory_index_scan` begins.
+The command loads `doctor-update.yaml` and uses tier-aware interactive mode. Short steps such as deep-loop graph initialization run without individual prompts. Medium steps are grouped into a single combined proceed prompt. Any step the manifest marks long-pole gets an explicit prompt with an ETA before it begins. The memory context-index and vector rebuild that used to be the long pole is gone from the manifest along with its database.
 
 ### Evidence
 

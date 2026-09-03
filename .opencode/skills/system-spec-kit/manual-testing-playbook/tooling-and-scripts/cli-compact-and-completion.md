@@ -1,7 +1,7 @@
 ---
 title: "449 -- CLI compact list-tools and completion generation"
-description: "Manual check that all three daemon-backed CLIs expose compact and names-only list-tools output without schemas, and generate parseable bash/zsh completion scripts."
-version: 3.6.0.1
+description: "Manual check that the skill-advisor CLI exposes compact and names-only list-tools output without schemas, and generates parseable bash/zsh completion scripts."
+version: 4.0.0.0
 id: tooling-and-scripts-cli-compact-and-completion
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies the automation-focused discovery forms added to the three daemon-backed CLIs. `list-tools --compact` and `list-tools --names-only` must preserve each system's expected count while omitting every `inputSchema` field. `completion bash|zsh` must generate shell scripts that parse under the target shell for `spec-memory`, `code-index`, and `skill-advisor`.
+This scenario verifies the automation-focused discovery forms on the one daemon-backed CLI that survives the memory decommission. `list-tools --compact` and `list-tools --names-only` must preserve the advisor's expected count while omitting every `inputSchema` field, and `completion bash|zsh` must generate shell scripts that parse under the target shell. The `spec-memory` and `code-index` CLIs this scenario used to cover were removed with their servers.
 
 The scenario is daemon-free: list output and completion scripts are generated from local registries and do not contact the daemon socket.
 
@@ -19,13 +19,13 @@ The scenario is daemon-free: list output and completion scripts are generated fr
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Confirm compact/names-only CLI discovery and generated shell completion work for all three daemon-backed CLIs.
-- Real user request: `I want a small automation payload for tool names and generated shell completion for every daemon CLI. Can I validate those without starting daemons?`
-- Prompt: `Validate compact list-tools, names-only list-tools, and bash/zsh completion generation for spec-memory, code-index, and skill-advisor.`
+- Objective: Confirm compact/names-only CLI discovery and generated shell completion work for the skill-advisor CLI.
+- Real user request: `I want a small automation payload for tool names and generated shell completion for the advisor CLI. Can I validate those without starting daemons?`
+- Prompt: `Validate compact list-tools, names-only list-tools, and bash/zsh completion generation for skill-advisor.`
 - Expected execution process: Run the documented command sequence from the repository root, capture JSON counts and schema-field counts, generate bash and zsh completion snippets into temporary files, and parse those files with `bash -n` and `zsh -n`.
-- Expected signals: Compact and names-only counts are `39`, `8`, and `9`; compact and names-only outputs contain zero `inputSchema` fields; generated bash and zsh completion scripts parse successfully for all three CLIs.
-- Desired user-visible outcome: The operator can state that all three CLIs expose compact automation output and parseable shell completion without daemon contact.
-- Pass/fail: PASS only when all counts match, schema-field counts are zero, and every generated completion script parses under its target shell.
+- Expected signals: Compact and names-only counts both equal the advisor's declared tool count; compact and names-only outputs contain zero `inputSchema` fields; the generated bash and zsh completion scripts parse successfully.
+- Desired user-visible outcome: The operator can state that the advisor CLI exposes compact automation output and parseable shell completion without daemon contact.
+- Pass/fail: PASS only when both counts match, schema-field counts are zero, and both generated completion scripts parse under their target shell.
 
 ---
 
@@ -34,7 +34,7 @@ The scenario is daemon-free: list output and completion scripts are generated fr
 ### Prompt
 
 ```text
-Validate compact list-tools, names-only list-tools, and bash/zsh completion generation for spec-memory, code-index, and skill-advisor.
+Validate compact list-tools, names-only list-tools, and bash/zsh completion generation for skill-advisor.
 ```
 
 ### Commands
@@ -42,12 +42,11 @@ Validate compact list-tools, names-only list-tools, and bash/zsh completion gene
 ```bash
 SANDBOX=$(mktemp -d /tmp/cli-compact-completion.XXXXXX)
 
-for cli in spec-memory code-index skill-advisor; do
-  node .opencode/bin/$cli.cjs list-tools --compact --format json > "$SANDBOX/$cli.compact.json"
-  node .opencode/bin/$cli.cjs list-tools --names-only --format json > "$SANDBOX/$cli.names.json"
-  node .opencode/bin/$cli.cjs completion bash > "$SANDBOX/$cli.bash"
-  node .opencode/bin/$cli.cjs completion zsh > "$SANDBOX/$cli.zsh"
-done
+cli=skill-advisor
+node .opencode/bin/$cli.cjs list-tools --compact --format json > "$SANDBOX/$cli.compact.json"
+node .opencode/bin/$cli.cjs list-tools --names-only --format json > "$SANDBOX/$cli.names.json"
+node .opencode/bin/$cli.cjs completion bash > "$SANDBOX/$cli.bash"
+node .opencode/bin/$cli.cjs completion zsh > "$SANDBOX/$cli.zsh"
 
 python3 - "$SANDBOX" <<'PY'
 import json
@@ -55,7 +54,7 @@ import pathlib
 import sys
 
 root = pathlib.Path(sys.argv[1])
-expected = {"spec-memory": 39, "code-index": 8, "skill-advisor": 9}
+expected = {"skill-advisor": 9}
 for cli, count in expected.items():
     compact = json.loads((root / f"{cli}.compact.json").read_text())
     names = json.loads((root / f"{cli}.names.json").read_text())
@@ -69,42 +68,24 @@ for cli, count in expected.items():
     assert not names_schemas
 PY
 
-for cli in spec-memory code-index skill-advisor; do
-  bash -n "$SANDBOX/$cli.bash"
-  zsh -n "$SANDBOX/$cli.zsh"
-done
+bash -n "$SANDBOX/skill-advisor.bash"
+zsh -n "$SANDBOX/skill-advisor.zsh"
 
 rm -rf "$SANDBOX"
 ```
 
 ### Expected
 
-- `spec-memory compact count=37 inputSchema=0` and `spec-memory names-only count=37 inputSchema=0`.
-- `code-index compact count=8 inputSchema=0` and `code-index names-only count=8 inputSchema=0`.
 - `skill-advisor compact count=9 inputSchema=0` and `skill-advisor names-only count=9 inputSchema=0`.
-- `bash -n` and `zsh -n` succeed for every generated completion file.
+- `bash -n` and `zsh -n` succeed for both generated completion files.
 
 ### Evidence
 
-Shell transcript from running the Commands block exactly as written:
-
-```text
-@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-Traceback (most recent call last):
-  File "<stdin>", line 8, in <module>
-  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 346, in loads
-    return _default_decoder.decode(s)
-  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-```
-
-No count/schema lines were produced because the first JSON parse failed before the expected `print(...)` lines could run. The shell parse commands did not emit output.
+The recorded transcript for this scenario predates the memory decommission: it ran the
+`spec-memory` shim, hit a stale-dist refusal, and never produced count lines. It was removed
+rather than reinterpreted, because it describes a CLI that no longer exists. Re-execute the
+Commands block against the advisor CLI and capture the transcript here before this scenario
+carries a verdict again.
 
 ### Pass / Fail
 
@@ -124,17 +105,14 @@ If counts drift, rerun the list-tools parity scenario first. If schemas appear i
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md` | Feature-catalog source for the daemon-backed CLI surface |
+| `../../feature-catalog/tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md` | Feature-catalog source for the daemon-backed CLI surface |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `.opencode/bin/spec-memory.cjs` | spec-memory shim |
 | `.opencode/bin/skill-advisor.cjs` | skill-advisor shim |
-| `mcp-server/spec-memory-cli.ts` | spec-memory compact/names-only and completion implementation |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | skill-advisor compact/names-only and completion implementation |
-| `mcp-server/tests/spec-memory-cli-help-aliases-errors.vitest.ts` | spec-memory compact/names-only and completion tests |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | skill-advisor compact/names-only and completion tests |
 
 ---

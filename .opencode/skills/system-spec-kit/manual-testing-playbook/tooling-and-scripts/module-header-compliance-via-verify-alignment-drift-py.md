@@ -86,7 +86,7 @@ Check for new .ts files without MODULE: header → Add 3-line header block → R
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Feature catalog: [tooling-and-scripts/feature-catalog-code-references.md](../../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md)
+- Feature catalog: [tooling-and-scripts/code-standards-alignment.md](../../feature-catalog/tooling-and-scripts/code-standards-alignment.md)
 
 ---
 

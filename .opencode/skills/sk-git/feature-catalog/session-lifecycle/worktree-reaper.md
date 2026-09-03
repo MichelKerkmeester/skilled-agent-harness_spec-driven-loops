@@ -1,11 +1,11 @@
 ---
 title: "Worktree reaper"
-description: "Companion script that prunes finished launch-wrapper worktrees and reports orphaned MCP daemons, never touching a human-created or still-active worktree."
+description: "Companion script that prunes finished launch-wrapper worktrees and their leftover session state, never touching a human-created or still-active worktree."
 trigger_phrases:
   - "worktree reaper"
   - "worktree-reaper.sh"
   - "reap only proven inactive worktrees"
-  - "orphan daemon reporting"
+  - "stale worktree socket cleanup"
 importance_tier: "important"
 version: 1.0.0.0
 ---
@@ -16,9 +16,9 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-The reaper is the cleanup companion to launch-wrapper session isolation: it keeps `.worktrees/` and the MCP daemon population bounded over time without ever removing a worktree it cannot prove is both finished and inactive.
+The reaper is the cleanup companion to launch-wrapper session isolation: it keeps `.worktrees/` bounded over time without ever removing a worktree it cannot prove is both finished and inactive.
 
-Its default behavior only ever touches worktrees under `<repo>/.worktrees/`, never the main checkout, and never kills a daemon whose worktree still exists. Orphan daemon killing is opt-in (`--reap-daemons`); everything else is a safe default.
+It only ever touches worktrees under `<repo>/.worktrees/`, never the main checkout, and never signals a process. Every behavior is a safe default, and `--dry-run` is the only flag.
 
 ---
 
@@ -32,10 +32,6 @@ A registered worktree is auto-removed only when it is the machine-owned launch-w
 
 Detached worktrees, human task worktrees (`worktrees/NNN-slug`), and any wrapper worktree whose branch/directory pairing doesn't match are always report-only — their cleanup is left to the operator. `git worktree prune` still runs unconditionally first to clear stale administrative entries for already-deleted directories.
 
-### Orphan Daemon Reporting
-
-Separately from worktree pruning, the reaper scans for MCP daemon processes whose command line references a `.worktrees/` path that no longer exists on disk — an orphan by definition, since its worktree (and therefore its database directory) is gone. By default these are only reported; `--reap-daemons` additionally sends `SIGTERM` after re-verifying the daemon's command line hasn't changed since the initial scan, to avoid signaling a process that has since been reused for something else.
-
 ### Socket and Marker Cleanup
 
 The reaper also prunes the short per-session socket directories under `~/.spk-wt-sock/` and the session marker files under the common git directory once their corresponding worktree no longer exists, so neither accumulates indefinitely alongside the worktrees they were created for.
@@ -48,7 +44,7 @@ The reaper also prunes the short per-session socket directories under `~/.spk-wt
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/bin/worktree-reaper.sh` | Script | Worktree pruning gate, orphan daemon scan/reporting, socket/marker cleanup |
+| `.opencode/bin/worktree-reaper.sh` | Script | Worktree pruning gate, socket/marker cleanup |
 
 ### Validation And Tests
 

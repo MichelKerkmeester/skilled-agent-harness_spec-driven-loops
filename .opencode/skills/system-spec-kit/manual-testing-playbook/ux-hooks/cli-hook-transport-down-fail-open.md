@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies the transport-down behavior of the 028 runtime hook integrations. Prompt-time hooks (Claude session-prime / compact-inject / session-stop, OpenCode session-start, and the Claude/OpenCode skill-advisor user-prompt-submit hooks) use warm-only CLI fallback helpers that probe the daemon socket first. When no socket exists, the hook fails open: it exits 0 quickly (measured around 1 ms for the probe itself), omits the CLI-backed extras, never blocks the prompt, and never cold-spawns a daemon from the prompt path.
+This scenario verifies the transport-down behavior of the surviving runtime hook integrations. The Claude and OpenCode skill-advisor `user-prompt-submit` hooks use a warm-only CLI fallback helper that probes the daemon socket first. The memory-backed session-prime, compact-inject, session-stop and session-start hooks were removed with their server, so the advisor hook is the remaining consumer of this contract. When no socket exists, the hook fails open: it exits 0 quickly (measured around 1 ms for the probe itself), omits the CLI-backed extras, never blocks the prompt, and never cold-spawns a daemon from the prompt path.
 
 The check drives compiled hook scripts directly with a sandbox socket directory, so the no-socket path is deterministic and host daemons are never contacted.
 
@@ -20,7 +20,7 @@ The check drives compiled hook scripts directly with a sandbox socket directory,
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm hooks exit 0 fast with an absent socket and spawn nothing.
-- Real user request: `If the memory daemon is down when I submit a prompt, does my prompt hang or fail?`
+- Real user request: `If the skill-advisor daemon is down when I submit a prompt, does my prompt hang or fail?`
 - Prompt: `Validate hook transport-down fail-open: absent socket, exit 0, fast return, zero spawned launchers.`
 - Expected execution process: Point `SPECKIT_IPC_SOCKET_DIR` at an empty sandbox, pipe a minimal hook payload into the compiled hook scripts under a generous timeout, and capture exit codes, wall time, and launcher process counts.
 - Expected signals: Exit 0 from each hook in well under the timeout; launcher count unchanged; empty sandbox socket dir afterward.
@@ -43,15 +43,12 @@ Validate hook transport-down fail-open: absent socket, exit 0, fast return, zero
 SANDBOX=$(mktemp -d /tmp/cli-playbook.XXXXXX)
 export SPECKIT_IPC_SOCKET_DIR="$SANDBOX/sock"
 export SPECKIT_DAEMON_REELECTION=0
-BEFORE=$(pgrep -f "mk-(spec-memory|code-index|skill-advisor)-launcher" | wc -l)
+BEFORE=$(pgrep -f "mk-skill-advisor-launcher" | wc -l)
 
 echo '{"session_id":"playbook-433","hook_event_name":"UserPromptSubmit","prompt":"hello"}' \
   | gtimeout 20 node .opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js >/dev/null; echo "advisor-hook exit=$?"
 
-echo '{"session_id":"playbook-433","source":"startup","hook_event_name":"SessionStart"}' \
-  | gtimeout 30 node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/session-prime.js >/dev/null; echo "session-prime exit=$?"
-
-AFTER=$(pgrep -f "mk-(spec-memory|code-index|skill-advisor)-launcher" | wc -l)
+AFTER=$(pgrep -f "mk-skill-advisor-launcher" | wc -l)
 echo "launchers before=$BEFORE after=$AFTER"
 ls "$SANDBOX/sock" 2>/dev/null || echo "socket dir empty/absent"
 rm -rf "$SANDBOX"
@@ -91,8 +88,6 @@ A timeout means the hook attempted a non-warm-only call or the probe timeout reg
 
 | File | Role |
 |---|---|
-| `mcp-server/hooks/spec-memory-cli-fallback.ts` | Shared warm-only spec-memory CLI fallback helper |
-| `mcp-server/hooks/code-index-cli-fallback.ts` | Shared warm-only code-index CLI fallback helper |
 | `.opencode/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` | Shared warm-only skill-advisor CLI fallback helper |
 | `mcp-server/hooks/claude/session-prime.ts` | Claude session adapter using the warm paths |
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Claude advisor hook using the fallback |

@@ -57,6 +57,3 @@ Hook and plugin integrations use `--warm-only` so no prompt-time cold spawn occu
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md`
 
-Related references:
-- [spec-memory-cli-daemon-backed-surface.md](../../feature-catalog/tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) - Spec-memory CLI sibling surface
-- [code-index-cli-daemon-backed-surface.md](../../feature-catalog/tooling-and-scripts/code-index-cli-daemon-backed-surface.md) - Code-index CLI sibling surface

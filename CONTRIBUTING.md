@@ -41,8 +41,8 @@ npm install
 ### Testing Changes
 
 ```bash
-# Test Spec Kit Memory MCP server
-node .opencode/skills/system-spec-kit/mcp-server/context-server.js
+# Test spec-folder retrieval (no server)
+node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs --json -- "spec folder question"
 
 # Test embedding providers
 node .opencode/skills/system-spec-kit/scripts/test-embeddings-factory.js
@@ -115,7 +115,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 ```markdown
 ## Summary
 
-This PR adds a Voyage AI embedding provider for Spec Kit Memory.
+This PR adds a Voyage AI embedding provider to the shared embedding stack.
 
 **Key changes:**
 - New `voyage.js` provider using voyage-3.5 model

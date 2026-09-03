@@ -88,7 +88,7 @@ If syntax or plist lint fails, inspect the exact script/template before rerunnin
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md](../../feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md)
-- Feature catalog: [feature-flag-reference/launcher-idle-timeout.md](../../feature-catalog/feature-flag-reference/launcher-idle-timeout.md)
+- Feature catalog: [tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md](../../feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md)
 - Runbook: [../../../../scripts/README.md](../../../../scripts/README.md)
 - Spec packet: [../../../../specs/system-speckit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md](../../../../specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 

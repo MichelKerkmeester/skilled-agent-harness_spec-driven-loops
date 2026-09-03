@@ -140,21 +140,16 @@
       "topology": "direct-dispatch",
       "router_path": [
         ".opencode/commands/memory/save.md",
-        ".opencode/commands/memory/search.md",
-        ".opencode/commands/memory/learn.md",
-        ".opencode/commands/memory/manage.md"
+        ".opencode/commands/memory/search.md"
       ],
       "input": {
         "required": false,
         "gate_owner": "router",
-        "argument_hint": "per-command: save <spec-folder>; search <query> | preflight | dashboard; learn [rule] | list | edit | remove | budget; manage [scan] | [cleanup] | ..."
+        "argument_hint": "per-command: save <spec-folder>; search <query> [--packet <specFolder>] [--triggers] [--paths] [--count]"
       },
       "execution_targets": [
         { "selector": "save", "target": "generate-context.js continuity-metadata refresh; no index hand-off" },
-        { "selector": "search (retrieval)", "target": "lookup-trigger-index.mjs for declared trigger phrases; the ripgrep recipes in retrieval-conventions.md for free text" },
-        { "selector": "search (analysis)", "target": "task_preflight / task_postflight / memory_drift_why / eval_run_ablation / eval_reporting_dashboard" },
-        { "selector": "learn", "target": "constitutional-rule filesystem writes plus memory_save / memory_list / memory_delete" },
-        { "selector": "manage", "target": "per-mode memory MCP tools (memory_stats / retention_sweep / checkpoint_* / ingest_*)" }
+        { "selector": "search", "target": "lookup-trigger-index.mjs for declared trigger phrases; the ripgrep recipes in retrieval-conventions.md for free text" }
       ],
       "mode_matrix": {
         "default_policy": "non-mutating-default",
@@ -180,12 +175,12 @@
         ]
       },
       "destructive_policy": {
-        "has_destructive_ops": true,
-        "gated": true,
-        "operations": ["manage: delete, bulk-delete, cleanup, retention-sweep, learned-clear, checkpoint restore/delete", "learn remove deletes a constitutional rule"]
+        "has_destructive_ops": false,
+        "gated": false,
+        "operations": []
       },
       "timeout_bounds": null,
-      "invocation_aliases": ["/memory:save", "/memory:search", "/memory:learn", "/memory:manage", "positional sub-actions (e.g. /memory:search preflight, /memory:manage checkpoint create)"],
+      "invocation_aliases": ["/memory:save", "/memory:search", "flags on search (e.g. /memory:search \"query\" --triggers, --paths, --count)"],
       "workflow_schema_ref": null
     },
     "doctor": {

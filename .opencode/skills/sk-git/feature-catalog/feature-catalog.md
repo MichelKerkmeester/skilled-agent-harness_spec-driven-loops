@@ -78,11 +78,11 @@ See [`session-lifecycle/launch-wrapper-session-isolation.md`](session-lifecycle/
 
 #### Description
 
-A companion script that prunes finished launch-wrapper worktrees and reports (but does not by default kill) orphaned MCP daemons, without ever touching a human-created or still-active worktree.
+A companion script that prunes finished launch-wrapper worktrees and their leftover session state, without ever touching a human-created or still-active worktree.
 
 #### Current Reality
 
-`worktree-reaper.sh` removes a `work/<runtime>/<slug>` worktree only when all three hold at once: the tree is clean, its branch is merged into the live integration tip (the primary checkout's actual `HEAD`, not a possibly stale local `main`), and its session is proven inactive by a marker file recording a now-dead process id. Detached worktrees, human task worktrees (`worktrees/NNN-slug`), and any wrapper worktree with a missing or unreadable marker are always report-only. Orphan daemon killing is opt-in via `--reap-daemons`.
+`worktree-reaper.sh` removes a `work/<runtime>/<slug>` worktree only when all three hold at once: the tree is clean, its branch is merged into the live integration tip (the primary checkout's actual `HEAD`, not a possibly stale local `main`), and its session is proven inactive by a marker file recording a now-dead process id. Detached worktrees, human task worktrees (`worktrees/NNN-slug`), and any wrapper worktree with a missing or unreadable marker are always report-only. The reaper never signals a process.
 
 #### Source Files
 

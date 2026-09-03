@@ -7,7 +7,7 @@ trigger_phrases:
   - "interrupted session reconstruction"
   - "resume workflow"
   - "session continuity recovery"
-version: 3.6.0.14
+version: 4.0.0.0
 ---
 
 # Session recovery via /speckit:resume
@@ -22,14 +22,15 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 
 ## 2. HOW IT WORKS
 
-**SHIPPED.** `/speckit:resume` owns both standard continuation and interrupted-session recovery. Its primary recovery chain uses 3 borrowed tools, while the live wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and Code Graph helpers:
+**SHIPPED.** `/speckit:resume` owns both standard continuation and interrupted-session recovery. Since the memory server was removed, the chain is entirely file-backed: it reads documents that exist on disk and never infers session state from an index.
 
-- **`memory_context`** (from `/memory:search`) -- Helper recovery path in `resume` mode when the handover packet is thin. In `mcp-server/handlers/memory-context.ts`, resume mode is a dedicated `memory_search`-backed strategy with anchors `["state", "next-steps", "summary", "blockers"]`, default `limit=5`, a 1200-token budget, `minState=WARM`, `includeContent=true`, and both dedup and decay disabled. When auto-resume is enabled and the caller resumes a reusable working-memory session, `systemPromptContext` is injected before token-budget enforcement.
-- **`_memory.continuity`** (in `implementation-summary.md`) -- Supporting continuity state when `handover.md` is present but needs enrichment from the canonical packet.
-- **`memory_search`** (from `/memory:search`) -- Fallback for thin summaries when `memory_context` resolves the right folder but does not return enough state detail. Uses the same resume anchors.
-- **`memory_list`** (from `/memory:manage`) -- Recent-candidate discovery when no clear session candidate exists. Returns the most recently updated memories.
+- **`handover.md`** -- The preferred continuation context when a fresh structured handoff exists in the packet.
+- **`_memory.continuity`** (in `implementation-summary.md`) -- Supporting continuity state when `handover.md` is absent or needs enrichment from the canonical packet.
+- **Packet-first spec docs and bounded anchors** -- `spec.md`, `plan.md`, `tasks.md` and the `<!-- ANCHOR:... -->` blocks inside them, read directly rather than retrieved.
+- **The ripgrep recipes** in `references/retrieval/retrieval-conventions.md` §2 -- Free-text evidence when the packet is thin and the operator needs to locate a phrase across `specs/` and `.opencode/`. Ripgrep produces matches; the caller ranks them per §5.
+- **The trigger index** -- `node .opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs "<prompt>"` matches a prompt against author-declared `trigger_phrases` when the operator does not yet know which packet to open.
 
-`memory_stats` remains diagnostic/helper access on the wrapper rather than part of the primary recovery chain. Additional helper access includes `memory_match_triggers()` for early session detection, `memory_delete`, `memory_update`, health, indexing, checkpoint, validation, and Code Graph support surfaces.
+There is no session inference, no semantic paraphrase and no candidate ranking behind this workflow. When the ladder produces nothing, the command asks rather than guessing; `references/retrieval/retrieval-conventions.md` §1 records that boundary as a deliberate loss.
 
 ### Resume Modes
 
@@ -42,16 +43,16 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 |----------|--------|-----|
 | 1 | `handover.md` (<24h) | Preferred continuation context when a fresh structured handoff exists |
 | 2 | `_memory.continuity` in `implementation-summary.md` | Supporting continuity state when the handover packet needs enrichment |
-| 3 | `memory_context(mode: "resume")` | Helper recovery path when the packet is still thin |
-| 4 | `memory_search()` with resume anchors | Fallback when the summary is thin |
-| 5 | `memory_list()` | Recent-candidate discovery |
+| 3 | Packet-first spec docs and bounded anchors | Direct read when the packet is still thin |
+| 4 | Ripgrep recipes (`retrieval-conventions.md` §2) | Free-text evidence, ranked caller-side |
+| 5 | Trigger index lookup | Prompt-to-packet routing when no candidate is known |
 | 6 | User confirmation | Final fallback |
 
 ### Post-Recovery Routing
 
 - Quick "what was I doing?" answer: stop after the recovery summary
 - Structured spec work: continue directly inside `/speckit:resume`
-- Broader historical analysis: recommend `/memory:search history <spec-folder>`
+- Broader historical analysis: run the ripgrep recipes over the packet tree and read the packet's `changelog/` and `implementation-summary.md` directly
 
 ---
 
@@ -69,18 +70,18 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 
 | File | Layer | Role |
 |------|-------|------|
-| `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-context.ts` | Handler | Context orchestration entry point (resume mode) |
-| `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts` | Handler | Search handler (fallback path) |
-| `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-crud-list.ts` | Handler | List handler (candidate discovery) |
-| `.opencode/skills/system-spec-kit/mcp-server/lib/session/session-manager.ts` | Lib | Session lifecycle and crash-recovery breadcrumbs |
+| `.opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Reference | The ripgrep invocation contract and the caller-side ranking tuple |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/lookup-trigger-index.mjs` | Script | Trigger-index lookup, the keyed prompt-to-packet lane |
+| `.opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` | Script | Generates the index the lookup reads |
+| `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Script | Continuity writer: produces the `_memory.continuity` block the ladder reads |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `mcp-server/tests/memory-context.vitest.ts` | Automated test | Resume-mode token budget, anchor selection, and auto-resume routing |
-| `mcp-server/tests/continue-session.vitest.ts` | Automated test | Session recovery generation helpers, crash-recovery data shape, and recovery write path |
-| `mcp-server/tests/recovery-hints.vitest.ts` | Automated test | User-facing recovery hint routing for expired sessions |
+| `scripts/retrieval/parity-check.mjs` | Automated check | Trigger-index parity against the declared `trigger_phrases` corpus |
+| `scripts/retrieval/measure-cold-lookup.mjs` | Automated check | Cold-lookup cost of the trigger-index lane |
+| `scripts/tests/manual-playbook-runner.vitest.ts` | Automated test | Scenario runner contract for the resume playbook entry |
 
 ---
 
@@ -88,6 +89,3 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 - Group: Retrieval
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `retrieval/session-recovery-spec-kit-resume.md`
-Related references:
-- [fast-delegated-search-memory-quick-search.md](../../feature-catalog/retrieval/fast-delegated-search-memory-quick-search.md) — Fast delegated search (memory_quick_search)
-- [search-api-surface.md](../../feature-catalog/retrieval/search-api-surface.md) — Search API surface

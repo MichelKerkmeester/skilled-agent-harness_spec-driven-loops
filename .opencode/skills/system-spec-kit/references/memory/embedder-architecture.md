@@ -144,7 +144,7 @@ curl http://127.0.0.1:11434/api/tags
 5. Confirm `vec_metadata.active_embedder_name`, `active_embedder_dim`, and `active_embedder_provider`.
 6. Restart the daemon after code changes so it loads the rebuilt shared dist.
 
-> **Which surface serves the swap is unsettled.** The steps above ran through the retired memory MCP tools. The registry, adapters and shard layout survive under `shared/embeddings/`; the calling surface is decided by the shared-seam split, not by this page. Until it lands, read steps 3 and 4 as the shape of the operation rather than a command.
+> **The advisor serves the swap.** The steps above ran through the retired memory MCP tools. The registry, adapters and shard layout under `shared/embeddings/` moved with the model server to the skill advisor, which is the caller now. Read steps 3 and 4 as the shape of the operation and drive it through the advisor's surface, not through a spec-kit tool.
 
 The re-index job writes the target dim table and flips the active pointer only after completion. Existing tables remain on disk for rollback.
 

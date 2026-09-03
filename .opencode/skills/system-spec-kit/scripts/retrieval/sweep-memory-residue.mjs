@@ -117,7 +117,7 @@ export const LITERAL_TERMS = Object.freeze([
   'system-spec-memory',
 ]);
 
-/** Trees that carry no live instruction, plus the subsystem tree being retired. */
+/** Trees that carry no live instruction. The surviving package is swept like any other tree. */
 export const EXCLUDE_GLOBS = Object.freeze([
   '!.git/**',
   '!**/node_modules/**',
@@ -125,7 +125,6 @@ export const EXCLUDE_GLOBS = Object.freeze([
   '!**/research/lineages/**',
   '!**/scratch/**',
   '!.worktrees/**',
-  '!.opencode/skills/system-spec-kit/mcp-server/**',
 ]);
 
 /**

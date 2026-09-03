@@ -38,10 +38,10 @@ Validate SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT with disabled, enabled, and disabl
 ### Commands
 
 1. Create a disposable spec folder containing `handover.md` and an `implementation-summary.md` with `_memory.continuity` frontmatter.
-2. Record file checksums and `memory_stats({ limit: 1 })` or another available row-count baseline.
+2. Record file checksums for every file in the sandbox packet. There is no index to baseline: the flag's whole claim is that it touches markdown continuity artifacts and nothing else.
 3. Unset the flag: `unset SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT`; restart the hook process if needed.
 4. Invoke the PreCompact hook or `authored-continuity-snapshot` helper against the sandbox and capture output.
-5. Verify checksums and memory/index counters are unchanged.
+5. Verify the checksums are unchanged and that no file outside the packet was written.
 6. Enable the flag: `export SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT=1`; rerun the hook/helper.
 7. Inspect `handover.md` and `_memory.continuity` for refreshed goal, decision, progress, and gotcha facets.
 8. Capture helper output or logs showing `createdMemoryRecords=0` and `indexMutations=0`.

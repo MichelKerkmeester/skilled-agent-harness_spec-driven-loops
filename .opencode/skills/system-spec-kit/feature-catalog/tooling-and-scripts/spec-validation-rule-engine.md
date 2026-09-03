@@ -91,4 +91,3 @@ The implementation extended the strict path beyond the original shell-rule inven
 - Feature file path: `tooling-and-scripts/spec-validation-rule-engine.md`
 Related references:
 - [spec-lifecycle-automation.md](../../feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md) — Spec Lifecycle Automation
-- [memory-maintenance-and-migration-clis.md](../../feature-catalog/tooling-and-scripts/memory-maintenance-and-migration-clis.md) — Memory Maintenance and Migration CLIs

@@ -20,10 +20,10 @@ This scenario validates Spec folder description discovery (PI-B3) for `042`. It 
 
 
 - Objective: Confirm per-folder + aggregated routing.
-- Real user request: `Please validate Spec folder description discovery (PI-B3) against the documented validation surface and tell me whether the expected signals are present: description.json exists after create.sh; stale detection triggers on spec.md edit; per-folder files preferred over spec.md fallback; mixed-mode aggregation works; invalid JSON or schema-invalid description.json files are ignored, spec.md fallback is used, and existing files are repaired in place; missing description.json falls back cleanly without implicit backfill; out-of-base or prefix-bypass paths are rejected by realpath containment checks; YAML frontmatter is stripped before description extraction, including CRLF-heavy frontmatter cases; memory_context uses folder routing; regeneration leaves valid JSON on disk with no leftover temp files.`
+- Real user request: `Please validate Spec folder description discovery (PI-B3) against the documented validation surface and tell me whether the expected signals are present: description.json exists after create.sh; stale detection triggers on spec.md edit; per-folder files preferred over spec.md fallback; mixed-mode aggregation works; invalid JSON or schema-invalid description.json files are ignored, spec.md fallback is used, and existing files are repaired in place; missing description.json falls back cleanly without implicit backfill; out-of-base or prefix-bypass paths are rejected by realpath containment checks; YAML frontmatter is stripped before description extraction, including CRLF-heavy frontmatter cases; the regenerated trigger index resolves the packet from one of its declared trigger phrases; regeneration leaves valid JSON on disk with no leftover temp files.`
 - Prompt: `Validate spec folder description discovery and description.json fallback behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: description.json exists after create.sh; stale detection triggers on spec.md edit; per-folder files preferred over spec.md fallback; mixed-mode aggregation works; invalid JSON or schema-invalid description.json files are ignored, spec.md fallback is used, and existing files are repaired in place; missing description.json falls back cleanly without implicit backfill; out-of-base or prefix-bypass paths are rejected by realpath containment checks; YAML frontmatter is stripped before description extraction, including CRLF-heavy frontmatter cases; memory_context uses folder routing; regeneration leaves valid JSON on disk with no leftover temp files
+- Expected signals: description.json exists after create.sh; stale detection triggers on spec.md edit; per-folder files preferred over spec.md fallback; mixed-mode aggregation works; invalid JSON or schema-invalid description.json files are ignored, spec.md fallback is used, and existing files are repaired in place; missing description.json falls back cleanly without implicit backfill; out-of-base or prefix-bypass paths are rejected by realpath containment checks; YAML frontmatter is stripped before description extraction, including CRLF-heavy frontmatter cases; the regenerated trigger index resolves the packet from one of its declared trigger phrases; regeneration leaves valid JSON on disk with no leftover temp files
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS: description.json created, stale detection works, per-folder preferred, mixed aggregation correct, no crash on corrupt description.json, invalid metadata repaired on regeneration, missing files fall back without implicit writes, traversal attempts rejected, frontmatter stripping works for CRLF-heavy files, folder routing active, and regenerated files are valid JSON with no leftover temp files; FAIL: Any of the scenario checks fails
 
@@ -47,11 +47,11 @@ Validate spec folder description discovery and description.json fallback behavio
 6. Verify missing description.json falls back to spec.md without forcing a write
 7. Attempt generation against an out-of-base or prefix-bypass path → verify rejection and no file written
 8. Use spec.md with large YAML frontmatter and CRLF-heavy line endings → verify extracted description comes from post-frontmatter content
-9. Run memory_context query → verify short-circuit folder routing
+9. Run `node .opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs` → verify the regenerated `data/trigger-index.json` carries this packet, then look it up with `lookup-trigger-index.mjs "<a declared trigger phrase>"`
 
 ### Expected
 
-description.json exists after create.sh; stale detection triggers on spec.md edit; per-folder files preferred over spec.md fallback; mixed-mode aggregation works; invalid JSON or schema-invalid description.json files are ignored, spec.md fallback is used, and existing files are repaired in place; missing description.json falls back cleanly without implicit backfill; out-of-base or prefix-bypass paths are rejected by realpath containment checks; YAML frontmatter is stripped before description extraction, including CRLF-heavy frontmatter cases; memory_context uses folder routing; regeneration leaves valid JSON on disk with no leftover temp files
+description.json exists after create.sh; stale detection triggers on spec.md edit; per-folder files preferred over spec.md fallback; mixed-mode aggregation works; invalid JSON or schema-invalid description.json files are ignored, spec.md fallback is used, and existing files are repaired in place; missing description.json falls back cleanly without implicit backfill; out-of-base or prefix-bypass paths are rejected by realpath containment checks; YAML frontmatter is stripped before description extraction, including CRLF-heavy frontmatter cases; the regenerated trigger index resolves the packet from one of its declared trigger phrases; regeneration leaves valid JSON on disk with no leftover temp files
 
 ### Evidence
 
@@ -112,46 +112,22 @@ Valid JSON and leftover temp-file check for the created folder:
 }
 ```
 
-`memory_context` query for `Validate spec folder description discovery and description.json fallback behavior.` did not return folder-routing trace. MCP and daemon-backed CLI attempts both failed with session-scope validation:
-
-```text
-{
-  "summary": "Error: sessionId \"memory-context:7c8464932aed2bb0\" is not bound to a corroborated server identity. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.",
-  "data": {
-    "error": "sessionId \"memory-context:7c8464932aed2bb0\" is not bound to a corroborated server identity. Omit sessionId to start a new server-generated session and reuse the effectiveSessionId returned by the server.",
-    "code": "E_SESSION_SCOPE",
-    "details": {
-      "requestId": "4aac0916-a3fd-4ee9-864c-cb193278e926",
-      "layer": "L1:Orchestration",
-      "mode": "deep",
-      "upstream": {
-        "requestedSessionId": "memory-context:7c8464932aed2bb0"
-      }
-    }
-  },
-  "hints": [
-    "Omit sessionId to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context."
-  ],
-  "meta": {
-    "tool": "memory_context",
-    "tokenCount": 259,
-    "cacheHit": false,
-    "isError": true,
-    "severity": "error",
-    "tokenBudget": 3500
-  }
-}
-```
+The recorded run predates the memory decommission: its final step called `memory_context`
+and failed with `E_SESSION_SCOPE`, a server that no longer exists. That evidence block was
+removed rather than reinterpreted. Step 9 must be re-executed against the trigger-index lane
+and its transcript captured here before this scenario carries a verdict again.
 
 ### Pass / Fail
 
-FAIL
+SKIP
 
-Reason: the creation and folder-discovery validation surfaces passed, but the required `memory_context` folder-routing check failed with `E_SESSION_SCOPE` instead of producing routing evidence.
+Reason: steps 1-8 passed on the last recorded run, but step 9 was rewired from `memory_context`
+folder routing to the trigger-index lane and has not been re-executed. The blocker is a missing
+run, not a product defect.
 
 ### Failure Triage
 
-Verify create.sh generates description.json → Check stale detection mtime comparison → Inspect generateFolderDescriptions preference logic and repair path → Confirm missing-file fallback does not backfill unexpectedly → Verify realpath containment rejects traversal/prefix-bypass paths → Confirm frontmatter stripping happens before description extraction → Verify memory_context folder routing
+Verify create.sh generates description.json → Check stale detection mtime comparison → Inspect generateFolderDescriptions preference logic and repair path → Confirm missing-file fallback does not backfill unexpectedly → Verify realpath containment rejects traversal/prefix-bypass paths → Confirm frontmatter stripping happens before description extraction → Verify the trigger index resolves the packet from a declared trigger phrase
 
 ---
 

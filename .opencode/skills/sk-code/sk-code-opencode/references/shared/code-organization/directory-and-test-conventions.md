@@ -172,7 +172,7 @@ mcp-server/
 │   └── validation/             # Input validation
 │       └── preflight.ts
 ├── scripts/                    # Server-specific scripts
-│   └── reindex-embeddings.ts
+│   └── generate-trigger-index.mjs
 ├── utils/                      # Top-level utilities
 │   ├── index.ts                # Barrel exports
 │   ├── batch-processor.ts
@@ -224,7 +224,7 @@ scripts/
 │   └── data-loader.ts
 ├── memory/                     # Memory management
 │   ├── generate-context.ts
-│   ├── cleanup-orphaned-vectors.ts
+│   ├── validate-memory-quality.ts
 │   └── rank-memories.ts
 ├── renderers/                  # Template renderers
 │   ├── index.ts

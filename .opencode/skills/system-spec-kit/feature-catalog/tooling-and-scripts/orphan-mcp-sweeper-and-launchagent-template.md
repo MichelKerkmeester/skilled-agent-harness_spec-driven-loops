@@ -67,5 +67,3 @@ The sweeper preserves Ollama, live Claude Code descendants, the freshest young i
 - Group: Tooling And Scripts
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md`
-Related references:
-- [embedder-status-and-active-pointer.md](../../feature-catalog/tooling-and-scripts/embedder-status-and-active-pointer.md) — Embedder status and active pointer

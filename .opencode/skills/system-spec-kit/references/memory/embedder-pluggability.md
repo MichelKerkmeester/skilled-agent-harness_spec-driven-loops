@@ -112,7 +112,7 @@ Three operations wrap the registry: list the registered manifests with their `re
 
 Operator flow is "list, set, watch." The set operation is asynchronous: it returns a job ID, the orchestrator re-indexes every row through the new adapter, and the active pointer flips only when the job reaches `completed`.
 
-**The spec kit exposes no tool for any of this.** These three operations were served by the retired memory MCP surface. The registry, the adapters and the dim-tagged schema survive under `shared/embeddings/`, and the stack is configured through the environment variables in `../config/environment-variables.md`; which surviving surface exposes the swap is decided by the shared-seam split. For daemon and model-server health, use the advisor's own status surface (`node .opencode/bin/skill-advisor.cjs advisor_status --format json`), which is the only live health tool in this tree.
+**The spec kit exposes no tool for any of this.** These three operations were served by the retired memory MCP surface. The shared embedding stack now sits under the skill advisor, which owns the registry, the adapters, the dim-tagged schema under `shared/embeddings/` and the model server. Configure it through the environment variables in `../config/environment-variables.md`, and read health from the advisor's own status surface: `node .opencode/bin/skill-advisor.cjs advisor_status --format json`.
 
 ### EmbedderAdapter interface
 
@@ -208,7 +208,7 @@ No code changes. No schema migrations. A fresh clone reaches a ready state from 
 
 The swap is a single call and crash-resumable.
 
-> **Pending owner.** These four steps ran through the retired memory MCP surface and there is no command to run today. Treat them as the shape of the operation until the shared-seam split names the surviving caller.
+> **The advisor owns this now.** These four steps ran through the retired memory MCP surface, and the shared embedding stack moved to the skill advisor with the model server. Read them as the shape of the operation and drive it through the advisor's surface, not through a spec-kit tool.
 
 ### Rollback flow
 

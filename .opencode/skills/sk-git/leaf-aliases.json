@@ -196,11 +196,6 @@
   },
   {
     "workflowMode": "sk-git",
-    "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/reaper-orphan-daemon-report-only.md",
-    "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/reaper-orphan-daemon-report-only.md"
-  },
-  {
-    "workflowMode": "sk-git",
     "leafResourceId": "manual-testing-playbook/owner-first-worktree-tooling/runtime-identity-validation.md",
     "diskPath": "manual-testing-playbook/owner-first-worktree-tooling/runtime-identity-validation.md"
   },

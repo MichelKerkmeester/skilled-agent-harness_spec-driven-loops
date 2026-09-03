@@ -62,12 +62,10 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
   - `M-007o` Claude tool-path downgrade vs non-Claude capped path
   - `M-007p` Structured-summary JSON coverage and file-backed authority
   - `M-007q` Phase 018 output-quality hardening
-  - `133` cross-reference for MCP `memory_save` dry-run and insufficiency preview
-  - `149` cross-reference for rendered-memory contract enforcement
 - Latest automated baseline refresh:
   - Re-run the commands in this scenario during the current verification window and capture fresh output; do not rely on historical totals or dated rerun counts.
   - Treat the scripts-side baseline as `npm run check`, `npm run build`, the focused Vitest lanes in this scenario, and `npm run test:legacy` after build.
-  - Treat the MCP-side baseline as the targeted save-quality lanes plus package-level `npm run check`.
+  - There is no MCP-side baseline: the save path is the `generate-context` script, and its lanes are the scripts-side baseline above.
   - Require the source/dist alignment lane to report zero violations for both `mcp-server/dist/lib` and `scripts/dist`.
   - Automated parity is not, by itself, proof that every supported CLI has been exercised live. Universal live-proof claims require fresh per-CLI and per-save-mode artifacts generated during this run.
 ### Commands

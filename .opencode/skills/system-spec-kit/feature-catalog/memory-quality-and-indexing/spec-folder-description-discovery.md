@@ -1,6 +1,6 @@
 ---
 title: "Spec folder description discovery"
-description: "Spec folder description discovery generates per-folder `description.json` metadata and uses it to short-circuit full-corpus vector search."
+description: "Spec folder description discovery generates the per-folder `description.json` metadata that identifies a packet and feeds the trigger index."
 trigger_phrases:
   - "spec folder description discovery"
   - "description.json metadata"
@@ -41,10 +41,12 @@ compatibility. The `generateFolderDescriptions()` function prefers fresh
 per-folder files and falls back to `spec.md` extraction when `description.json`
 is missing or stale (spec.md modified after description.json).
 
-The `memory_context` orchestration layer checks descriptions before issuing
-vector queries. If the target folder can be identified from the description
-alone, the system skips full-corpus search entirely. Runs behind the
-`SPECKIT_FOLDER_DISCOVERY` flag (default ON).
+The consumer that used the aggregate to short-circuit a vector query was the
+memory server, and it is gone. What survives is the producer: `description.json`
+is generated per folder and read directly by the tools that need a packet's
+identity, and by the trigger-index generator, which folds each packet's declared
+`trigger_phrases` into `data/trigger-index.json`. Prompt-to-packet routing now
+runs through that index rather than through description-based query routing.
 
 ### Quality Gates & Validation
 
@@ -115,6 +117,3 @@ continues to derive a folder-name fallback label from the path when needed.
 - Group: Memory Quality And Indexing
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `memory-quality-and-indexing/spec-folder-description-discovery.md`
-Related references:
-- [pre-flight-token-budget-validation.md](../../feature-catalog/memory-quality-and-indexing/pre-flight-token-budget-validation.md) — Pre-flight token budget validation
-- [pre-storage-quality-gate.md](../../feature-catalog/memory-quality-and-indexing/pre-storage-quality-gate.md) — Pre-storage quality gate

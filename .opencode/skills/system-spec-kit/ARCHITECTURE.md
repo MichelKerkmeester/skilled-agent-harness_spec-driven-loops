@@ -21,9 +21,9 @@ importance_tier: "important"
 `system-spec-kit` is split into three authored zones plus generated build output:
 
 - `scripts/` owns CLI generation, validation, indexing, evals, and packet tooling. TypeScript and shell.
-- `mcp-server/` owns the runtime MCP server, handlers, storage, search, hooks, and matrix runners. TypeScript.
-- `shared/` owns neutral modules imported by both scripts and runtime. TypeScript.
-- `dist/` carries generated JavaScript entrypoints only. Not authored.
+- `mcp-server/` owns the spec-kit engine: spec folder validation, generated packet metadata, description generation, and the per-runtime hook adapters. It is consumed as a library, not run as a service. TypeScript.
+- `shared/` owns neutral modules imported by both scripts and the engine. TypeScript.
+- Each zone carries its own generated `dist/`, gitignored and rebuilt from source. Not authored.
 
 The package's operator-facing recovery surface is `/speckit:resume`. The recovery chain reads `handover.md`, then `_memory.continuity`, then canonical spec docs (`implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`). Generated memory artifacts are supporting context only, not the primary continuity record.
 
@@ -44,12 +44,12 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  │                       mcp-server/                         │  │
 │  │  ┌──────────┐ ┌──────────┐ ┌──────────────────────────┐   │  │
 │  │  │ hooks/   │ │handlers/ │ │           lib/           │   │  │
-│  │  │ claude/  │ │save/     │ │ search / resume / merge  │   │  │
-│  │  │ opencode/   │ │resume/   │ │ graph / continuity       │   │  │
-│  │  │          │ │search/   │ │                          │   │  │
-│  │  │          │ │context/  │ │                          │   │  │
+│  │  │ claude/  │ │discovery │ │ validation / graph       │   │  │
+│  │  │ codex/   │ │save/     │ │ description / continuity │   │  │
+│  │  │ cursor/  │ │          │ │ resume / search          │   │  │
+│  │  │ devin/pi │ │          │ │                          │   │  │
 │  │  └──────────┘ └──────────┘ └──────────────────────────┘   │  │
-│  │  matrix-runners/        stress-test/                      │  │
+│  │  api/                   stress-test/                      │  │
 │  └─────────────────────────┬─────────────────────────────────┘  │
 │                            │                                    │
 │  ┌────────────────┐     ┌──┴──────────────┐                     │
@@ -75,25 +75,21 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 ```text
 system-spec-kit/
 ├── scripts/                # CLI generation, validation, indexing, evals
-├── mcp-server/             # Runtime MCP server
-│   ├── context-server.ts   # MCP transport entrypoint
-│   ├── tool-schemas.ts     # Public tool schema registry
-│   ├── handlers/           # Top-level MCP tool handlers
-│   ├── tools/              # Tool dispatcher and group helpers
-│   ├── schemas/            # Zod input schemas
-│   ├── lib/                # Search, scoring, context, continuity, resume
-│   ├── hooks/              # Startup / prompt / compact-context hook payload builders
-│   ├── formatters/         # MCP response shaping
-│   ├── shared/             # Shared algorithms inside the runtime
-│   ├── configs/            # Runtime tuning data
-│   ├── scripts/            # Maintenance and evaluation scripts
-│   ├── database/           # Local SQLite stores
-│   ├── tests/              # Vitest + integration coverage
-│   ├── matrix-runners/     # Packet-036 F1-F14 x CLI adapter manifest
-│   └── stress-test/        # Opt-in stress / load / degraded-state suites
-├── shared/                 # Neutral modules importable by scripts + runtime
-├── dist/                   # Generated build output
-└── tests/                  # Spec-folder test fixtures
+├── mcp-server/             # Spec-kit engine, consumed as a library
+│   ├── api/                # Public barrel for the scripts workspace
+│   ├── handlers/           # Spec-document discovery and the save-path folder mutex
+│   ├── lib/                # Validation, graph metadata, description, continuity, resume
+│   ├── hooks/              # Per-runtime hook adapters and the shared spec-gate core
+│   ├── core/               # Runtime path and config resolution
+│   ├── configs/            # Environment-validated config and weight data
+│   ├── scripts/            # Build finalizer, metadata repair, test runners
+│   ├── tests/              # Vitest coverage
+│   └── stress-test/        # Opt-in load and contention suites
+├── shared/                 # Neutral modules importable by scripts + engine
+├── templates/              # Level contract and document templates
+├── references/             # Workflow contracts and playbooks
+├── data/                   # Generated trigger index
+└── feature-catalog/        # Capability inventory
 ```
 
 Allowed dependency direction:
@@ -101,9 +97,8 @@ Allowed dependency direction:
 - `scripts/ ──▶ mcp-server/api/`
 - `mcp-server/ ──▶ shared/`
 - `scripts/ ──▶ shared/`
-- `mcp-server/ ──▶ database/`
 
-Reverse imports are blocked by lint and CI.
+Reverse imports are blocked by lint and CI. Imports that reach past `mcp-server/api/` into `lib/`, `core/` or `handlers/` are rejected by the import-policy checks in `scripts/evals/` unless they carry a governed allowlist entry.
 
 ---
 
@@ -135,19 +130,19 @@ Spec-kit treats canonical spec documents as the durable continuity record. The g
 
 ## 4. RUNTIME SUBSYSTEMS
 
-The MCP server is composed of focused subsystems that share the transport layer and the SQLite store.
+The engine is composed of focused subsystems that share a public barrel and a filesystem contract.
 
-**Search.** The 5-channel hybrid retrieval pipeline (Vector, FTS5, BM25, Causal Graph, Degree) lives in `lib/search/`. The four pipeline stages are Gather → Score → Rerank → Filter. Reciprocal Rank Fusion combines channel outputs. Response shaping happens in `formatters/`.
+**Validation.** `lib/validation/orchestrator.ts` owns every spec folder rule verdict. `scripts/spec/validate.sh` is a thin front end over its compiled output and implements no rules of its own; it refuses to run against a stale build rather than returning a stale verdict. `lib/templates/level-contract-resolver.ts` supplies the per-level document contract, and `lib/spec/is-phase-parent.ts` is the single detection rule for phase parents.
 
-**Memory and continuity.** `lib/memory/` owns the indexed-continuity store schema and persistence. `lib/continuity/` owns the canonical-doc routing. `database/` carries the SQLite files (`context-index.sqlite` is the canonical store; embedding vectors live in per-profile `vectors/` shards; `speckit-eval.db` holds eval data).
+**Generated packet metadata.** `lib/graph/` and `lib/description/` derive, merge, validate and serialize the two generated JSON files a spec folder carries — `description.json` and `graph-metadata.json`. Reads and writes stay split: the parser writes, while the integrity and drift gates only report, so a check cannot dirty the files it exists to keep clean. `lib/description/packet-synopsis.ts` is the one shared extractor behind both generated summary fields, so they cannot drift from the same `spec.md`.
 
-**Save pipeline.** `handlers/save/` runs the 3-layer save gate (intake validation, content router, post-save quality review). DQI scoring runs on every save.
+**Discovery and continuity.** `handlers/memory-index-discovery.ts` walks the filesystem for canonical spec documents and detects a folder's level; `lib/discovery/` re-exports it as a seam so `lib/` code depends inward rather than reaching sideways. `lib/continuity/` owns the bounded continuity record and `lib/resume/` builds the ladder a resume walks.
 
-**Hook orchestrator.** `hooks/{claude,opencode}/` produce per-runtime startup, prompt-submit, and compact-context payloads. The payloads share a common builder in `lib/hooks/`.
+**Hook adapters.** `hooks/{claude,codex,cursor,devin,pi}/` translate each runtime's payload onto shared implementations and emit that runtime's own envelope shape. Policy stays in `hooks/lib/spec-gate/spec-gate-core.mjs`, so the core never changes for a new runtime, and `lib/hooks/completion-evidence-sentinel.cjs` holds the runtime-neutral completion-evidence decision.
 
-**Matrix runners.** `matrix-runners/` houses the F1-F14 evaluation harness and per-CLI adapters used by the quality matrix.
+**Public surface.** `api/index.ts` is the supported import surface. Every export has a named caller in the scripts workspace.
 
-**Stress tests.** `stress-test/` carries opt-in load + degraded-state suites, excluded from default `npm test` and run through `npm run stress`.
+**Stress tests.** `stress-test/` carries opt-in load and contention suites, excluded from the default test config and run through `vitest.stress.config.ts`.
 
 ---
 
@@ -171,7 +166,7 @@ Spec-kit's quality gates run at three layers.
 
 **Save gate.** Every `/memory:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
 
-**Test surfaces.** Default `npm test` runs unit + integration suites and, through `mcp-server/package.json` `test:spec-validation`, the tracked spec-validation shell suites. Stress suites are opt-in via `npm run stress`. Matrix runner evaluation is opt-in via the runner-specific commands under `matrix-runners/`.
+**Test surfaces.** Default `npm test` runs the engine suites through the bounded runner in `mcp-server/scripts/run-tests.mjs` and, through `mcp-server/package.json` `test:spec-validation`, the tracked spec-validation shell suites. Stress suites are opt-in via `vitest run --config vitest.stress.config.ts`.
 
 ---
 
@@ -181,8 +176,6 @@ Spec-kit's quality gates run at three layers.
 |---|---|---|
 | ADR-001 | Canonical continuity surfaces own the durable record; generated memory is search-only | Accepted |
 | ADR-002 | Phase parents validate as the lean trio (spec + description + graph-metadata) | Accepted |
-| ADR-003 | Hybrid retrieval fuses 5 channels via Reciprocal Rank Fusion | Accepted |
-| ADR-004 | FSRS power-law forgetting curve, tuned by content type and importance | Accepted |
 | ADR-005 | 4-level documentation contract (Levels 1, 2, 3, 3+) with manifest templates | Accepted |
 | ADR-006 | Save gate runs 3 layers (intake, router, quality review) on every save | Accepted |
 | ADR-007 | Embedding provider auto-cascade is local-first (Ollama → hf-local → OpenAI → Voyage), per ADR-014 | Accepted |
@@ -193,7 +186,6 @@ Spec-kit's quality gates run at three layers.
 
 - [README.md](./README.md): Human-facing package overview
 - [SKILL.md](./SKILL.md): Runtime routing and invariants
-- [INSTALL-GUIDE.md](mcp-server/INSTALL-GUIDE.md): Native bootstrap and per-runtime configuration
 - [feature-catalog/feature-catalog.md](./feature-catalog/feature-catalog.md): Current feature inventory
 - [manual-testing-playbook/manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md): Operator validation scenarios
 - [mcp-server/README.md](./mcp-server/README.md): MCP server package details

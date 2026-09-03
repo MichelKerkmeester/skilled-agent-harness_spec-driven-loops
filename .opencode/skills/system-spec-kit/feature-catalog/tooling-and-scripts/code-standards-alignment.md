@@ -126,9 +126,6 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
 |------|-------|------|
 | `mcp-server/handlers/save/spec-folder-mutex.ts` | Handler/save | Owns the extracted `SPEC_FOLDER_LOCKS` constant and per-spec-folder save mutex used by the standards-alignment evidence above |
 
-Related references:
-- [dead-code-removal.md](../../feature-catalog/tooling-and-scripts/dead-code-removal.md) — Dead code removal
-- [real-time-filesystem-watching-with-chokidar.md](../../feature-catalog/tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md) — Real-time filesystem watching with chokidar
 
 ---
 

@@ -52,6 +52,3 @@ The corresponding policy is documented in `ARCHITECTURE.md` under "Source-Dist A
 - Group: Tooling And Scripts
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `tooling-and-scripts/source-dist-alignment-enforcement.md`
-Related references:
-- [constitutional-memory-manager-command.md](../../feature-catalog/tooling-and-scripts/constitutional-memory-manager-command.md) — Constitutional memory manager command
-- [module-boundary-map.md](../../feature-catalog/tooling-and-scripts/module-boundary-map.md) — Module boundary map
