@@ -14,7 +14,7 @@
   "progressiveSynthesis": true,
   "specFolder": "specs/sk-doc/051-sk-create-chart/008-evilcharts-reference-research",
   "createdAt": "2026-09-03T07:15:00Z",
-  "status": "initialized",
+  "status": "complete",
   "executionMode": "auto",
   "executor": {
     "kind": "cli-pi",

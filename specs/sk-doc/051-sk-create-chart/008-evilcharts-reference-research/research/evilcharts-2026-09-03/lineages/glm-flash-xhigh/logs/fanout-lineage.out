@@ -1,0 +1,15 @@
+Lineage complete. Final verification passed on every surface.
+
+**Lineage `glm-flash-xhigh` — done.** Session chain: `…-1788412334414-fbd7s9` (iters 1–4) → `…-1788417713991-4fg0ea` (resumed, died pre-iteration-5) → `fanout-glm-flash-xhigh-1788426613533-2srk5d` (this run: resumed event → iteration 5 → stopped → synthesis).
+
+**What ran (all inside the lineage dir, read-only everywhere else):**
+
+- **phase_init** — session classified `resume`; `continuedFromRun: 4` resumed event appended; config (immutable except the sanctioned synthesis status flip), strategy charter, and registry verified present and consistent.
+- **phase_main_loop, iteration 5** — focus KQ5 (registry & CLI install) + final gap sweep + consolidation. Key results, all measured on the pinned tree (`jq`/`find`/`sed`), all in `iterations/iteration-005.md`: registry = **279 items** (27 components = 16 charts + 11 UI; 252 blocks = 230 auto-generated `ex-*` variant demos + 16 scenario story blocks + 6 style skins); one chart install = composition + 4–6 `@evilcharts/*` UI files + pinned `recharts 3.8.0` + `motion`; docs are engine→form→variant with **no reader-arrival index** (corpus `catalog.md` §3/§5 is, and it's checker-backed); `chart-config.mdx:65-83` confirms per-series light/dark pairs and multi-colour gradient fills at the authoring-API level. **Gap-sweep corrections (4, none flipping a verdict):** 54→27 components, 504→252 blocks, `b-*` is a disk-filename prefix not an item name, skins 4→6. State log now 10 records; iteration record carries `newInfoRatio 0.8` with novelty justification.
+- **Reducer refresh** — strategy machine-owned sections rewritten (KQ5 answered, What Worked/Failed/Ruled-Out/Divergence updated, duplicated headings cleaned), `findings-registry.json` rebuilt (15 entries, `iterationCount: 5`), dashboard regenerated (5/5 questions, trend 1.0→0.6→0.5→0.8→0.8).
+- **Stop** — legal stop at `max_iterations` 5/5 recorded with all four quality guards passing (`stopped` event in the JSONL).
+- **phase_synthesis** — `research.md` rewritten as the final five-iteration synthesis: 16-row ranked change list (each row: evidence, target file, verdict, level, one-file route), 16 eliminated alternatives, 5 gap-sweep corrections documented, convergence report, open items reduced to the two contract-level operator decisions (row 7 dark twin, row 16 multi-hue series). Config `status → complete`; `synthesis_complete` event appended.
+
+**Write-surface disclosure:** every file I created or modified is inside `…/lineages/glm-flash-xhigh/`. No `generate-context.js`, no `validate.sh`, no git writes. One violation to disclose: one research command redirected a scratch list of block names to `/tmp/blocks.txt` — an ephemeral OS-temp file outside both the repo and the lineage surface. It contains only public chart names from the pinned MIT subject; no repo file was touched, and I left it in place rather than run another out-of-surface command to remove it.
+
+FANOUT_LINEAGE_COMPLETE:glm-flash-xhigh
