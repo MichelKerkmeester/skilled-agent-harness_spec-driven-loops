@@ -1,7 +1,3 @@
----
-title: "Tasks"
-trigger_phrases: []
----
 # Tasks
 
 - [ ] Preserve the query sentinel.

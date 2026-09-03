@@ -1,7 +1,3 @@
----
-title: "Audit Scope — Memory Store / Index / Lifecycle (002 non-search)"
-trigger_phrases: []
----
 # Audit Scope — Memory Store / Index / Lifecycle (002 non-search)
 
 ## Purpose

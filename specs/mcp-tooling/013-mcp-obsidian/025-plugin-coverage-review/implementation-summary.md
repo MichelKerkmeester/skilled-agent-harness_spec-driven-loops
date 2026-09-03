@@ -1,7 +1,3 @@
----
-title: "Implementation Summary — mcp-obsidian plugin-coverage review + scenario testing"
-trigger_phrases: []
----
 # Implementation Summary — mcp-obsidian plugin-coverage review + scenario testing
 
 ## Final state: complete

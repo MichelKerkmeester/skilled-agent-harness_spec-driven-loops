@@ -1,7 +1,3 @@
----
-title: "Spec — Mass-Deletion Guard for Commits and Pushes"
-trigger_phrases: []
----
 # Spec — Mass-Deletion Guard for Commits and Pushes
 
 ## Status

@@ -1,7 +1,3 @@
----
-title: "Spec — mcp-obsidian plugin-coverage review + scenario testing"
-trigger_phrases: []
----
 # Spec — mcp-obsidian plugin-coverage review + scenario testing
 
 ## Status

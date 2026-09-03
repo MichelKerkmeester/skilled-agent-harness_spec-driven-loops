@@ -132,12 +132,6 @@
         "source": "derived"
       },
       {
-        "name": "Tasks — mcp-obsidian + hub post-audit fixes",
-        "kind": "quoted",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -158,7 +152,7 @@
     ],
     "causal_summary": "Fix the three defects from the two fresh-Opus bug audits of the `mcp-obsidian` mode skill and its `mcp-tooling` parent integration",
     "created_at": "2026-08-06T13:47:25.994Z",
-    "last_save_at": "2026-09-03T22:15:54.137Z",
+    "last_save_at": "2026-09-03T22:52:13.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -167,13 +161,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9717c8a73ae58c0d6156682e042cbee04c05d605b84ac40b9a2c276671e42fa7",
+    "source_fingerprint": "sha256:6272e7f91a6a20562bbd063eebccc655b44420259171a70336dccc17d7733adb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7dd2e01648de0d2ce739ad1ae58bc1871891a824d9433747d6fe90b9749526b1",
-      "plan.md": "475faeba341572860dc2bdeef22c6df52c7d9ba2583cd9d7a0c32461b0246907",
-      "tasks.md": "96149801b69874b312edf9aeacf9a4606ea1012d21541d7f0e563a1711e1fbd2",
-      "implementation-summary.md": "3dbcb49c52c14337b91f115aab7c63b79756ace2df908a1fff0e57f3f7970f47"
+      "spec.md": "055361a655eeb8ee348b1a6c5ebeeadedf24bacd4e90667fa938bf49622e57fa",
+      "plan.md": "a351f41c8392beeb7c5f28423585b1cb00b77f5297329ab94cbcb247d17cbc12",
+      "tasks.md": "3d1539fccf51654a83d5c1e1bde35c218ccbfce3a3d861757171420636f78a8c",
+      "implementation-summary.md": "a164965a504a0e76317b3be050602d2cfaab96e39554988252567a95c0f3abb3"
     },
     "last_active_child_id": null,
     "last_active_at": null

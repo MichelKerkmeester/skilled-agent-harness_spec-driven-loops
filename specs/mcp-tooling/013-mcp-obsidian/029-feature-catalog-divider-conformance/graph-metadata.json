@@ -169,7 +169,7 @@
     ],
     "causal_summary": "Add the missing Style-A section dividers to the 11 plugin feature-catalog leaves so they match the sibling `cli/` and `mcp/` leaves and the repo-wide catalog convention",
     "created_at": "2026-08-06T10:56:39.750Z",
-    "last_save_at": "2026-09-03T22:15:50.808Z",
+    "last_save_at": "2026-09-03T22:52:11.829Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -178,13 +178,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d0f46627c6577873f9395e491a9950472466efddc44abfc3b8584048610ea6ba",
+    "source_fingerprint": "sha256:85743f276d5cf71e99050dbf9d7cff773f022b9f75009444ea30ae13241d9f78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "87ead60f1bd0fd115bbb9fc7a7fc012a61b1e5df1cb05fd3085bd8042c0a8dbd",
-      "plan.md": "e662b349b0ad618836a0d4de7269ef8cd8e0f9675a8e6014191ae80483f26d63",
-      "tasks.md": "136d5b20c4d51fe8cb0d1e167c205bf4dcb7a1333a5dc9b0441d020d94100f17",
-      "implementation-summary.md": "edd654c852eae9a1ef3b100b7743462afc0a1afbad3201d8cdf3cbdac09da404"
+      "spec.md": "c996b0a9e5480f5299717e0eef58de9511cd47f4842e5e50234ad974fd4afcaa",
+      "plan.md": "52eaf48244fb499755c8054dfc97963e4a700be08a9770007e4c60b57791c2b8",
+      "tasks.md": "7a80f2ecf39ffa1c354b743f2b614cf86dfdb2f4fa748f23dc46c008171703ad",
+      "implementation-summary.md": "4f3b503cb80189f9e4492a716f9982d274dae28074aabcde0d4653b4061d8cc0"
     },
     "last_active_child_id": null,
     "last_active_at": null

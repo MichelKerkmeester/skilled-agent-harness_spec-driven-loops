@@ -163,7 +163,7 @@
     ],
     "causal_summary": "Verify that every community plugin/theme supported by the `mcp-obsidian` skill is properly and completely covered across all documentation surfaces, remediate the gaps, and headlessly test every plugin playbook scenario",
     "created_at": "2026-08-05T19:56:29.576Z",
-    "last_save_at": "2026-09-03T22:15:47.655Z",
+    "last_save_at": "2026-09-03T22:52:09.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -172,13 +172,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3b9b726205b8f8206e9e3cc98fe849733c6f15baac467907fefacfd98c44e73",
+    "source_fingerprint": "sha256:6f7f009845e233f41006be6cddc84ebc1c56cbb2f456f691fafe0fb094da5b96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a47571ced48d03e255c9e38bfcc025553185323b7bbf3e7a41b5ee13587f21c9",
-      "plan.md": "37bcd1b76a3433afe7f09cb05697401e066c47afac1591e3a49180f16d16e512",
-      "tasks.md": "84f04dc8cca3818f6fa0c3f90871a5d8d61c6e4a1b3a480ff82fadb01b490816",
-      "implementation-summary.md": "f397fb9363d0f804297790dc7a103760bb5953fe8736470b4ee9a9639174c767"
+      "spec.md": "6d66aeb00960fade592f35cb44f58989f62e96493e2b18fb7dca028139b96a99",
+      "plan.md": "b0536f0ca4e7b6e2df4bf45c0e70ea2ad5ad1366cc069cdaf4403356b882b316",
+      "tasks.md": "4030a11bca568d7a360a6c9ebad053029e6126bae552b35d073c154df3cb1043",
+      "implementation-summary.md": "e8f09f0dc1826d722d9bcb054e5c5af41126766bf8cfbf6126770c80cba29b4b"
     },
     "last_active_child_id": null,
     "last_active_at": null

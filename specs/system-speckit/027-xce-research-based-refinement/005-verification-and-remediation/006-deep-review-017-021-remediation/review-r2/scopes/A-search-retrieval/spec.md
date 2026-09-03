@@ -1,7 +1,3 @@
----
-title: "Audit Scope — Search & Retrieval Subsystem"
-trigger_phrases: []
----
 # Audit Scope — Search & Retrieval Subsystem
 
 ## Purpose

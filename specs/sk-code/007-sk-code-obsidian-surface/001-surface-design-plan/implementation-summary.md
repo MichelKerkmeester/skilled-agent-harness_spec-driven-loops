@@ -1,3 +1,0 @@
----
-trigger_phrases: []
----

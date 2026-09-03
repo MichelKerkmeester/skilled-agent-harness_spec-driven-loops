@@ -1,7 +1,3 @@
----
-title: "Implementation Summary — Mass-Deletion Guard"
-trigger_phrases: []
----
 # Implementation Summary — Mass-Deletion Guard
 
 ## Final state

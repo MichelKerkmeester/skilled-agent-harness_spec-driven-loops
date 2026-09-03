@@ -115,17 +115,17 @@
     ],
     "causal_summary": "Spec: 026 Changelog Accuracy Re-Audit",
     "created_at": "2026-07-10T06:19:18.252Z",
-    "last_save_at": "2026-09-03T22:22:32.616Z",
+    "last_save_at": "2026-09-03T22:52:46.868Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6282fd268decd9d161efeb440bfe88446df336ccc91aa8a8b82f3f3ade133e49",
+    "source_fingerprint": "sha256:b722a5963d34c035f294bad485e4ae459aa76ac55a395ac3263b2c22bffdcdf1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "582eb23ae1546840674d99df6fdec56a2c56cfc0b5cd751ef4696ae8749a2b01",
+      "spec.md": "d64f7601227b562027536a07c9fcb777271a24b5b880adb58c3b53a25ce8c0f3",
       "research/research.md": "b56285c1dd26e2f7266be1aa094a4d69e6f5e961eb4321f695089f62bf0960fe"
     },
     "last_active_child_id": null,

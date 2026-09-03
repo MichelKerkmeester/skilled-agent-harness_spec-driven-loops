@@ -183,7 +183,7 @@
     ],
     "causal_summary": "A surface packet that describes conventions the tree does not have is worse than none: it reads as",
     "created_at": "2026-08-28T18:17:36Z",
-    "last_save_at": "2026-09-03T22:16:13.735Z",
+    "last_save_at": "2026-09-03T22:52:17.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a7500ddcfe8c7a631f4ccbab94b3ff519ce19546c25aa08e71d6402ac3c1869",
+    "source_fingerprint": "sha256:df3abcc31f802bd10b89e081e7a9be9679a690bb22bb603fc790bdf144e505fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cb9e316a9b7bbc48934871ffa30b636fbb95505153a6562dbc5edf8c74b91bf7",
       "plan.md": "dd9a7e3cf1e05c85241cabf948926562e8ac4c9153ebaf73ce90214e36e30c2b",
       "tasks.md": "0d03f26bb5e189613dbc4381bd8e7dea91c4b9ee4eb7f87345058d8ac01c9035",
-      "implementation-summary.md": "3d54eeb7f98ebb5e9e8e59a44d255e2b360aef017fc2c6795ce0e23946e7f284"
+      "implementation-summary.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "last_active_child_id": null,
     "last_active_at": null

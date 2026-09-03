@@ -1,7 +1,3 @@
----
-title: "Save fixture tasks"
-trigger_phrases: []
----
 # Save fixture tasks
 
 - [ ] Preserve the canonical continuity sentinel.

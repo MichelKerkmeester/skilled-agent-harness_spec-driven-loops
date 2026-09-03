@@ -133,12 +133,6 @@
         "source": "derived"
       },
       {
-        "name": "Tasks: Fix Doctor Bootstrap Symlink Restart Loop",
-        "kind": "quoted",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -171,7 +165,7 @@
     ],
     "causal_summary": "Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop",
     "created_at": "2026-07-10T06:24:11.204Z",
-    "last_save_at": "2026-09-03T22:23:18.899Z",
+    "last_save_at": "2026-09-03T22:52:51.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,13 +174,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45858ea38078c50c9fa30ce2aa40c376bd8e7c3164acd4b56ae21289726a980b",
+    "source_fingerprint": "sha256:33fd6939870fe0ba800abc5c8a1ca62986a9bcaade9b093a633e12149dfd55fd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd07b442ac6cff39299bc35926ca639d7e121efe3b5986b4f2214896d45742dd",
-      "plan.md": "ea1553f206c4ae05c46851956a972608471816ec14ad93016d6dd106685dcc3e",
-      "tasks.md": "e0ff74ed15fd5c153946bc0e8ac2817391f557b3b08ddb29c51828916b071c30",
-      "implementation-summary.md": "a287f4f5fd2eac8cea7816c31995493e7acd403892250fa259a182db2daba00d"
+      "spec.md": "d808354aee8cf5502c32d3abd287a6f87e786fa983af82850f538a8ed310e93f",
+      "plan.md": "97d8f41d86ee21d1848acc8a96601f811267d785007176c160c9626bacb7f278",
+      "tasks.md": "2ffde3d36e412359a942849322fbdf123b735d1e5ad7a18b15b4448f2dea5d9c",
+      "implementation-summary.md": "047186513d797081285b9492c93a8b7361c72b26e7c159c6fc29167c7ec68540"
     },
     "last_active_child_id": null,
     "last_active_at": null
