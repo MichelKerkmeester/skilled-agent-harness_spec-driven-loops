@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-03T00:00:00Z"
     last_updated_by: "phase-7-second-read"
     recent_action: "Re-ran every criterion after the second read over the twelve unapplied items"
-    next_safe_action: "Run the library half of the research on an executor with live web search"
+    next_safe_action: "Fold the ten corrected citations back into the research prose and the mode references"
     blockers: []
     key_files:
       - ".opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs"
@@ -25,7 +25,7 @@ _memory:
       parent_session_id: null
     completion_pct: 100
     open_questions:
-      - "The library half of the research still needs a run with live web search"
+      - "The ten corrected citations are recorded but not yet folded back into the mode references"
     answered_questions:
       - "Three template-level changes were applied and gated"
       - "No library was adopted, and the reason is recorded"
@@ -74,6 +74,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-011 | REQ-003 | Given a reading is missing, When the three path builders draw, Then the mark breaks at the gap rather than being drawn as zero | Fixture with two null days: before, the line dived to the baseline and the low-point label printed `null`; after, the line is two segments, the label reads `96` and the figure prints `2 days have no reading and are left out of the line.` | Met | - |
 | AC-012 | REQ-004 | Given C1 asks for a narrow-viewport assertion, When the check runs without a browser, Then it fails a template that cannot pan and passes one that can | `narrow-viewport` reports 87 assertions and 0 failures on the corpus, and failed three separate ways on a mutated copy of `scatter.html` before it was restored | Met | - |
 | AC-013 | REQ-004 | Given a form is handed more data than its documented shape, When it draws, Then it says so in the figure | Fixture past both ceilings: `scatter` printed the notice at 28 points and `heat-matrix` at 112 cells, each growing its own frame. The shipped data triggers neither | Met | - |
+| AC-014 | REQ-002 | Given the library half of the research ran without web tooling, When it is re-run on an executor with live search, Then every upstream URL it cites is marked resolved or unverified | Ten iterations of `/deep:research` on `cli-codex gpt-5.6-luna` with `webSearch: live`, in worktree `worktrees/042-chart-upstream-citation-verify`. All 43 cited URLs carry a verdict: 31 VERIFIED, 10 CORRECTED, 2 UNVERIFIABLE. Ledger at `research/verification-2026-09-03/lineages/codex-luna-max/research.md` | Met | - |
 
 ### Status values
 
@@ -98,15 +99,16 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** Yes, with one criterion left open on purpose.
+**Closeable:** Yes.
 
 The renumbering and the ten-iteration research loop carried the first pass, and three of the ten
 template-level recommendations were applied and gated there. The second read has since closed the
 remaining twelve: nine are applied and two are refused in writing, and no item is left as a silent
 skip. Every claim above is pinned to an observation made from the final state.
 
-One criterion stays open. The library half of the research ran without web tooling, so its upstream
-citations are still unverified, and re-running it needs an executor with live search on a separate
-dispatch. That run was excluded from this pass rather than attempted and abandoned, and T027 in
-`tasks.md` holds it.
+The last open criterion is now closed. The library half of the research was re-run on 2026-09-03 on
+an executor with live web search, in its own worktree as ADR-005 requires, and every URL it cited
+came back with a verdict rather than an assumption. Ten of the forty-three citations needed
+correcting and two could not be reached at all, which is the reason the re-run was worth its own
+dispatch.
 <!-- /ANCHOR:closure -->

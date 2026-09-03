@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
   "spec_folder": "sk-doc/051-sk-create-chart/007-fidelity-and-library-research",
   "parent_id": "sk-doc/051-sk-create-chart",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -49,6 +48,7 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "research/verification-2026-09-03/lineages/codex-luna-max/research.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/catalog.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/color-system.md",
       ".opencode/skills/sk-doc/sk-create-chart/references/template-contract.md",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Three reference overviews start at `## 0",
     "created_at": "2026-09-02T18:50:53Z",
-    "last_save_at": "2026-09-02T22:45:53.911Z",
+    "last_save_at": "2026-09-03T04:09:57.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5f7f6b496d9c72db9bbe3eefd21af2530e9e21c9c4bb5abda877cedee4e1f0d",
+    "source_fingerprint": "sha256:e8a74ec658c46884886eee2a15817949cb6be4d1476cd56fbafdd639a7ee4349",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a0c82c6178065a7e6012040f8b9c1730a4998b4f204ddebc7d3ec344dfe7ef78",
       "plan.md": "29f146c7b340171381e6f1788f8df207aae9867641c7c4ec81ffc0887e7b3fce",
-      "tasks.md": "280bbb8ee7c574e944531ac75964fff4435f5b6e7bf635913b4a23a256c11cea",
+      "tasks.md": "a7eff594f5da796533d57dd38f7fc3521db21fe03cbc4d60a31ff9513bfee7d3",
       "decision-record.md": "42690d650f5057f039b3b4fe4c70ab5dbdd9a98ea832e7b90c369f684aa09dd4",
-      "implementation-summary.md": "e3405bd719b7806e7c55bd5b1791564cfeadff2bc16f80f1e08b83ba20a0ba26"
+      "implementation-summary.md": "399fb0f1eb3919776f518ecdef0117ff6722d26ce22b3a767d1b76098e796658"
     },
     "last_active_child_id": null,
     "last_active_at": null

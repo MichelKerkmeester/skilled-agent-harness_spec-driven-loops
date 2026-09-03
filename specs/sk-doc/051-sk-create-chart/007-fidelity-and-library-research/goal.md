@@ -75,7 +75,7 @@ here are invisible to whatever judges completion.
 - [x] T2, T3, T5, T6, T7, T8 and T10 of `research/lineages/deepseek-flash-max/research.md:118-126` are each applied to `.opencode/skills/sk-doc/sk-create-chart/assets/templates/` or refused in a new ADR in `decision-record.md`
 - [x] C1 through C5 of `decision-record.md:205-209` are each applied or refused, and ADR-004 leaves `Proposed`
 - [x] `candlestick.html:153` no longer passes a raw number to `String()`, and no rendered tick label in the corpus matches `/\.\d{6,}/`
-- [ ] The library half of `research.md` sections 3 to 11 is re-run on an executor with live web search, and every upstream URL it cites is marked resolved or unverified
+- [x] The library half of `research.md` sections 3 to 11 is re-run on an executor with live web search, and every upstream URL it cites is marked resolved or unverified
 - [x] `node .opencode/skills/sk-doc/sk-create-chart/scripts/check-corpus.cjs --render` prints `RESULT: PASSED`
 - [x] `validate.sh specs/sk-doc/051-sk-create-chart/007-fidelity-and-library-research --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
@@ -108,7 +108,7 @@ and findings belong here.
 | C3 computed-value exception | Done | `references/template-contract.md` section 4 names the waterfall total and the stacked-area total, and gives the test that stops the exception generalising |
 | C4 in-figure notice | Done | `scatter` past 20 points and `heat-matrix` past 100 cells grow their frame and print the count against the ceiling. Fixtures at 28 points and 112 cells both fired; the shipped data fires neither |
 | C5 diverging colour system | Refused | No catalog form consumes a midpoint ramp, and shipping a scale with no consumer repeats the fourth-system mistake section 7 documents. `references/color-system.md` section 8 names the form that would reopen it |
-| Upstream citation re-verification | Open, deliberately | Excluded from this pass by the operator's brief. It needs a separate dispatch on an executor with live web search, and ADR-005 requires that lineage to run in its own worktree. `tasks.md` T027 holds it |
+| Upstream citation re-verification | Done | Ten iterations on `cli-codex gpt-5.6-luna` at max effort with live web search, run in worktree `worktrees/042-chart-upstream-citation-verify` as ADR-005 requires. All 43 cited URLs verdicted: 31 VERIFIED, 10 CORRECTED, 2 UNVERIFIABLE. The two unreachable ones are a CSS-Tricks article behind a 403 and the Vega v5.11.0 release page. Ledger at `research/verification-2026-09-03/lineages/codex-luna-max/research.md` |
 | The corpus check after the second read | Done | Sixteen checks over 29 files, 0 failures, `RESULT: PASSED`, exit 0, read directly rather than through a pipe |
 | Packet version and changelog | Done | `1.0.0.0` to `1.1.0.0` across `SKILL.md`, `README.md`, the three references and `scripts/README.md`, with `changelog/v1.1.0.0.md` added |
 

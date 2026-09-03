@@ -83,7 +83,7 @@ or refused in writing. The research re-run is deliberately not in this phase.
 - [x] T024 C5: refuse the diverging system in writing, and name what would reopen it (references/color-system.md)
 - [x] T025 Bump the packet version and write the changelog entry (SKILL.md, README.md, references/, scripts/README.md, changelog/v1.1.0.0.md)
 - [x] T026 Re-run the corpus check with `--render` from the final state and read the `RESULT:` line
-- [ ] T027 Re-run the library half of the research on an executor with live web search (blocked: out of scope for this pass, see goal.md)
+- [x] T027 Re-run the library half of the research on an executor with live web search (research/verification-2026-09-03/lineages/codex-luna-max/research.md)
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -91,7 +91,7 @@ or refused in writing. The research re-run is deliberately not in this phase.
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`. T027 stays open: the upstream re-verification is a separate run and was excluded from this pass
+- [x] All tasks marked `[x]`. T027 closed on 2026-09-03 with a ten-iteration live-search run in its own worktree
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->

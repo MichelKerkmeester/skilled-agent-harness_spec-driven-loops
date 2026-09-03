@@ -128,8 +128,38 @@ applied and two are refused. ADR-006 records the reasoning and the one deviation
 | C4 | Applied | `scatter` past twenty points and `heat-matrix` past a hundred cells grow their frame and print the count against the ceiling |
 | C5 | Refused | No catalog form consumes a midpoint ramp. `color-system.md` section 8 records the refusal and names the form that would reopen it |
 
-The packet version went to `1.1.0.0` and `changelog/v1.1.0.0.md` carries the entry. Nothing was
-committed.
+The packet version went to `1.1.0.0` and `changelog/v1.1.0.0.md` carries the entry.
+
+### The upstream re-verification, 2026-09-03
+
+T027 held the one thing the first pass could not do: check the library citations against the live
+web. That run has now happened, on `cli-codex` with `gpt-5.6-luna` at max reasoning and a live
+web-search policy, ten iterations with convergence disabled, in its own worktree as ADR-005
+requires. The ledger is `research/verification-2026-09-03/lineages/codex-luna-max/research.md`.
+
+Of the forty-three URLs the first research cited, thirty-one hold as written, ten need correcting
+and two could not be reached. Nothing was fabricated: every URL resolved to a real page on the
+library it was attributed to. What went wrong was subtler, and it is the kind of error a model
+without a fetch makes. Three citations point at a documentation route that is historical or no
+longer canonical, so they would send a reader to a page that describes a different version than the
+claim. Two attribute a behaviour to a page that does not carry it, most visibly a Plotly hover
+default read off an axes page. Two overstate what the source says, including the claim that
+Observable Plot has no answer at all for responsive text when the maintainer's answer is a
+ResizeObserver and a re-render. One names an ECharts option that the handbook's own examples spell
+differently. Two rest on secondary colour guides whose provenance will not carry a normative
+accessibility claim, where Okabe-Ito and Paul Tol will.
+
+None of the corrections changes what the templates should do. The strongest practical outcome is a
+caution rather than a change: a documented default in a library that ships a runtime is not
+evidence about a file that ships none, and two of the corrections exist because the first pass
+treated one as the other.
+
+The same run re-read the shipped corpus at `756a7fcd4c` against the T-and-C checklist and reached
+the same verdicts this phase recorded, with two it reads more strictly. It calls T5 partial,
+because several descriptions still state facts derived from the data block that will not follow an
+edit to it, and it calls C1 partial for the reason the limitation below already gives.
+
+Nothing was committed by the first pass.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -212,11 +242,14 @@ applied changes each carry their own observation above.
 from an integer index turned four dusty labels into one, because the multiplication is itself
 inexact. The formatter rounds at six decimals and the reproduction above now prints clean.
 
-**The research had no live web tooling on this executor.** The fan-out runtime rejects a live
-web-search policy for `cli-devin`, so the loop ran without that flag. Its findings still carry
-named upstream URLs, and every corpus citation spot-checked resolved to the line it named, but the
-upstream half rests on the model's own knowledge of those documents rather than on a fetch this
-phase can replay.
+**The first research had no live web tooling on its executor, and the re-run has now covered it.**
+The fan-out runtime rejects a live web-search policy for `cli-devin`, so the original loop ran
+without that flag and its upstream half rested on the model's own knowledge of those documents. The
+2026-09-03 re-run on `cli-codex` fetched all forty-three of them. Ten needed correcting, and two —
+a CSS-Tricks article behind a 403 and the Vega v5.11.0 release page, which would not serve — are
+still unverified rather than wrong. The corrections are recorded in the verification ledger and
+have not yet been folded back into the first research's prose, so that file still reads as first
+written.
 
 **A concurrent agent lost uncommitted work to this phase's dispatch.** The fan-out runtime
 snapshots dirty paths before dispatch, then restores from `HEAD` any tracked file that becomes
