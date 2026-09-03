@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
-    last_updated_at: "2026-09-02T23:50:00Z"
+    last_updated_at: "2026-09-03T23:30:00Z"
     last_updated_by: "spec-kit-residue-implementer"
-    recent_action: "Closed every ADR against 049 and implemented the two that survive"
-    next_safe_action: "Rule on adjacent findings A1 and A2 in decision-record.md"
+    recent_action: "Closed the last three criteria on measured evidence and set the phase complete"
+    next_safe_action: "Close the packet"
     blockers: []
     key_files:
       - "decision-record.md"
@@ -23,11 +23,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-kit-residue-decisions"
       parent_session_id: null
-    completion_pct: 70
-    open_questions:
-      - "AC-001 to AC-003 remain open. Each needs work outside this phase."
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Every contract question is ruled: two implemented, five superseded by 049, one already shipped."
+      - "The suite completes sharded: 12 of 12 shards, 34m00s, no shard killed by a bound."
+      - "The residue splits: 31 surviving failures in 15 named mechanisms, 150 inside 049's delete counted and attributed."
+      - "The missing references split: 27 fixed where they survive, 21 recorded where they do not."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 7: spec-kit-residue
@@ -50,6 +52,12 @@ restore the coverage-graph tests by repointing them at the moved subject rather 
 them. Give `generate-context.ts`'s `main()` an injectable project root instead of pointing its
 fixture back at a real packet.
 
+The three criteria that outlived that pass closed the same way. The suite was run to the end
+rather than assumed: twelve shards, 34 minutes, nothing killed by a bound. Its residue splits into
+31 failures in trees that survive 049, each now in a named mechanism group, and 150 inside the
+delete that carry a count and an attribution. The missing references split identically, 27 fixed
+and 21 recorded. Both inherited counts were low, 115 against 181 and 25 against 48.
+
 **Critical Dependencies**: `specs/system-speckit/049-memory-decommission` phase
 `003-spec-memory-server-removal`, whose Delete list decides which decisions are worth spending on.
 
@@ -61,14 +69,14 @@ fixture back at a real packet.
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 7 of 7 |
 | **Predecessor** | 006-validator-and-template-debt |
 | **Successor** | None |
-| **Handoff Criteria** | Every ADR carries a resolution. The two implemented decisions run green or name their failures |
+| **Handoff Criteria** | Every ADR carries a resolution, every criterion reads `Met`, and each closed on measured evidence rather than an inherited number |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -78,9 +86,10 @@ fixture back at a real packet.
 
 This is **Phase 7** of the routing completeness phases specification.
 
-**Scope Boundary**: the eight recorded contract questions and the two code paths their surviving
-decisions name. Nothing inside the `mcp-server/` tree is edited, and nothing in
-`system-deep-loop` runtime is changed.
+**Scope Boundary**: the recorded contract questions, the code paths their surviving decisions
+name, and the three criteria those decisions left open. Nothing inside the `mcp-server/` tree is
+edited, and nothing in `system-deep-loop` runtime is changed. Closing the reference criterion
+widened the file list by one pair of test files, recorded in ADR-009.
 
 **Dependencies**:
 - `049-memory-decommission/003-spec-memory-server-removal` §3, the Delete list that decides
@@ -90,6 +99,8 @@ decisions name. Nothing inside the `mcp-server/` tree is edited, and nothing in
 - A resolution on every ADR, plus the daemon-recycle entry
 - The three repointed coverage-graph tests, with the fourth deleted
 - An injectable project root on `generate-context.ts`'s `main()`, and a hermetic fixture
+- A completed whole-suite run, with its residue split by tree and grouped by mechanism
+- The surviving missing references resolved, and the rest recorded
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -116,8 +127,8 @@ test and the code assert opposite things.
 
 ### Purpose
 
-The suite completes, its failures have mechanisms rather than signatures, and the five
-contract questions are decided by their owner.
+The suite completes, its failures have mechanisms rather than signatures where a mechanism is
+worth buying, and the five contract questions are decided by their owner.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -146,6 +157,8 @@ contract questions are decided by their owner.
 | `system-spec-kit/scripts/tests/session-isolation.vitest.ts` | Delete | Depends on retired MCP handler modules with no relocated equivalent |
 | `system-spec-kit/scripts/memory/generate-context.ts` | Modify | `main()` takes a defaulted project root |
 | `system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts` | Modify | Fixture moves to a throwaway packet under a temp root |
+| `system-spec-kit/scripts/tests/tree-thinning.vitest.ts` | Modify | Import the exported `FileEntry` alias its annotations already name |
+| `system-spec-kit/scripts/tests/progressive-validation.vitest.ts` | Modify | Declare the report shape the validation script prints |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -259,10 +272,17 @@ contract questions are decided by their owner.
 
 ## 12. OPEN QUESTIONS
 
-- Does an empty research graph score `claimVerificationRate` 0 or 1? The restored cross-layer
-  test and the deep-loop signals module disagree (adjacent finding A1).
-- Is a review coverage gap a FILE with no incoming COVERS, or with no outgoing
-  COVERS/EVIDENCE_FOR? The restored test asserts the older direction (adjacent finding A2).
+Both questions this phase opened are answered. An empty research graph scores
+`claimVerificationRate` 1, a vacuous pass the producer's own doc comment states, and a review
+coverage gap is a FILE with no incoming COVERS, which the runtime's own tests assert on purpose.
+The tests follow the producer in each case (adjacent findings A1 and A2).
+
+What is left open belongs to other owners and is recorded rather than carried:
+
+- No typecheck lane covers a surviving test file, and the two surviving trees report 469 and 283
+  non-reference type errors, so switching one on is its own change (A4).
+- The relative-path arm of the import guard is dead, because it spells the directory with an
+  underscore the rename removed (A5).
 <!-- /ANCHOR:questions -->
 
 ---

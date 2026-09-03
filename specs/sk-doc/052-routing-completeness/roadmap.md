@@ -33,15 +33,19 @@ contextType: "general"
 <!-- ANCHOR:now-next-later -->
 ## 2. PHASES: NOW / NEXT / LATER
 
-**Now:** In Progress. Focus: closing phase `007-spec-kit-residue` against packet
-`specs/system-speckit/049-memory-decommission`. That packet deletes
-`.opencode/skills/system-spec-kit/mcp-server/` outright, 1,480 files and 453,813 lines, and
-five of the eight recorded decisions live inside that tree. So the first move is not to
-implement anything. It is to re-read each decision against 049 and mark it done or
-superseded, with the reason in `decision-record.md`. ADR-005 and ADR-008 proceed either way,
-because neither touches the deleted tree. Exit signal: every decision in
-`007-spec-kit-residue/decision-record.md` carries an implementation commit or a superseded
-note, and a full suite run leaves `git status` clean.
+**Now:** Phase `007-spec-kit-residue` is closed. It was worked against packet
+`specs/system-speckit/049-memory-decommission`, which deletes
+`.opencode/skills/system-spec-kit/mcp-server/` outright, 1,480 files and 453,813 lines. Five of
+the eight recorded decisions lived inside that tree, so the first move was not to implement
+anything. Each was re-read against 049 and marked done or superseded, with the reason in
+`decision-record.md`. ADR-005 and ADR-008 proceeded either way, because neither touches the
+deleted tree.
+
+The same test then closed the three criteria those decisions left open. The suite runs to the end
+sharded, 12 of 12 shards in 34 minutes, and its 181 failures split into 31 in surviving trees,
+each in a named mechanism group, and 150 inside the delete that carry a count rather than a
+diagnosis. A full suite run does not leave `git status` clean: it rewrites 20 generated metadata
+files under `specs/` through a module that goes with 049. They were restored.
 
 **Next:** Planned. Four items, three of them skill follow-ups already scaffolded and one
 fleet sweep.

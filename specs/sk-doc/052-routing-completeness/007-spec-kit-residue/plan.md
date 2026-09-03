@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 7: spec-kit-residue [template:level-3/plan.md]"
+title: "Implementation Plan: Phase 7: spec-kit-residue"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

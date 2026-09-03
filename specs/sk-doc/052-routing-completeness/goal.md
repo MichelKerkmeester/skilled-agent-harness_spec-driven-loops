@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness"
-    last_updated_at: "2026-09-02T18:00:00Z"
+    last_updated_at: "2026-09-03T23:45:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored the durable directive and its phase binding"
-    next_safe_action: "Work phase 007 against packet 049 before implementing any ADR"
+    recent_action: "Closed phase 007, the last phase still open"
+    next_safe_action: "Write back the phase implementation summaries"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-09-02-052-routing-completeness"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -89,7 +89,7 @@ Copy these into the objective verbatim. Nothing dereferences a path.
 - [ ] Every findings-register row reads Fixed, Planned or Decision
 - [ ] Gate A and Gate B each have a committed corpus that reproduces its number on a second run
 - [ ] All seven phases hold a goal.md with criteria checkable by exit code, count or artifact
-- [ ] Each of the eight ADRs in 007 is implemented or recorded superseded, with its reason
+- [x] Each of the eight ADRs in 007 is implemented or recorded superseded, with its reason. A ninth, ADR-009, rules on the residue itself
 <!-- /ANCHOR:completion -->
 
 ---
@@ -111,7 +111,7 @@ and findings belong here.
 | 004 cross-hub vocabulary | Done | `4a5de9e52b` re-scoped the phase the Gate B number invalidated |
 | 005 hub surface truth | Done | `8bb9011584` records the findings closed and the check that keeps them closed |
 | 006 validator and template debt | Done | `a1a213d2cf` authored the phase; template payload scanning is the remaining lever |
-| 007 spec-kit residue | In Progress | `59a597e37d` fixed the save-path infinite loop; seven decisions remain |
+| 007 spec-kit residue | Done | Nine decisions ruled, two implemented. The suite runs to the end sharded, 12 of 12 shards in 34m00s, and its 181 failures split into 31 grouped by mechanism and 150 inside 049's delete |
 | Findings register | Done | `d7f70069b9` gives every finding an owner and every phase a runnable gate |
 
 ### Deviations and findings
@@ -120,6 +120,7 @@ and findings belong here.
 |------|------|
 | Phase 004 narrowed after measurement | It was scoped believing vocabulary collision was the main obstacle. Gate B showed 94 of 180 prompts match no declared word in any form, so keyword ownership cannot reach them |
 | The semantic lane left off | Enabling it is a scoring change, and D2 forbids one here. It moves to its own packet under `specs/system-skill-advisor/` |
-| Phase 007 overtaken by packet 049 | `specs/system-speckit/049-memory-decommission` deletes the tree most of the residue lives in. The 007 goal carries the per-decision mapping |
+| Phase 007 overtaken by packet 049 | `specs/system-speckit/049-memory-decommission` deletes the tree most of the residue lives in. The 007 goal carries the per-decision mapping, and ADR-009 extends the same test to the residue itself |
+| The parent phase map still reads Pending for phases 1 to 6 | Those phases are recorded Done in this log and were closed before the map was maintained. Phase 7 was corrected in the pass that closed it, and the rest is pre-existing drift this log already contradicts |
 | Phase implementation summaries still scaffold | The work shipped in code and in the register; the per-phase summary documents were never written back |
 <!-- /ANCHOR:log -->

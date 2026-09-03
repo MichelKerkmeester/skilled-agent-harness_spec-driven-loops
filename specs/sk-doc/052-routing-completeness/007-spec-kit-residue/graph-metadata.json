@@ -49,24 +49,24 @@
       "decision-record.md",
       "implementation-summary.md",
       "lib/coverage-graph-convergence.cjs",
+      "templates/core/plan.md.tmpl",
+      "graph/backfill-graph-metadata.ts",
+      "mcp-server/tsconfig.tests.json",
+      "scripts/tsconfig.json",
       ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/coverage-graph-cross-layer.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs",
       ".opencode/skills/system-spec-kit/scripts/tests/graph-convergence-parity.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/generate-context-cli-authority.vitest.ts",
-      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/decision-record.md",
-      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/tasks.md",
-      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/acceptance-criteria.md",
-      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md",
-      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/implementation-summary.md",
-      "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md"
+      ".opencode/skills/system-spec-kit/scripts/tests/tree-thinning.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -78,37 +78,61 @@
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "acceptance-criteria.md",
         "kind": "doc",
-        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/acceptance-criteria.md",
+        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
         "name": "goal.md",
         "kind": "doc",
-        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "specs/sk-doc/052-routing-completeness/007-spec-kit-residue/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "coverage-graph-convergence.cjs",
         "kind": "file",
         "path": "lib/coverage-graph-convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": "graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.tests.json",
+        "kind": "config",
+        "path": "mcp-server/tsconfig.tests.json",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": "scripts/tsconfig.json",
         "source": "derived"
       },
       {
@@ -142,6 +166,18 @@
         "source": "derived"
       },
       {
+        "name": "tree-thinning.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/tree-thinning.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "progressive-validation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/progressive-validation.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -160,12 +196,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -176,41 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The suite does not complete",
     "created_at": "2026-09-02T16:34:09Z",
-    "last_save_at": "2026-09-03T03:00:31.917Z",
+    "last_save_at": "2026-09-03T23:37:06.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22b9167321f122d2ed0eb31ec1444c170aef108ad471c69590c6f4460cdc8c8e",
+    "source_fingerprint": "sha256:6e3c6703a9ec5c3b99dd4cae07ec4de26552c9d97c7996ff898d361eec9e6d36",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca3d2a9d0658f2db5ba56caebea868f984f7719e96a7f45978d14674c9b30524",
-      "plan.md": "74db142303e80db19c1180a5257d56a9c778dae00192c41133fcaaabe9885a12",
-      "tasks.md": "130f4cd630d4298fb7d4ba0094b65a61b9c1a9892b1b770df184055c396e38be",
-      "decision-record.md": "d78204746714cc6759adffb546e5bfcb87a03b4e9160b4f0227a118cefa20db6",
-      "implementation-summary.md": "1efe2e770eb9d49136514f4a918e3dfb6a2f049df3e0e7855a2ef418b2968f3f"
+      "spec.md": "b0ce71862f0c92fc639430ef155096b7d19656b652da1e13fd365ce5ded2c5ed",
+      "plan.md": "bbe320c8e421d35382d041aabc2315f5d2fab3863bd8665c36e53a7b71908459",
+      "tasks.md": "341f2942da9867695cf8eecc1f734c2109b58e067aa405db4bed16541b189622",
+      "decision-record.md": "82bd5235554b212a364c25f18cf1de35a99b1c7c1ade11c0b1223c61a13805dc",
+      "implementation-summary.md": "11c5de6693414a59c662060313e0b1c4bf708adae52a36a6ecc402960b0fcc3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

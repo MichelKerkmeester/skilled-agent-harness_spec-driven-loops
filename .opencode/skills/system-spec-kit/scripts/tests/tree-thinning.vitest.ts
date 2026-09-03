@@ -10,7 +10,7 @@ import {
   estimateTokenCount,
   deriveParentPath,
 } from '../core/tree-thinning';
-import type { ThinFileInput, ThinningConfig } from '../core/tree-thinning';
+import type { FileEntry, ThinFileInput, ThinningConfig } from '../core/tree-thinning';
 
 /* ───────────────────────────────────────────────────────────────
    Helpers

@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/052-routing-completeness/007-spec-kit-residue"
-    last_updated_at: "2026-09-02T23:50:00Z"
+    last_updated_at: "2026-09-03T23:30:00Z"
     last_updated_by: "spec-kit-residue-implementer"
-    recent_action: "Re-read every ADR against 049, implemented ADR-005 and ADR-008, closed the rest as superseded"
-    next_safe_action: "Close the packet; A1, A2 and A3 are resolved"
+    recent_action: "Ran the suite to completion, split its residue, and recorded the ruling as ADR-009"
+    next_safe_action: "Close the packet"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp-server/lib/search/bm25-index.ts"
@@ -34,6 +34,7 @@ _memory:
       - "ADR-001 through ADR-004 and ADR-007 are superseded by 049-memory-decommission: every file they would edit is inside the mcp-server delete."
       - "ADR-005 and ADR-008 sit outside 049 and are implemented."
       - "The daemon recycle is superseded: 049 deletes the launcher, the plugin and the hook concern."
+      - "ADR-009 splits the residue: 31 surviving failures grouped by mechanism, 150 plus 3 load failures inside the delete counted and left undiagnosed."
 ---
 # Decision Record: spec-kit test-surface contract questions
 
@@ -43,11 +44,12 @@ _memory:
 
 Each entry below is a place where a test and the code it exercises assert opposite
 things, so one of the two has to move. Every one carries the evidence for both
-readings and a recommendation, because picking a side is a design call and a silent
-test edit would hide it. Only ADR-006 is implemented; the rest await a decision.
+readings and a ruling, because picking a side is a design call and a silent test
+edit would hide it.
 
 ADR-001 through ADR-005 are the five contract questions this packet was asked to
-decide. ADR-006 through ADR-008 came out of the residue and need the same treatment.
+decide. ADR-006 through ADR-008 came out of the residue. ADR-009 rules on the
+residue itself, once the suite had been run to completion and its failures counted.
 
 Two rules held throughout. A test was never edited to make a red check green, and
 where a test asserts the right thing about code that moved, that is recorded as a
@@ -1283,6 +1285,140 @@ the repository.
 
 <!-- /ANCHOR:adr-008 -->
 
+<!-- ANCHOR:adr-009 -->
+## ADR-009: The residue split, diagnosed against retired
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-09-03 |
+| **Deciders** | Operator |
+
+### Resolution (2026-09-03)
+
+**Accepted, and executed as a split.** The suite was run to completion and its residue measured
+rather than estimated. Of 181 failing tests, 31 live in trees that survive 049 and each now sits
+in a named mechanism group. The other 150, plus 3 files that fail at load and collect no tests,
+live under `.opencode/skills/system-spec-kit/mcp-server/`, which 049 phase
+`003-spec-memory-server-removal` §3 lists as `Delete`. Those are counted and attributed by file,
+and deliberately not diagnosed.
+
+---
+
+<!-- ANCHOR:adr-009-context -->
+### Context
+
+Three criteria stood open when the rest of the phase closed. Each named a number taken from an
+earlier reading rather than from a run: a suite that could not finish, roughly 115 failures with
+a signature and no mechanism, and 25 references to names that do not exist. None of the three
+numbers survived contact with a real run.
+
+The sharded runner completed. Twelve shards each reported, the slowest took 409 seconds, and the
+whole run took 34 minutes and 0 seconds of wall time over 2,040 seconds of shard time. No shard
+exited 124, which is the bound the old single-worker run kept hitting. The totals were
+`Test Files 98 failed \| 874 passed \| 16 skipped` and
+`Tests 181 failed \| 14744 passed \| 317 skipped \| 1 todo`.
+
+The failures are not spread evenly. Seventy-nine of the 98 failing files are under `mcp-server/`,
+18 are under `system-spec-kit/scripts/tests/`, and one is under
+`system-deep-loop/runtime/tests/`. The two surviving trees hold 31 of the 181 failures between
+them.
+
+The same split governs the untypechecked references. `mcp-server/tsconfig.tests.json` is the only
+config in the workspace that type-checks a test file, and its `include` names
+`tests/**`, `scripts/tests/**` and `lib/test-helpers/**` relative to `mcp-server/`, so the lane
+and everything it covers are inside the delete. The surviving trees exclude their tests from
+every config they have: `scripts/tsconfig.json` lists no `tests/` entry at all, and
+`system-deep-loop/runtime/tsconfig.json` carries `tests/**/*.ts` in `exclude`.
+<!-- /ANCHOR:adr-009-context -->
+
+### Constraints
+
+- 049 is `Draft` and unmerged. That does not change the answer, for the reason ADR-001 already
+  gives: a green check inside a tree with a delete order against it is thrown away by the delete.
+- 049 phase 003 §3 puts `scripts/spec/` out of scope in writing, and phases 001 and 004 *create*
+  under `scripts/`. Nothing in the packet deletes `system-spec-kit/scripts/` or
+  `system-deep-loop/runtime/`, so a failure in either tree is work that outlives the decommission.
+- Diagnosing a mechanism is not free. Each of the 15 surviving groups took a producer read, and
+  several took a reproduction. Spending that on 150 failures whose subject is scheduled for
+  deletion buys nothing that the delete does not take back.
+
+### Decision
+
+Group the surviving failures by mechanism, in full. Count and attribute the deleted ones by file
+and by the decisions already recorded against them, and do not diagnose them.
+
+Fix the missing references that survive. Record the ones that do not.
+
+### Alternatives Considered
+
+| Option | Why rejected |
+|--------|--------------|
+| Diagnose all 181 by mechanism | 150 of them describe code with a delete order against it. The diagnosis would be read once and then deleted with its subject |
+| Group all 181 by error signature | A signature is a symptom. Six failures reading `no such column: anchor_id` share a signature and, as ADR-004 already established, one mechanism. Grouping by text would have hidden that |
+| Estimate rather than run | The estimate this phase inherited said 115. The run says 181. An estimate that is 36 percent low is not a baseline |
+| Add a tests typecheck lane to the surviving trees | The two surviving trees report 469 and 283 non-reference type errors between them. A lane turned on today is red on its first run, which is the condition `mcp-server/tsconfig.tests.json` documents as the reason it reports rather than enforces |
+
+### Consequences
+
+- The suite criterion is closed on observation rather than on an assumption, and the observation
+  is repeatable with one command.
+- Every surviving failure has a mechanism, a count and a worked example, so the next person picks
+  a group rather than a file.
+- The deleted 150 are recorded as a count with an attribution, not as a diagnosis. If 049 is
+  abandoned they come back undiagnosed, which is the same position the phase's five superseded
+  ADRs leave their subjects in.
+- The reference fixes land in a tree no typecheck lane covers, so they were proven by running the
+  files rather than by a gate. Both ran green inside the same sharded run that produced the
+  residue.
+
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Three criteria were open, and each rested on an unmeasured number |
+| 2 | **Beyond Local Maxima?** | PASS | Diagnosing all 181 was costed and rejected against the delete list |
+| 3 | **Sufficient?** | PASS | 31 grouped, 153 attributed, 27 references fixed, 21 recorded |
+| 4 | **Fits Goal?** | PASS | Same test the phase applied to its eight ADRs, applied to its criteria |
+| 5 | **Open Horizons?** | PASS | The 15 groups are independently actionable, and none blocks another |
+
+**Checks Summary**: 5/5 PASS
+
+<!-- ANCHOR:adr-009-impl -->
+### Implementation
+
+**What changes**:
+- `scripts/tests/tree-thinning.vitest.ts` type import.
+- `scripts/tests/progressive-validation.vitest.ts` report type and three declarations.
+
+**How to roll back**: revert both files, and the 27 references return to unresolved, which is today's
+state. Neither edit reaches runtime, so a revert changes no behavior.
+<!-- /ANCHOR:adr-009-impl -->
+
+### Outcome
+
+**What changed**: `tree-thinning.vitest.ts` adds `FileEntry` to the type import it already takes
+from `../core/tree-thinning`, where that name is exported at line 45 as a compat alias of
+`ThinFileInput`. Twenty annotations referenced a name the file never imported.
+
+`progressive-validation.vitest.ts` declares the report shape that `progressive-validate.sh --json`
+prints. Its producer is a shell script, so no module in the workspace can hold that contract, and
+the declaration sits beside the assertions that read it. Resolving the name let the compiler run
+definite-assignment analysis on three `let parsed` declarations that are written inside a callback,
+so each takes the definite-assignment form.
+
+**Before**: 27 `TS2304` findings across the two files, and 496 type errors in the surviving
+`scripts/tests/` tree.
+
+**After**: 0 `TS2304` findings and 469 type errors, which is 496 minus exactly the 27. Both files
+contribute zero errors. Both ran green inside the sharded run, `tree-thinning` 28 tests and
+`progressive-validation` 52 tests, in shards 10 and 11, after the edits landed.
+<!-- /ANCHOR:adr-009 -->
+
+---
+
 ---
 
 ---
@@ -1314,5 +1450,8 @@ Recorded, not fixed. Each sits outside this packet's frozen scope.
 | A1 | `system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:599` | `computeResearchClaimVerificationRateFromData` returns `1.0` for a graph with no CLAIM nodes. The restored cross-layer test asserted `0` | **Resolved 2026-09-03.** Operator ruling: the test follows the producer. The producer's own doc comment states the convention, so the test now asserts `1` and its title names the vacuous pass |
 | A2 | `system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:286` | The review coverage-gap requirement is a FILE with no **incoming** COVERS. The restored test asserted the older **outgoing** COVERS/EVIDENCE_FOR rule | **Resolved 2026-09-03.** Operator ruling: the test follows the producer. The runtime's own `coverage-graph-query.vitest.ts:182` asserts the incoming rule deliberately, so the test now expects no gap for a covered file |
 | A3 | `system-spec-kit/scripts/lib/coverage-graph-convergence.cjs:2` | The *"do not diverge"* parity comment named the pre-move MCP handler path | **Resolved 2026-09-03.** Comment-only repair of a dangling pointer, in the file both repaired tests load as the parity subject. No code changed |
-| A4 | `system-spec-kit/scripts/tsconfig.json` | `exclude` carries `tests/**/*.vitest.ts`, so `npm run typecheck` never type-checks any test file, including the two this phase edited | AC-003 already tracks it. Adding a tests typecheck lane is its own change with its own blast radius |
+| A4 | `system-spec-kit/scripts/tsconfig.json`, `system-deep-loop/runtime/tsconfig.json` | Neither config compiles a test file: the first lists no `tests/` entry in `include`, the second carries `tests/**/*.ts` in `exclude`. The only tests lane in the workspace is `mcp-server/tsconfig.tests.json`, and it covers `mcp-server/` alone | **Measured 2026-09-03, still open.** A lane over the two surviving trees reports 469 and 283 type errors once the 27 missing references are fixed, so switching one on today makes a red gate. `mcp-server/tsconfig.tests.json` documents that exact condition as its reason for reporting rather than enforcing. ADR-009 records the decision |
+| A5 | `system-spec-kit/scripts/evals/import-policy-rules.ts:19` | `RELATIVE_INTERNAL_RUNTIME_IMPORT_RE` spells the directory `mcp_server`, and the directory is `mcp-server`, so the relative-path arm of the import guard matches nothing and only the `@spec-kit/mcp-server/*` alias arm still bites | Found by grouping the residue. The file survives 049 and its subject does not, exactly like ADR-007. A one-token fix, owned by whoever owns the eval policy |
+| A6 | `system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts` | Its temp workspace has no track-level `graph-metadata.json`, so `updatePhaseParentPointer` throws `ENOENT` at `scripts/memory/generate-context.ts:594` | The same defect ADR-008 fixed in its own fixture, in a sibling test that never got the same treatment. Outside this phase's frozen file list |
+| A7 | `system-spec-kit/scripts/tests/recursive-child-manifest.vitest.ts:14-25` | Three hard-coded paths name `036-deep-loop-innovation/001-deep-loop-market-research` and `.../016-whole-system-gate`. Those children are now `001-research-inputs-and-architecture` and `016-system-deep-loop-review`, so one spawn returns 127 and one read returns `ENOENT` | The same rename-driven breakage class ADR-008's seam change was meant to remove, in a test that reaches for the real tree rather than a root it was handed |
 <!-- /ANCHOR:adjacent-findings -->

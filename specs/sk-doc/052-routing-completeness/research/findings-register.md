@@ -89,9 +89,9 @@ with those phases rather than being asserted from this document.
 
 | # | Finding | Phase | State | Evidence |
 |---|---|---|---|---|
-| 31 | The suite cannot complete: a reused worker spins and a bound kills the run | 007 | Planned | Owned by phase 007. `59a597e37d` fixed the save-path loop, and the phase criterion for a complete suite run is still open |
-| 32 | Roughly one hundred and fifteen failures have a signature and no mechanism | 007 | Planned | Owned by phase 007 |
-| 33 | Twenty-five references to names that do not exist sit in never-typechecked tests | 007 | Planned | Owned by phase 007, carried there as adjacent finding A4 |
+| 31 | The suite cannot complete: a reused worker spins and a bound kills the run | 007 | Fixed | `59a597e37d` fixed the save-path loop. Verified 2026-09-03 by a completed run: `npm run test:sharded`, 12 of 12 shards, 34m00s wall, 989 modules, no shard exited 124 |
+| 32 | Roughly one hundred and fifteen failures have a signature and no mechanism | 007 | Decision | Measured at 181 rather than 115 and split by ADR-009. The 31 in surviving trees are grouped into 15 named mechanisms in `007-spec-kit-residue/implementation-summary.md`. The 150 under `mcp-server/`, plus 3 files that fail at load, are counted and attributed and left undiagnosed, because 049 deletes their subject |
+| 33 | Twenty-five references to names that do not exist sit in never-typechecked tests | 007 | Decision | Measured at 48 rather than 25 and split by ADR-009. The 27 in `scripts/tests/` are fixed, 27 to 0 with total errors 496 to 469. The 21 under `mcp-server/` are recorded, along with the only lane that sees them. The absent lane over the surviving trees stays open as adjacent finding A4 |
 | 34 | Five contract questions have the test and the code asserting opposite things | 007 | Decision | Recorded superseded in `007-spec-kit-residue/decision-record.md` at `82938b3e1c`: ADR-001 to ADR-004 and ADR-007 name paths under `.opencode/skills/system-spec-kit/mcp-server/`, which `specs/system-speckit/049-memory-decommission` phase 003 lists as Delete, so each carries the operator's decision text and no edit. |
 | 35 | Twelve test files collected no tests at all while reporting as failures | 007 | Fixed | Owned by phase 007 |
 | 36 | A launcher killed itself on a redirected stdin, under the repository's own rule | 007 | Fixed | Owned by phase 007 |

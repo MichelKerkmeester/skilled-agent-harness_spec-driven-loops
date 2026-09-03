@@ -261,7 +261,7 @@ REQUIREMENT_PLACEHOLDER
 | 4 | 004-cross-hub-vocabulary/ | The collision no single hub can fix, decided jointly and re-measured | Pending |
 | 5 | 005-hub-surface-truth/ | The hub documents that contradict their own registries, and a gate so they cannot again | Pending |
 | 6 | 006-validator-and-template-debt/ | The fixture exemption, the template scanning gap, and the boilerplate a template keeps seeding | Pending |
-| 7 | 007-spec-kit-residue/ | The remaining suite failures, the untypechecked tests, and the five calls that need a human | Pending |
+| 7 | 007-spec-kit-residue/ | The remaining suite failures, the untypechecked tests, and the five calls that need a human | Complete |
 
 ### Phase Transition Rules
 

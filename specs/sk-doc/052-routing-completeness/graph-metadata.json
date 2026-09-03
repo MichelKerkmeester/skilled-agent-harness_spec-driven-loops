@@ -118,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "numbers",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -140,21 +134,27 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A hub can be complete in every registry and still not be reachable",
     "created_at": "2026-09-02T16:33:39Z",
-    "last_save_at": "2026-09-02T22:04:26.154Z",
+    "last_save_at": "2026-09-03T23:34:56.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d6dd375d77b0c4d0665bcf01e16ee341d6360cb4b914fd3c3d92631ebb35d165",
+    "source_fingerprint": "sha256:6374297717f65534e498b97ba822e67ca3d04698d556b28474e50595f693e9cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dc92040269383277b446facc5238601632b92d1a03dfee40dbd0bd7969f37b87"
+      "spec.md": "bd5ff93f66ac4621f01e9bc55769176c7e5a361a8f613522cce24e97ef3a7a26"
     },
     "last_active_child_id": "sk-doc/052-routing-completeness/003-gate-b-realistic-corpus",
     "last_active_at": "2026-09-02T21:41:53.247Z"
