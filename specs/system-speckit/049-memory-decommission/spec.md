@@ -57,7 +57,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `claude/speckit-memory-db-review-3gheky` |
 | **Parent Spec** | None (top-level packet) |
@@ -158,7 +158,7 @@ Aggregate scope. Per-phase detail lives in each child plan.
 | 1 | 001-trigger-index-replacement/ | Build the generated trigger index and ripgrep retrieval conventions; prove parity against the current `LIKE`-based trigger lane before anything is removed | Complete |
 | 2 | 002-memory-consumer-rewire/ | Repoint `AGENTS.md` Gate 1 and ~167 external consumer files at the new retrieval path while the old surface still exists | Complete |
 | 3 | 003-spec-memory-server-removal/ | Delete the server package, MCP transport entries, plugin, bridge, hook, commands and flags | Complete |
-| 4 | 004-grep-convention-doc-retrofit/ | Define and enforce the grep-optimized doc convention; retrofit 22,127 active spec docs | Pending |
+| 4 | 004-grep-convention-doc-retrofit/ | Define and enforce the grep-optimized doc convention; retrofit 22,127 active spec docs | Complete |
 | 5 | 005-ripgrep-retrieval-research/ | Research phase, complete: five-iteration deep research on ripgrep-first retrieval and trigger-index design; its ranked amendments are folded into phases 001 and 004 | Complete |
 | 6 | 006-legacy-memory-surface-inventory/ | Research phase, complete: five-iteration exhaustive inventory of every surface that references or integrates the memory subsystem; its worklists are folded into phases 002 and 003 | Complete |
 

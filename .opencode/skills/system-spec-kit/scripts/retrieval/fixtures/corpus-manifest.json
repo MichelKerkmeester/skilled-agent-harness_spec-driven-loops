@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8c0779da7f6932e6720780d3a7c7855cca415283e56f2487f86543dbddf6cabb",
+  "corpusHash": "043295369927e11ef97fe21ae23b6d399b78b304d5ef7989b0f1434ab0a2713b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27433,7 +27433,7 @@
     "specs/system-speckit/049-memory-decommission/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d69f453d0c77987c3669f43aa24c4b80556e795af1b2925d8f38130656f5a463",
+  "manifestHash": "981dae5f17ebd20bf8c685c2582abecfb892ad73d5363872dc2aa8071c931185",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

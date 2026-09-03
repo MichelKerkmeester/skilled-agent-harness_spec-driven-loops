@@ -23,9 +23,9 @@ contextType: "general"
 
 **Subject:** specs/system-speckit/049-memory-decommission
 **Status:** Active
-**Horizon:** research complete 2026-09-02; build phases 001 to 003 done, 004 remaining
+**Horizon:** research complete 2026-09-02; all four build phases done 2026-09-04; closeout and landing remain
 **Owner:** operator, executed by the orchestrate agent
-**Last updated:** 2026-09-03
+**Last updated:** 2026-09-04
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -33,11 +33,11 @@ contextType: "general"
 <!-- ANCHOR:now-next-later -->
 ## 2. PHASES: NOW / NEXT / LATER
 
-**Now:** Planned. Focus: phase 004, the grep-optimized doc convention and its retrofit across the active spec corpus. The three phases before it are done — the trigger index and ripgrep contract are built and proven, every consumer is rewired, and the memory engine, its registrations and its documentation are gone. Exit signal: the convention is enforced by `validate.sh` and the retrofit rescan reports no residue.
+**Now:** Done. Focus: phase 004, the grep-optimized doc convention and its retrofit across the active spec corpus. All four build phases are complete — the trigger index and ripgrep contract are built and proven, every consumer is rewired, the memory engine with its registrations and documentation is gone, and the corpus now conforms. Exit signal met: the `GREP_CONVENTION` rule is registered always-on in `validate.sh` and the rescan reports residue 0 across 22,094 documents.
 
-**Next:** Planned. Focus: packet closeout. Three open decisions came up from phase 003 — whether the skill-advisor launcher becomes the default spawner of the shared HF model server, whether the eight dependencies with no importer left come out at the cost of a lockfile regeneration, and whether `lib/description/repair.ts` folds into `repair-derived.cjs` or is dropped. Exit signal: `validate.sh --recursive --strict` over the packet exits 0 and every phase reports its acceptance criteria closeable.
+**Next:** Planned. Focus: packet closeout. Seven open decisions are waiting, three carried up from phase 003 and four from phase 004 — the default spawner of the shared HF model server, the eight dependencies with no importer, the fate of `lib/description/repair.ts`, escalating the report-only convention classes from warn to error, authoring frontmatter for the 55 canonical documents that refused a partial block, normalizing the `importance_tier` and `contextType` vocabularies, and sharing `js-yaml` between the retrofit classifier and the validator. Exit signal: `validate.sh --recursive --strict` over the packet exits 0 and every phase reports its acceptance criteria closeable.
 
-**Later:** Planned. Focus: land `branches/017-memory-decommission`. Everything from phase 003 onward sits uncommitted in the worktree with the before state at `cc6a50271e`. Exit signal: the removal and the retrofit are on the branch as reviewable commits with the packet's seven completion criteria holding.
+**Later:** Planned. Focus: land `branches/017-memory-decommission`. Phase 004 is on the branch as seven commits, one for the convention, two for the tooling and four for the corpus; phase 003's removal is still uncommitted in the worktree with the before state at `cc6a50271e`. Exit signal: the removal and the retrofit are both on the branch as reviewable commits with the packet's seven completion criteria holding.
 <!-- /ANCHOR:now-next-later -->
 
 ---
@@ -55,7 +55,7 @@ contextType: "general"
 
 **Server removed:** phase Done, target every runtime boots with no daemon and the advisor embedder still resolves. Status: Done. Evidence: grep count 0 for the server in all five config roots; five cold boots with no memory process, no memory mention or timeout notice and no launcher lock directory; a live advisor scored recommendation exit 0; the closing sweep live 0 across 3,171 paths now including `mcp-server`. The removal is partial under option A — the package survives as the spec-kit engine at 333 import-closed files.
 
-**Corpus retrofitted:** phase Now, target zero residue and unchanged body preimages across the active corpus. Status: Planned. Evidence: retrofit rescan and preimage manifest.
+**Corpus retrofitted:** phase Done, target zero residue and unchanged body preimages across the active corpus. Status: Done. Evidence: the rescan reports residue 0 across 22,094 considered and `verify-preimage` verified all 22,094 with 0 mismatches; 10,210 documents were rewritten across 14 tracks with 0 failures, and the diff classifier put all 36,271 changed lines inside frontmatter with none in the `other` bucket. 63 documents are reported by design — 55 canonical ones needing an authored block and 8 policy cards a flow mapping makes unparseable.
 <!-- /ANCHOR:milestones-targets -->
 
 ---

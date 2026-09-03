@@ -1,10 +1,10 @@
 {
   "counts": {
     "duplicate-phrase": 63,
-    "missing-frontmatter": 6337,
+    "missing-frontmatter": 6392,
     "non-yaml-frontmatter": 1,
     "ok": 13033,
-    "valid-empty-list": 7979
+    "valid-empty-list": 7924
   },
   "documentsScanned": 27413,
   "ignoredMalformedDocuments": 1,
@@ -16,7 +16,7 @@
   ],
   "ignoredPathsUnmatched": [],
   "malformedDocuments": 0,
-  "manifestHash": "d69f453d0c77987c3669f43aa24c4b80556e795af1b2925d8f38130656f5a463",
+  "manifestHash": "981dae5f17ebd20bf8c685c2582abecfb892ad73d5363872dc2aa8071c931185",
   "parserVersion": "1.0.0",
   "rows": [
     {
@@ -38115,11 +38115,10 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-external-orchestration/042-pi-remote-experience-parity/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -38129,11 +38128,10 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/cli-external-orchestration/042-pi-remote-experience-parity/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -40250,18 +40248,16 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -40628,74 +40624,64 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/025-plugin-coverage-review/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/030-audit-fixes/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/030-audit-fixes/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/030-audit-fixes/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/mcp-tooling/013-mcp-obsidian/030-audit-fixes/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -41601,53 +41587,46 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 2,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-code/007-sk-code-obsidian-surface/001-surface-design-plan/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "file is empty"
     },
     {
-      "category": "valid-empty-list",
-      "line": 2,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-code/007-sk-code-obsidian-surface/002-repo-convention-audit/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "file is empty"
     },
     {
-      "category": "valid-empty-list",
-      "line": 2,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-code/007-sk-code-obsidian-surface/004-skill-core/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "file is empty"
     },
     {
-      "category": "valid-empty-list",
-      "line": 2,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-code/007-sk-code-obsidian-surface/005-references-stack/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "file is empty"
     },
     {
-      "category": "valid-empty-list",
-      "line": 2,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-code/007-sk-code-obsidian-surface/006-assets-checklists/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "file is empty"
     },
     {
-      "category": "valid-empty-list",
-      "line": 2,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-code/007-sk-code-obsidian-surface/007-manual-testing-playbook/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "file is empty"
     },
     {
-      "category": "valid-empty-list",
-      "line": 2,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-code/007-sk-code-obsidian-surface/008-scanners-and-gates/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "file is empty"
     },
     {
       "category": "valid-empty-list",
@@ -43694,11 +43673,10 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-design/012-sk-design-program/005-reviews-and-remediation/002-session-shipped-work-review/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -51719,11 +51697,10 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-doc/022-code-readme-coverage/003-code-readme-structure-and-durability-sweep/decision-record.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -52979,32 +52956,28 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-git/019-mass-deletion-guard/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-git/019-mass-deletion-guard/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-git/019-mass-deletion-guard/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/sk-git/019-mass-deletion-guard/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -55249,25 +55222,22 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-012-workflow-router/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -55277,18 +55247,16 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -55298,11 +55266,10 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-013-subaction-router/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -55312,25 +55279,22 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot/behavior_benchmark/fixtures/dab-014-direct-tool-router/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -55361,18 +55325,16 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -55382,11 +55344,10 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-016-create-benchmark/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -55452,25 +55413,22 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -57223,18 +57181,16 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/001-executor-matrix-audit/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -57251,18 +57207,16 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -63172,11 +63126,10 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -75093,11 +75046,10 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix/decision-record.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -76962,32 +76914,28 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/implementation-summary.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/plan.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop/tasks.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",
@@ -85047,25 +84995,22 @@
       "reason": "declared empty trigger list"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
-      "category": "valid-empty-list",
-      "line": 3,
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server/spec.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "valid-empty-list",

@@ -25,6 +25,10 @@ retrieval engine. This phase makes 22,127 active spec documents predictable to g
 frontmatter keys, stable section markers, and a naming grammar — enforced by templates and
 `validate.sh` so new documents cannot drift.
 
+**Outcome:** 22,094 documents in scope rather than the 22,127 estimated here, 10,210 rewritten with
+every body preimage identical and zero residue, and 63 left reported by design — 55 canonical
+documents that need an authored block and 8 policy cards a flow mapping makes unparseable.
+
 **Key Decisions**: Retrofit all active documents rather than new-only, per the operator's scope choice; exclude `z_archive/`.
 
 **Critical Dependencies**: Phases 001-003 complete, so the convention is shaped by the retrieval path that actually exists.
@@ -37,7 +41,7 @@ frontmatter keys, stable section markers, and a naming grammar — enforced by t
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-02 |
 | **Branch** | `claude/speckit-memory-db-review-3gheky` |
 | **Parent Spec** | ../spec.md |
@@ -308,6 +312,10 @@ retrofit to classify against before it processes anything.
 | `duplicate` | The same normalized phrase appears twice in one document | Deduplicate deterministically, report the removal |
 | `oversized` | A phrase or block exceeding the documented budget | Skip, report the measured size. Never truncate |
 
+A well-formed populated list is conforming and carries the `valid-empty` label, since that label
+names the accept-and-count handling rather than the list's length; the retrofit sub-counts empty and
+populated lists so no artifact claims a populated list was empty.
+
 A document matching no label stops the run. Fail closed beats a silent default.
 
 ### 13.3 Trigger allowlist and generic negatives
@@ -362,6 +370,28 @@ prose that already exists. Reflowing legacy prose is out of scope and is forbidd
   `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` are types, not titles.
 - Legacy naming exceptions are reported by path. This retrofit does not rename them, because a rename
   during a 22,127-file frontmatter pass makes the diff unreviewable.
+
+### 13.7 Resolved before the first corpus write
+
+The convention document surfaced seven points sections 13.1 to 13.6 left open. Each is decided here
+so the retrofit and the validator classify the same way; none changes a decision above.
+
+| Point | Resolution |
+|-------|------------|
+| Oversized budget | A phrase over 120 characters, the trigger index's existing phrase limit, or a `trigger_phrases` list over 20 members. The live corpus peaks at 100 characters and 14 members, so the label exists for fail-closed handling rather than for current documents |
+| Keys outside the canonical five | Preserved verbatim in their original order, never reordered or stripped. `_memory` belongs to the continuity writer and the retrofit does not read it |
+| Duplicate | Equal after the trigger index's normalization. The first occurrence in document order is kept and each removal is reported |
+| Member count | No minimum or maximum beyond the 20-member budget. The skill-document rule of three to eight phrases does not govern this corpus |
+| Typed anchor ids | An uppercase ASCII token of letters and digits starting with a letter, a hyphen, then a lower-kebab remainder. Prefixes are not enumerated |
+| Severity | Staged by category. `error` for the seven non-conforming variant labels and for `preimage-mismatch`, which the retrofit resolves or the run fails on; `warn` for `generic-trigger`, `anchor-unmatched`, `anchor-duplicate`, `alias-hit` and `naming-exception`, which this phase reports but never rewrites. A fleet scan before the retrofit put 319 of 2,799 packets in error under a flat mapping, most on the report-only classes, so an always-on error there would fail unrelated packets' completion gates permanently. Escalation is a one-line registry change once their owners fix them. `valid-empty` is not a finding |
+| Fallback phrases | The frontmatter editor's folder-token and `session` / `context` fallbacks are `generic-trigger` rows whose reason names the fallback, in both the validator and the retrofit; the retrofit never adopts one |
+| Whole prose sentence | A phrase carrying sentence punctuation or more than 10 tokens. The token budget is separate from the 120-character budget so a long single term is reported as `oversized`, never as `generic-trigger` |
+| Generic phrases already declared | Reported as `generic-trigger` and left in place. The handler is report-only, so the corpus can carry author-declared generic phrases after the retrofit; the guarantee is that no fallback-produced phrase is ever written, not that the corpus is free of generic phrases |
+| In-scope total | The frozen manifest counts 22,094 documents, not the 22,127 estimated here: 184 documents under hidden backup directories are unreachable by the section 14 recipes and are excluded with a recorded reason |
+| Phrase-count baseline | The measure for REQ-006 is the count of unique normalized `trigger_phrases` members across the in-scope corpus, recorded by the retrofit's own enumerate stage before processing. The retrofit adds no phrase and removes only duplicates, so this count is invariant by construction; the trigger index's own total can move independently because its corpus also covers `.opencode/skills` and now excludes tooling fixture trees |
+| Partial blocks on canonical documents | A canonical document (`spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`) with no frontmatter block is reported as `missing` and refused, not given the minimal block. The frontmatter rule treats a present block with empty required scalars as errors where an absent block is a continuity warning, so the minimal block moved 26 packets from pass or warn to fail. An authored block is the only conforming fix. A missing key on an existing block is still added |
+| Unparseable results | Any edit that would leave a block unparseable, such as appending a block key to a flow-mapping block, is refused and reported; eight compiled policy cards fall in this class |
+| Scalar quoting | Preserved as written. The retrofit rewrites only the alias key line it renames, the keys it creates and the members it removes as duplicates |
 
 ---
 

@@ -114,7 +114,22 @@ and findings belong here.
 | 006 legacy memory surface inventory | Done | five iterations, synthesis and row-level inventory under `006-legacy-memory-surface-inventory/research/lineages/luna-max/` |
 | Research folded into phases 001 to 004 | Done | amended spec, plan, tasks and acceptance docs validate `--recursive --strict` with 0 errors |
 | 003 spec memory server removal | Done | engine deleted under option A: package 1,482 tracked files at `cc6a50271e` to 333 and import-closed at 99 modules; grep count 0 for the server in all five runtime config roots; five cold boots with no memory process, mention or lock directory; advisor scored recommendation exit 0; sweep live 0 across 3,171 paths now including `mcp-server`; `validate.sh --strict` on packet 040 PASSED; AC-001 to AC-014 Met |
-| 001 to 004 build | In progress | 001, 002 and 003 complete; 004 grep-convention doc retrofit remains |
+| 004 grep convention doc retrofit | Done | convention committed at `89faec9717` before any corpus change; 22,094 documents classified with zero unclassified and 10,210 rewritten across 14 tracks with 0 failures; rescan residue 0, `verify-preimage` 22,094 with 0 mismatches, and the diff classifier put all 36,271 changed lines inside frontmatter; a second run wrote 0; the `GREP_CONVENTION` rule is registered always-on and the fleet scan reads 7 fail, 207 warn and 2,585 pass across 2,799 packets; AC-001 to AC-016 Met |
+| 001 to 004 build | Done | all four build phases complete; the two research phases fed them rather than followed them |
+
+### DONE WHEN
+
+One row per completion criterion above, with the evidence that closes it.
+
+| Criterion | Evidence |
+|-----------|----------|
+| `validate.sh --strict` recursive over this packet exits 0 | Run after this closing pass and recorded by the orchestrator |
+| Every phase reports its acceptance criteria closeable | 001, 002, 003 and 004 each read `Closeable: Yes` with every row Met; 005 and 006 are research phases carrying no acceptance document, both complete with their syntheses under `research/lineages/luna-max/` |
+| No MCP client config in any runtime declares a system-spec-memory server | grep count 0 in all five roots: `.claude/mcp.json`, `.codex/config.toml`, `.cursor/mcp.json`, `.pi/mcp.json` and `opencode.json` |
+| `rg` for the retired tool prefix over the repository returns no hits | 17 files still match, and this criterion is closed on the reading that no live instruction surface remains rather than on a literal zero. The 17 are the residue sweep itself, three dated changelogs and one benchmark report, one negative-guard test, this packet's own documents and one historical packet — exactly the historical evidence and negative guards the parent decided to keep |
+| A session starts with no memory daemon and Gate 1 still returns trigger matches | A session start with no memory daemon, and a Gate 1 lookup returning 20 candidates from the committed index |
+| The trigger index regenerates byte-identical on a second run | Two runs at the same sha256, 33,791 unique phrases and 13,096 paths |
+| The grep convention is enforced by validate.sh and the retrofit rescan reports no residue | The `GREP_CONVENTION` rule is registered always-on in `scripts/lib/validator-registry.json`, and the rescan reports residue 0 across 22,094 considered |
 
 ### Deviations and findings
 
@@ -126,4 +141,8 @@ and findings belong here.
 | OPEN DECISION: who spawns the shared HF model server | The deleted memory launcher was its default owner, and the skill-advisor launcher spawns it only under `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1`. The advisor works without it, so nothing is broken. Decide whether the advisor becomes the default spawner, which is a launcher default change inside the preserve set |
 | OPEN DECISION: the eight dependencies with no importer | `@modelcontextprotocol/sdk`, `sqlite-vec` and its darwin optional, `@huggingface/transformers`, `chokidar`, `web-tree-sitter`, `tree-sitter-wasms`, `zod-to-json-schema` and `ignore` have no importer left. Removing them regenerates the lockfile, and `node_modules` is shared with the main checkout, so phase 003 left them in place. Decide whether they come out and when |
 | OPEN DECISION: the fate of `lib/description/repair.ts` | It is test-only now that nothing in production reaches it. Decide whether it folds into `repair-derived.cjs`, which already covers the file repair, or is dropped |
+| OPEN DECISION: escalating the report-only grep-convention classes | The rule ships with `generic-trigger` 361 rows, `anchor-duplicate` 42, `anchor-unmatched` 6 and `naming-exception` 19 as warnings, because a flat error mapping failed 319 of 2,799 packets on classes phase 004 never rewrites. Decide whether they escalate to `error` once their owners fix them; it is a one-line registry change |
+| OPEN DECISION: frontmatter for the 55 canonical documents that lack it | A minimal block moved 26 packets from pass or warn to fail, so phase 004 refused it and withdrew every one. Only an authored block conforms. Decide who writes them and when |
+| OPEN DECISION: normalizing `importance_tier` and `contextType` | The corpus carries 10 distinct tier values and 35 distinct context types. The convention fixes the key and the shape, not the vocabulary. Decide whether the vocabularies are normalized and what the allowed sets are |
+| OPEN DECISION: sharing `js-yaml` between the retrofit classifier and the validator | The retrofit classifies frontmatter by line shape while the validator parses with `js-yaml`, so the retrofit's malformed count is a floor and the validator is the authority. Decide whether `classifyVariant` moves onto `js-yaml` so the two readings agree |
 <!-- /ANCHOR:log -->

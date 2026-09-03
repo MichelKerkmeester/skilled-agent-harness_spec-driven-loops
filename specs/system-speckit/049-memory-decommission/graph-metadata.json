@@ -58,6 +58,10 @@
       "004-grep-convention-doc-retrofit/goal.md",
       "005-ripgrep-retrieval-research/goal.md",
       "006-legacy-memory-surface-inventory/goal.md",
+      ".codex/config.toml",
+      ".cursor/mcp.json",
+      ".pi/mcp.json",
+      "scripts/lib/validator-registry.json",
       "lib/description/repair.ts"
     ],
     "entities": [
@@ -95,6 +99,18 @@
         "name": "validate.sh",
         "kind": "script",
         "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": "scripts/lib/validator-registry.json",
         "source": "derived"
       },
       {
@@ -158,37 +174,37 @@
         "source": "derived"
       },
       {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "the",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions",
-        "kind": "heading",
+        "name": "every",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The `system-spec-memory` MCP subsystem is a derived search index over `specs//.md` that",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-03T21:28:55.323Z",
+    "last_save_at": "2026-09-03T23:10:06.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e6d264b94e142070f7f3c228a1790077090a4bd794039d26c3e95e00b9e48ba8",
+    "source_fingerprint": "sha256:6cb6e7b0cfcac0808bc7d0688a339ec0d34617995e7d42a7f693eb24cfd6f45a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f7a9db7d4580eed9e5cb0bb53167075e3fed25ee9a774c34992da363c3f45bbd"
+      "spec.md": "56415cd6e11956ba8c12d530771cb1a76e926e7ed73cae1acfbc07a834a20826"
     },
     "last_active_child_id": "system-speckit/049-memory-decommission/004-grep-convention-doc-retrofit",
     "last_active_at": null
