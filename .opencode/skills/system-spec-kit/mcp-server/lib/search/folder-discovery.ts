@@ -19,10 +19,10 @@ import {
   isGeneratedMetadataDriftGateEnabled,
   isIdentityMergeSafetyEnabled,
   isIdempotentDescriptionWritesEnabled,
+  parseFlagTristate,
 } from '../config/capability-flags.js';
 import { derivePacketSynopsis, truncateSynopsisAtWordBoundary } from '../description/packet-synopsis.js';
 import { isExcludedFromGeneratedMetadata, shouldIndexForMemory } from '../utils/index-scope.js';
-import { parseFlagTristate } from './search-flags.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES

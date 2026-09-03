@@ -87,16 +87,13 @@ type ScenarioResult = {
   reason?: string;
 };
 
+// Values a scenario carries from one step into a later step's arguments.
+// Every entry crosses the substitution boundary below, where it is sanitized
+// before it can reach the argument tokenizer.
 type RuntimeState = {
   lastJobId: string | null;
-  lastCursor: string | null;
-  lastCheckpointName: string | null;
-  lastSessionId: string | null;
-  lastDeletedId: number | null;
-  lastDeletedTitle: string | null;
 };
 
-type HandlerModule = Record<string, unknown>;
 type ParsedArgumentValue =
   | string
   | number
@@ -123,14 +120,6 @@ const RESULTS_JSONL = path.join(SPEC_REPORT_ROOT, 'manual-playbook-results.jsonl
 
 function logProgress(message: string): void {
   process.stdout.write(`${message}\n`);
-}
-
-function safeJson(value: unknown): string {
-  try {
-    return JSON.stringify(value);
-  } catch (error: unknown) {
-    return `[unserializable:${error instanceof Error ? error.message : String(error)}]`;
-  }
 }
 
 function normalizeText(value: string): string {
@@ -243,18 +232,8 @@ function parsedStepArgs(
       continue;
     }
 
-    const normalized = normalizeText(segment);
-    if (normalized === 'query') {
+    if (normalizeText(segment) === 'query') {
       parsed.query = queryFromPrompt(definition.exactPrompt);
-      continue;
-    }
-    if (normalized === 'id') {
-      parsed.id = fixture.primaryMemoryId ?? fixture.secondaryMemoryId ?? fixture.tertiaryMemoryId ?? 1;
-      continue;
-    }
-    if (normalized === 'old title') {
-      parsed.query = runtimeState.lastDeletedTitle ?? 'deleted memory title';
-      continue;
     }
   }
 
@@ -528,53 +507,6 @@ function preclassifiedUnautomatableReason(definition: ScenarioDefinition): strin
     return 'Flag-reference scenarios require catalog/manual-guidance cross-checks beyond direct handler responses.';
   }
 
-  if (
-    definition.filePath.includes('lifecycle/017-')
-    || definition.filePath.includes('lifecycle/097-')
-    || definition.filePath.includes('lifecycle/114-')
-    || definition.filePath.includes('lifecycle/144-')
-  ) {
-    return 'Lifecycle scenario requires checkpoint/async-worker barrier orchestration or restart semantics beyond this direct-handler runner.';
-  }
-
-  if (
-    definition.filePath.includes('evaluation/026-')
-    || definition.filePath.includes('evaluation/027-')
-  ) {
-    return 'Evaluation scenario depends on production-like eval DB provenance or dashboard ordering checks outside the ephemeral fixture contract.';
-  }
-
-  if (definition.filePath.includes('bug-fixes-and-data-integrity/002-')) {
-    return 'Chunk-collapse validation requires multi-chunk seeding and collapse-stage inspection beyond the direct handler contract.';
-  }
-
-  if (definition.filePath.includes('query-intelligence/161-')) {
-    return 'LLM reformulation validation requires external LLM/cache inspection beyond this direct-handler runner.';
-  }
-
-  if (definition.filePath.includes('mutation/191-')) {
-    return 'Shared-memory admin lifecycle scenario uses actor-hint narrative flows that need manual scope verification beyond direct handler output.';
-  }
-
-  if (definition.filePath.includes('governance/123-')) {
-    return 'Governance rollout scenario requires actor-scoped state transitions and race checks beyond direct handler automation.';
-  }
-
-  if (definition.filePath.includes('mutation/192-')) {
-    return 'Scenario explicitly requires direct library invocation rather than MCP handler dispatch.';
-  }
-
-  if (definition.filePath.includes('mutation/101-')) {
-    return 'Scenario validates MCP schema enforcement, which raw handler calls do not exercise.';
-  }
-
-  if (
-    definition.filePath.includes('context-preservation/261-')
-    || definition.filePath.includes('context-preservation/264-')
-  ) {
-    return 'Scenario depends on MCP transport hooks, session priming envelopes, or populated code-graph routing beyond raw handler calls.';
-  }
-
   return null;
 }
 
@@ -627,12 +559,13 @@ function parseSteps(commandSequence: string): ScenarioStep[] {
   return lineSteps.map(classifyStep);
 }
 
-// `lastJobId` originates from prior handler payloads and is
-// interpolated into tokenized object-literal source before parsing. Even though the
-// typed parser rejects quoted-string breakouts (see parseObjectLiteralArgs test
-// coverage), we sanitize at the substitution boundary as defense in depth: only a
-// nanoid-shaped `job_<12 alphanumerics>` (and safe extensions) is accepted. Anything
-// else is dropped so a malicious payload cannot reach the tokenizer at all.
+// `lastJobId` originates outside this file and is interpolated into tokenized
+// object-literal source before parsing. Even though the typed parser rejects
+// quoted-string breakouts (see parseObjectLiteralArgs test coverage), we
+// sanitize at the substitution boundary as defense in depth: only a
+// nanoid-shaped `job_<12 alphanumerics>` (and safe extensions) is accepted.
+// Anything else is dropped so a malicious payload cannot reach the tokenizer at
+// all.
 const JOB_ID_ALLOWLIST = /^[A-Za-z0-9_-]{1,64}$/;
 
 export function sanitizeJobIdForSubstitution(rawJobId: string): string | null {
@@ -859,194 +792,21 @@ export function parseObjectLiteralArgs(
   return parsed;
 }
 
-function defaultArgsForTool(
-  toolName: string,
-  fixture: FixtureToolContext,
-  runtimeState: RuntimeState,
-  definition: ScenarioDefinition,
-): Record<string, unknown> {
-  const taskIdMatch = definition.exactPrompt.match(/(?:preflight|postflight) for ([a-z0-9-]+)/i);
-  const inferredTaskId = taskIdMatch?.[1] ?? 'T1';
-  switch (toolName) {
-    case 'memory_context':
-      return {
-        input: queryFromPrompt(definition.exactPrompt),
-        mode: 'focused',
-        specFolder: fixture.targetSpecFolder,
-        includeContent: true,
-      };
-    case 'memory_search':
-      return {
-        query: queryFromPrompt(definition.exactPrompt),
-        limit: 10,
-        specFolder: fixture.targetSpecFolder,
-      };
-    case 'memory_match_triggers':
-      return {
-        prompt: queryFromPrompt(definition.exactPrompt),
-        specFolder: fixture.targetSpecFolder,
-      };
-    case 'memory_quick_search':
-      return {
-        query: queryFromPrompt(definition.exactPrompt),
-        specFolder: fixture.targetSpecFolder,
-      };
-    case 'memory_save':
-      return {
-        filePath: fixture.routedSaveFile,
-        asyncEmbedding: true,
-        skipPreflight: true,
-      };
-    case 'memory_update':
-      return {
-        id: fixture.primaryMemoryId,
-        title: 'Checkpoint Rollback Runbook Updated',
-        triggerPhrases: ['checkpoint rollback', 'clearExisting transaction rollback'],
-        allowPartialUpdate: true,
-      };
-    case 'memory_delete':
-      return {
-        id: fixture.tertiaryMemoryId ?? fixture.primaryMemoryId,
-        confirm: true,
-      };
-    case 'memory_bulk_delete':
-      return {
-        tier: 'temporary',
-        specFolder: fixture.sandboxSpecFolder,
-        confirm: true,
-      };
-    case 'memory_validate':
-      return {
-        id: fixture.primaryMemoryId,
-        wasUseful: true,
-        resultRank: 1,
-        totalResultsShown: 5,
-      };
-    case 'memory_list':
-      return {
-        specFolder: fixture.targetSpecFolder,
-        limit: 10,
-      };
-    case 'memory_stats':
-      return { limit: 10 };
-    case 'memory_health':
-      return { reportMode: 'full' };
-    case 'memory_index_scan':
-      return {
-        specFolder: fixture.targetSpecFolder,
-        includeSpecDocs: true,
-        force: false,
-      };
-    case 'checkpoint_create':
-      runtimeState.lastCheckpointName = fixture.defaultCheckpointName;
-      return {
-        name: fixture.defaultCheckpointName,
-        specFolder: fixture.sandboxSpecFolder,
-      };
-    case 'checkpoint_list':
-      return { specFolder: fixture.sandboxSpecFolder };
-    case 'checkpoint_restore':
-      return {
-        name: runtimeState.lastCheckpointName ?? fixture.defaultCheckpointName,
-        clearExisting: false,
-      };
-    case 'checkpoint_delete':
-      return {
-        name: runtimeState.lastCheckpointName ?? fixture.defaultCheckpointName,
-        confirmName: runtimeState.lastCheckpointName ?? fixture.defaultCheckpointName,
-      };
-    case 'memory_ingest_start':
-      return { paths: fixture.ingestFiles };
-    case 'memory_ingest_status':
-    case 'memory_ingest_cancel':
-      return { jobId: runtimeState.lastJobId ?? 'job_missing' };
-    case 'task_preflight':
-      return {
-        specFolder: fixture.targetSpecFolder,
-        taskId: inferredTaskId,
-        knowledgeScore: 70,
-        contextScore: 72,
-        uncertaintyScore: 28,
-      };
-    case 'task_postflight':
-      return {
-        specFolder: fixture.targetSpecFolder,
-        taskId: inferredTaskId,
-        knowledgeScore: 85,
-        contextScore: 84,
-        uncertaintyScore: 18,
-      };
-    case 'memory_get_learning_history':
-      return { specFolder: fixture.targetSpecFolder, includeSummary: true };
-    case 'memory_drift_why':
-      return {
-        memoryId: String(fixture.secondaryMemoryId ?? fixture.primaryMemoryId),
-        direction: 'both',
-        maxDepth: 4,
-      };
-    case 'memory_causal_link':
-      return {
-        sourceId: String(fixture.primaryMemoryId),
-        targetId: String(fixture.secondaryMemoryId),
-        relation: 'supports',
-        strength: 0.8,
-      };
-    case 'memory_causal_stats':
-      return {};
-    case 'memory_causal_unlink':
-      return { edgeId: fixture.edgeId ?? 1 };
-    case 'eval_run_ablation':
-      return {
-        mode: 'ablation',
-        includeFormattedReport: true,
-        storeResults: false,
-      };
-    case 'eval_reporting_dashboard':
-      return { format: 'json', limit: 2 };
-    case 'session_health':
-      return {};
-    case 'session_resume':
-    case 'session_bootstrap':
-      return { specFolder: fixture.targetSpecFolder };
-    default:
-      return {};
-  }
-}
-
 // Lightweight schema validator for tool arguments.
-// Each tool has an allowed set of keys + required fields. Rejects unknown keys to
-// surface playbook drift immediately; rejects missing required fields so that
-// previously-undefined-in-JS-scoping shorthand (`{jobId}`) cannot slip past the
+// A registered tool declares an allowed set of keys plus its required fields.
+// Unknown keys are rejected so playbook drift surfaces immediately, and missing
+// required fields are rejected so shorthand (`{jobId}`) cannot slip past the
 // parser and then be silently coerced into defaults.
 type ToolArgSchema = {
   required: readonly string[];
   optional: readonly string[];
 };
 
-const TOOL_ARG_SCHEMAS: Record<string, ToolArgSchema> = {
-  memory_ingest_start: { required: ['paths'], optional: ['specFolder'] },
-  memory_ingest_status: { required: ['jobId'], optional: [] },
-  memory_ingest_cancel: { required: ['jobId'], optional: [] },
-  memory_delete: { required: ['id'], optional: ['confirm'] },
-  memory_bulk_delete: { required: ['confirm'], optional: ['tier', 'specFolder', 'scope'] },
-  memory_update: {
-    required: ['id'],
-    optional: [
-      'title', 'content', 'triggerPhrases', 'tags', 'tier', 'importance',
-      'allowPartialUpdate', 'notes', 'description',
-    ],
-  },
-  memory_validate: {
-    required: ['id'],
-    optional: ['wasUseful', 'resultRank', 'totalResultsShown', 'queryUsed'],
-  },
-  memory_causal_link: {
-    required: ['sourceId', 'targetId', 'relation'],
-    optional: ['strength', 'evidence', 'notes'],
-  },
-  memory_causal_unlink: { required: ['edgeId'], optional: [] },
-  memory_drift_why: { required: ['memoryId'], optional: ['direction', 'maxDepth'] },
-};
+// The registry is intentionally empty: every tool it once covered has been
+// retired, and no tool in the current scenario corpus publishes an argument
+// contract this runner can enforce. A tool earns an entry when the runner gains
+// a way to call it; until then validation is a documented no-op.
+const TOOL_ARG_SCHEMAS: Record<string, ToolArgSchema> = {};
 
 export function validateToolArgsSchema(toolName: string, args: Record<string, unknown>): void {
   const schema = TOOL_ARG_SCHEMAS[toolName];
@@ -1081,342 +841,14 @@ function coerceToolArgs(
   if (step.kind !== 'tool' || !step.toolName) {
     return {};
   }
-  let args: Record<string, unknown>;
-  if (!step.argSource || step.argSource.trim().length === 0) {
-    args = defaultArgsForTool(step.toolName, fixture, runtimeState, definition);
-  } else if (step.argSource.trim().startsWith('{')) {
-    args = parsedStepArgs(step, definition, fixture, runtimeState);
-  } else {
-    args = {
-      ...defaultArgsForTool(step.toolName, fixture, runtimeState, definition),
-      ...parsedStepArgs(step, definition, fixture, runtimeState),
-    };
-  }
+
+  const args = parsedStepArgs(step, definition, fixture, runtimeState);
 
   // Validate against known-tool schema so shorthand drift
   // (`{jobId}` vs `{ jobId:"..." }`) cannot silently pass through with partial args.
   validateToolArgsSchema(step.toolName, args);
 
-  if ((step.toolName === 'memory_context' || step.toolName === 'memory_search') && typeof args.sessionId === 'string') {
-    const candidate = args.sessionId.trim();
-    const isUuidLike = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(candidate);
-    if (!isUuidLike || /^(?:ex\d+|gate-i-[\w-]+|session-id)$/i.test(candidate)) {
-      if (runtimeState.lastSessionId) {
-        args.sessionId = runtimeState.lastSessionId;
-      } else {
-        delete args.sessionId;
-      }
-    }
-  }
-
   return args;
-}
-
-function handlerNameForTool(toolName: string): string | null {
-  const passthrough: Record<string, string> = {
-    session_resume: 'handleSessionResume',
-    session_bootstrap: 'handleSessionBootstrap',
-    session_health: 'handleSessionHealth',
-    memory_context: 'handleMemoryContext',
-    memory_search: 'handleMemorySearch',
-    memory_match_triggers: 'handleMemoryMatchTriggers',
-    memory_save: 'handleMemorySave',
-    memory_update: 'handleMemoryUpdate',
-    memory_delete: 'handleMemoryDelete',
-    memory_bulk_delete: 'handleMemoryBulkDelete',
-    memory_validate: 'handleMemoryValidate',
-    memory_list: 'handleMemoryList',
-    memory_stats: 'handleMemoryStats',
-    memory_health: 'handleMemoryHealth',
-    memory_index_scan: 'handleMemoryIndexScan',
-    checkpoint_create: 'handleCheckpointCreate',
-    checkpoint_list: 'handleCheckpointList',
-    checkpoint_restore: 'handleCheckpointRestore',
-    checkpoint_delete: 'handleCheckpointDelete',
-    memory_ingest_start: 'handleMemoryIngestStart',
-    memory_ingest_status: 'handleMemoryIngestStatus',
-    memory_ingest_cancel: 'handleMemoryIngestCancel',
-    task_preflight: 'handleTaskPreflight',
-    task_postflight: 'handleTaskPostflight',
-    memory_get_learning_history: 'handleGetLearningHistory',
-    memory_drift_why: 'handleMemoryDriftWhy',
-    memory_causal_link: 'handleMemoryCausalLink',
-    memory_causal_stats: 'handleMemoryCausalStats',
-    memory_causal_unlink: 'handleMemoryCausalUnlink',
-    eval_run_ablation: 'handleEvalRunAblation',
-    eval_reporting_dashboard: 'handleEvalReportingDashboard',
-  };
-  return passthrough[toolName] ?? null;
-}
-
-async function invokeTool(
-  toolName: string,
-  args: Record<string, unknown>,
-  handlersModule: HandlerModule,
-): Promise<{ success: boolean; payload: unknown; evidence: string[]; facts: string[]; error?: string }> {
-  if (toolName === 'memory_quick_search') {
-    const quickSearch = handlersModule.handleMemorySearch;
-    if (typeof quickSearch !== 'function') {
-      return {
-        success: false,
-        payload: null,
-        evidence: [],
-        facts: [],
-        error: 'No direct handler export for tool "memory_quick_search"',
-      };
-    }
-    const payload = await quickSearch({
-      query: typeof args.query === 'string' ? args.query : 'authentication',
-      limit: typeof args.limit === 'number' ? args.limit : 10,
-      specFolder: typeof args.specFolder === 'string' ? args.specFolder : undefined,
-    });
-    const summary = summarizeResponse(toolName, payload);
-    return {
-      success: true,
-      payload,
-      evidence: summary.evidence,
-      facts: [...summary.facts, 'quick search fast path'],
-    };
-  }
-
-  const handlerName = handlerNameForTool(toolName);
-  if (!handlerName || typeof handlersModule[handlerName] !== 'function') {
-    return {
-      success: false,
-      payload: null,
-      evidence: [],
-      facts: [],
-      error: `No direct handler export for tool "${toolName}"`,
-    };
-  }
-
-  const fn = handlersModule[handlerName] as (...fnArgs: unknown[]) => Promise<unknown>;
-  const payload = await fn(args);
-  const summary = summarizeResponse(toolName, payload);
-  return {
-    success: summary.success,
-    payload,
-    evidence: summary.evidence,
-    facts: summary.facts,
-    error: summary.success ? undefined : summary.error,
-  };
-}
-
-function extractEnvelope(payload: unknown): Record<string, unknown> | null {
-  if (!payload || typeof payload !== 'object') {
-    return null;
-  }
-  const maybeResponse = payload as { content?: Array<{ text?: string }>; isError?: boolean };
-  const text = maybeResponse.content?.[0]?.text;
-  if (typeof text !== 'string') {
-    return null;
-  }
-  try {
-    return JSON.parse(text) as Record<string, unknown>;
-  } catch {
-    return { summary: text };
-  }
-}
-
-function summarizeResponse(toolName: string, payload: unknown): {
-  success: boolean;
-  error?: string;
-  evidence: string[];
-  facts: string[];
-} {
-  const envelope = extractEnvelope(payload);
-  const evidence = [safeJson(envelope ?? payload).slice(0, 2000)];
-  const facts: string[] = [];
-  let success = true;
-  let error: string | undefined;
-
-  const record = envelope ?? {};
-  const data = typeof record.data === 'object' && record.data !== null ? record.data as Record<string, unknown> : record;
-  const contentText = typeof record.summary === 'string' ? record.summary : '';
-  const isError = Boolean((payload as { isError?: boolean })?.isError || record.error || data.error);
-  if (isError) {
-    success = false;
-    error = String(record.error ?? data.error ?? 'unknown error');
-  }
-
-  const results = Array.isArray(data.results) ? data.results : [];
-  const hints = Array.isArray(data.hints) ? data.hints : [];
-  const count = typeof data.count === 'number' ? data.count : null;
-  const summaryText = typeof record.summary === 'string' ? record.summary : '';
-
-  if (!success) {
-    facts.push(`error: ${error ?? 'unknown error'}`);
-  } else {
-    switch (toolName) {
-      case 'memory_context':
-        if (results.length > 0 || contentText.length > 0) {
-          facts.push('relevant bounded context returned', 'no empty response', 'context results returned');
-        }
-        break;
-      case 'memory_search':
-      case 'memory_quick_search': {
-        if (results.length > 0 || count !== null) {
-          facts.push('searchable result appears', 'results returned', 'relevant context returned');
-        }
-        if (count === 0 || /no matching memories found/i.test(summaryText)) {
-          facts.push('no matching memories found', 'absent from retrieval', 'deleted item absent from retrieval');
-        }
-        const pipelineMetadata = typeof data.pipelineMetadata === 'object' && data.pipelineMetadata !== null
-          ? data.pipelineMetadata as Record<string, unknown>
-          : null;
-        if (pipelineMetadata?.stage1 && pipelineMetadata?.stage2 && pipelineMetadata?.stage3 && pipelineMetadata?.stage4) {
-          facts.push('stable final scoring', 'no invariant errors', 'stage metadata present');
-        }
-        if (typeof data.lexicalPath === 'string') {
-          facts.push('lexical path reported');
-        }
-        break;
-      }
-      case 'memory_match_triggers':
-        facts.push('trigger phrases evaluated');
-        if (results.length > 0 || Array.isArray(data.matches)) {
-          facts.push('trigger match returned');
-        }
-        break;
-      case 'memory_save':
-        facts.push('save action reported');
-        if (typeof data.id === 'number' || typeof data.message === 'string') {
-          facts.push('indexed successfully');
-        }
-        break;
-      case 'memory_update':
-        facts.push('metadata updated');
-        break;
-      case 'memory_delete':
-        facts.push('delete completed');
-        break;
-      case 'memory_bulk_delete':
-        facts.push('delete completed', 'scoped deletion count');
-        break;
-      case 'memory_validate':
-        facts.push('validation feedback recorded', 'confidence promotion metadata updates');
-        if (typeof data.confidence === 'number') {
-          facts.push('confidence updated');
-        }
-        if (typeof data.promotionEligible === 'boolean' || typeof data.autoPromotion === 'object') {
-          facts.push('promotion metadata updated');
-        }
-        break;
-      case 'memory_list':
-        facts.push('paginated list and totals');
-        break;
-      case 'memory_stats':
-        facts.push('counts present', 'totals displayed');
-        break;
-      case 'memory_health':
-        facts.push('health diagnostics returned');
-        break;
-      case 'memory_index_scan':
-        facts.push('workspace indexing completed');
-        break;
-      case 'checkpoint_create':
-        facts.push('checkpoint created');
-        break;
-      case 'checkpoint_list':
-        facts.push('available restore points displayed', 'checkpoint present');
-        break;
-      case 'checkpoint_restore':
-        facts.push('checkpoint restored');
-        break;
-      case 'checkpoint_delete':
-        facts.push('checkpoint deleted');
-        break;
-      case 'memory_ingest_start':
-        facts.push('ingest job created');
-        break;
-      case 'memory_ingest_status':
-        facts.push('ingest status returned');
-        break;
-      case 'memory_ingest_cancel':
-        facts.push('ingest job cancelled');
-        break;
-      case 'task_preflight':
-        facts.push('baseline record created');
-        break;
-      case 'task_postflight':
-        facts.push('delta learning record saved');
-        break;
-      case 'memory_get_learning_history':
-        facts.push('historical entries returned');
-        break;
-      case 'memory_drift_why':
-        facts.push('chain includes expected relations');
-        break;
-      case 'memory_causal_link':
-        facts.push('causal edge created');
-        break;
-      case 'memory_causal_stats':
-        facts.push('coverage and edge metrics present');
-        break;
-      case 'memory_causal_unlink':
-        facts.push('causal edge removed');
-        break;
-      case 'eval_run_ablation':
-        facts.push('ablation report returned');
-        break;
-      case 'eval_reporting_dashboard':
-        facts.push('dashboard report returned');
-        break;
-      case 'session_resume':
-        facts.push('resume payload returned', 'session recovered');
-        break;
-      case 'session_bootstrap':
-        facts.push('bootstrap payload returned');
-        break;
-      case 'session_health':
-        facts.push('session health returned');
-        break;
-      default:
-        break;
-    }
-  }
-
-  if (hints.length > 0) {
-    facts.push('hints present');
-  }
-
-  return { success, error, evidence, facts };
-}
-
-function captureRuntimeStateFromPayload(payload: unknown, runtimeState: RuntimeState): void {
-  const envelope = extractEnvelope(payload);
-  const data = typeof envelope?.data === 'object' && envelope?.data !== null ? envelope.data as Record<string, unknown> : envelope;
-  if (!data) {
-    return;
-  }
-
-  const sessionCandidate = typeof data.effectiveSessionId === 'string'
-    ? data.effectiveSessionId
-    : typeof data.sessionId === 'string'
-      ? data.sessionId
-      : null;
-  if (sessionCandidate) {
-    runtimeState.lastSessionId = sessionCandidate;
-  }
-
-  if (typeof data.cursor === 'string') {
-    runtimeState.lastCursor = data.cursor;
-  }
-}
-
-function captureRuntimeStateFromStep(
-  toolName: string,
-  args: Record<string, unknown>,
-  fixture: FixtureToolContext,
-  runtimeState: RuntimeState,
-): void {
-  if (toolName === 'checkpoint_create' && typeof args.name === 'string') {
-    runtimeState.lastCheckpointName = args.name;
-  }
-  if (toolName === 'memory_delete' && typeof args.id === 'number') {
-    runtimeState.lastDeletedId = args.id;
-    runtimeState.lastDeletedTitle = fixture.seededMemories.find((row) => row.id === args.id)?.title ?? null;
-  }
 }
 
 function expectedSignalMatches(signal: string, factCorpus: string): boolean {
@@ -1440,15 +872,9 @@ function expectedSignalMatches(signal: string, factCorpus: string): boolean {
 async function executeScenario(
   definition: ScenarioDefinition,
   fixture: FixtureToolContext,
-  handlers: HandlerModule,
 ): Promise<ScenarioResult> {
   const runtimeState: RuntimeState = {
     lastJobId: null,
-    lastCursor: null,
-    lastCheckpointName: fixture.defaultCheckpointName,
-    lastSessionId: null,
-    lastDeletedId: null,
-    lastDeletedTitle: null,
   };
 
   const expectedSignals = splitExpectedSignals(definition.expectedSignals);
@@ -1456,41 +882,33 @@ async function executeScenario(
   const evidence: string[] = [];
   const steps: StepExecution[] = [];
 
+  const unautomatable = (reason: string, stepEvidence: string[]): ScenarioResult => ({
+    scenarioId: definition.scenarioId,
+    category: definition.category,
+    status: 'UNAUTOMATABLE',
+    filePath: definition.filePath,
+    prompt: definition.exactPrompt,
+    expectedSignals,
+    matchedSignals: [],
+    unmatchedSignals: expectedSignals,
+    handlerCalls,
+    evidence: stepEvidence,
+    steps,
+    reason,
+  });
+
   try {
     const preclassifiedReason = preclassifiedUnautomatableReason(definition);
     if (preclassifiedReason) {
-      return {
-        scenarioId: definition.scenarioId,
-        category: definition.category,
-        status: 'UNAUTOMATABLE',
-        filePath: definition.filePath,
-        prompt: definition.exactPrompt,
-        expectedSignals,
-        matchedSignals: [],
-        unmatchedSignals: expectedSignals,
-        handlerCalls,
-        evidence: [preclassifiedReason],
-        steps,
-        reason: preclassifiedReason,
-      };
+      return unautomatable(preclassifiedReason, [preclassifiedReason]);
     }
 
     const parsedSteps = parseSteps(definition.commandSequence);
     if (parsedSteps.every((step) => step.kind === 'shell' || step.kind === 'narrative')) {
-      return {
-        scenarioId: definition.scenarioId,
-        category: definition.category,
-        status: 'UNAUTOMATABLE',
-        filePath: definition.filePath,
-        prompt: definition.exactPrompt,
-        expectedSignals,
-        matchedSignals: [],
-        unmatchedSignals: expectedSignals,
-        handlerCalls,
-        evidence: [`Command sequence is not expressible as direct handler calls: ${definition.commandSequence}`],
-        steps,
-        reason: 'Scenario depends on shell commands, source inspection, or narrative-only validation.',
-      };
+      return unautomatable(
+        'Scenario depends on shell commands, source inspection, or narrative-only validation.',
+        [`Command sequence is not expressible as direct handler calls: ${definition.commandSequence}`],
+      );
     }
 
     for (const step of parsedSteps) {
@@ -1503,113 +921,38 @@ async function executeScenario(
           evidence: [],
           error: 'Not a direct handler call',
         });
-        return {
-          scenarioId: definition.scenarioId,
-          category: definition.category,
-          status: 'UNAUTOMATABLE',
-          filePath: definition.filePath,
-          prompt: definition.exactPrompt,
-          expectedSignals,
-          matchedSignals: [],
-          unmatchedSignals: expectedSignals,
-          handlerCalls,
-          evidence: [`Stopped at non-handler step: ${step.raw}`],
-          steps,
-          reason: 'Scenario includes shell/source-inspection work that cannot be truthfully executed through direct handlers only.',
-        };
+        return unautomatable(
+          'Scenario includes shell/source-inspection work that cannot be truthfully executed through direct handlers only.',
+          [`Stopped at non-handler step: ${step.raw}`],
+        );
       }
 
       if (step.kind === 'slash') {
-        if (step.raw.startsWith('/speckit:resume')) {
-          const args = { specFolder: fixture.targetSpecFolder };
-          handlerCalls.push({ name: 'session_resume', args });
-          const outcome = await invokeTool('session_resume', args, handlers);
-          steps.push({
-            step: step.raw,
-            kind: step.kind,
-            handler: { name: 'session_resume', args },
-            success: outcome.success,
-            facts: outcome.facts,
-            evidence: outcome.evidence,
-            error: outcome.error,
-          });
-          evidence.push(...outcome.evidence);
-          captureRuntimeStateFromPayload(outcome.payload, runtimeState);
-          if (!outcome.success) {
-            return {
-              scenarioId: definition.scenarioId,
-              category: definition.category,
-              status: 'FAIL',
-              filePath: definition.filePath,
-              prompt: definition.exactPrompt,
-              expectedSignals,
-              matchedSignals: [],
-              unmatchedSignals: expectedSignals,
-              handlerCalls,
-              evidence,
-              steps,
-              reason: outcome.error,
-            };
-          }
-          continue;
-        }
-        return {
-          scenarioId: definition.scenarioId,
-          category: definition.category,
-          status: 'UNAUTOMATABLE',
-          filePath: definition.filePath,
-          prompt: definition.exactPrompt,
-          expectedSignals,
-          matchedSignals: [],
-          unmatchedSignals: expectedSignals,
-          handlerCalls,
-          evidence: [`Slash-command routing requires command-layer orchestration: ${step.raw}`],
-          steps,
-          reason: 'Slash command does not have a direct handler-equivalent contract in this runner.',
-        };
+        return unautomatable(
+          'Slash command does not have a direct handler-equivalent contract in this runner.',
+          [`Slash-command routing requires command-layer orchestration: ${step.raw}`],
+        );
       }
 
+      // Tool steps are still parsed and recorded so the report names the exact
+      // call a human operator has to make, but the runner holds no tool bridge
+      // and must not pretend it executed one.
       const toolName = step.toolName!;
       const args = coerceToolArgs(step, definition, fixture, runtimeState);
       handlerCalls.push({ name: toolName, args });
-      const outcome = await invokeTool(toolName, args, handlers);
       steps.push({
         step: step.raw,
         kind: step.kind,
         handler: { name: toolName, args },
-        success: outcome.success,
-        facts: outcome.facts,
-        evidence: outcome.evidence,
-        error: outcome.error,
+        success: false,
+        facts: [],
+        evidence: [],
+        error: `No direct handler export for tool "${toolName}"`,
       });
-      evidence.push(...outcome.evidence);
-      captureRuntimeStateFromPayload(outcome.payload, runtimeState);
-      captureRuntimeStateFromStep(toolName, args, fixture, runtimeState);
-
-      if (toolName === 'memory_ingest_start' && outcome.success) {
-        const envelope = extractEnvelope(outcome.payload);
-        const data = typeof envelope?.data === 'object' && envelope?.data !== null ? envelope.data as Record<string, unknown> : {};
-        if (typeof data.jobId === 'string') {
-          runtimeState.lastJobId = data.jobId;
-        }
-      }
-
-      if (!outcome.success) {
-        return {
-          scenarioId: definition.scenarioId,
-          category: definition.category,
-          status: toolName === 'eval_run_ablation' ? 'UNAUTOMATABLE' : 'FAIL',
-          filePath: definition.filePath,
-          prompt: definition.exactPrompt,
-          expectedSignals,
-          matchedSignals: [],
-          unmatchedSignals: expectedSignals,
-          handlerCalls,
-          evidence,
-          steps,
-          reason: outcome.error ?? `Tool ${toolName} failed`,
-        };
-      }
+      return unautomatable(
+        `Tool call "${toolName}" has no direct handler-equivalent contract in this runner.`,
+        [`Stopped at unbridged tool step: ${step.raw}`],
+      );
     }
 
     const factCorpus = normalizeText(
@@ -1652,8 +995,6 @@ async function executeScenario(
       steps,
       reason: message,
     };
-  } finally {
-    // Shared fixture cleanup is handled once at the end of the run.
   }
 }
 
@@ -1693,28 +1034,12 @@ async function main(): Promise<void> {
   }
 
   const fixture = await createManualPlaybookFixture('gate-i-manual-playbook');
-  const handlers = await import('../../mcp-server/dist/handlers/index.js') as HandlerModule;
   const results: ScenarioResult[] = discovery.parseFailures.map(scenarioResultFromParseFailure);
   try {
     for (const definition of definitions) {
       await fixture.reset();
-      if (
-        definition.commandSequence.includes('task_postflight')
-        && typeof handlers.handleTaskPreflight === 'function'
-      ) {
-        await (handlers.handleTaskPreflight as (args: Record<string, unknown>) => Promise<unknown>)(
-          defaultArgsForTool('task_preflight', fixture, {
-            lastJobId: null,
-            lastCursor: null,
-            lastCheckpointName: fixture.defaultCheckpointName,
-            lastSessionId: null,
-            lastDeletedId: null,
-            lastDeletedTitle: null,
-          }, definition),
-        );
-      }
       logProgress(`Running ${definition.scenarioId} (${definition.category})`);
-      const result = await executeScenario(definition, fixture, handlers);
+      const result = await executeScenario(definition, fixture);
       results.push(result);
       writeResults(results);
       logProgress(` -> ${result.status}${result.reason ? `: ${result.reason}` : ''}`);

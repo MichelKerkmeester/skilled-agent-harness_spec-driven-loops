@@ -19,10 +19,11 @@ import { resolve } from 'node:path';
 const MCP_SERVER_ROOT = resolve(__dirname, '..');
 const SYSTEM_SPEC_KIT_ROOT = resolve(MCP_SERVER_ROOT, '..');
 const ENV_REFERENCE_PATH = resolve(MCP_SERVER_ROOT, 'ENV-REFERENCE.md');
+// The two surviving flag registries. `lib/search/graph-flags.ts` was removed
+// with the memory engine; reading a missing path here throws before any
+// assertion runs, which would take the whole guard down rather than fail it.
 const FLAG_REGISTRY_PATHS = [
   'lib/config/capability-flags.ts',
-  'lib/search/search-flags.ts',
-  'lib/search/graph-flags.ts',
 ] as const;
 
 // Tokens read only inside runtime code that is gated behind a test-mode guard
@@ -33,8 +34,6 @@ const FLAG_REGISTRY_PATHS = [
 const INTENTIONALLY_INTERNAL = new Set<string>([
   // Test-mode master switch (only meaningful alongside NODE_ENV='test').
   'SPECKIT_TEST', // hooks/claude/session-stop.ts
-  // Test-only bypass of canonical save routing for the failure-injection suite.
-  'SPECKIT_TEST_DISABLE_CANONICAL_ROUTING', // handlers/memory-save.ts
   // Autosave-script override honored only in test mode; ignored in production.
   'SPECKIT_GENERATE_CONTEXT_SCRIPT', // hooks/claude/session-stop.ts
 ]);
@@ -222,10 +221,15 @@ function collectRuntimeDefaultPolarities(): Map<string, boolean> {
 describe('ENV-REFERENCE.md drift guard', () => {
   it('finds runtime SPECKIT_* env reads to validate', () => {
     const tokens = collectRuntimeEnvTokens();
-    // Sanity floor: the runtime reads dozens of SPECKIT_* vars. A near-zero
-    // count would mean the collector regex or file walk silently broke, which
-    // would make the drift assertion vacuously pass.
-    expect(tokens.size).toBeGreaterThan(50);
+    // Sanity floor against a silently broken collector regex or file walk,
+    // which would make the drift assertion below vacuously pass.
+    //
+    // The floor is 10, not the pre-decommission 50. The memory engine took the
+    // ~90-flag `search-flags.ts` registry with it and cut `capability-flags.ts`
+    // to six gates, so the real count is about 20 and 50 can no longer be met.
+    // 10 stays well under that while still catching the failure this guards:
+    // a collector returning zero or a handful. Raise it if the engine regrows.
+    expect(tokens.size).toBeGreaterThan(10);
   });
 
   it('documents every runtime SPECKIT_* env var (or lists it as intentionally internal)', () => {
@@ -279,27 +283,19 @@ describe('ENV-REFERENCE.md drift guard', () => {
     expect(mismatches).toEqual([]);
   });
 
-  it('keeps the relevance-aware gap row internally consistent with its default-on parser', () => {
-    const row = collectDocumentedFlagRows().find(
-      (candidate) => candidate.tokens.includes('SPECKIT_RELEVANCE_AWARE_GAP'),
-    );
-    expect(row?.defaultState).toBe(true);
-    expect(row?.cells.join(' ').toLowerCase()).not.toContain('default off');
-    expect(row?.cells.join(' ').toLowerCase()).not.toContain('set true to enable');
-  });
-
-  it('documents the packed BM25 auto fallback and omits the retired novelty flag', () => {
-    const envReference = readFileSync(ENV_REFERENCE_PATH, 'utf8');
-    const bm25Row = envReference.split('\n').find((line) => line.includes('`SPECKIT_BM25_ENGINE`'));
-    const telemetryReference = readFileSync(
-      resolve(MCP_SERVER_ROOT, 'lib/telemetry/README.md'),
-      'utf8',
-    );
-
-    expect(bm25Row).toContain('falls back to the packed in-memory index');
-    expect(bm25Row).not.toContain('otherwise falls back to legacy in-memory BM25');
-    expect(telemetryReference).not.toContain('SPECKIT_NOVELTY_BOOST');
-  });
+  // The relevance-aware gap assertion retired with its subject.
+  // `SPECKIT_RELEVANCE_AWARE_GAP` was registered by `lib/search/search-flags.ts`,
+  // which the memory decommission deleted, so no reader remains and the doc row
+  // went with it. The assertion could not simply be dropped from the doc side:
+  // it reads `row?.defaultState` through an optional chain, so a missing row
+  // yields `expect(undefined).toBe(true)` — a failure that looks like a
+  // polarity bug rather than a removed flag.
+  //
+  // The BM25 auto-fallback assertion retired with its subject. Both anchors it
+  // read are gone: `SPECKIT_BM25_ENGINE` has no reader left in source, so the
+  // ENV_REFERENCE row went with the memory engine, and `lib/telemetry/README.md`
+  // was deleted outright. Nothing here is worth re-pointing, because a check
+  // that a removed doc omits a removed flag asserts nothing.
 
   it('keeps the internal ignore-list honest (every ignored token is still a runtime read and has no doc row)', () => {
     const runtimeTokens = collectRuntimeEnvTokens();

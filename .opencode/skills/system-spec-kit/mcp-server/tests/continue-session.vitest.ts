@@ -247,14 +247,6 @@ describe('T020: Quick resume command (DB-dependent)', () => {
     expect(true).toBe(true);
   });
 
-  it('T020-02: Generates memory_search command with sessionId when specFolder is not provided', () => {
-    expect(true).toBe(true);
-  });
-
-  it('T020-03: Generates generic memory_search when neither specFolder nor sessionId is provided', () => {
-    expect(true).toBe(true);
-  });
-
   it('T020-04: Resume command is wrapped in code block', () => {
     expect(true).toBe(true);
   });

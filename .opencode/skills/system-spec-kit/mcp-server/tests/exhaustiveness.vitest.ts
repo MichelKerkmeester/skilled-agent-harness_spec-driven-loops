@@ -89,12 +89,12 @@ describe('sample consumer patterns', () => {
   });
 
   it('covers trigger-category routing switches', () => {
-    type TriggerCategory = 'file_write' | 'memory_save' | 'resume' | 'read_only';
+    type TriggerCategory = 'file_write' | 'context_save' | 'resume' | 'read_only';
     const route = (category: TriggerCategory): string => {
       switch (category) {
         case 'file_write':
           return 'write';
-        case 'memory_save':
+        case 'context_save':
           return 'save';
         case 'resume':
           return 'resume';

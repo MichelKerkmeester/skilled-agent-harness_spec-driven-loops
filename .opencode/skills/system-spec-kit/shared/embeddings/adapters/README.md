@@ -1,6 +1,6 @@
 ---
 title: "Shared Embedder Adapters"
-description: "Canonical provider adapter implementations shared by system-spec-memory and advisor consumers."
+description: "Canonical provider adapter implementations for the shared embedding stack owned by the skill advisor."
 trigger_phrases:
   - "shared embedder adapters"
   - "canonical ollama adapter"

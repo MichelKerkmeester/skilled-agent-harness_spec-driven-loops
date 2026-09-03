@@ -108,16 +108,13 @@ describe('precompact hook', () => {
 
     it('surfaces recent topics from transcript lines', () => {
       const context = buildCompactContext([
-        'Using memory_search before compaction',
-        'Checking code_graph_query output for specs/system-speckit',
-        'Dispatching task_context for next-step context',
+        'Reviewing specs/system-speckit before compaction',
+        'Checking unrelated output that names no packet',
       ]);
 
       expect(context).toContain('## Recent Topics');
-      expect(context).toContain('- memory_search');
-      expect(context).not.toContain('- code_graph_query');
       expect(context).toContain('- specs/system-speckit');
-      expect(context).toContain('- task_context');
+      expect(context).not.toContain('- unrelated');
     });
 
     it('detects spec folders from file paths and bare folder mentions', () => {
@@ -138,7 +135,7 @@ describe('precompact hook', () => {
         constitutional: '',
         codeGraph: 'Active files:\n- /src/hooks/shared.ts',
         triggered: '',
-        sessionState: 'Recent topics:\n- memory_search\n- code_graph_query',
+        sessionState: 'Recent topics:\n- specs/system-speckit',
       };
 
       const brief = mergeCompactBrief(input, COMPACTION_TOKEN_BUDGET, undefined, {

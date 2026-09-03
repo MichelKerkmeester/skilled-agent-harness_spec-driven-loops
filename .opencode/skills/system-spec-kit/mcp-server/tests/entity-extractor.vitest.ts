@@ -1,6 +1,6 @@
 // TEST: ENTITY EXTRACTOR (R10)
 // Covers: extractEntities, filterEntities, storeEntities,
-// UpdateEntityCatalog, computeEdgeDensity, normalizeEntityName,
+// UpdateEntityCatalog, normalizeEntityName,
 // Entity-denylist
 import { describe, it, expect, beforeEach } from 'vitest';
 import Database from 'better-sqlite3';
@@ -12,7 +12,6 @@ import {
   updateEntityCatalog,
   rebuildEntityCatalog,
   rebuildAutoEntities,
-  computeEdgeDensity,
   normalizeEntityName,
   __testables,
 } from '../lib/extraction/entity-extractor.js';
@@ -649,49 +648,6 @@ describe('rebuildAutoEntities', () => {
     expect(catalogRows.some((row) => row.canonical_name === 'next js adapter' && row.memory_count === 1)).toBe(true);
     expect(catalogRows.some((row) => row.canonical_name === 'curated alias' && row.memory_count === 1)).toBe(true);
     expect(catalogRows.some((row) => row.canonical_name === 'python toolkit' && row.memory_count === 1)).toBe(true);
-  });
-});
-
-// ===============================================================
-// 7. computeEdgeDensity (~3 tests)
-// ===============================================================
-
-describe('computeEdgeDensity', () => {
-  let db: Database.Database;
-
-  beforeEach(() => {
-    db = createTestDb();
-  });
-
-  it('returns 0 for empty graph (no memories, no edges)', () => {
-    const density = computeEdgeDensity(db);
-    expect(density).toBe(0);
-  });
-
-  it('returns edges/memories ratio', () => {
-    // Insert 4 memories
-    for (let i = 1; i <= 4; i++) {
-      db.prepare('INSERT INTO memory_index (id, spec_folder, file_path, title, content_text) VALUES (?, ?, ?, ?, ?)')
-        .run(i, 'test', `/tmp/${i}.md`, `Memory ${i}`, 'content');
-    }
-    // Insert 6 edges
-    for (let i = 1; i <= 6; i++) {
-      db.prepare('INSERT INTO causal_edges (source_id, target_id, relation) VALUES (?, ?, ?)')
-        .run(String(i), String(i + 1), 'caused');
-    }
-
-    const density = computeEdgeDensity(db);
-    expect(density).toBe(6 / 4);
-    expect(density).toBe(1.5);
-  });
-
-  it('returns 0 when there are zero memories (avoids division by zero)', () => {
-    // Insert edges but no memories
-    db.prepare('INSERT INTO causal_edges (source_id, target_id, relation) VALUES (?, ?, ?)')
-      .run('1', '2', 'caused');
-
-    const density = computeEdgeDensity(db);
-    expect(density).toBe(0);
   });
 });
 

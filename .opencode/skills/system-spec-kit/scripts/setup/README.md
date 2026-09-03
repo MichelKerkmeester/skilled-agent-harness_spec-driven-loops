@@ -29,7 +29,6 @@ Current state:
 
 ```text
 scripts/setup/
-+-- install.sh                  # Spec Kit Memory MCP installer
 +-- _utils.sh                   # Shared installer and setup helpers
 +-- check-prerequisites.sh       # Spec-folder readiness checks
 +-- check-native-modules.sh      # Native module availability checks
@@ -56,7 +55,6 @@ Disallowed direction:
 
 | File | Responsibility |
 |---|---|
-| `install.sh` | Installs the Spec Kit Memory MCP dependencies, builds the TypeScript workspace and runs native-module health checks. |
 | `_utils.sh` | Provides shared logging, version, JSON and project-root helpers for setup installers. |
 | `check-prerequisites.sh` | Checks spec-folder presence, required docs, optional task docs and validation status. |
 | `check-native-modules.sh` | Verifies native modules required by the scripts workspace can load. |

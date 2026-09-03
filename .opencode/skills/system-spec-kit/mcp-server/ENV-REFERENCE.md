@@ -1,19 +1,21 @@
 ---
 title: SPECKIT Environment Variable Reference
-description: All SPECKIT_* environment variables used by the Spec Kit Memory MCP server (plus the SYSTEM_*/runtime variables of the dual-stack CLI front door), organized by subsystem with defaults, types and source file references.
+description: Environment variables read by the surviving spec-kit engine (validation orchestrator, generated metadata, level contracts, continuity writer and runtime hook adapters), plus the shared and advisor-owned variables that the package's operators still meet, with defaults, types and verified source file references.
 ---
 
 # SPECKIT Environment Variable Reference
 
-> All `SPECKIT_*` environment variables for the Spec Kit Memory MCP server, plus the `SYSTEM_*` and runtime prompt-time variables used by the daemon-backed CLI front door.
+> Environment variables read by the spec-kit engine in this package, plus the shared embedding/IPC and skill-advisor variables that live outside it but are documented here because operators configure them alongside it.
 
 ---
 
 ## 1. OVERVIEW
 
-All variables are optional. The server runs with sensible defaults when none are set. Variables use **graduated semantics** unless noted: they default to ON and you disable them by setting `=false`.
+All variables are optional. The engine runs with sensible defaults when none are set. Variables use **graduated semantics** unless noted: they default to ON and you disable them by setting `=false`.
 
-**Graph as a first-class feature family.** The `SPECKIT_GRAPH_*` variables form a dedicated feature family (see [Section 6](#6-graph) and [Section 7](#7-graph-calibration)) controlling structural code graph indexing, graph-first routing in the search pipeline, causal graph traversal, and calibration profiles. Since graph-first routing is now the default query dispatch order (Code Graph -> Code Graph -> Memory), the graph env vars are among the most impactful configuration levers.
+**What this package still is.** The memory engine was removed. The MCP transport (`context-server`), the memory tools and handlers, the memory database and its launcher, sqlite vector search, the in-package embedders, the evals and migrations, and the spec-memory CLI shim and plugin bridge are all gone. What remains is the spec-kit engine: the validation orchestrator, the graph and description metadata generators, the documentation level contracts, the continuity writer's imports, and the runtime hook adapters under `hooks/` for Claude, Codex, Cursor, Devin and Pi.
+
+**What is documented elsewhere but kept here.** The skill advisor, the shared HF model server and its `hf-embed` socket, and the shared embeddings and IPC code under `.opencode/skills/system-spec-kit/shared` and `.opencode/bin` were not touched by the removal. Their variables keep rows below, and each row's Source column names the file that actually reads it so ownership is unambiguous.
 
 **Flag convention:**
 
@@ -24,132 +26,16 @@ All variables are optional. The server runs with sensible defaults when none are
 | `parseFloat(... \|\| 'N')` | Numeric with fallback default N |
 | `?.trim()` | String, empty = use default |
 
-### Feature Flags Reference Table
+### Flag inventory
 
-Generated from `lib/search/search-flags.ts`. "Default state" is the shipped behavior when the governing env var is unset. Opt-in rows are OFF even when similarly named graduated features exist elsewhere.
+**There is no longer a feature-flag registry to tabulate.** `lib/search/search-flags.ts` was deleted with the memory engine, taking about ninety retrieval, ranking, graph, cognitive and feedback gates with it. `lib/config/capability-flags.ts` survives but now declares six gates, all of them in [Section 3](#3-spec-validation-and-generated-metadata): `SPECKIT_GENERATOR_HARDENING`, `SPECKIT_GENERATED_METADATA_GRANDFATHER`, `SPECKIT_GENERATED_METADATA_DRIFT_GATE`, `SPECKIT_IDENTITY_MERGE_SAFETY`, `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` and `SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE`.
 
-| flag name | default state (ON/OFF) | governing env var | which automation it gates | added in version |
-| --- | --- | --- | --- | --- |
-| Session attention boost | ON | `SPECKIT_SESSION_BOOST` | Search result re-ranking from session attention signals | graduated |
-| Causal graph boost | ON | `SPECKIT_CAUSAL_BOOST` | Causal graph traversal boost for search ranking | graduated |
-| Dynamic init | ON | `SPECKIT_DYNAMIC_INIT` | Startup instruction injection for the MCP server | graduated |
-| Pressure policy | ON | `SPECKIT_PRESSURE_POLICY` | Token-pressure policy for `memory_context` | graduated |
-| Auto resume | ON | `SPECKIT_AUTO_RESUME` | Automatic resume context injection for `memory_context` | graduated |
-| MMR reranking | ON | `SPECKIT_MMR` | Graph-guided MMR diversity reranking | current |
-| TRM evidence gap detection | ON | `SPECKIT_TRM` | Transparent Reasoning Module evidence-gap detection | current |
-| Multi-query expansion | ON | `SPECKIT_MULTI_QUERY` | Deep-mode multi-query expansion | current |
-| Search fallback | ON | `SPECKIT_SEARCH_FALLBACK` | Quality-aware 3-tier search fallback chain | PI-A2 |
-| Folder discovery | ON | `SPECKIT_FOLDER_DISCOVERY` | Automatic spec folder discovery via description cache | PI-B3 |
-| Save planner mode | OFF | `SPECKIT_SAVE_PLANNER_MODE` | Mutation-first canonical save behavior. Default is `plan-only` | planner-first save |
-| Save reconsolidation | OFF | `SPECKIT_RECONSOLIDATION_ENABLED` | Save-time reconsolidation, opt-in. Gates a destructive merge/deprecate path (further checkpoint-gated) | planner-first save |
-| Post-insert enrichment | ON | `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED` | Save-time enrichment bundle: causal links + entities + summaries + graph lifecycle (populates graph, async by default) | spec 017 |
-| Quality auto-fix retries | ON | `SPECKIT_QUALITY_AUTO_FIX` | Save-time quality auto-fix retry loop (trigger phrases, char-budget trim, anchor normalize) | spec 017 |
-| Docscore aggregation | ON | `SPECKIT_DOCSCORE_AGGREGATION` | Document-level chunk-to-memory score aggregation | R1 MPAB |
-| Save quality gate | ON | `SPECKIT_SAVE_QUALITY_GATE` | Pre-storage quality gate for memory saves | graduated |
-| Dynamic token budget | ON | `SPECKIT_DYNAMIC_TOKEN_BUDGET` | Query-complexity token budget allocation | graduated |
-| Confidence truncation | ON | `SPECKIT_CONFIDENCE_TRUNCATION` | Low-confidence tail truncation | graduated |
-| Channel minimum representation | ON | `SPECKIT_CHANNEL_MIN_REP` | Minimum channel representation after fusion | graduated |
-| Reconsolidation on save | ON | `SPECKIT_RECONSOLIDATION` | Memory deduplication reconsolidation path | TM-06 |
-| Negative feedback | ON | `SPECKIT_NEGATIVE_FEEDBACK` | Negative-feedback confidence demotion | T002b/A4 |
-| Embedding expansion | ON | `SPECKIT_EMBEDDING_EXPANSION` | Embedding-based query expansion | R12 |
-| Consolidation engine | ON | `SPECKIT_CONSOLIDATION` | Contradiction scan, strengthening, staleness, edge bounds | N3-lite |
-| Encoding intent | ON | `SPECKIT_ENCODING_INTENT` | Index-time intent metadata capture | R16 |
-| Graph walk rollout | ON | `SPECKIT_GRAPH_WALK_ROLLOUT`, `SPECKIT_GRAPH_SIGNALS` | Graph walk mode, defaults to `bounded_runtime` when graph signals are ON | N2a/N2b |
-| Graph signals | ON | `SPECKIT_GRAPH_SIGNALS` | Graph momentum and causal depth signals | N2a/N2b |
-| Community detection | ON | `SPECKIT_COMMUNITY_DETECTION` | BFS components with Louvain escalation | N2c |
-| Community summaries | ON | `SPECKIT_COMMUNITY_SUMMARIES` | Community summary generation and search channel | graph summaries |
-| Memory summaries | ON | `SPECKIT_MEMORY_SUMMARIES` | TF-IDF memory summary channel | R8 |
-| Temporal contiguity | ON | `SPECKIT_TEMPORAL_CONTIGUITY` | Temporal contiguity boost on Stage 1 vector results | graduated |
-| Auto entities | ON | `SPECKIT_AUTO_ENTITIES` | Rule-based entity extraction at save time | R10 |
-| Entity linking | ON | `SPECKIT_ENTITY_LINKING` | Cross-document entity edges | S5 |
-| Degree boost | ON | `SPECKIT_DEGREE_BOOST` | Causal-edge degree-based reranking | current |
-| Context headers | ON | `SPECKIT_CONTEXT_HEADERS` | Stage 4 contextual tree headers | graduated |
-| Markdown file watcher | OFF | `SPECKIT_FILE_WATCHER` | Real-time markdown reindexing watcher | opt-in |
-| Compiled routing | OFF | `SPECKIT_COMPILED_ROUTING` | Tri-state gate for serving the compiled per-hub router instead of the prose smart-router. Unset = per-hub default-on cohort, which ships empty so every hub stays legacy (byte-identical to today); `1` = force-on where a hub also has a compiled activation manifest; `0`/`false`/`off` = explicit fleet-wide kill-switch (force legacy); any other value fails closed to legacy. Serving additionally requires the hub's activation manifest to be `compiled`, so the flag alone lights no hub. Default-on is a later staged cutover, not this flag's default. `SPECKIT_COMPILED_ROUTING_DEBUG` (unset/OFF) emits debug-gated stderr breadcrumbs when a compiled route falls back to legacy. | opt-in |
-| Quality loop | ON | `SPECKIT_QUALITY_LOOP` | Verify-fix-verify memory quality loop | T008 |
-| Query decomposition | ON | `SPECKIT_QUERY_DECOMPOSITION` | Deep-mode facet splitting | D2 REQ-D2-001 |
-| Graph concept routing | ON | `SPECKIT_GRAPH_CONCEPT_ROUTING` | Query-time alias matching into graph channel | D2 REQ-D2-002 |
-| Query surrogates | ON | `SPECKIT_QUERY_SURROGATES` | Index-time aliases, headings, summaries, questions | D2 REQ-D2-005 |
-| Implicit feedback log | ON | `SPECKIT_IMPLICIT_FEEDBACK_LOG` | Shadow-only feedback event ledger | D4 REQ-D4-001 |
-| Hybrid decay policy | ON | `SPECKIT_HYBRID_DECAY_POLICY` | Type-aware no-decay for permanent artifacts | D4 REQ-D4-002 |
-| Save quality gate exceptions | ON | `SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS` | Short critical decision quality-gate bypass | D4 REQ-D4-003 |
-| LLM reformulation | ON | `SPECKIT_LLM_REFORMULATION` | Corpus-grounded LLM query reformulation | D2 REQ-D2-003 |
-| HyDE | ON | `SPECKIT_HYDE` | Hypothetical document embeddings for low-confidence deep queries | D2 REQ-D2-004 |
-| Graph refresh mode | ON | `SPECKIT_GRAPH_REFRESH_MODE` | Dirty-node recomputation after writes, default `write_local` | D3 REQ-D3-003 |
-| LLM graph backfill | ON | `SPECKIT_LLM_GRAPH_BACKFILL` | Async probabilistic graph edge backfill | D3 REQ-D3-004 |
-| Graph calibration profile | ON | `SPECKIT_GRAPH_CALIBRATION_PROFILE` | Community thresholds and graph score caps | D3 REQ-D3-005/006 |
-| Learned Stage 2 combiner | ON | `SPECKIT_LEARNED_STAGE2_COMBINER` | Shadow-only learned linear ranker | D1 REQ-D1-006 |
-| Shadow feedback | ON | `SPECKIT_SHADOW_FEEDBACK` | Holdout comparison of would-have-changed rankings | D4 REQ-D4-006 |
-| Progressive disclosure | ON | `SPECKIT_PROGRESSIVE_DISCLOSURE` | Summary layer and cursor pagination for results | D5 REQ-D5-005 |
-| Session retrieval state | ON | `SPECKIT_SESSION_RETRIEVAL_STATE` | Cross-turn dedup and goal-aware refinement | D5 REQ-D5-006 |
-| Calibrated overlap bonus | ON | `SPECKIT_CALIBRATED_OVERLAP_BONUS` | Multi-channel overlap bonus | D1 REQ-D1-001 |
-| RRF K experimental | ON | `SPECKIT_RRF_K_EXPERIMENTAL` | Per-intent RRF K selection | D1 REQ-D1-003 |
-| Typed traversal | ON | `SPECKIT_TYPED_TRAVERSAL` | Sparse-first intent-aware graph traversal | D3 Phase A |
-| Empty result recovery | ON | `SPECKIT_EMPTY_RESULT_RECOVERY` | Empty and weak result recovery payloads | D5 REQ-D5-001 |
-| Result confidence | ON | `SPECKIT_RESULT_CONFIDENCE` | Per-result calibrated confidence scoring | D5 REQ-D5-004 |
-| Envelope fidelity | ON | `SPECKIT_ENVELOPE_FIDELITY` | Emits the `data.envelopeRender` verdict fragment and promotes the verdict fields to conditionally-mandatory render slots, default-ON (graduated) until a clean grandfather report | current |
-| Batch learned feedback | ON | `SPECKIT_BATCH_LEARNED_FEEDBACK` | Weekly batch feedback learning pipeline | D4 REQ-D4-004 |
-| Feedback retention learning | OFF | `SPECKIT_FEEDBACK_RETENTION_LEARNING` | Default-off feedback-aware retention reducer, shadow-first and audit-only unless active mode is gated | current |
-| Feedback retention mode | shadow | `SPECKIT_FEEDBACK_RETENTION_MODE` | Selects `shadow` or `active`, default `shadow`. Active still requires the master flag and internally supplied shadow-evaluation evidence, which the public sweep tool and scheduler do not expose. | current |
-| Session-trace causal inference | OFF | `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` | Deferred session-trace causal edge inference from feedback events | current |
-| Soft-delete tombstones | OFF | `SPECKIT_SOFT_DELETE_TOMBSTONES` | Default-off tombstone delete path for memory deletes and purgeable retention partition. Keep OFF until recall surfaces filter `deleted_at IS NULL` | current |
-| Assistive reconsolidation | ON | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | Near-duplicate detection and review routing | D4 REQ-D4-005 |
-| Memory idempotency receipts | OFF | `SPECKIT_MEMORY_IDEMPOTENCY` | Default-off server-derived replay receipts for memory_save/memory_update plus advisory near_duplicate_of hints | memory hardening |
-| Result explainability | ON | `SPECKIT_RESULT_EXPLAIN` | Two-tier result explainability | D5 REQ-D5-002 |
-| Response profile formatting | ON | `SPECKIT_RESPONSE_PROFILE` | Mode-aware response profiles | D5 REQ-D5-003 |
-| Query concept expansion | ON | `SPECKIT_QUERY_CONCEPT_EXPANSION` | Alias-based query expansion for hybrid search | Phase B T016 |
-| Graph fallback | ON | `SPECKIT_GRAPH_FALLBACK` | Graph-expanded fallback on zero or weak results | Phase B T017 |
-| Graph context injection | ON | `SPECKIT_GRAPH_CONTEXT_INJECTION` | Graph neighbor lookup even without seed results | Phase B T020 |
-| Result provenance | ON | `SPECKIT_RESULT_PROVENANCE` | Graph evidence metadata in search results | Phase C T027 |
-| Temporal edges | ON | `SPECKIT_TEMPORAL_EDGES` | Temporal validity tracking for causal edges | Phase D T036 |
-| Usage ranking | ON | `SPECKIT_USAGE_RANKING` | Usage-weighted ranking signal | Phase D T036 |
-| Ontology hooks | ON | `SPECKIT_ONTOLOGY_HOOKS` | Ontology-guided extraction validation hooks | Phase D T036 |
-| Community search fallback | ON | `SPECKIT_COMMUNITY_SEARCH_FALLBACK` | Community-level fallback channel | Phase B T018 |
-| Dual retrieval | ON | `SPECKIT_DUAL_RETRIEVAL` | Local/global/auto retrieval level control | Phase B T019 |
-| Intent auto profile | ON | `SPECKIT_INTENT_AUTO_PROFILE` | Intent-to-response-profile auto-routing | Phase C |
-| Acceptance coverage gate | ON | `SPECKIT_AC_COVERAGE` | Default-on advisory (INFO, non-blocking) scan for acceptance-criteria traceability coverage during spec validation; set `false` to opt out | acceptance coverage gate |
-| Acceptance closure gate | ON | `SPECKIT_AC_CLOSURE` | Default-on closure gate (ERROR) at Levels 2/3/3+; unmet criteria block a completion claim, waivers must cite a real ADR, pre-cutoff packets stay advisory | acceptance closure gate |
-| Semantic trigger shadow matcher | OFF | `SPECKIT_SEMANTIC_TRIGGERS` | Opt-in shadow-only semantic trigger scoring. Lexical trigger results remain primary and unchanged | semantic trigger fallback |
-| Semantic trigger mode | OFF | `SPECKIT_SEMANTIC_TRIGGERS_MODE` | Selects `shadow` or `union`, default `shadow`. `union` can affect results but remains blocked unless the master flag is enabled | semantic trigger fallback |
-| Semantic trigger threshold | OFF | `SPECKIT_SEMANTIC_TRIGGER_THRESHOLD` | Cosine threshold for shadow semantic trigger matches, only used when semantic trigger shadow is enabled | semantic trigger fallback |
-| Semantic trigger margin | OFF | `SPECKIT_SEMANTIC_TRIGGER_MARGIN` | Minimum top-vs-second score gap for accepting shadow semantic trigger matches | semantic trigger fallback |
-| Semantic trigger max | OFF | `SPECKIT_SEMANTIC_TRIGGER_MAX` | Maximum shadow semantic trigger matches computed for comparison telemetry | semantic trigger fallback |
-| Semantic trigger cache TTL | OFF | `SPECKIT_SEMANTIC_TRIGGER_CACHE_TTL_MS` | In-memory ready trigger-embedding cache TTL for shadow semantic trigger scoring | semantic trigger fallback |
-| Semantic trigger embedding backfill | OFF | `SPECKIT_TRIGGER_EMBEDDING_BACKFILL` | Opt-in population switch for derived trigger embeddings. Disabled runs skip without writing rows | `mcp-server/lib/search/trigger-embedding-backfill.ts` |
-| Authored continuity snapshot | OFF | `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` | Opt-in compact-hook authored continuity snapshot path. The default transcript-derived fallback remains unchanged | continuity resilience |
-| Completion freshness | OFF | `SPECKIT_COMPLETION_FRESHNESS` | Opt-in strict-validation freshness scan that compares stored continuity fingerprints with packet content | completion freshness |
-| Completion freshness enforcement | OFF | `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | Promotes enabled completion-freshness stale findings from warning to error | completion freshness |
-| Cosine top-N reorder | ON | `SPECKIT_COSINE_TOPN_REORDER` | Stable reorder of the top-N final ranked list by absolute cosine relevance over the fused RRF order. Graduated kill switch, set `false` to restore pure fused order | graduated |
-| Archived cold-state preference | ON | `SPECKIT_INCLUDE_ARCHIVED_DEFAULT` | Retains the graduated cold-state preference for non-tier ranking paths. It does not admit archived or deprecated importance tiers; ranked reads require the explicit `includeArchived: true` request override | graduated |
-| Archived vector inclusion | ON | `SPECKIT_INCLUDE_ARCHIVED_VECTOR` | Extends cold archived inclusion to the vector semantic lane through the active-memory projection backfill. Graduated kill switch, set `false` to restore the vector-lane exclusion. Verified against `isArchivedVectorInclusionEnabled()` (`lib/search/search-flags.ts:895-897`), the canonical registration this table is generated from — default ON, matching `isFeatureEnabled()`'s unset-is-enabled polarity. The `backfillColdOrphanProjection()` startup-path comment (`lib/storage/lineage-state.ts:474`, mirrored at `context-server.ts:2050`) calling this "opt-in (default OFF)" is stale prose left over from before graduation; the code it annotates already gates on the same default-ON helper, so behavior matches this row even though that comment does not | graduated |
-| Post-insert enrichment sync | OFF | `SPECKIT_POST_INSERT_ENRICHMENT_SYNC` | Runs the post-insert enrichment bundle synchronously inside the save instead of asynchronously in the background | spec 017 |
-| World summary prelude | ON | `SPECKIT_WORLD_SUMMARY_PRELUDE` | Appends coarse-to-fine world-summary grounding to memory_context without displacing baseline results | current |
-| Retrieval-class routing | OFF | `SPECKIT_RETRIEVAL_CLASS_ROUTING` | Opt-in SingleHop query-shape suppression of graph and degree channels in the query router | current |
-| Content-rich short-query graph preservation | OFF | `SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION` | Opt-in preservation of graph and degree channels for short queries that still carry strong lexical anchors. Flipped default-off: shipped default-ON without the reindexed before/after benchmark this repo's flag-graduation policy requires | current |
-| True citation emitter | OFF | `SPECKIT_TRUE_CITATION_EMITTER` | Mines post-hoc transcripts for actually referenced memory_ids and writes used/not-used shadow feedback pairs | built-but-held |
-| Absolute relevance calibration | ON | `SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION` | Calibrates confidence, request quality and result-set digests on absolute cosine relevance instead of fused RRF magnitude | current |
-| Confidence calibration | ON | `SPECKIT_CONFIDENCE_CALIBRATION` | Applies fitted isotonic calibration so displayed confidence approximates probability of relevance | current |
-| Confidence calibration model | default model | `SPECKIT_CONFIDENCE_CALIBRATION_MODEL` | Selects the fitted isotonic calibration model path; unset uses the committed default and an explicitly empty value disables model application | current |
-| Retention forgetting | ON | `SPECKIT_RETENTION_FORGETTING` | Conservative spare-only retention axes and live incoming-edge protection for retention decisions | current |
-| Lexical grounding | ON | `SPECKIT_LEXICAL_GROUNDING` | Lexical grounding floor and single-hit corroboration guard for request-quality verdicts | current |
-| Noise-floor subtraction | ON | `SPECKIT_NOISE_FLOOR_SUBTRACTION` | Subtracts the measured embedder corpus noise floor before request-quality banding | current |
-| Cite with caveat | ON | `SPECKIT_CITE_WITH_CAVEAT` | Adds a `cite_with_caveat` citation-policy tier for borderline grounded weak verdicts | current |
-| Evidence-gap verdict bridge | ON | `SPECKIT_EVIDENCE_GAP_VERDICT` | Caps otherwise-good request-quality verdicts at weak when Stage 4 reports an evidence gap | current |
-| Derived id provenance | ON | `SPECKIT_DERIVED_ID_PROVENANCE` | Persists content-addressed derived_id provenance for generated causal edges | current |
-| Deterministic multihop | OFF | `SPECKIT_DETERMINISTIC_MULTIHOP` | Appends explicitly referenced sibling or cross-reference spec documents to the result tail without LLMs or re-embedding | built-but-held |
-| Lane champion backfill | OFF | `SPECKIT_LANE_CHAMPION_BACKFILL` | Appends each base retrieval lane's strongest missed candidate into available tail slots after fusion | built-but-held |
-| Relevance-aware gap | ON | `SPECKIT_RELEVANCE_AWARE_GAP` | Uses noise-floor-subtracted absolute relevance rather than Z-score peakedness for evidence-gap decisions | current |
-| Rollout percentage | 100 | `SPECKIT_ROLLOUT_PERCENT` | Global rollout percentage applied by `isFeatureEnabled()` feature gates | graduated |
-<!-- PHASE-008-ENV-SLOT: SPECKIT_SEMANTIC_TRIGGERS_* flags inserted here (027/008) -->
-<!-- PHASE-009-ENV-SLOT: SPECKIT_FEEDBACK_* / SPECKIT_SESSION_TRACE_CAUSAL_* / SPECKIT_FEEDBACK_RETENTION_* flags inserted here (027/009) -->
-<!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
-<!-- PHASE-011-ENV-SLOT: SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
-
-Total unique variables documented: 351, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
+Every variable below now lives in the section that owns its reader, and each row's Source column names that file. If you are looking for a flag that used to be in this table and cannot find it, it was retired: nothing reads it, and setting it does nothing.
+Total unique variables documented: 146, counted as unique backticked names in the Variable column of every table below. Recount with that method when adding rows. Multi-variable cells count once per name. Every one of the 146 has a verified reader in source; a name with no reader is removed rather than kept as history.
 
 ### Data Quality and Generator Hardening (028/005)
 
-Default-OFF safety and grandfather flags for the spec-data-quality and generator-hardening packets. Each stays opt-in (or in report mode) because existing generated files carry the legacy shapes the new contracts reject, so a strict-by-default rollout would mass-fail un-migrated folders before a scoped migration restamps them.
+Generator and validation-gate flags for the spec-data-quality and generator-hardening packets. Most have since graduated to default-on and enforcing; the two that stay off are the grandfather escape hatch and the status-completion gate, which is held in report mode until its existing backlog is reviewed. These are the live half of the flag surface: unlike the retrieval registry in the table above, changing one of these changes what `validate.sh` and the metadata generators do.
 
 | flag name | default state (ON/OFF) | governing env var | which automation it gates | runtime read site |
 | --- | --- | --- | --- | --- |
@@ -159,10 +45,7 @@ Default-OFF safety and grandfather flags for the spec-data-quality and generator
 | Identity and merge safety | ON | `SPECKIT_IDENTITY_MERGE_SAFETY` | Graduated default-on: both generators resolve a shared specs-root-relative spec-folder identity and the merge preserves a non-null parent plus unions children so a scoped re-derive cannot erase lineage. Set `false`/`0`/`off` to restore the legacy caller-base path and spread merge | `lib/config/capability-flags.ts`, `lib/graph/graph-metadata-parser.ts` |
 | Idempotent description writes | ON | `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | Graduated default-on: a per-folder description write whose only delta is the volatile stamp is skipped and the aggregate-cache write is gated on a real member delta, preserving the prior timestamp. Set `false`/`0`/`off` to restore the unconditional legacy write | `lib/config/capability-flags.ts` |
 | Generated-metadata z-exclusion | ON | `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | Excludes `z_*` archive directories from the spec-folder discovery scanner. Set `false` to restore the prior scanner that descended them | `lib/search/folder-discovery.ts` |
-| Lexical grounding | ON | `SPECKIT_LEXICAL_GROUNDING` | Graduated default-on: the grounding floor and single-hit corroboration guard run on the request-quality verdict. Set `false`/`0`/`off` to restore the prior cosine-and-margin verdict | `lib/search/search-flags.ts` |
-| False-confirm max rate | 0 (enforcing) | `SPECKIT_FALSE_CONFIRM_MAX_RATE` | Graduated default: the off-corpus eval gate enforces a zero-tolerance ceiling when unset, so any false-confirm rate past 0 fails. Set a number in `[0,1]` to override the ceiling | `scripts/evals/run-false-confirm-eval.mjs` |
-| Entity config path override | (bundled rules) | `SPECKIT_ENTITY_CONFIG_PATH` | Overrides the path to the entity-extraction rules JSON. Unset uses the bundled ruleset | `lib/extraction/entity-extractor.ts` |
-| Query-time existence filter | OFF | `SPECKIT_QUERY_TIME_EXISTENCE_FILTER` | Default-off query-time filter on the `memory_search` hot path: excludes already-ranked top-k rows whose backing file no longer exists and defers copied suspect ids through the bounded post-response write queue instead of deleting inline. Only `true` or `1` opts in; enabled requests bypass result-cache reads and writes. Responses expose per-request and process-lifetime aggregate checked/excluded telemetry | `mcp-server/lib/config/capability-flags.ts`, `mcp-server/handlers/memory-search.ts` |
+| Entity config path override | (bundled rules) | `SPECKIT_ENTITY_CONFIG_PATH` | Points `resolveExtractionRules()` at a JSON rule file. A readable, valid file replaces the built-in rules; any read, parse or validation failure logs a warning and falls back to the built-in set | `lib/extraction/entity-extractor.ts` |
 | Metadata disk-path consistency enforce | ON (enforcing) | `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE` | Advisory→enforce toggle for the `METADATA_DISK_PATH_CONSISTENCY` rule: a `description.json`/`graph-metadata.json` path mismatch against the on-disk folder fails `--strict`. Graduated 2026-07-10 on a reconciled tree-wide census (1,130 real mismatches reconciled; remaining residual is non-production paths, see 019-validation-enforce-graduation/implementation-summary.md); set `false` to fall back to advisory-only | `scripts/rules/check-metadata-disk-consistency.sh` |
 | Status cross-doc consistency enforce | ON (enforcing) | `SPECKIT_STATUS_CROSS_DOC_ENFORCE` | Advisory→enforce toggle for the `STATUS_CROSS_DOC_CONSISTENCY` rule: a classified-status disagreement between `spec.md` and `implementation-summary.md` fails `--strict`. Graduated 2026-07-10 on a reconciled tree-wide census (2 honestly-documented residuals remain, see 019-validation-enforce-graduation/implementation-summary.md); set `false` to fall back to advisory-only | `scripts/rules/check-status-cross-doc-consistency.sh` |
 | Graph metadata child-drift enforce | ON (enforcing) | `SPECKIT_CHILD_DRIFT_ENFORCE` | Advisory→enforce toggle for the `GRAPH_METADATA_CHILD_DRIFT` rule: a phase parent's `children_ids` missing an on-disk phase child fails `--strict`. Also gates a dist-presence freshness guard on the child-scanner dependency, so a stale or missing scanner build fails closed rather than silently reporting clean. Graduated 2026-07-10 on a reconciled tree-wide census, see 019-validation-enforce-graduation/implementation-summary.md; set `false` to fall back to advisory-only | `scripts/rules/check-graph-metadata-child-drift.sh`, `scripts/lib/dist-freshness.cjs` |
@@ -174,34 +57,15 @@ Publication-facing metric rows now use the shared measurement contract from `lib
 - Every publishable metric field must declare one certainty label: `exact`, `estimated`, `defaulted`, or `unknown`.
 - Headline multipliers stay blocked unless prompt, completion, cache-read, and cache-write token fields all have `provider_counted` authority. Later packets should reuse `canPublishMultiplier()` instead of inventing packet-local gates.
 - Publication-grade rows must carry methodology metadata with `schemaVersion`, `methodologyStatus`, and at least one provenance entry before they can be emitted.
-- There is no environment variable that disables or downgrades this contract. Telemetry and reporting toggles may increase supporting evidence, but they do not upgrade certainty labels or bypass the multiplier gate.
-
-### Adjacent Toggles
-
-These flags can add evidence around future reporting surfaces, but they must still honor the contract above:
-
-| Variable | Effect on measurement contract |
-|----------|--------------------------------|
-| `SPECKIT_EXTENDED_TELEMETRY` | Adds more detailed telemetry for later analysis, but does not change certainty or authority requirements. |
-| `SPECKIT_EVAL_LOGGING` | Persists evaluation events for later review, but does not authorize publication-grade multiplier claims. |
-| `SPECKIT_ABLATION` | Enables ablation studies, but any exported savings story still needs provider-counted authority plus methodology metadata. |
-
-### Auditable Savings Publication Contract
-
-The reporting pipeline adds a row-eligibility gate beside the measurement
-contract implemented in `mcp-server/lib/telemetry/retrieval-telemetry.ts` and
-the publication guard helpers used by the evaluation dashboard.
-
-- Publishable reporting rows must include a supported `methodologyStatus`, a non-empty `schemaVersion`, and at least one provenance entry.
-- Rows that fail the publication contract must surface one exclusion reason: `missing_methodology`, `missing_schema_version`, `missing_provenance`, or `unsupported_certainty`.
-- There is no environment variable that bypasses the row gate. Reporting toggles can add supporting evidence, but they cannot upgrade unsupported certainty values or fill in missing provenance.
-- The current dashboard reader remains aggregate-only. Future export or publication surfaces should import the shared gate helper instead of re-encoding eligibility logic in handler-local code.
+- No environment variable disables or downgrades this contract. The telemetry and eval toggles that once fed it were removed with the memory engine, and nothing replaced them.
 
 ### Hook kill-switches
 
 All repo-authored hook concerns are enabled by default. Set the master flag or one canonical concern flag to a truthy value (`1`, `true`, `yes`, or `on`, case-insensitive) to disable that surface. Resolver failures are fail-open.
 
 Flags can be set as environment variables **or** in a config file: copy `.opencode/hooks/hook-flags.env.example` to `.opencode/hooks/hook-flags.env` (gitignored) and set the same `KEY=value` names there. A real environment variable always overrides the file, so a persisted default can be flipped back for one session. `HOOK_FLAGS_CONFIG` overrides the config file path.
+
+**These names are derived, not written down.** `concernFlag()` in `.opencode/hooks/shared/hook-flags.cjs` builds the default shape `SYSTEM_<CONCERN>_DISABLED` from the concern slug, and `CONCERN_CANONICAL` overrides it for the six concerns owned by a named surface (`goal`, `dispatch`, `mcp-route-guard`, `codex-watchdog`, `git-preflight`, `post-edit-quality`). Grepping the repo for one of the derived names therefore finds nothing, which is expected and not evidence the flag is dead. The Source column below names the surface the concern gates, not a literal read site.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
@@ -218,7 +82,6 @@ Flags can be set as environment variables **or** in a config file: copy `.openco
 | `MCP_ROUTE_GUARD_DISABLED` | unset (enabled) | truthy disable flag | Disables MCP route warnings and audit records. No aliases. | `.opencode/hooks/mcp-route-guard/`, `.opencode/plugins/mcp-route-guard.js` |
 | `OPENCODE_GOAL_DISABLED` | unset (enabled) | truthy disable flag | Disables goal injection and tools. Alias: `OPENCODE_GOAL_PLUGIN_DISABLED`. | `.opencode/hooks/goal/`, `.opencode/plugins/opencode-goal.js` |
 | `SK_GIT_PREFLIGHT_DISABLED` | unset (enabled) | truthy disable flag | Disables git-preflight advisories. No aliases. | `.opencode/skills/sk-git/scripts/hooks/`, `.opencode/plugins/sk-git-preflight-advisory.js` |
-| `SYSTEM_SPEC_MEMORY_DISABLED` | unset (enabled) | truthy disable flag | Disables spec-memory continuity injection. Aliases: `SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED`, `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED`. | `.opencode/plugins/system-spec-memory.js` |
 | `SYSTEM_SESSION_LIFECYCLE_DISABLED` | unset (enabled) | truthy disable flag | Disables session-start, stop, and compaction hook handling. No aliases. | `hooks/{claude,codex,cursor,devin,pi}/session-*` |
 | `SYSTEM_GIT_WORKTREE_GUARD_DISABLED` | unset (enabled) | truthy disable flag | Disables the worktree warning. Aliases: `SYSTEM_WORKTREE_GUARD_DISABLED` (pre-rename), `SPECKIT_WORKTREE_GUARD=off` (caller-side, exact `off` grammar). | `.opencode/bin/worktree-guard.sh`, `hooks/pi/session-start-advisories.ts` |
 | `SYSTEM_GIT_HOOKS_CHECK_DISABLED` | unset (enabled) | truthy disable flag | Disables the git-hooks installation warning. Caller-side alias: `SPECKIT_GIT_HOOKS_GUARD=off` (exact `off` grammar). | `.opencode/bin/check-git-hooks.sh`, `hooks/pi/session-start-advisories.ts` |
@@ -236,7 +99,7 @@ Flags can be set as environment variables **or** in a config file: copy `.openco
 
 ### Hook-level lifecycle flags
 
-Directive-capsule lifecycle dedup has runtime-specific output cadence. Model-context surfaces deliver the complete advisor brief on the first message and after lifecycle boundaries, then retain only the dynamic `Advisor:` route line on a proven repeat. Pi visibly transforms the user's prompt, so its proven repeat returns no transform and contributes neither the advisor brief nor the Pi dispatch reminder. Every uncertain path fails open to the surface's declared full behavior. These are hook/plugin-level toggles, not search-pipeline flags, so they live outside the search-flags table above.
+Directive-capsule lifecycle dedup has runtime-specific output cadence. Model-context surfaces deliver the complete advisor brief on the first message and after lifecycle boundaries, then retain only the dynamic `Advisor:` route line on a proven repeat. Pi visibly transforms the user's prompt, so its proven repeat returns no transform and contributes neither the advisor brief nor the Pi dispatch reminder. Every uncertain path fails open to the surface's declared full behavior. These three are **owned by the skill advisor**, not by this package: their read sites are all under `.opencode/skills/system-skill-advisor/hooks/`, and they survived the memory decommission untouched.
 
 | flag name | default state (ON/OFF) | governing env var | which automation it gates | runtime read site |
 | --- | --- | --- | --- | --- |
@@ -248,285 +111,79 @@ Directive-capsule lifecycle dedup has runtime-specific output cadence. Model-con
 
 ## 2. INFRASTRUCTURE
 
-**Ownership.** These rows split into two owners, mirroring the markers in `.env.example`.
-*Shared, owned by the HF model server and the skill advisor:* `SPECKIT_IPC_SOCKET_DIR`,
-`SPECKIT_IPC_SOCKET_SCOPE`, `SPECKIT_MAX_SECONDARY_CLIENTS`, `SPECKIT_LAUNCHER_BRIDGE_DISABLED`,
-`SPECKIT_BRIDGE_RESPAWN_DISABLED`, `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`, `SPECKIT_DAEMON_REELECTION`
-and the `SPECKIT_LEASE_PROBE_*` trio — the skill-advisor launcher and the shared IPC bridge read
-them, so they survive the memory decommission. *Memory-only:* every remaining row here, including
-the `SPECKIT_DB_DIR`/`SPEC_KIT_DB_DIR`/`MEMORY_DB_PATH` family, the launcher log rows and
-`SPECKIT_EVAL_DB_PATH`. The specs-root and templates-root overrides (`SPECKIT_SPECS_DIR`,
-`SPEC_KIT_SPECS_DIR`, `SPEC_KIT_ROOT_DIR`, `SPECKIT_TEMPLATES_BASE`) are neither: the spec scripts
-read them independently of the database.
+**Ownership.** Every row here is either read by surviving package source or owned outside the
+package. *Read by this package:* the `SPECKIT_DB_DIR`/`SPEC_KIT_DB_DIR`/`MEMORY_DB_PATH`/
+`MEMORY_BASE_PATH` family in `core/config.ts`, whose `resolveDatabasePaths()` is still imported by
+`lib/storage/transaction-manager.ts` and re-exported from `api/index.ts`; plus `SPECKIT_SPECS_DIR`
+and `SPECKIT_ROLLOUT_PERCENT`. *Shared, owned by the HF model server and the skill
+advisor:* `SPECKIT_IPC_SOCKET_DIR`, `SPECKIT_MAX_SECONDARY_CLIENTS`,
+`SPECKIT_LAUNCHER_BRIDGE_DISABLED`, `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`, the `SPECKIT_LEASE_PROBE_*`
+trio and `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` — the skill-advisor launcher and the shared IPC bridge
+read them, so they survived the memory decommission. The rows that went out with that engine — the
+launcher log trio, the orphan-sweep budget pair, the eval database path, the rebind and write-lock
+overrides, the preflight `MCP_*` numbers and the boot FTS auto-heal — are gone from this table
+because nothing reads them any more.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_DB_DIR` | (auto-detected) | string | Override database directory path. Also accepts `SPEC_KIT_DB_DIR`. | `core/config.ts`, `shared/config.ts` |
-| `MEMORY_DB_PATH` | (unset) | string | Explicit SQLite file path override; its parent directory becomes the active database directory unless `SPEC_KIT_DB_DIR`/`SPECKIT_DB_DIR` is set. | `core/config.ts` |
-| `MEMORY_BASE_PATH` | `process.cwd()` | string | Workspace root override used for path validation and startup/pending-file recovery scans. | `core/config.ts`, `context-server.ts` |
-| `MEMORY_ALLOWED_PATHS` | (unset) | string (path-list) | Adds extra allowed base paths for migration/index file access, split with the platform path delimiter. | `lib/search/vector-index-schema.ts` |
-| `SPECKIT_HEAP_SNAPSHOT_DIR` | (unset) | string | Opt-in directory for V8 heap snapshots written by byte-aware health telemetry. The server creates the directory with mode `0700` and snapshot files with mode `0600`. Snapshots can contain sensitive memory contents. | `mcp-server/lib/telemetry/heap-profiler.ts` |
-| `SPECKIT_CONTEXT_SERVER_MAX_OLD_SPACE_MB` | (unset) | number | Optional child-process V8 old-space cap for `context-server.js`. The launcher passes `--max-old-space-size=<value>` only when set. No cap is applied by default. | `.opencode/bin/system-spec-memory-launcher.cjs` |
-| `SPECKIT_LAUNCHER_BRIDGE_DISABLED` | `false` | boolean | Rollback flag for MCP launcher bridge mode. Set `1` to force legacy strict-single-writer behavior where secondary launchers print `LEASE_HELD_BY` and exit instead of attaching to the daemon IPC socket. | `.opencode/bin/lib/launcher-ipc-bridge.cjs`, `.opencode/bin/mk-*-launcher.cjs` |
-| `SPECKIT_BACKEND_ONLY` | `false` | boolean | Backend-only stdio gate read at server boot. Set `1` so the process runs purely as the recyclable backend behind the MCP front-proxy and skips front-facing stdio wiring. The launcher's `bridgeStdioThroughSessionProxy` owns the client-facing transport and recycles this backend in place (RSS restart, rebuild). Default off (direct stdio). | `context-server.ts`, `.opencode/bin/system-spec-memory-launcher.cjs`, `.opencode/bin/lib/launcher-session-proxy.cjs` |
-| `SPECKIT_MAX_SECONDARY_CLIENTS` | `64` | number | Maximum concurrent secondary stdio clients accepted by the daemon IPC socket before new bridge connections are refused. Each live session's launcher holds one persistent slot, and a refused connection (accept-then-close) is indistinguishable from a dead daemon to probes, so keep this above the realistic concurrent-session fleet. Pinned to `64` in all three runtime configs. | `mcp-server/lib/ipc/socket-server.ts` |
-| `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` | `30` | number | Idle self-exit timeout, in minutes, for the spec-memory, skill-advisor, and code-graph MCP server processes. Fractional values are allowed for tests. `0` disables the idle monitor. Primary stdio input and secondary IPC socket connect/data/write events refresh activity, and active secondary IPC clients keep the server alive. | `mcp-server/lib/ipc/launcher-idle-timeout.ts`, `.opencode/skills/system-*/mcp-server/*server.ts` |
-| `SPECKIT_LAUNCHER_LOG` | `true` | boolean | Persistent launcher log toggle. The system-spec-memory launcher's `log()` appends a timestamped, pid-stamped line to a durable file in addition to stderr, so daemon flaps and owner-disposal races are attributable from disk even when the host drops stderr. Best-effort (a logging failure never affects the launcher). Set `0` to disable. | `.opencode/bin/system-spec-memory-launcher.cjs` |
-| `SPECKIT_LAUNCHER_LOG_PATH` | `<dbDir>/.system-spec-memory-launcher.log` | string | Override the persistent launcher log path. The default lives next to the lease in the runtime DB dir and is gitignored via `*.log`. | `.opencode/bin/system-spec-memory-launcher.cjs` |
-| `SPECKIT_ORPHAN_SWEEP_TIME_BUDGET_MS` | `45000` | number | Wall-clock budget for one global orphan-sweep invocation. Clamped to `[2, 90000]` — the upper bound is the maintenance-marker refresh threshold, so a sweep can never starve the marker. Budget-expired sweeps exit with a resumable cursor and report `partial`, never `complete`. A clamp logs a warning. | `mcp-server/handlers/memory-index.ts` |
-| `SPECKIT_ORPHAN_SWEEP_REFRESH_CADENCE_MS` | `20000` | number | Rate-gate for re-firing the maintenance-marker refresh during a long orphan sweep. Clamped to `[1, effective budget - 1]` so at least one refresh can fire per budget window; checked at bounded enqueue-page boundaries. A clamp logs a warning. | `mcp-server/handlers/memory-index.ts` |
-| `SPECKIT_LAUNCHER_LOG_MAX_BYTES` | `1048576` | number | Size cap for the persistent launcher log. Once exceeded, the file rotates to a single previous generation (`.prev.log` for a `.log` path, else `<path>.prev`) before the next append, so it cannot grow without bound. | `.opencode/bin/system-spec-memory-launcher.cjs` |
-| `SPECKIT_LEASE_PROBE_RETRIES` | `1` | number | Consecutive deep liveness-probe RETRIES before a sibling launcher reaps the lease owner and respawns. `0` restores single-probe behavior. Requiring N consecutive failures stops a busy-but-alive owner (e.g. mid-FTS-merge) being false-reaped into a duplicate daemon. Any 'alive' probe short-circuits to a bridge. | `.opencode/bin/lib/launcher-ipc-bridge.cjs` |
-| `SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS` | `1500` | number | Per-attempt timeout (clamped to the 6999ms probe ceiling) for each lease retry probe after the first. Kept short so the default budget (first full probe + one retry + backoff) stays under the launcher grace window. | `.opencode/bin/lib/launcher-ipc-bridge.cjs` |
+| `SPECKIT_DB_DIR` | (derived) | string | Directory override consulted by `computeDatabasePaths()`. `SPEC_KIT_DB_DIR` is checked first and wins; either one is resolved against `process.cwd()` and must land inside the project, home, or temporary directory or the call throws. | `core/config.ts` |
+| `MEMORY_DB_PATH` | (unset) | string | Explicit file path whose parent directory becomes the resolved database directory, but only when neither `SPEC_KIT_DB_DIR` nor `SPECKIT_DB_DIR` is set. A directory override intentionally wins over this path's parent. | `core/config.ts` |
+| `MEMORY_BASE_PATH` | `process.cwd()` | string | Workspace root used as `DEFAULT_BASE_PATH` for path validation. | `core/config.ts` |
+| `SPECKIT_SPECS_DIR` | (unset) | string | Fallback specs-root used when resolving a spec folder that is not directly under `process.cwd()`. `SPEC_KIT_SPECS_DIR` is checked first and wins. The candidate is `resolve(cwd, <override>, <specFolder>)` and is used only if it exists; otherwise resolution falls through to the spec-document finder. | `api/graph-refresh.ts` |
+| `SPECKIT_ROLLOUT_PERCENT` | `100` | number | Global rollout percentage (0-100) read by `getRolloutPercent()` and clamped to an integer. A missing or blank value uses the default. | `lib/cognitive/rollout-policy.ts` |
+| `SPECKIT_LAUNCHER_BRIDGE_DISABLED` | `false` | boolean | Rollback flag for launcher bridge mode. Set `1` to force legacy strict-single-writer behavior, where a secondary launcher prints `LEASE_HELD_BY` and exits instead of attaching to the daemon IPC socket. | `.opencode/bin/lib/launcher-ipc-bridge.cjs`, `.opencode/bin/system-skill-advisor-launcher.cjs` |
+| `SPECKIT_MAX_SECONDARY_CLIENTS` | `64` | number | Maximum concurrent secondary stdio clients the daemon IPC socket accepts before refusing new bridge connections. A refused connection (accept-then-close) is indistinguishable from a dead daemon to probes, so keep this above the realistic concurrent-session fleet. Pinned to `64` in the runtime configs. | `shared/ipc/socket-server.ts`, `.opencode/bin/system-skill-advisor-launcher.cjs` |
+| `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` | `30` | number | Idle self-exit timeout, in minutes, for the daemon-backed MCP server processes. Fractional values are allowed for tests; `0` disables the idle monitor. Primary stdio input and secondary IPC connect/data/write events refresh activity, and active secondary IPC clients keep the server alive. | `.opencode/skills/system-skill-advisor/mcp-server/lib/ipc/launcher-idle-timeout.ts`, `.opencode/bin/system-skill-advisor-launcher.cjs` |
+| `SPECKIT_LEASE_PROBE_RETRIES` | `1` | number | Consecutive deep liveness-probe retries before a sibling launcher reaps the lease owner and respawns. `0` restores single-probe behavior. Requiring N consecutive failures stops a busy-but-alive owner being false-reaped into a duplicate daemon. Any `alive` probe short-circuits to a bridge. | `.opencode/bin/lib/launcher-ipc-bridge.cjs` |
+| `SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS` | `1500` | number | Per-attempt timeout, clamped to the 6999 ms probe ceiling, for each lease retry probe after the first. Kept short so the default budget stays under the launcher grace window. | `.opencode/bin/lib/launcher-ipc-bridge.cjs` |
 | `SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS` | `250` | number | Backoff between consecutive lease liveness-probe attempts. | `.opencode/bin/lib/launcher-ipc-bridge.cjs` |
-| `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` | `off` | enum | Stop-hook fallback when no `CLAUDE_SESSION_PID` is available. `off` (default) keeps the historical no-op, `dry-run` logs candidate reaps without mutating, `1`/`on`/`live` reaps. Delegates ONLY to the orphan-only `orphan-mcp-sweeper.sh` (ownerless/reparented MCP processes), never a PPID guess, so it cannot kill a live session. | `.opencode/scripts/session-cleanup.sh` |
-| `SPECKIT_DAEMON_REELECTION` | `on` (launcher code default) | boolean | The system-spec-memory owner spawns the daemon detached and, on shutdown, RELEASES it (keeps the daemon lease, drops only the owner lease) for a live secondary to adopt instead of killing it, so the shared backend outlives its owning session and concurrent sessions keep MCP transport. On by default in the launcher code, set `0` (or `off`) to restore the kill-on-disposal behavior. The release-vs-kill decision is covered by an integration test, and the full two-session behavior is covered by a live durability test that runs two real launchers in isolation. A fresh session after disposal adopts the released daemon through the bridge when the recorded child is alive and bridgeable, and only reaps + respawns when that daemon is dead or unbridgeable, so the database keeps a single writer and the worst case matches the prior behavior. The runtime configs no longer set it. The launcher code is the single source of the default. | `.opencode/bin/system-spec-memory-launcher.cjs` |
-| `SPECKIT_IPC_SOCKET_DIR` | database directory | string | Overrides the daemon IPC socket directory. **Required on macOS** for production runtimes: the default `<service-db>/daemon-ipc.sock` path exceeds the 104-char `sun_path` limit and `listen()` fails with `EINVAL`. Runtime configs (`.mcp.json`, `opencode.json`, `opencode.json`) pin each service to a short `/tmp/<service>` directory. Uses `daemon-ipc.sock` as the socket file name. The hf-model-server demand path additionally **fail-fasts** (031/005) with `ESUNPATHTOOLONG` if the resolved socket path exceeds 104 bytes, and refuses a symlinked or foreign-uid-owned socket directory (`ESOCKETDIRSYMLINK`/`ESOCKETDIRFOREIGN`/`ESOCKETSYMLINK`) before binding or reclaiming. This is perimeter hardening so a hostile/misconfigured dir cannot redirect the socket. | `.opencode/bin/lib/launcher-ipc-bridge.cjs`, `.opencode/bin/lib/model-server-supervision.cjs`, `mcp-server/lib/ipc/socket-server.ts` |
-| `SPECKIT_EVAL_DB_PATH` | (null) | string | Custom file path for the eval reporting SQLite database. | `handlers/eval-reporting.ts` |
-| `SPECKIT_FORCE_REBIND` | `false` | boolean | Recovery override. When the post-swap rebind guard refuses to rebind consumers to a database reporting 0 memories (suspected path drift), set `true` to force the rebind anyway. Leave unset in normal operation. | `core/db-state.ts` |
-| `SPECKIT_DB_LOCK_DISABLE` | unset (off) | boolean (string `"1"`) | Kill switch for single-writer enforcement on the indexed-continuity database. Set `1` to disable the cross-process write lock entirely. Leave unset in normal operation, because disabling it removes the WAL single-writer guard. | `lib/search/db-instance-lock.ts` |
-| `SPECKIT_FRONTMATTER_ALLOWLIST` | (bundled `scripts/lib/frontmatter-grandfather-allowlist.json`) | string | Override path to the spec-doc frontmatter grandfather allowlist JSON used by structural validation. | `lib/validation/spec-doc-structure.ts` |
-| `SPECKIT_VERBOSE_RESOLVER` | `false` | flag (`"1"`) | Set `1` to log the underlying cause when the documentation-level contract resolver falls back. Diagnostic only. | `lib/templates/level-contract-resolver.ts` |
-| `SPECKIT_STRICT_SCHEMAS` | `true` | boolean | Enforce strict JSON schema validation on MCP tool inputs. Set `false` to relax. | `schemas/tool-input-schemas.ts` |
-| `SPECKIT_SKIP_API_VALIDATION` | `false` | boolean | Skip API-level input validation. Opt-in: set `true` to enable. | `context-server.ts` |
-| `MCP_CHARS_PER_TOKEN` | `4` | number | Character-to-token estimate used by preflight token budget validation. | `lib/validation/preflight.ts` |
-| `MCP_MAX_MEMORY_TOKENS` | `8000` | number | Maximum estimated tokens allowed for a single memory during preflight validation. | `lib/validation/preflight.ts` |
-| `MCP_TOKEN_WARNING_THRESHOLD` | `0.8` | number | Fraction of the token budget at which preflight emits a warning. | `lib/validation/preflight.ts` |
-| `MCP_MIN_CONTENT_LENGTH` | `10` | number | Minimum content length accepted by preflight validation. | `lib/validation/preflight.ts` |
-| `MCP_MAX_CONTENT_LENGTH` | `250000` | number | Maximum content length accepted before preflight reports large-content handling. | `lib/validation/preflight.ts` |
-| `MCP_DUPLICATE_THRESHOLD` | `0.95` | number | Similarity threshold for preflight similar-duplicate detection. | `lib/validation/preflight.ts` |
-| `MCP_ANCHOR_STRICT` | `false` | boolean | Enables strict anchor validation when set to lowercase `true`. | `lib/validation/preflight.ts` |
-| `SPECKIT_BOOT_FTS_AUTOHEAL` | `true` | boolean | Boot-time FTS5 shadow-index auto-heal after an unclean shutdown marker. When unset, the server rebuilds and re-verifies the derived FTS shadow index before serving. Set `0` for detect-only mode that logs the failure without attempting the rebuild. | `context-server.ts` |
-| `SPECKIT_DYNAMIC_INIT` | `true` | boolean | Dynamic startup instruction injection for the MCP server. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_ROLLOUT_PERCENT` | `100` | number | Global rollout percentage (0-100) for feature flag gating. Controls what fraction of feature checks pass. | `lib/cognitive/rollout-policy.ts` |
-| `SPECKIT_PARSER` | `treesitter` | string | Structural parser backend: `treesitter` (AST-accurate via WASM) or `regex` (lightweight fallback). Detector provenance is surfaced separately on code-graph metadata. When a parser-provenance carrier is required, the shared trust mapper translates persisted detector provenance (for example, `structured -> regex`) instead of assuming AST. | `lib/code-graph/structural-indexer.ts`, `lib/context/shared-payload.ts`, `code-graph/lib/readiness-contract.ts` |
-| `SPECKIT_SAVE_PLANNER_MODE` | `plan-only` | string | Canonical save planner mode: `plan-only` (default), `full-auto`, or `hybrid`. All modes refresh packet metadata on `/memory:save`, and `plan-only` no longer leaves `description.json.lastUpdated` or `graph-metadata.json` untouched. `full-auto` keeps the legacy atomic apply path. `hybrid` is reserved for future mixed flows and currently behaves the same as `plan-only`. | `lib/search/search-flags.ts` |
-| `MCP_SESSION_RESUME_AUTH_MODE` | `strict` | string | Session-resume auth binding mode. `strict` (default) rejects `args.sessionId` mismatches against the transport caller context from `getCallerContext()`. `permissive` logs the mismatch and continues for canary rollout. | `handlers/session-resume.ts` |
-| `SPECKIT_RECONSOLIDATION_ENABLED` | `false` | boolean | Opt-in save-time reconsolidation. Enables the destructive `reconsolidate()` path (merge near-duplicates / deprecate older rows), itself further gated on a per-spec-folder `pre-reconsolidation` checkpoint. Default OFF. Set `true` to enable. | `lib/search/search-flags.ts` |
-| `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED` | `true` | boolean | Save-time post-insert enrichment bundle (causal links, entity extraction, summaries, entity linking, graph lifecycle, populating the causal/entity graph). Enabled by default. Set `false` to disable. | `lib/search/search-flags.ts` |
-| `SPECKIT_POST_INSERT_ENRICHMENT_SYNC` | `false` | boolean | When `true`, the post-insert enrichment bundle runs synchronously inside the save (immediate graph freshness). Default `false` runs it asynchronously in the background so the save returns immediately. | `lib/search/search-flags.ts` |
-| `SPECKIT_QUALITY_AUTO_FIX` | `true` | boolean | Save-time quality auto-fix retries (re-extract trigger phrases, trim to char budget, normalize anchors). Enabled by default. Set `false` to disable. | `lib/search/search-flags.ts` |
-| `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` | `3000` | number | Owned by the system-skill-advisor hub for the OpenCode plugin bridge, advisor subprocesses, and compatibility fallback. On timeout, the bridge returns a prompt-safe degraded advisory brief instead of empty output. See `.opencode/skills/system-skill-advisor/README.md` Runtime environment ownership for the live consumers and contract. Set before launching OpenCode. | `.opencode/skills/system-skill-advisor/README.md` |
+| `SPECKIT_IPC_SOCKET_DIR` | model-server default | string | Overrides the daemon IPC socket directory, using `daemon-ipc.sock` as the socket file name. **Required on macOS** for production runtimes: a long default path exceeds the 104-char `sun_path` limit and `listen()` fails with `EINVAL`, so the runtime configs pin each service to a short `/tmp/<service>` directory. The hf-model-server demand path additionally fail-fasts with `ESUNPATHTOOLONG` past 104 bytes and refuses a symlinked or foreign-uid-owned socket directory (`ESOCKETDIRSYMLINK`/`ESOCKETDIRFOREIGN`/`ESOCKETSYMLINK`) before binding or reclaiming. | `.opencode/bin/lib/launcher-ipc-bridge.cjs`, `.opencode/bin/lib/model-server-supervision.cjs`, `shared/ipc/socket-server.ts` |
+| `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` | `off` | enum | Stop-hook fallback when no `CLAUDE_SESSION_PID` is available. `off` (default) keeps the historical no-op, `dry-run` logs candidate reaps without mutating, and `1`/`on`/`live` reaps. Delegates only to the orphan-only sweeper for ownerless or reparented MCP processes, never a PPID guess, so it cannot kill a live session. | `.opencode/scripts/session-cleanup.sh`, `.opencode/plugins/session-cleanup.js` |
+| `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` | `3000` | number | Owned by the skill-advisor hub for the OpenCode plugin bridge and advisor subprocesses. On timeout the bridge returns a prompt-safe degraded advisory brief instead of empty output. Set before launching OpenCode. | `.opencode/skills/system-skill-advisor/mcp-server/lib/subprocess.ts`, `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs` |
 
 ---
 
-## 3. SEARCH PIPELINE: CORE
+## 3. SPEC VALIDATION AND GENERATED METADATA
+
+The live half of the package. `lib/validation/orchestrator.ts` runs the rule set, `lib/config/capability-flags.ts` gates the generator behavior, and the `scripts/rules/*.sh` checks are invoked by `scripts/spec/validate.sh`.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_RRF` | `true` | boolean | Master switch for Reciprocal Rank Fusion. Graduated ON. | `shared/algorithms/rrf-fusion.ts` |
-| `SPECKIT_RRF_K` | `40` | number | RRF smoothing constant `k`. Lower = more top-heavy ranking, higher = flatter. Must be > 0. | `shared/algorithms/rrf-fusion.ts` |
-| `SPECKIT_RRF_K_EXPERIMENTAL` | `true` | boolean | Per-intent RRF K selection from the D1 K-sweep grid. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_SEARCH_FALLBACK` | `true` | boolean | Quality-aware 3-tier search fallback chain (PI-A2). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_BM25_ENGINE` | `auto` | enum: `auto`, `sqlite`, `packed-inmemory`, `legacy-inmemory` | Selects the lexical BM25 rank provider. `auto` uses SQLite FTS5 when `memory_fts` exists and otherwise falls back to the packed in-memory index. `sqlite` forces FTS5 and throws if `memory_fts` is unavailable. `packed-inmemory` explicitly selects the packed fallback; `legacy-inmemory` alone restores the old warm JS singleton. | `lib/search/bm25-index.ts`, `lib/search/hybrid-search.ts`, `context-server.ts` |
-| `SPECKIT_RETRIEVAL_RESCUE_MODE` | `overwrite` | enum: `overwrite`, `additive`, `floor` | Selects how retrieval-rescue scores combine with the existing ranking. Invalid or unset values use `overwrite`. | `lib/search/rerank/retrieval-rescue.ts` |
-| `SPECKIT_COMPLEXITY_ROUTER` | `true` | boolean | Query complexity classification for routing (simple/moderate/deep). Graduated ON. | `lib/search/query-classifier.ts` |
-| `SPECKIT_MMR` | `true` | boolean | Graph-guided Maximal Marginal Relevance diversity reranking. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_MULTI_QUERY` | `true` | boolean | Multi-query expansion for deep-mode retrieval. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_EMBEDDING_EXPANSION` | `true` | boolean | Query expansion for embedding-based retrieval (R12). Suppressed when classification = "simple". Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_CONFIDENCE_TRUNCATION` | `true` | boolean | Confidence-gap truncation for low-confidence result tails. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_CHANNEL_MIN_REP` | `true` | boolean | Channel minimum-representation promotion after fusion. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_DYNAMIC_TOKEN_BUDGET` | `true` | boolean | Dynamic token budget allocation by query complexity. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_TOKEN_BUDGET` | `2000` | number (positive int) | Effective token budget for hybrid-search result truncation. Non-numeric or non-positive values fall back to the default. | `lib/search/hybrid-search.ts` |
-| `SPECKIT_TRM` | `true` | boolean | Transparent Reasoning Module: evidence-gap detection. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Intent-aware adaptive fusion with document-type weight shifting. Graduated ON. | `shared/algorithms/adaptive-fusion.ts` |
-| `SPECKIT_DETERMINISTIC_MULTIHOP` | `false` | boolean | 028 built-but-held, default-off track B. Parses explicit sibling and cross-reference folder slugs out of the top recalled docs, resolves each 1:1 to a unique spec folder and appends that folder's spec.md to the result tail with no LLM and no re-embedding. The append is tail-only and never evicts a baseline hit, so flag-off is byte-identical. The append stage was rewired to run after the final-limit cap so appended rows reach the reader past rank 10, a measured deep-K recall win (completeRecall@20 up 0.375 on multi-target queries) that is a no-op for shallow-K readers. The earlier 3-result-floor hold reasoning was a myth, the floor is a minimum not a cap. Default-off pending graduation. Set `true` to enable. | `lib/search/deterministic-multihop.ts`, `lib/search/search-flags.ts` |
-| `SPECKIT_LANE_CHAMPION_BACKFILL` | `false` | boolean | 028 built-but-held, default-off track B. After fusion, appends each base lane's top candidate (vector, fts, bm25, trigger) that missed the fused top-K into empty tail slots, reusing the already-populated per-lane arrays with no new query. The append is tail-only and never evicts a baseline hit, so flag-off is byte-identical. Rewired alongside the multi-hop append to run after the final-limit cap so it reaches the reader past rank 10. Default-off pending graduation. Set `true` to enable. | `lib/search/lane-champion-backfill.ts`, `lib/search/search-flags.ts` |
-| `SPECKIT_RELEVANCE_AWARE_GAP` | `true` | boolean | Replaces the `detectEvidenceGap` Z-score peakedness check with the noise-floor-subtracted absolute top relevance the request-quality banding already computes, banded at the same `LOW_THRESHOLD`. A 043 benchmark proved the Z-score measures peakedness not relevance. When ON the gap fires when subtracted relevance falls below the band floor. When no embedder noise-floor resolves it fails closed to the Z-score path. Default ON; set `false`, `0`, or `off` to restore the Z-score result unchanged. | `lib/search/evidence-gap-detector.ts`, `lib/search/search-flags.ts` |
-
----
-
-## 4. SEARCH PIPELINE: FUSION AND SCORING
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_SCORE_NORMALIZATION` | `true` | boolean | Composite score normalization. Graduated ON. | `lib/scoring/composite-scoring.ts` |
-| `SPECKIT_DOCSCORE_AGGREGATION` | `true` | boolean | R1 MPAB: Document-level chunk-to-memory score aggregation. Graduated ON. | `lib/scoring/mpab-aggregation.ts` |
-| `SPECKIT_INTERFERENCE_SCORE` | `true` | boolean | Interference penalty in composite scoring. Graduated ON. Set `false` to disable. | `lib/scoring/interference-scoring.ts` |
-| `SPECKIT_CLASSIFICATION_DECAY` | `true` | boolean | Classification-aware decay in FSRS scheduling and composite scoring. Graduated ON. | `lib/cognitive/fsrs-scheduler.ts`, `lib/scoring/composite-scoring.ts` |
-| `SPECKIT_SESSION_BOOST` | `true` | boolean | Session attention boost for search result re-ranking. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_CAUSAL_BOOST` | `true` | boolean | Causal graph traversal boost for search result amplification. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_CALIBRATED_OVERLAP_BONUS` | `true` | boolean | Calibrated overlap bonus for multi-channel convergence (REQ-D1-001). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_CONFIDENCE_CALIBRATION` | `true` | boolean | 028 keep-on, unqualified win. Maps per-result confidence through a fitted isotonic model so `confidence.value` approximates P(relevant), held-out ECE 0.184 to 0.023 across all folds after the label-decoupling fix removed the earlier overfit. A model applies only when this is ON and a readable model resolves, else it degrades to identity. Set `false` to disable. | `lib/search/search-flags.ts` |
-| `SPECKIT_CONFIDENCE_CALIBRATION_MODEL` | (committed default model) | string | Filesystem path to a fitted isotonic CalibrationModel JSON. UNSET uses the committed default model at `lib/eval/data/confidence-calibration-model.json` so default-on calibration runs without extra config. An explicitly EMPTY value disables calibration. An unreadable or invalid path degrades to uncalibrated identity. | `lib/search/search-flags.ts` |
-| `SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION` | `true` | boolean | Calibrate confidence and result-set digests on an absolute cosine relevance signal instead of the RRF fusion score, so good results stop reading as weak. Ordering is unaffected, only the calibration and display scale change. Pre-028 switch kept on as the calibration pair partner. Set `false` to disable. | `lib/search/search-flags.ts` |
-| `SPECKIT_NEGATIVE_FEEDBACK` | `true` | boolean | Negative-feedback confidence demotion in ranking (T002b/A4). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_TEMPORAL_CONTIGUITY` | `true` | boolean | Temporal contiguity boost on raw Stage 1 vector results. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_RECENCY_FUSION_WEIGHT` | `0.07` | number | Weight of recency signal in Stage 2 fusion scoring. | `lib/search/pipeline/stage2-fusion.ts` |
-| `SPECKIT_RECENCY_FUSION_CAP` | `0.10` | number | Maximum recency contribution cap in Stage 2 fusion. | `lib/search/pipeline/stage2-fusion.ts` |
-| `SPECKIT_DOC_TYPE_WEIGHT_FACTOR` | `1.2` | number | Proportional weight shift factor per document type in adaptive fusion (20% shift at 1.2). | `shared/algorithms/adaptive-fusion.ts` |
-| `SPECKIT_FOLDER_SCORING` | `true` | boolean | Folder-level relevance scoring. Graduated ON. | `lib/search/folder-relevance.ts` |
-| `SPECKIT_FOLDER_BOOST_FACTOR` | `1.3` | number | Multiplier applied to results matching the discovered spec folder. | `handlers/memory-context.ts` |
-| `SPECKIT_FOLDER_TOP_K` | `5` | number | Number of top folder-scored results to inject. | `lib/search/hybrid-search.ts` |
-| `SPECKIT_FOLDER_DISCOVERY` | `true` | boolean | Automatic spec folder discovery via description cache (PI-B3). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_NOISE_FLOOR_SUBTRACTION` | `true` | boolean | Subtracts a measured corpus noise-floor from absolute relevance before the request-quality band read (floored at zero), so the embedder background cosine no longer inflates an off-corpus hit to good. The floor is recorded per embedder. An embedder with no measured floor fails closed to the raw band. **Default ON** (graduated). Set `false`/`0`/`off` to restore the raw-relevance band. | `lib/search/search-flags.ts`, `lib/search/noise-floor.ts` |
-| `SPECKIT_CITE_WITH_CAVEAT` | `true` | boolean | Adds a `cite_with_caveat` citation-policy tier between `cite_results` and `do_not_cite_results`, so a weak verdict whose top hit is still lexically grounded is hedged rather than dropped. A fully ungrounded hit is never promoted. **Default ON** (graduated): graduated, set `false`/`0`/`off` to opt out. With it off the citation policy is the shipped two-state output. | `lib/search/search-flags.ts` |
-| `SPECKIT_EVIDENCE_GAP_VERDICT` | `true` | boolean | Bridges the Stage 4 `evidenceGapDetected` signal into the request-quality verdict: a true gap caps a good verdict at weak. The gap is read from the Stage 4 signal, never recomputed. **Default ON** (graduated): graduated, set `false`/`0`/`off` to opt out. With it off the verdict ignores the gap exactly as today. | `lib/search/search-flags.ts` |
-
-> **Calibration re-fit is a proven non-fix (documentation only).** The verdict band is taken off the PRE-calibration value: `confidence-scoring` bands on the rebalanced value while the isotonic model is applied separately to the displayed `confidence.value`. Re-fitting `SPECKIT_CONFIDENCE_CALIBRATION_MODEL` against off-corpus negatives therefore cannot move good versus weak versus gap, so no curve re-fit ships for the off-corpus false-positive. The scoring-hardening flags above are the real levers. The calibration curve and its application point are intentionally untouched.
-
----
-
-## 5. SEARCH PIPELINE: QUERY INTELLIGENCE
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_QUERY_DECOMPOSITION` | `true` | boolean | Bounded facet detection for deep-mode queries: splits into up to 3 sub-queries (REQ-D2-001). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_QUERY_SURROGATES` | `true` | boolean | Index-time surrogate metadata for recall improvement (REQ-D2-005). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_QUERY_CONCEPT_EXPANSION` | `true` | boolean | Query concept expansion via alias matching for hybrid search (Phase B T016). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_LLM_REFORMULATION` | `true` | boolean | Corpus-grounded LLM query reformulation, deep-mode only (REQ-D2-003). Requires LLM endpoint. Graduated ON. | `lib/search/search-flags.ts` |
-| `LLM_REFORMULATION_ENDPOINT` | (unset) | string | OpenAI-compatible base URL used for query reformulation; unset disables the provider call and falls back locally. | `lib/search/llm-reformulation.ts` |
-| `LLM_REFORMULATION_API_KEY` | empty string | string | Optional bearer token for the reformulation endpoint. | `lib/search/llm-reformulation.ts` |
-| `LLM_REFORMULATION_MODEL` | `gpt-4o-mini` | string | Model name sent to the configured reformulation endpoint. | `lib/search/llm-reformulation.ts` |
-| `SPECKIT_HYDE` | `true` | boolean | Hypothetical Document Embeddings for low-confidence deep queries (REQ-D2-004). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_HYDE_ACTIVE` | (derived) | boolean | Runtime HyDE activation gate. Lowercase `true` enables. | `lib/search/hyde.ts` |
-| `SPECKIT_HYDE_LOG` | `false` | boolean | Enable verbose HyDE generation logging. Opt-in. | `lib/search/hyde.ts` |
-| `SPECKIT_INTENT_CONFIDENCE_FLOOR` | `0.25` | number | Minimum confidence for auto-detected intent. Below this, overrides to "understand". | `handlers/memory-search.ts` |
-| `SPECKIT_INTENT_AUTO_PROFILE` | `true` | boolean | Intent-to-profile auto-routing: auto-selects response profile from classifyIntent() results. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_FOLDER_DISCOVERY_TOKEN_THRESHOLD` | `0.45` | number (0..1) | Per-token similarity threshold for folder-discovery name matching. Values outside `[0,1]` or non-numeric fall back to the default. | `lib/search/folder-discovery.ts` |
-| `SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE` | `true` | boolean | Merge-safe description repair during folder discovery. Graduated ON. Set `false`/`0` to disable. | `lib/search/folder-discovery.ts` |
-| `SPECKIT_GRAPH_CHANNEL_PRESERVATION` | `true` | boolean | Preserve graph-channel results through query routing so graph hits are not dropped by channel pruning. Graduated ON. Accepts `0`/`false`/`no`/`off` to disable. | `lib/search/query-router.ts` |
-| `SPECKIT_RETRIEVAL_CLASS_ROUTING` | `false` | boolean | Class-aware query routing. For a narrow single-hop find-one-item query it suppresses the graph and degree channels that tend to add noise there. Default OFF keeps single-hop routing byte-identical to baseline. Set `true` to enable. | `lib/search/query-router.ts` |
-| `SPECKIT_CONTENT_RICH_SHORT_QUERY_GRAPH_PRESERVATION` | `false` | boolean | Preserves graph and degree channels for short queries that still carry strong lexical anchors, layered on top of the existing intent/entity-density graph preservation. **Default OFF** (opt-in): shipped default-ON with only unit-test/fixture verification, never the reindexed before/after production-path benchmark this repo's flag-graduation policy requires before default-ON shipment; a follow-up 7-query benchmark found it materially changes routing with no labeled ground truth to judge quality by. Must earn promotion back to default-ON the same way its sibling `SPECKIT_RETRIEVAL_CLASS_ROUTING` does. Set `true`/`1`/`yes`/`on`/`enabled` to opt in. | `lib/search/search-flags.ts` |
-| `SPECKIT_ROUTER_TIER3_ENABLED` | `false` | boolean | Tier 3 prototype-routing opt-in gate (`true`/`1` to enable). Canonical routing remains the default save path. This is an additional router tier. | `lib/routing/content-router.ts` |
-| `SPECKIT_SEARCH_DECISION_AUDIT_PATH` | `<cwd>/.opencode/skills/system-spec-kit/mcp-server/data/search-decisions.jsonl` | string | Override the JSONL file path for the search-decision audit log. | `lib/search/decision-audit.ts` |
-| `SPECKIT_SEARCH_DECISION_AUDIT_MAX_FILES` | `5` | number (positive int) | Maximum rotated search-decision audit files retained. Non-positive/invalid values fall back to the default. | `lib/search/decision-audit.ts` |
-| `SPECKIT_LEXICAL_GROUNDING` | `true` | boolean | Lexical grounding floor and single-hit corroboration for the request-quality verdict. **Default ON** (graduated). Set `false`/`0`/`off` to restore the prior cosine-and-margin verdict. | `lib/search/search-flags.ts` |
-
----
-
-## 6. GRAPH
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_GRAPH_UNIFIED` | `true` | boolean | Unified graph search integration. Graduated ON. Set `false` to disable all graph features. | `core/db-state.ts` |
-| `SPECKIT_GRAPH_SIGNALS` | `true` | boolean | Graph momentum scoring and causal depth signals (N2a+N2b). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_GRAPH_WALK_ROLLOUT` | (derived) | string | Graph walk rollout state: `off`, `trace_only`, or `bounded_runtime`. Defaults to `bounded_runtime` when GRAPH_SIGNALS is ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_GRAPH_WEIGHT_CAP` | `0.15` | number | Maximum graph contribution in Stage 2 scoring. | `lib/search/graph-calibration.ts` |
-| `SPECKIT_GRAPH_REFRESH_MODE` | `write_local` | string | Graph refresh mode: `off`, `write_local`, or `scheduled` (REQ-D3-003). | `lib/search/search-flags.ts` |
-| `SPECKIT_GRAPH_LOCAL_THRESHOLD` | (internal) | number | Local graph density threshold for graph operations. | `lib/search/graph-lifecycle.ts` |
-| `SPECKIT_GRAPH_CONCEPT_ROUTING` | `true` | boolean | Query-time alias matching for concept routing (REQ-D2-002). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_GRAPH_CONTEXT_INJECTION` | `true` | boolean | Always-on graph context injection: runs concept routing even without seed results (Phase B T020). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_GRAPH_FALLBACK` | `true` | boolean | Graph-expanded fallback on zero/weak results (Phase B T017). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_GRAPH_CALIBRATION_PROFILE` | `true` | boolean | Graph calibration profile enforcement and community thresholds (REQ-D3-005/006). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_LLM_GRAPH_BACKFILL` | `true` | boolean | Async LLM graph backfill for high-value documents (REQ-D3-004). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_COMMUNITY_DETECTION` | `true` | boolean | Community detection via BFS connected components + Louvain escalation (N2c). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_COMMUNITY_REBUILD_INTERVAL_MS` | `300000` | number (non-negative integer) | Minimum interval between persisted community-artifact rebuilds. `0` permits every eligible call; invalid or negative values use five minutes. | `lib/graph/community-detection.ts` |
-| `SPECKIT_COMMUNITY_SUMMARIES` | `true` | boolean | Community summary generation and search channel. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_COMMUNITY_SEARCH_FALLBACK` | `true` | boolean | Community-level search as fallback channel (Phase B T018). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_DUAL_RETRIEVAL` | `true` | boolean | Dual-level retrieval mode: `local` (entity), `global` (community), `auto` (local + fallback) (Phase B T019). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_DEGREE_BOOST` | `true` | boolean | Causal-edge degree-based re-ranking. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_TEMPORAL_EDGES` | `true` | boolean | Temporal validity tracking for causal edges (Phase D T036). Graduated ON. 028 keep-on as a defensive guard, not a recall feature: its graph-additive reorder in `applyGraphAdditiveRecall` protects the prod top-3 from graph-channel displacement, while its +0.083 edge-hop recall is an eval-mode artifact the 3-result prod truncation floor cuts to a 0.000 delta. | `lib/search/search-flags.ts`, `lib/search/graph-additive-recall.ts` |
-| `SPECKIT_DERIVED_ID_PROVENANCE` | `true` | boolean | 028 keep-on, unqualified win. Content-addressed identity for generated causal edges, proved correct 4 of 4 (stability 50/50, replay 3/3, dedup discrimination 50/50, 0 collisions), so write-time derived_id persistence runs by default. Set `false` to disable derived_id persistence. | `lib/search/search-flags.ts` |
-| `SPECKIT_TYPED_TRAVERSAL` | `true` | boolean | Sparse-first + intent-aware typed traversal (D3 Phase A). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_ENTITY_LINKING` | `true` | boolean | Cross-document entity linking (S5). Requires AUTO_ENTITIES. Graduated ON. | `lib/search/search-flags.ts`, `lib/search/graph-lifecycle.ts` |
-| `SPECKIT_ENTITY_LINKING_MAX_DENSITY` | `1.0` | number | Density guard threshold: skip entity linking when projected graph density exceeds this value. | `lib/search/entity-linker.ts` |
-| `SPECKIT_INCLUDE_ENTITY_LINKER_CAUSAL_EDGES` | `false` | boolean | Opt-in inclusion of `entity_linker`-created causal edges in graph-boost traversal. Default OFF filters them out of the traversal provenance query because their co-occurrence "supports" edges are weaker signal than explicit causal links. Set `true`/`1` to include them. | `lib/search/causal-boost.ts` |
-| `SPECKIT_AUTO_ENTITIES` | `true` | boolean | Auto entity extraction: rule-based noun-phrase extraction at save time (R10). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_RESULT_PROVENANCE` | `true` | boolean | Include graph evidence metadata (edges, communities, boost factors) in search results (Phase C T027). Graduated ON. | `lib/search/search-flags.ts` |
-
----
-
-## 7. GRAPH: CALIBRATION
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_CALIBRATION_PROFILE_NAME` | `default` | string | Named calibration profile: `default` or `aggressive`. | `lib/search/graph-calibration.ts` |
-| `SPECKIT_N2A_CAP` | (profile) | number | N2a cap for RRF fusion overflow prevention. Overrides the active calibration profile value. | `lib/search/graph-calibration.ts` |
-| `SPECKIT_N2B_CAP` | (profile) | number | N2b cap for RRF fusion overflow prevention. Overrides the active calibration profile value. | `lib/search/graph-calibration.ts` |
-| `SPECKIT_LOUVAIN_MIN_DENSITY` | (profile) | number | Minimum graph density required to activate Louvain community detection. | `lib/search/graph-calibration.ts` |
-| `SPECKIT_LOUVAIN_MIN_SIZE` | (profile) | number | Minimum component node count required to activate Louvain. | `lib/search/graph-calibration.ts` |
-
----
-
-## 8. COGNITIVE
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_COACTIVATION` | `true` | boolean | Co-activation pattern matching for related memory surfacing. Graduated ON. | `lib/cognitive/co-activation.ts` |
-| `SPECKIT_COACTIVATION_STRENGTH` | `0.25` | number | Co-activation boost factor. Clamped to [0, 1.0]. | `lib/cognitive/co-activation.ts` |
-| `SPECKIT_COGNITIVE_COACTIVATION_PATTERN` | (built-in) | string | Custom regex pattern for co-activation matching. Validated for safety. | `configs/cognitive.ts` |
-| `SPECKIT_COGNITIVE_COACTIVATION_FLAGS` | (built-in) | string | Regex flags for the co-activation pattern (e.g., `gi`). Validated. | `configs/cognitive.ts` |
-| `SPECKIT_WORKING_MEMORY` | `true` | boolean | Working memory system (Miller's Law: 7 +/- 2 capacity, 30-min timeout). Graduated ON. | `lib/cognitive/working-memory.ts` |
-| `SPECKIT_HYBRID_DECAY_POLICY` | `true` | boolean | Type-aware no-decay for permanent artifacts (decision/constitutional types get Infinity stability). Graduated ON. | `lib/cognitive/fsrs-scheduler.ts` |
-| `SPECKIT_RECONSOLIDATION` | `true` | boolean | Reconsolidation-on-save for memory deduplication (TM-06). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_ASSISTIVE_RECONSOLIDATION` | `true` | boolean | Assistive reconsolidation for near-duplicate detection (REQ-D4-005). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_CONSOLIDATION` | `true` | boolean | Consolidation engine: contradiction scan, Hebbian strengthening, staleness detection (N3-lite). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_MEMORY_SUMMARIES` | `true` | boolean | TF-IDF extractive summary generation as search channel (R8). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_RETENTION_FORGETTING` | `true` | boolean | 028 keep-on as a no-harm safety guardrail, not a precision win. The conservative spare-only retention axes and live incoming-edge protection spare keep-set rows the OFF path would delete with dropRecall delta 0. The keep and drop labels are circular (derived from the reducer's own thresholds), so it earns the keep as a guardrail. Set `false` to disable. | `lib/search/search-flags.ts` |
-| `SPECKIT_WORLD_SUMMARY_PRELUDE` | `true` | boolean | 028 keep-on as a no-displacement grounding aid, not a ranking win. The coarse-to-fine world-summary prelude for memory_context appends its grounding instead of prepending it, recovering recall targets with 0 regressions because it never displaces a baseline row. The gain is partly a self-recall plus an append-by-construction artifact. Set `false` to disable. | `lib/search/search-flags.ts` |
-| `SPECKIT_PRESSURE_POLICY` | `true` | boolean | Token-pressure policy for memory_context responses. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_AUTO_RESUME` | `true` | boolean | Automatic session resume context injection for memory_context. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_MEMORY_ADAPTIVE_MODE` | `shadow` | string | Adaptive ranking mode: `shadow` (evaluation-only, do not apply) or `promoted` (apply to ranking). | `lib/cognitive/adaptive-ranking.ts` |
-| `SPECKIT_RECENCY_DECAY_DAYS` | (internal) | number | Number of days for recency decay calculation in access tracking. | `lib/storage/access-tracker.ts` |
-| `SPECKIT_EVENT_DECAY` | `true` | boolean | Event decay processing in working memory. Graduated ON. | `lib/cognitive/working-memory.ts` (via tests) |
-
----
-
-## 9. FEEDBACK AND LEARNING
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_IMPLICIT_FEEDBACK_LOG` | `true` | boolean | Implicit feedback event ledger for `search_shown`, `result_cited`, `query_reformulated`, `same_topic_requery`, and `follow_on_tool_use`. Event logging only, with no ranking side effects (REQ-D4-001). Graduated ON. | `lib/feedback/feedback-ledger.ts` |
-| `SPECKIT_SHADOW_FEEDBACK` | `true` | boolean | Shadow scoring with holdout evaluation: compares would-have-changed vs live rankings (REQ-D4-006). Graduated ON. | `lib/feedback/shadow-scoring.ts` |
-| `SPECKIT_TRUE_CITATION_EMITTER` | `false` | boolean | 028 built-but-held, default-off track B. Mines the post-hoc transcript for the memory_ids the assistant actually referenced after a search and writes used/not-used pairs to a separate shadow ledger, the source of shown-but-unused negatives the hollow `result_cited` signal lacks. Held off because it adds a transcript-mining write path that must earn ledger density before any future reranker consumes it. Set `true` to enable. | `lib/feedback/true-citation-emitter.ts`, `lib/search/search-flags.ts` |
-| `SPECKIT_SHADOW_LEARNING` | `false` | boolean | Shadow learned model loading for Stage 2 weight combiner. Opt-in: set `true` to enable. | `lib/search/pipeline/stage2-fusion.ts` |
-| `SPECKIT_LEARNED_STAGE2_COMBINER` | `true` | boolean | Learned Stage 2 weight combiner in shadow mode (REQ-D1-006). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_LEARNED_STAGE2_MODEL` | (auto) | string | Custom file path for the learned Stage 2 model. Absolute or relative to cwd. | `lib/search/pipeline/stage2-fusion.ts` |
-| `SPECKIT_LEARNED_STAGE2_BLEND_WEIGHT` | `0` | number (0..0.05) | Blend weight applied to the learned Stage 2 combiner score. `0`/unset/empty disables the blend. Values above the `0.05` cap are clamped (warns once). | `lib/search/pipeline/stage2-fusion.ts` |
-| `SPECKIT_BATCH_LEARNED_FEEDBACK` | `true` | boolean | Weekly batch feedback learning pipeline (REQ-D4-004). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_LEARN_FROM_SELECTION` | `true` | boolean | Learned relevance feedback from user result selections. **Default ON** (graduated): disabled only when explicitly set to `false`. Read outside `search-flags.ts` through its own local gate. | `lib/search/learned-feedback.ts` |
-| `SPECKIT_FEEDBACK_RETENTION_LEARNING` | `false` | boolean | Master gate for feedback-aware retention learning. Default OFF. Set `true` to compute retention reducer decisions during the retention sweep. | `lib/feedback/feedback-retention-reducer.ts`, `lib/governance/memory-retention-sweep.ts` |
-| `SPECKIT_FEEDBACK_RETENTION_MODE` | `shadow` | enum: `shadow`, `active` | Retention learning safety mode. `shadow` writes audit decisions only and performs no deletion or delete_after mutation, so enabling it suspends baseline TTL retention deletion until `active` mode is gated. `active` applies extend/protect/delete only when the master flag is enabled and internally supplied shadow-evaluation evidence is present. The public `memory_retention_sweep` tool and scheduled sweep expose only the normal sweep controls, not that evidence gate. | `lib/feedback/feedback-retention-reducer.ts`, `lib/governance/memory-retention-sweep.ts` |
-| `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` | `false` | boolean | Deferred session-trace causal edge inference from feedback events. Shadow replay is available through the dry-run reducer entrypoint. | `lib/feedback/session-trace-causal-reducer.ts` |
-| `SPECKIT_RELATIONS` | `true` | boolean | Relational learning from correction events. Graduated ON. | `lib/learning/corrections.ts` |
-| `SPECKIT_CONSUMPTION_LOG` | `false` | boolean | Agent consumption event logging for analysis. Opt-in: enables only on an explicit `true`/`1` (the logger requires the explicit value before delegating to the shared flag check), so the runtime default is OFF. Earlier "Graduated ON" wording contradicted the implementation. | `lib/telemetry/consumption-logger.ts` |
-| `SPECKIT_USAGE_RANKING` | `true` | boolean | Usage-weighted ranking signal (Phase D T036). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_SIGNAL_VOCAB` | `true` | boolean | Signal vocabulary detection for trigger matching. Graduated ON. | `lib/parsing/trigger-matcher.ts` |
-| `SPECKIT_SAVE_QUALITY_GATE` | `true` | boolean | Pre-storage quality gate for memory saves. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS` | `true` | boolean | Short-critical quality gate exception for decision context types (REQ-D4-003). Graduated ON. | `lib/search/search-flags.ts`, `lib/validation/save-quality-gate.ts` |
-| `SPECKIT_QUALITY_LOOP` | `true` | boolean | Verify-fix-verify memory quality loop (T008). Graduated ON. | `lib/search/search-flags.ts` |
-
----
-
-## 10. GOVERNANCE AND SCOPE
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_MEMORY_ROADMAP_PHASE` | `scope-governance` | string | Active memory roadmap phase: `baseline`, `lineage`, `graph`, `adaptive`, `scope-governance`. | `lib/config/capability-flags.ts` |
-| `SPECKIT_MEMORY_LINEAGE_STATE` | `true` | boolean | Lineage state tracking capability. Graduated ON. | `lib/config/capability-flags.ts` |
-| `SPECKIT_MEMORY_GRAPH_UNIFIED` | `true` | boolean | Graph unified capability for roadmap tracking. Graduated ON. | `lib/config/capability-flags.ts` |
-| `SPECKIT_MEMORY_ADAPTIVE_RANKING` | `false` | boolean | Adaptive ranking capability. **Default OFF**: opt-in. | `lib/config/capability-flags.ts` |
-| `SPECKIT_RETENTION_SWEEP` | `true` | boolean | Governed memory retention sweep. Graduated ON. Set `false` to disable the background interval. Manual `memory_retention_sweep` remains available. | `lib/session/session-manager.ts` |
-| `SPECKIT_RETENTION_SWEEP_INTERVAL_MS` | `3600000` | number | Background retention sweep interval in milliseconds. Values must be positive integers. Invalid values fall back to one hour. | `lib/session/session-manager.ts` |
-| `SPECKIT_IDEMPOTENCY_RECEIPT_TTL_DAYS` | `30` | number (positive int) | Retention window, in days, for stored idempotency-replay receipts before pruning. An explicit caller argument takes precedence. Invalid/non-positive values fall back to the default (minimum 1). | `lib/storage/idempotency-receipts.ts` |
-| `SPECKIT_MEMORY_IDEMPOTENCY` | `false` | boolean (opt-in `1`/`true`/`yes`/`on`) | Default-off server-derived replay receipts for `memory_save`/`memory_update`, plus advisory `near_duplicate_of` hints. Default OFF, so set an enabled value to opt in. | `lib/storage/idempotency-receipts.ts` |
-| `SPECKIT_SOFT_DELETE_TOMBSTONES` | `false` | boolean (`'true'`) | Default-off tombstone delete path for memory deletes and the purgeable retention partition. Keep OFF until recall surfaces filter `deleted_at IS NULL`, then set `true` to enable. | `handlers/memory-crud-delete.ts`, `lib/governance/memory-retention-sweep.ts` |
-| `SESSION_TTL_MINUTES` | `30` | number | Working-memory session TTL in minutes. | `lib/session/session-manager.ts` |
-| `SESSION_MAX_ENTRIES` | `100` | number | Maximum working-memory entries retained per session. | `lib/session/session-manager.ts` |
-| `DISABLE_SESSION_DEDUP` | `false` | boolean | Disables session-level deduplication when set to lowercase `true`. | `lib/session/session-manager.ts` |
-| `SESSION_DEDUP_DB_UNAVAILABLE_MODE` | `block` | enum: `block`, `allow` | Chooses whether session dedup blocks or allows operation when its database path is unavailable. | `lib/session/session-manager.ts` |
-| `STALE_CLEANUP_INTERVAL_MS` | `3600000` | number | Interval for background stale-session cleanup. | `lib/session/session-manager.ts` |
-| `STALE_SESSION_THRESHOLD_MS` | `86400000` | number | Inactivity threshold before a session is considered stale. | `lib/session/session-manager.ts` |
-| `SPECKIT_MEMORY_SESSION_ID` | (unset) | string | Explicit override for the no-session `memory_context` anchor. When set, the trimmed value is used as the session-bucket anchor instead of the scope-derived or single-user default. It is not a governance boundary. | `handlers/memory-context.ts` |
-| `SPECKIT_AC_COVERAGE` | `true` | boolean | Default-on advisory (INFO, non-blocking) acceptance-criteria coverage scan during spec validation. When unset it runs the lifecycle-gated advisory scan (`RULE_STATUS` stays `pass`); set `false` to opt out. | `scripts/rules/check-ac-coverage.sh` |
-| `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | number | Minimum covered acceptance-criteria ratio for the advisory scan. Values outside `[0,1]` are clamped before the floor is calculated. | `scripts/rules/check-ac-coverage.sh` |
+| `SPECKIT_RULES` | (unset, all rules) | string (comma-separated) | Narrows a validation run to a named subset of rules. Each token is trimmed, upper-cased and hyphens become underscores, then resolved against rule ids and their aliases from the validator registry. **An unrecognised name throws** rather than being ignored, because a narrowed run that silently matches nothing would report a clean pass for a packet nobody checked. Empty or unset runs every rule; the subset is re-read per validation rather than pinned for the process lifetime. | `lib/validation/orchestrator.ts` |
+| `SPECKIT_FRONTMATTER_ALLOWLIST` | (bundled `scripts/lib/frontmatter-grandfather-allowlist.json`) | string (path) | Path to the spec-doc frontmatter grandfather allowlist JSON. A path that does not exist makes the allowlist check return false rather than throwing. | `lib/validation/spec-doc-structure.ts`, `scripts/rules/check-frontmatter.sh` |
+| `SPECKIT_VERBOSE_RESOLVER` | (unset) | flag (`"1"`) | Exactly `1` appends the underlying cause's stack to the error the documentation-level contract resolver raises when it falls back. Diagnostic only. | `lib/templates/level-contract-resolver.ts`, `scripts/lib/template-utils.sh` |
+| `SPECKIT_FOLDER_DISCOVERY_TOKEN_THRESHOLD` | `0.45` | number (0..1) | Per-token similarity threshold for folder-discovery name matching. Non-numeric values, or values outside `[0,1]`, fall back to the default. | `lib/search/folder-discovery.ts` |
+| `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | `true` | boolean | Excludes `z_*` staging and archive folders from the spec-folder discovery scanner. Parsed as a tristate with default `true`; set `false` to restore the prior scanner that descended them. | `lib/search/folder-discovery.ts` |
+| `SPECKIT_INDEX_SPEC_DOCS` | `true` | boolean | Exactly the string `false` short-circuits spec-document discovery to an empty result with an empty discovery state. Any other value, including unset, leaves discovery on. | `handlers/memory-index-discovery.ts` |
+| `SPECKIT_VALIDATE_SCRIPT` | (bundled `scripts/spec/validate.sh`) | string (path) | Overrides the `validate.sh` path the strict-pass-freshness sweep invokes per folder when re-baselining across multiple spec roots. Unset resolves the committed script next to the sweep tool. | `scripts/sweep/strict-pass-freshness.ts` |
+| `SPECKIT_TEMPLATES_BASE` | (bundled templates) | string (path) | Overrides the template root `scripts/spec/create.sh` copies a new packet's documents from. | `scripts/spec/create.sh` |
+| `SPECKIT_AC_COVERAGE` | `true` | boolean | Default-on advisory (INFO, non-blocking) acceptance-criteria coverage scan during spec validation. Set `false` to opt out. | `scripts/rules/check-ac-coverage.sh` |
+| `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | number (0..1) | Minimum covered acceptance-criteria ratio for the advisory scan. Values outside `[0,1]` are clamped before the floor is calculated. | `scripts/rules/check-ac-coverage.sh` |
 | `SPECKIT_AC_CLOSURE` | `true` | boolean | Default-on closure gate (ERROR) for Levels 2/3/3+. Unmet acceptance criteria block a completion claim and a waiver must cite an ADR that exists in `decision-record.md`. Set `false` to opt out; an unrecognised value leaves the gate enabled. | `scripts/rules/check-ac-closure.sh` |
 | `SPECKIT_AC_CLOSURE_CUTOFF` | `2026-08-30` | ISO date | Forward-only rollout boundary. Packets whose `spec.md` `Created` date is on or before it, or cannot be read, stay advisory on every branch. A malformed value falls back to the default. | `scripts/rules/check-ac-closure.sh` |
-| `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` | `false` | flag (`"1"`) | Opt-in compact-hook authored continuity snapshot mode. When set, the hook can emit the authored snapshot path instead of relying only on transcript-derived fallback context. | `mcp-server/hooks/claude/compact-inject.ts` |
-| `SPECKIT_COMPLETION_FRESHNESS` | `false` | boolean | Enables the strict-only completion freshness validation rule. The rule recomputes the packet content fingerprint and compares it with stored continuity metadata. Unset preserves existing validation output. | `scripts/validation/continuity-freshness.ts`, `mcp-server/tests/continuity-freshness.vitest.ts` |
-| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | boolean | When completion freshness is enabled, promotes stale freshness findings from warning to error. | `scripts/validation/continuity-freshness.ts`, `mcp-server/tests/continuity-freshness.vitest.ts` |
-| `SPECKIT_IDENTITY_MERGE_SAFETY` | `true` | boolean | Shared spec-folder identity resolver and lineage-merge guard. **Default ON** (graduated). Both generators resolve a specs-root-relative identity and the merge preserves a non-null parent and unions children, so a scoped or null-deriving re-derive can no longer erase lineage. Set `false`/`0`/`off` to restore the legacy caller-base path and spread merge. | `lib/config/capability-flags.ts` |
-| `SPECKIT_GENERATED_METADATA_GRANDFATHER` | `false` | boolean | Grandfather report mode for the `GENERATED_METADATA_INTEGRITY` rule. **Default OFF, enforcing** (graduated): a violation is a hard strict error. Set `true`/`1` to restore the non-blocking report mode for a tree that has not been restamped. | `lib/config/capability-flags.ts` |
-| `SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE` | `false` | boolean | Cross-checks a stored `derived.status: complete` against `completion_pct`/open `tasks.md` items, inside the `GENERATED_METADATA_INTEGRITY` rule. **Default OFF, report mode** (inverse polarity from the grandfather flag above): a disagreement surfaces in `--strict` output without failing the run, because a repo-wide sweep found 213 folders already mislabeled `complete` by a prior `deriveStatus` defect. Set `true`/`1` to enforce (fails strict) once the existing backlog is reviewed. | `lib/config/capability-flags.ts`, `lib/validation/generated-metadata-integrity.ts` |
-| `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE` | `true` | boolean | Advisory→enforce toggle for the `METADATA_DISK_PATH_CONSISTENCY` rule. **Default ON, enforcing (graduated 2026-07-10)**: a `description.json`/`graph-metadata.json` path mismatch against the folder's actual on-disk path fails `--strict`. Graduated on a reconciled tree-wide census across ~2,420 spec folders (1,130 real mismatches — mostly a stale `system-spec-kit`→`system-speckit` directory-rename prefix plus a stale `continuity.packet_pointer` frontmatter field — found and reconciled via the canonical generators plus a targeted frontmatter fix; the remaining ~74-folder residual is entirely non-production paths: deliberately-synthetic test fixtures, a reserved not-yet-built `z-future/` namespace, timestamped `.backup-*` snapshots, and auxiliary research/scratch subdirectories never meant to be validated as standalone spec folders — see `019-validation-enforce-graduation/implementation-summary.md`). Set `false`/`0` to fall back to advisory-only. | `scripts/rules/check-metadata-disk-consistency.sh` |
-| `SPECKIT_STATUS_CROSS_DOC_ENFORCE` | `true` | boolean | Advisory→enforce toggle for the `STATUS_CROSS_DOC_CONSISTENCY` rule. **Default ON, enforcing (graduated 2026-07-10)**: a classified-status disagreement between `spec.md` and `implementation-summary.md` fails `--strict`. Graduated on a reconciled tree-wide census across ~2,420 spec folders (128 real mismatches found and reconciled to 2 honestly-documented residuals — see `019-validation-enforce-graduation/implementation-summary.md`). Set `false`/`0` to fall back to advisory-only. | `scripts/rules/check-status-cross-doc-consistency.sh`, `scripts/lib/status-classifier.sh` |
-| `SPECKIT_CHILD_DRIFT_ENFORCE` | `true` | boolean | Advisory→enforce toggle for the `GRAPH_METADATA_CHILD_DRIFT` rule. **Default ON, enforcing (graduated 2026-07-10)**: a phase parent's `graph-metadata.json.children_ids` missing an on-disk phase child the writer would add on its next refresh fails `--strict`. Unlike the other two flags in this graduation group, enforce mode also fails closed when the child-scanner dependency (`scripts/dist/spec/is-phase-parent.js`) is unavailable OR stale — gated by a dedicated `dist-freshness.cjs` entry (`system-spec-kit/scripts` package, `is-phase-parent` distEntry, scoped to just that one file's own dependency-free source rather than the package's whole-tree default, so unrelated concurrent edits elsewhere in `scripts/` never cause a false-stale result) built and fixture-tested before this flag graduated. Graduated on a reconciled tree-wide census across ~2,420 spec folders — see `019-validation-enforce-graduation/implementation-summary.md`. Set `false`/`0` to fall back to advisory-only. | `scripts/rules/check-graph-metadata-child-drift.sh`, `scripts/lib/dist-freshness.cjs`, `scripts/spec/is-phase-parent.ts` |
-| `SPECKIT_VALIDATE_SCRIPT` | (bundled `scripts/spec/validate.sh`) | string (path) | Overrides the `validate.sh` path the `strict-pass-freshness.ts` sweep tool invokes per folder when re-baselining strict-pass freshness across multiple spec roots. Unset resolves the committed script next to the sweep tool. | `scripts/sweep/strict-pass-freshness.ts` |
-| `SPECKIT_GENERATED_METADATA_DRIFT_GATE` | `true` | boolean | Synopsis drift gate and shared-extractor routing. **Default ON** (graduated): grandfather report mode keeps drift non-blocking, both fields keep their legacy extractors, and no `source_doc_hashes` persist (generated bytes unchanged). When set both `description` and `causal_summary` derive from the one shared synopsis extractor, `source_doc_hashes` persist as the freshness key, and a drift report fails strict validation. | `lib/config/capability-flags.ts` |
-| `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | `true` | boolean | Excludes `z_*` staging and archive folders from the global descriptions.json cache. **Default ON**: set `false` to restore the prior scanner that included them. | `lib/search/folder-discovery.ts` |
-| `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | `true` | boolean | Content-gated description.json and global-cache writes. **Default ON** (graduated). A per-folder save that changes only the volatile stamp is skipped, the aggregate cache write is gated on a real member delta, and the targeted upsert replaces only the changed entry. Set `false`/`0`/`off` to restore the unconditional legacy write. | `lib/config/capability-flags.ts` |
-| `SPECKIT_ENTITY_CONFIG_PATH` | (unset) | string (path) | Override path to a declarative entity-extraction rules JSON. When unset the built-in rules apply. A malformed or unreadable file falls back to the built-in rules. | `lib/extraction/entity-extractor.ts` |
+| `SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE` | `true` | boolean | Advisory→enforce toggle for the `METADATA_DISK_PATH_CONSISTENCY` rule: a `description.json`/`graph-metadata.json` path mismatch against the folder's actual on-disk path fails `--strict`. Set `false`/`0` to fall back to advisory-only. | `scripts/rules/check-metadata-disk-consistency.sh` |
+| `SPECKIT_STATUS_CROSS_DOC_ENFORCE` | `true` | boolean | Advisory→enforce toggle for the `STATUS_CROSS_DOC_CONSISTENCY` rule: a classified-status disagreement between `spec.md` and `implementation-summary.md` fails `--strict`. Set `false`/`0` to fall back to advisory-only. | `scripts/rules/check-status-cross-doc-consistency.sh`, `scripts/lib/status-classifier.sh` |
+| `SPECKIT_CHILD_DRIFT_ENFORCE` | `true` | boolean | Advisory→enforce toggle for the `GRAPH_METADATA_CHILD_DRIFT` rule: a phase parent's `graph-metadata.json.children_ids` missing an on-disk phase child fails `--strict`. Enforce mode also fails closed when the child-scanner dependency is unavailable or stale, gated by a dedicated `dist-freshness.cjs` entry scoped to that one file. Set `false`/`0` to fall back to advisory-only. | `scripts/rules/check-graph-metadata-child-drift.sh`, `scripts/lib/dist-freshness.cjs`, `scripts/spec/is-phase-parent.ts` |
+| `SPECKIT_COMPLETION_FRESHNESS` | `false` | boolean | Enables the strict-only completion freshness validation rule, which recomputes the packet content fingerprint and compares it with stored continuity metadata. Unset preserves existing validation output. | `scripts/validation/continuity-freshness.ts` |
+| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | boolean | When completion freshness is enabled, promotes stale freshness findings from warning to error. | `scripts/validation/continuity-freshness.ts` |
+| `SPECKIT_IDENTITY_MERGE_SAFETY` | `true` | boolean | Shared spec-folder identity resolver and lineage-merge guard. Both generators resolve a specs-root-relative identity and the merge preserves a non-null parent and unions children, so a scoped or null-deriving re-derive cannot erase lineage. Set `false`/`0`/`off` to restore the legacy caller-base path and spread merge. | `lib/config/capability-flags.ts`, `lib/graph/graph-metadata-parser.ts`, `scripts/spec-folder/generate-description.ts` |
+| `SPECKIT_GENERATOR_HARDENING` | `true` | boolean | Persists the graph-metadata `source_fingerprint`, routes phase-parent classification and the derived children list through one `listPhaseChildren` enumeration, and moves access/freshness telemetry to the index-layer store so a read or resume no longer dirties the generated JSON. | `lib/config/capability-flags.ts`, `lib/graph/graph-metadata-parser.ts`, `lib/spec/is-phase-parent.ts`, `lib/graph/access-telemetry.ts`, `lib/resume/resume-ladder.ts`, `lib/validation/generated-metadata-integrity.ts` |
+| `SPECKIT_GENERATED_METADATA_GRANDFATHER` | `false` | boolean | Grandfather report mode for the `GENERATED_METADATA_INTEGRITY` rule. Default off and enforcing: a violation, including a missing or mismatched `source_fingerprint`, is a hard strict error. Set `true`/`1` to restore the non-blocking report mode for a tree that has not been restamped. | `lib/config/capability-flags.ts`, `lib/validation/generated-metadata-integrity.ts` |
+| `SPECKIT_STATUS_COMPLETION_CONSISTENCY_GATE` | `false` | boolean | Cross-checks a stored `derived.status: complete` against `completion_pct` and open `tasks.md` items, inside the `GENERATED_METADATA_INTEGRITY` rule. Default off and in report mode, the inverse polarity of the grandfather flag above: a disagreement surfaces in `--strict` output without failing the run. Set `true`/`1` to enforce. | `lib/config/capability-flags.ts`, `lib/validation/generated-metadata-integrity.ts` |
+| `SPECKIT_GENERATED_METADATA_DRIFT_GATE` | `true` | boolean | Synopsis drift gate and shared-extractor routing. When set, both `description` and `causal_summary` derive from the one shared synopsis extractor, `source_doc_hashes` persist as the freshness key, and a drift report fails strict validation. | `lib/config/capability-flags.ts`, `scripts/validation/generated-metadata-drift.ts` |
+| `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | `true` | boolean | Content-gated `description.json` and global-cache writes. A per-folder save whose only delta is the volatile stamp is skipped, the aggregate cache write is gated on a real member delta, and the targeted upsert replaces only the changed entry. Set `false`/`0`/`off` to restore the unconditional legacy write. | `lib/config/capability-flags.ts` |
+
+---
+
+## 4. RUNTIME HOOK ADAPTERS
+
+The `hooks/` tree ships thin per-runtime adapters for Claude, Codex, Cursor, Devin and Pi. Most delegate to the skill advisor's compiled hooks; the variables below are the ones those adapters read directly.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `SPECKIT_USER_PROMPT_TARGET` | (unset) | string (path) | Explicit target for the Claude user-prompt-submit shim, overriding the install-anchored ancestor walk. Honored **only when the path exists**; otherwise the hook walks up from its own module location looking for `.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js`. The walk exists because Claude may invoke the hook from any working directory. | `hooks/claude/user-prompt-submit.ts` |
+| `SPECKIT_DIRECTIVE_LIFECYCLE_BOUNDARY_TARGET` | (unset) | string (path) | Same override for the Claude directive-lifecycle-boundary shim, again honored only when the path exists, else the ancestor walk resolves `.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/directive-lifecycle-boundary.js`. | `hooks/claude/directive-lifecycle-boundary.ts` |
+| `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` | (unset) | flag (`"1"`) | Exactly `1` enables the authored continuity snapshot path in the compact hook. The hook also accepts the same intent per-invocation through its input payload (`authored_continuity_snapshot: true` or `continuity_snapshot: "authored"`), so the env var is the process-wide form of a per-call option. Unset leaves the transcript-derived fallback in place. | `hooks/claude/compact-inject.ts` |
 
 ### Spec Gate (Gate-3)
 
@@ -543,62 +200,19 @@ Retention, sweep, and warning-log tuning (`SYSTEM_SPEC_GATE_ACTIVE_RETENTION_DAY
 
 ---
 
-## 11. UX AND RESPONSE FORMATTING
+## 5. GIT-HOOK MARKER
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_CONTEXT_HEADERS` | `true` | boolean | Contextual tree headers for Stage 4 result enrichment. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_PROGRESSIVE_DISCLOSURE` | `true` | boolean | Progressive disclosure: summary layer + snippet + cursor pagination (REQ-D5-005). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_SESSION_RETRIEVAL_STATE` | `true` | boolean | Cross-turn retrieval session state for dedup and goal-aware refinement (REQ-D5-006). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_EMPTY_RESULT_RECOVERY` | `true` | boolean | Empty/weak result recovery UX with diagnostic payload (REQ-D5-001). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_RESULT_CONFIDENCE` | `true` | boolean | Per-result calibrated confidence scoring (REQ-D5-004). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_ENVELOPE_FIDELITY` | `true` | boolean | Emits the `data.envelopeRender` pre-rendered verdict fragment and promotes `requestQuality` and `citationPolicy` to conditionally-mandatory render slots in the command contract. Graduated to default-ON. Set `false`/`0`/`off` to opt out. Default-ON (graduated) keeps the response shape byte-for-byte the shipped behavior until a clean grandfather report. | `lib/search/search-flags.ts` |
-| `SPECKIT_RESULT_EXPLAIN` | `true` | boolean | Two-tier result explainability (REQ-D5-002). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_RESULT_EXPLAIN_DEBUG` | `false` | boolean | Detailed debug-level result explainability. Opt-in: set `true` to enable. | `formatters/search-results.ts` |
-| `SPECKIT_RESPONSE_PROFILE` | `true` | boolean | Mode-aware response profile formatting (REQ-D5-003). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_RESPONSE_TRACE` | `false` | boolean | Include full retrieval trace in search responses. Opt-in: set `true` to enable. | `handlers/memory-search.ts` |
+| `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK` | `0` (bypass off) | boolean (`"1"`) | Bypass for the shared git-hook drift marker sourced by `post-commit`, `post-merge` and `post-rewrite`. Exactly `1` skips the marker write for that git operation. The marker file it wrote was consumed by the MCP boot path, which the memory decommission removed, so the write is now recorded and unread. | `.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` |
 
 ---
 
-## 12. EVALUATION AND TELEMETRY
+## 6. EMBEDDING
 
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_ABLATION` | `false` | boolean | Enable ablation study framework. Opt-in: set `true` to enable. | `lib/eval/ablation-framework.ts` |
-| `SPECKIT_FALSE_CONFIRM_MAX_RATE` | `0` (enforcing) | number (0..1) | False-confirm eval gate ceiling. **Default enforcing at 0** (graduated): with the var unset the eval driver bars any rate past 0 and exits non-zero. Set a number in `[0,1]` to override the ceiling, or `SPECKIT_FALSE_CONFIRM_GRANDFATHER=true` to report without enforcing. | `scripts/evals/run-false-confirm-eval.mjs` |
-| `SPECKIT_EVAL_LOGGING` | `false` | boolean | Enable evaluation event logging. Opt-in: set `true` to enable. | `lib/eval/eval-logger.ts`, `handlers/quality-loop.ts` |
-| `SPECKIT_DASHBOARD_LIMIT` | `10000` | number | Maximum row limit for reporting dashboard queries. | `lib/eval/reporting-dashboard.ts` |
-| `SPECKIT_EXTENDED_TELEMETRY` | `false` | boolean | Detailed retrieval metrics collection (latency breakdown, quality scores). Opt-in: set `true` to enable. | `lib/telemetry/retrieval-telemetry.ts` |
-| `SPECKIT_DEBUG_INDEX_SCAN` | `false` | boolean | Include debug file counts in index scan results. Opt-in: set `true` to enable. | `handlers/memory-index.ts` |
+**This whole section is shared, not this package's.** Its readers are `.opencode/skills/system-spec-kit/shared/embeddings/**` and the launcher libraries under `.opencode/bin`, and the skill advisor is now the consumer that keeps them live. Nothing in `mcp-server/` reads any of it. In the Source column below, a `bin/...` path is relative to `.opencode/`, and a `shared/...` path is relative to `.opencode/skills/system-spec-kit/`.
 
-### Conditional warm-start bundle (013)
-
-- Toggle: `SPECKIT_WARM_START_BUNDLE`
-- Default: `false`
-- Rollout gate: only enable after the frozen corpus benchmark shows combined configuration dominates baseline and component-only variants on lower cost with equal-or-better pass rate.
-- Design context: local configuration contract
-
----
-
-## 13. INDEXING
-
-| Variable | Default | Type | Description | Source |
-|----------|---------|------|-------------|--------|
-| `SPECKIT_INDEX_SPEC_DOCS` | `true` | boolean | Enable spec document indexing. Set `false` to disable. | `handlers/memory-index-discovery.ts` |
-| `SPECKIT_INDEX_SCAN_LEASE_EXPIRY_MS` | (internal) | number | Lease expiry timeout in milliseconds for index scan operations. | `core/db-state.ts` |
-| `SPECKIT_QUERY_TIME_EXISTENCE_FILTER` | `false` | boolean | Default-off query-time existence guard on the `memory_search` hot path. Only `true` or `1` enables it. Enabled requests bypass result-cache reads and writes, exclude already-ranked rows whose backing file is confirmed missing, and copy their ids into a bounded post-response queue for later suspect confirmation; no row is deleted inline. The queue holds at most 256 jobs, retries failed writes twice, temporarily uses a 25 ms `busy_timeout`, and guards timeout restoration. Each response reports `extraData.queryTimeExistenceFilter`; `extraData.queryTimeExistenceFilterAggregate` reports in-memory process-lifetime totals and resets on daemon restart. | `lib/config/capability-flags.ts`, `lib/search/search-flags.ts`, `handlers/memory-search.ts`, `lib/storage/memory-drift-healing.ts` |
-| `SPECKIT_SKIP_MEMORY_DRIFT_GIT_HOOK` | `0` (bypass off) | boolean (`"1"`) | Bypass for the shared git-hook memory-drift marker sourced by `post-commit`, `post-merge`, and `post-rewrite`. When unset, a spec-doc rename/delete recorded by the completed git operation is appended to `.memory-drift-dirty-paths.json`, which `startup-checks.ts` consumes on the next MCP boot to seed drift-suspect confirmation. Set `1` to skip the marker write for that git operation. | `.opencode/scripts/git-hooks/lib/memory-drift-marker.sh`, `mcp-server/startup-checks.ts` |
-| `SPECKIT_ENCODING_INTENT` | `true` | boolean | Encoding-intent capture at index time (R16). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_ONTOLOGY_HOOKS` | `true` | boolean | Ontology-guided extraction validation hooks (Phase D T036). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_ONTOLOGY_SCHEMA` | (built-in) | string | Custom JSON ontology schema for extraction validation. | `lib/extraction/ontology-hooks.ts` |
-| `SPECKIT_EXTRACTION` | `true` | boolean | Entity/relation extraction pipeline. Graduated ON. | `lib/search/search-flags.ts` (via tests) |
-| `SPECKIT_FILE_WATCHER` | `false` | boolean | Real-time file watcher for markdown reindexing. **Default OFF**: opt-in. Honors ROLLOUT_PERCENT. | `lib/search/search-flags.ts` |
-
----
-
-## 14. EMBEDDING
-
-Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime probes this **local-first** sequence (ADR-014, 2026-05-19). (1) Ollama, local default `nomic-embed-text-v1.5` (768d). (2) hf-local, default `nomic-ai/nomic-embed-text-v1.5` (768d, same family as the Ollama default). (3) OpenAI, `OPENAI_API_KEY` set, `text-embedding-3-small` (1536d). (4) Voyage, `VOYAGE_API_KEY` set, `voyage-code-3` (1024d). Unlisted local overrides set through `OLLAMA_EMBEDDINGS_MODEL` or `HF_EMBEDDINGS_MODEL` are accepted at runtime and derive their dimension from the first embedding vector. If you override only `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR`, the sqlite filename is derived automatically from that active profile.
+Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime probes this **local-first** sequence (ADR-014, 2026-05-19). (1) Ollama, local default `nomic-embed-text-v1.5` (768d). (2) hf-local, default `nomic-ai/nomic-embed-text-v1.5` (768d, same family as the Ollama default). (3) OpenAI, `OPENAI_API_KEY` set, `text-embedding-3-small` (1536d). (4) Voyage, `VOYAGE_API_KEY` set, `voyage-code-3` (1024d). Unlisted local overrides set through `OLLAMA_EMBEDDINGS_MODEL` or `HF_EMBEDDINGS_MODEL` are accepted at runtime and derive their dimension from the first embedding vector.
 
 For the simplest local-first new-user setup, install [Ollama](https://ollama.com) and `ollama pull nomic-embed-text:v1.5`, and the cascade auto-selects it with no API keys.
 
@@ -608,44 +222,33 @@ For the simplest local-first new-user setup, install [Ollama](https://ollama.com
 trio, every `HF_EMBED_SERVER_*` / `SPECKIT_HF_MODEL_SERVER_*` row, `SPECKIT_HF_READY_LATCH_TTL_MS`,
 `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` and the cascade-probe rows are **shared: owned by the
 HF model server and the skill advisor** — they are read from `shared/embeddings/**` or the launcher
-libraries, both of which the advisor consumes. The `SPECKIT_RETRY_*` loop, the `SPECKIT_EMBED_CACHE_*`
-and `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES` caps, `SPECKIT_EMBED_CLIENT_MAX_BATCH`,
-`EMBEDDER_REINDEX_BATCH_SIZE` and `SPECKIT_LIVE_MODEL_TEST` are **memory-only** — they are read only
-from `mcp-server/`.
+libraries, both of which the advisor consumes. The memory-only rows that sat beside them — the
+`SPECKIT_RETRY_*` loop, the embedding-cache caps, the embed-client batch sizes and the live-model
+test switch — went out with the memory engine that read them.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_EMBEDDING_CIRCUIT_BREAKER` | `true` | boolean | Circuit breaker for embedding model failures. Graduated ON. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_THRESHOLD` | `3` | number | Consecutive failure count before circuit breaker opens. | `shared/embeddings.ts` |
 | `SPECKIT_EMBEDDING_CB_COOLDOWN_MS` | `60000` | number | Cooldown period in ms before circuit breaker resets (min 1000). | `shared/embeddings.ts` |
-| `SPECKIT_RETRY_ENABLED` | `true` | boolean | Background retry loop for deferred-embedding memories. Set `false` to disable the loop entirely. | `lib/providers/retry-manager.ts` |
-| `SPECKIT_RETRY_INTERVAL_MS` | `300000` (code default) | number | Interval, in milliseconds, between background embedding-retry batches (code default 5 min). Pinned to `5000` in all three runtime configs (`.claude/mcp.json`, `opencode.json`, `opencode.json`), so the shipped daemon retries every 5 s, not 5 min. | `lib/providers/retry-manager.ts` |
-| `SPECKIT_RETRY_BATCH_SIZE` | `5` (code default) | number | Number of deferred-embedding items processed per background retry batch. Pinned to `100` in all three runtime configs. | `lib/providers/retry-manager.ts` |
-| `SPECKIT_RETRY_QUEUE_MAX_PENDING` | `1000` (code default) | number (positive int) | Cap on pending deferred-embedding retry entries before older entries are pruned. Pinned to `300000` in all three runtime configs. | `lib/providers/retry-manager.ts` |
-| `SPECKIT_RETRY_QUEUE_MAX_AGE_MS` | `86400000` (code default) | number (positive int) | Maximum age, in milliseconds, a deferred-embedding retry entry is retained before pruning (code default 24h). Pinned to `3153600000000` in all three runtime configs. | `lib/providers/retry-manager.ts` |
-| `HF_EMBED_SERVER_URL` | (unset → `/tmp/system-hf-embed/hf-embed.sock`) | string | Overrides the local HF model-server endpoint. Accepts a Unix socket path, `unix://<path>`, or `tcp://<host>:<port>`. Both launchers and the `hf-local` client resolve this first, then `SPECKIT_IPC_SOCKET_DIR`, then the short model-server default `/tmp/system-hf-embed`. That last fallback is owned by the model server rather than by any database directory, so the client reaches the same socket whether or not a database exists; it must stay equal to `DEFAULT_MODEL_SERVER_SOCKET_DIR` in `.opencode/bin/lib/model-server-supervision.cjs`. Leave unset so system-spec-memory and skill-advisor share one resident server. | `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
+| `HF_EMBED_SERVER_URL` | (unset → `/tmp/system-hf-embed/hf-embed.sock`) | string | Overrides the local HF model-server endpoint. Accepts a Unix socket path, `unix://<path>`, or `tcp://<host>:<port>`. Both launchers and the `hf-local` client resolve this first, then `SPECKIT_IPC_SOCKET_DIR`, then the short model-server default `/tmp/system-hf-embed`. That last fallback is owned by the model server rather than by any database directory, so the client reaches the same socket whether or not a database exists; it must stay equal to `DEFAULT_MODEL_SERVER_SOCKET_DIR` in `.opencode/bin/lib/model-server-supervision.cjs`. Leave unset so every client reaches the one resident server. | `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
 | `HF_EMBED_SERVER_READY_TIMEOUT_MS` | `45000` | number | Initial readiness budget while the `hf-local` client waits for a reachable model server. Once `/api/health` reports `state: "loading"`, the client keeps retrying under `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` instead of failing at 45 s. | `shared/embeddings/providers/hf-local.ts` |
 | `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` | (unset → disabled) | number | RSS ceiling (MB) for the launcher-supervised model-server process tree. Unset disables the watchdog. | `bin/lib/model-server-supervision.cjs` |
 | `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT` | (unset → off) | string | Set `1` (with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB`) to recycle the model server via graceful self-exit on an RSS breach. | `bin/lib/model-server-supervision.cjs` |
 | `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` | `150000` | number | Maximum age, in milliseconds, for one model-server load attempt before launcher probes classify `loading` as wedged/dead. The `hf-local` client also uses this as its post-health `loading` retry cap, so first-embed downloads can outlive the 45 s initial readiness budget while still being bounded. Device fallback re-stamps the per-attempt marker. Missing or invalid loading markers remain backward-compatible and are treated as alive while loading. | `bin/lib/launcher-ipc-bridge.cjs`, `bin/hf-model-server.cjs`, `shared/embeddings/providers/hf-local.ts` |
 | `SPECKIT_HF_MODEL_SERVER_GIVEUP_COOLDOWN_MS` | `60000` | number | Cooldown written after launcher-supervised hf-model-server crash-loop give-up. During the cooldown, demand requests return `503` with `reason: "crash-loop-cooldown"` instead of spawning again. | `bin/lib/model-server-supervision.cjs` |
 | `SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN` | `0` (off) | number | When `>0`, the launcher evicts an idle resident hf-model-server after this many minutes of no successful embed (gated on `lastSuccessfulEmbedAt`, fractional values allowed). Eviction is fail-safe (it never reaps a server with in-flight inference or one that has never embedded), and lazy re-arm is preserved, so the next embed demand re-spawns it. Default `0` keeps the resident warm. | `bin/lib/model-server-supervision.cjs` |
-| `SPECKIT_EMBED_CLIENT_MAX_BATCH` | `256` | number | Maximum texts per batched `/api/embed` POST when the provider supports batching. The client also caps each request by bytes (~768 KiB) to stay under the server's 1 MiB `MAX_REQUEST_BYTES`, so this count is an upper bound, not a guarantee. Larger values raise reindex throughput but risk hitting the byte cap on long documents. | `mcp-server/lib/embedders/execution-router.ts` |
-| `EMBEDDER_REINDEX_BATCH_SIZE` | `50` | number | Texts per write batch during an embedder reindex job (bounded 1 to 1000). Larger batches raise reindex throughput at higher peak memory. | `mcp-server/lib/embedders/reindex.ts` |
 | `EMBEDDING_DIM` | _(derived)_ | number | Explicit embedding-dimension override. When unset or invalid, the dimension is derived from the active embedder profile (and, for unlisted local models, from the first embedding vector). | `shared/embeddings/profile.ts`, `shared/embeddings/factory.ts` |
 | `HF_EMBEDDINGS_PREFIX_QUERY` | _(registry)_ | string | Overrides the query prefix for the local HF embedder, for any model. Default derives from the model prefix registry (e.g. nomic uses `search_query:`). | `shared/embeddings/providers/hf-local.ts` |
 | `HF_EMBEDDINGS_PREFIX_DOC` | _(registry)_ | string | Overrides the document prefix for the local HF embedder, for any model. Default derives from the model prefix registry (e.g. nomic uses `search_document:`). | `shared/embeddings/providers/hf-local.ts` |
 | `SPECKIT_HF_READY_LATCH_TTL_MS` | `30000` (max `120000`) | number | How long a successful `waitForReady()` is trusted before the next embed re-probes `/api/health`. Within the TTL the client skips the readiness GET and POSTs directly. The latch is invalidated immediately on a mid-request reap (`ECONNRESET`/`EPIPE`). A stale latch costs at most one failed POST recovered by the bounded embed retry. | `shared/embeddings/providers/hf-local.ts` |
-| `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` | (unset → off) | string | Set `1` to let the **skill-advisor** launcher win the shared model-server spawn when system-spec-memory is absent (single-winner via the socket-keyed lock). Default off, so the memory daemon owns the spawn in the steady state. **The default-ON flip (031/005) is GATED on the live two-launcher model-path test (`SPECKIT_LIVE_MODEL_TEST=1`) passing green. It is currently blocked because `onnxruntime-common` is unresolvable in this checkout's `@huggingface/transformers` tree, so no live embed can run. Flip the one-line default in `isModelServerEnabled` once that dep is repaired and the live test is green.** | `bin/system-skill-advisor-launcher.cjs` |
-| `SPECKIT_LIVE_MODEL_TEST` | (unset → off) | string | Set `1` to opt into the live model-path cases of `launcher-model-server-live-two-launcher.vitest.ts` (real embed-200 + model-mismatch-404) and the `bench-dtype-q8-fp16.cjs` run. Default off. The transport/socket/route subset runs against the real binary either way, and the model-path cases auto-skip so default CI is green where no loadable model is available. | `mcp-server/tests/embedders/launcher-model-server-live-two-launcher.vitest.ts` |
-| `SPECKIT_EMBED_CACHE_MAX_BYTES` | `104857600` | number | Global hard cap for persistent embedding cache rows across all profiles and document/query kinds. Defaults to 100 MB. | `lib/cache/embedding-cache.ts` |
-| `SPECKIT_EMBED_CACHE_PROFILE_MAX_BYTES` | `52428800` | number | Per-profile cap for persistent embedding cache rows. Defaults to 50 MB per active embedder profile. | `lib/cache/embedding-cache.ts` |
-| `SPECKIT_QUERY_EMBED_CACHE_MAX_BYTES` | `26214400` | number | Separate cap for cached query embeddings (`input_kind='query'`). Defaults to 25 MB. | `lib/cache/embedding-cache.ts` |
-| `SPECKIT_EMBED_CACHE_MAX_ENTRIES_PER_PROFILE` | `50000` | number | Secondary safety cap on embedding cache row count per profile after byte limits are applied. | `lib/cache/embedding-cache.ts` |
+| `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` | (unset → off) | string (`"1"`) | Lets the **skill-advisor** launcher spawn and supervise the shared model server. `isModelServerEnabled()` compares the value to exactly `1`, so anything else, including unset, is off. **Read this together with the decommission:** the spec-memory daemon that used to own this spawn is gone, and the advisor launcher is now the only surface that can start the model server. With this unset, nothing spawns it, so `hf-local` embeds will find no server. Set it to `1` on any host that needs local HF embeddings. | `.opencode/bin/system-skill-advisor-launcher.cjs` |
 
 ### Local HF model server (single resident model)
 
-When the cascade selects `hf-local`, embeddings are served by a **launcher-supervised local HTTP model server** (`bin/hf-model-server.cjs`) over a Unix socket at `<SPECKIT_IPC_SOCKET_DIR>/hf-embed.sock`, falling back to the model server's own short default `/tmp/system-hf-embed/hf-embed.sock` rather than to a database directory, with no in-process model load and no sidecar. The system-spec-memory launcher lazily spawns and supervises it on first embed demand. `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1` lets skill-advisor win that spawn when the memory daemon is absent. Both services resolve the **same** socket, so one resident model serves all consumers.
+When the cascade selects `hf-local`, embeddings are served by a **launcher-supervised local HTTP model server** (`.opencode/bin/hf-model-server.cjs`) over a Unix socket at `<SPECKIT_IPC_SOCKET_DIR>/hf-embed.sock`, falling back to the model server's own short default `/tmp/system-hf-embed/hf-embed.sock` rather than to a database directory, with no in-process model load and no sidecar. The server itself, its socket and its supervision library survived the memory decommission untouched.
+
+**What changed is who starts it.** The spec-memory launcher used to spawn it lazily on first embed demand, with skill-advisor as the fallback winner of the socket-keyed lock. That launcher is gone, so the skill-advisor launcher is the only remaining spawner and it is gated behind `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1`. On a host where that is unset there is no spawner at all.
 
 **Single-resident-model contract.** The server loads exactly **one** model (`HF_EMBEDDINGS_MODEL`, default `nomic-ai/nomic-embed-text-v1.5`). A request for any other model returns **HTTP 404** (`{error, model, loadedModel}`). The `hf-local` provider treats that as "model not loaded" and reports the requested model beside the server's loaded model. To run a different local HF model, change `HF_EMBEDDINGS_MODEL` for **all** consumers, and do not expect per-request model switching.
 
@@ -655,49 +258,58 @@ When the cascade selects `hf-local`, embeddings are served by a **launcher-super
 
 | State | Symptom | Operator action |
 |-------|---------|-----------------|
-| Not started | `hf-local` health probe connect-refused, no `hf-embed.sock` | Normal before first demand. If it persists under load, check the launcher log for `demand listener` errors, then ensure the daemon (or `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1`) is up. |
+| Not started | `hf-local` health probe connect-refused, no `hf-embed.sock` | Normal before first demand. If it persists, confirm `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1` — since the memory decommission that is the only thing that arms a spawner — then check the advisor launcher's stderr for `demand listener` errors. |
 | Loading | Health returns `503 loading`, first embed slow | Expected cold model load or first-embed download. Cache path: `~/.cache/huggingface/hub`. Size: roughly hundreds of MB. Expected wait: 15-120 s. The client retries past `HF_EMBED_SERVER_READY_TIMEOUT_MS` while this state is progressing and fails only at `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` (default 150 s). |
 | Crash-looped | Repeated `hf-model-server child exited … relaunching`, eventually `crash loop detected … daemon remains running` | Inspect the model-server stderr (bad `HF_EMBEDDINGS_DTYPE`/`HF_EMBEDDINGS_MODEL`, OOM). After give-up, the launcher re-arms a demand listener, then fix the cause and trigger a new embed. |
 | RSS recycle | `process tree RSS … exceeds …` then graceful self-exit | Only with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` + `_RSS_SELF_EXIT=1`. Raise the ceiling or disable if the model legitimately needs more RAM. |
 | Model mismatch | Embeds fail with `HF local model is not loaded: requested …; server loaded …` (404) | A consumer requested a model the resident server isn't running. Align `HF_EMBEDDINGS_MODEL` across services, or let the cascade fall back. |
 
+### RSS watchdog (shared supervisor)
+
+`getWatchdogConfig()` in `.opencode/bin/lib/model-server-supervision.cjs` resolves one watchdog from two name sets. `getModelServerWatchdogConfig()` overrides only the ceiling and self-exit names with the `SPECKIT_HF_MODEL_SERVER_*` pair documented above; the generic names below are what a caller that passes no overrides gets, and the timing trio is shared by both paths. The watchdog arms only when a finite positive ceiling **and** the matching self-exit variable set to exactly `1` are both present; a ceiling without the self-exit logs that breach self-exit stays disabled while descendant tracking continues for crash-loop reaping.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB` | (unset → disabled) | number | Generic RSS ceiling, in MB, for a supervised process tree. Parsed with `parseFloat`; unset, blank or non-finite disables the watchdog. | `.opencode/bin/lib/model-server-supervision.cjs` |
+| `SPECKIT_LAUNCHER_RSS_SELF_EXIT` | (unset → off) | string (`"1"`) | Generic self-exit arm for the RSS watchdog, compared to exactly `1`. Pairs with the ceiling above the way `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT` pairs with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB`. | `.opencode/bin/lib/model-server-supervision.cjs` |
+| `SPECKIT_LAUNCHER_RSS_WATCHDOG_INTERVAL_MS` | (internal default) | number (positive int) | Poll interval while the watchdog is armed. Only applies when armed; otherwise the descendant-snapshot interval is used. Invalid values fall back to the default. | `.opencode/bin/lib/model-server-supervision.cjs` |
+| `SPECKIT_LAUNCHER_RSS_CONSECUTIVE_BREACHES` | (internal default) | number (positive int) | How many consecutive ceiling breaches must be observed before the watchdog acts. Invalid values fall back to the default. | `.opencode/bin/lib/model-server-supervision.cjs` |
+| `SPECKIT_LAUNCHER_RSS_GRACE_MS` | (internal default) | number (positive int) | Grace period before a breached process is escalated. A value at or below the shutdown deadline is rejected with a warning naming the variable, and the default is used instead. | `.opencode/bin/lib/model-server-supervision.cjs` |
+
 ---
 
-## 15. ROADMAP PHASE CONTROL
+## 7. SHARED RANKING ALGORITHMS
 
-These variables control the live memory roadmap snapshot.
+Not this package's: `.opencode/skills/system-spec-kit/shared/algorithms/` still ships the RRF fusion and adaptive-fusion primitives, and `scripts/retrieval/lib/legacy-lane.mjs` still runs a legacy retrieval lane. The memory pipeline that called them is gone, but these modules and their env reads survive for other consumers.
 
-| Variable | Default | Type | Description |
-|----------|---------|------|-------------|
-| `SPECKIT_MEMORY_ROADMAP_PHASE` | `scope-governance` | string | Active roadmap phase. |
-| `SPECKIT_MEMORY_LINEAGE_STATE` | `true` | boolean | Lineage tracking. |
-| `SPECKIT_MEMORY_GRAPH_UNIFIED` | `true` | boolean | Graph unified mode. |
-| `SPECKIT_MEMORY_ADAPTIVE_RANKING` | `false` | boolean | Adaptive ranking (opt-in). |
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `SPECKIT_RRF` | `true` | boolean | Master switch for Reciprocal Rank Fusion, read as `!== 'false'`. | `shared/algorithms/rrf-fusion.ts` |
+| `SPECKIT_RRF_K` | `40` | number | RRF smoothing constant `k`. Lower is more top-heavy, higher is flatter; must be greater than 0. | `shared/algorithms/rrf-fusion.ts` |
+| `SPECKIT_SCORE_NORMALIZATION` | `true` | boolean | Composite score normalization, read as `!== 'false'`. | `shared/algorithms/rrf-fusion.ts` |
+| `SPECKIT_CALIBRATED_OVERLAP_BONUS` | `true` | boolean | Multi-channel overlap bonus. Read directly off `process.env` in the fusion module, lower-cased and trimmed, rather than through a flag registry. | `shared/algorithms/rrf-fusion.ts` |
+| `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Feature-flag name registered by `adaptive-fusion.ts` for intent-aware fusion with document-type weight shifting. | `shared/algorithms/adaptive-fusion.ts` |
+| `SPECKIT_DOC_TYPE_WEIGHT_FACTOR` | `1.2` | number | Proportional weight-shift factor per document type in adaptive fusion, parsed with `parseFloat` and falling back to `1.2` on an unparseable or zero value. | `shared/algorithms/adaptive-fusion.ts` |
+| `SPECKIT_INCLUDE_ARCHIVED_DEFAULT` | `true` | boolean | Admits cold and archived rows to the legacy retrieval lane. The lane ORs this with its own `includeArchived` argument, so an explicit request-level `true` wins regardless. | `scripts/retrieval/lib/legacy-lane.mjs` |
 
 ---
 
-## 16. DEPRECATED
+## 8. DEPRECATED
 
-These variables are no longer active but may still appear in compatibility code.
+Names that appear in old configs and in source comments, but that no code branches on.
 
-| Variable | Status | Replacement | Notes |
-|----------|--------|-------------|-------|
-| `SPECKIT_EAGER_WARMUP` | **Deprecated** | (removed) | Embedding model now uses lazy loading only. Compatibility flag. |
-| `SPECKIT_EMBEDDER_EXECUTION` | **Deprecated (no-op)** | (none) | The embedder sidecar was retired. `hf-local` is now a launcher-supervised HTTP model server. Accepted-but-ignored for one release (logged once), then removed. |
-| `SPECKIT_LAZY_LOADING` | **Deprecated** | (removed) | Lazy loading is always enabled. Compatibility flag. |
-| `SPECKIT_SHADOW_SCORING` | **Deprecated** | `SPECKIT_SHADOW_FEEDBACK` | Shadow scoring flag removed. Shadow evaluation uses SHADOW_FEEDBACK. |
-| `SPECKIT_RSF_FUSION` | **Deprecated** | `SPECKIT_RRF` | Referenced in tests only. Legacy alias. |
-| `SPECKIT_LEXICAL_GROUNDING_V1` | **Deprecated** | `SPECKIT_LEXICAL_GROUNDING` | Legacy graduated flag name; use the unsuffixed current variable. |
-| `SPECKIT_NOISE_FLOOR_SUBTRACTION_V1` | **Deprecated** | `SPECKIT_NOISE_FLOOR_SUBTRACTION` | Legacy graduated flag name; use the unsuffixed current variable. |
-| `SPECKIT_CITE_WITH_CAVEAT_V1` | **Deprecated** | `SPECKIT_CITE_WITH_CAVEAT` | Legacy graduated flag name; use the unsuffixed current variable. |
-| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | **Deprecated** | `SPECKIT_EVIDENCE_GAP_VERDICT` | Legacy graduated flag name; use the unsuffixed current variable. |
-| `SPECKIT_ENVELOPE_FIDELITY_V1` | **Deprecated** | `SPECKIT_ENVELOPE_FIDELITY` | Legacy graduated flag name; use the unsuffixed current variable. |
+| Variable | Status | Replacement | Notes | Source |
+|----------|--------|-------------|-------|--------|
+| `SPECKIT_EAGER_WARMUP` | **Deprecated (inert)** | (none) | The embedder loads lazily and only lazily. Both this and `SPECKIT_LAZY_LOADING` are named inert in the comment at line 378; no branch reads either. | `shared/embeddings.ts` |
+| `SPECKIT_LAZY_LOADING` | **Deprecated (inert)** | (none) | Historical alias for the inverse of the flag above. Also inert. | `shared/embeddings.ts` |
 
 ---
 
 ## SKILL ADVISOR
 
 Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer and prompt-policy engine at runtime without code changes.
+
+**Owned by the skill advisor, not by this package.** Every `mcp-server/...` path in the Source column below is relative to `.opencode/skills/system-skill-advisor/`, never to the `system-spec-kit/mcp-server/` directory this document sits in. None of these variables is read by any file in this package.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
@@ -712,10 +324,9 @@ Skill-advisor threshold and calibration overrides for tuning the 5-lane scorer a
 | `SPECKIT_ADVISOR_PROMPT_POLICY_LONG_NON_CASUAL_CHARS` | `50` | number | The visible-character threshold for the long-non-casual-prompt fire rule. | `mcp-server/lib/prompt-policy.ts` |
 | `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` | `{"explicit_author":0.42,"lexical":0.28,"graph_causal":0.13,"derived_generated":0.12,"semantic_shadow":0.05}` | JSON string (partial merge) | Override live-lane weights for the 5-lane fusion scorer. JSON object with any subset of `explicit_author`, `lexical`, `graph_causal`, `derived_generated`, `semantic_shadow` (all numbers in `[0, 1]`). Missing keys retain defaults. Invalid JSON, non-object values, out-of-range numbers, and unknown lane ids fall back to defaults. | `mcp-server/lib/scorer/lane-registry.ts` |
 | `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` | `{"explicit_author":0.40,"lexical":0.25,"graph_causal":0.20,"derived_generated":0.10,"semantic_shadow":0.05}` | JSON string (partial merge) | Override shadow-mode lane weights for the 5-lane fusion scorer's `weightedScore` calculation in `advisor-recommend.ts`. Same shape, merge semantics, and validation rules as `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`. | `mcp-server/lib/scorer/lane-registry.ts` |
-| `SPECKIT_ADVISOR_DOC_TRIGGERS` | unset (off), pinned `true` in all three runtime configs (`.claude/mcp.json`, `opencode.json`, `opencode.json`) | boolean (string `"true"`) | Opt-in doc-frontmatter trigger harvest: `skill_graph_scan` indexes reference/asset doc frontmatter into the `skill_docs` table, the watcher tracks harvestable docs, the derived lane scores doc phrases (top-3/skill, tier-weighted, 0.45 cap) and recommendations carry sanitized `matchedDocs` paths. Code default is off, so the daemon runs with the harvest ON only because the runtime configs supply `true`. Flag-off behavior is byte-identical to pre-feature. Must be present in the launcher's `CHILD_ENV_ALLOWLIST` to reach the daemon child (it is). Daemon adoption of a flip requires a fresh session after all advisor-attached sessions end. The Python shim honors the same flag. | `skill-advisor/mcp-server/lib/skill-graph/doc-frontmatter.ts`, `.opencode/bin/system-skill-advisor-launcher.cjs` |
+| `SPECKIT_ADVISOR_DOC_TRIGGERS` | unset (off), pinned `true` in the runtime configs (`.claude/mcp.json`, `.codex/config.toml`, `opencode.json`) | boolean (string `"true"`) | Opt-in doc-frontmatter trigger harvest: `skill_graph_scan` indexes reference/asset doc frontmatter into the `skill_docs` table, the watcher tracks harvestable docs, the derived lane scores doc phrases (top-3/skill, tier-weighted, 0.45 cap) and recommendations carry sanitized `matchedDocs` paths. Code default is off, so the daemon runs with the harvest ON only because the runtime configs supply `true`. Flag-off behavior is byte-identical to pre-feature. Must be present in the launcher's `CHILD_ENV_ALLOWLIST` to reach the daemon child (it is). Daemon adoption of a flip requires a fresh session after all advisor-attached sessions end. | `mcp-server/lib/skill-graph/doc-frontmatter.ts`, `.opencode/bin/system-skill-advisor-launcher.cjs` |
 | `SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST` | unset | string (colon-separated paths) | Extra allowed `workspaceRoot` prefixes beyond the repo root, `os.tmpdir()` and `/tmp`. Each colon-separated entry is canonicalized and added to the bounding allowlist. | `mcp-server/schemas/advisor-tool-schemas.ts` |
 | `SPECKIT_ADVISOR_RRF_FUSION` | `false` | boolean (opt-in: `true`/`1`/`yes`/`on`/`enabled`) | Routes the 5-lane advisor scorer through Reciprocal Rank Fusion instead of the legacy weighted blend. Default OFF, so set an enabled value to opt in. | `mcp-server/lib/scorer/fusion.ts` |
-| `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` | `false` | boolean (opt-in: `true`/`1`/`yes`/`on`/`enabled`) | Caps the advisor's recommendation of its own skill on a read-only explainer prompt. Default OFF, so set an enabled value to opt in. | `mcp-server/lib/scorer/fusion.ts` |
 | `SPECKIT_METRICS_ENABLED` | unset (OFF) | boolean (`'true'`) | Enables advisor metrics emission. Default OFF, so the emit path runs only when set to `true`. | `mcp-server/lib/metrics.ts` |
 | `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED` | unset (OFF) | boolean (`1`/`true`) | Enables shadow-delta collection at the default path. Setting `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` alone also enables it. | `mcp-server/lib/shadow/shadow-sink.ts` |
 | `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` | unset | string (path, under workspace root) | Override path for the shadow-delta sink. Setting this enables shadow-delta collection on its own. | `mcp-server/lib/shadow/shadow-sink.ts` |
@@ -747,30 +358,21 @@ Detailed operator guidance lives in `.opencode/hooks/goal/goal-plugin.md`.
 
 ---
 
-## CLI FRONT DOOR (DUAL-STACK)
+## CLI FRONT DOOR
 
+The spec-memory CLI (`mcp-server/spec-memory-cli.ts`) and its `.opencode/bin/spec-memory.cjs` shim were removed with the memory engine, taking `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`, `SPECKIT_SPEC_MEMORY_CLI_PROMPT_TIME`, `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE` and the `--session-id` flag with them. What is left is the skill-advisor CLI, which is not this package's.
 
-Warm-only and prompt-time flags accept `1`, `true`, `yes` or `on`. When any of them is set, the CLI defaults to `--warm-only`: it probes the daemon socket and exits `75` instead of cold-spawning the launcher, which is the contract prompt-time hooks rely on. `--no-warm-only` on the command line overrides the env default. Without warm-only, a cold daemon is auto-spawned through the matching `mk-*-launcher.cjs`.
-
-Spec-memory CLI also accepts `--session-id ID`. The CLI injects it as `sessionId` or `session_id` only when the selected tool schema supports that field, preserving explicit JSON/per-parameter values when already supplied.
-
-| CLI flag | Default | Description | Source |
-|----------|---------|-------------|--------|
-| `--session-id ID` | (unset) | Supplies a shared session identifier to tools that accept session continuity or session-scoped telemetry. | `mcp-server/spec-memory-cli.ts` |
+Warm-only and prompt-time flags accept `1`, `true`, `yes` or `on`. When any of them is set, the CLI defaults to `--warm-only`: it probes the daemon socket and exits `75` instead of cold-spawning the launcher, which is the contract prompt-time hooks rely on. `--no-warm-only` on the command line overrides the env default. Without warm-only, a cold daemon is auto-spawned through the matching launcher.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
-| `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY` | unset (off) | flag | Default the spec-memory CLI to warm-only (probe, never cold-spawn, exit `75` when the daemon is down). | `mcp-server/spec-memory-cli.ts` |
-| `SPECKIT_SPEC_MEMORY_CLI_PROMPT_TIME` | unset (off) | flag | Marks the spec-memory CLI invocation as prompt-time, which implies warm-only. | `mcp-server/spec-memory-cli.ts` |
 | `SYSTEM_SKILL_ADVISOR_CLI_WARM_ONLY` | unset (off) | flag | Default the skill-advisor CLI to warm-only. Alias: `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY`. | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` |
 | `SYSTEM_SKILL_ADVISOR_CLI_PROMPT_TIME` | unset (off) | flag | Marks the skill-advisor CLI invocation as prompt-time, which implies warm-only. Alias: `SPECKIT_SKILL_ADVISOR_CLI_PROMPT_TIME`. | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` |
-| `SPECKIT_CLI_PROMPT_TIME` | unset (off) | flag | Cross-CLI prompt-time marker honored by all three CLIs, which implies warm-only. | all three `*-cli.ts` entrypoints |
-| `OPENCODE_PROMPT_TIME` / `OPENCODE_PROMPT_TIME` / `CLAUDE_CODE_PROMPT_TIME` | unset (off) | flag | Runtime-set prompt-time markers. Any of them implies warm-only across all three CLIs, so a hook environment can flag prompt time once for the whole stack. | all three `*-cli.ts` entrypoints |
-| `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE` | unset (off) | boolean (`"1"`) | Dev override for the spec-memory shim's dist-freshness guard (skips the exit-`69` stale check). | `.opencode/bin/spec-memory.cjs` |
-| `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` | unset (off) | boolean (`"1"`) | Dev override for the skill-advisor shim's dist-freshness guard. Alias: `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE`. | `.opencode/bin/skill-advisor.cjs` |
+| `SPECKIT_CLI_PROMPT_TIME` | unset (off) | flag | Cross-CLI prompt-time marker, which implies warm-only. | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` |
+| `OPENCODE_PROMPT_TIME` / `CLAUDE_CODE_PROMPT_TIME` | unset (off) | flag | Runtime-set prompt-time markers. Either implies warm-only, so a hook environment can flag prompt time once for the whole stack. | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` |
+| `SYSTEM_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` | unset (off) | boolean (`"1"`) | Dev override for the skill-advisor shim's dist-freshness guard (skips the exit-`69` stale check). Alias: `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE`. | `.opencode/bin/skill-advisor.cjs` |
 | `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED` | unset (untrusted) | boolean (`"1"`) | Send skill-advisor CLI calls as trusted (equivalent to `--trusted`), required for the mutation tools `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances`. Alias: `SPECKIT_SKILL_ADVISOR_CLI_TRUSTED`. | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` |
-| `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT` | unset (fail-closed untrusted) | string (`"trusted"`) | **Daemon-side** trust default. The advisor daemon fails closed (untrusted) when a caller's transport `_meta` is absent. Setting `trusted` in the daemon's own environment restores default-trusted behavior for native MCP surfaces whose clients send no `_meta`. Set in the committed MCP registrations (`.mcp.json`, `opencode.json`, `opencode.json`), and callers cannot forge it. | `.opencode/skills/system-skill-advisor/mcp-server/advisor-server.ts` |
-| `SPECKIT_RUN_TRI_DAEMON_DRILL` | unset (skip) | boolean (`"1"`) | Opt-in gate for the tri-daemon CLI drill test that exercises all three daemon-backed CLIs together. The suite `describe.skip`s without it. | `.opencode/skills/system-skill-advisor/mcp-server/tests/tri-daemon-drill.vitest.ts` |
+| `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT` | unset (fail-closed untrusted) | string (`"trusted"`) | **Daemon-side** trust default. The advisor daemon fails closed (untrusted) when a caller's transport `_meta` is absent. Setting `trusted` in the daemon's own environment restores default-trusted behavior for native MCP surfaces whose clients send no `_meta`. Set in the committed MCP registrations, and callers cannot forge it. | `.opencode/skills/system-skill-advisor/mcp-server/advisor-server.ts` |
 
 ---
 
@@ -788,7 +390,7 @@ Cascade-probe timing overrides for the embedder auto-selection cascade. Defaults
 
 ## DEEP-LOOP RUNTIME
 
-Runtime overrides for the shared deep-loop fan-out merge. These read from the runtime/ scripts, not the memory server.
+Runtime overrides for the shared deep-loop fan-out merge, read by the deep-loop runtime scripts and never by this package.
 
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
@@ -810,59 +412,69 @@ Detection and enforcement for Task-tool dispatches to deep-loop sub-agents (Deep
 
 ---
 
-## 17. QUICK START EXAMPLES
+## 9. QUICK START EXAMPLES
 
-### Disable a Graduated Feature
+Every example below drives a variable with a live reader. The retrieval registry in Section 1 is deliberately absent: setting one of those changes nothing.
+
+### Narrow a validation run
 
 ```bash
-# Disable graph signals
-export SPECKIT_GRAPH_SIGNALS=false
-
-# Disable the quality gate
-export SPECKIT_SAVE_QUALITY_GATE=false
+# Run only two rules by id; an unknown name fails the run rather than matching nothing
+SPECKIT_RULES=GENERATED_METADATA_INTEGRITY,STATUS_CROSS_DOC_CONSISTENCY \
+  bash scripts/spec/validate.sh specs/<track>/<packet> --strict
 ```
 
-### Enable an Opt-in Feature
+### Relax an enforcing validation gate
 
 ```bash
-# Enable ablation studies
-export SPECKIT_ABLATION=true
+# Fall back to advisory-only for one run
+export SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE=false
+export SPECKIT_STATUS_CROSS_DOC_ENFORCE=false
+export SPECKIT_CHILD_DRIFT_ENFORCE=false
 
-# Enable extended telemetry
-export SPECKIT_EXTENDED_TELEMETRY=true
-
-# Enable adaptive roadmap capability metadata
-export SPECKIT_MEMORY_ADAPTIVE_RANKING=true
+# Report instead of failing on a tree that has not been restamped
+export SPECKIT_GENERATED_METADATA_GRANDFATHER=true
 ```
 
-### Tune Numeric Parameters
+### Turn on an opt-in validation check
 
 ```bash
-# Set aggressive graph calibration
-export SPECKIT_CALIBRATION_PROFILE_NAME=aggressive
-
-# Custom graph weight cap
-export SPECKIT_GRAPH_WEIGHT_CAP=0.20
-
-# Increase RRF smoothing
-export SPECKIT_RRF_K=80
-
-# Lower recency fusion impact
-export SPECKIT_RECENCY_FUSION_WEIGHT=0.03
-export SPECKIT_RECENCY_FUSION_CAP=0.05
+# Freshness scan, then promote its stale findings from warning to error
+export SPECKIT_COMPLETION_FRESHNESS=true
+export SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true
 ```
 
-### Reduce Feature Surface for Debugging
+### Point the engine at a non-default tree
 
 ```bash
-# Minimal config: disable most graduated features
-export SPECKIT_GRAPH_UNIFIED=false
-export SPECKIT_COMMUNITY_DETECTION=false
-export SPECKIT_ENTITY_LINKING=false
-export SPECKIT_HYDE=false
-export SPECKIT_LLM_REFORMULATION=false
+# Specs root used when a spec folder is not directly under the working directory
+export SPECKIT_SPECS_DIR=/path/to/specs
+
+# Database directory for resolveDatabasePaths(); must be inside cwd, $HOME, or the temp dir
+export SPECKIT_DB_DIR=/path/to/db
+```
+
+### Bring up local HF embeddings
+
+```bash
+# Since the decommission this is the only thing that arms a model-server spawner
+export SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1
+
+# Short socket directory; required on macOS to stay under the 104-char sun_path limit
+export SPECKIT_IPC_SOCKET_DIR=/tmp/system-hf-embed
+```
+
+### Diagnose a hook or resolver
+
+```bash
+# Log the underlying cause when the level-contract resolver falls back
+export SPECKIT_VERBOSE_RESOLVER=1
+
+# Disable one hook concern, or all of them
+export SYSTEM_SKILL_ADVISOR_DISABLED=1
+export SYSTEM_HOOKS_DISABLED=1
 ```
 
 ---
 
-*Generated from source code analysis. Last updated: 2026-07-10.*
+*Generated from source code analysis. Last updated: 2026-09-03, after the memory-engine decommission.*

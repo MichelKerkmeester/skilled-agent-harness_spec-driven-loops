@@ -24,7 +24,6 @@ import {
   repairStaleDescriptions,
 } from '../lib/search/folder-discovery';
 import type { DescriptionCache, PerFolderDescription } from '../lib/search/folder-discovery';
-import { isFolderDiscoveryEnabled } from '../lib/search/search-flags';
 
 /* --- HELPER: env var backup/restore --- */
 
@@ -112,23 +111,7 @@ function runConcurrentDescriptionSave(
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   1. Feature Flag
-   ═══════════════════════════════════════════════════════════════ */
-
-describe('PI-B3: Feature flag', () => {
-  it('T046-01: isFolderDiscoveryEnabled returns true by default (graduated flag)', () => {
-    delete process.env.SPECKIT_FOLDER_DISCOVERY;
-    expect(isFolderDiscoveryEnabled()).toBe(true);
-  });
-
-  it('T046-02: isFolderDiscoveryEnabled returns true when set', () => {
-    process.env.SPECKIT_FOLDER_DISCOVERY = 'true';
-    expect(isFolderDiscoveryEnabled()).toBe(true);
-  });
-});
-
-/* ═══════════════════════════════════════════════════════════════
-   2. getSpecsBasePaths
+   1. getSpecsBasePaths
    ═══════════════════════════════════════════════════════════════ */
 
 describe('PI-B3: getSpecsBasePaths', () => {
@@ -227,7 +210,7 @@ describe('PI-B3: getSpecsBasePaths', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   3. isCacheStale
+   2. isCacheStale
    ═══════════════════════════════════════════════════════════════ */
 
 describe('PI-B3: isCacheStale', () => {
@@ -439,7 +422,7 @@ describe('PI-B3: isCacheStale', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   4. ensureDescriptionCache (CHK-PI-B3-001)
+   3. ensureDescriptionCache (CHK-PI-B3-001)
    ═══════════════════════════════════════════════════════════════ */
 
 describe('CHK-PI-B3-001: ensureDescriptionCache', () => {
@@ -521,7 +504,7 @@ describe('CHK-PI-B3-001: ensureDescriptionCache', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   5. discoverSpecFolder (CHK-PI-B3-002 / CHK-PI-B3-004)
+   4. discoverSpecFolder (CHK-PI-B3-002 / CHK-PI-B3-004)
    ═══════════════════════════════════════════════════════════════ */
 
 describe('CHK-PI-B3-002: discoverSpecFolder', () => {
@@ -564,7 +547,7 @@ describe('CHK-PI-B3-002: discoverSpecFolder', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   6. Graceful Degradation (CHK-PI-B3-004)
+   5. Graceful Degradation (CHK-PI-B3-004)
    ═══════════════════════════════════════════════════════════════ */
 
 describe('CHK-PI-B3-004: Graceful degradation', () => {
@@ -599,7 +582,7 @@ describe('CHK-PI-B3-004: Graceful degradation', () => {
 });
 
 /* ═══════════════════════════════════════════════════════════════
-   7. Per-Folder Description Integration
+   6. Per-Folder Description Integration
    ═══════════════════════════════════════════════════════════════ */
 
 describe('PI-B3: Per-folder description preference', () => {

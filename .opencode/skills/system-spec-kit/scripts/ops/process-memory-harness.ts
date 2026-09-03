@@ -85,19 +85,10 @@ export interface HarnessSnapshot {
 
 export type Inventory = HarnessSnapshot;
 
+// No project daemon is registered here. A rule earns a row only once a daemon
+// exists that this repository both starts and can prove it owns; callers that
+// need one for a bounded scope pass their own set through `options.rules`.
 export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
-  {
-    id: 'spec-memory-launcher',
-    pattern: /system-spec-memory-launcher\.cjs/,
-    role: 'project-daemon',
-    reason: 'Spec Kit Memory launcher process',
-  },
-  {
-    id: 'spec-memory-server',
-    pattern: /system-spec-kit\/mcp-server\/dist\/context-server\.js/,
-    role: 'project-daemon',
-    reason: 'Spec Kit Memory MCP server process',
-  },
   {
     id: 'ollama-serve',
     pattern: /\/ollama\s+serve(?:\s|$)/,
@@ -108,7 +99,6 @@ export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
 
 const KNOWN_PROJECT_OWNER_MARKERS = [
   '.opencode/skills/system-spec-kit',
-  'system-spec-memory-launcher.cjs',
   'SPECKIT_OWNER_TOKEN=',
   'SPECKIT_PROCESS_OWNER=',
   'SPECKIT_PROJECT_ROOT=',
@@ -475,8 +465,8 @@ export function syntheticFixtureSnapshot(): HarnessSnapshot {
  1000     1 S     5000 opencode
  1001  1000 S     4000 node synthetic-child.js
  1002  1001 S     3000 node synthetic-grandchild.js
- 2002     1 S    18000 /opt/homebrew/bin/node .opencode/bin/system-spec-memory-launcher.cjs
- 2003     1 S    12000 /opt/homebrew/bin/node .opencode/bin/system-spec-memory-launcher.cjs
+ 2002     1 S    18000 /opt/homebrew/bin/node .opencode/skills/system-spec-kit/scripts/dist/ops/synthetic-daemon.js
+ 2003     1 S    12000 /opt/homebrew/bin/node .opencode/skills/system-spec-kit/scripts/dist/ops/synthetic-daemon.js
  4000     1 S    24000 /opt/homebrew/opt/ollama/bin/ollama serve
  5000   918 Z        0 <defunct>
 `;
@@ -541,7 +531,7 @@ USAGE:
   node scripts/dist/ops/process-memory-harness.js fixture [--pretty]
 
 COMMANDS:
-  snapshot   Capture ps/vm_stat/sysctl evidence and classify project daemons.
+  snapshot   Capture ps/vm_stat/sysctl evidence and classify processes by registered rule.
   fixture    Emit deterministic synthetic child/grandchild, stale lock, and vm_stat fixture evidence.
 
 NOTES:

@@ -25,7 +25,7 @@ trigger_phrases:
 | Drill execution | `runbook.sh drill <class|all> --scenario <success|escalate>` | Success output or escalation JSON |
 | Healer execution | Failure class plus retry options | Deterministic detect, repair, and verify sequence |
 
-Supported classes are `index-drift`, `session-ambiguity`, `ledger-mismatch`, and `telemetry-drift`.
+Supported classes are `session-ambiguity` and `telemetry-drift`.
 
 ---
 
@@ -37,7 +37,7 @@ Supported classes are `index-drift`, `session-ambiguity`, `ledger-mismatch`, and
 - `heal-*.sh` scripts run class-specific detect, repair, and verify flows.
 - `ops-common.sh` provides shared retry, logging, and escalation helpers.
 - `process-memory-harness.ts` captures process/RSS/swap/wired snapshots used by arc 009 memory evidence.
-- `process-sweep.ts` emits dry-run plans and an ownership-checked `apply` sweep. The apply command is invoked at session start and can be disabled with `SPECKIT_SESSION_START_ORPHAN_SWEEP=off`. The apply sweep is OPT-IN: it does nothing unless `SPECKIT_SESSION_START_ORPHAN_SWEEP` is explicitly set to an on value, because an autonomous killer that runs by default is a surprise on every machine that has not configured it.
+- `process-sweep.ts` emits dry-run plans and an `apply` result. No terminable process class is registered, so `apply` signals nothing and reports `no-terminable-class-registered`; termination returns only when a class is registered together with the ownership evidence that proves the process is this repository's to kill.
 
 ---
 
@@ -47,7 +47,7 @@ Run ops validation from the repository root:
 
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh list
-bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh show index-drift
+bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh show session-ambiguity
 bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill all --scenario success --max-attempts 1
 python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts/ops
 ```
@@ -59,13 +59,11 @@ python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignmen
 | File | Purpose |
 | --- | --- |
 | `ops-common.sh` | Shared retry, logging, option parsing, and escalation helpers |
-| `heal-index-drift.sh` | Remediation workflow for index drift failures |
 | `heal-session-ambiguity.sh` | Remediation workflow for session ambiguity failures |
-| `heal-ledger-mismatch.sh` | Remediation workflow for ledger mismatch failures |
 | `heal-telemetry-drift.sh` | Remediation workflow for telemetry drift failures |
 | `runbook.sh` | Class listing, runbook display, and drill orchestration |
 | `process-memory-harness.ts` | Process inventory, memory snapshot and exact-identity classification helper |
-| `process-sweep.ts` | Dry-run planner plus an apply path that signals only aged, exactly owned orphan launchers with no live parent or connected socket peer |
+| `process-sweep.ts` | Dry-run planner plus a report-only apply path; it signals nothing while no terminable class is registered |
 
 Arc 009 lifecycle helper map:
 

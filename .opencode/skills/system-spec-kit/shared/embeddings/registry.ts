@@ -1,13 +1,12 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedders — registry (shared contract surface)
 // ───────────────────────────────────────────────────────────────
-// Canonical MANIFESTS + factory functions shared by system-spec-memory and
-// skill-advisor. Both skills' local `mcp-server/lib/embedders/registry.ts`
-// re-export from here.
+// Canonical MANIFESTS + factory functions for the shared embedding stack owned
+// by the skill advisor. A consumer's local `mcp-server/lib/embedders/registry.ts`
+// re-exports from here.
 //
-// Promoted from system-spec-memory's mcp-server/lib/embedders/registry.ts.
-// Text-tuned embedder manifests are intentionally kept
-// separate from future code-tuned consumers.
+// Text-tuned embedder manifests are intentionally kept separate from future
+// code-tuned consumers.
 // ───────────────────────────────────────────────────────────────
 
 import type { EmbedderAdapter } from './adapter.js';

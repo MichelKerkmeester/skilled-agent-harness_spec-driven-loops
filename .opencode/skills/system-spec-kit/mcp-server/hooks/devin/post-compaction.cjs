@@ -10,12 +10,11 @@
 // deliberately emits no stdout (the cache is delivered later via a synthesized
 // SessionStart(source=compact)). Devin's PostCompaction fires AFTER compaction
 // with only session_id and a possibly-null summary -- no transcript path, no
-// trigger, no guaranteed follow-up event to defer to. The 5-step recovery chain
-// below (retain summary -> rehydrate spec-folder continuity -> bounded
-// memory_context(mode=resume) fallback -> provenance/length filtering -> emit
-// additionalContext directly) is designed against that real constraint, not
-// assumed from the Claude/Codex shape. FAILS OPEN -- any missing payload or
-// internal error emits nothing and exits 0.
+// trigger, no guaranteed follow-up event to defer to. The recovery chain below
+// (retain summary -> rehydrate spec-folder continuity -> provenance/length
+// filtering -> emit additionalContext directly) is designed against that real
+// constraint, not assumed from the Claude/Codex shape. FAILS OPEN -- any
+// missing payload or internal error emits nothing and exits 0.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -33,7 +32,6 @@ const { tmpdir } = require('node:os');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const MAX_CONTEXT_BYTES = 4096;
-const MEMORY_CONTEXT_TIMEOUT_MS = 2500;
 const BOUNDARY_TIMEOUT_MS = 750;
 
 function sessionLifecycleHookEnabled() {
@@ -96,9 +94,6 @@ function readLastSpecFolder(cwd, sessionId) {
   }
 }
 
-// Step 3: bounded CLI fallback to the Spec Memory daemon's resume-mode context,
-// used only when `summary` is null/empty. Never throws -- any failure (daemon
-// cold, timeout, malformed JSON) returns null and the chain continues without it.
 function findProjectRoot(startDir) {
   let current = startDir;
   for (let depth = 0; depth < 14; depth += 1) {
@@ -138,31 +133,6 @@ function notifyLifecycleBoundary(startDir, sessionId) {
   }
 }
 
-function boundedMemoryContextResume(projectDir) {
-  try {
-    const binPath = join(projectDir, '.opencode', 'bin', 'spec-memory.cjs');
-    const raw = execFileSync(
-      process.execPath,
-      [
-        binPath,
-        'memory_context',
-        '--json',
-        JSON.stringify({ input: 'resume previous work after compaction', mode: 'resume' }),
-        '--format',
-        'json',
-        '--timeout-ms',
-        String(MEMORY_CONTEXT_TIMEOUT_MS),
-      ],
-      { cwd: projectDir, timeout: MEMORY_CONTEXT_TIMEOUT_MS + 500, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] },
-    );
-    const parsed = JSON.parse(raw);
-    const text = parsed?.data?.summary || parsed?.summary || parsed?.data?.context || null;
-    return typeof text === 'string' && text.trim() ? text.trim() : null;
-  } catch (_) {
-    return null;
-  }
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
@@ -197,16 +167,9 @@ async function main() {
     if (specFolder) sections.push(`## Active Spec Folder\n${specFolder}`);
   }
 
-  // Step 3: bounded memory_context(mode=resume) fallback, only when summary
-  // was null/empty -- this is a fallback, not a duplicate of step 1.
-  if (!summary) {
-    const resumeContext = boundedMemoryContextResume(projectDir);
-    if (resumeContext) sections.push(`## Resume Context (fallback)\n${resumeContext}`);
-  }
-
   if (sections.length === 0) return emit(null);
 
-  // Step 4 + 5: sanitize the composed sections, then emit directly.
+  // Step 3 + 4: sanitize the composed sections, then emit directly.
   return emit(sanitizeForInjection(sections.join('\n\n')));
 }
 

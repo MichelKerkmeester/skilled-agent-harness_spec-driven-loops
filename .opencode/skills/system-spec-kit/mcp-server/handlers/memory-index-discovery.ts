@@ -7,7 +7,14 @@
 import fs from 'fs';
 import path from 'path';
 
-import { toErrorMessage } from '../utils/index.js';
+/**
+ * Local rather than shared: the shared formatter sits beside the database
+ * helpers, and importing it would make spec-folder discovery — which only
+ * walks the filesystem — depend on the whole storage layer.
+ */
+function toErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
 import {
   extractSpecFolderFromGraphMetadataPath,
   GRAPH_METADATA_FILENAME,

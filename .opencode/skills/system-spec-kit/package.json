@@ -2,7 +2,7 @@
   "name": "system-spec-kit",
   "version": "1.7.2",
   "private": true,
-  "description": "Unified workspace for Semantic Memory MCP server and CLI tools",
+  "description": "Unified workspace for the Spec Kit engine and its CLI tools",
   "workspaces": [
     "shared",
     "mcp-server",
@@ -12,7 +12,6 @@
     "node": ">=20.11.0"
   },
   "scripts": {
-    "start": "npm run start --workspace=@spec-kit/mcp-server",
     "build": "tsc --build",
     "typecheck": "npm run --workspaces=false typecheck:root",
     "typecheck:root": "tsc -p shared/tsconfig.json && tsc --noEmit --composite false -p mcp-server/tsconfig.json && tsc --noEmit --composite false -p scripts/tsconfig.json",

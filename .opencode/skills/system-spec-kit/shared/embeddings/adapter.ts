@@ -1,16 +1,14 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedders — adapter interface (shared contract surface)
 // ───────────────────────────────────────────────────────────────
-// Canonical EmbedderAdapter contract shared by system-spec-memory and
-// skill-advisor. Both skills' local `mcp-server/lib/embedders/adapter.ts`
-// re-export from here.
+// Canonical EmbedderAdapter contract for the shared embedding stack owned by
+// the skill advisor. A consumer's local `mcp-server/lib/embedders/adapter.ts`
+// re-exports from here instead of keeping its own copy of the interface, so the
+// contract cannot drift per consumer.
 //
-// Promoted from system-spec-memory's mcp-server/lib/embedders/adapter.ts.
-// The shared
-// interface adopts skill-advisor's wider surface (optional
-// `options?: EmbedderOptions` parameter) because it is strictly
-// backward-compatible with system-spec-memory's narrower interface and
-// preserves the query-vs-document hint at the type level.
+// The interface carries the wider surface (an optional `options?:
+// EmbedderOptions` parameter) so the query-versus-document hint survives at the
+// type level rather than being reconstructed by each caller.
 // ───────────────────────────────────────────────────────────────
 
 import type { BackendKind } from './types.js';
@@ -25,8 +23,8 @@ export interface EmbedderOptions {
 
 /**
  * The contract every embedder backend honors. The retrieval pipeline
- * (hybrid-search, memory_search, memory_context, semantic-shadow scoring)
- * calls `embed()` and doesn't care which backend is underneath.
+ * (hybrid search and semantic-shadow scoring) calls `embed()` and doesn't care
+ * which backend is underneath.
  *
  * Implementations live in `./adapters/<backend>.ts`. The factory in
  * `./registry.ts` returns the right adapter for a given name.
@@ -66,7 +64,8 @@ export interface EmbedderAdapter {
   /**
    * Probe whether the backend is reachable and the model is loaded.
    * Returns `true` if `embed()` would currently succeed for a typical
-   * input. Used by `embedder_list` MCP tool.
+   * input, so a caller can report or skip an unavailable backend instead of
+   * discovering it mid-batch.
    */
   ready(): Promise<boolean>;
 }

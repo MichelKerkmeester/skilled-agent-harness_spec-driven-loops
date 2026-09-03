@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { loadGraphMetadata } from '../../mcp-server/lib/graph/graph-metadata-parser.js';
-import { refreshGraphMetadata } from '../../mcp-server/api/indexing.js';
+import { refreshGraphMetadata } from '../../mcp-server/api/graph-refresh.js';
 
 const createdRoots = new Set<string>();
 

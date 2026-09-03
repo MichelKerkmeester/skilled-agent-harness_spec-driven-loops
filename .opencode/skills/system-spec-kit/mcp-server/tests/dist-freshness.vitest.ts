@@ -14,34 +14,6 @@ const SERVER_ROOT = dirname(__dirname);
 const LIB = join(SERVER_ROOT, 'lib');
 const DIST_LIB = join(SERVER_ROOT, 'dist', 'lib');
 
-interface CanonicalExport {
-  source: string;
-  dist: string;
-  markers: string[];
-}
-
-const CANONICAL: CanonicalExport[] = [
-  {
-    source: 'search/rerank/retrieval-rescue.ts',
-    dist: 'search/rerank/retrieval-rescue.js',
-    markers: ['SPECKIT_RERANK_LAYER', 'applyRetrievalRescueLayer', 'isRetrievalRescueEnabled'],
-  },
-  {
-    source: 'search/pipeline/stage2-fusion.ts',
-    dist: 'search/pipeline/stage2-fusion.js',
-    markers: ['applyRetrievalRescueLayer'],
-  },
-  {
-    source: 'embedders/registry.ts',
-    dist: 'embedders/registry.js',
-    markers: ['@spec-kit/shared/embeddings/registry.js'],
-  },
-  {
-    source: 'embedders/adapter.ts',
-    dist: 'embedders/adapter.js',
-    markers: ['EmbedderAdapter'],
-  },
-];
 
 function walkTsFiles(dir: string, out: string[] = []): string[] {
   if (!existsSync(dir)) return out;
@@ -57,33 +29,6 @@ function walkTsFiles(dir: string, out: string[] = []): string[] {
   }
   return out;
 }
-
-describe('dist freshness — canonical exports', () => {
-  for (const entry of CANONICAL) {
-    const srcPath = join(LIB, entry.source);
-    const distPath = join(DIST_LIB, entry.dist);
-
-    it(`${entry.source}: source file exists`, () => {
-      expect(existsSync(srcPath), `Missing source file: ${srcPath}`).toBe(true);
-    });
-
-    it(`${entry.source}: compiled dist file exists`, () => {
-      expect(existsSync(distPath), `Missing dist file — run 'npm run build': ${distPath}`).toBe(true);
-    });
-
-    it(`${entry.source}: all canonical markers present in dist`, () => {
-      const distContent = readFileSync(distPath, 'utf8');
-      const missing = entry.markers.filter(m => !distContent.includes(m));
-      expect(missing, `Markers missing from ${entry.dist} — run 'npm run build'. Missing: ${missing.join(', ')}`).toEqual([]);
-    });
-
-    it(`${entry.source}: dist mtime >= source mtime`, () => {
-      const srcMtime = statSync(srcPath).mtimeMs;
-      const dstMtime = statSync(distPath).mtimeMs;
-      expect(dstMtime, `Source ${entry.source} is newer than dist — run 'npm run build'`).toBeGreaterThanOrEqual(srcMtime - 1000);
-    });
-  }
-});
 
 describe('dist freshness — global walk', () => {
   it('every lib/**/*.ts has a corresponding dist/lib/**/*.js', () => {
@@ -131,43 +76,47 @@ describe('dist freshness — build cache bootstrap', () => {
     mkdirSync(join(packageRoot, 'node_modules'), { recursive: true });
     writeFileSync(join(packageRoot, 'package.json'), '{"name":"fixture"}\n');
     writeFileSync(join(packageRoot, 'tsconfig.json'), '{"compilerOptions":{}}\n');
-    writeFileSync(join(packageRoot, 'spec-memory-cli.ts'), 'export const cli = true;\n');
-    writeFileSync(join(packageRoot, 'tool-schemas.ts'), 'export const schemas = true;\n');
-    writeFileSync(join(packageRoot, 'schemas', 'memory.json'), '{"type":"object"}\n');
-    writeFileSync(join(packageRoot, 'dist', 'spec-memory-cli.js'), 'console.log("built");\n');
+    mkdirSync(join(packageRoot, 'dist', 'lib', 'validation'), { recursive: true });
+    mkdirSync(join(packageRoot, 'lib', 'validation'), { recursive: true });
+    for (const dir of ['templates', 'spec', 'graph', 'config', 'description']) {
+      mkdirSync(join(packageRoot, 'lib', dir), { recursive: true });
+      writeFileSync(join(packageRoot, 'lib', dir, 'index.ts'), `export const ${dir}Fixture = true;\n`);
+    }
+    writeFileSync(join(packageRoot, 'lib', 'validation', 'orchestrator.ts'), 'export const orchestrator = true;\n');
+    writeFileSync(join(packageRoot, 'dist', 'lib', 'validation', 'orchestrator.js'), 'console.log("built");\n');
 
     const oldTime = new Date('2026-01-01T00:00:00.000Z');
     const newTime = new Date('2026-01-02T00:00:00.000Z');
-    utimesSync(join(packageRoot, 'dist', 'spec-memory-cli.js'), oldTime, oldTime);
-    for (const source of ['package.json', 'tsconfig.json', 'spec-memory-cli.ts', 'tool-schemas.ts', join('schemas', 'memory.json')]) {
+    utimesSync(join(packageRoot, 'dist', 'lib', 'validation', 'orchestrator.js'), oldTime, oldTime);
+    for (const source of ['package.json', 'tsconfig.json', join('lib', 'validation', 'orchestrator.ts')]) {
       utimesSync(join(packageRoot, source), newTime, newTime);
     }
 
     const before = distFreshness.checkPackageFreshness('system-spec-kit/mcp-server', {
       workspaceRoot,
-      entry: 'spec-memory-cli',
+      entry: 'validation-orchestrator',
     });
     expect(before.status).toBe('stale');
 
     const cacheWrite = distFreshness.writePackageSourceHashCache('system-spec-kit/mcp-server', {
       workspaceRoot,
-      entry: 'spec-memory-cli',
+      entry: 'validation-orchestrator',
     });
     expect(cacheWrite.status).toBe('cached');
     expect(existsSync(String(cacheWrite.cachePath))).toBe(true);
 
     const after = distFreshness.checkPackageFreshness('system-spec-kit/mcp-server', {
       workspaceRoot,
-      entry: 'spec-memory-cli',
+      entry: 'validation-orchestrator',
     });
     expect(after.status).toBe('fresh');
     expect(after).not.toHaveProperty('newestSourceMtime');
 
-    writeFileSync(join(packageRoot, 'spec-memory-cli.ts'), 'export const cli = false;\n');
-    utimesSync(join(packageRoot, 'spec-memory-cli.ts'), newTime, newTime);
+    writeFileSync(join(packageRoot, 'lib', 'validation', 'orchestrator.ts'), 'export const orchestrator = false;\n');
+    utimesSync(join(packageRoot, 'lib', 'validation', 'orchestrator.ts'), newTime, newTime);
     const stale = distFreshness.checkPackageFreshness('system-spec-kit/mcp-server', {
       workspaceRoot,
-      entry: 'spec-memory-cli',
+      entry: 'validation-orchestrator',
     });
     expect(stale.status).toBe('stale');
   });
@@ -180,31 +129,33 @@ describe('dist freshness — build cache bootstrap', () => {
     for (const dir of ['templates', 'spec', 'graph', 'config', 'description']) {
       mkdirSync(join(packageRoot, 'lib', dir), { recursive: true });
     }
-    mkdirSync(join(packageRoot, 'schemas'), { recursive: true });
+    // The 'default' entry hashes the whole package sourceCandidates list, so the
+    // fixture has to carry one file per candidate directory or the hash errors.
+    for (const dir of ['api', 'configs', 'core', 'handlers', 'hooks', 'scripts']) {
+      mkdirSync(join(packageRoot, dir), { recursive: true });
+      writeFileSync(join(packageRoot, dir, 'index.ts'), `export const ${dir}Fixture = true;\n`);
+    }
     for (const file of ['package.json', 'tsconfig.json']) {
       writeFileSync(join(packageRoot, file), '{}\n');
     }
-    writeFileSync(join(packageRoot, 'spec-memory-cli.ts'), 'export const cli = true;\n');
-    writeFileSync(join(packageRoot, 'tool-schemas.ts'), 'export const schemas = true;\n');
-    writeFileSync(join(packageRoot, 'schemas', 'memory.json'), '{"type":"object"}\n');
     writeFileSync(join(packageRoot, 'lib', 'validation', 'orchestrator.ts'), 'export const orchestrator = true;\n');
     for (const dir of ['templates', 'spec', 'graph', 'config', 'description']) {
       writeFileSync(join(packageRoot, 'lib', dir, 'index.ts'), `export const ${dir}Fixture = true;\n`);
     }
-    writeFileSync(join(packageRoot, 'dist', 'spec-memory-cli.js'), 'cli\n');
+    writeFileSync(join(packageRoot, 'dist', 'tsconfig.tsbuildinfo'), 'buildinfo\n');
     writeFileSync(join(packageRoot, 'dist', 'lib', 'validation', 'orchestrator.js'), 'orchestrator\n');
 
-    const cliCache = distFreshness.writePackageSourceHashCache('system-spec-kit/mcp-server', {
+    const defaultCache = distFreshness.writePackageSourceHashCache('system-spec-kit/mcp-server', {
       workspaceRoot,
-      entry: 'spec-memory-cli',
+      entry: 'default',
     });
     const orchestratorCache = distFreshness.writePackageSourceHashCache('system-spec-kit/mcp-server', {
       workspaceRoot,
       entry: 'validation-orchestrator',
     });
 
-    expect(cliCache.status).toBe('cached');
+    expect(defaultCache.status).toBe('cached');
     expect(orchestratorCache.status).toBe('cached');
-    expect(cliCache.cachePath).not.toBe(orchestratorCache.cachePath);
+    expect(defaultCache.cachePath).not.toBe(orchestratorCache.cachePath);
   });
 });

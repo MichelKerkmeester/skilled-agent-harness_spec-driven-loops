@@ -20,7 +20,7 @@ trigger_phrases:
 Current state:
 
 - `generate-context.ts` is the canonical context-save CLI for structured JSON, stdin, or JSON file input.
-- Maintenance scripts repair memory index scope, stale vectors, embedding state, generated entities, research metadata, and frontmatter.
+- Maintenance scripts repair research metadata and frontmatter across generated documents.
 - Quality scripts parse markdown structure, rank candidate memories, and check rendered memory output before indexing.
 - One-shot migration scripts remain in this folder only when they still need a documented invocation path.
 
@@ -67,10 +67,6 @@ scripts/memory/
 +-- rank-memories.ts                     # Candidate ranking utility
 +-- backfill-frontmatter.ts              # Bulk frontmatter normalization
 +-- backfill-research-metadata.ts        # Research metadata backfill helper
-+-- rebuild-auto-entities.ts             # Auto-entity metadata rebuild
-+-- reindex-embeddings.ts                # Full embedding reindex CLI
-+-- cleanup-orphaned-vectors.ts          # Stale vector cleanup
-+-- cleanup-index-scope-violations.ts    # Out-of-scope index cleanup
 +-- migrate-trigger-phrase-residual.ts   # Trigger phrase residual cleanup
 +-- fix-memory-h1.mjs                    # H1 format repair helper
 `-- README.md
@@ -103,14 +99,10 @@ scripts/memory/
 +-- ast-parser.ts
 +-- backfill-frontmatter.ts
 +-- backfill-research-metadata.ts
-+-- cleanup-index-scope-violations.ts
-+-- cleanup-orphaned-vectors.ts
 +-- fix-memory-h1.mjs
 +-- generate-context.ts
 +-- migrate-trigger-phrase-residual.ts
 +-- rank-memories.ts
-+-- rebuild-auto-entities.ts
-+-- reindex-embeddings.ts
 +-- validate-memory-quality.ts
 `-- README.md
 ```
@@ -127,10 +119,6 @@ scripts/memory/
 | `rank-memories.ts` | Scores and ranks memory candidates from JSON input. |
 | `backfill-frontmatter.ts` | Normalizes managed frontmatter keys across targeted markdown roots. |
 | `backfill-research-metadata.ts` | Adds or repairs metadata needed by research memory artifacts. |
-| `cleanup-index-scope-violations.ts` | Removes memory index records that do not belong in active indexed scope. |
-| `cleanup-orphaned-vectors.ts` | Removes vector rows no longer attached to active memory records. |
-| `reindex-embeddings.ts` | Forces embedding regeneration for indexed memory and spec documents. |
-| `rebuild-auto-entities.ts` | Recomputes auto-entity metadata from indexed content. |
 | `migrate-trigger-phrase-residual.ts` | Cleans residual trigger phrase metadata that no longer matches the current schema. |
 | `fix-memory-h1.mjs` | Repairs H1 formatting in older generated memory artifacts. |
 
@@ -141,7 +129,7 @@ scripts/memory/
 | Boundary | Rule |
 |---|---|
 | Inputs | Prefer structured JSON through `--stdin` or `--json`. JSON file mode is valid when the file path is session-scoped. |
-| Outputs | Write generated context artifacts, packet metadata, reports, and cleanup results. Step 11.5 only gates save-time canonical spec-doc indexing; embedding/vector rows can also be written by the Step 12 retry queue and memory maintenance CLIs. |
+| Outputs | Write generated context artifacts, packet metadata, reports, and cleanup results. |
 | Ownership | This folder owns CLI surfaces for memory save and maintenance. MCP tool schemas, database connection internals, templates, and spec-folder authoring rules live outside this folder. |
 
 Canonical save flow:
@@ -197,10 +185,7 @@ Run compiled commands from the repository root after the TypeScript build has pr
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/validate-memory-quality.js <file>` | CLI | Check rendered memory quality before accepting or indexing output. |
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive` | CLI | Preview frontmatter normalization changes. |
 | `node .opencode/skills/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --apply --include-archive --report /tmp/frontmatter-apply.json` | CLI | Apply frontmatter normalization and write a report. |
-| `node .opencode/skills/system-spec-kit/scripts/dist/memory/reindex-embeddings.js` | CLI | Rebuild embeddings for indexed memory content. |
-| `node .opencode/skills/system-spec-kit/scripts/dist/memory/cleanup-orphaned-vectors.js` | CLI | Remove stale vectors. |
-| `node .opencode/skills/system-spec-kit/scripts/dist/memory/cleanup-index-scope-violations.js` | CLI | Remove out-of-scope memory index records. |
-| `node .opencode/skills/system-spec-kit/scripts/dist/memory/rebuild-auto-entities.js` | CLI | Rebuild auto-entity metadata. |
+| `node .opencode/skills/system-spec-kit/scripts/dist/memory/migrate-trigger-phrase-residual.js` | CLI | Clean residual trigger-phrase metadata that no longer matches the current schema. |
 
 ---
 

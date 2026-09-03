@@ -35,6 +35,20 @@ const { createSessionProxy, __testing } = require(proxyModulePath) as {
   __testing: ProxyTesting;
 };
 
+// The proxy deliberately owns no tool set: only the server behind it knows which of its tools are
+// safe to repeat. The skill-advisor launcher is the caller that supplies one, so its real sets are
+// read from the launcher rather than copied here, where they would drift out of sync silently.
+const advisorLauncherPath = join(repoRoot, '.opencode/bin/system-skill-advisor-launcher.cjs');
+const {
+  classifySkillAdvisorFrame,
+  SKILL_ADVISOR_REPLAYABLE_TOOL_NAMES,
+  SKILL_ADVISOR_UNSAFE_TOOL_NAMES,
+} = require(advisorLauncherPath) as {
+  classifySkillAdvisorFrame: (frame: string) => boolean;
+  SKILL_ADVISOR_REPLAYABLE_TOOL_NAMES: Set<string>;
+  SKILL_ADVISOR_UNSAFE_TOOL_NAMES: Set<string>;
+};
+
 class FakeInput extends EventEmitter {
   public paused = false;
 
@@ -153,12 +167,13 @@ async function driveToRehandshake(
   const output = new FakeOutput();
   const sockets: FakeSocket[] = [];
   const initialize = frame({ jsonrpc: '2.0', id: 'init', method: 'initialize', params: {} });
-  const request = toolCall('survivor', 'memory_search');
+  const request = toolCall('survivor', 'advisor_recommend');
   const proxy = createSessionProxy({
     socketPath: 'tcp://127.0.0.1:65535',
     stdin: input,
     stdout: output,
     probe: aliveProbe,
+    classify: classifySkillAdvisorFrame,
     connect: createConnectedSocket(sockets, (socket, index) => {
       if (index !== 1) return;
       socket.onWrite = (chunk) => {
@@ -195,7 +210,7 @@ describe('launcher session proxy frame engine', () => {
   it('splits coalesced client frames and caches initialize by method', () => {
     const initialize = frame({ jsonrpc: '2.0', id: 1, method: 'initialize', params: {} });
     const initialized = frame({ jsonrpc: '2.0', method: 'notifications/initialized' });
-    const search = toolCall(2, 'memory_search');
+    const search = toolCall(2, 'advisor_recommend');
     const frames: string[] = [];
     const tracker = __testing.createPendingRequestsTracker();
     const splitter = __testing.createFrameSplitter((line) => {
@@ -218,7 +233,7 @@ describe('launcher session proxy frame engine', () => {
     // The payload mixes CJK (3-byte) and an emoji (4-byte surrogate pair) so a naive
     // per-chunk chunk.toString('utf8') would drop replacement chars at every split.
     const payload = '日本語テスト 😀 mixed 한국어';
-    const frameValue = frame({ jsonrpc: '2.0', id: 'mb', method: 'tools/call', params: { name: 'memory_search', text: payload } });
+    const frameValue = frame({ jsonrpc: '2.0', id: 'mb', method: 'tools/call', params: { name: 'advisor_recommend', text: payload } });
     const frameBytes = Buffer.from(`${frameValue}\n`, 'utf8');
 
     const received: string[] = [];
@@ -239,8 +254,8 @@ describe('launcher session proxy frame engine', () => {
   });
 
   it('discards a truncated backend frame on close without clearing the pending request', () => {
-    const tracker = __testing.createPendingRequestsTracker();
-    const request = toolCall(7, 'memory_search');
+    const tracker = __testing.createPendingRequestsTracker(classifySkillAdvisorFrame);
+    const request = toolCall(7, 'advisor_recommend');
     const emitted: string[] = [];
     const backendSplitter = __testing.createFrameSplitter((line) => {
       tracker.handleBackendFrame(line);
@@ -255,52 +270,36 @@ describe('launcher session proxy frame engine', () => {
     expect(tracker.pendingRequests.get(7)).toMatchObject({ frame: request, replayable: true });
   });
 
-  it('classifies replayable and unsafe calls with default-deny for unknown tools', () => {
-    const replayableTools = [
-      'memory_search',
-      'memory_context',
-      'memory_match_triggers',
-      'memory_quick_search',
-      'memory_save',
-      'session_bootstrap',
-      'session_health',
-      'session_resume',
-      'session_status',
-      'memory_stats',
-      'checkpoint_list',
-      'embedder_health',
-      'memory_status',
-    ];
-    const unsafeTools = [
-      'memory_delete',
-      'memory_bulk_delete',
-      'memory_update',
-      'checkpoint_restore',
-      'checkpoint_delete',
-      'embedder_set',
-      'memory_retention_sweep',
-      'memory_ingest_start',
-      'memory_ingest_cancel',
-    ];
-
-    for (const name of replayableTools) {
-      expect(__testing.classifyFrame(toolCall(name, name))).toBe(true);
-    }
-    for (const name of unsafeTools) {
+  it('replays protocol methods but denies every tools/call when no caller supplies a tool set', () => {
+    // The fail-safe default: an unrecognized tool is unsafe to repeat, so a caller that declares
+    // nothing replays the handshake only. Even a tool the advisor considers replayable is denied
+    // here, because the default classifier has not been told about it.
+    for (const name of [...SKILL_ADVISOR_REPLAYABLE_TOOL_NAMES, 'unlisted_mutator', 'something_status']) {
       expect(__testing.classifyFrame(toolCall(name, name))).toBe(false);
     }
 
-    expect(__testing.classifyFrame(toolCall('unknown', 'unlisted_mutator'))).toBe(false);
-    expect(__testing.classifyFrame(toolCall('unknown-status', 'something_status'))).toBe(false);
-    expect(__testing.classifyFrame(toolCall('unknown-session', 'session_delete'))).toBe(false);
     expect(__testing.classifyFrame(frame({ jsonrpc: '2.0', id: 1, method: 'initialize' }))).toBe(true);
     expect(__testing.classifyFrame(frame({ jsonrpc: '2.0', id: 2, method: 'ping' }))).toBe(true);
     expect(__testing.classifyFrame(frame({ jsonrpc: '2.0', method: 'notifications/initialized' }))).toBe(true);
   });
 
+  it('replays the caller-declared read tools and denies its mutators and unknown tools', () => {
+    for (const name of SKILL_ADVISOR_REPLAYABLE_TOOL_NAMES) {
+      expect(classifySkillAdvisorFrame(toolCall(name, name))).toBe(true);
+    }
+    for (const name of SKILL_ADVISOR_UNSAFE_TOOL_NAMES) {
+      expect(classifySkillAdvisorFrame(toolCall(name, name))).toBe(false);
+    }
+
+    expect(classifySkillAdvisorFrame(toolCall('unknown', 'unlisted_mutator'))).toBe(false);
+    expect(classifySkillAdvisorFrame(toolCall('unknown-status', 'something_status'))).toBe(false);
+    expect(classifySkillAdvisorFrame(frame({ jsonrpc: '2.0', id: 1, method: 'initialize' }))).toBe(true);
+    expect(classifySkillAdvisorFrame(frame({ jsonrpc: '2.0', method: 'notifications/initialized' }))).toBe(true);
+  });
+
   it('tracks pending requests and clears only matching result or error frames', () => {
-    const tracker = __testing.createPendingRequestsTracker();
-    const request = toolCall('req-1', 'memory_search');
+    const tracker = __testing.createPendingRequestsTracker(classifySkillAdvisorFrame);
+    const request = toolCall('req-1', 'advisor_recommend');
 
     tracker.handleClientFrame(request);
     tracker.handleClientFrame(frame({ jsonrpc: '2.0', method: 'notifications/initialized' }));
@@ -314,7 +313,7 @@ describe('launcher session proxy frame engine', () => {
     tracker.handleBackendFrame(frame({ jsonrpc: '2.0', id: 'req-1', result: { ok: true } }));
     expect(tracker.pendingRequests.has('req-1')).toBe(false);
 
-    tracker.handleClientFrame(toolCall('req-2', 'memory_context'));
+    tracker.handleClientFrame(toolCall('req-2', 'advisor_status'));
     tracker.handleBackendFrame(frame({ jsonrpc: '2.0', id: 'req-2', error: { code: -1, message: 'failed' } }));
     expect(tracker.pendingRequests.has('req-2')).toBe(false);
   });
@@ -410,7 +409,7 @@ describe('launcher session proxy frame engine', () => {
 
     await proxy.start();
     sockets[0]?.emit('close');
-    input.send(toolCall('gap-request', 'memory_search'));
+    input.send(toolCall('gap-request', 'advisor_recommend'));
 
     await vi.advanceTimersByTimeAsync(100);
     await flushMicrotasks();
@@ -458,7 +457,7 @@ describe('launcher session proxy frame engine', () => {
 
     await proxy.start();
     // Leave a pending request so give-up has a frame to enqueue (triggering the deferred stop()).
-    input.send(toolCall('stuck', 'memory_search'));
+    input.send(toolCall('stuck', 'advisor_recommend'));
     await flushMicrotasks();
     sockets[0]?.emit('close');
 
@@ -612,12 +611,13 @@ describe('launcher session proxy frame engine', () => {
     const input = new FakeInput();
     const output = new FakeOutput();
     const sockets: FakeSocket[] = [];
-    const request = toolCall('replay-me', 'memory_search');
+    const request = toolCall('replay-me', 'advisor_recommend');
     const proxy = createSessionProxy({
       socketPath: 'tcp://127.0.0.1:65535',
       stdin: input,
       stdout: output,
       probe: aliveProbe,
+      classify: classifySkillAdvisorFrame,
       connect: createConnectedSocket(sockets, (socket, index) => {
         if (index !== 1) return;
         socket.onWrite = (chunk) => {
@@ -647,7 +647,7 @@ describe('launcher session proxy frame engine', () => {
     const output = new FakeOutput();
     const sockets: FakeSocket[] = [];
     const connectFreshSocket: Array<() => void> = [];
-    const request = toolCall('stdin-ended', 'memory_search');
+    const request = toolCall('stdin-ended', 'advisor_recommend');
     const response = frame({ jsonrpc: '2.0', id: 'stdin-ended', result: { ok: true } });
     const proxy = createSessionProxy({
       socketPath: 'tcp://127.0.0.1:65535',

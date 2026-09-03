@@ -161,12 +161,12 @@ describe('Architecture Boundary Enforcement', () => {
     const root = createFixtureRoot();
 
     writeFixtureFile(root, 'mcp-server/scripts/barrel-export.ts', [
-      "export * from '../../scripts/dist/memory/reindex-embeddings.js';",
+      "export * from '../../scripts/dist/memory/generate-context.js';",
     ].join('\n'));
 
     writeFixtureFile(root, 'mcp-server/scripts/no-spawn-usage.ts', [
       "import { spawnSync } from 'child_process';",
-      "import '../../scripts/dist/memory/reindex-embeddings.js';",
+      "import '../../scripts/dist/memory/generate-context.js';",
       'const forwarded = spawnSync;',
       'void forwarded;',
     ].join('\n'));
@@ -189,7 +189,7 @@ describe('Architecture Boundary Enforcement', () => {
     writeFixtureFile(root, 'mcp-server/scripts/valid-wrapper.ts', [
       "import { spawnSync } from 'child_process';",
       "import path from 'path';",
-      "const targetScript = path.resolve(__dirname, '../../scripts/dist/memory/reindex-embeddings.js');",
+      "const targetScript = path.resolve(__dirname, '../../scripts/dist/memory/generate-context.js');",
       "const result = spawnSync(process.execPath, [targetScript, ...process.argv.slice(2)], { stdio: 'inherit' });",
       "if (typeof result.status === 'number') {",
       '  process.exit(result.status);',
@@ -213,7 +213,7 @@ describe('Architecture Boundary Enforcement', () => {
     writeFixtureFile(root, 'mcp-server/scripts/valid-wrapper.ts', [
       "import { spawnSync } from 'child_process';",
       "import path from 'path';",
-      "const targetScript = path.resolve(__dirname, '../../scripts/dist/memory/reindex-embeddings.js');",
+      "const targetScript = path.resolve(__dirname, '../../scripts/dist/memory/generate-context.js');",
       "const result = spawnSync(process.execPath, [targetScript, ...process.argv.slice(2)], { stdio: 'inherit' });",
       "if (typeof result.status === 'number') {",
       '  process.exit(result.status);',

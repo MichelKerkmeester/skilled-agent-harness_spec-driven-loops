@@ -38,4 +38,4 @@ Current state:
 ## 4. RELATED RESOURCES
 
 - [`../README.md`](../README.md)
-- [`../tools/`](../tools/)
+- [`../configs/`](../configs/)

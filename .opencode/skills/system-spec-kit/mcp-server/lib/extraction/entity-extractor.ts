@@ -1,18 +1,34 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Entity Extractor
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Auto entity extraction
-// Feature-flagged via SPECKIT_AUTO_ENTITIES
+// Feature catalog: Auto entity extraction // hygiene-ok
 // Pure-TS rule-based extraction, zero npm dependencies.
 import fs from 'node:fs';
 
 import { isEntityDenied } from './entity-denylist.js';
-import { normalizeEntityName, computeEdgeDensity } from '../search/entity-linker.js';
 
 import type Database from 'better-sqlite3';
 
-// Re-export canonical versions from entity-linker for backward compatibility
-export { normalizeEntityName, computeEdgeDensity };
+/**
+ * Canonical entity-name normalization. Extraction is the only surviving owner,
+ * so the function lives here rather than in the search layer it used to share
+ * with the link-time index.
+ *
+ * @param name - Raw entity name to normalize.
+ * @returns Normalized lowercase entity name.
+ * @example
+ * ```ts
+ * normalizeEntityName('TF-IDF');
+ * // 'tf idf'
+ * ```
+ */
+export function normalizeEntityName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES

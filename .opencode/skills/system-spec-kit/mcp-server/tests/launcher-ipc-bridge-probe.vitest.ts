@@ -110,7 +110,10 @@ function createModelHealthConnect(body: Record<string, unknown>): () => FakeSock
 
 describe('launcher IPC bridge liveness probe', () => {
   afterEach(() => {
-    process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
+    // Assigning an absent original back would store the string "undefined", which resolves to a
+    // real-looking directory and hides the service's own socket path from later suites.
+    if (originalSocketDir === undefined) delete process.env.SPECKIT_IPC_SOCKET_DIR;
+    else process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
     delete process.env.SPECKIT_LEASE_PROBE_RETRIES;
     vi.useRealTimers();
     vi.restoreAllMocks();
@@ -126,7 +129,7 @@ describe('launcher IPC bridge liveness probe', () => {
     process.env.SPECKIT_IPC_SOCKET_DIR = 'tcp://127.0.0.1:65535';
     const bridge = vi.fn();
     const decision = await maybeBridgeLeaseHolder({
-      serviceName: 'system-spec-memory',
+      serviceName: 'system-skill-advisor',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       connect: createAliveConnect(),
@@ -142,7 +145,7 @@ describe('launcher IPC bridge liveness probe', () => {
     process.env.SPECKIT_IPC_SOCKET_DIR = 'tcp://127.0.0.1:65535';
     const bridge = vi.fn();
     await maybeBridgeLeaseHolder({
-      serviceName: 'system-spec-memory',
+      serviceName: 'system-skill-advisor',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       connect: createAliveConnect(),
@@ -169,7 +172,7 @@ describe('launcher IPC bridge liveness probe', () => {
     });
 
     const decision = maybeBridgeLeaseHolder({
-      serviceName: 'system-spec-memory',
+      serviceName: 'system-skill-advisor',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       connect: createAliveConnect(),
@@ -272,7 +275,7 @@ describe('launcher IPC bridge liveness probe', () => {
     const bridge = vi.fn();
 
     const decision = maybeBridgeLeaseHolder({
-      serviceName: 'system-spec-memory',
+      serviceName: 'system-skill-advisor',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       connect: createNeverConnect(),
@@ -292,7 +295,8 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
   const originalSocketScope = process.env.SPECKIT_IPC_SOCKET_SCOPE;
 
   afterEach(() => {
-    process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
+    if (originalSocketDir === undefined) delete process.env.SPECKIT_IPC_SOCKET_DIR;
+    else process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
     if (originalSocketScope === undefined) delete process.env.SPECKIT_IPC_SOCKET_SCOPE;
     else process.env.SPECKIT_IPC_SOCKET_SCOPE = originalSocketScope;
     while (tempDirs.length > 0) {
@@ -320,15 +324,14 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
     expect(secondSocket).not.toBe(firstSocket);
   });
 
-  // (1) A freshly written system-spec-memory lease now carries the owner's actual socket path.
+  // (1) A freshly written lease carries the owner's actual socket path.
   it('emits socketPath in the lease payload when the owner supplies one', () => {
     const lease = buildLeaseObject(4242, '2026-05-28T00:00:00.000Z', null, '/tmp/owner-env/daemon-ipc.sock');
     expect(lease.socketPath).toBe('/tmp/owner-env/daemon-ipc.sock');
   });
 
-  // (4) Leases without a socketPath (legacy system-spec-memory writes and every skill-advisor /
-  // code-index lease, which never records one) omit the field entirely so existing readers and
-  // the recompute fallback are unaffected.
+  // (4) Leases without a socketPath (skill-advisor and code-index leases never record one) omit
+  // the field entirely so existing readers and the recompute fallback are unaffected.
   it('omits socketPath entirely when no owner path is supplied', () => {
     const lease = buildLeaseObject(4242, '2026-05-28T00:00:00.000Z');
     expect(Object.prototype.hasOwnProperty.call(lease, 'socketPath')).toBe(false);
@@ -343,11 +346,14 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
     // Divergent recompute target: a directory with no live socket, mimicking a secondary launcher's
     // worktree env. If the bridge recomputed from this dir it would report no-bridge-socket.
     const divergentDir = tempDir('lease-divergent-');
-    delete process.env.SPECKIT_IPC_SOCKET_DIR; // force recompute to resolve from dbDir, not host env
+    // Point the recompute at the divergent directory itself, which keeps it off the shared default
+    // socket directory. That matters because a database-scoped socket refuses a stored path from
+    // another database; the next test pins that guard.
+    process.env.SPECKIT_IPC_SOCKET_DIR = divergentDir;
 
     const bridged: string[] = [];
     const decision = await maybeBridgeLeaseHolder({
-      serviceName: 'system-spec-memory',
+      serviceName: 'system-skill-advisor',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z', socketPath: storedSocket },
       loggerPrefix: 'test-launcher',
       dbDir: divergentDir,
@@ -362,6 +368,35 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
     expect(bridged).toEqual([storedSocket]);
   });
 
+  // (2b) Under the shared default socket directory the address is scoped by database, so a stored
+  // path from a different database is not the owner of this one. Trusting it would bridge a client
+  // to another database's daemon, so the scoped recompute wins even though the stored path exists.
+  it('refuses a stored socketPath that does not match the database-scoped address', async () => {
+    const foreignDir = tempDir('lease-foreign-sock-');
+    const foreignSocket = join(foreignDir, 'daemon-ipc.sock');
+    writeFileSync(foreignSocket, '');
+    const dbDir = tempDir('lease-scoped-db-');
+    process.env.SPECKIT_IPC_SOCKET_DIR = '/tmp/system-skill-advisor';
+    delete process.env.SPECKIT_IPC_SOCKET_SCOPE;
+
+    const bridged: string[] = [];
+    const decision = await maybeBridgeLeaseHolder({
+      serviceName: 'system-skill-advisor',
+      leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z', socketPath: foreignSocket },
+      loggerPrefix: 'test-launcher',
+      dbDir,
+      connect: createAliveConnect(),
+      bridge: (socketPath: string) => {
+        bridged.push(socketPath);
+      },
+      probeTimeoutMs: 100,
+    });
+
+    expect(decision).toMatchObject({ action: 'report', reason: 'no-bridge-socket' });
+    expect(decision.socketPath).toMatch(/^\/tmp\/system-skill-advisor\/[0-9a-f]{12}\/daemon-ipc\.sock$/);
+    expect(bridged).toEqual([]);
+  });
+
   // (3) A legacy lease WITHOUT socketPath still bridges via the recompute fallback.
   it('falls back to the recomputed socket path for a legacy lease without socketPath', async () => {
     const ownerDir = tempDir('lease-legacy-sock-');
@@ -372,7 +407,7 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
 
     const bridged: string[] = [];
     const decision = await maybeBridgeLeaseHolder({
-      serviceName: 'system-spec-memory',
+      serviceName: 'system-skill-advisor',
       leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
       loggerPrefix: 'test-launcher',
       dbDir: ownerDir,
@@ -387,8 +422,8 @@ describe('lease socketPath: stored owner path preferred over recomputed', () => 
     expect(bridged).toEqual([recomputedSocket]);
   });
 
-  // (4) A skill-advisor / code-index style lease (no socketPath) is unaffected: same recompute path
-  // as a legacy system-spec-memory lease, and a missing recomputed socket still reports no-bridge-socket.
+  // (4) A lease without a socketPath falls back to the recompute path, and a missing recomputed
+  // socket still reports no-bridge-socket.
   it('reports no-bridge-socket for a no-socketPath lease whose recomputed socket is absent', async () => {
     const divergentDir = tempDir('lease-advisor-');
     delete process.env.SPECKIT_IPC_SOCKET_DIR; // force recompute to resolve from dbDir, not host env
@@ -417,31 +452,29 @@ describe('socket addresses stay inside the platform limit', () => {
   // fails with EINVAL, which names neither the length nor the path.
   const SUN_PATH_LIMIT = 104;
 
-  it('keeps every service socket short enough to bind', () => {
-    for (const service of ['system-spec-memory', 'system-skill-advisor']) {
-      const socketPath = getIpcSocketPath(service, {});
-      expect(Buffer.byteLength(socketPath, 'utf8')).toBeLessThan(SUN_PATH_LIMIT);
-    }
+  it('keeps the service socket short enough to bind', () => {
+    const socketPath = getIpcSocketPath('system-skill-advisor', {});
+    expect(Buffer.byteLength(socketPath, 'utf8')).toBeLessThan(SUN_PATH_LIMIT);
   });
 
   it('relocates a directory that would overflow, and leaves a short one alone', () => {
     const longDir = `/tmp/${'d'.repeat(140)}`;
-    const relocated = resolveIpcSocketDir('system-spec-memory', { socketDir: longDir, env: {} });
+    const relocated = resolveIpcSocketDir('system-skill-advisor', { socketDir: longDir, env: {} });
     expect(relocated).not.toBe(longDir);
     expect(Buffer.byteLength(join(relocated, 'daemon-ipc.sock'), 'utf8')).toBeLessThan(SUN_PATH_LIMIT);
 
     const shortDir = '/tmp/fits-fine';
-    expect(resolveIpcSocketDir('system-spec-memory', { socketDir: shortDir, env: {} })).toBe(shortDir);
+    expect(resolveIpcSocketDir('system-skill-advisor', { socketDir: shortDir, env: {} })).toBe(shortDir);
   });
 
   it('resolves to the same address when its own answer is fed back in', () => {
-    const first = resolveIpcSocketDir('system-spec-memory', { env: {} });
-    const second = resolveIpcSocketDir('system-spec-memory', { env: { SPECKIT_IPC_SOCKET_DIR: first } });
+    const first = resolveIpcSocketDir('system-skill-advisor', { env: {} });
+    const second = resolveIpcSocketDir('system-skill-advisor', { env: { SPECKIT_IPC_SOCKET_DIR: first } });
     expect(second).toBe(first);
   });
 
   it('actually binds at the address it hands out', async () => {
-    const socketPath = getIpcSocketPath('system-spec-memory', {});
+    const socketPath = getIpcSocketPath('system-skill-advisor', {});
     mkdirSync(dirname(socketPath), { recursive: true });
     try { unlinkSync(socketPath); } catch { /* absent is the normal case */ }
     const server = net.createServer();

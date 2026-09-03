@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Rollout Policy
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Feature flag governance
+// Feature catalog: Feature flag governance // hygiene-ok
 const DEFAULT_ROLLOUT_PERCENT = 100;
 
 /** Read the global rollout percentage from SPECKIT_ROLLOUT_PERCENT (0-100, default 100).
@@ -52,7 +52,7 @@ function isIdentityInRollout(identity: string): boolean {
 
 /** Check if a feature flag is enabled. Treats undefined/missing as enabled (default ON).
  * Explicitly set 'false' or '0' to disable. Rollout gating applies when percent < 100.
- * @param flagName - Environment variable name (e.g., SPECKIT_HYDE)
+ * @param flagName - Environment variable name (e.g., SPECKIT_GENERATOR_HARDENING)
  * @param identity - Optional identity for deterministic rollout bucketing
  * @returns true if the feature is enabled for this identity
  */

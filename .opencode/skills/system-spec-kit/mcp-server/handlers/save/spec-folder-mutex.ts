@@ -8,11 +8,11 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-// Serializing saves here is what gives memory_save its atomic-save parity and
-// keeps partial-indexing hints from being lost when two saves race one folder.
+// Serializing writes here is what makes a save atomic per spec folder, so two
+// writers racing the same folder cannot interleave and lose each other's work.
 
 const SPEC_FOLDER_LOCKS = new Map<string, Promise<unknown>>();
-const LOCK_ROOT = path.join(os.tmpdir(), 'system-spec-memory-save-locks');
+const LOCK_ROOT = path.join(os.tmpdir(), 'spec-kit-save-locks');
 const LOCK_WAIT_MS = 25;
 const LOCK_TIMEOUT_MS = 30_000;
 const LOCK_STALE_MS = 5 * 60 * 1000;

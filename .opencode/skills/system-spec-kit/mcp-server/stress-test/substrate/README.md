@@ -1,6 +1,6 @@
 ---
 title: "Substrate Stress Tests"
-description: "Canonical Vitest gate for local substrate stress coverage, sandbox cleanup, and the shared-daemon runner."
+description: "Vitest gate for pure-logic substrate stress coverage under mcp-server/stress-test."
 trigger_phrases:
   - "substrate stress"
   - "vitest substrate gate"
@@ -10,7 +10,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`stress-test/substrate/` promotes the shared-daemon runner into a canonical Vitest gate and adds pure-logic stress coverage for the local LLM substrate. This slice is provider-aware where it must be and pure logic where daemon startup would add noise.
+`stress-test/substrate/` holds pure-logic stress coverage: cases that put the package's validation rules under volume without spawning a process or opening a database. Keeping them pure is deliberate — process startup adds noise that swamps the signal these cases exist to produce.
 
 ---
 
@@ -18,13 +18,7 @@ trigger_phrases:
 
 | File | Coverage |
 |---|---|
-| `run-substrate-stress-harness.mjs` | Direct MCP runner adapted to run from `mcp-server/stress-test/substrate/`. |
-| `substrate-runner-harness.vitest.ts` | Subprocess smoke for scenarios 403, 404, 407, and 410 through shared Memory and Code Graph MCP daemons. |
-| `substrate-harness-hardening.vitest.ts` | Owner-identity hardening for the harness lease: accepts the current process when the lease start time matches and rejects a recycled PID whose start time does not. |
-| `idempotency-receipt-race-stress.vitest.ts` | Idempotency receipt race coverage under concurrent save pressure. |
-| `query-expansion-bound-stress.vitest.ts` | Bounded combined-query construction for 100 expansion-eligible queries. |
-| `secret-scrub-save-flood-stress.vitest.ts` | Secret scrub behavior under save-flood stress. |
-| `v-rule-save-flood-stress.vitest.ts` | V8 cross-spec contamination rules under a 50-save canonical-doc flood. |
+| `v-rule-save-flood-stress.vitest.ts` | Cross-spec contamination rules under a 50-save canonical-doc flood, driven against `extractSpecIdCandidates()` and `validateMemoryQualityContent()` from `../../../scripts/lib/validate-memory-quality`. Each case builds its own temp root and removes it in `afterEach`. |
 
 ---
 
@@ -33,33 +27,27 @@ trigger_phrases:
 Run the substrate gate from `.opencode/skills/system-spec-kit/mcp-server`:
 
 ```bash
-npm run stress:substrate
+npx vitest run --config vitest.stress.config.ts stress-test/substrate
 ```
 
-Run only the pure-logic substrate checks:
+Run a single case:
 
 ```bash
 npx vitest run --config vitest.stress.config.ts \
-  stress-test/substrate/query-expansion-bound-stress.vitest.ts \
   stress-test/substrate/v-rule-save-flood-stress.vitest.ts
-```
-
-Run only the promoted daemon harness:
-
-```bash
-npx vitest run --config vitest.stress.config.ts stress-test/substrate/substrate-runner-harness.vitest.ts
-```
-
-Run the standalone harness and remove all regenerated sandbox evidence after it exits:
-
-```bash
-node stress-test/substrate/run-substrate-stress-harness.mjs --clean
 ```
 
 ---
 
-## 4. SCENARIO BOUNDARY
+## 4. ISOLATION BOUNDARY
 
-The harness writes TSV evidence to `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv` and regenerates its sandbox from scratch inputs. The sandbox also holds a throwaway hermetic Code Graph database at `.tmp-cg-db/`; `cleanupSandbox()` always removes that DB after daemon connections close.
+These cases are pure logic over temporary directories. They open no socket, spawn no child process, and read no state outside the temp root each case creates. Every temp root is tracked and removed in `afterEach`, so a failed assertion cannot leave a sandbox behind.
 
-The standalone runner supports `--clean`. When set, it removes the whole `_sandbox/24--local-llm-query-intelligence/` run directory and then attempts to remove the now-empty `_sandbox/` parent. The Vitest wrapper intentionally omits `--clean` because it must read the TSV after the child process exits, then its `afterAll` block removes the same run directory and best-effort parent. A successful `npm run stress:substrate` should not leave sandbox evidence behind.
+A case that needs a real process or a real database does not belong in this folder.
+
+---
+
+## 5. RELATED
+
+- [`../README.md`](../README.md)
+- [`../../tests/README.md`](../../tests/README.md)

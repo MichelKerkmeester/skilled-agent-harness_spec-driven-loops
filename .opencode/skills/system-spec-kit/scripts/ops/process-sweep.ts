@@ -2,9 +2,6 @@
 // ---------------------------------------------------------------
 // MODULE: Process Sweep
 // ---------------------------------------------------------------
-import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
 import { isMainModule } from '../lib/esm-entry.js';
 import {
   collectInventory,
@@ -37,27 +34,8 @@ interface PlanSweepOptions {
   selfPid: number;
 }
 
-export interface SweepOwnershipEvidence {
-  pid: number;
-  ownerPid: number;
-  launcherPath: string;
-  ownerLeasePath: string;
-  canonicalDbDir: string;
-  ownerLeaseStartedAtMs: number;
-  processStartedAtMs: number;
-  socketPeerConnected: boolean;
-}
-
 export interface ApplySweepOptions {
   selfPid: number;
-  enabled?: boolean;
-  nowMs?: number;
-  startupGraceMs?: number;
-  evidenceByPid?: ReadonlyMap<number, SweepOwnershipEvidence>;
-  getParentPid?: (pid: number) => number | null;
-  getProcessStartTimeMs?: (pid: number) => number | null;
-  getSocketPeerConnected?: (pid: number, evidence: SweepOwnershipEvidence) => boolean | null;
-  signal?: (pid: number, signal: 'SIGTERM') => boolean;
 }
 
 export interface SweepApplyResult extends SweepPlan {
@@ -75,212 +53,22 @@ type CliPayload = (SweepPlan & {
   note: string;
 }) | SweepApplyResult;
 
-const ORPHAN_SWEEP_KILL_SWITCH = 'SPECKIT_SESSION_START_ORPHAN_SWEEP';
-const DEFAULT_STARTUP_GRACE_MS = 300000;
-const OWNER_LEASE_FILE_NAME = '.spec-memory-owner.json';
-const LAUNCHER_PATH_SUFFIX = '.opencode/bin/system-spec-memory-launcher.cjs';
-
-// Terminating processes is opt-in, not opt-out. An unset variable used to mean "sweep", so a
-// machine that had never heard of this feature would begin killing daemons the moment it
-// shipped. Requiring an explicit yes costs one line of config and removes a whole class of
-// surprise; the same reasoning applies at the apply boundary, which also refuses on absence.
-function isSweepEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
-  const value = env[ORPHAN_SWEEP_KILL_SWITCH];
-  if (value === undefined) return false;
-  return ['1', 'true', 'yes', 'on'].includes(value.trim().toLowerCase());
-}
-
-function readProcessParentPid(pid: number): number | null {
-  try {
-    const output = execFileSync('ps', ['-o', 'ppid=', '-p', String(pid)], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
-    }).trim();
-    const parentPid = Number.parseInt(output, 10);
-    return Number.isInteger(parentPid) && parentPid > 0 ? parentPid : null;
-  } catch {
-    return null;
-  }
-}
-
-function readProcessStartTimeMs(pid: number): number | null {
-  try {
-    const output = execFileSync('ps', ['-o', 'lstart=', '-p', String(pid)], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
-    }).trim();
-    const startedAtMs = Date.parse(output);
-    return Number.isFinite(startedAtMs) ? startedAtMs : null;
-  } catch {
-    return null;
-  }
-}
-
-function readSocketPeerConnected(pid: number, socketPath: string): boolean | null {
-  try {
-    const isTcp = socketPath.startsWith('tcp://');
-    const output = execFileSync('lsof', ['-nP', '-a', '-p', String(pid), isTcp ? '-i' : '-U'], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
-    const lines = output.split(/\r?\n/).filter((line) => line && !line.startsWith('COMMAND'));
-    const tcpPort = isTcp ? /:(\d+)(?:\/|$)/.exec(socketPath)?.[1] : null;
-    const socketLines = socketPath
-      ? lines.filter((line) => (isTcp && tcpPort ? line.includes(`:${tcpPort}`) : line.includes(socketPath)))
-      : lines;
-    return socketLines.some((line) => /->|\(CONNECTED\)|ESTABLISHED/i.test(line));
-  } catch {
-    return null;
-  }
-}
-
-function launcherPathFromCommand(command: string): string | null {
-  const token = command.split(/\s+/).find((candidate) => candidate.endsWith(LAUNCHER_PATH_SUFFIX));
-  return token ? resolve(token) : null;
-}
-
-function readOwnershipEvidence(row: SweepPlanRow): SweepOwnershipEvidence | null {
-  const launcherPath = launcherPathFromCommand(row.command);
-  if (!launcherPath) return null;
-  const canonicalDbDir = resolve(join(dirname(launcherPath), '../skills/system-spec-kit/mcp-server/database'));
-  const ownerLeasePath = join(canonicalDbDir, OWNER_LEASE_FILE_NAME);
-  let lease: { ownerPid?: unknown; canonicalDbDir?: unknown; startedAtIso?: unknown; socketPath?: unknown };
-  try {
-    lease = JSON.parse(readFileSync(ownerLeasePath, 'utf8'));
-  } catch {
-    return null;
-  }
-  if (lease.ownerPid !== row.pid || resolve(String(lease.canonicalDbDir)) !== canonicalDbDir) return null;
-  const ownerLeaseStartedAtMs = Date.parse(String(lease.startedAtIso));
-  const processStartedAtMs = readProcessStartTimeMs(row.pid);
-  const socketPeerConnected = readSocketPeerConnected(row.pid, typeof lease.socketPath === 'string' ? lease.socketPath : '');
-  if (!Number.isFinite(ownerLeaseStartedAtMs) || processStartedAtMs === null || socketPeerConnected === null) return null;
-  return {
-    pid: row.pid,
-    ownerPid: row.pid,
-    launcherPath,
-    ownerLeasePath,
-    canonicalDbDir,
-    ownerLeaseStartedAtMs,
-    processStartedAtMs,
-    socketPeerConnected,
-  };
-}
-
-function validateOwnershipEvidence(row: SweepPlanRow, evidence: SweepOwnershipEvidence | null): string | null {
-  if (!evidence) return 'ownership-evidence-unavailable';
-  if (evidence.pid !== row.pid || evidence.ownerPid !== row.pid) return 'owner-pid-mismatch';
-  if (!row.command.includes(evidence.launcherPath) || !evidence.launcherPath.endsWith(LAUNCHER_PATH_SUFFIX)) {
-    return 'launcher-identity-mismatch';
-  }
-  if (resolve(evidence.ownerLeasePath) !== join(resolve(evidence.canonicalDbDir), OWNER_LEASE_FILE_NAME)
-    || !existsSync(evidence.ownerLeasePath)) return 'owner-lease-mismatch';
-  try {
-    const lease = JSON.parse(readFileSync(evidence.ownerLeasePath, 'utf8')) as {
-      ownerPid?: unknown;
-      canonicalDbDir?: unknown;
-      startedAtIso?: unknown;
-    };
-    if (lease.ownerPid !== row.pid
-      || resolve(String(lease.canonicalDbDir)) !== resolve(evidence.canonicalDbDir)
-      || Date.parse(String(lease.startedAtIso)) !== evidence.ownerLeaseStartedAtMs) {
-      return 'owner-lease-mismatch';
-    }
-  } catch {
-    return 'owner-lease-mismatch';
-  }
-  if (!Number.isFinite(evidence.ownerLeaseStartedAtMs) || !Number.isFinite(evidence.processStartedAtMs)) {
-    return 'start-time-evidence-unavailable';
-  }
-  if (evidence.socketPeerConnected !== false) return 'connected-socket-peer';
-  return null;
-}
-
-function applyCandidate(
-  row: SweepPlanRow,
-  opts: ApplySweepOptions,
-  nowMs: number,
-  startupGraceMs: number,
-): { applied: boolean; reason?: string } {
-  // The inventory snapshot is a plan-time observation, and a parent can die between the scan
-  // and this decision. Reading the parent again here is what lets a daemon orphaned mid-sweep
-  // be collected on the same pass instead of surviving until the next one. Every other gate
-  // below still has to pass, so re-reading only ever widens the candidate set by processes
-  // that are genuinely parentless right now.
-  const freshParentPid = opts.getParentPid ? opts.getParentPid(row.pid) : readProcessParentPid(row.pid);
-  const reapableNow = row.classification === 'orphaned-project-daemon'
-    || (row.classification === 'project-daemon' && freshParentPid === 1);
-  if (!reapableNow) return { applied: false, reason: 'classification-not-reapable' };
-  if (!hasKnownProjectIdentity(row)) return { applied: false, reason: 'unknown-owner-refused' };
-  const evidence = opts.evidenceByPid?.get(row.pid) ?? readOwnershipEvidence(row);
-  const evidenceError = validateOwnershipEvidence(row, evidence);
-  if (!evidence || evidenceError) return { applied: false, reason: evidenceError ?? 'ownership-evidence-unavailable' };
-  if (opts.getProcessStartTimeMs) {
-    const currentStartTimeMs = opts.getProcessStartTimeMs(row.pid);
-    if (currentStartTimeMs === null || currentStartTimeMs !== evidence.processStartedAtMs) {
-      return { applied: false, reason: 'process-start-time-mismatch' };
-    }
-  }
-  const ageMs = nowMs - Math.max(evidence.ownerLeaseStartedAtMs, evidence.processStartedAtMs);
-  if (ageMs <= startupGraceMs) return { applied: false, reason: 'startup-grace-active' };
-  if (freshParentPid !== 1) return { applied: false, reason: freshParentPid === null ? 'parent-evidence-unavailable' : 'live-parent-preserved' };
-  const socketPeerConnected = opts.getSocketPeerConnected
-    ? opts.getSocketPeerConnected(row.pid, evidence)
-    : readSocketPeerConnected(row.pid, '');
-  if (socketPeerConnected !== false) return { applied: false, reason: socketPeerConnected === null ? 'socket-evidence-unavailable' : 'connected-socket-peer' };
-  const signal = opts.signal ?? ((pid: number, signalName: 'SIGTERM') => {
-    try {
-      process.kill(pid, signalName);
-      return true;
-    } catch {
-      return false;
-    }
-  });
-  return signal(row.pid, 'SIGTERM') ? { applied: true } : { applied: false, reason: 'signal-failed' };
-}
-
+// A process is signalled only through a registered terminable class, and a class carries the
+// ownership evidence — owner file, start time, socket peer — that proves the process is this
+// repository's to kill. No such class is registered, so apply reports the plan and signals
+// nothing. Restoring termination means registering a class together with its evidence probe,
+// never re-enabling a kill path that decides on classification alone.
 export function applySweep(inventory: Inventory, opts: ApplySweepOptions): SweepApplyResult {
   const plan = planSweep(inventory, { selfPid: opts.selfPid });
-  const result: SweepApplyResult = {
+  return {
     ...plan,
     mode: 'apply',
     dryRun: false,
     appliedPids: [],
     signals: [],
     skipped: [],
+    reason: inventory.status === 'ok' ? 'no-terminable-class-registered' : 'inventory-unavailable',
   };
-  if (inventory.status !== 'ok') {
-    result.reason = 'inventory-unavailable';
-    return result;
-  }
-  // Absent is not permission. A caller reaching this function without stating a decision gets
-  // the safe one, because the cost of wrongly terminating a live session's daemon is far higher
-  // than the cost of skipping a sweep.
-  if (opts.enabled !== true) {
-    result.reason = opts.enabled === false ? 'kill-switch-disabled' : 'enable-decision-absent';
-    for (const row of plan.rows.filter((candidate) => candidate.classification === 'orphaned-project-daemon')) {
-      result.skipped.push({ pid: row.pid, reason: result.reason });
-    }
-    return result;
-  }
-
-  const nowMs = typeof opts.nowMs === 'number' ? opts.nowMs : Date.now();
-  const startupGraceMs = typeof opts.startupGraceMs === 'number' ? opts.startupGraceMs : DEFAULT_STARTUP_GRACE_MS;
-  for (const row of plan.rows) {
-    // A daemon whose parent died between the scan and now still reads as parented here, so
-    // narrowing the loop to the snapshot's verdict would skip exactly the process this sweep
-    // exists to collect. Let the per-candidate gates re-derive it from fresh evidence.
-    if (row.classification !== 'orphaned-project-daemon' && row.classification !== 'project-daemon') continue;
-    const outcome = applyCandidate(row, opts, nowMs, startupGraceMs);
-    if (outcome.applied) {
-      result.appliedPids.push(row.pid);
-      result.signals.push({ pid: row.pid, signal: 'SIGTERM' });
-    } else {
-      result.skipped.push({ pid: row.pid, reason: outcome.reason ?? 'preserved' });
-    }
-  }
-  result.reason = result.appliedPids.length > 0 ? 'orphan-reaped' : 'no-safe-orphans';
-  return result;
 }
 
 function hasKnownProjectIdentity(row: Pick<SweepPlanRow, 'command'>): boolean {
@@ -385,7 +173,7 @@ export function planSweep(inventory: Inventory, opts: PlanSweepOptions): SweepPl
 }
 
 function showHelp(): void {
-  console.log(`process-sweep - ownership-checked orphan daemon sweep
+  console.log(`process-sweep - process inventory sweep
 
 USAGE:
   node scripts/dist/ops/process-sweep.js plan [--pretty]
@@ -395,20 +183,18 @@ USAGE:
 COMMANDS:
   plan      Capture live inventory and emit a dry-run sweep plan. This is the default.
   fixture   Emit a deterministic dry-run sweep plan from synthetic process evidence.
-  apply     Recheck ownership, parent, socket, and age evidence before sending SIGTERM.
+  apply     Report the same plan as an apply result.
 
 NOTES:
-  The apply command is autonomous and enabled by default. Set ${ORPHAN_SWEEP_KILL_SWITCH}=off to preserve candidates and report the disabled reason.
+  No terminable process class is registered, so no command signals a process. apply reports
+  reason=no-terminable-class-registered until a class and its ownership evidence are added.
 `);
 }
 
-function buildCliPayload(command: 'plan' | 'fixture' | 'apply', env: NodeJS.ProcessEnv = process.env): CliPayload {
+function buildCliPayload(command: 'plan' | 'fixture' | 'apply'): CliPayload {
   const inventory = command === 'fixture' ? syntheticFixtureSnapshot() : collectInventory();
   if (command === 'apply') {
-    return applySweep(inventory, {
-      selfPid: inventory.currentPid,
-      enabled: isSweepEnabled(env),
-    });
+    return applySweep(inventory, { selfPid: inventory.currentPid });
   }
   const plan = planSweep(inventory, { selfPid: inventory.currentPid });
 

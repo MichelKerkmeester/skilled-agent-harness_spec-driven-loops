@@ -3,65 +3,11 @@
 // ────────────────────────────────────────────────────────────────
 // @public, Only export what external consumers (scripts/, other packages) need.
 // Internal mcp_server code should import from lib/ directly, not through this barrel.
-// ARCH-1: Consumer scripts import from '@spec-kit/mcp-server/api' instead of lib/.
-// Review note: Barrel is wide due to legitimate external consumers in scripts/evals,
-// scripts/core, scripts/spec-folder, and scripts/memory. Do not narrow without
-// auditing all consumers first.
+// Consumer scripts import from '@spec-kit/mcp-server/api' instead of lib/.
+// Every export below has a named caller in the scripts workspace; adding one
+// without a caller re-widens the surface that made this package hard to shrink.
 
-export {
-  runAblation,
-  storeAblationResults,
-  formatAblationReport,
-  toHybridSearchFlags,
-  isAblationEnabled,
-  inspectGroundTruthAlignment,
-  assertGroundTruthAlignment,
-  ALL_CHANNELS,
-  type AblationChannel,
-  type AblationSearchFn,
-  type AblationReport,
-  type GroundTruthAlignmentSummary,
-  runBM25Baseline,
-  recordBaselineMetrics,
-  type BM25SearchFn,
-  type BM25SearchResult,
-  type BM25BaselineResult,
-  loadGroundTruth,
-  initEvalDb,
-} from './eval.js';
-
-export {
-  initializeIndexingRuntime,
-  warmEmbeddingModel,
-  runMemoryIndexScan,
-  refreshGraphMetadata,
-  reindexSpecDocs,
-  runEnrichmentBackfill,
-  closeIndexingRuntime,
-  type MemoryIndexScanArgs,
-} from './indexing.js';
-
-export {
-  initHybridSearch,
-  hybridSearchEnhanced,
-  type HybridSearchOptions,
-  type HybridSearchResult,
-  fts5Bm25Search,
-  isFts5Available,
-  vectorIndex,
-} from './search.js';
-
-export {
-  generateEmbedding,
-  generateQueryEmbedding,
-  getEmbeddingProfile,
-  retryManager,
-} from './providers.js';
-
-export {
-  initCheckpoints,
-  initAccessTracker,
-} from './storage.js';
+export { refreshGraphMetadata } from './graph-refresh.js';
 
 // --- Git-hook drift marker writer (used by scripts/git-hooks) ---
 export { resolveDatabasePaths } from '../core/config.js';
@@ -82,18 +28,7 @@ export {
 } from '../handlers/save/spec-folder-mutex.js';
 export type { InterprocessLockHandle } from '../handlers/save/spec-folder-mutex.js';
 
-export {
-  GOVERNANCE_AUDIT_ACTIONS,
-  buildGovernanceLogicalKey,
-  ensureGovernanceRuntime,
-  recordGovernanceAudit,
-  recordTierDowngradeAudit,
-} from '../lib/governance/scope-governance.js';
-
-export {
-  shouldIndexForMemory,
-  isExcludedFromGeneratedMetadata,
-} from '../lib/utils/index-scope.js';
+// --- Spec folder identity and validation (used by scripts/spec-folder, scripts/graph) ---
 export {
   canClassifyAsGraphMetadataPath,
   resolveSpecFolderIdentity,
@@ -110,13 +45,8 @@ export {
   buildContinuityFingerprint,
   ZERO_CONTINUITY_FINGERPRINT,
 } from '../lib/validation/spec-doc-structure.js';
-export type {
-  GovernanceAuditAction,
-  GovernanceAuditEntry,
-  TierDowngradeAuditParams,
-} from '../lib/governance/scope-governance.js';
 
-// --- Folder discovery (used by scripts/spec-folder, scripts/core) ---
+// --- Folder discovery (used by scripts/spec-folder, scripts/core, scripts/memory) ---
 export {
   generatePerFolderDescription,
   savePerFolderDescription,
@@ -129,13 +59,7 @@ export {
 } from '../lib/search/folder-discovery.js';
 export type { PerFolderDescription, LoadResult } from '../lib/search/folder-discovery.js';
 
-// --- Entity extraction (used by scripts/memory) ---
-export {
-  extractEntities,
-  rebuildAutoEntities,
-} from '../lib/extraction/entity-extractor.js';
-
-// --- Graph metadata (used by scripts/core, scripts/graph, tests) ---
+// --- Graph metadata (used by scripts/core, scripts/graph, scripts/memory) ---
 export {
   GRAPH_METADATA_DOCUMENT_TYPE,
   GRAPH_METADATA_FILENAME,
@@ -182,11 +106,6 @@ export type {
   ResolvedDriftStatus,
 } from '../lib/graph/generated-metadata-drift.js';
 export {
-  derivePacketSynopsis,
-  SYNOPSIS_FIELD_LIMITS,
-} from '../lib/description/packet-synopsis.js';
-export type { SynopsisField } from '../lib/description/packet-synopsis.js';
-export {
   validateGraphMetadataContent,
   loadGraphMetadata,
   deriveGraphMetadata,
@@ -201,34 +120,3 @@ export {
 } from '../lib/graph/graph-metadata-parser.js';
 export type { GraphMetadataPruneCandidate } from '../lib/graph/graph-metadata-parser.js';
 export type { GraphMetadataValidationResult } from '../lib/graph/graph-metadata-parser.js';
-
-// --- Performance benchmarking support (used by scripts/evals) ---
-export * as sessionBoost from '../lib/search/session-boost.js';
-export * as causalBoost from '../lib/search/causal-boost.js';
-export * as workingMemory from '../lib/cognitive/working-memory.js';
-export {
-  initExtractionAdapter,
-  getExtractionMetrics,
-  resetExtractionMetrics,
-} from '../lib/extraction/extraction-adapter.js';
-export type { ExtractionMetrics } from '../lib/extraction/extraction-adapter.js';
-
-// --- Hybrid RAG Fusion rollout metadata and architecture surfaces ---
-export {
-  LAYER_DEFINITIONS,
-  TOOL_LAYER_MAP,
-  getLayerForTool,
-  getLayerTokenBudget,
-} from '../lib/architecture/layer-definitions.js';
-export type { LayerDefinition, LayerId } from '../lib/architecture/layer-definitions.js';
-
-export {
-  GENERATED_METADATA_GRANDFATHER_ENV,
-  getMemoryRoadmapCapabilityFlags,
-  getMemoryRoadmapDefaults,
-  getMemoryRoadmapPhase,
-  isGeneratedMetadataGrandfatherEnabled,
-  isStatusCompletionConsistencyGateEnabled,
-  STATUS_COMPLETION_CONSISTENCY_GATE_ENV,
-} from '../lib/config/capability-flags.js';
-export type { MemoryRoadmapCapabilityFlags } from '../lib/config/capability-flags.js';

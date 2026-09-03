@@ -17,9 +17,7 @@ import {
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, getRequiredSessionId,
 } from './shared.js';
 import { ensureStateDir, updateState } from './hook-state.js';
-import { buildWarmMemoryContextSection } from '../spec-memory-cli-fallback.js';
 import { mergeCompactBrief, type MergeInput } from '@spec-kit/shared/compact-merger';
-import { autoSurfaceAtCompaction } from '../../hooks/memory-surface.js';
 import {
   createSharedPayloadEnvelope,
   createPreMergeSelectionMetadata,
@@ -131,8 +129,6 @@ function extractTopics(lines: string[]): string[] {
   for (const line of lines) {
     const specMatch = line.match(/specs\/[\w-]+/g);
     if (specMatch) specMatch.forEach(m => topics.add(m));
-    const toolMatch = line.match(/memory_\w+|task_\w+/g);
-    if (toolMatch) toolMatch.forEach(m => topics.add(m));
   }
   return [...topics].slice(0, 10);
 }
@@ -223,48 +219,7 @@ export function buildCompactContext(transcriptLines: string[]): string {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 3. MEMORY RENDERING
-// ───────────────────────────────────────────────────────────────────
-
-type AutoSurfaceAtCompactionResult = Awaited<ReturnType<typeof autoSurfaceAtCompaction>>;
-
-function renderTriggeredMemories(
-  autoSurfaced: AutoSurfaceAtCompactionResult,
-): string {
-  const triggered = autoSurfaced?.triggered ?? [];
-  if (triggered.length === 0) {
-    return '';
-  }
-
-  const lines = triggered.map((memory) => {
-    const matchedPhrases = [...new Set(memory.matched_phrases
-      .map((phrase) => phrase.trim())
-      .filter((phrase) => phrase.length > 0))];
-
-    if (matchedPhrases.length === 0) {
-      return `- ${memory.title}`;
-    }
-
-    return `- ${memory.title} (matched: ${matchedPhrases.join(', ')})`;
-  });
-
-  return lines.join('\n');
-}
-
-async function renderCliCompactionFallback(sessionState: string): Promise<string> {
-  const section = await buildWarmMemoryContextSection({
-    title: 'Spec Memory CLI Fallback',
-    input: sessionState,
-    timeoutMs: 600,
-    onResult: (result) => {
-      hookLog('info', 'compact-inject', `CLI warm fallback ${result.status} reason=${result.reason ?? 'none'} exit=${result.exitCode ?? 'none'} duration=${result.durationMs}ms`);
-    },
-  });
-  return section?.content ?? '';
-}
-
-// ───────────────────────────────────────────────────────────────────
-// 4. BUDGET RENDERING
+// 3. BUDGET RENDERING
 // ───────────────────────────────────────────────────────────────────
 
 interface CompactResult {
@@ -312,17 +267,15 @@ function renderBudgetedSections(
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 5. MERGE PIPELINE
+// 4. MERGE PIPELINE
 // ───────────────────────────────────────────────────────────────────
 
 /**
- * Build merged context using the 3-source merge pipeline.
- * Extracts session state from transcript, then delegates budget allocation
+ * Build merged context from the transcript, then delegate budget allocation
  * and section rendering to mergeCompactBrief.
  */
 export async function buildMergedCompactResult(
   transcriptLines: string[],
-  deadline: number = performance.now() + HOOK_TIMEOUT_MS,
 ): Promise<CompactResult> {
   const sanitizedLines = stripRecoveredCompactLines(transcriptLines);
   const filePaths = extractFilePaths(sanitizedLines);
@@ -386,29 +339,6 @@ export async function buildMergedCompactResult(
     sessionState,
   };
 
-  let cliFallback = '';
-  const surfaceBudget = remainingMs(deadline, PERSISTENCE_MARGIN_MS);
-  const autoSurfaced = surfaceBudget >= MIN_OPTIONAL_BUDGET_MS
-    ? await withTimeout(autoSurfaceAtCompaction(sessionState), surfaceBudget, null)
-    : null;
-  if (autoSurfaced) {
-    mergeInput.triggered = renderTriggeredMemories(autoSurfaced);
-    hookLog(
-      'info',
-      'compact-inject',
-      `Compaction auto-surface returned ${autoSurfaced.triggered.length} triggered memories (${autoSurfaced.latencyMs}ms)`,
-    );
-  } else {
-    const fallbackBudget = remainingMs(deadline, PERSISTENCE_MARGIN_MS);
-    if (fallbackBudget >= MIN_OPTIONAL_BUDGET_MS) {
-      cliFallback = await withTimeout(
-        renderCliCompactionFallback(sessionState || sanitizedLines.slice(-10).join('\n')),
-        fallbackBudget,
-        '',
-      );
-    }
-  }
-
   const t0 = performance.now();
   const merged = mergeCompactBrief(mergeInput, COMPACTION_TOKEN_BUDGET, undefined, selection);
   const elapsed = performance.now() - t0;
@@ -419,17 +349,10 @@ export async function buildMergedCompactResult(
     hookLog('info', 'compact-inject', `Merge pipeline completed in ${elapsed.toFixed(0)}ms (${merged.metadata.sourceCount} sections, ~${merged.metadata.totalTokenEstimate} tokens)`);
   }
 
-  const rendered = renderBudgetedSections([
-    ...(cliFallback
-      ? [{
-        key: 'spec-memory-cli-fallback',
-        title: 'Spec Memory CLI Fallback',
-        content: cliFallback,
-        source: 'operational' as const,
-      }]
-      : []),
-    ...merged.payloadContract.sections,
-  ], COMPACTION_TOKEN_BUDGET);
+  const rendered = renderBudgetedSections(
+    merged.payloadContract.sections,
+    COMPACTION_TOKEN_BUDGET,
+  );
   return {
     text: rendered.text,
     payloadContract: {
@@ -491,7 +414,7 @@ function persistCompactResult(
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 6. AUTHORED SNAPSHOT
+// 5. AUTHORED SNAPSHOT
 // ───────────────────────────────────────────────────────────────────
 
 function runAuthoredSnapshotWorker(): void {
@@ -552,7 +475,7 @@ function runAuthoredSnapshot(
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 7. MAIN
+// 6. MAIN
 // ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
@@ -589,7 +512,7 @@ async function main(): Promise<void> {
   if (enrichmentBudget >= MIN_OPTIONAL_BUDGET_MS) {
     try {
       const enriched = await withTimeout(
-        buildMergedCompactResult(transcriptLines, deadline),
+        buildMergedCompactResult(transcriptLines),
         enrichmentBudget,
         null,
       );
@@ -612,7 +535,7 @@ async function main(): Promise<void> {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 8. ENTRYPOINT
+// 7. ENTRYPOINT
 // ───────────────────────────────────────────────────────────────────
 
 function isCliEntrypoint(): boolean {

@@ -1,88 +1,72 @@
 ---
 title: "Scripts"
-description: "Operational scripts for forced embedding reindex and maintenance workflows."
+description: "Package build finalizer, graph metadata repair, and the bounded test runners."
 trigger_phrases:
   - "scripts"
-  - "reindex embeddings"
-  - "database maintenance"
+  - "finalize dist"
+  - "repair graph metadata"
+  - "sharded test runner"
 ---
 
-# Compatibility Wrappers (mcp-server/scripts)
+# Scripts
 
-This directory contains **only** compatibility wrappers that delegate to canonical implementations in `scripts/`. These are not canonical scripts and should not accumulate independent logic.
-
-> Operational entry points for maintenance tasks that run outside the normal MCP request lifecycle, such as forced full-reindex of embeddings.
-
-## Canonical Locations
-
-- **Reindex operations:** [`scripts/memory/README.md`](../../scripts/memory/README.md)
-- **Other operational scripts:** [`scripts/README.md`](../../scripts/README.md)
+> Package-local scripts for finishing a build, repairing generated metadata, and running the test suite within bounds.
 
 ---
 
 ## 1. OVERVIEW
 
-`mcp-server/scripts/` contains wrapper source files for legacy entry points. The source-of-truth implementations live under the workspace-level `scripts/` package.
+`mcp-server/scripts/` holds the scripts that `package.json` invokes plus one maintenance tool. These are package-local by design: each one depends on this package's layout, and none is a general-purpose utility.
 
-Those wrappers now sit behind the Gate E continuity model where `/speckit:resume`, registered by system-spec-kit and backed by `.opencode/commands/speckit/resume.md`, restores packet context from `handover.md` -> `_memory.continuity` -> spec docs. Generated memory artifacts remain supporting only.
+Two of them exist because the naive version fails in a way that is easy to miss:
+
+- `run-tests-sharded.mjs` splits the suite because a single reused worker eventually spins on a CPU-bound rehash storm and never returns. The module it stops at is innocent, and so are the ones after it — the cost belongs to the accumulated process. Shards run one at a time on purpose; running them together contends for the same temporary directories and databases and produces failures that belong to the harness rather than the code.
+- `run-tests.mjs` bounds each invocation with a process-group timeout so a hung run is terminated with its children instead of leaking them.
 
 ---
 
 ## 2. STRUCTURE
 
-```
+```text
 scripts/
-+-- reindex-embeddings.ts    # Wrapper source -> ../../scripts/dist/memory/reindex-embeddings.js at runtime
-+-- README.md                # This file
++-- finalize-dist.mjs        # Post-build: freshness entries, stale dist pruning, JSON copying
++-- run-tests.mjs            # Bounded default test runner (npm test)
++-- run-tests-sharded.mjs    # Sharded runner for the full suite (npm run test:sharded)
++-- tests/                   # Tests for the scripts in this folder
+`-- README.md
 ```
-
-Build outputs are split across packages:
-
-- Canonical implementation source: `../../scripts/memory/reindex-embeddings.ts`
-- Canonical built runtime target: `../../scripts/dist/memory/reindex-embeddings.js`
-- Legacy wrapper source: `reindex-embeddings.ts`
-- Legacy wrapper build output: `../dist/scripts/reindex-embeddings.js`
 
 ### File Inventory
 
-| File                      | Purpose                                                                     | Key Behavior                                                       | Spec     |
-| ------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------ | -------- |
-| `reindex-embeddings.ts`   | Backward-compatible entry point for legacy `mcp-server/scripts` path         | Delegates to `scripts/dist/memory/reindex-embeddings.js` | Spec 138 |
+| File | Purpose | Key Behavior |
+|---|---|---|
+| `finalize-dist.mjs` | Completes `npm run build` after `tsc --build` | Records the package build and source-hash cache through `../../scripts/lib/dist-freshness.cjs`, copies JSON assets into `dist/`, prunes stale dist roots, and checks the required artifacts are present. |
+| `run-tests.mjs` | Backs `npm test` | Routes `npm test -- --run ...` to the requested Vitest lane without running the full core suite first, under a process-group timeout that terminates the whole group on overrun. |
+| `run-tests-sharded.mjs` | Backs `npm run test:sharded` | Splits the suite into `SPECKIT_TEST_SHARDS` shards (default 12) and runs them serially, each in its own worker. |
 
 ---
 
 ## 3. IMPLEMENTED STATE
 
-- Reindex implementation lives in `scripts/memory/reindex-embeddings.ts` and runs through current handlers.
-- Indexed scope follows current scan behavior, including memory and spec-doc discovery defaults.
-- Script prints a concise progress summary on stdout and exits non-zero on fatal startup failures.
-- Startup initializes DB state through `initDbState`; embedding/provider dependencies are loaded lazily by the current handler and search-provider path instead of a public readiness setter.
-- Wrapper TypeScript in this directory compiles into `mcp-server/dist/scripts/`, then delegates to the canonical built JavaScript in `scripts/dist/`.
+- `finalize-dist.mjs` runs as the last step of `npm run build` and maintains the `default` and `validation-orchestrator` freshness entries that `../../scripts/spec/validate.sh` checks before it will run.
+- `dist/` is gitignored, so a build is required after pulling source changes; the freshness guard turns a missed rebuild into an explicit error rather than a stale result.
+- The test runners are the supported entry points. Invoking Vitest directly bypasses both the shard split and the timeout bound.
 
 ---
 
 ## 4. USAGE
 
 ```bash
-# From .opencode/skills/system-spec-kit/
-npm run build
-
-# Preferred canonical entry point
-node scripts/dist/memory/reindex-embeddings.js
-
-# Legacy compatibility path for older callers
-node mcp-server/dist/scripts/reindex-embeddings.js
+# From .opencode/skills/system-spec-kit/mcp-server
+npm run build          # tsc --build, then finalize-dist.mjs
+npm test               # bounded default lane
+npm run test:sharded   # full suite, sharded serially
 ```
-
-Prefer the canonical `scripts/dist/` entry point in new automation. The legacy `mcp-server/dist/scripts/` path exists only for backward compatibility.
-
-The script exits 0 on success. Any fatal startup error (missing DB, failed embedding warm-up) exits non-zero with an error message on stderr.
 
 ---
 
 ## 5. RELATED
 
-- `../../scripts/memory/reindex-embeddings.ts`
-- `../handlers/memory-index.ts`
-- `../handlers/memory-save.ts`
-- `../core/README.md`
+- [`tests/README.md`](./tests/README.md)
+- [`../README.md`](../README.md)
+- [`../../scripts/README.md`](../../scripts/README.md)

@@ -194,16 +194,6 @@ function insertAfterFrontmatter(content: string, insertion: string): string {
   return content.slice(0, insertionPoint) + insertion + content.slice(insertionPoint);
 }
 
-type WorkflowRetryStats = {
-  queue_size: number;
-};
-
-type WorkflowRetryBatchResult = {
-  processed: number;
-  succeeded: number;
-  failed: number;
-};
-
 type WorkflowScrubWarn = (message: string) => void;
 
 type WorkflowSavePayloadTextFields = {
@@ -213,16 +203,6 @@ type WorkflowSavePayloadTextFields = {
   memoryDescription: string;
   sessionData: SessionData;
   collectedData: CollectedDataFull;
-};
-
-interface WorkflowRetryManagerAdapter {
-  getRetryStats(): WorkflowRetryStats;
-  processRetryQueue(limit?: number): Promise<WorkflowRetryBatchResult>;
-}
-
-const FALLBACK_RETRY_MANAGER: WorkflowRetryManagerAdapter = {
-  getRetryStats: () => ({ queue_size: 0 }),
-  processRetryQueue: async () => ({ processed: 0, succeeded: 0, failed: 0 }),
 };
 
 function scrubWorkflowStringField(value: string, fieldPath: string, warn?: WorkflowScrubWarn): string {
@@ -279,52 +259,6 @@ async function tryImportMcpApi(specifier: string): Promise<any | null> {
     console.warn(`[workflow] Failed to import ${specifier}: ${err instanceof Error ? err.message : String(err)}`);
     return null;
   }
-}
-
-let workflowRetryManagerPromise: Promise<WorkflowRetryManagerAdapter> | null = null;
-let workflowRetryManagerLoadError: string | null = null;
-
-function isWorkflowRetryManagerAdapter(value: unknown): value is WorkflowRetryManagerAdapter {
-  if (!value || typeof value !== 'object') {
-    return false;
-  }
-
-  const candidate = value as Partial<WorkflowRetryManagerAdapter>;
-  return (
-    typeof candidate.getRetryStats === 'function' &&
-    typeof candidate.processRetryQueue === 'function'
-  );
-}
-
-async function loadWorkflowRetryManagerModule(): Promise<WorkflowRetryManagerAdapter> {
-  try {
-    const module = await import('@spec-kit/mcp-server/api/providers');
-    const candidate = (module as { retryManager?: unknown }).retryManager;
-    if (isWorkflowRetryManagerAdapter(candidate)) {
-      workflowRetryManagerLoadError = null;
-      return candidate;
-    }
-
-    workflowRetryManagerLoadError = 'Provider retryManager export is missing required methods';
-    return FALLBACK_RETRY_MANAGER;
-  } catch (error: unknown) {
-    workflowRetryManagerLoadError = error instanceof Error ? error.message : String(error);
-    return FALLBACK_RETRY_MANAGER;
-  }
-}
-
-async function loadWorkflowRetryManager(): Promise<WorkflowRetryManagerAdapter> {
-  if (!workflowRetryManagerPromise) {
-    workflowRetryManagerPromise = loadWorkflowRetryManagerModule();
-  }
-
-  return workflowRetryManagerPromise;
-}
-
-function consumeWorkflowRetryManagerLoadError(): string | null {
-  const loadError = workflowRetryManagerLoadError;
-  workflowRetryManagerLoadError = null;
-  return loadError;
 }
 
 /** Refresh phase-parent pointers from the workflow's resolved save target. */
@@ -1669,28 +1603,6 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       const reviewErrMsg = reviewErr instanceof Error ? reviewErr.message : String(reviewErr);
       warn(`   Warning: Post-save review skipped: ${reviewErrMsg}`);
     }
-  }
-
-  // Step 12: Opportunistic retry processing
-  try {
-    const retryManager = await loadWorkflowRetryManager();
-    const retryManagerLoadIssue = consumeWorkflowRetryManagerLoadError();
-    if (retryManagerLoadIssue) {
-      warn(`   Warning: Retry manager unavailable; skipping retry queue processing (${retryManagerLoadIssue})`);
-    }
-
-    const retryStats = retryManager.getRetryStats();
-    if (retryStats.queue_size > 0) {
-      log('Step 12: Processing retry queue...');
-      const results = await retryManager.processRetryQueue(3);
-      if (results.processed > 0) {
-        log(`   Processed ${results.processed} pending embeddings`);
-        log(`   Succeeded: ${results.succeeded}, Failed: ${results.failed}`);
-      }
-    }
-  } catch (e: unknown) {
-    const errMsg = e instanceof Error ? e.message : String(e);
-    warn(`   Warning: Retry processing error: ${errMsg}`);
   }
 
   log();

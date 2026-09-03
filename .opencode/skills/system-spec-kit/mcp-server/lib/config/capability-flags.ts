@@ -1,49 +1,35 @@
 // ───────────────────────────────────────────────────────────────
-// MODULE: Memory Roadmap Flags
+// MODULE: Capability Flags
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Feature flag governance
-// Phase-gated capability switches for the memory roadmap.
-// Defaults reflect the shipped rollout unless explicitly opted out, except for
-// roadmap phases that remain intentionally dormant in production.
-import { isFeatureEnabled } from '../cognitive/rollout-policy.js';
-import { isStrictOptInEnabled, parseFlagTristate } from '../search/search-flags.js';
+// The gates that gard generated-metadata derivation and the validation
+// orchestrator. Each one defaults to the shipped behavior and is overridden
+// only by an explicit opt-in or opt-out value.
 
-// Derive phase type from the canonical array to keep them in sync.
-const SUPPORTED_PHASES_ARRAY = ['baseline', 'lineage', 'graph', 'adaptive', 'scope-governance'] as const;
+const TRUTHY_OPT_IN = new Set(['true', '1', 'yes', 'on', 'enabled']);
+const FALSY_OPT_OUT = new Set(['false', '0', 'no', 'off', 'disabled']);
 
-/** Canonical rollout phases used by memory roadmap tracking. */
-type MemoryRoadmapPhase = typeof SUPPORTED_PHASES_ARRAY[number];
-
-/** Capability flags tracked for phased rollout. */
-interface MemoryRoadmapCapabilityFlags {
-  lineageState: boolean;
-  graphUnified: boolean;
-  adaptiveRanking: boolean;
-}
-
-/** Rollout defaults snapshot for telemetry and migration checkpoints. */
-interface MemoryRoadmapDefaults {
-  phase: MemoryRoadmapPhase;
-  capabilities: MemoryRoadmapCapabilityFlags;
-  scopeDimensionsTracked: number;
-}
-
-const PHASE_ENV = 'SPECKIT_MEMORY_ROADMAP_PHASE';
 /**
- * SPECKIT_PARSER, Structural parser backend selector.
+ * Returns true when envVarName is set to an opt-in value (true, 1, yes, on,
+ * enabled), false when set to an opt-out value (false, 0, no, off, disabled),
+ * and defaultValue for anything else — unset, empty, or unrecognized.
+ * Case-insensitive and whitespace-tolerant.
  *
- * Controls which parsing backend the structural indexer uses for code-graph
- * symbol extraction. Evaluated at first parse call; cannot be changed mid-session.
- *
- * | Value        | Description                                                 |
- * |--------------|-------------------------------------------------------------|
- * | `treesitter` | (default) AST-accurate parsing via web-tree-sitter WASM    |
- * | `regex`      | Lightweight regex-based fallback, no WASM dependencies     |
- *
- * Runtime: `lib/code-graph/structural-indexer.ts::getParser()`
- * Example: `SPECKIT_PARSER=regex node context-server.js`
+ * Exported so the other modules that register flags parse the same vocabulary
+ * instead of each hand-rolling its own subset comparison.
  */
-const SPECKIT_PARSER_ENV = 'SPECKIT_PARSER' as const;
+function parseFlagTristate(envVarName: string, defaultValue: boolean): boolean {
+  const value = process.env[envVarName]?.trim().toLowerCase();
+  if (value === undefined) {
+    return defaultValue;
+  }
+  if (TRUTHY_OPT_IN.has(value)) {
+    return true;
+  }
+  if (FALSY_OPT_OUT.has(value)) {
+    return false;
+  }
+  return defaultValue;
+}
 
 /**
  * SPECKIT_IDENTITY_MERGE_SAFETY: Shared identity resolver and lineage-merge guard.
@@ -215,135 +201,7 @@ function isStatusCompletionConsistencyGateEnabled(): boolean {
   return parseFlagTristate(STATUS_COMPLETION_CONSISTENCY_GATE_ENV, false);
 }
 
-/**
- * SPECKIT_QUERY_TIME_EXISTENCE_FILTER: query-result path existence guard.
- *
- * Default-OFF because this touches the hot search response path. When enabled,
- * memory_search filters only the already-ranked top-k rows whose backing file path
- * is absent, and queues those ids for scan-time confirmation instead of deleting
- * them immediately. An explicit true/1 opts in; all other values preserve legacy
- * query behavior.
- *
- * | Value        | Behavior                                                        |
- * |--------------|-----------------------------------------------------------------|
- * | unset / other| (default) no query-time filesystem filtering                    |
- * | `true` / `1` | exclude missing-path top-k rows and queue them for confirmation |
- */
-const QUERY_TIME_EXISTENCE_FILTER_ENV = 'SPECKIT_QUERY_TIME_EXISTENCE_FILTER' as const;
-
-/**
- * Returns whether memory_search filters missing backing files at query time,
- * excluding already-ranked top-k rows whose backing file no longer exists and
- * queueing those ids for scan-time confirmation instead of deleting them
- * immediately.
- *
- * Reads the environment on every call so tests and request-local harnesses can change it,
- * and stays OFF unless the original strict true/1 vocabulary explicitly opts in.
- */
-function isQueryTimeExistenceFilterEnabled(): boolean {
-  return isStrictOptInEnabled(QUERY_TIME_EXISTENCE_FILTER_ENV);
-}
-
-// Keep roadmap controls distinct from existing runtime feature flags so
-// Telemetry/checkpoints describe roadmap rollout state rather than unrelated
-// Default-on retrieval behavior.
-const CAPABILITY_ENV = {
-  lineageState: 'SPECKIT_MEMORY_LINEAGE_STATE',
-  graphUnified: 'SPECKIT_MEMORY_GRAPH_UNIFIED',
-  adaptiveRanking: 'SPECKIT_MEMORY_ADAPTIVE_RANKING',
-} as const;
-
-const SUPPORTED_PHASES: ReadonlySet<MemoryRoadmapPhase> = new Set(SUPPORTED_PHASES_ARRAY);
-
-function hasExplicitDisableFlag(flagNames: string | readonly string[]): boolean {
-  const candidates = Array.isArray(flagNames) ? flagNames : [flagNames];
-  for (const flagName of candidates) {
-    // defaultValue=true means this only returns false when the raw value is a
-    // recognized opt-out member; unset/unrecognized falls through as "not disabled".
-    if (!parseFlagTristate(flagName, true)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function normalizeIdentity(flagName: string, identity?: string): string {
-  if (typeof identity === 'string' && identity.trim().length > 0) {
-    return identity.trim();
-  }
-  return `memory-roadmap:${flagName}`;
-}
-
-/** Returns the roadmap capability state, with optional default-off dormant flags. */
-function isMemoryRoadmapCapabilityEnabled(
-  flagNames: string | readonly string[],
-  identity?: string,
-  defaultValue = true,
-): boolean {
-  const candidates = Array.isArray(flagNames) ? flagNames : [flagNames];
-  if (hasExplicitDisableFlag(flagNames)) {
-    return false;
-  }
-
-  for (const flagName of candidates) {
-    // defaultValue=false means this only returns true when the raw value is a
-    // recognized opt-in member; unset/unrecognized falls through to the rollout check.
-    if (parseFlagTristate(flagName, false)) {
-      return true;
-    }
-  }
-
-  if (!defaultValue) {
-    return false;
-  }
-
-  const canonicalFlag = candidates[0];
-  return isFeatureEnabled(canonicalFlag, normalizeIdentity(canonicalFlag, identity));
-}
-
-/** Resolves the active memory roadmap phase from env, defaulting to scope-governance. */
-function getMemoryRoadmapPhase(): MemoryRoadmapPhase {
-  const canonicalPhase = process.env[PHASE_ENV]?.trim().toLowerCase();
-  if (canonicalPhase && SUPPORTED_PHASES.has(canonicalPhase as MemoryRoadmapPhase)) {
-    return canonicalPhase as MemoryRoadmapPhase;
-  }
-  return 'scope-governance';
-}
-
-/** Returns the full capability snapshot for memory roadmap controls. */
-function getMemoryRoadmapCapabilityFlags(identity?: string): MemoryRoadmapCapabilityFlags {
-  return {
-    lineageState: isMemoryRoadmapCapabilityEnabled(
-      CAPABILITY_ENV.lineageState,
-      identity,
-    ),
-    graphUnified: isMemoryRoadmapCapabilityEnabled(
-      CAPABILITY_ENV.graphUnified,
-      identity,
-    ),
-    adaptiveRanking: isMemoryRoadmapCapabilityEnabled(
-      CAPABILITY_ENV.adaptiveRanking,
-      identity,
-      false,
-    ),
-  };
-}
-
-/** Returns defaults consumed by telemetry/checkpoint paths for phase tracking. */
-function getMemoryRoadmapDefaults(identity?: string): MemoryRoadmapDefaults {
-  return {
-    phase: getMemoryRoadmapPhase(),
-    capabilities: getMemoryRoadmapCapabilityFlags(identity),
-    scopeDimensionsTracked: 4, // tenant/user/agent/session
-  };
-}
-
 export {
-  /** @internal — test-only, not part of public API */
-  CAPABILITY_ENV,
-  getMemoryRoadmapCapabilityFlags,
-  getMemoryRoadmapDefaults,
-  getMemoryRoadmapPhase,
   /** Documented generated-metadata drift-gate env var name */
   GENERATED_METADATA_DRIFT_GATE_ENV,
   /** Documented generated-metadata grandfather env var name */
@@ -354,25 +212,13 @@ export {
   IDEMPOTENT_DESCRIPTION_WRITES_ENV,
   /** Documented identity/merge-safety env var name */
   IDENTITY_MERGE_SAFETY_ENV,
+  /** Documented status-completion-consistency-gate env var name */
+  STATUS_COMPLETION_CONSISTENCY_GATE_ENV,
+  parseFlagTristate,
   isGeneratedMetadataDriftGateEnabled,
   isGeneratedMetadataGrandfatherEnabled,
   isGeneratorHardeningEnabled,
   isIdempotentDescriptionWritesEnabled,
   isIdentityMergeSafetyEnabled,
-  isQueryTimeExistenceFilterEnabled,
-  /** @internal — exposed for test utilities only */
-  isMemoryRoadmapCapabilityEnabled,
   isStatusCompletionConsistencyGateEnabled,
-  /** Documented parser backend env var name */
-  SPECKIT_PARSER_ENV,
-  /** Documented query-time existence-filter env var name */
-  QUERY_TIME_EXISTENCE_FILTER_ENV,
-  /** Documented status-completion-consistency-gate env var name */
-  STATUS_COMPLETION_CONSISTENCY_GATE_ENV,
-};
-
-export type {
-  MemoryRoadmapCapabilityFlags,
-  MemoryRoadmapDefaults,
-  MemoryRoadmapPhase,
 };

@@ -31,7 +31,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `afterAgentThought` | **Confirmed fires** | Not wired (no repo guard needs a reasoning-trace hook today) | — |
 | `beforeSubmitPrompt` | **Confirmed non-delivery in tested build** | Classifier and prompt-submit adapters are registered for parity | Startup prebinding covers the enforcement-state gap. |
 | `stop` | **Confirmed non-delivery** | Replaced by `sessionEnd` (`session-end.ts`) | Never fired across all 3 dispatches; `sessionEnd` is the actual completion signal under `-p` |
-| `beforeMCPExecution` | **Confirmed fires** | `mcp-route-guard.mjs` | Normalizes Cursor's split MCP server/tool payload for the shared advisory guard. |
+| `beforeMCPExecution` | **Confirmed fires** | Shared repository guard, not an adapter in this folder | The Cursor MCP route guard is owned by the repository hooks tree, at `.opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`. |
 | `preCompact` | **Registered, delivery unconfirmed** | `precompact.ts` | No CLI-reachable compaction trigger is available. |
 | `postToolUseFailure`, `afterMCPExecution`, `subagentStart`, `subagentStop`, `afterAgentResponse` | **Not wired** | None | No current repository guard consumes these events. |
 
@@ -47,8 +47,11 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `session-start.ts` | `sessionStart` adapter. Delegates to `session-prime.js` and returns its context as `agent_message`. |
 | `session-end.ts` | `sessionEnd` adapter (NOT `stop` — see the delivery table above). Delegates to `session-stop.js`. |
 | `post-tool-use.mjs` | Normalizes Cursor tool payloads for post-edit, graph-freshness, and dispatch-audit hooks. |
-| `task-dispatch-guard.mjs` | Proxies matched `Task` calls into the shared dispatch guard. |
-| `mcp-route-guard.mjs` | Normalizes split MCP identifiers before calling the shared advisory guard. |
+| `precompact.ts` | `preCompact` adapter. Registered, but no CLI-reachable compaction trigger exists to confirm delivery. |
+| `user-prompt-submit.ts` | Prompt-submit adapter, registered for parity against the undelivered `beforeSubmitPrompt` event. |
+| `completion-evidence-response.mjs` | Advisory completion-evidence check. Delegates policy to `../../lib/hooks/completion-evidence-sentinel.cjs` and never blocks. |
+
+The Cursor task-dispatch and MCP-route guards are not part of this package. They live in the repository hooks tree at `.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` and `.opencode/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`, and `.cursor/hooks.json` registers them from there.
 
 ---
 

@@ -19,7 +19,7 @@ Hook scripts for Claude Code lifecycle events. These run as external Node.js pro
 | `session-stop.ts` | Stop (async) | Parses transcript for token usage, stores snapshots |
 | `completion-evidence-stop.cjs` | Stop (async) | Standalone completion-evidence sentinel, co-resident with `session-stop.ts` on the same Stop matcher; advises when a completion claim lacks packet evidence, never blocks |
 | `claude-transcript.ts` | (library) | JSONL transcript parser, token counting, cost estimation |
-| `true-citation-mining.ts` | (library) | Session-stop glue: mines the transcript for true-citation used/not-used pairs and persists them, flag-gated and fail-safe |
+| `directive-lifecycle-boundary.ts` | (library) | Bounded, fail-open process boundary through which lifecycle owners notify the advisor store; also invoked by the Devin `PostCompaction` adapter |
 | `shared.ts` | (library) | Common utilities: stdin parsing, output formatting, timeout, logging |
 | `hook-state.ts` | (library) | Per-session state management at temp directory |
 
@@ -38,7 +38,7 @@ Stop → parse transcript, save token snapshot
 
 ## 4. REGISTRATION
 
-Hooks registered in `.claude/settings.local.json`. Compiled JS at `dist/hooks/claude/`.
+Hooks registered in `.claude/settings.json`. Compiled JS at `dist/hooks/claude/`.
 
 Advisor registration snippet:
 
@@ -80,7 +80,7 @@ This folder also holds the Claude Code side of the Gate-3 spec-folder discipline
 
 ## 6. DESIGN PRINCIPLE
 
-Hooks are transport reliability, not separate business logic. They call the same retrieval primitives (`memory_match_triggers`, `memory_context`) that other runtimes call explicitly.
+Hooks are transport reliability, not separate business logic. An adapter normalizes a payload, calls a shared implementation, and formats the runtime's envelope; it owns no policy of its own.
 For packet work, the operator-facing recovery surface remains `/speckit:resume`, with continuity rebuilt from `handover.md -> _memory.continuity -> spec docs`.
 
 The prompt-time advisor contract lives at `../../../../system-skill-advisor/hooks/skill-advisor-hook.md`.

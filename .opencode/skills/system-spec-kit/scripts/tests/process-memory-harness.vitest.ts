@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  DEFAULT_PROCESS_RULES,
   buildHarnessSnapshot,
   classifyPidLock,
   classifyProcesses,
@@ -11,16 +12,30 @@ import {
   parseVmStat,
   redactSensitiveCommand,
   syntheticFixtureSnapshot,
+  type ProcessRule,
 } from '../ops/process-memory-harness.js';
 
 const PS_FIXTURE = `  PID  PPID STAT    RSS COMMAND
  1000     1 S     5000 opencode
  1001  1000 S     4000 node synthetic-child.js
  1002  1001 S     3000 node synthetic-grandchild.js
- 2002     1 S    32000 /opt/homebrew/bin/node /repo/.opencode/bin/system-spec-memory-launcher.cjs
+ 2002     1 S    32000 /opt/homebrew/bin/node /repo/.opencode/skills/system-spec-kit/scripts/dist/ops/synthetic-daemon.js
  4000     1 S    24000 /opt/homebrew/opt/ollama/bin/ollama serve
  5000   918 Z        0 <defunct>
 `;
+
+// The shipped rule set registers no project daemon, so a caller that needs that role
+// supplies it. Classifying with this set keeps the project-daemon and orphan paths covered
+// without asserting that any particular daemon is shipped.
+const RULES_WITH_PROJECT_DAEMON: ProcessRule[] = [
+  ...DEFAULT_PROCESS_RULES,
+  {
+    id: 'synthetic-project-daemon',
+    pattern: /synthetic-daemon\.js/,
+    role: 'project-daemon',
+    reason: 'Synthetic project daemon',
+  },
+];
 
 describe('process memory harness', () => {
   it('parses ps rows with full commands intact', () => {
@@ -32,7 +47,20 @@ describe('process memory harness', () => {
       ppid: 1,
       stat: 'S',
       rssKb: 32000,
-      command: expect.stringContaining('system-spec-memory-launcher'),
+      command: expect.stringContaining('synthetic-daemon.js'),
+    });
+  });
+
+  it('registers no project daemon rule by default', () => {
+    expect(DEFAULT_PROCESS_RULES.some((rule) => rule.role === 'project-daemon')).toBe(false);
+
+    const classified = classifyProcesses(parsePsOutput(PS_FIXTURE), { currentPid: 1000 });
+
+    expect(classified.find((row) => row.pid === 2002)).toMatchObject({
+      role: 'unknown',
+      classification: 'unknown-owner',
+      ruleId: null,
+      terminationCandidate: false,
     });
   });
 
@@ -61,12 +89,15 @@ describe('process memory harness', () => {
   });
 
   it('classifies project daemons, expected daemons, and zombies without marking expected daemons killable', () => {
-    const classified = classifyProcesses(parsePsOutput(PS_FIXTURE), { currentPid: 1000 });
+    const classified = classifyProcesses(parsePsOutput(PS_FIXTURE), {
+      currentPid: 1000,
+      rules: RULES_WITH_PROJECT_DAEMON,
+    });
 
     expect(classified.find((row) => row.pid === 2002)).toMatchObject({
       role: 'project-daemon',
       classification: 'orphaned-project-daemon',
-      ruleId: 'spec-memory-launcher',
+      ruleId: 'synthetic-project-daemon',
       terminationCandidate: true,
     });
     expect(classified.find((row) => row.pid === 4000)).toMatchObject({
@@ -111,10 +142,11 @@ describe('process memory harness', () => {
 
     expect(snapshot.status).toBe('ok');
     expect(snapshot.processCount).toBeGreaterThan(0);
-    expect(snapshot.projectDaemonCount).toBeGreaterThanOrEqual(2);
+    expect(snapshot.projectDaemonCount).toBe(0);
     expect(snapshot.expectedDaemonCount).toBeGreaterThanOrEqual(1);
     expect(snapshot.zombieCount).toBe(1);
-    expect(snapshot.orphanedProjectDaemonCount).toBeGreaterThanOrEqual(2);
+    expect(snapshot.orphanedProjectDaemonCount).toBe(0);
+    expect(snapshot.terminationCandidateCount).toBe(0);
     expect(snapshot.pidLocks.map((lock) => lock.state).sort()).toEqual([
       'invalid',
       'live',

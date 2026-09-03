@@ -64,10 +64,10 @@ describe('local LLM health reporting', () => {
     await expect(provider.healthCheck()).resolves.toBe(true);
   });
 
-  it('T3 memory_health response shape can include provider, dtype, and dimension fields', () => {
+  it('T3 health response shape can include provider, dtype, and dimension fields', () => {
     const provider = new HfLocalProvider();
     const metadata = provider.getMetadata();
-    const memoryHealthPayload = {
+    const healthPayload = {
       embeddings: {
         provider: metadata.provider,
         model: metadata.model,
@@ -77,7 +77,7 @@ describe('local LLM health reporting', () => {
       },
     };
 
-    expect(memoryHealthPayload.embeddings).toMatchObject({
+    expect(healthPayload.embeddings).toMatchObject({
       provider: 'hf-local',
       dtype: 'q8',
       dimension: 768,

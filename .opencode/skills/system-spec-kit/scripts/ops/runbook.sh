@@ -8,7 +8,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 show_help() {
     cat << EOF
-runbook.sh - Runbook helper for four self-healing failure classes
+runbook.sh - Runbook helper for the self-healing failure classes
 
 USAGE:
   ./runbook.sh <command> [args]
@@ -25,7 +25,7 @@ COMMANDS:
 
 EXAMPLES:
   ./runbook.sh list
-  ./runbook.sh show index-drift
+  ./runbook.sh show session-ambiguity
   ./runbook.sh drill all --scenario success --max-attempts 3
   ./runbook.sh drill telemetry-drift --scenario escalate --max-attempts 2
 EOF
@@ -33,9 +33,7 @@ EOF
 
 class_script() {
     case "$1" in
-        index-drift) echo "${SCRIPT_DIR}/heal-index-drift.sh" ;;
         session-ambiguity) echo "${SCRIPT_DIR}/heal-session-ambiguity.sh" ;;
-        ledger-mismatch) echo "${SCRIPT_DIR}/heal-ledger-mismatch.sh" ;;
         telemetry-drift) echo "${SCRIPT_DIR}/heal-telemetry-drift.sh" ;;
         *) return 1 ;;
     esac
@@ -43,15 +41,6 @@ class_script() {
 
 show_class() {
     case "$1" in
-        index-drift)
-            cat << EOF
-CLASS: index-drift
-TRIGGER: index parity check fails or retrieval health loop reports divergence
-OWNER: Engineering Lead
-ESCALATION: Engineering Lead -> Operations Lead
-DRILL: ./runbook.sh drill index-drift --scenario success
-EOF
-            ;;
         session-ambiguity)
             cat << EOF
 CLASS: session-ambiguity
@@ -59,15 +48,6 @@ TRIGGER: session misroute threshold exceeded on ambiguity fixtures
 OWNER: QA Lead
 ESCALATION: QA Lead -> Operations Lead
 DRILL: ./runbook.sh drill session-ambiguity --scenario success
-EOF
-            ;;
-        ledger-mismatch)
-            cat << EOF
-CLASS: ledger-mismatch
-TRIGGER: mutation ledger parity mismatch or replay consistency failure
-OWNER: Engineering Lead
-ESCALATION: Engineering Lead -> Operations Lead
-DRILL: ./runbook.sh drill ledger-mismatch --scenario success
 EOF
             ;;
         telemetry-drift)
@@ -102,7 +82,7 @@ run_drill() {
     shift
     if [[ "$target" == "all" ]]; then
         local failures=0
-        for failure_class in index-drift session-ambiguity ledger-mismatch telemetry-drift; do
+        for failure_class in session-ambiguity telemetry-drift; do
             if ! run_drill_one "$failure_class" "$@"; then
                 failures=$((failures + 1))
             fi
@@ -131,9 +111,7 @@ main() {
             ;;
         list)
             cat << EOF
-index-drift
 session-ambiguity
-ledger-mismatch
 telemetry-drift
 EOF
             ;;

@@ -1,6 +1,6 @@
 ---
 title: "MCP Server Public API"
-description: "Stable import surface for eval, indexing, search, provider, storage and selected support modules."
+description: "Stable import surface for spec folder identity, validation, folder discovery and graph metadata."
 trigger_phrases:
   - "public api"
   - "api surface"
@@ -11,9 +11,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`mcp-server/api/` is the supported import surface for scripts, eval tooling and package consumers that need MCP server capabilities without reaching into internal folders. Add exports here only when an external caller needs a stable contract.
+`mcp-server/api/` is the supported import surface for the scripts workspace and any other package consumer that needs this engine's capabilities without reaching into internal folders. Add exports here only when an external caller needs a stable contract: every export in `index.ts` has a named caller in the scripts workspace, and one added without a caller re-widens the surface this barrel exists to keep narrow.
 
-Internal MCP server code should import from its owning `lib/`, `handlers/`, `core/`, or local module instead of routing through this API barrel.
+Internal package code should import from its owning `lib/`, `handlers/`, or `core/` module instead of routing through this barrel.
 
 ---
 
@@ -21,26 +21,24 @@ Internal MCP server code should import from its owning `lib/`, `handlers/`, `cor
 
 | Surface | Purpose |
 |---|---|
-| Eval | Ablation, BM25 baseline, ground-truth and eval DB helpers. |
-| Indexing | Runtime startup, embedding warmup, spec-doc reindexing and shutdown helpers. |
-| Search | Hybrid search, FTS5 BM25, vector index and search result types. |
-| Providers | Embedding generation, embedding profile lookup and retry manager access. |
-| Storage | Checkpoint and access tracker initialization. |
-| Governance | Scope-governance audit and tier-downgrade helpers for scripts. |
-| Discovery and metadata | Folder descriptions, entities, graph metadata and capability flags. |
+| Graph refresh | Spec-folder resolution plus graph metadata re-derivation for the save workflow. |
+| Drift markers | Marker path resolution, entry keys and the atomic write helper used by the git hooks. |
+| Spec folder identity | Folder identity resolution and the graph-metadata path classifier. |
+| Validation | Folder validation entry point, report types and the continuity fingerprint. |
+| Folder discovery | Per-folder description generation, load, save and repair helpers. |
+| Graph metadata | Schema, parser, integrity gate and drift gate for `graph-metadata.json`. |
 
 ---
 
 ## 3. EXPORTS
 
-`index.ts` re-exports focused modules from this folder plus selected support contracts:
+`index.ts` re-exports from `graph-refresh.ts` plus a fixed set of internal modules, grouped by the caller that needs them:
 
-- `eval.ts`: `runAblation`, BM25 helpers, ground-truth helpers, eval DB setup and related types.
-- `indexing.ts`: indexing runtime lifecycle, graph metadata refresh, spec-doc reindexing and enrichment backfill.
-- `search.ts`: hybrid search functions, FTS5 helpers and `vectorIndex`.
-- `providers.ts`: embedding functions, embedding profile lookup and `retryManager`.
-- `storage.ts`: checkpoint and access tracker initialization.
-- Selected `lib/` exports for governance, folder discovery, entity extraction, graph metadata, validation, performance benchmarking, layer metadata and roadmap flags.
+- `graph-refresh.ts`: `refreshGraphMetadata`, which resolves a spec folder reference before re-deriving its graph metadata.
+- Git-hook drift-marker writing: `resolveDatabasePaths`, `resolveMemoryDriftMarkerPath`, `memoryDriftMarkerEntryKey`, `atomicWriteFile`, the interprocess lock helpers (`createInterprocessLock`, `releaseInterprocessLock`, `reclaimInterprocessLock`, `isReclaimableLock`) and their types.
+- Spec folder identity and validation: `resolveSpecFolderIdentity`, `SpecFolderIdentityError`, `canClassifyAsGraphMetadataPath`, `validateFolder`, `buildContinuityFingerprint`, `ZERO_CONTINUITY_FINGERPRINT` and the `ValidateOpts` / `ValidationEntry` / `ValidationReport` types.
+- Folder discovery: `generatePerFolderDescription`, `savePerFolderDescription`, `loadPerFolderDescription`, `loadExistingDescription`, `wouldWritePerFolderDescription`, `getRepairMergeSafe`, `extractKeywords`, `slugifyFolderName` and their result types.
+- Graph metadata: the `graph-metadata.json` schema constants and Zod schemas, the parser's load/derive/merge/serialize/write functions, `checkGeneratedMetadataIntegrity`, `checkGeneratedMetadataDrift`, `computeSourceDocHashes` and the matching report types.
 
 ---
 
@@ -49,9 +47,8 @@ Internal MCP server code should import from its owning `lib/`, `handlers/`, `cor
 | Caller | Rule |
 |---|---|
 | External scripts | Prefer `@spec-kit/mcp-server/api` or `@spec-kit/mcp-server/api/<module>`. |
-| Eval tooling | Import from this folder unless a local test fixture needs a private module. |
-| Internal MCP server code | Import from the owning internal module, not from `api/index.ts`. |
-| New public needs | Add a narrow export here or document the exception in the import-policy allowlist. |
+| Internal package code | Import from the owning internal module, not from `api/index.ts`. |
+| New public needs | Add a narrow export here, or document the exception in the import-policy allowlist. |
 
 ---
 
@@ -60,11 +57,7 @@ Internal MCP server code should import from its owning `lib/`, `handlers/`, `cor
 | File | Responsibility |
 |---|---|
 | `index.ts` | Public barrel for package and script consumers. |
-| `eval.ts` | Eval, ablation and baseline helpers. |
-| `indexing.ts` | Indexing runtime and reindex helper surface. |
-| `search.ts` | Hybrid, BM25 and vector search surface. |
-| `providers.ts` | Embedding provider surface. |
-| `storage.ts` | Storage initialization surface. |
+| `graph-refresh.ts` | Spec-folder resolution and graph metadata refresh surface. |
 
 ---
 

@@ -23,27 +23,9 @@ const staleDistRoots = [
   'database',
 ];
 const requiredArtifacts = [
-  'context-server.js',
   'api/index.js',
 ];
-const freshnessEntries = ['default', 'spec-memory-cli', 'validation-orchestrator'];
-
-function copyJsonFiles(sourceDir, targetDir) {
-  if (!fs.existsSync(sourceDir)) {
-    return;
-  }
-
-  fs.mkdirSync(targetDir, { recursive: true });
-  for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true })) {
-    const sourcePath = path.join(sourceDir, entry.name);
-    const targetPath = path.join(targetDir, entry.name);
-    if (entry.isDirectory()) {
-      copyJsonFiles(sourcePath, targetPath);
-    } else if (entry.isFile() && entry.name.endsWith('.json')) {
-      fs.copyFileSync(sourcePath, targetPath);
-    }
-  }
-}
+const freshnessEntries = ['default', 'validation-orchestrator'];
 
 function removeStaleDistRoots() {
   for (const root of staleDistRoots) {
@@ -89,9 +71,6 @@ function recordFreshnessBuilds() {
     );
   }
 }
-
-copyJsonFiles(path.join(serverDir, 'lib', 'eval', 'data'), path.join(distDir, 'lib', 'eval', 'data'));
-copyJsonFiles(path.join(serverDir, 'lib', 'routing'), path.join(distDir, 'lib', 'routing'));
 
 removeStaleDistRoots();
 assertRequiredArtifacts();

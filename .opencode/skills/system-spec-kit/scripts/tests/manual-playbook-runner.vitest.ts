@@ -48,14 +48,9 @@ function createFixture(): FixtureToolContext {
   };
 }
 
-function createRuntimeState() {
+function createRuntimeState(): { lastJobId: string | null } {
   return {
     lastJobId: null,
-    lastCursor: null,
-    lastCheckpointName: 'checkpoint-default',
-    lastSessionId: null,
-    lastDeletedId: null,
-    lastDeletedTitle: null,
   };
 }
 
@@ -131,7 +126,7 @@ describe('discoverScenarioDefinitions', () => {
       '',
       '- Prompt: `Check current runner coverage`',
       '',
-      '- Commands: memory_search({ query:"runner coverage" })',
+      '- Commands: deep_loop_graph_status({})',
       '',
       '- Expected signals: coverage metrics present',
       '- Evidence: direct handler coverage observed',
@@ -146,7 +141,7 @@ describe('discoverScenarioDefinitions', () => {
       '## 3. TEST EXECUTION',
       '',
       '- Prompt: `This scenario is missing the expected block`',
-      '- Commands: memory_search({ query:"missing expected block" })',
+      '- Commands: deep_loop_graph_status({})',
       '',
       '## 4. PASS / FAIL',
     ].join('\n'));
@@ -229,7 +224,7 @@ describe('parseAutomatableMetadata', () => {
       '## 3. TEST EXECUTION',
       '',
       '- Prompt: `run the direct handler`',
-      '- Commands: memory_search({ query:"coverage" })',
+      '- Commands: deep_loop_graph_status({})',
       '- Expected signals: results returned',
       '- Evidence: direct handler output',
       '',
@@ -281,37 +276,17 @@ describe('sanitizeJobIdForSubstitution (T-MPR-RUN-04)', () => {
   });
 });
 
-// Tool-argument schemas reject unknown keys and missing
-// required fields. Shorthand dialect (`{jobId}`) is already blocked by
-// parseObjectLiteralArgs; the schema layer catches the partial-args case
-// (e.g. when defaults merge onto parsed fragments).
-describe('validateToolArgsSchema (T-MPR-RUN-05)', () => {
-  it('accepts well-formed memory_ingest_status args', () => {
-    expect(() => validateToolArgsSchema('memory_ingest_status', { jobId: 'job_abc123' }))
+// The schema registry is empty while no tool in the corpus publishes an
+// argument contract the runner can enforce, so validation must pass everything
+// through rather than fail closed on tools it knows nothing about. Shorthand
+// dialect (`{jobId}`) stays blocked one layer down in parseObjectLiteralArgs.
+describe('validateToolArgsSchema', () => {
+  it('is a no-op for tools without a registered schema', () => {
+    expect(() => validateToolArgsSchema('deep_loop_graph_status', {}))
       .not.toThrow();
-  });
-
-  it('rejects memory_ingest_status args missing the required jobId', () => {
-    expect(() => validateToolArgsSchema('memory_ingest_status', {}))
-      .toThrow(/required argument "jobId" is missing/);
-  });
-
-  it('rejects unknown argument keys to surface playbook drift', () => {
-    expect(() => validateToolArgsSchema('memory_ingest_status', {
-      jobId: 'job_abc123',
-      unexpectedKey: 'something',
-    })).toThrow(/unknown argument "unexpectedKey"/);
-  });
-
-  it('rejects null or undefined required values (shorthand dialect symptom)', () => {
-    expect(() => validateToolArgsSchema('memory_ingest_status', { jobId: null }))
-      .toThrow(/required argument "jobId" is missing/);
-    expect(() => validateToolArgsSchema('memory_ingest_status', { jobId: undefined }))
-      .toThrow(/required argument "jobId" is missing/);
-  });
-
-  it('is a no-op for tools without registered schemas', () => {
-    expect(() => validateToolArgsSchema('memory_context', { foo: 'bar' }))
+    expect(() => validateToolArgsSchema('deep_loop_graph_status', { foo: 'bar' }))
+      .not.toThrow();
+    expect(() => validateToolArgsSchema('deep_loop_graph_status', { jobId: null }))
       .not.toThrow();
   });
 });

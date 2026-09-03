@@ -1,12 +1,12 @@
 ---
 title: "Hooks"
-description: "Runtime startup hooks, prompt-time skill-advisor hooks, and in-process helper modules for memory surfacing and UX feedback."
+description: "Per-runtime lifecycle and spec-gate hook adapters, plus the runtime-neutral policy core they share."
 trigger_phrases:
   - "hooks"
-  - "memory surfacing"
+  - "spec gate"
   - "context injection"
   - "startup hook"
-  - "skill advisor hook"
+  - "runtime hook adapter"
 ---
 
 # Hooks
@@ -15,14 +15,14 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`hooks/` contains runtime hook scripts and in-process helper modules for startup context, prompt-time skill advice, compaction support, memory surfacing, mutation feedback, and response hints.
+`hooks/` contains the per-runtime hook adapters for Claude Code, Codex, Cursor, Devin and Pi, together with the runtime-neutral policy core they all call.
 
 Current state:
 
-- Runtime startup hooks transport compact startup context for Claude and OpenCode.
-- Prompt-time hooks call the native advisor and inject a brief through each runtime surface.
-- `index.ts` exports helper modules used inside MCP responses and mutation flows.
-- OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not by a subfolder in this directory.
+- Each runtime folder owns payload translation for that runtime's own envelope shape and nothing else.
+- Policy lives in `lib/`. An adapter reads a payload, calls the core, and formats the answer; it never decides a verdict.
+- Lifecycle adapters are TypeScript compiled to `dist/hooks/<runtime>/`. Spec-gate adapters are direct-run `.mjs` or `.cjs` with no build step.
+- Every entrypoint fails open: a missing or malformed payload resolves to approve, so a bug here cannot block an unrelated turn.
 
 ---
 
@@ -34,23 +34,23 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌────────────────┐      ┌────────────────────┐      ┌────────────────────┐
-│ Claude         │ ───▶ │ runtime hook files │ ───▶ │ startup or prompt   │
-│ OpenCode          │      │ per runtime        │      │ context transport  │
-└────────────────┘      └─────────┬──────────┘      └─────────┬──────────┘
-                                  │                           │
-                                  ▼                           ▼
+│ Claude, Codex  │ ───▶ │ hooks/<runtime>/   │ ───▶ │ per-runtime        │
+│ Cursor, Devin  │      │ payload adapters   │      │ response envelope  │
+│ Pi             │      └─────────┬──────────┘      └────────────────────┘
+└────────────────┘                │
+                                  ▼
                          ┌────────────────────┐      ┌────────────────────┐
-                         │ native advisor     │      │ managed context    │
-                         │ and startup brief  │      │ stdout, file, hook  │
-                         └─────────┬──────────┘      └─────────┬──────────┘
-                                   │                           │
-                                   ▼                           ▼
-                         ┌────────────────────┐      ┌────────────────────┐
-                         │ index.ts exports   │ ───▶ │ MCP envelope hints │
-                         │ helper modules     │      │ and cache feedback │
-                         └────────────────────┘      └────────────────────┘
+                         │ hooks/lib/         │ ───▶ │ Gate-3 verdict     │
+                         │ spec-gate core     │      │ allow/advise/deny  │
+                         └─────────┬──────────┘      └────────────────────┘
+                                   │
+                                   ▼
+                         ┌────────────────────┐
+                         │ ../lib/hooks/      │
+                         │ evidence sentinel  │
+                         └────────────────────┘
 
-Dependency direction: runtime folders ───▶ shared helpers ───▶ MCP response metadata.
+Dependency direction: runtime folders ───▶ hooks/lib ───▶ filesystem and shared session state.
 ```
 
 ---
@@ -59,21 +59,14 @@ Dependency direction: runtime folders ───▶ shared helpers ───▶ M
 
 ```text
 mcp-server/hooks/
-├── claude/                        # Claude session, prompt, compaction, and transcript hooks
-├── codex/                         # Codex runtime hook scripts
-├── cursor/                        # Cursor runtime hook scripts (incl. post-tool-use proxy)
-├── devin/                         # Devin runtime hook scripts
-├── pi/                            # Pi runtime hook scripts (symlinked from .pi/extensions/)
-├── opencode/                      # Browsability symlink -> ../../../../../plugins/ (system-spec-gate.js; real file loaded from .opencode/plugins/)
-├── lib/                           # Runtime-neutral spec-gate core and helpers
-├── code-index-cli-fallback.ts      # Warm-only code-index CLI fallback helper
-├── index.ts                       # Public helper exports
-├── memory-surface.ts              # Context extraction and auto-surface helpers
-├── mutation-feedback.ts           # Post-mutation feedback payloads
-├── response-hints.ts              # Auto-surface hints and token count sync
-├── shared-provenance.ts           # Provenance-wrapped transport helpers
-├── spec-memory-cli-fallback.ts     # Warm-only spec-memory CLI fallback helper
-├── warm-cli-fallback-envelope.ts   # Bounded warm CLI fallback envelope helpers
+├── claude/                  # Claude Code lifecycle, transcript and spec-gate hooks
+├── codex/                   # Codex CLI adapters onto the Claude implementations
+├── cursor/                  # Cursor CLI adapters and the sessionStart prebind
+├── devin/                   # Devin CLI adapters, permission policy and post-compaction
+├── pi/                      # Pi extension factories (symlinked from .pi/extensions/)
+├── opencode/                # Browsability symlink -> .opencode/plugins/system-spec-gate.js
+├── lib/                     # Runtime-neutral spec-gate core, adapter and workspace helpers
+├── shared-provenance.ts     # Provenance-wrapped transport helpers
 └── README.md
 ```
 
@@ -83,19 +76,16 @@ mcp-server/hooks/
 
 | File or directory | Responsibility |
 |---|---|
-| `claude/` | Claude runtime hook scripts and README. |
-| `codex/`, `cursor/`, `devin/` | Per-runtime spec-gate adapter scripts translating the shared `lib/` core into each runtime's hook envelope. |
-| `pi/` | Pi spec-gate adapter, discovered through a relative symlink at `.pi/extensions/` (Pi resolves imports against the symlink path). |
-| `opencode/` | Browsability-only symlink to `.opencode/plugins/system-spec-gate.js`; OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
-| `lib/` | Runtime-neutral spec-gate policy core and helpers the adapters call. |
-| `code-index-cli-fallback.ts` | Bounded warm-only CLI recovery for code-index hook contexts. |
-| `index.ts` | Public export barrel for in-process helper modules. |
-| `memory-surface.ts` | Extracts context hints and surfaces triggered memory. |
-| `mutation-feedback.ts` | Maps `MutationHookResult` values into public `postMutationHooks` response payloads. |
-| `response-hints.ts` | Adds auto-surface hints and token counts to MCP JSON envelopes. |
-| `shared-provenance.ts` | Wraps hook transport with provenance metadata. |
-| `spec-memory-cli-fallback.ts` | Bounded warm-only CLI recovery for spec-memory hook contexts. |
-| `warm-cli-fallback-envelope.ts` | Shared response envelope for warm CLI fallback attempts. |
+| `claude/` | Claude Code lifecycle hooks (session prime, compact inject, session stop, transcript parsing) plus the Gate-3 pair. The other runtimes delegate their lifecycle semantics here. |
+| `codex/`, `cursor/`, `devin/` | Per-runtime adapters that normalize each CLI's payload onto the Claude implementations, plus that runtime's spec-gate pair. Envelope shapes differ: Codex and Devin use `hookSpecificOutput`; Cursor uses `{permission, user_message, agent_message}`. |
+| `pi/` | Pi extension factories, discovered through relative symlinks at `.pi/extensions/`. Pi resolves their imports against the symlink path, so every import in those files is written for the `.pi/extensions/` base. |
+| `opencode/` | Browsability-only symlink to `.opencode/plugins/system-spec-gate.js`. OpenCode discovers plugins solely from `.opencode/plugins/`, so the real file stays there and nothing loads through this symlink. |
+| `lib/spec-gate/spec-gate-core.mjs` | The Gate-3 policy core. Owns `classifyIntent()` and `evaluateMutation()` so the core never changes for a new runtime. |
+| `lib/hook-adapter-shared.mjs` | Shared helper for the four `spec-gate-enforce` adapters. |
+| `lib/workspace/repo-root.mjs` | Repository-root resolution used by the spec-gate core. |
+| `shared-provenance.ts` | Sanitizes recovered compact payloads, stripping adversarial system/developer/assistant/user prefixes, and wraps them with explicit provenance markers so downstream hooks can tell cached context from a first-class turn. Consumed by `claude/shared.ts` and `claude/hook-state.ts`. |
+
+The completion-evidence policy each runtime's Stop-equivalent adapter calls lives one level up, at `../lib/hooks/completion-evidence-sentinel.cjs`.
 
 ---
 
@@ -103,38 +93,39 @@ mcp-server/hooks/
 
 | Boundary | Rule |
 |---|---|
-| Runtime scripts | Keep runtime registration details in each runtime subfolder and README. |
-| In-process helpers | Export shared helper modules through `index.ts`. |
-| Startup transport | Use startup hooks for compact context priming, not prompt-time advisor delivery. |
-| Prompt advice | Use prompt-time hooks or the OpenCode plugin bridge for advisor briefs. |
-| Mutation feedback | Read mutation results from `../handlers/mutation-hooks.ts` before building public payloads. |
-| Response contract | Expose post-mutation UX state through the `postMutationHooks` field, preserving the `MutationHookResult` cache-clearing and error fields. |
+| Runtime scripts | Keep registration details and envelope translation in each runtime subfolder and its README. |
+| Policy | Gate-3 decisions belong to `lib/spec-gate/spec-gate-core.mjs`. An adapter that decides policy has drifted. |
+| Lifecycle semantics | State and transcript semantics stay owned by the Claude adapters so the transports cannot drift apart. |
+| Fail-open | Every entrypoint resolves to approve on a missing or invalid payload. |
+| Evidence sentinel | Completion-evidence checks read recorded artifacts only. They never run a test, a build or `validate.sh`. |
 
 Main flow:
 
 ```text
 ╭──────────────────────────────────────────╮
-│ Runtime event starts or prompt submits   │
+│ Runtime event fires                      │
 ╰──────────────────────────────────────────╯
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ Runtime-specific hook script runs         │
+│ Runtime adapter reads and validates the  │
+│ payload                                   │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ Startup brief or advisor brief is built  │
+│ Shared core returns a transport-free      │
+│ decision                                  │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ Runtime transport injects compact output │
+│ Adapter formats that runtime's envelope   │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ╭──────────────────────────────────────────╮
-│ Agent receives context or advisor brief  │
+│ Agent receives context, advice or a deny  │
 ╰──────────────────────────────────────────╯
 ```
 
@@ -145,11 +136,12 @@ Main flow:
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `claude/session-prime.ts` | Hook script | Claude startup context injection. |
-| OpenCode plugins | Plugin bridge | OpenCode startup/session integration. |
-| `*/user-prompt-submit.ts` | Hook script | Prompt-time skill advisor delivery for supported runtimes. |
-| `index.ts` | Module | Public exports for in-process helper functions. |
-
-Main helper exports include `extractContextHint`, `autoSurfaceMemories`, `autoSurfaceAtToolDispatch`, `autoSurfaceAtCompaction`, `MEMORY_AWARE_TOOLS`, `buildMutationHookFeedback`, `appendAutoSurfaceHints`, `syncEnvelopeTokenCount`, and `serializeEnvelopeWithTokenCount`.
+| `claude/compact-inject.ts` | Hook script | Precomputes context before compaction and caches it to hook state. |
+| `*/user-prompt-submit.ts` | Hook scripts | Prompt-time advisor delivery for the supported runtimes. |
+| `*/spec-gate-classify.mjs` | Hook scripts | Advisory Gate-3 classification on a user turn. |
+| `*/spec-gate-enforce.mjs` | Hook scripts | Pre-tool Gate-3 evaluation; deny-capable for write and edit paths. |
+| `*/completion-evidence-stop.cjs` | Hook scripts | Advisory completion-evidence check at turn end. |
+| `lib/spec-gate/spec-gate-core.mjs` | Module | `classifyIntent()` and `evaluateMutation()` for every runtime. |
 
 ---
 
@@ -159,14 +151,16 @@ Run from `.opencode/skills/system-spec-kit/mcp-server` unless noted.
 
 ```bash
 npx vitest run hooks
+node --test hooks/lib/spec-gate/spec-gate-core.test.mjs
 ```
 
-Expected result: hook helper and runtime hook tests exit with Vitest success.
+Expected result: hook helper and runtime hook tests exit with Vitest success, and the co-located spec-gate core tests pass under `node --test`.
 
 ---
 
 ## 8. RELATED
 
+- [`lib/spec-gate/README.md`](./lib/spec-gate/README.md)
 - [`../handlers/README.md`](../handlers/README.md)
 - [`../core/README.md`](../core/README.md)
 - [`skill-advisor-hook.md`](../../../system-skill-advisor/hooks/skill-advisor-hook.md)

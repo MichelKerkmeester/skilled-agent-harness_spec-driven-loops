@@ -21,7 +21,6 @@ import {
   type HookState, type HookProducerMetadata, type PersistedHookState,
 } from './hook-state.js';
 import { estimateCost, type TranscriptUsage } from './claude-transcript.js';
-import { runTrueCitationEmit } from './true-citation-mining.js';
 
 const require = createRequire(import.meta.url);
 
@@ -183,14 +182,6 @@ export interface OperationResult<T = void> {
   value?: T;
 }
 
-/** Shadow-only true-citation emit summary, surfaced for observability/testing. */
-export interface SessionStopTrueCitationOutcome {
-  status: 'ran' | 'skipped';
-  emitted: number;
-  used: number;
-  notUsed: number;
-}
-
 export interface SessionStopProcessResult {
   touchedPaths: string[];
   parsedMessageCount: number;
@@ -200,7 +191,6 @@ export interface SessionStopProcessResult {
   producerMetadataWritten: boolean;
   transcriptOutcome: OperationResult<{ parsedMessageCount: number; lastTranscriptOffset: number }>;
   producerMetadataOutcome: OperationResult<HookProducerMetadata>;
-  trueCitationOutcome: SessionStopTrueCitationOutcome;
 }
 
 function selectDetectedSpecFolder(
@@ -390,12 +380,6 @@ export async function processStopHook(
     status: 'skipped',
     reason: 'no_transcript_path',
   };
-  let trueCitationOutcome: SessionStopTrueCitationOutcome = {
-    status: 'skipped',
-    emitted: 0,
-    used: 0,
-    notUsed: 0,
-  };
 
   // Guard: only run if stop hook is actively being processed
   if (input.stop_hook_active === false) {
@@ -409,7 +393,6 @@ export async function processStopHook(
       producerMetadataWritten,
       transcriptOutcome,
       producerMetadataOutcome,
-      trueCitationOutcome,
     };
   }
 
@@ -515,28 +498,6 @@ export async function processStopHook(
   }
 
   // ────────────────────────────────────────────────────────────────
-  // True-citation emit (Stage 1 outcome signal, shadow-only)
-  // ────────────────────────────────────────────────────────────────
-  // Mine which surfaced memory_ids the assistant actually referenced after a
-  // search and record used/not-used pairs — the negatives the existing
-  // result_cited signal cannot express. Flag-gated and fail-safe: when off this
-  // is a no-op, so the rest of the stop hook stays byte-identical.
-  if (input.transcript_path) {
-    const emit = await runTrueCitationEmit({
-      transcriptPath: input.transcript_path as string,
-      sessionId,
-    });
-    if (emit.emitted > 0) {
-      trueCitationOutcome = {
-        status: 'ran',
-        emitted: emit.emitted,
-        used: emit.used,
-        notUsed: emit.notUsed,
-      };
-    }
-  }
-
-  // ────────────────────────────────────────────────────────────────
   // Auto-detect spec folder from transcript paths
   // ────────────────────────────────────────────────────────────────
   // Refresh lastSpecFolder from a fresh state read
@@ -635,7 +596,6 @@ export async function processStopHook(
     producerMetadataWritten,
     transcriptOutcome,
     producerMetadataOutcome,
-    trueCitationOutcome,
   };
 }
 

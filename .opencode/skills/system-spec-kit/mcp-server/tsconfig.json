@@ -42,18 +42,9 @@
     "handlers/**/*.ts",
     "hooks/**/*.ts",
     "lib/**/*.ts",
-    "matrix-runners/**/*.ts",
     "schemas/**/*.ts",
     "scripts/**/*.ts",
-    "tools/**/*.ts",
-    "utils/**/*.ts",
-    "cli.ts",
-    "spec-memory-cli.ts",
-    "context-server.ts",
-    "startup-checks.ts",
-    "tool-schemas.ts",
-    "lib/eval/data/*.json",
-    "lib/routing/*.json"
+    "utils/**/*.ts"
   ],
   "exclude": [
     "node_modules",

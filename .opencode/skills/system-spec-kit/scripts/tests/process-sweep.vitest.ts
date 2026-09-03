@@ -1,7 +1,28 @@
 import { describe, expect, it } from 'vitest';
 
-import { classifyProcesses, type ClassifiedProcess, type Inventory, type PidLockState } from '../ops/process-memory-harness.js';
-import { planSweep } from '../ops/process-sweep.js';
+import {
+  DEFAULT_PROCESS_RULES,
+  classifyProcesses,
+  type ClassifiedProcess,
+  type Inventory,
+  type PidLockState,
+  type ProcessRule,
+} from '../ops/process-memory-harness.js';
+import { applySweep, planSweep } from '../ops/process-sweep.js';
+
+const PROJECT_DAEMON_COMMAND = 'node .opencode/skills/system-spec-kit/scripts/dist/ops/synthetic-daemon.js';
+
+// No project daemon ships in the default rule set, so the tests that exercise the
+// project-daemon and orphan paths register one for their own scope.
+const RULES_WITH_PROJECT_DAEMON: ProcessRule[] = [
+  ...DEFAULT_PROCESS_RULES,
+  {
+    id: 'synthetic-project-daemon',
+    pattern: /synthetic-daemon\.js/,
+    role: 'project-daemon',
+    reason: 'Synthetic project daemon',
+  },
+];
 
 function inventory(processes: ClassifiedProcess[], pidLocks: PidLockState[] = [], currentPid = 1000): Inventory {
   return {
@@ -38,26 +59,25 @@ function degradedInventory(status: Inventory['status'], error?: string): Invento
   };
 }
 
-function classifyRows(rows: Array<{ pid: number; ppid: number; command: string; stat?: string; rssKb?: number; eperm?: boolean }>): ClassifiedProcess[] {
+function classifyRows(
+  rows: Array<{ pid: number; ppid: number; command: string; stat?: string; rssKb?: number; eperm?: boolean }>,
+  rules?: ProcessRule[],
+): ClassifiedProcess[] {
   return classifyProcesses(
     rows.map((row) => ({
       stat: 'S',
       rssKb: 1000,
       ...row,
     })),
-    { currentPid: 9999 },
+    { currentPid: 9999, ...(rules ? { rules } : {}) },
   );
 }
 
 describe('process sweep', () => {
   it('never marks the current PID as eligible regardless of classification', () => {
     const processes = classifyRows([
-      {
-        pid: 5678,
-        ppid: 1,
-        command: 'node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js',
-      },
-    ]);
+      { pid: 5678, ppid: 1, command: PROJECT_DAEMON_COMMAND },
+    ], RULES_WITH_PROJECT_DAEMON);
 
     const plan = planSweep(inventory(processes), { selfPid: 5678 });
 
@@ -69,14 +89,10 @@ describe('process sweep', () => {
 
   it('never marks ancestors as eligible even when they look orphaned', () => {
     const processes = classifyRows([
-      {
-        pid: 1234,
-        ppid: 1,
-        command: 'node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js',
-      },
+      { pid: 1234, ppid: 1, command: PROJECT_DAEMON_COMMAND },
       { pid: 4321, ppid: 1234, command: 'zsh' },
       { pid: 5678, ppid: 4321, command: 'node scripts/ops/process-sweep.js plan' },
-    ]);
+    ], RULES_WITH_PROJECT_DAEMON);
 
     const plan = planSweep(inventory(processes), { selfPid: 5678 });
 
@@ -184,17 +200,9 @@ describe('process sweep', () => {
 
   it('marks orphaned project daemons eligible only with known project identity', () => {
     const processes = classifyRows([
-      {
-        pid: 9000,
-        ppid: 1,
-        command: 'node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js',
-      },
-      {
-        pid: 9001,
-        ppid: 1,
-        command: 'node system-spec-kit/mcp-server/dist/context-server.js',
-      },
-    ]);
+      { pid: 9000, ppid: 1, command: PROJECT_DAEMON_COMMAND },
+      { pid: 9001, ppid: 1, command: 'node system-spec-kit/scripts/dist/ops/synthetic-daemon.js' },
+    ], RULES_WITH_PROJECT_DAEMON);
 
     const plan = planSweep(inventory(processes), { selfPid: 1000 });
 
@@ -208,6 +216,26 @@ describe('process sweep', () => {
       eligibleForTermination: false,
       rationale: 'unknown-owner-refused',
     });
+  });
+
+  it('applies no signal even when the plan marks a row eligible', () => {
+    const processes = classifyRows([
+      { pid: 9000, ppid: 1, command: PROJECT_DAEMON_COMMAND },
+    ], RULES_WITH_PROJECT_DAEMON);
+
+    const result = applySweep(inventory(processes), { selfPid: 1000 });
+
+    expect(result.rows.find((row) => row.pid === 9000)?.eligibleForTermination).toBe(true);
+    expect(result.appliedPids).toEqual([]);
+    expect(result.signals).toEqual([]);
+    expect(result.reason).toBe('no-terminable-class-registered');
+  });
+
+  it('reports a degraded inventory instead of an empty apply result', () => {
+    const result = applySweep(degradedInventory('ps-error', 'ps failed'), { selfPid: 1000 });
+
+    expect(result.reason).toBe('inventory-unavailable');
+    expect(result.signals).toEqual([]);
   });
 
   it('does not plan process termination when inventory is degraded', () => {

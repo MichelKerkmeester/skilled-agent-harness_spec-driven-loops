@@ -23,8 +23,6 @@ import {
   type LearnedModel,
 } from '@spec-kit/shared/ranking/learned-combiner';
 
-import { isLearnedStage2CombinerEnabled } from '../lib/search/search-flags';
-
 /* ───────────────────────────────────────────────────────────────
    HELPERS
    ──────────────────────────────────────────────────────────────── */
@@ -664,31 +662,6 @@ describe('REQ-D1-006 Learned Stage 2 Combiner', () => {
   /* ─── Feature Flag ─── */
 
   describe('SPECKIT_LEARNED_STAGE2_COMBINER flag', () => {
-    it('is ON by default (graduated)', () => {
-      delete process.env.SPECKIT_LEARNED_STAGE2_COMBINER;
-      expect(isLearnedStage2CombinerEnabled()).toBe(true);
-    });
-
-    it('is OFF when set to false', () => {
-      setEnv('SPECKIT_LEARNED_STAGE2_COMBINER', 'false');
-      expect(isLearnedStage2CombinerEnabled()).toBe(false);
-    });
-
-    it('is ON when set to true', () => {
-      setEnv('SPECKIT_LEARNED_STAGE2_COMBINER', 'true');
-      expect(isLearnedStage2CombinerEnabled()).toBe(true);
-    });
-
-    it('is ON when set to 1', () => {
-      setEnv('SPECKIT_LEARNED_STAGE2_COMBINER', '1');
-      expect(isLearnedStage2CombinerEnabled()).toBe(true);
-    });
-
-    it('is ON for empty string (graduated — any non-false value is ON)', () => {
-      setEnv('SPECKIT_LEARNED_STAGE2_COMBINER', '');
-      expect(isLearnedStage2CombinerEnabled()).toBe(true);
-    });
-
     it('shadowScore returns null when flag OFF (no overhead)', () => {
       const model = makeTestModel();
       const features: FeatureVector = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];

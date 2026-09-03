@@ -1,6 +1,6 @@
 ---
 title: "MCP Server Tests: Vitest Coverage"
-description: "Vitest unit, integration, handler, eval, governance, and regression coverage for the MCP server."
+description: "Vitest unit, integration, validation, hook, and regression coverage for the spec-kit engine."
 trigger_phrases:
   - "test suite"
   - "vitest"
@@ -13,14 +13,16 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/` is the default Vitest coverage surface for the MCP server. It covers unit logic, integration paths, MCP handler contracts, retrieval behavior, governance, eval metrics, startup checks, and regression cases.
+`tests/` is the default Vitest coverage surface for this package. It covers spec folder validation, generated metadata, description generation, continuity and resume behavior, the runtime hook adapters, and the package's own build and documentation parity guards.
 
 Current responsibilities:
 
-- Verify cognitive retrieval behavior such as attention decay, tiering, co-activation, and session learning.
-- Verify search, ranking, graph, routing, response envelopes, and public API surfaces.
-- Verify save, index, checkpoint, governance, lineage, hook, and startup regressions.
-- Keep stress and load validation separate in sibling `../stress-test/`.
+- Verify validation rules, level contracts and the generated-metadata integrity and drift gates.
+- Verify description generation, folder discovery and continuity records.
+- Verify the hook adapters and the shared spec-gate and completion-evidence policy.
+- Keep load and contention checks in the sibling `../stress-test/`, which the default config excludes.
+
+This README names directories rather than individual suites. The file set moves; use the inventory command in Section 3 for the live list.
 
 ---
 
@@ -28,23 +30,24 @@ Current responsibilities:
 
 ```text
 tests/
-+-- *.vitest.ts          # Unit, integration, handler, eval, and regression suites
-+-- fixtures/            # Sample documents and data for targeted tests
-+-- continuity/          # Continuity-focused nested suites
++-- *.vitest.ts    # Unit, integration and regression suites
++-- _support/      # Vitest setup shared by both configs
++-- __helpers__/   # Shared env helpers for flag-driven tests
++-- fixtures/      # Sample documents and data
 `-- README.md
 ```
 
 Allowed dependency direction:
 
 ```text
-tests ───▶ mcp_server source modules
-tests ───▶ fixtures
+tests ───▶ package source modules
+tests ───▶ fixtures and helpers
 ```
 
 Disallowed dependency direction:
 
 ```text
-mcp_server source modules ───▶ tests
+package source modules ───▶ tests
 tests ───▶ shared temp state without explicit setup and cleanup
 ```
 
@@ -54,41 +57,38 @@ tests ───▶ shared temp state without explicit setup and cleanup
 
 ```text
 tests/
-+-- api-public-surfaces.vitest.ts          # Public export contract coverage
-+-- feature-flag-reference-docs.vitest.ts  # Docs and config parity checks
-+-- governance-e2e.vitest.ts               # Governed scope integration coverage
-+-- handler-memory-search.vitest.ts        # MCP handler search contract coverage
-+-- hybrid-search.vitest.ts                # Retrieval ranking coverage
-+-- memory-save-integration.vitest.ts      # Save pipeline integration coverage
-+-- scope-governance-normalizer-parity.vitest.ts
-+-- __helpers__/
-|   `-- test-env.ts                        # Shared setEnv / restoreEnv / withFeatureFlag for env-driven tests
-+-- fixtures/                              # Shared test fixtures
-+-- integration/
-|   `-- entity-density-commit-hooks.vitest.ts # Post-commit cache invalidation coverage
-+-- continuity/                            # Continuity-specific suites
-`-- README.md
+├── _support/            # Vitest setup file loaded by both vitest configs
+├── __helpers__/         # setEnv / restoreEnv / withFeatureFlag for env-driven suites
+├── adversarial/         # Adversarial input handling
+├── advisor-fixtures/    # Fixture inputs for advisor-facing suites
+├── archive/             # Retained suites kept out of the active areas
+├── deep-loop/           # Deep-loop integration coverage
+├── description/         # description.json generation and repair suites
+├── embedders/           # Embedder-facing suites
+├── fixtures/            # Shared document and data fixtures
+├── graph/               # graph-metadata.json suites
+├── local-llm-features/  # Local model feature suites
+├── security/            # Security and sanitization suites
+├── validation/          # Spec folder validation rule suites
+└── README.md
 ```
 
 Use `rg --files tests -g '*.vitest.ts'` for the full live inventory.
 
 ---
 
-## 4. KEY FILES
+## 4. KEY AREAS
 
-| Area | Representative Files | Responsibility |
+| Area | Where | Responsibility |
 |---|---|---|
-| Cognitive and memory state | `attention-decay.vitest.ts`, `working-memory.vitest.ts`, `tier-classifier.vitest.ts` | Retrieval state, scoring, and tier behavior. |
-| Search and routing | `hybrid-search.vitest.ts`, `query-plan-emission.vitest.ts`, `intent-routing.vitest.ts` | Query planning, ranking, fusion, and routing behavior. |
-| Embedder degradation and canonical semantic recall | `stage1-embedder-degrade.vitest.ts`, `gate-d-regression-embedding-semantic-search.vitest.ts` | Stage 1 lexical fallback when query embeddings are unavailable, exposed degradation metadata, and Gate D semantic-source filtering that keeps canonical reader sources while dropping archived or legacy fallback rows. |
-| Fusion and scoring determinism | `calibrated-overlap-bonus.vitest.ts`, `score-resolution-consistency.vitest.ts`, `rrf-fusion.vitest.ts`, `unit-rrf-fusion.vitest.ts`, `vector-knn-query-shape-benchmark.vitest.ts`, `stage2-fusion.vitest.ts` | Calibrated overlap denominator behavior, shared effective-score ordering, RRF content-hash tiebreaks, cross-variant fusion, stable vector KNN secondary ordering, and Stage 2 graph/session/causal/fallback metadata. |
-| Hybrid routing + graph-channel preservation | `query-router.vitest.ts`, `entity-density.vitest.ts`, `routing-telemetry-stress.vitest.ts`, `integration/entity-density-commit-hooks.vitest.ts` | Covers intent gate, entity-density override, telemetry rolling window, post-commit cache invalidation, and env-flag parsing. |
-| Handler and protocol surface | `handler-memory-search.vitest.ts`, `mcp-tool-dispatch.vitest.ts`, `mcp-error-format.vitest.ts` | MCP dispatch and response contracts. |
-| Memory health guards | `handler-memory-health-edge.vitest.ts` | `memory_health` validation/default/auto-repair/background-enrichment edge cases. |
-| Save and index regressions | `memory-save-integration.vitest.ts`, `handler-memory-index.vitest.ts`, `handler-memory-index-async-scan.vitest.ts`, `handler-memory-index-cooldown.vitest.ts`, `incremental-index-move-reconcile.vitest.ts`, `index-scope.vitest.ts`, `memory-save-supersede-reindex.vitest.ts`, `content-router-cache.vitest.ts` | Save, scan coalescing and cooldown, move reconciliation, scoped index, supersede reindex, cache, and indexing behavior. |
-| Metadata, idempotency and feedback safety | `frontmatter-promoter.vitest.ts`, `memory-idempotency-and-near-duplicate.vitest.ts`, `feedback-safety-posture.vitest.ts` | Frontmatter edge promotion with skip-closed cleanup, idempotency receipt replay/conflict/hash parity plus near-duplicate markers, and feedback ledger/schema safety invariants. |
-| Governance and scope | `governance-e2e.vitest.ts`, `memory-governance.vitest.ts`, `scope-governance-normalizer-parity.vitest.ts` | Scope enforcement and governed lifecycle behavior. |
-| Public API and docs parity | `api-public-surfaces.vitest.ts`, `feature-flag-reference-docs.vitest.ts` | Export and documentation alignment. |
+| Validation rules | `validation/`, top-level suites | Level contracts, per-document structure rules, and the folder report shape. |
+| Generated metadata | `graph/`, `description/` | Schema conformance, derivation, merge behavior, and the integrity and drift gates. |
+| Discovery and continuity | Top-level suites | Spec-document discovery, folder discovery, index scope, continuity records and the resume ladder. |
+| Hook adapters | Top-level suites | Per-runtime lifecycle adapters, the shared spec-gate core, and the completion-evidence sentinel. |
+| Package guards | Top-level suites | Build freshness, architecture seam boundaries, and documentation parity against the environment reference. |
+| Security | `security/`, `adversarial/` | Sanitization, prompt-safety and adversarial input handling. |
+
+`tool-ownership-lint-runner.mjs` sits beside the suites as a lint runner rather than a Vitest file.
 
 ---
 
@@ -96,10 +96,10 @@ Use `rg --files tests -g '*.vitest.ts'` for the full live inventory.
 
 | Boundary | Rule |
 |---|---|
-| Test ownership | `tests/` verifies MCP server behavior. It does not own production code paths. |
+| Test ownership | `tests/` verifies package behavior. It does not own production code paths. |
 | Fixtures | Fixture data belongs in `fixtures/` or suite-local setup. |
-| Environment | Tests that change database paths, temp folders, or feature flags must isolate state. |
-| Stress runs | Large stress and load checks belong in `../stress-test/`. |
+| Environment | A suite that changes paths, temp folders or feature flags isolates and restores that state. Use `__helpers__/test-env.ts` rather than mutating `process.env` directly. |
+| Stress runs | Load and contention checks belong in `../stress-test/`. |
 
 Main flow:
 
@@ -110,7 +110,7 @@ Main flow:
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ npx vitest run [suite or pattern]        │
+│ Bounded runner or a focused vitest call  │
 └──────────────────────────────────────────┘
                   │
                   ▼
@@ -120,7 +120,7 @@ Main flow:
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ Source module or handler is exercised    │
+│ Source module or adapter is exercised    │
 └──────────────────────────────────────────┘
                   │
                   ▼
@@ -135,10 +135,13 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `npx vitest run` | CLI | Runs the full MCP server test suite. |
+| `npm test` | npm script | Bounded default runner (`../scripts/run-tests.mjs`). |
+| `npm run test:core` | npm script | Plain `vitest run` over this folder. |
+| `npm run test:sharded` | npm script | Full suite split into serial shards. |
 | `npx vitest run tests/<file>.vitest.ts` | CLI | Runs one focused suite. |
 | `rg --files tests -g '*.vitest.ts'` | CLI | Lists the current Vitest inventory. |
-| `fixtures/` | Directory | Shared fixture inputs for targeted suites. |
+
+Prefer `npm test` over a bare `vitest run`: the bounded runner applies a process-group timeout, so a hung suite is terminated with its children instead of leaking them.
 
 ---
 
@@ -147,15 +150,15 @@ Main flow:
 Run from `.opencode/skills/system-spec-kit/mcp-server`.
 
 ```bash
-npx vitest run
+npm test
+npm run typecheck:tests
 ```
 
 Focused examples:
 
 ```bash
-npx vitest run tests/api-public-surfaces.vitest.ts tests/feature-flag-reference-docs.vitest.ts
-npx vitest run tests/governance-e2e.vitest.ts tests/memory-governance.vitest.ts
-npx vitest run tests/handler-memory-search.vitest.ts tests/hybrid-search.vitest.ts
+npx vitest run tests/validation
+npx vitest run tests/graph tests/description
 ```
 
 Expected result: selected suites pass with isolated database and temp state.
@@ -165,7 +168,7 @@ Expected result: selected suites pass with isolated database and temp state.
 ## 8. RELATED
 
 - [`../README.md`](../README.md)
-- [`../handlers/README.md`](../handlers/README.md)
 - [`../api/README.md`](../api/README.md)
 - [`../lib/README.md`](../lib/README.md)
+- [`../handlers/README.md`](../handlers/README.md)
 - [`../stress-test/README.md`](../stress-test/README.md)

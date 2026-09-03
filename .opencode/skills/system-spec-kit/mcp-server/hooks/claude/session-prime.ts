@@ -23,8 +23,6 @@ import {
   clearCompactPrime,
   validatePendingCompactPrimeSemantics,
 } from './hook-state.js';
-import { buildWarmSessionResumeSection } from '../spec-memory-cli-fallback.js';
-import { getCachedSessionSummaryDecision, logCachedSummaryDecision } from '../../handlers/session-resume.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 
 const require = createRequire(import.meta.url);
@@ -59,7 +57,7 @@ function handleCompact(sessionId: string): OutputSection[] {
     hookLog('warn', 'session-prime', `No cached compact payload for session ${sessionId}`);
     return [{
       title: 'Context Recovery',
-      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+      content: 'Context was compacted. Run `/speckit:resume` against the active packet to recover session state.',
     }];
   }
 
@@ -70,7 +68,7 @@ function handleCompact(sessionId: string): OutputSection[] {
     hookLog('warn', 'session-prime', `Rejecting stale compact cache for session ${sessionId} (cached at ${cachedAt})`);
     return [{
       title: 'Context Recovery',
-      content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+      content: 'Context was compacted. Run `/speckit:resume` against the active packet to recover session state.',
     }];
   }
   const semanticValidation = validatePendingCompactPrimeSemantics(pendingCompactPrime);
@@ -82,7 +80,7 @@ function handleCompact(sessionId: string): OutputSection[] {
     });
     return [{
       title: 'Context Recovery',
-      content: 'Context was compacted, but the cached compact brief was quarantined by semantic validation. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
+      content: 'Context was compacted, but the cached compact brief was quarantined by semantic validation. Run `/speckit:resume` against the active packet to recover session state.',
     }];
   }
 
@@ -100,7 +98,7 @@ function handleCompact(sessionId: string): OutputSection[] {
     { title: 'Recovered Context (Post-Compaction)', content: wrappedPayload },
     {
       title: 'Recovery Instructions',
-      content: 'Context was compacted and auto-recovered from the cached compact brief. For full session state, call `memory_context({ mode: "resume", profile: "resume" })`.',
+      content: 'Context was compacted and auto-recovered from the cached compact brief. For full session state, run `/speckit:resume`.',
     },
   ];
 
@@ -126,113 +124,34 @@ function readCompactPrimeIdentity(sessionId: string): { cachedAt: string; opaque
   };
 }
 
-/**
- * Map rejection reasons to distinct short-form status labels so startup surface
- * no longer collapses schema-mismatch, transcript-identity-mismatch,
- * stale-summary, and ordinary missing-state into the same "startup summary
- * only" string. Depends on HookState schema-version plumbing, which guarantees
- * the upstream rejection reason is actually populated with the right
- * discriminator.
- */
-function describeMemoryStatus(
-  hasCachedContinuity: boolean,
-  rejectionReason: string | null,
-): string {
-  if (hasCachedContinuity) {
-    return 'session continuity available';
-  }
-  if (!rejectionReason) {
-    return 'startup summary only (resume on demand)';
-  }
-  const reasonMap: Record<string, string> = {
-    missing_state: 'startup summary only (no cached continuity; resume on demand)',
-    schema_mismatch: 'startup summary only (cached continuity rejected: schema version mismatch)',
-    missing_summary: 'startup summary only (cached continuity rejected: missing session summary)',
-    missing_producer_metadata: 'startup summary only (cached continuity rejected: producer metadata missing)',
-    missing_required_fields: 'startup summary only (cached continuity rejected: required fields missing)',
-    transcript_unreadable: 'startup summary only (cached continuity rejected: transcript unreadable)',
-    transcript_identity_mismatch: 'startup summary only (cached continuity rejected: transcript identity mismatch)',
-    stale_summary: 'startup summary only (cached continuity rejected: stale summary)',
-    summary_precedes_producer_turn: 'startup summary only (cached continuity rejected: summary predates latest producer turn)',
-    scope_mismatch: 'startup summary only (cached continuity rejected: scope mismatch)',
-    unknown_scope: 'startup summary only (cached continuity rejected: scope unknown)',
-  };
-  return reasonMap[rejectionReason] ?? `startup summary only (cached continuity rejected: ${rejectionReason})`;
-}
-
-function buildFallbackStartupSurface(
-  hasCachedContinuity: boolean,
-  rejectionReason: string | null = null,
-): string {
+function buildFallbackStartupSurface(): string {
   return [
     'Session context received. Current state:',
     '',
-    `- Memory: ${describeMemoryStatus(hasCachedContinuity, rejectionReason)}`,
-    '- Code Graph: unavailable',
+    '- Continuity: recover on demand from the packet docs',
     '',
     'What would you like to work on?',
   ].join('\n');
 }
 
-function rewriteStartupMemoryLine(
-  startupSurface: string,
-  hasCachedContinuity: boolean,
-  rejectionReason: string | null = null,
-): string {
-  return startupSurface.replace(
-    /^- Memory: .*$/m,
-    `- Memory: ${describeMemoryStatus(hasCachedContinuity, rejectionReason)}`,
-  );
-}
-
 /** Handle source=startup: prime new session with the spec-folder overview */
-export function handleStartup(
-  input: Pick<HookInput, 'session_id'> & { specFolder?: string } = {},
-): OutputSection[] {
-  const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
-  const requestedSpecFolder = typeof input.specFolder === 'string' ? input.specFolder : undefined;
-  const cachedSummaryDecision = getCachedSessionSummaryDecision({
-    specFolder: requestedSpecFolder,
-    claudeSessionId: sessionId,
-  });
-  if (cachedSummaryDecision.status !== 'accepted') {
-    logCachedSummaryDecision('session-prime', cachedSummaryDecision);
-  }
-
-  const sessionContinuity = cachedSummaryDecision.status === 'accepted'
-    ? cachedSummaryDecision.cachedSummary?.startupHint ?? null
-    : null;
-  // Forward the rejection reason so the startup surface can
-  // differentiate schema_mismatch / transcript_identity_mismatch / stale_summary
-  // / missing_state instead of collapsing them all into "startup summary only".
-  const rejectionReason = cachedSummaryDecision.status === 'rejected'
-    ? cachedSummaryDecision.reason
-    : null;
-  // The startup brief was assembled from a structural index that no longer
-  // exists; the fallback surface is now the only surface.
-  const startupSurface = buildFallbackStartupSurface(Boolean(sessionContinuity), rejectionReason);
-  const sections: OutputSection[] = [
+export function handleStartup(): OutputSection[] {
+  // The startup brief and the cached session summary both came from a
+  // structural index that no longer exists, so the fallback surface is the
+  // only surface left.
+  return [
     {
       title: 'Session Context',
-      content: startupSurface,
+      content: buildFallbackStartupSurface(),
     },
     {
       title: 'Recovery Tools',
       content: [
-        '- `memory_context({ input, mode })` — unified context retrieval',
-        '- `memory_match_triggers({ prompt })` — fast trigger matching',
-        '- `memory_search({ query })` — semantic search',
+        '- `/speckit:resume` — recover the active packet from its canonical docs',
+        '- `rg` over `specs/` — locate a packet by trigger phrase or title',
       ].join('\n'),
     },
   ];
-  if (sessionContinuity) {
-    sections.push({
-      title: 'Session Continuity',
-      content: sessionContinuity,
-    });
-  }
-
-  return sections;
 }
 
 /** Handle source=resume: load resume context for continued session */
@@ -244,12 +163,12 @@ function handleResume(sessionId: string): OutputSection[] {
   if (state?.lastSpecFolder) {
     sections.push({
       title: 'Session Resume',
-      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
+      content: `Last active spec folder: ${state.lastSpecFolder}\nRun \`/speckit:resume\` against it for full context.`,
     });
   } else {
     sections.push({
       title: 'Session Resume',
-      content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
+      content: 'Run `/speckit:resume` against the active packet to restore session state.',
     });
   }
 
@@ -261,7 +180,7 @@ function handleClear(): OutputSection[] {
   return [
     {
       title: 'Fresh Context',
-      content: 'Session cleared. Spec Kit Memory is active. Use `memory_context` or `memory_match_triggers` to load relevant context.',
+      content: 'Session cleared. Run `/speckit:resume` or search `specs/` to load relevant context.',
     },
   ];
 }
@@ -281,32 +200,6 @@ function writeHookOutput(output: string): Promise<void> {
       resolvePromise();
     });
   });
-}
-
-function hasRecoveredContinuitySection(sections: OutputSection[]): boolean {
-  return sections.some((section) => section.title === 'Session Continuity');
-}
-
-async function maybeAppendCliWarmFallback(
-  sections: OutputSection[],
-  source: string,
-  input: HookInput,
-): Promise<OutputSection[]> {
-  if ((source !== 'startup' && source !== 'resume') || hasRecoveredContinuitySection(sections)) {
-    return sections;
-  }
-  const sessionId = typeof input.session_id === 'string' ? input.session_id : undefined;
-  const specFolder = typeof input.specFolder === 'string' ? input.specFolder : undefined;
-  const section = await buildWarmSessionResumeSection({
-    title: 'Spec Memory CLI Fallback',
-    sessionId,
-    specFolder,
-    timeoutMs: Math.min(600, HOOK_TIMEOUT_MS),
-    onResult: (result) => {
-      hookLog('info', 'session-prime', `CLI warm fallback ${result.status} reason=${result.reason ?? 'none'} exit=${result.exitCode ?? 'none'} duration=${result.durationMs}ms`);
-    },
-  });
-  return section ? [...sections, section] : sections;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -344,7 +237,7 @@ async function main(): Promise<void> {
       budget = COMPACTION_TOKEN_BUDGET;
       break;
     case 'startup':
-      sections = handleStartup(input);
+      sections = handleStartup();
       budget = SESSION_PRIME_TOKEN_BUDGET;
       break;
     case 'resume':
@@ -356,11 +249,9 @@ async function main(): Promise<void> {
       budget = SESSION_PRIME_TOKEN_BUDGET;
       break;
     default:
-      sections = handleStartup(input);
+      sections = handleStartup();
       budget = SESSION_PRIME_TOKEN_BUDGET;
   }
-
-  sections = await maybeAppendCliWarmFallback(sections, source, input);
 
   // Apply token pressure awareness — reduce budget when context window is filling up
   const adjustedBudget = calculatePressureAdjustedBudget(

@@ -6,18 +6,20 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import {
   GRAPH_METADATA_STATUS_VALUES,
-  GENERATED_METADATA_GRANDFATHER_ENV,
-  STATUS_COMPLETION_CONSISTENCY_GATE_ENV,
   checkGeneratedMetadataIntegrity,
   deriveGraphMetadata,
   graphMetadataSchema,
-  isGeneratedMetadataGrandfatherEnabled,
-  isStatusCompletionConsistencyGateEnabled,
   resolveGeneratedMetadataIntegrity,
   serializeGraphMetadata,
   validateFolder,
   type GraphMetadata,
 } from '../api';
+import {
+  GENERATED_METADATA_GRANDFATHER_ENV,
+  STATUS_COMPLETION_CONSISTENCY_GATE_ENV,
+  isGeneratedMetadataGrandfatherEnabled,
+  isStatusCompletionConsistencyGateEnabled,
+} from '../lib/config/capability-flags.js';
 import { __testables as parserTestables } from '../lib/graph/graph-metadata-parser.js';
 
 const { normalizeDerivedStatus } = parserTestables;

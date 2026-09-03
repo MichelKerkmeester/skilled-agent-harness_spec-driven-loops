@@ -1,6 +1,6 @@
 ---
 title: "Library Module Map"
-description: "Internal ownership boundaries, feature-catalog crosswalk, and dependency directions for mcp-server/lib."
+description: "Internal ownership boundaries and dependency directions for mcp-server/lib."
 trigger_phrases:
   - "module map"
   - "lib dependency map"
@@ -16,640 +16,322 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This document is the internal ownership and dependency map for the `mcp-server/lib/` surface. It exists to answer three practical questions:
+This document is the internal ownership and dependency map for the `mcp-server/lib/` surface. It answers three practical questions:
 
-1. Which top-level library module owns which responsibilities?
-2. Which handlers, tools, or sibling library modules primarily consume each module?
-3. Which import directions are intended to be legal as the codebase continues to modularize?
+1. Which library module owns which responsibilities?
+2. Which sibling modules, handlers, hooks, or `api/` exports consume each module?
+3. Which import directions are legal?
 
-The inventory below is intentionally top-level and operational. It is based on the local `README.md` files where present, plus the most important source files and the currently observed import relationships across `mcp-server/lib/`, `mcp-server/handlers/`, and `mcp-server/tools/`.
-
-Notes:
-
-- `contracts/` and parts of `interfaces/` are compatibility or proxy surfaces after shared-package migration.
-- Several modules are intentionally small today (`collab/`, `governance/`, `manage/`, `session/`, `response/`).
-- Dependency enforcement is not automatic yet. Section 4 records the target direction model for future AST-based checking.
+The inventory is derived from the files in each folder and from the import edges observed across `api/`, `core/`, `handlers/`, `hooks/`, and `lib/`. Consumer lists name the modules that actually import each folder; a folder consumed only by `tests/` says so.
 
 ---
 
 ## 2. MODULE INVENTORY
 
-### `architecture/`
-
-- Purpose: Owns the 7-layer MCP architecture metadata and token-budget guidance used to group tools into orchestration, core, discovery, mutation, lifecycle, analysis, and maintenance layers. It is the canonical place for layer definitions and layer-to-tool lookup behavior.
-- Key files:
-  - `layer-definitions.ts` — canonical L1-L7 definitions, token budgets, tool-to-layer map, and recommendation helpers.
-  - `README.md` — architectural intent, layer summaries, and usage guidance.
-- Primary consumers:
-  - `handlers/memory-context.ts`
-
-### `cache/`
-
-- Purpose: Owns short-lived caching for expensive operations, especially tool output reuse and embedding reuse. This module is an infrastructure concern, not a ranking or retrieval-policy layer.
-- Key files:
-  - `embedding-cache.ts` — persistent embedding cache used to avoid duplicate embedding generation.
-  - `tool-cache.ts` — in-memory TTL/LRU cache for tool responses and repeated operations.
-  - `README.md` — cache policy, TTL, eviction, and invalidation guidance.
-- Primary consumers:
-  - `handlers/chunking-orchestrator.ts`
-  - `handlers/memory-search.ts`
-  - `handlers/save/*`
-  - `lib/providers/*`
-  - `lib/search/*`
-
-### `chunking/`
-
-- Purpose: Owns large-file chunk production and quality-based chunk thinning before indexing. It defines how anchor-tagged and structurally segmented content becomes retrieval-sized units.
-- Key files:
-  - `anchor-chunker.ts` — anchor-first, heading-fallback chunk generation for large files.
-  - `chunk-thinning.ts` — chunk quality scoring and threshold-based thinning before index write.
-  - `README.md` — design constraints, thresholds, and chunking rationale.
-- Primary consumers:
-  - `handlers/chunking-orchestrator.ts`
-  - `lib/validation/*`
-
 ### `cognitive/`
 
-- Purpose: Owns the spec-doc record-science side of the system: decay, retrievability, working memory, co-activation, pressure monitoring, and adaptive ranking inputs. It is the main "how memory behaves over time" module family.
+- Purpose: Owns the rollout-percentage gate that decides whether a percentage-gated feature is on for this process.
 - Key files:
-  - `working-memory.ts` — working-memory writes, cleanup, and short-horizon memory behavior.
-  - `fsrs-scheduler.ts` — FSRS-based spaced-repetition scheduling and retrievability math.
-  - `attention-decay.ts` — time/usage decay utilities used to age memory salience.
-  - `tier-classifier.ts` — classification logic that maps memories into behavioral tiers.
+  - `rollout-policy.ts` — reads `SPECKIT_ROLLOUT_PERCENT` (0-100, default 100) and clamps it.
 - Primary consumers:
-  - `lib/search/*`
-  - `handlers/save/*`
-  - `handlers/memory-triggers.ts`
-  - `handlers/memory-context.ts`
-  - `lib/extraction/*`
-  - `lib/session/*`
+  - `lib/config/capability-flags.ts`
+  - `lib/search/search-flags.ts`
 
 ### `config/`
 
-- Purpose: Owns canonical configuration for memory/document types and roadmap capability flags. It is the configuration surface for decay classes, document-type inference defaults, and phase/capability toggles.
+- Purpose: Owns the canonical spec-document filename set, spec-folder identity resolution, and the phase-gated capability flags.
 - Key files:
-  - `memory-types.ts` — canonical memory-type definitions and decay-oriented configuration.
-  - `type-inference.ts` — inference logic for memory/document classification from path, content, and metadata.
-  - `capability-flags.ts` — phase-aware rollout defaults and capability flag helpers.
-  - `README.md` — module overview and the document-type/memory-type model.
+  - `spec-doc-paths.ts` — `SPEC_DOCUMENT_FILENAMES`, spec-folder identity resolution and the graph-metadata path classifier.
+  - `capability-flags.ts` — phase-aware rollout defaults across the `baseline`, `lineage`, `graph`, `adaptive` and `scope-governance` phases.
 - Primary consumers:
-  - `lib/parsing/*`
-  - `lib/telemetry/*`
-  - `lib/eval/*`
-  - `lib/cognitive/*`
+  - `api/index.ts`
+  - `handlers/memory-index-discovery.ts`
+  - `lib/validation/orchestrator.ts`, `lib/validation/generated-metadata-integrity.ts`
+  - `lib/search/folder-discovery.ts`, `lib/search/search-flags.ts`
 
-### `contracts/`
+### `context/`
 
-- Purpose: Serves as a compatibility pointer for retrieval contracts that were moved into the shared package. Within `lib/`, this directory now documents ownership rather than owning runtime logic.
+- Purpose: Owns the common payload and provenance envelope shared by the startup, recovery and compaction hook surfaces.
 - Key files:
-  - `README.md` — relocation note and local compatibility documentation for retrieval-trace contracts.
-  - `../../shared/contracts/retrieval-trace.ts` — canonical shared contract implementation referenced by retrieval and telemetry code.
+  - `shared-payload.ts` — payload kinds, provenance envelope and label sanitization at the neutral seam.
 - Primary consumers:
-  - No meaningful direct runtime ownership remains inside `lib/`; the real consumers target `@spec-kit/shared/contracts/*`.
+  - `hooks/claude/compact-inject.ts`
+  - `hooks/claude/hook-state.ts`
 
-### `errors/`
+### `continuity/`
 
-- Purpose: Owns normalized error classes, recovery hints, and error-to-message translation for memory operations. It is the standard place for operational failures that need actionable remediation.
+- Purpose: Owns the continuity record a packet carries: the bounded thin record and the authored snapshot built around it.
 - Key files:
-  - `core.ts` — `MemoryError` and central error utilities.
-  - `recovery-hints.ts` — tool-aware recovery guidance and error-code hint mapping.
-  - `index.ts` — consolidated error exports.
-  - `README.md` — error taxonomy and subsystem overview.
+  - `thin-continuity-record.ts` — the 2048-byte-bounded record format, its facets and its `MEMORY_003`-`MEMORY_009` error codes.
+  - `authored-continuity-snapshot.ts` — composes the snapshot from the resume ladder and the thin record, and upserts it into markdown.
 - Primary consumers:
-  - `lib/errors.ts`
-  - Handler-level mutation/search/reporting paths that surface recovery hints
+  - `lib/resume/resume-ladder.ts`
+  - `hooks/claude/compact-inject.ts`
 
-### `eval/`
+### `description/`
 
-- Purpose: Owns evaluation, baselines, shadow measurements, quality proxies, and reporting artifacts for retrieval quality. It is the measurement and experimentation layer for search behavior.
+- Purpose: Owns `description.json`: its schema, the merge rule that preserves authored keys, the shared synopsis extractor, and merge-preserving repair.
 - Key files:
-  - `eval-metrics.ts` — canonical metric computation helpers.
-  - `bm25-baseline.ts` — lexical-only baseline measurement.
-  - `shadow-scoring.ts` — side-by-side scoring comparison support.
-  - `ablation-framework.ts` — controlled channel-ablation experimentation.
-  - `reporting-dashboard.ts` — aggregated reporting output for evaluation runs.
+  - `description-schema.ts` — Zod schema plus the canonical derived and reserved key sets.
+  - `description-merge.ts` — merges incoming fields over authored ones and reports which keys were overridden.
+  - `packet-synopsis.ts` — the one shared extractor behind both generated summary fields, so `description` and `causal_summary` cannot drift from the same `spec.md`.
+  - `repair.ts` — merge-preserving repair over a partial `description.json`.
 - Primary consumers:
-  - `handlers/eval-reporting.ts`
-  - `handlers/memory-search.ts`
-  - `handlers/memory-context.ts`
-  - `handlers/memory-triggers.ts`
-  - `handlers/quality-loop.ts`
+  - `lib/search/folder-discovery.ts`
+  - `lib/graph/graph-metadata-parser.ts`, `lib/graph/generated-metadata-drift.ts`
+  - `lib/validation/generated-metadata-integrity.ts`
+
+### `discovery/`
+
+- Purpose: A lib-level seam over spec-document discovery. The implementation stays in `handlers/`, which handler code also calls; this seam exists so `lib/` modules depend inward instead of reaching sideways into a handler.
+- Key files:
+  - `spec-document-finder.ts` — re-exports `findSpecDocuments` and its types with no behavioral change.
+- Primary consumers:
+  - `lib/resume/resume-ladder.ts`
 
 ### `extraction/`
 
-- Purpose: Owns post-tool extraction and save-time entity/secret handling. It turns tool outputs into candidate memory payloads while gating PII/secrets and extracting reusable entities.
+- Purpose: Owns rule-based entity extraction over document content and the denylist that keeps generic nouns out of the results. Pure TypeScript, no npm dependencies.
 - Key files:
-  - `extraction-adapter.ts` — orchestration entry point for automated extraction-to-insert flow.
-  - `redaction-gate.ts` — hard gate for secrets and PII before insert.
-  - `entity-extractor.ts` — rule-based entity extraction over memory content.
-  - `entity-denylist.ts` — denylist filtering for noisy or generic entity candidates.
-  - `README.md` — pipeline overview and extraction scope.
+  - `entity-extractor.ts` — rule-based extraction and canonical entity-name normalization, gated by `SPECKIT_AUTO_ENTITIES`.
+  - `entity-denylist.ts` — common nouns and stop words filtered from candidates.
+  - `entity-extraction-rules.json` — the extraction rule data.
 - Primary consumers:
-  - `handlers/save/*`
-
-### `feedback/`
-
-- Purpose: Owns implicit-feedback capture, shadow-feedback evaluation, ranking-comparison metrics, and batch-learning helpers used to measure learned-signal quality without mutating live rankings.
-- Key files:
-  - `feedback-ledger.ts` — shadow-only feedback event ledger and query helpers.
-  - `shadow-scoring.ts` — holdout evaluation and promotion-gate logic for learned feedback.
-  - `batch-learning.ts` — weekly aggregation and shadow-apply cycle for learned feedback.
-  - `rank-metrics.ts` — Kendall tau, NDCG, MRR, and rank-delta helpers shared by feedback evaluation flows.
-- Primary consumers:
-  - `handlers/memory-search.ts`
-  - `context-server.ts`
-  - `lib/search/search-flags.ts`
-
-### `governance/`
-
-- Purpose: Owns scope enforcement, governed ingest normalization, audit recording, and retention sweeps. This is the boundary for tenant/user/agent/session policy decisions.
-- Key files:
-  - `scope-governance.ts` — scope normalization, policy decisions, filter helpers, and governance audit writes.
-  - `retention.ts` — scoped retention sweep logic over expired memories.
-- Primary consumers:
-  - `handlers/memory-save.ts`
-  - `handlers/memory-search.ts`
-  - `lib/collab/*`
-  - `lib/search/*`
+  - `lib/graph/graph-metadata-parser.ts`
 
 ### `graph/`
 
-- Purpose: Owns graph-derived retrieval signals and community detection over memory relationships. It is the canonical place for graph algorithms that operate over causal/community structure rather than primary retrieval channels.
+- Purpose: Owns `graph-metadata.json` end to end — schema, derivation, merge, serialization, the drift gate, and the index-layer store for access and freshness signals.
 - Key files:
-  - `community-detection.ts` — BFS/Louvain-style community discovery and community boost logic.
-  - `graph-signals.ts` — momentum and causal-depth signal calculation.
-  - `README.md` — graph-feature overview and runtime flags.
+  - `graph-metadata-schema.ts` — schema version, document type, filename constant, and the closed status and save-lineage value sets.
+  - `graph-metadata-parser.ts` — load, validate, derive, merge, serialize, write and refresh for one spec folder.
+  - `generated-metadata-drift.ts` — re-derives a folder and compares stored synopsis fields against a fresh derivation. Reads and reports only, so it cannot churn the files it exists to keep clean. Pairs with `source_doc_hashes` as a cheap freshness key.
+  - `access-telemetry.ts` — index-layer record for `last_accessed_at` and the phase-parent last-active pointers, so a read or a resume updates the signal without rewriting the generated file. Every write is best-effort and fails closed.
 - Primary consumers:
-  - `lib/search/*`
-  - `lib/storage/*`
-  - `handlers/mutation-hooks.ts`
+  - `api/index.ts`, `api/graph-refresh.ts`
+  - `lib/validation/orchestrator.ts`, `lib/validation/generated-metadata-integrity.ts`
+  - `lib/resume/resume-ladder.ts`
 
-### `interfaces/`
+### `hooks/`
 
-- Purpose: Owns local runtime abstractions for vector-store behavior and documents the shared-package migration of interface types. It is the compatibility boundary between in-repo consumers and `@spec-kit/shared` contracts.
+- Purpose: Owns the runtime-neutral completion-evidence policy every runtime adapter shares. It checks recorded artifacts only, never executes a test or a build, and never writes to stdout or stderr.
 - Key files:
-  - `vector-store.ts` — local abstract base class for JS/runtime vector-store implementations.
-  - `README.md` — migration notes and contract overview.
+  - `completion-evidence-sentinel.cjs` — the transport-free decision plus the shared dedup fingerprint store.
 - Primary consumers:
-  - `lib/search/*`
-
-### `learning/`
-
-- Purpose: Owns correction history and stability adjustments that let the system learn from supersedes, merges, deprecations, and refinements. It is the primary home for correction-driven reliability updates.
-- Key files:
-  - `corrections.ts` — correction recording, undo support, chain traversal, and stability updates.
-  - `index.ts` — explicit barrel export for the learning surface.
-  - `README.md` — learning/corrections overview and examples.
-- Primary consumers:
-  - No direct in-repo imports were observed in `handlers/`, `tools/`, or sibling `lib/` modules during this pass; treat as a reusable but currently lightly wired subsystem.
-
-### `manage/`
-
-- Purpose: Reserved for future scheduled or batch-style memory-management algorithms that are not part of the live search path. The deprecated PageRank helper was removed after the dead-code audit confirmed it was never wired.
-- Key files:
-  - `README.md` — current management-cycle scope and algorithm notes.
-- Primary consumers:
-  - No live in-repo consumers remain; this folder is currently documentation-only.
-
-### `ops/`
-
-- Purpose: Owns background operational flows that keep the system current without blocking foreground requests. It covers ingestion jobs and real-time file watching.
-- Key files:
-  - `job-queue.ts` — SQLite-backed async ingest job lifecycle and state machine.
-  - `file-watcher.ts` — chokidar-based debounced file watching and re-index triggers.
-  - `README.md` — operational behavior and failure-handling notes.
-- Primary consumers:
-  - `handlers/memory-ingest.ts`
+  - `hooks/claude/completion-evidence-stop.cjs`
+  - `hooks/codex/completion-evidence-stop.cjs`
+  - `hooks/devin/completion-evidence-stop.cjs`
+  - `hooks/cursor/completion-evidence-response.mjs`
+  - `hooks/pi/completion-evidence.ts`
 
 ### `parsing/`
 
-- Purpose: Owns structured parsing of memory/spec files, content normalization, and trigger matching. It is the canonical parser boundary between raw content and structured retrieval/indexing inputs.
+- Purpose: Owns markdown content normalization — stripping frontmatter, anchors, table syntax, fence markers and checkbox notation so downstream consumers read content rather than structural noise.
 - Key files:
-  - `memory-parser.ts` — main parser for anchors, metadata, causal links, and document classification.
-  - `trigger-matcher.ts` — proactive trigger-phrase matching logic.
-  - `content-normalizer.ts` — normalization helpers for file content and search/index inputs.
-  - `README.md` — parser responsibilities and supported behaviors.
+  - `content-normalizer.ts` — normalization helpers including `stripYamlFrontmatter`.
 - Primary consumers:
-  - `handlers/save/*`
-  - `handlers/memory-save.ts`
-  - `lib/search/*`
-  - `handlers/chunking-orchestrator.ts`
-  - `handlers/memory-index.ts`
+  - `lib/description/packet-synopsis.ts`
+  - `lib/search/folder-discovery.ts`
 
-### `providers/`
+### `resume/`
 
-- Purpose: Owns embedding provider abstraction and retry orchestration. It is the provider-facing infrastructure boundary between retrieval/indexing code and concrete embedding backends.
+- Purpose: Owns the continuity ladder a resume walks.
 - Key files:
-  - `embeddings.ts` — shared-package-backed embeddings surface used by index/search code.
-  - `retry-manager.ts` — retry scheduling and backoff policy for provider failures.
-  - `README.md` — provider overview and supported backends.
+  - `resume-ladder.ts` — builds the ladder from discovered spec documents and the continuity facets.
 - Primary consumers:
-  - `handlers/save/*`
-  - `lib/search/*`
-  - `lib/cognitive/*`
-  - `lib/storage/*`
-  - `handlers/memory-index.ts`
-
-### `response/`
-
-- Purpose: Owns the standard MCP response envelope used to make tool results predictable for agents and callers. It is the canonical place for `{summary, data, hints, meta}` shaping.
-- Key files:
-  - `envelope.ts` — response-envelope construction and token-aware metadata helpers.
-  - `README.md` — envelope contract and usage guidance.
-- Primary consumers:
-  - `handlers/memory-context.ts`
-  - `handlers/memory-search.ts`
-  - `handlers/checkpoints.ts`
-  - `handlers/eval-reporting.ts`
-  - Most CRUD-style handler entry points
-
-### `scoring/`
-
-- Purpose: Owns ranking and calibration logic once candidate memories already exist. It combines importance tiers, composite scoring, folder relevance, confidence signals, and negative-feedback effects.
-- Key files:
-  - `composite-scoring.ts` — main composite ranking formula and score normalization.
-  - `importance-tiers.ts` — canonical tier definitions and decay/scoring multipliers.
-  - `folder-scoring.ts` — folder-level relevance and recency weighting.
-  - `confidence-tracker.ts` — confidence-related normalization helpers.
-  - `negative-feedback.ts` — post-feedback confidence penalties.
-- Primary consumers:
-  - `lib/search/*`
-  - `lib/cognitive/*`
-  - `handlers/checkpoints.ts`
-  - `handlers/memory-crud-stats.ts`
-  - `handlers/memory-crud-update.ts`
+  - `lib/continuity/authored-continuity-snapshot.ts`
 
 ### `search/`
 
-- Purpose: Owns the retrieval engine: candidate generation, vector/lexical channels, fusion, reranking, query intelligence, graph-aware retrieval, and schema/index helpers needed by the search path. This is the highest-churn and broadest domain module in `lib/`.
+- Purpose: Owns per-folder description discovery and the runtime flag surface. Despite the folder name, it is now a discovery and flags module, not a retrieval engine.
 - Key files:
-  - `hybrid-search.ts` — main hybrid retrieval entry point across search channels.
-  - `pipeline/orchestrator.ts` — 4-stage retrieval pipeline coordinator.
-  - `vector-index-store.ts` — vector-store abstraction bridge and core index operations.
-  - `vector-index-schema.ts` — schema creation and schema-safety helpers for search storage.
-  - `query-router.ts` — query-complexity routing and pipeline selection.
+  - `folder-discovery.ts` — resolves a packet's description from its canonical documents so callers read one merged answer rather than guessing from a filename. Also owns `extractKeywords`, `slugifyFolderName` and `getSpecsBasePaths`.
+  - `search-flags.ts` — default-on runtime gates; set `SPECKIT_<FLAG>=false` to disable a graduated feature.
 - Primary consumers:
-  - `handlers/save/*`
-  - `handlers/memory-search.ts`
-  - `handlers/memory-context.ts`
-  - `handlers/checkpoints.ts`
-  - `handlers/chunking-orchestrator.ts`
-  - `lib/storage/*`
-
-### `session/`
-
-- Purpose: Owns session deduplication, session-state persistence, and crash-recovery support. It is the boundary for request/session continuity rather than retrieval policy itself.
-- Key files:
-  - `session-manager.ts` — session-state lifecycle, dedup tracking, cleanup, and recovery helpers.
-  - `README.md` — session guarantees and runtime behavior.
-- Primary consumers:
-  - `handlers/memory-search.ts`
+  - `api/index.ts`
+  - `lib/graph/graph-metadata-parser.ts`
+  - `lib/config/capability-flags.ts`
 
 ### `spec/`
 
-- Purpose: Owns shared spec-document helpers extracted from handlers so lib and handler modules can detect spec levels without re-implementing spec-folder traversal logic.
+- Purpose: Owns the single detection rule for phase-parent folders, so no caller re-implements the traversal.
 - Key files:
-  - `spec-level.ts` — derives Level 1/2/3/3+ from nearby `spec.md` and sibling spec-doc files.
+  - `is-phase-parent.ts` — a folder is a phase parent when it has at least one `^[0-9]{3}-[a-z0-9-]+$` child and at least one such child carries `spec.md` or `description.json`.
 - Primary consumers:
-  - `handlers/chunking-orchestrator.ts`
-  - `handlers/save/*`
-  - `lib/storage/lineage-state.ts`
+  - `lib/validation/orchestrator.ts`
+  - `lib/graph/graph-metadata-parser.ts`
+  - `lib/resume/resume-ladder.ts`
 
 ### `storage/`
 
-- Purpose: Owns persistence behavior outside the search algorithm itself: checkpoints, history, access tracking, lineage state, transactions, consolidation, reconsolidation, and index refresh flows. This is the long-lived state management layer for the indexed-continuity store.
+- Purpose: Owns the two persistence helpers the package still needs: atomic file writes and the drift-marker contract the git hooks write against.
 - Key files:
-  - `checkpoints.ts` — checkpoint create/list/restore/delete operations.
-  - `incremental-index.ts` — incremental indexing and deferred lexical-only indexing helpers.
-  - `transaction-manager.ts` — mutation transaction wrappers and atomicity helpers.
-  - `causal-edges.ts` — causal edge persistence and graph-maintenance hooks.
-  - `reconsolidation.ts` — post-save similarity merge/complement/conflict handling.
+  - `transaction-manager.ts` — atomic write and pending-file helpers.
+  - `memory-drift-healing.ts` — the `.memory-drift-dirty-paths.json` marker path, entry keys and payload shape.
 - Primary consumers:
-  - `handlers/save/*`
-  - `handlers/memory-bulk-delete.ts`
-  - `handlers/memory-crud-delete.ts`
-  - `handlers/memory-crud-update.ts`
-  - `handlers/pe-gating.ts`
-  - `lib/search/*`
+  - `api/index.ts` (both are re-exported for the git-hook drift-marker writer)
 
-### `telemetry/`
+### `templates/`
 
-- Purpose: Owns structured observability for retrieval and scoring behavior: trace sanitization, retrieval telemetry, scoring observability, and consumption logging. It is intended to observe domain modules rather than drive domain decisions.
+- Purpose: Owns resolution of the per-level document contract that the validation rules check a folder against.
 - Key files:
-  - `retrieval-telemetry.ts` — retrieval-run telemetry factory and quality-proxy metrics.
-  - `scoring-observability.ts` — score-observation capture for ranking behavior.
-  - `trace-schema.ts` — trace payload sanitization and schema validation.
-  - `consumption-logger.ts` — persisted consumption instrumentation.
-  - `README.md` — telemetry scope and flag overview.
+  - `level-contract-resolver.ts` — resolves a `SpecKitLevel` to its document contract.
 - Primary consumers:
-  - `handlers/memory-context.ts`
-  - `handlers/memory-search.ts`
-  - `handlers/memory-ingest.ts`
-  - `handlers/memory-triggers.ts`
-  - `lib/scoring/*`
+  - `lib/validation/orchestrator.ts`
+  - `lib/validation/spec-doc-structure.ts`
+
+### `test-helpers/`
+
+- Purpose: Owns test-only helpers kept out of the production modules they support.
+- Key files:
+  - `env-snapshot.ts` — snapshots `process.env` keys and returns a `restore()` that runs even when assertions fail.
+- Primary consumers:
+  - Test suites only; no production module imports this folder.
 
 ### `utils/`
 
-- Purpose: Owns low-level utility helpers reused across the server: path security wrappers, canonical path identity, output formatting, and structured logging. It is shared plumbing, not business logic.
+- Purpose: Owns low-level shared plumbing: path identity, index scope, prompt-safety sanitization and exhaustiveness checking. This is a dependency root.
 - Key files:
-  - `canonical-path.ts` — canonical path keying used for deduplication and identity.
-  - `path-security.ts` — path validation and containment helpers re-exported from shared code.
-  - `logger.ts` — structured logging helpers.
-  - `format-helpers.ts` — formatting helpers for output and age strings.
-  - `README.md` — utility surface overview.
+  - `canonical-path.ts` — canonical path keying used for identity and deduplication.
+  - `index-scope.ts` — index scope invariants and the included-skills policy.
+  - `skill-label-sanitizer.ts` — strips instruction-shaped labels and control characters before a label reaches a prompt.
+  - `exhaustiveness.ts` — `assertNever` for statically unreachable branches.
 - Primary consumers:
-  - `lib/search/*`
-  - `lib/parsing/*`
-  - `lib/storage/*`
-  - `handlers/memory-save.ts`
-  - `handlers/memory-triggers.ts`
+  - `handlers/memory-index-discovery.ts`
+  - `hooks/claude/hook-state.ts`
+  - `lib/config/spec-doc-paths.ts`, `lib/context/shared-payload.ts`, `lib/search/folder-discovery.ts`
 
 ### `validation/`
 
-- Purpose: Owns preflight validation and save-time quality gates that reject malformed, duplicate, or low-signal writes before expensive work happens. It is a defensive boundary ahead of mutation and indexing paths.
+- Purpose: Owns every spec folder rule verdict. Shell front ends call into it and add no rules of their own.
 - Key files:
-  - `preflight.ts` — dry-run and full preflight validation before save/index work.
-  - `save-quality-gate.ts` — multi-layer structural/content/semantic quality gate.
-  - `README.md` — validation subsystem overview and thresholds.
+  - `orchestrator.ts` — resolves the level contract, detects folder shape and runs the rule set to a report.
+  - `spec-doc-structure.ts` — per-document structure rules and the continuity fingerprint.
+  - `generated-metadata-integrity.ts` — validates the two generated JSON files against the shared schemas plus the canonical path-prefix and status-enum invariants. Severity resolution is left to the caller so the same check backs both the report-mode rollout and the enforced run.
 - Primary consumers:
-  - `handlers/memory-save.ts`
+  - `api/index.ts`
+  - `../scripts/spec/validate.sh`, through the compiled `dist/lib/validation/orchestrator.js`
 
 ---
 
-## 3. FEATURE CATALOG MAPPING
+## 3. DEPENDENCY DIRECTIONS
 
-Feature-catalog categories referenced here are the 25 top-level directories under `feature-catalog/` (numbered through 24; note the duplicate `14--` prefix on `pipeline-architecture` and `stress-testing`):
+Status: **DOCUMENTATION-ONLY**
 
-- `retrieval`
-- `mutation`
-- `discovery`
-- `maintenance`
-- `lifecycle`
-- `analysis`
-- `evaluation`
-- `bug-fixes-and-data-integrity`
-- `evaluation-and-measurement`
-- `graph-signal-activation`
-- `scoring-and-calibration`
-- `query-intelligence`
-- `memory-quality-and-indexing`
-- `pipeline-architecture`
-- `stress-testing`
-- `retrieval-enhancements`
-- `tooling-and-scripts`
-- `governance`
-- `ux-hooks`
-- `feature-flag-reference`
-- `remediation-revalidation`
-- `implement-and-remove-deprecated-features`
-- `context-preservation`
-- `doctor-commands`
-- `local-llm-query-intelligence`
+No AST checker enforces the directions below inside `lib/`. The import-policy checks in `../scripts/evals/` enforce the package boundary — external callers must enter through `api/` — but not the internal layering.
 
-### 3.1 `lib/` Directory -> Feature Categories
+### 3.1 Dependency Roots
 
-| `lib/` directory | Feature-catalog categories |
-|------------------|----------------------------|
-| `architecture` | `pipeline-architecture` |
-| `cache` | `retrieval`, `memory-quality-and-indexing`, `retrieval-enhancements` |
-| `chunking` | `memory-quality-and-indexing`, `retrieval-enhancements` |
-| `cognitive` | `lifecycle`, `scoring-and-calibration`, `retrieval-enhancements`, `feature-flag-reference` |
-| `collab` | `governance` |
-| `config` | `scoring-and-calibration`, `governance`, `feature-flag-reference` |
-| `contracts` | `pipeline-architecture` |
-| `errors` | `bug-fixes-and-data-integrity`, `ux-hooks` |
-| `eval` | `evaluation`, `evaluation-and-measurement` |
-| `extraction` | `mutation`, `memory-quality-and-indexing`, `governance` |
-| `feedback` | `scoring-and-calibration`, `memory-quality-and-indexing`, `feature-flag-reference` |
-| `governance` | `governance` |
-| `graph` | `analysis`, `graph-signal-activation`, `retrieval-enhancements` |
-| `interfaces` | `pipeline-architecture` |
-| `learning` | `lifecycle`, `scoring-and-calibration` |
-| `manage` | `maintenance`, `graph-signal-activation`, `scoring-and-calibration` |
-| `ops` | `maintenance`, `memory-quality-and-indexing`, `tooling-and-scripts` |
-| `parsing` | `retrieval`, `query-intelligence`, `memory-quality-and-indexing` |
-| `providers` | `retrieval`, `memory-quality-and-indexing`, `retrieval-enhancements` |
-| `response` | `pipeline-architecture`, `ux-hooks` |
-| `scoring` | `graph-signal-activation`, `scoring-and-calibration`, `retrieval-enhancements` |
-| `search` | `retrieval`, `discovery`, `analysis`, `graph-signal-activation`, `scoring-and-calibration`, `query-intelligence`, `pipeline-architecture`, `retrieval-enhancements`, `feature-flag-reference` |
-| `session` | `lifecycle`, `retrieval-enhancements` |
-| `spec` | `pipeline-architecture` |
-| `storage` | `mutation`, `maintenance`, `lifecycle`, `bug-fixes-and-data-integrity`, `graph-signal-activation`, `memory-quality-and-indexing`, `governance` |
-| `telemetry` | `evaluation-and-measurement`, `scoring-and-calibration`, `governance`, `ux-hooks` |
-| `utils` | `bug-fixes-and-data-integrity`, `tooling-and-scripts`, `ux-hooks` |
-| `validation` | `mutation`, `bug-fixes-and-data-integrity`, `memory-quality-and-indexing` |
-
-### 3.2 Feature Categories -> Main `lib/` Directories
-
-| Feature category | Main `lib/` directories |
-|------------------|-------------------------|
-| `retrieval` | `cache`, `parsing`, `providers`, `search` |
-| `mutation` | `extraction`, `storage`, `validation` |
-| `discovery` | `search` |
-| `maintenance` | `manage`, `ops`, `storage` |
-| `lifecycle` | `cognitive`, `learning`, `session`, `storage` |
-| `analysis` | `graph`, `search` |
-| `evaluation` | `eval` |
-| `bug-fixes-and-data-integrity` | `errors`, `storage`, `utils`, `validation` |
-| `evaluation-and-measurement` | `eval`, `telemetry` |
-| `graph-signal-activation` | `graph`, `manage`, `scoring`, `search`, `storage` |
-| `scoring-and-calibration` | `cognitive`, `config`, `feedback`, `learning`, `manage`, `scoring`, `search`, `telemetry` |
-| `query-intelligence` | `parsing`, `search` |
-| `memory-quality-and-indexing` | `cache`, `chunking`, `extraction`, `feedback`, `ops`, `parsing`, `providers`, `storage`, `validation` |
-| `pipeline-architecture` | `architecture`, `contracts`, `interfaces`, `response`, `search`, `spec` |
-| `retrieval-enhancements` | `cache`, `chunking`, `cognitive`, `graph`, `providers`, `scoring`, `search`, `session` |
-| `tooling-and-scripts` | `ops`, `utils` |
-| `governance` | `collab`, `config`, `extraction`, `governance`, `storage`, `telemetry` |
-| `ux-hooks` | `errors`, `response`, `telemetry`, `utils` |
-| `feature-flag-reference` | `cognitive`, `config`, `feedback`, `search` |
-
----
-
-## 4. DEPENDENCY DIRECTIONS (T139)
-
-Status: **DEFERRED**
-
-This section documents the intended dependency direction for `lib/` modules. It is documentation-only for now. No AST/import checker enforces this yet, but this is the target model future enforcement should validate.
-
-### 4.1 Core Dependencies
-
-Core modules:
+Root modules:
 
 - `config`
-- `errors`
-- `interfaces`
-- `contracts`
-
-Target rule:
-
-- These are dependency roots.
-- They may be imported by any other `lib/` module, handlers, or tools.
-- They should not import sibling `lib/` modules.
-
-Rationale:
-
-- `config` should expose flags, types, and inference defaults, not consume behavioral modules.
-- `errors` should remain a reusable failure vocabulary.
-- `interfaces` and `contracts` are abstraction layers and should not know about higher-level behavior.
-
-### 4.2 Foundation and Shared Helpers
-
-Shared-helper modules:
-
 - `utils`
-- `response`
-- `architecture`
+- `parsing`
+
+Target rule:
+
+- These may be imported by any other `lib/` module, by handlers, and by hooks.
+- They should not import sibling domain modules.
+
+Observed exception: `config/capability-flags.ts` imports `cognitive/rollout-policy.ts` and `search/search-flags.ts`. It is a flag aggregator rather than a pure root, and this is the one root-level inversion in the tree.
+
+### 3.2 Foundation Modules
+
+Foundation modules:
+
+- `cognitive`
 - `spec`
+- `templates`
+- `discovery`
+- `test-helpers`
 
 Target rule:
 
-- These may import core modules only.
-- They may be consumed by any domain or infrastructure module.
-- They should not import domain modules such as `search`, `cognitive`, `storage`, or `scoring`.
+- These may import root modules only.
+- They may be consumed by any domain module.
+- `discovery` is deliberately a re-export seam and must stay one; putting logic in it would duplicate the handler implementation.
 
-### 4.3 Leaf Modules
-
-Leaf modules:
-
-- `telemetry`
-- `validation`
-
-Target rule:
-
-- Leaf modules import **core only**.
-- Leaf modules observe or gate behavior; they do not own business-flow orchestration.
-- Domain modules should call into them, but leaf modules should not call back into domain modules.
-
-Examples of intended use:
-
-- `telemetry` should accept trace/metric payloads from `search`, `scoring`, or handlers, but not import retrieval logic from them.
-- `validation` should evaluate save/index inputs, but not pull in retrieval or chunking behavior directly.
-
-### 4.4 Infrastructure Modules
-
-Infrastructure/data modules:
-
-- `cache`
-- `providers`
-- `session`
-- `storage`
-- `ops`
-
-Target rule:
-
-- These may import core + foundation modules.
-- Narrowly scoped infra-to-infra imports are allowed when they reflect clear dependency direction:
-  - `providers -> cache`
-  - `ops -> storage`
-  - `session -> storage`
-- Infrastructure modules should not import handlers.
-- `storage` should not depend on `search` ranking logic; `search` may depend on `storage`.
-
-### 4.5 Domain Modules
+### 3.3 Domain Modules
 
 Domain modules:
 
-- `parsing`
-- `chunking`
-- `extraction`
-- `cognitive`
+- `validation`
 - `graph`
-- `scoring`
+- `description`
 - `search`
-- `learning`
-- `manage`
-- `eval`
-- `feedback`
-- `governance`
-- `collab`
+- `continuity`
+- `resume`
+- `extraction`
+- `context`
 
 Target rule by module:
 
-- `parsing`
-  - May import: core, `utils`
-  - Must not import: `search`, `storage`, `scoring`, handlers
-- `chunking`
-  - May import: core, `utils`, `parsing`
-  - Must not import: `search`, `storage`, handlers
-- `extraction`
-  - May import: core, `parsing`, `validation`, `governance`
-  - Must not import: `search`, `storage`, handlers
-- `cognitive`
-  - May import: core, `utils`, `config`, `session`
-  - Must not import: `search`, `storage`, handlers
+- `validation`
+  - May import: `templates`, `spec`, `graph`, `description`, `config`
+  - Must not import: `api/`, handlers, hooks
 - `graph`
-  - May import: core, `storage`
-  - Must not import: `search` orchestration, handlers
-- `scoring`
-  - May import: core, `cognitive`, `graph`, `config`
-  - Must not import: `search`, `storage`, `telemetry`, handlers
+  - May import: `description`, `extraction`, `search`, `spec`, `parsing`, `config`
+  - Must not import: `validation` orchestration
+- `description`
+  - May import: `parsing`, root modules
+  - Must not import: `graph`, `validation`
 - `search`
-  - May import: core, foundation, infrastructure, and domain helpers needed to assemble retrieval
-  - This is the top domain aggregator and is allowed to consume `cache`, `providers`, `session`, `storage`, `parsing`, `cognitive`, `graph`, `scoring`, `governance`, and `collab`
-  - Must not be imported by lower layers as a utility dependency
-- `learning`
-  - May import: core, `storage`, `scoring`
-  - Must not import: `search`, handlers
-- `manage`
-  - May import: core, `storage`, `graph`, `scoring`
-  - Must not import: `search`, handlers
-- `eval`
-  - May import: core, `search`, `scoring`, `telemetry`, `storage`
-  - Must not be imported by production ranking paths
-- `feedback`
-  - May import: core, `search`, `scoring`, `storage`
-  - Must not mutate live ranking paths or import handlers as control flow
-- `governance`
-  - May import: core, `storage`
-  - Must not import: `search`, `collab`, handlers
-- `collab`
-  - May import: core, `governance`, `storage`
-  - Must not import: `search` directly except through neutral shared contracts/helpers
+  - May import: `description`, `parsing`, `config`, `utils`
+  - Must not import: `graph`, `validation`
+- `continuity` and `resume`
+  - May import each other plus `discovery`, `graph`, root modules
+  - Must not import: `validation`, handlers
+- `extraction`
+  - May import: root modules only
+  - Must not import: `graph`, `search`, `validation`
+- `context`
+  - May import: `utils`
+  - Must not import: any domain module
 
-### 4.6 Forbidden Global Directions
+### 3.4 Support Modules
 
-The following directions are forbidden in the target model:
+Support modules:
 
-- `lib/* -> handlers/*`
-- core modules importing domain modules
-- lower-level modules importing `search` as a convenience helper
-- `storage -> search`
-- `governance <-> collab` cycles
-- `scoring -> telemetry`
-- `validation -> search`
-- `telemetry -> search`
+- `storage`
+- `hooks`
 
-### 4.7 Current-Reality Note
+Target rule:
 
-The current tree still contains a few legacy reverse dependencies that do not match the target direction above. Examples observed during this pass include:
+- `storage` exposes atomic-write and marker helpers and imports `core/config` only.
+- `hooks` is runtime-neutral policy. It must stay transport-free: no stdout, no stderr, no test or build execution.
+- Neither may import a domain module.
 
-- `config/capability-flags.ts -> cognitive/rollout-policy.ts`
-- `session/session-manager.ts -> cognitive/working-memory.ts`
-- `telemetry/retrieval-telemetry.ts -> search/session-transition.ts`
-- `validation/* -> search/*` and `chunking/*`
-- `storage/* -> search/*`
-- `governance/* <-> collab/*`
-- `storage/lineage-state.ts -> handlers/*`
+### 3.5 Forbidden Global Directions
 
-Those should be treated as refactor targets, not new precedent.
+- `lib/* → api/*`
+- `lib/* → handlers/*` outside the `discovery/` seam
+- root modules importing domain modules
+- `storage → validation` or `storage → graph`
+- `hooks → any domain module`
 
 ---
 
-## 5. CANONICAL LOCATIONS
+## 4. CANONICAL LOCATIONS
 
-### Checkpoints
+### Rule Verdicts
 
-- Canonical location: `lib/storage/checkpoints.ts`
-- Non-canonical location: handler-level checkpoint entry points in `handlers/`
-- Rule: checkpoint persistence/state logic belongs to storage; handlers should stay thin entry surfaces.
+- Canonical location: `lib/validation/orchestrator.ts`
+- Non-canonical location: shell front ends such as `../scripts/spec/validate.sh`
+- Rule: the shell script resolves and invokes the compiled orchestrator. It implements no rules and interprets no verdicts.
 
-### Cognitive Modules
+### Generated Metadata Writes
 
-- Canonical location: `lib/cognitive/`
-- Non-canonical historical location: `lib/cache/cognitive/` (former symlink path)
-- Rule: all cognitive-memory behavior, decay logic, working-memory helpers, and related imports should resolve to `lib/cognitive/`.
+- Canonical location: `lib/graph/graph-metadata-parser.ts`
+- Non-canonical location: the gates in `lib/graph/generated-metadata-drift.ts` and `lib/validation/generated-metadata-integrity.ts`
+- Rule: gates read and report; only the parser writes. A gate that writes would dirty the file it exists to keep clean.
 
-### Shared-Package Proxies
+### Packet Synopsis
 
-- `lib/contracts/` is documentation/proxy only; canonical retrieval contracts live in `shared/contracts/`.
-- `lib/interfaces/` is partly proxy/compatibility surface; canonical shared TypeScript interfaces live in `@spec-kit/shared`.
+- Canonical location: `lib/description/packet-synopsis.ts`
+- Rule: both generated summary fields — `description` in `description.json` and `causal_summary` in `graph-metadata.json` — derive from this one extractor with a per-field length limit, so they move together against the same source document.
+
+### Spec Document Discovery
+
+- Canonical location: `handlers/memory-index-discovery.ts`
+- Seam for `lib/` callers: `lib/discovery/spec-document-finder.ts`
+- Rule: `lib/` code imports the seam. Handler code may import the implementation directly.

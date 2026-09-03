@@ -1,33 +1,24 @@
 #!/usr/bin/env bash
-# Rebuild every MCP server's dist after a source change, optionally recycle the
-# transparently-recyclable daemon, and flag launcher changes that a recycle
-# cannot pick up.
+# Rebuild every MCP server's dist after a source change and flag launcher
+# changes a running process cannot pick up.
 #
 # Why this exists: dist/ is gitignored (a build artifact), so pulling source
 # changes does NOT update the running servers — each server's dist must be
-# rebuilt locally. The three MCP servers also build from different roots
-# easy to miss and leaves one server running stale code. This script builds
+# rebuilt locally. The servers also build from different roots, which is
+# easy to miss and leaves one running stale code. This script builds
 # all of them so none is forgotten.
 #
-# Recycle model (see references/memory/ for detail):
-#   - system-spec-memory recycles transparently: SIGTERM its daemon CHILD and the
-#     owner launcher respawns it from the fresh dist while the front-proxy keeps
-#     MCP up. This script does that when --recycle is passed.
-#     of respawning, so this script never SIGTERMs them; their fresh dist loads
-#     when they next start.
-#   - A launcher *.cjs* change never reloads in place (SIGHUP is a shutdown
-#     signal, not a reload): the running owner launcher holds the old .cjs in
-#     memory. Such a change goes live only in a FRESH session (a new launcher
-#     process). This script detects recently-changed launcher .cjs and warns.
+# A launcher *.cjs* change never reloads in place (SIGHUP is a shutdown signal,
+# not a reload): the running owner launcher holds the old .cjs in memory. Such a
+# change goes live only in a FRESH session (a new launcher process). This script
+# detects recently-changed launcher .cjs and warns.
 #
 # Usage:
-#   deploy-mcp.sh            # build all dists + report (safe, no recycle)
-#   deploy-mcp.sh --recycle  # also transparently recycle the system-spec-memory daemon
+#   deploy-mcp.sh            # build all dists + report
 
 set -euo pipefail
 REPO="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$REPO" || exit 1
-RECYCLE=0; [ "${1:-}" = "--recycle" ] && RECYCLE=1
 FAIL=0
 
 build_pkg() {
@@ -47,19 +38,19 @@ build_pkg() {
 }
 
 echo "== Building MCP server dists =="
-# system-spec-memory: builds @spec-kit/shared too via TS project references.
-build_pkg "system-spec-memory" ".opencode/skills/system-spec-kit/mcp-server"
+# spec-kit: builds @spec-kit/shared too via TS project references.
+build_pkg "spec-kit" ".opencode/skills/system-spec-kit/mcp-server"
 # system-skill-advisor: build if it ships a build script.
 build_pkg "advisor" ".opencode/skills/system-skill-advisor/mcp-server"
 
 if [ "$FAIL" -ne 0 ]; then
-  echo "!! One or more builds failed — NOT recycling. Fix builds first." >&2
+  echo "!! One or more builds failed. Fix builds first." >&2
   exit 1
 fi
 
 echo "== Launcher .cjs change check =="
 # Surface launcher .cjs touched in the working tree or last commit: these need a
-# FRESH session to take effect, which a recycle cannot provide.
+# FRESH session to take effect.
 CJS_CHANGED="$(
   { git diff --name-only -- '.opencode/bin/*.cjs' '.opencode/bin/lib/*.cjs' 2>/dev/null
     git diff --name-only HEAD~1 HEAD -- '.opencode/bin/*.cjs' '.opencode/bin/lib/*.cjs' 2>/dev/null
@@ -71,23 +62,6 @@ if [ -n "$CJS_CHANGED" ]; then
   echo "$CJS_CHANGED" | sed 's/^/    - /'
 else
   echo "  No launcher .cjs changes detected."
-fi
-
-if [ "$RECYCLE" -eq 1 ]; then
-  echo "== Recycling system-spec-memory daemon (transparent) =="
-  CHILD="$(pgrep -f 'system-spec-kit/mcp-server/dist/context-server.js' | head -1 || true)"
-  if [ -z "$CHILD" ]; then
-    echo "  No running system-spec-memory daemon child found — it will load fresh dist on next start."
-  else
-    kill -TERM "$CHILD" && echo "  SIGTERM sent to daemon child $CHILD; owner launcher will respawn from fresh dist."
-    i=0
-    while [ $i -lt 60 ]; do
-      NEW="$(pgrep -f 'system-spec-kit/mcp-server/dist/context-server.js' | grep -v "^$CHILD$" | head -1 || true)"
-      [ -n "$NEW" ] && { echo "  Respawned daemon child: $NEW"; break; }
-      sleep 0.5; i=$((i+1))
-    done
-    [ -z "${NEW:-}" ] && { echo "  !! No respawn within ~30s — check MCP health." >&2; exit 1; }
-  fi
 fi
 
 echo "== Done =="

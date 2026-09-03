@@ -146,10 +146,10 @@ export const SPEC_ROOT_RESOLVERS = [
     precedence: 'canonical-first',
   },
   {
-    file: 'mcp-server/api/indexing.ts:68-92',
+    file: 'mcp-server/api/graph-refresh.ts:19-55',
     symbol: 'resolveSpecFolderPath',
     consumerOrEffect:
-      'Indexing resolves existing direct paths, discovery, canonical fallback, then legacy fallback.',
+      'Graph refresh resolves existing direct paths, discovery, canonical fallback, then legacy fallback.',
     precedence: 'direct-path-first',
   },
   {

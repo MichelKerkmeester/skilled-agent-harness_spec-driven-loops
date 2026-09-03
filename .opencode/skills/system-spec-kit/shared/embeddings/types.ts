@@ -1,12 +1,10 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedders — types (shared contract surface)
 // ───────────────────────────────────────────────────────────────
-// Canonical BackendKind + EmbedderManifest shared by system-spec-memory and
-// skill-advisor. Both skills' local `mcp-server/lib/embedders/types.ts`
-// re-export from here.
-//
-// Promoted from system-spec-memory's mcp-server/lib/embedders/types.ts so both
-// skills share the canonical surface.
+// Canonical BackendKind + EmbedderManifest for the shared embedding stack owned
+// by the skill advisor. A consumer's local `mcp-server/lib/embedders/types.ts`
+// re-exports from here, so every consumer names a backend and reads a manifest
+// the same way.
 // ───────────────────────────────────────────────────────────────
 
 /**

@@ -2,16 +2,6 @@
   "description": "Allowlist for scripts importing from @spec-kit/mcp-server/{lib,core,handlers} internals or equivalent relative runtime paths. Each exception requires: owner, reason, removeWhen, createdAt, lastReviewedAt. Wildcard internal-runtime entries MUST include expiresAt; specific-path entries SHOULD include expiresAt.",
   "exceptions": [
     {
-      "file": "scripts/evals/run-performance-benchmarks.ts",
-      "import": "@spec-kit/mcp-server/lib/*",
-      "owner": "spec-kit-maintainers",
-      "reason": "Benchmark needs direct access to internal metrics",
-      "removeWhen": "metrics API exposed via api/",
-      "createdAt": "2026-02-21",
-      "lastReviewedAt": "2026-03-05",
-      "expiresAt": "2026-06-04"
-    },
-    {
       "file": "scripts/spec-folder/generate-description.ts",
       "import": "@spec-kit/mcp-server/lib/search/folder-discovery",
       "owner": "spec-kit-maintainers",
@@ -30,16 +20,6 @@
       "createdAt": "2026-03-08",
       "lastReviewedAt": "2026-03-08",
       "expiresAt": "2026-06-08"
-    },
-    {
-      "file": "scripts/memory/rebuild-auto-entities.ts",
-      "import": "../../mcp-server/lib/extraction/entity-extractor",
-      "owner": "spec-kit-maintainers",
-      "reason": "CLI script needs direct access to entity extraction internals for rebuild operations",
-      "removeWhen": "rebuildAutoEntities exposed via api/",
-      "createdAt": "2026-03-15",
-      "lastReviewedAt": "2026-03-15",
-      "expiresAt": "2026-06-15"
     }
   ]
 }

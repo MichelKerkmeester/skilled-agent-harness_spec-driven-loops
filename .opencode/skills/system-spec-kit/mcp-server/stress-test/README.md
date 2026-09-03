@@ -1,6 +1,6 @@
 ---
 title: "MCP Server Stress Tests"
-description: "Dedicated Vitest stress, load, matrix-cell, and performance validation suite for the MCP server."
+description: "Vitest suites held outside the default test run, for load, contention, and capacity checks operators run by choice."
 trigger_phrases:
   - "stress test"
   - "mcp-server/stress-test"
@@ -13,13 +13,14 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`stress-test/` holds MCP server checks that are intentionally outside the default `tests/` suite. Use it for load checks, high-volume read and write behavior, matrix-cell remediation, degraded-state sweeps, and performance or capacity validation that operators run by choice.
+`stress-test/` holds checks that are deliberately outside the default `tests/` suite: load and flood behavior, contention, degraded-state sweeps, and capacity validation an operator runs on purpose rather than on every commit.
 
 Current state:
 
-- `vitest.stress.config.ts` includes only `mcp-server/stress-test/**/*.{vitest,test}.ts`.
-- Default `npm test` uses `vitest.config.ts`, which excludes `mcp-server/stress-test/**`.
-- Stress suites should use temp directories or in-memory databases and must not mutate live DB files.
+- `../vitest.stress.config.ts`, at the package root, includes only `mcp-server/stress-test/**/*.{vitest,test}.ts` and excludes `mcp-server/tests/**` and `scripts/tests/**`.
+- The default lanes use `../vitest.config.ts` and do not load anything here.
+- `fileParallelism` is off and the per-test timeout is 240 seconds, because these suites contend for the same temporary directories when run together.
+- Suites use temp directories or in-memory databases. None mutates a live file outside its own sandbox.
 
 ---
 
@@ -31,25 +32,17 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌────────────────┐      ┌────────────────────┐      ┌──────────────────┐
-│ Operator       │ ───▶ │ npm run stress     │ ───▶ │ vitest stress    │
-│ or CI slice    │      │ stress:* scripts   │      │ config           │
-└───────┬────────┘      └─────────┬──────────┘      └────────┬─────────┘
-        │                         │                          │
-        │                         ▼                          ▼
-        │              ┌────────────────────┐       ┌──────────────────┐
-        └──────────▶   │ Domain suites      │ ───▶  │ Temp fixtures    │
-                       │ durability, matrix,│       │ isolated DB and  │
-                       │ memory, search,    │       │ metrics output   │
-                       │ session, substrate │       │                  │
-                       └─────────┬──────────┘       └──────────────────┘
-                                 │
-                                 ▼
-                       ┌────────────────────┐
-                       │ Cost notes and     │
-                       │ benchmark signals  │
-                       └────────────────────┘
+│ Operator       │ ───▶ │ vitest run --config│ ───▶ │ stress-only      │
+│                │      │ vitest.stress...   │      │ discovery        │
+└────────────────┘      └─────────┬──────────┘      └────────┬─────────┘
+                                  │                          │
+                                  ▼                          ▼
+                       ┌────────────────────┐       ┌──────────────────┐
+                       │ domain suites      │ ───▶  │ temp fixtures    │
+                       │ under stress-test/ │       │ isolated state   │
+                       └────────────────────┘       └──────────────────┘
 
-Execution boundary: default tests do not import or run stress suites.
+Execution boundary: the default test lanes do not import or run stress suites.
 ```
 
 ---
@@ -58,15 +51,11 @@ Execution boundary: default tests do not import or run stress suites.
 
 ```text
 mcp-server/stress-test/
-├── search-quality/                 # W3-W13 search-quality test grid, corpus, metrics, baseline
-├── memory/                         # Memory search and trigger latency or throughput
-├── session/                        # Session entry-limit and resume benchmarks
-├── durability/                     # Checkpoint, recycle, and daemon re-election durability gate
-├── matrix/                         # Synthetic search routing and latency comparison
-├── substrate/                      # Local substrate runner and pure-logic stress gate
-├── vitest.stress.config.ts         # Stress-only Vitest config
+├── substrate/        # Pure-logic substrate stress gate
 └── README.md
 ```
+
+The stress Vitest config lives at the package root as `../vitest.stress.config.ts`, not in this folder.
 
 ---
 
@@ -74,13 +63,8 @@ mcp-server/stress-test/
 
 | File or directory | Responsibility |
 |---|---|
-| `vitest.stress.config.ts` | Limits Vitest discovery to stress suites. |
-| `search-quality/` | Runs search-quality test-grid cells, corpus checks, metrics, and baseline comparisons. |
-| `memory/` | Measures memory search and trigger pathway behavior under load. |
-| `durability/` | Exercises checkpoint, lease coalescing, daemon recycle, re-election, persistence, release-cleanup, and embedder-degrade flood cases. |
-| `session/` | Measures session limits and resume latency. |
-| `matrix/` | Runs synthetic matrix routing and latency comparisons. |
-| `substrate/` | Promotes the shared-daemon substrate runner and covers query expansion, token-budget edges, and V-rule save floods. |
+| `../vitest.stress.config.ts` | Limits Vitest discovery to this folder, disables file parallelism, and raises the per-test timeout to 240 seconds. |
+| `substrate/v-rule-save-flood-stress.vitest.ts` | Cross-spec contamination rules under a 50-save canonical-doc flood, run against pure validation logic in `../../scripts/lib/validate-memory-quality`. |
 
 ---
 
@@ -88,36 +72,31 @@ mcp-server/stress-test/
 
 | Boundary | Rule |
 |---|---|
-| Default verification | Keep small deterministic regressions in `mcp-server/tests/`, not here. |
-| Data safety | Use temp directories, in-memory databases, or generated fixtures. |
-| Runtime cost | Note expected cost near the top of long-running suites. |
-| Ownership | Add suites here only for capacity, concurrency, degraded-state, matrix, or benchmark coverage. |
+| Default verification | Small deterministic regressions belong in `../tests/`, not here. |
+| Data safety | Use temp directories, in-memory databases, or generated fixtures. A stress suite must not touch state outside its own sandbox. |
+| Runtime cost | Note the expected cost near the top of a long-running suite. |
+| Ownership | Add a suite here only for capacity, concurrency, degraded-state, or benchmark coverage. |
 
 Main flow:
 
 ```text
 ╭──────────────────────────────────────────╮
-│ Operator chooses explicit stress command │
+│ Operator chooses an explicit stress run  │
 ╰──────────────────────────────────────────╯
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ Vitest loads vitest.stress.config.ts     │
+│ Vitest loads ../vitest.stress.config.ts  │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ Matching stress suites run in isolation  │
-└──────────────────────────────────────────┘
-                  │
-                  ▼
-┌──────────────────────────────────────────┐
-│ Metrics, timing, or regression signals   │
+│ Matching suites run serially, isolated   │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ╭──────────────────────────────────────────╮
-│ Operator reviews stress-only result      │
+│ Operator reviews the stress-only result  │
 ╰──────────────────────────────────────────╯
 ```
 
@@ -127,26 +106,21 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `npm run stress` | npm script | Runs the full stress suite from `mcp-server/`. |
-| `npm run stress:harness` | npm script | Runs the search-quality test-grid slice. |
-| `npm run stress:matrix` | npm script | Runs the matrix stress slice. |
-| `npm run stress:substrate` | npm script | Runs the substrate stress gate from `mcp-server/stress-test/substrate/`. |
-| `npm run stress:durability` | npm script | Runs the durability gate from `mcp-server/stress-test/durability/` (checkpoint, recycle, daemon re-election). |
-| `vitest.stress.config.ts` | Vitest config | Defines the stress-only test discovery boundary. |
+| `../vitest.stress.config.ts` | Vitest config | Defines the stress-only discovery boundary. |
+| `npx vitest run --config vitest.stress.config.ts` | Command | Runs every discovered stress suite. |
+| `npx vitest run --config vitest.stress.config.ts stress-test/substrate` | Command | Runs one domain slice. |
+
+`package.json` defines no `stress` script. These suites are invoked through Vitest directly.
 
 ---
 
 ## 7. VALIDATION
 
-Run from `.opencode/skills/system-spec-kit/mcp-server` unless noted.
+Run from `.opencode/skills/system-spec-kit/mcp-server`.
 
 ```bash
-npm run stress
-npm run stress:harness
-npm run stress:matrix
-npm run stress:substrate
-npm run stress:durability
-npx vitest run --config vitest.stress.config.ts stress-test/session/session-manager-stress.vitest.ts
+npx vitest run --config vitest.stress.config.ts
+npx vitest run --config vitest.stress.config.ts stress-test/substrate/v-rule-save-flood-stress.vitest.ts
 ```
 
 Expected result: the selected stress slice exits with Vitest success or a clear benchmark failure.
@@ -155,6 +129,6 @@ Expected result: the selected stress slice exits with Vitest success or a clear 
 
 ## 8. RELATED
 
+- [`substrate/README.md`](./substrate/README.md)
 - [`../tests/README.md`](../tests/README.md)
-- [`../matrix-runners/README.md`](../matrix-runners/README.md)
 - [`../README.md`](../README.md)

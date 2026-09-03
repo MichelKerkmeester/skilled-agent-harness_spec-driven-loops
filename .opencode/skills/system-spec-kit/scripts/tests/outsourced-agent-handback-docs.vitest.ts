@@ -58,16 +58,4 @@ describe('outsourced agent handback docs', () => {
       expect(content, `${docPath} should include nextSteps in payload example`).toContain('"nextSteps"');
     }
   });
-
-  it('keeps the feature catalog aligned to the 015 handback phase', () => {
-    const content = readWorkspaceFile(
-      '.opencode/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/outsourced-agent-memory-capture.md',
-    );
-
-    expect(content).toContain('015-outsourced-agent-handback');
-    expect(content).toContain('INSUFFICIENT_CONTEXT_ABORT');
-    expect(content).toContain('CONTAMINATION_GATE_ABORT');
-    expect(content).toContain('scripts/tests/outsourced-agent-handback-docs.vitest.ts');
-    expect(content).not.toContain('Status: Implemented. Spec folder `013-outsourced-agent-memory` is complete.');
-  });
 });
